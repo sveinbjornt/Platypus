@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleName</key>
+	<string>Platypus</string>
+	<key>CFBundleDisplayName</key>
+	<string>Platypus</string>
+	<key>CFBundleExecutable</key>
+	<string>Platypus</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>sh</string>
+				<string>tcsh</string>
+				<string>pl</string>
+				<string>perl</string>
+				<string>py</string>
+				<string>objpy</string>
+				<string>python</string>
+				<string>rb</string>
+				<string>rbx</string>
+				<string>applescript</string>
+				<string>ascript</string>
+				<string>osa</string>
+				<string>scpt</string>
+				<string>tcl</string>
+				<string>exp</string>
+				<string>expect</string>
+				<string>php</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>PlatypusScriptFile.icns</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>****</string>
+				<string>TEXT</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>platypus</string>
+			</array>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>****</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>PlatypusProfile.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Platypus Profile</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+		</dict>
+	</array>
+	<key>CFBundleIconFile</key>
+	<string>PlatypusAppIcon.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.sveinbjorn.Platypus</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>Plat</string>
+	<key>CFBundleShortVersionString</key>
+	<string>4.5</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.4.0</string>
+	<key>NSAppleScriptEnabled</key>
+	<false/>
+	<key>CFBundleGetInfoString</key>
+	<string>©2003-2010 Sveinbjorn Thordarson.</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>©2003-2010 Sveinbjorn Thordarson.</string>
+	<key>NSMainNibFile</key>
+	<string>Platypus</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>

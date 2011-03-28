@@ -1,0 +1,50 @@
+#!/usr/bin/perl
+
+#sleep 3;
+#for ($i = 0; $i < 100; $i++)
+#{#
+#print "$i" . "\n";
+#}
+#$i = 0;
+#foreach (@ARGV)
+#{
+	#		print "$_\";
+	#sleep 1;
+#}
+#$i = 0;
+#while ($i < 9000)
+#{ print "$i: Smusmu\n"; 
+
+	#print "PROGRESS:" . int($i / 100) . "\n";
+
+#	$i++;
+#}
+foreach (@ARGV) { print $_ . "\n"; }
+#print "PROGRESS:100\n";
+#	print STDOUT "Doing $i\r";
+#	print "Number $i\n";
+#	print "PROGRESS:$i\n";
+#	print "http://smu.com\n";
+#	$i++;
+	
+#	for ($u = 0; $u < 100000; $u++) {}
+	#system("curl -O http://sveinbjorn.org/index &> /dev/null");
+#}
+#print "Done";
+#print "Hola";
+
+#scp $2 root@arakkis:/tmp/
+#touch /Users/sveinbjorn/Desktop/YES.txt
+#echo PROGRESS:30
+#echo Hello 1
+#find /Users/
+#echo PROGRESS:60
+#echo Hello 2
+#sleep 1
+#echo PROGRESS:90
+#echo Hello 3
+#sleep 1
+#perl anotherScript 2>&1 
+#find /www/sveinbjorn/cgi-bin/
+#echo "FINIDO"
+#sleep 1

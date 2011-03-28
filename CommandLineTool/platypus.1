@@ -1,0 +1,241 @@
+.Dd 25/07/10
+.Dt platypus 1
+.Os Darwin
+.Sh NAME
+.Nm platypus
+.Nd create Mac OS X application wrapper around a script.
+.Sh SYNOPSIS
+.Nm
+.Op Fl vh
+.Op Fl O Ar profile
+.Op Fl FASDBR]
+.Op Fl ydlH
+.Op Fl bgn
+.Op Fl KYL
+.Op Fl P Ar profile
+.Op Fl a Ar appName
+.Op Fl c Ar scriptPath
+.Op Fl o Ar outputType
+.Op Fl i Ar icon
+.Op Fl p Ar interpreter
+.Op Fl V Ar version
+.Op Fl u Ar author
+.Op Fl s Ar signature
+.Op Fl I Ar identifier
+.Op Fl f Ar bundledFile
+.Op Fl X Ar suffixes
+.Op Fl T Ar filetypes
+.Op Fl G Ar interpreterArgs
+.Ar destinationPath
+.Sh DESCRIPTION
+.Nm
+is the command line counterpart to the Platypus Mac OS X application.  It is a tool 
+that creates a Mac OS X application bundles which executes a script.
+.Pp
+.Nm
+defaults to creating application bundles, but can also create Platypus profiles that 
+can subsequently be loaded by either the command line program or the Platypus graphical application.
+.Pp
+.Nm
+supports the following flags (parsed in the order in which they are passed):
+.Pp
+.Bl -tag -width -Fl
+.It Fl O 
+Create profile file as output instead of actually creating an application bundle.  When you 
+select this option, the "destinationPath" paramater (i.e. the final parameter to the program) must 
+have a .platypus suffix.  Please note that in order to create reusable profiles, this option 
+requires that all paths to bundled files, icons etc. be absolute.  Profiles may or may not 
+work in older/newer versions of the program.
+.It Fl P Ar [profile]
+Loads all settings from a Platypus profile file.  You will still need to specify a destination path 
+for the application.  Individual settings in the profile can be overridden with subsequent
+parameters.
+.It Fl a Ar [appName]
+Specifies the name of the application.  This is can be different from the name of the .app
+bundle itself, and is displayed in the application's menus, About window and Info.plist property list.
+.It Fl c Ar [scriptPath]
+Path to the script that is to be wrapped into an application.
+.It Fl o Ar [outputType]
+Specifies the script application's output type, which can be any of the following:
+.Pp
+.Ar 'None'
+The application has no graphical output.
+.Pp
+.Ar 'Progress Bar'
+The application displays a progress bar while running.
+.Pp
+.Ar 'Text Window'
+The application displays a window with a text field with all script output.
+.Pp
+.Ar 'Web View'
+The application displays a window with a web view which renders output as HTML.
+.Pp
+.Ar 'Status Menu'
+The application displays a status menu item in the menubar which runs script and displays output when 
+selected.
+.Pp
+.Ar 'Droplet'
+The application displays a droplet window for dropping files on for processing.
+.Pp
+.It Fl i Ar [icon]
+Specifies a file to use as icon for the application bundle.
+The icon file can be a regular Mac OS X .icns file, or an image file of any kind
+supported by the Mac OS X Cocoa APIs.  As of writing, this includes JPEG, GIF, PNG, 
+TIFF, PSD, BMP, PICT, TGA, SGI, PNTG PDF, EPS and PostScript files.  The image will
+be scaled to the standard Mac OS X icon size.  
+.Pp
+Please note that specifying a non-icns image will not produce icons that look good in smaller sizes.  
+For best results, use professional Mac OS X icon-editing software and specify a carefully
+crafted .icns file.  If this option is left unspecified, the default Platypus app icon is used. 
+.Pp
+.It Fl p Ar [interpreter]
+Sets the interpreter for your script (e.g. /usr/bin/perl).  If no interpreter is specified, the default 
+is the standard shell (/bin/sh).
+.Pp
+.It Fl V Ar [version]
+Sets the application bundle's version.  This is displayed in the application bundle's Info.plist
+property list and About window.
+.Pp
+.It Fl u Ar [author]
+Sets the name of the application author (e.g. "Apple Computer" or "John Smith").  If not specified, 
+it defaults to the current user's full user name.
+.Pp
+.It Fl s Ar [signature]
+Mostly for backwards compatibility and heritage reasons.  In Mac OS 9 and earlier (and, indeed, in 
+Mac OS X), each application is assigned a four character ASCII signature known as an OSType.  It 
+is possible to register application signatures in a database on the Apple Developer Website.   
+Please note that Apple has reserved all lowercase-only combinations.  
+.Pp
+Chances are that you will have no need of this option. 
+If it is left empty, the application will get the signature string '????', which is ignored
+by Mac OS X.  This value is stored within the application bundle in the Info.plist application 
+property list.
+.Pp
+.It Fl f Ar [bundledFile]
+Specifies a file to be bundled with the script application.  This file will be copied over the Resources
+folder of the application bundle, which is the same folder in which your script will eventually reside.  
+You can specify any number of files to be bundled, but you must use the -f flag each time, since
+the flag only accepts one file path after the -f flag.
+.Pp
+.It Fl I Ar [identifier]
+Sets the application's bundle identifier.  An application identifier is a reverse DNS name
+(e.g. com.apple.iTunes) that uniquely identifies your application.  If this option is left empty, 
+it will default to an identifier of the format "org.username.appname" (e.g. org.sveinbjorn.Platypus).
+.It Fl F
+If set, your script will receive the path to the application's Resources folder 
+(e.g. "/Applications/MyPlatypusApp.app/Contents/Resources") as the first argument ($ARGV[0], $1 etc., 
+depending on your scripting language of choice).
+.It Fl A
+This flag makes the application request administrator privileges via Apple's Security Framework (i.e.
+prompt for a password) and then executes the script with those privileges. For details on the nature
+of these privileges, see the Apple documentation for the AuthorizationExecuteWithPrivileges() in 
+Security.framework.
+.Pp
+.It Fl S
+Secure bundled script.  This encrypts the bundled script, to fend off prying eyes. Please note that
+this will NOT make the script 'secure' from anyone knowledgable enough to get a clear text version, 
+but it just might serve to dissuade the less determined.
+.Pp
+.It Fl D
+Makes your script application droppable, i.e. capable of receiving drag and dropped files as arguments
+to the script. The application bundle's property list is modified so
+that it can receive dropped files in the Dock and Finder. 
+These files are then passed on to the script as arguments via @ARGV. 
+.Pp
+.It Fl B
+This option causes the application to run in the background.  The application will not appear in 
+the Dock or bring its windows to the front when launched.  This is done by registering the application 
+with the Finder as a user interface element (LSUIElement).  For this reason, the application's windows 
+will not move to the front when it is launched.
+.Pp
+.It Fl R
+This option sets the application so that it remains running after the script has been executed.  
+It can then later be quit by the user via regular means (i.e. the Quit menu item).
+.Pp
+.It Fl X Ar [suffixes]
+Only appropriate if you are using the -D option. This flag allows you to specify the file suffixes
+(e.g. .txt, .wav) your application can open.  This should be a |-separated string (e.g. "txt|wav|jpg").
+.It Fl T Ar [filetypes]
+Only appropriate if you are using the -D option.  This flag allows you to specify the file type 
+codes (e.g. '8BIM', 'TEXT') your application can open.  This should be a |-separated string of 
+4-character ASCII strings (e.g. "8BIM|TEXT|R*ch").
+.It Fl G Ar [arguments]
+Arguments for the script interpreter.  These should be specified as a |-separated string (e.g. '-w|-s|-l').
+.Pp
+.It Fl b Ar [hexColor]
+For Text Window output mode only. Set background color of text output (e.g. #ffffff).
+.Pp
+.It Fl g Ar [hexColor]
+For Text Window output mode only. Set foreground color of text output (e.g. #000000).
+.Pp
+.It Fl n Ar [fontName]
+For Text Window output mode only. Set font and fontsize for text output field (e.g. 'Monaco 10').
+.Pp
+.It Fl E Ar [encodingNumber]
+For Text Window output mode only. Set text encoding for script output.  Must be one of the numbers 
+defined in the NSString class reference (e.g. 4=UTF-8, 1=ASCII, etc.).  Default is UTF8.
+.Pp
+.It Fl K Ar [kind]
+For Status Menu output mode only.  Set display kind for Status Menu output mode.  This can be 
+"Text", "Icon and text" or "Icon".
+.Pp
+.It Fl Y Ar [title]
+For Status Menu output mode only.  Set the display title for the status item in Status Menu output mode.
+.Pp
+.It Fl L Ar [imagePath]
+For Status Menu output mode only.  Set the icon image for the status item in Status Menu output mode.  
+This must be a 16x16 pixel image.
+.Pp
+.It Fl d
+Development mode.  A symlink to the original script is created inside the application bundle instead 
+of an actual copy being placed therein.  Symlinks are also created to bundled files.  This option is 
+incompatible with the -S option.
+.Pp
+.It Fl l
+Optimize application.  Strips and compiles the bundled nib file to reduce application size, 
+making the nib uneditable.  This option only works if you have Apple's Developer Tools installed, 
+since it uses the program /Developer/usr/bin/ibtool.
+.Pp
+.It Fl y
+Force mode.  With this flag set, the program will happily overwrite any previous files and folders 
+in destination path.  Use with caution.
+.Pp
+.It Fl H Ar [nibPath]
+Specify an alternate nib to copy to application bundle.  This allows you to integrate a customised 
+Platypus application nib into your build process.
+.Pp
+.It Fl v
+Prints the version of the
+.Nm 
+command line utility
+.Pp
+.It Fl h
+Prints help and usage string
+.El
+.Pp
+The 
+.Nm 
+utility exits 0 on success, and >0 if an error occurs.
+.Pp
+.Sh EXAMPLES
+.Pp
+platypus -P myProfile.platypus myApplication.app
+.Pp
+platypus -a MyApp -c script.pl -p /usr/bin/perl -o 'Text Window' myApplication.app
+.Pp
+platypus -D -a MyDroplet -c droplet.sh -o 'Web View' myApplication.app
+.Pp
+.Sh FILES
+.Bl -tag -width "/usr/local/share/platypus/PlatypusDefault.icns" -compact
+.It Pa /usr/local/bin/platypus
+program binary
+.It Pa /usr/local/share/platypus/ScriptExec
+executable binary
+.It Pa /usr/local/share/platypus/MainMenu.nib
+Nib file for app
+.It Pa /usr/local/share/platypus/PlatypusDefault.icns
+Default icon
+.El
+.Sh AUTHORS 
+This manual page was written by Sveinbjorn Thordarson.  
+To support Platypus development, please visit http://sveinbjorn.org/donations.

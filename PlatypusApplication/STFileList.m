@@ -1,0 +1,477 @@
+/*
+    Platypus - program for creating Mac OS X application wrappers around scripts
+    Copyright (C) 2003-2010 Sveinbjorn Thordarson <sveinbjornt@simnet.is>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+*/
+
+// STFileList is a controller class around the Bundled Files list in the Platypus
+// window.  It is the data source and delegate of the tableview with the files.
+
+#import "STFileList.h"
+#import "PlatypusController.h"
+#import "STUtil.h"
+
+#import "UKKQueue.h"
+
+@implementation STFileList
+
+- (id) init
+{
+	files = [[NSMutableArray alloc] init];
+	return self;
+}
+
+-(void)dealloc
+{
+	[files release];
+	[super dealloc];
+}
+
+- (void)awakeFromNib
+{
+	totalSize = 0;
+	[tableView registerForDraggedTypes: [NSArray arrayWithObject: NSFilenamesPboardType]];
+	[tableView setTarget: self];
+	[tableView setDoubleAction:@selector(itemDoubleClicked:)];
+	[tableView setDraggingSourceOperationMask: NSDragOperationCopy | NSDragOperationMove forLocal: NO];
+	
+	// we list ourself as an observer of changes to file system
+	[[[NSWorkspace sharedWorkspace] notificationCenter]
+		addObserver: self selector: @selector(trackedFileDidChange) name: UKFileWatcherRenameNotification object: NULL];
+	[[[NSWorkspace sharedWorkspace] notificationCenter]
+		addObserver: self selector: @selector(trackedFileDidChange) name: UKFileWatcherDeleteNotification object: NULL];
+}
+
+#pragma mark -
+
+- (void)itemDoubleClicked: (id)sender
+{
+	if ([tableView clickedRow] == -1)
+		return;
+	
+	if(GetCurrentKeyModifiers() & cmdKey)
+		[self revealInFinder: [tableView clickedRow]];
+	else
+		[self openInFinder: [tableView clickedRow]];
+}
+
+
+- (void)trackedFileDidChange
+{
+	[tableView reloadData];
+}
+
+- (NSString *)getFileAtIndex:(int)index
+{
+	return [[files objectAtIndex: index] objectForKey: @"Path"];
+}
+
+- (void) addFile: (NSString *)fileName
+{
+	[self addFiles: [NSArray arrayWithObject: fileName] ];
+}
+
+- (void) addFiles: (NSArray *)fileNames
+{
+	int i;
+	
+	for (i = 0; i < [fileNames count]; i++)
+	{
+		NSString *filePath = [fileNames objectAtIndex: i];
+
+		if (![self hasFile: filePath])
+		{
+			NSMutableDictionary *fileInfoDict = [NSMutableDictionary dictionaryWithCapacity: 10];
+			[fileInfoDict setObject: filePath forKey: @"Path"];
+			
+			NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile: filePath];
+			[icon setSize: NSMakeSize(16,16)];
+		
+			[fileInfoDict setObject: icon forKey: @"Icon"];
+			[files addObject: fileInfoDict];
+		}
+	}
+	[tableView reloadData];
+	[self tableViewSelectionDidChange: NULL];
+	[self updateQueueWatch];
+	[self updateFileSizeField];
+}
+
+-(void)updateQueueWatch
+{
+	int i;
+	[[UKKQueue sharedFileWatcher] removeAllPathsFromQueue]; 
+	for (i = 0; i < [files count]; i++)
+		[[UKKQueue sharedFileWatcher] addPathToQueue:  [[files objectAtIndex: i] objectForKey: @"Path"]];
+		
+}
+
+- (BOOL) hasFile: (NSString *)fileName
+{
+	int i;
+	
+	for (i = 0; i < [files count]; i++)
+	{
+		if ([[[files objectAtIndex: i] objectForKey: @"Path"] isEqualToString: fileName])
+			return YES;
+	}
+	return NO;
+}
+
+- (void) clearList
+{
+	[files removeAllObjects];
+	[self updateQueueWatch];
+	[tableView reloadData];
+}
+
+- (void) removeFile: (int)index
+{
+	[files removeObjectAtIndex: index];
+	[self updateQueueWatch];
+	[tableView reloadData];
+}
+
+- (int)numFiles
+{
+	return([files count]);
+}
+
+- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+{
+	return [self numFiles];
+}
+
+- (NSArray *)getFilesArray
+{
+	NSMutableArray	*fileNames = [NSMutableArray arrayWithCapacity: PROGRAM_MAX_LIST_ITEMS];
+	int				i;
+	
+	for (i = 0; i < [files count]; i++)
+		[fileNames addObject: [[files objectAtIndex: i] objectForKey: @"Path"]];
+
+	return fileNames;
+}
+
+
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+{	
+	if ([[aTableColumn identifier] caseInsensitiveCompare: @"2"] == NSOrderedSame)//path
+	{
+		// check if bundled file still exists at path
+		NSString *filePath = [[files objectAtIndex: rowIndex] objectForKey: @"Path"];
+		if ([[NSFileManager defaultManager] fileExistsAtPath: filePath])
+			return([[files objectAtIndex: rowIndex] objectForKey: @"Path"]);
+		else // if not, we hilight red
+		{
+			NSDictionary *attr = [NSDictionary dictionaryWithObjectsAndKeys: [NSColor redColor], NSForegroundColorAttributeName, nil];
+			return([[[NSAttributedString alloc] initWithString: filePath attributes: attr] autorelease]);
+		}
+	}
+	else if ([[aTableColumn identifier] caseInsensitiveCompare: @"1"] == NSOrderedSame)//icon
+	{
+        return [[files objectAtIndex: rowIndex] objectForKey: @"Icon"];
+	}
+	
+	return(@"");
+}
+
+
+- (void)revealInFinder: (int)index
+{
+	BOOL		isDir;
+	NSString	*path = [[files objectAtIndex: index] objectForKey: @"Path"];
+	
+	if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]) 
+	{
+            if (isDir)
+				[[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:path];
+            else
+				[[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:nil];
+	}
+}
+
+- (void)openInFinder: (int)index
+{	
+	[[NSWorkspace sharedWorkspace] openFile: [[files objectAtIndex: index] objectForKey: @"Path"]];
+}
+
+/*****************************************
+ - called when a [+] button is pressed
+*****************************************/
+
+- (IBAction)addFileToFileList:(id)sender
+{
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+	[oPanel setPrompt:@"Add"];
+	[oPanel setCanChooseDirectories:YES];
+    [oPanel setAllowsMultipleSelection:YES];
+	
+	[window setTitle: [NSString stringWithFormat: @"%@ - Select files or folders to add", PROGRAM_NAME]];
+	
+	//run open panel
+    [oPanel beginSheetForDirectory:nil file:nil types:nil modalForWindow: window modalDelegate: self didEndSelector: @selector(addFilesPanelDidEnd:returnCode:contextInfo:) contextInfo: nil];
+}
+
+- (void)addFilesPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+	if (returnCode == NSOKButton)
+	{
+        [self addFiles: [oPanel filenames]];
+	}
+	
+	[window setTitle: PROGRAM_NAME];
+}
+
+/*****************************************
+ - called when [C] button is pressed
+*****************************************/
+
+- (IBAction)clearFileList:(id)sender
+{
+	[self clearList];
+	[self updateQueueWatch];
+	[tableView reloadData];
+	//update button status
+	[self tableViewSelectionDidChange: NULL];
+	[self updateFileSizeField];
+}
+
+
+/*****************************************
+ - called when [R] button is pressed
+*****************************************/
+- (IBAction)revealFileInFileList:(id)sender
+{	
+	int i;
+	NSIndexSet *selectedItems = [tableView selectedRowIndexes];
+	
+	for (i = 0; i < [self numFiles]; i++)
+	{
+		if ([selectedItems containsIndex: i])
+			[self revealInFinder: i];
+	}
+}
+
+/*****************************************
+
+ *****************************************/
+- (IBAction)openFileInFileList:(id)sender
+{	
+	int i;
+	NSIndexSet *selectedItems = [tableView selectedRowIndexes];
+	
+	for (i = 0; i < [self numFiles]; i++)
+	{
+		if ([selectedItems containsIndex: i])
+			[self openInFinder: i];
+	}
+}
+
+/*****************************************
+ - called when [-] button is pressed
+*****************************************/
+
+- (IBAction)removeFileFromFileList:(id)sender
+{
+	int i, rowToSelect;
+	NSIndexSet *selectedItems = [tableView selectedRowIndexes];
+	int selectedRow = [selectedItems firstIndex];
+	
+	for (i = [self numFiles]; i >= 0; i--)
+	{
+		if ([selectedItems containsIndex: i])
+		{
+			[self removeFile: i];
+		}
+	}
+	if ([tableView numberOfRows]) 
+	{
+		rowToSelect = selectedRow-1;
+		[tableView selectRowIndexes: [NSIndexSet indexSetWithIndex: rowToSelect] byExtendingSelection: NO];
+	}
+	
+	[tableView reloadData];
+	[self tableViewSelectionDidChange: NULL];
+	[self updateFileSizeField];
+}
+
+/*****************************************
+ - Updates text field listing total size of bundled files
+*****************************************/
+- (void)updateFileSizeField
+{
+	int			i;
+	
+	totalSize = 0;
+	NSString	*totalSizeString;
+	
+
+	//if there are no items, we just list it as 0 items
+	if ([self numFiles] <= 0)
+	{
+		[bundleSizeTextField setStringValue: [NSString stringWithFormat: @"%d items", [self numFiles]]];
+		[platypusControl updateEstimatedAppSize];
+		return;
+	}
+	
+	//otherwise, loop through all files, calculate size
+	for (i = 0; i < [self numFiles]; i++)
+	{		
+		totalSize += [STUtil fileOrFolderSize: [self getFileAtIndex: i]];
+	}
+	
+	totalSizeString = [STUtil sizeAsHumanReadable: totalSize];
+	if ([self numFiles] > 1)
+		[bundleSizeTextField setStringValue: [NSString stringWithFormat: @"%d items  ( %@ )", [self numFiles], totalSizeString]];
+	else
+		[bundleSizeTextField setStringValue: [NSString stringWithFormat: @"%d item  ( %@ )", [self numFiles], totalSizeString]];
+
+	[platypusControl updateEstimatedAppSize];
+}
+
+#pragma mark -
+
+/*****************************************
+ - Delegate managing selection in the Bundled Files list
+*****************************************/
+
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
+{
+	int i;
+	int selected = 0;
+	NSIndexSet *selectedItems;
+	
+	//selection changed in File List
+	if ([aNotification object] == tableView || [aNotification object] == NULL)
+	{
+		selectedItems = [tableView selectedRowIndexes];
+		for (i = 0; i < [self numFiles]; i++)
+		{
+			if ([selectedItems containsIndex: i])
+			{
+				selected++;
+			}
+		}
+		
+		//update button status
+		if (selected == 0)
+		{
+			[removeFileButton setEnabled: NO];
+			[revealFileButton setEnabled: NO];
+		}
+		else
+		{
+			[removeFileButton setEnabled: YES];
+			[revealFileButton setEnabled: YES];
+		}
+		
+		if ([self numFiles] == 0)
+			[clearFileListButton setEnabled: NO];
+		else
+			[clearFileListButton setEnabled: YES];
+	}
+}
+
+- (int)selectedRow
+{
+	return [tableView selectedRow];
+}
+
+
+/*****************************************
+ - Drag and drop handling
+*****************************************/
+-(BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation
+{
+	NSPasteboard *pboard = [info draggingPasteboard];	
+	NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
+	[self addFiles: draggedFiles];
+	return YES;
+}
+
+- (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard 
+{
+	NSMutableArray *filenames = [NSMutableArray arrayWithCapacity:[rowIndexes count]];
+	int index = [rowIndexes firstIndex];
+	
+	while (NSNotFound != index) 
+	{
+		[filenames addObject: [[files objectAtIndex: index] objectForKey: @"Path"]];
+		index = [rowIndexes indexGreaterThanIndex: index];
+	}
+	
+	[pboard declareTypes: [NSArray arrayWithObject: NSFilenamesPboardType] owner: NULL];
+	[pboard setPropertyList: filenames forType: NSFilenamesPboardType];
+	
+	return YES;
+	
+}
+
+-(NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
+{
+	return NSDragOperationLink;
+}
+
+#pragma mark -
+
+/*****************************************
+ - Delegate for enabling and disabling contextual menu items
+*****************************************/
+- (BOOL)validateMenuItem:(NSMenuItem*)anItem 
+{
+	int selectedRow = [tableView selectedRow];
+
+	if ([[anItem title] isEqualToString: @"Add New File"] || [[anItem title] isEqualToString: @"Add File To Bundle"])
+		return YES;
+	
+	if ([[anItem title] isEqualToString: @"Clear File List"] && [self numFiles] >= 1)
+		return YES;
+
+	if (selectedRow == -1)
+		return NO;
+
+	return YES;
+}
+
+#pragma mark -
+
+/*****************************************
+ - Tells us whether there are missing/moved files on the list
+*****************************************/
+- (BOOL)allPathsAreValid
+{
+	int i;
+	
+	for (i = 0; i < [self numFiles]; i++)
+	{
+		if (![[NSFileManager defaultManager] fileExistsAtPath: [[files objectAtIndex: i] objectForKey: @"Path"]])
+			return NO;
+	}
+	return YES;
+}
+
+/*****************************************
+ - Returns the total size of all bundled files at the moment
+*****************************************/
+
+-(UInt64)getTotalSize
+{
+	return totalSize;
+}
+
+@end

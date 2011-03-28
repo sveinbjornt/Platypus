@@ -1,0 +1,462 @@
+<!-- 
+     HTML is Copyright (C) 2003-2010 Sveinbjorn Thordarson.  All rights reserved.
+--> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> <html>
+<head>
+<title>Readme for Platypus 4.5</title>
+      <link rev="made" title="Sveinbjorn Thordarson" href="mailto:sveinbjornt@simnet.is"> 
+      <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+      <meta http-equiv="Content-Language" content="en"> 
+      <meta name="resource-type" content="document"> 
+      <meta name="description" lang="en" content="Platypus Documentation"> 
+      <meta name="author" lang="en" content="Sveinbjorn Thordarson"> 
+      <meta name="copyright" lang="en" content="(C) 2003-2010 Sveinbjorn Thordarson  All rights reserved."> 
+      <meta name="owner" lang="en" content="Sveinbjorn Thordarson"> 
+    <style type="text/css">
+    p
+    {
+        text-align: justify;
+    }
+    a
+    {
+        color: #79693F;
+    }
+    </style>
+</head> 
+
+<body style="padding:20px; background-color: #DDDDDD; padding: 20px; text-align: center;">
+
+<div style="background-color: white; padding: 30px; border: 1px solid #5d5562; margin-left: auto; margin-right: auto; width: 720px; text-align: justify;">
+
+
+<br>
+<img style="float: left; margin-left: 10px; margin-right: 50px;" src="data:image/png;base64,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">
+
+<h1>Platypus 4.5</h1>
+<p><strong>July 25th, 2010<br></strong>
+Sveinbjorn Thordarson - &lt;sveinbjornt@simnet.is&gt;</p>
+<br>
+<br>
+<br>
+<br>
+
+<h3>What is Platypus?</h3>
+
+<p><a href="http://sveinbjorn.org/platypus">Platypus</a> is a developer tool for creating application wrappers around scripts.  In other words, it creates Mac OS X applications that execute a bundled script. Command line scripts can thus be run transparently from the graphical window environment, integrating seamlessly with the user interface.</p>
+
+<p>Platypus is written in Objective-C / Cocoa and is free, open source software distributed under the terms and conditions of the <a href="http://www.fsf.org">Free Software Foundation</a>'s GNU General Public License.  The source code is available as a seperate download on the <a href="http://sveinbjorn.org/platypus">Platypus website</a>.</p>
+
+<p>Platypus is at this point a mature, feature-rich and stable application development tool.  I have invested considerable effort into developing and extending it over the last seven years. That being said, if you find Platypus to be a useful piece of software I ask you to please consider <a href="http://sveinbjorn.org/donations">making a donation</a> to support further development.</p>
+
+
+<br>
+
+<h3>How do I use Platypus?</h3>
+
+<p>Using Platypus is simple enough.  You type in the name you want to assign to the application in the "App Name" field and then locate your script via a navigation dialog by pressing the "Select" button (or alternatively, drag the script or type in the path manually).  You can then proceed to create the application by pressing the "Create" button.  </p>
+
+<p>Platypus sports a number of sophisticated features that are explained in detail in the documentation.  You can view it by opening Platypus and selecting "Platypus Documentation" from the "Help" menu.</p>
+
+<p>The Platypus documentation includes step by step tutorials and explanations of advanced features.  Your download should also have included a folder containing some sample scripts to toy around with.</p>
+
+<p>Platypus has a command-line interface counterpart, <code>platypus</code>.  You can install this command line tool from the Preferences into the default installation location <code>/usr/local/bin/platypus</code>.  The man page for the command line tool is available both from the terminal and as a PDF document accessible from the Platypus Help menu.</p>
+
+<br>
+
+<h3>How does Platypus work?</h3>
+
+<p>Platypus creates a Mac OS X application (.app) bundle that contains an executable file and your script.  When this application is launched, the executable file gets the script interpreter and other settings (authentication requirements, output type etc.) from generated configuration files in the Resources folder within the bundle and then executes the script according to those parameters.  Script output can then be presented to the end-user in a variety of ways.</p>
+
+<p>Platypus and Platypus-generated applications require Mac OS X 10.4 or later.  In order to create Platypus apps that run on previous incarnations of Mac OS X, you must use Platypus 3.4 or earlier.</p>
+
+<br>
+
+<h3>Current To Do List:</h3>
+
+<p>Please get in touch if you have any feature suggestions.  Meanwhile, these are the things on the current Platypus roadmap.
+<ul>
+<li>More and better sample scripts</li>
+<li>XCode integration</li>
+<li>Fix icon profile storage</li>
+<li>Icon setting for file types</li>
+</ul>
+
+<br>
+
+<h3>Version History</h3>
+
+<h4>17/08/2010 - Version 4.4</h4>
+
+<ul>
+<li>New output mode: "Droplet"</li>
+<li>Development mode now also creates symlinks to bundled files, not just the script</li>
+<li>New high-resolution 512x512 icon presets</li>
+<li>New "Default Text Encoding" option in Preferences</li>
+<li>STDOUT and STDERR are no longer captured in output mode "None"</li>
+<li>Platypus apps now use the Apple-recommended, more secure temporary location for secure scripts</li>
+<li>More text encoding options</li>
+<li>Show Shell Command option is now more intelligent about creating a terse, efficient shell command without superfluous parameters</li>
+<li>Various small bug fixes and optimizations in Platypus app binaries</li>
+<li>Updated and improved code for executing script with privileges</li>
+<li>Updated and improved output parsing in Progress Bar output mode</li>
+<li>Fixed documentation so that it uses external images instead of data URLs</li>
+<li>Fixed bug where Platypus would incorrectly claim to be unable to create Platypus application support folder</li>
+<li>Fixed bug where background color from text settings would not be applied to the text view in Progress Bar output mode</li>
+<li>Fixed bug where syntax checking would work incorrectly with Perl scripts</li>
+<li>Fixed bug when interface in a Platypus app would lock up when dropping files in authenticated execution mode</li>
+<li>Fixed various bugs in Progress Bar output mode</li>
+<li>Fixed bug in output mode "None" where app would fail to quit on script termination</li>
+<li>Fixed small memory leak when applications were created</li>
+</ul>
+
+<h4>25/07/2010 - Version 4.3</h4>
+
+<ul>
+<li>New output mode:  Status Menu</li>
+<li>Generated apps now have editable nib files</li>
+<li>New "Optimize Application" option which strips/compiles nibs and removes unnecessary files from generated application bundle</li>
+<li>Current working directory is now set to .app/Contents/Resources in scripts running with Admin privileges</li>
+<li>Auto-scrolling of output in Web View mode</li>
+<li>Drag and drop now works properly in Web View windows</li>
+<li>Various interface refinements</li>
+<li>Updated sample scripts</li>
+<li>Updated documentation and command line tool man page</li>
+<li>New high resolution app icon, icon presets and improved document icons</li>
+<li>Platypus text output now defaults to UTF8 instead of ASCII</li>
+<li>Command line tool has a plethora of new options</li>
+<li>Fixed bug where command-line generated apps would have black background and foreground in text output</li>
+<li>Fixed bug where apps would fail to register dropped files on launch</li>
+<li>Fixed bug in command line tool install script</li>
+<li>Fixed bug with suffix and file type validation</li>
+<li>Fixed text-encoding bug with secure bundled scripts</li>
+<li>Fixed bug where apps would default to output mode "None" on invalid output settings</li>
+<li>Fixed bug in secure bundled script w. droppable option</li>
+<li>Now warns when attempting to load a profile generated by an older version of Platypus</li>
+</ul>
+
+<h4>18/05/2009 - Version 4.2</h4>
+
+<ul>
+<li>Droppable Platypus apps can now execute script again when new files are dropped</li>
+<li>Text settings now available for Progress Bar output mode</li>
+<li>Command line tool now supports setting text output properties such as font, color and encoding</li>
+<li>Command line tool has achieved feature parity with GUI application</li>
+<li>Command line tool now correctly handles relative paths</li>
+<li>Change in profile format to make it more transparent and human-readable/editable</li>
+<li>"Show Shell Command" now shows all parameters for command line app</li>
+<li>Platypus apps now default to remaining open after execution</li>
+<li>Secure bundled script option now correctly excludes Development Version save option</li>
+<li>Fixed bug from 4.1 where text settings failed to be applied</li>
+<li>Fixed memory leak and bugs in privileged execution mode</li>
+<li>Fixed bug in path text field autocompletion</li>
+<li>Updated documentation to reflect recent features</li>
+<li>Minor interface tweaks and fixes</li>
+</ul>
+
+<h4>15/05/2009 - Version 4.1</h4>
+
+<ul>
+<li>New "Development Mode" option makes Platypus create symlink to script instead of copying it to the application bundle</li>
+<li>Platypus now tracks and warns of location change of bundled files and script</li>
+<li>Profiles menu now updates profile list when displayed</li>
+<li>Path autocomplete feature in script path text field</li>
+<li>Now parses entire shebang line for arguments to interpreter</li>
+<li>Script text output is now directed line by line to the status text field in Progress Bar output mode</li>
+<li>Progress Bar output mode now has a little arrow that shows details (i.e. script output) in a text field</li>
+<li>Tooltips for many more controls</li>
+<li>Additional default external editor presets</li>
+<li>Minor user interface tweaks and fixes</li>
+<li>Minor optimizations in app size</li>
+<li>Command line program can now create profiles</li>
+<li>Command line program can now operate in "Force" mode, overwriting files</li>
+<li>Fixed bug where secure bundled scripts failed to work on PowerPC-based machines</li>
+<li>Fixed memory leak in text output</li>
+<li>Fixed bug where command line program failed to create icons from images</li>
+<li>Fixed bug where command line program failed to parse arguments correctly</li>
+<li>Fixed bug where script type was not identified when a script was dropped on Platypus to launch the program</li>
+<li>Fixed bug which prevented File Types and App Role from being set in Info.plist</li>
+<li>Fixed bug where Platypus would insist on at least one File Type being set in file types and suffixes settings</li>
+</ul>
+
+<h4>22/6/2008 - Version 4.0</h4>
+
+<ul>
+<li>Now both Platypus and Platypus-generated apps require Mac OS X 10.4 or later.</li>
+<li>Interface streamlined and improved</li>
+<li>Overhauled entire source code backend.</li>
+<li>Optimized binaries of Platypus and Platypus-generated apps.  Both are now leaner, meaner and slimmer than before.</li>
+<li>New file-based Profiles feature</li>
+<li>New application icon and new icon presets for generated apps</li>
+<li>New Web Output mode.  Scripts can generate HTML which is rendered in a WebKit view in the Platypus-generated application</li>
+<li>New option to configure text size, font and color for Text Output mode</li>
+<li>New option to send arguments to script interpreter</li>
+<li>New option to disable passing path to app as first argument to script</li>
+<li>New "Secure script" encryption method</li>
+<li>Command line tool now has complete feature parity with the Platypus app</li>
+<li>Command line tool can now load Platypus profiles</li>
+<li>Command line tool now installed/uninstalled through Platypus Preferences</li>
+<li>New "Estimated final app size" reporting feature</li>
+<li>"Show Shell Command" option now correctly adds icon parameters</li>
+<li>Fixed bug where "Run Script in Terminal" option failed to escape script path</li>
+<li>Fixed bug with reversed LSMinimumSystemVersion property in Info.plist of generated applications</li>
+<li>Fixed bug where the same file could be added multiple times to Bundled Files list</li>
+<li>Fixed memory leak in Platypus-generated apps where a large amount of text output would cause the application to crash</li>
+<li>New and better man page for command line tool</li>
+<li>Updated and improved documentation</li>
+<li>Updated to latest IconFamily class code for icon generation</li>
+</ul>
+
+
+<h4>25/07/2006 - Version 3.4</h4>
+
+<ul>
+<li>The Platypus transition to Universal binaries is now complete.  Both the Platypus application and the 'platypus' command line tool (and applications generated using these tools) now require Mac OS X 10.3.9 or later to run on PowerPC processors, and Mac OS X 10.4 or later to run on Intel processors.  To create applications that run on versions prior to 10.3.9, you must use older versions of Platypus.</li>
+<li>Fixed problem where Platypus refused to launch on certain Mac OS X 10.3.x  systems</li>
+<li>New options for command line tool: file bundling, verbose mode, suffix and file types support, updated man page.</li>
+<li>Updated documentation</li>
+<li>A great deal of bug fixes, error checks, tweaks and improvements</li>
+</ul>
+
+
+<h4>24/02/2006 - Version 3.3</h4>
+
+<ul>
+<li>Platypus and Platypus-generated apps are now Universal binaries that run natively on both PowerPC and x86 processors</li>
+<li>Fixed bug which made the Platypus command line utility generate non-functioning applications</li>
+</ul>
+
+
+<h4>06/05/2005 - Version 3.2</h4>
+<ul>
+<li>Editing of environmental variables via an interface pane</li>
+<li>Platypus apps can now be "loaded" with Platypus, i.e. configuration and script from the app are loaded</li>
+<li>Python syntax checking</li>
+<li>Icon can be set to a given .icns file so that smaller representations are not lost</li>
+<li>Command line tool bug fixed -- it now creates operational applications
+<li>Command line tool now supports file bundling
+<li>Info.plists in application bundles now contain LSHasLocalizedDisplayName, NSAppleScriptEnabled,CFBundleDisplayName, NSHumanReadableCopyright</li>
+<li>English.lproj is en.lproj in accordance with Apple's specifications</li>
+<li>Sliding animation when advanced options are revealed</li>
+<li>Fixed two small memory leaks</li>
+</ul>
+
+<h4>06/05/2005 - Version 3.1</h4>
+<ul>
+<li>New minimal, non-intrusive built-in text editor for those who prefer working in one application</li>
+<li>It is now possible to set app author name manually</li>
+<li>Invalid configuration fields now highlight red as you type</li>
+<li>New Dock menu</li>
+<li>New "Show Shell Command" menu item</li>
+<li>Fixed bug where "Secure" Platypus apps failed to work on read-only volumes</li>
+<li>New option to set default bundle identifier prefix in the preferences</li>
+<li>New option to set default author name in the preferences</li>
+<li>Profiles now correctly register bundle identifier and author name</li>
+<li>"Run script in Terminal" command now brings Terminal.app to the front</li>
+<li>Fixed bug where window title was not restored after a dialog</li>
+<li>Fixed a bug in the command line utility installer</li>
+<li>Updated man page for command line utility</li>
+<li>Updated Help documentation</li>
+<li>More sample scripts</li>
+<li>Platypus apps now register their creator in AppSettings.plist
+<li>Help now opens with default app for http: protocol, not .html suffix</li>
+</ul>
+
+
+<h4>13/01/2005 - Version 3.0</h4>
+<ul>
+<li>New "Secure bundled script" option, which checksums, encrypts and hides script
+<li>New "Check Script Syntax" feature for shell, Perl, Ruby and PHP scripts
+<li>New "Edit Profiles" window for easier Profiles management
+<li>New "platypus" command line tool
+<li>Fixed a bug where PkgInfo file would not contain application signature
+<li>Scripts created with the "New" button list bundled file paths in comment
+<li>More complete Info.plist property list in Platypus-generated apps
+<li>Several user interface refinements
+<li>Several minor speed optimizations
+<li>Updated documentation, tutorials, sample scripts and source code comments
+</ul>
+
+<h4>29/11/2004 - Version 2.8</h4>
+<ul>
+<li>New "Import Custom Icon" menu item
+<li>New contextual menus for app icon and file list
+<li>It is now possible to manually edit an app's bundle signature
+<li>Fixed bug where an authorized Platypus app could cause a logout
+<li>Fixed bug with loading profiles created in older versions of Platypus
+</ul>
+
+<h4>16/11/2004 - Version 2.7</h4>
+<ul>
+<li>Now possible to create applications that run with privileges *and* have Text Output
+<li>Profiles now store custom application icons
+<li>Fixed bug where buttons would not be enabled after a valid profile was loaded
+<li>Custom application icons are now correctly labeled
+<li>There is now a "Select Custom Icon" menu item
+<li>Fixed bug where custom dragged icons would leave the icon image highlighted
+<li>File Types and Suffixes list now displays the appropriate icons for entries
+<li>File Types editor window is now a sheet
+<li>Updated documentation and examples
+<li>Various bug fixes and interface refinements
+<li>All those that made Platypus possible are now rightly credited
+</ul>
+
+
+<h4>11/10/2004 - Version 2.6</h4>
+<ul>
+<li>Application configurations can now be saved as "Profiles"
+<li>It is now possible to set application version and 4-character signature
+<li>Updated documentation to reflect the changes introduced in version 2.5
+<li>New "Clear" button for clearing all configuration fields
+<li>New "Run script in Terminal" menu command
+<li>All dialogs in Platypus are now sheets instead of navigation dialogs
+<li>Fixed bug where a non-droppable app's bundle identifier would not be correctly set
+<li>Several minor bugs and inconsistencies fixed
+<li>Several interface tweaks
+</ul>
+
+<h4>23/08/2004 - Version 2.5</h4>
+
+<ul>
+<li>This is a major update with many important bug fixes and some powerful new features
+<li>New output type: "Text Window", making it *very* easy to create tool wrappers
+<li>New application option: "Remain running after completion"
+<li>New "Open Recent" menu
+<li>New text fields that display the application bundle identifier and total number and size of bundled files
+<li>It is now possible to register a droppable application as either an Editor or a Viewer in the Types List
+<li>Platypus apps now have a "PkgInfo" file within the application, in accordance with Apple's guidelines
+<li>Any application can now be selected as external editor
+<li>Platypus now remembers "Show Advanced Options" status between launches
+<li>Fixed a bug which caused Platypus apps to behave oddly with the Dock
+<li>Fixed a silly bug where Platypus apps would sometimes crash on dual-processor machines
+<li>Fixed major memory leak in Platypus apps which had been present from Platypus 2.1
+<li>Fixed a minor memory leak introduced in Platypus 2.3
+</ul>		
+
+<h4>11/08/2004 - Version 2.3</h4>
+<ul>
+<li>New "Runs in background" option, for creating applications that don't show up in the Dock
+<li>Every Platypus app now has a unique bundle identifier (f.e. org.johnsmith.myscriptapp)
+<li>New Edit Types window which allows you to set what kind of files your droppable app accepts
+<li>New Help menu for instant access to Platypus documentation
+<li>Platypus no longer accepts dragged folders as valid scripts
+<li>The Bundled Files list is now drag-n-drop aware
+<li>The same file can no longer be added many times to the Bundled Files list
+<li>Bundled Files list buttons are now auto-enabled/disabled according to selection
+<li>Platypus now prompts whether to overwrite when an app by the same name already exists
+</ul>
+
+<h4>03/05/2004 - Version 2.2</h4>
+<ul>
+<li>"New Script" button/menu item for creating and opening a script from within Platypus
+<li>"Reveal Script" button/menu item for revealing script in the Finder
+<li>Incorporated menu items (and keyboard shortcuts) for almost all Platypus actions/options
+<li>Buttons and menu items correctly disabled when script path is invalid
+<li>Fixed a bug where the last remaining file in the Bundled Files list could not be removed
+<li>Files in the Bundled Files list now appear with their icon
+<li>Tool Tip labels placed on all interface components
+<li>Droplets now identify themselves as Editors instead of Viewers
+<li>Fixed bug where files with file/creator types could not be dropped on Platypus droplets
+<li>Some minor interface adjustments
+</ul>
+
+<h4>27/04/2004 - Version 2.1</h4>
+<ul>
+<li>Rewrote from scratch the ScriptExec executable that Platypus bundles into apps
+<li>Fixed the dreaded "Is droppable" bug where Platypus would crash
+<li>Platypus now (again) correctly creates droppable applications
+<li>Scripts now properly receive the application bundle's path as first argument $1
+<li>Droppable apps now also receive application bundle path as first argument
+<li>Dropped files are now passed from $2-$*
+<li>Preferences partially implemented - default editor can be changed to presets
+<li>Apps that require authentication now also receive app bundle path and dropped files
+<li>New menu and menu items for Platypus functions
+<li>Two new icon presets, Platypus Plate and Platypus Droplet
+</ul>
+
+<h4>17/02/2004 - Version 2.0</h4>
+<ul>
+<li>Entire application rewritten from scratch in Objective C and Cocoa
+<li>Images can now be dragged on "App Icon" to create custom icons for apps
+<li>Added Expect and PHP to list of preset interpreters
+<li>Added "Edit" button, to edit selected script in TextEdit
+<li>An editable file list for bundling files with script into Resources folder of app bundle
+<li>Some settings delegated to "Advanced Options", revealed by expanding window
+</ul>
+
+<h4>21/11/2003 - Version 1.8</h4>
+<ul>
+<li>Platypus applications that don't aren't marked 'Is Droppable' now get the path of the app's enclosing folder as first argument ($1, $ARGV[0] etc.).  This can be very handy for installers or working with files relative to the app. A sample script that utilises this is included ("AppThatMovesToHomeFolder.sh")
+</ul>
+
+<h4>17/11/2003 - Version 1.7</h4>
+<ul>
+<li>Platypus no longer has problems with spaces in certain paths
+<li>Fixed an interface bug where Platypus window would close after Create, although cancelled
+<li>Platypus apps with progress bar now really do have a functioning "Cancel" button
+<li>Fixed bug where new platypus windows retained former Droppable setting
+<li>Some cool sample scripts bundled with Platypus
+</ul>
+<h4>14/08/2003 - Version 1.6</h4>
+<ul>
+<li>New option to create droppable apps that pass files as arguments to script (like DropScript)
+<li>Fixed a nasty bug where Platypus apps would freeze up after failed authentication
+<li>Platypus apps with progress bar now have a "Cancel" button
+<li>Minor user interface enhancements in both Platypus and Platypus-generated apps
+</ul>
+
+<h4>29/07/2003 - Version 1.5 released</h4>
+<ul>
+<li>Platypus apps now remain running while root-privileged scripts finish executing
+<li>Invisible files and folders are now shown in Navigation dialogs
+<li>Navigation dialogs use newer API calls, support app names longer than 31 characters and are non-modal
+<li>Platypus apps can now be set to display a progress bar while running
+<li>Platypus apps are now threaded, which means that the interface is responsive while they're running
+<li>Some interface tweaks and bug fixes
+</ul>
+<h4>18/06/2003 - Version 1.4 released</h4>
+<ul>
+<li>It is now possible to create script applications that require root privileges
+<li>Optimized performance and improved error handling for apps created with Platypus
+<li>Platypus now launches faster
+<li>Fixed bug where window proxy icon remained unchanged when a custom icon was set
+<li>Fixed bug where apps with spaces in their names failed to function
+<li>Platypus apps now remain running while script is executing
+</ul>
+<h4>15/06/2003 - Version 1.3 released</h4>
+<ul>
+<li>Script interpreter can now be defined
+<li>Shebang line (#!) is now parsed for interpreter
+<li>"Open" menu item now works
+<li>New windows center correctly on screen
+<li>Code optimized and trimmed
+<li>Minor interface tweaks
+</ul>
+<h4>13/06/2003 - Version 1.2 released</h4>
+<ul>
+<li>Support for Ruby, AppleScript and Tcl
+<li>Drag'n drop support for script path
+<li>Now gracefully handles files dropped on Platypus application icon
+<li>Better icons - specialized default icons for each script type
+<li>Fixed bug where application placement name in Navigation dialog was ignored when creating app
+</ul>
+<h4>11/06/2003 - Version 1.1 released</h4>
+<ul>
+<li>Platypus no longer uses huge amounts of CPU power for window redraws
+<li>Text fields are now Unicode and displayed in correct font
+<li>Support for Perl and Python scripts
+<li>Drag'n drop support for script path
+<li>Drag'n drop support for custom app icon
+<li>Scripts can now be dragged on Platypus to automatically create an app in the same directory
+<li>Now warns about inappropriate script suffixes
+</ul>
+
+<h4>09/06/2003 - Version 1.0 released</h4>
+
+
+<br><br>
+Sveinbjorn Thordarson<br>
+<a href="http://sveinbjorn.org/software">http://sveinbjorn.org/software</a><br>
+sveinbjornt@simnet.is<br>
+
+</body>
+</html>
