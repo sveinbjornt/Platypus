@@ -37,6 +37,7 @@
 /* Begin PBXBuildFile section */
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		F40F756013C266AE00197499 /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40F755F13C266AE00197499 /* ShellCommandController.m */; };
 		F4185BAF11FBA2920027C8D7 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4ED1E460CEC17920006636F /* Carbon.framework */; };
 		F42003E5078FC1E1002746A1 /* Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F42003DD078FC1E1002746A1 /* Add.tiff */; };
 		F42003E6078FC1E1002746A1 /* Add_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F42003DE078FC1E1002746A1 /* Add_Pressed.tiff */; };
@@ -63,7 +64,6 @@
 		F482949D122C128200094A1B /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949C122C128200094A1B /* ScriptAnalyser.m */; };
 		F48294A2122C129400094A1B /* EditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949F122C129400094A1B /* EditorController.m */; };
 		F48294A3122C129400094A1B /* SyntaxCheckerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48294A1122C129400094A1B /* SyntaxCheckerController.m */; };
-		F48A729A122E28E100964D71 /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48A7299122E28E100964D71 /* ShellCommandController.m */; };
 		F48B7B8111F7666600351575 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
@@ -148,6 +148,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PlatypusApplication/main.m; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Platypus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platypus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40A09E111F9A0DC00138ED9 /* buildTestApps.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; name = buildTestApps.pl; path = TestSuite/buildTestApps.pl; sourceTree = "<group>"; };
+		F40F755E13C266AE00197499 /* ShellCommandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShellCommandController.h; path = PlatypusApplication/ShellCommandController.h; sourceTree = "<group>"; };
+		F40F755F13C266AE00197499 /* ShellCommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellCommandController.m; path = PlatypusApplication/ShellCommandController.m; sourceTree = "<group>"; };
 		F4185E5811FC57AB0027C8D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PlatypusApplication/Info.plist; sourceTree = "<group>"; };
 		F42003DD078FC1E1002746A1 /* Add.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add.tiff; sourceTree = "<group>"; };
 		F42003DE078FC1E1002746A1 /* Add_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add_Pressed.tiff; sourceTree = "<group>"; };
@@ -178,8 +180,6 @@
 		F482949F122C129400094A1B /* EditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditorController.m; path = PlatypusApplication/EditorController.m; sourceTree = "<group>"; };
 		F48294A0122C129400094A1B /* SyntaxCheckerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyntaxCheckerController.h; path = PlatypusApplication/SyntaxCheckerController.h; sourceTree = "<group>"; };
 		F48294A1122C129400094A1B /* SyntaxCheckerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyntaxCheckerController.m; path = PlatypusApplication/SyntaxCheckerController.m; sourceTree = "<group>"; };
-		F48A7298122E28E100964D71 /* ShellCommandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShellCommandController.h; sourceTree = "<group>"; };
-		F48A7299122E28E100964D71 /* ShellCommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShellCommandController.m; sourceTree = "<group>"; };
 		F48B774111F7661C00351575 /* ScriptExec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptExec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48B7B9011F766E600351575 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ScriptExec/main.m; sourceTree = "<group>"; };
 		F48B7B9111F766E600351575 /* ScriptExecController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecController.h; path = ScriptExec/ScriptExecController.h; sourceTree = "<group>"; };
@@ -490,8 +490,8 @@
 			children = (
 				F4FE734C11F7925E005FC23A /* PlatypusController.h */,
 				F4FE734D11F7925E005FC23A /* PlatypusController.m */,
-				F48A7298122E28E100964D71 /* ShellCommandController.h */,
-				F48A7299122E28E100964D71 /* ShellCommandController.m */,
+				F40F755E13C266AE00197499 /* ShellCommandController.h */,
+				F40F755F13C266AE00197499 /* ShellCommandController.m */,
 				F482949E122C129400094A1B /* EditorController.h */,
 				F482949F122C129400094A1B /* EditorController.m */,
 				F48294A0122C129400094A1B /* SyntaxCheckerController.h */,
@@ -887,7 +887,7 @@
 				F482949D122C128200094A1B /* ScriptAnalyser.m in Sources */,
 				F48294A2122C129400094A1B /* EditorController.m in Sources */,
 				F48294A3122C129400094A1B /* SyntaxCheckerController.m in Sources */,
-				F48A729A122E28E100964D71 /* ShellCommandController.m in Sources */,
+				F40F756013C266AE00197499 /* ShellCommandController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

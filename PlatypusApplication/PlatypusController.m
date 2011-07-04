@@ -1000,8 +1000,13 @@
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender 
 {
 	// we accept dragged files
-    if ([[[sender draggingPasteboard] types] containsObject: NSFilenamesPboardType]) 
-		return NSDragOperationLink;
+    if ([[[sender draggingPasteboard] types] containsObject: NSFilenamesPboardType])
+	{
+		NSString *file = [[[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType] objectAtIndex: 0];
+		
+		if (![file hasSuffix: @".icns"])
+			return NSDragOperationLink;
+	}
 	else if ([[[sender draggingPasteboard] types] containsObject: NSStringPboardType])
 		return NSDragOperationCopy;
     
