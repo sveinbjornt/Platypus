@@ -130,7 +130,6 @@
 - (IBAction)selectScript:(id)sender;
 - (void)selectScriptPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 - (void)loadScript:(NSString *)filename;
-- (IBAction)toggleAdvancedOptions:(id)sender;
 - (IBAction)isDroppableWasClicked:(id)sender;
 - (IBAction)outputTypeWasChanged:(id)sender;
 - (IBAction)clearAllFields:(id)sender;
