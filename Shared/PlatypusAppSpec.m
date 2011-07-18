@@ -30,7 +30,7 @@
  - init / dealloc functions
 *****************************************/
 
-- (id)init
+-(PlatypusAppSpec *)init
 {
 	if (self = [super init]) 
 	{
@@ -39,7 +39,7 @@
     return self;
 }
 
--(id)initWithDefaults
+-(PlatypusAppSpec *)initWithDefaults
 {
 	if (self = [self init]) 
 	{
@@ -48,7 +48,7 @@
 	return self;
 }
 
--(id)initWithDictionary: (NSDictionary *)dict
+-(PlatypusAppSpec *)initWithDictionary: (NSDictionary *)dict
 {
 	if (self = [self init]) 
 	{
@@ -58,9 +58,19 @@
 	return self;
 }
 
--(id)initWithProfile: (NSString *)filePath
+-(PlatypusAppSpec *)initWithProfile: (NSString *)filePath
 {
 	return [self initWithDictionary: [NSMutableDictionary dictionaryWithContentsOfFile: filePath]];
+}
+
++(PlatypusAppSpec *)profileWithDefaults
+{
+	return [[[PlatypusAppSpec alloc] initWithDefaults] autorelease];
+}
+
++(PlatypusAppSpec *)profileWithDictionary: (NSDictionary *)dict
+{
+	return [[[PlatypusAppSpec alloc] initWithDictionary: dict] autorelease];
 }
 
 -(void)dealloc

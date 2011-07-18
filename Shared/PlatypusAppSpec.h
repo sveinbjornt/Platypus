@@ -24,16 +24,18 @@
 #import <Cocoa/Cocoa.h>
 #import "CommonDefs.h"
 
-#define MAX_APPSPEC_PROPERTIES	256
+#define MAX_APPSPEC_PROPERTIES	128 // whatever...
 
 @interface PlatypusAppSpec : NSObject 
 {
 	NSMutableDictionary		*properties;
 	NSString				*error;
 }
--(id)initWithDefaults;
--(id)initWithDictionary: (NSDictionary *)dict;
--(id)initWithProfile: (NSString *)filePath;
+-(PlatypusAppSpec *)initWithDefaults;
+-(PlatypusAppSpec *)initWithDictionary: (NSDictionary *)dict;
+-(PlatypusAppSpec *)initWithProfile: (NSString *)filePath;
++(PlatypusAppSpec *)profileWithDefaults;
++(PlatypusAppSpec *)profileWithDictionary: (NSDictionary *)dict;
 -(void)setDefaults;
 -(BOOL)create;
 -(BOOL)verify;
