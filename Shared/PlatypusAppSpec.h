@@ -36,7 +36,7 @@
 -(PlatypusAppSpec *)initFromFile: (NSString *)filePath;
 +(PlatypusAppSpec *)profileWithDefaults;
 +(PlatypusAppSpec *)profileWithDictionary: (NSDictionary *)dict;
-+(PlatypusAppSpec *)profileFromFile: (NSString *)filePath
++(PlatypusAppSpec *)profileFromFile: (NSString *)filePath;
 -(void)setDefaults;
 -(BOOL)create;
 -(BOOL)verify;
