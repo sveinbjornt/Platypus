@@ -55,12 +55,12 @@ static void NSPrint (NSString *format, ...);
 int main (int argc, const char * argv[]) 
 {
     NSAutoreleasePool	*pool				= [[NSAutoreleasePool alloc] init];//set up autorelease pool
-	NSApplication		*app				= [NSApplication sharedApplication];//establish connection to Window Server
+	NSApplication		*app				= [NSApplication sharedApplication];app=app;//establish connection to Window Server
 	NSFileManager		*fm					= [NSFileManager defaultManager];
-		
+	
 	// we start with an application spec set to all the default settings
 	// command line params can fill in the settings user wants
-	PlatypusAppSpec		*appSpec			= [[[PlatypusAppSpec alloc] initWithDefaults] autorelease];	
+	PlatypusAppSpec		*appSpec			= [PlatypusAppSpec profileWithDefaults];	
 	BOOL				createProfile		= FALSE;
 	
 	int					optch;
@@ -88,7 +88,7 @@ int main (int argc, const char * argv[])
 					exit(1);
 				}
 				
-				appSpec = [[PlatypusAppSpec alloc] initWithProfile: profilePath];
+				appSpec = [PlatypusAppSpec profileFromFile: profilePath];
 				if (appSpec == nil)
 				{
 					NSPrintErr(@"Error loading %@ profile '%@'.", PROGRAM_NAME, profilePath);
