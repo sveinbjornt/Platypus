@@ -58,7 +58,7 @@
 	return self;
 }
 
--(PlatypusAppSpec *)initWithProfile: (NSString *)filePath
+-(PlatypusAppSpec *)initFromFile: (NSString *)filePath
 {
 	return [self initWithDictionary: [NSMutableDictionary dictionaryWithContentsOfFile: filePath]];
 }
@@ -71,6 +71,11 @@
 +(PlatypusAppSpec *)profileWithDictionary: (NSDictionary *)dict
 {
 	return [[[PlatypusAppSpec alloc] initWithDictionary: dict] autorelease];
+}
+
++(PlatypusAppSpec *)profileFromFile: (NSString *)filePath
+{
+	return [[[PlatypusAppSpec alloc] initFromFile: filePath] autorelease];
 }
 
 -(void)dealloc
