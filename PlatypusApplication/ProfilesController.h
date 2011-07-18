@@ -22,11 +22,13 @@
 #import <Cocoa/Cocoa.h>
 #import "PlatypusController.h"
 
+#define EXAMPLES_TAG	7
+
 @interface ProfilesController : NSObject 
 {
 	IBOutlet id profilesMenu;
 	IBOutlet id platypusControl;
-	IBOutlet id examplesMenu;
+	IBOutlet id examplesMenuItem;
 }
 - (IBAction) loadProfile:(id)sender;
 - (void) loadProfileFile: (NSString *)file;
@@ -35,6 +37,7 @@
 - (void) writeProfile: (NSDictionary *)dict toFile: (NSString *)profileDestPath;
 - (void) profileMenuItemSelected: (id)sender;
 - (IBAction) clearAllProfiles:(id)sender;
-- (IBAction) constructProfilesMenu:(id)sender;
+- (IBAction) constructMenus:(id)sender;
 - (NSArray *) getProfilesList;
+- (NSArray *) getExamplesList;
 @end

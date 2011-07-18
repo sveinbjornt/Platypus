@@ -44,12 +44,19 @@
 
 - (void)loadProfileFile: (NSString *)file
 {	
-	PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithProfile: file];
+	PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initFromFile: file];
+
+	// make sure we got a spec from the file
+	if (spec == NULL)
+	{
+		[STUtil alert: @"File error" subText: @"Unable to create Platypus spec from profile"];
+		return;
+	}
 	
 	// warn if created with a different version of Platypus
-	if (![[spec propertyForKey: @"Creator"] isEqualToString: PROGRAM_STAMP])
-		[STUtil alert:@"Version clash" subText: @"The profile you selected was created with a different version of Platypus and may not load correctly."];
-
+//	if (![[spec propertyForKey: @"Creator"] isEqualToString: PROGRAM_STAMP])
+//		[STUtil alert:@"Version clash" subText: @"The profile you selected was created with a different version of Platypus and may not load correctly."];
+	
 	[platypusControl controlsFromAppSpec: spec];
 	[spec release];
 	[platypusControl controlTextDidChange: NULL];
@@ -59,7 +66,7 @@
  - Save a profile with values from fields in default location
 *****************************************/
 
-- (IBAction) saveProfile:(id)sender;
+- (IBAction)saveProfile:(id)sender;
 {
 	if (![platypusControl verifyFieldContents])
 		return;
@@ -76,7 +83,7 @@
  - Save a profile with in user-specified location
 *****************************************/
 
-- (IBAction) saveProfileToLocation:(id)sender;
+- (IBAction)saveProfileToLocation:(id)sender;
 {
 	if (![platypusControl verifyFieldContents])
 		return;
@@ -114,7 +121,7 @@
 		return;
 	}
 	[dict writeToFile: profileDestPath atomically: YES];
-	[self constructProfilesMenu: self];
+	[self constructMenus: self];
 }
 
 
@@ -122,10 +129,10 @@
  - Fill Platypus fields in with data from profile when it's selected in the menu
 *****************************************/
 
--(void) profileMenuItemSelected: (id)sender
+-(void)profileMenuItemSelected: (id)sender
 {
 	NSString *folder = PROFILES_FOLDER;
-	if ([[sender parentItem] tag] == 7)
+	if ([sender tag]  == EXAMPLES_TAG)
 		folder = [NSString stringWithFormat: @"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
 	
 	NSString *profilePath = [NSString stringWithFormat: @"%@/%@", [folder stringByExpandingTildeInPath], [sender title]];
@@ -164,38 +171,35 @@
 	}
 	
 	//regenerate the menu
-	[self constructProfilesMenu: self];
+	[self constructMenus: self];
 }
 
 /*****************************************
  - Generate the Profiles menu according to the save profiles
 *****************************************/
 
-- (IBAction) constructProfilesMenu: (id)sender
+- (IBAction)constructMenus: (id)sender
 {
 	int i;
 	NSArray *profiles = [self getProfilesList];
 	NSArray *examples = [self getExamplesList];
 	
-	NSLog([examples description]);
-	
+	// Create icon
 	NSImage *icon = [NSImage imageNamed: @"PlatypusProfile"];
 	[icon setSize: NSMakeSize(16,16)];
 	
+	// Create Examples menu
 	NSMenu *em = [[[NSMenu alloc] init] autorelease];
 	for (i = 0; i < [examples count]; i++)
 	{
-		//populate with contents of array
-		for (i = 0; i < [profiles count]; i++)
-		{
-			NSMenuItem *menuItem = [em addItemWithTitle: [examples objectAtIndex: i] action: @selector(profileMenuItemSelected:) keyEquivalent:@""];
-			[menuItem setTarget: self];
-			[menuItem setEnabled: YES];
-			[menuItem setImage: icon ];
-		}		
+		NSMenuItem *menuItem = [em addItemWithTitle: [examples objectAtIndex: i] action: @selector(profileMenuItemSelected:) keyEquivalent:@""];
+		[menuItem setTarget: self];
+		[menuItem setEnabled: YES];
+		[menuItem setImage: icon];
+		[menuItem setTag: EXAMPLES_TAG];
 	}
 	
-	[(NSMenuItem *)examplesMenu setSubmenu: em];
+	[(NSMenuItem *)examplesMenuItem setSubmenu: em];
 	
 	//clear out all menu items
 	while ([profilesMenu numberOfItems] > 6)
@@ -273,7 +277,8 @@
 
 - (void)menuWillOpen:(NSMenu *)menu
 {
-	[self constructProfilesMenu: self];
+	// we do this lazily
+	[self constructMenus: self];
 }
 
 @end
