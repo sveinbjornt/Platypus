@@ -441,11 +441,7 @@ int main (int argc, const char * argv[])
 	{
 		// insert the app destination path into spec
 		[appSpec setProperty: destPath forKey: @"Destination"];
-		
-		// set nib and exec paths
-		[appSpec setProperty: CMDLINE_NIB_PATH forKey: @"NibPath"];
-		[appSpec setProperty: CMDLINE_EXEC_PATH forKey: @"ExecutablePath"];
-	
+			
 		// create the app from spec
 		if (![appSpec verify] || ![appSpec create])
 		{
