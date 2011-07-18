@@ -2,7 +2,7 @@
  * STDragWebView
  * This is a modified version of Adium's ESWebView used to enable ordinary drag and drop on WebViews
  *
- * Changes are copyright (C) 2010 Sveinbjorn Thordarson <sveinbjornt@simnet.is>
+ * Changes are copyright (C) 2010 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
  *
  * Adium source code is protected by the copyright of its respective developers.
  * 

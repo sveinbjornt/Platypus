@@ -57,6 +57,7 @@
 		F44EFD5F1228DA1500CAC9C2 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = F44EFD5D1228DA1000CAC9C2 /* MainMenu.nib */; };
 		F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
+		F46EF85113C3F36900E4C0E4 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = F46EF84E13C3F36900E4C0E4 /* Examples */; };
 		F471ED1E122DF096001F4761 /* PlatypusAppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */; };
 		F471ED22122DF2D6001F4761 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F471ED21122DF2D6001F4761 /* Credits.html */; };
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
@@ -169,6 +170,7 @@
 		F44EFF0412296F3700CAC9C2 /* NSColor+HexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+HexTools.h"; path = "Shared/NSColor+HexTools.h"; sourceTree = "<group>"; };
 		F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+HexTools.m"; path = "Shared/NSColor+HexTools.m"; sourceTree = "<group>"; };
 		F451D2380E0863A600704E20 /* Platypus_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platypus_Prefix.pch; path = PlatypusApplication/Platypus_Prefix.pch; sourceTree = "<group>"; };
+		F46EF84E13C3F36900E4C0E4 /* Examples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Examples; sourceTree = "<group>"; };
 		F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusAppIcon.icns; sourceTree = "<group>"; };
 		F471ED21122DF2D6001F4761 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; name = Credits.html; path = Documentation/Credits.html; sourceTree = "<group>"; };
 		F48002BA121AF042003FB5B3 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		F4C8B457124C450C00397392 /* Editor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Editor.xib; path = PlatypusApplication/Editor.xib; sourceTree = "<group>"; };
 		F4C8B458124C450C00397392 /* ShellCommandWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShellCommandWindow.xib; path = PlatypusApplication/ShellCommandWindow.xib; sourceTree = "<group>"; };
 		F4C8B459124C450C00397392 /* SyntaxChecker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SyntaxChecker.xib; path = PlatypusApplication/SyntaxChecker.xib; sourceTree = "<group>"; };
+		F4D6DBC513C50F3E0067B136 /* NOTES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES.txt; sourceTree = SOURCE_ROOT; };
 		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074811F629930043764E /* pycheck.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = pycheck.py; sourceTree = "<group>"; };
 		F4DC074911F629930043764E /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallCommandLineTool.sh; sourceTree = "<group>"; };
@@ -354,14 +357,15 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F471ED21122DF2D6001F4761 /* Credits.html */,
 				F4C8B455124C450C00397392 /* Platypus.xib */,
 				F4C8B456124C450C00397392 /* Preferences.xib */,
 				F4C8B457124C450C00397392 /* Editor.xib */,
 				F4C8B458124C450C00397392 /* ShellCommandWindow.xib */,
 				F4C8B459124C450C00397392 /* SyntaxChecker.xib */,
-				F471ED21122DF2D6001F4761 /* Credits.html */,
 				F4FE747F11F793CF005FC23A /* platypus.man.pdf */,
 				F4185E5811FC57AB0027C8D7 /* Info.plist */,
+				F46EF84E13C3F36900E4C0E4 /* Examples */,
 				F4DC074611F629930043764E /* Scripts */,
 				F42003DC078FC1E1002746A1 /* Images */,
 				F4050E3305DAF44F00BE4CA5 /* Icons */,
@@ -600,6 +604,7 @@
 				F48002BA121AF042003FB5B3 /* images */,
 				F4DC075011F629A40043764E /* Readme.html */,
 				F4ECE1A011F7746A000DB012 /* CHANGES.txt */,
+				F4D6DBC513C50F3E0067B136 /* NOTES.txt */,
 				F4ECE1A111F77471000DB012 /* TODO.txt */,
 			);
 			path = Documentation;
@@ -797,6 +802,7 @@
 				F4C8B45C124C450C00397392 /* Editor.xib in Resources */,
 				F4C8B45D124C450C00397392 /* ShellCommandWindow.xib in Resources */,
 				F4C8B45E124C450C00397392 /* SyntaxChecker.xib in Resources */,
+				F46EF85113C3F36900E4C0E4 /* Examples in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

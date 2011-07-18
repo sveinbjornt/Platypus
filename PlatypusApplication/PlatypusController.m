@@ -1,6 +1,6 @@
 /*
     Platypus - program for creating Mac OS X application wrappers around scripts
-    Copyright (C) 2003-2010 Sveinbjorn Thordarson <sveinbjornt@simnet.is>
+    Copyright (C) 2003-2010 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -45,7 +45,6 @@
 	
 	[defaultPrefs setObject: bundleId						forKey: @"DefaultBundleIdentifierPrefix"];
 	[defaultPrefs setObject: DEFAULT_EDITOR					forKey: @"DefaultEditor"];
-	[defaultPrefs setObject: [NSNumber numberWithBool:NO]	forKey: @"ShowAdvancedOptions"];
 	[defaultPrefs setObject: [NSArray array]				forKey: @"Profiles"];
 	[defaultPrefs setObject: [NSNumber numberWithBool:NO]	forKey: @"RevealApplicationWhenCreated"];
 	[defaultPrefs setObject: [NSNumber numberWithInt: DEFAULT_OUTPUT_TXT_ENCODING]
@@ -77,13 +76,6 @@
 	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self selector: @selector(controlTextDidChange:) name: UKFileWatcherRenameNotification object: NULL];
 	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self selector: @selector(controlTextDidChange:) name: UKFileWatcherDeleteNotification object: NULL];
 			
-	//set up window
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ShowAdvancedOptions"] == YES)
-	{
-		[showAdvancedArrow setState: YES];
-		[self toggleAdvancedOptions: self];
-	}
-	
 	//populate script type menu
 	[scriptTypePopupMenu addItemsWithTitles: [ScriptAnalyser interpreterDisplayNames]];
 	
@@ -722,45 +714,6 @@
 		else
 			[interpreterTextField setTextColor: [NSColor redColor]];
 	}
-}
-
-/*****************************************
- - Toggles between advanced options mode
-*****************************************/
-
-- (IBAction)toggleAdvancedOptions:(id)sender
-{
-	#define	kWindowExpansionHeight		312
-	
-	NSRect winRect = [window frame];
-
-	if ([showAdvancedArrow state] == NSOffState)
-	{
-		winRect.origin.y += kWindowExpansionHeight;
-		winRect.size.height -= kWindowExpansionHeight;
-		[showOptionsTextField setStringValue: @"Show Advanced Options"];
-		[toggleAdvancedMenuItem setTitle: @"Show Advanced Options"];
-		[bundleIdentifierTextField setEditable: NO];
-		[authorTextField setEditable: NO];
-		[versionTextField setEditable: NO];
-		
-		[window setFrame: winRect display:TRUE animate: TRUE];
-		
-	}
-	else if ([showAdvancedArrow state] == NSOnState)
-	{
-		winRect.origin.y -= kWindowExpansionHeight;
-		winRect.size.height += kWindowExpansionHeight;
-		[showOptionsTextField setStringValue: @"Hide Advanced Options"];
-		[toggleAdvancedMenuItem setTitle: @"Hide Advanced Options"];
-		[bundleIdentifierTextField setEditable: YES];
-		[authorTextField setEditable: YES];
-		[versionTextField setEditable: YES];
-		
-		[window setFrame: winRect display:TRUE animate: TRUE];
-	}
-	
-	[[NSUserDefaults standardUserDefaults] setBool: [showAdvancedArrow state]  forKey: @"ShowAdvancedOptions"];
 }
 
 /*****************************************

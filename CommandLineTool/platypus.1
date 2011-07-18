@@ -30,7 +30,7 @@
 .Sh DESCRIPTION
 .Nm
 is the command line counterpart to the Platypus Mac OS X application.  It is a tool 
-that creates a Mac OS X application bundles which executes a script.
+that creates a Mac OS X application bundle which executes a script.
 .Pp
 .Nm
 defaults to creating application bundles, but can also create Platypus profiles that 
@@ -143,10 +143,9 @@ that it can receive dropped files in the Dock and Finder.
 These files are then passed on to the script as arguments via @ARGV. 
 .Pp
 .It Fl B
-This option causes the application to run in the background.  The application will not appear in 
-the Dock or bring its windows to the front when launched.  This is done by registering the application 
-with the Finder as a user interface element (LSUIElement).  For this reason, the application's windows 
-will not move to the front when it is launched.
+This option causes the application to run in the background.  Its application will not appear in 
+the Dock.  This is done by registering the application 
+with the Finder as a user interface element (LSUIElement).
 .Pp
 .It Fl R
 This option sets the application so that it remains running after the script has been executed.  
@@ -219,11 +218,11 @@ utility exits 0 on success, and >0 if an error occurs.
 .Pp
 .Sh EXAMPLES
 .Pp
-platypus -P myProfile.platypus myApplication.app
+platypus -P myProfile.platypus MyApplication.app
 .Pp
-platypus -a MyApp -c script.pl -p /usr/bin/perl -o 'Text Window' myApplication.app
+platypus -a MyApp -c script.pl -p /usr/bin/perl -o 'Text Window' MyApplication.app
 .Pp
-platypus -D -a MyDroplet -c droplet.sh -o 'Web View' myApplication.app
+platypus -D -a MyDroplet -c droplet.sh -o 'Web View' MyApplication.app
 .Pp
 .Sh FILES
 .Bl -tag -width "/usr/local/share/platypus/PlatypusDefault.icns" -compact

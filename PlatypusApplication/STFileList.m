@@ -1,6 +1,6 @@
 /*
     Platypus - program for creating Mac OS X application wrappers around scripts
-    Copyright (C) 2003-2010 Sveinbjorn Thordarson <sveinbjornt@simnet.is>
+    Copyright (C) 2003-2010 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -210,6 +210,32 @@
 	[[NSWorkspace sharedWorkspace] openFile: [[files objectAtIndex: index] objectForKey: @"Path"]];
 }
 
+- (void)openInEditor: (int)index
+{
+	// if the default editor is the built-in editor, we pop down the editor sheet
+	if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultEditor"] isEqualToString: DEFAULT_EDITOR])
+	{
+		[window setTitle: [NSString stringWithFormat: @"%@ - Editing script", PROGRAM_NAME]];
+		[[[EditorController alloc] init] showEditorForFile: [[files objectAtIndex: index] objectForKey: @"Path"] window: window];
+		[window setTitle: PROGRAM_NAME];
+	}
+	else // open it in the external application
+	{
+		NSString *defaultEditor = [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultEditor"];
+		if ([[NSWorkspace sharedWorkspace] fullPathForApplication: defaultEditor] != NULL)
+			[[NSWorkspace sharedWorkspace] openFile: [[files objectAtIndex: index] objectForKey: @"Path"] withApplication: defaultEditor];
+		else
+		{
+			// Complain if editor is not found, set it to the built-in editor
+			[STUtil alert: @"Application not found" subText: [NSString stringWithFormat: @"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
+			[[NSUserDefaults standardUserDefaults] setObject: DEFAULT_EDITOR  forKey:@"DefaultEditor"];
+			[window setTitle: [NSString stringWithFormat: @"%@ - Editing script", PROGRAM_NAME]];
+			[[[EditorController alloc] init] showEditorForFile: [[files objectAtIndex: index] objectForKey: @"Path"] window: window];
+			[window setTitle: PROGRAM_NAME];
+		}
+	}	
+}
+
 /*****************************************
  - called when a [+] button is pressed
 *****************************************/
@@ -279,6 +305,18 @@
 	{
 		if ([selectedItems containsIndex: i])
 			[self openInFinder: i];
+	}
+}
+
+- (IBAction)editFileInFileList:(id)sender
+{
+	int i;
+	NSIndexSet *selectedItems = [tableView selectedRowIndexes];
+	
+	for (i = 0; i < [self numFiles]; i++)
+	{
+		if ([selectedItems containsIndex: i])
+			[self openInEditor: i];
 	}
 }
 

@@ -8,7 +8,6 @@ For 4.5
 	* Reduced the size of Platypus app binaries
 	* Removed environment editing and signature settings
 	* Better handling of icons for apps
-	* Improved Estimated app size reporting
 	* Platypus now displays a progress bar while creating application
 	* Minor interface improvements
 	* Support for generating processor-specific binaries
@@ -16,7 +15,7 @@ For 4.5
 	* Improved application icon
 	* "Runs in background" windows now come to the front
 	* Open Recent menu uses Apple's API
-	* Window no longer accepts locally dragged and dropped icon files
+	* Main window no longer accepts locally dragged and dropped icon files
 	
 	TODO: Update create app so that it creates icon from image in image well
 			and also do massive testing on the whole IconPath change thing

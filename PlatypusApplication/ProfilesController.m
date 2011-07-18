@@ -1,6 +1,6 @@
 /*
     Platypus - program for creating Mac OS X application wrappers around scripts
-	Copyright (C) 2003-2010 Sveinbjorn Thordarson <sveinbjornt@simnet.is>
+	Copyright (C) 2003-2010 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -124,7 +124,11 @@
 
 -(void) profileMenuItemSelected: (id)sender
 {
-	NSString *profilePath = [NSString stringWithFormat: @"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], [sender title]];
+	NSString *folder = PROFILES_FOLDER;
+	if ([[sender parentItem] tag] == 7)
+		folder = [NSString stringWithFormat: @"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
+	
+	NSString *profilePath = [NSString stringWithFormat: @"%@/%@", [folder stringByExpandingTildeInPath], [sender title]];
 
 	// if command key is down, we reveal in finder
 	if(GetCurrentKeyModifiers() & cmdKey)
@@ -171,16 +175,34 @@
 {
 	int i;
 	NSArray *profiles = [self getProfilesList];
-
-	//clear out all menu itesm
-	while ([profilesMenu numberOfItems] > 4)
-		[profilesMenu removeItemAtIndex: 4];
+	NSArray *examples = [self getExamplesList];
+	
+	NSLog([examples description]);
+	
+	NSImage *icon = [NSImage imageNamed: @"PlatypusProfile"];
+	[icon setSize: NSMakeSize(16,16)];
+	
+	NSMenu *em = [[[NSMenu alloc] init] autorelease];
+	for (i = 0; i < [examples count]; i++)
+	{
+		//populate with contents of array
+		for (i = 0; i < [profiles count]; i++)
+		{
+			NSMenuItem *menuItem = [em addItemWithTitle: [examples objectAtIndex: i] action: @selector(profileMenuItemSelected:) keyEquivalent:@""];
+			[menuItem setTarget: self];
+			[menuItem setEnabled: YES];
+			[menuItem setImage: icon ];
+		}		
+	}
+	
+	[(NSMenuItem *)examplesMenu setSubmenu: em];
+	
+	//clear out all menu items
+	while ([profilesMenu numberOfItems] > 6)
+		[profilesMenu removeItemAtIndex: 6];
 
 	if ([profiles count] > 0)
-	{
-		NSImage *icon = [NSImage imageNamed: @"PlatypusProfile"];
-		[icon setSize: NSMakeSize(16,16)];
-	
+	{	
 		//populate with contents of array
 		for (i = 0; i < [profiles count]; i++)
 		{
@@ -211,7 +233,7 @@
 
 - (NSArray *)getProfilesList
 {
-	NSMutableArray			*profilesArray = [NSMutableArray arrayWithCapacity: PROGRAM_MAX_LIST_ITEMS];;
+	NSMutableArray			*profilesArray = [NSMutableArray arrayWithCapacity: PROGRAM_MAX_LIST_ITEMS];
 	NSFileManager			*manager = [NSFileManager defaultManager];
 	NSDirectoryEnumerator	*dirEnumerator = [manager enumeratorAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath]];
 	NSString *filename;
@@ -221,6 +243,20 @@
 			[profilesArray addObject: filename];
 	}
 	return profilesArray;
+}
+
+- (NSArray *)getExamplesList
+{
+	NSMutableArray			*examplesArray = [NSMutableArray arrayWithCapacity: PROGRAM_MAX_LIST_ITEMS];
+	NSFileManager			*manager = [NSFileManager defaultManager];
+	NSDirectoryEnumerator	*dirEnumerator = [manager enumeratorAtPath: [NSString stringWithFormat: @"%@/Examples/", [[NSBundle mainBundle] resourcePath]]];
+	NSString *filename;
+	while ((filename = [dirEnumerator nextObject]) != NULL)
+	{
+		if ([filename hasSuffix: PROFILES_SUFFIX])
+			[examplesArray addObject: filename];
+	}
+	return examplesArray;
 }
 
 /*****************************************
