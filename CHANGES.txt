@@ -16,16 +16,16 @@ For 4.5
 	* "Runs in background" windows now come to the front
 	* Open Recent menu uses Apple's API
 	* Main window no longer accepts locally dragged and dropped icon files
+	* Fixed small memory leak in command line tool
+	* Open in Editor option for bundled files
 	
 	TODO: Update create app so that it creates icon from image in image well
 			and also do massive testing on the whole IconPath change thing
-	TODO: Verbose mode for CLT
 	TODO: Finish extended droppable options (e.g. dropped text)
-	TODO: Update man page for cl tool
+	TODO: Update man page for cli tool
 	TODO: Refactor analayser code
-	TODO: Rewrite horrible old code for STFileList
+	TODO: Rewrite horrible old code in STFileList
 	TODO: Fix bug with queue getting cleared when bundled files added/removed (scriptPath loses tracking)
-	TODO: Open in editor for bundled files
 	TODO: Fix bug with canceling authentication in ScriptExec
 	
 For 4.4
