@@ -316,6 +316,7 @@ int main (int argc, const char * argv[])
 				[appSpec setProperty: [NSNumber numberWithBool: YES] forKey: @"OptimizeApplication"];
 				break;
 			
+			// specify archtecture for binary
 			case 'U':
 			{
 				NSString *archStr = [NSString stringWithCString: optarg];
