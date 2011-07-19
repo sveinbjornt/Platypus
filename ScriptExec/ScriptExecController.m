@@ -32,6 +32,7 @@
 		arguments = [[NSMutableArray alloc] initWithCapacity: ARG_MAX];
 		textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
 		isTaskRunning = NO;
+		outputEmpty = YES;
 		jobQueue = [[NSMutableArray alloc] initWithCapacity: PLATYPUS_MAX_QUEUE_JOBS];
 		
 		statusItem = NULL;
@@ -102,6 +103,9 @@
 	outputTextView = textOutputTextView;
 	
 	// force us to be front process if we run in background
+	// This is so that apps that are set to run in the background will still have their
+	// window come to the front.  It is to my knowledge the only way to make an
+	// application with LSUIElement set to true come to the front on launch
 	ProcessSerialNumber process;
 	GetCurrentProcess(&process);
 	SetFrontProcess(&process);
@@ -110,7 +114,6 @@
 	switch (outputType)
 	{
 		case PLATYPUS_NONE_OUTPUT:
-			return;
 			break;
 			
 		case PLATYPUS_PROGRESSBAR_OUTPUT:
@@ -245,7 +248,6 @@
 
 - (void)prepareInterfaceForExecution
 {
-	
 	switch(outputType)
 	{
 		case PLATYPUS_PROGRESSBAR_OUTPUT:
@@ -372,7 +374,6 @@
 	}
 }
 
-
 #pragma mark -
 
 //
@@ -385,6 +386,7 @@
 	// This used to be done by just writing to /tmp, but this method is more secure
 	// and will result in the script file being created at a path that looks something
 	// like this:  /var/folders/yV/yV8nyB47G-WRvC76fZ3Be++++TI/-Tmp-/
+	// Kind of ugly, but it's the Apple/Cocoa-approved way of doing things
 	// Thanks to Matt Gallagher for this technique:
 	// http://cocoawithlove.com/2009/07/temporary-files-and-folders-in-cocoa.html
 	
@@ -452,7 +454,8 @@
 	if (isTaskRunning)
 		return;
 	
-	outputEmpty = NO;
+	if (outputType != PLATYPUS_NONE_OUTPUT)
+		outputEmpty = NO;
 	
 	[self prepareForExecution];
 	[self prepareInterfaceForExecution];
@@ -515,6 +518,7 @@
 	{
 		if (err == errAuthorizationCanceled)
 		{
+			outputEmpty = YES;
 			[self taskFinished: NULL];
 			return;
 		}
@@ -540,9 +544,9 @@
 	// if task already quit, we return
 	if (!isTaskRunning) 
 		return;
-
+	
 	isTaskRunning = NO;
-		
+	
 	// make sure task is dead.  Ideally we'd like to do the same for privileged tasks, but that's just not possible w/o process id
 	if (execStyle == PLATYPUS_NORMAL_EXECUTION && task != NULL && [task isRunning])
 		[task terminate];
@@ -565,7 +569,7 @@
 }
 
 - (void) cleanup
-{
+{	
 	// we never do cleanup if the task is running
 	if (isTaskRunning) 
 		return;
