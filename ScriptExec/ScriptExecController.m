@@ -60,9 +60,10 @@
 
 -(void)awakeFromNib
 {
-	//load settings from AppSettings.plist in app bundle
+	// load settings from AppSettings.plist in app bundle
 	[self loadSettings];
 	
+    // prepare UI
 	[self initialiseInterface];
 	
 	// we listen to different kind of notification depending on whether we're running
@@ -79,7 +80,7 @@
 	// droppable apps don't run on launch -- only when they're handed files
 	// likewise, status menu apps just run when item is clicked
 	// for all others, we run the script once app is up and running
-	if ((!isDroppable || [jobQueue count] > 0) && outputType != PLATYPUS_STATUSMENU_OUTPUT)
+	if (outputType != PLATYPUS_STATUSMENU_OUTPUT)
 		[self executeScript];
 }
 

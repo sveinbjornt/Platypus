@@ -20,6 +20,9 @@
 #	$i++;
 #}
 foreach (@ARGV) { print $_ . "\n"; }
+
+print "Hello";
+
 #print "PROGRESS:100\n";
 #	print STDOUT "Doing $i\r";
 #	print "Number $i\n";
