@@ -20,6 +20,9 @@
 
 // STFileList is a controller class around the Bundled Files list in the Platypus
 // window.  It is the data source and delegate of the tableview with the files.
+//
+// NOTE: It's also a complete mess and needs to be rewritten, it was one of the very first
+// pieces of code I ever wrote in Objective C, way back in the days...
 
 #import "STFileList.h"
 #import "PlatypusController.h"
@@ -69,7 +72,6 @@
 		[self openInFinder: [tableView clickedRow]];
 }
 
-
 - (void)trackedFileDidChange
 {
 	[tableView reloadData];
@@ -82,7 +84,7 @@
 
 - (void) addFile: (NSString *)fileName
 {
-	[self addFiles: [NSArray arrayWithObject: fileName] ];
+	[self addFiles: [NSArray arrayWithObject: fileName]];
 }
 
 - (void) addFiles: (NSArray *)fileNames
@@ -114,7 +116,6 @@
 -(void)updateQueueWatch
 {
 	int i;
-	[[UKKQueue sharedFileWatcher] removeAllPathsFromQueue]; 
 	for (i = 0; i < [files count]; i++)
 		[[UKKQueue sharedFileWatcher] addPathToQueue:  [[files objectAtIndex: i] objectForKey: @"Path"]];
 		
