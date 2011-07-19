@@ -1,28 +1,28 @@
 For 4.5
-	* Fixed a text encoding bug with "Secure" scripts
-	* Fixed text encoding bug in built-in editor
-	* Fixed bug in drag and drop handling in Platypus application
-	* Updated to IconFamily 0.9.4
-	* More accurate estimated final app size
-	* Removed English.lproj from created apps
-	* Reduced the size of Platypus app binaries
-	* Removed environment editing and signature settings
-	* Better handling of icons for apps
-	* Platypus now displays a progress bar while creating application
-	* Minor interface improvements
 	* Support for generating processor-specific binaries
-	* Fixed bug in drag and drop on Web View
-	* Improved application icon
+	* Better handling of icons for apps
+	* Reduced the size of Platypus app binaries
 	* "Runs in background" windows now come to the front
 	* Open Recent menu uses Apple's API
 	* Main window no longer accepts locally dragged and dropped icon files
 	* Fixed small memory leak in command line tool
 	* Open in Editor option for bundled files
+	* Fixed a text encoding bug with "Secure" scripts
+	* Fixed text encoding bug in built-in editor
+	* Fixed bug in drag and drop handling in Platypus application
+	* Removed environment editing and signature settings [redundant]
+	* Platypus now displays a progress bar while creating application
+	* Minor interface improvements
+	* Updated to IconFamily 0.9.4
+	* More accurate estimated final app size
+	* Removed English.lproj from created apps
+	* Fixed bug in drag and drop on Web View
+	* Improved application icon
+	* Updated man page for command line tool
 	
 	TODO: Update create app so that it creates icon from image in image well
 			and also do massive testing on the whole IconPath change thing
 	TODO: Finish extended droppable options (e.g. dropped text)
-	TODO: Update man page for cli tool
 	TODO: Refactor analayser code
 	TODO: Rewrite horrible old code in STFileList
 	TODO: Fix bug with queue getting cleared when bundled files added/removed (scriptPath loses tracking)
