@@ -317,8 +317,16 @@ int main (int argc, const char * argv[])
 				break;
 			
 			case 'U':
-				[appSpec setProperty: [NSString stringWithCString: optarg] forKey: @"Architecture"];
-				break;
+			{
+				NSString *archStr = [NSString stringWithCString: optarg];
+				if (![archStr isEqualToString: @"i386"] && ![archStr isEqualToString: @"ppc"] && ![archStr isEqualToString: @"fat"])
+				{
+					NSPrintErr(@"Error: Invalid architecture specified: '%@', must be 'i386', 'ppc' or 'fat'");
+					exit(1);
+				}
+ 				[appSpec setProperty: archStr forKey: @"Architecture"];
+			}	
+			break;
 			
 			case 'H':
 			{
