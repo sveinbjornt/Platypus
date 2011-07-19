@@ -5,9 +5,11 @@
 //  Created by Sveinbjorn Thordarson on 8/30/10.
 //  Copyright 2010 Sveinbjorn Thordarson. All rights reserved.
 //
-
+//
+//  This is a class with convenience and analytical methods for the 
+//  script file types handled by Platypus.
+//
 #import "ScriptAnalyser.h"
-
 
 @implementation ScriptAnalyser
 
@@ -46,8 +48,7 @@
 	NSArray *interpreters = [self interpreters];
 	NSArray *interpreterDisplayNames = [self interpreterDisplayNames];
 	
-	int i;
-	for (i = 0; i < [interpreters count]; i++)
+	for (int i = 0; i < [interpreters count]; i++)
 		if ([theInterpreter isEqualToString: [interpreters objectAtIndex: i]])
 			return [interpreterDisplayNames objectAtIndex: i];
 	
@@ -133,7 +134,6 @@
 		return interpreter;
 	
 	return [self interpreterFromSuffix: path];
-	
 }
 
 /*****************************************
