@@ -1,4 +1,5 @@
 For 4.5
+	* Due to popular demand, "droppable" apps now run script on launch, not just when files are dropped
 	* Support for generating processor-specific binaries
 	* Better handling of icons for apps
 	* Reduced the size of Platypus app binaries
@@ -19,14 +20,13 @@ For 4.5
 	* Fixed bug in drag and drop on Web View
 	* Improved application icon
 	* Updated man page for command line tool
+	* Various small bug fixes all over the code base
+	* Fixed a bug where droplet apps would lock up on cancelling authentication
 	
 	TODO: Update create app so that it creates icon from image in image well
 			and also do massive testing on the whole IconPath change thing
 	TODO: Finish extended droppable options (e.g. dropped text)
 	TODO: Refactor analayser code
-	TODO: Rewrite horrible old code in STFileList
-	TODO: Fix bug with queue getting cleared when bundled files added/removed (scriptPath loses tracking)
-	TODO: Fix bug with canceling authentication in ScriptExec
 	
 For 4.4
 	* New output mode: "Droplet"
