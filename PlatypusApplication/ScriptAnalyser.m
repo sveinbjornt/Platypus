@@ -47,8 +47,8 @@
 {
 	NSArray *interpreters = [self interpreters];
 	NSArray *interpreterDisplayNames = [self interpreterDisplayNames];
-	
-	for (int i = 0; i < [interpreters count]; i++)
+	int i;
+	for (i = 0; i < [interpreters count]; i++)
 		if ([theInterpreter isEqualToString: [interpreters objectAtIndex: i]])
 			return [interpreterDisplayNames objectAtIndex: i];
 	
