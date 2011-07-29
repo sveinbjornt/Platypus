@@ -36,7 +36,7 @@
     Gestalt(gestaltSystemVersionMajor, &major);
     Gestalt(gestaltSystemVersionMinor, &minor);
     
-    if ((major == 10 && minor >= 6) || major >= 11)
+    if ((major >= 10 && minor >= 6))
         return TRUE
         
     return FALSE
