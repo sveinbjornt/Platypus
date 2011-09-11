@@ -38,7 +38,6 @@
 	
 	// set controls according to NSUserDefaults
 	[defaultEditorMenu setTitle: [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultEditor"]];
-	[defaultArchitecturePopupButton selectItemWithTitle: [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultArchitecture"]];
 	[defaultTextEncodingPopupButton selectItemWithTag: [[[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultTextEncoding"] intValue]];
 	[defaultBundleIdentifierTextField setStringValue: [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultBundleIdentifierPrefix"]];
 	[defaultAuthorTextField setStringValue: [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultAuthor"]];
@@ -91,10 +90,7 @@
 	
 	// text encoding
 	[[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithInt: [[defaultTextEncodingPopupButton selectedItem] tag]]  forKey:@"DefaultTextEncoding"];
-	
-	// architecture
-	[[NSUserDefaults standardUserDefaults] setObject: [defaultArchitecturePopupButton titleOfSelectedItem]  forKey:@"DefaultArchitecture"];
-	
+		
 	//bundle identifier
 	//make sure bundle identifier ends with a '.'
 	if ([[defaultBundleIdentifierTextField stringValue] characterAtIndex: [[defaultBundleIdentifierTextField stringValue]length]-1] != '.')
@@ -123,7 +119,6 @@
 {
 	[revealAppCheckbox setState: NO];
 	[defaultEditorMenu setTitle: DEFAULT_EDITOR];
-	[defaultArchitecturePopupButton selectItemWithTitle: DEFAULT_ARCHITECTURE];
 	[defaultTextEncodingPopupButton selectItemWithTag: DEFAULT_OUTPUT_TXT_ENCODING];
 	[defaultAuthorTextField setStringValue: NSFullUserName()];
 	

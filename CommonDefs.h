@@ -59,7 +59,7 @@
 #define CMDLINE_VERSION_PATH		@"/usr/local/share/platypus/Version"
 #define CMDLINE_MANPAGE_PATH		@"/usr/local/share/man/man1/platypus.1"
 #define	CMDLINE_EXEC_PATH			@"/usr/local/share/platypus/ScriptExec"
-#define CMDLINE_NIB_PATH			@"/usr/local/share/platypus/MainMenu.xib"
+#define CMDLINE_NIB_PATH			@"/usr/local/share/platypus/MainMenu.nib"
 #define CMDLINE_ICON_PATH			@"/usr/local/share/platypus/PlatypusDefault.icns"
 
 

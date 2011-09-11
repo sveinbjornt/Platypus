@@ -75,13 +75,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>4.5</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.4.0</string>
+	<string>10.5.0</string>
 	<key>NSAppleScriptEnabled</key>
 	<false/>
 	<key>CFBundleGetInfoString</key>
-	<string>©2003-2010 Sveinbjorn Thordarson.</string>
+	<string>©2003-2011 Sveinbjorn Thordarson.</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>©2003-2010 Sveinbjorn Thordarson.</string>
+	<string>©2003-2011 Sveinbjorn Thordarson.</string>
 	<key>NSMainNibFile</key>
 	<string>Platypus</string>
 	<key>NSPrincipalClass</key>

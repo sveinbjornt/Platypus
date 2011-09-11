@@ -52,11 +52,11 @@
 		F482949D122C128200094A1B /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949C122C128200094A1B /* ScriptAnalyser.m */; };
 		F48294A2122C129400094A1B /* EditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949F122C129400094A1B /* EditorController.m */; };
 		F48294A3122C129400094A1B /* SyntaxCheckerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48294A1122C129400094A1B /* SyntaxCheckerController.m */; };
-		F4876F3E141D3A1900A428CC /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4876F3D141D3A1900A428CC /* ScriptExec */; };
 		F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F4876F4B141D558C00A428CC /* platypus_clt in Resources */ = {isa = PBXBuildFile; fileRef = F4876F4A141D558C00A428CC /* platypus_clt */; };
 		F4876F4D141D58BB00A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F4C141D58BB00A428CC /* MainMenu.xib */; };
+		F4876F4F141D5F0900A428CC /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4876F4E141D5F0800A428CC /* ScriptExec */; };
 		F48B7B8111F7666600351575 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
@@ -184,10 +184,10 @@
 		F482949F122C129400094A1B /* EditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditorController.m; path = PlatypusApplication/EditorController.m; sourceTree = "<group>"; };
 		F48294A0122C129400094A1B /* SyntaxCheckerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyntaxCheckerController.h; path = PlatypusApplication/SyntaxCheckerController.h; sourceTree = "<group>"; };
 		F48294A1122C129400094A1B /* SyntaxCheckerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyntaxCheckerController.m; path = PlatypusApplication/SyntaxCheckerController.m; sourceTree = "<group>"; };
-		F4876F3D141D3A1900A428CC /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Platypus/Build/Products/Development/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 		F4876F45141D4A3900A428CC /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ScriptExec/MainMenu.xib; sourceTree = "<group>"; };
 		F4876F4A141D558C00A428CC /* platypus_clt */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = platypus_clt; path = build/Platypus/Build/Products/Development/platypus_clt; sourceTree = "<group>"; };
 		F4876F4C141D58BB00A428CC /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ScriptExec/MainMenu.xib; sourceTree = "<group>"; };
+		F4876F4E141D5F0800A428CC /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Platypus/Build/Products/Development/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 		F48B774111F7661C00351575 /* ScriptExec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptExec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48B7B9011F766E600351575 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ScriptExec/main.m; sourceTree = "<group>"; };
 		F48B7B9111F766E600351575 /* ScriptExecController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecController.h; path = ScriptExec/ScriptExecController.h; sourceTree = "<group>"; };
@@ -361,7 +361,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F4876F3D141D3A1900A428CC /* ScriptExec */,
+				F4876F4E141D5F0800A428CC /* ScriptExec */,
 				F4876F4A141D558C00A428CC /* platypus_clt */,
 				F471ED21122DF2D6001F4761 /* Credits.html */,
 				F4C8B455124C450C00397392 /* Platypus.xib */,
@@ -791,10 +791,10 @@
 				F4C8B45D124C450C00397392 /* ShellCommandWindow.xib in Resources */,
 				F4C8B45E124C450C00397392 /* SyntaxChecker.xib in Resources */,
 				F46EF85113C3F36900E4C0E4 /* Examples in Resources */,
-				F4876F3E141D3A1900A428CC /* ScriptExec in Resources */,
 				F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */,
 				F4876F4B141D558C00A428CC /* platypus_clt in Resources */,
 				F4876F4D141D58BB00A428CC /* MainMenu.xib in Resources */,
+				F4876F4F141D5F0900A428CC /* ScriptExec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

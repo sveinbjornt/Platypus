@@ -906,7 +906,7 @@
 		estimatedAppSize -= ([STUtil fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"ScriptExec" ofType: NULL]]/2);
 	
 	// nib size is much smaller if compiled with ibtool
-	UInt64 nibSize = [STUtil fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"MainMenu.xib" ofType: NULL]];  // bundled nib
+	UInt64 nibSize = [STUtil fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"MainMenu.nib" ofType: NULL]];  // bundled nib
 	if ([[NSFileManager defaultManager] fileExistsAtPath: IBTOOL_PATH])
 	{
 		nibSize = 0.2 * nibSize; // compiled nib is approximtely 20% of the size of original

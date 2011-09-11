@@ -19,7 +19,7 @@ cp "platypus_clt" "/usr/local/bin/platypus"
 cp "ScriptExec" "/usr/local/share/platypus/ScriptExec"
 cp "platypus.1" "/usr/local/share/man/man1/platypus.1"
 cp "PlatypusDefault.icns" "/usr/local/share/platypus/PlatypusDefault.icns"
-cp -r "MainMenu.xib" "/usr/local/share/platypus/"
+cp -r "MainMenu.nib" "/usr/local/share/platypus/"
 
 chmod -R 755 "/usr/local/share/platypus/"
 

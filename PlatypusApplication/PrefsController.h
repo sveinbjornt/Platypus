@@ -29,7 +29,6 @@
 	IBOutlet id revealAppCheckbox;
     IBOutlet id defaultEditorMenu;
 	IBOutlet id defaultTextEncodingPopupButton;
-	IBOutlet id defaultArchitecturePopupButton;
 	IBOutlet id defaultBundleIdentifierTextField;
 	IBOutlet id defaultAuthorTextField;
 	IBOutlet id CLTStatusTextField;

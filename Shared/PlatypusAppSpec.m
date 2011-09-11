@@ -227,7 +227,7 @@
 		}
 	
 	//copy nib file to app bundle
-	//.app/Contents/Resources/MainMenu.xib
+	//.app/Contents/Resources/MainMenu.nib
 	nibDestPath = [resourcesPath stringByAppendingString:@"/MainMenu.nib"];
 	[fileManager copyPath: [properties objectForKey: @"NibPath"] toPath: nibDestPath handler: NULL];
 		
