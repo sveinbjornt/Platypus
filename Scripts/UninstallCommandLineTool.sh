@@ -4,7 +4,7 @@
 # Platypus
 #
 # Created by Sveinbjorn Thordarson on 6/17/08.
-# Copyright (C) 2003-2010. All rights reserved.
+# Copyright (C) 2003-2011. All rights reserved.
 
 
 # Delete resources

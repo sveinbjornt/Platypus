@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2001-2010 Troy N. Stephens
+    Copyright (c) 2001-2011 Troy N. Stephens
 
     Use and distribution of this source code is governed by the MIT License, whose terms are as follows.
 
