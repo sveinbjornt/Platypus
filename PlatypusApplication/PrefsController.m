@@ -173,6 +173,8 @@
 	if ([self isCommandLineToolInstalled])
 	{
 		NSString *versionString = [NSString stringWithContentsOfFile: CMDLINE_VERSION_PATH encoding: NSUTF8StringEncoding error: NULL];
+        if ([versionString length] > 3 && [versionString characterAtIndex: 3] == '\n')
+            versionString = [versionString substringToIndex: 3];
 		
 		if ([versionString isEqualToString: PROGRAM_VERSION]) // it's installed and current
 		{

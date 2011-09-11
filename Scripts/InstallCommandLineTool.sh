@@ -24,7 +24,7 @@ cp -r "MainMenu.nib" "/usr/local/share/platypus/"
 chmod -R 755 "/usr/local/share/platypus/"
 
 # Create text file with version
-echo -n "$2" > "/usr/local/share/platypus/Version"
+echo "4.5" > "/usr/local/share/platypus/Version"
 
 # Let's be good citizens and strip away other architectures from the installed CLT binary
 #ARCH=`arch`

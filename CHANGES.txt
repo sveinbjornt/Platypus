@@ -22,7 +22,8 @@ For 4.5
 	* Updated man page for command line tool
 	* Various small bug fixes all over the code base
 	* Fixed a bug where droplet apps would lock up on cancelling authentication
-	
+	* Upgraded source to XCode 4.  Now requires Mac OS X 10.5 or later.
+    * All binaries are now both 32-bit and 64-bit
 	TODO: Update create app so that it creates icon from image in image well
 			and also do massive testing on the whole IconPath change thing
 	TODO: Finish extended droppable options (e.g. dropped text)

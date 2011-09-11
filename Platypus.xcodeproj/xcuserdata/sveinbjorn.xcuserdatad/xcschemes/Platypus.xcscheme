@@ -19,34 +19,6 @@
                ReferencedContainer = "container:Platypus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F48B774011F7661C00351575"
-               BuildableName = "ScriptExec.app"
-               BlueprintName = "ScriptExec"
-               ReferencedContainer = "container:Platypus.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
-               BuildableName = "platypus"
-               BlueprintName = "platypus"
-               ReferencedContainer = "container:Platypus.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
