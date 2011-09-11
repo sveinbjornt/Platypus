@@ -38,7 +38,7 @@
 	<key>Name</key>
 	<string>TempScript</string>
 	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
+	<string>/usr/local/share/platypus/MainMenu.xib</string>
 	<key>OptimizeApplication</key>
 	<false/>
 	<key>Output</key>

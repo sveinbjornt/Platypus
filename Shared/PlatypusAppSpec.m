@@ -227,8 +227,8 @@
 		}
 	
 	//copy nib file to app bundle
-	//.app/Contents/Resources/MainMenu.nib
-	nibDestPath = [resourcesPath stringByAppendingString:@"/MainMenu.nib"];
+	//.app/Contents/Resources/MainMenu.xib
+	nibDestPath = [resourcesPath stringByAppendingString:@"/MainMenu.xib"];
 	[fileManager copyPath: [properties objectForKey: @"NibPath"] toPath: nibDestPath handler: NULL];
 		
 	// if optimize application is set, we see if we can compile the nib file

@@ -18,18 +18,11 @@ cp -r 'SampleScripts' /tmp/$FOLDER/
 /usr/bin/find /tmp/$FOLDER -type d -name .svn -exec rm -rf '{}' +
 /usr/bin/find /tmp/$FOLDER -type d -name .git -exec rm -rf '{}' +
 
-
 # Trim binaries, compress tiffs, remove .DS_Store, resource forks, etc.
 /bin/sh trim.sh -d -s -t -r -p -- /tmp/$FOLDER/
 
-# Compile Platypus.nib file
-#/Developer/usr/bin/ibtool --strip /tmp/$FOLDER/Platypus.app/Contents/Resources/Platypus.nib /tmp/$FOLDER/Platypus.app/Contents/Resources/Platypus.nib
-#/Developer/usr/bin/ibtool --strip /tmp/$FOLDER/Platypus.app/Contents/Resources/Preferences.nib /tmp/$FOLDER/Platypus.app/Contents/Resources/Preferences.nib
-
+# Zip the folder and move the archive to the Desktop
 cd /tmp/
-
 /usr/bin/zip -r platypus$VERSION.zip $FOLDER
-
 mv /tmp/platypus$VERSION.zip ~/Desktop/
-
 rm -R /tmp/$FOLDER

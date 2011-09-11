@@ -174,32 +174,25 @@ of an actual copy being placed therein.  Symlinks are also created to any bundle
 incompatible with the -S option.
 .Pp
 .It Fl l
-Optimize application.  Strips and compiles the bundled nib file to reduce application size, 
-making the nib uneditable.  This option only works if you have Apple's Developer Tools installed, 
+Optimize application.  Strips and compiles the bundled xib file to reduce application size, 
+making it uneditable.  This option only works if you have Apple's Developer Tools installed, 
 since it uses the program /Developer/usr/bin/ibtool.
 .Pp
 .It Fl y
 Force mode.  With this flag set, the program will happily overwrite any previous files and folders 
 in destination path.  Use with caution.
 .Pp
-.It Fl H Ar [nibPath]
-Specify an alternate nib to copy to application bundle.  This allows you to integrate a customised 
-Platypus application nib into your build process.
-.Pp
-.It Fl U Ar [arch]
-Specify architecture of the application binary (i.e. 'i386' or 'ppc').  Default is to create universal
-binaries
+.It Fl H Ar [xibPath]
+Specify an alternate xib to copy to application bundle.  This allows you to integrate a customised 
+Platypus application xib into your build process.
 .Pp
 .It Fl v
-Prints the version of this program
+Print the version of this program
 .Pp
 .It Fl h
-Prints help and usage string
+Print help and usage string
 .El
-.Pp
-The 
-.Nm 
-utility exits 0 on success, and >0 if an error occurs.
+Exits 0 on success, and >0 if an error occurs.
 .Pp
 .Sh EXAMPLES
 .Pp
@@ -215,7 +208,7 @@ platypus -D -a MyDroplet -c ~/droplet.sh -o 'Droplet' MyApplication.app
 program binary
 .It Pa /usr/local/share/platypus/ScriptExec
 executable binary
-.It Pa /usr/local/share/platypus/MainMenu.nib
+.It Pa /usr/local/share/platypus/MainMenu.xib
 Nib file for app
 .It Pa /usr/local/share/platypus/PlatypusDefault.icns
 Default icon

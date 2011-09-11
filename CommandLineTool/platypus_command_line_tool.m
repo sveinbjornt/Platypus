@@ -315,20 +315,7 @@ int main (int argc, const char * argv[])
 			case 'l':
 				[appSpec setProperty: [NSNumber numberWithBool: YES] forKey: @"OptimizeApplication"];
 				break;
-			
-			// specify archtecture for binary
-			case 'U':
-			{
-				NSString *archStr = [NSString stringWithCString: optarg  encoding: DEFAULT_OUTPUT_TXT_ENCODING];
-				if (![archStr isEqualToString: @"i386"] && ![archStr isEqualToString: @"ppc"] && ![archStr isEqualToString: @"fat"])
-				{
-					NSPrintErr(@"Error: Invalid architecture specified: '%@', must be 'i386', 'ppc' or 'fat'");
-					exit(1);
-				}
- 				[appSpec setProperty: archStr forKey: @"Architecture"];
-			}	
-			break;
-			
+						
 			case 'H':
 			{
 				NSString *nibPath = [[NSString stringWithCString: optarg  encoding: DEFAULT_OUTPUT_TXT_ENCODING] stringByExpandingTildeInPath];
@@ -532,9 +519,7 @@ Options:\n\
 	-y			Force mode.  Overwrite any files/folders in path\n\
 	-d			Development version.  Symlink to script instead of copying\n\
 	-l			Optimize application.  Strip and compile bundled nib file\n\
-	-H [nib]		Specify alternate nib file to bundle with app\n\
-	-U [arch]		Specify architecture of app (i.e. 'i386' or 'ppc')\n\
-\n\
+	-H [nib]		Specify alternate nib file to bundle with app\n\n\
 	-h			Prints help\n\
 	-v			Prints program name, version and author\n\
 \n");
