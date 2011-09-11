@@ -412,7 +412,7 @@
 	
 	//make sure we have an icon
 	if (	([iconControl hasIcns] && ![[iconControl icnsFilePath] isEqualToString: @""] && ![fileManager fileExistsAtPath: [iconControl icnsFilePath]])
-		||	![iconControl hasIcns] && [iconControl imageData] == nil)
+		||	(![(IconController *)iconControl hasIcns] && [(IconController *)iconControl imageData] == nil))
 	{
 		[STUtil sheetAlert:@"Missing Icon" subText: @"You must set an icon for your application." forWindow: window];
 		return NO;
@@ -689,7 +689,7 @@
 		if ([[appNameTextField stringValue] length] > 0)
 			validName = YES;
 		
-		if (exists = [scriptPathTextField hasValidPath])
+		if ([scriptPathTextField hasValidPath])
 		{
 			// add watcher that tracks whether it exists
 			[[UKKQueue sharedFileWatcher] addPathToQueue:  [scriptPathTextField stringValue]];

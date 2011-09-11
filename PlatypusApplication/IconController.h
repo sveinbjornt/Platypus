@@ -19,6 +19,7 @@
 */
 
 #import <Cocoa/Cocoa.h>
+#import "PlatypusController.h"
 
 @interface IconController : NSObject
 {
@@ -26,7 +27,7 @@
     IBOutlet id window;
 	IBOutlet id iconToggleButton;
 	IBOutlet id iconNameTextField;
-	IBOutlet id	platypusControl;
+	IBOutlet id platypusControl;
 	NSString	*icnsFilePath;
 }
 - (IBAction)copyIcon:(id)sender;

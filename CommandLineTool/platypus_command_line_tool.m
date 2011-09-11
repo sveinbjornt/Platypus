@@ -80,7 +80,7 @@ int main (int argc, const char * argv[])
 			// Load Profile
 			case 'P':
 			{
-				NSString *profilePath = [[NSString stringWithCString: optarg] stringByExpandingTildeInPath];
+				NSString *profilePath = [[NSString stringWithCString: optarg encoding: NSUTF8StringEncoding] stringByExpandingTildeInPath];
 
 				if (![fm fileExistsAtPath: profilePath] || ![profilePath hasSuffix: PROFILES_SUFFIX])
 				{
@@ -102,13 +102,13 @@ int main (int argc, const char * argv[])
 		
 			// App Name
 			case 'a':				
-				[appSpec setProperty: [NSString stringWithCString: optarg] forKey: @"Name"];
+				[appSpec setProperty: [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] forKey: @"Name"];
 				break;
 			
 			// A bundled file
 			case 'f':
 			{
-				NSString *filePath = [[NSString stringWithCString: optarg] stringByExpandingTildeInPath];
+				NSString *filePath = [[NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] stringByExpandingTildeInPath];
 				if (![fm fileExistsAtPath: filePath])
 				{
 					NSPrintErr(@"Error: No file exists at path '%@'", filePath);
@@ -121,7 +121,7 @@ int main (int argc, const char * argv[])
 			// Script path
 			case 'c':
 			{
-				NSString *scriptPath = [[NSString stringWithCString: optarg] stringByExpandingTildeInPath];
+				NSString *scriptPath = [[NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] stringByExpandingTildeInPath];
 				if (![fm fileExistsAtPath: scriptPath])
 				{
 					NSPrintErr(@"Error: No script file exists at path '%@'", scriptPath);
@@ -134,7 +134,7 @@ int main (int argc, const char * argv[])
 			// Output Type
             case 'o':
 			{
-				NSString *outputType = [NSString stringWithCString: optarg];
+				NSString *outputType = [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding];
 				if ([outputType caseInsensitiveCompare: @"None"] != NSOrderedSame &&
 					[outputType caseInsensitiveCompare: @"Progress Bar"] != NSOrderedSame &&
 					[outputType caseInsensitiveCompare: @"Text Window"] != NSOrderedSame &&
@@ -145,40 +145,40 @@ int main (int argc, const char * argv[])
 						NSPrintErr(@"Error: Invalid output type '%@'.", outputType);
 						exit(1);
 				}
-				[appSpec setProperty: [NSString stringWithCString: optarg] forKey: @"Output"];
+				[appSpec setProperty: [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] forKey: @"Output"];
 			}
 			break;
 				
 			// background color of text output
 			case 'b':
 			{
-				NSString *hexColorStr = [NSString stringWithCString: optarg];
+				NSString *hexColorStr = [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding];
 				if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex: 0] != '#')
 				{
 					NSPrintErr(@"Error: '%@' is not a valid color spec.  Must be 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
 					exit(1);
 				}
-				[appSpec setProperty: [NSString stringWithCString: optarg] forKey: @"TextBackground"];
+				[appSpec setProperty: [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] forKey: @"TextBackground"];
 			}
 			break;
 			
 			// foreground color of text output
 			case 'g':
 			{
-				NSString *hexColorStr = [NSString stringWithCString: optarg];
+				NSString *hexColorStr = [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding];
 				if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex: 0] != '#')
 				{
 					NSPrintErr(@"Error: '%@' is not a valid color spec.  Must be 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
 					exit(1);
 				}
-				[appSpec setProperty: [NSString stringWithCString: optarg] forKey: @"TextForeground"];
+				[appSpec setProperty: [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] forKey: @"TextForeground"];
 			}
 			break;
 			
 			// font and size of text output
 			case 'n':
 			{
-				NSString *fontStr = [NSString stringWithCString: optarg];
+				NSString *fontStr = [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding];
 				NSMutableArray *words = [NSMutableArray arrayWithArray: [fontStr componentsSeparatedByString:@" "]];
 				if ([words count] < 2)
 				{
@@ -198,7 +198,7 @@ int main (int argc, const char * argv[])
 			// text encoding to use
 			case 'E':
 			{
-				NSString *encNumStr = [NSString stringWithCString: optarg];
+				NSString *encNumStr = [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding];
 				int textEncoding = [encNumStr intValue];
 				if (textEncoding <= 0)
 				{
@@ -211,13 +211,13 @@ int main (int argc, const char * argv[])
 				
 			// Author
 			case 'u':
-				[appSpec setProperty: [NSString stringWithCString: optarg] forKey: @"Author"];
+				[appSpec setProperty: [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] forKey: @"Author"];
 				break;
 			
 			// Icon
 			case 'i':
 			{
-				NSString *iconPath = [[NSString stringWithCString: optarg] stringByExpandingTildeInPath];
+				NSString *iconPath = [[NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] stringByExpandingTildeInPath];
 				if (![fm fileExistsAtPath: iconPath])
 				{
 					NSPrintErr(@"Error: No icon file exists at path '%@'", iconPath);
@@ -230,14 +230,14 @@ int main (int argc, const char * argv[])
 					NSPrintErr(@"Error: '%@' not an .icns file", iconPath);
 					exit(1);
 				}
-				[appSpec setProperty: [NSString stringWithCString: optarg] forKey: @"IconPath"];
+				[appSpec setProperty: [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] forKey: @"IconPath"];
 			}
 			break;
 			
 			// Interpreter
 			case 'p':
 			{
-				NSString *interpreterPath = [[NSString stringWithCString: optarg] stringByExpandingTildeInPath];;
+				NSString *interpreterPath = [[NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] stringByExpandingTildeInPath];;
 				if (![fm fileExistsAtPath: interpreterPath])
 					NSPrintErr(@"Warning: Interpreter path '%@' invalid - no such file.", interpreterPath);
 
@@ -247,11 +247,11 @@ int main (int argc, const char * argv[])
 			
 			// Version
 			case 'V':
-				[appSpec setProperty: [NSString stringWithCString: optarg] forKey: @"Version"];
+				[appSpec setProperty: [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] forKey: @"Version"];
 				break;
 			
 			case 'I':
-				[appSpec setProperty: [NSString stringWithCString: optarg] forKey: @"Identifier"];
+				[appSpec setProperty: [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] forKey: @"Identifier"];
 				break;
 			
 			// The checkbox options
@@ -277,7 +277,7 @@ int main (int argc, const char * argv[])
 			// Suffixes
 			case 'X':
 			{
-				NSString *suffixesStr = [NSString stringWithCString: optarg];
+				NSString *suffixesStr = [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding];
 				NSArray *suffixes = [suffixesStr componentsSeparatedByString: @"|"];
 				[appSpec setProperty: suffixes forKey:  @"Suffixes"];
 			}
@@ -286,7 +286,7 @@ int main (int argc, const char * argv[])
 			// File Types
 			case 'T':
 			{
-				NSString *filetypesStr = [NSString stringWithCString: optarg];
+				NSString *filetypesStr = [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding];
 				NSArray *fileTypes = [filetypesStr componentsSeparatedByString: @"|"];
 				[appSpec setProperty: fileTypes forKey: @"FileTypes"];
 			}
@@ -295,7 +295,7 @@ int main (int argc, const char * argv[])
 			// Parameters for interpreter
 			case 'G':
 			{
-				NSString *parametersString = [NSString stringWithCString: optarg];
+				NSString *parametersString = [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding];
 				NSArray *parametersArray = [parametersString componentsSeparatedByString: @"|"];
 				[appSpec setProperty: parametersArray forKey: @"Parameters"];
 			}
@@ -319,7 +319,7 @@ int main (int argc, const char * argv[])
 			// specify archtecture for binary
 			case 'U':
 			{
-				NSString *archStr = [NSString stringWithCString: optarg];
+				NSString *archStr = [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding];
 				if (![archStr isEqualToString: @"i386"] && ![archStr isEqualToString: @"ppc"] && ![archStr isEqualToString: @"fat"])
 				{
 					NSPrintErr(@"Error: Invalid architecture specified: '%@', must be 'i386', 'ppc' or 'fat'");
@@ -331,7 +331,7 @@ int main (int argc, const char * argv[])
 			
 			case 'H':
 			{
-				NSString *nibPath = [[NSString stringWithCString: optarg] stringByExpandingTildeInPath];
+				NSString *nibPath = [[NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] stringByExpandingTildeInPath];
 				// make sure we have a nib file that exists at this path
 				if (![fm fileExistsAtPath: nibPath] || ![nibPath hasSuffix: @"nib"])
 				{
@@ -345,7 +345,7 @@ int main (int argc, const char * argv[])
 			// set display kind for Status Menu output
 			case 'K':
 			{
-				NSString *kind = [NSString stringWithCString: optarg];
+				NSString *kind = [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding];
 				if (![kind isEqualToString: @"Text"] && ![kind isEqualToString: @"Icon"] && ![kind isEqualToString: @"Icon and Text"])
 				{
 					NSPrintErr(@"Error: Invalid status item kind '%@'", kind);
@@ -358,7 +358,7 @@ int main (int argc, const char * argv[])
 			// set title of status item for Status Menu output
 			case 'Y':
 			{
-				NSString *title = [NSString stringWithCString: optarg];
+				NSString *title = [NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding];
 				if ([title isEqualToString:@""] || title == NULL)
 				{
 					NSPrintErr(@"Error: Empty status item title");
@@ -371,7 +371,7 @@ int main (int argc, const char * argv[])
 			// set icon image of status item for Status Menu output
 			case 'L':
 			{
-				NSString *iconPath = [[NSString stringWithCString: optarg] stringByExpandingTildeInPath];
+				NSString *iconPath = [[NSString stringWithCString: optarg  encoding: NSUTF8StringEncoding] stringByExpandingTildeInPath];
 				if (![fm fileExistsAtPath: iconPath])
 				{
 					NSPrintErr(@"Error: No image file exists at path '%@'", iconPath);
@@ -424,7 +424,7 @@ int main (int argc, const char * argv[])
     }
 			
 	//get application destination parameter and make it an absolute path
-	NSString *destPath = [[NSString stringWithCString: argv[optind]] stringByStandardizingPath];
+	NSString *destPath = [[NSString stringWithCString: argv[optind] encoding: NSUTF8StringEncoding] stringByStandardizingPath];
 	if (destPath == NULL)
 	{
 		NSPrintErr(@"Error: Missing parameter: Destination Path");

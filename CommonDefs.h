@@ -24,7 +24,7 @@
 #define	PROGRAM_STAMP				@"Platypus-4.5"
 #define PROGRAM_NAME				@"Platypus"
 #define PROGRAM_VERSION				@"4.5"
-#define PROGRAM_MIN_SYS_VERSION		@"10.4"
+#define PROGRAM_MIN_SYS_VERSION		@"10.5"
 #define PROGRAM_AUTHOR				@"Sveinbjorn Thordarson"
 #define PROGRAM_WEBSITE				@"http://sveinbjorn.org/platypus"
 #define PROGRAM_DONATIONS			@"http://sveinbjorn.org/donations"

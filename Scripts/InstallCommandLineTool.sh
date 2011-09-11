@@ -27,7 +27,7 @@ chmod -R 755 "/usr/local/share/platypus/"
 echo -n "$2" > "/usr/local/share/platypus/Version"
 
 # Let's be good citizens and strip away other architectures from the installed CLT binary
-ARCH=`arch`
-/usr/bin/lipo -thin "$ARCH" -output "/usr/local/bin/platypus" "/usr/local/bin/platypus"
+#ARCH=`arch`
+#/usr/bin/lipo -thin "$ARCH" -output "/usr/local/bin/platypus" "/usr/local/bin/platypus"
 
 exit 0

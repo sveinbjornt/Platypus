@@ -7,7 +7,7 @@
 //
 
 #import "PlatypusIconView.h"
-
+#import "IconController.h"
 
 @implementation PlatypusIconView
 
@@ -84,7 +84,7 @@
 		return;
 	
 	//OK, let's see if we have an icns file behind this
-	if ([delegate hasIcns])
+	if ([(IconController *)delegate hasIcns])
 	{
 		[dragPasteboard declareTypes: [NSArray arrayWithObject: NSFilenamesPboardType] owner: self];
 		[dragPasteboard setPropertyList: [NSArray arrayWithObject: [delegate icnsFilePath]] forType: NSFilenamesPboardType];

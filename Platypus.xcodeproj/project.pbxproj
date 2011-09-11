@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 44;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -20,17 +20,6 @@
 			);
 			name = BuildPackages;
 			productName = BuildPackages;
-		};
-		F4C7551F11F9A1F7006FB713 /* TestSuite */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = F4C7553811F9A21D006FB713 /* Build configuration list for PBXAggregateTarget "TestSuite" */;
-			buildPhases = (
-				F4C7551E11F9A1F7006FB713 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = TestSuite;
-			productName = Untitled;
 		};
 /* End PBXAggregateTarget section */
 
@@ -90,7 +79,6 @@
 		F4DC075311F629A40043764E /* Readme.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC075011F629A40043764E /* Readme.html */; };
 		F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F4E1F71111F75A7F007EE2E3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		F4E1F74F11F75BBD007EE2E3 /* platypus in Resources */ = {isa = PBXBuildFile; fileRef = F4E1F6FC11F758FB007EE2E3 /* platypus */; };
 		F4ED1E470CEC17920006636F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4ED1E460CEC17920006636F /* Carbon.framework */; };
 		F4FE735F11F7925E005FC23A /* FileTypesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734711F7925E005FC23A /* FileTypesController.m */; };
 		F4FE736111F7925E005FC23A /* IconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734911F7925E005FC23A /* IconController.m */; };
@@ -117,7 +105,6 @@
 		F4FE745611F7933A005FC23A /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE73A711F792F9005FC23A /* STPrivilegedTask.m */; };
 		F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */; };
 		F4FE748011F793CF005FC23A /* platypus.man.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747F11F793CF005FC23A /* platypus.man.pdf */; };
-		F4FE74C011F795EC005FC23A /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4FE74BF11F795EC005FC23A /* ScriptExec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,7 +156,6 @@
 		F44EFD5D1228DA1000CAC9C2 /* MainMenu.nib */ = {isa = PBXFileReference; explicitFileType = wrapper; name = MainMenu.nib; path = ScriptExec/MainMenu.nib; sourceTree = "<group>"; };
 		F44EFF0412296F3700CAC9C2 /* NSColor+HexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+HexTools.h"; path = "Shared/NSColor+HexTools.h"; sourceTree = "<group>"; };
 		F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+HexTools.m"; path = "Shared/NSColor+HexTools.m"; sourceTree = "<group>"; };
-		F451D2380E0863A600704E20 /* Platypus_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platypus_Prefix.pch; path = PlatypusApplication/Platypus_Prefix.pch; sourceTree = "<group>"; };
 		F46EF84E13C3F36900E4C0E4 /* Examples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Examples; sourceTree = "<group>"; };
 		F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusAppIcon.icns; sourceTree = "<group>"; };
 		F471ED21122DF2D6001F4761 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; name = Credits.html; path = Documentation/Credits.html; sourceTree = "<group>"; };
@@ -267,7 +253,6 @@
 		F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = platypus_command_line_tool.m; path = CommandLineTool/platypus_command_line_tool.m; sourceTree = "<group>"; };
 		F4FE747E11F793BA005FC23A /* platypus.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; name = platypus.1; path = CommandLineTool/platypus.1; sourceTree = "<group>"; };
 		F4FE747F11F793CF005FC23A /* platypus.man.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = platypus.man.pdf; path = CommandLineTool/platypus.man.pdf; sourceTree = "<group>"; };
-		F4FE74BF11F795EC005FC23A /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Deployment/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,7 +354,6 @@
 				F4DC074611F629930043764E /* Scripts */,
 				F42003DC078FC1E1002746A1 /* Images */,
 				F4050E3305DAF44F00BE4CA5 /* Icons */,
-				F4FE74BF11F795EC005FC23A /* ScriptExec */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -527,7 +511,6 @@
 		F46C60151055AF2800521A94 /* Basic */ = {
 			isa = PBXGroup;
 			children = (
-				F451D2380E0863A600704E20 /* Platypus_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = Basic;
@@ -737,10 +720,11 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0410;
 				ORGANIZATIONNAME = "Sveinbjorn Thordarson";
 			};
 			buildConfigurationList = F41B2181085CD8FF00B63B0D /* Build configuration list for PBXProject "Platypus" */;
-			compatibilityVersion = "Xcode 3.0";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -756,7 +740,6 @@
 				8D1107260486CEB800E47090 /* Platypus */,
 				F4E1F6FB11F758FB007EE2E3 /* platypus */,
 				F48B774011F7661C00351575 /* ScriptExec */,
-				F4C7551F11F9A1F7006FB713 /* TestSuite */,
 				F4185DF611FC51010027C8D7 /* BuildPackages */,
 			);
 		};
@@ -783,9 +766,7 @@
 				F4DC075111F629A40043764E /* License.txt in Resources */,
 				F4DC075211F629A40043764E /* PlatypusDocumentation.html in Resources */,
 				F4DC075311F629A40043764E /* Readme.html in Resources */,
-				F4E1F74F11F75BBD007EE2E3 /* platypus in Resources */,
 				F4FE748011F793CF005FC23A /* platypus.man.pdf in Resources */,
-				F4FE74C011F795EC005FC23A /* ScriptExec in Resources */,
 				F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */,
 				F48002CB121AF042003FB5B3 /* images in Resources */,
 				F44EFD5F1228DA1500CAC9C2 /* MainMenu.nib in Resources */,
@@ -833,19 +814,6 @@
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh AppBuildBoth.sh\nexit 0";
 		};
-		F4C7551E11F9A1F7006FB713 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/bin/sh TestSuite/buildTestApps.pl\nexit 0";
-		};
 		F4E1F74611F75B67007EE2E3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -857,7 +825,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/groff -Tps -mdoc -c 'CommandLineTool/platypus.1' | pstopdf -i -o 'CommandLineTool/platypus.man.pdf'";
+			shellScript = "#/usr/bin/groff -Tps -mdoc -c 'CommandLineTool/platypus.1' | pstopdf -i -o 'CommandLineTool/platypus.man.pdf'\necho $PWD";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -954,9 +922,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PRODUCT_NAME = BuildPackages;
-				ZERO_LINK = NO;
 			};
 			name = Deployment;
 		};
@@ -974,22 +940,22 @@
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Platypus_Prefix.pch;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = PlatypusApplication/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Platypus;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1011,13 +977,12 @@
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PlatypusApplication/Platypus_Prefix.pch;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
@@ -1026,8 +991,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = PlatypusApplication/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Platypus;
@@ -1052,18 +1016,18 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Platypus_Prefix.pch;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Platypus;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1077,11 +1041,12 @@
 		F41B2182085CD8FF00B63B0D /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_SYMBOL_SEPARATION = NO;
 				GCC_USE_GCC3_PFE_SUPPORT = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
+				GCC_VERSION = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.5;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Development;
@@ -1089,8 +1054,7 @@
 		F41B2183085CD8FF00B63B0D /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				BUILD_VARIANTS = normal;
 				DEAD_CODE_STRIPPING = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -1104,7 +1068,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_STRICT_ALIASING = YES;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -1114,20 +1078,21 @@
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				LINKER_DISPLAYS_MANGLED_NAMES = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PLIST_FILE_OUTPUT_FORMAT = binary;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
+				SDKROOT = macosx10.5;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				VALID_ARCHS = "ppc i386";
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Deployment;
 		};
 		F41B2184085CD8FF00B63B0D /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
+				GCC_VERSION = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = macosx10.5;
 			};
 			name = Default;
 		};
@@ -1137,12 +1102,11 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "ScriptExec-Info.plist";
+				INFOPLIST_FILE = ScriptExec/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1150,7 +1114,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = ScriptExec;
 			};
 			name = Development;
@@ -1161,7 +1124,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_PASCAL_STRINGS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1178,7 +1140,6 @@
 					AppKit,
 				);
 				PLIST_FILE_OUTPUT_FORMAT = xml;
-				PREBINDING = YES;
 				PRODUCT_NAME = ScriptExec;
 				STRIP_INSTALLED_PRODUCT = YES;
 				ZERO_LINK = NO;
@@ -1189,11 +1150,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "ScriptExec-Info.plist";
+				INFOPLIST_FILE = ScriptExec/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1201,36 +1161,7 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = ScriptExec;
-			};
-			name = Default;
-		};
-		F4C7552011F9A1F9006FB713 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = Untitled;
-			};
-			name = Development;
-		};
-		F4C7552111F9A1F9006FB713 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PRODUCT_NAME = Untitled;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		F4C7552211F9A1F9006FB713 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = Untitled;
 			};
 			name = Default;
 		};
@@ -1240,7 +1171,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1252,8 +1182,8 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = platypus;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Development;
 		};
@@ -1264,7 +1194,6 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ALTIVEC_EXTENSIONS = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -1276,9 +1205,9 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = YES;
 				PRODUCT_NAME = platypus;
 				STRIP_INSTALLED_PRODUCT = YES;
+				VALID_ARCHS = "i386 x86_64";
 				ZERO_LINK = NO;
 			};
 			name = Deployment;
@@ -1287,7 +1216,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -1298,8 +1226,8 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = platypus;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Default;
 		};
@@ -1342,16 +1270,6 @@
 				F48B774411F7661D00351575 /* Development */,
 				F48B774511F7661D00351575 /* Deployment */,
 				F48B774611F7661D00351575 /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
-		F4C7553811F9A21D006FB713 /* Build configuration list for PBXAggregateTarget "TestSuite" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F4C7552011F9A1F9006FB713 /* Development */,
-				F4C7552111F9A1F9006FB713 /* Deployment */,
-				F4C7552211F9A1F9006FB713 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;

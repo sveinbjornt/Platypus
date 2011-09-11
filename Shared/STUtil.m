@@ -36,10 +36,10 @@
     Gestalt(gestaltSystemVersionMajor, &major);
     Gestalt(gestaltSystemVersionMinor, &minor);
     
-    if ((major >= 10 && minor >= 6))
-        return TRUE
+    if ((major == 10 && minor >= 6) || major > 10)
+        return TRUE;
         
-    return FALSE
+        return FALSE;
 }
 
 + (void)alert: (NSString *)message subText: (NSString *)subtext
