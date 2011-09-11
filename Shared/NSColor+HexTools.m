@@ -59,7 +59,7 @@
 
 - (NSString *)hexString
 {
-	float		redFloatValue, greenFloatValue, blueFloatValue;
+	CGFloat		redFloatValue, greenFloatValue, blueFloatValue;
 	int			redIntValue, greenIntValue, blueIntValue;
 	NSString	*redHexValue, *greenHexValue, *blueHexValue;
 	
@@ -70,7 +70,7 @@
 		return nil;
 	
 	// Get the red, green, and blue components of the color
-	[convertedColor getRed: &redFloatValue green: &greenFloatValue blue: &blueFloatValue alpha:NULL];
+	[convertedColor getRed: &redFloatValue green: &greenFloatValue blue: &blueFloatValue alpha: NULL];
 		
 	// Convert the components to numbers (unsigned decimal integer) between 0 and 255
 	redIntValue = redFloatValue * 255.99999f;

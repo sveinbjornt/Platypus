@@ -33,6 +33,8 @@
 - (NSString *)getSuffixAtIndex:(int)index;
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView;
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
+- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation;
+-(NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation;
 - (void) addSuffix: (NSString *)suffix;
 - (void) addSuffixes: (NSArray *)suffixes;
 - (BOOL) hasSuffix: (NSString *)suffix;

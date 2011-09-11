@@ -48,4 +48,8 @@
 - (IBAction)appPathCheckboxClicked:(id)sender;
 - (BOOL)passAppPathAsFirstArg;
 - (void)setAppPathAsFirstArg: (BOOL)state;
+- (int)numberOfRowsInTableView:(NSTableView *)aTableView;
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
+- (void)tableView:(NSTableView *)aTableView setObjectValue: anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
+
 @end

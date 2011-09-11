@@ -426,7 +426,7 @@
 	}
 }
 
-- (int)selectedRow
+- (int)currentSelectedRow
 {
 	return [tableView selectedRow];
 }
@@ -446,7 +446,7 @@
 - (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard 
 {
 	NSMutableArray *filenames = [NSMutableArray arrayWithCapacity:[rowIndexes count]];
-	int index = [rowIndexes firstIndex];
+	NSInteger index = [rowIndexes firstIndex];
 	
 	while (NSNotFound != index) 
 	{

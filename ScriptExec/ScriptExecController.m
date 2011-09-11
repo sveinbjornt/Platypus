@@ -644,7 +644,7 @@
 		// if the line did not end with a newline, it wasn't a complete line of output
 		// Thus, we store the last line and then delete it from the outputstring
 		// It'll be appended next time we get output
-		if ([[lines lastObject] length] > 0)
+		if ([(NSString *)[lines lastObject] length] > 0)
 		{
 			if (remnants != NULL) { [remnants release]; remnants = NULL; }
 			remnants = [[NSString alloc] initWithString: [lines lastObject]];
@@ -1023,7 +1023,7 @@
 		// font and size
 		if ([appSettingsPlist objectForKey:@"TextFont"] != NULL || [appSettingsPlist objectForKey:@"TextSize"] != NULL)
 			textFont = [NSFont fontWithName: DEFAULT_OUTPUT_FONT size: DEFAULT_OUTPUT_FONTSIZE];
-		if (textFont == NULL);
+		if (textFont == NULL)
 			textFont = [NSFont fontWithName: [appSettingsPlist objectForKey:@"TextFont"] size: [[appSettingsPlist objectForKey:@"TextSize"] floatValue]];
 			
 		// foreground

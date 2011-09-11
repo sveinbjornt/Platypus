@@ -99,7 +99,7 @@
     // register for sudden termination for >= Mac OS X 10.6
     if ([STUtil runningSnowLeopardOrLater]) 
     {
-        [[NSProcessInfo processInfo] enableSuddenTermination];
+        //[[NSProcessInfo processInfo] enableSuddenTermination];
     }
     
 	//show window

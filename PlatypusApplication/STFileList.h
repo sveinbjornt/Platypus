@@ -50,7 +50,7 @@
 - (BOOL) hasFile: (NSString *)fileName;
 - (void) clearList;
 - (int) numFiles;
--(void)updateQueueWatch;
+- (void)updateQueueWatch;
 - (NSArray *)getFilesArray;
 - (void) removeFile: (int)index;
 - (void) revealInFinder:(int)index;
@@ -63,7 +63,10 @@
 - (IBAction)openFileInFileList:(id)sender;
 - (IBAction)removeFileFromFileList:(id)sender;
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification;
-- (int)selectedRow;
+- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation;
+- (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard;
+- (int)currentSelectedRow;
+- (NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation;
 - (void)updateFileSizeField;
 - (BOOL)allPathsAreValid;
 - (UInt64)getTotalSize;
