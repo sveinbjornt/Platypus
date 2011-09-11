@@ -49,7 +49,6 @@
 	[defaultPrefs setObject: [NSNumber numberWithBool:NO]	forKey: @"RevealApplicationWhenCreated"];
 	[defaultPrefs setObject: [NSNumber numberWithInt: DEFAULT_OUTPUT_TXT_ENCODING]
 															forKey: @"DefaultTextEncoding"];
-	[defaultPrefs setObject: @"Universal"					forKey: @"DefaultArchitecture"];
 	[defaultPrefs setObject: NSFullUserName()				forKey: @"DefaultAuthor"];
 	
     // register the dictionary of defaults
@@ -331,7 +330,6 @@
 	
 	// we set this specifically -- extra profile data
 	[spec setProperty: appPath forKey: @"Destination"];
-	[spec setProperty: [[NSUserDefaults standardUserDefaults] stringForKey: @"DefaultArchitecture"] forKey: @"Architecture"];
 	[spec setProperty: [[NSBundle mainBundle] pathForResource: @"ScriptExec" ofType: NULL] forKey: @"ExecutablePath"];
 	[spec setProperty: [[NSBundle mainBundle] pathForResource: @"MainMenu.nib" ofType: NULL] forKey: @"NibPath"];
 	[spec setProperty: [NSNumber numberWithBool: [developmentVersionCheckbox intValue]] forKey: @"DevelopmentVersion"];
@@ -899,20 +897,16 @@
 	// if we want to know the size of the icon, let's assume default icon
 	estimatedAppSize += [iconControl iconSize];
 	estimatedAppSize += [STUtil fileOrFolderSize: [scriptPathTextField stringValue]];
-	estimatedAppSize += [STUtil fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"ScriptExec" ofType: NULL]];  // executable binary
-	
-	// if settings dictate a thin binary, we deduct half the size of the executable binary
-	if (![[[NSUserDefaults standardUserDefaults] stringForKey: @"DefaultArchitecture"] isEqualToString: @"Universal"])
-		estimatedAppSize -= ([STUtil fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"ScriptExec" ofType: NULL]]/2);
-	
+	estimatedAppSize += [STUtil fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"ScriptExec" ofType: NULL]];  // executable
+		
 	// nib size is much smaller if compiled with ibtool
 	UInt64 nibSize = [STUtil fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"MainMenu.nib" ofType: NULL]];  // bundled nib
 	if ([[NSFileManager defaultManager] fileExistsAtPath: IBTOOL_PATH])
-	{
 		nibSize = 0.2 * nibSize; // compiled nib is approximtely 20% of the size of original
-	}
-	estimatedAppSize += nibSize;
-	estimatedAppSize += [fileList getTotalSize];
+    estimatedAppSize += nibSize;
+	
+    // bundled files altogether
+    estimatedAppSize += [fileList getTotalSize];
 		
 	return [STUtil sizeAsHumanReadable: estimatedAppSize];
 }

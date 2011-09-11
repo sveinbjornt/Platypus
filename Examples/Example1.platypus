@@ -4,8 +4,6 @@
 <dict>
 	<key>AppPathAsFirstArg</key>
 	<false/>
-	<key>Architecture</key>
-	<string>Universal</string>
 	<key>Authentication</key>
 	<false/>
 	<key>Author</key>

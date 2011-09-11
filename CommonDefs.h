@@ -70,7 +70,6 @@
 #define DEFAULT_EDITOR				@"Built-In"
 #define DEFAULT_DESTINATION_PATH	@"~/Desktop/MyApp.app"
 #define DEFAULT_OUTPUT_TYPE			@"Progress Bar"
-#define DEFAULT_ARCHITECTURE		@"Universal"
 
 // output modes
 #define	PLATYPUS_NONE_OUTPUT				1
