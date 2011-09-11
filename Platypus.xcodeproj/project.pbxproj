@@ -508,14 +508,6 @@
 			name = "Interface Controllers";
 			sourceTree = "<group>";
 		};
-		F46C60151055AF2800521A94 /* Basic */ = {
-			isa = PBXGroup;
-			children = (
-				29B97316FDCFA39411CA2CEA /* main.m */,
-			);
-			name = Basic;
-			sourceTree = "<group>";
-		};
 		F48A724D122E23B200964D71 /* ScriptAnalyser */ = {
 			isa = PBXGroup;
 			children = (
@@ -553,7 +545,7 @@
 		F48B7CB611F76B0C00351575 /* Platypus.app */ = {
 			isa = PBXGroup;
 			children = (
-				F46C60151055AF2800521A94 /* Basic */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
 				F46C60141055AEFA00521A94 /* Interface Controllers */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Auxiliary */,
@@ -1047,6 +1039,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.5;
+				SYMROOT = /tmp/;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Development;
@@ -1083,6 +1076,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx10.5;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				SYMROOT = /tmp/;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Deployment;
@@ -1093,6 +1087,7 @@
 				GCC_VERSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				SDKROOT = macosx10.5;
+				SYMROOT = /tmp/;
 			};
 			name = Default;
 		};
