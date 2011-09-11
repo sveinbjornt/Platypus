@@ -99,8 +99,6 @@
 	[properties setObject: CMDLINE_EXEC_PATH											forKey: @"ExecutablePath"];
 	[properties setObject: CMDLINE_NIB_PATH												forKey: @"NibPath"];
 	[properties setObject: [DEFAULT_DESTINATION_PATH stringByExpandingTildeInPath]		forKey: @"Destination"];
-
-	[properties setObject: @"Universal"													forKey: @"Architecture"];
 	
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"DestinationOverride"];
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"DevelopmentVersion"];
@@ -210,21 +208,6 @@
 	execDestinationPath = [macosPath stringByAppendingString:@"/"];
 	execDestinationPath = [execDestinationPath stringByAppendingString: [properties objectForKey: @"Name"]]; 
 	[fileManager copyPath:execPath toPath:execDestinationPath handler:nil];
-	
-		//strip the binary with lipo if settings dictate this and tool exists on our system
-		if (	([[properties objectForKey: @"Architecture"] isEqualToString: @"i386"] ||
-				 [[properties objectForKey: @"Architecture"] isEqualToString: @"ppc"])
-			&& [fileManager fileExistsAtPath: LIPO_TOOL_PATH])
-		{
-			NSTask *lipoTask = [[NSTask alloc] init];
-			[lipoTask setLaunchPath: LIPO_TOOL_PATH];
-			[lipoTask setArguments: [NSArray arrayWithObjects: @"-thin",	[properties objectForKey: @"Architecture"],
-															   @"-output",  execDestinationPath,
-															   execDestinationPath, nil]];
-			[lipoTask launch];
-			[lipoTask waitUntilExit];
-			[lipoTask release];
-		}
 	
 	//copy nib file to app bundle
 	//.app/Contents/Resources/MainMenu.nib
