@@ -1,6 +1,6 @@
 For 4.5
+    * All binaries, shipped and generated, are now both 32-bit and 64-bit, intel only
 	* Due to popular demand, "droppable" apps now run script on launch, not just when files are dropped
-	* Support for generating processor-specific binaries
 	* Better handling of icons for apps
 	* Reduced the size of Platypus app binaries
 	* "Runs in background" windows now come to the front
@@ -23,7 +23,7 @@ For 4.5
 	* Various small bug fixes all over the code base
 	* Fixed a bug where droplet apps would lock up on cancelling authentication
 	* Upgraded source to XCode 4.  Now requires Mac OS X 10.5 or later.
-    * All binaries are now both 32-bit and 64-bit
+    
 	TODO: Update create app so that it creates icon from image in image well
 			and also do massive testing on the whole IconPath change thing
 	TODO: Finish extended droppable options (e.g. dropped text)
