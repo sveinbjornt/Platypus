@@ -10,7 +10,7 @@ FOLDER=Platypus-$VERSION
 
 # Create the folder
 mkdir -p /tmp/$FOLDER
-cp -r build/Deployment/Platypus.app /tmp/$FOLDER/
+cp -r build/Platypus/Build/Products/Deployment/Platypus.app /tmp/$FOLDER/
 cp 'Documentation/Readme.html' /tmp/$FOLDER/
 cp -r 'SampleScripts' /tmp/$FOLDER/
 

@@ -20,6 +20,7 @@ cp -r * /tmp/$FOLDER/
 
 # Remove any svn files
 /usr/bin/find /tmp/$FOLDER -type d -name .svn -exec rm -rf '{}' +
+/usr/bin/find /tmp/$FOLDER -type d -name .git -exec rm -rf '{}' +
 
 # Remove DS_Store files
 /usr/bin/find /tmp/$FOLDER -type f -name .DS_Store -exec rm '{}' +
