@@ -333,7 +333,7 @@
 	[spec setProperty: appPath forKey: @"Destination"];
 	[spec setProperty: [[NSUserDefaults standardUserDefaults] stringForKey: @"DefaultArchitecture"] forKey: @"Architecture"];
 	[spec setProperty: [[NSBundle mainBundle] pathForResource: @"ScriptExec" ofType: NULL] forKey: @"ExecutablePath"];
-	[spec setProperty: [[NSBundle mainBundle] pathForResource: @"MainMenu.xib" ofType: NULL] forKey: @"NibPath"];
+	[spec setProperty: [[NSBundle mainBundle] pathForResource: @"MainMenu.nib" ofType: NULL] forKey: @"NibPath"];
 	[spec setProperty: [NSNumber numberWithBool: [developmentVersionCheckbox intValue]] forKey: @"DevelopmentVersion"];
 	[spec setProperty: [NSNumber numberWithBool: [optimizeApplicationCheckbox intValue]] forKey: @"OptimizeApplication"];	
 	if (overwrite)

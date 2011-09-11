@@ -2,7 +2,7 @@
 <Scheme
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "NO"
+      parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D1107260486CEB800E47090"
-               BuildableName = "Platypus.app"
-               BlueprintName = "Platypus"
+               BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
+               BuildableName = "platypus"
+               BlueprintName = "platypus"
                ReferencedContainer = "container:Platypus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -35,15 +35,18 @@
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Development">
-      <BuildableProductRunnable>
+      <PathRunnable
+         FilePath = "/Programming/platypus/build/Platypus/Build/Products/Development/platypus_clt">
+      </PathRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D1107260486CEB800E47090"
-            BuildableName = "Platypus.app"
-            BlueprintName = "Platypus"
+            BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
+            BuildableName = "platypus"
+            BlueprintName = "platypus"
             ReferencedContainer = "container:Platypus.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -55,9 +58,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D1107260486CEB800E47090"
-            BuildableName = "Platypus.app"
-            BlueprintName = "Platypus"
+            BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
+            BuildableName = "platypus"
+            BlueprintName = "platypus"
             ReferencedContainer = "container:Platypus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

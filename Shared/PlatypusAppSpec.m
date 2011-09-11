@@ -228,13 +228,20 @@
 	
 	//copy nib file to app bundle
 	//.app/Contents/Resources/MainMenu.xib
-	nibDestPath = [resourcesPath stringByAppendingString:@"/MainMenu.xib"];
+	nibDestPath = [resourcesPath stringByAppendingString:@"/MainMenu.nib"];
 	[fileManager copyPath: [properties objectForKey: @"NibPath"] toPath: nibDestPath handler: NULL];
 		
 	// if optimize application is set, we see if we can compile the nib file
 	if ([[properties objectForKey: @"OptimizeApplication"] boolValue] == YES && [fileManager fileExistsAtPath: IBTOOL_PATH])
 	{
 		NSTask *ibToolTask = [[NSTask alloc] init];
+		[ibToolTask setLaunchPath: IBTOOL_PATH];
+		[ibToolTask setArguments: [NSArray arrayWithObjects: @"--strip", nibDestPath, nibDestPath, NULL]];
+		[ibToolTask launch];
+		[ibToolTask waitUntilExit];
+		[ibToolTask release];
+        
+        ibToolTask = [[NSTask alloc] init];
 		[ibToolTask setLaunchPath: IBTOOL_PATH];
 		[ibToolTask setArguments: [NSArray arrayWithObjects: @"--strip", nibDestPath, nibDestPath, NULL]];
 		[ibToolTask launch];
