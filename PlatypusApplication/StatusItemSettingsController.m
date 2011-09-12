@@ -120,7 +120,10 @@
 	{
 		NSImage *img = [[NSImage alloc] initWithContentsOfFile: [oPanel filename]];
 		if (img != NULL)
+        {
 			[self setIcon: img];
+            [img release];
+        }
 		else
 			[STUtil alert:@"Corrupt Image File" subText: @"The image file you selected appears to be damaged or corrupt."];
 	}

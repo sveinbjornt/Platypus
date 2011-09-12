@@ -26,7 +26,7 @@
 - (void)awakeFromNib
 {
 	[[NSFontManager sharedFontManager] setDelegate: self];
-	[self setCurrentFont: [[NSFont fontWithName:DEFAULT_OUTPUT_FONT size: DEFAULT_OUTPUT_FONTSIZE] retain]];
+	[self setCurrentFont: [NSFont fontWithName:DEFAULT_OUTPUT_FONT size: DEFAULT_OUTPUT_FONTSIZE]];
 }
 
 -(void)dealloc

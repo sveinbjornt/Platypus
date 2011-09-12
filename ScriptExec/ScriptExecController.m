@@ -762,7 +762,7 @@
 	NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity: ARG_MAX];//this object is released in -prepareForExecution function
 	[args addObjectsFromArray: acceptedFiles];
 	[jobQueue addObject: args];
-
+    [args release];
 	return YES;
 }
 
