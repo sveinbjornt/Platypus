@@ -14,7 +14,7 @@ For 4.5
 	* Fixed text encoding bug in built-in editor
 	* Fixed bug in drag and drop handling in Platypus application
 	* Removed environment editing and signature settings [redundant, obsolete]
-	* Platypus now displays a progress bar while creating applications
+	* Platypus now displays a progress bar with status messages while creating applications
 	* Interface refactored to be always in Advanced mode
 	* More accurate estimated final app size
 	* Removed English.lproj from created apps

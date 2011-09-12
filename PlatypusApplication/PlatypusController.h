@@ -96,6 +96,8 @@
 	IBOutlet id progressDialogWindow;
 	IBOutlet id progressBar;
 	IBOutlet id progressDialogMessageLabel;
+    IBOutlet id progressDialogStatusLabel;
+    
 	
 	// interface controllers
 	IBOutlet id iconControl;

@@ -307,10 +307,20 @@
 	[NSTimer scheduledTimerWithTimeInterval: 0.0001 target: self selector:@selector(createApplication:) userInfo: [sPanel filename] repeats: NO];
 }
 
+- (void)creationStatusUpdated: (NSNotification *)aNotification
+{
+    [progressDialogStatusLabel setStringValue:[aNotification object]];
+    [[progressDialogStatusLabel window] display];
+}
 
 - (BOOL)createApplication: (NSTimer *)theTimer
 {
 	BOOL overwrite = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self
+											 selector: @selector(creationStatusUpdated:)
+												 name: @"PlatypusAppSpecCreationNotification"
+											   object: NULL];
 	
 	// we begin by making sure destination path ends in .app
 	NSString *appPath = [theTimer userInfo];
@@ -334,7 +344,7 @@
 	[spec setProperty: [[NSBundle mainBundle] pathForResource: @"MainMenu.nib" ofType: NULL] forKey: @"NibPath"];
 	[spec setProperty: [NSNumber numberWithBool: [developmentVersionCheckbox intValue]] forKey: @"DevelopmentVersion"];
 	[spec setProperty: [NSNumber numberWithBool: [optimizeApplicationCheckbox intValue]] forKey: @"OptimizeApplication"];	
-	if (overwrite)
+	if (overwrite) 
 		[spec setProperty: [NSNumber numberWithBool: YES] forKey: @"DestinationOverride"];
 	
 	// verify that the values in the spec are OK
@@ -357,7 +367,7 @@
 		modalDelegate: nil
 	   didEndSelector: nil
 		  contextInfo: nil];
-	
+
 	// create the app from spec
 	if (![spec create])
 	{
@@ -380,6 +390,9 @@
     [NSApp endSheet: progressDialogWindow];
     [progressDialogWindow orderOut: self];
 	
+    // Stop observing the filehandle for data since task is done
+	[[NSNotificationCenter defaultCenter] removeObserver: self name: @"PlatypusAppSpecCreationNotification" object: nil];
+    
 	return YES;
 }
 
