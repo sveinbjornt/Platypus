@@ -1,7 +1,7 @@
 For 4.5
-    * Upgraded to XCode 4 for builds.  Platypus and generated applications now requires Mac OS X 10.5 or later.
-    * All binaries, shipped and generated, are now both 32-bit and 64-bit, and Intel only
-	* Due to popular demand, "droppable" apps now run script on launch, not just when files are dropped
+    * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later.
+    * All binaries are now 32-bit and 64-bit Intel only
+	* Due to popular demand, "droppable" apps now again run script on launch, not just when files are dropped
 	* Better handling of icons for apps
     * Support for accepting dragged text snippets as arguments
     * New Examples menu with sample scripts and presets

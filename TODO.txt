@@ -1,9 +1,6 @@
 
-* More and better sample scripts
 * Icon editable for file types?
 * Revise, expand and update documentation
 * Create Platypus tutorial videos
-	* NEED TO USE AUTOSAVE TO SAVE WINDOW POSITION
-	* PRESET SAMPLE PROFILES, E.G. DROPLETS ETC.
 * Rewrite horrible old code in STFileList
 * Rethink and redesign the interface? It's a bit cluttered.
