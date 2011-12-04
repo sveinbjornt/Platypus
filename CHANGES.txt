@@ -1,9 +1,9 @@
 For 4.5
-    * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later.
-    * All binaries are now 32-bit and 64-bit Intel only
-	* Due to popular demand, "droppable" apps now again run script on launch, not just when files are dropped
+    * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
+    * Dropped PowerPC support. All binaries are now 32-bit/64-bit Intel only
+	* Due to popular demand, "droppable" apps now run script on launch, not just when files are dropped
 	* Better handling of icons for apps
-    * Support for accepting dragged text snippets as arguments
+    * Support for accepting dragged text snippets as arguments to script
     * New Examples menu with sample scripts and presets
 	* "Runs in background" windows now come to the front on launch
 	* Open Recent menu uses Apple's API
@@ -22,9 +22,11 @@ For 4.5
     * Updated to IconFamily 0.9.4
 	* Improved application icon
 	* Updated man page for command line tool
+    * New FAQ section in the documentation which addresses common questions and issues
 	* Various small bug fixes all over the code base
 	* Fixed a bug where droplet apps would lock up on cancelled authentication
     
+	TODO: Create TextMate plugin
     TODO: Create examples for Examples menu
     TODO: Updated documentation for all new features of the last few versions
 	TODO: Update create app so that it creates icon from image in image well

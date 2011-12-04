@@ -15,7 +15,7 @@
 	<key>Droppable</key>
 	<true/>
 	<key>OutputType</key>
-	<string>Web View</string>
+	<string>Text Window</string>
 	<key>StatusItemDisplayType</key>
 	<string>Icon and Text</string>
 	<key>StatusItemTitle</key>
@@ -25,9 +25,9 @@
 	<key>RemainRunningAfterCompletion</key>
 	<true/>
 	<key>RequiresAdminPrivileges</key>
-	<true/>
+	<false/>
 	<key>RunInBackground</key>
-	<true/>
+	<false/>
 	<key>ScriptInterpreter</key>
 	<string>/usr/bin/perl</string>
 	<key>Secure</key>

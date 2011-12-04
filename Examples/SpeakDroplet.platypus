@@ -28,7 +28,7 @@
 		<string>fold</string>
 	</array>
 	<key>IconPath</key>
-	<string>/Programming/Projects/PlatypusNew/build/Deployment/Platypus.app/Contents/Resources/PlatypusDefault.icns</string>
+	<string></string>
 	<key>Identifier</key>
 	<string>org.sveinbjorn.TempScript</string>
 	<key>Interpreter</key>

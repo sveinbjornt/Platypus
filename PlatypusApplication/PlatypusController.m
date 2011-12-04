@@ -528,7 +528,8 @@
 	[interpreterTextField setStringValue: [spec propertyForKey: @"Interpreter"]];
 	
 	//icon
-	[iconControl loadIcnsFile: [spec propertyForKey: @"IconPath"]];
+    if (![[spec propertyForKey: @"IconPath"] isEqualToString: @""])
+        [iconControl loadIcnsFile: [spec propertyForKey: @"IconPath"]];
 	
 	//checkboxes
 	[rootPrivilegesCheckbox setState: [[spec propertyForKey: @"Authentication"] boolValue]];

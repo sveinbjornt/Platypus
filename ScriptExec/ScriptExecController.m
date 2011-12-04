@@ -50,7 +50,7 @@
 	if (droppableSuffixes != NULL)	{[droppableSuffixes release];}
 	if (droppableFileTypes != NULL)	{[droppableFileTypes release];}
 	if (paramsArray != NULL) { [paramsArray release]; }
-	if (jobQueue != NULL) { [jobQueue release]; }
+	[jobQueue release];
 	if (statusItemIcon != NULL) { [statusItemIcon release]; }
 	if (script != NULL) { [script release]; }
 	if (statusItem != NULL) { [statusItem release]; }
@@ -77,8 +77,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {	
-	// droppable apps don't run on launch -- only when they're handed files
-	// likewise, status menu apps just run when item is clicked
+	// status menu apps just run when item is clicked
 	// for all others, we run the script once app is up and running
 	if (outputType != PLATYPUS_STATUSMENU_OUTPUT)
 		[self executeScript];
@@ -428,7 +427,7 @@
 	if ([paramsArray count] > 0)
 		[arguments addObjectsFromArray: paramsArray];
 
-	// add script as argument to interpreter, provided it exists
+	// add script as argument to interpreter, if it exists
 	if (![[NSFileManager defaultManager] fileExistsAtPath: scriptPath])
 		[self fatalAlert: @"Missing script" subText: @"Script missing at execution path"];
 	[arguments addObject: scriptPath];
@@ -440,11 +439,14 @@
 	//finally, add any file arguments we may have received as dropped/opened
 	if ([jobQueue count] > 0) // we have files in the queue, to append as arguments
 	{
+        NSLog(@"%d in job queue", [jobQueue count]);
 		// we take the first job's arguments and put them into the arg list
 		[arguments addObjectsFromArray: [jobQueue objectAtIndex: 0]];
 		
 		// then we remove the job from the queue
-		[[jobQueue objectAtIndex: 0] release]; // release
+        NSLog(@"Releasing object at 0 in job queue");
+        //[[jobQueue objectAtIndex: 0] release]; // release
+        NSLog(@"Removing object at 0 from job queue array");
 		[jobQueue removeObjectAtIndex: 0]; // remove it from the queue
 	}
 }
@@ -625,10 +627,9 @@
 {	
 	// we decode the script output according to specified character encoding
 	NSMutableString *outputString = [[NSMutableString alloc] initWithData: data encoding: textEncoding];
+
 	if (!outputString)
 		return;
-
-	
 	
 	// we parse output if output type is progress bar, to get progress indicator values and display string
 	if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || outputType == PLATYPUS_DROPLET_OUTPUT )
@@ -699,12 +700,16 @@
 	int ret = [self addDroppedFilesJob: filenames];
 	
 	// if no other job is running, we execute
-	if (!isTaskRunning && ret == YES)
+	if (!isTaskRunning && ret)
 		[self executeScript];
 }
 	 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
-{		
+{	
+    // again, make absolutely sure we don't leave the clear-text script in temp directory
+	if (secureScript && [[NSFileManager defaultManager] fileExistsAtPath: scriptPath])
+		[[NSFileManager defaultManager] removeFileAtPath: scriptPath handler: nil];
+
 	//terminate task
 	if (task != NULL)
 	{
@@ -718,11 +723,7 @@
 	
 	// clean out the job queue since we're quitting
 	[jobQueue removeAllObjects];
-	
-	// again, make absolutely sure we don't leave the clear-text script in temp directory
-	if (secureScript && [[NSFileManager defaultManager] fileExistsAtPath: scriptPath])
-		[[NSFileManager defaultManager] removeFileAtPath: scriptPath handler: nil];
-	
+		
 	return YES;
 }
 
@@ -755,12 +756,13 @@
 	}
 	
 	// if at this point there are no accepted files, we refuse drop
-	if ([acceptedFiles count] <= 0)
+	if ([acceptedFiles count] == 0)
 		return NO;
 	
 	// we create a processing job and add the files as arguments, accept drop
 	NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity: ARG_MAX];//this object is released in -prepareForExecution function
 	[args addObjectsFromArray: acceptedFiles];
+    NSLog(@"Adding to job queue");
 	[jobQueue addObject: args];
     [args release];
 	return YES;

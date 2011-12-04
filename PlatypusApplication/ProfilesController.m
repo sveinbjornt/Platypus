@@ -45,7 +45,7 @@
 - (void)loadProfileFile: (NSString *)file
 {	
 	PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initFromFile: file];
-
+    
 	// make sure we got a spec from the file
 	if (spec == NULL)
 	{
@@ -75,7 +75,10 @@
 	NSDictionary *profileDict = [[platypusControl appSpecFromControls] properties];
 	
 	// create path for profile file and write to it
-	NSString *profileDestPath = [NSString stringWithFormat: @"%@/%@.%@", [PROFILES_FOLDER stringByExpandingTildeInPath], [profileDict objectForKey: @"Name"], PROFILES_SUFFIX];
+	NSString *profileDestPath = [NSString stringWithFormat: @"%@/%@.%@", 
+                                 [PROFILES_FOLDER stringByExpandingTildeInPath], 
+                                 [profileDict objectForKey: @"Name"], 
+                                 PROFILES_SUFFIX];
 	[self writeProfile: profileDict toFile: profileDestPath];
 }
 
@@ -131,10 +134,11 @@
 
 -(void)profileMenuItemSelected: (id)sender
 {
+    BOOL isExample = [sender tag]  == EXAMPLES_TAG;
 	NSString *folder = PROFILES_FOLDER;
-	if ([sender tag]  == EXAMPLES_TAG)
+	if (isExample)
 		folder = [NSString stringWithFormat: @"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
-	
+    
 	NSString *profilePath = [NSString stringWithFormat: @"%@/%@", [folder stringByExpandingTildeInPath], [sender title]];
 
 	// if command key is down, we reveal in finder
