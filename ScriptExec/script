@@ -1,4 +1,6 @@
 #!/usr/bin/perl
+# Test script for ScriptExec binary
+#
 
 #sleep 3;
 #for ($i = 0; $i < 100; $i++)
@@ -19,9 +21,11 @@
 
 #	$i++;
 #}
-foreach (@ARGV) { print $_ . "\n"; }
+local $| = 1;
+print "Hello<br>";
 
-print "Hello";
+foreach (@ARGV) { sleep 2; print $_ . "\n<br>"; }
+
 
 #print "PROGRESS:100\n";
 #	print STDOUT "Doing $i\r";

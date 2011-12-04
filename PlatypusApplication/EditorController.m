@@ -34,9 +34,16 @@
 
 - (void)showEditorForFile: (NSString *)path window: (NSWindow *)theWindow
 {	
+    NSString *str = [NSString stringWithContentsOfFile: path encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
+    if (str == nil)
+    {
+        [STUtil alert: @"Error reading document" subText: @"This document does not appear to be a text file"];
+        return;
+    }
+    
 	[self loadWindow];
 	[scriptPathTextField setStringValue: path];
-	[textView setString: [NSString stringWithContentsOfFile: path encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: nil]];
+	[textView setString: str];
 	
 	[NSApp beginSheet: [self window]
 	   modalForWindow: theWindow 

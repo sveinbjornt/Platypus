@@ -107,7 +107,6 @@
 		F4FE73A911F792F9005FC23A /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE73A711F792F9005FC23A /* STPrivilegedTask.m */; };
 		F4FE745611F7933A005FC23A /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE73A711F792F9005FC23A /* STPrivilegedTask.m */; };
 		F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */; };
-		F4FE748011F793CF005FC23A /* platypus.man.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747F11F793CF005FC23A /* platypus.man.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,7 +219,7 @@
 		F4DC074F11F629A40043764E /* PlatypusDocumentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = PlatypusDocumentation.html; sourceTree = "<group>"; };
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
-		F4E1F6FC11F758FB007EE2E3 /* platypus */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = platypus; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4E1F6FC11F758FB007EE2E3 /* platypus */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = platypus; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4ECE19A11F77200000DB012 /* AppBuildBoth.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = AppBuildBoth.sh; sourceTree = "<group>"; };
 		F4ECE19B11F77200000DB012 /* AppPackageBuildScript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = AppPackageBuildScript.sh; sourceTree = "<group>"; };
 		F4ECE19C11F77200000DB012 /* AppSourceBuildScript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = AppSourceBuildScript.sh; sourceTree = "<group>"; };
@@ -272,7 +271,6 @@
 		F4FE73A711F792F9005FC23A /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPrivilegedTask.m; path = Shared/STPrivilegedTask.m; sourceTree = "<group>"; };
 		F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = platypus_command_line_tool.m; path = CommandLineTool/platypus_command_line_tool.m; sourceTree = "<group>"; };
 		F4FE747E11F793BA005FC23A /* platypus.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; name = platypus.1; path = CommandLineTool/platypus.1; sourceTree = "<group>"; };
-		F4FE747F11F793CF005FC23A /* platypus.man.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = platypus.man.pdf; path = CommandLineTool/platypus.man.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -370,7 +368,6 @@
 				F4876F4C141D58BB00A428CC /* MainMenu.xib */,
 				F4C8B458124C450C00397392 /* ShellCommandWindow.xib */,
 				F4C8B459124C450C00397392 /* SyntaxChecker.xib */,
-				F4FE747F11F793CF005FC23A /* platypus.man.pdf */,
 				F4185E5811FC57AB0027C8D7 /* Info.plist */,
 				F46EF84E13C3F36900E4C0E4 /* Examples */,
 				F4DC074611F629930043764E /* Scripts */,
@@ -774,7 +771,6 @@
 				F4DC075111F629A40043764E /* License.txt in Resources */,
 				F4DC075211F629A40043764E /* PlatypusDocumentation.html in Resources */,
 				F4DC075311F629A40043764E /* Readme.html in Resources */,
-				F4FE748011F793CF005FC23A /* platypus.man.pdf in Resources */,
 				F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */,
 				F48002CB121AF042003FB5B3 /* images in Resources */,
 				F44E001D1229868100CAC9C2 /* PlatypusStatusMenuIcon.png in Resources */,
