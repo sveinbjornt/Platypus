@@ -27,6 +27,7 @@
 @interface PrefsController : NSWindowController 
 {
 	IBOutlet id revealAppCheckbox;
+    IBOutlet id openAppCheckbox;
     IBOutlet id defaultEditorMenu;
 	IBOutlet id defaultTextEncodingPopupButton;
 	IBOutlet id defaultBundleIdentifierTextField;
