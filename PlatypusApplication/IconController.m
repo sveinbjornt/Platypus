@@ -412,6 +412,11 @@
 	return NO;
 }
 
+- (BOOL)isPresetIcon: (NSString *)str
+{
+    return ([str hasPrefix: [[NSBundle mainBundle] resourcePath]]);
+}
+
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender 
 {
 	// we accept dragged files
@@ -419,12 +424,18 @@
 	{
 		NSArray *files = [[sender draggingPasteboard] propertyListForType: NSFilenamesPboardType];
 		int i;
-		
-		// link for icns file
+        
+                
+		// link for icns file, but not if it's a preset icon
 		for (i = 0; i < [files count]; i++)
+        {
+            if ([self isPresetIcon: [files objectAtIndex: i]])
+                return NSDragOperationNone;
+
 			if ([[files objectAtIndex: i] hasSuffix: @"icns"])
 				return NSDragOperationLink;
-		
+		}
+        
 		// copy plus for image file
 		for (i = 0; i < [files count]; i++)
 		{

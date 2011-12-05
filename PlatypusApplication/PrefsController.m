@@ -42,7 +42,8 @@
 	[defaultBundleIdentifierTextField setStringValue: [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultBundleIdentifierPrefix"]];
 	[defaultAuthorTextField setStringValue: [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultAuthor"]];
 	[revealAppCheckbox setState: [[NSUserDefaults standardUserDefaults] boolForKey:@"RevealApplicationWhenCreated"]];
-		
+    [openAppCheckbox setState: [[NSUserDefaults standardUserDefaults] boolForKey: @"OpenApplicationWhenCreated"]];
+    
 	//set icons for editor menu
 	[self setIconsForEditorMenu];
 	[self updateCLTStatus: CLTStatusTextField];	
@@ -102,7 +103,9 @@
 
 	// reveal
 	[[NSUserDefaults standardUserDefaults] setBool: [revealAppCheckbox state]  forKey:@"RevealApplicationWhenCreated"];
-
+    // open
+    [[NSUserDefaults standardUserDefaults] setBool: [openAppCheckbox state]  forKey:@"OpenApplicationWhenCreated"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 	[[self window] close];
 }
 
@@ -118,6 +121,7 @@
 - (IBAction)restoreDefaultPrefs:(id)sender
 {
 	[revealAppCheckbox setState: NO];
+    [openAppCheckbox setState: NO];
 	[defaultEditorMenu setTitle: DEFAULT_EDITOR];
 	[defaultTextEncodingPopupButton selectItemWithTag: DEFAULT_OUTPUT_TXT_ENCODING];
 	[defaultAuthorTextField setStringValue: NSFullUserName()];
@@ -126,6 +130,7 @@
 	NSString *bundleId = [NSString stringWithFormat: @"org.%@.", NSUserName()];
 	bundleId = [[bundleId componentsSeparatedByString:@" "] componentsJoinedByString:@""];//remove all spaces
 	[defaultBundleIdentifierTextField setStringValue: bundleId];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

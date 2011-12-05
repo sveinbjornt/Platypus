@@ -12,6 +12,7 @@ For 4.5
 	* "Runs in background" windows now come to the front on launch
 	* Open Recent menu uses Apple's API
 	* Main window no longer accepts locally dragged and dropped icon files
+    * Icon view no longer erroneously recognizes locally originating drags as valid
 	* Fixed small memory leak in command line tool
 	* "Open in Editor" option for bundled files
 	* Fixed a text encoding bug with "Secure" scripts

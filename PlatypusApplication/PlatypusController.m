@@ -47,7 +47,8 @@
 	[defaultPrefs setObject: DEFAULT_EDITOR					forKey: @"DefaultEditor"];
 	[defaultPrefs setObject: [NSArray array]				forKey: @"Profiles"];
 	[defaultPrefs setObject: [NSNumber numberWithBool:NO]	forKey: @"RevealApplicationWhenCreated"];
-	[defaultPrefs setObject: [NSNumber numberWithInt: DEFAULT_OUTPUT_TXT_ENCODING]
+	[defaultPrefs setObject: [NSNumber numberWithBool:NO]	forKey: @"OpenApplicationWhenCreated"];
+    [defaultPrefs setObject: [NSNumber numberWithInt: DEFAULT_OUTPUT_TXT_ENCODING]
 															forKey: @"DefaultTextEncoding"];
 	[defaultPrefs setObject: NSFullUserName()				forKey: @"DefaultAuthor"];
 	
@@ -382,7 +383,13 @@
 	// reveal newly create app in Finder, if prefs say so
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"RevealApplicationWhenCreated"])
 		[[NSWorkspace sharedWorkspace] selectFile: appPath inFileViewerRootedAtPath:nil];
-	
+
+    // open newly create app, if prefs say so
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"OpenApplicationWhenCreated"])
+    {
+        NSLog(@"Launching");
+		[[NSWorkspace sharedWorkspace] launchApplication: appPath];
+    }
 	[developmentVersionCheckbox setIntValue: 0];
 	[optimizeApplicationCheckbox setIntValue: 0];
 	
