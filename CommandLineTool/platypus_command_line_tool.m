@@ -479,7 +479,7 @@ static void PrintVersion (void)
 
 static void PrintUsage (void)
 {
-    NSPrint(@"usage: %@ [-vh] [-O profile] [-FASDBR] [-ydlH] [-KYL] [-P profile] [-a appName] [-c scriptPath] [-o outputType] [-i icon] [-p interpreter] [-V version] [-u author] [-I identifier] [-f bundledFile] [-X suffixes] [-T filetypes] [-G interpreterArgs] [-U arch] destinationPath", CMDLINE_PROGNAME);
+    NSPrint(@"usage: %@ [-vh] [-O profile] [-FASDBR] [-ydlH] [-KYL] [-P profile] [-a appName] [-c scriptPath] [-o outputType] [-i icon] [-p interpreter] [-V version] [-u author] [-I identifier] [-f bundledFile] [-X suffixes] [-T filetypes] [-G interpreterArgs] [appPath]", CMDLINE_PROGNAME);
 }
 
 ////////////////////////////////////////
