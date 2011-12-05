@@ -22,7 +22,7 @@
 // Edit Types window.  It is the data source and delegate of this tableview.
 
 #import "SuffixList.h"
-#import "CommonDefs.h"
+#import "Common.h"
 
 @implementation SuffixList
 

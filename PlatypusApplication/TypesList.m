@@ -23,7 +23,7 @@
 
 
 #import "TypesList.h"
-#import "CommonDefs.h"
+#import "Common.h"
 
 @implementation TypesList
 

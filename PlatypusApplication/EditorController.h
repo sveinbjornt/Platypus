@@ -19,7 +19,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "CommonDefs.h"
+#import "Common.h"
 #import "STUtil.h"
 #import "SyntaxCheckerController.h"
 

@@ -23,7 +23,7 @@
 #import <sys/syslimits.h>
 
 #import "NSColor+HexTools.h"
-#import "CommonDefs.h"
+#import "Common.h"
 #import "STPrivilegedTask.h"
 #import "STDragWebView.h"
 

@@ -22,7 +22,7 @@
 #import "IconFamily.h"
 #import "STUtil.h"
 #import "UKKQueue.h"
-#import "CommonDefs.h"
+#import "Common.h"
 
 @implementation IconController
 

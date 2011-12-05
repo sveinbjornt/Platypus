@@ -19,7 +19,7 @@
  */
 
 #import "StatusItemSettingsController.h"
-#import "CommonDefs.h"
+#import "Common.h"
 
 @implementation StatusItemSettingsController
 

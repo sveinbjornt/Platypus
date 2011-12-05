@@ -34,7 +34,7 @@
     [oPanel setAllowsMultipleSelection:NO];
 	[oPanel setCanChooseDirectories: NO];
 	
-	if (NSOKButton == [oPanel	runModalForDirectory: [PROFILES_FOLDER stringByExpandingTildeInPath] file: NULL types: [NSArray arrayWithObjects: @"platypus", NULL]])
+	if (NSOKButton == [oPanel runModalForDirectory: [PROFILES_FOLDER stringByExpandingTildeInPath] file: NULL types: [NSArray arrayWithObjects: @"platypus", NULL]])
 		[self loadProfileFile: [oPanel filename]];
 }
 
@@ -49,17 +49,37 @@
 	// make sure we got a spec from the file
 	if (spec == NULL)
 	{
-		[STUtil alert: @"File error" subText: @"Unable to create Platypus spec from profile"];
+		[STUtil alert: @"Error" subText: @"Unable to create Platypus spec from profile"];
 		return;
 	}
+    
+    // check if it's an example
+    if ([spec propertyForKey: @"Example"] != nil)
+    {
+        // make sure of the example profile's integrity
+        NSString *scriptStr = [spec propertyForKey: @"Script"];
+        NSString *scriptName = [spec propertyForKey: @"ScriptName"];
+        if (scriptStr == nil || scriptName == nil)
+        {
+            [STUtil alert: @"Error loading example" subText: @"Nil script value(s) in this example's profile dictionary."];
+            [spec release];
+            return;
+        }
+        // write script contained in the example profile dictionary to file
+        NSString *scriptPath = [[NSString stringWithFormat: @"%@%@", TEMP_FOLDER, scriptName] stringByExpandingTildeInPath];
+        [scriptStr writeToFile: scriptPath atomically: YES encoding: DEFAULT_OUTPUT_TXT_ENCODING error: nil];
+        
+        // set this path as the source script path
+        [spec setProperty: scriptPath forKey: @"ScriptPath"];
+    }
 	
 	// warn if created with a different version of Platypus
 //	if (![[spec propertyForKey: @"Creator"] isEqualToString: PROGRAM_STAMP])
 //		[STUtil alert:@"Version clash" subText: @"The profile you selected was created with a different version of Platypus and may not load correctly."];
 	
 	[platypusControl controlsFromAppSpec: spec];
-	[spec release];
 	[platypusControl controlTextDidChange: NULL];
+    [spec release];
 }
 
 /*****************************************
@@ -134,7 +154,7 @@
 
 -(void)profileMenuItemSelected: (id)sender
 {
-    BOOL isExample = [sender tag]  == EXAMPLES_TAG;
+    BOOL isExample = ([sender tag]  == EXAMPLES_TAG);
 	NSString *folder = PROFILES_FOLDER;
 	if (isExample)
 		folder = [NSString stringWithFormat: @"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
@@ -154,7 +174,7 @@
 
 - (IBAction) clearAllProfiles:(id)sender
 {
-	if (NO == [STUtil proceedWarning: @"Delete all profiles?" subText: @"This will permanently delete all profiles in your Profiles folder." withAction: @"Delete"])
+	if ([STUtil proceedWarning: @"Delete all profiles?" subText: @"This will permanently delete all profiles in your Profiles folder." withAction: @"Delete"] == 0)
 		return;
 
 	//delete all .platypus files in PROFILES_FOLDER

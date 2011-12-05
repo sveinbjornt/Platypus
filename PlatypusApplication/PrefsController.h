@@ -22,7 +22,7 @@
 #include <Security/Authorization.h>
 #import "STUtil.h"
 #import "STPrivilegedTask.h"
-#import "CommonDefs.h"
+#import "Common.h"
 
 @interface PrefsController : NSWindowController 
 {

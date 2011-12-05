@@ -35,6 +35,7 @@
 #define EXAMPLES_FOLDER				@"./Examples/"
 #define PROFILES_FOLDER				@"~/Library/Application Support/Platypus/Profiles"
 #define PROFILES_SUFFIX				@"platypus"
+#define TEMP_ICON_PATH              [[NSString stringWithFormat: @"%@/TmpIcon.icns", APP_SUPPORT_FOLDER] stringByExpandingTildeInPath]
 
 // default output text settings
 #define DEFAULT_OUTPUT_FONT			@"Monaco"

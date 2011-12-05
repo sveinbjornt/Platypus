@@ -21,7 +21,7 @@
 */
 
 /*
-	Support files required for this program are defined in CommonDefs.h
+	Support files required for this program are defined in Common.h
 */
 
 ///////////// IMPORTS/INCLUDES ////////////////
@@ -29,7 +29,7 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
-#import "CommonDefs.h"
+#import "Common.h"
 #import "PlatypusAppSpec.h"
 
 #include <stdio.h>
@@ -402,16 +402,27 @@ int main (int argc, const char * argv[])
 				break;
         }
     }
-	
-	if (argc - optind < 1) //  application/profile destination must follow
+    
+    if ([appSpec propertyForKey: @"ScriptPath"] == nil || [[appSpec propertyForKey: @"ScriptPath"] isEqualToString: @""])
+	{
+		NSPrintErr(@"Error: Missing -c script path parameter");
+		PrintUsage();
+		exit(1);
+	}
+    
+    NSString *destPath;
+    // if no destPath is supplied, we use path of script with a 
+    // .app suffix as destination path
+	if (argc - optind < 1) 
     {
-        NSPrintErr(@"Error: Too few arguments.");
-        PrintUsage();
-        exit(1);
+        destPath = [NSString stringWithFormat: @"%@.app", [appSpec propertyForKey: @"ScriptPath"]]; 
+    }
+    else
+    {
+        //get application destination parameter and make it an absolute path
+       destPath  = [[NSString stringWithCString: argv[optind] encoding: DEFAULT_OUTPUT_TXT_ENCODING] stringByStandardizingPath];
     }
 			
-	//get application destination parameter and make it an absolute path
-	NSString *destPath = [[NSString stringWithCString: argv[optind] encoding: DEFAULT_OUTPUT_TXT_ENCODING] stringByStandardizingPath];
 	if (destPath == NULL)
 	{
 		NSPrintErr(@"Error: Missing parameter: Destination Path");

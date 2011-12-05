@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ScriptAnalyser.h"
-#import "CommonDefs.h"
+#import "Common.h"
 
 @interface SyntaxCheckerController : NSWindowController
 {

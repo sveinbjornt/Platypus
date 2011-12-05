@@ -19,7 +19,7 @@
 */
 
 #import "FileTypesController.h"
-#import "CommonDefs.h"
+#import "Common.h"
 
 @implementation FileTypesController
 
@@ -398,6 +398,11 @@
 - (SuffixList *) suffixes
 {
 	return suffixList;
+}
+
+- (BOOL)acceptsText
+{
+    return [acceptDroppedTextCheckbox intValue];
 }
 
 - (NSString *)role

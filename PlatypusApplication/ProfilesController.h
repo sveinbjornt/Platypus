@@ -21,6 +21,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PlatypusController.h"
+#import "Common.h"
 
 #define EXAMPLES_TAG	7
 

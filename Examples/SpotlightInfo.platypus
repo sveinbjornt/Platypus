@@ -21,33 +21,42 @@
     <key>Example</key>
     <true/>
     <key>ScriptName</key>
-    <string>SysLoad.sh</string>
+    <string>SpotlightInfo.sh</string>
     <key>Script</key>
-    <string>#!/bin/sh 
-w 
-</string>
+    <string>#!/usr/bin/perl 
+# Uses the mdls command to list meta data info on dropped files
+use Shell;
+
+foreach(@ARGV)
+{
+    print "META-DATA INFO FOR '$_':\n";
+    system("/usr/bin/mdls '$_'");
+    print "------------||------------\n\n";
+}
+    </string>
 	<key>Droppable</key>
-	<false/>
+	<true/>
 	<key>ExecutablePath</key>
 	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>FileTypes</key>
 	<array>
 		<string>****</string>
+        <string>fold</string>
 	</array>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
-	<string>org.sveinbjorn.SysLoad</string>
+	<string>org.sveinbjorn.SpotlightInfo</string>
 	<key>Interpreter</key>
-	<string>/bin/sh</string>
+	<string>/usr/bin/perl</string>
 	<key>Name</key>
-	<string>SysLoad</string>
+	<string>SpotlightInfo</string>
 	<key>NibPath</key>
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
 	<key>Output</key>
-	<string>Status Menu</string>
+	<string>Text Window</string>
 	<key>Parameters</key>
 	<array/>
 	<key>RemainRunning</key>
@@ -64,7 +73,7 @@ w
 	<data>
 	</data>
 	<key>StatusItemTitle</key>
-	<string>w</string>
+	<string>MyApp</string>
 	<key>Suffixes</key>
 	<array>
 		<string>*</string>

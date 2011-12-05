@@ -77,6 +77,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {	
+    [NSApp setServicesProvider:self]; // register as text handling service
+    
 	// status menu apps just run when item is clicked
 	// for all others, we run the script once app is up and running
 	if (outputType != PLATYPUS_STATUSMENU_OUTPUT)
@@ -737,6 +739,16 @@
  
 ***************************************************************************/
 
+-(void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error 
+{
+    NSString *pboardString = [pboard stringForType:NSStringPboardType];
+    
+    int ret = [self addDroppedTextJob: pboardString];
+    
+    if (!isTaskRunning && ret)
+		[self executeScript];
+}
+
 - (BOOL) addDroppedFilesJob: (NSArray *)files
 {
 	// if this isn't a droppable application, we never add a drop job.  Likewise, if too many jobs already, we ignore.
@@ -781,7 +793,7 @@
 	NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity: ARG_MAX];
 	[args addObject: text];
 	[jobQueue addObject: args];
-	
+
 	return YES;
 }
 

@@ -86,6 +86,41 @@ Sveinbjorn Thordarson - &lt;sveinbjornt@gmail.com&gt;</p>
 
 <h3>Version History</h3>
 
+<h4>05/12/2011</h4>
+
+<ul>
+<li>Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later</li>
+<li>Dropped PowerPC support. All binaries are now fat 32-bit/64-bit Intel only</li>
+<li>Due to popular demand, "droppable" apps now run script on app launch, not just when files are dropped</li>
+<li>Platypus now displays a progress bar with status messages while creating applications</li>
+<li>Interface refactored to be always in Advanced mode</li>
+<li>Support for accepting dragged text snippets as arguments to script, registering the app as a Mac OS X Text Service</li>
+<li>New Examples menu with a lot of example profiles, scripts and presets</li>
+<li>"Open in Editor" option for bundled files</li>
+<li>New "Launch app on creation" option in Platypus, to facilitate development workflow</li>
+<li>Better handling of icons for apps which respects original ICNS file integrity</li>
+<li>More accurate estimated final app size</li>
+<li>"Runs in background" windows now come to the front on launch</li>
+<li>Removed environment editing and signature settings [redundant, obsolete]</li>
+<li>Open Recent menu uses Apple's API</li>
+<li>Fixed small memory leak in command line tool</li>
+<li>Main window no longer accepts locally dragged and dropped icon files</li>
+<li>Fixed a text encoding bug with "Secure" scripts</li>
+<li>Fixed text encoding bug in built-in text editor</li>
+<li>Fixed bug in drag and drop handling in Platypus application</li>
+<li>Removed English.lproj from created apps</li>
+<li>Fixed bug in drag and drop on Web View</li>
+<li>Updated to IconFamily 0.9.4</li>
+<li>Improved application icon (512px representation)</li>
+<li>Updated and improved man page for command line tool</li>
+<li>New FAQ section in the documentation which addresses common questions and issues</li>
+<li>Various small bug fixes all over the code base</li>
+<li>Fixed a bug where droplet apps would lock up on cancelled authentication</li>
+<li>Fixed bug in command line tool where nib parameter would be ignored</li>
+<li>Platypus no longer embeds icon data in profiles, which means they are smaller</li>
+<li>Command line tool now no longer requires destination path parameter, defaulting to [name-of-script].app</li>
+</ul>
+
 <h4>17/08/2010 - Version 4.4</h4>
 
 <ul>
