@@ -131,6 +131,7 @@
 	[properties setObject: [NSMutableArray arrayWithObject: @"*"]						forKey: @"Suffixes"];
 	[properties setObject: [NSMutableArray arrayWithObjects: @"****", @"fold", NULL]	forKey: @"FileTypes"];
 	[properties setObject: @"Viewer"													forKey: @"Role"];
+    [properties setObject: [NSNumber numberWithBool: NO]                                forKey: @"AcceptsText"];
 
 	// text output settings
 	[properties setObject: [NSNumber numberWithInt: DEFAULT_OUTPUT_TXT_ENCODING]		forKey: @"TextEncoding"];
@@ -147,10 +148,8 @@
 
 
 /****************************************
-
-	This function creates the Platypus app
-	based on the data contained in the spec.
-
+ This function creates the Platypus app
+ based on the data contained in the spec.
 ****************************************/
 
 -(BOOL)create
@@ -335,6 +334,20 @@
 		[appSettingsPlist setObject: [properties objectForKey:@"Suffixes"] forKey: @"DropSuffixes"];
 		[appSettingsPlist setObject: [properties objectForKey:@"FileTypes"] forKey: @"DropTypes"];
 	}
+    
+    // if accepts text, we declare ourselves as a text service application
+    if ([[properties objectForKey: @"AcceptsText"] boolValue] == YES)
+    {
+        NSString *serviceName = [NSString stringWithFormat: @"Process with %@", [properties objectForKey: @"Name"]];
+        NSString *mdict = [NSDictionary dictionaryWithObjectsAndKeys: serviceName, @"default", nil];
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: 
+         @"doString", @"NSMessage",
+        [NSArray arrayWithObject: @"NSStringPboardType"], @"NSSendTypes",
+        mdict,    @"Menu", nil
+          ];
+        NSArray *arr = [NSArray arrayWithObject: dict];
+        [infoPlist setObject: arr forKey: @"NSServices"];
+    }
 		
 	// finally, write the Info.plist file
 	[infoPlist writeToFile: infoPlistPath atomically: YES];

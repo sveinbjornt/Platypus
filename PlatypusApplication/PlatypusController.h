@@ -24,7 +24,7 @@
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
 
-#import "CommonDefs.h"
+#import "Common.h"
 
 #import "PlatypusAppSpec.h"
 #import "ScriptAnalyser.h"

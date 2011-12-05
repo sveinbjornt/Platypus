@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "CommonDefs.h"
+#import "Common.h"
 
 @interface ScriptAnalyser : NSObject 
 {

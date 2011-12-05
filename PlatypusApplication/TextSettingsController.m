@@ -19,7 +19,7 @@
 */
 
 #import "TextSettingsController.h"
-#import "CommonDefs.h"
+#import "Common.h"
 
 @implementation TextSettingsController
 

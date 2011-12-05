@@ -19,7 +19,7 @@
 */
 
 #import "ParamsController.h"
-#import "CommonDefs.h"
+#import "Common.h"
 
 @implementation ParamsController
 

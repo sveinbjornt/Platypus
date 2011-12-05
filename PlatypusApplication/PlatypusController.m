@@ -464,8 +464,14 @@
 															forKey: @"Output"];
 	
 	// icon
-	[spec setProperty: [iconControl icnsFilePath]		forKey: @"IconPath"];
-	
+    if ([iconControl hasIcns])
+        [spec setProperty: [iconControl icnsFilePath]		forKey: @"IconPath"];
+	else
+    {
+        [iconControl writeIconToPath: [NSString stringWithFormat: @"%@%@.icns",APP_SUPPORT_FOLDER,[appNameTextField stringValue]]];
+        [spec setProperty: TEMP_ICON_PATH                   forKey: @"IconPath"];
+    }
+    
 	// advanced attributes
 	[spec setProperty: [interpreterTextField stringValue]	forKey: @"Interpreter"];
 	[spec setProperty: [paramsControl paramsArray]			forKey: @"Parameters"];
@@ -496,6 +502,7 @@
 	[spec setProperty: (NSMutableArray *)[(SuffixList *)[typesControl suffixes] getSuffixArray]				forKey: @"Suffixes"];
 	[spec setProperty: (NSMutableArray *)[(TypesList *)[typesControl types] getTypesArray]					forKey: @"FileTypes"];
 	[spec setProperty: [typesControl role]																	forKey: @"Role"];
+    [spec setProperty: [NSNumber numberWithBool: [typesControl acceptsText]]                                forKey: @"AcceptsText"];
 
 	//  text output text settings
 	[spec setProperty: [NSNumber numberWithInt: (int)[textSettingsControl getTextEncoding]]							forKey: @"TextEncoding"];

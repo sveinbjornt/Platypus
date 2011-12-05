@@ -237,7 +237,7 @@
 						<object class="NSTextField" id="421734366">
 							<reference key="NSNextResponder" ref="705059762"/>
 							<int key="NSvFlags">264</int>
-							<string key="NSFrame">{{22, 190}, {598, 14}}</string>
+							<string key="NSFrame">{{22, 187}, {598, 17}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1008622239"/>
@@ -245,7 +245,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="227652074">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">4194304</int>
-								<string key="NSContents">Files to be bundled with application into the Resources folder (default working directory for script)</string>
+								<string key="NSContents">Files to be bundled into the application's Resources folder (default working directory for script)</string>
 								<reference key="NSSupport" ref="26"/>
 								<reference key="NSControlView" ref="421734366"/>
 								<reference key="NSBackgroundColor" ref="531870776"/>
@@ -785,7 +785,7 @@ AAAAAAAAA</bytes>
 							<string key="NSFrame">{{312, 231}, {81, 28}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="654418220"/>
+							<reference key="NSNextKeyView" ref="100566853"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="1063689970">
 								<int key="NSCellFlags">604110336</int>
@@ -864,7 +864,7 @@ AAAAAAAAA</bytes>
 							<string key="NSFrame">{{407, 258}, {133, 18}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="100566853"/>
+							<reference key="NSNextKeyView" ref="871897818"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="372652673">
 								<int key="NSCellFlags">67239424</int>
@@ -1049,7 +1049,7 @@ AAAAAAAAA</bytes>
 							<string key="NSFrame">{{407, 278}, {211, 21}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="871897818"/>
+							<reference key="NSNextKeyView" ref="654418220"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="894828017">
 								<int key="NSCellFlags">67239424</int>
@@ -1078,9 +1078,9 @@ AAAAAAAAA</bytes>
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents"/>
-								<reference key="NSSupport" ref="26"/>
+								<reference key="NSSupport" ref="761351444"/>
 								<reference key="NSControlView" ref="871617782"/>
-								<int key="NSButtonFlags">147603711</int>
+								<int key="NSButtonFlags">-2033434369</int>
 								<int key="NSButtonFlags2">6</int>
 								<object class="NSCustomResource" key="NSNormalImage" id="287173642">
 									<string key="NSClassName">NSImage</string>
@@ -1110,9 +1110,9 @@ AAAAAAAAA</bytes>
 								<int key="NSCellFlags">604110336</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents"/>
-								<reference key="NSSupport" ref="26"/>
+								<reference key="NSSupport" ref="761351444"/>
 								<reference key="NSControlView" ref="1021408072"/>
-								<int key="NSButtonFlags">147079423</int>
+								<int key="NSButtonFlags">-2033958657</int>
 								<int key="NSButtonFlags2">6</int>
 								<object class="NSCustomResource" key="NSNormalImage" id="128900300">
 									<string key="NSClassName">NSImage</string>
@@ -1287,7 +1287,7 @@ AAAAAAAAA</bytes>
 							<string key="NSFrame">{{374, 347}, {132, 28}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
+							<reference key="NSNextKeyView" ref="668343899"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="433637236">
 								<int key="NSCellFlags">604110336</int>
@@ -7051,8 +7051,8 @@ b2xvciBzaXQgYW1ldA</bytes>
 							<reference ref="819001402"/>
 							<reference ref="449999816"/>
 							<reference ref="604485815"/>
-							<reference ref="871617782"/>
 							<reference ref="200552618"/>
+							<reference ref="871617782"/>
 						</object>
 						<reference key="parent" ref="271767580"/>
 					</object>

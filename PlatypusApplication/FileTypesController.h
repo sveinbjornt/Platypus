@@ -62,6 +62,7 @@
 
 - (TypesList *) types;
 - (SuffixList *) suffixes;
+- (BOOL)acceptsText;
 - (NSString *)role;
 -(void) setRole: (NSString *)role;
 @end

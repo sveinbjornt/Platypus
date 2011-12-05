@@ -21,11 +21,12 @@
     <key>Example</key>
     <true/>
     <key>ScriptName</key>
-    <string>SysLoad.sh</string>
+    <string>SystemProfiler.sh</string>
     <key>Script</key>
     <string>#!/bin/sh 
-w 
-</string>
+# Print out system profiler info using Apple's tool
+/usr/sbin/system_profiler
+    </string>
 	<key>Droppable</key>
 	<false/>
 	<key>ExecutablePath</key>
@@ -37,17 +38,17 @@ w
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
-	<string>org.sveinbjorn.SysLoad</string>
+	<string>org.sveinbjorn.SystemProfiler</string>
 	<key>Interpreter</key>
 	<string>/bin/sh</string>
 	<key>Name</key>
-	<string>SysLoad</string>
+	<string>SystemProfiler</string>
 	<key>NibPath</key>
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
 	<key>Output</key>
-	<string>Status Menu</string>
+	<string>Text Window</string>
 	<key>Parameters</key>
 	<array/>
 	<key>RemainRunning</key>
@@ -64,7 +65,7 @@ w
 	<data>
 	</data>
 	<key>StatusItemTitle</key>
-	<string>w</string>
+	<string>MyApp</string>
 	<key>Suffixes</key>
 	<array>
 		<string>*</string>

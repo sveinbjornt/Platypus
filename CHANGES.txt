@@ -2,38 +2,35 @@ For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
     * Dropped PowerPC support. All binaries are now 32-bit/64-bit Intel only
 	* Due to popular demand, "droppable" apps now run script on launch, not just when files are dropped
-	* Better handling of icons for apps
-    * Support for accepting dragged text snippets as arguments to script
-    * New Examples menu with sample scripts and presets
+    * Platypus now displays a progress bar with status messages while creating applications
+    * Interface refactored to be always in Advanced mode
+    * Support for accepting dragged text snippets as arguments to script	
+    * Better handling of icons for apps
+    * More accurate estimated final app size
+    * New "Launch app on creation" option in Platypus, to facilitate development workflow
+    * New Examples menu with example profiles, scripts and presets
 	* "Runs in background" windows now come to the front on launch
 	* Open Recent menu uses Apple's API
 	* Main window no longer accepts locally dragged and dropped icon files
 	* Fixed small memory leak in command line tool
 	* "Open in Editor" option for bundled files
 	* Fixed a text encoding bug with "Secure" scripts
-	* Fixed text encoding bug in built-in editor
+	* Fixed text encoding bug in built-in text editor
 	* Fixed bug in drag and drop handling in Platypus application
 	* Removed environment editing and signature settings [redundant, obsolete]
-	* Platypus now displays a progress bar with status messages while creating applications
-	* Interface refactored to be always in Advanced mode
-	* More accurate estimated final app size
 	* Removed English.lproj from created apps
 	* Fixed bug in drag and drop on Web View
     * Updated to IconFamily 0.9.4
-	* Improved application icon
+	* Improved application icon (512px representation)
 	* Updated man page for command line tool
     * New FAQ section in the documentation which addresses common questions and issues
 	* Various small bug fixes all over the code base
 	* Fixed a bug where droplet apps would lock up on cancelled authentication
-    
-	TODO: Create TextMate plugin
-    TODO: Create examples for Examples menu
-    TODO: Updated documentation for all new features of the last few versions
-	TODO: Update create app so that it creates icon from image in image well
-			and also do massive testing on the whole IconPath change thing
-	TODO: Finish extended droppable options (e.g. dropped text)
-	TODO: Refactor analayser code
+    * Fixed bug in command line tool where nib parameter would be ignored
+    * Platypus no longer embeds icon data in profiles, which means they are smaller
+    * Command line tool now no longer requires destination path parameter, defaulting to [name-of-script].app
 	
+
 For 4.4
 	* New output mode: "Droplet"
 	* Development mode now also creates symlinks to bundled files, not just the script

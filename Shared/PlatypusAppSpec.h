@@ -22,7 +22,7 @@
 // all the information / specifications for creating a Platypus application.
 
 #import <Cocoa/Cocoa.h>
-#import "CommonDefs.h"
+#import "Common.h"
 
 #define MAX_APPSPEC_PROPERTIES	128 // whatever...
 

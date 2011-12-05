@@ -24,7 +24,7 @@
 local $| = 1;
 print "Hello<br>";
 
-foreach (@ARGV) { sleep 2; print $_ . "\n<br>"; }
+foreach (@ARGV) { print $_ . "\n<br>"; }
 
 
 #print "PROGRESS:100\n";

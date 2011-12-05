@@ -36,5 +36,21 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+    <key>NSServices</key>
+	<array>
+		<dict>
+			<key>Menu</key>
+			<dict>
+				<key>default</key>
+				<string>Process with TempScript</string>
+			</dict>
+			<key>NSMessage</key>
+			<string>doString</string>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

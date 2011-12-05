@@ -3,7 +3,7 @@
 # Generate Platypus-VERSION.zip on Desktop
 
 # Get version
-VERSION=`perl -e 'use Shell;@lines=cat("CommonDefs.h");foreach(@lines){if($_=~m/Platypus-(\d\.\d)/){print $1;}}'`
+VERSION=`perl -e 'use Shell;@lines=cat("Common.h");foreach(@lines){if($_=~m/Platypus-(\d\.\d)/){print $1;}}'`
 
 # Folder name
 FOLDER=Platypus-$VERSION
