@@ -21,16 +21,40 @@
     <key>Example</key>
     <true/>
     <key>ScriptName</key>
-    <string>SpeakDroplet.sh</string>
+    <string>TarGzipper.pl</string>
     <key>Script</key>
-    <string>#!/bin/sh 
-# Pipe the contents of first file argument to 'say',
-# which is the CLI to Apple's Speech Synthesizer.
+    <string>#!/usr/bin/perl 
+use strict;
+use File::Basename;
 
-echo "Speaking..."
-cat $1 | say
+if (!scalar(@ARGV) or ! -e $ARGV[0]) 
+{
+        print "Drop some files to create a tgz archive\n";
+        exit;
+}
+        
+my $cmd = "/usr/bin/tar cvfz ";
 
-    </string>
+# Get enclosing folder of first file
+my($fn, $directory) = fileparse($ARGV[0]);
+
+# Change to that directory
+chdir($directory);
+
+# Archive is created there
+my $dest_path = "Archive.tgz";
+        
+my $files;
+foreach(@ARGV)
+{
+        if (!$_ or ! -e $_) { next; }
+        my($filename, $directory) = fileparse($_);
+        $files .= "'$filename' ";
+}
+
+print $cmd . "\n";
+system("$cmd $dest_path $files");
+</string>
 	<key>Droppable</key>
 	<true/>
 	<key>ExecutablePath</key>
@@ -38,21 +62,22 @@ cat $1 | say
 	<key>FileTypes</key>
 	<array>
 		<string>****</string>
+        <string>fold</string>
 	</array>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
-	<string>org.sveinbjorn.SpeakDroplet</string>
+	<string>org.sveinbjorn.TempScript</string>
 	<key>Interpreter</key>
-	<string>/bin/sh</string>
+	<string>/usr/bin/perl</string>
 	<key>Name</key>
-	<string>SpeakDroplet</string>
+	<string>TarGzipper</string>
 	<key>NibPath</key>
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
 	<key>Output</key>
-	<string>Droplet</string>
+	<string>Text Window</string>
 	<key>Parameters</key>
 	<array/>
 	<key>RemainRunning</key>
