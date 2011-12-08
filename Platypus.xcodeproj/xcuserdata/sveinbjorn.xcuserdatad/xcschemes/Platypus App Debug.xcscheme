@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
-               BuildableName = "platypus_clt"
-               BlueprintName = "platypus"
+               BlueprintIdentifier = "8D1107260486CEB800E47090"
+               BuildableName = "Platypus.app"
+               BlueprintName = "Platypus"
                ReferencedContainer = "container:Platypus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -38,13 +38,18 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
-            BuildableName = "platypus_clt"
-            BlueprintName = "platypus"
+            BlueprintIdentifier = "8D1107260486CEB800E47090"
+            BuildableName = "Platypus.app"
+            BlueprintName = "Platypus"
             ReferencedContainer = "container:Platypus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "NSExceptionLoggingEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
@@ -55,9 +60,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
-            BuildableName = "platypus_clt"
-            BlueprintName = "platypus"
+            BlueprintIdentifier = "8D1107260486CEB800E47090"
+            BuildableName = "Platypus.app"
+            BlueprintName = "Platypus"
             ReferencedContainer = "container:Platypus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

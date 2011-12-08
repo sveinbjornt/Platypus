@@ -90,3 +90,46 @@
 // this is surely enough
 #define PLATYPUS_MAX_QUEUE_JOBS				256
 
+
+// Profiles
+#define PLATYPUS_PROFILE_ALL_KEYS   [NSArray arrayWithObjects: @"AcceptsText", \
+                                                               @"AppPathAsFirstArg", \
+                                                               @"Authentication", \
+                                                               @"Author", \
+                                                               @"BundledFiles", \
+                                                               @"Creator", \
+                                                               @"Destination", \
+                                                               @"DestinationOverride", \
+                                                               @"DevelopmentVersion", \
+                                                               @"Droppable", \
+                                                               @"ExecutablePath", \
+                                                               @"FileTypes", \
+                                                               @"IconPath", \
+                                                               @"Identifier", \
+                                                               @"Interpreter", \
+                                                               @"Name", \
+                                                               @"NibPath", \
+                                                               @"OptimizeApplication", \
+                                                               @"Output", \
+                                                               @"Parameters", \
+                                                               @"RemainRunning", \
+                                                               @"Role", \
+                                                               @"ScriptPath", \
+                                                               @"Secure", \
+                                                               @"ShowInDock", \
+                                                               @"StatusItemDisplayType", \
+                                                               @"StatusItemIcon", \
+                                                               @"StatusItemTitle", \
+                                                               @"Suffixes", \
+                                                               @"TextBackground", \
+                                                               @"TextEncoding", \
+                                                               @"TextFont", \
+                                                               @"TextForeground", \
+                                                               @"TextSize", \
+                                                               @"Version", nil]
+
+#define PLATYPUS_PROFILE_REQ_KEYS   [NSArray arrayWithObjects: @"Name", @"Output", "ScriptPath"]
+#define PLATYPUS_PROFILE_LEG_KEYS   [NSArray arrayWithObjects: @"ShowInDock"]
+#define PLATYPUS_LEGACY_MAP_DICT    [NSDictionary dictionaryWithObjectsAndKeys: @"RunInBackground", @"ShowInDock", nil]
+
+

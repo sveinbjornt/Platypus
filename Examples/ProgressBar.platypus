@@ -21,13 +21,35 @@
     <key>Example</key>
     <true/>
     <key>ScriptName</key>
-    <string>ProcessMenu.sh</string>
+    <string>ProgressBar.sh</string>
     <key>Script</key>
-    <string>#!/bin/sh 
-        
-# terse process listing
-ps cax
+    <string>#!/bin/sh
 
+	echo "PROGRESS:0"
+	echo "Doing something"
+	sleep 1
+	echo "PROGRESS:10"
+	sleep 1
+	echo "PROGRESS:20"
+	sleep 1
+	echo "PROGRESS:30"
+	sleep 1
+	echo "Doing something else"
+	echo "PROGRESS:40"
+	sleep 1
+	echo "PROGRESS:50"
+	sleep 1
+	echo "PROGRESS:60"
+	sleep 1
+	echo "Ano now for something completely different"
+	echo "PROGRESS:70"
+	sleep 1
+	echo "PROGRESS:80"
+	sleep 1
+	echo "PROGRESS:90"
+	sleep 1
+	echo "PROGRESS:100"
+	echo "Done"
 </string>
 	<key>Droppable</key>
 	<false/>
@@ -36,21 +58,22 @@ ps cax
 	<key>FileTypes</key>
 	<array>
 		<string>****</string>
+        <string>fold</string>
 	</array>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
-	<string>org.sveinbjorn.ProcessMenu</string>
+	<string>org.sveinbjorn.ProgressBar</string>
 	<key>Interpreter</key>
 	<string>/bin/sh</string>
 	<key>Name</key>
-	<string>ProcessMenu</string>
+	<string>ProgressBar</string>
 	<key>NibPath</key>
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
 	<key>Output</key>
-	<string>Status Menu</string>
+	<string>Progress Bar</string>
 	<key>Parameters</key>
 	<array/>
 	<key>RemainRunning</key>
@@ -60,14 +83,7 @@ ps cax
 	<key>Secure</key>
 	<false/>
 	<key>ShowInDock</key>
-	<true/>
-	<key>StatusItemDisplayType</key>
-	<string>Text</string>
-	<key>StatusItemIcon</key>
-	<data>
-	</data>
-	<key>StatusItemTitle</key>
-	<string>PS</string>
+	<false/>
 	<key>Suffixes</key>
 	<array>
 		<string>*</string>

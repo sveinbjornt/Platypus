@@ -3,7 +3,7 @@ For 4.5
     * Dropped PowerPC support. All binaries are now 32-bit/64-bit Intel only
 	* Due to popular demand, "droppable" apps now run script on launch, not just when files are dropped
     * Platypus now displays a progress bar with status messages while creating applications
-    * Interface refactored to be always in Advanced mode
+    * Interface refactored to be always in what was previously "Advanced mode"
     * Support for accepting dragged text snippets as arguments to script	
     * Better handling of icons for apps
     * More accurate estimated final app size
@@ -11,9 +11,8 @@ For 4.5
     * New Examples menu with example profiles, scripts and presets
 	* "Runs in background" windows now come to the front on launch
 	* Open Recent menu uses Apple's API
-	* Main window no longer accepts locally dragged and dropped icon files
+	* main window no longer accepts locally dragged and dropped icon files
     * Icon view no longer erroneously recognizes locally originating drags as valid
-	* Fixed small memory leak in command line tool
 	* "Open in Editor" option for bundled files
 	* Fixed a text encoding bug with "Secure" scripts
 	* Fixed text encoding bug in built-in text editor
@@ -24,12 +23,16 @@ For 4.5
     * Updated to IconFamily 0.9.4
 	* Improved application icon (512px representation)
 	* Updated man page for command line tool
+    * Fixed small, insignificant memory leak in command line tool
     * New FAQ section in the documentation which addresses common questions and issues
 	* Various small bug fixes all over the code base
 	* Fixed a bug where droplet apps would lock up on cancelled authentication
     * Fixed bug in command line tool where nib parameter would be ignored
     * Platypus no longer embeds icon data in profiles, which means they are smaller
     * Command line tool now no longer requires destination path parameter, defaulting to [name-of-script].app
+    TODO:
+    * Additional interpreter pre-sets
+    * Command line tool is now more intelligent about automatically detecting script type
 	
 
 For 4.4
