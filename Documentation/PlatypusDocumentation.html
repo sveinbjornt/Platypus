@@ -149,7 +149,8 @@
 
 <p>While Platypus is free, it is the product of hundreds of hours of work over the span of several years.  If you find Platypus a useful application, I ask that you please consider <strong><a href="http://sveinbjorn.org/donations">making a donation</a></strong> to support further development.  I rely on donations to encourage me in continuing development of Platypus.  I am generally also willing to add requested features in exchange for payment.</p>
 
-<p>That being said, while I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, <em>I will not respond to queries about scripting and scripting languages</em>.  Productive use of Platypus assumes that you are competent in your scripting language of choice.  I am obliged to note this due to the large number of queries I have received over the years about scripting languages and their use.  I simply do not have the time, expertise or inclination to respond to such queries.  There are plenty of good tutorials for most scripting languages freely available online.</p>
+<p>That being said, while I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, <em>I will not respond to queries about scripting and scripting languages</em>.  Productive use of Platypus assumes that you are competent in your scripting language of choice.  I am obliged to note this due to the large number of queries I have received over the years about scripting languages and their use.  I simply do not have the time or expertise to respond to such queries.  There are plenty of good tutorials for most scripting languages freely available online.  Then there's
+    always <a href="http://stackoverflow.com">Stack Overflow</a>.</p>
 
 <br><br>
 
@@ -161,7 +162,8 @@
 
 <p>The Platypus icon -- <a href="http://www.hexley.com/">Hexley</a>, the Darwin mascot -- was created by Jon Hooper, who was kind enough to grant me permission to use it as the Platypus application icon.  Derivative icons using Hexley were created by Sveinbjorn Thordarson.</p>
 
-<p>Additional thanks go to Troy Stephens, author of the <a href="http://iconfamily.sourceforge.net/">IconFamily</a> class used for icon handling in Platypus, Uli Kusterer author of UKKQueue, Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, and the Adium developers for various code bits.  The OmniGroup Mac OS X Development mailing list has also been invaluable.</p>
+<p>Thanks go to Troy Stephens, author of the <a href="http://iconfamily.sourceforge.net/">IconFamily</a> class used for icon handling in Platypus, Uli Kusterer author of UKKQueue, Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, and the Adium developers for various code bits.  The OmniGroup Mac OS X Development mailing list has also been invaluable
+    over the years.</p>
 
 <p>Finally, I am much indebted to <a href="http://www.wsanchez.net">Wilfredo Sanchez</a>, author of <a href="http://www.wsanchez.net/software/">DropScript</a>, the proof-of-concept project that inspired me to create Platypus in the first place.</p>
 
@@ -171,7 +173,8 @@
 
 <h3>How does it work?</h3>
 
-<p>Regular Mac OS X applications are bundles -- special folders with a directory structure within which a binary is stored, along with resources, configuration files and property lists.  Platypus creates applications with a special binary that launches a specified script and captures its output.  It can present this output in a number of ways.</p>
+<p>Regular Mac OS X applications are bundles -- special folders with a directory structure within which a binary is stored, along with resources, configuration files and property lists.  Platypus creates applications with a special binary that launches a specified script and captures its output.  It can present this output in a number of ways, for example with a 
+    progress bar, a text view or a WebKit-based web view.</p>
 
 <br><br>
 
@@ -179,10 +182,7 @@
 
 <h3>What Platypus is NOT</h3>
 
-<p>Platypus is not a set of bindings between the Mac OS X APIs and scripting languages.  It is not, in other words, a full 
-	development environment for Mac OS X and is not intended to be used to create substantial Mac OS X applications with 
-	sophisticated user interaction.  If you want to created advanced Mac OS X applications, you should learn 
-	to program with Objective C and the wonderful Cocoa APIs.  Platypus is NOT and never will be a substitute for learning
+<p>Platypus is not a set of bindings between the Mac OS X APIs and scripting languages.  It is not, in other words, a full development environment for Mac OS X and is not intended to be used to create substantial Mac OS X applications with sophisticated user interaction.  If you want to created advanced Mac OS X applications, you should learn to program with Objective C and the wonderful Cocoa APIs.  Platypus is not and never will be a substitute for learning
 	to use the excellent native application programming interfaces.</p>
 
 <br>
@@ -190,8 +190,7 @@
 
 <h3 id="15">System Requirements</h3>
 
-<p>As of version 4.5, both the Platypus application and the applications it generates require <strong>Mac OS X 10.5</strong> or later
-	and are provided as 32/64-bit fat <strong>Intel only</strong> binaries.  If you want to target 10.4 and PowerPC users, you can use version <a href="http://sveinbjorn.org/files/software/platypus/">4.4 or earlier</a>, which continues to work just fine on older systems.</p>
+<p>As of version 4.5, both the Platypus application and the applications it generates require <strong>Mac OS X 10.5</strong> or later and are provided as 32-bit/64-bit fat <strong>Intel only</strong> binaries.  If you want to target 10.4 and PowerPC users, you can use version <a href="http://sveinbjorn.org/files/software/platypus/">4.4</a>, which continues to work just fine on older systems.</p>
 
 <br>
 <br>
@@ -219,9 +218,11 @@
 
 <strong>Script Path</strong>
 
-<p>This field contains the path to the script you will create the app from. You either define this manually by typing the path into the text field (which supports shell-style autocomplete), or by pressing the "Select" button and selecting it in a navigation dialog or by dragging your script on to the Platypus window. Once you have selected a valid script, you can press the "Edit" button to open it in your default text editor. Platypus includes a very basic built-in text editor as the default editor. You can change this in the Preferences to use any external editor you want.</p>
+<p>This field contains the path to the script you will create the app from. You either define this manually by typing the path into the text field (which supports shell-style autocomplete), or by pressing the <strong>Select</strong> button and selecting it in a navigation dialog or by dragging your script on to the Platypus window.</p>
+    
+<p>Once you have selected a valid script, you can press the <strong>Edit</strong> button to open it in your default text editor. Platypus includes a very basic built-in text editor as the default editor. You can change this in the Preferences to use any external editor you want.</p>
 
-<p>You can also press the "New" button. This will create a text file for you in Platypus' Application Support folder and open it in your default editor. The "Reveal" button reveals the script file in the Finder.</p>
+<p>You can also press the <strong>New</strong> button. This will create a text file for you in Platypus' Application Support folder and open it in your default editor. The <strong>Reveal</strong> button reveals the script file in the Finder.</p>
 
 <br><br>
 <a name="22"></a>
@@ -230,9 +231,13 @@
 
 <strong>Script Type</strong>
 
-<p>Depending on the scripting language you use, you will want to select the appropriate kind here.  You can either select one of the predefined scripting languages from the the pop-up menu or type in the path to an interpreter of your own choice in the field next to the pop-up menu.  When you select a script file, Platypus will automatically try to determine what kind of script it is by looking at the file suffix and shebang (#!) line.  Please note that the interpreter you selected must exist on the Mac OS X system on which your script application will run.  All the preset scripting language interpreters (e.g. Shell, Perl, Python, PHP, Tcl, Expect etc.) are a standard part of all Mac OS X installations.</p>
+<p>Depending on the scripting language you use, you will want to select the appropriate kind here.  You can either select one of the predefined scripting languages from the the pop-up menu or type in the path to an interpreter of your own choice in the field next to the pop-up menu.</p>
+    
+<p>Most of the time, you will not need to specify this manually.  When you select a script file, Platypus will automatically try to determine what kind of script it is by looking at the file suffix and shebang (#!) line.  If you have specified this meta-data in the script file itself, Platypus is smart enough to figure it out.</p>
 
-<p>The "Parameters" button next to the text field containing your script intepreter setting allows you to specify arguments for the script interpreter.</p>
+<p>Please note that the interpreter you selected must exist on the Mac OS X system on which your script application will run.  All the preset scripting language interpreters (e.g. shell, Perl, Python, PHP, Tcl, Expect etc.) are a standard part of all Mac OS X installations.  Alternately, you could use <code>/usr/bin/env</code>.</p>
+
+<p>The <strong>Parameters</strong> button next to the text field containing your script interpreter setting allows you to specify arguments for the script interpreter.</p>
 
 
 <br><br>

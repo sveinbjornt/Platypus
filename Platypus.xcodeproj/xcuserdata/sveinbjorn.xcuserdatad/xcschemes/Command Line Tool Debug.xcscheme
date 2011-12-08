@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F48B774011F7661C00351575"
-               BuildableName = "ScriptExec.app"
-               BlueprintName = "ScriptExec"
+               BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
+               BuildableName = "platypus_clt"
+               BlueprintName = "platypus"
                ReferencedContainer = "container:Platypus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,21 +30,26 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Deployment">
+      buildConfiguration = "Development">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F48B774011F7661C00351575"
-            BuildableName = "ScriptExec.app"
-            BlueprintName = "ScriptExec"
+            BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
+            BuildableName = "platypus_clt"
+            BlueprintName = "platypus"
             ReferencedContainer = "container:Platypus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "NSExceptionLoggingEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
@@ -55,9 +60,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F48B774011F7661C00351575"
-            BuildableName = "ScriptExec.app"
-            BlueprintName = "ScriptExec"
+            BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
+            BuildableName = "platypus_clt"
+            BlueprintName = "platypus"
             ReferencedContainer = "container:Platypus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

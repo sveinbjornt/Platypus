@@ -21,13 +21,10 @@
     <key>Example</key>
     <true/>
     <key>ScriptName</key>
-    <string>ProcessMenu.sh</string>
+    <string>SysLoadMenu.sh</string>
     <key>Script</key>
     <string>#!/bin/sh 
-        
-# terse process listing
-ps cax
-
+w 
 </string>
 	<key>Droppable</key>
 	<false/>
@@ -40,11 +37,11 @@ ps cax
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
-	<string>org.sveinbjorn.ProcessMenu</string>
+	<string>org.sveinbjorn.SysLoadMenu</string>
 	<key>Interpreter</key>
 	<string>/bin/sh</string>
 	<key>Name</key>
-	<string>ProcessMenu</string>
+	<string>SysLoadMenu</string>
 	<key>NibPath</key>
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
@@ -67,7 +64,7 @@ ps cax
 	<data>
 	</data>
 	<key>StatusItemTitle</key>
-	<string>PS</string>
+	<string>w</string>
 	<key>Suffixes</key>
 	<array>
 		<string>*</string>

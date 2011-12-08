@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F48B774011F7661C00351575"
-               BuildableName = "ScriptExec.app"
-               BlueprintName = "ScriptExec"
+               BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
+               BuildableName = "platypus_clt"
+               BlueprintName = "platypus"
                ReferencedContainer = "container:Platypus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -38,9 +38,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F48B774011F7661C00351575"
-            BuildableName = "ScriptExec.app"
-            BlueprintName = "ScriptExec"
+            BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
+            BuildableName = "platypus_clt"
+            BlueprintName = "platypus"
             ReferencedContainer = "container:Platypus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -55,9 +55,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F48B774011F7661C00351575"
-            BuildableName = "ScriptExec.app"
-            BlueprintName = "ScriptExec"
+            BlueprintIdentifier = "F4E1F6FB11F758FB007EE2E3"
+            BuildableName = "platypus_clt"
+            BlueprintName = "platypus"
             ReferencedContainer = "container:Platypus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
