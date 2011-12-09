@@ -13,7 +13,7 @@
 
 @implementation ScriptAnalyser
 
-+(NSArray *)interpreters
++ (NSArray *)interpreters
 {
 	return [NSArray arrayWithObjects:			
 	 @"/bin/sh",
@@ -30,7 +30,7 @@
 	 nil];
 }
 
-+(NSArray *)interpreterDisplayNames
++ (NSArray *)interpreterDisplayNames
 {
 	return [NSArray arrayWithObjects:			
 	@"Shell",
@@ -47,7 +47,7 @@
 	nil];
 }
 
-+(NSString *)displayNameForInterpreter: (NSString *)theInterpreter
++ (NSString *)displayNameForInterpreter: (NSString *)theInterpreter
 {
 	NSArray *interpreters = [self interpreters];
 	int i;
@@ -128,6 +128,36 @@
 	NSString *interpreterCmd = [firstLine substringFromIndex: 2];
 	NSArray *words = [interpreterCmd componentsSeparatedByString: @" "];
 	return ([[words retain] autorelease]); // return array w. interpreter + arguments for it
+}
+
+/*****************************************
+ - Utility method used by both app and command line tool
+ *****************************************/
+
++ (NSString *)appNameFromScriptFileName: (NSString *)path
+{
+    NSString *name = [[path lastPathComponent] stringByDeletingPathExtension];
+    
+    // replace these common filename word separators w. spaces
+    name = [ScriptAnalyser findAndReplace: @"_" with: @" " inString: name];
+    name = [ScriptAnalyser findAndReplace: @"-" with: @" " inString: name];
+    
+    // iterate over each word, capitalize and append to app name
+    NSArray *words = [name componentsSeparatedByString: @" "];
+    NSString *appName = @"";
+    int i;
+    for (i = 0; i < [words count]; i++)
+    {
+        if (i != 0) 
+            appName = [appName stringByAppendingString: @" "];
+        appName = [appName stringByAppendingString: [[words objectAtIndex: i] capitalizedString]];
+    }
+    return appName;
+}
+
++ (NSString *)findAndReplace: (NSString *)found with: (NSString *)rep inString: (NSString *)str
+{
+    return ([[str componentsSeparatedByString: found] componentsJoinedByString: rep]);
 }
 
 /*****************************************

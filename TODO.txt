@@ -1,6 +1,6 @@
 * More bidirectional communication?
 * Icon editable for file types
-* Creating Platypus tutorial videos might be helpful
-* Rewrite horrible old code in STFileList from 2003
+* Create Platypus tutorial videos
+* Rewrite nasty, old code in STFileList and derivatives
 * Rethink and redesign the interface? It's a bit cluttered.
 * Create TextMate plugin
