@@ -28,6 +28,24 @@
 
 @implementation PlatypusUtility
 
+/*****************************************
+ - //return the bundle identifier for the application to be generated
+ -  based on username etc.
+ *****************************************/
+
++ (NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;
+{
+    NSString    *defaults = def ? [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultBundleIdentifierPrefix"] : 0;
+	NSString	*bundleId;
+    NSString    *fmtAppName = [name stringByReplacingOccurrencesOfString: @" " withString: @""];
+	NSString    *username = @"";
+    //The format is "org.username.appname"
+	bundleId = [NSString stringWithFormat: @"org.%@.%@", username , fmtAppName];
+	bundleId = [[bundleId componentsSeparatedByString:@" "] componentsJoinedByString:@""];//no spaces
+	return(bundleId);
+}
+
+
 + (BOOL)runningSnowLeopardOrLater
 {
     SInt32 major = 0;

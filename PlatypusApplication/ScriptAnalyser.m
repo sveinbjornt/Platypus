@@ -139,8 +139,8 @@
     NSString *name = [[path lastPathComponent] stringByDeletingPathExtension];
     
     // replace these common filename word separators w. spaces
-    name = [ScriptAnalyser findAndReplace: @"_" with: @" " inString: name];
-    name = [ScriptAnalyser findAndReplace: @"-" with: @" " inString: name];
+    name = [name stringByReplacingOccurrencesOfString: @"-" withString: @" "];
+    name = [name stringByReplacingOccurrencesOfString: @"_" withString: @" "];
     
     // iterate over each word, capitalize and append to app name
     NSArray *words = [name componentsSeparatedByString: @" "];
@@ -153,11 +153,6 @@
         appName = [appName stringByAppendingString: [[words objectAtIndex: i] capitalizedString]];
     }
     return appName;
-}
-
-+ (NSString *)findAndReplace: (NSString *)found with: (NSString *)rep inString: (NSString *)str
-{
-    return ([[str componentsSeparatedByString: found] componentsJoinedByString: rep]);
 }
 
 /*****************************************
