@@ -40,7 +40,7 @@ TODO:
     * Localization question in documentation
     * Arguments to script itself in documentation
     * Command line tool is now more intelligent about automatically detecting script type
-    * Command line tool parameters change from '-c script [appName]' to 'script [appName]'
+    * Command line tool parameters change from '-c script [appName]' to 'script [appName]'  ALSO UPDATE SHOW SHELL COMMAND
     * Command line tool argument handling changed to be simpler and less demanding [does not break compatibility with previous versions of the tool]
 
 	* Support for creating bundle with JUST script - the MOST work

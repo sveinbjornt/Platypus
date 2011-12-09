@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Common.h"
-#import "STUtil.h"
+#import "PlatypusUtility.h"
 #import "SyntaxCheckerController.h"
 
 @interface EditorController : NSWindowController 

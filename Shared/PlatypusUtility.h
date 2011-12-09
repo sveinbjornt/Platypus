@@ -18,35 +18,21 @@
  
  */
 
+
+#import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
-#import "PlatypusUtility.h"
 
-@interface StatusItemSettingsController : NSObject
+@interface PlatypusUtility : NSObject 
 {
-	IBOutlet id window;
-	IBOutlet id statusItemSettingsWindow;
-	IBOutlet id displayTypePopup;
-	IBOutlet id iconImageView;
-	IBOutlet id selectIconButton;
-	IBOutlet id titleTextField;
-	IBOutlet id titleLabel;
-	IBOutlet id iconLabel;
 	
-	NSStatusItem *pStatusItem;
 }
-- (IBAction)show:(id)sender;
-- (IBAction)close:(id)sender;
-- (IBAction)restoreDefaults:(id)sender;
-- (IBAction)statusItemDisplayTypeChanged:(id)sender;
-- (IBAction)selectStatusItemIcon:(id)sender;
-- (IBAction)previewStatusItem:(id)sender;
-- (void)setDisplayType: (NSString *)name;
-- (NSString *)displayType;
-- (void)killStatusItem;
-- (BOOL)showingStatusItem;
-- (NSString *)title;
-- (void)setTitle: (NSString *)title;
-- (NSImage *)icon;
-- (void)setIcon: (NSImage *)img;
-
++ (BOOL)runningSnowLeopardOrLater;
++ (void)alert: (NSString *)message subText: (NSString *)subtext;
++ (void)fatalAlert: (NSString *)message subText: (NSString *)subtext;
++ (BOOL) proceedWarning: (NSString *)message subText: (NSString *)subtext withAction: (NSString *)action;
++ (void)sheetAlert: (NSString *)message subText: (NSString *)subtext forWindow: (NSWindow *)window;
++ (UInt64) fileOrFolderSize: (NSString *)path;
++ (NSString *) sizeAsHumanReadable: (UInt64)size;
++ (NSString *) fileOrFolderSizeAsHumanReadable: (NSString *)path;
++ (NSArray *)imageFileSuffixes;
 @end

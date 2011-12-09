@@ -575,15 +575,17 @@
 		// -Y 'Title'
 		if (![[properties objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Icon"])
 			statusMenuOptionsString = [statusMenuOptionsString stringByAppendingString: [NSString stringWithFormat: @"-Y '%@' ", [properties objectForKey: @"StatusItemTitle"]]];
-	}	
+	}
+    
+    NSString *appNameArg = [[properties objectForKey: @"Name"] isEqualToString: @""] ? @"" : [NSString stringWithFormat: @" -a '%@'", [properties objectForKey: @"Name"]];
 	
 	// finally, generate the command
 	NSString *commandStr = [NSString stringWithFormat: 
-							@"%@ %@%@-a '%@' -o '%@' -p '%@'%@ %@-I '%@' %@%@%@%@%@%@%@ -c '%@' 'MyApp.app'",
+							@"%@ %@%@%@ -o '%@' -p '%@'%@ %@-I '%@' %@%@%@%@%@%@%@ '%@'",
 							CMDLINE_TOOL_PATH,
 							checkboxParamStr,
 							iconParamStr,
-							[properties objectForKey: @"Name"],
+                            appNameArg,
 							[properties objectForKey: @"Output"],
 							[properties objectForKey: @"Interpreter"],
 							authorString,

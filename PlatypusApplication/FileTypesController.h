@@ -21,7 +21,7 @@
 #import <Cocoa/Cocoa.h>
 #import "TypesList.h"
 #import "SuffixList.h"
-#import "STUtil.h"
+#import "PlatypusUtility.h"
 
 @interface FileTypesController : NSObject
 {

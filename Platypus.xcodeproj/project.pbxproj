@@ -49,6 +49,8 @@
 		F48B7BAB11F7675900351575 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48B7BAA11F7675900351575 /* WebKit.framework */; };
 		F4B5DE2E1491668600C43901 /* platypus_clt in Resources */ = {isa = PBXBuildFile; fileRef = F4B5DE2D1491668600C43901 /* platypus_clt */; };
 		F4B5DE33149166DD00C43901 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4B5DE32149166DD00C43901 /* ScriptExec */; };
+		F4B5DE4114919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
+		F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
@@ -85,7 +87,6 @@
 		F4FE739311F792C3005FC23A /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE738F11F792C3005FC23A /* NSString+CarbonFSRefCreation.m */; };
 		F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
 		F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
-		F4FE739F11F792DF005FC23A /* STUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739D11F792DF005FC23A /* STUtil.m */; };
 		F4FE73A511F792EB005FC23A /* STPathTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE73A311F792EB005FC23A /* STPathTextField.m */; };
 		F4FE73A911F792F9005FC23A /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE73A711F792F9005FC23A /* STPrivilegedTask.m */; };
 		F4FE745611F7933A005FC23A /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE73A711F792F9005FC23A /* STPrivilegedTask.m */; };
@@ -161,6 +162,8 @@
 		F4A4338B0E04C962000523E7 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		F4B5DE2D1491668600C43901 /* platypus_clt */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = platypus_clt; path = build/Platypus/Build/Products/Deployment/platypus_clt; sourceTree = "<group>"; };
 		F4B5DE32149166DD00C43901 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Platypus/Build/Products/Deployment/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
+		F4B5DE3F14919FF500C43901 /* PlatypusUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusUtility.h; path = Shared/PlatypusUtility.h; sourceTree = "<group>"; };
+		F4B5DE4014919FF500C43901 /* PlatypusUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusUtility.m; path = Shared/PlatypusUtility.m; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
 		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
 		F4C755A111F9AC2C006FB713 /* Perl-Droplet-PrintFiles-WebOutput.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; name = "Perl-Droplet-PrintFiles-WebOutput.pl"; path = "TestSuite/Perl-Droplet-PrintFiles-WebOutput.pl"; sourceTree = "<group>"; };
@@ -225,8 +228,6 @@
 		F4FE738F11F792C3005FC23A /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CarbonFSRefCreation.m"; sourceTree = "<group>"; };
 		F4FE739611F792D5005FC23A /* PlatypusAppSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusAppSpec.h; path = Shared/PlatypusAppSpec.h; sourceTree = "<group>"; };
 		F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusAppSpec.m; path = Shared/PlatypusAppSpec.m; sourceTree = "<group>"; };
-		F4FE739C11F792DF005FC23A /* STUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUtil.h; path = Shared/STUtil.h; sourceTree = "<group>"; };
-		F4FE739D11F792DF005FC23A /* STUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUtil.m; path = Shared/STUtil.m; sourceTree = "<group>"; };
 		F4FE73A211F792EB005FC23A /* STPathTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPathTextField.h; path = Shared/STPathTextField.h; sourceTree = "<group>"; };
 		F4FE73A311F792EB005FC23A /* STPathTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPathTextField.m; path = Shared/STPathTextField.m; sourceTree = "<group>"; };
 		F4FE73A611F792F9005FC23A /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Shared/STPrivilegedTask.h; sourceTree = "<group>"; };
@@ -271,11 +272,11 @@
 		080E96DDFE201D6D7F000001 /* Shared Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F4B5DE431491A00900C43901 /* Utility */,
 				F48A724D122E23B200964D71 /* ScriptAnalyser */,
 				F44EFEFF12296F2C00CAC9C2 /* NSColor+HexTools */,
 				F4FE738B11F792C3005FC23A /* IconFamily */,
 				F4ECE17511F76CC2000DB012 /* PlatypusAppSpec */,
-				F41306360FBD80B000A319B7 /* STUtil */,
 				F41306340FBD809A00A319B7 /* STPathTextField */,
 				F44587170FC386B500CD0C02 /* STPrivilegedTask */,
 			);
@@ -298,7 +299,7 @@
 				F4ECE19811F771F2000DB012 /* Build Scripts */,
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4A4338B0E04C962000523E7 /* Common.h */,
-				F48B7CB611F76B0C00351575 /* Platypus.app */,
+				F48B7CB611F76B0C00351575 /* Platypus Application */,
 				F48B7B8811F766CA00351575 /* ScriptExec */,
 				F4E1F70711F75A40007EE2E3 /* Command Line Tool */,
 				080E96DDFE201D6D7F000001 /* Shared Classes */,
@@ -380,15 +381,6 @@
 				F4FE73A311F792EB005FC23A /* STPathTextField.m */,
 			);
 			name = STPathTextField;
-			sourceTree = "<group>";
-		};
-		F41306360FBD80B000A319B7 /* STUtil */ = {
-			isa = PBXGroup;
-			children = (
-				F4FE739C11F792DF005FC23A /* STUtil.h */,
-				F4FE739D11F792DF005FC23A /* STUtil.m */,
-			);
-			name = STUtil;
 			sourceTree = "<group>";
 		};
 		F42003DC078FC1E1002746A1 /* Images */ = {
@@ -523,7 +515,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		F48B7CB611F76B0C00351575 /* Platypus.app */ = {
+		F48B7CB611F76B0C00351575 /* Platypus Application */ = {
 			isa = PBXGroup;
 			children = (
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -531,7 +523,16 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Auxiliary */,
 			);
-			name = Platypus.app;
+			name = "Platypus Application";
+			sourceTree = "<group>";
+		};
+		F4B5DE431491A00900C43901 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F4B5DE3F14919FF500C43901 /* PlatypusUtility.h */,
+				F4B5DE4014919FF500C43901 /* PlatypusUtility.m */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		F4DC074611F629930043764E /* Scripts */ = {
@@ -808,7 +809,6 @@
 				F4FE739111F792C3005FC23A /* IconFamily.m in Sources */,
 				F4FE739311F792C3005FC23A /* NSString+CarbonFSRefCreation.m in Sources */,
 				F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
-				F4FE739F11F792DF005FC23A /* STUtil.m in Sources */,
 				F4FE73A511F792EB005FC23A /* STPathTextField.m in Sources */,
 				F4FE73A911F792F9005FC23A /* STPrivilegedTask.m in Sources */,
 				F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */,
@@ -817,6 +817,7 @@
 				F48294A2122C129400094A1B /* EditorController.m in Sources */,
 				F48294A3122C129400094A1B /* SyntaxCheckerController.m in Sources */,
 				F40F756013C266AE00197499 /* ShellCommandController.m in Sources */,
+				F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +839,7 @@
 			files = (
 				F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
 				F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */,
+				F4B5DE4114919FF500C43901 /* PlatypusUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

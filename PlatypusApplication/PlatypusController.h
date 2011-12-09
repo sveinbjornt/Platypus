@@ -42,7 +42,7 @@
 #import "SuffixList.h"
 #import "TypesList.h"
 
-#import "STUtil.h"
+#import "PlatypusUtility.h"
 #import "STPathTextField.h"
 #import "STFileList.h"
 #import "NSColor+HexTools.h"

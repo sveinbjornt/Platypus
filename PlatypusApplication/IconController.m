@@ -20,7 +20,7 @@
 
 #import "IconController.h"
 #import "IconFamily.h"
-#import "STUtil.h"
+#import "PlatypusUtility.h"
 #import "UKKQueue.h"
 #import "Common.h"
 
@@ -181,7 +181,7 @@
 - (void)writeIconToPath: (NSString *)path
 {
 	if ([iconImageView image] == NULL)
-		[STUtil alert:@"Icon Error" subText: @"No icon could be found for your application.  Please set an icon to fix this."];
+		[PlatypusUtility alert:@"Icon Error" subText: @"No icon could be found for your application.  Please set an icon to fix this."];
 
 	IconFamily *iconFam = [[IconFamily alloc] initWithThumbnailsOfImage: [iconImageView image]];
 	[iconFam writeToFile: path];
@@ -228,7 +228,7 @@
 		return 400000; // just guess the icon will be 400k in size
 	
 	// else, just size of icns file
-	return [STUtil fileOrFolderSize: [self icnsFilePath]];
+	return [PlatypusUtility fileOrFolderSize: [self icnsFilePath]];
 }
 
 #pragma mark -
@@ -258,7 +258,7 @@
 	[window setTitle: [NSString stringWithFormat: @"%@ - Select an image file", PROGRAM_NAME]];
 	
 	//run open panel
-    [oPanel beginSheetForDirectory:nil file:nil types: [STUtil imageFileSuffixes] modalForWindow: window modalDelegate: self didEndSelector: @selector(selectIconDidEnd:returnCode:contextInfo:) contextInfo: nil];
+    [oPanel beginSheetForDirectory:nil file:nil types: [PlatypusUtility imageFileSuffixes] modalForWindow: window modalDelegate: self didEndSelector: @selector(selectIconDidEnd:returnCode:contextInfo:) contextInfo: nil];
 }
 
 - (void)selectIconDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo
@@ -401,7 +401,7 @@
 		// since no icns file, search for an image, load the first one we find		
 		for (i = 0; i < [files count]; i++)
 		{
-			NSArray *supportedImageTypes = [STUtil imageFileSuffixes];
+			NSArray *supportedImageTypes = [PlatypusUtility imageFileSuffixes];
 			int j;
 			for (j = 0; j < [supportedImageTypes count]; j++)
 				if ([[files objectAtIndex: i] hasSuffix: [supportedImageTypes objectAtIndex: j]])
@@ -439,7 +439,7 @@
 		// copy plus for image file
 		for (i = 0; i < [files count]; i++)
 		{
-			NSArray *supportedImageTypes = [STUtil imageFileSuffixes];
+			NSArray *supportedImageTypes = [PlatypusUtility imageFileSuffixes];
 			int j;
 			for (j = 0; j < [supportedImageTypes count]; j++)
 				if ([[files objectAtIndex: i] hasSuffix: [supportedImageTypes objectAtIndex: j]])

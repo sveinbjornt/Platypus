@@ -26,7 +26,7 @@
 
 #import "STFileList.h"
 #import "PlatypusController.h"
-#import "STUtil.h"
+#import "PlatypusUtility.h"
 
 #import "UKKQueue.h"
 
@@ -228,7 +228,7 @@
 		else
 		{
 			// Complain if editor is not found, set it to the built-in editor
-			[STUtil alert: @"Application not found" subText: [NSString stringWithFormat: @"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
+			[PlatypusUtility alert: @"Application not found" subText: [NSString stringWithFormat: @"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
 			[[NSUserDefaults standardUserDefaults] setObject: DEFAULT_EDITOR  forKey:@"DefaultEditor"];
 			[window setTitle: [NSString stringWithFormat: @"%@ - Editing script", PROGRAM_NAME]];
 			[[[EditorController alloc] init] showEditorForFile: [[files objectAtIndex: index] objectForKey: @"Path"] window: window];
@@ -371,10 +371,10 @@
 	//otherwise, loop through all files, calculate size
 	for (i = 0; i < [self numFiles]; i++)
 	{		
-		totalSize += [STUtil fileOrFolderSize: [self getFileAtIndex: i]];
+		totalSize += [PlatypusUtility fileOrFolderSize: [self getFileAtIndex: i]];
 	}
 	
-	totalSizeString = [STUtil sizeAsHumanReadable: totalSize];
+	totalSizeString = [PlatypusUtility sizeAsHumanReadable: totalSize];
 	if ([self numFiles] > 1)
 		[bundleSizeTextField setStringValue: [NSString stringWithFormat: @"%d items  ( %@ )", [self numFiles], totalSizeString]];
 	else
