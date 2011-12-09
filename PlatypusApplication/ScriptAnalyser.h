@@ -19,6 +19,8 @@
 + (NSString *)interpreterForDisplayName: (NSString *)name;
 + (NSString *)interpreterFromSuffix: (NSString *)fileName;
 + (NSArray *)getInterpreterFromShebang: (NSString *)path;
++ (NSString *)findAndReplace: (NSString *)found with: (NSString *)rep inString: (NSString *)str;
++ (NSString *)appNameFromScriptFileName: (NSString *)path;
 + (NSString *)determineInterpreterForScriptFile: (NSString *)path;
 + (NSString *)checkSyntaxOfFile: (NSString *)scriptPath withInterpreter: (NSString *)suggestedInterpreter;
 @end

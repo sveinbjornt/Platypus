@@ -1,19 +1,20 @@
 For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
     * Dropped PowerPC support. All binaries are now 32-bit/64-bit Intel only
-	* Due to popular demand, "droppable" apps now run script on launch, not just when files are dropped
-    * Platypus now displays a progress bar with status messages while creating applications
-    * Interface refactored to be always in what was previously "Advanced mode"
+    * New Examples menu with a number example profiles, scripts and presets demonstrating Platypus features
     * Support for accepting dragged text snippets as arguments to script	
+    * Platypus now displays a progress bar with status messages while creating applications
+	* Due to popular demand, "droppable" apps now run script on launch, not just when files are dropped
+    * "Open in Editor" option for bundled files
+    * Interface refactored to be always in what was previously "Advanced mode"
     * Better handling of icons for apps
     * More accurate estimated final app size
     * New "Launch app on creation" option in Platypus, to facilitate development workflow
-    * New Examples menu with example profiles, scripts and presets
 	* "Runs in background" windows now come to the front on launch
 	* Open Recent menu uses Apple's API
-	* main window no longer accepts locally dragged and dropped icon files
+	* Main window no longer accepts locally dragged and dropped icon files
     * Icon view no longer erroneously recognizes locally originating drags as valid
-	* "Open in Editor" option for bundled files
+	* Revised and extended documentation
 	* Fixed a text encoding bug with "Secure" scripts
 	* Fixed text encoding bug in built-in text editor
 	* Fixed bug in drag and drop handling in Platypus application
@@ -23,25 +24,24 @@ For 4.5
     * Updated to IconFamily 0.9.4
 	* Improved application icon and preset icons (512x512px representations)
 	* Updated man page for command line tool
-    * Revised and extended documentation
     * New FAQ section in the documentation which addresses common questions and issues
 	* Fixed a bug where droplet apps would lock up on cancelled authentication
     * Fixed bug in command line tool where nib parameter was ignored
     * Platypus no longer embeds icon data in profiles, which results in smaller file sizes
     * A variety of other small bug fixes all over the codebase
     * Platypus now identifies .command files as shell scripts
-    * Additional interpreter pre-set options (/usr/bin/env and /bin/bash).
+    * Additional interpreter pre-set options (/usr/bin/env and /bin/bash)
     * Command line tool now no longer requires destination path parameter, defaulting to [name-of-script].app
 
-
 TODO:
-    * Argument handling of command line tool changed to be simpler and less demanding
     * Fix it so Platypus ... shit, something I started working on, short term memory failing due to skunk
     * More intelligent automatic app name generation based on script filename
     * Launch app on script file modification
     * Localization question in documentation
     * Arguments to script itself in documentation
     * Command line tool is now more intelligent about automatically detecting script type
+    * Command line tool parameters change from '-c script [appName]' to 'script [appName]'
+    * Command line tool argument handling changed to be simpler and less demanding [does not break compatibility with previous versions of the tool]
 
 	* Support for creating bundle with JUST script - the MOST work
 

@@ -671,21 +671,23 @@
 	//set script path
 	[scriptPathTextField setStringValue: filename];
 
-	//set app name
-	NSString *appName = [[filename lastPathComponent] stringByDeletingPathExtension];
+	//determine app name based on script filename
+	NSString *appName = [ScriptAnalyser appNameFromScriptFileName: filename];
 	[appNameTextField setStringValue: appName];
 	
-	//determine script type
+	//determine script interpreter
 	NSString *interpreter = [ScriptAnalyser determineInterpreterForScriptFile: filename];
 	
 	//ok, we've successfully found an interpreter for it
 	if (![interpreter isEqualToString: @""])
 	{
+        // select item in interpreter popup button
 		NSString *scriptType = [ScriptAnalyser displayNameForInterpreter: interpreter];
 		[self setScriptType: scriptType];
 		if ([scriptType isEqualToString: @"Other..."])
 			[interpreterTextField setStringValue: interpreter];
 		
+        // get parameters to interpreter
 		NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray: [ScriptAnalyser getInterpreterFromShebang: filename]];
 		[shebangCmdComponents removeObjectAtIndex: 0];
 		[paramsControl set: [NSArray arrayWithArray: shebangCmdComponents]];
