@@ -651,7 +651,7 @@
 - (void)setScriptType: (NSString *)type
 {	
 	// set the script type based on the number which identifies each type
-	NSString *interpreter = [ScriptAnalyser interpreterBasedOnDisplayName: type];
+	NSString *interpreter = [ScriptAnalyser interpreterForDisplayName: type];
 	[interpreterTextField setStringValue: interpreter];
 	[scriptTypePopupMenu selectItemWithTitle: type];
 	[self controlTextDidChange: NULL];

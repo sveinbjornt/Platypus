@@ -39,8 +39,6 @@
 	[scriptPathTextField setStringValue: path];
 
 	NSString *reportText = [ScriptAnalyser checkSyntaxOfFile: path withInterpreter: interpreter];
-	if (reportText == nil)
-		reportText = @"Unable to determine script type";
 	
 	[textView setString: reportText];
 	

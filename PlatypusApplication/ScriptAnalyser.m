@@ -17,6 +17,8 @@
 {
 	return [NSArray arrayWithObjects:			
 	 @"/bin/sh",
+     @"/bin/bash",
+     @"/usr/bin/env",
 	 @"/usr/bin/perl",
 	 @"/usr/bin/python",
 	 @"/usr/bin/ruby",
@@ -32,6 +34,8 @@
 {
 	return [NSArray arrayWithObjects:			
 	@"Shell",
+    @"Bash",
+    @"Env",
 	@"Perl",
 	@"Python",
 	@"Ruby",
@@ -46,16 +50,15 @@
 +(NSString *)displayNameForInterpreter: (NSString *)theInterpreter
 {
 	NSArray *interpreters = [self interpreters];
-	NSArray *interpreterDisplayNames = [self interpreterDisplayNames];
 	int i;
-	for (i = 0; i < [interpreters count]; i++)
+    for (i = 0; i < [interpreters count]; i++)
 		if ([theInterpreter isEqualToString: [interpreters objectAtIndex: i]])
-			return [interpreterDisplayNames objectAtIndex: i];
+			return [[self interpreterDisplayNames] objectAtIndex: i];
 	
 	return @"Other...";
 }
 
-+ (NSString *)interpreterBasedOnDisplayName: (NSString *)name
++ (NSString *)interpreterForDisplayName: (NSString *)name
 {
 	NSArray *interpreters = [self interpreters];
 	NSArray *interpreterDisplayNames = [self interpreterDisplayNames];
@@ -76,22 +79,24 @@
 {
 	NSArray *interpreters = [self interpreters];
 	
-	if ([fileName hasSuffix: @".sh"])
+	if ([fileName hasSuffix: @".sh"] || [fileName hasSuffix: @".command"])
 		return [interpreters objectAtIndex: 0];
-	else if ([fileName hasSuffix: @".pl"])
+    if ([fileName hasSuffix: @".bash"])
 		return [interpreters objectAtIndex: 1];
-	else if ([fileName hasSuffix: @".py"])
-		return [interpreters objectAtIndex: 2];
-	else if ([fileName hasSuffix: @".rb"] || [fileName hasSuffix: @".rbx"])
+	else if ([fileName hasSuffix: @".pl"] || [fileName hasSuffix: @".perl"])
 		return [interpreters objectAtIndex: 3];
-	else if ([fileName hasSuffix: @".scpt"] || [fileName hasSuffix: @".applescript"])
+	else if ([fileName hasSuffix: @".py"] || [fileName hasSuffix: @".python"] || [fileName hasSuffix: @".objpy"])
 		return [interpreters objectAtIndex: 4];
-	else if ([fileName hasSuffix: @".tcl"])
+	else if ([fileName hasSuffix: @".rb"] || [fileName hasSuffix: @".rbx"])
 		return [interpreters objectAtIndex: 5];
-	else if ([fileName hasSuffix: @".exp"] || [fileName hasSuffix: @".expect"])
+	else if ([fileName hasSuffix: @".scpt"] || [fileName hasSuffix: @".applescript"] || [fileName hasSuffix: @".osa"] || [fileName hasSuffix: @".osascript"])
 		return [interpreters objectAtIndex: 6];
-	else if ([fileName hasSuffix: @".php"])
+	else if ([fileName hasSuffix: @".tcl"])
 		return [interpreters objectAtIndex: 7];
+	else if ([fileName hasSuffix: @".exp"] || [fileName hasSuffix: @".expect"])
+		return [interpreters objectAtIndex: 8];
+	else if ([fileName hasSuffix: @".php"] || [fileName hasSuffix: @".php4"] || [fileName hasSuffix: @".php5"])
+		return [interpreters objectAtIndex: 9];
 	
 	return @"";
 }
@@ -105,9 +110,11 @@
 	// get the first line of the script
 	NSString *script = [NSString stringWithContentsOfFile: path encoding: DEFAULT_OUTPUT_TXT_ENCODING error: nil];
 	NSArray *lines = [script componentsSeparatedByString: @"\n"];
+    if (![lines count]) // empty file
+        return [NSArray arrayWithObject: @""];
 	NSString *firstLine = [lines objectAtIndex: 0];
 	
-	// if the first line of the script is shorter than 2 chars, it can't possibly be a shebang line
+	// if shorter than 2 chars, it can't possibly be a shebang line
 	if ([firstLine length] <= 2)
 		return [NSArray arrayWithObject: @""];
 	
@@ -120,7 +127,7 @@
 	// seperate it by whitespaces, in order not to get also the params to the interpreter
 	NSString *interpreterCmd = [firstLine substringFromIndex: 2];
 	NSArray *words = [interpreterCmd componentsSeparatedByString: @" "];
-	return ([[words retain] autorelease]);
+	return ([[words retain] autorelease]); // return array w. interpreter + arguments for it
 }
 
 /*****************************************
@@ -150,39 +157,33 @@
 	if (![[NSFileManager defaultManager] fileExistsAtPath: scriptPath ])//make sure it exists
 		return nil;
 	
-	if (interpreter == nil)
+	if (interpreter == nil || [interpreter isEqualToString: @""])
 		interpreter = [self determineInterpreterForScriptFile: scriptPath];
 	
 	if ([interpreter isEqualToString:@""])
-		return nil;
-	
-	task = [[NSTask alloc] init];
+		return @"Unable to determine script interpreter";
 	
 	 //let's see if the script type is supported for syntax checking
 	 //if so, we set up the task's launch path as the script interpreter and set the relevant flags and arguments
+    NSArray *args = nil;
 
 	if ([interpreter isEqualToString: @"/bin/sh"])
-	{
-		[task setArguments: [NSArray arrayWithObjects: @"-n", scriptPath, nil]];
-	}
-	else if ([interpreter isEqualToString: @"/usr/bin/perl"])
-	{
-		[task setArguments: [NSArray arrayWithObjects: @"-c", scriptPath, nil]];
-	}
-	else if ([interpreter isEqualToString: @"/usr/bin/ruby"])
-	{
-		 [task setArguments: [NSArray arrayWithObjects: @"-c", scriptPath, nil]];
-	}
-	else if ([interpreter isEqualToString: @"/usr/bin/php"])
-	{
-		[task setArguments: [NSArray arrayWithObjects: @"-l", scriptPath, nil]];
-	}
+        args = [NSArray arrayWithObjects: @"-n", scriptPath, nil];
+    else if ([interpreter isEqualToString: @"/bin/bash"])
+        args = [NSArray arrayWithObjects: @"-n", scriptPath, nil];
+    else if ([interpreter isEqualToString: @"/usr/bin/perl"])
+        args = [NSArray arrayWithObjects: @"-c", scriptPath, nil];
+    else if ([interpreter isEqualToString: @"/usr/bin/ruby"])
+        args = [NSArray arrayWithObjects: @"-c", scriptPath, nil];
+    else if ([interpreter isEqualToString: @"/usr/bin/php"])
+        args = [NSArray arrayWithObjects: @"-l", scriptPath, nil];
 	else
 	{
-		[task release];
 		return [NSString stringWithFormat: @"Syntax Checking is not supported by interpreter %@", interpreter];
 	}
 	
+    task = [[NSTask alloc] init];
+    
 	// OK, so interpreter supports syntax checking
 	[task setLaunchPath: interpreter];
 	
@@ -198,12 +199,12 @@
 	 //get output in string
 	 NSString *outputStr = [[[NSString alloc] initWithData: [readHandle readDataToEndOfFile] encoding: DEFAULT_OUTPUT_TXT_ENCODING] autorelease];
 	 
-	 if ([outputStr length] == 0) //if the syntax report string is empty, we report syntax as OK
-		 outputStr = [NSString stringWithString: @"Syntax OK"];
+    [task release];
+    
+    //if the syntax report string is empty --> no complaints, so we report syntax as OK
+    outputStr = [outputStr length] ? outputStr : @"Syntax OK";
 	
-	[task release];
-	
-	 return outputStr;
+    return outputStr;
 }
 
 @end
