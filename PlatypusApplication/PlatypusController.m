@@ -894,20 +894,6 @@
 	[window setTitle: PROGRAM_NAME];	
 }
 
-/*****************************************
- - //return the bundle identifier for the application to be generated
- -  based on username etc.
-*****************************************/
-
-- (NSString *)generateBundleIdentifier
-{
-	NSString	*bundleId;
-	//The format is "org.username.appname"
-	bundleId = [NSString stringWithFormat: @"%@%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultBundleIdentifierPrefix"], [appNameTextField stringValue]];
-	bundleId = [[bundleId componentsSeparatedByString:@" "] componentsJoinedByString:@""];//no spaces
-	return(bundleId);
-}
-
 #pragma mark App Size estimation
 
 /*****************************************

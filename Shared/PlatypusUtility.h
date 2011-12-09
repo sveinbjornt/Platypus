@@ -23,9 +23,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface PlatypusUtility : NSObject 
-{
-	
-}
++ (NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;
 + (BOOL)runningSnowLeopardOrLater;
 + (void)alert: (NSString *)message subText: (NSString *)subtext;
 + (void)fatalAlert: (NSString *)message subText: (NSString *)subtext;

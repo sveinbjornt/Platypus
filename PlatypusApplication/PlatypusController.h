@@ -136,7 +136,6 @@
 - (IBAction)outputTypeWasChanged:(id)sender;
 - (IBAction)clearAllFields:(id)sender;
 - (IBAction)showCommandLineString: (id)sender;
-- (NSString *)generateBundleIdentifier;
 - (void)updateEstimatedAppSize;
 - (NSString *)estimatedAppSize;
 
