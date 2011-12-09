@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>BuildPackages.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
 		<key>Command Line Tool Debug.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -34,7 +29,7 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>ScriptExec.xcscheme</key>
+		<key>ScriptExec Release.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>

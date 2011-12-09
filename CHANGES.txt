@@ -17,23 +17,33 @@ For 4.5
 	* Fixed a text encoding bug with "Secure" scripts
 	* Fixed text encoding bug in built-in text editor
 	* Fixed bug in drag and drop handling in Platypus application
-	* Removed environment editing and signature settings [redundant, obsolete]
-	* Removed English.lproj from created apps
+	* Removed environment editing and signature settings [redundant and obsolete, respectively]
+	* Removed English.lproj from created apps.  It's not need with current lack of localization support.
 	* Fixed bug in drag and drop on Web View
     * Updated to IconFamily 0.9.4
-	* Improved application icon (512px representation)
+	* Improved application icon and preset icons (512x512px representations)
 	* Updated man page for command line tool
-    * Fixed small, insignificant memory leak in command line tool
+    * Revised and extended documentation
     * New FAQ section in the documentation which addresses common questions and issues
-	* Various small bug fixes all over the code base
 	* Fixed a bug where droplet apps would lock up on cancelled authentication
-    * Fixed bug in command line tool where nib parameter would be ignored
-    * Platypus no longer embeds icon data in profiles, which means they are smaller
+    * Fixed bug in command line tool where nib parameter was ignored
+    * Platypus no longer embeds icon data in profiles, which results in smaller file sizes
+    * A variety of other small bug fixes all over the codebase
+    * Platypus now identifies .command files as shell scripts
+    * Additional interpreter pre-set options (/usr/bin/env and /bin/bash).
     * Command line tool now no longer requires destination path parameter, defaulting to [name-of-script].app
-    TODO:
-    * Additional interpreter pre-sets
+
+
+TODO:
+    * Argument handling of command line tool changed to be simpler and less demanding
+    * Fix it so Platypus ... shit, something I started working on, short term memory failing due to skunk
+    * More intelligent automatic app name generation based on script filename
+    * Launch app on script file modification
+    * Localization question in documentation
+    * Arguments to script itself in documentation
     * Command line tool is now more intelligent about automatically detecting script type
-	
+
+	* Support for creating bundle with JUST script - the MOST work
 
 For 4.4
 	* New output mode: "Droplet"

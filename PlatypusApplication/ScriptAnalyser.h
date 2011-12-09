@@ -16,7 +16,7 @@
 + (NSArray *)interpreters;
 + (NSArray *)interpreterDisplayNames;
 + (NSString *)displayNameForInterpreter: (NSString *)theInterpreter;
-+ (NSString *)interpreterBasedOnDisplayName: (NSString *)name;
++ (NSString *)interpreterForDisplayName: (NSString *)name;
 + (NSString *)interpreterFromSuffix: (NSString *)fileName;
 + (NSArray *)getInterpreterFromShebang: (NSString *)path;
 + (NSString *)determineInterpreterForScriptFile: (NSString *)path;
