@@ -116,7 +116,7 @@
     [oPanel setAllowsMultipleSelection: NO];
 	[oPanel setCanChooseDirectories: NO];
 		
-	if (NSOKButton == [oPanel runModalForDirectory: NULL file: NULL types: [STUtil imageFileSuffixes]])
+	if (NSOKButton == [oPanel runModalForDirectory: NULL file: NULL types: [PlatypusUtility imageFileSuffixes]])
 	{
 		NSImage *img = [[NSImage alloc] initWithContentsOfFile: [oPanel filename]];
 		if (img != NULL)
@@ -125,7 +125,7 @@
             [img release];
         }
 		else
-			[STUtil alert:@"Corrupt Image File" subText: @"The image file you selected appears to be damaged or corrupt."];
+			[PlatypusUtility alert:@"Corrupt Image File" subText: @"The image file you selected appears to be damaged or corrupt."];
 	}
 }
 

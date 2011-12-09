@@ -64,12 +64,12 @@
 	// app support folder
 	if (! [[NSFileManager defaultManager] fileExistsAtPath: [APP_SUPPORT_FOLDER stringByExpandingTildeInPath] isDirectory: &isDir])
 		if ( ! [[NSFileManager defaultManager] createDirectoryAtPath: [APP_SUPPORT_FOLDER stringByExpandingTildeInPath] attributes: NULL] )
-			[STUtil alert: @"Error" subText: [NSString stringWithFormat: @"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]]; 
+			[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]]; 
 	
 	// profiles folder
 	if (! [[NSFileManager defaultManager] fileExistsAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath] isDirectory: &isDir])
 		if ( ! [[NSFileManager defaultManager] createDirectoryAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath] attributes: NULL] )
-			[STUtil alert: @"Error" subText: [NSString stringWithFormat: @"Could not create directory '%@'", [PROFILES_FOLDER stringByExpandingTildeInPath]]]; 
+			[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Could not create directory '%@'", [PROFILES_FOLDER stringByExpandingTildeInPath]]]; 
 	
 	
 	// we list ourself as an observer of changes to file system, for script
@@ -97,7 +97,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {		
     // register for sudden termination for >= Mac OS X 10.6
-    if ([STUtil runningSnowLeopardOrLater]) 
+    if ([PlatypusUtility runningSnowLeopardOrLater]) 
     {
         //[[NSProcessInfo processInfo] enableSuddenTermination];
     }
@@ -198,7 +198,7 @@
 	//see if file exists
 	if (![[NSFileManager defaultManager] fileExistsAtPath: [scriptPathTextField stringValue]])
 	{
-		[STUtil alert:@"File does not exist" subText: @"No file exists at the specified path"];
+		[PlatypusUtility alert:@"File does not exist" subText: @"No file exists at the specified path"];
 		return;
 	}
 
@@ -215,7 +215,7 @@
 		else
 		{
 			// Complain if editor is not found, set it to the built-in editor
-			[STUtil alert: @"Application not found" subText: [NSString stringWithFormat: @"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
+			[PlatypusUtility alert: @"Application not found" subText: [NSString stringWithFormat: @"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
 			[[NSUserDefaults standardUserDefaults] setObject: DEFAULT_EDITOR  forKey:@"DefaultEditor"];
 			[self openScriptInBuiltInEditor: [scriptPathTextField stringValue]];
 		}
@@ -331,7 +331,7 @@
 	//check if app already exists, and if so, prompt if to replace
 	if ([[NSFileManager defaultManager] fileExistsAtPath: appPath])
 	{
-		overwrite = [STUtil proceedWarning: @"Application already exists" subText: @"An application with this name already exists in the location you specified.  Do you want to overwrite it?" withAction: @"Overwrite"];
+		overwrite = [PlatypusUtility proceedWarning: @"Application already exists" subText: @"An application with this name already exists in the location you specified.  Do you want to overwrite it?" withAction: @"Overwrite"];
 		if (!overwrite)
 			return NO;
 	}
@@ -351,7 +351,7 @@
 	// verify that the values in the spec are OK
 	if (![spec verify])
 	{
-		[STUtil alert: @"Spec verification failed" subText: [spec error]];
+		[PlatypusUtility alert: @"Spec verification failed" subText: [spec error]];
 		return NO;
 	}
 	
@@ -376,7 +376,7 @@
 		[NSApp endSheet: progressDialogWindow];
 		[progressDialogWindow orderOut: self];
 		
-		[STUtil alert: @"Creating from spec failed" subText: [spec error]];
+		[PlatypusUtility alert: @"Creating from spec failed" subText: [spec error]];
 		return NO;
 	}
 	
@@ -417,14 +417,14 @@
 	//script path
 	if ([[appNameTextField stringValue] length] == 0)//make sure a name has been assigned
 	{
-		[STUtil sheetAlert:@"Invalid Application Name" subText: @"You must specify a name for your application" forWindow: window];
+		[PlatypusUtility sheetAlert:@"Invalid Application Name" subText: @"You must specify a name for your application" forWindow: window];
 		return NO;
 	}
 	
 	//script path
 	if (([fileManager fileExistsAtPath: [scriptPathTextField stringValue] isDirectory: &isDir] == NO) || isDir)//make sure script exists and isn't a folder
 	{
-		[STUtil sheetAlert:@"Invalid Script Path" subText: @"No file exists at the script path you have specified" forWindow: window];
+		[PlatypusUtility sheetAlert:@"Invalid Script Path" subText: @"No file exists at the script path you have specified" forWindow: window];
 		return NO;
 	}
 	
@@ -432,21 +432,21 @@
 	if (	([iconControl hasIcns] && ![[iconControl icnsFilePath] isEqualToString: @""] && ![fileManager fileExistsAtPath: [iconControl icnsFilePath]])
 		||	(![(IconController *)iconControl hasIcns] && [(IconController *)iconControl imageData] == nil))
 	{
-		[STUtil sheetAlert:@"Missing Icon" subText: @"You must set an icon for your application." forWindow: window];
+		[PlatypusUtility sheetAlert:@"Missing Icon" subText: @"You must set an icon for your application." forWindow: window];
 		return NO;
 	}
 	
 	// let's be certain that the bundled files list doesn't contain entries that have been moved
 	if(![fileList allPathsAreValid])
 	{
-		[STUtil sheetAlert: @"Moved or missing files" subText:@"One or more of the files that are to be bundled with the application have been moved.  Please rectify this and try again." forWindow: window];
+		[PlatypusUtility sheetAlert: @"Moved or missing files" subText:@"One or more of the files that are to be bundled with the application have been moved.  Please rectify this and try again." forWindow: window];
 		return NO;
 	}
 	
 	//interpreter
 	if ([fileManager fileExistsAtPath: [interpreterTextField stringValue]] == NO)//make sure interpreter exists
 	{
-		if (NO == [STUtil proceedWarning: @"Invalid Interpreter" subText: @"The specified interpreter does not exist on this system.  Do you wish to proceed anyway?" withAction: @"Proceed"])
+		if (NO == [PlatypusUtility proceedWarning: @"Invalid Interpreter" subText: @"The specified interpreter does not exist on this system.  Do you wish to proceed anyway?" withAction: @"Proceed"])
 			return NO;
 	}
 	
@@ -883,6 +883,12 @@
 
 - (IBAction)showCommandLineString: (id)sender
 {
+    if (![[NSFileManager defaultManager] fileExistsAtPath: [scriptPathTextField stringValue]])
+    {
+        [PlatypusUtility alert: @"Missing script" subText: [NSString stringWithFormat: @"No file exists at path '%@'", [scriptPathTextField stringValue]]];
+        return;
+    }
+    
 	[window setTitle: [NSString stringWithFormat: @"%@ - Shell Command String", PROGRAM_NAME]];
 	[[[ShellCommandController alloc] init] showShellCommandForSpec: [self appSpecFromControls] window: window];
 	[window setTitle: PROGRAM_NAME];	
@@ -926,11 +932,11 @@
 	
 	// if we want to know the size of the icon, let's assume default icon
 	estimatedAppSize += [iconControl iconSize];
-	estimatedAppSize += [STUtil fileOrFolderSize: [scriptPathTextField stringValue]];
-	estimatedAppSize += [STUtil fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"ScriptExec" ofType: NULL]];  // executable
+	estimatedAppSize += [PlatypusUtility fileOrFolderSize: [scriptPathTextField stringValue]];
+	estimatedAppSize += [PlatypusUtility fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"ScriptExec" ofType: NULL]];  // executable
 		
 	// nib size is much smaller if compiled with ibtool
-	UInt64 nibSize = [STUtil fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"MainMenu.nib" ofType: NULL]];  // bundled nib
+	UInt64 nibSize = [PlatypusUtility fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"MainMenu.nib" ofType: NULL]];  // bundled nib
 	if ([[NSFileManager defaultManager] fileExistsAtPath: IBTOOL_PATH])
 		nibSize = 0.2 * nibSize; // compiled nib is approximtely 20% of the size of original
     estimatedAppSize += nibSize;
@@ -938,7 +944,7 @@
     // bundled files altogether
     estimatedAppSize += [fileList getTotalSize];
 		
-	return [STUtil sizeAsHumanReadable: estimatedAppSize];
+	return [PlatypusUtility sizeAsHumanReadable: estimatedAppSize];
 }
 
 #pragma mark Drag and drop

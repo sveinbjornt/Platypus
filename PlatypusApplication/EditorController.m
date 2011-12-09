@@ -37,7 +37,7 @@
     NSString *str = [NSString stringWithContentsOfFile: path encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
     if (str == nil)
     {
-        [STUtil alert: @"Error reading document" subText: @"This document does not appear to be a text file"];
+        [PlatypusUtility alert: @"Error reading document" subText: @"This document does not appear to be a text file"];
         return;
     }
     
@@ -57,7 +57,7 @@
 - (IBAction)save: (id)sender
 {
 	if (![[NSFileManager defaultManager] isWritableFileAtPath: [scriptPathTextField stringValue]])
-        [STUtil alert: @"Unable to save changes" subText: @"You don't the neccesary privileges to save this text file."];
+        [PlatypusUtility alert: @"Unable to save changes" subText: @"You don't the neccesary privileges to save this text file."];
 	else
 		[[textView string] writeToFile: [scriptPathTextField stringValue] atomically: YES encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
 	

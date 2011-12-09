@@ -176,7 +176,7 @@
 	//make sure the type is 4 characters long
 	if ([[typeCodeTextField stringValue] length] != 4)
 	{
-				[STUtil sheetAlert:@"Invalid File Type" subText: @"A File Type must consist of exactly 4 ASCII characters." forWindow: typesWindow];
+				[PlatypusUtility sheetAlert:@"Invalid File Type" subText: @"A File Type must consist of exactly 4 ASCII characters." forWindow: typesWindow];
 		return;
 	}
 

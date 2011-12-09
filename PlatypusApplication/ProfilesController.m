@@ -49,7 +49,7 @@
 	// make sure we got a spec from the file
 	if (spec == NULL)
 	{
-		[STUtil alert: @"Error" subText: @"Unable to create Platypus spec from profile"];
+		[PlatypusUtility alert: @"Error" subText: @"Unable to create Platypus spec from profile"];
 		return;
 	}
     
@@ -61,7 +61,7 @@
         NSString *scriptName = [spec propertyForKey: @"ScriptName"];
         if (scriptStr == nil || scriptName == nil)
         {
-            [STUtil alert: @"Error loading example" subText: @"Nil script value(s) in this example's profile dictionary."];
+            [PlatypusUtility alert: @"Error loading example" subText: @"Nil script value(s) in this example's profile dictionary."];
             [spec release];
             return;
         }
@@ -75,7 +75,7 @@
 	
 	// warn if created with a different version of Platypus
 //	if (![[spec propertyForKey: @"Creator"] isEqualToString: PROGRAM_STAMP])
-//		[STUtil alert:@"Version clash" subText: @"The profile you selected was created with a different version of Platypus and may not load correctly."];
+//		[PlatypusUtility alert:@"Version clash" subText: @"The profile you selected was created with a different version of Platypus and may not load correctly."];
 	
 	[platypusControl controlsFromAppSpec: spec];
 	[platypusControl controlTextDidChange: NULL];
@@ -140,7 +140,7 @@
 	// if there's a file already, make sure we can overwrite
 	if ([[NSFileManager defaultManager] fileExistsAtPath: profileDestPath] && ![[NSFileManager defaultManager] isDeletableFileAtPath: profileDestPath])
 	{
-		[STUtil alert: @"Error" subText: [NSString stringWithFormat: @"Cannot overwrite file '%@'.", profileDestPath]];
+		[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Cannot overwrite file '%@'.", profileDestPath]];
 		return;
 	}
 	[dict writeToFile: profileDestPath atomically: YES];
@@ -174,7 +174,7 @@
 
 - (IBAction) clearAllProfiles:(id)sender
 {
-	if ([STUtil proceedWarning: @"Delete all profiles?" subText: @"This will permanently delete all profiles in your Profiles folder." withAction: @"Delete"] == 0)
+	if ([PlatypusUtility proceedWarning: @"Delete all profiles?" subText: @"This will permanently delete all profiles in your Profiles folder." withAction: @"Delete"] == 0)
 		return;
 
 	//delete all .platypus files in PROFILES_FOLDER
@@ -189,7 +189,7 @@
 		{
 			NSString *path = [NSString stringWithFormat: @"%@/%@",[PROFILES_FOLDER stringByExpandingTildeInPath],filename];
 			if (![manager isDeletableFileAtPath: path])
-				[STUtil alert: @"Error" subText: [NSString stringWithFormat: @"Cannot delete file %@.", path]];
+				[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Cannot delete file %@.", path]];
 			[manager removeFileAtPath: path handler: NULL];
 		}
 	}

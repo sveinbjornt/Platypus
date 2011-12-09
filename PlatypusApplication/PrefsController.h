@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 #include <Security/Authorization.h>
-#import "STUtil.h"
+#import "PlatypusUtility.h"
 #import "STPrivilegedTask.h"
 #import "Common.h"
 
