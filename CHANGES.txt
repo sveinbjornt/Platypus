@@ -32,12 +32,14 @@ For 4.5
     * Platypus now identifies .command files as shell scripts
     * Additional interpreter pre-set options (/usr/bin/env and /bin/bash)
     * Command line tool now no longer requires destination path parameter, defaulting to [name-of-script].app as destination package
+    * Platypus now recognises more script type suffix variants (e.g. rbx, objpy, osacript, etc.)
 
 TODO:
+    * Platypus application's automatic script analysis extended to command line tool
     * Command line tool parameters change from '-c scriptPath [appName]' to 'scriptPath [appName]'  (show shell command has been updated to show this already)
-    
-
-    * More intelligent automatic app name generation based on script filename
+    * Use 'file' command to identify interpreter in ScriptAnalyser
+    * More intelligent automatic app name generation based on script filename  
+        * Write string parsing function which inserts spaces before upper chars
     * Launch app on script file modification
     * Localization question in documentation
     * Arguments to script itself in documentation

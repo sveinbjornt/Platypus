@@ -48,6 +48,15 @@
 	return self;
 }
 
+-(PlatypusAppSpec *)initWithDefaultsFromScript: (NSString *)scriptPath
+{
+    if (self = [self init]) 
+	{
+        [self setDefaultsForScript: scriptPath];
+    }
+	return self;
+}
+
 -(PlatypusAppSpec *)initWithDictionary: (NSDictionary *)dict
 {
 	if (self = [self init]) 
@@ -102,19 +111,19 @@
 	
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"DestinationOverride"];
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"DevelopmentVersion"];
-	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"OptimizeApplication"];
+	[properties setValue: [NSNumber numberWithBool: YES]								forKey: @"OptimizeApplication"];
 	
 	// primary attributes	
-	[properties setObject: @"MyApp"														forKey: @"Name"];
+	[properties setObject: DEFAULT_APP_NAME												forKey: @"Name"];
 	[properties setObject: @""															forKey: @"ScriptPath"];
 	[properties setObject: DEFAULT_OUTPUT_TYPE											forKey: @"Output"];
 	[properties setObject: CMDLINE_ICON_PATH											forKey: @"IconPath"];
 	
 	// secondary attributes
-	[properties setObject: @"/bin/sh"													forKey: @"Interpreter"];
+	[properties setObject: DEFAULT_INTERPRETER											forKey: @"Interpreter"];
 	[properties setObject: [NSMutableArray array]										forKey: @"Parameters"];
-	[properties setObject: @"1.0"														forKey: @"Version"];
-	[properties setObject: [NSString stringWithFormat: @"org.%@.MyApp", NSUserName()]	forKey: @"Identifier"];
+	[properties setObject: DEFAULT_VERSION												forKey: @"Version"];
+	[properties setObject: [PlatypusUtility standardBundleIdForAppName: DEFAULT_APP_NAME usingDefaults: NO]       forKey: @"Identifier"];
 	[properties setObject: NSFullUserName()												forKey: @"Author"];
 	
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"AppPathAsFirstArg"];
@@ -130,7 +139,7 @@
 	// suffixes / file types
 	[properties setObject: [NSMutableArray arrayWithObject: @"*"]						forKey: @"Suffixes"];
 	[properties setObject: [NSMutableArray arrayWithObjects: @"****", @"fold", NULL]	forKey: @"FileTypes"];
-	[properties setObject: @"Viewer"													forKey: @"Role"];
+	[properties setObject: DEFAULT_ROLE													forKey: @"Role"];
     [properties setObject: [NSNumber numberWithBool: NO]                                forKey: @"AcceptsText"];
 
 	// text output settings
@@ -141,9 +150,45 @@
 	[properties setObject: DEFAULT_OUTPUT_BG_COLOR										forKey: @"TextBackground"];
 
 	// status item settings
-	[properties setObject: @"Text"														forKey: @"StatusItemDisplayType"];
-	[properties setObject: @"MyApp"														forKey: @"StatusItemTitle"];
+	[properties setObject: DEFAULT_STATUSITEM_DISPLAY_TYPE                              forKey: @"StatusItemDisplayType"];
+	[properties setObject: DEFAULT_APP_NAME												forKey: @"StatusItemTitle"];
 	[properties setObject: [NSData data]												forKey: @"StatusItemIcon"];
+}
+
+/********************************************************
+ inits with default values and then analyse script, 
+ load default values based on analysed script properties
+ ********************************************************/
+
+-(void)setDefaultsForScript: (NSString *)scriptPath
+{
+    // start with a dict populated with defaults
+    [self setDefaults];
+    
+    // set script path
+    [self setProperty: scriptPath forKey: @"ScriptPath"];
+    
+    //determine app name based on script filename
+	NSString *appName = [ScriptAnalyser appNameFromScriptFileName: scriptPath];
+	[self setProperty: appName forKey: @"Name"];
+        
+	//find an interpreter for it
+    NSString *interpreter = [ScriptAnalyser determineInterpreterForScriptFile: scriptPath];
+	if ([interpreter isEqualToString: @""])
+        interpreter = DEFAULT_INTERPRETER;
+    else
+	{
+        // get parameters to interpreter
+		NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray: [ScriptAnalyser getInterpreterFromShebang: scriptPath]];
+		[shebangCmdComponents removeObjectAtIndex: 0];
+        [self setProperty: shebangCmdComponents forKey: @"Parameters"];
+	}
+    [self setProperty: interpreter forKey: @"Interpreter"];
+    
+    // find parent folder wherefrom we create destination path of app bundle
+    NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];
+    NSString *destPath = [NSString stringWithFormat: @"%@/%@.app", parentFolder, appName];
+    [self setProperty: destPath forKey: @"Destination"];
 }
 
 
@@ -154,7 +199,7 @@
 
 -(BOOL)create
 {
-	int	      i;
+	int      i;
 	NSString *contentsPath, *macosPath, *resourcesPath, *tmpPath = NSTemporaryDirectory();
 	NSString *execDestinationPath, *infoPlistPath, *iconPath, *bundledFileDestPath, *nibDestPath;
 	NSString *execPath, *bundledFilePath;
@@ -173,10 +218,15 @@
 	}
 
 	//check if app already exists
-	if ([fileManager fileExistsAtPath: [properties objectForKey: @"Destination"]] && ![[properties objectForKey: @"DestinationOverride"] boolValue])
+	if ([fileManager fileExistsAtPath: [properties objectForKey: @"Destination"]])
 	{
-		error = @"App already exists at path.";
-		return 0;
+        if (![[properties objectForKey: @"DestinationOverride"] boolValue])
+        {
+            error = [NSString stringWithFormat: @"App already exists at path %@. Use -y flag to overwrite.", [properties objectForKey: @"Destination"]];
+            return 0;
+        }
+        else
+            NSLog(@"Overwriting app at path %@", [properties objectForKey: @"Destination"]);
 	}
 		
 	////////////////////////// CREATE THE FOLDER HIERARCHY /////////////////////////////////////
@@ -297,10 +347,13 @@
 	
 	//create icon
 	//.app/Contents/Resources/appIcon.icns
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Writing icon"];
-	iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
-	[fileManager copyPath: [properties objectForKey: @"IconPath"] toPath: iconPath handler: NULL];
-
+    if (![[properties objectForKey: @"IconPath"] isEqualToString: @""])
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Writing icon"];
+        iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
+        [fileManager copyPath: [properties objectForKey: @"IconPath"] toPath: iconPath handler: NULL];
+    }
+          
 	//create Info.plist file
 	//.app/Contents/Info.plist
 	infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
@@ -311,7 +364,6 @@
 							[properties objectForKey: @"Name"], @"CFBundleName",
 							[properties objectForKey: @"Name"], @"CFBundleDisplayName",
 							[NSString stringWithFormat: @"© %d %@", [[NSCalendarDate calendarDate] yearOfCommonEra], [properties objectForKey: @"Author"] ], @"NSHumanReadableCopyright", 
-							@"appIcon.icns", @"CFBundleIconFile",  
 							[properties objectForKey: @"Version"], @"CFBundleShortVersionString", 
 							[properties objectForKey: @"Identifier"], @"CFBundleIdentifier",  
 							[properties objectForKey: @"ShowInDock"], @"LSUIElement",
@@ -320,6 +372,8 @@
 							@"MainMenu", @"NSMainNibFile",
 							PROGRAM_MIN_SYS_VERSION, @"LSMinimumSystemVersion",
 							@"NSApplication", @"NSPrincipalClass",  nil];
+    if (![[properties objectForKey: @"IconPath"] isEqualToString: @""])
+        [infoPlist setObject: @"appIcon.icns" forKey: @"CFBundleIconFile"]; 
 	
 	// if droppable, we declare the accepted file types
 	if ([[properties objectForKey: @"Droppable"] boolValue] == YES)
@@ -559,7 +613,7 @@
 		textEncodingString = [NSString stringWithFormat: @" -E %d ", [[properties objectForKey: @"TextEncoding"] intValue]];
 	
 	//create custom icon string
-	if (![[properties objectForKey: @"IconPath"] isEqualToString: CMDLINE_ICON_PATH])
+	if (![[properties objectForKey: @"IconPath"] isEqualToString: CMDLINE_ICON_PATH] && ![[properties objectForKey: @"IconPath"] isEqualToString: @""])
 		iconParamStr = [NSString stringWithFormat: @" -i '%@' ", [properties objectForKey: @"IconPath"]];
 	
 	//status menu settings, if output mode is status menu
@@ -577,11 +631,17 @@
 			statusMenuOptionsString = [statusMenuOptionsString stringByAppendingString: [NSString stringWithFormat: @"-Y '%@' ", [properties objectForKey: @"StatusItemTitle"]]];
 	}
     
+    // only set app name arg if we have a proper value
     NSString *appNameArg = [[properties objectForKey: @"Name"] isEqualToString: @""] ? @"" : [NSString stringWithFormat: @" -a '%@'", [properties objectForKey: @"Name"]];
+    
+    // only add identifier argument if it varies from default
+    NSString *identifArg = [NSString stringWithFormat: @" -I %@", [properties objectForKey: @"Identifier"]];
+    if ([[properties objectForKey: @"Identifier"] isEqualToString: [PlatypusUtility standardBundleIdForAppName: [properties objectForKey: @"Name"] usingDefaults: NO]])
+        identifArg = @"";
 	
 	// finally, generate the command
 	NSString *commandStr = [NSString stringWithFormat: 
-							@"%@ %@%@%@ -o '%@' -p '%@'%@ %@-I '%@' %@%@%@%@%@%@%@ '%@'",
+							@"%@ %@%@%@ -o '%@' -p '%@'%@ %@%@%@%@%@%@%@%@%@ '%@'",
 							CMDLINE_TOOL_PATH,
 							checkboxParamStr,
 							iconParamStr,
@@ -590,7 +650,7 @@
 							[properties objectForKey: @"Interpreter"],
 							authorString,
 							versionString,
-							[properties objectForKey: @"Identifier"],
+							identifArg,
 							suffixesString,
 							filetypesString,
 							bundledFilesCmdString,
@@ -631,6 +691,11 @@
 -(NSString *)error
 {
 	return error;
+}
+
+-(NSString *)description
+{
+    return [properties description];
 }
 
 @end

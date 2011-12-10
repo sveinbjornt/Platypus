@@ -23,6 +23,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Common.h"
+#import "PlatypusUtility.h"
+#import "ScriptAnalyser.h"
 
 #define MAX_APPSPEC_PROPERTIES	128 // whatever...
 
@@ -32,12 +34,14 @@
 	NSString				*error;
 }
 -(PlatypusAppSpec *)initWithDefaults;
+-(PlatypusAppSpec *)initWithDefaultsFromScript: (NSString *)scriptPath;
 -(PlatypusAppSpec *)initWithDictionary: (NSDictionary *)dict;
 -(PlatypusAppSpec *)initFromFile: (NSString *)filePath;
 +(PlatypusAppSpec *)profileWithDefaults;
 +(PlatypusAppSpec *)profileWithDictionary: (NSDictionary *)dict;
 +(PlatypusAppSpec *)profileFromFile: (NSString *)filePath;
 -(void)setDefaults;
+-(void)setDefaultsForScript: (NSString *)scriptPath;
 -(BOOL)create;
 -(BOOL)verify;
 -(void)dump: (NSString *)filePath;
