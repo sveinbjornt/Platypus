@@ -24,6 +24,7 @@
 
 @interface PlatypusUtility : NSObject 
 + (NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;
++ (NSString *)removeWhitespaceInString: (NSString *)str;
 + (BOOL)runningSnowLeopardOrLater;
 + (void)alert: (NSString *)message subText: (NSString *)subtext;
 + (void)fatalAlert: (NSString *)message subText: (NSString *)subtext;

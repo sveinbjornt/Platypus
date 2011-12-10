@@ -68,9 +68,14 @@
 #define IBTOOL_PATH					@"/Developer/usr/bin/ibtool"
 #define LIPO_TOOL_PATH				@"/usr/bin/lipo"
 
-#define DEFAULT_EDITOR				@"Built-In"
-#define DEFAULT_DESTINATION_PATH	@"~/Desktop/MyApp.app"
-#define DEFAULT_OUTPUT_TYPE			@"Progress Bar"
+#define DEFAULT_EDITOR                  @"Built-In"
+#define DEFAULT_INTERPRETER             @"/bin/sh"
+#define DEFAULT_VERSION                 @"1.0"
+#define DEFAULT_ROLE                    @"Viewer"
+#define DEFAULT_STATUSITEM_DISPLAY_TYPE @"Text"
+#define DEFAULT_APP_NAME                @"MyPlatypusApp"
+#define DEFAULT_DESTINATION_PATH        [NSString stringWithFormat: @"~/Desktop/%@.app", DEFAULT_APP_NAME]
+#define DEFAULT_OUTPUT_TYPE             @"Progress Bar"
 
 // output modes
 #define	PLATYPUS_NONE_OUTPUT				1
@@ -90,6 +95,13 @@
 // this is surely enough
 #define PLATYPUS_MAX_QUEUE_JOBS				256
 
+// array of output types, used for validation
+#define PLATYPUS_OUTPUT_TYPES       [NSArray arrayWithObjects: @"None", \
+                                                               @"Progress Bar", \
+                                                               @"Text Window", \
+                                                               @"Web View", \
+                                                               @"Droplet", \
+                                                               @"Status Menu", nil ]
 
 // Profiles
 #define PLATYPUS_PROFILE_ALL_KEYS   [NSArray arrayWithObjects: @"AcceptsText", \

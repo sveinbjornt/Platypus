@@ -40,8 +40,7 @@
 	// put default prefs in the dictionary
 
 	// create default bundle identifier string from usename
-	NSString *bundleId = [NSString stringWithFormat: @"org.%@.", NSUserName()];
-	bundleId = [[bundleId componentsSeparatedByString: @" "] componentsJoinedByString: @""];//no spaces
+    NSString *bundleId = [PlatypusUtility standardBundleIdForAppName: @"" usingDefaults: NO ];
 	
 	[defaultPrefs setObject: bundleId						forKey: @"DefaultBundleIdentifierPrefix"];
 	[defaultPrefs setObject: DEFAULT_EDITOR					forKey: @"DefaultEditor"];
@@ -667,36 +666,15 @@
 	BOOL	isDir;
 	if (![[NSFileManager defaultManager] fileExistsAtPath: filename isDirectory: &isDir] || isDir)
 		return;
-
-	//set script path
-	[scriptPathTextField setStringValue: filename];
-
-	//determine app name based on script filename
-	NSString *appName = [ScriptAnalyser appNameFromScriptFileName: filename];
-	[appNameTextField setStringValue: appName];
-	
-	//determine script interpreter
-	NSString *interpreter = [ScriptAnalyser determineInterpreterForScriptFile: filename];
-	
-	//ok, we've successfully found an interpreter for it
-	if (![interpreter isEqualToString: @""])
-	{
-        // select item in interpreter popup button
-		NSString *scriptType = [ScriptAnalyser displayNameForInterpreter: interpreter];
-		[self setScriptType: scriptType];
-		if ([scriptType isEqualToString: @"Other..."])
-			[interpreterTextField setStringValue: interpreter];
-		
-        // get parameters to interpreter
-		NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray: [ScriptAnalyser getInterpreterFromShebang: filename]];
-		[shebangCmdComponents removeObjectAtIndex: 0];
-		[paramsControl set: [NSArray arrayWithArray: shebangCmdComponents]];
-	}
+    
+    PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsFromScript: filename];
+    [self controlsFromAppSpec: spec];
+    [spec release];
 	
 	// add to recent items menu
 	[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL: [NSURL fileURLWithPath: filename]];
 	
-	[self controlTextDidChange: NULL];
+	//[self controlTextDidChange: NULL];
 	[self updateEstimatedAppSize];
 }
 
@@ -733,10 +711,7 @@
 		[createAppButton setEnabled: validName && exists];
 		
 		//update identifier
-		if (validName)
-			[bundleIdentifierTextField setStringValue: [self generateBundleIdentifier]];
-		else
-			[bundleIdentifierTextField setStringValue: [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultBundleIdentifierPrefix"]];
+        [bundleIdentifierTextField setStringValue: [PlatypusUtility standardBundleIdForAppName: [appNameTextField stringValue] usingDefaults: YES ]];
 	}
 	
 	//interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
@@ -836,7 +811,7 @@
 	[scriptPathTextField setStringValue: @""];
 	[versionTextField setStringValue: @"1.0"];
 	
-	[bundleIdentifierTextField setStringValue: [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultBundleIdentifierPrefix"]];
+	[bundleIdentifierTextField setStringValue: [PlatypusUtility standardBundleIdForAppName: [appNameTextField stringValue] usingDefaults: YES ]];
 	[authorTextField setStringValue: [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultAuthor"]];
 	
 	//uncheck all options

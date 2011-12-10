@@ -1,6 +1,8 @@
-* More bidirectional communication?
-* Icon editable for file types
-* Create Platypus tutorial videos
-* Rewrite nasty, old code in STFileList and derivatives
-* Rethink and redesign the interface? It's a bit cluttered.
-* Create TextMate plugin
+Long term feature roadmap:
+
+    * More bidirectional communication
+    * Icon editable for file types
+    * Create Platypus tutorial videos
+    * Rewrite nasty, old code in STFileList and derivatives
+    * Rethink and redesign the interface? It's a bit cluttered and could do with some Lionising
+    * Create TextMate plugin

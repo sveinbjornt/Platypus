@@ -20,7 +20,7 @@
 
 /*
  
- A Swiss Army Knife class with a plethora of generic utility functions
+ A Swiss Army Knife class with a plethora of utility functions
  
  */
 #import "PlatypusUtility.h"
@@ -30,21 +30,27 @@
 
 /*****************************************
  - //return the bundle identifier for the application to be generated
- -  based on username etc.
+ -  based on username etc. e.g. org.username.AppName
  *****************************************/
 
 + (NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;
 {
-    NSString    *defaults = def ? [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultBundleIdentifierPrefix"] : 0;
-	NSString	*bundleId;
-    NSString    *fmtAppName = [name stringByReplacingOccurrencesOfString: @" " withString: @""];
-	NSString    *username = @"";
-    //The format is "org.username.appname"
-	bundleId = [NSString stringWithFormat: @"org.%@.%@", username , fmtAppName];
-	bundleId = [[bundleId componentsSeparatedByString:@" "] componentsJoinedByString:@""];//no spaces
-	return(bundleId);
+    NSString *defaults = def ? [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultBundleIdentifierPrefix"] : @"";    
+    
+    NSString *pre = (!def || [defaults isEqualToString: @""]) ? [NSString stringWithFormat: @"org.%@.", NSUserName()] : defaults;
+    
+	NSString *bundleId = [NSString stringWithFormat: @"%@%@", pre , name];
+	bundleId = [PlatypusUtility removeWhitespaceInString: bundleId];//no spaces
+	
+    return bundleId;
 }
 
++ (NSString *)removeWhitespaceInString: (NSString *)str
+{
+    str = [str stringByReplacingOccurrencesOfString: @" " withString: @""];
+    str = [str stringByReplacingOccurrencesOfString: @"\t" withString: @""];
+    return str;
+}
 
 + (BOOL)runningSnowLeopardOrLater
 {
