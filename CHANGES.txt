@@ -11,7 +11,9 @@ For 4.5
     * More accurate estimated final app size
     * New "Launch app on creation" option in Platypus, to facilitate development workflow
 	* "Runs in background" windows now come to the front on launch
-	* Open Recent menu uses Apple's API
+    * Improved application icon and preset icons (512x512px representations)
+    * Updated man page for command line tool
+    * Open Recent menu uses Apple's API
 	* Main window no longer accepts locally dragged and dropped icon files
     * Icon view no longer erroneously recognizes locally originating drags as valid
 	* Revised and extended documentation
@@ -22,8 +24,6 @@ For 4.5
 	* Removed English.lproj from created apps.  It's not need with current lack of localization support.
 	* Fixed bug in drag and drop on Web View
     * Updated to IconFamily 0.9.4
-	* Improved application icon and preset icons (512x512px representations)
-	* Updated man page for command line tool
     * New FAQ section in the documentation which addresses common questions and issues
 	* Fixed a bug where droplet apps would lock up on cancelled authentication
     * Fixed bug in command line tool where nib parameter was ignored
@@ -31,16 +31,17 @@ For 4.5
     * A variety of other small bug fixes all over the codebase
     * Platypus now identifies .command files as shell scripts
     * Additional interpreter pre-set options (/usr/bin/env and /bin/bash)
-    * Command line tool now no longer requires destination path parameter, defaulting to [name-of-script].app
+    * Command line tool now no longer requires destination path parameter, defaulting to [name-of-script].app as destination package
 
 TODO:
-    * Fix it so Platypus ... shit, something I started working on, short term memory failing due to skunk
+    * Command line tool parameters change from '-c scriptPath [appName]' to 'scriptPath [appName]'  (show shell command has been updated to show this already)
+    
+
     * More intelligent automatic app name generation based on script filename
     * Launch app on script file modification
     * Localization question in documentation
     * Arguments to script itself in documentation
     * Command line tool is now more intelligent about automatically detecting script type
-    * Command line tool parameters change from '-c script [appName]' to 'script [appName]'  ALSO UPDATE SHOW SHELL COMMAND
     * Command line tool argument handling changed to be simpler and less demanding [does not break compatibility with previous versions of the tool]
 
 	* Support for creating bundle with JUST script - the MOST work
