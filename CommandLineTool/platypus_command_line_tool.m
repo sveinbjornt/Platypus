@@ -471,18 +471,21 @@ int main (int argc, const char * argv[])
             exit(1);
         }
         appSpec = [[PlatypusAppSpec alloc] initWithDefaultsFromScript: scriptPath];
-        if ([properties objectForKey: @"Name"])
+        if ([properties objectForKey: @"Name"] != nil)
         {
             NSString *appBundleName = [NSString stringWithFormat: @"%@.app", [properties objectForKey: @"Name"]];
             NSString *scriptFolder = [scriptPath stringByDeletingLastPathComponent];
             destPath = [scriptFolder stringByAppendingPathComponent: appBundleName];
+            [appSpec setProperty: destPath forKey: @"Destination"];
         }
         [appSpec addProperties: properties];
         
+        // if there's another argument after the script path, it means a destination path has been specified
         if ([remainingArgs count] > 1)
+        {
             destPath = [remainingArgs objectAtIndex: 1];
-        
-        [appSpec setProperty: destPath forKey: @"Destination"];
+            [appSpec setProperty: destPath forKey: @"Destination"];
+        }
     }
         
     if (![appSpec propertyForKey: @"ScriptPath"] || [[appSpec propertyForKey: @"ScriptPath"] isEqualToString: @""])
