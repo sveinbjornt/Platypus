@@ -6,3 +6,4 @@ Long term feature roadmap:
     * Rewrite nasty, old code in STFileList and derivatives
     * Rethink and redesign the interface? It's a bit cluttered and could do with some Lionising
     * Create TextMate plugin
+    * Restore "icon from image" functionality in command line tool

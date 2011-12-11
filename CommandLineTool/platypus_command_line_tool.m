@@ -471,6 +471,7 @@ int main (int argc, const char * argv[])
             exit(1);
         }
         appSpec = [[PlatypusAppSpec alloc] initWithDefaultsFromScript: scriptPath];
+        NSLog([properties description]);
         [appSpec addProperties: properties];
         
         if ([remainingArgs count] > 1)
