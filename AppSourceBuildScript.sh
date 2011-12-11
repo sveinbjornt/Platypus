@@ -18,6 +18,9 @@ cp -r * /tmp/$FOLDER/
 # Remove any build directories
 /usr/bin/find /tmp/$FOLDER -type d -name build -exec rm -rf '{}' +
 
+# Remove Releases
+/usr/bin/find /tmp/$FOLDER -type f -name Releases -exec rm -rf '{}' +
+
 # Remove any svn files
 /usr/bin/find /tmp/$FOLDER -type d -name .svn -exec rm -rf '{}' +
 /usr/bin/find /tmp/$FOLDER -type d -name .git -exec rm -rf '{}' +
