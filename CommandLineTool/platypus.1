@@ -1,4 +1,4 @@
-.Dd 18/07/11
+.Dd 10/12/11
 .Dt platypus 1
 .Os Darwin
 .Sh NAME
@@ -7,26 +7,24 @@
 .Sh SYNOPSIS
 .Nm
 .Op Fl vh
-.Op Fl O Ar profile
+.Op Fl O
 .Op Fl FASDBR]
 .Op Fl ydlH
 .Op Fl bgn
 .Op Fl KYL
 .Op Fl P Ar profile
 .Op Fl a Ar appName
-.Op Fl c Ar scriptPath
 .Op Fl o Ar outputType
 .Op Fl i Ar icon
 .Op Fl p Ar interpreter
 .Op Fl V Ar version
 .Op Fl u Ar author
-.Op Fl s Ar signature
 .Op Fl I Ar identifier
 .Op Fl f Ar bundledFile
 .Op Fl X Ar suffixes
 .Op Fl T Ar filetypes
 .Op Fl G Ar interpreterArgs
-.Ar destinationPath
+.Ar [scriptFile] [destinationPath]
 .Sh DESCRIPTION
 .Nm
 is the command line counterpart to the Platypus Mac OS X application.  It is a tool 
@@ -40,7 +38,7 @@ The following flags are supported (and are parsed in the order in which they are
 .Bl -tag -width -Fl
 .It Fl O 
 Create profile file as output instead of creating an application bundle.  When you 
-select this option, the "destinationPath" paramater (i.e. the final parameter to the program) must 
+select this option, the "destinationPath" paramater (i.e. the final parameter to the program) should 
 have a .platypus suffix.  Please note that in order to create reusable profiles, this option 
 requires that all paths to bundled files, icons etc. be absolute.
 .It Fl P Ar [profile]
@@ -75,19 +73,13 @@ selected.
 The application displays a droplet window for dropping files on for processing by the script.
 .Pp
 .It Fl i Ar [icon]
-Specifies a file to use as icon for the application bundle.
-The icon file can be a regular Mac OS X .icns file, or an image file of any kind
-supported by the Mac OS X Cocoa APIs.  As of writing, this includes JPEG, GIF, PNG, 
-TIFF, PSD, BMP, PICT, TGA, SGI, PNTG PDF, EPS and PostScript files.  The image will
-be scaled to the standard Mac OS X icon size.
-.Pp
-Please note that specifying a non-icns image will not produce icons that look good in smaller sizes.  
-For best results, use professional Mac OS X icon editing software and specify a meticulously
-crafted .icns file.  If this option is left unspecified, the default Platypus app icon is used. 
+Specifies a file to use as icon for the application bundle. The icon file should be a regular Mac OS X .icns file.
+If not specified, the default Platypus app icon will be used. If specified, but left empty (''), no application
+icon will be set for the app. 
 .Pp
 .It Fl p Ar [interpreter]
-Sets the interpreter for your script (e.g. /usr/bin/perl).  If no interpreter is specified, the default 
-is the standard shell (/bin/sh).
+Sets the interpreter for your script (e.g. /usr/bin/perl).  If the interpreter is not specified, the command line tool
+will try to guess the correct interpreter.  If this fails, the standard shell interpreter /bin/sh is used.
 .Pp
 .It Fl V Ar [version]
 Sets the application bundle's version.  This is displayed in the Info.plist
@@ -166,15 +158,15 @@ For Status Menu output mode only.  Set the display title for the status item in 
 .Pp
 .It Fl L Ar [imagePath]
 For Status Menu output mode only.  Set the icon image for the status item in Status Menu output mode.  
-This must be a 16x16 pixel image in one of the formats supported by the Cocoa APIs (see above).
+This must be a 16x16 pixel image in one of the image formats supported by the Cocoa APIs.
 .Pp
 .It Fl d
 Development mode.  A symlink to the original script is created inside the application bundle instead 
-of an actual copy being placed therein.  Symlinks are also created to any bundled files.  This option is 
+of a copy.  Symlinks are also created for any bundled files.  This option is 
 incompatible with the -S option.
 .Pp
 .It Fl l
-Don't optimize application.  Platypsu defaults to compiling the bundled xib file to reduce application size, 
+Don't optimize application.  Platypus defaults to compiling the bundled xib file to reduce application size, 
 which makes it uneditable.  Optimization only takes place if you have Apple's Developer Tools installed, 
 since it uses the program /Developer/usr/bin/ibtool.
 .Pp
@@ -191,16 +183,19 @@ Print the version of this program
 .Pp
 .It Fl h
 Print help and usage string
+.Pp
 .El
 Exits 0 on success, and >0 if an error occurs.
 .Pp
 .Sh EXAMPLES
 .Pp
-platypus -P myProfile.platypus MyApplication.app
+platypus -P myProfile.platypus ~/Desktop/MyApplication.app
 .Pp
-platypus -a MyApp -c script.pl -p /usr/bin/perl -o 'Text Window' MyApplication.app
+platypus -o 'Text Window' script.pl PerlScript.app
 .Pp
-platypus -D -a MyDroplet -c ~/droplet.sh -o 'Droplet' MyApplication.app
+platypus -a 'My App' -p /usr/bin/python myPythonScript
+.Pp
+platypus -D -a MyDroplet -o 'Droplet' ~/droplet.sh
 .Pp
 .Sh FILES
 .Bl -tag -width "/usr/local/share/platypus/PlatypusDefault.icns" -compact
@@ -214,5 +209,5 @@ Nib file for app
 Default icon
 .El
 .Sh AUTHORS 
-This manual page was written by Sveinbjorn Thordarson.  
+This manual page was written by Sveinbjorn Thordarson <sveinbjornt@gmail.com> 
 To support Platypus development, please visit http://sveinbjorn.org/donations.
