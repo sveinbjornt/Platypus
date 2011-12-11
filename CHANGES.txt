@@ -44,7 +44,8 @@ TODO:
     * Launch app on script file modification
     * Localization question in documentation
     * Arguments to script itself in documentation
-	* Support for creating bundle with JUST script - the MOST work
+
+    * Support for creating bundle with JUST executable script, no app binary wrapper
 
 For 4.4
 	* New output mode: "Droplet"
