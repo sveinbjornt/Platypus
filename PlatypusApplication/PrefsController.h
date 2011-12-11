@@ -28,6 +28,7 @@
 {
 	IBOutlet id revealAppCheckbox;
     IBOutlet id openAppCheckbox;
+    IBOutlet id createOnScriptChangeCheckbox;
     IBOutlet id defaultEditorMenu;
 	IBOutlet id defaultTextEncodingPopupButton;
 	IBOutlet id defaultBundleIdentifierTextField;

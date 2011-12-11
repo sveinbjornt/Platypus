@@ -47,6 +47,7 @@
 	[defaultPrefs setObject: [NSArray array]				forKey: @"Profiles"];
 	[defaultPrefs setObject: [NSNumber numberWithBool:NO]	forKey: @"RevealApplicationWhenCreated"];
 	[defaultPrefs setObject: [NSNumber numberWithBool:NO]	forKey: @"OpenApplicationWhenCreated"];
+    [defaultPrefs setObject: [NSNumber numberWithBool:NO]   forKey: @"CreateOnScriptChange"];
     [defaultPrefs setObject: [NSNumber numberWithInt: DEFAULT_OUTPUT_TXT_ENCODING]
 															forKey: @"DefaultTextEncoding"];
 	[defaultPrefs setObject: NSFullUserName()				forKey: @"DefaultAuthor"];
@@ -73,8 +74,9 @@
 	
 	// we list ourself as an observer of changes to file system, for script
 	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self selector: @selector(controlTextDidChange:) name: UKFileWatcherRenameNotification object: NULL];
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self selector: @selector(controlTextDidChange:) name: UKFileWatcherDeleteNotification object: NULL];
-			
+	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self selector: @selector(controlTextDidChange:) name: UKFileWatcherDeleteNotification object: NULL];    
+	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self selector: @selector(scriptFileChanged:) name: UKFileWatcherWriteNotification object: NULL];
+    
 	//populate script type menu
 	[scriptTypePopupMenu addItemsWithTitles: [ScriptAnalyser interpreterDisplayNames]];
 	
@@ -260,6 +262,16 @@
 	[window setTitle: PROGRAM_NAME];
 }
 
+- (void)scriptFileChanged:(NSNotification *)aNotification
+{
+    if (![[NSUserDefaults standardUserDefaults] boolForKey: @"CreateOnScriptChange"])
+        return;
+    
+    NSString *appBundleName = [NSString stringWithFormat: @"%@.app", [appNameTextField stringValue]];
+    NSString *destPath = [[[scriptPathTextField stringValue] stringByDeletingLastPathComponent] stringByAppendingPathComponent: appBundleName];
+    [self createApplication: destPath overwrite: YES];
+}
+
 #pragma mark Create
 
 /*********************************************************************
@@ -304,31 +316,37 @@
 		return;
 	
 	//else, we go ahead with creating the application
-	[NSTimer scheduledTimerWithTimeInterval: 0.0001 target: self selector:@selector(createApplication:) userInfo: [sPanel filename] repeats: NO];
+	[NSTimer scheduledTimerWithTimeInterval: 0.0001 target: self selector:@selector(createApplicationFromTimer:) userInfo: [sPanel filename] repeats: NO];
 }
 
 - (void)creationStatusUpdated: (NSNotification *)aNotification
 {
-    [progressDialogStatusLabel setStringValue:[aNotification object]];
+    [progressDialogStatusLabel setStringValue: [aNotification object]];
     [[progressDialogStatusLabel window] display];
 }
 
-- (BOOL)createApplication: (NSTimer *)theTimer
+- (BOOL)createApplicationFromTimer: (NSTimer *)theTimer
 {
-	BOOL overwrite = NO;
+    return [self createApplication: [theTimer userInfo] overWrite: NO];
+}
+
+- (BOOL)createApplication: (NSString *)destination overwrite: (BOOL)overwrite
+{
     
     [[NSNotificationCenter defaultCenter] addObserver: self
 											 selector: @selector(creationStatusUpdated:)
 												 name: @"PlatypusAppSpecCreationNotification"
 											   object: NULL];
 	
+    
+    
 	// we begin by making sure destination path ends in .app
-	NSString *appPath = [theTimer userInfo];
+	NSString *appPath = destination;
 	if (![appPath hasSuffix:@".app"])
 		appPath = [appPath stringByAppendingString:@".app"];
 	
 	//check if app already exists, and if so, prompt if to replace
-	if ([[NSFileManager defaultManager] fileExistsAtPath: appPath])
+	if (!overwrite && [[NSFileManager defaultManager] fileExistsAtPath: appPath])
 	{
 		overwrite = [PlatypusUtility proceedWarning: @"Application already exists" subText: @"An application with this name already exists in the location you specified.  Do you want to overwrite it?" withAction: @"Overwrite"];
 		if (!overwrite)
@@ -385,10 +403,8 @@
 
     // open newly create app, if prefs say so
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"OpenApplicationWhenCreated"])
-    {
-        NSLog(@"Launching");
 		[[NSWorkspace sharedWorkspace] launchApplication: appPath];
-    }
+
 	[developmentVersionCheckbox setIntValue: 0];
 	[optimizeApplicationCheckbox setIntValue: 0];
 	
@@ -688,7 +704,7 @@
 - (void)controlTextDidChange:(NSNotification *)aNotification
 {
 	BOOL	isDir, exists = NO, validName = NO;
-	
+    
 	//app name or script path was changed
 	if ([aNotification object] == NULL || [aNotification object] == appNameTextField || [aNotification object] == scriptPathTextField)
 	{
@@ -697,7 +713,8 @@
 		
 		if ([scriptPathTextField hasValidPath])
 		{
-			// add watcher that tracks whether it exists
+			// add watcher that tracks whether it exists or is edited
+            [[UKKQueue sharedFileWatcher] removeAllPathsFromQueue];
 			[[UKKQueue sharedFileWatcher] addPathToQueue:  [scriptPathTextField stringValue]];
 			exists = YES;
 		}

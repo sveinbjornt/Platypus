@@ -43,6 +43,7 @@
 	[defaultAuthorTextField setStringValue: [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultAuthor"]];
 	[revealAppCheckbox setState: [[NSUserDefaults standardUserDefaults] boolForKey:@"RevealApplicationWhenCreated"]];
     [openAppCheckbox setState: [[NSUserDefaults standardUserDefaults] boolForKey: @"OpenApplicationWhenCreated"]];
+    [createOnScriptChangeCheckbox setState: [[NSUserDefaults standardUserDefaults] boolForKey: @"CreateOnScriptChange"]];
     
 	//set icons for editor menu
 	[self setIconsForEditorMenu];
@@ -101,8 +102,12 @@
 	//author
 	[[NSUserDefaults standardUserDefaults] setObject: [defaultAuthorTextField stringValue]  forKey:@"DefaultAuthor"];
 
+    // create on script change
+    [[NSUserDefaults standardUserDefaults] setBool: [createOnScriptChangeCheckbox state]  forKey:@"CreateOnScriptChange"];
+    
 	// reveal
 	[[NSUserDefaults standardUserDefaults] setBool: [revealAppCheckbox state]  forKey:@"RevealApplicationWhenCreated"];
+    
     // open
     [[NSUserDefaults standardUserDefaults] setBool: [openAppCheckbox state]  forKey:@"OpenApplicationWhenCreated"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -122,6 +127,7 @@
 {
 	[revealAppCheckbox setState: NO];
     [openAppCheckbox setState: NO];
+    [createOnScriptChangeCheckbox setState: NO];
 	[defaultEditorMenu setTitle: DEFAULT_EDITOR];
 	[defaultTextEncodingPopupButton selectItemWithTag: DEFAULT_OUTPUT_TXT_ENCODING];
 	[defaultAuthorTextField setStringValue: NSFullUserName()];
