@@ -116,6 +116,8 @@
         <ul>
             <li><a href="#81">Can I use Platypus to create proprietary software?</a></li>
             <li><a href="#82">My script's output isn't being shown until the script is done</a></li>
+			<li><a href="#83">Does Platypus support localizations?</a></li>
+			<li><a href="#84">How can I pass specific arguments to my script?</a></li>
         </ul>
     </li>
 </ul>
@@ -605,6 +607,24 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 </div>
 
 <p>For help with other interpreters, Stack Overflow is your friend.</p>
+
+<br>
+<br>
+
+<h3 id="83">Does Platypus support localizations?</h3>
+
+<p>No.  But if you don't select "Optimize nib file" when creating an app, the Nib in the application bundle will be editable.  That way, you can localize it manually if you want to.  Localization support is <em>very low</em> on the feature priority list, since it is boring and currently circumventable using the method outlined.</p>
+	
+<br>
+<br>
+    
+<h3 id="84">How can I pass specific arguments to my script?</h3>
+
+<p>There is no way to pass direct arguments to your script via the Platypus interface.  If your script requires certain (non-file) parameters, you can either change the logic of the script itself or, alternately, bundle your script with a shell script which runs it.  To illustrate, let's say we have a Perl script called <code>myScript.pl</code> which requires the parameter <code>--force</code>.  Then we could bundle the perl script into the application using the Bundled Files interface, and then create the following shell script:</p>
+
+<div class="codeblock">
+/usr/bin/perl myScript.pl --force
+</div>  
 
 <br>
 <br>

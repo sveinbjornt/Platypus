@@ -36,16 +36,11 @@ For 4.5
     * Command line tool now defaults to compiling nib file (can be disabled with -l flag)
     * Command line tool is now more intelligent about automatically detecting script type, interpreter, autogenerating bundle identifier, etc.
      Command line tool parameters change from '-c scriptPath [appName]' to 'scriptPath [appName]'
-
-TODO:
-    
     * More intelligent automatic app name generation based on script filename  
-            * Write string parsing function which inserts spaces before upper chars
-    * Launch app on script file modification
-    * Localization question in documentation
-    * Arguments to script itself in documentation
 
-    * Support for creating bundle with JUST executable script, no app binary wrapper
+TODO:    
+    * Launch app on script file modification
+
 
 For 4.4
 	* New output mode: "Droplet"

@@ -69,7 +69,7 @@ int main (int argc, const char * argv[])
 	BOOL                loadedProfile       = FALSE;
 	int					optch;
     static char			optstring[]         = OPT_STRING;
-	
+	    
     while ( (optch = getopt(argc, (char * const *)argv, optstring)) != -1)
     {
         switch(optch)

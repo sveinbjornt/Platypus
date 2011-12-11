@@ -7,3 +7,4 @@ Long term feature roadmap:
     * Rethink and redesign the interface? It's a bit cluttered and could do with some Lionising
     * Create TextMate plugin
     * Restore "icon from image" functionality in command line tool
+    * Support for creating bundle with JUST executable script, no app binary wrapper
