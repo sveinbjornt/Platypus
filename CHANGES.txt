@@ -4,7 +4,8 @@ For 4.5
     * New Examples menu with a number example profiles, scripts and presets demonstrating Platypus features
     * Support for accepting dragged text snippets as arguments to script	
     * Platypus now displays a progress bar with status messages while creating applications
-	* Due to popular demand, "droppable" apps now run script on launch, not just when files are dropped
+    * New "Create app on script file change" option, which automatically creates and launches a Platypus application when you save changes to script.
+    * Due to popular demand, "droppable" apps now run script on launch, not just when files are dropped
     * "Open in Editor" option for bundled files
     * Interface refactored to be always in what was previously "Advanced mode"
     * Better handling of icons for apps
@@ -37,9 +38,7 @@ For 4.5
     * Command line tool is now more intelligent about automatically detecting script type, interpreter, autogenerating bundle identifier, etc.
      Command line tool parameters change from '-c scriptPath [appName]' to 'scriptPath [appName]'
     * More intelligent automatic app name generation based on script filename  
-
-TODO:    
-    * Launch app on script file modification
+    
 
 
 For 4.4

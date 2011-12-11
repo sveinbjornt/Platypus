@@ -40,6 +40,7 @@
 +(PlatypusAppSpec *)profileWithDefaults;
 +(PlatypusAppSpec *)profileWithDictionary: (NSDictionary *)dict;
 +(PlatypusAppSpec *)profileFromFile: (NSString *)filePath;
++(PlatypusAppSpec *)profileWithDefaultsFromScript: (NSString *)scriptPath;
 -(void)setDefaults;
 -(void)setDefaultsForScript: (NSString *)scriptPath;
 -(BOOL)create;

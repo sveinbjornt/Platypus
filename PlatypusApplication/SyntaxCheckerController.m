@@ -37,9 +37,7 @@
 {	
 	[self loadWindow];
 	[scriptPathTextField setStringValue: path];
-
 	NSString *reportText = [ScriptAnalyser checkSyntaxOfFile: path withInterpreter: interpreter];
-	
 	[textView setString: reportText];
 	
 	[NSApp beginSheet: [self window]

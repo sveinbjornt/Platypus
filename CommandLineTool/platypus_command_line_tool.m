@@ -498,8 +498,8 @@ int main (int argc, const char * argv[])
     // create the app from spec
     if (![appSpec verify] || ![appSpec create])
     {
-        [appSpec release];
         NSPrintErr(@"Error: %@", [appSpec error]);
+        [appSpec release];
         exit(1);
     }
     

@@ -180,7 +180,7 @@
 	NSFileHandle	*readHandle;
 	
 	if (![[NSFileManager defaultManager] fileExistsAtPath: scriptPath ])//make sure it exists
-		return nil;
+		return @"File does not exist";
 	
 	if (interpreter == nil || [interpreter isEqualToString: @""])
 		interpreter = [self determineInterpreterForScriptFile: scriptPath];
@@ -209,15 +209,15 @@
 	
     task = [[NSTask alloc] init];
     
-	// OK, so interpreter supports syntax checking
 	[task setLaunchPath: interpreter];
+    [task setArguments: args];
 	
 	 //direct the output of the task into a file handle for reading
 	 [task setStandardOutput: outputPipe];
 	 [task setStandardError: outputPipe];
 	 readHandle = [outputPipe fileHandleForReading];
-	 
-	 //launch task
+
+    //launch task
 	 [task launch];
 	 [task waitUntilExit];
 	

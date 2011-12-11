@@ -37,7 +37,6 @@
 		F48294A3122C129400094A1B /* SyntaxCheckerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48294A1122C129400094A1B /* SyntaxCheckerController.m */; };
 		F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
-		F4876F4D141D58BB00A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F4C141D58BB00A428CC /* MainMenu.xib */; };
 		F48B7B8111F7666600351575 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
@@ -48,7 +47,6 @@
 		F48B7BA411F7672700351575 /* script in Resources */ = {isa = PBXBuildFile; fileRef = F48B7BA111F7672700351575 /* script */; };
 		F48B7BAB11F7675900351575 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48B7BAA11F7675900351575 /* WebKit.framework */; };
 		F4B5DE2E1491668600C43901 /* platypus_clt in Resources */ = {isa = PBXBuildFile; fileRef = F4B5DE2D1491668600C43901 /* platypus_clt */; };
-		F4B5DE33149166DD00C43901 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4B5DE32149166DD00C43901 /* ScriptExec */; };
 		F4B5DE4114919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
 		F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
@@ -59,6 +57,7 @@
 		F4C8B45C124C450C00397392 /* Editor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B457124C450C00397392 /* Editor.xib */; };
 		F4C8B45D124C450C00397392 /* ShellCommandWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B458124C450C00397392 /* ShellCommandWindow.xib */; };
 		F4C8B45E124C450C00397392 /* SyntaxChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B459124C450C00397392 /* SyntaxChecker.xib */; };
+		F4CAE8CE149558DD00950354 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4CAE8CD149558DC00950354 /* ScriptExec */; };
 		F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074711F629930043764E /* InstallCommandLineTool.sh */; };
 		F4DC074B11F629930043764E /* pycheck.py in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074811F629930043764E /* pycheck.py */; };
 		F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074911F629930043764E /* UninstallCommandLineTool.sh */; };
@@ -147,7 +146,6 @@
 		F48294A0122C129400094A1B /* SyntaxCheckerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyntaxCheckerController.h; path = PlatypusApplication/SyntaxCheckerController.h; sourceTree = "<group>"; };
 		F48294A1122C129400094A1B /* SyntaxCheckerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyntaxCheckerController.m; path = PlatypusApplication/SyntaxCheckerController.m; sourceTree = "<group>"; };
 		F4876F45141D4A3900A428CC /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ScriptExec/MainMenu.xib; sourceTree = "<group>"; };
-		F4876F4C141D58BB00A428CC /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ScriptExec/MainMenu.xib; sourceTree = "<group>"; };
 		F48B774111F7661C00351575 /* ScriptExec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptExec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48B7B9011F766E600351575 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ScriptExec/main.m; sourceTree = "<group>"; };
 		F48B7B9111F766E600351575 /* ScriptExecController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecController.h; path = ScriptExec/ScriptExecController.h; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 		F48B7C7B11F7691600351575 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ScriptExec/Info.plist; sourceTree = "<group>"; };
 		F4A4338B0E04C962000523E7 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		F4B5DE2D1491668600C43901 /* platypus_clt */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = platypus_clt; path = build/Platypus/Build/Products/Deployment/platypus_clt; sourceTree = "<group>"; };
-		F4B5DE32149166DD00C43901 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Platypus/Build/Products/Deployment/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 		F4B5DE3F14919FF500C43901 /* PlatypusUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusUtility.h; path = Shared/PlatypusUtility.h; sourceTree = "<group>"; };
 		F4B5DE4014919FF500C43901 /* PlatypusUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusUtility.m; path = Shared/PlatypusUtility.m; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
@@ -176,6 +173,7 @@
 		F4C8B457124C450C00397392 /* Editor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Editor.xib; path = PlatypusApplication/Editor.xib; sourceTree = "<group>"; };
 		F4C8B458124C450C00397392 /* ShellCommandWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShellCommandWindow.xib; path = PlatypusApplication/ShellCommandWindow.xib; sourceTree = "<group>"; };
 		F4C8B459124C450C00397392 /* SyntaxChecker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SyntaxChecker.xib; path = PlatypusApplication/SyntaxChecker.xib; sourceTree = "<group>"; };
+		F4CAE8CD149558DC00950354 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Platypus/Build/Products/Deployment/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 		F4D6DBC513C50F3E0067B136 /* NOTES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES.txt; sourceTree = SOURCE_ROOT; };
 		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074811F629930043764E /* pycheck.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = pycheck.py; sourceTree = "<group>"; };
@@ -321,13 +319,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F4B5DE32149166DD00C43901 /* ScriptExec */,
+				F4CAE8CD149558DC00950354 /* ScriptExec */,
 				F4B5DE2D1491668600C43901 /* platypus_clt */,
 				F471ED21122DF2D6001F4761 /* Credits.html */,
 				F4C8B455124C450C00397392 /* Platypus.xib */,
 				F4C8B456124C450C00397392 /* Preferences.xib */,
 				F4C8B457124C450C00397392 /* Editor.xib */,
-				F4876F4C141D58BB00A428CC /* MainMenu.xib */,
 				F4C8B458124C450C00397392 /* ShellCommandWindow.xib */,
 				F4C8B459124C450C00397392 /* SyntaxChecker.xib */,
 				F4185E5811FC57AB0027C8D7 /* Info.plist */,
@@ -749,9 +746,8 @@
 				F4C8B45E124C450C00397392 /* SyntaxChecker.xib in Resources */,
 				F46EF85113C3F36900E4C0E4 /* Examples in Resources */,
 				F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */,
-				F4876F4D141D58BB00A428CC /* MainMenu.xib in Resources */,
 				F4B5DE2E1491668600C43901 /* platypus_clt in Resources */,
-				F4B5DE33149166DD00C43901 /* ScriptExec in Resources */,
+				F4CAE8CE149558DD00950354 /* ScriptExec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,7 +1006,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBC_FLATTEN_NIBS = NO;
+				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				LINKER_DISPLAYS_MANGLED_NAMES = NO;
@@ -1046,7 +1042,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBC_FLATTEN_NIBS = NO;
+				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
@@ -1072,7 +1068,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GENERATE_PKGINFO_FILE = NO;
-				IBC_FLATTEN_NIBS = YES;
+				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = xml;
 				INSTALL_PATH = "";
@@ -1094,7 +1090,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_UNROLL_LOOPS = NO;
 				GENERATE_PKGINFO_FILE = NO;
-				IBC_FLATTEN_NIBS = YES;
+				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INSTALL_PATH = "";
@@ -1113,7 +1109,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GENERATE_PKGINFO_FILE = NO;
-				IBC_FLATTEN_NIBS = YES;
+				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
 				INSTALL_PATH = "";
 				PRODUCT_NAME = ScriptExec;

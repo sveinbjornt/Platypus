@@ -87,6 +87,11 @@
 	return [[[PlatypusAppSpec alloc] initFromFile: filePath] autorelease];
 }
 
++(PlatypusAppSpec *)profileWithDefaultsFromScript: (NSString *)scriptPath
+{
+	return [[[PlatypusAppSpec alloc] initWithDefaultsFromScript: scriptPath] autorelease];
+}
+
 -(void)dealloc
 {
 	[properties release];
@@ -189,8 +194,8 @@
     NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];
     NSString *destPath = [NSString stringWithFormat: @"%@/%@.app", parentFolder, appName];
     [self setProperty: destPath forKey: @"Destination"];
+    [self setProperty: [PlatypusUtility standardBundleIdForAppName: appName usingDefaults: NO] forKey: @"Identifier"];
 }
-
 
 /****************************************
  This function creates the Platypus app
@@ -493,7 +498,7 @@
 		return 0;
 	}
 	
-	if (![[NSFileManager defaultManager] fileExistsAtPath: [properties objectForKey: @"NibPath"] isDirectory:&isDir] || !isDir)
+	if (![[NSFileManager defaultManager] fileExistsAtPath: [properties objectForKey: @"NibPath"] isDirectory:&isDir])
 	{
 		error = [NSString stringWithFormat: @"Nib not found at path '%@'", [properties objectForKey: @"NibPath"]];
 		return 0;

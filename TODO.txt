@@ -1,10 +1,11 @@
 Long term feature roadmap:
 
+    * Ability to add arbitrary arguments to script itself, not just interpreter
     * More bidirectional communication
     * Icon editable for file types
     * Create Platypus tutorial videos
-    * Rewrite nasty, old code in STFileList and derivatives
-    * Rethink and redesign the interface? It's a bit cluttered and could do with some Lionising
+    * Rewrite nasty old code in STFileList and derivatives
+    * Rethink and redesign the interface? It's a bit cluttered and could do with some Lionizing
     * Create TextMate plugin
     * Restore "icon from image" functionality in command line tool
     * Support for creating bundle with JUST executable script, no app binary wrapper
