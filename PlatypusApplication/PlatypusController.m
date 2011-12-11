@@ -327,18 +327,15 @@
 
 - (BOOL)createApplicationFromTimer: (NSTimer *)theTimer
 {
-    return [self createApplication: [theTimer userInfo] overWrite: NO];
+    return [self createApplication: [theTimer userInfo] overwrite: NO];
 }
 
 - (BOOL)createApplication: (NSString *)destination overwrite: (BOOL)overwrite
 {
-    
     [[NSNotificationCenter defaultCenter] addObserver: self
 											 selector: @selector(creationStatusUpdated:)
 												 name: @"PlatypusAppSpecCreationNotification"
 											   object: NULL];
-	
-    
     
 	// we begin by making sure destination path ends in .app
 	NSString *appPath = destination;

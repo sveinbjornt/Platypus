@@ -44,7 +44,8 @@
 	[self loadWindow];
 	[scriptPathTextField setStringValue: path];
 	[textView setString: str];
-	
+    mainWindow = theWindow;
+    
 	[NSApp beginSheet: [self window]
 	   modalForWindow: theWindow 
 		modalDelegate: self
@@ -75,10 +76,10 @@
 
 - (IBAction)checkSyntax: (id)sender
 {
-	[[[SyntaxCheckerController alloc] initWithWindowNibName: @"SyntaxChecker"] 
-				showSyntaxCheckerForFile: [scriptPathTextField stringValue] 
+	SyntaxCheckerController *syntax = [[SyntaxCheckerController alloc] initWithWindowNibName: @"SyntaxChecker"];
+    [syntax	showSyntaxCheckerForFile: [scriptPathTextField stringValue] 
 						 withInterpreter: nil 
-								  window: [self window]];
+								  window: mainWindow];
 }
 
 - (IBAction)revealInFinder: (id)sender

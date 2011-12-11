@@ -24,6 +24,7 @@
 
 @interface SyntaxCheckerController : NSWindowController
 {
+    IBOutlet id platypusWindow;
 	IBOutlet id scriptPathTextField;
 	IBOutlet id textView;
 }
