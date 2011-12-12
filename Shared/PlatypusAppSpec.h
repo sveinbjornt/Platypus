@@ -45,7 +45,9 @@
 -(void)setDefaultsForScript: (NSString *)scriptPath;
 -(BOOL)create;
 -(BOOL)verify;
--(void)dump: (NSString *)filePath;
+-(void)report: (NSString *)str;
+-(void)dumpToFile: (NSString *)filePath;
+-(void)dump;
 -(NSString *)commandString;
 -(void)setProperty: (id)property forKey: (NSString *)theKey;
 -(id)propertyForKey: (NSString *)theKey;

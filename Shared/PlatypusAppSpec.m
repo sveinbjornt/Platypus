@@ -231,14 +231,14 @@
             return 0;
         }
         else
-            NSLog(@"Overwriting app at path %@", [properties objectForKey: @"Destination"]);
+            [self report: [NSString stringWithFormat: @"Overwriting app at path %@", [properties objectForKey: @"Destination"]]];
 	}
 		
 	////////////////////////// CREATE THE FOLDER HIERARCHY /////////////////////////////////////
 	
 	// we begin by creating the application bundle at temp path
 	
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Creating app bundle hierarchy"];
+    [self report: @"Creating app bundle hierarchy"];
     
 	//Application.app bundle
 	tmpPath = [tmpPath stringByAppendingString: [[properties objectForKey: @"Destination"] lastPathComponent]];
@@ -258,7 +258,7 @@
 			
 	////////////////////////// COPY FILES TO THE APP BUNDLE //////////////////////////////////
 	
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Copying executable to bundle"];
+    [self report: @"Copying executable to bundle"];
     
 	//copy exec file
 	//.app/Contents/Resources/MacOS/ScriptExec
@@ -267,7 +267,7 @@
 	execDestinationPath = [execDestinationPath stringByAppendingString: [properties objectForKey: @"Name"]]; 
 	[fileManager copyPath:execPath toPath:execDestinationPath handler:nil];
 	
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Copying nib file to bundle"];
+    [self report: @"Copying nib file to bundle"];
     
 	//copy nib file to app bundle
 	//.app/Contents/Resources/MainMenu.nib
@@ -277,7 +277,7 @@
 	// if optimize application is set, we see if we can compile the nib file
 	if ([[properties objectForKey: @"OptimizeApplication"] boolValue] == YES && [fileManager fileExistsAtPath: IBTOOL_PATH])
 	{
-        [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Optimizing nib file"];
+        [self report: @"Optimizing nib file"];
         
 		NSTask *ibToolTask = [[NSTask alloc] init];
 		[ibToolTask setLaunchPath: IBTOOL_PATH];
@@ -289,7 +289,7 @@
 	
 	// create script file in app bundle
 	//.app/Contents/Resources/script
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Copying script"];
+    [self report: @"Copying script"];
     
 	if ([[properties objectForKey: @"Secure"] boolValue])
 		b_enc_script = [NSData dataWithContentsOfFile: [properties objectForKey: @"ScriptPath"]];
@@ -305,7 +305,7 @@
 		
 	//create AppSettings.plist file
 	//.app/Contents/Resources/AppSettings.plist
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Creating property lists"];
+    [self report: @"Creating property lists"];
 	appSettingsPlist = [NSMutableDictionary dictionaryWithCapacity: PROGRAM_MAX_LIST_ITEMS];
 	[appSettingsPlist setObject: [properties objectForKey: @"AppPathAsFirstArg"] forKey: @"AppPathAsFirstArg"];
 	[appSettingsPlist setObject: [properties objectForKey: @"Authentication"] forKey: @"RequiresAdminPrivileges"];
@@ -354,7 +354,7 @@
 	//.app/Contents/Resources/appIcon.icns
     if (![[properties objectForKey: @"IconPath"] isEqualToString: @""])
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Writing icon"];
+        [self report: @"Writing icon"];
         iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
         [fileManager copyPath: [properties objectForKey: @"IconPath"] toPath: iconPath handler: NULL];
     }
@@ -413,7 +413,7 @@
 			
 	//copy files in file list to the Resources folder
 	//.app/Contents/Resources/*
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Copying bundled files"];
+    [self report: @"Copying bundled files"];
     
 	for (i = 0; i < [[properties objectForKey: @"BundledFiles"] count]; i++)
 	{
@@ -422,9 +422,7 @@
 		bundledFileDestPath = [bundledFileDestPath stringByAppendingString: [bundledFilePath lastPathComponent]];
 		
         NSString *srcFileName = [bundledFilePath lastPathComponent];
-        [[NSNotificationCenter defaultCenter] 
-                postNotificationName: @"PlatypusAppSpecCreationNotification" 
-         object: [NSString stringWithFormat: @"Copying %@ to bundle", srcFileName]];
+        [self report: [NSString stringWithFormat: @"Copying %@ to bundle", srcFileName]];
         
 		// if it's a development version, we just symlink it
 		if ([[properties objectForKey: @"DevelopmentVersion"] boolValue] == YES)
@@ -437,7 +435,7 @@
 	
 	// we've created the application bundle in the temporary directory
 	// now it's time to move it to the destination specified by the user
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Moving app to destination"];
+    [self report: @"Moving app to destination"];
 	
 	// first, let's see if there's anything there.  If we have override set on, we just delete that stuff.
 	if ([fileManager fileExistsAtPath: [properties objectForKey: @"Destination"]] && [[properties objectForKey: @"DestinationOverride"] boolValue])
@@ -460,12 +458,18 @@
 		return 0;
 	}
     
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: @"Done"];
+    [self report: @"Done"];
 
 	// notify workspace that the file changed
 	[[NSWorkspace sharedWorkspace] noteFileSystemChanged:  [properties objectForKey: @"Destination"]];
 	
 	return 1;
+}
+
+-(void)report: (NSString *)str
+{
+    fprintf(stderr, "%s\n", [str UTF8String]);
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: str];
 }
 
 /************************
@@ -531,9 +535,14 @@
  Dump properties array to a file
 ************************/
 
--(void)dump: (NSString *)filePath
+-(void)dumpToFile: (NSString *)filePath
 {
 	[properties writeToFile: filePath atomically: YES];
+}
+
+-(void)dump
+{
+    fprintf(stdout, "%s\n", [[properties description] UTF8String]);
 }
 
 -(NSString *)commandString
