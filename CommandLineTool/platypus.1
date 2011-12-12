@@ -40,7 +40,8 @@ The following flags are supported (and are parsed in the order in which they are
 Create profile file as output instead of creating an application bundle.  When you 
 select this option, the "destinationPath" paramater (i.e. the final parameter to the program) should 
 have a .platypus suffix.  Please note that in order to create reusable profiles, this option 
-requires that all paths to bundled files, icons etc. be absolute.
+requires that all paths to bundled files, icons etc. be absolute.  If you provide '-' as the output
+file, the profile property list will be dumped to STDOUT.
 .It Fl P Ar [profile]
 Loads all settings from a Platypus profile file.  You will still need to specify a destination path 
 for the application.  It is possible to override individual settings in the profile with subsequent
@@ -123,8 +124,7 @@ This option causes the application to run in the background.  Its icon will not 
 the Dock.  This is done by registering the application with the Finder as a user interface element (LSUIElement).
 .Pp
 .It Fl R
-This option makes the application remain running after the script has been executed.  
-It can then later be quit by the user via regular means (i.e. the Quit menu item).
+This option makes the application quit after the script has been executed.  
 .Pp
 .It Fl X Ar [suffixes]
 Only appropriate if you are using the -D option. This flag allows you to specify the file suffixes

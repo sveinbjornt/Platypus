@@ -564,7 +564,7 @@
 		checkboxParamStr = [checkboxParamStr stringByAppendingString: @"D"];
 	if ([[properties objectForKey: @"ShowInDock"] boolValue])
 		checkboxParamStr = [checkboxParamStr stringByAppendingString: @"B"];
-	if ([[properties objectForKey: @"RemainRunning"] boolValue])
+	if (![[properties objectForKey: @"RemainRunning"] boolValue])
 		checkboxParamStr = [checkboxParamStr stringByAppendingString: @"R"];
 	
 	if ([checkboxParamStr length] != 0)

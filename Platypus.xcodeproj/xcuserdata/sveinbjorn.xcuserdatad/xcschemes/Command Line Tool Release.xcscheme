@@ -4,6 +4,15 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "echo $PWD &gt; /tmp/dirdir&#10;&#10;groff -mandoc CommandLineTool/platypus.1 | pstopdf -i -o CommandLineTool/platypus.man.pdf&#10;">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
