@@ -213,7 +213,7 @@
 	// free the auth ref
 	AuthorizationFree(authorizationRef, kAuthorizationFlagDefaults);
 	
-	// we return if execution failed
+	// we return err if execution failed
 	if (err != errAuthorizationSuccess) 
 		return err;
 	else
@@ -258,6 +258,18 @@
 		[[NSNotificationCenter defaultCenter] postNotificationName: STPrivilegedTaskDidTerminateNotification object:self];
 		[checkStatusTimer invalidate];
 	}
+}
+
+#pragma mark -
+
+- (NSString *)description
+{
+    NSArray *args = [self arguments];
+    NSString *cmd = [self launchPath];
+    int i;
+    for (i = 0; i < [args count]; i++)
+        cmd = [cmd stringByAppendingFormat: @" %@", [args objectAtIndex: i]];
+    return [[super description] stringByAppendingFormat: @" %@", cmd];
 }
 
 @end

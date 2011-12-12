@@ -1,3 +1,7 @@
+For 4.6
+    * Command line tool now supports dumping profile property lists to stdout
+    * Fixed bug in shell command generator which errenously inversed the logic of adding the -R option
+
 For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
     * Dropped PowerPC support. All binaries are now 32-bit/64-bit Intel only

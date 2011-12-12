@@ -279,7 +279,7 @@ int main (int argc, const char * argv[])
                 [properties setObject:  [NSNumber numberWithBool: YES] forKey: @"ShowInDock"];				
                 break;
             case 'R':
-                [properties setObject:  [NSNumber numberWithBool: YES] forKey: @"RemainRunning"];
+                [properties setObject:  [NSNumber numberWithBool: NO] forKey: @"RemainRunning"];
                 break;
                 
             // Suffixes
@@ -436,16 +436,26 @@ int main (int argc, const char * argv[])
     
     if (createProfile)
 	{
+        BOOL printStdout = FALSE;
         destPath = [remainingArgs objectAtIndex: 0];
         
         // append .platypus suffix to destination file if not user-specified
-        if (![destPath hasSuffix: @".platypus"])
+        if ([destPath hasSuffix: @"-"])
+            printStdout = TRUE;
+        else if (![destPath hasSuffix: @".platypus"])
+        {
+            NSPrintErr(@"Warning: Appending .platypus extension");
             destPath = [destPath stringByAppendingString: @".platypus"];
-        
+        }
 		// we then dump the profile dictionary to path and exit
         appSpec = [[PlatypusAppSpec alloc] initWithDefaults];
         [appSpec addProperties: properties];
-		[appSpec dump: destPath];
+        
+        if (printStdout)
+            [appSpec dump];
+        else
+            [appSpec dumpToFile: destPath];
+        
         [appSpec release];
         exit(0);
 	}
@@ -567,7 +577,7 @@ Options:\n\
 	-S			Secure bundled script\n\
 	-D			App accepts dropped files as argument to script\n\
 	-B			App runs in background (LSUI Element)\n\
-	-R			App remains running after executing script\n\
+	-R			App quits after executing script\n\
 \n\
 	-b [hexColor]		Set background color of text output (e.g. #ffffff)\n\
 	-g [hexColor]		Set foreground color of text output (e.g. #000000)\n\
