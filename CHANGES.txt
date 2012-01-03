@@ -1,6 +1,19 @@
 For 4.6
     * Command line tool now supports dumping profile property lists to stdout
     * Fixed bug in shell command generator which errenously inversed the logic of adding the -R option
+    TODO:  Support reading script from STDIN in command line tool
+    TODO:  Support for arguments to script in Params
+    TODO:  Fix spelling errors in documentation
+    TODO:  Run all images through smushit
+    TODO:  Fix buttons for bundled files list
+    TODO:  Convert all TIFFs to PNGs
+    TODO:  Update documentation, remove refs to old examples, add a few more tutorials on installers etc.
+    TODO:  Create Platypus tutorial videos
+    TODO:  Fix STPathTextField
+    TODO:  Restore "icon from image" functionality in command line tool
+    TODO:  Support for creating bundle with JUST executable script, no app binary wrapper
+    TODO:  Uninstaller
+	TODO:  FastDMG example - http://www.tuaw.com/2011/12/30/daily-mac-app-flashmount-quickly-mounts-disk-images/
 
 For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
@@ -42,8 +55,6 @@ For 4.5
     * Command line tool is now more intelligent about automatically detecting script type, interpreter, autogenerating bundle identifier, etc.
      Command line tool parameters change from '-c scriptPath [appName]' to 'scriptPath [appName]'
     * More intelligent automatic app name generation based on script filename  
-    
-
 
 For 4.4
 	* New output mode: "Droplet"
