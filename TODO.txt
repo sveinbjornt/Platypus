@@ -1,5 +1,6 @@
 Long term feature roadmap:
 
+    * Get STDERR output and pid for STPrivilegedTask
     * Ability to add arbitrary arguments to script itself, not just interpreter
     * More bidirectional communication
     * Icon editable for file types
@@ -7,5 +8,4 @@ Long term feature roadmap:
     * Rewrite nasty old code in STFileList and derivatives
     * Rethink and redesign the interface? It's a bit cluttered and could do with some Lionizing
     * Create TextMate plugin
-    * Restore "icon from image" functionality in command line tool
-    * Support for creating bundle with JUST executable script, no app binary wrapper
+    
