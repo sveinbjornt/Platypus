@@ -33,19 +33,19 @@
 #import <Security/Authorization.h>
 #import <Security/AuthorizationTags.h>
 
-#define STPrivilegedTaskDidTerminateNotification	@"STPrivilegedTaskDidTerminateNotification"
-#define TMP_STDERR_TEMPLATE							@".authStderr.XXXXXX"
+#define STPrivilegedTaskDidTerminateNotification        @"STPrivilegedTaskDidTerminateNotification"
+#define TMP_STDERR_TEMPLATE                             @".authStderr.XXXXXX"
 
 @interface STPrivilegedTask : NSObject 
 {
-	NSArray			*arguments;
-	NSString		*cwd;
-	NSString		*launchPath;
-	BOOL			isRunning;
-	pid_t			pid;
-	int				terminationStatus;
-	NSFileHandle	*outputFileHandle;
-	NSTimer			*checkStatusTimer;
+    NSArray         *arguments;
+    NSString        *cwd;
+    NSString        *launchPath;
+    BOOL            isRunning;
+    pid_t           pid;
+    int             terminationStatus;
+    NSFileHandle    *outputFileHandle;
+    NSTimer         *checkStatusTimer;
 }
 -(id)initWithLaunchPath: (NSString *)path;
 -(id)initWithLaunchPath: (NSString *)path arguments:  (NSArray *)args;
@@ -67,11 +67,11 @@
 -(void)waitUntilExit;
 @end
 /*static OSStatus AuthorizationExecuteWithPrivilegesStdErrAndPid (
-																AuthorizationRef authorization,
-																const char *pathToTool,
-																AuthorizationFlags options,
-																char * const *arguments,
-																FILE **communicationsPipe,
-																FILE **errPipe,
-																pid_t* processid
-																);*/
+                                                                AuthorizationRef authorization,
+                                                                const char *pathToTool,
+                                                                AuthorizationFlags options,
+                                                                char * const *arguments,
+                                                                FILE **communicationsPipe,
+                                                                FILE **errPipe,
+                                                                pid_t* processid
+                                                                );*/
