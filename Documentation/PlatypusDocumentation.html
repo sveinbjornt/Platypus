@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
 <!-- 
-     HTML is Copyright (C) 2003-2011 Sveinbjorn Thordarson.  All rights reserved.
+     HTML is Copyright (C) 2003-2012 Sveinbjorn Thordarson.  All rights reserved.
 --> 
 <html> 
 <head> 
@@ -11,7 +11,7 @@
       <meta name="resource-type" content="document"> 
       <meta name="description" lang="en" content="Platypus Documentation"> 
       <meta name="author" lang="en" content="Sveinbjorn Thordarson"> 
-      <meta name="copyright" lang="en" content="(C) 2003-2011 Sveinbjorn Thordarson  All rights reserved."> 
+      <meta name="copyright" lang="en" content="(C) 2003-2012 Sveinbjorn Thordarson  All rights reserved."> 
     <style type="text/css">
     p
     {
@@ -45,7 +45,7 @@
 
 <p>For <strong>version 4.5</strong>.</p>
 
-<p>Last updated Dec 4, 2011, by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
+<p>Last updated on the 4th of January 2012, by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
 
 
 <br>
@@ -117,7 +117,8 @@
             <li><a href="#81">Can I use Platypus to create proprietary software?</a></li>
             <li><a href="#82">My script's output isn't being shown until the script is done</a></li>
 			<li><a href="#83">Does Platypus support localizations?</a></li>
-			<li><a href="#84">How can I pass specific arguments to my script?</a></li>
+			<li><a href="#84">How does my script get the user's environment (e.g. PATH)?</a></li>
+			<li><a href="#85">How can I pass specific arguments to my script?</a></li>
         </ul>
     </li>
 </ul>
@@ -471,7 +472,7 @@ Python: <code>Platypus.app/Contents/Resources/pycheck.py "/path/to/script"</code
 
 <h3>Platypus Profile Format</h3>
 
-<p>The Platypus Profile file format is a Mac OS X property list.  It can be edited using the Property List Editor application that comes with the Mac OS X developer tools.  Of course, the easiest way to edit and generate profiles is using either the Platypus graphical application or command line program.</p>
+<p>The Platypus Profile file format is a Mac OS X <a href="http://en.wikipedia.org/wiki/Property_list">property list</a> in XML format.  It can be edited using the Property List Editor application that comes with the Mac OS X developer tools, or with a plain text editor.</p>
 
 <br>
 <br>
@@ -481,7 +482,7 @@ Python: <code>Platypus.app/Contents/Resources/pycheck.py "/path/to/script"</code
 
 <h2>Examples</h2>
 
-<p>The following examples may be useful in understanding how Platypus works.  These are from 2005.  I haven't had the patience to write up new examples, so these may be somewhat dated given the current status of Platypus development.</p>
+<p>The following examples I wrote up back in 2005 may be useful in understanding how Platypus works.  I haven't had the patience to write up new examples, so these may be somewhat dated given the current status of Platypus development.</p>
 
 <br><br>
 
@@ -593,7 +594,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 
 <h3 id="82">My script's output isn't being shown until the script is done</h3>
 
-<p>You need to set STDOUT to autoflush.  In Perl, this is done with the following command at the start of your script:</p>
+<p>You need to autoflush the script output buffer.  In Perl, this is done with the following command at the start of your script:</p>
 
 <div class="codeblock">
 	$| = 1;
@@ -606,21 +607,28 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 	sys.stdout.flush()
 </div>
 
-<p>For help with other interpreters, Stack Overflow is your friend.</p>
+<p>For help with other interpreters, <a href="http://stackoverflow.com">Stack Overflow</a> is your friend.</p>
 
 <br>
 <br>
 
 <h3 id="83">Does Platypus support localizations?</h3>
 
-<p>No.  But if you don't select "Optimize nib file" when creating an app, the Nib in the application bundle will be editable.  That way, you can localize it manually if you want to.  Localization support is <em>very low</em> on the feature priority list, since it is boring and currently circumventable using the method outlined.</p>
+<p>No.  But if you don't select "Optimize nib file" when creating an app, the nib in the application bundle will be editable.  That way, you can localize it manually if you want to.  Localization support is <em>very low</em> on the feature priority list, since it is an extremely boring feature, and can be dealt with using the method outlined above.</p>
+	
+<br>
+<br>
+
+<h3 id="84">How does my script get the user's environment (e.g. PATH)?</h3>
+
+<p>Assuming that the user's shell is <code>bash</code>, you can set the interpreter to <code>/bin/bash</code> and add the <code>-l</code> flag as an argument to it under "Parameters".  This makes <code>bash</code> act as if it had been invoked as a login shell.  See <code>man bash</code> for details.</p>
 	
 <br>
 <br>
     
-<h3 id="84">How can I pass specific arguments to my script?</h3>
+<h3 id="85">How can I pass specific arguments to my script?</h3>
 
-<p>There is no way to pass direct arguments to your script via the Platypus interface.  If your script requires certain (non-file) parameters, you can either change the logic of the script itself or, alternately, bundle your script with a shell script which runs it.  To illustrate, let's say we have a Perl script called <code>myScript.pl</code> which requires the parameter <code>--force</code>.  Then we could bundle the perl script into the application using the Bundled Files interface, and then create the following shell script:</p>
+<p>There is no way to pass direct arguments to your script via the Platypus interface.  If your script requires certain (non-runtime-specific) parameters, you can either change the logic of the script itself or, alternately, bundle your script with a shell script which runs it.  To illustrate, let's say we have a Perl script called <code>myScript.pl</code> which requires the parameter <code>--force</code>.  Then we could bundle the perl script into the application using the Bundled Files interface, and then create the following shell script:</p>
 
 <div class="codeblock">
 /usr/bin/perl myScript.pl --force
@@ -635,7 +643,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 
 
 
-<p>Copyright &copy; 2003-2011 Sveinbjorn Thordarson
+<p>Copyright &copy; 2003-2012 Sveinbjorn Thordarson
 
 </body>
 </html>
