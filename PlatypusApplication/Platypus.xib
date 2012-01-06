@@ -474,7 +474,7 @@ a5vu4bJ8IE2iBNIgXIJgDAgBCAA1AIAkgmROBcHofwAb6AB8oH3CBelcHooH6CBeYgaAgAAPAQAAAwAA
 AAEAEAAAAQEAAwAAAAEAEAAAAQIAAwAAAAQAAAQ2AQMAAwAAAAEABQAAAQYAAwAAAAEAAgAAAREABAAA
 AAEAAAAIARIAAwAAAAEAAQAAARUAAwAAAAEABAAAARYAAwAAAAEAEAAAARcABAAAAAEAAAN0ARwAAwAA
 AAEAAQAAAT0AAwAAAAEAAgAAAVIAAwAAAAEAAQAAAVMAAwAAAAQAAAQ+h3MABwAAFywAAARGAAAAAAAI
-AAgACAAIAAEAAQABAAEAABcsYXBwbAIQAABtbnRyUkdCIFhZWiAH2wAKABMAEwAXACJhY3NwQVBQTAAA
+AAgACAAIAAEAAQABAAEAABcsYXBwbAIQAABtbnRyUkdCIFhZWiAH3AABAAEACAACACNhY3NwQVBQTAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLWFwcGwAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFkZXNjAAABUAAAAGJkc2NtAAABtAAAAC5jcHJ0AAAB5AAA
 ACR3dHB0AAACCAAAABRyWFlaAAACHAAAABRnWFlaAAACMAAAABRiWFlaAAACRAAAABRyVFJDAAACWAAA
@@ -482,7 +482,7 @@ CAxhYXJnAAAKZAAAACB2Y2d0AAAKhAAABhJuZGluAAAQmAAABj5jaGFkAAAW2AAAACxtbW9kAAAXBAAA
 AChiVFJDAAACWAAACAxnVFJDAAACWAAACAxhYWJnAAAKZAAAACBhYWdnAAAKZAAAACBkZXNjAAAAAAAA
 AAhEaXNwbGF5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbWx1YwAAAAAAAAABAAAADGVuVVMAAAASAAAAHABD
-AG8AbABvAHIAIABMAEMARAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMTEAWFlaIAAA
+AG8AbABvAHIAIABMAEMARAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMTIAWFlaIAAA
 AAAAAPNSAAEAAAABFs9YWVogAAAAAAAAYZwAADaEAAAHTVhZWiAAAAAAAABtlgAAr/wAABiOWFlaIAAA
 AAAAACejAAAZgAAAs1JjdXJ2AAAAAAAABAAAAAAFAAoADwAUABkAHgAjACgALQAyADYAOwBAAEUASgBP
 AFQAWQBeAGMAaABtAHIAdwB8AIEAhgCLAJAAlQCaAJ8AowCoAK0AsgC3ALwAwQDGAMsA0ADVANsA4ADl
@@ -1069,7 +1069,7 @@ AAAAAAAAA</bytes>
 						<object class="NSButton" id="871617782">
 							<reference key="NSNextResponder" ref="705059762"/>
 							<int key="NSvFlags">264</int>
-							<string key="NSFrame">{{615, 162}, {23, 22}}</string>
+							<string key="NSFrame">{{615, 163}, {23, 22}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1021408072"/>
@@ -1080,7 +1080,7 @@ AAAAAAAAA</bytes>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="761351444"/>
 								<reference key="NSControlView" ref="871617782"/>
-								<int key="NSButtonFlags">-2033434369</int>
+								<int key="NSButtonFlags">139215103</int>
 								<int key="NSButtonFlags2">6</int>
 								<object class="NSCustomResource" key="NSNormalImage" id="287173642">
 									<string key="NSClassName">NSImage</string>
@@ -1101,7 +1101,7 @@ AAAAAAAAA</bytes>
 						<object class="NSButton" id="1021408072">
 							<reference key="NSNextResponder" ref="705059762"/>
 							<int key="NSvFlags">264</int>
-							<string key="NSFrame">{{615, 141}, {23, 22}}</string>
+							<string key="NSFrame">{{615, 144}, {23, 22}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="72568408"/>
@@ -1112,7 +1112,7 @@ AAAAAAAAA</bytes>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="761351444"/>
 								<reference key="NSControlView" ref="1021408072"/>
-								<int key="NSButtonFlags">-2033958657</int>
+								<int key="NSButtonFlags">138690815</int>
 								<int key="NSButtonFlags2">6</int>
 								<object class="NSCustomResource" key="NSNormalImage" id="128900300">
 									<string key="NSClassName">NSImage</string>
@@ -12823,17 +12823,21 @@ b2xvciBzaXQgYW1ldA</bytes>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>CLTStatusTextField</string>
+							<string>createOnScriptChangeCheckbox</string>
 							<string>defaultAuthorTextField</string>
 							<string>defaultBundleIdentifierTextField</string>
 							<string>defaultEditorMenu</string>
 							<string>defaultTextEncodingPopupButton</string>
 							<string>installCLTButton</string>
 							<string>installCLTProgressIndicator</string>
+							<string>openAppCheckbox</string>
 							<string>prefsWindow</string>
 							<string>revealAppCheckbox</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -12850,12 +12854,14 @@ b2xvciBzaXQgYW1ldA</bytes>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>CLTStatusTextField</string>
+							<string>createOnScriptChangeCheckbox</string>
 							<string>defaultAuthorTextField</string>
 							<string>defaultBundleIdentifierTextField</string>
 							<string>defaultEditorMenu</string>
 							<string>defaultTextEncodingPopupButton</string>
 							<string>installCLTButton</string>
 							<string>installCLTProgressIndicator</string>
+							<string>openAppCheckbox</string>
 							<string>prefsWindow</string>
 							<string>revealAppCheckbox</string>
 						</object>
@@ -12863,6 +12869,10 @@ b2xvciBzaXQgYW1ldA</bytes>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">CLTStatusTextField</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">createOnScriptChangeCheckbox</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -12887,6 +12897,10 @@ b2xvciBzaXQgYW1ldA</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">installCLTProgressIndicator</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">openAppCheckbox</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -13487,19 +13501,19 @@ b2xvciBzaXQgYW1ldA</bytes>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{23, 22}</string>
-				<string>{23, 22}</string>
-				<string>{22, 22}</string>
-				<string>{22, 22}</string>
+				<string>{23, 20}</string>
+				<string>{23, 20}</string>
+				<string>{22, 20}</string>
+				<string>{22, 20}</string>
 				<string>{9, 8}</string>
 				<string>{7, 2}</string>
 				<string>{15, 15}</string>
 				<string>{512, 512}</string>
 				<string>{16, 16}</string>
-				<string>{23, 22}</string>
-				<string>{23, 22}</string>
-				<string>{22, 22}</string>
-				<string>{22, 22}</string>
+				<string>{23, 20}</string>
+				<string>{23, 20}</string>
+				<string>{22, 20}</string>
+				<string>{22, 20}</string>
 			</object>
 		</object>
 	</data>

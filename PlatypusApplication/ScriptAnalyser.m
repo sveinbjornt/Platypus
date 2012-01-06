@@ -18,6 +18,8 @@
 	return [NSArray arrayWithObjects:			
 	 @"/bin/sh",
      @"/bin/bash",
+     @"/bin/tcsh",
+     @"/bin/zsh",
      @"/usr/bin/env",
 	 @"/usr/bin/perl",
 	 @"/usr/bin/python",
@@ -35,6 +37,8 @@
 	return [NSArray arrayWithObjects:			
 	@"Shell",
     @"Bash",
+    @"Tcsh",
+    @"Zsh",
     @"Env",
 	@"Perl",
 	@"Python",
@@ -81,22 +85,26 @@
 	
 	if ([fileName hasSuffix: @".sh"] || [fileName hasSuffix: @".command"])
 		return [interpreters objectAtIndex: 0];
-    if ([fileName hasSuffix: @".bash"])
+    else if ([fileName hasSuffix: @".bash"])
 		return [interpreters objectAtIndex: 1];
-	else if ([fileName hasSuffix: @".pl"] || [fileName hasSuffix: @".perl"])
+    else if ([fileName hasSuffix: @".tcsh"])
+		return [interpreters objectAtIndex: 2];
+    else if ([fileName hasSuffix: @".zsh"])
 		return [interpreters objectAtIndex: 3];
-	else if ([fileName hasSuffix: @".py"] || [fileName hasSuffix: @".python"] || [fileName hasSuffix: @".objpy"])
-		return [interpreters objectAtIndex: 4];
-	else if ([fileName hasSuffix: @".rb"] || [fileName hasSuffix: @".rbx"])
+	else if ([fileName hasSuffix: @".pl"] || [fileName hasSuffix: @".perl"])
 		return [interpreters objectAtIndex: 5];
-	else if ([fileName hasSuffix: @".scpt"] || [fileName hasSuffix: @".applescript"] || [fileName hasSuffix: @".osa"] || [fileName hasSuffix: @".osascript"])
+	else if ([fileName hasSuffix: @".py"] || [fileName hasSuffix: @".python"] || [fileName hasSuffix: @".objpy"])
 		return [interpreters objectAtIndex: 6];
-	else if ([fileName hasSuffix: @".tcl"])
+	else if ([fileName hasSuffix: @".rb"] || [fileName hasSuffix: @".rbx"] || [fileName hasSuffix: @".ruby"])
 		return [interpreters objectAtIndex: 7];
-	else if ([fileName hasSuffix: @".exp"] || [fileName hasSuffix: @".expect"])
+	else if ([fileName hasSuffix: @".scpt"] || [fileName hasSuffix: @".applescript"] || [fileName hasSuffix: @".osascript"])
 		return [interpreters objectAtIndex: 8];
-	else if ([fileName hasSuffix: @".php"] || [fileName hasSuffix: @".php4"] || [fileName hasSuffix: @".php5"])
+	else if ([fileName hasSuffix: @".tcl"])
 		return [interpreters objectAtIndex: 9];
+	else if ([fileName hasSuffix: @".exp"] || [fileName hasSuffix: @".expect"])
+		return [interpreters objectAtIndex: 10];
+	else if ([fileName hasSuffix: @".php"] || [fileName hasSuffix: @".php4"] || [fileName hasSuffix: @".php5"])
+		return [interpreters objectAtIndex: 11];
 	
 	return @"";
 }
