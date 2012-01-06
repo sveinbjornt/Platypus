@@ -380,9 +380,9 @@
 	
 	totalSizeString = [PlatypusUtility sizeAsHumanReadable: totalSize];
 	if ([self numFiles] > 1)
-		[bundleSizeTextField setStringValue: [NSString stringWithFormat: @"%d items  ( %@ )", [self numFiles], totalSizeString]];
+		[bundleSizeTextField setStringValue: [NSString stringWithFormat: @"%d items, %@", [self numFiles], totalSizeString]];
 	else
-		[bundleSizeTextField setStringValue: [NSString stringWithFormat: @"%d item  ( %@ )", [self numFiles], totalSizeString]];
+		[bundleSizeTextField setStringValue: [NSString stringWithFormat: @"%d item, %@", [self numFiles], totalSizeString]];
 
 	[platypusControl updateEstimatedAppSize];
 }
