@@ -15,9 +15,9 @@
 	<key>Droppable</key>
 	<true/>
 	<key>OutputType</key>
-	<string>Text Window</string>
+	<string>Web View</string>
 	<key>StatusItemDisplayType</key>
-	<string>Icon and Text</string>
+	<string>Text Window</string>
 	<key>StatusItemTitle</key>
 	<string>Item</string>
 	<key>StatusItemIcon</key>
