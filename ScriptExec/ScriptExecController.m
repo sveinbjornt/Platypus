@@ -1,6 +1,6 @@
 /*
     ScriptExec - binary bundled into Platypus-created applications
-    Copyright (C) 2003-2011 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+    Copyright (C)  Sveinbjorn Thordarson <sveinbjornt@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
