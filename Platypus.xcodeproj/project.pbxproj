@@ -10,15 +10,15 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F40F756013C266AE00197499 /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40F755F13C266AE00197499 /* ShellCommandController.m */; };
-		F42003E5078FC1E1002746A1 /* Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F42003DD078FC1E1002746A1 /* Add.tiff */; };
-		F42003E6078FC1E1002746A1 /* Add_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F42003DE078FC1E1002746A1 /* Add_Pressed.tiff */; };
-		F42003E7078FC1E1002746A1 /* Clear.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F42003DF078FC1E1002746A1 /* Clear.tiff */; };
-		F42003E8078FC1E1002746A1 /* Clear_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F42003E0078FC1E1002746A1 /* Clear_Pressed.tiff */; };
-		F42003E9078FC1E1002746A1 /* Remove.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F42003E1078FC1E1002746A1 /* Remove.tiff */; };
-		F42003EA078FC1E1002746A1 /* Remove_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F42003E2078FC1E1002746A1 /* Remove_Pressed.tiff */; };
-		F42003EB078FC1E1002746A1 /* RevealInFinder.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F42003E3078FC1E1002746A1 /* RevealInFinder.tiff */; };
-		F42003EC078FC1E1002746A1 /* RevealInFinder_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F42003E4078FC1E1002746A1 /* RevealInFinder_Pressed.tiff */; };
 		F44402CC1493EED300261B21 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949C122C128200094A1B /* ScriptAnalyser.m */; };
+		F44637A614B6737F00ECF827 /* Add_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F446379E14B6737F00ECF827 /* Add_Pressed.png */; };
+		F44637A714B6737F00ECF827 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = F446379F14B6737F00ECF827 /* Add.png */; };
+		F44637A814B6737F00ECF827 /* Clear_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A014B6737F00ECF827 /* Clear_Pressed.png */; };
+		F44637A914B6737F00ECF827 /* Clear.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A114B6737F00ECF827 /* Clear.png */; };
+		F44637AA14B6737F00ECF827 /* Remove_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A214B6737F00ECF827 /* Remove_Pressed.png */; };
+		F44637AB14B6737F00ECF827 /* Remove.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A314B6737F00ECF827 /* Remove.png */; };
+		F44637AC14B6737F00ECF827 /* RevealInFinder_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A414B6737F00ECF827 /* RevealInFinder_Pressed.png */; };
+		F44637AD14B6737F00ECF827 /* RevealInFinder.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A514B6737F00ECF827 /* RevealInFinder.png */; };
 		F44E001D1229868100CAC9C2 /* PlatypusStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */; };
 		F44E006D12298B7200CAC9C2 /* PlatypusCube.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006812298B7200CAC9C2 /* PlatypusCube.icns */; };
 		F44E006E12298B7200CAC9C2 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */; };
@@ -117,14 +117,14 @@
 		F40F755E13C266AE00197499 /* ShellCommandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShellCommandController.h; path = PlatypusApplication/ShellCommandController.h; sourceTree = "<group>"; };
 		F40F755F13C266AE00197499 /* ShellCommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellCommandController.m; path = PlatypusApplication/ShellCommandController.m; sourceTree = "<group>"; };
 		F4185E5811FC57AB0027C8D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PlatypusApplication/Info.plist; sourceTree = "<group>"; };
-		F42003DD078FC1E1002746A1 /* Add.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add.tiff; sourceTree = "<group>"; };
-		F42003DE078FC1E1002746A1 /* Add_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add_Pressed.tiff; sourceTree = "<group>"; };
-		F42003DF078FC1E1002746A1 /* Clear.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Clear.tiff; sourceTree = "<group>"; };
-		F42003E0078FC1E1002746A1 /* Clear_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Clear_Pressed.tiff; sourceTree = "<group>"; };
-		F42003E1078FC1E1002746A1 /* Remove.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Remove.tiff; sourceTree = "<group>"; };
-		F42003E2078FC1E1002746A1 /* Remove_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Remove_Pressed.tiff; sourceTree = "<group>"; };
-		F42003E3078FC1E1002746A1 /* RevealInFinder.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = RevealInFinder.tiff; sourceTree = "<group>"; };
-		F42003E4078FC1E1002746A1 /* RevealInFinder_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = RevealInFinder_Pressed.tiff; sourceTree = "<group>"; };
+		F446379E14B6737F00ECF827 /* Add_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add_Pressed.png; sourceTree = "<group>"; };
+		F446379F14B6737F00ECF827 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
+		F44637A014B6737F00ECF827 /* Clear_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear_Pressed.png; sourceTree = "<group>"; };
+		F44637A114B6737F00ECF827 /* Clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear.png; sourceTree = "<group>"; };
+		F44637A214B6737F00ECF827 /* Remove_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Remove_Pressed.png; sourceTree = "<group>"; };
+		F44637A314B6737F00ECF827 /* Remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Remove.png; sourceTree = "<group>"; };
+		F44637A414B6737F00ECF827 /* RevealInFinder_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RevealInFinder_Pressed.png; sourceTree = "<group>"; };
+		F44637A514B6737F00ECF827 /* RevealInFinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RevealInFinder.png; sourceTree = "<group>"; };
 		F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlatypusStatusMenuIcon.png; sourceTree = "<group>"; };
 		F44E006812298B7200CAC9C2 /* PlatypusCube.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusCube.icns; sourceTree = "<group>"; };
 		F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusDefault.icns; sourceTree = "<group>"; };
@@ -382,14 +382,14 @@
 		F42003DC078FC1E1002746A1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				F42003DD078FC1E1002746A1 /* Add.tiff */,
-				F42003DE078FC1E1002746A1 /* Add_Pressed.tiff */,
-				F42003DF078FC1E1002746A1 /* Clear.tiff */,
-				F42003E0078FC1E1002746A1 /* Clear_Pressed.tiff */,
-				F42003E1078FC1E1002746A1 /* Remove.tiff */,
-				F42003E2078FC1E1002746A1 /* Remove_Pressed.tiff */,
-				F42003E3078FC1E1002746A1 /* RevealInFinder.tiff */,
-				F42003E4078FC1E1002746A1 /* RevealInFinder_Pressed.tiff */,
+				F446379E14B6737F00ECF827 /* Add_Pressed.png */,
+				F446379F14B6737F00ECF827 /* Add.png */,
+				F44637A014B6737F00ECF827 /* Clear_Pressed.png */,
+				F44637A114B6737F00ECF827 /* Clear.png */,
+				F44637A214B6737F00ECF827 /* Remove_Pressed.png */,
+				F44637A314B6737F00ECF827 /* Remove.png */,
+				F44637A414B6737F00ECF827 /* RevealInFinder_Pressed.png */,
+				F44637A514B6737F00ECF827 /* RevealInFinder.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -713,14 +713,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F42003E5078FC1E1002746A1 /* Add.tiff in Resources */,
-				F42003E6078FC1E1002746A1 /* Add_Pressed.tiff in Resources */,
-				F42003E7078FC1E1002746A1 /* Clear.tiff in Resources */,
-				F42003E8078FC1E1002746A1 /* Clear_Pressed.tiff in Resources */,
-				F42003E9078FC1E1002746A1 /* Remove.tiff in Resources */,
-				F42003EA078FC1E1002746A1 /* Remove_Pressed.tiff in Resources */,
-				F42003EB078FC1E1002746A1 /* RevealInFinder.tiff in Resources */,
-				F42003EC078FC1E1002746A1 /* RevealInFinder_Pressed.tiff in Resources */,
 				F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */,
 				F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */,
 				F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */,
@@ -748,6 +740,14 @@
 				F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */,
 				F4B5DE2E1491668600C43901 /* platypus_clt in Resources */,
 				F4CAE8CE149558DD00950354 /* ScriptExec in Resources */,
+				F44637A614B6737F00ECF827 /* Add_Pressed.png in Resources */,
+				F44637A714B6737F00ECF827 /* Add.png in Resources */,
+				F44637A814B6737F00ECF827 /* Clear_Pressed.png in Resources */,
+				F44637A914B6737F00ECF827 /* Clear.png in Resources */,
+				F44637AA14B6737F00ECF827 /* Remove_Pressed.png in Resources */,
+				F44637AB14B6737F00ECF827 /* Remove.png in Resources */,
+				F44637AC14B6737F00ECF827 /* RevealInFinder_Pressed.png in Resources */,
+				F44637AD14B6737F00ECF827 /* RevealInFinder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

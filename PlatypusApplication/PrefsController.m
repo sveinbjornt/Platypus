@@ -65,7 +65,7 @@
 	{
 		if ([[[defaultEditorMenu itemAtIndex: i] title] isEqualToString: DEFAULT_EDITOR] == YES)
 		{
-			NSImage *icon = [NSImage imageNamed: @"Platypus"];
+			NSImage *icon = [NSImage imageNamed: @"PlatypusAppIcon"];
 			[icon setSize: smallIconSize];
 			[[defaultEditorMenu itemAtIndex: i] setImage: icon];
 		}
