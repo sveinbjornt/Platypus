@@ -4,7 +4,9 @@ For 4.6
     * New FastDMGMounter example
     * New interpreter presets:  zsh, tcsh and ksh
     * Migrated all images to optimized PNGs
+    * It is now possible to save output to a text or HTML file within Platypus-generated applications
 
+    TODO:  Support for attaching icons to file types / suffixes under Droppable options
     TODO:  Support reading script from STDIN in command line tool
     TODO:  Support for arguments to script in Params
     TODO:  Fix spelling errors in documentation

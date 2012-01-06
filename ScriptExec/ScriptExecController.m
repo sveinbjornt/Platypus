@@ -741,6 +741,10 @@
 
 -(void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error 
 {
+    // if this isn't a droppable application, we never add a drop job.  Likewise, if too many jobs already, we ignore.
+	if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
+		return;
+    
     NSString *pboardString = [pboard stringForType:NSStringPboardType];
     
     int ret = [self addDroppedTextJob: pboardString];
@@ -799,7 +803,7 @@
 
 
 /*****************************************************************
- 
+
   Returns whether a given file is accepted by the suffix/types 
   criterion specified in AppSettings.plist
  
@@ -1186,6 +1190,37 @@
 		[progressBarWindow setFrame: winRect display: TRUE animate: TRUE];
 	}
 }
+
+#pragma mark -
+
+// save output in text field to file
+
+- (IBAction)saveToFile: (id)sender
+{
+    if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT)
+        return;
+    
+    NSString *outSuffix = (outputType == PLATYPUS_WEBVIEW_OUTPUT) ? @"html" : @"txt";
+    NSString *outString = [outputTextView string];
+    NSString *fileName = [NSString stringWithFormat: @"%@ Output.%@", appName, outSuffix];
+    
+    NSSavePanel *sPanel = [NSSavePanel savePanel];
+	[sPanel setPrompt: @"Save"];
+	
+	if ([sPanel runModalForDirectory: nil file: fileName] == NSFileHandlingPanelOKButton)
+		[outString writeToFile: [sPanel filename] atomically: YES encoding: textEncoding error: nil];
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem*)anItem 
+{    
+	//create app menu
+	if ([[anItem title] isEqualToString:@"Save to File…"] && 
+        (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT))
+		return NO;
+	    
+	return YES;
+}
+
 
 #pragma mark -
 
