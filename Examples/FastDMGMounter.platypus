@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AcceptsText</key>
+	<false/>
+	<key>AppPathAsFirstArg</key>
+	<false/>
+	<key>Authentication</key>
+	<false/>
+	<key>Author</key>
+	<string>Sveinbjorn Thordarson</string>
+	<key>BundledFiles</key>
+	<array/>
+	<key>Creator</key>
+	<string>Platypus-4.5</string>
+	<key>Destination</key>
+	<string>/Users/sveinbjorn/Desktop/MyPlatypusApp.app</string>
+	<key>DestinationOverride</key>
+	<false/>
+	<key>DevelopmentVersion</key>
+	<false/>
+    <key>Example</key>
+    <true/>
+    <key>ScriptName</key>
+    <string>FastDMGMounter.sh</string>
+    <key>Script</key>
+    <string>#!/bin/sh -f
+# This is the script for FastDMGMounter
+# Create this as a droppable Platypus app
+# and use it for fast .dmg mounting and 
+# autoacceptance of the EULA
+        
+echo "Y" | /usr/bin/hdid "$1"
+
+# See http://www.tuaw.com/2011/12/30/daily-mac-app-flashmount-quickly-mounts-disk-images/
+
+    </string>
+	<key>Droppable</key>
+	<true/>
+	<key>ExecutablePath</key>
+	<string>/usr/local/share/platypus/ScriptExec</string>
+	<key>FileTypes</key>
+	<array/>
+	<key>IconPath</key>
+	<string></string>
+	<key>Identifier</key>
+	<string>org.sveinbjorn.FastDMGMounter</string>
+	<key>Interpreter</key>
+	<string>/bin/bash</string>
+	<key>Name</key>
+	<string>FastDMGMounter</string>
+	<key>NibPath</key>
+	<string>/usr/local/share/platypus/MainMenu.nib</string>
+	<key>OptimizeApplication</key>
+	<true/>
+	<key>Output</key>
+	<string>None</string>
+	<key>Parameters</key>
+	<array>
+		<string>-f</string>
+	</array>
+	<key>RemainRunning</key>
+	<false/>
+	<key>Role</key>
+	<string>Viewer</string>
+	<key>Secure</key>
+	<false/>
+	<key>ShowInDock</key>
+	<true/>
+	<key>StatusItemDisplayType</key>
+	<string>Text</string>
+	<key>StatusItemIcon</key>
+	<data>
+	</data>
+	<key>StatusItemTitle</key>
+	<string>MyPlatypusApp</string>
+	<key>Suffixes</key>
+	<array>
+		<string>dmg</string>
+	</array>
+	<key>TextBackground</key>
+	<string>#ffffff</string>
+	<key>TextEncoding</key>
+	<integer>4</integer>
+	<key>TextFont</key>
+	<string>Monaco</string>
+	<key>TextForeground</key>
+	<string>#000000</string>
+	<key>TextSize</key>
+	<real>10</real>
+	<key>Version</key>
+	<string>1.0</string>
+</dict>
+</plist>
