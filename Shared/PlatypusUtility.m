@@ -25,6 +25,7 @@
  */
 #import "PlatypusUtility.h"
 #import <CoreServices/CoreServices.h>
+#import <ctype.h>
 
 @implementation PlatypusUtility
 
@@ -52,6 +53,30 @@
     return str;
 }
 
+//+ (NSMutableArray *)splitOnCapitalLetters: (NSString *)str
+//{
+//    if ([str length] < 2)
+//        return [NSMutableArray arrayWithObject: str];
+//    
+//    NSMutableArray *wrds = [NSMutableArray array];
+//    
+//    int start = 0;
+//    int i;
+//    for (i = 1; i < [str length]; i++)
+//    {
+//        unichar letter = [str characterAtIndex: i];
+//        if (isupper(letter) || i == [str length]-1)
+//        {
+//            int len = i - start;
+//            NSRange range = NSMakeRange(start, len);
+//            [wrds addObject: [str substringWithRange: range]];
+//            start = i;
+//        }
+//    }
+//    
+//    return wrds;
+//}
+
 + (BOOL)runningSnowLeopardOrLater
 {
     SInt32 major = 0;
@@ -73,7 +98,6 @@
 	[alert setMessageText: message];
 	[alert setInformativeText: subtext];
 	[alert setAlertStyle:NSWarningAlertStyle];
-	
 	[alert runModal]; 
 	[alert release];
 }
@@ -97,7 +121,6 @@
 	[alert setMessageText: message];
 	[alert setInformativeText: subtext];
 	[alert setAlertStyle:NSCriticalAlertStyle];
-	
 	[alert beginSheetModalForWindow: window modalDelegate:self didEndSelector: nil contextInfo:nil];
 	[alert release];
 }
@@ -111,27 +134,23 @@
 	[alert setInformativeText: subtext];
 	[alert setAlertStyle: NSWarningAlertStyle];
 	
-	if ([alert runModal] == NSAlertFirstButtonReturn) 
-	{
-		[alert release];
-		return YES;
-	}
+	BOOL ret = ([alert runModal] == NSAlertFirstButtonReturn) ? YES : NO; 
 	[alert release];
-	return NO;
+	return ret;
 }
 
 + (UInt64) fileOrFolderSize: (NSString *)path
 {
 	UInt64			size = 0;
-	NSFileManager	*manager = [NSFileManager defaultManager];
+	NSFileManager	*fmgr = [NSFileManager defaultManager];
 	BOOL			isDir;
 	
-	if (path == nil || ![manager fileExistsAtPath: path isDirectory: &isDir])
+	if (path == nil || ![fmgr fileExistsAtPath: path isDirectory: &isDir])
 		return size;
 	
 	if (isDir)
 	{
-		NSDirectoryEnumerator	*dirEnumerator = [manager enumeratorAtPath: path];
+		NSDirectoryEnumerator *dirEnumerator = [fmgr enumeratorAtPath: path];
 		while ([dirEnumerator nextObject])
 		{
 			if ([NSFileTypeRegular isEqualToString:[[dirEnumerator fileAttributes] fileType]])
@@ -139,9 +158,9 @@
 		}
 	}
 	else
-		size = [[manager fileAttributesAtPath: path traverseLink:YES] fileSize];
+		size = [[fmgr fileAttributesAtPath: path traverseLink:YES] fileSize];
     
-	return (UInt64)size;
+	return size;
 }
 
 + (NSString *) fileOrFolderSizeAsHumanReadable: (NSString *)path
@@ -153,29 +172,19 @@
 {
 	NSString	*str;
 	
-	if( size < 1024ULL ) 
-	{
-		/* bytes */
-		str = [NSString stringWithFormat:@"%u B", (unsigned int)size];
-	} 
-	else if( size < 1048576ULL) 
-	{
-		/* kbytes */
+	if (size < 1024ULL) 
+		str = [NSString stringWithFormat:@"%u bytes", (unsigned int)size];
+	else if (size < 1048576ULL) 
 		str = [NSString stringWithFormat:@"%d KB", (long)size/1024];
-	} 
-	else if( size < 1073741824ULL ) 
-	{
-		/* megabytes */
+	else if (size < 1073741824ULL) 
 		str = [NSString stringWithFormat:@"%.1f MB", size / 1048576.0];
-	} 
 	else 
-	{
-		/* gigabytes */
 		str = [NSString stringWithFormat:@"%.1f GB", size / 1073741824.0];
-	}
+
 	return str;
 }
 
+// array with suffix of all image types supported by Cocoa
 + (NSArray *)imageFileSuffixes
 {
 	return [NSArray arrayWithObjects: 
@@ -186,10 +195,12 @@
 			@"jpeg",
 			@"gif",
 			@"tif",
+            @"tiff",
 			@"bmp",
 			@"pcx",
 			@"raw",
 			@"pct",
+            @"pict",
 			@"rsr",
 			@"pxr",
 			@"sct",
@@ -201,10 +212,12 @@
 			@"JPEG",
 			@"GIF",
 			@"TIF",
+            @"TIFF",
 			@"BMP",
 			@"PCX",
 			@"RAW",
 			@"PCT",
+            @"PICT",
 			@"RSR",
 			@"PXR",
 			@"SCT",
