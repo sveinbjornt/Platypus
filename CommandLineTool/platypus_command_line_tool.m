@@ -604,7 +604,7 @@ Options:\n\
 
 #pragma mark -
 
-void NSPrint (NSString *format, ...)
+static void NSPrint (NSString *format, ...)
 {
     va_list args;
 	
@@ -621,7 +621,7 @@ void NSPrint (NSString *format, ...)
     [string release];	
 }
 
-void NSPrintErr (NSString *format, ...)
+static void NSPrintErr (NSString *format, ...)
 {
     va_list args;
 	
