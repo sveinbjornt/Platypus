@@ -5,6 +5,7 @@ For 4.6
     * New interpreter presets:  zsh, tcsh and ksh
     * Migrated all images to optimized PNGs
     * It is now possible to save output to a text or HTML file within Platypus-generated applications
+    * Functioning "Open" File menu item for apps that accept dropped files
 
     TODO:  Support for attaching icons to file types / suffixes under Droppable options
     TODO:  Support reading script from STDIN in command line tool
@@ -12,7 +13,7 @@ For 4.6
     TODO:  Fix spelling errors in documentation
     TODO:  Update documentation, remove refs to old examples, add a few more tutorials on installers etc.
     TODO:  Create Platypus tutorial videos
-    TODO:  Fix STPathTextField
+    TODO:  Fix STPathTextField so autocomplete and coloring works
     TODO:  Restore "icon from image" functionality in command line tool
     TODO:  Support for creating bundle with JUST executable script, no app binary wrapper
     TODO:  Uninstaller

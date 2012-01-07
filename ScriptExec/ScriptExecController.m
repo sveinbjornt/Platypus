@@ -441,14 +441,11 @@
 	//finally, add any file arguments we may have received as dropped/opened
 	if ([jobQueue count] > 0) // we have files in the queue, to append as arguments
 	{
-        NSLog(@"%d in job queue", [jobQueue count]);
 		// we take the first job's arguments and put them into the arg list
 		[arguments addObjectsFromArray: [jobQueue objectAtIndex: 0]];
 		
 		// then we remove the job from the queue
-        NSLog(@"Releasing object at 0 in job queue");
         //[[jobQueue objectAtIndex: 0] release]; // release
-        NSLog(@"Removing object at 0 from job queue array");
 		[jobQueue removeObjectAtIndex: 0]; // remove it from the queue
 	}
 }
@@ -696,6 +693,34 @@
 
 #pragma mark -
 
+//run open panel, made available to apps that are droppable
+- (IBAction)openFiles:(id)sender
+{
+    //create open panel
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+    [oPanel setPrompt:@"Open"];
+    [oPanel setAllowsMultipleSelection: YES];
+    [oPanel setCanChooseDirectories: acceptDroppedFolders];   
+    
+    // build array of acceptable file types
+    NSMutableArray *types = nil;
+    if (!acceptAnyDroppedItem)
+    {
+        types = [NSMutableArray array];
+        [types addObjectsFromArray: droppableSuffixes];
+        [types addObjectsFromArray: droppableFileTypes];
+    }
+    
+    if ([oPanel runModalForDirectory: nil file: nil types: types] == NSOKButton)
+    {
+        int ret = [self addDroppedFilesJob: [oPanel filenames]];
+        if (!isTaskRunning && ret)
+            [self executeScript];
+    }
+}
+
+#pragma mark -
+
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames
 {
 	// add the dropped files as a job for processing
@@ -741,7 +766,6 @@
 
 -(void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error 
 {
-    // if this isn't a droppable application, we never add a drop job.  Likewise, if too many jobs already, we ignore.
 	if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
 		return;
     
@@ -755,7 +779,6 @@
 
 - (BOOL) addDroppedFilesJob: (NSArray *)files
 {
-	// if this isn't a droppable application, we never add a drop job.  Likewise, if too many jobs already, we ignore.
 	if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
 		return NO;
 	
@@ -774,11 +797,10 @@
 	// if at this point there are no accepted files, we refuse drop
 	if ([acceptedFiles count] == 0)
 		return NO;
-	
+
 	// we create a processing job and add the files as arguments, accept drop
 	NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity: ARG_MAX];//this object is released in -prepareForExecution function
 	[args addObjectsFromArray: acceptedFiles];
-    NSLog(@"Adding to job queue");
 	[jobQueue addObject: args];
     [args release];
 	return YES;
@@ -786,7 +808,6 @@
 
 - (BOOL)addDroppedTextJob: (NSString *)text
 {
-	// if this isn't a droppable application, we never add a drop job.  Likewise, if too many jobs already, we ignore.
 	if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
 		return NO;
 	
@@ -815,15 +836,8 @@
 	BOOL isDir;
 	
 	// Check if it's a folder. If so, we only accept it if 'fold' is specified as accepted file type
-	if ([[NSFileManager defaultManager] fileExistsAtPath: file isDirectory: &isDir] && isDir)
-	{
-		for(i = 0; i < [droppableFileTypes count]; i++)
-		{
-			if([[droppableFileTypes objectAtIndex: i] isEqualToString: @"fold"])
-				return YES;
-		}
-		return NO;
-	}
+	if ([[NSFileManager defaultManager] fileExistsAtPath: file isDirectory: &isDir] && isDir && acceptDroppedFolders)
+		return YES;
 	
 	if (acceptAnyDroppedItem)
 		return YES;
@@ -1114,7 +1128,8 @@
 	}
 	
 	//if app is droppable, the AppSettings.plist contains list of accepted file types / suffixes
-	acceptAnyDroppedItem = NO; // initialize this to NO, then check the droppableSuffixes for *, and droppableFiles for ****
+	acceptDroppedFolders = NO;
+    acceptAnyDroppedItem = NO; // initialize this to NO, then check the droppableSuffixes for *, and droppableFiles for ****
 	if (isDroppable)
 	{	
 		// get list of accepted suffixes
@@ -1139,6 +1154,11 @@
 		for (i = 0; i < [droppableFileTypes count]; i++)
 			if([[droppableFileTypes objectAtIndex:i] isEqualToString:@"****"])//**** filetype
 				acceptAnyDroppedItem = YES;
+        
+        // see if we acccept dropped folders
+        for(i = 0; i < [droppableFileTypes count]; i++)
+			if([[droppableFileTypes objectAtIndex: i] isEqualToString: @"fold"])
+				acceptDroppedFolders = YES;
 	}
 	
 	//get interpreter
@@ -1193,8 +1213,7 @@
 
 #pragma mark -
 
-// save output in text field to file
-
+// save output in text field to file when Save to File menu item is invoked
 - (IBAction)saveToFile: (id)sender
 {
     if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT)
@@ -1211,16 +1230,23 @@
 		[outString writeToFile: [sPanel filename] atomically: YES encoding: textEncoding error: nil];
 }
 
+// save only works for text window, web view output types
+// and open only for droppable apps
+
 - (BOOL)validateMenuItem:(NSMenuItem*)anItem 
 {    
-	//create app menu
+	//save to file item
 	if ([[anItem title] isEqualToString:@"Save to File…"] && 
         (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT))
 		return NO;
-	    
+    
+    //open should only work if it's a droppable app
+    if ([[anItem title] isEqualToString:@"Open…"] &&
+        (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS))
+		return NO;
+    
 	return YES;
 }
-
 
 #pragma mark -
 
