@@ -146,7 +146,9 @@
 	[properties setObject: [NSMutableArray arrayWithObjects: @"****", @"fold", NULL]	forKey: @"FileTypes"];
 	[properties setObject: DEFAULT_ROLE													forKey: @"Role"];
     [properties setObject: [NSNumber numberWithBool: NO]                                forKey: @"AcceptsText"];
-
+    [properties setObject: [NSNumber numberWithBool: YES]                               forKey: @"AcceptsFiles"];
+    [properties setObject: @""                                                          forKey: @"DocIcon"];
+    
 	// text output settings
 	[properties setObject: [NSNumber numberWithInt: DEFAULT_OUTPUT_TXT_ENCODING]		forKey: @"TextEncoding"];
 	[properties setObject: DEFAULT_OUTPUT_FONT											forKey: @"TextFont"];

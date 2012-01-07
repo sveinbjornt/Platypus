@@ -10,6 +10,7 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F40F756013C266AE00197499 /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40F755F13C266AE00197499 /* ShellCommandController.m */; };
+		F4263A2F14B7E2AC000A1A68 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4263A2E14B7E2AC000A1A68 /* ScriptExec */; };
 		F44402CC1493EED300261B21 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949C122C128200094A1B /* ScriptAnalyser.m */; };
 		F44637A614B6737F00ECF827 /* Add_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F446379E14B6737F00ECF827 /* Add_Pressed.png */; };
 		F44637A714B6737F00ECF827 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = F446379F14B6737F00ECF827 /* Add.png */; };
@@ -59,7 +60,6 @@
 		F4C8B45C124C450C00397392 /* Editor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B457124C450C00397392 /* Editor.xib */; };
 		F4C8B45D124C450C00397392 /* ShellCommandWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B458124C450C00397392 /* ShellCommandWindow.xib */; };
 		F4C8B45E124C450C00397392 /* SyntaxChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B459124C450C00397392 /* SyntaxChecker.xib */; };
-		F4CAE8CE149558DD00950354 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4CAE8CD149558DC00950354 /* ScriptExec */; };
 		F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074711F629930043764E /* InstallCommandLineTool.sh */; };
 		F4DC074B11F629930043764E /* pycheck.py in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074811F629930043764E /* pycheck.py */; };
 		F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074911F629930043764E /* UninstallCommandLineTool.sh */; };
@@ -117,6 +117,7 @@
 		F40F755E13C266AE00197499 /* ShellCommandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShellCommandController.h; path = PlatypusApplication/ShellCommandController.h; sourceTree = "<group>"; };
 		F40F755F13C266AE00197499 /* ShellCommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellCommandController.m; path = PlatypusApplication/ShellCommandController.m; sourceTree = "<group>"; };
 		F4185E5811FC57AB0027C8D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PlatypusApplication/Info.plist; sourceTree = "<group>"; };
+		F4263A2E14B7E2AC000A1A68 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Platypus/Build/Products/Development/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 		F446379E14B6737F00ECF827 /* Add_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add_Pressed.png; sourceTree = "<group>"; };
 		F446379F14B6737F00ECF827 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
 		F44637A014B6737F00ECF827 /* Clear_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear_Pressed.png; sourceTree = "<group>"; };
@@ -175,7 +176,6 @@
 		F4C8B457124C450C00397392 /* Editor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Editor.xib; path = PlatypusApplication/Editor.xib; sourceTree = "<group>"; };
 		F4C8B458124C450C00397392 /* ShellCommandWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShellCommandWindow.xib; path = PlatypusApplication/ShellCommandWindow.xib; sourceTree = "<group>"; };
 		F4C8B459124C450C00397392 /* SyntaxChecker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SyntaxChecker.xib; path = PlatypusApplication/SyntaxChecker.xib; sourceTree = "<group>"; };
-		F4CAE8CD149558DC00950354 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Platypus/Build/Products/Deployment/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 		F4D6DBC513C50F3E0067B136 /* NOTES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES.txt; sourceTree = SOURCE_ROOT; };
 		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074811F629930043764E /* pycheck.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = pycheck.py; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F4CAE8CD149558DC00950354 /* ScriptExec */,
+				F4263A2E14B7E2AC000A1A68 /* ScriptExec */,
 				F4B5DE2D1491668600C43901 /* platypus_clt */,
 				F471ED21122DF2D6001F4761 /* Credits.html */,
 				F4C8B455124C450C00397392 /* Platypus.xib */,
@@ -739,7 +739,6 @@
 				F46EF85113C3F36900E4C0E4 /* Examples in Resources */,
 				F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */,
 				F4B5DE2E1491668600C43901 /* platypus_clt in Resources */,
-				F4CAE8CE149558DD00950354 /* ScriptExec in Resources */,
 				F44637A614B6737F00ECF827 /* Add_Pressed.png in Resources */,
 				F44637A714B6737F00ECF827 /* Add.png in Resources */,
 				F44637A814B6737F00ECF827 /* Clear_Pressed.png in Resources */,
@@ -748,6 +747,7 @@
 				F44637AB14B6737F00ECF827 /* Remove.png in Resources */,
 				F44637AC14B6737F00ECF827 /* RevealInFinder_Pressed.png in Resources */,
 				F44637AD14B6737F00ECF827 /* RevealInFinder.png in Resources */,
+				F4263A2F14B7E2AC000A1A68 /* ScriptExec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

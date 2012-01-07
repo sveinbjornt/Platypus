@@ -135,6 +135,23 @@
 	}
 }
 
+#pragma mark -
+
+//create open panel
+
+
+- (IBAction)selectDocIcon:(id)sender
+{
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+	[oPanel setPrompt: @"Select"];
+    [oPanel setAllowsMultipleSelection:NO];
+	[oPanel setCanChooseDirectories: NO];
+    [oPanel setTitle: @"Select an icns file"];
+    [oPanel setPrompt: @"Select"];
+        
+    if ([oPanel runModalForDirectory: nil file: nil types: [NSArray arrayWithObject: @"icns"]] == NSOKButton)
+        [self setDocIconPath: [oPanel filename]];
+}
 
 #pragma mark -
 
@@ -284,13 +301,13 @@
 	[typesList addType: @"fold"];
 	[typesListDataBrowser reloadData];
 	
-		if ([typesList hasAllTypes])
+    if ([typesList hasAllTypes])
 		[numTypesTextField setStringValue: @"All file types"];
 	else
 		[numTypesTextField setStringValue: [NSString stringWithFormat:@"%d file types", [typesList numTypes]]];
 	if ([typesList hasFolderType])
 		[numTypesTextField setStringValue: [[numTypesTextField stringValue] stringByAppendingString: @" and folders"]];
-		
+    
 	//default suffixes
 	[suffixList clearList];
 	[suffixList addSuffix: @"*"];
@@ -303,6 +320,11 @@
 	
 	//set app function to default
 	[appFunctionRadioButtons selectCellWithTag: 0];
+
+    [self setDocIconPath: @""];
+    
+    [self setAcceptsText: NO];
+    [self setAcceptsFiles: YES];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
@@ -405,6 +427,21 @@
     return [acceptDroppedTextCheckbox intValue];
 }
 
+- (void)setAcceptsText: (BOOL)b
+{
+    [acceptDroppedTextCheckbox setIntValue: b];
+}
+
+- (BOOL)acceptsFiles
+{
+    return [acceptDroppedFilesCheckbox intValue];
+}
+
+- (void)setAcceptsFiles: (BOOL)b
+{
+    [acceptDroppedFilesCheckbox setIntValue: b];
+}
+
 - (NSString *)role
 {
 	return [[appFunctionRadioButtons selectedCell] title];
@@ -417,4 +454,26 @@
 	else
 		[appFunctionRadioButtons selectCellWithTag: 1];
 }
+
+- (NSString *)docIconPath
+{
+    return docIconPath;
+}
+
+- (void)setDocIconPath: (NSString *)path
+{
+    [docIconPath release];
+    docIconPath = [path retain];
+    
+    //set document icon to default
+    NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType: NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
+
+    if (![path isEqualToString: @""]) // load it from file if it's a path
+        icon = [[[NSImage alloc] initWithContentsOfFile: docIconPath] autorelease];
+
+    if (icon != nil)
+        [docIconImageView setImage: icon];
+}
+
+
 @end
