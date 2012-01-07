@@ -44,8 +44,11 @@
 	IBOutlet id acceptDroppedTextCheckbox;
 	IBOutlet id acceptDroppedFilesCheckbox;
 	
+    IBOutlet id docIconImageView;
+    
 	IBOutlet id droppedFilesSettingsBox;
 	
+    NSString    *docIconPath;
 	SuffixList	*suffixList;
 	TypesList	*typesList;
 }
@@ -59,10 +62,16 @@
 - (IBAction)removeSuffix:(id)sender;
 - (IBAction)removeType:(id)sender;
 - (IBAction)setDefaultTypes:(id)sender;
+- (IBAction)selectDocIcon:(id)sender;
 
-- (TypesList *) types;
-- (SuffixList *) suffixes;
+- (TypesList *)types;
+- (SuffixList *)suffixes;
+- (NSString *)docIconPath;
+- (void)setDocIconPath:(NSString *)path;
 - (BOOL)acceptsText;
+- (BOOL)acceptsFiles;
+- (void)setAcceptsText: (BOOL)b;
+- (void)setAcceptsFiles: (BOOL)b;
 - (NSString *)role;
--(void) setRole: (NSString *)role;
+- (void)setRole:(NSString *)role;
 @end

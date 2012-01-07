@@ -518,17 +518,19 @@
 	[spec setProperty: [fileList getFilesArray]	forKey: @"BundledFiles"];
 	
 	// file types
-	[spec setProperty: (NSMutableArray *)[(SuffixList *)[typesControl suffixes] getSuffixArray]				forKey: @"Suffixes"];
-	[spec setProperty: (NSMutableArray *)[(TypesList *)[typesControl types] getTypesArray]					forKey: @"FileTypes"];
-	[spec setProperty: [typesControl role]																	forKey: @"Role"];
-    [spec setProperty: [NSNumber numberWithBool: [typesControl acceptsText]]                                forKey: @"AcceptsText"];
-
+	[spec setProperty: (NSMutableArray *)[(SuffixList *)[typesControl suffixes] getSuffixArray]			forKey: @"Suffixes"];
+	[spec setProperty: (NSMutableArray *)[(TypesList *)[typesControl types] getTypesArray]				forKey: @"FileTypes"];
+	[spec setProperty: [typesControl role]																forKey: @"Role"];
+    [spec setProperty: [typesControl docIconPath]                                                       forKey: @"DocIcon"];
+    [spec setProperty: [NSNumber numberWithBool: [typesControl acceptsText]]                            forKey: @"AcceptsText"];
+    [spec setProperty: [NSNumber numberWithBool: [typesControl acceptsFiles]]                           forKey: @"AcceptsFiles"];
+    
 	//  text output text settings
-	[spec setProperty: [NSNumber numberWithInt: (int)[textSettingsControl getTextEncoding]]							forKey: @"TextEncoding"];
-	[spec setProperty: [[textSettingsControl getTextFont] fontName]													forKey: @"TextFont"];
-	[spec setProperty: [NSNumber numberWithFloat: [[textSettingsControl getTextFont] pointSize]]					forKey: @"TextSize"];
-	[spec setProperty: [[textSettingsControl getTextForeground] hexString]											forKey: @"TextForeground"];
-	[spec setProperty: [[textSettingsControl getTextBackground] hexString]											forKey: @"TextBackground"];
+	[spec setProperty: [NSNumber numberWithInt: (int)[textSettingsControl getTextEncoding]]				forKey: @"TextEncoding"];
+	[spec setProperty: [[textSettingsControl getTextFont] fontName]										forKey: @"TextFont"];
+	[spec setProperty: [NSNumber numberWithFloat: [[textSettingsControl getTextFont] pointSize]]		forKey: @"TextSize"];
+	[spec setProperty: [[textSettingsControl getTextForeground] hexString]								forKey: @"TextForeground"];
+	[spec setProperty: [[textSettingsControl getTextBackground] hexString]								forKey: @"TextBackground"];
 	
 	// status menu settings
 	if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString: @"Status Menu"])
@@ -566,26 +568,33 @@
 	[remainRunningCheckbox setState: [[spec propertyForKey: @"RemainRunning"] boolValue]];
 	
 	//file list
-		[fileList clearList];
-		[fileList addFiles: [spec propertyForKey: @"BundledFiles"]];
+    [fileList clearList];
+    [fileList addFiles: [spec propertyForKey: @"BundledFiles"]];
 
-		//update button status
-		[fileList tableViewSelectionDidChange: NULL];
-	
-	//suffix list
-		[(SuffixList *)[typesControl suffixes] clearList];
-		[(SuffixList *)[typesControl suffixes] addSuffixes: [spec propertyForKey: @"Suffixes"]];
-	
-	//types list
-		[(TypesList *)[typesControl types] clearList];
-		[(TypesList *)[typesControl types] addTypes: [spec propertyForKey: @"FileTypes"]];
-		
-		[typesControl tableViewSelectionDidChange: NULL];
-		[typesControl setRole: [spec propertyForKey: @"Role"]];
-		
+    //update button status
+    [fileList tableViewSelectionDidChange: NULL];
+
+    //suffix list
+    [(SuffixList *)[typesControl suffixes] clearList];
+    [(SuffixList *)[typesControl suffixes] addSuffixes: [spec propertyForKey: @"Suffixes"]];
+
+    //types list
+    [(TypesList *)[typesControl types] clearList];
+    [(TypesList *)[typesControl types] addTypes: [spec propertyForKey: @"FileTypes"]];
+    
+    [typesControl tableViewSelectionDidChange: NULL];
+    // role and doc icon
+    [typesControl setRole: [spec propertyForKey: @"Role"]];
+    if ([spec propertyForKey: @"DocIcon"] != nil)
+        [typesControl setDocIconPath: [spec propertyForKey: @"DocIcon"]];
+    if ([spec propertyForKey: @"AcceptsText"] != nil)
+        [typesControl setAcceptsText: [[spec propertyForKey: @"AcceptsText"] boolValue]];
+    if ([spec propertyForKey: @"AcceptsFiles"] != nil)
+        [typesControl setAcceptsFiles: [[spec propertyForKey: @"AcceptsFiles"] boolValue]];
+    
 	// parameters
-		[paramsControl set: [spec propertyForKey: @"Parameters"]];
-		[paramsControl setAppPathAsFirstArg: [[spec propertyForKey: @"AppPathAsFirstArg"] boolValue]];
+    [paramsControl set: [spec propertyForKey: @"Parameters"]];
+    [paramsControl setAppPathAsFirstArg: [[spec propertyForKey: @"AppPathAsFirstArg"] boolValue]];
 		 
 	// text output settings
 	[textSettingsControl setTextEncoding: [[spec propertyForKey: @"TextEncoding"] intValue]];
