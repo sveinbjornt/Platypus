@@ -105,6 +105,7 @@
 	NSArray		*droppableSuffixes;
 	NSArray		*droppableFileTypes;
 	BOOL		acceptAnyDroppedItem;
+    BOOL        acceptDroppedFolders;
 	
 	NSString	*statusItemTitle;
 	NSImage		*statusItemIcon;
@@ -138,6 +139,10 @@
 - (BOOL)acceptableFileType: (NSString *)file;
 - (BOOL)addDroppedFilesJob: (NSArray *)files;
 - (BOOL)addDroppedTextJob: (NSString *)text;
+
+- (IBAction)openFiles:(id)sender;
+- (IBAction)saveToFile: (id)sender;
+- (BOOL)validateMenuItem:(NSMenuItem*)anItem;
 
 - (void)loadSettings;
 - (IBAction)cancel: (id)sender;
