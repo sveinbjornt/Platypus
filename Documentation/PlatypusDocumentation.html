@@ -119,6 +119,7 @@
 			<li><a href="#83">Does Platypus support localizations?</a></li>
 			<li><a href="#84">How does my script get the user's environment (e.g. PATH)?</a></li>
 			<li><a href="#85">How can I pass specific arguments to my script?</a></li>
+			<li><a href="#85">How do I uninstall Platypus?</a></li>
         </ul>
     </li>
 </ul>
@@ -138,7 +139,7 @@
 
 <p>Platypus is a Mac OS X developer tool which allows you to create application wrappers around scripts.  This means that your scripts can be launched from the Mac OS X window environment -- e.g. the Finder or the Dock -- without requiring use of the command line interface.  Your scripts effectively become regular Mac OS X applications.</p>
 
-<p>Platypus was first conceived in 2003 and implemented using the Carbon APIs.  It has since gone through over a dozen major updates, and is now entirely written in Objective-C for the Cocoa APIs.</p>
+<p>Platypus was first conceived in 2003 and implemented using the Carbon APIs.  It has since gone through over a dozen major updates, and is now entirely written in Objective C for the Cocoa APIs.</p>
 
 <p>Platypus is free, open-source software distributed under the terms and conditions of the Free Software Foundation's <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>.  This means the source code is freely available and you are free to modify and distribute it as you see fit, as long as it remains open.  For more information on licensing, see <a href="#81">Can I use Platypus to create proprietary software?</a>.</p>
 
@@ -185,8 +186,7 @@
 
 <h3>What Platypus is NOT</h3>
 
-<p>Platypus is not a set of bindings between the Mac OS X APIs and scripting languages.  It is not, in other words, a full development environment for Mac OS X and is not intended to be used to create substantial Mac OS X applications with sophisticated user interaction.  If you want to created advanced Mac OS X applications, you should learn to program with Objective C and the wonderful Cocoa APIs.  Platypus is not and never will be a substitute for learning
-	to use the excellent native application programming interfaces.</p>
+<p>Platypus is not a set of bindings between the Mac OS X APIs and scripting languages.  It is not, in other words, a full development environment for Mac OS X and is not intended to be used to create substantial Mac OS X applications with complex user interaction.  If you want to create advanced Mac OS X applications, you should learn to program with Objective C and the wonderful Cocoa APIs.  Platypus is not and never will be a substitute for learning to use the excellent native application programming interfaces.</p>
 
 <br>
 <br>
@@ -238,7 +238,7 @@
     
 <p>Most of the time, you will not need to specify this manually.  When you select a script file, Platypus will automatically try to determine what kind of script it is by looking at the file suffix and shebang (#!) line.  If you have specified this meta-data in the script file itself, Platypus is smart enough to figure it out.</p>
 
-<p>Please note that the interpreter you selected must exist on the Mac OS X system on which your script application will run.  All the preset scripting language interpreters (e.g. shell, Perl, Python, PHP, Tcl, Expect etc.) are a standard part of all Mac OS X installations.  Alternately, you could use <code>/usr/bin/env</code>.</p>
+<p>Please note that the interpreter you selected must exist on the Mac OS X system on which your script application will run.  All the preset scripting language interpreters (e.g. shell, Perl, Python, PHP, Tcl, Expect etc.) are a standard part of all Mac OS X installations.Alternately, you could use <code>/usr/bin/env</code>.</p>
 
 <p>The <strong>Parameters</strong> button next to the text field containing your script interpreter setting allows you to specify arguments for the script interpreter.</p>
 
@@ -277,7 +277,7 @@
 
 <p><strong>Status Menu</strong>: Status Menu output is slightly different from the other output modes.  Your Platypus-generated application will create a Status Item in the menu bar.  Every time the status item is clicked, your script will be executed and the text output displayed line for line as menu items.</p>
 
-<p>It is worth noting that another application I created called <a href="http://sveinbjorn.org/tapir">Tapir</a> allows for more sophisticated development of Status Items that display script output.</p>
+<p>It is worth noting that <a href="http://sveinbjorn.org/tapir">Tapir</a> allows for more sophisticated development of Status Items that display script output.</p>
 
 <img src="images/output_statusmenu.jpg">
 <br>
@@ -289,7 +289,7 @@
 <br>
 <br>
 
-<p><strong>PLEASE NOTE:</strong> Make sure you flush the output to ensure it is displayed in real-time while the script is running.  For Perl, see <a href="http://perl.plover.com/FAQs/Buffering.html">buffering</a>. See also <a href="#82">My script's output isn't being shown until the script is done</a></p>
+<p><strong>PLEASE NOTE:</strong> Make sure you flush the output to ensure it is displayed in real-time while the script is running.  For Perl, see <a href="http://perl.plover.com/FAQs/Buffering.html">buffering</a>. See also <a href="#82">My script's output isn't being shown until the script is done</a> in the FAQ.</p>
 
 
 <br><br>
@@ -319,18 +319,20 @@ results, use professional Mac OS X icon-editing software and specify a carefully
 
 <h3>Identifier</h3>
 
-<p>The <strong>Identifier</strong> text field allows you to set the unique identifier for your application.  If you have typed in a name for your application, the "Identifier" text field will contain something like "org.username.YourAppName". Every Mac OS X application has a unique string called a bundle identifier, which is in the form of a reverse DNS name (i.e. "com.apple.iTunes", "org.sveinbjorn.Platypus").  Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to something else if you so wish.</p>
+<p>The <strong>Identifier</strong> text field allows you to set the unique identifier for your application.  If you have typed in a name for your application, the "Identifier" text field will contain something like "org.username.YourAppName". Every Mac OS X application has a unique string called a bundle identifier, which is in the form of a reverse DNS name (i.e. "com.apple.iTunes", "org.sveinbjorn.Platypus").  Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to something else if you want to.</p>
+    
+<p>The default bundle identifier prefix can be set in the Preferences.</p>
 
 <br><br>
 <a name="33"></a>
 
 <h3>Special Options</h3>
 
-<p>The checkboxes allow you to set all kinds of properties of your application:</p>
-
+    <br>
+    
 <p><strong>Requires Administrator privileges:</strong>  Checking "Requires Administrator privileges" will cause your application to prompt for an Administrator password and then execute your script with administrative privileges via Apple's Security Framework.  This is not strictly equivalent to running the script as the root user.  For details, see the <a href="http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges">documentation for Apple's Security Framework.</a></p>
 
-<p>Please note that <i>Platypus scripts must not use the 'sudo' command</i>. This will cause the script to prompt for input, and since none will be forthcoming, your application will hang indefinitely. If you wish to execute a command with privileges, you must execute the script in its entirety with those privileges by checking "Requires Administrator Privileges".</p>
+<p><i>Platypus scripts must not use the 'sudo' command</i>. This will cause the script to prompt for input, and since none will be forthcoming, your application will hang indefinitely. If you wish to execute a command with privileges, you must execute the script in its entirety with those privileges by checking "Requires Administrator Privileges".</p>
 
 <p>Please note that if this option is selected, the script will not print STDERR output due to limitations in the Security APIs.  This can be circumvented by using a shell script to execute another script while piping STDERR into STDOUT (e.g. <code>perl myScript.pl 2>&amp;1</code>).</p>
 
@@ -347,7 +349,9 @@ results, use professional Mac OS X icon-editing software and specify a carefully
 
 <h3>Bundled Files</h3>
 
-<p>You can add a list of files to be copied into the Resources folder of your application bundle. These files can then be used by your script.  The default current working directory of your script will be this folder, so you should be able to access them directly.  In some cases, you may need to manually change to the Resources directory.  If so, press the "Parameters" button and set check the "Set $1 as path to app" checkbox.  Your bundled files will then be accessible via the following path "$1/Contents/Resources/[filename]".</p>
+<p>You can add a list of files to be copied into the Resources folder of your application bundle. These files can then be used by your script.  The default current working directory of your script will be this folder, so you should be able to access them directly from your script's CWD.</p>
+    
+<p>In some cases, you may need to manually change to the Resources directory.  If so, press the "Parameters" button and set check the "Set $1 as path to app" checkbox.  Your bundled files will then be accessible via the following path "$1/Contents/Resources/[filename]".</p>
 
 <br>
 <br>
@@ -365,7 +369,7 @@ results, use professional Mac OS X icon-editing software and specify a carefully
 
 <img src="images/edittypes.png">
 
-<p>The default behaviour is to accept all suffixes, all file types and folders. You can edit those two lists to suit your needs. If you want your application to accept dropped folders, you should add the File Type 'fold'. You can also set whether your application is an Editor or a Viewer for files. This is not really important, but it is one of many pieces of information the Finder stores about application bundles.  At present it is not possible to set customised icons for these different file types, as regular applications do, but this is a planned feature for future versions.</p>
+<p>The default behaviour is to accept all suffixes, all file types and folders. You can edit those two lists to suit your needs. If you want your application to accept dropped folders, you should add the File Type 'fold'. You can also set whether your application is an Editor or a Viewer for files. This is not really important, but it is one of many pieces of information the Finder stores about application bundles. Finally, you can set a document icon for the files "owned" by your app.</p>
 
 <p>You can also set your application accept dragged snippets of text, in which case each string will be passed as an argument to the script.</p>
 
@@ -614,7 +618,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 
 <h3 id="83">Does Platypus support localizations?</h3>
 
-<p>No.  But if you don't select "Optimize nib file" when creating an app, the nib in the application bundle will be editable.  That way, you can localize it manually if you want to.  Localization support is <em>very low</em> on the feature priority list, since it is an extremely boring feature, and can be dealt with using the method outlined above.</p>
+<p>No.  But if you don't select "Optimize nib file" when creating an app, the nib in the application bundle will be editable.  That way, you can localize it manually if you want to.  Localization support is <em>very low</em> on the feature roadmap, since it is  extremely boring and can be dealt with using the method outlined above.</p>
 	
 <br>
 <br>
@@ -633,6 +637,22 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 <div class="codeblock">
 /usr/bin/perl myScript.pl --force
 </div>  
+
+<br>
+<br>
+    
+<h3 id="86">How do I uninstall Platypus?</h3>
+
+<p>Platypus uses less than 4MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc. you should do the following.</p>
+
+<ul>
+	<li>If you have installed the command line tool, go into Preferences, and press "Uninstall Command Line Tool".</li>
+	<li>Move Platypus.app to the Trash</li>
+	<li>Move <code>~/Library/Application Support/Platypus</code> to the Trash</li>
+	<li>Finally, the Platypus prefs file is in <code>~/Preferences/org.sveinbjorn.Platypus</code> if you also want to delete it.</li>
+</ul>
+
+<p>These are <em>all</em> the files Platypus creates on you system.</p>
 
 <br>
 <br>
