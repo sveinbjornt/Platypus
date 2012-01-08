@@ -219,7 +219,6 @@
 		[window setTitle: [NSString stringWithFormat: @"%@ - Editing script", PROGRAM_NAME]];
         EditorController *editor = [[EditorController alloc] init];
 		[editor showEditorForFile: [[files objectAtIndex: index] objectForKey: @"Path"] window: window];
-        [editor release];
 		[window setTitle: PROGRAM_NAME];
 	}
 	else // open it in the external application
@@ -235,7 +234,6 @@
 			[window setTitle: [NSString stringWithFormat: @"%@ - Editing script", PROGRAM_NAME]];
 			EditorController *editor = [[EditorController alloc] init];
             [editor showEditorForFile: [[files objectAtIndex: index] objectForKey: @"Path"] window: window];
-			[editor release];
             [window setTitle: PROGRAM_NAME];
 		}
 	}	
