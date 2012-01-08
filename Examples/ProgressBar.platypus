@@ -74,7 +74,7 @@
 	<false/>
 	<key>Output</key>
 	<string>Progress Bar</string>
-	<key>Parameters</key>
+	<key>InterpreterArgs</key>
 	<array/>
 	<key>RemainRunning</key>
 	<true/>

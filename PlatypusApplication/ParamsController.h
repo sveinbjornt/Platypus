@@ -40,9 +40,13 @@
 	IBOutlet id isDroppableCheckbox;
     IBOutlet id window;
 	
-	NSMutableArray	*values;
+	NSMutableArray *interpreterArgs;
+    NSMutableArray *scriptArgs;
 }
 // accessors
+
+- (NSArray *)interpreterArgs;
+- (NSArray *)scriptArgs;
 - (void)setInterpreterArgs: (NSArray *)array;
 - (void)setScriptArgs: (NSArray *)array;
 - (NSArray *)interpreterArgs;

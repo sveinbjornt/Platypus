@@ -9,7 +9,6 @@ For 4.6
     * Extended documentation
     * New "Edit file" button for Bundled Files List.
     
-    TODO:  Fix bug w. Open in Editor in File List
     TODO:  Support for attaching icons to file types / suffixes under Droppable options
             IN PROGRESS, remember to implement this in ScriptExec and test it properly
     TODO:  Support reading script from STDIN in command line tool

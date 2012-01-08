@@ -61,7 +61,7 @@
 {
 	if (self = [self init]) 
 	{
-		[properties setObject: PROGRAM_STAMP forKey: @"Creator"];
+        [self setDefaults];
 		[properties addEntriesFromDictionary: dict];
     }
 	return self;
@@ -126,8 +126,9 @@
 	
 	// secondary attributes
 	[properties setObject: DEFAULT_INTERPRETER											forKey: @"Interpreter"];
-	[properties setObject: [NSMutableArray array]										forKey: @"Parameters"];
-	[properties setObject: DEFAULT_VERSION												forKey: @"Version"];
+	[properties setObject: [NSMutableArray array]										forKey: @"InterpreterArgs"];
+	[properties setObject: [NSMutableArray array]										forKey: @"ScriptArgs"];
+    [properties setObject: DEFAULT_VERSION												forKey: @"Version"];
 	[properties setObject: [PlatypusUtility standardBundleIdForAppName: DEFAULT_APP_NAME usingDefaults: NO]       forKey: @"Identifier"];
 	[properties setObject: NSFullUserName()												forKey: @"Author"];
 	
@@ -188,7 +189,7 @@
         // get parameters to interpreter
 		NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray: [ScriptAnalyser getInterpreterFromShebang: scriptPath]];
 		[shebangCmdComponents removeObjectAtIndex: 0];
-        [self setProperty: shebangCmdComponents forKey: @"Parameters"];
+        [self setProperty: shebangCmdComponents forKey: @"InterpreterArgs"];
 	}
     [self setProperty: interpreter forKey: @"Interpreter"];
     
@@ -317,8 +318,9 @@
 	[appSettingsPlist setObject: [properties objectForKey: @"Output"] forKey: @"OutputType"];
 	[appSettingsPlist setObject: [properties objectForKey: @"Interpreter"] forKey: @"ScriptInterpreter"];
 	[appSettingsPlist setObject: PROGRAM_STAMP forKey: @"Creator"];
-	[appSettingsPlist setObject: [properties objectForKey: @"Parameters"] forKey: @"InterpreterParams"];
-	
+	[appSettingsPlist setObject: [properties objectForKey: @"InterpreterArgs"] forKey: @"InterpreterArgs"];
+	[appSettingsPlist setObject: [properties objectForKey: @"ScriptArgs"] forKey: @"ScriptArgs"];
+    
 	// we need only set text settings for the output types that use this information
 	if ([[properties objectForKey: @"Output"] isEqualToString: @"Progress Bar"] ||
 		[[properties objectForKey: @"Output"] isEqualToString: @"Text Window"] ||
@@ -598,11 +600,16 @@
 		bundledFilesCmdString = [bundledFilesCmdString stringByAppendingString: [NSString stringWithFormat: @"-f '%@' ", [bundledFiles objectAtIndex: i]]];
 	}
 	
-	// create interpreter params arg
-	if ([(NSArray *)[properties objectForKey: @"Parameters"] count])
+	// create interpreter and script args flags
+	if ([(NSArray *)[properties objectForKey: @"InterpreterArgs"] count])
 	{
-		parametersString = [[properties objectForKey: @"Parameters"] componentsJoinedByString:@"|"];
-		parametersString = [NSString stringWithFormat: @"-G '%@' ", parametersString];
+		NSString *arg = [[properties objectForKey: @"InterpreterArgs"] componentsJoinedByString:@"|"];
+		parametersString = [parametersString stringByAppendingString: [NSString stringWithFormat: @"-G '%@' ", arg]];
+	}
+    if ([(NSArray *)[properties objectForKey: @"ScriptArgs"] count])
+	{
+		NSString *arg = [[properties objectForKey: @"ScriptArgs"] componentsJoinedByString:@"|"];
+		parametersString = [parametersString stringByAppendingString: [NSString stringWithFormat: @"-C '%@' ", arg]];
 	}
 	
 	//  create args for text settings if progress bar/text window or status menu

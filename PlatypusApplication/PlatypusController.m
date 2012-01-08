@@ -499,7 +499,8 @@
     
 	// advanced attributes
 	[spec setProperty: [interpreterTextField stringValue]	forKey: @"Interpreter"];
-	[spec setProperty: [paramsControl paramsArray]			forKey: @"Parameters"];
+	[spec setProperty: [paramsControl interpreterArgs]		forKey: @"InterpreterArgs"];
+    [spec setProperty: [paramsControl scriptArgs]           forKey: @"ScriptArgs"];
 	[spec setProperty: [versionTextField stringValue]		forKey: @"Version"];
 	[spec setProperty: [bundleIdentifierTextField stringValue]
 															forKey: @"Identifier"];
@@ -599,7 +600,8 @@
         [typesControl setAcceptsFiles: [[spec propertyForKey: @"AcceptsFiles"] boolValue]];
     
 	// parameters
-    [paramsControl set: [spec propertyForKey: @"Parameters"]];
+    [paramsControl setInterpreterArgs: [spec propertyForKey: @"InterpreterArgs"]];
+    [paramsControl setScriptArgs: [spec propertyForKey: @"ScriptArgs"]];
     [paramsControl setAppPathAsFirstArg: [[spec propertyForKey: @"AppPathAsFirstArg"] boolValue]];
 		 
 	// text output settings

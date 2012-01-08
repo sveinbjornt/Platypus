@@ -53,7 +53,7 @@ cat $1 | say
 	<false/>
 	<key>Output</key>
 	<string>Droplet</string>
-	<key>Parameters</key>
+	<key>InterpreterArgs</key>
 	<array/>
 	<key>RemainRunning</key>
 	<true/>
