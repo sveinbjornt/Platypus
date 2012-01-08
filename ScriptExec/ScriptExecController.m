@@ -46,15 +46,16 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver: self];
-    if (arguments != NULL) { [arguments release]; }
-    if (droppableSuffixes != NULL)    {[droppableSuffixes release];}
-    if (droppableFileTypes != NULL)    {[droppableFileTypes release];}
-    if (paramsArray != NULL) { [paramsArray release]; }
+    if (arguments != NULL)          { [arguments release]; }
+    if (droppableSuffixes != NULL)  { [droppableSuffixes release];}
+    if (droppableFileTypes != NULL) { [droppableFileTypes release];}
+    if (interpreterArgs != NULL)    { [interpreterArgs release]; }
+    if (scriptArgs != NULL)         { [scriptArgs release]; }
+    if (statusItemIcon != NULL)     { [statusItemIcon release]; }
+    if (script != NULL)             { [script release]; }
+    if (statusItem != NULL)         { [statusItem release]; }
+    if (statusItemMenu != NULL)     { [statusItemMenu release]; }
     [jobQueue release];
-    if (statusItemIcon != NULL) { [statusItemIcon release]; }
-    if (script != NULL) { [script release]; }
-    if (statusItem != NULL) { [statusItem release]; }
-    if (statusItemMenu != NULL) { [statusItemMenu release]; }
     [super dealloc];
 }
 
@@ -426,13 +427,15 @@
     [arguments removeAllObjects];
     
     // first, add all specified arguments for interpreter
-    if ([paramsArray count] > 0)
-        [arguments addObjectsFromArray: paramsArray];
+    [arguments addObjectsFromArray: interpreterArgs];
     
     // add script as argument to interpreter, if it exists
     if (![[NSFileManager defaultManager] fileExistsAtPath: scriptPath])
         [self fatalAlert: @"Missing script" subText: @"Script missing at execution path"];
     [arguments addObject: scriptPath];
+    
+    // add arguments for script
+    [arguments addObjectsFromArray: scriptArgs];
     
     //set $1 as path of application bundle if that option is set
     if (appPathAsFirstArg)
@@ -1102,7 +1105,8 @@
     }
     
     //load these vars from plist
-    paramsArray         = [[NSArray arrayWithArray: [appSettingsPlist objectForKey:@"InterpreterParams"]] retain];
+    interpreterArgs     = [[NSArray arrayWithArray: [appSettingsPlist objectForKey:@"InterpreterArgs"]] retain];
+    scriptArgs          = [[NSArray arrayWithArray: [appSettingsPlist objectForKey:@"ScriptArgs"]] retain];
     appPathAsFirstArg   = [[appSettingsPlist objectForKey:@"AppPathAsFirstArg"] boolValue];
     execStyle           = [[appSettingsPlist objectForKey:@"RequiresAdminPrivileges"] boolValue];
     remainRunning       = [[appSettingsPlist objectForKey:@"RemainRunningAfterCompletion"] boolValue];

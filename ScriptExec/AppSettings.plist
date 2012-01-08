@@ -6,8 +6,12 @@
 	<false/>
 	<key>Creator</key>
 	<string>Platypus-4.6</string>
-	<key>InterpreterParams</key>
+	<key>InterpreterArgs</key>
 	<array/>
+    <key>ScriptArgs</key>
+	<array>
+		<string>ArgTest!</string>
+	</array>
 	<key>DropSuffixes</key>
 	<array>
 		<string>pdf</string>
