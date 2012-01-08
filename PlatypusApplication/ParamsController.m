@@ -260,6 +260,7 @@
 {
 	if ([[anItem title] isEqualToString:@"Remove Entry"] && [interpreterArgsTableView selectedRow] == -1)
 		return NO;
+    NSLog(@"YES");
 	return YES;
 }
 
