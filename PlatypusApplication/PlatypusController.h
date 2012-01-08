@@ -141,12 +141,12 @@
 - (NSString *)estimatedAppSize;
 
 //Help
-- (IBAction) showHelp:(id)sender;
-- (IBAction) showReadme:(id)sender;
-- (IBAction) showManPage:(id)sender;
-- (IBAction) openWebsite: (id)sender;
-- (IBAction) openLicense: (id)sender;
-- (IBAction) openDonations: (id)sender;
+- (IBAction)showHelp:(id)sender;
+- (IBAction)showReadme:(id)sender;
+- (IBAction)showManPage:(id)sender;
+- (IBAction)openWebsite: (id)sender;
+- (IBAction)openLicense: (id)sender;
+- (IBAction)openDonations: (id)sender;
 
 
 @end

@@ -97,11 +97,11 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {		
-    // register for sudden termination for >= Mac OS X 10.6
-    if ([PlatypusUtility runningSnowLeopardOrLater]) 
-    {
-        //[[NSProcessInfo processInfo] enableSuddenTermination];
-    }
+//    // register for sudden termination for >= Mac OS X 10.6
+//    if ([PlatypusUtility runningSnowLeopardOrLater]) 
+//    {
+//        //[[NSProcessInfo processInfo] enableSuddenTermination];
+//    }
     
 	//show window
 	[window center];
