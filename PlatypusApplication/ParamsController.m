@@ -68,12 +68,6 @@
 	[paramsCommandTextField setStringValue: [self constructCommandString]];   
 }
 
-- (IBAction)help:(id)sender
-{	
-	NSURL *fileURL = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"params.html" ofType:nil]];
-	[[NSWorkspace sharedWorkspace] openURL: fileURL];
-}
-
 - (IBAction)remove:(id)sender
 {
 	int selectedRow = [paramsTableView selectedRow];
@@ -105,7 +99,7 @@
 
 - (IBAction)show:(id)sender 
 {
-	[window setTitle: [NSString stringWithFormat: @"%@ - Edit Parameters", PROGRAM_NAME]];
+	[window setTitle: [NSString stringWithFormat: @"%@ - Edit Arguments", PROGRAM_NAME]];
 	
 	[paramsCommandTextField setStringValue: [self constructCommandString]];
 	

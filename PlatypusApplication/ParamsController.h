@@ -39,7 +39,6 @@
 - (void)set: (NSArray *)array;
 - (IBAction)apply:(id)sender;
 - (IBAction)clear:(id)sender;
-- (IBAction)help:(id)sender;
 - (IBAction)remove:(id)sender;
 - (IBAction)resetDefaults:(id)sender;
 - (IBAction)show:(id)sender;
