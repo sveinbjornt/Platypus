@@ -912,9 +912,7 @@
 	UInt64 estimatedAppSize = 0;
 	
 	estimatedAppSize += 4096; // Info.plist
-	estimatedAppSize += 4096; // AppSettings.plist
-	
-	// if we want to know the size of the icon, let's assume default icon
+	estimatedAppSize += 4096; // AppSettings.plist	
 	estimatedAppSize += [iconControl iconSize];
 	estimatedAppSize += [PlatypusUtility fileOrFolderSize: [scriptPathTextField stringValue]];
 	estimatedAppSize += [PlatypusUtility fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"ScriptExec" ofType: NULL]];  // executable
@@ -1026,7 +1024,7 @@
  - Open Platypus Help HTML file within app bundle
 *****************************************/
 
-- (IBAction) showHelp:(id)sender
+- (IBAction)showHelp:(id)sender
 {
 	[[NSWorkspace sharedWorkspace] openURL:
 	 [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource: PROGRAM_DOCUMENTATION ofType: nil]]
@@ -1037,7 +1035,7 @@
  - Open 'platypus' command line tool man page in PDF
 *****************************************/
 
-- (IBAction) showManPage:(id)sender
+- (IBAction)showManPage:(id)sender
 {	
 	[[NSWorkspace sharedWorkspace] openFile: [[NSBundle mainBundle] pathForResource: PROGRAM_MANPAGE ofType: nil]];
 }
@@ -1046,7 +1044,7 @@
  - Open Readme file
 *****************************************/
 
-- (IBAction) showReadme:(id)sender
+- (IBAction)showReadme:(id)sender
 {
 	[[NSWorkspace sharedWorkspace] openURL: 
 	[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource: PROGRAM_README_FILE ofType: nil]]
@@ -1057,7 +1055,7 @@
  - Open Platypus website in default browser
 *****************************************/
 
-- (IBAction) openWebsite: (id)sender
+- (IBAction)openWebsite: (id)sender
 {
 	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: PROGRAM_WEBSITE]];
 }
@@ -1066,7 +1064,7 @@
  - Open License.txt file
  *****************************************/
 
-- (IBAction) openLicense: (id)sender
+- (IBAction)openLicense: (id)sender
 {
 	[[NSWorkspace sharedWorkspace] openURL: 
 	 [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource: PROGRAM_LICENSE_FILE ofType: nil]]
@@ -1077,7 +1075,7 @@
 - Open donations website
 *****************************************/
 
-- (IBAction) openDonations: (id)sender
+- (IBAction)openDonations: (id)sender
 {
 	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: PROGRAM_DONATIONS]];
 }
