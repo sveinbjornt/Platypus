@@ -37,7 +37,7 @@
     NSString *str = [NSString stringWithContentsOfFile: path encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
     if (str == nil)
     {
-        [PlatypusUtility alert: @"Error reading document" subText: @"This document does not appear to be a text file and thus cannot be opened with a text editor."];
+        [PlatypusUtility alert: @"Error reading document" subText: @"This document does not appear to be a text file and cannot be opened with a text editor."];
         return;
     }
     
