@@ -1101,23 +1101,13 @@
         }
     }
     
-    //arguments to interpreter
-    paramsArray = [[NSArray arrayWithArray: [appSettingsPlist objectForKey:@"InterpreterParams"]] retain];
-    
-    //pass app path as first arg?
-    appPathAsFirstArg = [[appSettingsPlist objectForKey:@"AppPathAsFirstArg"] boolValue];
-    
-    //determine execution style
-    execStyle = [[appSettingsPlist objectForKey:@"RequiresAdminPrivileges"] boolValue];
-    
-    //remain running?
-    remainRunning = [[appSettingsPlist objectForKey:@"RemainRunningAfterCompletion"] boolValue];
-    
-    //is script encrypted and checksummed?
-    secureScript = [[appSettingsPlist objectForKey: @"Secure"] boolValue];
-    
-    //can the app receive dropped files as args?
-    isDroppable = [[appSettingsPlist objectForKey: @"Droppable"] boolValue];
+    //load these vars from plist
+    paramsArray         = [[NSArray arrayWithArray: [appSettingsPlist objectForKey:@"InterpreterParams"]] retain];
+    appPathAsFirstArg   = [[appSettingsPlist objectForKey:@"AppPathAsFirstArg"] boolValue];
+    execStyle           = [[appSettingsPlist objectForKey:@"RequiresAdminPrivileges"] boolValue];
+    remainRunning       = [[appSettingsPlist objectForKey:@"RemainRunningAfterCompletion"] boolValue];
+    secureScript        = [[appSettingsPlist objectForKey: @"Secure"] boolValue];
+    isDroppable         = [[appSettingsPlist objectForKey: @"Droppable"] boolValue];
     
     // never privileged execution or droppable w. status menu
     if (outputType == PLATYPUS_STATUSMENU_OUTPUT) 
@@ -1202,7 +1192,7 @@
         winRect.size.height -= 224;        
         [progressBarWindow setFrame: winRect display: TRUE animate: TRUE];
     }
-    else if ([sender state] == NSOnState)
+    else
     {
         [progressBarWindow setShowsResizeIndicator: YES];
         winRect.origin.y -= 224;
