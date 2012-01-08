@@ -53,6 +53,12 @@
     return str;
 }
 
++ (BOOL)isTextFile: (NSString *)path
+{
+    NSString *str = [NSString stringWithContentsOfFile: path encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
+    return (str != nil);
+}
+
 //+ (NSMutableArray *)splitOnCapitalLetters: (NSString *)str
 //{
 //    if ([str length] < 2)
