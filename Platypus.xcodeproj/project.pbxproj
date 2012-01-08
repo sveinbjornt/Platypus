@@ -69,6 +69,8 @@
 		F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F4E1F71111F75A7F007EE2E3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F4ED1E470CEC17920006636F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4ED1E460CEC17920006636F /* Carbon.framework */; };
+		F4FE6D9014B95661006A6810 /* Edit_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FE6D8E14B95661006A6810 /* Edit_Pressed.png */; };
+		F4FE6D9114B95661006A6810 /* Edit.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FE6D8F14B95661006A6810 /* Edit.png */; };
 		F4FE735F11F7925E005FC23A /* FileTypesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734711F7925E005FC23A /* FileTypesController.m */; };
 		F4FE736111F7925E005FC23A /* IconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734911F7925E005FC23A /* IconController.m */; };
 		F4FE736311F7925E005FC23A /* ParamsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734B11F7925E005FC23A /* ParamsController.m */; };
@@ -192,6 +194,8 @@
 		F4ECE1A111F77471000DB012 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = SOURCE_ROOT; };
 		F4ECE1B111F779CC000DB012 /* trim.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = trim.sh; sourceTree = "<group>"; };
 		F4ED1E460CEC17920006636F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		F4FE6D8E14B95661006A6810 /* Edit_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit_Pressed.png; sourceTree = "<group>"; };
+		F4FE6D8F14B95661006A6810 /* Edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit.png; sourceTree = "<group>"; };
 		F4FE734611F7925E005FC23A /* FileTypesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = FileTypesController.h; path = PlatypusApplication/FileTypesController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F4FE734711F7925E005FC23A /* FileTypesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = FileTypesController.m; path = PlatypusApplication/FileTypesController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F4FE734811F7925E005FC23A /* IconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = IconController.h; path = PlatypusApplication/IconController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -386,6 +390,8 @@
 				F446379F14B6737F00ECF827 /* Add.png */,
 				F44637A014B6737F00ECF827 /* Clear_Pressed.png */,
 				F44637A114B6737F00ECF827 /* Clear.png */,
+				F4FE6D8E14B95661006A6810 /* Edit_Pressed.png */,
+				F4FE6D8F14B95661006A6810 /* Edit.png */,
 				F44637A214B6737F00ECF827 /* Remove_Pressed.png */,
 				F44637A314B6737F00ECF827 /* Remove.png */,
 				F44637A414B6737F00ECF827 /* RevealInFinder_Pressed.png */,
@@ -748,6 +754,8 @@
 				F44637AC14B6737F00ECF827 /* RevealInFinder_Pressed.png in Resources */,
 				F44637AD14B6737F00ECF827 /* RevealInFinder.png in Resources */,
 				F4263A2F14B7E2AC000A1A68 /* ScriptExec in Resources */,
+				F4FE6D9014B95661006A6810 /* Edit_Pressed.png in Resources */,
+				F4FE6D9114B95661006A6810 /* Edit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
