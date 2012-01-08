@@ -239,7 +239,7 @@
 
 <p>Please note that the interpreter you selected must exist on the Mac OS X system on which your script application will run.  All the preset scripting language interpreters (e.g. shell, Perl, Python, PHP, Tcl, Expect etc.) are a standard part of all Mac OS X installations.Alternately, you could use <code>/usr/bin/env</code>.</p>
 
-<p>The <strong>Parameters</strong> button next to the text field containing your script interpreter setting allows you to specify arguments for the script interpreter.</p>
+<p>The <strong>Args</strong> button next to the text field containing your script interpreter setting allows you to specify arguments for the script interpreter and the script itself.</p>
 
 
 <br><br>
@@ -350,7 +350,7 @@ results, use professional Mac OS X icon-editing software and specify a carefully
 
 <p>You can add a list of files to be copied into the Resources folder of your application bundle. These files can then be used by your script.  The default current working directory of your script will be this folder, so you should be able to access them directly from your script's CWD.</p>
     
-<p>In some cases, you may need to manually change to the Resources directory.  If so, press the "Parameters" button and set check the "Set $1 as path to app" checkbox.  Your bundled files will then be accessible via the following path "$1/Contents/Resources/[filename]".</p>
+<p>In some cases, you may need to manually change to the Resources directory.  If so, press the "Args" button and set check the "Set $1 as path to app" checkbox.  Your bundled files will then be accessible via the following path "$1/Contents/Resources/[filename]".</p>
 
 <br>
 <br>
@@ -519,11 +519,9 @@ foreach(@ARGV)
 
 <p>This short tutorial will demonstrate the process of creating a GUI installer using a shell script and Platypus.</p>
 
-<strong>Step 1: Set Output Type and Parameters</strong>
+<strong>Step 1: Set Output Type and Args</strong>
 
 <p>Once you have defined the name of your installer in the "App Name" field, you'll probably want to set Output as "Progress Bar" to indicate to the end user that some activity is taking place. Another option is "Text Window", in which case you should set your script to print out status messages on how the installation is doing into a text window while it is running. The install may take some time, depending on what you're installing.</p>
-
-<p>Also, make sure to click the "Parameters" button and check the "Set $1 as path to app" option.  This is important in order to access the files we will be bundling with our app.</p>
 
 <strong>Step 2: Set Installer Icon</strong>
 
@@ -624,14 +622,14 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 
 <h3 id="84">How does my script get the user's environment (e.g. PATH)?</h3>
 
-<p>Assuming that the user's shell is <code>bash</code>, you can set the interpreter to <code>/bin/bash</code> and add the <code>-l</code> flag as an argument to it under "Parameters".  This makes <code>bash</code> act as if it had been invoked as a login shell.  See <code>man bash</code> for details.</p>
+<p>Assuming that the user's shell is <code>bash</code>, you can set the interpreter to <code>/bin/bash</code> and add the <code>-l</code> flag as an argument to it under "Args".  This makes <code>bash</code> act as if it had been invoked as a login shell.  See <code>man bash</code> for details.</p>
 	
 <br>
 <br>
     
 <h3 id="85">How can I pass specific arguments to my script?</h3>
 
-<p>There is no way to pass direct arguments to your script via the Platypus interface.  If your script requires certain (non-runtime-specific) parameters, you can either change the logic of the script itself or, alternately, bundle your script with a shell script which runs it.  To illustrate, let's say we have a Perl script called <code>myScript.pl</code> which requires the parameter <code>--force</code>.  Then we could bundle the perl script into the application using the Bundled Files interface, and then create the following shell script:</p>
+<p>You can edit arguments to both the script interpreter and the script itself by pressing the <strong>Args</strong> button next to Output Type.</p>
 
 <div class="codeblock">
 /usr/bin/perl myScript.pl --force
