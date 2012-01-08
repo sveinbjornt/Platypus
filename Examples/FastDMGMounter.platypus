@@ -56,7 +56,7 @@ echo "Y" | /usr/bin/hdid "$1"
 	<true/>
 	<key>Output</key>
 	<string>None</string>
-	<key>Parameters</key>
+	<key>InterpreterArgs</key>
 	<array>
 		<string>-f</string>
 	</array>

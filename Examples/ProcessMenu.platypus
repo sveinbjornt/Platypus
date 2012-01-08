@@ -51,7 +51,7 @@ ps cax
 	<false/>
 	<key>Output</key>
 	<string>Status Menu</string>
-	<key>Parameters</key>
+	<key>InterpreterArgs</key>
 	<array/>
 	<key>RemainRunning</key>
 	<true/>

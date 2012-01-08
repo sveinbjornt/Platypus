@@ -24,6 +24,7 @@
 .Op Fl X Ar suffixes
 .Op Fl T Ar filetypes
 .Op Fl G Ar interpreterArgs
+.Op Fl C Ar scriptArgs
 .Ar [scriptFile] [destinationPath]
 .Sh DESCRIPTION
 .Nm
@@ -137,6 +138,9 @@ codes (e.g. '8BIM', 'TEXT') your application can open.  This should be a |-separ
 4-character ASCII strings (e.g. "8BIM|TEXT|R*ch").
 .It Fl G Ar [arguments]
 Arguments for the script interpreter.  These should be specified as a |-separated string (e.g. '-w|-s|-l').
+.Pp
+.It Fl C Ar [arguments]
+Arguments to the script.  These should be specified as a |-separated string (e.g. '-w|-s|-l').
 .Pp
 .It Fl b Ar [hexColor]
 For Text Window output mode only. Set background color of text output (e.g. #ffffff).

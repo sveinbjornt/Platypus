@@ -78,7 +78,7 @@ system("$cmd $dest_path $files");
 	<false/>
 	<key>Output</key>
 	<string>Text Window</string>
-	<key>Parameters</key>
+	<key>InterpreterArgs</key>
 	<array/>
 	<key>RemainRunning</key>
 	<true/>

@@ -47,7 +47,7 @@
 
 ///////////// DEFINITIONS ////////////////
 
-#define		OPT_STRING			"P:f:a:o:i:u:p:V:I:ASODBRFydlvhX:T:G:b:g:n:E:K:Y:L:H:U:" 
+#define		OPT_STRING			"P:f:a:o:i:u:p:V:I:ASODBRFydlvhX:T:G:C:b:g:n:E:K:Y:L:H:U:" 
 
 ///////////// PROTOTYPES ////////////////
 
@@ -300,12 +300,21 @@ int main (int argc, const char * argv[])
             }
             break;
                 
-            // Parameters for interpreter
+            // Arguments for interpreter
             case 'G':
             {
                 NSString *parametersString = [NSString stringWithCString: optarg  encoding: DEFAULT_OUTPUT_TXT_ENCODING];
                 NSArray *parametersArray = [parametersString componentsSeparatedByString: @"|"];
-                [properties setObject:  parametersArray forKey: @"Parameters"];
+                [properties setObject:  parametersArray forKey: @"InterpreterArgs"];
+            }
+            break;
+                
+            // Arguments for script
+            case 'C':
+            {
+                NSString *parametersString = [NSString stringWithCString: optarg  encoding: DEFAULT_OUTPUT_TXT_ENCODING];
+                NSArray *parametersArray = [parametersString componentsSeparatedByString: @"|"];
+                [properties setObject:  parametersArray forKey: @"ScriptArgs"];
             }
             break;
                 
@@ -585,7 +594,8 @@ Options:\n\
 	-E [encoding]		Set text encoding for script output (see man page)\n\
 	-X [suffixes]		Set suffixes handled by application\n\
 	-T [filetypes]		Set file type codes handled by application\n\
-	-G [arguments]		Set arguments for script interpreter\n\
+	-G [arguments]		Set arguments for script interpreter, separated by |\n\
+    -C [arguments]      Set arguments for script, separated by |\n\
 \n\
 	-K [kind]		Set Status Item kind ('Icon','Text', 'Icon and Text')\n\
 	-Y [title]		Set title of Status Item\n\

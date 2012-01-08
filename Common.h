@@ -123,7 +123,8 @@
                                                                @"NibPath", \
                                                                @"OptimizeApplication", \
                                                                @"Output", \
-                                                               @"Parameters", \
+                                                               @"InterpreterArgs", \
+                                                               @"ScriptArgs", \
                                                                @"RemainRunning", \
                                                                @"Role", \
                                                                @"ScriptPath", \
