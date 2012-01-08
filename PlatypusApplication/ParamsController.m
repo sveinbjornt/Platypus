@@ -155,7 +155,6 @@
 	return([values count]);
 }
 
-
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
 	if ([[aTableColumn identifier] caseInsensitiveCompare: @"1"] == NSOrderedSame)
@@ -164,7 +163,6 @@
 	}
 	return(@"");
 }
-
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue: anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
