@@ -151,7 +151,7 @@
             // reveal it
             [progressBarWindow makeKeyAndOrderFront: self];
         }
-            break;
+        break;
             
         case PLATYPUS_TEXTWINDOW_OUTPUT:
         {
@@ -173,7 +173,7 @@
             [textOutputWindow center];
             [textOutputWindow makeKeyAndOrderFront: self];
         }
-            break;
+        break;
             
         case PLATYPUS_WEBVIEW_OUTPUT:
         {
@@ -192,7 +192,7 @@
             [webOutputWindow makeKeyAndOrderFront: self];        
             
         }
-            break;
+        break;
             
         case PLATYPUS_STATUSMENU_OUTPUT:
         {
@@ -223,7 +223,7 @@
             // enable it
             [statusItem setEnabled: YES];
         }
-            break;
+        break;
             
         case PLATYPUS_DROPLET_OUTPUT:
         {            
@@ -237,7 +237,7 @@
             [dropletWindow center];
             [dropletWindow makeKeyAndOrderFront: self];
         }
-            break;
+        break;
     }
 }
 
@@ -261,7 +261,7 @@
             [progressBarCancelButton setTitle: @"Cancel"];
             if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { [progressBarCancelButton setEnabled: NO]; }
         }
-            break;
+        break;
             
         case PLATYPUS_TEXTWINDOW_OUTPUT:
         {   
@@ -270,7 +270,7 @@
             if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { [textOutputCancelButton setEnabled: NO]; }
             [textOutputProgressIndicator startAnimation: self];
         }
-            break;
+        break;
             
         case PLATYPUS_WEBVIEW_OUTPUT:
         {
@@ -279,13 +279,13 @@
             if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { [webOutputCancelButton setEnabled: NO]; }
             [webOutputProgressIndicator startAnimation: self];
         }
-            break;
+        break;
             
         case PLATYPUS_STATUSMENU_OUTPUT:
         {
             [outputTextView setString: @""];
         }
-            break;
+        break;
             
         case PLATYPUS_DROPLET_OUTPUT:
         {
@@ -296,7 +296,7 @@
             [dropletMessageTextField setStringValue: @"Processing..."];
             [outputTextView setString: @"\n"];
         }
-            break;
+        break;
     }
 }
 
@@ -318,7 +318,7 @@
             [textOutputCancelButton setEnabled: YES];
             [textOutputProgressIndicator stopAnimation: self];
         }
-            break;
+        break;
             
         case PLATYPUS_PROGRESSBAR_OUTPUT:
         {
@@ -355,7 +355,7 @@
             [progressBarCancelButton setTitle: @"Quit"];
             [progressBarCancelButton setEnabled: YES];
         }
-            break;
+        break;
             
         case PLATYPUS_WEBVIEW_OUTPUT:
         {
@@ -364,7 +364,7 @@
             [webOutputCancelButton setEnabled: YES];
             [webOutputProgressIndicator stopAnimation: self];
         }
-            break;
+        break;
             
         case PLATYPUS_DROPLET_OUTPUT:
         {
@@ -372,7 +372,7 @@
             [dropletDropFilesLabel setHidden: NO];
             [dropletMessageTextField setHidden: YES];
         }
-            break;
+        break;
     }
 }
 
