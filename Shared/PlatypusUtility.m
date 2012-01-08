@@ -77,19 +77,19 @@
 //    return wrds;
 //}
 
-+ (BOOL)runningSnowLeopardOrLater
-{
-    SInt32 major = 0;
-    SInt32 minor = 0;   
-    
-    Gestalt(gestaltSystemVersionMajor, &major);
-    Gestalt(gestaltSystemVersionMinor, &minor);
-    
-    if ((major == 10 && minor >= 6) || major > 10)
-        return TRUE;
-    
-    return FALSE;
-}
+//+ (BOOL)runningSnowLeopardOrLater
+//{
+//    SInt32 major = 0;
+//    SInt32 minor = 0;   
+//    
+//    Gestalt(gestaltSystemVersionMajor, &major);
+//    Gestalt(gestaltSystemVersionMinor, &minor);
+//    
+//    if ((major == 10 && minor >= 6) || major > 10)
+//        return TRUE;
+//    
+//    return FALSE;
+//}
 
 + (void)alert: (NSString *)message subText: (NSString *)subtext
 {
