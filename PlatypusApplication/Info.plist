@@ -53,10 +53,6 @@
 			<array>
 				<string>platypus</string>
 			</array>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>****</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusProfile.icns</string>
 			<key>CFBundleTypeName</key>
