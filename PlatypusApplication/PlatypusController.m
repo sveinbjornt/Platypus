@@ -79,7 +79,13 @@
     
 	//populate script type menu
 	[scriptTypePopupMenu addItemsWithTitles: [ScriptAnalyser interpreterDisplayNames]];
-	
+	int i;
+    for (i = 0; i < [[scriptTypePopupMenu itemArray] count]; i++)
+    {
+        NSImage *icon = [NSImage imageNamed: [[scriptTypePopupMenu itemAtIndex: i] title]];
+
+        [[scriptTypePopupMenu itemAtIndex: i] setImage: icon];
+    }
 	[window registerForDraggedTypes: [NSArray arrayWithObjects: NSFilenamesPboardType, NSStringPboardType, nil]];
 	[window makeFirstResponder: appNameTextField];
 
