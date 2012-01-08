@@ -84,7 +84,9 @@
 
 	NSMutableArray  *arguments;
 	NSMutableArray  *fileArgs;
-	NSArray			*paramsArray;
+	NSArray			*interpreterArgs;
+    NSArray         *scriptArgs;
+    
 
 	NSString		*interpreter;
 	NSString		*scriptPath;
