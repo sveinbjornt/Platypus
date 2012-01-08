@@ -23,7 +23,7 @@
 
 @implementation ParamsController
 
-#define DEFAULT_ARG_VALUE		@"-argument"
+#define DEFAULT_ARG_VALUE		@"-arg"
 
 - (id) init
 {
@@ -40,8 +40,8 @@
 - (IBAction)add:(id)sender
 {
 	[values addObject: DEFAULT_ARG_VALUE];
-	[paramsTableView reloadData];
-	[paramsTableView selectRow: [values count]-1 byExtendingSelection: NO];
+	[interpreterArgsTableView reloadData];
+	[interpreterArgsTableView selectRowIndexes: [NSIndexSet indexSetWithIndex: [values count]-1] byExtendingSelection: NO];
 	[self tableViewSelectionDidChange: NULL];
 	[paramsCommandTextField setStringValue: [self constructCommandString]];
 }
@@ -50,7 +50,7 @@
 {	
 	[values removeAllObjects];
 	[values addObjectsFromArray: array];
-	[paramsTableView reloadData];
+	[interpreterArgsTableView reloadData];
 	[self tableViewSelectionDidChange: NULL];
 }
 
@@ -63,28 +63,28 @@
 - (IBAction)clear:(id)sender
 {
 	[values removeAllObjects];
-	[paramsTableView reloadData];
+	[interpreterArgsTableView reloadData];
 	[self tableViewSelectionDidChange: NULL];
 	[paramsCommandTextField setStringValue: [self constructCommandString]];   
 }
 
 - (IBAction)remove:(id)sender
 {
-	int selectedRow = [paramsTableView selectedRow];
+	int selectedRow = [interpreterArgsTableView selectedRow];
 	int rowToSelect;
 
 	if (selectedRow == -1)
 		return;
 	
-	[values removeObjectAtIndex: [paramsTableView selectedRow]];
+	[values removeObjectAtIndex: [interpreterArgsTableView selectedRow]];
 	
-	if (![paramsTableView numberOfRows]) { return; }
+	if (![interpreterArgsTableView numberOfRows]) { return; }
 
 	rowToSelect = selectedRow-1;
+    
+	[interpreterArgsTableView selectRowIndexes: [NSIndexSet indexSetWithIndex: rowToSelect] byExtendingSelection: NO];
 	
-	[paramsTableView selectRowIndexes: [NSIndexSet indexSetWithIndex: rowToSelect] byExtendingSelection: NO];
-	
-	[paramsTableView reloadData];
+	[interpreterArgsTableView reloadData];
 	[self tableViewSelectionDidChange: NULL];
 
 	[paramsCommandTextField setStringValue: [self constructCommandString]];
@@ -177,28 +177,19 @@
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
-{
-	int selected = [paramsTableView selectedRow];
-	
-	if (selected != -1) //there is a selected item
-		[removeButton setEnabled: YES];
-	else
-		[removeButton setEnabled: NO];
-	
-	if ([values count] == 0)
-		[clearButton setEnabled: NO];
-	else
-		[clearButton setEnabled: YES];
-	
-	if ([values count] == PROGRAM_MAX_LIST_ITEMS)
-		[addButton setEnabled: NO];
-	else
-		[addButton setEnabled: YES];
+{	
+    [interpreterArgsRemoveButton setEnabled: ([interpreterArgsTableView selectedRow] != -1)];	
+    [interpreterArgsClearButton setEnabled: ([values count] != 0)];
+    [interpreterArgsAddButton setEnabled: ([values count] != PROGRAM_MAX_LIST_ITEMS)];
+    
+    [scriptArgsRemoveButton setEnabled: ([scriptArgsTableView selectedRow] != -1)];	
+    [scriptArgsClearButton setEnabled: ([values count] != 0)];
+    [scriptArgsAddButton setEnabled: ([values count] != PROGRAM_MAX_LIST_ITEMS)];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem*)anItem 
 {
-	if ([[anItem title] isEqualToString:@"Remove Entry"] && [paramsTableView selectedRow] == -1)
+	if ([[anItem title] isEqualToString:@"Remove Entry"] && [interpreterArgsTableView selectedRow] == -1)
 		return NO;
 	return YES;
 }

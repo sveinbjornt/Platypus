@@ -22,31 +22,51 @@
 
 @interface ParamsController : NSObject 
 {
-    IBOutlet id addButton;
-    IBOutlet id clearButton;
-    IBOutlet id interpreterTextField;
-    IBOutlet id paramsCommandTextField;
-    IBOutlet id paramsTableView;
     IBOutlet id paramsWindow;
-    IBOutlet id removeButton;
+    IBOutlet id paramsCommandTextField;
+    IBOutlet id interpreterTextField;
+    
+    IBOutlet id interpreterArgsAddButton;
+    IBOutlet id interpreterArgsRemoveButton;
+    IBOutlet id interpreterArgsClearButton;
+    IBOutlet id interpreterArgsTableView;
+    
+    IBOutlet id scriptArgsAddButton;
+    IBOutlet id scriptArgsRemoveButton;
+    IBOutlet id scriptArgsClearButton;
+    IBOutlet id scriptArgsTableView;
+    
 	IBOutlet id setFirstArgAppPathCheckbox;
 	IBOutlet id isDroppableCheckbox;
     IBOutlet id window;
 	
 	NSMutableArray	*values;
 }
-- (IBAction)add:(id)sender;
-- (void)set: (NSArray *)array;
-- (IBAction)apply:(id)sender;
-- (IBAction)clear:(id)sender;
-- (IBAction)remove:(id)sender;
-- (IBAction)resetDefaults:(id)sender;
-- (IBAction)show:(id)sender;
-- (NSString *)constructCommandString;
-- (NSArray *)paramsArray;
-- (IBAction)appPathCheckboxClicked:(id)sender;
+// accessors
+- (void)setInterpreterArgs: (NSArray *)array;
+- (void)setScriptArgs: (NSArray *)array;
+- (NSArray *)interpreterArgs;
+- (NSArray *)scriptArgs;
 - (BOOL)passAppPathAsFirstArg;
 - (void)setAppPathAsFirstArg: (BOOL)state;
+
+- (IBAction)apply:(id)sender;
+
+- (IBAction)addInterpreterArg:(id)sender;
+- (IBAction)removeInterpreterArg:(id)sender;
+- (IBAction)clearInterpreterArgs:(id)sender;
+
+- (IBAction)addScriptArg:(id)sender;
+- (IBAction)removeScriptArg:(id)sender;
+- (IBAction)clearScriptArgs:(id)sender;
+
+- (IBAction)resetDefaults:(id)sender;
+
+- (IBAction)show:(id)sender;
+- (NSString *)constructCommandString;
+- (IBAction)appPathCheckboxClicked:(id)sender;
+
+// table view handling
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView;
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
 - (void)tableView:(NSTableView *)aTableView setObjectValue: anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
