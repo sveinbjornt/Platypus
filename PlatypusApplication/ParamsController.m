@@ -88,7 +88,6 @@
 	[self tableViewSelectionDidChange: NULL];
 
 	[paramsCommandTextField setStringValue: [self constructCommandString]];
-
 }
 
 - (IBAction)resetDefaults:(id)sender

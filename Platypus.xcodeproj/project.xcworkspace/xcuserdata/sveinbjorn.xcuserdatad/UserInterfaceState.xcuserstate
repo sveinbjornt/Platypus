@@ -3770,9 +3770,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>347746724.234128</real>
-		<string>{2091, 1107}</string>
-		<string>{2651, 0}</string>
+		<real>347746754.92865199</real>
+		<string>{3315, 1055}</string>
+		<string>{2432, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -9220,10 +9220,10 @@
 				</dict>
 			</array>
 		</dict>
-		<real>347746724.23717397</real>
-		<string>{2091, 1107}</string>
-		<string>{2651, 0}</string>
-		<string>-show:</string>
+		<real>347746754.93113798</real>
+		<string>{3315, 1055}</string>
+		<string>{2432, 0}</string>
+		<string>-remove:</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
