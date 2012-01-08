@@ -199,10 +199,10 @@
 	
 	if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]) 
 	{
-            if (isDir)
-				[[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:path];
-            else
-				[[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:nil];
+        if (isDir)
+            [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:path];
+        else
+            [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:nil];
 	}
 }
 
@@ -416,11 +416,13 @@
 		{
 			[removeFileButton setEnabled: NO];
 			[revealFileButton setEnabled: NO];
+            [editFileButton setEnabled: NO];
 		}
 		else
 		{
 			[removeFileButton setEnabled: YES];
 			[revealFileButton setEnabled: YES];
+            [editFileButton setEnabled: YES];
 		}
 		
 		if ([self numFiles] == 0)

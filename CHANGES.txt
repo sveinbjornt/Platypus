@@ -7,6 +7,7 @@ For 4.6
     * It is now possible to save output to a text or HTML file within Platypus-generated apps
     * "Open" menu item in File menu for Platypus-generated apps that accept dropped files
 
+    TODO:  Fix bug w. Open in Editor in File List
     TODO:  Support for attaching icons to file types / suffixes under Droppable options
             IN PROGRESS, remember to implement this in ScriptExec and test it properly
     TODO:  Support reading script from STDIN in command line tool

@@ -34,6 +34,7 @@
 	IBOutlet id	window;
 	IBOutlet id addFileButton;
 	IBOutlet id removeFileButton;
+    IBOutlet id editFileButton;
 	IBOutlet id revealFileButton;
 	IBOutlet id clearFileListButton;
 	IBOutlet id tableView;
