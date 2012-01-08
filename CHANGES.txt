@@ -2,10 +2,10 @@ For 4.6
     * Command line tool now supports dumping profile property lists to stdout (see man page)
     * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
     * New FastDMGMounter example
-    * New interpreter presets:  zsh, tcsh and ksh
-    * Migrated all images to optimized PNGs
-    * It is now possible to save output to a text or HTML file within Platypus-generated applications
-    * "Open" menu item in File menu for apps that accept dropped files
+    * Additional interpreter presets:  zsh and tcsh
+    * Migrated all images to optimized PNGs for smaller file sizes
+    * It is now possible to save output to a text or HTML file within Platypus-generated apps
+    * "Open" menu item in File menu for Platypus-generated apps that accept dropped files
 
     TODO:  Support for attaching icons to file types / suffixes under Droppable options
             IN PROGRESS, remember to implement this in ScriptExec and test it properly
@@ -17,7 +17,6 @@ For 4.6
     TODO:  Fix STPathTextField so autocomplete and coloring works
     TODO:  Restore "icon from image" functionality in command line tool
     TODO:  Support for creating bundle with JUST executable script, no app binary wrapper
-    TODO:  Uninstaller
     TODO:  Documentation for examples
 
 For 4.5
