@@ -631,7 +631,7 @@
         return;
     
     // we parse output if output type is progress bar, to get progress indicator values and display string
-    if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || outputType == PLATYPUS_DROPLET_OUTPUT )
+    if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || outputType == PLATYPUS_DROPLET_OUTPUT)
     {
         if (remnants != NULL && [remnants length] > 0)
         {
@@ -1048,7 +1048,7 @@
     // we need some additional info from AppSettings.plist if we are presenting textual output
     if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || 
         outputType == PLATYPUS_TEXTWINDOW_OUTPUT ||
-        outputType == PLATYPUS_STATUSMENU_OUTPUT )
+        outputType == PLATYPUS_STATUSMENU_OUTPUT)
     {
         //make sure all this data is sane 
         
