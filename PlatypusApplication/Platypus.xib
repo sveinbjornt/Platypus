@@ -205,7 +205,7 @@
 						<object class="NSTextField" id="143359466">
 							<reference key="NSNextResponder" ref="705059762"/>
 							<int key="NSvFlags">264</int>
-							<string key="NSFrame">{{411, 459}, {145, 22}}</string>
+							<string key="NSFrame">{{411, 459}, {164, 22}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="787370935"/>
@@ -1266,7 +1266,7 @@ AAAAAAAAA</bytes>
 						<object class="NSButton" id="787370935">
 							<reference key="NSNextResponder" ref="705059762"/>
 							<int key="NSvFlags">264</int>
-							<string key="NSFrame">{{559, 455}, {84, 28}}</string>
+							<string key="NSFrame">{{578, 456}, {65, 28}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="761432001"/>
@@ -1274,7 +1274,7 @@ AAAAAAAAA</bytes>
 							<object class="NSButtonCell" key="NSCell" id="567503757">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134348800</int>
-								<string key="NSContents">Parameters</string>
+								<string key="NSContents">Params</string>
 								<reference key="NSSupport" ref="26"/>
 								<reference key="NSControlView" ref="787370935"/>
 								<int key="NSButtonFlags">-2038284033</int>
@@ -7193,7 +7193,6 @@ b2xvciBzaXQgYW1ldA</bytes>
 							<reference ref="877367168"/>
 							<reference ref="846093717"/>
 							<reference ref="413399108"/>
-							<reference ref="787370935"/>
 							<reference ref="42190199"/>
 							<reference ref="321417449"/>
 							<reference ref="281574598"/>
@@ -7210,8 +7209,9 @@ b2xvciBzaXQgYW1ldA</bytes>
 							<reference ref="871617782"/>
 							<reference ref="979847583"/>
 							<reference ref="761432001"/>
-							<reference ref="143359466"/>
 							<reference ref="255608767"/>
+							<reference ref="787370935"/>
+							<reference ref="143359466"/>
 						</object>
 						<reference key="parent" ref="271767580"/>
 					</object>
