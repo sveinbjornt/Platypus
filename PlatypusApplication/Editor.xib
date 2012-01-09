@@ -312,15 +312,15 @@ AAEAAQAAAT0AAwAAAAEAAgAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<object class="NSTextField" id="95398589">
 							<reference key="NSNextResponder" ref="1007933128"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 380}, {119, 14}}</string>
+							<string key="NSFrame">{{17, 375}, {106, 17}}</string>
 							<reference key="NSSuperview" ref="1007933128"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="303813237"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="526219853">
 								<int key="NSCellFlags">69336577</int>
-								<int key="NSCellFlags2">4194304</int>
-								<string key="NSContents">Editing script at path </string>
+								<int key="NSCellFlags2">71303168</int>
+								<string key="NSContents">Editing file at path </string>
 								<object class="NSFont" key="NSSupport" id="26">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">11</double>
@@ -344,7 +344,7 @@ AAEAAQAAAT0AAwAAAAEAAgAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						<object class="NSTextField" id="303813237">
 							<reference key="NSNextResponder" ref="1007933128"/>
 							<int key="NSvFlags">266</int>
-							<string key="NSFrame">{{132, 377}, {451, 17}}</string>
+							<string key="NSFrame">{{132, 375}, {451, 17}}</string>
 							<reference key="NSSuperview" ref="1007933128"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="958915752"/>

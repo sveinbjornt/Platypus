@@ -105,7 +105,7 @@
     <li class="heading">
         <strong>Examples</strong>
         <ul>
-            <li><a href="#71">Creating a Droplet with files as arguments</a></li>
+			<li><a href="#71">Built-In Examples</a></li>
             <li><a href="#72">Creating an installer</a></li>
             <li><a href="#73">User interaction with CocoaDialog/Pashua</a></li>
         </ul>
@@ -455,7 +455,9 @@ Python: <code>Platypus.app/Contents/Resources/pycheck.py "/path/to/script"</code
 <a name="61"></a>
 <h3>Saving and Loading</h3>
 
-<p>Profiles allow you to save Platypus application configuration settings.  These can be loaded by the Platypus application or the <code>platypus</code> command line tool.  The Profiles menu is used to save and access profiles.  Profiles are stored as files, typically in the Profiles folder of the Platypus Application Support folder.  You can load a profile by selecting it from the menu, which lists all profiles in the Profiles folder.  To reveal a profile in the Finder, hold down the Command key and select the profile.  Profiles have a <code>.platypus</code> filename suffix.  Please note that profiles may or may not work between different versions of Platypus, depending on the extent of changes between versions.</p>
+<p>Profiles allow you to save Platypus application configuration settings.  These can be loaded by the Platypus application or the <code>platypus</code> command line tool.  The Profiles menu is used to save and access profiles.  Profiles are stored as files, typically in the Profiles folder of the Platypus Application Support folder.</p>
+
+<p>You can load a profile by selecting it from the menu, which lists all profiles in the Profiles folder.  To reveal a profile in the Finder, hold down the Command key and select the profile.  Profiles have a <code>.platypus</code> filename suffix.  Please note that profiles may or may not work between different versions of Platypus, depending on the extent of changes between versions.</p>
 
 <img src="images/profiles.png">
 <br><br>
@@ -485,57 +487,55 @@ Python: <code>Platypus.app/Contents/Resources/pycheck.py "/path/to/script"</code
 
 <h2>Examples</h2>
 
-<p>The following examples I wrote up back in 2005 may be useful in understanding how Platypus works.  I haven't had the patience to write up new examples, so these may be somewhat dated given the current status of Platypus development.</p>
-
-<br><br>
+<h3>Built-In Examples</h3>
 
 <a name="71"></a>
 
-<h3>Creating a droplet with files as arguments</h3>
+<p>Platypus includes a number of built-in examples.  These can be opened in the <strong>Examples submenu</strong> of the <strong>Profiles</strong> menu.  You can open the script file associated with each example to see how they work.  Brief explanations of each of the examples follows:</p>
 
-<p>Droplets are one of the more interesting uses of Platypus, because they make it easy to create a graphical app for batch-processing many files using a scripting language.  The following example shows out to create an application which gzip-compresses all dropped files.</p>
+<blockquote>
+<p><strong>FastDMGMounter</strong>: This creates a replacement for Mac OS X's DiskImageMounter which uses the command line tool to mount .dmgs much faster, skipping verification and auto-accepting any EULAs.</p>  
 
-<p>Once you have selected your script and defined an Application name, click "Show advanced options" and check the "Droppable" checkbox.</p> 
+<p><strong>ProcessMenu</strong>: Creates an application which places a status menu in your menu bar, which will display the output of <code>ps cax</code> when opened.</p>  
 
-<p>The files dropped on to your applications from the graphical user interface will now be passed on to your script via the ARGV array.  Below you'll see a sample Perl script that compresses the files it receives as argument using the gzip program:</p>
+<p><strong>ProgressBar</strong>: An example demonstrating how progress bar status can be controlled with script output.</p>  
 
-<pre>
-#!/usr/bin/perl
+<p><strong>SpeakDroplet</strong>: An application which uses the Mac OS X speech synthesiser to read all opened text files.</p>  
 
-# loop through list of files dropped
-foreach(@ARGV)
-{
-    # gzip each file in turn
-    system("gzip '$_'");
-}
-</pre>
+<p><strong>SpotlightInfo</strong>: Drag a file on window to see Spotlight meta-data info on the file.</p>  
 
+<p><strong>SysLoadMenu</strong>: Status menu app which displays the output of <code>w</code>.</p>  
 
+<p><strong>SystemProfiler</strong>: Displays all system profiling information about your system in a text window.  Uses Apple's <code>system_profiler</code> tool.</p>  
+
+<p><strong>TarGzipper</strong>: Creates a gzipped tar archive of files dropped on it, in the same directory as the files.</p>  
+
+</blockquote>
+
+<p>If you come up with a particularly nifty use of Platypus, it might make a suitable addition to this list.  If so, by all means send it to me at <code>sveinbjornt</code>@<code>gmail</code> dot <code>com</code>.</p>
 
 <br><br>
 
 <h3>Creating an installer</h3>
 <a name="72"></a>
 
-<p>This short tutorial will demonstrate the process of creating a GUI installer using a shell script and Platypus.</p>
+<p>This short tutorial will outline the process of creating an installer application using a shell script and Platypus.</p>
 
 <strong>Step 1: Set Output Type and Args</strong>
 
-<p>Once you have defined the name of your installer in the "App Name" field, you'll probably want to set Output as "Progress Bar" to indicate to the end user that some activity is taking place. Another option is "Text Window", in which case you should set your script to print out status messages on how the installation is doing into a text window while it is running. The install may take some time, depending on what you're installing.</p>
+<p>Set Output as "Progress Bar" to indicate to the end user that some activity is taking place. Alternately, you choose "Text Window", in which case you should set your script to print out status messages on how the installation is doing into a text window while it is running.</p>
 
 <strong>Step 2: Set Installer Icon</strong>
 
-<p>Since you're making an installer, you may want to set the icon of the application to "Platypus Installer", or alternately, set your own custom icon by choosing "Select Custom Icon" from the "Advanced" menu.</p>
+<p>Since you are making an installer, you may want to set the icon of the application to "Platypus Installer", or alternately, set your own custom icon by choosing "Select Custom Icon" from the "Advanced" menu.</p>
 
 <strong>Step 3: Set Advanced Options / Admin Privileges</strong>
 
-<p>If your installer needs to install files in protected locations on the file system (i.e. in places where your end user will typically not have write-privileges), you'll need to click "Show advanced options" and check the "Requires Adminstrator privileges" checkbox. This will make the app execute your script with administrator privileges after prompting the user for the administrator password.</p>
+<p>If your installer needs to install files in protected locations on the file system (i.e. in places where your end user will typically not have write-privileges), you should check the "Requires Adminstrator privileges" checkbox. This will make the app execute your script with administrator privileges after prompting the user for the administrator password.</p>
 
 <strong>Step 4: Select the files to be installed</strong>
 
-<p>We now want to add the files that our installer will actually install. We add files to the file list under "Advanced Options" by pressing the "+" button to the right until we have specified all the files we want.</p>
-
-<p>These files will be copied into the Resources folder of the application we're about to create.</p>
+<p>We now want to add the files that our installer will actually install. Press the "+" button on the bottom right and choose the files to be installed.  These files will be copied into the Resources folder of the application we are about to create.</p>
 
 <strong>Step 5: Create the script</strong>
 
@@ -550,9 +550,9 @@ echo "Installing MyFramework.framework in /Library/Frameworks"
 cp -R "MyFramework.framework" "/Library/Frameworks/"
 </pre>
 
-<p>The echo messages are optional, but may be helpful if you've set your output type to "Text Window": then your user will see these messages.  You may want to modify permissions using chmod or do extra things like open the application (a simple "open /Applications/MyApp.app").</p>
+<p>The echo messages are optional, but may be helpful if you have set your output type to "Text Window": then your user will see these messages.  You may want to modify permissions using <code>chmod</code> or do extra things like open the application (a simple <code>open /Applications/MyApp.app</code>.</p>
 
-<p>With a script such as this and the above-mentioned settings we are ready to go -- press the Create button and you'll have a fully-functioning installer.</p>
+<p>Press the Create button and you'll have a fully-functioning installer.</p>
 
 
 <br><br>
@@ -560,9 +560,9 @@ cp -R "MyFramework.framework" "/Library/Frameworks/"
 
 <h3>User interaction with CocoaDialog</h3>
 
-<p>It is possible to use Platypus with an ingenious open-source application called CocoaDialog to construct scripts that prompt for input and generate feedback. CocoaDialog is documented adequately elsewhere so I will not discuss it. Instead I will briefly outline how to combine it with Platypus to create a Mac OS X application with a user interface.</p>
+<p>It is possible to use Platypus with the open-source application CocoaDialog to construct scripts that prompt for user input with dialogs and returns user choices. CocoaDialog is <a href="http://mstratman.github.com/cocoadialog/">documented adequately here</a>. I will briefly outline how to combine it with Platypus to create a Mac OS X application with a  primitive user interface.</p>
 
-<p>First you need to download CocoaDialog. You can then open Platypus and add it to the list of bundled files.</p>
+<p>First you need to download CocoaDialog. You can then open Platypus and add it to the list of bundled files at the bottom.</p>
 
 <p>Below you can see a shell script that gives an example of how to query for input with a bundled copy of CocoaDialog:</p>
 
