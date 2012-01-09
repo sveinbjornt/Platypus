@@ -1269,5 +1269,4 @@
     [[NSApplication sharedApplication] terminate: self];
 }
 
-
 @end
