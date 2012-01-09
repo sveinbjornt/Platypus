@@ -8,11 +8,12 @@ For 4.6
     * "Open" menu item in File menu for Platypus-generated apps that accept dropped files
     * Extended documentation
     * New "Edit file" button for Bundled Files List.
-    
+    * New option to set custom arguments for script 
+    * Minor interface changes
+
     TODO:  Support for attaching icons to file types / suffixes under Droppable options
             IN PROGRESS, remember to implement this in ScriptExec and test it properly
     TODO:  Support reading script from STDIN in command line tool
-    TODO:  Support for arguments to script in Params
     TODO:  Update documentation, remove refs to old examples, add a few more tutorials on installers etc.
     TODO:  Create Platypus tutorial videos
     TODO:  Fix STPathTextField so autocomplete and coloring works
@@ -154,42 +155,42 @@ For 4.1
 
 For 4.0
 
-* Now both Platypus and Platypus-generated apps require Mac OS X 10.4 or later.
-* Interface streamlined and improved
-* Overhauled entire source code backend.
-* Optimized binaries of Platypus and Platypus-generated apps.  Both are now leaner, meaner and slimmer than ever before.
-* New file-based Profiles feature
-* New application icon and new icon presets for generated apps
-* New Web Output mode.  Scripts can generate HTML which is rendered in a WebKit view in the Platypus-generated application
-* New option to configure text size, font and color for Text Output mode
-* New option to send arguments to script interpreter
-* New option to disable passing path to app as first argument to script
-* New "Secure script" encryption method
-* Command line tool now has complete feature parity with the Platypus app
-* Command line tool can now load Platypus profiles
-* Command line tool now installed/uninstalled through Platypus Preferences
-* New "Estimated final app size" reporting feature
-* "Show Shell Command" option now correctly adds icon parameters
-* Fixed bug where "Run Script in Terminal" option failed to escape script path
-* Fixed bug with reversed LSMinimumSystemVersion property in Info.plist of generated applications
-* Fixed bug where the same file could be added multiple times to Bundled Files list
-* Fixed memory leak in Platypus-generated apps where a large amount of text output would cause the application to crash
-* New and better man page for command line tool
-* Updated and improved documentation
-* Updated to latest IconFamily class code for icon generation
+    * Now both Platypus and Platypus-generated apps require Mac OS X 10.4 or later.
+    * Interface streamlined and improved
+    * Overhauled entire source code backend.
+    * Optimized binaries of Platypus and Platypus-generated apps.  Both are now leaner, meaner and slimmer than ever before.
+    * New file-based Profiles feature
+    * New application icon and new icon presets for generated apps
+    * New Web Output mode.  Scripts can generate HTML which is rendered in a WebKit view in the Platypus-generated application
+    * New option to configure text size, font and color for Text Output mode
+    * New option to send arguments to script interpreter
+    * New option to disable passing path to app as first argument to script
+    * New "Secure script" encryption method
+    * Command line tool now has complete feature parity with the Platypus app
+    * Command line tool can now load Platypus profiles
+    * Command line tool now installed/uninstalled through Platypus Preferences
+    * New "Estimated final app size" reporting feature
+    * "Show Shell Command" option now correctly adds icon parameters
+    * Fixed bug where "Run Script in Terminal" option failed to escape script path
+    * Fixed bug with reversed LSMinimumSystemVersion property in Info.plist of generated applications
+    * Fixed bug where the same file could be added multiple times to Bundled Files list
+    * Fixed memory leak in Platypus-generated apps where a large amount of text output would cause the application to crash
+    * New and better man page for command line tool
+    * Updated and improved documentation
+    * Updated to latest IconFamily class code for icon generation
 
 For 3.4
 
-* Fixed problem where Platypus refused to launch on certain Mac OS X 10.3.x  systems
-* Platypus-generated apps are now Universal Binaries and require Mac OS X 10.3.9 or later
-* Various bug fixes, error checks and minor improvements
+    * Fixed problem where Platypus refused to launch on certain Mac OS X 10.3.x  systems
+    * Platypus-generated apps are now Universal Binaries and require Mac OS X 10.3.9 or later
+    * Various bug fixes, error checks and minor improvements
 
 For 3.2
 
-* Fixed two memory leaks
-* Info.plists now contain LSHasLocalizedDisplayName, NSAppleScriptEnabled,CFBundleDisplayName, NSHumanReadableCopyright
-* Property List code is now much cleaner
-* Python syntax checking incorporated
-* Editing of environmental variables via an interface pane
-* English.lproj is en.lproj in accordance with Apple's specifications
-* Sliding animation when advanced options are revealed
+    * Fixed two memory leaks
+    * Info.plists now contain LSHasLocalizedDisplayName, NSAppleScriptEnabled,CFBundleDisplayName, NSHumanReadableCopyright
+    * Property List code is now much cleaner
+    * Python syntax checking incorporated
+    * Editing of environmental variables via an interface pane
+    * English.lproj is en.lproj in accordance with Apple's specifications
+    * Sliding animation when advanced options are revealed
