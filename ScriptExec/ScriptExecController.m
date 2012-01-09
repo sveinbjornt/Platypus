@@ -1046,7 +1046,6 @@
     else
         [self fatalAlert: @"Corrupt app settings" subText: @"Invalid Output Mode."];
     
-    
     // we need some additional info from AppSettings.plist if we are presenting textual output
     if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || 
         outputType == PLATYPUS_TEXTWINDOW_OUTPUT ||
