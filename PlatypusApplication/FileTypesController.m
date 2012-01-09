@@ -163,7 +163,7 @@
 {
 	NSString	*theSuffix = [suffixTextField stringValue];
 	
-	if ([suffixList hasSuffix: theSuffix] || ([theSuffix length] < 0))
+	if ([suffixList hasSuffix: theSuffix] || ([theSuffix length] == 0))
 		return;
 		
 	//if the user put in a suffix beginning with a '.', we trim the string to start from index 1
