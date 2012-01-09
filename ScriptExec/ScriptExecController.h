@@ -97,12 +97,14 @@
 	NSColor			*textBackground;
 	int				 textEncoding;
 	
-	int			appPathAsFirstArg;
+	BOOL		appPathAsFirstArg;
 	int			execStyle;
 	int			outputType;
-	int			isDroppable;
-	int			remainRunning;
-	int			secureScript;
+	BOOL		isDroppable;
+	BOOL		remainRunning;
+	BOOL		secureScript;
+    BOOL        acceptsFiles;
+    BOOL        acceptsText;
 	
 	NSArray		*droppableSuffixes;
 	NSArray		*droppableFileTypes;

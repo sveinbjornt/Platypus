@@ -21,7 +21,7 @@
 
 @implementation ScriptExecController
 
-- (id)init
+-(id)init
 {
     if (self = [super init]) 
     {
@@ -76,8 +76,9 @@
                                                object: NULL];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+-(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {    
+    if (acceptsText)
     [NSApp setServicesProvider:self]; // register as text handling service
     
     // status menu apps just run when item is clicked
@@ -95,7 +96,7 @@
  
  ****************************************/
 
-- (void)initialiseInterface
+-(void)initialiseInterface
 {
     //put application name into the relevant menu items
     [quitMenuItem setTitle: [NSString stringWithFormat: @"Quit %@", appName]];
@@ -249,7 +250,7 @@
  
  ****************************************/
 
-- (void)prepareInterfaceForExecution
+-(void)prepareInterfaceForExecution
 {
     switch(outputType)
     {
@@ -308,7 +309,7 @@
  
  ****************************************/
 
-- (void)cleanupInterface
+-(void)cleanupInterface
 {
     switch (outputType)
     {
@@ -383,13 +384,13 @@
 // construct arguments list etc.
 // before actually running the script
 //
-- (void)prepareForExecution
+-(void)prepareForExecution
 {
     // if it is a "secure" script, we decode and write it to a temp directory
     // This used to be done by just writing to /tmp, but this method is more secure
     // and will result in the script file being created at a path that looks something
     // like this:  /var/folders/yV/yV8nyB47G-WRvC76fZ3Be++++TI/-Tmp-/
-    // Kind of ugly, but it's the Apple/Cocoa-approved way of doing things
+    // Kind of ugly, but it's the Apple-sanctioned secure way of doing things with temp files
     // Thanks to Matt Gallagher for this technique:
     // http://cocoawithlove.com/2009/07/temporary-files-and-folders-in-cocoa.html
     
@@ -405,17 +406,15 @@
         int fileDescriptor = mkstemp(tempFileNameCString);
         if (fileDescriptor == -1)
             [self fatalAlert: @"Unable to create temporary file" subText: [NSString stringWithFormat: @"Error %d in mkstemp()", errno]];
+        close(fileDescriptor);
         
         // create nsstring from the c-string temp path
         NSString *tempScriptPath = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:tempFileNameCString length:strlen(tempFileNameCString)];
+        free(tempFileNameCString);
         
         // write script to the temporary path
         [script writeToFile: tempScriptPath atomically: YES encoding: textEncoding error: NULL];
-        
-        // get rid of these
-        free(tempFileNameCString);
-        close(fileDescriptor);
-        
+                
         // make sure writing it was successful
         if (![[NSFileManager defaultManager] fileExistsAtPath: tempScriptPath])
             [self fatalAlert: @"Failed to write script file" subText: [NSString stringWithFormat: @"Could not create the temp file '%@'", tempScriptPath]];         
@@ -453,7 +452,7 @@
     }
 }
 
-- (void)executeScript
+-(void)executeScript
 {    
     // we never execute script if there is one running
     if (isTaskRunning)
@@ -476,8 +475,8 @@
 
 #pragma mark -
 
-//launch regular user task with NSTask
-- (void)executeScriptWithoutPrivileges
+//launch regular user-privileged process using NSTask
+-(void)executeScriptWithoutPrivileges
 {    
     //initalize task
     task = [[NSTask alloc] init];
@@ -507,7 +506,7 @@
 }
 
 //launch task with admin privileges using Authentication Manager
-- (void)executeScriptWithPrivileges
+-(void)executeScriptWithPrivileges
 {    
     //initalize task
     privilegedTask = [[STPrivilegedTask alloc] init];
@@ -544,7 +543,7 @@
 
 // OK, called when we receive notification that task is finished
 // Some cleaning up to do, controls need to be adjusted, etc.
-- (void)taskFinished: (NSNotification *)aNotification
+-(void)taskFinished: (NSNotification *)aNotification
 {        
     // if task already quit, we return
     if (!isTaskRunning) 
@@ -573,7 +572,7 @@
         [self executeScript];
 }
 
-- (void) cleanup
+-(void) cleanup
 {    
     // we never do cleanup if the task is running
     if (isTaskRunning) 
@@ -597,7 +596,7 @@
 #pragma mark -
 
 //  read from the file handle and append it to the text window
-- (void) getOutputData: (NSNotification *)aNotification
+-(void) getOutputData: (NSNotification *)aNotification
 {
     //get the data from notification
     NSData *data = [[aNotification userInfo] objectForKey: NSFileHandleNotificationDataItem];
@@ -625,7 +624,7 @@
 // this function receives all new data dumped out by the script and appends it to text field
 // it is *relatively* memory efficient (given the nature of NSTextView) and doesn't leak, as far as I can tell...
 //
-- (void)appendOutput: (NSData *)data
+-(void)appendOutput: (NSData *)data
 {    
     // we decode the script output according to specified character encoding
     NSMutableString *outputString = [[NSMutableString alloc] initWithData: data encoding: textEncoding];
@@ -637,9 +636,7 @@
     if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || outputType == PLATYPUS_DROPLET_OUTPUT)
     {
         if (remnants != NULL && [remnants length] > 0)
-        {
             [outputString insertString: remnants atIndex: 0];
-        }
         
         // parse the data just dumped out
         NSMutableArray *lines = [NSMutableArray arrayWithArray: [outputString componentsSeparatedByString: @"\n"]];
@@ -658,6 +655,7 @@
         
         [lines removeLastObject];
         
+        // parse output looking for commands; if none, add line to output text field
         int i;
         for (i = 0; i < [lines count]; i++)
         {
@@ -667,6 +665,7 @@
             if ([theLine caseInsensitiveCompare: @""] == NSOrderedSame)
                 continue;
             
+            // lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar at
             if ([theLine hasPrefix: @"PROGRESS:"])
             {            
                 NSString *progressPercent = [theLine substringFromIndex: 9];
@@ -697,11 +696,11 @@
 #pragma mark -
 
 //run open panel, made available to apps that are droppable
-- (IBAction)openFiles:(id)sender
+-(IBAction)openFiles:(id)sender
 {
     //create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-    [oPanel setPrompt:@"Open"];
+    [oPanel setPrompt: @"Open"];
     [oPanel setAllowsMultipleSelection: YES];
     [oPanel setCanChooseDirectories: acceptDroppedFolders];   
     
@@ -724,7 +723,7 @@
 
 #pragma mark -
 
-- (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames
+-(void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames
 {
     // add the dropped files as a job for processing
     int ret = [self addDroppedFilesJob: filenames];
@@ -734,7 +733,7 @@
         [self executeScript];
 }
 
-- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+-(NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {    
     // again, make absolutely sure we don't leave the clear-text script in temp directory
     if (secureScript && [[NSFileManager defaultManager] fileExistsAtPath: scriptPath])
@@ -769,7 +768,7 @@
 
 -(void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error 
 {
-    if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
+    if (!isDroppable || !acceptsText || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
         return;
     
     NSString *pboardString = [pboard stringForType:NSStringPboardType];
@@ -780,9 +779,9 @@
         [self executeScript];
 }
 
-- (BOOL) addDroppedFilesJob: (NSArray *)files
+-(BOOL)addDroppedFilesJob: (NSArray *)files
 {
-    if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
+    if (!isDroppable || !acceptsFiles || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
         return NO;
     
     // Let's see what we have
@@ -809,7 +808,7 @@
     return YES;
 }
 
-- (BOOL)addDroppedTextJob: (NSString *)text
+-(BOOL)addDroppedTextJob: (NSString *)text
 {
     if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
         return NO;
@@ -833,7 +832,7 @@
  
  *****************************************************************/
 
-- (BOOL)acceptableFileType: (NSString *)file
+-(BOOL)acceptableFileType: (NSString *)file
 {
     int i;
     BOOL isDir;
@@ -862,7 +861,7 @@
 
 // check file types against acceptable drop types here before accepting them
 
-- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender 
+-(NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender 
 { 
     BOOL acceptDrag = NO;
     NSPasteboard *pboard = [sender draggingPasteboard];
@@ -897,12 +896,12 @@
     return NSDragOperationNone;
 }
 
-- (void)draggingExited:(id <NSDraggingInfo>)sender;
+-(void)draggingExited:(id <NSDraggingInfo>)sender;
 {
     [dropletShader setHidden: YES];
 }
 
-- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender
+-(BOOL)performDragOperation:(id <NSDraggingInfo>)sender
 { 
     NSPasteboard *pboard = [sender draggingPasteboard];
     
@@ -918,7 +917,7 @@
 }
 
 // once the drag is over, we immediately execute w. files as arguments if not already processing
-- (void)concludeDragOperation:(id <NSDraggingInfo>)sender
+-(void)concludeDragOperation:(id <NSDraggingInfo>)sender
 {
     if (outputType == PLATYPUS_DROPLET_OUTPUT)
         [dropletShader setHidden: YES];
@@ -927,7 +926,7 @@
         [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector:@selector(executeScript) userInfo: nil repeats: NO];
 }
 
-- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender
+-(NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender
 {
     return [self draggingEntered: sender]; // this is needed to keep link instead of the green plus sign on web view
 }
@@ -941,7 +940,7 @@
  
  **************************************************/
 
-- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+-(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
     NSScrollView *scrollView = [[[[webOutputWebView mainFrame] frameView] documentView] enclosingScrollView];    
     NSRect bounds = [[[[webOutputWebView mainFrame] frameView] documentView] bounds];
@@ -957,7 +956,7 @@
  
  **************************************************/
 
-- (void)menuNeedsUpdate:(NSMenu *)menu
+-(void)menuNeedsUpdate:(NSMenu *)menu
 {    
     int i;
     
@@ -1006,7 +1005,7 @@
  
  **************************************************/
 
-- (void)loadSettings
+-(void)loadSettings
 {
     int                i = 0;
     NSBundle        *appBundle = [NSBundle mainBundle];
@@ -1121,10 +1120,21 @@
         isDroppable = NO;
     }
     
-    //if app is droppable, the AppSettings.plist contains list of accepted file types / suffixes
+    // load settings for drop acceptance, default is to accept files and not text snippets
+    acceptsFiles = ([appSettingsPlist objectForKey: @"AcceptsFiles"] != nil) ? [[appSettingsPlist objectForKey: @"AcceptsFiles"] boolValue] : YES;
+    acceptsText = ([appSettingsPlist objectForKey: @"AcceptsText"] != nil) ? [[appSettingsPlist objectForKey: @"AcceptsText"] boolValue] : NO;
+
+    if (!acceptsFiles && !acceptsText) // equivalent to not being droppable
+        isDroppable = FALSE;
+    
+    // initialize this to NO, then check the droppableSuffixes for 'fold'
     acceptDroppedFolders = NO;
-    acceptAnyDroppedItem = NO; // initialize this to NO, then check the droppableSuffixes for *, and droppableFiles for ****
-    if (isDroppable)
+    // initialize this to NO, then check the droppableSuffixes for *, and droppableFileTypes for ****
+    acceptAnyDroppedItem = NO; 
+    
+    // if app is droppable, the AppSettings.plist contains list of accepted file types / suffixes
+    // we use them later as a criterion for in-code drop acceptance 
+    if (isDroppable && acceptsFiles)
     {    
         // get list of accepted suffixes
         if([appSettingsPlist objectForKey: @"DropSuffixes"])
@@ -1140,7 +1150,7 @@
             droppableFileTypes = [[NSArray alloc] initWithArray: [NSArray array]];
         [droppableFileTypes retain];
         
-        // see if we accept any dropped item
+        // see if we accept any dropped item, * suffix or **** file type makes it so
         for (i = 0; i < [droppableSuffixes count]; i++)
             if ([[droppableSuffixes objectAtIndex:i] isEqualToString:@"*"]) //* suffix
                 acceptAnyDroppedItem = YES;
@@ -1149,7 +1159,7 @@
             if([[droppableFileTypes objectAtIndex:i] isEqualToString:@"****"])//**** filetype
                 acceptAnyDroppedItem = YES;
         
-        // see if we acccept dropped folders
+        // see if we acccept dropped folders, requires filetype 'fold'
         for(i = 0; i < [droppableFileTypes count]; i++)
             if([[droppableFileTypes objectAtIndex: i] isEqualToString: @"fold"])
                 acceptDroppedFolders = YES;
@@ -1162,10 +1172,13 @@
     if ((!secureScript && ![fmgr fileExistsAtPath: [appBundle pathForResource:@"script" ofType: NULL]]) || (secureScript && [appSettingsPlist objectForKey:@"TextSettings"] == NULL))
         [self fatalAlert: @"Corrupt app bundle" subText: @"Script missing from application bundle."];
     
-    //get path to script
+    //get path to script within app bundle
     if (!secureScript)
-        scriptPath = [[NSString stringWithString: [appBundle pathForResource:@"script" ofType:nil]] retain];    
-    else //if we have a "secure" script, no path to get
+    {
+        scriptPath = [[NSString stringWithString: [appBundle pathForResource:@"script" ofType:nil]] retain]; 
+    }
+    //if we have a "secure" script, there is no path to get, we write script to temp location on execution
+    else 
     {
         NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData: [appSettingsPlist objectForKey:@"TextSettings"]];
         if (b_str == NULL)
@@ -1176,16 +1189,17 @@
     }
 }
 
-- (IBAction)cancel:(id)sender
+-(IBAction)cancel:(id)sender
 {
+    if (task != NULL)
+        [task terminate];
+    
     if ([[sender title] isEqualToString: @"Quit"])
         [[NSApplication sharedApplication] terminate: self];
-    else if (task != NULL)
-        [task terminate];
 }
 
 // show / hide the details text field in progress bar output
-- (IBAction)toggleDetails: (id)sender
+-(IBAction)toggleDetails: (id)sender
 {
     NSRect winRect = [progressBarWindow frame];
     
@@ -1208,7 +1222,7 @@
 #pragma mark -
 
 // save output in text field to file when Save to File menu item is invoked
-- (IBAction)saveToFile: (id)sender
+-(IBAction)saveToFile: (id)sender
 {
     if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT)
         return;
@@ -1225,9 +1239,9 @@
 }
 
 // save only works for text window, web view output types
-// and open only for droppable apps
+// and open only works for droppable apps that accept files as script args
 
-- (BOOL)validateMenuItem:(NSMenuItem*)anItem 
+-(BOOL)validateMenuItem:(NSMenuItem*)anItem 
 {    
     //save to file item
     if ([[anItem title] isEqualToString:@"Save to File…"] && 
@@ -1244,21 +1258,16 @@
 
 #pragma mark -
 
-- (void)fatalAlert: (NSString *)message subText: (NSString *)subtext
+// show error alert and then exit application
+-(void)fatalAlert: (NSString *)message subText: (NSString *)subtext
 {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
     [alert setMessageText: message];
     [alert setInformativeText: subtext];
     [alert setAlertStyle: NSCriticalAlertStyle];
-    
-    if ([alert runModal] == NSAlertFirstButtonReturn) 
-    {
-        [alert release];
-        [[NSApplication sharedApplication] terminate: self];
-        return;
-    }
-    [alert release];
+    [alert runModal];
+    [[NSApplication sharedApplication] terminate: self];
 }
 
 
