@@ -4,19 +4,19 @@ For 4.7
 
 
 For 4.6
+    * It is now possible to save output to a text or HTML file within Platypus-generated apps
+    * "Open" menu item in File menu for Platypus-generated apps that accept dropped files
+    * New option to set custom arguments for script 
     * Command line tool now supports dumping profile property lists to stdout (see man page)
     * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
     * New FastDMGMounter example
     * Additional interpreter presets:  zsh and tcsh
     * Migrated all images to optimized PNGs for smaller file sizes
-    * It is now possible to save output to a text or HTML file within Platypus-generated apps
-    * "Open" menu item in File menu for Platypus-generated apps that accept dropped files
     * Extended documentation
     * New "Edit file" button for Bundled Files List.
-    * New option to set custom arguments for script 
     * Minor interface changes and improvements
 
-    TODO:  Update documentation for Preferences window, explaining new features
+    TODO:  Update documentation for Preferences window, explaining new features offered
     TODO:  Support for attaching icons to file types / suffixes under Droppable options
             IN PROGRESS, remember to implement this in ScriptExec and test it properly
     TODO:  Support reading script from STDIN in command line tool
