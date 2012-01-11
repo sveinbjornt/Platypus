@@ -43,7 +43,7 @@
 	
 	IBOutlet id acceptDroppedTextCheckbox;
 	IBOutlet id acceptDroppedFilesCheckbox;
-	
+    IBOutlet id declareServiceCheckbox;
     IBOutlet id docIconImageView;
     
 	IBOutlet id droppedFilesSettingsBox;
@@ -70,8 +70,10 @@
 - (void)setDocIconPath:(NSString *)path;
 - (BOOL)acceptsText;
 - (BOOL)acceptsFiles;
+- (BOOL)declareService;
 - (void)setAcceptsText: (BOOL)b;
 - (void)setAcceptsFiles: (BOOL)b;
+- (void)setDeclareService: (BOOL)b;
 - (NSString *)role;
 - (void)setRole:(NSString *)role;
 @end

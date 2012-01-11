@@ -437,6 +437,17 @@
     return [acceptDroppedFilesCheckbox intValue];
 }
 
+- (BOOL)declareService
+{
+    return [acceptDroppedTextCheckbox intValue];
+}
+
+- (void)setDeclareService: (BOOL)b
+{
+    [declareServiceCheckbox setIntValue: b];
+}
+
+
 - (void)setAcceptsFiles: (BOOL)b
 {
     [acceptDroppedFilesCheckbox setIntValue: b];

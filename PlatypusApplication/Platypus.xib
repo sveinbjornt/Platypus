@@ -286,7 +286,6 @@
 							<int key="NSvFlags">264</int>
 							<string key="NSFrame">{{528, 13}, {116, 32}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
-							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="895076633">
 								<int key="NSCellFlags">604110336</int>
@@ -399,7 +398,7 @@
 											<int key="NSvFlags">4352</int>
 											<string key="NSFrameSize">{585, 124}</string>
 											<reference key="NSSuperview" ref="5750385"/>
-											<reference key="NSNextKeyView" ref="486925506"/>
+											<reference key="NSNextKeyView" ref="346920152"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="_NSCornerView" key="NSCornerView">
 												<nil key="NSNextResponder"/>
@@ -670,7 +669,7 @@ AAAAAAAAA</bytes>
 							</object>
 							<string key="NSFrame">{{20, 58}, {587, 126}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
-							<reference key="NSNextKeyView" ref="346920152"/>
+							<reference key="NSNextKeyView" ref="5750385"/>
 							<int key="NSsFlags">133650</int>
 							<reference key="NSVScroller" ref="486925506"/>
 							<reference key="NSHScroller" ref="346920152"/>
@@ -2421,7 +2420,6 @@ AAAAAAAAA</bytes>
 							<string key="NSFrame">{{404, 12}, {84, 32}}</string>
 							<reference key="NSSuperview" ref="615350700"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="553023350">
 								<int key="NSCellFlags">67239424</int>
@@ -2771,7 +2769,7 @@ AAAAAAAAA</bytes>
 																			<string key="NSFrameSize">{162, 104}</string>
 																			<reference key="NSSuperview" ref="767903513"/>
 																			<reference key="NSWindow"/>
-																			<reference key="NSNextKeyView" ref="632728670"/>
+																			<reference key="NSNextKeyView" ref="264573578"/>
 																			<bool key="NSEnabled">YES</bool>
 																			<object class="_NSCornerView" key="NSCornerView">
 																				<nil key="NSNextResponder"/>
@@ -2883,7 +2881,7 @@ AAAAAAAAA</bytes>
 															<string key="NSFrame">{{22, 39}, {179, 106}}</string>
 															<reference key="NSSuperview" ref="633469370"/>
 															<reference key="NSWindow"/>
-															<reference key="NSNextKeyView" ref="264573578"/>
+															<reference key="NSNextKeyView" ref="767903513"/>
 															<int key="NSsFlags">133138</int>
 															<reference key="NSVScroller" ref="632728670"/>
 															<reference key="NSHScroller" ref="264573578"/>
@@ -3148,7 +3146,7 @@ AAAAAAAAA</bytes>
 																			<string key="NSFrameSize">{162, 103}</string>
 																			<reference key="NSSuperview" ref="397205870"/>
 																			<reference key="NSWindow"/>
-																			<reference key="NSNextKeyView" ref="944426221"/>
+																			<reference key="NSNextKeyView" ref="682108565"/>
 																			<bool key="NSEnabled">YES</bool>
 																			<object class="_NSCornerView" key="NSCornerView">
 																				<nil key="NSNextResponder"/>
@@ -3266,7 +3264,7 @@ AAAAAAAAA</bytes>
 															<string key="NSFrame">{{23, 41}, {179, 105}}</string>
 															<reference key="NSSuperview" ref="641778966"/>
 															<reference key="NSWindow"/>
-															<reference key="NSNextKeyView" ref="682108565"/>
+															<reference key="NSNextKeyView" ref="397205870"/>
 															<int key="NSsFlags">133138</int>
 															<reference key="NSVScroller" ref="944426221"/>
 															<reference key="NSHScroller" ref="682108565"/>
@@ -7573,6 +7571,14 @@ b2xvciBzaXQgYW1ldA</bytes>
 						<reference key="destination" ref="909875224"/>
 					</object>
 					<int key="connectionID">11325</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">declareServiceCheckbox</string>
+						<reference key="source" ref="750560580"/>
+						<reference key="destination" ref="633674924"/>
+					</object>
+					<int key="connectionID">11328</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -12694,7 +12700,7 @@ b2xvciBzaXQgYW1ldA</bytes>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">11327</int>
+			<int key="maxID">11328</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -12806,6 +12812,7 @@ b2xvciBzaXQgYW1ldA</bytes>
 							<string>addSuffixButton</string>
 							<string>addTypeButton</string>
 							<string>appFunctionRadioButtons</string>
+							<string>declareServiceCheckbox</string>
 							<string>docIconImageView</string>
 							<string>droppedFilesSettingsBox</string>
 							<string>numSuffixesTextField</string>
@@ -12842,6 +12849,7 @@ b2xvciBzaXQgYW1ldA</bytes>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+							<string>id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -12853,6 +12861,7 @@ b2xvciBzaXQgYW1ldA</bytes>
 							<string>addSuffixButton</string>
 							<string>addTypeButton</string>
 							<string>appFunctionRadioButtons</string>
+							<string>declareServiceCheckbox</string>
 							<string>docIconImageView</string>
 							<string>droppedFilesSettingsBox</string>
 							<string>numSuffixesTextField</string>
@@ -12888,6 +12897,10 @@ b2xvciBzaXQgYW1ldA</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">appFunctionRadioButtons</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">declareServiceCheckbox</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBToOneOutletInfo">

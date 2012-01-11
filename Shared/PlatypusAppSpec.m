@@ -345,9 +345,12 @@
 	// we  set the suffixes/file types in the AppSettings.plist if app is droppable
 	if ([[properties objectForKey: @"Droppable"] boolValue] == YES)
 	{		
-		[appSettingsPlist setObject: [properties objectForKey:@"Suffixes"] forKey: @"DropSuffixes"];
-		[appSettingsPlist setObject: [properties objectForKey:@"FileTypes"] forKey: @"DropTypes"];
+		[appSettingsPlist setObject: [properties objectForKey: @"Suffixes"] forKey: @"DropSuffixes"];
+		[appSettingsPlist setObject: [properties objectForKey: @"FileTypes"] forKey: @"DropTypes"];
 	}
+    [appSettingsPlist setObject: [properties objectForKey: @"AcceptsFiles"] forKey: @"AcceptsFiles"];
+    [appSettingsPlist setObject: [properties objectForKey: @"AcceptsText"] forKey: @"AcceptsText"];
+
 	
 	if ([[properties objectForKey: @"Secure"] boolValue])
 		[appSettingsPlist setObject: [NSKeyedArchiver archivedDataWithRootObject: b_enc_script] forKey: @"TextSettings"];
@@ -393,26 +396,29 @@
 						[properties objectForKey: @"FileTypes"], @"CFBundleTypeOSTypes",//os types
 						[properties objectForKey: @"Role"], @"CFBundleTypeRole", nil];//viewer or editor?
 		[infoPlist setObject: [NSArray arrayWithObject: typesAndSuffixesDict] forKey: @"CFBundleDocumentTypes"];
-		
-		// we also set the suffixes/file types in the AppSettings.plist
-		[appSettingsPlist setObject: [properties objectForKey:@"Suffixes"] forKey: @"DropSuffixes"];
-		[appSettingsPlist setObject: [properties objectForKey:@"FileTypes"] forKey: @"DropTypes"];
+        
+        // add service settings to Info.plist
+        if ([[properties objectForKey: @"DeclareService"] boolValue])
+        {
+            // service data type handling
+            NSMutableArray      *sendTypes = [NSMutableArray arrayWithCapacity: 2];
+            if ([[properties objectForKey: @"AcceptsFiles"] boolValue])
+                [sendTypes addObject: @"NSFilenamesPboardType"];
+            if ([[properties objectForKey: @"AcceptsText"] boolValue])
+                [sendTypes addObject: @"NSStringPboardType"];
+            
+            NSString            *appName = [properties objectForKey: @"Name"];
+            NSMutableDictionary *serviceDict = [NSMutableDictionary dictionaryWithCapacity: 10];
+            NSDictionary        *menuItemDict = [NSDictionary dictionaryWithObject: [NSString stringWithFormat: @"Process with %@", appName] forKey: @"default"];
+            
+            [serviceDict setObject: menuItemDict  forKey: @"NSMenuItem"];
+            [serviceDict setObject: @"dropService"  forKey: @"NSMessage"];
+            [serviceDict setObject: appName         forKey: @"NSPortName"];
+            [serviceDict setObject: sendTypes       forKey: @"NSSendTypes"];
+            [infoPlist setObject: [NSArray arrayWithObject: serviceDict] forKey: @"NSServices"];
+        }
 	}
-    
-    // if accepts text, we declare ourselves as a text service application
-    if ([[properties objectForKey: @"AcceptsText"] boolValue] == YES)
-    {
-        NSString *serviceName = [NSString stringWithFormat: @"Process with %@", [properties objectForKey: @"Name"]];
-        NSString *mdict = [NSDictionary dictionaryWithObjectsAndKeys: serviceName, @"default", nil];
-        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: 
-         @"doString", @"NSMessage",
-        [NSArray arrayWithObject: @"NSStringPboardType"], @"NSSendTypes",
-        mdict,    @"Menu", nil
-          ];
-        NSArray *arr = [NSArray arrayWithObject: dict];
-        [infoPlist setObject: arr forKey: @"NSServices"];
-    }
-		
+    		
 	// finally, write the Info.plist file
 	[infoPlist writeToFile: infoPlistPath atomically: YES];
 			
