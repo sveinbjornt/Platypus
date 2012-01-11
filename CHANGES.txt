@@ -18,6 +18,7 @@ For 4.6
     * Script path text field tab autocomplete now working
     * Fixed crash bug when editing file in Bundled Files list using built-in editor.
     
+    TODO:  Remove app path as first arg option, it's unnecessary and confusing
     TODO:  Make text settings work in Status Menu output
     TODO:  Finish implementing service functionality in Platypus app, command line tool and AppSpec class
     TODO:  Update documentation for Preferences window, explaining new features offered

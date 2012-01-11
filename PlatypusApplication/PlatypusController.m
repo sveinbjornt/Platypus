@@ -531,6 +531,8 @@
     [spec setProperty: [typesControl docIconPath]                                                       forKey: @"DocIcon"];
     [spec setProperty: [NSNumber numberWithBool: [typesControl acceptsText]]                            forKey: @"AcceptsText"];
     [spec setProperty: [NSNumber numberWithBool: [typesControl acceptsFiles]]                           forKey: @"AcceptsFiles"];
+    [spec setProperty: [NSNumber numberWithBool: [typesControl declareService]]                         forKey: @"DeclareService"];
+
     
 	//  text output text settings
 	[spec setProperty: [NSNumber numberWithInt: (int)[textSettingsControl getTextEncoding]]				forKey: @"TextEncoding"];
@@ -597,6 +599,8 @@
     if ([spec propertyForKey: @"AcceptsText"] != nil)
         [typesControl setAcceptsText: [[spec propertyForKey: @"AcceptsText"] boolValue]];
     if ([spec propertyForKey: @"AcceptsFiles"] != nil)
+        [typesControl setAcceptsFiles: [[spec propertyForKey: @"AcceptsFiles"] boolValue]];
+    if ([spec propertyForKey: @"DeclareService"] != nil)
         [typesControl setAcceptsFiles: [[spec propertyForKey: @"AcceptsFiles"] boolValue]];
     
 	// parameters
