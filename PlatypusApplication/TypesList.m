@@ -166,7 +166,7 @@
 		BOOL isDir = FALSE;
 		
 		NSString *fileType = NSHFSTypeOfFile([draggedFiles objectAtIndex: i]);
-		if ([[NSFileManager defaultManager] fileExistsAtPath: [draggedFiles objectAtIndex: i] isDirectory:&isDir] && isDir)
+		if ([FILEMGR fileExistsAtPath: [draggedFiles objectAtIndex: i] isDirectory:&isDir] && isDir)
 			fileType = @"'fold'";
 		if ([fileType length] == 6)
 			[self addType: [fileType substringWithRange: NSMakeRange(1, 4)]];

@@ -101,8 +101,8 @@
 -(NSApplicationTerminateReply)applicationShouldTerminate: (NSApplication *)sender
 {    
     // again, make absolutely sure we don't leave the clear-text script in temp directory
-    if (secureScript && [[NSFileManager defaultManager] fileExistsAtPath: scriptPath])
-        [[NSFileManager defaultManager] removeFileAtPath: scriptPath handler: nil];
+    if (secureScript && [FILEMGR fileExistsAtPath: scriptPath])
+        [FILEMGR removeFileAtPath: scriptPath handler: nil];
         
     //terminate task
     if (task != NULL)
@@ -448,14 +448,14 @@
         close(fileDescriptor);
         
         // create nsstring from the c-string temp path
-        NSString *tempScriptPath = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:tempFileNameCString length:strlen(tempFileNameCString)];
+        NSString *tempScriptPath = [FILEMGR stringWithFileSystemRepresentation:tempFileNameCString length:strlen(tempFileNameCString)];
         free(tempFileNameCString);
         
         // write script to the temporary path
         [script writeToFile: tempScriptPath atomically: YES encoding: textEncoding error: NULL];
         
         // make sure writing it was successful
-        if (![[NSFileManager defaultManager] fileExistsAtPath: tempScriptPath])
+        if (![FILEMGR fileExistsAtPath: tempScriptPath])
             [self fatalAlert: @"Failed to write script file" subText: [NSString stringWithFormat: @"Could not create the temp file '%@'", tempScriptPath]];         
         
         scriptPath = [NSString stringWithString: tempScriptPath];
@@ -468,7 +468,7 @@
     [arguments addObjectsFromArray: interpreterArgs];
     
     // add script as argument to interpreter, if it exists
-    if (![[NSFileManager defaultManager] fileExistsAtPath: scriptPath])
+    if (![FILEMGR fileExistsAtPath: scriptPath])
         [self fatalAlert: @"Missing script" subText: @"Script missing at execution path"];
     [arguments addObject: scriptPath];
     
@@ -599,8 +599,8 @@
         [self cleanup];
     
     //if we're using the "secure" script, we must remove the temporary clear-text one in temp directory if there is one
-    if (secureScript && [[NSFileManager defaultManager] fileExistsAtPath: scriptPath])
-        [[NSFileManager defaultManager] removeFileAtPath: scriptPath handler: nil];
+    if (secureScript && [FILEMGR fileExistsAtPath: scriptPath])
+        [FILEMGR removeFileAtPath: scriptPath handler: nil];
     
     // we quit now if the app isn't set to continue running
     if (!remainRunning)
@@ -861,7 +861,7 @@
     BOOL isDir;
     
     // Check if it's a folder. If so, we only accept it if 'fold' is specified as accepted file type
-    if ([[NSFileManager defaultManager] fileExistsAtPath: file isDirectory: &isDir] && isDir && acceptDroppedFolders)
+    if ([FILEMGR fileExistsAtPath: file isDirectory: &isDir] && isDir && acceptDroppedFolders)
         return YES;
     
     if (acceptAnyDroppedItem)
@@ -1030,7 +1030,7 @@
 {
     int                i = 0;
     NSBundle        *appBundle = [NSBundle mainBundle];
-    NSFileManager   *fmgr = [NSFileManager defaultManager];
+    NSFileManager   *fmgr = FILEMGR;
     NSDictionary    *appSettingsPlist;
     
     //make sure all the config files are present -- if not, we quit

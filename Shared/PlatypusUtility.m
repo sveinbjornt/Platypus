@@ -148,15 +148,14 @@
 + (UInt64) fileOrFolderSize: (NSString *)path
 {
 	UInt64			size = 0;
-	NSFileManager	*fmgr = [NSFileManager defaultManager];
 	BOOL			isDir;
 	
-	if (path == nil || ![fmgr fileExistsAtPath: path isDirectory: &isDir])
+	if (path == nil || ![FILEMGR fileExistsAtPath: path isDirectory: &isDir])
 		return size;
 	
 	if (isDir)
 	{
-		NSDirectoryEnumerator *dirEnumerator = [fmgr enumeratorAtPath: path];
+		NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath: path];
 		while ([dirEnumerator nextObject])
 		{
 			if ([NSFileTypeRegular isEqualToString:[[dirEnumerator fileAttributes] fileType]])
@@ -164,7 +163,7 @@
 		}
 	}
 	else
-		size = [[fmgr fileAttributesAtPath: path traverseLink:YES] fileSize];
+		size = [[FILEMGR fileAttributesAtPath: path traverseLink:YES] fileSize];
     
 	return size;
 }

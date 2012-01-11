@@ -74,7 +74,7 @@
 
 -(void)updateIcnsStatus
 {
-	if ([self hasIcns] && ![[NSFileManager defaultManager] fileExistsAtPath: icnsFilePath] && ![icnsFilePath isEqualToString: @""])
+	if ([self hasIcns] && ![FILEMGR fileExistsAtPath: icnsFilePath] && ![icnsFilePath isEqualToString: @""])
 		[iconNameTextField setTextColor: [NSColor redColor]];
 	else
 		[iconNameTextField setTextColor: [NSColor blackColor]];

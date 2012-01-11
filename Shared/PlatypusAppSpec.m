@@ -214,7 +214,7 @@
 	NSString *appSettingsPlistPath;
 	NSString *b_enc_script = @"";
 	NSMutableDictionary	*appSettingsPlist;
-	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSFileManager *fileManager = FILEMGR;
 	
 	/////// MAKE SURE CONDITIONS ARE ACCEPTABLE //////
 	
@@ -500,33 +500,33 @@
 		return 0;
 	}
 	
-	if (![[NSFileManager defaultManager] fileExistsAtPath: [properties objectForKey: @"ScriptPath"] isDirectory:&isDir] || isDir)
+	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"ScriptPath"] isDirectory:&isDir] || isDir)
 	{
 		error = [NSString stringWithFormat: @"Script not found at path '%@'", [properties objectForKey: @"ScriptPath"] ];
 		return 0;
 	}
 	
-	if (![[NSFileManager defaultManager] fileExistsAtPath: [properties objectForKey: @"NibPath"] isDirectory:&isDir])
+	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"NibPath"] isDirectory:&isDir])
 	{
 		error = [NSString stringWithFormat: @"Nib not found at path '%@'", [properties objectForKey: @"NibPath"]];
 		return 0;
 	}
 	
-	if (![[NSFileManager defaultManager] fileExistsAtPath: [properties objectForKey: @"ExecutablePath"] isDirectory:&isDir] || isDir)
+	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"ExecutablePath"] isDirectory:&isDir] || isDir)
 	{
 		error = [NSString stringWithFormat: @"Executable not found at path '%@'", [properties objectForKey: @"ExecutablePath"]];
 		return 0;
 	}
 	
 	//make sure destination directory exists
-	if (![[NSFileManager defaultManager] fileExistsAtPath: [[properties objectForKey: @"Destination"] stringByDeletingLastPathComponent] isDirectory: &isDir] || !isDir)
+	if (![FILEMGR fileExistsAtPath: [[properties objectForKey: @"Destination"] stringByDeletingLastPathComponent] isDirectory: &isDir] || !isDir)
 	{
 		error = [NSString stringWithFormat: @"Destination directory '%@' does not exist.", [[properties objectForKey: @"Destination"] stringByDeletingLastPathComponent]];
 		return 0;
 	}
 	
 	//make sure we have write privileges for the destination directory
-	if (![[NSFileManager defaultManager] isWritableFileAtPath: [[properties objectForKey: @"Destination"] stringByDeletingLastPathComponent]])
+	if (![FILEMGR isWritableFileAtPath: [[properties objectForKey: @"Destination"] stringByDeletingLastPathComponent]])
 	{
 		error = [NSString stringWithFormat: @"Don't have permission to write to the destination directory '%@'", [properties objectForKey: @"Destination"]] ;
 		return 0;

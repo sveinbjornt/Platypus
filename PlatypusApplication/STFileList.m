@@ -175,7 +175,7 @@
 	{
 		// check if bundled file still exists at path
 		NSString *filePath = [[files objectAtIndex: rowIndex] objectForKey: @"Path"];
-		if ([[NSFileManager defaultManager] fileExistsAtPath: filePath])
+		if ([FILEMGR fileExistsAtPath: filePath])
 			return([[files objectAtIndex: rowIndex] objectForKey: @"Path"]);
 		else // if not, we hilight red
 		{
@@ -197,7 +197,7 @@
 	BOOL		isDir;
 	NSString	*path = [[files objectAtIndex: index] objectForKey: @"Path"];
 	
-	if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]) 
+	if ([FILEMGR fileExistsAtPath:path isDirectory:&isDir]) 
 	{
         if (isDir)
             [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:path];
@@ -502,7 +502,7 @@
 	
 	for (i = 0; i < [self numFiles]; i++)
 	{
-		if (![[NSFileManager defaultManager] fileExistsAtPath: [[files objectAtIndex: i] objectForKey: @"Path"]])
+		if (![FILEMGR fileExistsAtPath: [[files objectAtIndex: i] objectForKey: @"Path"]])
 			return NO;
 	}
 	return YES;

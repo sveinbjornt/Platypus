@@ -145,4 +145,10 @@
 #define PLATYPUS_PROFILE_LEG_KEYS   [NSArray arrayWithObjects: @"ShowInDock"]
 #define PLATYPUS_LEGACY_MAP_DICT    [NSDictionary dictionaryWithObjectsAndKeys: @"RunInBackground", @"ShowInDock", nil]
 
+#pragma mark -
+
+// code abbreviations, Obj-C is a tediously verbose language
+#define FILEMGR     [NSFileManager defaultManager]
+
+
 
