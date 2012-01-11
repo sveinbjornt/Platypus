@@ -142,12 +142,13 @@
 	// bundled files
 	[properties setObject: [NSMutableArray array]										forKey: @"BundledFiles"];
 	
-	// suffixes / file types
+    // file/drag acceptance properties
 	[properties setObject: [NSMutableArray arrayWithObject: @"*"]						forKey: @"Suffixes"];
 	[properties setObject: [NSMutableArray arrayWithObjects: @"****", @"fold", NULL]	forKey: @"FileTypes"];
 	[properties setObject: DEFAULT_ROLE													forKey: @"Role"];
     [properties setObject: [NSNumber numberWithBool: NO]                                forKey: @"AcceptsText"];
     [properties setObject: [NSNumber numberWithBool: YES]                               forKey: @"AcceptsFiles"];
+    [properties setObject: [NSNumber numberWithBool: NO]                                forKey: @"DeclareService"];
     [properties setObject: @""                                                          forKey: @"DocIcon"];
     
 	// text output settings
