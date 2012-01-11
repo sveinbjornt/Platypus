@@ -8,16 +8,16 @@
 	<string>Platypus-4.6</string>
 	<key>InterpreterArgs</key>
 	<array/>
-    <key>ScriptArgs</key>
+	<key>ScriptArgs</key>
 	<array>
 		<string>ArgTest!</string>
 	</array>
 	<key>DropSuffixes</key>
 	<array>
-		<string>pdf</string>
+		<string>*</string>
 	</array>
-    <key>DropTypes</key>
-    <array>
+	<key>DropTypes</key>
+	<array>
 		<string>fold</string>
 	</array>
 	<key>Droppable</key>
@@ -36,6 +36,10 @@
 	<false/>
 	<key>RunInBackground</key>
 	<false/>
+	<key>AcceptsText</key>
+	<true/>
+	<key>AcceptsFiles</key>
+	<true/>
 	<key>ScriptInterpreter</key>
 	<string>/usr/bin/perl</string>
 	<key>Secure</key>

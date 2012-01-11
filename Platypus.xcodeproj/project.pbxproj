@@ -24,6 +24,7 @@
 		F418A19E14BA230B00C75BAD /* Tcl.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A19D14BA230B00C75BAD /* Tcl.png */; };
 		F418A1A014BA243400C75BAD /* Expect.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A19F14BA243400C75BAD /* Expect.png */; };
 		F4263A2F14B7E2AC000A1A68 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4263A2E14B7E2AC000A1A68 /* ScriptExec */; };
+		F42C982C14BB55820094CC8D /* platypus.man.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F42C982B14BB55820094CC8D /* platypus.man.pdf */; };
 		F44402CC1493EED300261B21 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949C122C128200094A1B /* ScriptAnalyser.m */; };
 		F44637A614B6737F00ECF827 /* Add_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F446379E14B6737F00ECF827 /* Add_Pressed.png */; };
 		F44637A714B6737F00ECF827 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = F446379F14B6737F00ECF827 /* Add.png */; };
@@ -145,6 +146,7 @@
 		F418A19D14BA230B00C75BAD /* Tcl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tcl.png; sourceTree = "<group>"; };
 		F418A19F14BA243400C75BAD /* Expect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Expect.png; sourceTree = "<group>"; };
 		F4263A2E14B7E2AC000A1A68 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Platypus/Build/Products/Development/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
+		F42C982B14BB55820094CC8D /* platypus.man.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = platypus.man.pdf; path = CommandLineTool/platypus.man.pdf; sourceTree = "<group>"; };
 		F446379E14B6737F00ECF827 /* Add_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add_Pressed.png; sourceTree = "<group>"; };
 		F446379F14B6737F00ECF827 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
 		F44637A014B6737F00ECF827 /* Clear_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear_Pressed.png; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 			children = (
 				F4263A2E14B7E2AC000A1A68 /* ScriptExec */,
 				F418A18614BA06E100C75BAD /* platypus_clt */,
+				F42C982B14BB55820094CC8D /* platypus.man.pdf */,
 				F471ED21122DF2D6001F4761 /* Credits.html */,
 				F4C8B455124C450C00397392 /* Platypus.xib */,
 				F4C8B456124C450C00397392 /* Preferences.xib */,
@@ -410,6 +413,34 @@
 		F42003DC078FC1E1002746A1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F42C982E14BB5E8C0094CC8D /* Buttons */,
+				F42C982D14BB5E800094CC8D /* Interpreters */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		F42C982D14BB5E800094CC8D /* Interpreters */ = {
+			isa = PBXGroup;
+			children = (
+				F418A18914BA0EA900C75BAD /* Shell.png */,
+				F418A19114BA0F2600C75BAD /* Bash.png */,
+				F418A19314BA0F2600C75BAD /* Tcsh.png */,
+				F418A19214BA0F2600C75BAD /* Zsh.png */,
+				F418A19B14BA21B600C75BAD /* Env.png */,
+				F418A18B14BA0EA900C75BAD /* Perl.png */,
+				F418A19714BA149000C75BAD /* Python.png */,
+				F418A18C14BA0EAA00C75BAD /* Ruby.png */,
+				F418A18A14BA0EA900C75BAD /* AppleScript.png */,
+				F418A19D14BA230B00C75BAD /* Tcl.png */,
+				F418A19F14BA243400C75BAD /* Expect.png */,
+				F418A19914BA1DDF00C75BAD /* PHP.png */,
+			);
+			name = Interpreters;
+			sourceTree = "<group>";
+		};
+		F42C982E14BB5E8C0094CC8D /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
 				F446379E14B6737F00ECF827 /* Add_Pressed.png */,
 				F446379F14B6737F00ECF827 /* Add.png */,
 				F44637A014B6737F00ECF827 /* Clear_Pressed.png */,
@@ -420,20 +451,8 @@
 				F44637A314B6737F00ECF827 /* Remove.png */,
 				F44637A414B6737F00ECF827 /* RevealInFinder_Pressed.png */,
 				F44637A514B6737F00ECF827 /* RevealInFinder.png */,
-				F418A18914BA0EA900C75BAD /* Shell.png */,
-				F418A19114BA0F2600C75BAD /* Bash.png */,
-				F418A19314BA0F2600C75BAD /* Tcsh.png */,
-				F418A19214BA0F2600C75BAD /* Zsh.png */,
-				F418A19B14BA21B600C75BAD /* Env.png */,
-				F418A18A14BA0EA900C75BAD /* AppleScript.png */,
-				F418A18B14BA0EA900C75BAD /* Perl.png */,
-				F418A19D14BA230B00C75BAD /* Tcl.png */,
-				F418A19914BA1DDF00C75BAD /* PHP.png */,
-				F418A19714BA149000C75BAD /* Python.png */,
-				F418A19F14BA243400C75BAD /* Expect.png */,
-				F418A18C14BA0EAA00C75BAD /* Ruby.png */,
 			);
-			path = Images;
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 		F44587170FC386B500CD0C02 /* STPrivilegedTask */ = {
@@ -804,6 +823,7 @@
 				F418A19C14BA21B600C75BAD /* Env.png in Resources */,
 				F418A19E14BA230B00C75BAD /* Tcl.png in Resources */,
 				F418A1A014BA243400C75BAD /* Expect.png in Resources */,
+				F42C982C14BB55820094CC8D /* platypus.man.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,7 +852,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/groff -Tps -mdoc -c 'CommandLineTool/platypus.1' | pstopdf -i -o 'CommandLineTool/platypus.man.pdf'\necho $PWD";
+			shellScript = "# Create PDF from man page\n/usr/bin/groff -Tps -mdoc -c 'CommandLineTool/platypus.1' | pstopdf -i -o 'CommandLineTool/platypus.man.pdf'";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -937,6 +957,7 @@
 				PRODUCT_NAME = Platypus;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
+				VALIDATE_PRODUCT = NO;
 				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -999,6 +1020,7 @@
 				PRODUCT_NAME = Platypus;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
+				VALIDATE_PRODUCT = NO;
 				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};

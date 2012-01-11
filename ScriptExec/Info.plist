@@ -39,16 +39,19 @@
     <key>NSServices</key>
 	<array>
 		<dict>
-			<key>Menu</key>
+			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Process with TempScript</string>
+				<string>ScriptExec</string>
 			</dict>
 			<key>NSMessage</key>
-			<string>doString</string>
+			<string>dropService</string>
+			<key>NSPortName</key>
+			<string>ScriptExec</string>
 			<key>NSSendTypes</key>
 			<array>
-				<string>NSStringPboardType</string>
+				<string>NSFilenamesPboardType</string>
+                <string>NSStringPboardType</string>
 			</array>
 		</dict>
 	</array>
