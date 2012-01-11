@@ -929,14 +929,11 @@
     NSPasteboard *pboard = [sender draggingPasteboard];
     
     if ([[pboard types] containsObject: NSStringPboardType])
-    {
         return [self addDroppedTextJob: [pboard stringForType: NSStringPboardType]];
-    }
     else
         return [self addDroppedFilesJob: [pboard propertyListForType: NSFilenamesPboardType]];
     
     return NO;
-    
 }
 
 // once the drag is over, we immediately execute w. files as arguments if not already processing
@@ -946,7 +943,7 @@
         [dropletShader setHidden: YES];
     
     if (!isTaskRunning && [jobQueue count] > 0)
-        [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector:@selector(executeScript) userInfo: nil repeats: NO];
+        [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(executeScript) userInfo: nil repeats: NO];
 }
 
 -(NSDragOperation)draggingUpdated: (id <NSDraggingInfo>)sender
@@ -985,10 +982,11 @@
     
     // run script and wait until we've received all the script output
     [self executeScript];
-    while (isTaskRunning) {}
+    while (isTaskRunning)
+        usleep(50000); // microseconds
     
     // create an array of lines by separating output by newline
-    NSMutableArray *lines = (NSMutableArray *)[[textOutputTextView string] componentsSeparatedByString: @"\n"];
+    NSMutableArray *lines = [NSMutableArray  arrayWithArray: [[textOutputTextView string] componentsSeparatedByString: @"\n"]];
     
     // clean out any trailing newlines
     while ([[lines lastObject] isEqualToString: @""])

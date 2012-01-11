@@ -5956,9 +5956,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>347933795.59039903</real>
-		<string>{30929, 1541}</string>
-		<string>{31603, 0}</string>
+		<real>347934627.35414797</real>
+		<string>{35039, 1809}</string>
+		<string>{36046, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -6065,19 +6065,19 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>344</integer>
+					<integer>416</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>345</integer>
+					<integer>417</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>346</integer>
+					<integer>418</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>347</integer>
+					<integer>419</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
@@ -6100,9 +6100,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>347763619.25501102</real>
-		<string>{2505, 894}</string>
-		<string>{2815, 54}</string>
+		<real>347934533.138026</real>
+		<string>{0, 1580}</string>
+		<string>{982, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -8664,7 +8664,7 @@
 				<integer>684</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>347933767.66512299</real>
+			<real>347934622.352727</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -8675,7 +8675,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 12:16 AM</string>
+		<string>Today at 12:30 AM</string>
 		<integer>234</integer>
 		<string>ScriptExec</string>
 		<dict>
@@ -9994,11 +9994,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>638</integer>
+					<integer>814</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>813</integer>
+					<integer>638</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -10006,7 +10006,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>816</integer>
+					<integer>817</integer>
 				</dict>
 			</array>
 		</dict>
@@ -10045,7 +10045,7 @@
 				<integer>805</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/Shared/STPrivilegedTask.m</string>
+		<string>file://localhost/Projects/platypus/ScriptExec/ScriptExecController.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10063,7 +10063,7 @@
 				<integer>807</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/ScriptExec/Info.plist</string>
+		<string>file://localhost/Projects/platypus/Shared/STPrivilegedTask.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10081,7 +10081,7 @@
 				<integer>809</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/ScriptExec/AppSettings.plist</string>
+		<string>file://localhost/Projects/platypus/ScriptExec/Info.plist</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10097,6 +10097,24 @@
 			<dict>
 				<key>CF$UID</key>
 				<integer>811</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Projects/platypus/ScriptExec/AppSettings.plist</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>29</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>813</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Projects/platypus/ScriptExec/script</string>
@@ -10131,7 +10149,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>814</integer>
+				<integer>816</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Projects/platypus/Common.h</string>
@@ -10152,24 +10170,6 @@
 				<integer>575</integer>
 			</dict>
 		</dict>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>29</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>817</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Projects/platypus/Shared/NSColor+HexTools.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10801,10 +10801,10 @@
 				</dict>
 			</array>
 		</dict>
-		<real>347933795.59553897</real>
-		<string>{30929, 1541}</string>
-		<string>{31603, 0}</string>
-		<string>-addDroppedFilesJob:</string>
+		<real>347934627.35689801</real>
+		<string>{35039, 1809}</string>
+		<string>{36046, 0}</string>
+		<string>-menuNeedsUpdate:</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
@@ -12210,7 +12210,7 @@
 		<string>IDESCMStatusFilteringEnabled</string>
 		<string>IDESelectedObjects</string>
 		<string>IDEExpandedItemsSet</string>
-		<string>{{0, 172}, {220, 758}}</string>
+		<string>{{0, 92}, {220, 758}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>

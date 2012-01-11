@@ -21,6 +21,7 @@
 #import <Security/Authorization.h>
 #import <WebKit/WebKit.h>
 #import <sys/syslimits.h>
+#import <unistd.h>
 
 #import "NSColor+HexTools.h"
 #import "Common.h"
