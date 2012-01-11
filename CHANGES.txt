@@ -10,12 +10,14 @@ For 4.6
     * Command line tool now supports dumping profile property lists to stdout (see man page)
     * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
     * New FastDMGMounter example
-    * Additional interpreter presets:  zsh and tcsh
+    * Additional interpreter presets: zsh and tcsh
     * Migrated all images to optimized PNGs for smaller file sizes
     * Extended documentation
     * New "Edit file" button for Bundled Files List.
-    * Minor interface changes and improvements
+    * Minor interface refinements
     * Script path text field tab autocomplete now working
+    * Fixed crash bug when editing file in Bundled Files list using built-in editor.
+
     
     TODO:  Make text settings work in Status Menu output
     TODO:  Finish implementing service functionality in Platypus app, command line tool and AppSpec class
