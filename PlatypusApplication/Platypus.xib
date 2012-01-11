@@ -211,8 +211,8 @@
 							<reference key="NSNextKeyView" ref="787370935"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="1058733949">
-								<int key="NSCellFlags">-1805517311</int>
-								<int key="NSCellFlags2">0</int>
+								<int key="NSCellFlags">-1805517247</int>
+								<int key="NSCellFlags2">1536</int>
 								<string key="NSContents">/bin/sh</string>
 								<reference key="NSSupport" ref="761351444"/>
 								<reference key="NSControlView" ref="143359466"/>
@@ -295,6 +295,7 @@
 							<string key="NSFrame">{{528, 13}, {116, 32}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="895076633">
 								<int key="NSCellFlags">604110336</int>
@@ -412,7 +413,7 @@
 											<string key="NSFrameSize">{585, 124}</string>
 											<reference key="NSSuperview" ref="5750385"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="346920152"/>
+											<reference key="NSNextKeyView" ref="486925506"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="_NSCornerView" key="NSCornerView">
 												<nil key="NSNextResponder"/>
@@ -687,7 +688,7 @@ AAAAAAAAA</bytes>
 							<string key="NSFrame">{{20, 58}, {587, 126}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="5750385"/>
+							<reference key="NSNextKeyView" ref="346920152"/>
 							<int key="NSsFlags">133650</int>
 							<reference key="NSVScroller" ref="486925506"/>
 							<reference key="NSHScroller" ref="346920152"/>
@@ -746,8 +747,8 @@ AAAAAAAAA</bytes>
 							<reference key="NSNextKeyView" ref="321417449"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="626397196">
-								<int key="NSCellFlags">-1804468671</int>
-								<int key="NSCellFlags2">1024</int>
+								<int key="NSCellFlags">-1805517247</int>
+								<int key="NSCellFlags2">1536</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="761351444"/>
 								<reference key="NSControlView" ref="570542548"/>
@@ -3626,7 +3627,7 @@ AAAAAAAAA</bytes>
 				<string key="NSWindowContentMaxSize">{500, 1000}</string>
 				<string key="NSWindowContentMinSize">{500, 280}</string>
 				<object class="NSView" key="NSWindowView" id="1033567883">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3763,7 +3764,6 @@ AAAAAAAAA</bytes>
 							<reference key="NSHScroller" ref="317209377"/>
 							<reference key="NSContentView" ref="637981051"/>
 							<reference key="NSHeaderClipView" ref="891150668"/>
-							<reference key="NSCornerView" ref="1027869753"/>
 							<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 						</object>
 						<object class="NSScrollView" id="914057991">
@@ -3899,7 +3899,6 @@ AAAAAAAAA</bytes>
 							<reference key="NSHScroller" ref="937283618"/>
 							<reference key="NSContentView" ref="592907531"/>
 							<reference key="NSHeaderClipView" ref="109537093"/>
-							<reference key="NSCornerView" ref="334922653"/>
 							<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 						</object>
 						<object class="NSButton" id="1052089880">
@@ -4190,7 +4189,6 @@ AAAAAAAAA</bytes>
 						</object>
 					</object>
 					<string key="NSFrameSize">{500, 356}</string>
-					<reference key="NSSuperview"/>
 					<reference key="NSNextKeyView" ref="472573425"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -4551,7 +4549,7 @@ b2xvciBzaXQgYW1ldA</bytes>
 									<reference key="NSDocView" ref="131462567"/>
 									<reference key="NSBGColor" ref="340831700"/>
 									<object class="NSCursor" key="NSCursor">
-										<string key="NSHotSpot">{1, -1}</string>
+										<string key="NSHotSpot">{4, 4}</string>
 										<int key="NSCursorType">0</int>
 									</object>
 									<int key="NScvFlags">6</int>
