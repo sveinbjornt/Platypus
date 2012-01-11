@@ -38,7 +38,7 @@
         statusItem = NULL;
         statusItemTitle = @"Title";
         statusItemIcon = NULL;
-    	statusItemMenu = NULL;
+        statusItemMenu = NULL;
     }
     return self;
 }
@@ -59,6 +59,8 @@
     [super dealloc];
 }
 
+#pragma mark -
+
 -(void)awakeFromNib
 {
     // load settings from AppSettings.plist in app bundle
@@ -76,15 +78,52 @@
                                                object: NULL];
 }
 
--(void)applicationDidFinishLaunching:(NSNotification *)aNotification
+-(void)applicationDidFinishLaunching: (NSNotification *)aNotification
 {    
-    if (acceptsText)
     [NSApp setServicesProvider:self]; // register as text handling service
     
     // status menu apps just run when item is clicked
     // for all others, we run the script once app is up and running
     if (outputType != PLATYPUS_STATUSMENU_OUTPUT)
         [self executeScript];
+}
+
+-(void)application: (NSApplication *)theApplication openFiles:(NSArray *)filenames
+{
+    // add the dropped files as a job for processing
+    int ret = [self addDroppedFilesJob: filenames];
+    
+    // if no other job is running, we execute
+    if (!isTaskRunning && ret)
+        [self executeScript];
+}
+
+-(NSApplicationTerminateReply)applicationShouldTerminate: (NSApplication *)sender
+{    
+    // again, make absolutely sure we don't leave the clear-text script in temp directory
+    if (secureScript && [[NSFileManager defaultManager] fileExistsAtPath: scriptPath])
+        [[NSFileManager defaultManager] removeFileAtPath: scriptPath handler: nil];
+        
+    //terminate task
+    if (task != NULL)
+    {
+        if ([task isRunning])
+            [task terminate];
+        [task release];
+    }
+    
+    //terminate privileged task
+    if (privilegedTask != NULL)
+    {
+        if ([privilegedTask isRunning])
+            [privilegedTask terminate];
+        [privilegedTask release];
+    }
+
+    // clean out the job queue since we're quitting
+    [jobQueue removeAllObjects];
+    
+    return YES;
 }
 
 #pragma mark -
@@ -153,7 +192,7 @@
             // reveal it
             [progressBarWindow makeKeyAndOrderFront: self];
         }
-        break;
+            break;
             
         case PLATYPUS_TEXTWINDOW_OUTPUT:
         {
@@ -175,7 +214,7 @@
             [textOutputWindow center];
             [textOutputWindow makeKeyAndOrderFront: self];
         }
-        break;
+            break;
             
         case PLATYPUS_WEBVIEW_OUTPUT:
         {
@@ -194,7 +233,7 @@
             [webOutputWindow makeKeyAndOrderFront: self];        
             
         }
-        break;
+            break;
             
         case PLATYPUS_STATUSMENU_OUTPUT:
         {
@@ -225,7 +264,7 @@
             // enable it
             [statusItem setEnabled: YES];
         }
-        break;
+            break;
             
         case PLATYPUS_DROPLET_OUTPUT:
         {            
@@ -239,7 +278,7 @@
             [dropletWindow center];
             [dropletWindow makeKeyAndOrderFront: self];
         }
-        break;
+            break;
     }
 }
 
@@ -263,7 +302,7 @@
             [progressBarCancelButton setTitle: @"Cancel"];
             if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { [progressBarCancelButton setEnabled: NO]; }
         }
-        break;
+            break;
             
         case PLATYPUS_TEXTWINDOW_OUTPUT:
         {   
@@ -272,7 +311,7 @@
             if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { [textOutputCancelButton setEnabled: NO]; }
             [textOutputProgressIndicator startAnimation: self];
         }
-        break;
+            break;
             
         case PLATYPUS_WEBVIEW_OUTPUT:
         {
@@ -281,13 +320,13 @@
             if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { [webOutputCancelButton setEnabled: NO]; }
             [webOutputProgressIndicator startAnimation: self];
         }
-        break;
+            break;
             
         case PLATYPUS_STATUSMENU_OUTPUT:
         {
             [outputTextView setString: @""];
         }
-        break;
+            break;
             
         case PLATYPUS_DROPLET_OUTPUT:
         {
@@ -298,7 +337,7 @@
             [dropletMessageTextField setStringValue: @"Processing..."];
             [outputTextView setString: @"\n"];
         }
-        break;
+            break;
     }
 }
 
@@ -320,7 +359,7 @@
             [textOutputCancelButton setEnabled: YES];
             [textOutputProgressIndicator stopAnimation: self];
         }
-        break;
+            break;
             
         case PLATYPUS_PROGRESSBAR_OUTPUT:
         {
@@ -357,7 +396,7 @@
             [progressBarCancelButton setTitle: @"Quit"];
             [progressBarCancelButton setEnabled: YES];
         }
-        break;
+            break;
             
         case PLATYPUS_WEBVIEW_OUTPUT:
         {
@@ -366,7 +405,7 @@
             [webOutputCancelButton setEnabled: YES];
             [webOutputProgressIndicator stopAnimation: self];
         }
-        break;
+            break;
             
         case PLATYPUS_DROPLET_OUTPUT:
         {
@@ -374,7 +413,7 @@
             [dropletDropFilesLabel setHidden: NO];
             [dropletMessageTextField setHidden: YES];
         }
-        break;
+            break;
     }
 }
 
@@ -414,7 +453,7 @@
         
         // write script to the temporary path
         [script writeToFile: tempScriptPath atomically: YES encoding: textEncoding error: NULL];
-                
+        
         // make sure writing it was successful
         if (![[NSFileManager defaultManager] fileExistsAtPath: tempScriptPath])
             [self fatalAlert: @"Failed to write script file" subText: [NSString stringWithFormat: @"Could not create the temp file '%@'", tempScriptPath]];         
@@ -572,7 +611,7 @@
         [self executeScript];
 }
 
--(void) cleanup
+-(void)cleanup
 {    
     // we never do cleanup if the task is running
     if (isTaskRunning) 
@@ -696,7 +735,7 @@
 #pragma mark -
 
 //run open panel, made available to apps that are droppable
--(IBAction)openFiles:(id)sender
+-(IBAction)openFiles: (id)sender
 {
     //create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
@@ -723,48 +762,30 @@
 
 #pragma mark -
 
--(void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames
+// service
+
+- (void)dropService: (NSPasteboard*) pb userData: (NSString *)userData error: (NSString **) err
 {
-    // add the dropped files as a job for processing
-    int ret = [self addDroppedFilesJob: filenames];
+    NSArray* types = [pb types];
+    BOOL ret = 0;
+    id data = nil;
     
-    // if no other job is running, we execute
+    // file(s)
+    if (acceptsFiles && [types containsObject: NSFilenamesPboardType] && (data = [pb propertyListForType: NSFilenamesPboardType]))
+        ret = [self addDroppedFilesJob: data]; // files
+    else if (acceptsText && [types containsObject: NSStringPboardType] && (data = [pb stringForType: NSStringPboardType]))
+        ret = [self addDroppedTextJob: data]; // text
+    else // unknown
+    {
+        *err = @"Data type in pasteboard cannot be handled by this application.";
+        return;
+    }
+    
     if (!isTaskRunning && ret)
         [self executeScript];
 }
 
--(NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
-{    
-    // again, make absolutely sure we don't leave the clear-text script in temp directory
-    if (secureScript && [[NSFileManager defaultManager] fileExistsAtPath: scriptPath])
-        [[NSFileManager defaultManager] removeFileAtPath: scriptPath handler: nil];
-    
-    //terminate task
-    if (task != NULL)
-    {
-        if ([task isRunning])
-            [task terminate];
-        [task release];
-    }
-    
-    if (privilegedTask != NULL)
-        [privilegedTask release];
-    
-    // clean out the job queue since we're quitting
-    [jobQueue removeAllObjects];
-    
-    return YES;
-}
-
-#pragma mark -
-
-/***************************************************************************
- 
- Receives a list of files, filters out those that the application can handle
- based on application settings, then creates an array of arguments, appends
- it as a drop job for processing.  If no files are accepted it returns false.
- 
- ***************************************************************************/
+// text snippet drag handling
 
 -(void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error 
 {
@@ -778,6 +799,24 @@
     if (!isTaskRunning && ret)
         [self executeScript];
 }
+
+-(BOOL)addDroppedTextJob: (NSString *)text
+{
+    if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
+        return NO;
+    
+    if ([text length] <= 0) // ignore empty strings
+        return NO;
+    
+    // add job with text as argument for script
+    NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity: ARG_MAX];
+    [args addObject: text];
+    [jobQueue addObject: args];
+    
+    return YES;
+}
+
+// drop files processing
 
 -(BOOL)addDroppedFilesJob: (NSArray *)files
 {
@@ -802,28 +841,12 @@
     
     // we create a processing job and add the files as arguments, accept drop
     NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity: ARG_MAX];//this object is released in -prepareForExecution function
+    
     [args addObjectsFromArray: acceptedFiles];
     [jobQueue addObject: args];
     [args release];
     return YES;
 }
-
--(BOOL)addDroppedTextJob: (NSString *)text
-{
-    if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
-        return NO;
-    
-    if ([text length] <= 0) // ignore empty strings
-        return NO;
-    
-    // add job with text as argument for script
-    NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity: ARG_MAX];
-    [args addObject: text];
-    [jobQueue addObject: args];
-    
-    return YES;
-}
-
 
 /*****************************************************************
  
@@ -861,13 +884,13 @@
 
 // check file types against acceptable drop types here before accepting them
 
--(NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender 
+-(NSDragOperation)draggingEntered: (id <NSDraggingInfo>)sender 
 { 
     BOOL acceptDrag = NO;
     NSPasteboard *pboard = [sender draggingPasteboard];
     
     // if this is a file being dragged
-    if ([[pboard types] containsObject: NSFilenamesPboardType])
+    if ([[pboard types] containsObject: NSFilenamesPboardType] && acceptsFiles)
     {
         // loop through files, see if any of the dragged files are acceptable
         int i;
@@ -877,9 +900,8 @@
             if ([self acceptableFileType: [files objectAtIndex: i]])
                 acceptDrag = YES;
     }
-    
-    // if this is a string being dragged
-    else if ([[pboard types] containsObject: NSStringPboardType])
+    // see if this is a string being dragged
+    else if ([[pboard types] containsObject: NSStringPboardType] && acceptsText)
         acceptDrag = YES;
     
     if (acceptDrag)
@@ -896,12 +918,13 @@
     return NSDragOperationNone;
 }
 
--(void)draggingExited:(id <NSDraggingInfo>)sender;
+-(void)draggingExited: (id <NSDraggingInfo>)sender;
 {
-    [dropletShader setHidden: YES];
+    if (outputType == PLATYPUS_DROPLET_OUTPUT)
+        [dropletShader setHidden: YES];
 }
 
--(BOOL)performDragOperation:(id <NSDraggingInfo>)sender
+-(BOOL)performDragOperation: (id <NSDraggingInfo>)sender
 { 
     NSPasteboard *pboard = [sender draggingPasteboard];
     
@@ -917,7 +940,7 @@
 }
 
 // once the drag is over, we immediately execute w. files as arguments if not already processing
--(void)concludeDragOperation:(id <NSDraggingInfo>)sender
+-(void)concludeDragOperation: (id <NSDraggingInfo>)sender
 {
     if (outputType == PLATYPUS_DROPLET_OUTPUT)
         [dropletShader setHidden: YES];
@@ -926,7 +949,7 @@
         [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector:@selector(executeScript) userInfo: nil repeats: NO];
 }
 
--(NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender
+-(NSDragOperation)draggingUpdated: (id <NSDraggingInfo>)sender
 {
     return [self draggingEntered: sender]; // this is needed to keep link instead of the green plus sign on web view
 }
@@ -940,7 +963,7 @@
  
  **************************************************/
 
--(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+-(void)webView: (WebView *)sender didFinishLoadForFrame: (WebFrame *)frame
 {
     NSScrollView *scrollView = [[[[webOutputWebView mainFrame] frameView] documentView] enclosingScrollView];    
     NSRect bounds = [[[[webOutputWebView mainFrame] frameView] documentView] bounds];
@@ -956,7 +979,7 @@
  
  **************************************************/
 
--(void)menuNeedsUpdate:(NSMenu *)menu
+-(void)menuNeedsUpdate: (NSMenu *)menu
 {    
     int i;
     
@@ -1122,7 +1145,7 @@
     // load settings for drop acceptance, default is to accept files and not text snippets
     acceptsFiles = ([appSettingsPlist objectForKey: @"AcceptsFiles"] != nil) ? [[appSettingsPlist objectForKey: @"AcceptsFiles"] boolValue] : YES;
     acceptsText = ([appSettingsPlist objectForKey: @"AcceptsText"] != nil) ? [[appSettingsPlist objectForKey: @"AcceptsText"] boolValue] : NO;
-
+    
     if (!acceptsFiles && !acceptsText) // equivalent to not being droppable
         isDroppable = FALSE;
     
@@ -1188,7 +1211,7 @@
     }
 }
 
--(IBAction)cancel:(id)sender
+-(IBAction)cancel: (id)sender
 {
     if (task != NULL)
         [task terminate];
@@ -1240,7 +1263,7 @@
 // save only works for text window, web view output types
 // and open only works for droppable apps that accept files as script args
 
--(BOOL)validateMenuItem:(NSMenuItem*)anItem 
+-(BOOL)validateMenuItem: (NSMenuItem*)anItem 
 {    
     //save to file item
     if ([[anItem title] isEqualToString:@"Save to File…"] && 
