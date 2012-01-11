@@ -1,5 +1,5 @@
 /*
-    ScriptExec - binary bundled into Platypus-created applications
+    ScriptExec - binary bundled into Platypus-generated applications
     Copyright (C) 2003-2012 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 #import <Cocoa/Cocoa.h>
 #import <Security/Authorization.h>
 #import <WebKit/WebKit.h>
+
 #import <sys/syslimits.h>
 #import <unistd.h>
 
@@ -30,99 +31,97 @@
 
 @interface ScriptExecController : NSObject
 {
-	// progress bar
+    // progress bar
     IBOutlet id progressBarCancelButton;
     IBOutlet id progressBarMessageTextField;
     IBOutlet id progressBarIndicator;
-	IBOutlet id progressBarWindow;
-	IBOutlet id progressBarTextView;
-	IBOutlet id progressBarDetailsTriangle;
-	IBOutlet id progressBarDetailsLabel;
-	
-	// text window
-	IBOutlet id textOutputWindow;
-	IBOutlet id textOutputCancelButton;
-	IBOutlet id textOutputTextView;
-	IBOutlet id textOutputProgressIndicator;
-	IBOutlet id textOutputMessageTextField;
-	
-	// web view
-	IBOutlet id webOutputWindow;
-	IBOutlet id webOutputCancelButton;
-	IBOutlet id webOutputWebView;
-	IBOutlet id webOutputProgressIndicator;
-	IBOutlet id webOutputMessageTextField;
-	
-	// status item menu
-	NSStatusItem	*statusItem;
-	NSMenu			*statusItemMenu;
-	
-	// droplet
-	IBOutlet id dropletWindow;
-	IBOutlet id dropletBox;
-	IBOutlet id dropletProgressIndicator;
-	IBOutlet id dropletMessageTextField;
-	IBOutlet id dropletDropFilesLabel;
-	IBOutlet id dropletShader;
-	
-	//menu items
-	IBOutlet id hideMenuItem;
-	IBOutlet id quitMenuItem;
-	IBOutlet id aboutMenuItem;
-	
-	NSTextView	*outputTextView;
-		
-	IBOutlet id windowMenu;
-	
-	// tasks
-	NSTask				*task;
-	STPrivilegedTask	*privilegedTask;
-	
-	NSTimer			*checkStatusTimer;
+    IBOutlet id progressBarWindow;
+    IBOutlet id progressBarTextView;
+    IBOutlet id progressBarDetailsTriangle;
+    IBOutlet id progressBarDetailsLabel;
 
-	NSPipe			*outputPipe;
-	NSFileHandle	*readHandle;
+    // text window
+    IBOutlet id textOutputWindow;
+    IBOutlet id textOutputCancelButton;
+    IBOutlet id textOutputTextView;
+    IBOutlet id textOutputProgressIndicator;
+    IBOutlet id textOutputMessageTextField;
 
-	NSMutableArray  *arguments;
-	NSMutableArray  *fileArgs;
-	NSArray			*interpreterArgs;
+    // web view
+    IBOutlet id webOutputWindow;
+    IBOutlet id webOutputCancelButton;
+    IBOutlet id webOutputWebView;
+    IBOutlet id webOutputProgressIndicator;
+    IBOutlet id webOutputMessageTextField;
+
+    // status item menu
+    NSStatusItem    *statusItem;
+    NSMenu          *statusItemMenu;
+
+    // droplet
+    IBOutlet id dropletWindow;
+    IBOutlet id dropletBox;
+    IBOutlet id dropletProgressIndicator;
+    IBOutlet id dropletMessageTextField;
+    IBOutlet id dropletDropFilesLabel;
+    IBOutlet id dropletShader;
+
+    //menu items
+    IBOutlet id hideMenuItem;
+    IBOutlet id quitMenuItem;
+    IBOutlet id aboutMenuItem;
+
+    NSTextView  *outputTextView;
+
+    IBOutlet id windowMenu;
+
+    // tasks
+    NSTask              *task;
+    STPrivilegedTask    *privilegedTask;
+
+    NSTimer         *checkStatusTimer;
+
+    NSPipe          *outputPipe;
+    NSFileHandle    *readHandle;
+
+    NSMutableArray  *arguments;
+    NSMutableArray  *fileArgs;
+    NSArray         *interpreterArgs;
     NSArray         *scriptArgs;
-    
 
-	NSString		*interpreter;
-	NSString		*scriptPath;
-	NSString		*appName;
-	
-	NSFont			*textFont;
-	NSColor			*textForeground;
-	NSColor			*textBackground;
-	int				 textEncoding;
-	
-	BOOL		appPathAsFirstArg;
-	int			execStyle;
-	int			outputType;
-	BOOL		isDroppable;
-	BOOL		remainRunning;
-	BOOL		secureScript;
+    NSString        *interpreter;
+    NSString        *scriptPath;
+    NSString        *appName;
+
+    NSFont          *textFont;
+    NSColor         *textForeground;
+    NSColor         *textBackground;
+    int              textEncoding;
+
+    BOOL        appPathAsFirstArg;
+    int         execStyle;
+    int         outputType;
+    BOOL        isDroppable;
+    BOOL        remainRunning;
+    BOOL        secureScript;
     BOOL        acceptsFiles;
     BOOL        acceptsText;
-	
-	NSArray		*droppableSuffixes;
-	NSArray		*droppableFileTypes;
-	BOOL		acceptAnyDroppedItem;
+
+    NSArray     *droppableSuffixes;
+    NSArray     *droppableFileTypes;
+    BOOL        acceptAnyDroppedItem;
     BOOL        acceptDroppedFolders;
-	
-	NSString	*statusItemTitle;
-	NSImage		*statusItemIcon;
 
-	BOOL		isTaskRunning;
-	BOOL		outputEmpty;
-	
-	NSString	*script;
+    NSString    *statusItemTitle;
+    NSImage     *statusItemIcon;
 
-	NSString	*remnants;
-	
-	NSMutableArray *jobQueue;
+    BOOL        isTaskRunning;
+    BOOL        outputEmpty;
+
+    NSString    *script;
+    NSString    *remnants;
+
+    NSMutableArray *jobQueue;
 }
 
 - (void)initialiseInterface;
