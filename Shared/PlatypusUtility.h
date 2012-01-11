@@ -21,6 +21,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+#import "Common.h"
 
 @interface PlatypusUtility : NSObject 
 + (NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;

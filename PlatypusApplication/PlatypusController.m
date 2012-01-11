@@ -62,13 +62,13 @@
 	BOOL isDir;
 	
 	// app support folder
-	if (! [[NSFileManager defaultManager] fileExistsAtPath: [APP_SUPPORT_FOLDER stringByExpandingTildeInPath] isDirectory: &isDir])
-		if ( ! [[NSFileManager defaultManager] createDirectoryAtPath: [APP_SUPPORT_FOLDER stringByExpandingTildeInPath] attributes: NULL] )
+	if (! [FILEMGR fileExistsAtPath: [APP_SUPPORT_FOLDER stringByExpandingTildeInPath] isDirectory: &isDir])
+		if ( ! [FILEMGR createDirectoryAtPath: [APP_SUPPORT_FOLDER stringByExpandingTildeInPath] attributes: NULL] )
 			[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]]; 
 	
 	// profiles folder
-	if (! [[NSFileManager defaultManager] fileExistsAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath] isDirectory: &isDir])
-		if ( ! [[NSFileManager defaultManager] createDirectoryAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath] attributes: NULL] )
+	if (! [FILEMGR fileExistsAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath] isDirectory: &isDir])
+		if ( ! [FILEMGR createDirectoryAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath] attributes: NULL] )
 			[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Could not create directory '%@'", [PROFILES_FOLDER stringByExpandingTildeInPath]]]; 
 	
 	
@@ -159,7 +159,7 @@
 		int randnum =  random() / 1000000;
 		tempScript = [NSString stringWithFormat: @"%@Script.%d", [TEMP_FOLDER stringByExpandingTildeInPath], randnum];
 	}
-	while ([[NSFileManager defaultManager] fileExistsAtPath: tempScript]);
+	while ([FILEMGR fileExistsAtPath: tempScript]);
 	
 	//put shebang line in the new script text file
 	NSString	*contentString = [NSString stringWithFormat: @"#!%@\n\n", [interpreterTextField stringValue]];
@@ -203,7 +203,7 @@
 - (IBAction)editScript:(id)sender
 {		
 	//see if file exists
-	if (![[NSFileManager defaultManager] fileExistsAtPath: [scriptPathTextField stringValue]])
+	if (![FILEMGR fileExistsAtPath: [scriptPathTextField stringValue]])
 	{
 		[PlatypusUtility alert:@"File does not exist" subText: @"No file exists at the specified path"];
 		return;
@@ -300,7 +300,7 @@
 	[developmentVersionCheckbox setEnabled: ![encryptCheckbox intValue]];	
 	
 	// optimize application is enabled and on by default if ibtool is present
-	BOOL ibtoolInstalled = [[NSFileManager defaultManager] fileExistsAtPath: IBTOOL_PATH];
+	BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath: IBTOOL_PATH];
 	[optimizeApplicationCheckbox setEnabled: ibtoolInstalled];
 	[optimizeApplicationCheckbox setIntValue: ibtoolInstalled];
 	
@@ -349,7 +349,7 @@
 		appPath = [appPath stringByAppendingString:@".app"];
 	
 	//check if app already exists, and if so, prompt if to replace
-	if (!overwrite && [[NSFileManager defaultManager] fileExistsAtPath: appPath])
+	if (!overwrite && [FILEMGR fileExistsAtPath: appPath])
 	{
 		overwrite = [PlatypusUtility proceedWarning: @"Application already exists" subText: @"An application with this name already exists in the location you specified.  Do you want to overwrite it?" withAction: @"Overwrite"];
 		if (!overwrite)
@@ -430,7 +430,7 @@
 	BOOL			isDir;
 	
 	//file manager
-	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSFileManager *fileManager = FILEMGR;
 	
 	//script path
 	if ([[appNameTextField stringValue] length] == 0)//make sure a name has been assigned
@@ -694,7 +694,7 @@
 {
 	//make sure file we're loading actually exists
 	BOOL	isDir;
-	if (![[NSFileManager defaultManager] fileExistsAtPath: filename isDirectory: &isDir] || isDir)
+	if (![FILEMGR fileExistsAtPath: filename isDirectory: &isDir] || isDir)
 		return;
     
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsFromScript: filename];
@@ -749,7 +749,7 @@
 	if ([aNotification object] == interpreterTextField || [aNotification object] == NULL)
 	{
 		[self selectScriptTypeBasedOnInterpreter];
-		if ([[NSFileManager defaultManager] fileExistsAtPath: [interpreterTextField stringValue] isDirectory: &isDir] && !isDir)
+		if ([FILEMGR fileExistsAtPath: [interpreterTextField stringValue] isDirectory: &isDir] && !isDir)
 			[interpreterTextField setTextColor: [NSColor blackColor]];
 		else
 			[interpreterTextField setTextColor: [NSColor redColor]];
@@ -889,7 +889,7 @@
 
 - (IBAction)showCommandLineString: (id)sender
 {
-    if (![[NSFileManager defaultManager] fileExistsAtPath: [scriptPathTextField stringValue]])
+    if (![FILEMGR fileExistsAtPath: [scriptPathTextField stringValue]])
     {
         [PlatypusUtility alert: @"Missing script" subText: [NSString stringWithFormat: @"No file exists at path '%@'", [scriptPathTextField stringValue]]];
         return;
@@ -927,7 +927,7 @@
 		
 	// nib size is much smaller if compiled with ibtool
 	UInt64 nibSize = [PlatypusUtility fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"MainMenu.nib" ofType: NULL]];  // bundled nib
-	if ([[NSFileManager defaultManager] fileExistsAtPath: IBTOOL_PATH])
+	if ([FILEMGR fileExistsAtPath: IBTOOL_PATH])
 		nibSize = 0.2 * nibSize; // compiled nib is approximtely 20% of the size of original
     estimatedAppSize += nibSize;
 	
@@ -953,7 +953,7 @@
 	{
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
 		filename = [files objectAtIndex: 0];//we only load the first dragged item
-		if ([[NSFileManager defaultManager] fileExistsAtPath: filename isDirectory: &isDir] && !isDir)
+		if ([FILEMGR fileExistsAtPath: filename isDirectory: &isDir] && !isDir)
 		{
 			if ([filename hasSuffix: PROFILES_SUFFIX])
 				[profilesControl loadProfileFile: filename];
@@ -1013,7 +1013,7 @@
 	if ([[anItem title] isEqualToString:@"Create App"] && ![createAppButton isEnabled])
 		return NO;
 	
-	BOOL validScriptFile = !(![[NSFileManager defaultManager] fileExistsAtPath: [scriptPathTextField stringValue] isDirectory: &isDir] || isDir);
+	BOOL validScriptFile = !(![FILEMGR fileExistsAtPath: [scriptPathTextField stringValue] isDirectory: &isDir] || isDir);
 
 	//edit script
 	if (	(	[anItem action] == @selector(editScript:)	||

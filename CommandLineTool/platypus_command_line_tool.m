@@ -63,7 +63,7 @@ int main (int argc, const char * argv[])
     NSAutoreleasePool	*pool				= [[NSAutoreleasePool alloc] init];//set up autorelease pool
 	NSApplication		*app				= [NSApplication sharedApplication];
     app=app;//establish connection to Window Server
-	NSFileManager		*fm					= [NSFileManager defaultManager];
+	NSFileManager		*fm					= FILEMGR;
     NSMutableDictionary *properties         = [NSMutableDictionary dictionaryWithCapacity: ARG_MAX]; 
 	BOOL				createProfile		= FALSE;
 	BOOL                loadedProfile       = FALSE;
@@ -534,7 +534,7 @@ static NSString* MakeAbsolutePath (NSString *path)
 {
     path = [path stringByExpandingTildeInPath];
     if ([path isAbsolutePath] == NO)
-        path = [[[NSFileManager defaultManager] currentDirectoryPath] stringByAppendingPathComponent: path];
+        path = [[FILEMGR currentDirectoryPath] stringByAppendingPathComponent: path];
     return [path stringByStandardizingPath];
 }
 

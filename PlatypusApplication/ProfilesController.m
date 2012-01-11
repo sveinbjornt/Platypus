@@ -138,7 +138,7 @@
 - (void)writeProfile: (NSDictionary *)dict toFile: (NSString *)profileDestPath;
 {
 	// if there's a file already, make sure we can overwrite
-	if ([[NSFileManager defaultManager] fileExistsAtPath: profileDestPath] && ![[NSFileManager defaultManager] isDeletableFileAtPath: profileDestPath])
+	if ([FILEMGR fileExistsAtPath: profileDestPath] && ![FILEMGR isDeletableFileAtPath: profileDestPath])
 	{
 		[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Cannot overwrite file '%@'.", profileDestPath]];
 		return;
@@ -179,7 +179,7 @@
 
 	//delete all .platypus files in PROFILES_FOLDER
 	
-	NSFileManager			*manager = [NSFileManager defaultManager];
+	NSFileManager			*manager = FILEMGR;
 	NSDirectoryEnumerator	*dirEnumerator = [manager enumeratorAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath]];
 	NSString *filename;
 	
@@ -262,7 +262,7 @@
 - (NSArray *)getProfilesList
 {
 	NSMutableArray			*profilesArray = [NSMutableArray arrayWithCapacity: PROGRAM_MAX_LIST_ITEMS];
-	NSFileManager			*manager = [NSFileManager defaultManager];
+	NSFileManager			*manager = FILEMGR;
 	NSDirectoryEnumerator	*dirEnumerator = [manager enumeratorAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath]];
 	NSString *filename;
 	while ((filename = [dirEnumerator nextObject]) != NULL)
@@ -276,7 +276,7 @@
 - (NSArray *)getExamplesList
 {
 	NSMutableArray			*examplesArray = [NSMutableArray arrayWithCapacity: PROGRAM_MAX_LIST_ITEMS];
-	NSFileManager			*manager = [NSFileManager defaultManager];
+	NSFileManager			*manager = FILEMGR;
 	NSDirectoryEnumerator	*dirEnumerator = [manager enumeratorAtPath: [NSString stringWithFormat: @"%@/Examples/", [[NSBundle mainBundle] resourcePath]]];
 	NSString *filename;
 	while ((filename = [dirEnumerator nextObject]) != NULL)

@@ -57,7 +57,7 @@
 
 - (IBAction)save: (id)sender
 {
-	if (![[NSFileManager defaultManager] isWritableFileAtPath: [scriptPathTextField stringValue]])
+	if (![FILEMGR isWritableFileAtPath: [scriptPathTextField stringValue]])
         [PlatypusUtility alert: @"Unable to save changes" subText: @"You don't the neccesary privileges to save this text file."];
 	else
 		[[textView string] writeToFile: [scriptPathTextField stringValue] atomically: YES encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: nil];

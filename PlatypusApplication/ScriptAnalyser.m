@@ -187,7 +187,7 @@
 	NSPipe			*outputPipe = [NSPipe pipe];
 	NSFileHandle	*readHandle;
 	
-	if (![[NSFileManager defaultManager] fileExistsAtPath: scriptPath ])//make sure it exists
+	if (![FILEMGR fileExistsAtPath: scriptPath ])//make sure it exists
 		return @"File does not exist";
 	
 	if (interpreter == nil || [interpreter isEqualToString: @""])

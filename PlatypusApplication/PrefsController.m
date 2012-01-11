@@ -255,11 +255,11 @@
 
 -(BOOL)isCommandLineToolInstalled
 {
-	return	   ([[NSFileManager defaultManager] fileExistsAtPath: CMDLINE_VERSION_PATH] &&
-				[[NSFileManager defaultManager] fileExistsAtPath: CMDLINE_TOOL_PATH] &&
-				[[NSFileManager defaultManager] fileExistsAtPath: CMDLINE_MANPAGE_PATH] &&
-				[[NSFileManager defaultManager] fileExistsAtPath: CMDLINE_EXEC_PATH] &&
-				[[NSFileManager defaultManager] fileExistsAtPath: CMDLINE_ICON_PATH]);
+	return	   ([FILEMGR fileExistsAtPath: CMDLINE_VERSION_PATH] &&
+				[FILEMGR fileExistsAtPath: CMDLINE_TOOL_PATH] &&
+				[FILEMGR fileExistsAtPath: CMDLINE_MANPAGE_PATH] &&
+				[FILEMGR fileExistsAtPath: CMDLINE_EXEC_PATH] &&
+				[FILEMGR fileExistsAtPath: CMDLINE_ICON_PATH]);
 }
 
 /*****************************************
