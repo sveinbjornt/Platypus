@@ -15,12 +15,14 @@ For 4.6
     * Extended documentation
     * New "Edit file" button for Bundled Files List.
     * Minor interface changes and improvements
-
+    * Script path text field tab autocomplete now working
+    
+    TODO:  Make text settings work in Status Menu output
+    TODO:  Finish implementing service functionality in Platypus app, command line tool and AppSpec class
     TODO:  Update documentation for Preferences window, explaining new features offered
     TODO:  Support for attaching icons to file types / suffixes under Droppable options
             IN PROGRESS, remember to implement this in ScriptExec and test it properly
     TODO:  Support reading script from STDIN in command line tool
-    TODO:  Fix STPathTextField so autocomplete and coloring works
     TODO:  Restore "icon from image" functionality in command line tool
     
 
