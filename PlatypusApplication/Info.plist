@@ -29,8 +29,7 @@
 				<string>rbx</string>
 				<string>ruby</string>
 				<string>applescript</string>
-				<string>osacript</string>
-				<string>osa</string>
+				<string>osascript</string>
 				<string>scpt</string>
 				<string>tcl</string>
 				<string>exp</string>
@@ -71,15 +70,15 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.5</string>
+	<string>4.6</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5.0</string>
 	<key>NSAppleScriptEnabled</key>
 	<false/>
 	<key>CFBundleGetInfoString</key>
-	<string>©2003-2012 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2012 Sveinbjorn Thordarson.</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>©2003-2012 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2012 Sveinbjorn Thordarson.</string>
 	<key>NSMainNibFile</key>
 	<string>Platypus</string>
 	<key>NSPrincipalClass</key>

@@ -4,8 +4,8 @@ For 4.7
 
 
 For 4.6
-    * It is now possible to save output to a text or HTML file within Platypus-generated apps
     * "Open" menu item in File menu for Platypus-generated apps that accept dropped files
+    * It is now possible to save output to a text or HTML file within Platypus-generated apps
     * New option to set custom arguments for script 
     * Command line tool now supports dumping profile property lists to stdout (see man page)
     * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
@@ -15,10 +15,10 @@ For 4.6
     * Extended documentation
     * New "Edit file" button for Bundled Files List.
     * Minor interface refinements
-    * Script path text field tab autocomplete now working
+    * Script path text field tab autocomplete now working again
     * Fixed crash bug when editing file in Bundled Files list using built-in editor.
     
-    TODO:  Remove app path as first arg option, it's unnecessary and confusing
+    TODO:  Remove app path as first arg option, it's unnecessary and confusing. App path == $CWD/../..
     TODO:  Make text settings work in Status Menu output
     TODO:  Finish implementing service functionality in Platypus app, command line tool and AppSpec class
     TODO:  Update documentation for Preferences window, explaining new features offered
@@ -26,7 +26,7 @@ For 4.6
             IN PROGRESS, remember to implement this in ScriptExec and test it properly
     TODO:  Support reading script from STDIN in command line tool
     TODO:  Restore "icon from image" functionality in command line tool
-    
+    TODO:  Make contextual menus work in types window
 
 For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
@@ -197,3 +197,198 @@ For 3.2
     * Editing of environmental variables via an interface pane
     * English.lproj is en.lproj in accordance with Apple's specifications
     * Sliding animation when advanced options are revealed
+
+For 3.1
+
+    * New minimal, non-intrusive built-in text editor for those who prefer working in one application
+    * It is now possible to set app author name manually
+    * Invalid configuration fields now highlight red as you type
+    * New Dock menu
+    * New "Show Shell Command" menu item
+    * Fixed bug where "Secure" Platypus apps failed to work on read-only volumes
+    * New option to set default bundle identifier prefix in the preferences
+    * New option to set default author name in the preferences
+    * Profiles now correctly register bundle identifier and author name
+    * "Run script in Terminal" command now brings Terminal.app to the front
+    * Fixed bug where window title was not restored after a dialog
+    * Fixed a bug in the command line utility installer
+    * Updated man page for command line utility
+    * Updated Help documentation
+    * More sample scripts
+    * Platypus apps now register their creator in AppSettings.plist
+    * Help now opens with default app for http: protocol, not .html suffix
+
+For 3.0
+
+    * New "Secure bundled script" option, which checksums, encrypts and hides script
+    * New "Check Script Syntax" feature for shell, Perl, Ruby and PHP scripts
+    * New "Edit Profiles" window for easier Profiles management
+    * New "platypus" command line tool
+    * Fixed a bug where PkgInfo file would not contain application signature
+    * Scripts created with the "New" button list bundled file paths in comment
+    * More complete Info.plist property list in Platypus-generated apps
+    * Several user interface refinements
+    * Several minor speed optimizations
+    * Updated documentation, tutorials, sample scripts and source code comments
+
+For 2.8
+
+    * New "Import Custom Icon" menu item
+    * New contextual menus for app icon and file list
+    * It is now possible to manually edit an app's bundle signature
+    * Fixed bug where an authorized Platypus app could cause a logout
+    * Fixed bug with loading profiles created in older versions of Platypus
+
+For 2.7
+
+    * Now possible to create applications that run with privileges *and have Text Output
+    * Profiles now store custom application icons
+    * Fixed bug where buttons would not be enabled after a valid profile was loaded
+    * Custom application icons are now correctly labeled
+    * There is now a "Select Custom Icon" menu item
+    * Fixed bug where custom dragged icons would leave the icon image highlighted
+    * File Types and Suffixes list now displays the appropriate icons for entries
+    * File Types editor window is now a sheet
+    * Updated documentation and examples
+    * Various bug fixes and interface refinements
+    * All those that made Platypus possible are now rightly credited
+
+For 2.6
+
+    * Application configurations can now be saved as "Profiles"
+    * It is now possible to set application version and 4-character signature
+    * Updated documentation to reflect the changes introduced in version 2.5
+    * New "Clear" button for clearing all configuration fields
+    * New "Run script in Terminal" menu command
+    * All dialogs in Platypus are now sheets instead of navigation dialogs
+    * Fixed bug where a non-droppable app's bundle identifier would not be correctly set
+    * Several minor bugs and inconsistencies fixed
+    * Several interface tweaks
+
+For 2.5
+
+    * This is a major update with many important bug fixes and some powerful new features
+    * New output type: "Text Window", making it *veryeasy to create tool wrappers
+    * New application option: "Remain running after completion"
+    * New "Open Recent" menu
+    * New text fields that display the application bundle identifier and total number and size of bundled files
+    * It is now possible to register a droppable application as either an Editor or a Viewer in the Types List
+    * Platypus apps now have a "PkgInfo" file within the application, in accordance with Apple's guidelines
+    * Any application can now be selected as external editor
+    * Platypus now remembers "Show Advanced Options" status between launches
+    * Fixed a bug which caused Platypus apps to behave oddly with the Dock
+    * Fixed a silly bug where Platypus apps would sometimes crash on dual-processor machines
+    * Fixed major memory leak in Platypus apps which had been present from Platypus 2.1
+    * Fixed a minor memory leak introduced in Platypus 2.3
+
+For 2.3
+
+    * New "Runs in background" option, for creating applications that don't show up in the Dock
+    * Every Platypus app now has a unique bundle identifier (f.e. org.johnsmith.myscriptapp)
+    * New Edit Types window which allows you to set what kind of files your droppable app accepts
+    * New Help menu for instant access to Platypus documentation
+    * Platypus no longer accepts dragged folders as valid scripts
+    * The Bundled Files list is now drag-n-drop aware
+    * The same file can no longer be added many times to the Bundled Files list
+    * Bundled Files list buttons are now auto-enabled/disabled according to selection
+    * Platypus now prompts whether to overwrite when an app by the same name already exists
+
+For 2.2
+
+    * "New Script" button/menu item for creating and opening a script from within Platypus
+    * "Reveal Script" button/menu item for revealing script in the Finder
+    * Incorporated menu items (and keyboard shortcuts) for almost all Platypus actions/options
+    * Buttons and menu items correctly disabled when script path is invalid
+    * Fixed a bug where the last remaining file in the Bundled Files list could not be removed
+    * Files in the Bundled Files list now appear with their icon
+    * Tool Tip labels placed on all interface components
+    * Droplets now identify themselves as Editors instead of Viewers
+    * Fixed bug where files with file/creator types could not be dropped on Platypus droplets
+    * Some minor interface adjustments
+
+For 2.1
+
+    * Rewrote from scratch the ScriptExec executable that Platypus bundles into apps
+    * Fixed the dreaded "Is droppable" bug where Platypus would crash
+    * Platypus now (again) correctly creates droppable applications
+    * Scripts now properly receive the application bundle's path as first argument $1
+    * Droppable apps now also receive application bundle path as first argument
+    * Dropped files are now passed from $2-$*
+    * Preferences partially implemented - default editor can be changed to presets
+    * Apps that require authentication now also receive app bundle path and dropped files
+    * New menu and menu items for Platypus functions
+    * Two new icon presets, Platypus Plate and Platypus Droplet
+
+For 2.0
+
+    * Entire application rewritten from scratch in Objective C and Cocoa
+    * Images can now be dragged on "App Icon" to create custom icons for apps
+    * Added Expect and PHP to list of preset interpreters
+    * Added "Edit" button, to edit selected script in TextEdit
+    * An editable file list for bundling files with script into Resources folder of app bundle
+    * Some settings delegated to "Advanced Options", revealed by expanding window
+
+For 1.8
+
+    * Platypus applications that don't aren't marked 'Is Droppable' now get the path of the app's enclosing folder as first argument ($1, $ARGV[0] etc.). This can be very handy for installers or working with files relative to the app. A sample script that utilises this is included ("AppThatMovesToHomeFolder.sh")
+
+For 1.7
+
+    * Platypus no longer has problems with spaces in certain paths
+    * Fixed an interface bug where Platypus window would close after Create, although cancelled
+    * Platypus apps with progress bar now really do have a functioning "Cancel" button
+    * Fixed bug where new platypus windows retained former Droppable setting
+    * Some cool sample scripts bundled with Platypus
+
+For 1.6
+
+    * New option to create droppable apps that pass files as arguments to script (like DropScript)
+    * Fixed a nasty bug where Platypus apps would freeze up after failed authentication
+    * Platypus apps with progress bar now have a "Cancel" button
+    * Minor user interface enhancements in both Platypus and Platypus-generated apps
+
+For 1.5
+
+    * Platypus apps now remain running while root-privileged scripts finish executing
+    * Invisible files and folders are now shown in Navigation dialogs
+    * Navigation dialogs use newer API calls, support app names longer than 31 characters and are non-modal
+    * Platypus apps can now be set to display a progress bar while running
+    * Platypus apps are now threaded, which means that the interface is responsive while they're running
+    * Some interface tweaks and bug fixes
+
+For 1.4
+
+    * It is now possible to create script applications that require root privileges
+    * Optimized performance and improved error handling for apps created with Platypus
+    * Platypus now launches faster
+    * Fixed bug where window proxy icon remained unchanged when a custom icon was set
+    * Fixed bug where apps with spaces in their names failed to function
+    * Platypus apps now remain running while script is executing
+
+For 1.3
+
+    * Script interpreter can now be defined
+    * Shebang line (#!) is now parsed for interpreter
+    * "Open" menu item now works
+    * New windows center correctly on screen
+    * Code optimized and trimmed
+    * Minor interface tweaks
+
+For 1.2
+
+    * Support for Ruby, AppleScript and Tcl
+    * Drag'n drop support for script path
+    * Now gracefully handles files dropped on Platypus application icon
+    * Better icons - specialized default icons for each script type
+    * Fixed bug where application placement name in Navigation dialog was ignored when creating app
+
+For 1.1
+
+    * Platypus no longer uses huge amounts of CPU power for window redraws
+    * Text fields are now Unicode and displayed in correct font
+    * Support for Perl and Python scripts
+    * Drag'n drop support for script path
+    * Drag'n drop support for custom app icon
+    * Scripts can now be dragged on Platypus to automatically create an app in the same directory
+    * Now warns about inappropriate script suffixes
+
