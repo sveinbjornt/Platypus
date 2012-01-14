@@ -190,6 +190,8 @@
 
 <p>Platypus is not a set of bindings between the Mac OS X APIs and scripting languages.  It is not, in other words, a full development environment for Mac OS X and is not intended to be used to create substantial Mac OS X applications with complex user interaction.  If you want to create advanced Mac OS X applications, you should learn to program with Objective C and the wonderful Cocoa APIs.  Platypus is not and never will be a substitute for learning to use the excellent native application programming interfaces.</p>
 
+<p>That being said, you may be able to add some interactive GUI elements using <a href="#73">CocoaDialog or Pashua.</a></p>
+
 <br>
 <br>
 
@@ -264,14 +266,16 @@
 <br>
 <br>
 
-<p><strong>Text Window:</strong>A window with a text field will be displayed.  This text field receives all script output. Please note that this text field is <em>not</em> an interactive terminal session, and cannot receive <em>any</em> input from the user.  It does not support any terminal buffering or commands and cannot be used to display ncurses-based interfaces.   It just displays the actual text output of the script as it is being executed.  The properties of the text field can be modified in Platypus by pressing the "Text Settings" button.  This will present an interface pane in which text encoding, font, color and size can be set.</p>
+<p><strong>Text Window</strong>: A window with a text field will be displayed.  This text field receives all script output. Please note that this text field is <em>not</em> an interactive terminal session, and cannot receive <em>any</em> input from the user.  It does not support any terminal buffering or commands and cannot be used to display ncurses-based interfaces.   It just displays the actual text output of the script as it is being executed.  The properties of the text field can be modified in Platypus by pressing the "Text Settings" button.  This will present an interface pane in which text encoding, font, color and size can be set.</p>
 
 <img src="images/output_textwindow.png">
 <br>
 <br>
 <br>
 
-<p><strong>Web</strong>: Web output means that the output from your script will be interpreted as HTML and passed on to a WebView in the output window -- i.e. an instance of the WebKit rendering engine used in Safari.  This allows you to use HTML formatting and web technologies/markup to provide feedback on script execution.  It is worth noting that there have been problems reported with this feature on Mac OS X systems prior to version 10.4.7.</p>
+<p><strong>Web View</strong>: Web View output means that the output from your script will be interpreted as HTML and passed on to a WebView in the output window -- i.e. an instance of the WebKit rendering engine used in Safari.  This allows you to use HTML formatting and web technologies/markup to provide feedback on script execution.</p>
+
+<p>The base directory for the browser instance is the application bundle's Resources directory, so you can bundle images and other support files by adding them to the Bundled Files list and referencing them relative to the directory.</p>
 
 <img src="images/output_webview.png">
 <br>
@@ -352,8 +356,8 @@ results, use professional Mac OS X icon-editing software and specify a carefully
 <h3>Bundled Files</h3>
 
 <p>You can add a list of files to be copied into the Resources folder of your application bundle. These files can then be used by your script.  The default current working directory of your script will be this folder, so you should be able to access them directly from your script's CWD.</p>
-    
-<p>In some cases, you may need to manually change to the Resources directory.  If so, press the "Args" button and set check the "Set $1 as path to app" checkbox.  Your bundled files will then be accessible via the following path "$1/Contents/Resources/[filename]".</p>
+
+<p>See also <a href="#88">How do I get the path to my application / bundled files within the script?</a> in the FAQ.</p>
 
 <br>
 <br>
@@ -560,9 +564,8 @@ cp -R "MyFramework.framework" "/Library/Frameworks/"
 
 
 <br><br>
-<a name="73"></a>
 
-<h3>User interaction with CocoaDialog</h3>
+<h3 id="73">User interaction with CocoaDialog</h3>
 
 <p>It is possible to use Platypus with the open-source application CocoaDialog to construct scripts that prompt for user input with dialogs and returns user choices. CocoaDialog is <a href="http://mstratman.github.com/cocoadialog/">documented adequately here</a>. I will briefly outline how to combine it with Platypus to create a Mac OS X application with a  primitive user interface.</p>
 
