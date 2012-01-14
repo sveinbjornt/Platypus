@@ -36,7 +36,6 @@
     IBOutlet id scriptArgsClearButton;
     IBOutlet id scriptArgsTableView;
     
-	IBOutlet id setFirstArgAppPathCheckbox;
 	IBOutlet id isDroppableCheckbox;
     IBOutlet id window;
 	
@@ -51,8 +50,6 @@
 - (void)setScriptArgs: (NSArray *)array;
 - (NSArray *)interpreterArgs;
 - (NSArray *)scriptArgs;
-- (BOOL)passAppPathAsFirstArg;
-- (void)setAppPathAsFirstArg: (BOOL)state;
 
 - (IBAction)apply:(id)sender;
 

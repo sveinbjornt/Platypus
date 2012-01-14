@@ -506,10 +506,7 @@
 															forKey: @"Identifier"];
 	[spec setProperty: [authorTextField stringValue]		forKey: @"Author"];
 	
-	// checkbox attributes
-	[spec setProperty: [NSNumber numberWithBool: [paramsControl passAppPathAsFirstArg]] 
-															forKey: @"AppPathAsFirstArg"];
-	
+	// checkbox attributes	
 	[spec setProperty: [NSNumber numberWithBool:[isDroppableCheckbox state]]					
 															forKey: @"Droppable"];
 	[spec setProperty: [NSNumber numberWithBool:[encryptCheckbox state]]
@@ -606,7 +603,6 @@
 	// parameters
     [paramsControl setInterpreterArgs: [spec propertyForKey: @"InterpreterArgs"]];
     [paramsControl setScriptArgs: [spec propertyForKey: @"ScriptArgs"]];
-    [paramsControl setAppPathAsFirstArg: [[spec propertyForKey: @"AppPathAsFirstArg"] boolValue]];
 		 
 	// text output settings
 	[textSettingsControl setTextEncoding: [[spec propertyForKey: @"TextEncoding"] intValue]];

@@ -149,7 +149,6 @@
 
 - (IBAction)resetDefaults:(id)sender
 {
-	[setFirstArgAppPathCheckbox setState: NSOffState];
 	[self clearInterpreterArgs: self];
     [self clearScriptArgs: self];
 }
@@ -194,24 +193,11 @@
 		cmdString = [cmdString stringByAppendingString: [NSString stringWithFormat: @" %@", [scriptArgs objectAtIndex: i]]];
 	}
     
-    // path to app 
-	if ([setFirstArgAppPathCheckbox state] == NSOnState)
-		cmdString = [cmdString stringByAppendingString: @" /path/to/MyApp.app"];
-    
     // file args
 	if ([isDroppableCheckbox state] == NSOnState)
 		cmdString = [cmdString stringByAppendingString: @" [files ...]"];
 	
 	return cmdString;
-}
-
-- (BOOL)passAppPathAsFirstArg
-{
-	return [setFirstArgAppPathCheckbox state];
-}
-- (void)setAppPathAsFirstArg: (BOOL)state
-{	
-	[setFirstArgAppPathCheckbox setState: state];
 }
 
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView

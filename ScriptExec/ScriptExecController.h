@@ -98,7 +98,6 @@
     NSColor         *textBackground;
     int              textEncoding;
 
-    BOOL        appPathAsFirstArg;
     int         execStyle;
     int         outputType;
     BOOL        isDroppable;

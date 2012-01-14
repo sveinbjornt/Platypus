@@ -4,8 +4,6 @@
 <dict>
 	<key>AcceptsText</key>
 	<false/>
-	<key>AppPathAsFirstArg</key>
-	<false/>
 	<key>Authentication</key>
 	<false/>
 	<key>Author</key>
