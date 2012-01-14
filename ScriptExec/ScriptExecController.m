@@ -88,7 +88,7 @@
         [self executeScript];
 }
 
--(void)application: (NSApplication *)theApplication openFiles:(NSArray *)filenames
+-(void)application: (NSApplication *)theApplication openFiles: (NSArray *)filenames
 {
     // add the dropped files as a job for processing
     int ret = [self addDroppedFilesJob: filenames];
@@ -760,7 +760,7 @@
 
 // service
 
-- (void)dropService: (NSPasteboard*) pb userData: (NSString *)userData error: (NSString **) err
+-(void)dropService: (NSPasteboard*)pb userData: (NSString *)userData error: (NSString **)err
 {
     NSArray* types = [pb types];
     BOOL ret = 0;
@@ -783,7 +783,7 @@
 
 // text snippet drag handling
 
--(void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error 
+-(void)doString: (NSPasteboard *)pboard userData: (NSString *)userData error: (NSString **)error 
 {
     if (!isDroppable || !acceptsText || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
         return;
@@ -1243,14 +1243,13 @@
         return;
     
     NSString *outSuffix = (outputType == PLATYPUS_WEBVIEW_OUTPUT) ? @"html" : @"txt";
-    NSString *outString = [outputTextView string];
     NSString *fileName = [NSString stringWithFormat: @"%@ Output.%@", appName, outSuffix];
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setPrompt: @"Save"];
     
     if ([sPanel runModalForDirectory: nil file: fileName] == NSFileHandlingPanelOKButton)
-        [outString writeToFile: [sPanel filename] atomically: YES encoding: textEncoding error: nil];
+        [[outputTextView string] writeToFile: [sPanel filename] atomically: YES encoding: textEncoding error: nil];
 }
 
 // save only works for text window, web view output types
