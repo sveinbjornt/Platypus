@@ -1,7 +1,11 @@
 For 4.7
     TODO:  Support for creating bundle with JUST executable script, no app binary wrapper
     TODO:  Create Platypus tutorial videos
-
+    TODO:  Get STDERR output and pid for STPrivilegedTask
+    TODO:  Rewrite or at least refactor nasty old code in STFileList and derivatives
+    TODO:  Rethink and redesign the interface? It's a bit cluttered and could do with some Lionizing
+    TODO:  Create TextMate plugin
+    TODO:  Support reading script from STDIN in command line tool
 
 For 4.6
     * "Open" menu item in File menu for Platypus-generated apps that accept dropped files
@@ -22,12 +26,13 @@ For 4.6
     TODO:  AcceptsText, AcceptsFiles needs to be in command line tool
     TODO:  Make text settings work in Status Menu output
     TODO:  Finish implementing service functionality in Platypus app, command line tool and AppSpec class
+            * Make new screenshot of drop settings window
     TODO:  Update documentation for Preferences window, explaining new features offered
     TODO:  Support for attaching icons to file types / suffixes under Droppable options
             IN PROGRESS, remember to implement this in ScriptExec and test it properly
-    TODO:  Support reading script from STDIN in command line tool
-    TODO:  Restore "icon from image" functionality in command line tool
+    TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO:  Make contextual menus work in types window
+    TODO:  Add "Hello, World" code for each interpreter in ScriptAnalyser
 
 For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
