@@ -105,7 +105,6 @@
 
 // Profiles
 #define PLATYPUS_PROFILE_ALL_KEYS   [NSArray arrayWithObjects: @"AcceptsText", \
-                                                               @"AppPathAsFirstArg", \
                                                                @"Authentication", \
                                                                @"Author", \
                                                                @"BundledFiles", \

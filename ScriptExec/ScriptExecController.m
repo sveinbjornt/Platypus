@@ -474,11 +474,7 @@
     
     // add arguments for script
     [arguments addObjectsFromArray: scriptArgs];
-    
-    //set $1 as path of application bundle if that option is set
-    if (appPathAsFirstArg)
-        [arguments addObject: [[NSBundle mainBundle] bundlePath]]; 
-    
+        
     //finally, add any file arguments we may have received as dropped/opened
     if ([jobQueue count] > 0) // we have files in the queue, to append as arguments
     {
@@ -1126,7 +1122,6 @@
     //load these vars from plist
     interpreterArgs     = [[NSArray arrayWithArray: [appSettingsPlist objectForKey:@"InterpreterArgs"]] retain];
     scriptArgs          = [[NSArray arrayWithArray: [appSettingsPlist objectForKey:@"ScriptArgs"]] retain];
-    appPathAsFirstArg   = [[appSettingsPlist objectForKey:@"AppPathAsFirstArg"] boolValue];
     execStyle           = [[appSettingsPlist objectForKey:@"RequiresAdminPrivileges"] boolValue];
     remainRunning       = [[appSettingsPlist objectForKey:@"RemainRunningAfterCompletion"] boolValue];
     secureScript        = [[appSettingsPlist objectForKey: @"Secure"] boolValue];

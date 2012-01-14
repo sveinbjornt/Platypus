@@ -272,9 +272,6 @@ int main (int argc, const char * argv[])
             case 'D':
                 [properties setObject:  [NSNumber numberWithBool: YES] forKey: @"Droppable"];
                 break;
-            case 'F':
-                [properties setObject:  [NSNumber numberWithBool: YES] forKey: @"AppPathAsFirstArg"];
-                break;
             case 'B':
                 [properties setObject:  [NSNumber numberWithBool: YES] forKey: @"ShowInDock"];				
                 break;

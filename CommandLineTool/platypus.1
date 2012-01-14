@@ -8,7 +8,7 @@
 .Nm
 .Op Fl vh
 .Op Fl O
-.Op Fl FASDBR]
+.Op Fl FASDBR
 .Op Fl ydlH
 .Op Fl bgn
 .Op Fl KYL
@@ -103,10 +103,7 @@ the flag only accepts a single file path after the -f flag.
 Sets the application's bundle identifier.  An application identifier is a reverse DNS name
 (e.g. com.apple.iTunes) that uniquely identifies your application.  If this option is left empty, 
 it will default to an identifier of the format "org.username.appname" (e.g. org.sveinbjorn.Platypus).
-.It Fl F
-If set, your script will receive the path to the application's Resources folder 
-(e.g. "/Applications/MyPlatypusApp.app/Contents/Resources") as the first argument ($ARGV[0], $1 etc., 
-depending on your scripting language of choice).
+.Pp
 .It Fl A
 This flag makes the application request administrator privileges via Apple's Security Framework (i.e.
 prompt for a password) and then executes the script with those privileges. For details on the nature

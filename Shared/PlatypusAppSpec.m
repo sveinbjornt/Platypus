@@ -132,7 +132,6 @@
 	[properties setObject: [PlatypusUtility standardBundleIdForAppName: DEFAULT_APP_NAME usingDefaults: NO]       forKey: @"Identifier"];
 	[properties setObject: NSFullUserName()												forKey: @"Author"];
 	
-	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"AppPathAsFirstArg"];
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"Droppable"];
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"Secure"];
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"Authentication"];
@@ -311,7 +310,6 @@
 	//.app/Contents/Resources/AppSettings.plist
     [self report: @"Creating property lists"];
 	appSettingsPlist = [NSMutableDictionary dictionaryWithCapacity: PROGRAM_MAX_LIST_ITEMS];
-	[appSettingsPlist setObject: [properties objectForKey: @"AppPathAsFirstArg"] forKey: @"AppPathAsFirstArg"];
 	[appSettingsPlist setObject: [properties objectForKey: @"Authentication"] forKey: @"RequiresAdminPrivileges"];
 	[appSettingsPlist setObject: [properties objectForKey: @"Droppable"] forKey: @"Droppable"];
 	[appSettingsPlist setObject: [properties objectForKey: @"RemainRunning"] forKey: @"RemainRunningAfterCompletion"];
@@ -565,8 +563,6 @@
 	NSString *textEncodingString = @"", *textOutputString = @"", *statusMenuOptionsString = @""; 
 	
 	// checkbox parameters
-	if ([[properties objectForKey: @"AppPathAsFirstArg"] boolValue])
-		checkboxParamStr = [checkboxParamStr stringByAppendingString: @"F"];
 	if ([[properties objectForKey: @"Authentication"] boolValue])
 		checkboxParamStr = [checkboxParamStr stringByAppendingString: @"A"];
 	if ([[properties objectForKey: @"Secure"] boolValue])

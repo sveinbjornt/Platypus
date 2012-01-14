@@ -17,8 +17,9 @@ For 4.6
     * Minor interface refinements
     * Script path text field tab autocomplete now working again
     * Fixed crash bug when editing file in Bundled Files list using built-in editor.
+    * Removed app path as first arg option, it's unnecessary and confusing. App path == $CWD/../..
     
-    TODO:  Remove app path as first arg option, it's unnecessary and confusing. App path == $CWD/../..
+    TODO:  AcceptsText, AcceptsFiles needs to be in command line tool
     TODO:  Make text settings work in Status Menu output
     TODO:  Finish implementing service functionality in Platypus app, command line tool and AppSpec class
     TODO:  Update documentation for Preferences window, explaining new features offered
