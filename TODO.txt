@@ -1,11 +1,2 @@
-Long term feature roadmap:
-
-    * Get STDERR output and pid for STPrivilegedTask
-    * Ability to add arbitrary arguments to script itself, not just interpreter
-    * More bidirectional communication
-    * Icon editable for file types
-    * Create Platypus tutorial videos
-    * Rewrite nasty old code in STFileList and derivatives
-    * Rethink and redesign the interface? It's a bit cluttered and could do with some Lionizing
-    * Create TextMate plugin
+See NOTES.txt
     
