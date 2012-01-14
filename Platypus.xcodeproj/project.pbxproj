@@ -74,7 +74,6 @@
 		F4C8B45D124C450C00397392 /* ShellCommandWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B458124C450C00397392 /* ShellCommandWindow.xib */; };
 		F4C8B45E124C450C00397392 /* SyntaxChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B459124C450C00397392 /* SyntaxChecker.xib */; };
 		F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074711F629930043764E /* InstallCommandLineTool.sh */; };
-		F4DC074B11F629930043764E /* pycheck.py in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074811F629930043764E /* pycheck.py */; };
 		F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074911F629930043764E /* UninstallCommandLineTool.sh */; };
 		F4DC075111F629A40043764E /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074E11F629A40043764E /* License.txt */; };
 		F4DC075211F629A40043764E /* PlatypusDocumentation.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074F11F629A40043764E /* PlatypusDocumentation.html */; };
@@ -206,7 +205,6 @@
 		F4C8B459124C450C00397392 /* SyntaxChecker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SyntaxChecker.xib; path = PlatypusApplication/SyntaxChecker.xib; sourceTree = "<group>"; };
 		F4D6DBC513C50F3E0067B136 /* NOTES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES.txt; sourceTree = SOURCE_ROOT; };
 		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
-		F4DC074811F629930043764E /* pycheck.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = pycheck.py; sourceTree = "<group>"; };
 		F4DC074911F629930043764E /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074E11F629A40043764E /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* PlatypusDocumentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = PlatypusDocumentation.html; sourceTree = "<group>"; };
@@ -360,8 +358,8 @@
 				F4C8B459124C450C00397392 /* SyntaxChecker.xib */,
 				F4185E5811FC57AB0027C8D7 /* Info.plist */,
 				F46EF84E13C3F36900E4C0E4 /* Examples */,
-				F4DC074611F629930043764E /* Scripts */,
-				F42003DC078FC1E1002746A1 /* Images */,
+				F4DC074611F629930043764E /* CLT Install Scripts */,
+				F42003DC078FC1E1002746A1 /* UI Images */,
 				F4050E3305DAF44F00BE4CA5 /* Icons */,
 			);
 			name = Resources;
@@ -381,9 +379,9 @@
 		F4050E3305DAF44F00BE4CA5 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				F44E007212298B7A00CAC9C2 /* AppIcons */,
-				F44E006712298B7200CAC9C2 /* IconPresets */,
-				F44E007312298B8C00CAC9C2 /* StatusMenuIcons */,
+				F44E007212298B7A00CAC9C2 /* Application */,
+				F44E006712298B7200CAC9C2 /* Presets */,
+				F44E007312298B8C00CAC9C2 /* Status Menu */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -410,16 +408,17 @@
 			name = STPathTextField;
 			sourceTree = "<group>";
 		};
-		F42003DC078FC1E1002746A1 /* Images */ = {
+		F42003DC078FC1E1002746A1 /* UI Images */ = {
 			isa = PBXGroup;
 			children = (
 				F42C982E14BB5E8C0094CC8D /* Buttons */,
-				F42C982D14BB5E800094CC8D /* Interpreters */,
+				F42C982D14BB5E800094CC8D /* Interpreter Logos */,
 			);
+			name = "UI Images";
 			path = Images;
 			sourceTree = "<group>";
 		};
-		F42C982D14BB5E800094CC8D /* Interpreters */ = {
+		F42C982D14BB5E800094CC8D /* Interpreter Logos */ = {
 			isa = PBXGroup;
 			children = (
 				F418A18914BA0EA900C75BAD /* Shell.png */,
@@ -435,7 +434,7 @@
 				F418A19F14BA243400C75BAD /* Expect.png */,
 				F418A19914BA1DDF00C75BAD /* PHP.png */,
 			);
-			name = Interpreters;
+			name = "Interpreter Logos";
 			sourceTree = "<group>";
 		};
 		F42C982E14BB5E8C0094CC8D /* Buttons */ = {
@@ -464,7 +463,7 @@
 			name = STPrivilegedTask;
 			sourceTree = "<group>";
 		};
-		F44E006712298B7200CAC9C2 /* IconPresets */ = {
+		F44E006712298B7200CAC9C2 /* Presets */ = {
 			isa = PBXGroup;
 			children = (
 				F44E006812298B7200CAC9C2 /* PlatypusCube.icns */,
@@ -473,25 +472,26 @@
 				F44E006B12298B7200CAC9C2 /* PlatypusMenu.icns */,
 				F44E006C12298B7200CAC9C2 /* PlatypusPlate.icns */,
 			);
+			name = Presets;
 			path = IconPresets;
 			sourceTree = "<group>";
 		};
-		F44E007212298B7A00CAC9C2 /* AppIcons */ = {
+		F44E007212298B7A00CAC9C2 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */,
 				F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */,
 				F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */,
 			);
-			name = AppIcons;
+			name = Application;
 			sourceTree = "<group>";
 		};
-		F44E007312298B8C00CAC9C2 /* StatusMenuIcons */ = {
+		F44E007312298B8C00CAC9C2 /* Status Menu */ = {
 			isa = PBXGroup;
 			children = (
 				F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */,
 			);
-			name = StatusMenuIcons;
+			name = "Status Menu";
 			sourceTree = "<group>";
 		};
 		F44EFEFF12296F2C00CAC9C2 /* NSColor+HexTools */ = {
@@ -592,13 +592,13 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
-		F4DC074611F629930043764E /* Scripts */ = {
+		F4DC074611F629930043764E /* CLT Install Scripts */ = {
 			isa = PBXGroup;
 			children = (
 				F4DC074711F629930043764E /* InstallCommandLineTool.sh */,
-				F4DC074811F629930043764E /* pycheck.py */,
 				F4DC074911F629930043764E /* UninstallCommandLineTool.sh */,
 			);
+			name = "CLT Install Scripts";
 			path = Scripts;
 			sourceTree = "<group>";
 		};
@@ -777,7 +777,6 @@
 				F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */,
 				F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */,
 				F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */,
-				F4DC074B11F629930043764E /* pycheck.py in Resources */,
 				F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */,
 				F4DC075111F629A40043764E /* License.txt in Resources */,
 				F4DC075211F629A40043764E /* PlatypusDocumentation.html in Resources */,
