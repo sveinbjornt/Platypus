@@ -15,18 +15,21 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>command</string>
 				<string>sh</string>
+				<string>bash</string>
 				<string>tcsh</string>
+				<string>zsh</string>
 				<string>pl</string>
 				<string>perl</string>
 				<string>py</string>
 				<string>python</string>
 				<string>objpy</string>
-				<string>command</string>
 				<string>rb</string>
 				<string>rbx</string>
+				<string>ruby</string>
 				<string>applescript</string>
-				<string>asacript</string>
+				<string>osacript</string>
 				<string>osa</string>
 				<string>scpt</string>
 				<string>tcl</string>
