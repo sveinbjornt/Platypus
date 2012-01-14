@@ -120,6 +120,8 @@
 			<li><a href="#85">How can I pass specific arguments to my script?</a></li>
 			<li><a href="#86">How do I uninstall Platypus?</a></li>
 			<li><a href="#87">How do I get the source code to Platypus and Platypus-generated app binaries?</a></li>
+			<li><a href="#88">How do I get the path to my application / bundled files within the script?</a></li>
+			
         </ul>
     </li>
 </ul>
@@ -405,7 +407,7 @@ results, use professional Mac OS X icon-editing software and specify a carefully
 
 <p>The <strong>Check Script Syntax</strong> menu item in the File menu allows you to verify the syntax of your script.  This option will run the currently specified script through its interpreter's syntax checking mechanism and report the result in a sheet window.</p>
 
-<p>Please note that syntax checking is only supported for those script types where the interpreter supports it.  As of writing, this includes shell, Perl, Ruby and PHP scripts -- and, through some additional magic, Python scripts.  The syntax checking commands issued for each interpreter are the following:</p>
+<p>Please note that syntax checking is only supported for those script types where the interpreter supports it.  As of writing, this includes shell, Perl, Ruby and PHP scripts.  The syntax checking commands issued for each interpreter are the following:</p>
 
 <p>Shell: <code>/bin/sh -n "/path/to/script"</code><br> 
 Perl: <code>/usr/bin/perl -c "/path/to/script"</code><br> 
@@ -631,10 +633,10 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
     
 <h3 id="85">How can I pass specific arguments to my script?</h3>
 
-<p>You can edit arguments to both the script interpreter and the script itself by pressing the <strong>Args</strong> button next to Output Type.</p>
+<p>You can edit arguments to both the script interpreter and the script itself by pressing the <strong>Args</strong> button next to Output Type.  You could construct a command like this by editing the arguments:</p>
 
 <div class="codeblock">
-/usr/bin/perl myScript.pl --force
+/usr/bin/perl -w myScript.pl --force
 </div>  
 
 <br>
@@ -662,15 +664,24 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 
 <p>The source code to the binary used in Platypus-generated apps is <a href="https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/ScriptExecController.m">ScriptExecController.m</a>.</p>
     
-<p>Please let me know if you make any changes or improvements, so I can evaluate whether to incorporate them into the official release.</p>
+<p>Please let me know if you make any changes or improvements, so I can incorporate them into the official release.</p>
 
 <br>
 <br>
 <br>
+
+<h3 id="88">How do I get the path to my application / bundled files within the script?</h3>
+
+<p>The script executed by Platypus-generated applications is run from the Resources directory of the application bundle (e.g. MyApp.app/Contents/Resources).  
+	Any bundled files are thus accessible from the script's current working directory.  To get the path to the application bundle itself, or the directory it is
+	in, you can just use <code>..</code> (application bundle) or <code>../..</code> (application's containing directory).</p>
+
+<br>
+<br>
+<br>
+
 
 <hr>
-
-
 
 
 <p>Copyright &copy; 2003-2012 Sveinbjorn Thordarson
