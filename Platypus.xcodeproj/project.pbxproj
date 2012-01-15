@@ -126,7 +126,6 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = PlatypusApplication/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8D1107320486CEB800E47090 /* Platypus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platypus.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F40A09E111F9A0DC00138ED9 /* buildTestApps.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; name = buildTestApps.pl; path = TestSuite/buildTestApps.pl; sourceTree = "<group>"; };
 		F40F755E13C266AE00197499 /* ShellCommandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShellCommandController.h; path = PlatypusApplication/ShellCommandController.h; sourceTree = "<group>"; };
 		F40F755F13C266AE00197499 /* ShellCommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellCommandController.m; path = PlatypusApplication/ShellCommandController.m; sourceTree = "<group>"; };
 		F4185E5811FC57AB0027C8D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PlatypusApplication/Info.plist; sourceTree = "<group>"; };
@@ -191,11 +190,6 @@
 		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
 		F4BF0A4214967C6D00676278 /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Shared/STPrivilegedTask.h; sourceTree = "<group>"; };
 		F4BF0A4314967C6D00676278 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPrivilegedTask.m; path = Shared/STPrivilegedTask.m; sourceTree = "<group>"; };
-		F4C755A111F9AC2C006FB713 /* Perl-Droplet-PrintFiles-WebOutput.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; name = "Perl-Droplet-PrintFiles-WebOutput.pl"; path = "TestSuite/Perl-Droplet-PrintFiles-WebOutput.pl"; sourceTree = "<group>"; };
-		F4C755A211F9AC2C006FB713 /* Perl-Droplet-PrintFiles.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; name = "Perl-Droplet-PrintFiles.pl"; path = "TestSuite/Perl-Droplet-PrintFiles.pl"; sourceTree = "<group>"; };
-		F4C755A311F9AC2C006FB713 /* Shell-Droplet-PrintFiles.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "Shell-Droplet-PrintFiles.sh"; path = "TestSuite/Shell-Droplet-PrintFiles.sh"; sourceTree = "<group>"; };
-		F4C755A411F9AC2C006FB713 /* Shell-HelloWorld.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "Shell-HelloWorld.sh"; path = "TestSuite/Shell-HelloWorld.sh"; sourceTree = "<group>"; };
-		F4C755A511F9AC8D006FB713 /* Perl-OutputLengthTest.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; name = "Perl-OutputLengthTest.pl"; path = "TestSuite/Perl-OutputLengthTest.pl"; sourceTree = "<group>"; };
 		F4C8B455124C450C00397392 /* Platypus.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Platypus.xib; path = PlatypusApplication/Platypus.xib; sourceTree = "<group>"; };
 		F4C8B456124C450C00397392 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Preferences.xib; path = PlatypusApplication/Preferences.xib; sourceTree = "<group>"; };
 		F4C8B457124C450C00397392 /* Editor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Editor.xib; path = PlatypusApplication/Editor.xib; sourceTree = "<group>"; };
@@ -326,7 +320,6 @@
 				F48B7B8811F766CA00351575 /* ScriptExec */,
 				F4E1F70711F75A40007EE2E3 /* Command Line Tool */,
 				080E96DDFE201D6D7F000001 /* Shared Classes */,
-				F40A09DF11F9A0C200138ED9 /* Test Suite */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -382,19 +375,6 @@
 				F44E007312298B8C00CAC9C2 /* Status Menu */,
 			);
 			path = Icons;
-			sourceTree = "<group>";
-		};
-		F40A09DF11F9A0C200138ED9 /* Test Suite */ = {
-			isa = PBXGroup;
-			children = (
-				F40A09E111F9A0DC00138ED9 /* buildTestApps.pl */,
-				F4C755A111F9AC2C006FB713 /* Perl-Droplet-PrintFiles-WebOutput.pl */,
-				F4C755A511F9AC8D006FB713 /* Perl-OutputLengthTest.pl */,
-				F4C755A211F9AC2C006FB713 /* Perl-Droplet-PrintFiles.pl */,
-				F4C755A311F9AC2C006FB713 /* Shell-Droplet-PrintFiles.sh */,
-				F4C755A411F9AC2C006FB713 /* Shell-HelloWorld.sh */,
-			);
-			name = "Test Suite";
 			sourceTree = "<group>";
 		};
 		F41306340FBD809A00A319B7 /* STPathTextField */ = {
