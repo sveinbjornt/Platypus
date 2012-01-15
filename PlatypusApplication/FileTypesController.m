@@ -322,9 +322,9 @@
 	[appFunctionRadioButtons selectCellWithTag: 0];
 
     [self setDocIconPath: @""];
-    
     [self setAcceptsText: NO];
     [self setAcceptsFiles: YES];
+    [self setDeclareService: NO];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification

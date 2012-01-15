@@ -5434,9 +5434,9 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>348337849.81402802</real>
-		<string>{855, 606}</string>
-		<string>{1165, 0}</string>
+		<real>348338176.62792301</real>
+		<string>{0, 599}</string>
+		<string>{1244, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7447,19 +7447,19 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>357</integer>
+					<integer>396</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>358</integer>
+					<integer>397</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>359</integer>
+					<integer>398</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>360</integer>
+					<integer>399</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
@@ -7482,9 +7482,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>348002445.976861</real>
-		<string>{11952, 622}</string>
-		<string>{12303, 112}</string>
+		<real>348338281.952766</real>
+		<string>{9007, 928}</string>
+		<string>{9708, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -9326,7 +9326,7 @@
 				<integer>719</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>348337784.91219097</real>
+			<real>348337906.777264</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -9337,9 +9337,9 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 4:29 PM</string>
+		<string>Today at 4:31 PM</string>
 		<integer>234</integer>
-		<string>platypus</string>
+		<string>ScriptExec</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10667,7 +10667,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>853</integer>
+					<integer>854</integer>
 				</dict>
 			</array>
 		</dict>
@@ -10688,7 +10688,7 @@
 				<integer>837</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/PlatypusApplication/ScriptAnalyser.m</string>
+		<string>file://localhost/Projects/platypus/PlatypusApplication/FileTypesController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10706,7 +10706,7 @@
 				<integer>839</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/PlatypusApplication/PlatypusController.m</string>
+		<string>file://localhost/Projects/platypus/PlatypusApplication/ScriptAnalyser.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10724,7 +10724,7 @@
 				<integer>841</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/PlatypusApplication/ScriptAnalyser.h</string>
+		<string>file://localhost/Projects/platypus/PlatypusApplication/PlatypusController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10742,7 +10742,7 @@
 				<integer>843</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/CHANGES.txt</string>
+		<string>file://localhost/Projects/platypus/PlatypusApplication/ScriptAnalyser.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10760,7 +10760,7 @@
 				<integer>845</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/Documentation/PlatypusDocumentation.html</string>
+		<string>file://localhost/Projects/platypus/CHANGES.txt</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10778,7 +10778,7 @@
 				<integer>847</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/NOTES.txt</string>
+		<string>file://localhost/Projects/platypus/Documentation/PlatypusDocumentation.html</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10796,7 +10796,7 @@
 				<integer>849</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/TODO.txt</string>
+		<string>file://localhost/Projects/platypus/NOTES.txt</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10812,6 +10812,24 @@
 			<dict>
 				<key>CF$UID</key>
 				<integer>851</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Projects/platypus/TODO.txt</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>29</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>853</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Projects/platypus/PlatypusApplication/ParamsController.m</string>
@@ -10832,24 +10850,6 @@
 				<integer>748</integer>
 			</dict>
 		</dict>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>29</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>854</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Projects/platypus/ScriptExec/ScriptExecController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11015,7 +11015,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1005</integer>
+					<integer>1004</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -11023,7 +11023,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1014</integer>
+					<integer>1013</integer>
 				</dict>
 			</array>
 		</dict>
@@ -11035,7 +11035,7 @@
 		<string>IDEWorkspaceTabControllerDesignAreaSplitView</string>
 		<string>IDEShowUtilities</string>
 		<string>IDEEditorArea</string>
-		<string>ScriptAnalyser.m</string>
+		<string>FileTypesController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11212,7 +11212,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>997</integer>
+					<integer>996</integer>
 				</dict>
 			</array>
 		</dict>
@@ -11796,7 +11796,7 @@
 		<string>IDESCMStatusFilteringEnabled</string>
 		<string>IDESelectedObjects</string>
 		<string>IDEExpandedItemsSet</string>
-		<string>{{0, 135}, {264, 758}}</string>
+		<string>{{0, 51}, {264, 758}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11838,9 +11838,9 @@
 			</array>
 		</dict>
 		<string>Platypus</string>
-		<string>Shared Classes</string>
-		<string>ScriptAnalyser</string>
-		<string>ScriptAnalyser.m</string>
+		<string>Platypus Application</string>
+		<string>Interface Controllers</string>
+		<string>FileTypesController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11871,7 +11871,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>978</integer>
+					<integer>977</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -11891,15 +11891,15 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>986</integer>
+					<integer>987</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>988</integer>
+					<integer>989</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>990</integer>
+					<integer>991</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -11907,11 +11907,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>994</integer>
+					<integer>993</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>995</integer>
+					<integer>994</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12000,26 +12000,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>977</integer>
-				</dict>
-			</array>
-		</dict>
-		<string>ScriptExec</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>179</integer>
-			</dict>
-			<key>NS.objects</key>
-			<array>
-				<dict>
-					<key>CF$UID</key>
-					<integer>964</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>965</integer>
+					<integer>722</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12037,7 +12018,26 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>977</integer>
+					<integer>978</integer>
+				</dict>
+			</array>
+		</dict>
+		<string>Shared Classes</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>179</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>964</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>722</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -12060,7 +12060,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>965</integer>
+					<integer>978</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -12083,7 +12083,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>965</integer>
+					<integer>978</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -12092,6 +12092,97 @@
 			</array>
 		</dict>
 		<string>STPathTextField</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>179</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>964</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>978</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>986</integer>
+				</dict>
+			</array>
+		</dict>
+		<string>ScriptAnalyser</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>179</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>964</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>978</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>988</integer>
+				</dict>
+			</array>
+		</dict>
+		<string>Utility</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>179</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>964</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>978</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>990</integer>
+				</dict>
+			</array>
+		</dict>
+		<string>PlatypusAppSpec</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>179</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>964</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>965</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>980</integer>
+				</dict>
+			</array>
+		</dict>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -12130,98 +12221,6 @@
 					<key>CF$UID</key>
 					<integer>965</integer>
 				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>987</integer>
-				</dict>
-			</array>
-		</dict>
-		<string>Utility</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>179</integer>
-			</dict>
-			<key>NS.objects</key>
-			<array>
-				<dict>
-					<key>CF$UID</key>
-					<integer>964</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>965</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>989</integer>
-				</dict>
-			</array>
-		</dict>
-		<string>PlatypusAppSpec</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>179</integer>
-			</dict>
-			<key>NS.objects</key>
-			<array>
-				<dict>
-					<key>CF$UID</key>
-					<integer>964</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>991</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>980</integer>
-				</dict>
-			</array>
-		</dict>
-		<string>Platypus Application</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>179</integer>
-			</dict>
-			<key>NS.objects</key>
-			<array>
-				<dict>
-					<key>CF$UID</key>
-					<integer>964</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>991</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>993</integer>
-				</dict>
-			</array>
-		</dict>
-		<string>Interface Controllers</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>179</integer>
-			</dict>
-			<key>NS.objects</key>
-			<array>
-				<dict>
-					<key>CF$UID</key>
-					<integer>964</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>991</integer>
-				</dict>
 			</array>
 		</dict>
 		<dict>
@@ -12238,7 +12237,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>996</integer>
+					<integer>995</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12253,6 +12252,10 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+					<integer>997</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
 					<integer>998</integer>
 				</dict>
 				<dict>
@@ -12263,20 +12266,16 @@
 					<key>CF$UID</key>
 					<integer>1000</integer>
 				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1001</integer>
-				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1002</integer>
+					<integer>1001</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1003</integer>
+					<integer>1002</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -12284,7 +12283,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1004</integer>
+					<integer>1003</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12328,7 +12327,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1006</integer>
+					<integer>1005</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12342,15 +12341,15 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1007</integer>
+					<integer>1006</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1009</integer>
+					<integer>1008</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1011</integer>
+					<integer>1010</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12379,7 +12378,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1008</integer>
+					<integer>1007</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12409,7 +12408,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1010</integer>
+					<integer>1009</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12435,11 +12434,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1012</integer>
+					<integer>1011</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1013</integer>
+					<integer>1012</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12453,6 +12452,10 @@
 			</dict>
 			<key>NS.keys</key>
 			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1014</integer>
+				</dict>
 				<dict>
 					<key>CF$UID</key>
 					<integer>1015</integer>
@@ -12481,24 +12484,20 @@
 					<key>CF$UID</key>
 					<integer>1021</integer>
 				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1022</integer>
-				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1023</integer>
+					<integer>1022</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1042</integer>
+					<integer>1041</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1077</integer>
+					<integer>1076</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -12510,11 +12509,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1103</integer>
+					<integer>1102</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1111</integer>
+					<integer>1110</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -12534,7 +12533,7 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1041</integer>
+				<integer>1040</integer>
 			</dict>
 			<key>geniusEditorContextNode</key>
 			<dict>
@@ -12544,19 +12543,19 @@
 			<key>primaryEditorContextNode</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1024</integer>
+				<integer>1023</integer>
 			</dict>
 			<key>rootLayoutTreeNode</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1038</integer>
+				<integer>1037</integer>
 			</dict>
 		</dict>
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1040</integer>
+				<integer>1039</integer>
 			</dict>
 			<key>children</key>
 			<dict>
@@ -12568,36 +12567,36 @@
 			<key>documentArchivableRepresentation</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1025</integer>
+				<integer>1024</integer>
 			</dict>
 			<key>orientation</key>
 			<integer>0</integer>
 			<key>parent</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1038</integer>
+				<integer>1037</integer>
 			</dict>
 		</dict>
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1037</integer>
+				<integer>1036</integer>
 			</dict>
 			<key>DocumentLocation</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1034</integer>
+				<integer>1033</integer>
 			</dict>
 			<key>DomainIdentifier</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1026</integer>
+				<integer>1025</integer>
 			</dict>
 			<key>IdentifierPath</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1027</integer>
+				<integer>1026</integer>
 			</dict>
 			<key>IndexOfDocumentIdentifier</key>
 			<dict>
@@ -12616,7 +12615,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1028</integer>
+					<integer>1027</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1029</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -12626,17 +12629,13 @@
 					<key>CF$UID</key>
 					<integer>1031</integer>
 				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1032</integer>
-				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1029</integer>
+				<integer>1028</integer>
 			</dict>
 			<key>Identifier</key>
 			<dict>
@@ -12657,7 +12656,7 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1029</integer>
+				<integer>1028</integer>
 			</dict>
 			<key>Identifier</key>
 			<dict>
@@ -12669,7 +12668,7 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1029</integer>
+				<integer>1028</integer>
 			</dict>
 			<key>Identifier</key>
 			<dict>
@@ -12681,12 +12680,12 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1029</integer>
+				<integer>1028</integer>
 			</dict>
 			<key>Identifier</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1033</integer>
+				<integer>1032</integer>
 			</dict>
 		</dict>
 		<string>Platypus</string>
@@ -12694,12 +12693,12 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1036</integer>
+				<integer>1035</integer>
 			</dict>
 			<key>documentURL</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1035</integer>
+				<integer>1034</integer>
 			</dict>
 			<key>timestamp</key>
 			<dict>
@@ -12714,7 +12713,7 @@
 				<integer>28</integer>
 			</dict>
 			<key>NS.string</key>
-			<string>file://localhost/Projects/platypus/PlatypusApplication/ScriptAnalyser.m</string>
+			<string>file://localhost/Projects/platypus/PlatypusApplication/FileTypesController.m</string>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -12738,12 +12737,12 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1040</integer>
+				<integer>1039</integer>
 			</dict>
 			<key>children</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1039</integer>
+				<integer>1038</integer>
 			</dict>
 			<key>contentType</key>
 			<integer>0</integer>
@@ -12770,7 +12769,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1024</integer>
+					<integer>1023</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12802,14 +12801,14 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1043</integer>
+					<integer>1042</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1044</integer>
+					<integer>1043</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12824,14 +12823,14 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1045</integer>
+					<integer>1044</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1046</integer>
+					<integer>1045</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12846,22 +12845,22 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+					<integer>1046</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
 					<integer>1047</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
 					<integer>1048</integer>
 				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1049</integer>
-				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1050</integer>
+					<integer>1049</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -12869,7 +12868,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1075</integer>
+					<integer>1074</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12886,7 +12885,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1051</integer>
+					<integer>1050</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12898,6 +12897,10 @@
 			</dict>
 			<key>NS.keys</key>
 			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1051</integer>
+				</dict>
 				<dict>
 					<key>CF$UID</key>
 					<integer>1052</integer>
@@ -12922,28 +12925,24 @@
 					<key>CF$UID</key>
 					<integer>1057</integer>
 				</dict>
+			</array>
+			<key>NS.objects</key>
+			<array>
 				<dict>
 					<key>CF$UID</key>
 					<integer>1058</integer>
 				</dict>
-			</array>
-			<key>NS.objects</key>
-			<array>
 				<dict>
 					<key>CF$UID</key>
 					<integer>1059</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1060</integer>
+					<integer>1066</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1067</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1071</integer>
+					<integer>1070</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -12951,11 +12950,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1072</integer>
+					<integer>1071</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1073</integer>
+					<integer>1072</integer>
 				</dict>
 			</array>
 		</dict>
@@ -12971,22 +12970,22 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1037</integer>
+				<integer>1036</integer>
 			</dict>
 			<key>DocumentLocation</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1034</integer>
+				<integer>1033</integer>
 			</dict>
 			<key>DomainIdentifier</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1026</integer>
+				<integer>1025</integer>
 			</dict>
 			<key>IdentifierPath</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1061</integer>
+				<integer>1060</integer>
 			</dict>
 			<key>IndexOfDocumentIdentifier</key>
 			<dict>
@@ -13004,6 +13003,10 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
+					<integer>1061</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
 					<integer>1062</integer>
 				</dict>
 				<dict>
@@ -13014,17 +13017,13 @@
 					<key>CF$UID</key>
 					<integer>1064</integer>
 				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1065</integer>
-				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1029</integer>
+				<integer>1028</integer>
 			</dict>
 			<key>Identifier</key>
 			<dict>
@@ -13036,7 +13035,7 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1029</integer>
+				<integer>1028</integer>
 			</dict>
 			<key>Identifier</key>
 			<dict>
@@ -13048,7 +13047,7 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1029</integer>
+				<integer>1028</integer>
 			</dict>
 			<key>Identifier</key>
 			<dict>
@@ -13060,12 +13059,12 @@
 			<key>$class</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1029</integer>
+				<integer>1028</integer>
 			</dict>
 			<key>Identifier</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1066</integer>
+				<integer>1065</integer>
 			</dict>
 		</dict>
 		<string>Platypus</string>
@@ -13098,11 +13097,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1068</integer>
+					<integer>1067</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1069</integer>
+					<integer>1068</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -13110,14 +13109,14 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1070</integer>
+					<integer>1069</integer>
 				</dict>
 			</array>
 		</dict>
-		<real>348337849.81893498</real>
-		<string>{855, 606}</string>
-		<string>{1165, 0}</string>
-		<string>+interpreterHelloWorlds</string>
+		<real>348338281.95548302</real>
+		<string>{9007, 928}</string>
+		<string>{9708, 0}</string>
+		<string>-setDefaultTypes:</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
@@ -13133,10 +13132,10 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1074</integer>
+				<integer>1073</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/PlatypusApplication/ScriptAnalyser.m</string>
+		<string>file://localhost/Projects/platypus/PlatypusApplication/FileTypesController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -13147,7 +13146,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1076</integer>
+					<integer>1075</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13160,6 +13159,10 @@
 			</dict>
 			<key>NS.keys</key>
 			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1077</integer>
+				</dict>
 				<dict>
 					<key>CF$UID</key>
 					<integer>1078</integer>
@@ -13180,10 +13183,6 @@
 					<key>CF$UID</key>
 					<integer>1082</integer>
 				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1083</integer>
-				</dict>
 			</array>
 			<key>NS.objects</key>
 			<array>
@@ -13193,11 +13192,15 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1084</integer>
+					<integer>1083</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1086</integer>
+					<integer>1085</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1087</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -13205,11 +13208,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1089</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1097</integer>
+					<integer>1096</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13229,7 +13228,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1085</integer>
+					<integer>1084</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
@@ -13251,7 +13250,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1087</integer>
+					<integer>1086</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
@@ -13281,7 +13280,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1090</integer>
+					<integer>1089</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13295,11 +13294,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1091</integer>
+					<integer>1090</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1094</integer>
+					<integer>1093</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13324,11 +13323,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1092</integer>
+					<integer>1091</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1093</integer>
+					<integer>1092</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13355,11 +13354,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1095</integer>
+					<integer>1094</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1096</integer>
+					<integer>1095</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13382,7 +13381,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1098</integer>
+					<integer>1097</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13396,11 +13395,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1099</integer>
+					<integer>1098</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1101</integer>
+					<integer>1100</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13425,11 +13424,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1092</integer>
+					<integer>1091</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1100</integer>
+					<integer>1099</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13455,11 +13454,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1095</integer>
+					<integer>1094</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1102</integer>
+					<integer>1101</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13481,7 +13480,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1104</integer>
+					<integer>1103</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13495,11 +13494,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1105</integer>
+					<integer>1104</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1108</integer>
+					<integer>1107</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13524,11 +13523,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1106</integer>
+					<integer>1105</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1107</integer>
+					<integer>1106</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13555,11 +13554,11 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1109</integer>
+					<integer>1108</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1110</integer>
+					<integer>1109</integer>
 				</dict>
 			</array>
 		</dict>
