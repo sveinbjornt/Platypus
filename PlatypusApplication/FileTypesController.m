@@ -337,34 +337,21 @@
 	{
 		selectedItems = [suffixListDataBrowser selectedRowIndexes];
 		for (i = 0; i < [suffixList numSuffixes]; i++)
-		{
 			if ([selectedItems containsIndex: i])
 				selected++;
-		}
 		
-		//update button status
-		if (selected == 0)
-			[removeSuffixButton setEnabled: NO];
-		else
-			[removeSuffixButton setEnabled: YES];
+        [removeSuffixButton setEnabled: (selected != 0)];
 	}
 	if ([aNotification object] == typesListDataBrowser || [aNotification object] == NULL)
 	{
 		selectedItems = [typesListDataBrowser selectedRowIndexes];
 		for (i = 0; i < [typesList numTypes]; i++)
-		{
 			if ([selectedItems containsIndex: i])
 				selected++;
-		}
 		
-		//update button status
-		if (selected == 0)
-			[removeTypeButton setEnabled: NO];
-		else
-			[removeTypeButton setEnabled: YES];
+        [removeTypeButton setEnabled: (selected != 0)];
 	}
 }
-
 
 - (void)controlTextDidChange:(NSNotification *)aNotification
 {	
@@ -375,9 +362,7 @@
 		NSString *sig = [[aNotification object] stringValue];
 		
 		if ([sig length] > 4)
-		{
 			[[aNotification object] setStringValue: [sig substringWithRange: range]];
-		}
 		else if ([sig length] < 4)
 			[[aNotification object] setTextColor: [NSColor redColor]];
 		else if ([sig length] == 4)
@@ -385,15 +370,8 @@
 	}
 
 	//enable/disable buttons for Edit Types window
-	if ([[suffixTextField stringValue] length] > 0)
-		[addSuffixButton setEnabled: YES];
-	else
-		[addSuffixButton setEnabled: NO];
-			
-	if ([[typeCodeTextField stringValue] length] == 4)
-		[addTypeButton setEnabled: YES];
-	else
-		[addTypeButton setEnabled: NO];
+    [addSuffixButton setEnabled: ([[suffixTextField stringValue] length] > 0)];
+    [addTypeButton setEnabled: ([[typeCodeTextField stringValue] length] == 4)];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem*)anItem
