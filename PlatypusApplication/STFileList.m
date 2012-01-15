@@ -232,8 +232,7 @@
 			[PlatypusUtility alert: @"Application not found" subText: [NSString stringWithFormat: @"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
 			[[NSUserDefaults standardUserDefaults] setObject: DEFAULT_EDITOR  forKey:@"DefaultEditor"];
 			[window setTitle: [NSString stringWithFormat: @"%@ - Editing script", PROGRAM_NAME]];
-			EditorController *editor = [[EditorController alloc] init];
-            [editor showEditorForFile: [[files objectAtIndex: index] objectForKey: @"Path"] window: window];
+            [[[EditorController alloc] init] showEditorForFile: [[files objectAtIndex: index] objectForKey: @"Path"] window: window];
             [window setTitle: PROGRAM_NAME];
 		}
 	}	
