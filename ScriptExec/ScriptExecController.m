@@ -808,7 +808,7 @@
     NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity: ARG_MAX];
     [args addObject: text];
     [jobQueue addObject: args];
-    
+    [args release];
     return YES;
 }
 
@@ -1281,6 +1281,7 @@
     [alert setInformativeText: subtext];
     [alert setAlertStyle: NSCriticalAlertStyle];
     [alert runModal];
+    [alert release];
     [[NSApplication sharedApplication] terminate: self];
 }
 
