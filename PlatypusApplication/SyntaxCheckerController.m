@@ -43,8 +43,8 @@
 	[NSApp beginSheet: [self window]
 	   modalForWindow: theWindow 
 		modalDelegate: self
-	   didEndSelector:nil
-		  contextInfo:nil];
+	   didEndSelector: nil
+		  contextInfo: nil];
 	
 	[NSApp runModalForWindow: [self window]];
 }
