@@ -51,6 +51,39 @@
 	nil];
 }
 
++ (NSArray *)interpreterHelloWorlds
+{
+    return [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects:			
+    @"echo 'Hello, World'",
+    @"echo 'Hello, World'",
+    @"echo 'Hello, World'",
+    @"echo 'Hello, World'",
+    @"",
+    @"print \"Hello, World\\n\";",
+    @"print \"Hello, World\";",
+    @"puts \"Hello, World\";",
+    @"",
+    @"puts \"Hello, World\";",
+    @"send \"Hello, world\\n\"",
+    @"echo \"Hello, World\";",
+    @"",
+    nil] forKeys: [NSArray arrayWithObjects:			
+    @"Shell",
+    @"Bash",
+    @"Tcsh",
+    @"Zsh",
+    @"Env",
+    @"Perl",
+    @"Python",
+    @"Ruby",
+    @"AppleScript",
+    @"Tcl",
+    @"Expect",
+    @"PHP", 
+    @"Other...",
+    nil]];
+}
+
 + (NSString *)displayNameForInterpreter: (NSString *)theInterpreter
 {
 	NSArray *interpreters = [self interpreters];

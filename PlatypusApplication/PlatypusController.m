@@ -151,7 +151,7 @@
 
 - (NSString *)createNewScript: (NSString *)scriptText
 {
-	NSString	*tempScript;
+	NSString	*tempScript, *interpreter, *defaultScript;
 	
 	// get a random number to append to script name in /tmp/
 	do
@@ -161,27 +161,18 @@
 	}
 	while ([FILEMGR fileExistsAtPath: tempScript]);
 	
+    interpreter = [interpreterTextField stringValue];
+    defaultScript = [[ScriptAnalyser interpreterHelloWorlds] objectForKey: [scriptTypePopupMenu titleOfSelectedItem]];
+    if (defaultScript == nil)
+        defaultScript = @"";
+    
 	//put shebang line in the new script text file
-	NSString	*contentString = [NSString stringWithFormat: @"#!%@\n\n", [interpreterTextField stringValue]];
-	
-	//if this is a perl or shell script, we add a commented list of paths to the bundled files 
-	if (([[interpreterTextField stringValue] isEqualToString: @"/usr/bin/perl"] || [[interpreterTextField stringValue] isEqualToString: @"/bin/sh"]) && [fileList numFiles] > 0)
-	{
-		contentString = [contentString stringByAppendingString: @"# The following files are bundled:\n#\n"];
-
-		int	i;
-		for (i = 0; i < [fileList numFiles]; i++)
-		{
-            contentString = [contentString stringByAppendingString: [NSString stringWithFormat:@"# '%@'\n", [[fileList getFileAtIndex: i] lastPathComponent]]];
-		}
+	NSString *contentString = [NSString stringWithFormat: @"#!%@\n\n%@", interpreter, defaultScript];
 		
-		contentString = [contentString stringByAppendingString: @"#\n#\n\n"];
-	}
-	
 	if (scriptText != NULL && [scriptText length])
 		contentString = [contentString stringByAppendingString: scriptText];
 
-		//write the default content to the new script
+    //write the default content to the new script
 	[contentString writeToFile: tempScript atomically: YES encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: NULL];
 
 	return tempScript;

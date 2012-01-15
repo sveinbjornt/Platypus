@@ -15,6 +15,7 @@
 }
 + (NSArray *)interpreters;
 + (NSArray *)interpreterDisplayNames;
++ (NSArray *)interpreterHelloWorlds;
 + (NSString *)displayNameForInterpreter: (NSString *)theInterpreter;
 + (NSString *)interpreterForDisplayName: (NSString *)name;
 + (NSString *)interpreterFromSuffix: (NSString *)fileName;
