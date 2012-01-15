@@ -151,8 +151,9 @@
 
 - (NSString *)createNewScript: (NSString *)scriptText
 {
-	NSString	*tempScript, *interpreter, *defaultScript;
-	
+	NSString	*tempScript, *defaultScript;
+	NSString    *interpreter = [interpreterTextField stringValue];
+    
 	// get a random number to append to script name in /tmp/
 	do
 	{
@@ -160,17 +161,18 @@
 		tempScript = [NSString stringWithFormat: @"%@Script.%d", [TEMP_FOLDER stringByExpandingTildeInPath], randnum];
 	}
 	while ([FILEMGR fileExistsAtPath: tempScript]);
-	
-    interpreter = [interpreterTextField stringValue];
-    defaultScript = [[ScriptAnalyser interpreterHelloWorlds] objectForKey: [scriptTypePopupMenu titleOfSelectedItem]];
-    if (defaultScript == nil)
-        defaultScript = @"";
     
 	//put shebang line in the new script text file
-	NSString *contentString = [NSString stringWithFormat: @"#!%@\n\n%@", interpreter, defaultScript];
-		
-	if (scriptText != NULL && [scriptText length])
+	NSString *contentString = [NSString stringWithFormat: @"#!%@\n\n", interpreter];
+    
+    if (scriptText != NULL && [scriptText length])
 		contentString = [contentString stringByAppendingString: scriptText];
+    else
+    {
+        defaultScript = [[ScriptAnalyser interpreterHelloWorlds] objectForKey: [scriptTypePopupMenu titleOfSelectedItem]];
+        if (defaultScript != nil)
+            contentString = [contentString stringByAppendingString: defaultScript];
+    }
 
     //write the default content to the new script
 	[contentString writeToFile: tempScript atomically: YES encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: NULL];
