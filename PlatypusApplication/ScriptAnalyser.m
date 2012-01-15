@@ -51,7 +51,7 @@
 	nil];
 }
 
-+ (NSArray *)interpreterHelloWorlds
++ (NSDictionary *)interpreterHelloWorlds
 {
     return [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects:			
     @"echo 'Hello, World'",
