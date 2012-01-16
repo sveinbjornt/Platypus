@@ -915,6 +915,7 @@
 	estimatedAppSize += 4096; // Info.plist
 	estimatedAppSize += 4096; // AppSettings.plist	
 	estimatedAppSize += [iconControl iconSize];
+    estimatedAppSize += [typesControl docIconSize];
 	estimatedAppSize += [PlatypusUtility fileOrFolderSize: [scriptPathTextField stringValue]];
 	estimatedAppSize += [PlatypusUtility fileOrFolderSize: [[NSBundle mainBundle] pathForResource: @"ScriptExec" ofType: NULL]];  // executable
 		

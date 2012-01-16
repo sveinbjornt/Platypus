@@ -67,6 +67,7 @@
 - (TypesList *)types;
 - (SuffixList *)suffixes;
 - (NSString *)docIconPath;
+- (UInt64)docIconSize;
 - (void)setDocIconPath:(NSString *)path;
 - (BOOL)acceptsText;
 - (BOOL)acceptsFiles;

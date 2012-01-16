@@ -72,22 +72,22 @@
 	return [self initWithDictionary: [NSMutableDictionary dictionaryWithContentsOfFile: filePath]];
 }
 
-+(PlatypusAppSpec *)profileWithDefaults
++(PlatypusAppSpec *)specWithDefaults
 {
 	return [[[PlatypusAppSpec alloc] initWithDefaults] autorelease];
 }
 
-+(PlatypusAppSpec *)profileWithDictionary: (NSDictionary *)dict
++(PlatypusAppSpec *)specWithDictionary: (NSDictionary *)dict
 {
 	return [[[PlatypusAppSpec alloc] initWithDictionary: dict] autorelease];
 }
 
-+(PlatypusAppSpec *)profileFromFile: (NSString *)filePath
++(PlatypusAppSpec *)specFromProfile: (NSString *)filePath
 {
 	return [[[PlatypusAppSpec alloc] initFromFile: filePath] autorelease];
 }
 
-+(PlatypusAppSpec *)profileWithDefaultsFromScript: (NSString *)scriptPath
++(PlatypusAppSpec *)specWithDefaultsFromScript: (NSString *)scriptPath
 {
 	return [[[PlatypusAppSpec alloc] initWithDefaultsFromScript: scriptPath] autorelease];
 }
@@ -209,7 +209,7 @@
 {
 	int      i;
 	NSString *contentsPath, *macosPath, *resourcesPath, *tmpPath = NSTemporaryDirectory();
-	NSString *execDestinationPath, *infoPlistPath, *iconPath, *bundledFileDestPath, *nibDestPath;
+	NSString *execDestinationPath, *infoPlistPath, *iconPath, *docIconPath, *bundledFileDestPath, *nibDestPath;
 	NSString *execPath, *bundledFilePath;
 	NSString *appSettingsPlistPath;
 	NSString *b_enc_script = @"";
@@ -360,9 +360,16 @@
 	//.app/Contents/Resources/appIcon.icns
     if (![[properties objectForKey: @"IconPath"] isEqualToString: @""])
     {
-        [self report: @"Writing icon"];
+        [self report: @"Writing application icon"];
         iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
         [fileManager copyPath: [properties objectForKey: @"IconPath"] toPath: iconPath handler: NULL];
+    }
+    
+    if (![[properties objectForKey: @"DocIcon"] isEqualToString: @""])
+    {
+        [self report: @"Writing document icon"];
+        docIconPath = [resourcesPath stringByAppendingString:@"/docIcon.icns"];
+        [fileManager copyPath: [properties objectForKey: @"DocIcon"] toPath: docIconPath handler: NULL];
     }
           
 	//create Info.plist file
@@ -393,7 +400,12 @@
 						[properties objectForKey: @"Suffixes"], @"CFBundleTypeExtensions",//extensions
 						[properties objectForKey: @"FileTypes"], @"CFBundleTypeOSTypes",//os types
 						[properties objectForKey: @"Role"], @"CFBundleTypeRole", nil];//viewer or editor?
-		[infoPlist setObject: [NSArray arrayWithObject: typesAndSuffixesDict] forKey: @"CFBundleDocumentTypes"];
+        
+        // document icon
+        if ([fileManager fileExistsAtPath: docIconPath])
+            [typesAndSuffixesDict setObject: @"docIcon.icns" forKey: @"CFBundleTypeIconFile"];
+        
+        [infoPlist setObject: [NSArray arrayWithObject: typesAndSuffixesDict] forKey: @"CFBundleDocumentTypes"];
         
         // add service settings to Info.plist
         if ([[properties objectForKey: @"DeclareService"] boolValue])

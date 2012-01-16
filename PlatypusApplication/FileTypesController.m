@@ -444,6 +444,13 @@
 		[appFunctionRadioButtons selectCellWithTag: 1];
 }
 
+- (UInt64)docIconSize;
+{
+    if ([FILEMGR fileExistsAtPath: docIconPath])
+        return [PlatypusUtility fileOrFolderSize: docIconPath];
+    return 0;
+}
+
 - (NSString *)docIconPath
 {
     return docIconPath;
