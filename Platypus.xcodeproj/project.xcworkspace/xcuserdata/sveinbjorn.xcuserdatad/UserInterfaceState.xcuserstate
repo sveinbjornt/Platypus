@@ -6219,9 +6219,9 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>348442534.79744297</real>
+		<real>348442561.84992701</real>
 		<string>{35531, 1609}</string>
-		<string>{36157, 0}</string>
+		<string>{35761, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7086,19 +7086,19 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>402</integer>
+					<integer>460</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>403</integer>
+					<integer>461</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>404</integer>
+					<integer>462</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>405</integer>
+					<integer>463</integer>
 				</dict>
 			</array>
 			<key>NS.objects</key>
@@ -7121,9 +7121,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>348421908.89209098</real>
-		<string>{26463, 1235}</string>
-		<string>{35266, 0}</string>
+		<real>348443429.84717798</real>
+		<string>{3919, 585}</string>
+		<string>{4296, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7598,9 +7598,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>348442029.45330203</real>
-		<string>{17282, 1519}</string>
-		<string>{18298, 0}</string>
+		<real>348443647.31462502</real>
+		<string>{28422, 2633}</string>
+		<string>{30373, 2}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7788,9 +7788,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>348442108.87370801</real>
-		<string>{586, 1751}</string>
-		<string>{1478, 0}</string>
+		<real>348443527.83641899</real>
+		<string>{585, 2947}</string>
+		<string>{2025, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -10016,7 +10016,7 @@
 				<integer>776</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>348442432.21682203</real>
+			<real>348443544.04963398</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -10027,7 +10027,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 9:33 PM</string>
+		<string>Today at 9:52 PM</string>
 		<integer>234</integer>
 		<string>platypus</string>
 		<dict>
@@ -11349,7 +11349,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>906</integer>
+					<integer>907</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -11378,7 +11378,7 @@
 				<integer>894</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/PlatypusApplication/PlatypusController.m</string>
+		<string>file://localhost/Projects/platypus/Shared/PlatypusAppSpec.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11396,7 +11396,7 @@
 				<integer>896</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/PlatypusApplication/FileTypesController.h</string>
+		<string>file://localhost/Projects/platypus/CHANGES.txt</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11414,7 +11414,7 @@
 				<integer>898</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/PlatypusApplication/FileTypesController.m</string>
+		<string>file://localhost/Projects/platypus/ScriptExec/ScriptExecController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11450,7 +11450,7 @@
 				<integer>902</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/CHANGES.txt</string>
+		<string>file://localhost/Projects/platypus/PlatypusApplication/PlatypusController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11468,7 +11468,25 @@
 				<integer>904</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/Shared/PlatypusAppSpec.m</string>
+		<string>file://localhost/Projects/platypus/PlatypusApplication/FileTypesController.h</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>29</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>906</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Projects/platypus/PlatypusApplication/FileTypesController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11500,7 +11518,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>907</integer>
+				<integer>909</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Projects/platypus/CommandLineTool/platypus_command_line_tool.m</string>
@@ -11518,28 +11536,10 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>909</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Projects/platypus/Shared/PlatypusUtility.m</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>29</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
 				<integer>911</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/PlatypusApplication/Info.plist</string>
+		<string>file://localhost/Projects/platypus/Shared/PlatypusUtility.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11725,7 +11725,7 @@
 		<string>IDEWorkspaceTabControllerDesignAreaSplitView</string>
 		<string>IDEShowUtilities</string>
 		<string>AssistantEditorsLayout</string>
-		<string>PlatypusController.m</string>
+		<string>PlatypusAppSpec.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11925,7 +11925,7 @@
 				<integer>948</integer>
 			</dict>
 		</dict>
-		<string>PlatypusController.m</string>
+		<string>PlatypusAppSpec.m</string>
 		<dict>
 			<key>$classes</key>
 			<array>
@@ -11947,7 +11947,7 @@
 				<integer>951</integer>
 			</dict>
 		</dict>
-		<string>Interface Controllers</string>
+		<string>PlatypusAppSpec</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11960,7 +11960,7 @@
 				<integer>953</integer>
 			</dict>
 		</dict>
-		<string>Platypus Application</string>
+		<string>Shared Classes</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -11998,7 +11998,7 @@
 				<integer>28</integer>
 			</dict>
 			<key>NS.string</key>
-			<string>file://localhost/Projects/platypus/PlatypusApplication/PlatypusController.m</string>
+			<string>file://localhost/Projects/platypus/Shared/PlatypusAppSpec.m</string>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -12398,10 +12398,10 @@
 				</dict>
 			</array>
 		</dict>
-		<real>348442534.799793</real>
-		<string>{35531, 1609}</string>
-		<string>{36157, 0}</string>
-		<string>-estimatedAppSize</string>
+		<real>348443647.319637</real>
+		<string>{28422, 2633}</string>
+		<string>{30373, 2}</string>
+		<string>-commandString</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
@@ -12420,7 +12420,7 @@
 				<integer>996</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/platypus/PlatypusApplication/PlatypusController.m</string>
+		<string>file://localhost/Projects/platypus/Shared/PlatypusAppSpec.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -13615,7 +13615,7 @@
 		<string>IDESCMStatusFilteringEnabled</string>
 		<string>IDESelectedObjects</string>
 		<string>IDEExpandedItemsSet</string>
-		<string>{{0, 7}, {222, 758}}</string>
+		<string>{{0, 717}, {222, 758}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -13687,7 +13687,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1131</integer>
+					<integer>1132</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -13699,11 +13699,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1138</integer>
+					<integer>1137</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1140</integer>
+					<integer>1139</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -13804,10 +13804,11 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>953</integer>
+					<integer>1131</integer>
 				</dict>
 			</array>
 		</dict>
+		<string>Platypus Application</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -13822,7 +13823,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1132</integer>
+					<integer>953</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -13830,7 +13831,6 @@
 				</dict>
 			</array>
 		</dict>
-		<string>Shared Classes</string>
 		<string>ScriptAnalyser</string>
 		<dict>
 			<key>$class</key>
@@ -13846,7 +13846,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1132</integer>
+					<integer>953</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -13855,52 +13855,6 @@
 			</array>
 		</dict>
 		<string>Utility</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>186</integer>
-			</dict>
-			<key>NS.objects</key>
-			<array>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1121</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1132</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1137</integer>
-				</dict>
-			</array>
-		</dict>
-		<string>PlatypusAppSpec</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>186</integer>
-			</dict>
-			<key>NS.objects</key>
-			<array>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1121</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>953</integer>
-				</dict>
-				<dict>
-					<key>CF$UID</key>
-					<integer>1139</integer>
-				</dict>
-			</array>
-		</dict>
-		<string>Resources</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -13937,7 +13891,53 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1132</integer>
+					<integer>1131</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1138</integer>
+				</dict>
+			</array>
+		</dict>
+		<string>Resources</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>186</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1121</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1131</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1140</integer>
+				</dict>
+			</array>
+		</dict>
+		<string>Interface Controllers</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>186</integer>
+			</dict>
+			<key>NS.objects</key>
+			<array>
+				<dict>
+					<key>CF$UID</key>
+					<integer>1121</integer>
+				</dict>
+				<dict>
+					<key>CF$UID</key>
+					<integer>953</integer>
 				</dict>
 			</array>
 		</dict>
@@ -13978,7 +13978,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1139</integer>
+					<integer>1138</integer>
 				</dict>
 			</array>
 		</dict>

@@ -665,7 +665,7 @@
 	if ([[properties objectForKey: @"Output"] isEqualToString: @"Status Menu"])
 	{
 		// -K kind
-		statusMenuOptionsString = [statusMenuOptionsString stringByAppendingString: [NSString stringWithFormat: @"-K '%@' ", [properties objectForKey: @"StatusItemDisplayKind"]]];
+		statusMenuOptionsString = [statusMenuOptionsString stringByAppendingString: [NSString stringWithFormat: @"-K '%@' ", [properties objectForKey: @"StatusItemDisplayType"]]];
 		
 		// -L /path/to/image
 		if (![[properties objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Text"])
