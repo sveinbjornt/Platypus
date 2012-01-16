@@ -244,7 +244,9 @@
 
 - (BOOL)validateMenuItem:(NSMenuItem*)anItem 
 {
-	if ([[anItem title] isEqualToString:@"Remove Entry"] && [interpreterArgsTableView selectedRow] == -1)
+    if ([anItem menu] == scriptArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [scriptArgsTableView selectedRow] == -1)
+		return NO;
+    if ([anItem menu] == interpreterArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [interpreterArgsTableView selectedRow] == -1)
 		return NO;
 
 	return YES;
