@@ -11,7 +11,7 @@ For 4.7
 For 4.6
     * "Open" and "Save" menu item option for Platypus-created apps
     * Applications can now be set as Services for text or file handling via Services menu
-    * Configurable document icon for Platypus apps which handle certain file types
+    * Configurable document icon for Platypus apps
     * New option to set custom arguments for script, under "Args" (previously "Params")
     * Command line tool now supports dumping profile property lists to stdout (see man page)
     * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
@@ -29,11 +29,8 @@ For 4.6
     * Fixed bug with contextual menus in Arguments window
     * Fixed bug where custom image data icons failed to be created
 
-    TODO:  AcceptsText, AcceptsFiles needs to be in command line tool
-    TODO:  Finish implementing service functionality in Platypus app, command line tool and AppSpec class
-            * Make new screenshot of drop settings window
-    TODO:  Support for attaching icons to file types / suffixes under Droppable options
-            IN PROGRESS, remember to implement this in ScriptExec and test it properly
+    TODO:  Test the new droppable stuff, both in app and clt
+    TODO:  Make new screenshot of drop settings window
     TODO:  Fix bug w. icon for Status Menu
 
 For 4.5

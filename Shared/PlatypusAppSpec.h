@@ -37,10 +37,10 @@
 -(PlatypusAppSpec *)initWithDefaultsFromScript: (NSString *)scriptPath;
 -(PlatypusAppSpec *)initWithDictionary: (NSDictionary *)dict;
 -(PlatypusAppSpec *)initFromFile: (NSString *)filePath;
-+(PlatypusAppSpec *)profileWithDefaults;
-+(PlatypusAppSpec *)profileWithDictionary: (NSDictionary *)dict;
-+(PlatypusAppSpec *)profileFromFile: (NSString *)filePath;
-+(PlatypusAppSpec *)profileWithDefaultsFromScript: (NSString *)scriptPath;
++(PlatypusAppSpec *)specWithDefaults;
++(PlatypusAppSpec *)specWithDictionary: (NSDictionary *)dict;
++(PlatypusAppSpec *)specFromProfile: (NSString *)filePath;
++(PlatypusAppSpec *)specWithDefaultsFromScript: (NSString *)scriptPath;
 -(void)setDefaults;
 -(void)setDefaultsForScript: (NSString *)scriptPath;
 -(BOOL)create;
