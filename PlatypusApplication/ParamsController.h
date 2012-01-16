@@ -39,6 +39,9 @@
 	IBOutlet id isDroppableCheckbox;
     IBOutlet id window;
 	
+    IBOutlet id scriptArgsContextualMenu;
+    IBOutlet id interpreterArgsContextualMenu;
+    
 	NSMutableArray *interpreterArgs;
     NSMutableArray *scriptArgs;
 }

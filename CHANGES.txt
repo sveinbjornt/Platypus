@@ -6,33 +6,34 @@ For 4.7
     TODO:  Rethink and redesign the interface? It's a bit cluttered and could do with some Lionizing
     TODO:  Create TextMate plugin
     TODO:  Support reading script from STDIN in command line tool
+    TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
 
 For 4.6
     * "Open" menu item in File menu for Platypus-generated apps that accept dropped files
     * It is now possible to save output to a text or HTML file within Platypus-generated apps
-    * New option to set custom arguments for script 
+    * New option to set custom arguments for script, under "Args" (previously "Params")
     * Command line tool now supports dumping profile property lists to stdout (see man page)
     * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
-    * New FastDMGMounter example
     * Additional interpreter presets: zsh and tcsh
-    * Migrated all images to optimized PNGs for smaller file sizes
     * Extended documentation
     * New "Edit file" button for Bundled Files List.
+    * New FastDMGMounter example
     * Minor interface refinements
+    * Migrated all images to optimized PNGs for smaller file sizes
     * Script path text field tab autocomplete now working again
     * Fixed crash bug when editing file in Bundled Files list using built-in editor.
     * Removed app path as first arg option, it's unnecessary and confusing. App path == $CWD/../..
+    * Fixed bug where text font settings would not be applied
+    * Changed "New Script" preset contents to be a "Hello, World" example
+    * Fixed bug with contextual menus in Arguments window
     
     TODO:  AcceptsText, AcceptsFiles needs to be in command line tool
-    TODO:  Make text settings work in Status Menu output
     TODO:  Finish implementing service functionality in Platypus app, command line tool and AppSpec class
             * Make new screenshot of drop settings window
-    TODO:  Update documentation for Preferences window, explaining new features offered
     TODO:  Support for attaching icons to file types / suffixes under Droppable options
             IN PROGRESS, remember to implement this in ScriptExec and test it properly
-    TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
-    TODO:  Make contextual menus work in types window
-    TODO:  Add "Hello, World" code for each interpreter in ScriptAnalyser
+    TODO:  Fix bug with custom icons
+    TODO:  Fix bug w. icon for Status Menu
 
 For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
