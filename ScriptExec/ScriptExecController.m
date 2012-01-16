@@ -36,7 +36,7 @@
         jobQueue = [[NSMutableArray alloc] initWithCapacity: PLATYPUS_MAX_QUEUE_JOBS];
         
         statusItem = NULL;
-        statusItemTitle = @"Title";
+        statusItemTitle = NULL;
         statusItemIcon = NULL;
         statusItemMenu = NULL;
     }
@@ -119,6 +119,10 @@
             [privilegedTask terminate];
         [privilegedTask release];
     }
+    
+    // hide status item, if on
+    if (statusItem)
+        [[NSStatusBar systemStatusBar] removeStatusItem: statusItem];
 
     // clean out the job queue since we're quitting
     [jobQueue removeAllObjects];
@@ -1103,20 +1107,29 @@
     if (outputType == PLATYPUS_STATUSMENU_OUTPUT)
     {
         // we load text label if status menu is not only an icon
-        if (![[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Icon"])
+        if ([[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Text"] ||
+            [[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Icon and Text"])
         {
             statusItemTitle = [[appSettingsPlist objectForKey: @"StatusItemTitle"] retain];
             if (statusItemTitle == NULL)
                 [self fatalAlert: @"Error getting title" subText: @"Failed to get Status Item title."];
         }
+        else
+            statusItemTitle = NULL;
         
         // we load icon if status menu is not only a text label
-        if (![[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Text"])
+        if ([[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Icon"] ||
+            [[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Icon and Text"])
         {
             statusItemIcon = [[NSImage alloc] initWithData: [appSettingsPlist objectForKey: @"StatusItemIcon"]];
             if (statusItemIcon == NULL)
                 [self fatalAlert: @"Error loading icon" subText: @"Failed to load Status Item icon."];
         }
+        else
+            statusItemIcon = NULL;
+        
+        if (statusItemIcon == NULL && statusItemTitle == NULL)
+            statusItemTitle = @"Title";
     }
     
     //load these vars from plist

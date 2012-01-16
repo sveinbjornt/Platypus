@@ -28,10 +28,10 @@ For 4.6
     * Changed "New Script" preset contents to be a "Hello, World" example
     * Fixed bug with contextual menus in Arguments window
     * Fixed bug where custom image data icons failed to be created
+    * Fixed bug where "Icon" display mode status item would display a title
+    * Status Bar apps now gracefully remove status bar item before exiting
 
     TODO:  Test the new droppable stuff, both in app and clt
-    TODO:  Make new screenshot of drop settings window
-    TODO:  Fix bug w. icon for Status Menu
 
 For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
