@@ -1068,31 +1068,31 @@
         outputType == PLATYPUS_TEXTWINDOW_OUTPUT ||
         outputType == PLATYPUS_STATUSMENU_OUTPUT)
     {
-        //make sure all this data is sane 
+        //make sure all this data is sane, revert to defaults if not
         
         // font and size
-        if ([appSettingsPlist objectForKey:@"TextFont"] != NULL || [appSettingsPlist objectForKey:@"TextSize"] != NULL)
-            textFont = [NSFont fontWithName: DEFAULT_OUTPUT_FONT size: DEFAULT_OUTPUT_FONTSIZE];
-        if (textFont == NULL)
+        if ([appSettingsPlist objectForKey:@"TextFont"] && [appSettingsPlist objectForKey:@"TextSize"])
             textFont = [NSFont fontWithName: [appSettingsPlist objectForKey:@"TextFont"] size: [[appSettingsPlist objectForKey:@"TextSize"] floatValue]];
+        if (!textFont)
+            textFont = [NSFont fontWithName: DEFAULT_OUTPUT_FONT size: DEFAULT_OUTPUT_FONTSIZE];
         
         // foreground
-        if ([appSettingsPlist objectForKey:@"TextForeground"] == NULL)
-            textForeground = [NSColor colorFromHex: DEFAULT_OUTPUT_FG_COLOR];
-        if (textForeground == NULL)
+        if ([appSettingsPlist objectForKey:@"TextForeground"])
             textForeground = [NSColor colorFromHex: [appSettingsPlist objectForKey:@"TextForeground"]];
-        
+        if (!textForeground)
+            textForeground = [NSColor colorFromHex: DEFAULT_OUTPUT_FG_COLOR];
+                    
         // background
-        if ([appSettingsPlist objectForKey:@"TextBackground"] == NULL)
-            textBackground = [NSColor colorFromHex: DEFAULT_OUTPUT_BG_COLOR];
-        if (textBackground == NULL)
+        if ([appSettingsPlist objectForKey:@"TextBackground"] != NULL)
             textBackground    = [NSColor colorFromHex: [appSettingsPlist objectForKey:@"TextBackground"]];
+        if (!textBackground)
+            textBackground = [NSColor colorFromHex: DEFAULT_OUTPUT_BG_COLOR];
         
         // encoding
-        if (textEncoding < 1)
-            textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
-        else
+        if ([appSettingsPlist objectForKey:@"TextEncoding"])
             textEncoding = (int)[[appSettingsPlist objectForKey:@"TextEncoding"] intValue];
+        else
+            textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;            
         
         [textFont retain];
         [textForeground retain];
