@@ -27,14 +27,13 @@ For 4.6
     * Fixed bug where text font settings would not be applied
     * Changed "New Script" preset contents to be a "Hello, World" example
     * Fixed bug with contextual menus in Arguments window
-    
+    * Fixed bug where custom image data icons failed to be created
 
     TODO:  AcceptsText, AcceptsFiles needs to be in command line tool
     TODO:  Finish implementing service functionality in Platypus app, command line tool and AppSpec class
             * Make new screenshot of drop settings window
     TODO:  Support for attaching icons to file types / suffixes under Droppable options
             IN PROGRESS, remember to implement this in ScriptExec and test it properly
-    TODO:  Fix bug with custom icons
     TODO:  Fix bug w. icon for Status Menu
 
 For 4.5
