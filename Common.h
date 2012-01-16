@@ -64,7 +64,7 @@
 #define CMDLINE_ICON_PATH			@"/usr/local/share/platypus/PlatypusDefault.icns"
 
 
-#define TMP_DRAGGED_ICON_PATH		@"/tmp/PlatypusIcon.icns"
+#define TMP_ICON_PATH               @"/tmp/PlatypusIcon.icns"
 #define IBTOOL_PATH					@"/Developer/usr/bin/ibtool"
 #define LIPO_TOOL_PATH				@"/usr/bin/lipo"
 

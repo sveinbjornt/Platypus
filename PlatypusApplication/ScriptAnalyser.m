@@ -65,7 +65,7 @@
     @"",
     @"puts \"Hello, World\";",
     @"send \"Hello, world\\n\"",
-    @"echo \"Hello, World\";",
+    @"<?php\necho \"Hello, World\";\n?>",
     @"",
     nil] forKeys: [NSArray arrayWithObjects:			
     @"Shell",

@@ -70,6 +70,11 @@
 	[self loadImageFromPasteboard];
 }
 
+- (IBAction)revealIconInFinder:(id)sender
+{
+     [[NSWorkspace sharedWorkspace] selectFile: [self icnsFilePath] inFileViewerRootedAtPath:nil];
+}
+
 #pragma mark -
 
 -(void)updateIcnsStatus
@@ -375,7 +380,8 @@
 - (void)updateForCustomIcon
 {
 	[iconNameTextField setStringValue: @"Custom Icon"];
-	[self setIcnsFilePath: nil];
+    [self writeIconToPath: TMP_ICON_PATH];
+	[self setIcnsFilePath: TMP_ICON_PATH];
 }
 
 #pragma mark -
