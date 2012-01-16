@@ -11,29 +11,9 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F40F756013C266AE00197499 /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40F755F13C266AE00197499 /* ShellCommandController.m */; };
 		F418A18714BA06E100C75BAD /* platypus_clt in Resources */ = {isa = PBXBuildFile; fileRef = F418A18614BA06E100C75BAD /* platypus_clt */; };
-		F418A18D14BA0EAA00C75BAD /* Shell.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A18914BA0EA900C75BAD /* Shell.png */; };
-		F418A18E14BA0EAA00C75BAD /* AppleScript.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A18A14BA0EA900C75BAD /* AppleScript.png */; };
-		F418A18F14BA0EAA00C75BAD /* Perl.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A18B14BA0EA900C75BAD /* Perl.png */; };
-		F418A19014BA0EAA00C75BAD /* Ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A18C14BA0EAA00C75BAD /* Ruby.png */; };
-		F418A19414BA0F2600C75BAD /* Bash.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A19114BA0F2600C75BAD /* Bash.png */; };
-		F418A19514BA0F2600C75BAD /* Zsh.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A19214BA0F2600C75BAD /* Zsh.png */; };
-		F418A19614BA0F2600C75BAD /* Tcsh.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A19314BA0F2600C75BAD /* Tcsh.png */; };
-		F418A19814BA149000C75BAD /* Python.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A19714BA149000C75BAD /* Python.png */; };
-		F418A19A14BA1DDF00C75BAD /* PHP.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A19914BA1DDF00C75BAD /* PHP.png */; };
-		F418A19C14BA21B600C75BAD /* Env.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A19B14BA21B600C75BAD /* Env.png */; };
-		F418A19E14BA230B00C75BAD /* Tcl.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A19D14BA230B00C75BAD /* Tcl.png */; };
-		F418A1A014BA243400C75BAD /* Expect.png in Resources */ = {isa = PBXBuildFile; fileRef = F418A19F14BA243400C75BAD /* Expect.png */; };
 		F4263A2F14B7E2AC000A1A68 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4263A2E14B7E2AC000A1A68 /* ScriptExec */; };
 		F42C982C14BB55820094CC8D /* platypus.man.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F42C982B14BB55820094CC8D /* platypus.man.pdf */; };
 		F44402CC1493EED300261B21 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949C122C128200094A1B /* ScriptAnalyser.m */; };
-		F44637A614B6737F00ECF827 /* Add_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F446379E14B6737F00ECF827 /* Add_Pressed.png */; };
-		F44637A714B6737F00ECF827 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = F446379F14B6737F00ECF827 /* Add.png */; };
-		F44637A814B6737F00ECF827 /* Clear_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A014B6737F00ECF827 /* Clear_Pressed.png */; };
-		F44637A914B6737F00ECF827 /* Clear.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A114B6737F00ECF827 /* Clear.png */; };
-		F44637AA14B6737F00ECF827 /* Remove_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A214B6737F00ECF827 /* Remove_Pressed.png */; };
-		F44637AB14B6737F00ECF827 /* Remove.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A314B6737F00ECF827 /* Remove.png */; };
-		F44637AC14B6737F00ECF827 /* RevealInFinder_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A414B6737F00ECF827 /* RevealInFinder_Pressed.png */; };
-		F44637AD14B6737F00ECF827 /* RevealInFinder.png in Resources */ = {isa = PBXBuildFile; fileRef = F44637A514B6737F00ECF827 /* RevealInFinder.png */; };
 		F44E001D1229868100CAC9C2 /* PlatypusStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */; };
 		F44E006D12298B7200CAC9C2 /* PlatypusCube.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006812298B7200CAC9C2 /* PlatypusCube.icns */; };
 		F44E006E12298B7200CAC9C2 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */; };
@@ -72,6 +52,29 @@
 		F4C8B45C124C450C00397392 /* Editor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B457124C450C00397392 /* Editor.xib */; };
 		F4C8B45D124C450C00397392 /* ShellCommandWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B458124C450C00397392 /* ShellCommandWindow.xib */; };
 		F4C8B45E124C450C00397392 /* SyntaxChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B459124C450C00397392 /* SyntaxChecker.xib */; };
+		F4D656A614C4BFD6003552F9 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6568E14C4BFD6003552F9 /* Add.png */; };
+		F4D656A714C4BFD6003552F9 /* Add_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6568F14C4BFD6003552F9 /* Add_Pressed.png */; };
+		F4D656A814C4BFD6003552F9 /* Clear.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569014C4BFD6003552F9 /* Clear.png */; };
+		F4D656A914C4BFD6003552F9 /* Clear_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569114C4BFD6003552F9 /* Clear_Pressed.png */; };
+		F4D656AA14C4BFD6003552F9 /* Edit.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569214C4BFD6003552F9 /* Edit.png */; };
+		F4D656AB14C4BFD6003552F9 /* Edit_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569314C4BFD6003552F9 /* Edit_Pressed.png */; };
+		F4D656AC14C4BFD6003552F9 /* Remove.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569414C4BFD6003552F9 /* Remove.png */; };
+		F4D656AD14C4BFD6003552F9 /* Remove_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569514C4BFD6003552F9 /* Remove_Pressed.png */; };
+		F4D656AE14C4BFD6003552F9 /* RevealInFinder.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569614C4BFD6003552F9 /* RevealInFinder.png */; };
+		F4D656AF14C4BFD6003552F9 /* RevealInFinder_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569714C4BFD6003552F9 /* RevealInFinder_Pressed.png */; };
+		F4D656B014C4BFD6003552F9 /* AppleScript.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569914C4BFD6003552F9 /* AppleScript.png */; };
+		F4D656B114C4BFD6003552F9 /* Bash.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569A14C4BFD6003552F9 /* Bash.png */; };
+		F4D656B214C4BFD6003552F9 /* Env.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569B14C4BFD6003552F9 /* Env.png */; };
+		F4D656B314C4BFD6003552F9 /* Expect.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569C14C4BFD6003552F9 /* Expect.png */; };
+		F4D656B414C4BFD6003552F9 /* Perl.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569D14C4BFD6003552F9 /* Perl.png */; };
+		F4D656B514C4BFD6003552F9 /* Perl2.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569E14C4BFD6003552F9 /* Perl2.png */; };
+		F4D656B614C4BFD6003552F9 /* PHP.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569F14C4BFD6003552F9 /* PHP.png */; };
+		F4D656B714C4BFD6003552F9 /* Python.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D656A014C4BFD6003552F9 /* Python.png */; };
+		F4D656B814C4BFD6003552F9 /* Ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D656A114C4BFD6003552F9 /* Ruby.png */; };
+		F4D656B914C4BFD6003552F9 /* Shell.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D656A214C4BFD6003552F9 /* Shell.png */; };
+		F4D656BA14C4BFD6003552F9 /* Tcl.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D656A314C4BFD6003552F9 /* Tcl.png */; };
+		F4D656BB14C4BFD6003552F9 /* Tcsh.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D656A414C4BFD6003552F9 /* Tcsh.png */; };
+		F4D656BC14C4BFD6003552F9 /* Zsh.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D656A514C4BFD6003552F9 /* Zsh.png */; };
 		F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074711F629930043764E /* InstallCommandLineTool.sh */; };
 		F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074911F629930043764E /* UninstallCommandLineTool.sh */; };
 		F4DC075111F629A40043764E /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074E11F629A40043764E /* License.txt */; };
@@ -80,8 +83,6 @@
 		F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F4E1F71111F75A7F007EE2E3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F4ED1E470CEC17920006636F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4ED1E460CEC17920006636F /* Carbon.framework */; };
-		F4FE6D9014B95661006A6810 /* Edit_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FE6D8E14B95661006A6810 /* Edit_Pressed.png */; };
-		F4FE6D9114B95661006A6810 /* Edit.png in Resources */ = {isa = PBXBuildFile; fileRef = F4FE6D8F14B95661006A6810 /* Edit.png */; };
 		F4FE735F11F7925E005FC23A /* FileTypesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734711F7925E005FC23A /* FileTypesController.m */; };
 		F4FE736111F7925E005FC23A /* IconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734911F7925E005FC23A /* IconController.m */; };
 		F4FE736311F7925E005FC23A /* ParamsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734B11F7925E005FC23A /* ParamsController.m */; };
@@ -130,28 +131,8 @@
 		F40F755F13C266AE00197499 /* ShellCommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellCommandController.m; path = PlatypusApplication/ShellCommandController.m; sourceTree = "<group>"; };
 		F4185E5811FC57AB0027C8D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PlatypusApplication/Info.plist; sourceTree = "<group>"; };
 		F418A18614BA06E100C75BAD /* platypus_clt */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = platypus_clt; path = build/Platypus/Build/Products/Development/platypus_clt; sourceTree = "<group>"; };
-		F418A18914BA0EA900C75BAD /* Shell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Shell.png; sourceTree = "<group>"; };
-		F418A18A14BA0EA900C75BAD /* AppleScript.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppleScript.png; sourceTree = "<group>"; };
-		F418A18B14BA0EA900C75BAD /* Perl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Perl.png; sourceTree = "<group>"; };
-		F418A18C14BA0EAA00C75BAD /* Ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ruby.png; sourceTree = "<group>"; };
-		F418A19114BA0F2600C75BAD /* Bash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bash.png; sourceTree = "<group>"; };
-		F418A19214BA0F2600C75BAD /* Zsh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Zsh.png; sourceTree = "<group>"; };
-		F418A19314BA0F2600C75BAD /* Tcsh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tcsh.png; sourceTree = "<group>"; };
-		F418A19714BA149000C75BAD /* Python.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Python.png; sourceTree = "<group>"; };
-		F418A19914BA1DDF00C75BAD /* PHP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PHP.png; sourceTree = "<group>"; };
-		F418A19B14BA21B600C75BAD /* Env.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Env.png; sourceTree = "<group>"; };
-		F418A19D14BA230B00C75BAD /* Tcl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tcl.png; sourceTree = "<group>"; };
-		F418A19F14BA243400C75BAD /* Expect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Expect.png; sourceTree = "<group>"; };
 		F4263A2E14B7E2AC000A1A68 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Platypus/Build/Products/Development/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 		F42C982B14BB55820094CC8D /* platypus.man.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = platypus.man.pdf; path = CommandLineTool/platypus.man.pdf; sourceTree = "<group>"; };
-		F446379E14B6737F00ECF827 /* Add_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add_Pressed.png; sourceTree = "<group>"; };
-		F446379F14B6737F00ECF827 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
-		F44637A014B6737F00ECF827 /* Clear_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear_Pressed.png; sourceTree = "<group>"; };
-		F44637A114B6737F00ECF827 /* Clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear.png; sourceTree = "<group>"; };
-		F44637A214B6737F00ECF827 /* Remove_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Remove_Pressed.png; sourceTree = "<group>"; };
-		F44637A314B6737F00ECF827 /* Remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Remove.png; sourceTree = "<group>"; };
-		F44637A414B6737F00ECF827 /* RevealInFinder_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RevealInFinder_Pressed.png; sourceTree = "<group>"; };
-		F44637A514B6737F00ECF827 /* RevealInFinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RevealInFinder.png; sourceTree = "<group>"; };
 		F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlatypusStatusMenuIcon.png; sourceTree = "<group>"; };
 		F44E006812298B7200CAC9C2 /* PlatypusCube.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusCube.icns; sourceTree = "<group>"; };
 		F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusDefault.icns; sourceTree = "<group>"; };
@@ -195,6 +176,29 @@
 		F4C8B457124C450C00397392 /* Editor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Editor.xib; path = PlatypusApplication/Editor.xib; sourceTree = "<group>"; };
 		F4C8B458124C450C00397392 /* ShellCommandWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShellCommandWindow.xib; path = PlatypusApplication/ShellCommandWindow.xib; sourceTree = "<group>"; };
 		F4C8B459124C450C00397392 /* SyntaxChecker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SyntaxChecker.xib; path = PlatypusApplication/SyntaxChecker.xib; sourceTree = "<group>"; };
+		F4D6568E14C4BFD6003552F9 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
+		F4D6568F14C4BFD6003552F9 /* Add_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add_Pressed.png; sourceTree = "<group>"; };
+		F4D6569014C4BFD6003552F9 /* Clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear.png; sourceTree = "<group>"; };
+		F4D6569114C4BFD6003552F9 /* Clear_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear_Pressed.png; sourceTree = "<group>"; };
+		F4D6569214C4BFD6003552F9 /* Edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit.png; sourceTree = "<group>"; };
+		F4D6569314C4BFD6003552F9 /* Edit_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit_Pressed.png; sourceTree = "<group>"; };
+		F4D6569414C4BFD6003552F9 /* Remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Remove.png; sourceTree = "<group>"; };
+		F4D6569514C4BFD6003552F9 /* Remove_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Remove_Pressed.png; sourceTree = "<group>"; };
+		F4D6569614C4BFD6003552F9 /* RevealInFinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RevealInFinder.png; sourceTree = "<group>"; };
+		F4D6569714C4BFD6003552F9 /* RevealInFinder_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RevealInFinder_Pressed.png; sourceTree = "<group>"; };
+		F4D6569914C4BFD6003552F9 /* AppleScript.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppleScript.png; sourceTree = "<group>"; };
+		F4D6569A14C4BFD6003552F9 /* Bash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bash.png; sourceTree = "<group>"; };
+		F4D6569B14C4BFD6003552F9 /* Env.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Env.png; sourceTree = "<group>"; };
+		F4D6569C14C4BFD6003552F9 /* Expect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Expect.png; sourceTree = "<group>"; };
+		F4D6569D14C4BFD6003552F9 /* Perl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Perl.png; sourceTree = "<group>"; };
+		F4D6569E14C4BFD6003552F9 /* Perl2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Perl2.png; sourceTree = "<group>"; };
+		F4D6569F14C4BFD6003552F9 /* PHP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PHP.png; sourceTree = "<group>"; };
+		F4D656A014C4BFD6003552F9 /* Python.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Python.png; sourceTree = "<group>"; };
+		F4D656A114C4BFD6003552F9 /* Ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ruby.png; sourceTree = "<group>"; };
+		F4D656A214C4BFD6003552F9 /* Shell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Shell.png; sourceTree = "<group>"; };
+		F4D656A314C4BFD6003552F9 /* Tcl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tcl.png; sourceTree = "<group>"; };
+		F4D656A414C4BFD6003552F9 /* Tcsh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tcsh.png; sourceTree = "<group>"; };
+		F4D656A514C4BFD6003552F9 /* Zsh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Zsh.png; sourceTree = "<group>"; };
 		F4D6DBC513C50F3E0067B136 /* NOTES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES.txt; sourceTree = SOURCE_ROOT; };
 		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074911F629930043764E /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallCommandLineTool.sh; sourceTree = "<group>"; };
@@ -210,8 +214,6 @@
 		F4ECE1A111F77471000DB012 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = SOURCE_ROOT; };
 		F4ECE1B111F779CC000DB012 /* trim.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = trim.sh; sourceTree = "<group>"; };
 		F4ED1E460CEC17920006636F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		F4FE6D8E14B95661006A6810 /* Edit_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit_Pressed.png; sourceTree = "<group>"; };
-		F4FE6D8F14B95661006A6810 /* Edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit.png; sourceTree = "<group>"; };
 		F4FE734611F7925E005FC23A /* FileTypesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = FileTypesController.h; path = PlatypusApplication/FileTypesController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F4FE734711F7925E005FC23A /* FileTypesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = FileTypesController.m; path = PlatypusApplication/FileTypesController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F4FE734811F7925E005FC23A /* IconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = IconController.h; path = PlatypusApplication/IconController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -342,15 +344,15 @@
 				F418A18614BA06E100C75BAD /* platypus_clt */,
 				F42C982B14BB55820094CC8D /* platypus.man.pdf */,
 				F471ED21122DF2D6001F4761 /* Credits.html */,
+				F4185E5811FC57AB0027C8D7 /* Info.plist */,
 				F4C8B455124C450C00397392 /* Platypus.xib */,
 				F4C8B456124C450C00397392 /* Preferences.xib */,
 				F4C8B457124C450C00397392 /* Editor.xib */,
 				F4C8B458124C450C00397392 /* ShellCommandWindow.xib */,
 				F4C8B459124C450C00397392 /* SyntaxChecker.xib */,
-				F4185E5811FC57AB0027C8D7 /* Info.plist */,
 				F46EF84E13C3F36900E4C0E4 /* Examples */,
+				F4D6568C14C4BFD6003552F9 /* Images */,
 				F4DC074611F629930043764E /* CLT Install Scripts */,
-				F42003DC078FC1E1002746A1 /* UI Images */,
 				F4050E3305DAF44F00BE4CA5 /* Icons */,
 			);
 			name = Resources;
@@ -384,52 +386,6 @@
 				F4FE73A311F792EB005FC23A /* STPathTextField.m */,
 			);
 			name = STPathTextField;
-			sourceTree = "<group>";
-		};
-		F42003DC078FC1E1002746A1 /* UI Images */ = {
-			isa = PBXGroup;
-			children = (
-				F42C982E14BB5E8C0094CC8D /* Buttons */,
-				F42C982D14BB5E800094CC8D /* Interpreter Logos */,
-			);
-			name = "UI Images";
-			path = Images;
-			sourceTree = "<group>";
-		};
-		F42C982D14BB5E800094CC8D /* Interpreter Logos */ = {
-			isa = PBXGroup;
-			children = (
-				F418A18914BA0EA900C75BAD /* Shell.png */,
-				F418A19114BA0F2600C75BAD /* Bash.png */,
-				F418A19314BA0F2600C75BAD /* Tcsh.png */,
-				F418A19214BA0F2600C75BAD /* Zsh.png */,
-				F418A19B14BA21B600C75BAD /* Env.png */,
-				F418A18B14BA0EA900C75BAD /* Perl.png */,
-				F418A19714BA149000C75BAD /* Python.png */,
-				F418A18C14BA0EAA00C75BAD /* Ruby.png */,
-				F418A18A14BA0EA900C75BAD /* AppleScript.png */,
-				F418A19D14BA230B00C75BAD /* Tcl.png */,
-				F418A19F14BA243400C75BAD /* Expect.png */,
-				F418A19914BA1DDF00C75BAD /* PHP.png */,
-			);
-			name = "Interpreter Logos";
-			sourceTree = "<group>";
-		};
-		F42C982E14BB5E8C0094CC8D /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-				F446379E14B6737F00ECF827 /* Add_Pressed.png */,
-				F446379F14B6737F00ECF827 /* Add.png */,
-				F44637A014B6737F00ECF827 /* Clear_Pressed.png */,
-				F44637A114B6737F00ECF827 /* Clear.png */,
-				F4FE6D8E14B95661006A6810 /* Edit_Pressed.png */,
-				F4FE6D8F14B95661006A6810 /* Edit.png */,
-				F44637A214B6737F00ECF827 /* Remove_Pressed.png */,
-				F44637A314B6737F00ECF827 /* Remove.png */,
-				F44637A414B6737F00ECF827 /* RevealInFinder_Pressed.png */,
-				F44637A514B6737F00ECF827 /* RevealInFinder.png */,
-			);
-			name = Buttons;
 			sourceTree = "<group>";
 		};
 		F44587170FC386B500CD0C02 /* STPrivilegedTask */ = {
@@ -567,6 +523,52 @@
 				F4B5DE4014919FF500C43901 /* PlatypusUtility.m */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		F4D6568C14C4BFD6003552F9 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F4D6568D14C4BFD6003552F9 /* Buttons */,
+				F4D6569814C4BFD6003552F9 /* InterpreterIcons */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		F4D6568D14C4BFD6003552F9 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				F4D6568E14C4BFD6003552F9 /* Add.png */,
+				F4D6568F14C4BFD6003552F9 /* Add_Pressed.png */,
+				F4D6569014C4BFD6003552F9 /* Clear.png */,
+				F4D6569114C4BFD6003552F9 /* Clear_Pressed.png */,
+				F4D6569214C4BFD6003552F9 /* Edit.png */,
+				F4D6569314C4BFD6003552F9 /* Edit_Pressed.png */,
+				F4D6569414C4BFD6003552F9 /* Remove.png */,
+				F4D6569514C4BFD6003552F9 /* Remove_Pressed.png */,
+				F4D6569614C4BFD6003552F9 /* RevealInFinder.png */,
+				F4D6569714C4BFD6003552F9 /* RevealInFinder_Pressed.png */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		F4D6569814C4BFD6003552F9 /* InterpreterIcons */ = {
+			isa = PBXGroup;
+			children = (
+				F4D6569914C4BFD6003552F9 /* AppleScript.png */,
+				F4D6569A14C4BFD6003552F9 /* Bash.png */,
+				F4D6569B14C4BFD6003552F9 /* Env.png */,
+				F4D6569C14C4BFD6003552F9 /* Expect.png */,
+				F4D6569D14C4BFD6003552F9 /* Perl.png */,
+				F4D6569E14C4BFD6003552F9 /* Perl2.png */,
+				F4D6569F14C4BFD6003552F9 /* PHP.png */,
+				F4D656A014C4BFD6003552F9 /* Python.png */,
+				F4D656A114C4BFD6003552F9 /* Ruby.png */,
+				F4D656A214C4BFD6003552F9 /* Shell.png */,
+				F4D656A314C4BFD6003552F9 /* Tcl.png */,
+				F4D656A414C4BFD6003552F9 /* Tcsh.png */,
+				F4D656A514C4BFD6003552F9 /* Zsh.png */,
+			);
+			path = InterpreterIcons;
 			sourceTree = "<group>";
 		};
 		F4DC074611F629930043764E /* CLT Install Scripts */ = {
@@ -775,31 +777,32 @@
 				F4C8B45E124C450C00397392 /* SyntaxChecker.xib in Resources */,
 				F46EF85113C3F36900E4C0E4 /* Examples in Resources */,
 				F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */,
-				F44637A614B6737F00ECF827 /* Add_Pressed.png in Resources */,
-				F44637A714B6737F00ECF827 /* Add.png in Resources */,
-				F44637A814B6737F00ECF827 /* Clear_Pressed.png in Resources */,
-				F44637A914B6737F00ECF827 /* Clear.png in Resources */,
-				F44637AA14B6737F00ECF827 /* Remove_Pressed.png in Resources */,
-				F44637AB14B6737F00ECF827 /* Remove.png in Resources */,
-				F44637AC14B6737F00ECF827 /* RevealInFinder_Pressed.png in Resources */,
-				F44637AD14B6737F00ECF827 /* RevealInFinder.png in Resources */,
 				F4263A2F14B7E2AC000A1A68 /* ScriptExec in Resources */,
-				F4FE6D9014B95661006A6810 /* Edit_Pressed.png in Resources */,
-				F4FE6D9114B95661006A6810 /* Edit.png in Resources */,
 				F418A18714BA06E100C75BAD /* platypus_clt in Resources */,
-				F418A18D14BA0EAA00C75BAD /* Shell.png in Resources */,
-				F418A18E14BA0EAA00C75BAD /* AppleScript.png in Resources */,
-				F418A18F14BA0EAA00C75BAD /* Perl.png in Resources */,
-				F418A19014BA0EAA00C75BAD /* Ruby.png in Resources */,
-				F418A19414BA0F2600C75BAD /* Bash.png in Resources */,
-				F418A19514BA0F2600C75BAD /* Zsh.png in Resources */,
-				F418A19614BA0F2600C75BAD /* Tcsh.png in Resources */,
-				F418A19814BA149000C75BAD /* Python.png in Resources */,
-				F418A19A14BA1DDF00C75BAD /* PHP.png in Resources */,
-				F418A19C14BA21B600C75BAD /* Env.png in Resources */,
-				F418A19E14BA230B00C75BAD /* Tcl.png in Resources */,
-				F418A1A014BA243400C75BAD /* Expect.png in Resources */,
 				F42C982C14BB55820094CC8D /* platypus.man.pdf in Resources */,
+				F4D656A614C4BFD6003552F9 /* Add.png in Resources */,
+				F4D656A714C4BFD6003552F9 /* Add_Pressed.png in Resources */,
+				F4D656A814C4BFD6003552F9 /* Clear.png in Resources */,
+				F4D656A914C4BFD6003552F9 /* Clear_Pressed.png in Resources */,
+				F4D656AA14C4BFD6003552F9 /* Edit.png in Resources */,
+				F4D656AB14C4BFD6003552F9 /* Edit_Pressed.png in Resources */,
+				F4D656AC14C4BFD6003552F9 /* Remove.png in Resources */,
+				F4D656AD14C4BFD6003552F9 /* Remove_Pressed.png in Resources */,
+				F4D656AE14C4BFD6003552F9 /* RevealInFinder.png in Resources */,
+				F4D656AF14C4BFD6003552F9 /* RevealInFinder_Pressed.png in Resources */,
+				F4D656B014C4BFD6003552F9 /* AppleScript.png in Resources */,
+				F4D656B114C4BFD6003552F9 /* Bash.png in Resources */,
+				F4D656B214C4BFD6003552F9 /* Env.png in Resources */,
+				F4D656B314C4BFD6003552F9 /* Expect.png in Resources */,
+				F4D656B414C4BFD6003552F9 /* Perl.png in Resources */,
+				F4D656B514C4BFD6003552F9 /* Perl2.png in Resources */,
+				F4D656B614C4BFD6003552F9 /* PHP.png in Resources */,
+				F4D656B714C4BFD6003552F9 /* Python.png in Resources */,
+				F4D656B814C4BFD6003552F9 /* Ruby.png in Resources */,
+				F4D656B914C4BFD6003552F9 /* Shell.png in Resources */,
+				F4D656BA14C4BFD6003552F9 /* Tcl.png in Resources */,
+				F4D656BB14C4BFD6003552F9 /* Tcsh.png in Resources */,
+				F4D656BC14C4BFD6003552F9 /* Zsh.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
