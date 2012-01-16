@@ -32,6 +32,7 @@
 }
 - (IBAction)copyIcon:(id)sender;
 - (IBAction)pasteIcon:(id)sender;
+- (IBAction)revealIconInFinder:(id)sender;
 - (void)updateIcnsStatus;
 - (IBAction)contentsWereAltered:(id)sender;
 - (IBAction)nextIcon:(id)sender;

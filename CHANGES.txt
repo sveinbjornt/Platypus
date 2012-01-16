@@ -9,14 +9,15 @@ For 4.7
     TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
 
 For 4.6
-    * "Open" menu item in File menu for Platypus-generated apps that accept dropped files
-    * It is now possible to save output to a text or HTML file within Platypus-generated apps
+    * "Open" and "Save" menu item option for Platypus-created apps
+    * Applications can now be set as Services for text or file handling via Services menu
+    * Configurable document icon for Platypus apps which handle certain file types
     * New option to set custom arguments for script, under "Args" (previously "Params")
     * Command line tool now supports dumping profile property lists to stdout (see man page)
     * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
     * Additional interpreter presets: zsh and tcsh
     * Extended documentation
-    * New "Edit file" button for Bundled Files List.
+    * New "Edit" button and contextual menu item for Bundled Files List.
     * New FastDMGMounter example
     * Minor interface refinements
     * Migrated all images to optimized PNGs for smaller file sizes
@@ -27,6 +28,7 @@ For 4.6
     * Changed "New Script" preset contents to be a "Hello, World" example
     * Fixed bug with contextual menus in Arguments window
     
+
     TODO:  AcceptsText, AcceptsFiles needs to be in command line tool
     TODO:  Finish implementing service functionality in Platypus app, command line tool and AppSpec class
             * Make new screenshot of drop settings window
