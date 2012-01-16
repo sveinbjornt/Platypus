@@ -2296,7 +2296,7 @@
 			</array>
 		</dict>
 		<string>NSAppleScriptEnabled</string>
-		<string>{{0, 2}, {1130, 448}}</string>
+		<string>{{0, 0}, {1145, 763}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -12501,7 +12501,7 @@
 		<string>IDESCMStatusFilteringEnabled</string>
 		<string>IDESelectedObjects</string>
 		<string>IDEExpandedItemsSet</string>
-		<string>{{0, 786}, {222, 758}}</string>
+		<string>{{0, 781}, {222, 758}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -13116,7 +13116,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>16</integer>
+					<integer>411</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -13529,7 +13529,7 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 2}, {1130, 448}}</string>
+		<string>{{0, 0}, {1145, 763}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -13700,7 +13700,7 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 0}, {1145, 487}}</string>
+		<string>{{0, 0}, {1145, 802}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
