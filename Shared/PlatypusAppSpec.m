@@ -567,8 +567,12 @@
 		checkboxParamStr = [checkboxParamStr stringByAppendingString: @"A"];
 	if ([[properties objectForKey: @"Secure"] boolValue])
 		checkboxParamStr = [checkboxParamStr stringByAppendingString: @"S"];
-	if ([[properties objectForKey: @"Droppable"] boolValue])
+	if ([[properties objectForKey: @"Droppable"] boolValue] && [[properties objectForKey: @"AcceptsFiles"] boolValue])
 		checkboxParamStr = [checkboxParamStr stringByAppendingString: @"D"];
+    if ([[properties objectForKey: @"Droppable"] boolValue] && [[properties objectForKey: @"AcceptsText"] boolValue])
+		checkboxParamStr = [checkboxParamStr stringByAppendingString: @"F"];
+    if ([[properties objectForKey: @"Droppable"] boolValue] && [[properties objectForKey: @"DeclareService"] boolValue])
+		checkboxParamStr = [checkboxParamStr stringByAppendingString: @"N"];
 	if ([[properties objectForKey: @"ShowInDock"] boolValue])
 		checkboxParamStr = [checkboxParamStr stringByAppendingString: @"B"];
 	if (![[properties objectForKey: @"RemainRunning"] boolValue])
