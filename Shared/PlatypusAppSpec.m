@@ -645,7 +645,10 @@
 	//create custom icon string
 	if (![[properties objectForKey: @"IconPath"] isEqualToString: CMDLINE_ICON_PATH] && ![[properties objectForKey: @"IconPath"] isEqualToString: @""])
 		iconParamStr = [NSString stringWithFormat: @" -i '%@' ", [properties objectForKey: @"IconPath"]];
-	
+    //create custom icon string
+	if ([properties objectForKey: @"DocIcon"] && ![[properties objectForKey: @"DocIcon"] isEqualToString: @""])
+		iconParamStr = [iconParamStr stringByAppendingFormat: @" -Q '%@' ", [properties objectForKey: @"DocIcon"]];
+    
 	//status menu settings, if output mode is status menu
 	if ([[properties objectForKey: @"Output"] isEqualToString: @"Status Menu"])
 	{
