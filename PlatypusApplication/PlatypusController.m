@@ -110,7 +110,7 @@
 //    }
     
 	//show window
-	[window center];
+    [window center];
 	[window makeKeyAndOrderFront: self];
 }
 

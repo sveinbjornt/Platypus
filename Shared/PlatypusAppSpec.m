@@ -67,7 +67,7 @@
 	return self;
 }
 
--(PlatypusAppSpec *)initFromFile: (NSString *)filePath
+-(PlatypusAppSpec *)initWithProfile: (NSString *)filePath
 {
 	return [self initWithDictionary: [NSMutableDictionary dictionaryWithContentsOfFile: filePath]];
 }
@@ -84,7 +84,7 @@
 
 +(PlatypusAppSpec *)specFromProfile: (NSString *)filePath
 {
-	return [[[PlatypusAppSpec alloc] initFromFile: filePath] autorelease];
+	return [[[PlatypusAppSpec alloc] initWithProfile: filePath] autorelease];
 }
 
 +(PlatypusAppSpec *)specWithDefaultsFromScript: (NSString *)scriptPath
@@ -358,14 +358,14 @@
 	
 	//create icon
 	//.app/Contents/Resources/appIcon.icns
-    if (![[properties objectForKey: @"IconPath"] isEqualToString: @""])
+    if ([properties objectForKey: @"IconPath"] && ![[properties objectForKey: @"IconPath"] isEqualToString: @""])
     {
         [self report: @"Writing application icon"];
         iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
         [fileManager copyPath: [properties objectForKey: @"IconPath"] toPath: iconPath handler: NULL];
     }
     
-    if (![[properties objectForKey: @"DocIcon"] isEqualToString: @""])
+    if ([properties objectForKey: @"DocIcon"] && ![[properties objectForKey: @"DocIcon"] isEqualToString: @""])
     {
         [self report: @"Writing document icon"];
         docIconPath = [resourcesPath stringByAppendingString:@"/docIcon.icns"];
@@ -402,7 +402,7 @@
 						[properties objectForKey: @"Role"], @"CFBundleTypeRole", nil];//viewer or editor?
         
         // document icon
-        if ([fileManager fileExistsAtPath: docIconPath])
+        if (docIconPath && [fileManager fileExistsAtPath: docIconPath])
             [typesAndSuffixesDict setObject: @"docIcon.icns" forKey: @"CFBundleTypeIconFile"];
         
         [infoPlist setObject: [NSArray arrayWithObject: typesAndSuffixesDict] forKey: @"CFBundleDocumentTypes"];
@@ -478,6 +478,11 @@
 		error = @"Failed to create application at the specified destination";
 		return 0;
 	}
+    if ([[properties objectForKey: @"DeclareService"] boolValue])
+    {
+        [self report: @"Updating Dynamic Services"];
+        NSUpdateDynamicServices();
+    }
     
     [self report: @"Done"];
 
