@@ -63,10 +63,7 @@
 	IBOutlet id createAppButton;
 	IBOutlet id textOutputSettingsButton;
 	IBOutlet id statusItemSettingsButton;
-    
-    IBOutlet id showAdvancedArrow;
-	IBOutlet id showOptionsTextField;
-	
+    	
 	//advanced options controls
 	IBOutlet id interpreterTextField;
 	IBOutlet id versionTextField;
@@ -80,7 +77,6 @@
 	IBOutlet id remainRunningCheckbox;
 	
 	IBOutlet id editTypesButton;
-	IBOutlet id toggleAdvancedMenuItem;
 	
 	IBOutlet id appSizeTextField;
 	
@@ -88,6 +84,7 @@
 	IBOutlet id debugSaveOptionView;
 	IBOutlet id developmentVersionCheckbox;
 	IBOutlet id optimizeApplicationCheckbox;
+    IBOutlet id xmlPlistFormatCheckbox;
 				
 	//windows
 	IBOutlet id window;
@@ -98,7 +95,6 @@
 	IBOutlet id progressDialogMessageLabel;
     IBOutlet id progressDialogStatusLabel;
     
-	
 	// interface controllers
 	IBOutlet id iconControl;
 	IBOutlet id typesControl;
