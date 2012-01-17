@@ -117,7 +117,8 @@
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"DestinationOverride"];
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"DevelopmentVersion"];
 	[properties setValue: [NSNumber numberWithBool: YES]								forKey: @"OptimizeApplication"];
-	
+	[properties setValue: [NSNumber numberWithBool: YES]								forKey: @"UseXMLPlistFormat"];
+    
 	// primary attributes	
 	[properties setObject: DEFAULT_APP_NAME												forKey: @"Name"];
 	[properties setObject: @""															forKey: @"ScriptPath"];

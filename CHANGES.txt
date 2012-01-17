@@ -33,6 +33,7 @@ For 4.6
     
     TODO:  Update man page w. new options for command line tool
     TODO:  Test the new droppable stuff, both in app and clt
+    TODO:  Binary property lists option in Save Panel
 
 For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later

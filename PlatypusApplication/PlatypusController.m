@@ -357,7 +357,8 @@
 	[spec setProperty: [[NSBundle mainBundle] pathForResource: @"ScriptExec" ofType: NULL] forKey: @"ExecutablePath"];
 	[spec setProperty: [[NSBundle mainBundle] pathForResource: @"MainMenu.nib" ofType: NULL] forKey: @"NibPath"];
 	[spec setProperty: [NSNumber numberWithBool: [developmentVersionCheckbox intValue]] forKey: @"DevelopmentVersion"];
-	[spec setProperty: [NSNumber numberWithBool: [optimizeApplicationCheckbox intValue]] forKey: @"OptimizeApplication"];	
+	[spec setProperty: [NSNumber numberWithBool: [optimizeApplicationCheckbox intValue]] forKey: @"OptimizeApplication"];
+	[spec setProperty: [NSNumber numberWithBool: [xmlPlistFormatCheckbox intValue]] forKey: @"UseXMLPlistFormat"];
 	if (overwrite) 
 		[spec setProperty: [NSNumber numberWithBool: YES] forKey: @"DestinationOverride"];
 	
