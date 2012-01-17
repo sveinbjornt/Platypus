@@ -81,7 +81,7 @@
         <strong>Advanced Options</strong>
         <ul>
             <li><a href="#41">Editing File Types and Suffixes</a></li>
-            <li><a href="#42">Development Version</a></li>
+            <li><a href="#42">Build-Time Options</a></li>
             <li><a href="#43">Built-In Editor</a></li>
             <li><a href="#44">Syntax Checking</a></li>
             <li><a href="#45">Show Shell Command</a></li>
@@ -382,15 +382,16 @@ results, use professional Mac OS X icon-editing software and specify a carefully
 <br><br>
 
 <a name="42"></a>
-<h3>Development Versions</h3>
+<h3>Build-Time Options</h3>
 
-<p>Platypus allows you to create development versions of your script application.  Usually, Platypus will copy your script and any bunudled files into the application it creates.  If this option is selected in the "Create app" dialog, a symlink to the original script and bundled files is created instead.  This allows you to work on your script while testing it as a Platypus-app.  For obvious reasons, this option is not compatible with the "Secure bundled script" option.</p>
+<p>Platypus allows you to <strong>create development versions</strong> of your script application.  Ordinarily, Platypus will copy your script and any bundled files into the application it creates.  If this option is selected in the "Create app" dialog, a symlink to the original script and bundled files is created instead.  This allows you to work on your script while testing it as a Platypus-app.  For obvious reasons, this option is not compatible with the "Secure bundled script" option.</p>
 
-<img src="images/createoptions.jpg" width="334" height="113">
+<img src="images/createoptions.png">
 
 <p>Another option, <strong>Optimize Application</strong>, will strip and compile the nib file in the generated application in order to reduce its size. This will result in the application's nib being uneditable.  This option is only available if you have Apple's Developer Tools installed.</p>
 
-
+<p>The third option, <strong>Use XML property lists instead of binary</strong>, will create human-readable and human-editable XML property lists in the application bundle.  XML property lists are slower and use up more space, but can be edited with a text editor, whereas binary property lists can only be edited with the Property List Editor application that comes with the Mac OS X Development tools.</p>
+    
 <br>
 <br>
 
@@ -425,7 +426,7 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></p>
 
 <p>Platypus includes a <strong>command line tool</strong> equivalent to the Platypus.app application, which can be installed into <code>/usr/local/bin/platypus</code> via Platypus Preferences.  The man page for this tool is available from the Help menu and via the command <code>man platypus</code>.</p>
 
-<p>Uder the <strong>Advanced</strong> menu there is a menu command called <strong>Show Shell Command</strong>. Selecting this item will bring down a sheet with a text field containing a command line command for executing the platypus command line with the options you selected in the graphical interface. This can be helpful if you have the command line tool installed and wish to automate the creation of script apps.</p>
+<p>Under the <strong>Advanced</strong> menu there is a menu command called <strong>Show Shell Command</strong>. Selecting this item will bring down a sheet with a text field containing a command line command for executing the platypus command line with the options you selected in the graphical interface. This can be helpful if you have the command line tool installed and wish to automate the creation of script apps.</p>
 
 <p>Please note that Platypus.app is <em>not</em> merely a GUI frontend for the command line tool and, depending on the current state of Platypus development, the command line tool may or may not have feature parity with the GUI application.</p>
 
@@ -452,7 +453,7 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></p>
 <br>
 <br>
 
-<p>You can set Platypus to reveal the app in the Finder on creation, or launch it immediately.   You can also set Platypus to automatically create an app from the script whenever the text file is changed/saved.  This makes for a pretty efficient development process.</p>
+<p>You can set Platypus to reveal the app in the Finder on creation, or launch it immediately.   You can also set Platypus to automatically create an app from the script whenever the selected script file is changed and saved.  This makes for a pretty efficient development process.</p>
 
 <hr>
 <br>
