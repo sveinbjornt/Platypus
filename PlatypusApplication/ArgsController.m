@@ -75,6 +75,7 @@
 {
 	[interpreterArgs addObject: DEFAULT_ARG_VALUE];
 	[interpreterArgsTableView reloadData];
+    [window makeFirstResponder: interpreterArgsTableView];
 	[interpreterArgsTableView selectRowIndexes: [NSIndexSet indexSetWithIndex: [interpreterArgs count]-1] byExtendingSelection: NO];
 	[self tableViewSelectionDidChange: NULL];
 	[paramsCommandTextField setStringValue: [self constructCommandString]];
@@ -160,16 +161,16 @@
 	[paramsCommandTextField setStringValue: [self constructCommandString]];
 	
 	//open window
-	[NSApp beginSheet:	paramsWindow
+	[NSApp beginSheet:	argsWindow
 						modalForWindow: window 
 						modalDelegate:nil
 						didEndSelector:nil
 						contextInfo:nil];
 
-	 [NSApp runModalForWindow: paramsWindow];
+	 [NSApp runModalForWindow: argsWindow];
 	 
-	 [NSApp endSheet:paramsWindow];
-     [paramsWindow orderOut:self];
+	 [NSApp endSheet:argsWindow];
+     [argsWindow orderOut:self];
 }
 
 - (NSString *)constructCommandString

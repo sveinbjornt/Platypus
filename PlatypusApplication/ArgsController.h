@@ -22,8 +22,8 @@
 
 @interface ArgsController : NSObject 
 {
-    IBOutlet id paramsWindow;
-    IBOutlet id paramsCommandTextField;
+    IBOutlet id argsWindow;
+    IBOutlet id commandTextField;
     IBOutlet id interpreterTextField;
     
     IBOutlet id interpreterArgsAddButton;
