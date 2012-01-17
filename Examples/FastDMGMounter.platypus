@@ -10,6 +10,8 @@
 	<string>Sveinbjorn Thordarson</string>
 	<key>BundledFiles</key>
 	<array/>
+    <key>DocIcon</key>
+    <string>/System/Library/CoreServices/DiskImageMounter.app/Contents/Resources/diskcopy-doc.icns</string>
 	<key>Creator</key>
 	<string>Platypus-4.5</string>
 	<key>Destination</key>
