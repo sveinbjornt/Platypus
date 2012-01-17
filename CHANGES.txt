@@ -14,23 +14,24 @@ For 4.6
     * Configurable document icon for Platypus apps
     * New option to set custom arguments for script, under "Args" (previously "Params")
     * Command line tool now supports dumping profile property lists to stdout (see man page)
-    * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
     * Additional interpreter presets: zsh and tcsh
     * Extended documentation
     * New "Edit" button and contextual menu item for Bundled Files List.
     * New FastDMGMounter example
+    * Status Bar apps now gracefully remove status bar item before exiting
+    * Removed app path as first arg option, it's unnecessary and confusing. App path == $CWD/../..
     * Minor interface refinements
     * Migrated all images to optimized PNGs for smaller file sizes
-    * Script path text field tab autocomplete now working again
-    * Fixed crash bug when editing file in Bundled Files list using built-in editor.
-    * Removed app path as first arg option, it's unnecessary and confusing. App path == $CWD/../..
-    * Fixed bug where text font settings would not be applied
     * Changed "New Script" preset contents to be a "Hello, World" example
+    * Fixed bug with script path text field tab autocomplete
+    * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
+    * Fixed bug which caused crash when editing file in Bundled Files list using built-in editor.
+    * Fixed bug where text font settings would not be applied
     * Fixed bug with contextual menus in Arguments window
-    * Fixed bug where custom image data icons failed to be created
-    * Fixed bug where "Icon" display mode status item would display a title
-    * Status Bar apps now gracefully remove status bar item before exiting
-
+    * Fixed bug where custom image data application icons failed to be created
+    * Fixed bug where "Icon" display mode status item would erroneously display a default title
+    
+    TODO:  Update man page w. new options for command line tool
     TODO:  Test the new droppable stuff, both in app and clt
 
 For 4.5
