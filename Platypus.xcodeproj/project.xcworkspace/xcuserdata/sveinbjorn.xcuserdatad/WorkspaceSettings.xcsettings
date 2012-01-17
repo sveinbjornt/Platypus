@@ -15,7 +15,7 @@
 	<key>IDEWorkspaceUserSettings_LiveSourceIssuesEnabled</key>
 	<true/>
 	<key>IDEWorkspaceUserSettings_SnapshotAutomaticallyBeforeSignificantChanges</key>
-	<true/>
+	<false/>
 	<key>IDEWorkspaceUserSettings_SnapshotLocationStyle</key>
 	<integer>0</integer>
 </dict>

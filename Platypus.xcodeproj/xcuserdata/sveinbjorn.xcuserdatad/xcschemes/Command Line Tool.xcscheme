@@ -72,6 +72,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Deployment"
+      customArchiveName = "platypus_clt"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

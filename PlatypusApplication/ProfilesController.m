@@ -44,7 +44,7 @@
 
 - (void)loadProfileFile: (NSString *)file
 {	
-	PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initFromFile: file];
+	PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithProfile: file];
     
 	// make sure we got a spec from the file
 	if (spec == NULL)
