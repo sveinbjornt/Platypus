@@ -75,10 +75,10 @@
 {
 	[interpreterArgs addObject: DEFAULT_ARG_VALUE];
 	[interpreterArgsTableView reloadData];
-    [window makeFirstResponder: interpreterArgsTableView];
 	[interpreterArgsTableView selectRowIndexes: [NSIndexSet indexSetWithIndex: [interpreterArgs count]-1] byExtendingSelection: NO];
 	[self tableViewSelectionDidChange: NULL];
-	[paramsCommandTextField setStringValue: [self constructCommandString]];
+	[commandTextField setStringValue: [self constructCommandString]];
+    [argsWindow makeFirstResponder: interpreterArgsTableView];
 }
 
 - (IBAction)addScriptArg:(id)sender
@@ -87,14 +87,16 @@
 	[scriptArgsTableView reloadData];
 	[scriptArgsTableView selectRowIndexes: [NSIndexSet indexSetWithIndex: [scriptArgs count]-1] byExtendingSelection: NO];
 	[self tableViewSelectionDidChange: NULL];
-	[paramsCommandTextField setStringValue: [self constructCommandString]];
+	[commandTextField setStringValue: [self constructCommandString]];
+    [argsWindow makeFirstResponder: scriptArgsTableView];
 }
 - (IBAction)clearInterpreterArgs:(id)sender
 {
 	[interpreterArgs removeAllObjects];
 	[interpreterArgsTableView reloadData];
 	[self tableViewSelectionDidChange: NULL];
-	[paramsCommandTextField setStringValue: [self constructCommandString]];   
+	[commandTextField setStringValue: [self constructCommandString]];
+    [argsWindow makeFirstResponder: interpreterArgsTableView];
 }
 
 - (IBAction)clearScriptArgs:(id)sender
@@ -102,7 +104,8 @@
     [scriptArgs removeAllObjects];
 	[scriptArgsTableView reloadData];
 	[self tableViewSelectionDidChange: NULL];
-	[paramsCommandTextField setStringValue: [self constructCommandString]];   
+	[commandTextField setStringValue: [self constructCommandString]];
+    [argsWindow makeFirstResponder: scriptArgsTableView];
 }
 
 - (IBAction)removeInterpreterArg:(id)sender
@@ -124,7 +127,8 @@
 	[interpreterArgsTableView reloadData];
 	[self tableViewSelectionDidChange: NULL];
 
-	[paramsCommandTextField setStringValue: [self constructCommandString]];
+	[commandTextField setStringValue: [self constructCommandString]];
+    [argsWindow makeFirstResponder: interpreterArgsTableView];
 }
 
 - (IBAction)removeScriptArg:(id)sender
@@ -145,20 +149,20 @@
 	
 	[scriptArgsTableView reloadData];
 	[self tableViewSelectionDidChange: NULL];
-
+    [argsWindow makeFirstResponder: scriptArgsTableView];
 }
 
 - (IBAction)resetDefaults:(id)sender
 {
-	[self clearInterpreterArgs: self];
     [self clearScriptArgs: self];
+    [self clearInterpreterArgs: self];
 }
 
 - (IBAction)show:(id)sender 
 {
 	[window setTitle: [NSString stringWithFormat: @"%@ - Edit Arguments", PROGRAM_NAME]];
 	
-	[paramsCommandTextField setStringValue: [self constructCommandString]];
+	[commandTextField setStringValue: [self constructCommandString]];
 	
 	//open window
 	[NSApp beginSheet:	argsWindow
@@ -228,7 +232,7 @@
 	if ([[aTableColumn identifier] caseInsensitiveCompare: @"1"] == NSOrderedSame)
 	{
         [args replaceObjectAtIndex: rowIndex withObject: anObject];
-		[paramsCommandTextField setStringValue: [self constructCommandString]];
+		[commandTextField setStringValue: [self constructCommandString]];
 	}
 }
 
@@ -255,7 +259,7 @@
 
 - (IBAction)appPathCheckboxClicked:(id)sender
 {	
-	[paramsCommandTextField setStringValue: [self constructCommandString]];
+	[commandTextField setStringValue: [self constructCommandString]];
 }
 
 
