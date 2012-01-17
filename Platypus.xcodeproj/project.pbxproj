@@ -85,7 +85,7 @@
 		F4ED1E470CEC17920006636F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4ED1E460CEC17920006636F /* Carbon.framework */; };
 		F4FE735F11F7925E005FC23A /* FileTypesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734711F7925E005FC23A /* FileTypesController.m */; };
 		F4FE736111F7925E005FC23A /* IconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734911F7925E005FC23A /* IconController.m */; };
-		F4FE736311F7925E005FC23A /* ParamsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734B11F7925E005FC23A /* ParamsController.m */; };
+		F4FE736311F7925E005FC23A /* ArgsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734B11F7925E005FC23A /* ArgsController.m */; };
 		F4FE736511F7925E005FC23A /* PlatypusController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734D11F7925E005FC23A /* PlatypusController.m */; };
 		F4FE736711F7925E005FC23A /* PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734F11F7925E005FC23A /* PrefsController.m */; };
 		F4FE736911F7925E005FC23A /* ProfilesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE735111F7925E005FC23A /* ProfilesController.m */; };
@@ -218,8 +218,8 @@
 		F4FE734711F7925E005FC23A /* FileTypesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = FileTypesController.m; path = PlatypusApplication/FileTypesController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F4FE734811F7925E005FC23A /* IconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = IconController.h; path = PlatypusApplication/IconController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F4FE734911F7925E005FC23A /* IconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = IconController.m; path = PlatypusApplication/IconController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		F4FE734A11F7925E005FC23A /* ParamsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = ParamsController.h; path = PlatypusApplication/ParamsController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		F4FE734B11F7925E005FC23A /* ParamsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParamsController.m; path = PlatypusApplication/ParamsController.m; sourceTree = "<group>"; };
+		F4FE734A11F7925E005FC23A /* ArgsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = ArgsController.h; path = PlatypusApplication/ArgsController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F4FE734B11F7925E005FC23A /* ArgsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArgsController.m; path = PlatypusApplication/ArgsController.m; sourceTree = "<group>"; };
 		F4FE734C11F7925E005FC23A /* PlatypusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusController.h; path = PlatypusApplication/PlatypusController.h; sourceTree = "<group>"; };
 		F4FE734D11F7925E005FC23A /* PlatypusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusController.m; path = PlatypusApplication/PlatypusController.m; sourceTree = "<group>"; };
 		F4FE734E11F7925E005FC23A /* PrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsController.h; path = PlatypusApplication/PrefsController.h; sourceTree = "<group>"; };
@@ -452,8 +452,8 @@
 				F4FE734711F7925E005FC23A /* FileTypesController.m */,
 				F4FE734811F7925E005FC23A /* IconController.h */,
 				F4FE734911F7925E005FC23A /* IconController.m */,
-				F4FE734A11F7925E005FC23A /* ParamsController.h */,
-				F4FE734B11F7925E005FC23A /* ParamsController.m */,
+				F4FE734A11F7925E005FC23A /* ArgsController.h */,
+				F4FE734B11F7925E005FC23A /* ArgsController.m */,
 				F4FE734E11F7925E005FC23A /* PrefsController.h */,
 				F4FE734F11F7925E005FC23A /* PrefsController.m */,
 				F4FE735011F7925E005FC23A /* ProfilesController.h */,
@@ -842,7 +842,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				F4FE735F11F7925E005FC23A /* FileTypesController.m in Sources */,
 				F4FE736111F7925E005FC23A /* IconController.m in Sources */,
-				F4FE736311F7925E005FC23A /* ParamsController.m in Sources */,
+				F4FE736311F7925E005FC23A /* ArgsController.m in Sources */,
 				F4FE736511F7925E005FC23A /* PlatypusController.m in Sources */,
 				F4FE736711F7925E005FC23A /* PrefsController.m in Sources */,
 				F4FE736911F7925E005FC23A /* ProfilesController.m in Sources */,

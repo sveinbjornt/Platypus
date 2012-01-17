@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ParamsController : NSObject 
+@interface ArgsController : NSObject 
 {
     IBOutlet id paramsWindow;
     IBOutlet id paramsCommandTextField;
