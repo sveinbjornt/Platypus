@@ -355,7 +355,16 @@
 		[appSettingsPlist setObject: [NSKeyedArchiver archivedDataWithRootObject: b_enc_script] forKey: @"TextSettings"];
 	
 	appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
-	[appSettingsPlist writeToFile: appSettingsPlistPath atomically: YES];
+    
+    if ([[properties objectForKey: @"UseXMLPlistFormat"] boolValue])
+    {
+        NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList: appSettingsPlist
+                                                                          format: NSPropertyListBinaryFormat_v1_0
+                                                                errorDescription: nil];
+        [binPlistData writeToFile: appSettingsPlistPath atomically: YES];
+    }
+    else
+        [appSettingsPlist writeToFile: appSettingsPlistPath atomically: YES];
 	
 	//create icon
 	//.app/Contents/Resources/appIcon.icns
@@ -431,7 +440,15 @@
 	}
     		
 	// finally, write the Info.plist file
-	[infoPlist writeToFile: infoPlistPath atomically: YES];
+    if ([[properties objectForKey: @"UseXMLPlistFormat"] boolValue]) // if binary
+    {
+        NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList: infoPlist
+                                                                          format: NSPropertyListBinaryFormat_v1_0
+                                                                errorDescription: nil];
+        [binPlistData writeToFile: infoPlistPath atomically: YES];
+    }
+    else
+        [infoPlist writeToFile: infoPlistPath atomically: YES]; // if xml
 			
 	//copy files in file list to the Resources folder
 	//.app/Contents/Resources/*
