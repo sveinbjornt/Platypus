@@ -30,7 +30,7 @@
 #import "ScriptAnalyser.h"
 
 #import "IconController.h"
-#import "ParamsController.h"
+#import "ArgsController.h"
 #import "ProfilesController.h"
 #import "PrefsController.h"
 #import "TextSettingsController.h"

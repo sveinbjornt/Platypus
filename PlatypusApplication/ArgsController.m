@@ -18,10 +18,10 @@
 
 */
 
-#import "ParamsController.h"
+#import "ArgsController.h"
 #import "Common.h"
 
-@implementation ParamsController
+@implementation ArgsController
 
 #define DEFAULT_ARG_VALUE		@"-arg"
 
