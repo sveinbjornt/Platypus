@@ -296,6 +296,9 @@
 	BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath: IBTOOL_PATH];
 	[optimizeApplicationCheckbox setEnabled: ibtoolInstalled];
 	[optimizeApplicationCheckbox setIntValue: ibtoolInstalled];
+    
+    // optimize application is enabled and on by default if ibtool is present
+	[xmlPlistFormatCheckbox setIntValue: NO];
 	
 	//run save panel
     [sPanel beginSheetForDirectory: nil file: [appNameTextField stringValue] modalForWindow: window modalDelegate: self didEndSelector: @selector(createConfirmed:returnCode:contextInfo:) contextInfo: nil];
