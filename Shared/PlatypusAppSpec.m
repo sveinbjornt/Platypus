@@ -117,7 +117,7 @@
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"DestinationOverride"];
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"DevelopmentVersion"];
 	[properties setValue: [NSNumber numberWithBool: YES]								forKey: @"OptimizeApplication"];
-	[properties setValue: [NSNumber numberWithBool: YES]								forKey: @"UseXMLPlistFormat"];
+	[properties setValue: [NSNumber numberWithBool: YES]                                 forKey: @"UseXMLPlistFormat"];
     
 	// primary attributes	
 	[properties setObject: DEFAULT_APP_NAME												forKey: @"Name"];
@@ -356,7 +356,7 @@
 	
 	appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
     
-    if ([[properties objectForKey: @"UseXMLPlistFormat"] boolValue])
+    if (![[properties objectForKey: @"UseXMLPlistFormat"] boolValue])
     {
         NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList: appSettingsPlist
                                                                           format: NSPropertyListBinaryFormat_v1_0
@@ -440,7 +440,7 @@
 	}
     		
 	// finally, write the Info.plist file
-    if ([[properties objectForKey: @"UseXMLPlistFormat"] boolValue]) // if binary
+    if (![[properties objectForKey: @"UseXMLPlistFormat"] boolValue]) // if binary
     {
         NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList: infoPlist
                                                                           format: NSPropertyListBinaryFormat_v1_0
