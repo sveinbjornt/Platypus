@@ -8,6 +8,7 @@ For 4.7
     TODO:  Support reading script from STDIN in command line tool
     TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO:  Implement binary plist format for profiles
+    TODO:  Incorporate use XML plist option for command line tool
 
 For 4.6
     * "Open" and "Save" menu item option for Platypus-created apps
@@ -34,7 +35,6 @@ For 4.6
     * Fixed bug where custom image data application icons failed to be created
     * Fixed bug where "Icon" display mode status item would erroneously display a default title
     
-    TODO:  Update man page w. new options for command line tool
     TODO:  Test the new droppable stuff, both in app and clt
 
 For 4.5

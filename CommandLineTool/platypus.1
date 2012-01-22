@@ -71,15 +71,18 @@ The application displays a window with a web view which renders script output as
 The application displays a status menu item in the menubar which runs the script and displays its output when 
 selected.
 .Pp
-The default output type is "Progress Bar".
-.Pp
 .Ar 'Droplet'
 The application displays a droplet window for dropping files on for processing by the script.
+.Pp
+The default output type is "Progress Bar".
 .Pp
 .It Fl i Ar [icon]
 Specifies a file to use as icon for the application bundle. The icon file should be a regular Mac OS X .icns file.
 If not specified, the default Platypus app icon will be used. If specified, but left empty (''), no application
 icon will be set for the app. 
+.Pp
+.It Fl Q Ar [icon]
+Specifies a file to use as icon for the application's documents. Should be a Mac OS X .icns file.
 .Pp
 .It Fl p Ar [interpreter]
 Sets the interpreter for your script (e.g. /usr/bin/perl).  If the interpreter is not specified, the command line tool
@@ -117,7 +120,11 @@ nothing will make the script 'secure' from anyone knowledgable enough to get a c
 .It Fl D
 Makes your script application droppable, i.e. capable of receiving drag and dropped files as arguments
 to the script. The application bundle's property list is modified so that it can receive dropped files 
-in the Dock and Finder. These files are then passed on to the script as arguments via @ARGV. 
+in the Dock and Finder. These files are then passed on to the script as arguments via @ARGV.
+.Pp
+.It Fl F
+Makes your script application droppable, so it accepts dragged text snippets, which are passed to script 
+as arguments. 
 .Pp
 .It Fl B
 This option causes the application to run in the background.  Its icon will not appear in 
