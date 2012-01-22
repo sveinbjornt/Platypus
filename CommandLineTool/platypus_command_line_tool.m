@@ -334,7 +334,7 @@ int main (int argc, const char * argv[])
             {
                 NSString *parametersString = [NSString stringWithCString: optarg  encoding: DEFAULT_OUTPUT_TXT_ENCODING];
                 NSArray *parametersArray = [parametersString componentsSeparatedByString: @"|"];
-                [properties setObject:  parametersArray forKey: @"InterpreterArgs"];
+                [properties setObject: parametersArray forKey: @"InterpreterArgs"];
             }
             break;
                 
@@ -343,7 +343,7 @@ int main (int argc, const char * argv[])
             {
                 NSString *parametersString = [NSString stringWithCString: optarg  encoding: DEFAULT_OUTPUT_TXT_ENCODING];
                 NSArray *parametersArray = [parametersString componentsSeparatedByString: @"|"];
-                [properties setObject:  parametersArray forKey: @"ScriptArgs"];
+                [properties setObject: parametersArray forKey: @"ScriptArgs"];
             }
             break;
                 
@@ -584,7 +584,7 @@ static void PrintVersion (void)
 
 static void PrintUsage (void)
 {
-    NSPrint(@"usage: %@ [-vh] [-O profile] [-FASDNBR] [-ydlH] [-KYL] [-P profile] [-a appName] [-o outputType] [-i icon] [-Q docIcon] [-p interpreter] [-V version] [-u author] [-I identifier] [-f bundledFile] [-X suffixes] [-T filetypes] [-G interpreterArgs] scriptFile [appPath]", CMDLINE_PROGNAME);
+    NSPrint(@"usage: %@ [-vh] [-O profile] [-FASDNBR] [-ydlH] [-KYL] [-P profile] [-a appName] [-o outputType] [-i icon] [-Q docIcon] [-p interpreter] [-V version] [-u author] [-I identifier] [-f bundledFile] [-X suffixes] [-T filetypes] [-C scriptArgs] [-G interpreterArgs] scriptFile [appPath]", CMDLINE_PROGNAME);
 }
 
 ////////////////////////////////////////
