@@ -122,6 +122,7 @@
             <li><a href="#87">How do I get the source code to Platypus and Platypus-generated app binaries?</a></li>
             <li><a href="#88">How do I get the path to my application / bundled files within the script?</a></li>
             <li><a href="#89">How do Platypus-generated applications work?</a></li>
+            <li><a href="#810">Does Platypus support processor-specific binaries only?</a></li>
         </ul>
     </li>
 </ul>
@@ -712,6 +713,12 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 <br>
 <br>
 <br>
+
+
+<h3 id="#810">Does Platypus support processor-specific binaries only?</h3>
+
+<p>No.  As of version 4.5, Platypus generates "fat" 32-bit/64-bit Intel binaries.  Platypus 4.4 and earlier support the PowerPC architecture.  If you do not want
+    a fat binary, but instead a binary only for your architecture, you can use the <code>lipo</code> command line tool to do so after creating the application.</p>
 
 
 <hr>
