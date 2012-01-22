@@ -701,7 +701,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
     MyApp.app/Contents/Resources                    - Resources folder
     MyApp.app/Contents/Resources/appIcon.icns       - App icon
     MyApp.app/Contents/Resources/AppSettings.plist  - App script execution settings
-    MyApp.app/Contents/Resources/MainMenu.nib       - Nib file, stores interface info
+    MyApp.app/Contents/Resources/MainMenu.nib       - Nib file, stores interface layout
     MyApp.app/Contents/Resources/script             - Script which app executes
 </pre>
 
@@ -715,12 +715,13 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 <br>
 
 
-<h3 id="#810">Does Platypus support processor-specific binaries only?</h3>
+<h3 id="810">Does Platypus support processor-specific binaries only?</h3>
 
-<p>No.  As of version 4.5, Platypus generates "fat" 32-bit/64-bit Intel binaries.  Platypus 4.4 and earlier support the PowerPC architecture.  If you do not want
-    a fat binary, but instead a binary only for your architecture, you can use the <code>lipo</code> command line tool to do so after creating the application.</p>
+<p>No.  As of version 4.5, Platypus generates "fat" 32-bit/64-bit Intel binaries.  Platypus 4.4 and earlier support the PowerPC architecture.  If you want a binary only for your architecture, you can use the <code>lipo</code> command line tool to make the binary "thin" after creating the application.</p>
 
-
+    <br>
+    <br>
+    <br>
 <hr>
 
 
