@@ -7,21 +7,24 @@ For 4.7
     TODO:  Create TextMate plugin
     TODO:  Support reading script from STDIN in command line tool
     TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
+    TODO:  Implement binary plist format for profiles
 
 For 4.6
     * "Open" and "Save" menu item option for Platypus-created apps
     * Applications can now be set as Services for text or file handling via Services menu
     * Configurable document icon for Platypus apps
-    * New option to set custom arguments for script, under "Args" (previously "Params")
+    * New option to set custom arguments for script, not just interpreter, under "Args" (previously "Params")
     * Command line tool now supports dumping profile property lists to stdout (see man page)
     * Additional interpreter presets: zsh and tcsh
-    * Extended documentation
+    * Extended documentation and FAQ
     * New "Edit" button and contextual menu item for Bundled Files List.
     * New FastDMGMounter example
+    * Platypus now defaults to using binary-format property lists.  This can be set to XML in create panel.
     * Status Bar apps now gracefully remove status bar item before exiting
     * Removed app path as first arg option, it's unnecessary and confusing. App path == $CWD/../..
-    * Minor interface refinements
+    * Various interface refinements
     * Migrated all images to optimized PNGs for smaller file sizes
+    * Now using LLVM for builds instead of GCC, for smaller code size
     * Changed "New Script" preset contents to be a "Hello, World" example
     * Fixed bug with script path text field tab autocomplete
     * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
@@ -33,7 +36,6 @@ For 4.6
     
     TODO:  Update man page w. new options for command line tool
     TODO:  Test the new droppable stuff, both in app and clt
-    TODO:  Binary property lists option in Save Panel
 
 For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
