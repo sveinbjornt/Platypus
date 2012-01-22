@@ -604,7 +604,10 @@
     
     // we quit now if the app isn't set to continue running
     if (!remainRunning)
+    {
         [[NSApplication sharedApplication] terminate: self];
+        return;
+    }
     
     // if there are more jobs waiting for us, execute
     if ([jobQueue count] > 0)
