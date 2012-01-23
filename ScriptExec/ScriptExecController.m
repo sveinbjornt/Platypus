@@ -153,9 +153,13 @@
     // This is so that apps that are set to run in the background will still have their
     // window come to the front.  It is to my knowledge the only way to make an
     // application with LSUIElement set to true come to the front on launch
-    ProcessSerialNumber process;
-    GetCurrentProcess(&process);
-    SetFrontProcess(&process);
+    // We don't do this for applications with no user interface output
+    if (outputType != PLATYPUS_NONE_OUTPUT)
+    {
+        ProcessSerialNumber process;
+        GetCurrentProcess(&process);
+        SetFrontProcess(&process);
+    }
     
     //prepare controls etc. for different output types
     switch (outputType)
