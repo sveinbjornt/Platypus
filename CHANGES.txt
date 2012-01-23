@@ -25,8 +25,8 @@ For 4.6
     * Removed app path as first arg option, it's unnecessary and confusing. App path == $CWD/../..
     * Various interface refinements
     * Migrated all images to optimized PNGs for smaller file sizes
-    * Now using LLVM for builds instead of GCC, for smaller code size
-    * Changed "New Script" preset contents to be a "Hello, World" example
+    * Now using LLVM for builds instead of GCC, which makes for smaller code size
+    * Changed "New Script" preset contents to be a "Hello, World" example in the selected language
     * Fixed bug with script path text field tab autocomplete
     * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
     * Fixed bug which caused crash when editing file in Bundled Files list using built-in editor.
@@ -34,7 +34,8 @@ For 4.6
     * Fixed bug with contextual menus in Arguments window
     * Fixed bug where custom image data application icons failed to be created
     * Fixed bug where "Icon" display mode status item would erroneously display a default title
-    
+    * "Run in background" applications no longer set themselves as front process with output mode "None"
+
     TODO:  Test the new droppable stuff, both in app and clt
 
 For 4.5
