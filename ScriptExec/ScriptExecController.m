@@ -487,7 +487,7 @@
         
         // then we remove the job from the queue
         //[[jobQueue objectAtIndex: 0] release]; // release
-        [jobQueue removeObjectAtIndex: 0]; // remove it from the queue
+        [jobQueue removeObjectAtIndex: 0];
     }
 }
 
@@ -1199,7 +1199,7 @@
     //get interpreter
     interpreter = [[NSString stringWithString: [appSettingsPlist objectForKey:@"ScriptInterpreter"]] retain];
     if (![fmgr fileExistsAtPath: interpreter])
-        [self fatalAlert: @"Missing interpreter" subText: [NSString stringWithFormat: @"This application could not run because the interpreter '%@' does not exist on this system."]];
+        [self fatalAlert: @"Missing interpreter" subText: [NSString stringWithFormat: @"This application could not run because the interpreter '%@' does not exist on this system.", interpreter]];
     
     //if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
     if ((!secureScript && ![fmgr fileExistsAtPath: [appBundle pathForResource:@"script" ofType: NULL]]) || (secureScript && [appSettingsPlist objectForKey:@"TextSettings"] == NULL))
