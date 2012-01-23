@@ -642,6 +642,7 @@ Options:\n\
    -v                   Prints program name, version and author\n\
    \n");
 }
+
 #pragma mark -
 
 static void NSPrint (NSString *format, ...)
