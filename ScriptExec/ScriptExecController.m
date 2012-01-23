@@ -1198,6 +1198,8 @@
     
     //get interpreter
     interpreter = [[NSString stringWithString: [appSettingsPlist objectForKey:@"ScriptInterpreter"]] retain];
+    if (![fmgr fileExistsAtPath: interpreter])
+        [self fatalAlert: @"Missing interpreter" subText: [NSString stringWithFormat: @"This application could not run because the interpreter '%@' does not exist on this system."]];
     
     //if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
     if ((!secureScript && ![fmgr fileExistsAtPath: [appBundle pathForResource:@"script" ofType: NULL]]) || (secureScript && [appSettingsPlist objectForKey:@"TextSettings"] == NULL))
