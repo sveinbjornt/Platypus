@@ -595,7 +595,7 @@
     if ([spec propertyForKey: @"AcceptsFiles"] != nil)
         [typesControl setAcceptsFiles: [[spec propertyForKey: @"AcceptsFiles"] boolValue]];
     if ([spec propertyForKey: @"DeclareService"] != nil)
-        [typesControl setAcceptsFiles: [[spec propertyForKey: @"AcceptsFiles"] boolValue]];
+        [typesControl setDeclareService: [[spec propertyForKey: @"AcceptsFiles"] boolValue]];
     
 	// parameters
     [paramsControl setInterpreterArgs: [spec propertyForKey: @"InterpreterArgs"]];
