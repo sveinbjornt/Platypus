@@ -66,17 +66,17 @@
 
 #define TMP_ICON_PATH               @"/tmp/PlatypusIcon.icns"
 #define IBTOOL_PATH					@"/Developer/usr/bin/ibtool"
-#define LIPO_TOOL_PATH				@"/usr/bin/lipo"
+#define LIPO_PATH                   @"/usr/bin/lipo"
 
-#define DEFAULT_EDITOR                  @"Built-In"
-#define DEFAULT_INTERPRETER             @"/bin/sh"
-#define DEFAULT_VERSION                 @"1.0"
-#define DEFAULT_ROLE                    @"Viewer"
-#define DEFAULT_STATUSITEM_DISPLAY_TYPE @"Text"
-#define DEFAULT_APP_NAME                @"MyPlatypusApp"
-#define DEFAULT_DESTINATION_PATH        [[NSString stringWithFormat: @"~/Desktop/%@.app", DEFAULT_APP_NAME] stringByExpandingTildeInPath]
-#define DEFAULT_OUTPUT_TYPE             @"Progress Bar"
-#define DEFAULT_BUNDLE_ID               [PlatypusAppSpec standardBundleIdForAppName: DEFAULT_APP_NAME usingDefaults: NO]
+#define DEFAULT_EDITOR              @"Built-In"
+#define DEFAULT_INTERPRETER         @"/bin/sh"
+#define DEFAULT_VERSION             @"1.0"
+#define DEFAULT_ROLE                @"Viewer"
+#define DEFAULT_STATUSITEM_DTYPE    @"Text"
+#define DEFAULT_APP_NAME            @"MyPlatypusApp"
+#define DEFAULT_DESTINATION_PATH    [[NSString stringWithFormat: @"~/Desktop/%@.app", DEFAULT_APP_NAME] stringByExpandingTildeInPath]
+#define DEFAULT_OUTPUT_TYPE         @"Progress Bar"
+#define DEFAULT_BUNDLE_ID           [PlatypusAppSpec standardBundleIdForAppName: DEFAULT_APP_NAME usingDefaults: NO]
 
 // output modes
 #define	PLATYPUS_NONE_OUTPUT				1
@@ -94,7 +94,7 @@
 #define TMP_SCRIPT_TEMPLATE					@".plx_tmp.XXXXXX"
 
 // this is surely enough
-#define PLATYPUS_MAX_QUEUE_JOBS				256
+#define PLATYPUS_MAX_QUEUE_JOBS				255
 
 // array of output types, used for validation
 #define PLATYPUS_OUTPUT_TYPES       [NSArray arrayWithObjects: @"None", \
@@ -104,51 +104,10 @@
                                                                @"Droplet", \
                                                                @"Status Menu", nil ]
 
-// Profiles
-#define PLATYPUS_PROFILE_ALL_KEYS   [NSArray arrayWithObjects: @"AcceptsText", \
-                                                               @"Authentication", \
-                                                               @"Author", \
-                                                               @"BundledFiles", \
-                                                               @"Creator", \
-                                                               @"Destination", \
-                                                               @"DestinationOverride", \
-                                                               @"DevelopmentVersion", \
-                                                               @"Droppable", \
-                                                               @"ExecutablePath", \
-                                                               @"FileTypes", \
-                                                               @"IconPath", \
-                                                               @"Identifier", \
-                                                               @"Interpreter", \
-                                                               @"Name", \
-                                                               @"NibPath", \
-                                                               @"OptimizeApplication", \
-                                                               @"Output", \
-                                                               @"InterpreterArgs", \
-                                                               @"ScriptArgs", \
-                                                               @"RemainRunning", \
-                                                               @"Role", \
-                                                               @"ScriptPath", \
-                                                               @"Secure", \
-                                                               @"ShowInDock", \
-                                                               @"StatusItemDisplayType", \
-                                                               @"StatusItemIcon", \
-                                                               @"StatusItemTitle", \
-                                                               @"Suffixes", \
-                                                               @"TextBackground", \
-                                                               @"TextEncoding", \
-                                                               @"TextFont", \
-                                                               @"TextForeground", \
-                                                               @"TextSize", \
-                                                               @"Version", nil]
-
-#define PLATYPUS_PROFILE_REQ_KEYS   [NSArray arrayWithObjects: @"Name", @"Output", "ScriptPath"]
-#define PLATYPUS_PROFILE_LEG_KEYS   [NSArray arrayWithObjects: @"ShowInDock"]
-#define PLATYPUS_LEGACY_MAP_DICT    [NSDictionary dictionaryWithObjectsAndKeys: @"RunInBackground", @"ShowInDock", nil]
-
 #pragma mark -
 
 // code abbreviations, Obj-C is a tediously verbose language
-#define FILEMGR     [NSFileManager defaultManager]
+#define FILEMGR                     [NSFileManager defaultManager]
 
 
 
