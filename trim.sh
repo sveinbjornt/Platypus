@@ -1,4 +1,5 @@
 #!/bin/sh
+# This script courtesy of Ankur Kothari
 help(){
 name=`basename $0`;less<<HLP
 $name
