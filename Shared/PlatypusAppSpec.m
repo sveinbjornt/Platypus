@@ -159,7 +159,7 @@
 	[properties setObject: DEFAULT_OUTPUT_BG_COLOR										forKey: @"TextBackground"];
 
 	// status item settings
-	[properties setObject: DEFAULT_STATUSITEM_DISPLAY_TYPE                              forKey: @"StatusItemDisplayType"];
+	[properties setObject: DEFAULT_STATUSITEM_DTYPE                                     forKey: @"StatusItemDisplayType"];
 	[properties setObject: DEFAULT_APP_NAME												forKey: @"StatusItemTitle"];
 	[properties setObject: [NSData data]												forKey: @"StatusItemIcon"];
 }
