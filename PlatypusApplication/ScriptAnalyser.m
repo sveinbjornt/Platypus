@@ -111,9 +111,9 @@
 	return @"";
 }
 
-/*****************************************
+/**************************************************
  - Determine script type based on a file's suffix
- *****************************************/
+ **************************************************/
 
 + (NSString *)interpreterFromSuffix: (NSString *)fileName
 {
@@ -145,9 +145,9 @@
 	return @"";
 }
 
-/********************************************************************
- - Parse the Shebang line (#!) to get the interpreter for the script
- **********************************************************************/
+/***********************************************************************************************
+ - Parse the Shebang line (#!) to get the interpreter for the script + arguments to interpreter
+ ***********************************************************************************************/
 
 + (NSArray *)getInterpreterFromShebang: (NSString *)path
 {	
@@ -174,9 +174,9 @@
 	return ([[words retain] autorelease]); // return array w. interpreter + arguments for it
 }
 
-/*****************************************
+/********************************************************
  - Utility method used by both app and command line tool
- *****************************************/
+ ********************************************************/
 
 + (NSString *)appNameFromScriptFileName: (NSString *)path
 {
