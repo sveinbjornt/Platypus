@@ -29,23 +29,6 @@
 
 @implementation PlatypusUtility
 
-/*****************************************
- - //return the bundle identifier for the application to be generated
- -  based on username etc. e.g. org.username.AppName
- *****************************************/
-
-+ (NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;
-{
-    NSString *defaults = def ? [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultBundleIdentifierPrefix"] : @"";    
-    
-    NSString *pre = (!def || [defaults isEqualToString: @""]) ? [NSString stringWithFormat: @"org.%@.", NSUserName()] : defaults;
-    
-	NSString *bundleId = [NSString stringWithFormat: @"%@%@", pre , name];
-	bundleId = [PlatypusUtility removeWhitespaceInString: bundleId];//no spaces
-	
-    return bundleId;
-}
-
 + (NSString *)removeWhitespaceInString: (NSString *)str
 {
     str = [str stringByReplacingOccurrencesOfString: @" " withString: @""];
@@ -96,6 +79,15 @@
 //    
 //    return FALSE;
 //}
+
++ (BOOL)setPermissions: (short)pp forFile: (NSString *)path
+{
+    NSDictionary *attrDict = [NSDictionary dictionaryWithObject: [NSNumber numberWithShort: pp] forKey: NSFilePosixPermissions];
+    NSError *err;
+    [[NSFileManager defaultManager] setAttributes: attrDict ofItemAtPath: path error: &err];
+    
+    return (err == nil);
+}
 
 + (void)alert: (NSString *)message subText: (NSString *)subtext
 {

@@ -65,7 +65,6 @@
 		F4D656B214C4BFD6003552F9 /* Env.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569B14C4BFD6003552F9 /* Env.png */; };
 		F4D656B314C4BFD6003552F9 /* Expect.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569C14C4BFD6003552F9 /* Expect.png */; };
 		F4D656B414C4BFD6003552F9 /* Perl.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569D14C4BFD6003552F9 /* Perl.png */; };
-		F4D656B514C4BFD6003552F9 /* Perl2.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569E14C4BFD6003552F9 /* Perl2.png */; };
 		F4D656B614C4BFD6003552F9 /* PHP.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569F14C4BFD6003552F9 /* PHP.png */; };
 		F4D656B714C4BFD6003552F9 /* Python.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D656A014C4BFD6003552F9 /* Python.png */; };
 		F4D656B814C4BFD6003552F9 /* Ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D656A114C4BFD6003552F9 /* Ruby.png */; };
@@ -80,9 +79,9 @@
 		F4DC075311F629A40043764E /* Readme.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC075011F629A40043764E /* Readme.html */; };
 		F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F4E1F71111F75A7F007EE2E3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		F4E8391B14CDE3B500606F47 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4E8391A14CDE3B500606F47 /* ScriptExec */; };
-		F4E8391D14CDE3C400606F47 /* platypus_clt in Resources */ = {isa = PBXBuildFile; fileRef = F4E8391C14CDE3C400606F47 /* platypus_clt */; };
 		F4ED1E470CEC17920006636F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4ED1E460CEC17920006636F /* Carbon.framework */; };
+		F4F347E114D1BDDF006B543F /* platypus_clt in Resources */ = {isa = PBXBuildFile; fileRef = F4F347E014D1BDDF006B543F /* platypus_clt */; };
+		F4F347E314D1BE17006B543F /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4F347E214D1BE17006B543F /* ScriptExec */; };
 		F4FE735F11F7925E005FC23A /* FileTypesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734711F7925E005FC23A /* FileTypesController.m */; };
 		F4FE736111F7925E005FC23A /* IconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734911F7925E005FC23A /* IconController.m */; };
 		F4FE736311F7925E005FC23A /* ArgsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734B11F7925E005FC23A /* ArgsController.m */; };
@@ -189,7 +188,6 @@
 		F4D6569B14C4BFD6003552F9 /* Env.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Env.png; sourceTree = "<group>"; };
 		F4D6569C14C4BFD6003552F9 /* Expect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Expect.png; sourceTree = "<group>"; };
 		F4D6569D14C4BFD6003552F9 /* Perl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Perl.png; sourceTree = "<group>"; };
-		F4D6569E14C4BFD6003552F9 /* Perl2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Perl2.png; sourceTree = "<group>"; };
 		F4D6569F14C4BFD6003552F9 /* PHP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PHP.png; sourceTree = "<group>"; };
 		F4D656A014C4BFD6003552F9 /* Python.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Python.png; sourceTree = "<group>"; };
 		F4D656A114C4BFD6003552F9 /* Ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ruby.png; sourceTree = "<group>"; };
@@ -205,8 +203,6 @@
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		F4E1F6FC11F758FB007EE2E3 /* platypus */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = platypus; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4E8391A14CDE3B500606F47 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Platypus/Build/Products/Development/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
-		F4E8391C14CDE3C400606F47 /* platypus_clt */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = platypus_clt; path = build/Platypus/Build/Products/Development/platypus_clt; sourceTree = "<group>"; };
 		F4ECE19A11F77200000DB012 /* AppBuildBoth.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = AppBuildBoth.sh; sourceTree = "<group>"; };
 		F4ECE19B11F77200000DB012 /* AppPackageBuildScript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = AppPackageBuildScript.sh; sourceTree = "<group>"; };
 		F4ECE19C11F77200000DB012 /* AppSourceBuildScript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = AppSourceBuildScript.sh; sourceTree = "<group>"; };
@@ -214,6 +210,8 @@
 		F4ECE1A111F77471000DB012 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = SOURCE_ROOT; };
 		F4ECE1B111F779CC000DB012 /* trim.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = trim.sh; sourceTree = "<group>"; };
 		F4ED1E460CEC17920006636F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		F4F347E014D1BDDF006B543F /* platypus_clt */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = platypus_clt; path = "build/Platypus/ArchiveIntermediates/Command Line Tool/IntermediateBuildFilesPath/UninstalledProducts/platypus_clt"; sourceTree = "<group>"; };
+		F4F347E214D1BE17006B543F /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = build/Platypus/ArchiveIntermediates/ScriptExec/IntermediateBuildFilesPath/UninstalledProducts/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 		F4FE734611F7925E005FC23A /* FileTypesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = FileTypesController.h; path = PlatypusApplication/FileTypesController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F4FE734711F7925E005FC23A /* FileTypesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = FileTypesController.m; path = PlatypusApplication/FileTypesController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F4FE734811F7925E005FC23A /* IconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = IconController.h; path = PlatypusApplication/IconController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -340,8 +338,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F4E8391A14CDE3B500606F47 /* ScriptExec */,
-				F4E8391C14CDE3C400606F47 /* platypus_clt */,
+				F4F347E214D1BE17006B543F /* ScriptExec */,
+				F4F347E014D1BDDF006B543F /* platypus_clt */,
 				F42C982B14BB55820094CC8D /* platypus.man.pdf */,
 				F471ED21122DF2D6001F4761 /* Credits.html */,
 				F4185E5811FC57AB0027C8D7 /* Info.plist */,
@@ -559,7 +557,6 @@
 				F4D6569B14C4BFD6003552F9 /* Env.png */,
 				F4D6569C14C4BFD6003552F9 /* Expect.png */,
 				F4D6569D14C4BFD6003552F9 /* Perl.png */,
-				F4D6569E14C4BFD6003552F9 /* Perl2.png */,
 				F4D6569F14C4BFD6003552F9 /* PHP.png */,
 				F4D656A014C4BFD6003552F9 /* Python.png */,
 				F4D656A114C4BFD6003552F9 /* Ruby.png */,
@@ -793,7 +790,6 @@
 				F4D656B214C4BFD6003552F9 /* Env.png in Resources */,
 				F4D656B314C4BFD6003552F9 /* Expect.png in Resources */,
 				F4D656B414C4BFD6003552F9 /* Perl.png in Resources */,
-				F4D656B514C4BFD6003552F9 /* Perl2.png in Resources */,
 				F4D656B614C4BFD6003552F9 /* PHP.png in Resources */,
 				F4D656B714C4BFD6003552F9 /* Python.png in Resources */,
 				F4D656B814C4BFD6003552F9 /* Ruby.png in Resources */,
@@ -801,8 +797,8 @@
 				F4D656BA14C4BFD6003552F9 /* Tcl.png in Resources */,
 				F4D656BB14C4BFD6003552F9 /* Tcsh.png in Resources */,
 				F4D656BC14C4BFD6003552F9 /* Zsh.png in Resources */,
-				F4E8391B14CDE3B500606F47 /* ScriptExec in Resources */,
-				F4E8391D14CDE3C400606F47 /* platypus_clt in Resources */,
+				F4F347E114D1BDDF006B543F /* platypus_clt in Resources */,
+				F4F347E314D1BE17006B543F /* ScriptExec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

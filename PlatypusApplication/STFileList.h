@@ -66,7 +66,6 @@
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification;
 - (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation;
 - (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard;
-- (int)currentSelectedRow;
 - (NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation;
 - (void)updateFileSizeField;
 - (BOOL)allPathsAreValid;

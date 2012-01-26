@@ -36,8 +36,6 @@ For 4.6
     * Fixed bug where "Icon" display mode status item would erroneously display a default title
     * "Run in background" applications no longer set themselves as front process with output mode "None"
 
-    TODO:  Test the new droppable stuff, both in app and clt
-
 For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
     * Dropped PowerPC support. All binaries are now 32-bit/64-bit Intel only

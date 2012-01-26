@@ -130,7 +130,7 @@
 	[properties setObject: [NSMutableArray array]										forKey: @"InterpreterArgs"];
 	[properties setObject: [NSMutableArray array]										forKey: @"ScriptArgs"];
     [properties setObject: DEFAULT_VERSION												forKey: @"Version"];
-	[properties setObject: [PlatypusUtility standardBundleIdForAppName: DEFAULT_APP_NAME usingDefaults: NO]       forKey: @"Identifier"];
+	[properties setObject: [self standardBundleIdForAppName: DEFAULT_APP_NAME usingDefaults: NO]       forKey: @"Identifier"];
 	[properties setObject: NSFullUserName()												forKey: @"Author"];
 	
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"Droppable"];
@@ -198,7 +198,7 @@
     NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];
     NSString *destPath = [NSString stringWithFormat: @"%@/%@.app", parentFolder, appName];
     [self setProperty: destPath forKey: @"Destination"];
-    [self setProperty: [PlatypusUtility standardBundleIdForAppName: appName usingDefaults: NO] forKey: @"Identifier"];
+    [self setProperty: [self standardBundleIdForAppName: appName usingDefaults: NO] forKey: @"Identifier"];
 }
 
 /****************************************
@@ -305,6 +305,8 @@
 			[fileManager createSymbolicLinkAtPath: scriptFilePath pathContent: [properties objectForKey: @"ScriptPath"]];
 		else // copy script over
 			[fileManager copyPath: [properties objectForKey: @"ScriptPath"] toPath: scriptFilePath handler:nil];
+        
+        [PlatypusUtility setPermissions: 755 forFile: scriptFilePath];
 	}
 		
 	//create AppSettings.plist file
@@ -764,6 +766,25 @@
 -(NSString *)description
 {
     return [properties description];
+}
+
+#pragma mark - Non-instance Methods
+
+/*****************************************
+ - //return the bundle identifier for the application to be generated
+ -  based on username etc. e.g. org.username.AppName
+ *****************************************/
+
++ (NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;
+{
+    NSString *defaults = def ? [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultBundleIdentifierPrefix"] : @"";    
+    
+    NSString *pre = (!def || [defaults isEqualToString: @""]) ? [NSString stringWithFormat: @"org.%@.", NSUserName()] : defaults;
+    
+	NSString *bundleId = [NSString stringWithFormat: @"%@%@", pre , name];
+	bundleId = [PlatypusUtility removeWhitespaceInString: bundleId];//no spaces
+	
+    return bundleId;
 }
 
 @end

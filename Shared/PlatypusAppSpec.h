@@ -26,7 +26,7 @@
 #import "PlatypusUtility.h"
 #import "ScriptAnalyser.h"
 
-#define MAX_APPSPEC_PROPERTIES	128 // whatever...
+#define MAX_APPSPEC_PROPERTIES	255 // whatever...
 
 @interface PlatypusAppSpec : NSObject 
 {
@@ -54,4 +54,6 @@
 -(NSDictionary *)properties;
 -(void)addProperties: (NSDictionary *)dict;
 -(NSString *)error;
+
++ (NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;
 @end
