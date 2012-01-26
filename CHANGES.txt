@@ -11,7 +11,8 @@ For 4.7
     TODO:  Incorporate use XML plist option for command line tool
     TODO:  Uninstall option, which removes all traces of Platypus on system
     TODO:  Fix temp icon path issue for icons dynamically generated from imported image
-    TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.7.  New method involves using a helper tool.  Also, take a look at the sandbox thing.
+    TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.7. New method involves using a helper tool.  Also, take a look at the sandbox thing.
+    TODO:  Use Sparkle.framework for updates
 
 For 4.6
     * "Open" and "Save" menu item option for Platypus-created apps
