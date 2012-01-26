@@ -34,10 +34,10 @@
 		F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
 		F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* ScriptExecController.m */; };
-		F48B7B9711F766E600351575 /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9411F766E600351575 /* STDragWebView.m */; };
 		F48B7BA211F7672700351575 /* AppSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = F48B7B9F11F7672700351575 /* AppSettings.plist */; };
 		F48B7BA411F7672700351575 /* script in Resources */ = {isa = PBXBuildFile; fileRef = F48B7BA111F7672700351575 /* script */; };
 		F48B7BAB11F7675900351575 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48B7BAA11F7675900351575 /* WebKit.framework */; };
+		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
 		F4B5DE4114919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
 		F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
@@ -154,14 +154,14 @@
 		F48B7B9011F766E600351575 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = ScriptExec/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F48B7B9111F766E600351575 /* ScriptExecController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecController.h; path = ScriptExec/ScriptExecController.h; sourceTree = "<group>"; };
 		F48B7B9211F766E600351575 /* ScriptExecController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptExecController.m; path = ScriptExec/ScriptExecController.m; sourceTree = "<group>"; };
-		F48B7B9311F766E600351575 /* STDragWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragWebView.h; path = ScriptExec/STDragWebView.h; sourceTree = "<group>"; };
-		F48B7B9411F766E600351575 /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = ScriptExec/STDragWebView.m; sourceTree = "<group>"; };
 		F48B7B9F11F7672700351575 /* AppSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppSettings.plist; path = ScriptExec/AppSettings.plist; sourceTree = "<group>"; };
 		F48B7BA111F7672700351575 /* script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; name = script; path = ScriptExec/script; sourceTree = "<group>"; };
 		F48B7BAA11F7675900351575 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		F48B7C7B11F7691600351575 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ScriptExec/Info.plist; sourceTree = "<group>"; };
 		F4A4338B0E04C962000523E7 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Common.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F4AF784214D1C66200544C1B /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		F4AF785B14D1E5F200544C1B /* STDragWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragWebView.h; path = Shared/STDragWebView.h; sourceTree = "<group>"; };
+		F4AF785C14D1E5F200544C1B /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = Shared/STDragWebView.m; sourceTree = "<group>"; };
 		F4B5DE3F14919FF500C43901 /* PlatypusUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusUtility.h; path = Shared/PlatypusUtility.h; sourceTree = "<group>"; };
 		F4B5DE4014919FF500C43901 /* PlatypusUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusUtility.m; path = Shared/PlatypusUtility.m; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
@@ -291,10 +291,11 @@
 				F4ECE17511F76CC2000DB012 /* PlatypusAppSpec */,
 				F4B5DE431491A00900C43901 /* Utility */,
 				F48A724D122E23B200964D71 /* ScriptAnalyser */,
-				F44EFEFF12296F2C00CAC9C2 /* NSColor+HexTools */,
-				F4FE738B11F792C3005FC23A /* IconFamily */,
+				F4AF785E14D1E5F600544C1B /* STDragWebView */,
 				F41306340FBD809A00A319B7 /* STPathTextField */,
 				F44587170FC386B500CD0C02 /* STPrivilegedTask */,
+				F44EFEFF12296F2C00CAC9C2 /* NSColor+HexTools */,
+				F4FE738B11F792C3005FC23A /* IconFamily */,
 			);
 			name = "Shared Classes";
 			sourceTree = "<group>";
@@ -484,8 +485,6 @@
 				F48B7B9011F766E600351575 /* main.m */,
 				F48B7B9111F766E600351575 /* ScriptExecController.h */,
 				F48B7B9211F766E600351575 /* ScriptExecController.m */,
-				F48B7B9311F766E600351575 /* STDragWebView.h */,
-				F48B7B9411F766E600351575 /* STDragWebView.m */,
 				F48B7C6711F768A000351575 /* Resources */,
 			);
 			name = ScriptExec;
@@ -511,6 +510,15 @@
 				29B97315FDCFA39411CA2CEA /* Auxiliary */,
 			);
 			name = "Platypus Application";
+			sourceTree = "<group>";
+		};
+		F4AF785E14D1E5F600544C1B /* STDragWebView */ = {
+			isa = PBXGroup;
+			children = (
+				F4AF785B14D1E5F200544C1B /* STDragWebView.h */,
+				F4AF785C14D1E5F200544C1B /* STDragWebView.m */,
+			);
+			name = STDragWebView;
 			sourceTree = "<group>";
 		};
 		F4B5DE431491A00900C43901 /* Utility */ = {
@@ -870,9 +878,9 @@
 			files = (
 				F48B7B9511F766E600351575 /* main.m in Sources */,
 				F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */,
-				F48B7B9711F766E600351575 /* STDragWebView.m in Sources */,
 				F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */,
 				F4BF0A4414967C6D00676278 /* STPrivilegedTask.m in Sources */,
+				F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
