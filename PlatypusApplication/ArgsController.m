@@ -149,6 +149,8 @@
 	
 	[scriptArgsTableView reloadData];
 	[self tableViewSelectionDidChange: NULL];
+    
+    [commandTextField setStringValue: [self constructCommandString]];
     [argsWindow makeFirstResponder: scriptArgsTableView];
 }
 

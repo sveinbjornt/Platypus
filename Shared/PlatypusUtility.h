@@ -28,6 +28,7 @@
 + (NSString *)removeWhitespaceInString: (NSString *)str;
 + (BOOL)isTextFile: (NSString *)path;
 //+ (BOOL)runningSnowLeopardOrLater;
++ (BOOL)setPermissions: (short)pp forFile: (NSString *)path;
 + (void)alert: (NSString *)message subText: (NSString *)subtext;
 + (void)fatalAlert: (NSString *)message subText: (NSString *)subtext;
 + (BOOL) proceedWarning: (NSString *)message subText: (NSString *)subtext withAction: (NSString *)action;

@@ -40,7 +40,7 @@
 	// put default prefs in the dictionary
 
 	// create default bundle identifier string from usename
-    NSString *bundleId = [PlatypusUtility standardBundleIdForAppName: @"" usingDefaults: NO ];
+    NSString *bundleId = [PlatypusAppSpec standardBundleIdForAppName: @"" usingDefaults: NO ];
 	
 	[defaultPrefs setObject: bundleId						forKey: @"DefaultBundleIdentifierPrefix"];
 	[defaultPrefs setObject: DEFAULT_EDITOR					forKey: @"DefaultEditor"];
@@ -739,7 +739,7 @@
 		[createAppButton setEnabled: validName && exists];
 		
 		//update identifier
-        [bundleIdentifierTextField setStringValue: [PlatypusUtility standardBundleIdForAppName: [appNameTextField stringValue] usingDefaults: YES ]];
+        [bundleIdentifierTextField setStringValue: [PlatypusAppSpec standardBundleIdForAppName: [appNameTextField stringValue] usingDefaults: YES ]];
 	}
 	
 	//interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
@@ -839,7 +839,7 @@
 	[scriptPathTextField setStringValue: @""];
 	[versionTextField setStringValue: @"1.0"];
 	
-	[bundleIdentifierTextField setStringValue: [PlatypusUtility standardBundleIdForAppName: [appNameTextField stringValue] usingDefaults: YES ]];
+	[bundleIdentifierTextField setStringValue: [PlatypusAppSpec standardBundleIdForAppName: [appNameTextField stringValue] usingDefaults: YES ]];
 	[authorTextField setStringValue: [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultAuthor"]];
 	
 	//uncheck all options

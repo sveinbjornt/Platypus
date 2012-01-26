@@ -429,12 +429,6 @@
 	}
 }
 
-- (int)currentSelectedRow
-{
-	return [tableView selectedRow];
-}
-
-
 /*****************************************
  - Drag and drop handling
 *****************************************/
