@@ -51,6 +51,9 @@
 	nil];
 }
 
+// a mapping between scripting languages and a simple hello world program 
+// implemented in said language
+
 + (NSDictionary *)interpreterHelloWorlds
 {
     return [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects:			

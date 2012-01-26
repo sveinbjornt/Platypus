@@ -9,6 +9,7 @@ For 4.7
     TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO:  Implement binary plist format for profiles
     TODO:  Incorporate use XML plist option for command line tool
+    TODO:  Uninstall option, which removes all traces of Platypus on system
 
 For 4.6
     * "Open" and "Save" menu item option for Platypus-created apps

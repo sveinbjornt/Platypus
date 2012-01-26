@@ -74,8 +74,9 @@
 #define DEFAULT_ROLE                    @"Viewer"
 #define DEFAULT_STATUSITEM_DISPLAY_TYPE @"Text"
 #define DEFAULT_APP_NAME                @"MyPlatypusApp"
-#define DEFAULT_DESTINATION_PATH        [NSString stringWithFormat: @"~/Desktop/%@.app", DEFAULT_APP_NAME]
+#define DEFAULT_DESTINATION_PATH        [[NSString stringWithFormat: @"~/Desktop/%@.app", DEFAULT_APP_NAME] stringByExpandingTildeInPath]
 #define DEFAULT_OUTPUT_TYPE             @"Progress Bar"
+#define DEFAULT_BUNDLE_ID               [PlatypusAppSpec standardBundleIdForAppName: DEFAULT_APP_NAME usingDefaults: NO]
 
 // output modes
 #define	PLATYPUS_NONE_OUTPUT				1

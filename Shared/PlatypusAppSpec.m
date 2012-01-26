@@ -112,12 +112,12 @@
 	//prior properties
 	[properties setObject: CMDLINE_EXEC_PATH											forKey: @"ExecutablePath"];
 	[properties setObject: CMDLINE_NIB_PATH												forKey: @"NibPath"];
-	[properties setObject: [DEFAULT_DESTINATION_PATH stringByExpandingTildeInPath]		forKey: @"Destination"];
+	[properties setObject: DEFAULT_DESTINATION_PATH                                     forKey: @"Destination"];
 	
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"DestinationOverride"];
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"DevelopmentVersion"];
 	[properties setValue: [NSNumber numberWithBool: YES]								forKey: @"OptimizeApplication"];
-	[properties setValue: [NSNumber numberWithBool: YES]                                 forKey: @"UseXMLPlistFormat"];
+	[properties setValue: [NSNumber numberWithBool: YES]                                forKey: @"UseXMLPlistFormat"];
     
 	// primary attributes	
 	[properties setObject: DEFAULT_APP_NAME												forKey: @"Name"];
@@ -130,7 +130,7 @@
 	[properties setObject: [NSMutableArray array]										forKey: @"InterpreterArgs"];
 	[properties setObject: [NSMutableArray array]										forKey: @"ScriptArgs"];
     [properties setObject: DEFAULT_VERSION												forKey: @"Version"];
-	[properties setObject: [self standardBundleIdForAppName: DEFAULT_APP_NAME usingDefaults: NO]       forKey: @"Identifier"];
+	[properties setObject: DEFAULT_BUNDLE_ID                                            forKey: @"Identifier"];
 	[properties setObject: NSFullUserName()												forKey: @"Author"];
 	
 	[properties setValue: [NSNumber numberWithBool: NO]									forKey: @"Droppable"];
@@ -144,7 +144,7 @@
 	
     // file/drag acceptance properties
 	[properties setObject: [NSMutableArray arrayWithObject: @"*"]						forKey: @"Suffixes"];
-	[properties setObject: [NSMutableArray arrayWithObjects: @"****", @"fold", NULL]	forKey: @"FileTypes"];
+	[properties setObject: [NSMutableArray arrayWithObjects: @"****", @"fold", nil]     forKey: @"FileTypes"];
 	[properties setObject: DEFAULT_ROLE													forKey: @"Role"];
     [properties setObject: [NSNumber numberWithBool: NO]                                forKey: @"AcceptsText"];
     [properties setObject: [NSNumber numberWithBool: YES]                               forKey: @"AcceptsFiles"];
@@ -198,7 +198,7 @@
     NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];
     NSString *destPath = [NSString stringWithFormat: @"%@/%@.app", parentFolder, appName];
     [self setProperty: destPath forKey: @"Destination"];
-    [self setProperty: [self standardBundleIdForAppName: appName usingDefaults: NO] forKey: @"Identifier"];
+    [self setProperty: [PlatypusAppSpec standardBundleIdForAppName: appName usingDefaults: NO] forKey: @"Identifier"];
 }
 
 /****************************************
@@ -706,7 +706,7 @@
     
     // only add identifier argument if it varies from default
     NSString *identifArg = [NSString stringWithFormat: @" -I %@", [properties objectForKey: @"Identifier"]];
-    if ([[properties objectForKey: @"Identifier"] isEqualToString: [PlatypusUtility standardBundleIdForAppName: [properties objectForKey: @"Name"] usingDefaults: NO]])
+    if ([[properties objectForKey: @"Identifier"] isEqualToString: [PlatypusAppSpec standardBundleIdForAppName: [properties objectForKey: @"Name"] usingDefaults: NO]])
         identifArg = @"";
 	
 	// finally, generate the command
