@@ -104,23 +104,6 @@
 		F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F4876F41141D429700A428CC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F48B774011F7661C00351575;
-			remoteInfo = ScriptExec;
-		};
-		F4876F43141D429A00A428CC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F4E1F6FB11F758FB007EE2E3;
-			remoteInfo = platypus;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = PlatypusApplication/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -679,8 +662,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F4876F44141D429A00A428CC /* PBXTargetDependency */,
-				F4876F42141D429700A428CC /* PBXTargetDependency */,
 			);
 			name = Platypus;
 			productInstallPath = "$(HOME)/Applications";
@@ -896,19 +877,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F4876F42141D429700A428CC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F48B774011F7661C00351575 /* ScriptExec */;
-			targetProxy = F4876F41141D429700A428CC /* PBXContainerItemProxy */;
-		};
-		F4876F44141D429A00A428CC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F4E1F6FB11F758FB007EE2E3 /* platypus */;
-			targetProxy = F4876F43141D429A00A428CC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F41B217E085CD8FF00B63B0D /* Development */ = {
