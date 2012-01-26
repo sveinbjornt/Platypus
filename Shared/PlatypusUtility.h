@@ -24,7 +24,6 @@
 #import "Common.h"
 
 @interface PlatypusUtility : NSObject 
-+ (NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;
 + (NSString *)removeWhitespaceInString: (NSString *)str;
 + (BOOL)isTextFile: (NSString *)path;
 //+ (BOOL)runningSnowLeopardOrLater;

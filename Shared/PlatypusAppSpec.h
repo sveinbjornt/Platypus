@@ -23,8 +23,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Common.h"
-#import "PlatypusUtility.h"
 #import "ScriptAnalyser.h"
+#import "PlatypusUtility.h"
 
 #define MAX_APPSPEC_PROPERTIES	255 // whatever...
 
