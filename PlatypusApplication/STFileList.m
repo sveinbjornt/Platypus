@@ -191,7 +191,6 @@
 	return(@"");
 }
 
-
 - (void)revealInFinder: (int)index
 {
 	BOOL		isDir;

@@ -571,10 +571,10 @@
 		F4DC074D11F629A40043764E /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
-				F4AF784214D1C66200544C1B /* License.txt */,
 				F4DC074F11F629A40043764E /* PlatypusDocumentation.html */,
 				F48002BA121AF042003FB5B3 /* images */,
 				F4DC075011F629A40043764E /* Readme.html */,
+				F4AF784214D1C66200544C1B /* License.txt */,
 				F4ECE1A011F7746A000DB012 /* CHANGES.txt */,
 				F4D6DBC513C50F3E0067B136 /* NOTES.txt */,
 				F4ECE1A111F77471000DB012 /* TODO.txt */,
