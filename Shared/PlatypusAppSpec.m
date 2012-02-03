@@ -306,7 +306,7 @@
 		else // copy script over
 			[fileManager copyPath: [properties objectForKey: @"ScriptPath"] toPath: scriptFilePath handler:nil];
         
-        [PlatypusUtility setPermissions: 755 forFile: scriptFilePath];
+        [PlatypusUtility setPermissions: S_IRWXU | S_IRWXG | S_IROTH forFile: scriptFilePath];
 	}
 		
 	//create AppSettings.plist file
