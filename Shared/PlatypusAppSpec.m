@@ -211,7 +211,7 @@
 	int      i;
 	NSString *contentsPath, *macosPath, *resourcesPath, *tmpPath = NSTemporaryDirectory();
 	NSString *execDestinationPath, *infoPlistPath, *iconPath, *docIconPath, *bundledFileDestPath, *nibDestPath;
-	NSString *execPath, *bundledFilePath;
+	NSString *execPath, *nibPath, *bundledFilePath;
 	NSString *appSettingsPlistPath;
 	NSString *b_enc_script = @"";
 	NSMutableDictionary	*appSettingsPlist;
@@ -237,8 +237,24 @@
         else
             [self report: [NSString stringWithFormat: @"Overwriting app at path %@", [properties objectForKey: @"Destination"]]];
 	}
-		
-	////////////////////////// CREATE THE FOLDER HIERARCHY /////////////////////////////////////
+    
+    // check if executable exists
+    execPath = [properties objectForKey: @"ExecutablePath"];
+    if (![fileManager fileExistsAtPath: execPath])
+    {
+        [self report: [NSString stringWithFormat: @"Executable %@ does not exist. Aborting.", execPath, nil]];
+        return NO;
+    }
+    
+    // check if source nib exists
+    nibPath = [properties objectForKey: @"NibPath"];
+    if (![fileManager fileExistsAtPath: [properties objectForKey: @"NibPath"]])
+    {
+        [self report: [NSString stringWithFormat: @"Nib file %@ does not exist. Aborting.", nibPath, nil]];
+        return NO;
+    }
+    
+	////////////////////////// CREATE THE FOLDER HIERARCHY //////////////////////////
 	
 	// we begin by creating the application bundle at temp path
 	
@@ -266,17 +282,17 @@
     
 	//copy exec file
 	//.app/Contents/Resources/MacOS/ScriptExec
-	execPath = [properties objectForKey: @"ExecutablePath"];
-	execDestinationPath = [macosPath stringByAppendingString:@"/"];
+    execDestinationPath = [macosPath stringByAppendingString:@"/"];
 	execDestinationPath = [execDestinationPath stringByAppendingString: [properties objectForKey: @"Name"]]; 
 	[fileManager copyPath:execPath toPath:execDestinationPath handler:nil];
+    [PlatypusUtility setPermissions: S_IRWXU | S_IRWXG | S_IROTH forFile: execDestinationPath];
 	
-    [self report: @"Copying nib file to bundle"];
     
 	//copy nib file to app bundle
 	//.app/Contents/Resources/MainMenu.nib
+    [self report: @"Copying nib file to bundle"];
 	nibDestPath = [resourcesPath stringByAppendingString:@"/MainMenu.nib"];
-	[fileManager copyPath: [properties objectForKey: @"NibPath"] toPath: nibDestPath handler: NULL];
+	[fileManager copyPath: nibPath toPath: nibDestPath handler: NULL];
 		
 	// if optimize application is set, we see if we can compile the nib file
 	if ([[properties objectForKey: @"OptimizeApplication"] boolValue] == YES && [fileManager fileExistsAtPath: IBTOOL_PATH])
@@ -352,12 +368,13 @@
     [appSettingsPlist setObject: [properties objectForKey: @"AcceptsFiles"] forKey: @"AcceptsFiles"];
     [appSettingsPlist setObject: [properties objectForKey: @"AcceptsText"] forKey: @"AcceptsText"];
 
-	
+	// if script is "secured" we encoded it into AppSettings property list
 	if ([[properties objectForKey: @"Secure"] boolValue])
 		[appSettingsPlist setObject: [NSKeyedArchiver archivedDataWithRootObject: b_enc_script] forKey: @"TextSettings"];
 	
 	appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
     
+    // write the app settings plist
     if (![[properties objectForKey: @"UseXMLPlistFormat"] boolValue])
     {
         NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList: appSettingsPlist
