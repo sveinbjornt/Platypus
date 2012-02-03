@@ -78,6 +78,217 @@
                                                object: NULL];
 }
 
+#pragma mark - App Settings
+
+/**************************************************
+ 
+ Load configuration file AppSettings.plist from 
+ application bundle, sanitize it, prepare it
+ 
+ **************************************************/
+
+-(void)loadSettings
+{
+    int                i = 0;
+    NSBundle        *appBundle = [NSBundle mainBundle];
+    NSFileManager   *fmgr = FILEMGR;
+    NSDictionary    *appSettingsPlist;
+    
+    //make sure all the config files are present -- if not, we quit
+    if (![fmgr fileExistsAtPath: [appBundle pathForResource:@"AppSettings.plist" ofType:nil]])
+        [self fatalAlert: @"Corrupt app bundle" subText: @"AppSettings.plist missing from the application bundle."];
+    
+    // get app name
+    // first, try to get CFBundleDisplayName from Info.plist
+    NSDictionary *infoPlist = [appBundle infoDictionary];
+    if ([infoPlist objectForKey: @"CFBundleDisplayName"] != nil)
+        appName = [[NSString alloc] initWithString: [infoPlist objectForKey: @"CFBundleDisplayName"]];
+    else // if that doesn't work, use name of executable file
+        appName = [[[appBundle executablePath] lastPathComponent] retain];
+    
+    //get dictionary with app settings
+    appSettingsPlist = [NSDictionary dictionaryWithContentsOfFile: [appBundle pathForResource:@"AppSettings.plist" ofType:nil]];
+    if (appSettingsPlist == NULL)
+        [self fatalAlert: @"Corrupt app settings" subText: @"AppSettings.plist is corrupt."]; 
+    
+    //determine output type
+    NSString *outputTypeStr = [appSettingsPlist objectForKey:@"OutputType"];
+    if ([outputTypeStr isEqualToString: @"Progress Bar"])
+        outputType = PLATYPUS_PROGRESSBAR_OUTPUT;
+    else if ([outputTypeStr isEqualToString: @"Text Window"])
+        outputType = PLATYPUS_TEXTWINDOW_OUTPUT;
+    else if ([outputTypeStr isEqualToString: @"Web View"])
+        outputType = PLATYPUS_WEBVIEW_OUTPUT;
+    else if ([outputTypeStr isEqualToString: @"Status Menu"])
+        outputType = PLATYPUS_STATUSMENU_OUTPUT;
+    else if ([outputTypeStr isEqualToString: @"Droplet"])
+        outputType = PLATYPUS_DROPLET_OUTPUT;
+    else if ([outputTypeStr isEqualToString: @"None"])
+        outputType = PLATYPUS_NONE_OUTPUT;
+    else
+        [self fatalAlert: @"Corrupt app settings" subText: @"Invalid Output Mode."];
+    
+    // we need some additional info from AppSettings.plist if we are presenting textual output
+    if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || 
+        outputType == PLATYPUS_TEXTWINDOW_OUTPUT ||
+        outputType == PLATYPUS_STATUSMENU_OUTPUT)
+    {
+        //make sure all this data is sane, revert to defaults if not
+        
+        // font and size
+        if ([appSettingsPlist objectForKey:@"TextFont"] && [appSettingsPlist objectForKey:@"TextSize"])
+            textFont = [NSFont fontWithName: [appSettingsPlist objectForKey:@"TextFont"] size: [[appSettingsPlist objectForKey:@"TextSize"] floatValue]];
+        if (!textFont)
+            textFont = [NSFont fontWithName: DEFAULT_OUTPUT_FONT size: DEFAULT_OUTPUT_FONTSIZE];
+        
+        // foreground
+        if ([appSettingsPlist objectForKey:@"TextForeground"])
+            textForeground = [NSColor colorFromHex: [appSettingsPlist objectForKey:@"TextForeground"]];
+        if (!textForeground)
+            textForeground = [NSColor colorFromHex: DEFAULT_OUTPUT_FG_COLOR];
+        
+        // background
+        if ([appSettingsPlist objectForKey:@"TextBackground"] != NULL)
+            textBackground    = [NSColor colorFromHex: [appSettingsPlist objectForKey:@"TextBackground"]];
+        if (!textBackground)
+            textBackground = [NSColor colorFromHex: DEFAULT_OUTPUT_BG_COLOR];
+        
+        // encoding
+        if ([appSettingsPlist objectForKey:@"TextEncoding"])
+            textEncoding = (int)[[appSettingsPlist objectForKey:@"TextEncoding"] intValue];
+        else
+            textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;            
+        
+        [textFont retain];
+        [textForeground retain];
+        [textBackground retain];
+    }
+    
+    // likewise, status menu output has some additional parameters
+    if (outputType == PLATYPUS_STATUSMENU_OUTPUT)
+    {
+        // we load text label if status menu is not only an icon
+        if ([[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Text"] ||
+            [[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Icon and Text"])
+        {
+            statusItemTitle = [[appSettingsPlist objectForKey: @"StatusItemTitle"] retain];
+            if (statusItemTitle == NULL)
+                [self fatalAlert: @"Error getting title" subText: @"Failed to get Status Item title."];
+        }
+        else
+            statusItemTitle = NULL;
+        
+        // we load icon if status menu is not only a text label
+        if ([[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Icon"] ||
+            [[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Icon and Text"])
+        {
+            statusItemIcon = [[NSImage alloc] initWithData: [appSettingsPlist objectForKey: @"StatusItemIcon"]];
+            if (statusItemIcon == NULL)
+                [self fatalAlert: @"Error loading icon" subText: @"Failed to load Status Item icon."];
+        }
+        else
+            statusItemIcon = NULL;
+        
+        if (statusItemIcon == NULL && statusItemTitle == NULL)
+            statusItemTitle = @"Title";
+    }
+    
+    //load these vars from plist
+    interpreterArgs     = [[NSArray arrayWithArray: [appSettingsPlist objectForKey:@"InterpreterArgs"]] retain];
+    scriptArgs          = [[NSArray arrayWithArray: [appSettingsPlist objectForKey:@"ScriptArgs"]] retain];
+    execStyle           = [[appSettingsPlist objectForKey:@"RequiresAdminPrivileges"] boolValue];
+    remainRunning       = [[appSettingsPlist objectForKey:@"RemainRunningAfterCompletion"] boolValue];
+    secureScript        = [[appSettingsPlist objectForKey: @"Secure"] boolValue];
+    isDroppable         = [[appSettingsPlist objectForKey: @"Droppable"] boolValue];
+    
+    // never privileged execution or droppable w. status menu
+    if (outputType == PLATYPUS_STATUSMENU_OUTPUT) 
+    {
+        remainRunning = YES;
+        execStyle = PLATYPUS_NORMAL_EXECUTION;
+        isDroppable = NO;
+    }
+    
+    // load settings for drop acceptance, default is to accept files and not text snippets
+    acceptsFiles = ([appSettingsPlist objectForKey: @"AcceptsFiles"] != nil) ? [[appSettingsPlist objectForKey: @"AcceptsFiles"] boolValue] : YES;
+    acceptsText = ([appSettingsPlist objectForKey: @"AcceptsText"] != nil) ? [[appSettingsPlist objectForKey: @"AcceptsText"] boolValue] : NO;
+    
+    if (!acceptsFiles && !acceptsText) // equivalent to not being droppable
+        isDroppable = FALSE;
+    
+    // initialize this to NO, then check the droppableSuffixes for 'fold'
+    acceptDroppedFolders = NO;
+    // initialize this to NO, then check the droppableSuffixes for *, and droppableFileTypes for ****
+    acceptAnyDroppedItem = NO; 
+    
+    // if app is droppable, the AppSettings.plist contains list of accepted file types / suffixes
+    // we use them later as a criterion for in-code drop acceptance 
+    if (isDroppable && acceptsFiles)
+    {    
+        // get list of accepted suffixes
+        if([appSettingsPlist objectForKey: @"DropSuffixes"])
+            droppableSuffixes = [[NSArray alloc] initWithArray:  [appSettingsPlist objectForKey:@"DropSuffixes"]];
+        else
+            droppableSuffixes = [[NSArray alloc] initWithArray: [NSArray array]];
+        [droppableSuffixes retain];
+        
+        // get list of accepted file types
+        if([appSettingsPlist objectForKey:@"DropTypes"])
+            droppableFileTypes = [[NSArray alloc] initWithArray:  [appSettingsPlist objectForKey:@"DropTypes"]];
+        else
+            droppableFileTypes = [[NSArray alloc] initWithArray: [NSArray array]];
+        [droppableFileTypes retain];
+        
+        // see if we accept any dropped item, * suffix or **** file type makes it so
+        for (i = 0; i < [droppableSuffixes count]; i++)
+            if ([[droppableSuffixes objectAtIndex:i] isEqualToString:@"*"]) //* suffix
+                acceptAnyDroppedItem = YES;
+        
+        for (i = 0; i < [droppableFileTypes count]; i++)
+            if([[droppableFileTypes objectAtIndex:i] isEqualToString:@"****"])//**** filetype
+                acceptAnyDroppedItem = YES;
+        
+        // see if we acccept dropped folders, requires filetype 'fold'
+        for(i = 0; i < [droppableFileTypes count]; i++)
+            if([[droppableFileTypes objectAtIndex: i] isEqualToString: @"fold"])
+                acceptDroppedFolders = YES;
+    }
+    
+    //get interpreter
+    interpreter = [[NSString stringWithString: [appSettingsPlist objectForKey:@"ScriptInterpreter"]] retain];
+    if (![fmgr fileExistsAtPath: interpreter])
+        [self fatalAlert: @"Missing interpreter" subText: [NSString stringWithFormat: @"This application could not run because the interpreter '%@' does not exist on this system.", interpreter]];
+    
+    //if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
+    if ((!secureScript && ![fmgr fileExistsAtPath: [appBundle pathForResource:@"script" ofType: NULL]]) || (secureScript && [appSettingsPlist objectForKey:@"TextSettings"] == NULL))
+        [self fatalAlert: @"Corrupt app bundle" subText: @"Script missing from application bundle."];
+    
+    //get path to script within app bundle
+    if (!secureScript)
+    {
+        scriptPath = [[NSString stringWithString: [appBundle pathForResource:@"script" ofType:nil]] retain];
+        
+        // make sure we can read the script file
+        if (![fmgr isReadableFileAtPath: scriptPath]) // if unreadable
+            chmod([scriptPath cStringUsingEncoding: NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // chmod 774
+        if (![fmgr isReadableFileAtPath: scriptPath]) // if still unreadable
+            [self fatalAlert: @"Corrupt app bundle" subText: @"Script file is not readable."];
+            
+    }
+    //if we have a "secure" script, there is no path to get, we write script to temp location on execution
+    else
+    {
+        NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData: [appSettingsPlist objectForKey:@"TextSettings"]];
+        if (b_str == NULL)
+            [self fatalAlert: @"Corrupt app bundle" subText: @"Script missing from application bundle."];
+        
+        // we create string with the script based on the decoded data
+        script = [[NSString alloc] initWithData: b_str encoding: textEncoding];
+    }
+}
+
+#pragma mark - App Delegate handlers
+
 -(void)applicationDidFinishLaunching: (NSNotification *)aNotification
 {    
     [NSApp setServicesProvider:self]; // register as text handling service
@@ -130,7 +341,7 @@
     return YES;
 }
 
-#pragma mark -
+#pragma mark - Interface manipulation
 
 /****************************************
  
@@ -425,7 +636,7 @@
     }
 }
 
-#pragma mark -
+#pragma mark - Task
 
 //
 // construct arguments list etc.
@@ -516,8 +727,6 @@
         [self executeScriptWithoutPrivileges];
 }
 
-#pragma mark -
-
 //launch regular user-privileged process using NSTask
 -(void)executeScriptWithoutPrivileges
 {    
@@ -582,7 +791,7 @@
     }
 }
 
-#pragma mark -
+#pragma mark - Task completion
 
 // OK, called when we receive notification that task is finished
 // Some cleaning up to do, controls need to be adjusted, etc.
@@ -639,7 +848,7 @@
     [self cleanupInterface];    
 }
 
-#pragma mark -
+#pragma mark - Output
 
 //  read from the file handle and append it to the text window
 -(void) getOutputData: (NSNotification *)aNotification
@@ -739,7 +948,7 @@
     [outputString release];
 }
 
-#pragma mark -
+#pragma mark - Interface actions
 
 //run open panel, made available to apps that are droppable
 -(IBAction)openFiles: (id)sender
@@ -767,7 +976,72 @@
     }
 }
 
-#pragma mark -
+// show / hide the details text field in progress bar output
+-(IBAction)toggleDetails: (id)sender
+{
+    NSRect winRect = [progressBarWindow frame];
+    
+    if ([sender state] == NSOffState)
+    {
+        [progressBarWindow setShowsResizeIndicator: NO];
+        winRect.origin.y += 224;
+        winRect.size.height -= 224;        
+        [progressBarWindow setFrame: winRect display: TRUE animate: TRUE];
+    }
+    else
+    {
+        [progressBarWindow setShowsResizeIndicator: YES];
+        winRect.origin.y -= 224;
+        winRect.size.height += 224;
+        [progressBarWindow setFrame: winRect display: TRUE animate: TRUE];
+    }
+}
+
+
+// save output in text field to file when Save to File menu item is invoked
+-(IBAction)saveToFile: (id)sender
+{
+    if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT)
+        return;
+    
+    NSString *outSuffix = (outputType == PLATYPUS_WEBVIEW_OUTPUT) ? @"html" : @"txt";
+    NSString *fileName = [NSString stringWithFormat: @"%@ Output.%@", appName, outSuffix];
+    
+    NSSavePanel *sPanel = [NSSavePanel savePanel];
+    [sPanel setPrompt: @"Save"];
+    
+    if ([sPanel runModalForDirectory: nil file: fileName] == NSFileHandlingPanelOKButton)
+        [[outputTextView string] writeToFile: [sPanel filename] atomically: YES encoding: textEncoding error: nil];
+}
+
+// save only works for text window, web view output types
+// and open only works for droppable apps that accept files as script args
+
+-(BOOL)validateMenuItem: (NSMenuItem*)anItem 
+{    
+    //save to file item
+    if ([[anItem title] isEqualToString:@"Save to File…"] && 
+        (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT))
+        return NO;
+    
+    //open should only work if it's a droppable app
+    if ([[anItem title] isEqualToString:@"Open…"] &&
+        (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS))
+        return NO;
+    
+    return YES;
+}
+
+-(IBAction)cancel: (id)sender
+{
+    if (task != NULL)
+        [task terminate];
+    
+    if ([[sender title] isEqualToString: @"Quit"])
+        [[NSApplication sharedApplication] terminate: self];
+}
+
+#pragma mark - Service handling
 
 // service
 
@@ -806,6 +1080,8 @@
     if (!isTaskRunning && ret)
         [self executeScript];
 }
+
+#pragma mark - Create drop job
 
 -(BOOL)addDroppedTextJob: (NSString *)text
 {
@@ -888,6 +1164,7 @@
     return NO;
 }
 
+#pragma mark - Drag and drop handling
 
 // check file types against acceptable drop types here before accepting them
 
@@ -958,7 +1235,7 @@
     return [self draggingEntered: sender]; // this is needed to keep link instead of the green plus sign on web view
 }
 
-#pragma mark -
+#pragma mark - Web View Output updating
 
 /**************************************************
  
@@ -974,7 +1251,7 @@
     [[scrollView documentView] scrollPoint: NSMakePoint(0, bounds.size.height)];
 }
 
-#pragma mark -
+#pragma mark - Status Menu
 
 /**************************************************
  
@@ -1023,276 +1300,7 @@
     }
 }
 
-
-#pragma mark -
-
-/**************************************************
- 
- Load configuration file AppSettings.plist from 
- application bundle, sanitize it, prepare it
- 
- **************************************************/
-
--(void)loadSettings
-{
-    int                i = 0;
-    NSBundle        *appBundle = [NSBundle mainBundle];
-    NSFileManager   *fmgr = FILEMGR;
-    NSDictionary    *appSettingsPlist;
-    
-    //make sure all the config files are present -- if not, we quit
-    if (![fmgr fileExistsAtPath: [appBundle pathForResource:@"AppSettings.plist" ofType:nil]])
-        [self fatalAlert: @"Corrupt app bundle" subText: @"AppSettings.plist missing from the application bundle."];
-    
-    // get app name
-    // first, try to get CFBundleDisplayName from Info.plist
-    NSDictionary *infoPlist = [appBundle infoDictionary];
-    if ([infoPlist objectForKey: @"CFBundleDisplayName"] != nil)
-        appName = [[NSString alloc] initWithString: [infoPlist objectForKey: @"CFBundleDisplayName"]];
-    else // if that doesn't work, use name of executable file
-        appName = [[[appBundle executablePath] lastPathComponent] retain];
-    
-    //get dictionary with app settings
-    appSettingsPlist = [NSDictionary dictionaryWithContentsOfFile: [appBundle pathForResource:@"AppSettings.plist" ofType:nil]];
-    if (appSettingsPlist == NULL)
-        [self fatalAlert: @"Corrupt app settings" subText: @"AppSettings.plist is corrupt."]; 
-    
-    //determine output type
-    NSString *outputTypeStr = [appSettingsPlist objectForKey:@"OutputType"];
-    if ([outputTypeStr isEqualToString: @"Progress Bar"])
-        outputType = PLATYPUS_PROGRESSBAR_OUTPUT;
-    else if ([outputTypeStr isEqualToString: @"Text Window"])
-        outputType = PLATYPUS_TEXTWINDOW_OUTPUT;
-    else if ([outputTypeStr isEqualToString: @"Web View"])
-        outputType = PLATYPUS_WEBVIEW_OUTPUT;
-    else if ([outputTypeStr isEqualToString: @"Status Menu"])
-        outputType = PLATYPUS_STATUSMENU_OUTPUT;
-    else if ([outputTypeStr isEqualToString: @"Droplet"])
-        outputType = PLATYPUS_DROPLET_OUTPUT;
-    else if ([outputTypeStr isEqualToString: @"None"])
-        outputType = PLATYPUS_NONE_OUTPUT;
-    else
-        [self fatalAlert: @"Corrupt app settings" subText: @"Invalid Output Mode."];
-    
-    // we need some additional info from AppSettings.plist if we are presenting textual output
-    if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || 
-        outputType == PLATYPUS_TEXTWINDOW_OUTPUT ||
-        outputType == PLATYPUS_STATUSMENU_OUTPUT)
-    {
-        //make sure all this data is sane, revert to defaults if not
-        
-        // font and size
-        if ([appSettingsPlist objectForKey:@"TextFont"] && [appSettingsPlist objectForKey:@"TextSize"])
-            textFont = [NSFont fontWithName: [appSettingsPlist objectForKey:@"TextFont"] size: [[appSettingsPlist objectForKey:@"TextSize"] floatValue]];
-        if (!textFont)
-            textFont = [NSFont fontWithName: DEFAULT_OUTPUT_FONT size: DEFAULT_OUTPUT_FONTSIZE];
-        
-        // foreground
-        if ([appSettingsPlist objectForKey:@"TextForeground"])
-            textForeground = [NSColor colorFromHex: [appSettingsPlist objectForKey:@"TextForeground"]];
-        if (!textForeground)
-            textForeground = [NSColor colorFromHex: DEFAULT_OUTPUT_FG_COLOR];
-                    
-        // background
-        if ([appSettingsPlist objectForKey:@"TextBackground"] != NULL)
-            textBackground    = [NSColor colorFromHex: [appSettingsPlist objectForKey:@"TextBackground"]];
-        if (!textBackground)
-            textBackground = [NSColor colorFromHex: DEFAULT_OUTPUT_BG_COLOR];
-        
-        // encoding
-        if ([appSettingsPlist objectForKey:@"TextEncoding"])
-            textEncoding = (int)[[appSettingsPlist objectForKey:@"TextEncoding"] intValue];
-        else
-            textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;            
-        
-        [textFont retain];
-        [textForeground retain];
-        [textBackground retain];
-    }
-    
-    // likewise, status menu output has some additional parameters
-    if (outputType == PLATYPUS_STATUSMENU_OUTPUT)
-    {
-        // we load text label if status menu is not only an icon
-        if ([[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Text"] ||
-            [[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Icon and Text"])
-        {
-            statusItemTitle = [[appSettingsPlist objectForKey: @"StatusItemTitle"] retain];
-            if (statusItemTitle == NULL)
-                [self fatalAlert: @"Error getting title" subText: @"Failed to get Status Item title."];
-        }
-        else
-            statusItemTitle = NULL;
-        
-        // we load icon if status menu is not only a text label
-        if ([[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Icon"] ||
-            [[appSettingsPlist objectForKey: @"StatusItemDisplayType"] isEqualToString: @"Icon and Text"])
-        {
-            statusItemIcon = [[NSImage alloc] initWithData: [appSettingsPlist objectForKey: @"StatusItemIcon"]];
-            if (statusItemIcon == NULL)
-                [self fatalAlert: @"Error loading icon" subText: @"Failed to load Status Item icon."];
-        }
-        else
-            statusItemIcon = NULL;
-        
-        if (statusItemIcon == NULL && statusItemTitle == NULL)
-            statusItemTitle = @"Title";
-    }
-    
-    //load these vars from plist
-    interpreterArgs     = [[NSArray arrayWithArray: [appSettingsPlist objectForKey:@"InterpreterArgs"]] retain];
-    scriptArgs          = [[NSArray arrayWithArray: [appSettingsPlist objectForKey:@"ScriptArgs"]] retain];
-    execStyle           = [[appSettingsPlist objectForKey:@"RequiresAdminPrivileges"] boolValue];
-    remainRunning       = [[appSettingsPlist objectForKey:@"RemainRunningAfterCompletion"] boolValue];
-    secureScript        = [[appSettingsPlist objectForKey: @"Secure"] boolValue];
-    isDroppable         = [[appSettingsPlist objectForKey: @"Droppable"] boolValue];
-    
-    // never privileged execution or droppable w. status menu
-    if (outputType == PLATYPUS_STATUSMENU_OUTPUT) 
-    {
-        remainRunning = YES;
-        execStyle = PLATYPUS_NORMAL_EXECUTION;
-        isDroppable = NO;
-    }
-    
-    // load settings for drop acceptance, default is to accept files and not text snippets
-    acceptsFiles = ([appSettingsPlist objectForKey: @"AcceptsFiles"] != nil) ? [[appSettingsPlist objectForKey: @"AcceptsFiles"] boolValue] : YES;
-    acceptsText = ([appSettingsPlist objectForKey: @"AcceptsText"] != nil) ? [[appSettingsPlist objectForKey: @"AcceptsText"] boolValue] : NO;
-    
-    if (!acceptsFiles && !acceptsText) // equivalent to not being droppable
-        isDroppable = FALSE;
-    
-    // initialize this to NO, then check the droppableSuffixes for 'fold'
-    acceptDroppedFolders = NO;
-    // initialize this to NO, then check the droppableSuffixes for *, and droppableFileTypes for ****
-    acceptAnyDroppedItem = NO; 
-    
-    // if app is droppable, the AppSettings.plist contains list of accepted file types / suffixes
-    // we use them later as a criterion for in-code drop acceptance 
-    if (isDroppable && acceptsFiles)
-    {    
-        // get list of accepted suffixes
-        if([appSettingsPlist objectForKey: @"DropSuffixes"])
-            droppableSuffixes = [[NSArray alloc] initWithArray:  [appSettingsPlist objectForKey:@"DropSuffixes"]];
-        else
-            droppableSuffixes = [[NSArray alloc] initWithArray: [NSArray array]];
-        [droppableSuffixes retain];
-        
-        // get list of accepted file types
-        if([appSettingsPlist objectForKey:@"DropTypes"])
-            droppableFileTypes = [[NSArray alloc] initWithArray:  [appSettingsPlist objectForKey:@"DropTypes"]];
-        else
-            droppableFileTypes = [[NSArray alloc] initWithArray: [NSArray array]];
-        [droppableFileTypes retain];
-        
-        // see if we accept any dropped item, * suffix or **** file type makes it so
-        for (i = 0; i < [droppableSuffixes count]; i++)
-            if ([[droppableSuffixes objectAtIndex:i] isEqualToString:@"*"]) //* suffix
-                acceptAnyDroppedItem = YES;
-        
-        for (i = 0; i < [droppableFileTypes count]; i++)
-            if([[droppableFileTypes objectAtIndex:i] isEqualToString:@"****"])//**** filetype
-                acceptAnyDroppedItem = YES;
-        
-        // see if we acccept dropped folders, requires filetype 'fold'
-        for(i = 0; i < [droppableFileTypes count]; i++)
-            if([[droppableFileTypes objectAtIndex: i] isEqualToString: @"fold"])
-                acceptDroppedFolders = YES;
-    }
-    
-    //get interpreter
-    interpreter = [[NSString stringWithString: [appSettingsPlist objectForKey:@"ScriptInterpreter"]] retain];
-    if (![fmgr fileExistsAtPath: interpreter])
-        [self fatalAlert: @"Missing interpreter" subText: [NSString stringWithFormat: @"This application could not run because the interpreter '%@' does not exist on this system.", interpreter]];
-    
-    //if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
-    if ((!secureScript && ![fmgr fileExistsAtPath: [appBundle pathForResource:@"script" ofType: NULL]]) || (secureScript && [appSettingsPlist objectForKey:@"TextSettings"] == NULL))
-        [self fatalAlert: @"Corrupt app bundle" subText: @"Script missing from application bundle."];
-    
-    //get path to script within app bundle
-    if (!secureScript)
-    {
-        scriptPath = [[NSString stringWithString: [appBundle pathForResource:@"script" ofType:nil]] retain]; 
-    }
-    //if we have a "secure" script, there is no path to get, we write script to temp location on execution
-    else 
-    {
-        NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData: [appSettingsPlist objectForKey:@"TextSettings"]];
-        if (b_str == NULL)
-            [self fatalAlert: @"Corrupt app bundle" subText: @"Script missing from application bundle."];
-        
-        // we create string with the script based on the decoded data
-        script = [[NSString alloc] initWithData: b_str encoding: textEncoding];
-    }
-}
-
--(IBAction)cancel: (id)sender
-{
-    if (task != NULL)
-        [task terminate];
-    
-    if ([[sender title] isEqualToString: @"Quit"])
-        [[NSApplication sharedApplication] terminate: self];
-}
-
-// show / hide the details text field in progress bar output
--(IBAction)toggleDetails: (id)sender
-{
-    NSRect winRect = [progressBarWindow frame];
-    
-    if ([sender state] == NSOffState)
-    {
-        [progressBarWindow setShowsResizeIndicator: NO];
-        winRect.origin.y += 224;
-        winRect.size.height -= 224;        
-        [progressBarWindow setFrame: winRect display: TRUE animate: TRUE];
-    }
-    else
-    {
-        [progressBarWindow setShowsResizeIndicator: YES];
-        winRect.origin.y -= 224;
-        winRect.size.height += 224;
-        [progressBarWindow setFrame: winRect display: TRUE animate: TRUE];
-    }
-}
-
-#pragma mark -
-
-// save output in text field to file when Save to File menu item is invoked
--(IBAction)saveToFile: (id)sender
-{
-    if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT)
-        return;
-    
-    NSString *outSuffix = (outputType == PLATYPUS_WEBVIEW_OUTPUT) ? @"html" : @"txt";
-    NSString *fileName = [NSString stringWithFormat: @"%@ Output.%@", appName, outSuffix];
-    
-    NSSavePanel *sPanel = [NSSavePanel savePanel];
-    [sPanel setPrompt: @"Save"];
-    
-    if ([sPanel runModalForDirectory: nil file: fileName] == NSFileHandlingPanelOKButton)
-        [[outputTextView string] writeToFile: [sPanel filename] atomically: YES encoding: textEncoding error: nil];
-}
-
-// save only works for text window, web view output types
-// and open only works for droppable apps that accept files as script args
-
--(BOOL)validateMenuItem: (NSMenuItem*)anItem 
-{    
-    //save to file item
-    if ([[anItem title] isEqualToString:@"Save to File…"] && 
-        (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT))
-        return NO;
-    
-    //open should only work if it's a droppable app
-    if ([[anItem title] isEqualToString:@"Open…"] &&
-        (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS))
-        return NO;
-    
-    return YES;
-}
-
-#pragma mark -
+#pragma mark - Utility methods
 
 // show error alert and then exit application
 -(void)fatalAlert: (NSString *)message subText: (NSString *)subtext
