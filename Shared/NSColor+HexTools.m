@@ -56,7 +56,6 @@
 	return result;
 }
 
-
 - (NSString *)hexString
 {
 	CGFloat		redFloatValue, greenFloatValue, blueFloatValue;
