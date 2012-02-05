@@ -486,7 +486,7 @@ int main (int argc, const char * argv[])
             destPath = [destPath stringByAppendingString: @".platypus"];
         }
 		// we then dump the profile dictionary to path and exit
-        appSpec = [[PlatypusAppSpec alloc] initWithDefaults];
+        appSpec = [[PlatypusAppSpec alloc] specWithDefaults];
         [appSpec addProperties: properties];
         
         if (printStdout)
@@ -494,7 +494,6 @@ int main (int argc, const char * argv[])
         else
             [appSpec dumpToFile: destPath];
         
-        [appSpec release];
         exit(0);
 	}
     // if we loaded a profile, the first remaining arg is destination path, others ignored
@@ -504,7 +503,7 @@ int main (int argc, const char * argv[])
         if (![destPath hasSuffix: @".app"])
             destPath = [destPath stringByAppendingString: @".app"];
         
-        appSpec = [[PlatypusAppSpec alloc] initWithDefaults];
+        appSpec = [[PlatypusAppSpec alloc] specWithDefaults];
         [appSpec addProperties: properties];
         [appSpec setProperty: destPath forKey: @"Destination"];
     }
@@ -518,7 +517,7 @@ int main (int argc, const char * argv[])
             NSPrintErr(@"Error: No script file exists at path '%@'", scriptPath);
             exit(1);
         }
-        appSpec = [[PlatypusAppSpec alloc] initWithDefaultsFromScript: scriptPath];
+        appSpec = [[PlatypusAppSpec alloc] specWithDefaultsFromScript: scriptPath];
         if ([properties objectForKey: @"Name"] != nil)
         {
             NSString *appBundleName = [NSString stringWithFormat: @"%@.app", [properties objectForKey: @"Name"]];
@@ -538,7 +537,6 @@ int main (int argc, const char * argv[])
         
     if (![appSpec propertyForKey: @"ScriptPath"] || [[appSpec propertyForKey: @"ScriptPath"] isEqualToString: @""])
     {
-        [appSpec release];
         NSPrintErr(@"Error: Missing script path.");
         exit(1);
     }
@@ -547,12 +545,10 @@ int main (int argc, const char * argv[])
     if (![appSpec verify] || ![appSpec create])
     {
         NSPrintErr(@"Error: %@", [appSpec error]);
-        [appSpec release];
         exit(1);
     }
-    
-    [appSpec release];
-    [pool release];
+        
+    [pool drain];
 	
 	return 0;
 }
