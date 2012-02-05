@@ -376,6 +376,7 @@
     switch (outputType)
     {
         case PLATYPUS_NONE_OUTPUT:
+            // nothing to do
             break;
             
         case PLATYPUS_PROGRESSBAR_OUTPUT:
@@ -1026,7 +1027,7 @@
     
     //open should only work if it's a droppable app
     if ([[anItem title] isEqualToString:@"Open…"] &&
-        (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS))
+        (!isDroppable || !acceptsFiles || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS))
         return NO;
     
     return YES;
