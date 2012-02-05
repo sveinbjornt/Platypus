@@ -240,7 +240,7 @@
     
     // check if executable exists
     execPath = [properties objectForKey: @"ExecutablePath"];
-    if (![fileManager fileExistsAtPath: execPath])
+    if (![fileManager fileExistsAtPath: execPath] || ![fileManager isReadableFileAtPath: execPath])
     {
         [self report: [NSString stringWithFormat: @"Executable %@ does not exist. Aborting.", execPath, nil]];
         return NO;
@@ -248,7 +248,7 @@
     
     // check if source nib exists
     nibPath = [properties objectForKey: @"NibPath"];
-    if (![fileManager fileExistsAtPath: [properties objectForKey: @"NibPath"]])
+    if (![fileManager fileExistsAtPath: nibPath] || ![fileManager isReadableFileAtPath: nibPath])
     {
         [self report: [NSString stringWithFormat: @"Nib file %@ does not exist. Aborting.", nibPath, nil]];
         return NO;
@@ -535,13 +535,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName: @"PlatypusAppSpecCreationNotification" object: str];
 }
 
-/************************
-
-	Make sure the data
-	in the spec isn't
-	insane
-
-************************/
+/********************************************
+	Make sure the data in the spec is sane
+*********************************************/
 
 -(BOOL)verify
 {
@@ -561,26 +557,26 @@
 	
 	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"ScriptPath"] isDirectory:&isDir] || isDir)
 	{
-		error = [NSString stringWithFormat: @"Script not found at path '%@'", [properties objectForKey: @"ScriptPath"] ];
+		error = [NSString stringWithFormat: @"Script not found at path '%@'", [properties objectForKey: @"ScriptPath"], nil];
 		return 0;
 	}
 	
 	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"NibPath"] isDirectory:&isDir])
 	{
-		error = [NSString stringWithFormat: @"Nib not found at path '%@'", [properties objectForKey: @"NibPath"]];
+		error = [NSString stringWithFormat: @"Nib not found at path '%@'", [properties objectForKey: @"NibPath"], nil];
 		return 0;
 	}
 	
 	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"ExecutablePath"] isDirectory:&isDir] || isDir)
 	{
-		error = [NSString stringWithFormat: @"Executable not found at path '%@'", [properties objectForKey: @"ExecutablePath"]];
+		error = [NSString stringWithFormat: @"Executable not found at path '%@'", [properties objectForKey: @"ExecutablePath"], nil];
 		return 0;
 	}
 	
 	//make sure destination directory exists
 	if (![FILEMGR fileExistsAtPath: [[properties objectForKey: @"Destination"] stringByDeletingLastPathComponent] isDirectory: &isDir] || !isDir)
 	{
-		error = [NSString stringWithFormat: @"Destination directory '%@' does not exist.", [[properties objectForKey: @"Destination"] stringByDeletingLastPathComponent]];
+		error = [NSString stringWithFormat: @"Destination directory '%@' does not exist.", [[properties objectForKey: @"Destination"] stringByDeletingLastPathComponent], nil];
 		return 0;
 	}
 	
@@ -594,9 +590,9 @@
 	return 1;
 }
 
-/************************
+/********************************
  Dump properties array to a file
-************************/
+********************************/
 
 -(void)dumpToFile: (NSString *)filePath
 {
@@ -607,6 +603,8 @@
 {
     fprintf(stdout, "%s\n", [[properties description] UTF8String]);
 }
+
+// generates the command that would create this spec using flags to the platypus command line tool
 
 -(NSString *)commandString
 {
