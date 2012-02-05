@@ -21,6 +21,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface NSColor (HexTools)
-+ (NSColor *) colorFromHex:(NSString *) inColorString;
++ (NSColor *)colorFromHex:(NSString *) inColorString;
 - (NSString *)hexString;
 @end
