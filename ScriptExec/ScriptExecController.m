@@ -46,6 +46,8 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver: self];
+    
+    // these are explicitly alloc'd in the program
     if (arguments != NULL)          { [arguments release]; }
     if (droppableSuffixes != NULL)  { [droppableSuffixes release];}
     if (droppableFileTypes != NULL) { [droppableFileTypes release];}
@@ -376,8 +378,10 @@
     switch (outputType)
     {
         case PLATYPUS_NONE_OUTPUT:
+        {
             // nothing to do
-            break;
+        }
+        break;
             
         case PLATYPUS_PROGRESSBAR_OUTPUT:
         {
@@ -412,7 +416,7 @@
             // reveal it
             [progressBarWindow makeKeyAndOrderFront: self];
         }
-            break;
+        break;
             
         case PLATYPUS_TEXTWINDOW_OUTPUT:
         {
@@ -431,10 +435,11 @@
             
             // prepare window
             [textOutputWindow setTitle: appName];
-            [textOutputWindow center];
+            if ([[textOutputWindow frameAutosaveName] isEqualToString: @""])
+                [textOutputWindow center];
             [textOutputWindow makeKeyAndOrderFront: self];
         }
-            break;
+        break;
             
         case PLATYPUS_WEBVIEW_OUTPUT:
         {
@@ -450,10 +455,12 @@
             // prepare window
             [webOutputWindow setTitle: appName];
             [webOutputWindow center];
+            if ([[webOutputWindow frameAutosaveName] isEqualToString: @""])
+                [webOutputWindow center];
             [webOutputWindow makeKeyAndOrderFront: self];        
             
         }
-            break;
+        break;
             
         case PLATYPUS_STATUSMENU_OUTPUT:
         {
@@ -466,11 +473,7 @@
                 [statusItem setTitle: statusItemTitle];
             if (statusItemIcon != NULL)
                 [statusItem setImage: statusItemIcon];
-            
-            // let's make sure it has at least either a title or an icon
-            if (statusItemIcon == NULL && statusItemTitle == NULL)
-                [self fatalAlert: @"Corrupt settings"  subText:@"Status Menu settings failed to specify title or icon."];
-            
+                        
             // create menu for our status item
             statusItemMenu = [[NSMenu alloc] initWithTitle: @""];
             [statusItemMenu setDelegate: self];
@@ -484,7 +487,7 @@
             // enable it
             [statusItem setEnabled: YES];
         }
-            break;
+        break;
             
         case PLATYPUS_DROPLET_OUTPUT:
         {            
@@ -495,10 +498,11 @@
             
             // prepare window
             [dropletWindow setTitle: appName];
-            [dropletWindow center];
+            if ([[dropletWindow frameAutosaveName] isEqualToString: @""])
+                [dropletWindow center];
             [dropletWindow makeKeyAndOrderFront: self];
         }
-            break;
+        break;
     }
 }
 
@@ -522,7 +526,7 @@
             [progressBarCancelButton setTitle: @"Cancel"];
             if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { [progressBarCancelButton setEnabled: NO]; }
         }
-            break;
+        break;
             
         case PLATYPUS_TEXTWINDOW_OUTPUT:
         {   
@@ -531,7 +535,7 @@
             if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { [textOutputCancelButton setEnabled: NO]; }
             [textOutputProgressIndicator startAnimation: self];
         }
-            break;
+        break;
             
         case PLATYPUS_WEBVIEW_OUTPUT:
         {
@@ -540,13 +544,13 @@
             if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { [webOutputCancelButton setEnabled: NO]; }
             [webOutputProgressIndicator startAnimation: self];
         }
-            break;
+        break;
             
         case PLATYPUS_STATUSMENU_OUTPUT:
         {
             [outputTextView setString: @""];
         }
-            break;
+        break;
             
         case PLATYPUS_DROPLET_OUTPUT:
         {
@@ -557,7 +561,7 @@
             [dropletMessageTextField setStringValue: @"Processing..."];
             [outputTextView setString: @"\n"];
         }
-            break;
+        break;
     }
 }
 
@@ -579,7 +583,7 @@
             [textOutputCancelButton setEnabled: YES];
             [textOutputProgressIndicator stopAnimation: self];
         }
-            break;
+        break;
             
         case PLATYPUS_PROGRESSBAR_OUTPUT:
         {
@@ -616,7 +620,7 @@
             [progressBarCancelButton setTitle: @"Quit"];
             [progressBarCancelButton setEnabled: YES];
         }
-            break;
+        break;
             
         case PLATYPUS_WEBVIEW_OUTPUT:
         {
@@ -625,7 +629,7 @@
             [webOutputCancelButton setEnabled: YES];
             [webOutputProgressIndicator stopAnimation: self];
         }
-            break;
+        break;
             
         case PLATYPUS_DROPLET_OUTPUT:
         {
@@ -633,7 +637,7 @@
             [dropletDropFilesLabel setHidden: NO];
             [dropletMessageTextField setHidden: YES];
         }
-            break;
+        break;
     }
 }
 
