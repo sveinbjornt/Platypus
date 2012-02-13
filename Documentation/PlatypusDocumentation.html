@@ -699,17 +699,17 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
     MyApp.app/Contents
     MyApp.app/Contents/Info.plist                   - Info property list for app
     MyApp.app/Contents/MacOS
-    MyApp.app/Contents/MacOS/MyApp                  - App binary
+    MyApp.app/Contents/MacOS/MyApp                  - Application binary
     MyApp.app/Contents/Resources                    - Resources folder
-    MyApp.app/Contents/Resources/appIcon.icns       - App icon
-    MyApp.app/Contents/Resources/AppSettings.plist  - App script execution settings
+    MyApp.app/Contents/Resources/appIcon.icns       - Application icon
+    MyApp.app/Contents/Resources/AppSettings.plist  - Application script execution settings
     MyApp.app/Contents/Resources/MainMenu.nib       - Nib file, stores interface layout
     MyApp.app/Contents/Resources/script             - Script which app executes
 </pre>
 
-<p>The application binary reads settings from AppSettings.plist and then runs the script, making use of the relevant user interface assets in the nib file.</p>
+<p>The application binary reads settings from AppSettings.plist and then runs the script, making use of the configured user interface assets in the nib file to display the script's output.</p>
 
-<p>The source code to the binary is <a href="https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/ScriptExecController.m">ScriptExecController.m</a>.</p>
+<p>The source code to the binary is <a href="https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/ScriptExecController.m">ScriptExecController.m</a>.  Skimming it should give you a fairly thorough understanding of what the executable actually does.  It's very simple.</p>
 
 
 <br>
