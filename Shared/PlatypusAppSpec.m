@@ -411,61 +411,8 @@
 	//.app/Contents/Info.plist
     [self report: @"Creating Info.plist"];
 	infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
-	// create the Info.plist dictionary
-	NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys: 
-							@"English", @"CFBundleDevelopmentRegion",
-							[properties objectForKey: @"Name"], @"CFBundleExecutable", 
-							[properties objectForKey: @"Name"], @"CFBundleName",
-							[properties objectForKey: @"Name"], @"CFBundleDisplayName",
-							[NSString stringWithFormat: @"© %d %@", [[NSCalendarDate calendarDate] yearOfCommonEra], [properties objectForKey: @"Author"] ], @"NSHumanReadableCopyright", 
-							[properties objectForKey: @"Version"], @"CFBundleShortVersionString", 
-							[properties objectForKey: @"Identifier"], @"CFBundleIdentifier",  
-							[properties objectForKey: @"ShowInDock"], @"LSUIElement",
-							@"6.0", @"CFBundleInfoDictionaryVersion",
-							@"APPL", @"CFBundlePackageType",
-							@"MainMenu", @"NSMainNibFile",
-							PROGRAM_MIN_SYS_VERSION, @"LSMinimumSystemVersion",
-							@"NSApplication", @"NSPrincipalClass",  nil];
-    if (![[properties objectForKey: @"IconPath"] isEqualToString: @""])
-        [infoPlist setObject: @"appIcon.icns" forKey: @"CFBundleIconFile"]; 
-	
-	// if droppable, we declare the accepted file types
-	if ([[properties objectForKey: @"Droppable"] boolValue] == YES)
-	{
-		NSMutableDictionary	*typesAndSuffixesDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-						[properties objectForKey: @"Suffixes"], @"CFBundleTypeExtensions",//extensions
-						[properties objectForKey: @"FileTypes"], @"CFBundleTypeOSTypes",//os types
-						[properties objectForKey: @"Role"], @"CFBundleTypeRole", nil];//viewer or editor?
-        
-        // document icon
-        if (docIconPath && [fileManager fileExistsAtPath: docIconPath])
-            [typesAndSuffixesDict setObject: @"docIcon.icns" forKey: @"CFBundleTypeIconFile"];
-        
-        [infoPlist setObject: [NSArray arrayWithObject: typesAndSuffixesDict] forKey: @"CFBundleDocumentTypes"];
-        
-        // add service settings to Info.plist
-        if ([[properties objectForKey: @"DeclareService"] boolValue])
-        {
-            // service data type handling
-            NSMutableArray      *sendTypes = [NSMutableArray arrayWithCapacity: 2];
-            if ([[properties objectForKey: @"AcceptsFiles"] boolValue])
-                [sendTypes addObject: @"NSFilenamesPboardType"];
-            if ([[properties objectForKey: @"AcceptsText"] boolValue])
-                [sendTypes addObject: @"NSStringPboardType"];
-            
-            NSString            *appName = [properties objectForKey: @"Name"];
-            NSMutableDictionary *serviceDict = [NSMutableDictionary dictionaryWithCapacity: 10];
-            NSDictionary        *menuItemDict = [NSDictionary dictionaryWithObject: [NSString stringWithFormat: @"Process with %@", appName] forKey: @"default"];
-            
-            [serviceDict setObject: menuItemDict  forKey: @"NSMenuItem"];
-            [serviceDict setObject: @"dropService"  forKey: @"NSMessage"];
-            [serviceDict setObject: appName         forKey: @"NSPortName"];
-            [serviceDict setObject: sendTypes       forKey: @"NSSendTypes"];
-            [infoPlist setObject: [NSArray arrayWithObject: serviceDict] forKey: @"NSServices"];
-        }
-	}
-    		
-	// finally, write the Info.plist file
+    NSDictionary *infoPlist = [self infoPlistFromProfile];
+    
     [self report: @"Writing Info.plist"];
     if (![[properties objectForKey: @"UseXMLPlistFormat"] boolValue]) // if binary
     {
@@ -535,6 +482,65 @@
 	[[NSWorkspace sharedWorkspace] noteFileSystemChanged:  [properties objectForKey: @"Destination"]];
 	
 	return 1;
+}
+
+-(NSDictionary *)infoPlistFromProfile
+{
+    // create the Info.plist dictionary
+	NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys: 
+                                      @"English", @"CFBundleDevelopmentRegion",
+                                      [properties objectForKey: @"Name"], @"CFBundleExecutable", 
+                                      [properties objectForKey: @"Name"], @"CFBundleName",
+                                      [properties objectForKey: @"Name"], @"CFBundleDisplayName",
+                                      [NSString stringWithFormat: @"© %d %@", [[NSCalendarDate calendarDate] yearOfCommonEra], [properties objectForKey: @"Author"] ], @"NSHumanReadableCopyright", 
+                                      [properties objectForKey: @"Version"], @"CFBundleShortVersionString", 
+                                      [properties objectForKey: @"Identifier"], @"CFBundleIdentifier",  
+                                      [properties objectForKey: @"ShowInDock"], @"LSUIElement",
+                                      @"6.0", @"CFBundleInfoDictionaryVersion",
+                                      @"APPL", @"CFBundlePackageType",
+                                      @"MainMenu", @"NSMainNibFile",
+                                      PROGRAM_MIN_SYS_VERSION, @"LSMinimumSystemVersion",
+                                      @"NSApplication", @"NSPrincipalClass",  nil];
+    if (![[properties objectForKey: @"IconPath"] isEqualToString: @""])
+        [infoPlist setObject: @"appIcon.icns" forKey: @"CFBundleIconFile"]; 
+	
+	// if droppable, we declare the accepted file types
+	if ([[properties objectForKey: @"Droppable"] boolValue] == YES)
+	{
+		NSMutableDictionary	*typesAndSuffixesDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                     [properties objectForKey: @"Suffixes"], @"CFBundleTypeExtensions",//extensions
+                                                     [properties objectForKey: @"FileTypes"], @"CFBundleTypeOSTypes",//os types
+                                                     [properties objectForKey: @"Role"], @"CFBundleTypeRole", nil];//viewer or editor?
+        
+        // document icon
+        if ([properties objectForKey: @"DocIcon"] && [[NSFileManager defaultManager] fileExistsAtPath: [properties objectForKey: @"DocIcon"]])
+            [typesAndSuffixesDict setObject: @"docIcon.icns" forKey: @"CFBundleTypeIconFile"];
+        
+        // set file types and suffixes
+        [infoPlist setObject: [NSArray arrayWithObject: typesAndSuffixesDict] forKey: @"CFBundleDocumentTypes"];
+        
+        // add service settings to Info.plist
+        if ([[properties objectForKey: @"DeclareService"] boolValue])
+        {
+            // service data type handling
+            NSMutableArray      *sendTypes = [NSMutableArray arrayWithCapacity: 2];
+            if ([[properties objectForKey: @"AcceptsFiles"] boolValue])
+                [sendTypes addObject: @"NSFilenamesPboardType"];
+            if ([[properties objectForKey: @"AcceptsText"] boolValue])
+                [sendTypes addObject: @"NSStringPboardType"];
+            
+            NSString            *appName = [properties objectForKey: @"Name"];
+            NSMutableDictionary *serviceDict = [NSMutableDictionary dictionaryWithCapacity: 10];
+            NSDictionary        *menuItemDict = [NSDictionary dictionaryWithObject: [NSString stringWithFormat: @"Process with %@", appName] forKey: @"default"];
+            
+            [serviceDict setObject: menuItemDict  forKey: @"NSMenuItem"];
+            [serviceDict setObject: @"dropService"  forKey: @"NSMessage"];
+            [serviceDict setObject: appName         forKey: @"NSPortName"];
+            [serviceDict setObject: sendTypes       forKey: @"NSSendTypes"];
+            [infoPlist setObject: [NSArray arrayWithObject: serviceDict] forKey: @"NSServices"];
+        }
+	}
+    return infoPlist;
 }
 
 -(void)report: (NSString *)str
