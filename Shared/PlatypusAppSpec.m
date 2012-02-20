@@ -210,15 +210,21 @@
 -(BOOL)create
 {
 	int      i;
-	NSString *contentsPath, *macosPath, *resourcesPath, *tmpPath = NSTemporaryDirectory();
+	NSString *contentsPath, *macosPath, *resourcesPath;
 	NSString *execDestinationPath, *infoPlistPath, *iconPath, *docIconPath, *bundledFileDestPath, *nibDestPath;
 	NSString *execPath, *nibPath, *bundledFilePath;
 	NSString *appSettingsPlistPath;
 	NSString *b_enc_script = @"";
 	NSMutableDictionary	*appSettingsPlist;
 	NSFileManager *fileManager = FILEMGR;
+    
+    // get temporary directory, make sure it's kosher.  Apparently NSTemporaryDirectory() can return nil
+    // see http://www.cocoadev.com/index.pl?NSTemporaryDirectory
+    NSString *tmpPath = NSTemporaryDirectory();
+    if (!tmpPath)
+        tmpPath = @"/tmp/";
 	
-	/////// MAKE SURE CONDITIONS ARE ACCEPTABLE //////
+    // Now, make sure conditions are acceptable
 	
 	// make sure we can write to temp path
 	if (![fileManager isWritableFileAtPath: tmpPath])
