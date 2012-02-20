@@ -152,7 +152,7 @@
 	for (i = 0; i < [draggedFiles count]; i++)
 	{
 		if (![[[draggedFiles objectAtIndex: i] pathExtension] isEqualToString: @""])
-			[[tv dataSource] addSuffix: [[draggedFiles objectAtIndex: i] pathExtension]];
+			[self addSuffix: [[draggedFiles objectAtIndex: i] pathExtension]];
 	}
 	[tv reloadData];
 	return YES;

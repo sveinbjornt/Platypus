@@ -26,7 +26,7 @@
 #import <AppKit/AppKit.h>
 
 
-@interface STFileList : NSObject 
+@interface STFileList : NSObject  <NSTableViewDataSource>
 {
 	UInt64			totalSize;
 	NSMutableArray  *files;

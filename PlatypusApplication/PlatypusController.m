@@ -63,12 +63,12 @@
 	
 	// app support folder
 	if (! [FILEMGR fileExistsAtPath: [APP_SUPPORT_FOLDER stringByExpandingTildeInPath] isDirectory: &isDir])
-		if ( ! [FILEMGR createDirectoryAtPath: [APP_SUPPORT_FOLDER stringByExpandingTildeInPath] attributes: NULL] )
+		if ( ! [FILEMGR createDirectoryAtPath: [APP_SUPPORT_FOLDER stringByExpandingTildeInPath] withIntermediateDirectories: NO attributes: nil error: nil] )
 			[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]]; 
 	
 	// profiles folder
 	if (! [FILEMGR fileExistsAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath] isDirectory: &isDir])
-		if ( ! [FILEMGR createDirectoryAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath] attributes: NULL] )
+		if ( ! [FILEMGR createDirectoryAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath] withIntermediateDirectories: NO attributes: nil error: nil] )
 			[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Could not create directory '%@'", [PROFILES_FOLDER stringByExpandingTildeInPath]]]; 
 	
 	

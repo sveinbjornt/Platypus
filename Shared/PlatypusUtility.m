@@ -155,7 +155,7 @@
 		}
 	}
 	else
-		size = [[FILEMGR fileAttributesAtPath: path traverseLink:YES] fileSize];
+		size = [[FILEMGR attributesOfItemAtPath: path error: nil] fileSize];
     
 	return size;
 }

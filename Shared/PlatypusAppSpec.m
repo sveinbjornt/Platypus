@@ -26,6 +26,7 @@
 
 @implementation PlatypusAppSpec
 
+#pragma mark - Creation
 /*****************************************
  - init / dealloc functions
 *****************************************/
@@ -98,7 +99,7 @@
 	[super dealloc];
 }
 
-#pragma mark -
+#pragma mark - Instance methods
 
 /**********************************
 	init a spec with default values for everything
@@ -262,19 +263,19 @@
     
 	//Application.app bundle
 	tmpPath = [tmpPath stringByAppendingString: [[properties objectForKey: @"Destination"] lastPathComponent]];
-	[fileManager createDirectoryAtPath: tmpPath attributes:nil];
+	[fileManager createDirectoryAtPath: tmpPath withIntermediateDirectories: NO attributes: nil error: nil];
 	
 	//.app/Contents
 	contentsPath = [tmpPath stringByAppendingString:@"/Contents"];
-	[fileManager createDirectoryAtPath: contentsPath attributes:nil];
+	[fileManager createDirectoryAtPath: contentsPath withIntermediateDirectories: NO attributes: nil error: nil];
 	
 	//.app/Contents/MacOS
 	macosPath = [contentsPath stringByAppendingString:@"/MacOS"];
-	[fileManager createDirectoryAtPath: macosPath attributes:nil];
+	[fileManager createDirectoryAtPath: macosPath withIntermediateDirectories: NO attributes: nil error: nil];
 	
 	//.app/Contents/Resources
 	resourcesPath = [contentsPath stringByAppendingString:@"/Resources"];
-	[fileManager createDirectoryAtPath: resourcesPath attributes:nil];
+	[fileManager createDirectoryAtPath: resourcesPath withIntermediateDirectories: NO attributes: nil error: nil];
 			
 	////////////////////////// COPY FILES TO THE APP BUNDLE //////////////////////////////////
 	
@@ -284,15 +285,14 @@
 	//.app/Contents/Resources/MacOS/ScriptExec
     execDestinationPath = [macosPath stringByAppendingString:@"/"];
 	execDestinationPath = [execDestinationPath stringByAppendingString: [properties objectForKey: @"Name"]]; 
-	[fileManager copyPath:execPath toPath:execDestinationPath handler:nil];
+	[fileManager copyItemAtPath: execPath toPath: execDestinationPath error: nil];
     [PlatypusUtility setPermissions: S_IRWXU | S_IRWXG | S_IROTH forFile: execDestinationPath];
 	
-    
 	//copy nib file to app bundle
 	//.app/Contents/Resources/MainMenu.nib
     [self report: @"Copying nib file to bundle"];
 	nibDestPath = [resourcesPath stringByAppendingString:@"/MainMenu.nib"];
-	[fileManager copyPath: nibPath toPath: nibDestPath handler: NULL];
+	[fileManager copyItemAtPath: nibPath toPath: nibDestPath error: nil];
 		
 	// if optimize application is set, we see if we can compile the nib file
 	if ([[properties objectForKey: @"OptimizeApplication"] boolValue] == YES && [fileManager fileExistsAtPath: IBTOOL_PATH])
@@ -301,7 +301,7 @@
         
 		NSTask *ibToolTask = [[NSTask alloc] init];
 		[ibToolTask setLaunchPath: IBTOOL_PATH];
-		[ibToolTask setArguments: [NSArray arrayWithObjects: @"--strip", nibDestPath, nibDestPath, NULL]];
+		[ibToolTask setArguments: [NSArray arrayWithObjects: @"--strip", nibDestPath, nibDestPath, nil]];
 		[ibToolTask launch];
 		[ibToolTask waitUntilExit];
 		[ibToolTask release];
@@ -318,9 +318,9 @@
 		NSString *scriptFilePath = [resourcesPath stringByAppendingString:@"/script"];
 		// make a symbolic link instead of copying script if this is a dev version
 		if ([[properties objectForKey: @"DevelopmentVersion"] boolValue] == YES)
-			[fileManager createSymbolicLinkAtPath: scriptFilePath pathContent: [properties objectForKey: @"ScriptPath"]];
+			[fileManager createSymbolicLinkAtPath: scriptFilePath withDestinationPath: [properties objectForKey: @"ScriptPath"] error: nil];
 		else // copy script over
-			[fileManager copyPath: [properties objectForKey: @"ScriptPath"] toPath: scriptFilePath handler:nil];
+			[fileManager copyItemAtPath: [properties objectForKey: @"ScriptPath"] toPath: scriptFilePath error: nil];
         
         [PlatypusUtility setPermissions: S_IRWXU | S_IRWXG | S_IROTH forFile: scriptFilePath];
 	}
@@ -391,18 +391,19 @@
     {
         [self report: @"Writing application icon"];
         iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
-        [fileManager copyPath: [properties objectForKey: @"IconPath"] toPath: iconPath handler: NULL];
+        [fileManager copyItemAtPath: [properties objectForKey: @"IconPath"] toPath: iconPath error: nil];
     }
     
     if ([properties objectForKey: @"DocIcon"] && ![[properties objectForKey: @"DocIcon"] isEqualToString: @""])
     {
         [self report: @"Writing document icon"];
         docIconPath = [resourcesPath stringByAppendingString:@"/docIcon.icns"];
-        [fileManager copyPath: [properties objectForKey: @"DocIcon"] toPath: docIconPath handler: NULL];
+        [fileManager copyItemAtPath: [properties objectForKey: @"DocIcon"] toPath: docIconPath error: nil];
     }
           
 	//create Info.plist file
 	//.app/Contents/Info.plist
+    [self report: @"Creating Info.plist"];
 	infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
 	// create the Info.plist dictionary
 	NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys: 
@@ -459,6 +460,7 @@
 	}
     		
 	// finally, write the Info.plist file
+    [self report: @"Writing Info.plist"];
     if (![[properties objectForKey: @"UseXMLPlistFormat"] boolValue]) // if binary
     {
         NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList: infoPlist
@@ -484,9 +486,9 @@
         
 		// if it's a development version, we just symlink it
 		if ([[properties objectForKey: @"DevelopmentVersion"] boolValue] == YES)
-			[fileManager createSymbolicLinkAtPath: bundledFileDestPath pathContent: bundledFilePath];
+			[fileManager createSymbolicLinkAtPath: bundledFileDestPath withDestinationPath: bundledFilePath error: nil];
 		else // else we copy it 
-			[fileManager copyPath: bundledFilePath toPath: bundledFileDestPath handler: NULL];
+			[fileManager copyItemAtPath: bundledFilePath toPath: bundledFileDestPath error: nil];
 	}
 
 	////////////////////////////////// COPY APP OVER TO FINAL DESTINATION /////////////////////////////////
@@ -497,21 +499,21 @@
 	
 	// first, let's see if there's anything there.  If we have override set on, we just delete that stuff.
 	if ([fileManager fileExistsAtPath: [properties objectForKey: @"Destination"]] && [[properties objectForKey: @"DestinationOverride"] boolValue])
-		[fileManager removeFileAtPath: [properties objectForKey: @"Destination"] handler: NULL];
+		[fileManager removeItemAtPath: [properties objectForKey: @"Destination"] error: nil];
 
 	//if delete wasn't a success and there's still something there
 	if ([fileManager fileExistsAtPath: [properties objectForKey: @"Destination"]]) 
 	{
-		[fileManager removeFileAtPath: tmpPath handler: NULL];
+		[fileManager removeItemAtPath: tmpPath error: nil];
 		error = @"Could not remove pre-existing item at destination path";
 		return 0;
 	}
 	
 	// now, move the newly created app to the destination
-	[fileManager movePath: tmpPath toPath: [properties objectForKey: @"Destination"] handler: NULL];//move
+	[fileManager moveItemAtPath: tmpPath toPath: [properties objectForKey: @"Destination"] error: nil];//move
 	if (![fileManager fileExistsAtPath: [properties objectForKey: @"Destination"]]) //if move wasn't a success
 	{
-		[fileManager removeFileAtPath: tmpPath handler: NULL];
+		[fileManager removeItemAtPath: tmpPath error: nil];
 		error = @"Failed to create application at the specified destination";
 		return 0;
 	}
@@ -555,19 +557,19 @@
 		return 0;
 	}
 	
-	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"ScriptPath"] isDirectory:&isDir] || isDir)
+	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"ScriptPath"] isDirectory: &isDir] || isDir)
 	{
 		error = [NSString stringWithFormat: @"Script not found at path '%@'", [properties objectForKey: @"ScriptPath"], nil];
 		return 0;
 	}
 	
-	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"NibPath"] isDirectory:&isDir])
+	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"NibPath"] isDirectory: &isDir])
 	{
 		error = [NSString stringWithFormat: @"Nib not found at path '%@'", [properties objectForKey: @"NibPath"], nil];
 		return 0;
 	}
 	
-	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"ExecutablePath"] isDirectory:&isDir] || isDir)
+	if (![FILEMGR fileExistsAtPath: [properties objectForKey: @"ExecutablePath"] isDirectory: &isDir] || isDir)
 	{
 		error = [NSString stringWithFormat: @"Executable not found at path '%@'", [properties objectForKey: @"ExecutablePath"], nil];
 		return 0;
@@ -783,7 +785,7 @@
     return [properties description];
 }
 
-#pragma mark - Non-instance Methods
+#pragma mark - Class Methods
 
 /*****************************************
  - //return the bundle identifier for the application to be generated

@@ -69,15 +69,16 @@
 	[suffixTextField setStringValue: @""];
 	
 	// refresh these guys
-	[typesListDataBrowser setDataSource: typesList];
+    [typesListDataBrowser setDataSource: typesList];
 	[typesListDataBrowser reloadData];
 	[typesListDataBrowser setDelegate: self];
 	[typesListDataBrowser setTarget: self];
 
-	[suffixListDataBrowser setDataSource: suffixList];
+    [suffixListDataBrowser setDataSource: suffixList];
 	[suffixListDataBrowser reloadData];
 	[suffixListDataBrowser setDelegate: self];
-	
+	[suffixListDataBrowser setTarget: self];
+    
 	// updated text fields reporting no. suffixes and no. file type codes
 	if ([suffixList hasAllSuffixes])
 		[numSuffixesTextField setStringValue: @"All suffixes"];
@@ -175,7 +176,6 @@
 	[self controlTextDidChange: NULL];
 
 	//update
-	[suffixListDataBrowser setDataSource: suffixList];
 	[suffixListDataBrowser reloadData];
 	
 	if ([suffixList hasAllSuffixes])
@@ -204,7 +204,6 @@
 		[self controlTextDidChange: NULL];
 	}
 	//update
-	[typesListDataBrowser setDataSource: typesList];
 	[typesListDataBrowser reloadData];
 	
 	if ([typesList hasAllTypes])

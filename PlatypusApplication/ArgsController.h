@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ArgsController : NSObject 
+@interface ArgsController : NSObject <NSTableViewDataSource>
 {
     IBOutlet id argsWindow;
     IBOutlet id commandTextField;
@@ -72,6 +72,7 @@
 
 // table view handling
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView;
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification;
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
 - (void)tableView:(NSTableView *)aTableView setObjectValue: anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
 
