@@ -190,7 +190,7 @@
 			NSString *path = [NSString stringWithFormat: @"%@/%@",[PROFILES_FOLDER stringByExpandingTildeInPath],filename];
 			if (![manager isDeletableFileAtPath: path])
 				[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Cannot delete file %@.", path]];
-			[manager removeFileAtPath: path handler: NULL];
+			[manager removeItemAtPath: path error: nil];
 		}
 	}
 	

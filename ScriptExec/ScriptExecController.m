@@ -315,7 +315,7 @@
 {    
     // again, make absolutely sure we don't leave the clear-text script in temp directory
     if (secureScript && [FILEMGR fileExistsAtPath: scriptPath])
-        [FILEMGR removeFileAtPath: scriptPath handler: nil];
+        [FILEMGR removeItemAtPath: scriptPath error: nil];
         
     //terminate task
     if (task != NULL)
@@ -818,7 +818,7 @@
     
     //if we're using the "secure" script, we must remove the temporary clear-text one in temp directory if there is one
     if (secureScript && [FILEMGR fileExistsAtPath: scriptPath])
-        [FILEMGR removeFileAtPath: scriptPath handler: nil];
+        [FILEMGR removeItemAtPath: scriptPath error: nil];
     
     // we quit now if the app isn't set to continue running
     if (!remainRunning)

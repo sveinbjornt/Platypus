@@ -445,10 +445,10 @@
 				F4FE735511F7925E005FC23A /* STFileList.m */,
 				F4FE735611F7925E005FC23A /* SuffixList.h */,
 				F4FE735711F7925E005FC23A /* SuffixList.m */,
-				F4FE735811F7925E005FC23A /* TextSettingsController.h */,
-				F4FE735911F7925E005FC23A /* TextSettingsController.m */,
 				F4FE735A11F7925E005FC23A /* TypesList.h */,
 				F4FE735B11F7925E005FC23A /* TypesList.m */,
+				F4FE735811F7925E005FC23A /* TextSettingsController.h */,
+				F4FE735911F7925E005FC23A /* TextSettingsController.m */,
 			);
 			name = "Interface Controllers";
 			sourceTree = "<group>";
@@ -709,7 +709,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Sveinbjorn Thordarson";
 			};
 			buildConfigurationList = F41B2181085CD8FF00B63B0D /* Build configuration list for PBXProject "Platypus" */;

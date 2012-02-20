@@ -220,8 +220,8 @@
     if (colorInvalidPath)
         [self updateTextColoring];
 
-    if ([self delegate])
-        [[self delegate] controlTextDidChange: NULL];
+    if ([self delegate] && [[self delegate] respondsToSelector: @selector(controlTextDidChange:)])
+        [[self delegate] performSelector: @selector(controlTextDidChange:) withObject: nil];
 }
 
 

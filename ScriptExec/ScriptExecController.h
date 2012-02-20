@@ -31,7 +31,7 @@
 #import "STPrivilegedTask.h"
 #import "STDragWebView.h"
 
-@interface ScriptExecController : NSObject
+@interface ScriptExecController : NSObject <NSMenuDelegate>
 {
     // progress bar
     IBOutlet id progressBarCancelButton;

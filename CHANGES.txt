@@ -14,6 +14,8 @@ For 4.7
     TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.7. New method involves using a helper tool.  Also, take a look at the sandbox thing.
     TODO:  Use Sparkle.framework for updates
     * Ensured script is executable
+    * Fixed bug which caused Platypus to crash when creating Droplets
+    * Migrated away from all deprecated API calls
 
 For 4.6
     * "Open" and "Save" menu item option for Platypus-created apps

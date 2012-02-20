@@ -23,7 +23,7 @@
 #import "SuffixList.h"
 #import "PlatypusUtility.h"
 
-@interface FileTypesController : NSObject
+@interface FileTypesController : NSObject <NSTableViewDelegate>
 {
 	IBOutlet id appFunctionRadioButtons;
     IBOutlet id addSuffixButton;
@@ -32,11 +32,11 @@
     IBOutlet id numTypesTextField;
     IBOutlet id removeSuffixButton;
     IBOutlet id removeTypeButton;
-    IBOutlet id suffixListDataBrowser;
+    IBOutlet NSTableView *suffixListDataBrowser;
     IBOutlet id suffixTextField;
     IBOutlet id typeCodeTextField;
     IBOutlet id typesErrorTextField;
-    IBOutlet id typesListDataBrowser;
+    IBOutlet NSTableView *typesListDataBrowser;
 	IBOutlet id showTypesButton;
     IBOutlet id typesWindow;
     IBOutlet id window;

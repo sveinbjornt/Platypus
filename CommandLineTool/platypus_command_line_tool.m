@@ -486,7 +486,7 @@ int main (int argc, const char * argv[])
             destPath = [destPath stringByAppendingString: @".platypus"];
         }
 		// we then dump the profile dictionary to path and exit
-        appSpec = [[PlatypusAppSpec alloc] specWithDefaults];
+        appSpec = [PlatypusAppSpec specWithDefaults];
         [appSpec addProperties: properties];
         
         if (printStdout)
@@ -503,7 +503,7 @@ int main (int argc, const char * argv[])
         if (![destPath hasSuffix: @".app"])
             destPath = [destPath stringByAppendingString: @".app"];
         
-        appSpec = [[PlatypusAppSpec alloc] specWithDefaults];
+        appSpec = [PlatypusAppSpec specWithDefaults];
         [appSpec addProperties: properties];
         [appSpec setProperty: destPath forKey: @"Destination"];
     }
@@ -517,7 +517,7 @@ int main (int argc, const char * argv[])
             NSPrintErr(@"Error: No script file exists at path '%@'", scriptPath);
             exit(1);
         }
-        appSpec = [[PlatypusAppSpec alloc] specWithDefaultsFromScript: scriptPath];
+        appSpec = [PlatypusAppSpec specWithDefaultsFromScript: scriptPath];
         if ([properties objectForKey: @"Name"] != nil)
         {
             NSString *appBundleName = [NSString stringWithFormat: @"%@.app", [properties objectForKey: @"Name"]];

@@ -44,7 +44,7 @@ enum
 	STBrowserAutocomplete = 2
 };
 
-@interface STPathTextField : NSTextField 
+@interface STPathTextField : NSTextField <NSTextViewDelegate>
 {
 	BOOL		autocompleteStyle;
 	BOOL		colorInvalidPath;
