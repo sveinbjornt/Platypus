@@ -124,6 +124,10 @@
 		F44E006C12298B7200CAC9C2 /* PlatypusPlate.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusPlate.icns; sourceTree = "<group>"; };
 		F44EFF0412296F3700CAC9C2 /* NSColor+HexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+HexTools.h"; path = "Shared/NSColor+HexTools.h"; sourceTree = "<group>"; };
 		F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+HexTools.m"; path = "Shared/NSColor+HexTools.m"; sourceTree = "<group>"; };
+		F46628A714F441DE0053C601 /* AppBuildBoth.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppBuildBoth.sh; sourceTree = "<group>"; };
+		F46628A814F441DE0053C601 /* AppPackageBuildScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppPackageBuildScript.sh; sourceTree = "<group>"; };
+		F46628A914F441DE0053C601 /* AppSourceBuildScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppSourceBuildScript.sh; sourceTree = "<group>"; };
+		F46628AA14F441DE0053C601 /* trim.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = trim.sh; sourceTree = "<group>"; };
 		F46EF84E13C3F36900E4C0E4 /* Examples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Examples; sourceTree = "<group>"; };
 		F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusAppIcon.icns; sourceTree = "<group>"; };
 		F471ED21122DF2D6001F4761 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; name = Credits.html; path = Documentation/Credits.html; sourceTree = "<group>"; };
@@ -191,12 +195,8 @@
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		F4E1F6FC11F758FB007EE2E3 /* platypus */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = platypus; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4ECE19A11F77200000DB012 /* AppBuildBoth.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = AppBuildBoth.sh; sourceTree = "<group>"; };
-		F4ECE19B11F77200000DB012 /* AppPackageBuildScript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = AppPackageBuildScript.sh; sourceTree = "<group>"; };
-		F4ECE19C11F77200000DB012 /* AppSourceBuildScript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = AppSourceBuildScript.sh; sourceTree = "<group>"; };
 		F4ECE1A011F7746A000DB012 /* CHANGES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES.txt; sourceTree = SOURCE_ROOT; };
 		F4ECE1A111F77471000DB012 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = SOURCE_ROOT; };
-		F4ECE1B111F779CC000DB012 /* trim.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = trim.sh; sourceTree = "<group>"; };
 		F4ED1E460CEC17920006636F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		F4FE734611F7925E005FC23A /* FileTypesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = FileTypesController.h; path = PlatypusApplication/FileTypesController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F4FE734711F7925E005FC23A /* FileTypesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = FileTypesController.m; path = PlatypusApplication/FileTypesController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -300,7 +300,6 @@
 		29B97314FDCFA39411CA2CEA /* Platypus */ = {
 			isa = PBXGroup;
 			children = (
-				F4ECE19811F771F2000DB012 /* Build Scripts */,
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4A4338B0E04C962000523E7 /* Common.h */,
 				F48B7CB611F76B0C00351575 /* Platypus Application */,
@@ -308,6 +307,7 @@
 				F4E1F70711F75A40007EE2E3 /* Command Line Tool */,
 				080E96DDFE201D6D7F000001 /* Shared Classes */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				F46628A614F441DE0053C601 /* Deprecated */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = Platypus;
@@ -420,6 +420,17 @@
 				F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */,
 			);
 			name = "NSColor+HexTools";
+			sourceTree = "<group>";
+		};
+		F46628A614F441DE0053C601 /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				F46628A714F441DE0053C601 /* AppBuildBoth.sh */,
+				F46628A814F441DE0053C601 /* AppPackageBuildScript.sh */,
+				F46628A914F441DE0053C601 /* AppSourceBuildScript.sh */,
+				F46628AA14F441DE0053C601 /* trim.sh */,
+			);
+			path = Deprecated;
 			sourceTree = "<group>";
 		};
 		F46C60141055AEFA00521A94 /* Interface Controllers */ = {
@@ -613,17 +624,6 @@
 				F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */,
 			);
 			name = PlatypusAppSpec;
-			sourceTree = "<group>";
-		};
-		F4ECE19811F771F2000DB012 /* Build Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				F4ECE1B111F779CC000DB012 /* trim.sh */,
-				F4ECE19A11F77200000DB012 /* AppBuildBoth.sh */,
-				F4ECE19B11F77200000DB012 /* AppPackageBuildScript.sh */,
-				F4ECE19C11F77200000DB012 /* AppSourceBuildScript.sh */,
-			);
-			name = "Build Scripts";
 			sourceTree = "<group>";
 		};
 		F4FE737A11F7929E005FC23A /* UKKQueue */ = {
