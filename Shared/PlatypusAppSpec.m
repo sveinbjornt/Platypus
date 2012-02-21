@@ -410,8 +410,8 @@
 	//create Info.plist file
 	//.app/Contents/Info.plist
     [self report: @"Creating Info.plist"];
+    NSDictionary *infoPlist = [self infoPlist];
 	infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
-    NSDictionary *infoPlist = [self infoPlistFromProfile];
     
     [self report: @"Writing Info.plist"];
     if (![[properties objectForKey: @"UseXMLPlistFormat"] boolValue]) // if binary
@@ -484,7 +484,7 @@
 	return 1;
 }
 
--(NSDictionary *)infoPlistFromProfile
+-(NSDictionary *)infoPlist
 {
     // create the Info.plist dictionary
 	NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys: 

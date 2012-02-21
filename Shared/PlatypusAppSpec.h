@@ -44,6 +44,7 @@
 -(void)setDefaults;
 -(void)setDefaultsForScript: (NSString *)scriptPath;
 -(BOOL)create;
+-(NSDictionary *)infoPlist;
 -(BOOL)verify;
 -(void)report: (NSString *)str;
 -(void)dumpToFile: (NSString *)filePath;
