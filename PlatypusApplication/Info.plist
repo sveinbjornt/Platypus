@@ -17,8 +17,8 @@
 			<array>
 				<string>command</string>
 				<string>sh</string>
-            </array>
-            <key>LSItemContentTypes</key>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.shell-script</string>
 			</array>
@@ -28,13 +28,13 @@
 			<string>Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>bash</string>
-            </array>
-            <key>LSItemContentTypes</key>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.bash-script</string>
 			</array>
@@ -44,13 +44,13 @@
 			<string>Bash Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>        
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>tcsh</string>
-            </array>
-            <key>LSItemContentTypes</key>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.tcsh-script</string>
 			</array>
@@ -60,13 +60,13 @@
 			<string>TENEX C Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>csh</string>
-            </array>
-            <key>LSItemContentTypes</key>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.csh-script</string>
 			</array>
@@ -76,13 +76,13 @@
 			<string>C Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>zsh</string>
-            </array>
-            <key>LSItemContentTypes</key>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.zsh-script</string>
 			</array>
@@ -92,13 +92,13 @@
 			<string>Zsh Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>ksh</string>
-            </array>
-            <key>LSItemContentTypes</key>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.ksh-script</string>
 			</array>
@@ -108,15 +108,15 @@
 			<string>Zsh Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>pl</string>
-                <string>pm</string>
-                <string>perl</string>
-            </array>
-            <key>LSItemContentTypes</key>
+				<string>pm</string>
+				<string>perl</string>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.perl-script</string>
 			</array>
@@ -126,15 +126,15 @@
 			<string>Perl Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>py</string>
-                <string>objpy</string>
-                <string>python</string>
-            </array>
-            <key>LSItemContentTypes</key>
+				<string>objpy</string>
+				<string>python</string>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.python-script</string>
 			</array>
@@ -144,16 +144,16 @@
 			<string>Python Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rb</string>
-                <string>rbx</string>
-                <string>rbw</string>
-                <string>ruby</string>
-            </array>
-            <key>LSItemContentTypes</key>
+				<string>rbx</string>
+				<string>rbw</string>
+				<string>ruby</string>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.ruby-script</string>
 			</array>
@@ -163,18 +163,18 @@
 			<string>Ruby Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>osascript</string>
-                <string>scpt</string>
-                <string>applescript</string>
-            </array>
-            <key>LSItemContentTypes</key>
+				<string>scpt</string>
+				<string>applescript</string>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.apple.applescript.script</string>
-                <string>com.apple.applescript.text</string>
+				<string>com.apple.applescript.text</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
@@ -182,14 +182,14 @@
 			<string>AppleScript File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>tcl</string>
-                <string>tclsh</string>
-            </array>
-            <key>LSItemContentTypes</key>
+				<string>tclsh</string>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.tcl-script</string>
 			</array>
@@ -199,14 +199,14 @@
 			<string>AppleScript File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>exp</string>
-                <string>expect</string>
-            </array>
-            <key>LSItemContentTypes</key>
+				<string>expect</string>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.expect-script</string>
 			</array>
@@ -216,19 +216,19 @@
 			<string>Expect Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-        </dict>
-        <dict>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>php</string>
-                <string>php3</string>
+				<string>php3</string>
 				<string>php4</string>
 				<string>php5</string>
-                <string>ph3</string>
-                <string>ph4</string>
-                <string>phtml</string>
-            </array>
-            <key>LSItemContentTypes</key>
+				<string>ph3</string>
+				<string>ph4</string>
+				<string>phtml</string>
+			</array>
+			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.php-script</string>
 			</array>
@@ -259,7 +259,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.6</string>
+	<string>4.7</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5.0</string>
 	<key>NSAppleScriptEnabled</key>
