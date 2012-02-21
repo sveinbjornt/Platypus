@@ -24,6 +24,6 @@ cp -r "MainMenu.nib" "/usr/local/share/platypus/"
 chmod -R 755 "/usr/local/share/platypus/"
 
 # Create text file with version
-echo "4.6" > "/usr/local/share/platypus/Version"
+echo "4.7" > "/usr/local/share/platypus/Version"
 
 exit 0
