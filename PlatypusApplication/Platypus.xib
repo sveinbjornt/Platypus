@@ -292,6 +292,7 @@
 							<string key="NSFrame">{{528, 13}, {116, 32}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="895076633">
 								<int key="NSCellFlags">604110336</int>
@@ -409,7 +410,7 @@
 											<string key="NSFrameSize">{585, 124}</string>
 											<reference key="NSSuperview" ref="5750385"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="346920152"/>
+											<reference key="NSNextKeyView" ref="486925506"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="_NSCornerView" key="NSCornerView">
 												<nil key="NSNextResponder"/>
@@ -684,7 +685,7 @@ AAAAAAAAA</bytes>
 							<string key="NSFrame">{{20, 58}, {587, 126}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="5750385"/>
+							<reference key="NSNextKeyView" ref="346920152"/>
 							<int key="NSsFlags">133650</int>
 							<reference key="NSVScroller" ref="486925506"/>
 							<reference key="NSHScroller" ref="346920152"/>
@@ -1530,6 +1531,14 @@ AAAAAAAAA</bytes>
 								<object class="NSMenuItem" id="297783554">
 									<reference key="NSMenu" ref="331366372"/>
 									<string key="NSTitle">About Platypus</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="58891223"/>
+									<reference key="NSMixedImage" ref="618508391"/>
+								</object>
+								<object class="NSMenuItem" id="141557586">
+									<reference key="NSMenu" ref="331366372"/>
+									<string key="NSTitle">Check for Updates…</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="58891223"/>
@@ -5441,6 +5450,9 @@ b2xvciBzaXQgYW1ldA</bytes>
 			<object class="NSCustomObject" id="244706526">
 				<string key="NSClassName">PrefsController</string>
 			</object>
+			<object class="NSCustomObject" id="222500939">
+				<string key="NSClassName">SUUpdater</string>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -7621,6 +7633,14 @@ b2xvciBzaXQgYW1ldA</bytes>
 					</object>
 					<int key="connectionID">11319</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">checkForUpdates:</string>
+						<reference key="source" ref="222500939"/>
+						<reference key="destination" ref="141557586"/>
+					</object>
+					<int key="connectionID">11369</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -8168,6 +8188,7 @@ b2xvciBzaXQgYW1ldA</bytes>
 							<reference ref="625683059"/>
 							<reference ref="906800894"/>
 							<reference ref="927076416"/>
+							<reference ref="141557586"/>
 						</object>
 						<reference key="parent" ref="296459872"/>
 					</object>
@@ -10816,6 +10837,16 @@ b2xvciBzaXQgYW1ldA</bytes>
 						<reference key="object" ref="113641753"/>
 						<reference key="parent" ref="712806315"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">11366</int>
+						<reference key="object" ref="222500939"/>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">11367</int>
+						<reference key="object" ref="141557586"/>
+						<reference key="parent" ref="331366372"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -11068,6 +11099,8 @@ b2xvciBzaXQgYW1ldA</bytes>
 					<string>11338.IBAttributePlaceholdersKey</string>
 					<string>11338.IBPluginDependency</string>
 					<string>11339.IBPluginDependency</string>
+					<string>11366.IBPluginDependency</string>
+					<string>11367.IBPluginDependency</string>
 					<string>1140.IBPluginDependency</string>
 					<string>1141.IBAttributePlaceholdersKey</string>
 					<string>1141.IBPluginDependency</string>
@@ -11786,6 +11819,8 @@ b2xvciBzaXQgYW1ldA</bytes>
 							<string key="toolTip">Use XML property lists instead of binary format. </string>
 						</object>
 					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -12738,7 +12773,7 @@ b2xvciBzaXQgYW1ldA</bytes>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">11365</int>
+			<int key="maxID">11369</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -14231,6 +14266,36 @@ b2xvciBzaXQgYW1ldA</bytes>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/STPathTextField.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SUUpdater</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">checkForUpdates:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">checkForUpdates:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">checkForUpdates:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">delegate</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">delegate</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">delegate</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SUUpdater.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
