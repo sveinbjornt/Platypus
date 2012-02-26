@@ -5,5 +5,40 @@
       <link>http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</link>
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
+      <item>
+         <title>Version 4.6</title>
+         <pubDate>Thu, 26 Jan 2012 00:00:00 +0000</pubDate>
+         <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.6.zip" sparkle:version="4.6" length="1455877" type="application/octet-stream" sparkle:dsaSignature="MC0CFCXvwsKLXBPBT7G4u4+pCQg1cxcBAhUApHSLzNT6vPAq1zMhxLCVDMQYf68" />
+         <sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
+         <description><![CDATA[
+             <h2>Version 4.6</h2>
+             <ul>
+                 <li>"Open" and "Save" menu item option for Platypus-created apps</li>
+                 <li>Applications can now be set as Services for text or file handling via Services menu</li>
+                 <li>Configurable document icon for Platypus apps</li>
+                 <li>New option to set custom arguments for script, not just interpreter, under "Args" (previously "Params")</li>
+                 <li>Command line tool now supports dumping profile property lists to stdout (see man page)</li>
+                 <li>Additional interpreter presets: zsh and tcsh</li>
+                 <li>Extended documentation and FAQ</li>
+                 <li>New "Edit" button and contextual menu item for Bundled Files List.</li>
+                 <li>New FastDMGMounter example</li>
+                 <li>Platypus now defaults to using binary-format property lists.  This can be set to XML in create panel.</li>
+                 <li>Status Bar apps now gracefully remove their status bar item before exiting</li>
+                 <li>Removed app path as first arg option, it's unnecessary and confusing. App path == $CWD/../..</li>
+                 <li>Various interface refinements</li>
+                 <li>Migrated all images to optimized PNGs for smaller file sizes</li>
+                 <li>Now using LLVM for builds instead of GCC, which makes for smaller code size</li>
+                 <li>Changed "New Script" preset contents to be a "Hello, World" example in the selected language</li>
+                 <li>Fixed bug with script path text field tab autocomplete</li>
+                 <li>Fixed bug in shell command generator which errenously inversed the logic of the -R flag</li>
+                 <li>Fixed bug which caused crash when editing file in Bundled Files list using built-in editor.</li>
+                 <li>Fixed bug where text font settings would not be applied</li>
+                 <li>Fixed bug with contextual menus in Arguments window</li>
+                 <li>Fixed bug where custom image data application icons failed to be created</li>
+                 <li>Fixed bug where "Icon" display mode status item would erroneously display a default title</li>
+                 <li>"Run in background" applications no longer set themselves as front process with output mode "None"</li>
+             </ul>
+         ]]></description>
+      </item>
    </channel>
 </rss>

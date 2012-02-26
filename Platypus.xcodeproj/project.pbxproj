@@ -134,6 +134,13 @@
 		F42C982B14BB55820094CC8D /* platypus.man.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = platypus.man.pdf; path = CommandLineTool/platypus.man.pdf; sourceTree = "<group>"; };
 		F445EA7614FAB61900DCCDB3 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Shared/Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Sparkle/dsa_pub.pem; sourceTree = "<group>"; };
+		F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_priv.pem; sourceTree = "<group>"; };
+		F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		F445EA7F14FABE6500DCCDB3 /* generate_keys.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = generate_keys.rb; sourceTree = "<group>"; };
+		F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlatypusAppcast.xml; sourceTree = "<group>"; };
+		F445EA8114FABE6500DCCDB3 /* SampleAppcast.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SampleAppcast.xml; sourceTree = "<group>"; };
+		F445EA8214FABE6500DCCDB3 /* sign_update.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = sign_update.rb; sourceTree = "<group>"; };
+		F445EA8314FABE6500DCCDB3 /* update_appcast.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_appcast.sh; sourceTree = "<group>"; };
 		F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlatypusStatusMenuIcon.png; sourceTree = "<group>"; };
 		F44E006812298B7200CAC9C2 /* PlatypusCube.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusCube.icns; sourceTree = "<group>"; };
 		F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusDefault.icns; sourceTree = "<group>"; };
@@ -319,6 +326,7 @@
 		29B97314FDCFA39411CA2CEA /* Platypus */ = {
 			isa = PBXGroup;
 			children = (
+				F445EA7C14FABE6500DCCDB3 /* Sparkle */,
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4A4338B0E04C962000523E7 /* Common.h */,
 				F48B7CB611F76B0C00351575 /* Platypus Application */,
@@ -401,6 +409,20 @@
 				F4BF0A4314967C6D00676278 /* STPrivilegedTask.m */,
 			);
 			name = STPrivilegedTask;
+			sourceTree = "<group>";
+		};
+		F445EA7C14FABE6500DCCDB3 /* Sparkle */ = {
+			isa = PBXGroup;
+			children = (
+				F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */,
+				F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */,
+				F445EA7F14FABE6500DCCDB3 /* generate_keys.rb */,
+				F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */,
+				F445EA8114FABE6500DCCDB3 /* SampleAppcast.xml */,
+				F445EA8214FABE6500DCCDB3 /* sign_update.rb */,
+				F445EA8314FABE6500DCCDB3 /* update_appcast.sh */,
+			);
+			path = Sparkle;
 			sourceTree = "<group>";
 		};
 		F44E006712298B7200CAC9C2 /* Presets */ = {
