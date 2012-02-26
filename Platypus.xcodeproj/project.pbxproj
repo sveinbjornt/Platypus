@@ -16,6 +16,7 @@
 		F44402CC1493EED300261B21 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949C122C128200094A1B /* ScriptAnalyser.m */; };
 		F445EA7714FAB61900DCCDB3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
 		F445EA7914FAB64C00DCCDB3 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
+		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
 		F44E001D1229868100CAC9C2 /* PlatypusStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */; };
 		F44E006D12298B7200CAC9C2 /* PlatypusCube.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006812298B7200CAC9C2 /* PlatypusCube.icns */; };
 		F44E006E12298B7200CAC9C2 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */; };
@@ -132,6 +133,7 @@
 		F4185E5811FC57AB0027C8D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PlatypusApplication/Info.plist; sourceTree = "<group>"; };
 		F42C982B14BB55820094CC8D /* platypus.man.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = platypus.man.pdf; path = CommandLineTool/platypus.man.pdf; sourceTree = "<group>"; };
 		F445EA7614FAB61900DCCDB3 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Shared/Frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Sparkle/dsa_pub.pem; sourceTree = "<group>"; };
 		F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlatypusStatusMenuIcon.png; sourceTree = "<group>"; };
 		F44E006812298B7200CAC9C2 /* PlatypusCube.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusCube.icns; sourceTree = "<group>"; };
 		F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusDefault.icns; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				F42C982B14BB55820094CC8D /* platypus.man.pdf */,
 				F471ED21122DF2D6001F4761 /* Credits.html */,
 				F4185E5811FC57AB0027C8D7 /* Info.plist */,
+				F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */,
 				F4C8B455124C450C00397392 /* Platypus.xib */,
 				F4C8B456124C450C00397392 /* Preferences.xib */,
 				F4C8B457124C450C00397392 /* Editor.xib */,
@@ -813,6 +816,7 @@
 				F40706CE14DC730600BF4DD5 /* platypus_clt in Resources */,
 				F4A36B9D14F2C8A70028A227 /* Csh.png in Resources */,
 				F4A36B9E14F2C8A70028A227 /* Ksh.png in Resources */,
+				F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
