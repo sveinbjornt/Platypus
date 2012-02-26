@@ -38,12 +38,14 @@
 	IBOutlet id installCLTProgressIndicator;
 	IBOutlet id prefsWindow;
 }
+- (IBAction)showWindow:(id)sender;
 - (IBAction)applyPrefs:(id)sender;
 - (void)setIconsForEditorMenu;
 - (IBAction)restoreDefaultPrefs:(id)sender;
 - (IBAction)installCLT:(id)sender;
 - (void)installCommandLineTool;
 - (void)uninstallCommandLineTool;
+-(IBAction)uninstallPlatypus:(id)sender;
 - (void)runCLTScript: (NSString *)scriptName;
 - (BOOL)isCommandLineToolInstalled;
 - (void)executeScriptWithPrivileges: (NSString *)pathToScript;

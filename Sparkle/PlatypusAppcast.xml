@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
    <channel>
-      <title>Platypus Version Log</title>
+      <title>Platypus Version Release Appcast</title>
       <link>http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</link>
-      <description>Most recent changes with links to updates.</description>
+      <description>Most recent release list for Platypus, with links to signed updates.</description>
       <language>en</language>
       <item>
          <title>Version 4.6</title>
@@ -11,7 +11,7 @@
          <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.6.zip" sparkle:version="4.6" length="1455877" type="application/octet-stream" sparkle:dsaSignature="MC0CFCXvwsKLXBPBT7G4u4+pCQg1cxcBAhUApHSLzNT6vPAq1zMhxLCVDMQYf68" />
          <sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
          <description><![CDATA[
-             <h2>Version 4.6</h2>
+             <h2>Version 4.6 Changes</h2>
              <ul>
                  <li>"Open" and "Save" menu item option for Platypus-created apps</li>
                  <li>Applications can now be set as Services for text or file handling via Services menu</li>
