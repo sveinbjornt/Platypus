@@ -23,11 +23,6 @@
 
 @implementation PrefsController
 
-- (id)init 
-{
-    return [super initWithWindowNibName: @"Preferences"];
-}
-
 /*****************************************
  - Set controls according to data in NSUserDefaults
 *****************************************/
@@ -234,6 +229,13 @@
 -(void)uninstallCommandLineTool
 {
 	[self runCLTScript: @"UninstallCommandLineTool.sh"];
+}
+
+-(IBAction)uninstallPlatypus:(id)sender
+{
+    if ([PlatypusUtility proceedWarning: @"Are you sure you want to uninstall Platypus?" subText: @"This will move all Platypus-related files to the Trash.  The application will then quit." withAction: @"Uninstall"])
+        [self runCLTScript: @"UninstallPlatypus.sh"];
+    [[NSApplication sharedApplication] terminate: self];
 }
 
 /*****************************************

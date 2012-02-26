@@ -9,14 +9,15 @@ For 4.7
     TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO:  Implement binary plist format for profiles
     TODO:  Incorporate use XML plist option for command line tool
-    TODO:  Uninstall option, which removes all traces of Platypus on system
     TODO:  Fix temp icon path issue for icons dynamically generated from imported image
-    TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.7. New method involves using a helper tool.  Also, take a look at the sandbox thing.
-    TODO:  Use Sparkle.framework for updates
+    TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool.  Also, take a look at the sandbox thing.
     TODO:  Remove all support for file types.  They are ancient crust now ignored by Mac OS X and should no longer be used.
-    * Ensured script is executable
+    
+    * New "Uninstall" menu option, which removes all traces of Platypus on a system
+    * Using the Sparkle framework for appcasted automatic updates
+    * Fixed bug where script permissions would be erroneously set
     * Fixed bug which caused Platypus to crash when creating Droplets
-    * Migrated away from all deprecated API calls
+    * Migrated away from all deprecated Mac OS X API calls
 
 For 4.6
     * "Open" and "Save" menu item option for Platypus-created apps

@@ -17,6 +17,7 @@
 		F445EA7714FAB61900DCCDB3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
 		F445EA7914FAB64C00DCCDB3 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
+		F445EA9814FAEEBF00DCCDB3 /* UninstallPlatypus.sh in Resources */ = {isa = PBXBuildFile; fileRef = F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */; };
 		F44E001D1229868100CAC9C2 /* PlatypusStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */; };
 		F44E006D12298B7200CAC9C2 /* PlatypusCube.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006812298B7200CAC9C2 /* PlatypusCube.icns */; };
 		F44E006E12298B7200CAC9C2 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */; };
@@ -53,7 +54,6 @@
 		F4BF0A4514967C6D00676278 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BF0A4314967C6D00676278 /* STPrivilegedTask.m */; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
 		F4C8B45A124C450C00397392 /* Platypus.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B455124C450C00397392 /* Platypus.xib */; };
-		F4C8B45B124C450C00397392 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B456124C450C00397392 /* Preferences.xib */; };
 		F4C8B45C124C450C00397392 /* Editor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B457124C450C00397392 /* Editor.xib */; };
 		F4C8B45D124C450C00397392 /* ShellCommandWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B458124C450C00397392 /* ShellCommandWindow.xib */; };
 		F4C8B45E124C450C00397392 /* SyntaxChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8B459124C450C00397392 /* SyntaxChecker.xib */; };
@@ -141,6 +141,7 @@
 		F445EA8114FABE6500DCCDB3 /* SampleAppcast.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SampleAppcast.xml; sourceTree = "<group>"; };
 		F445EA8214FABE6500DCCDB3 /* sign_update.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = sign_update.rb; sourceTree = "<group>"; };
 		F445EA8314FABE6500DCCDB3 /* update_appcast.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_appcast.sh; sourceTree = "<group>"; };
+		F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallPlatypus.sh; sourceTree = "<group>"; };
 		F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlatypusStatusMenuIcon.png; sourceTree = "<group>"; };
 		F44E006812298B7200CAC9C2 /* PlatypusCube.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusCube.icns; sourceTree = "<group>"; };
 		F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusDefault.icns; sourceTree = "<group>"; };
@@ -187,7 +188,6 @@
 		F4BF0A4214967C6D00676278 /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Shared/STPrivilegedTask.h; sourceTree = "<group>"; };
 		F4BF0A4314967C6D00676278 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPrivilegedTask.m; path = Shared/STPrivilegedTask.m; sourceTree = "<group>"; };
 		F4C8B455124C450C00397392 /* Platypus.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Platypus.xib; path = PlatypusApplication/Platypus.xib; sourceTree = "<group>"; };
-		F4C8B456124C450C00397392 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Preferences.xib; path = PlatypusApplication/Preferences.xib; sourceTree = "<group>"; };
 		F4C8B457124C450C00397392 /* Editor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Editor.xib; path = PlatypusApplication/Editor.xib; sourceTree = "<group>"; };
 		F4C8B458124C450C00397392 /* ShellCommandWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShellCommandWindow.xib; path = PlatypusApplication/ShellCommandWindow.xib; sourceTree = "<group>"; };
 		F4C8B459124C450C00397392 /* SyntaxChecker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SyntaxChecker.xib; path = PlatypusApplication/SyntaxChecker.xib; sourceTree = "<group>"; };
@@ -359,7 +359,6 @@
 				F4185E5811FC57AB0027C8D7 /* Info.plist */,
 				F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */,
 				F4C8B455124C450C00397392 /* Platypus.xib */,
-				F4C8B456124C450C00397392 /* Preferences.xib */,
 				F4C8B457124C450C00397392 /* Editor.xib */,
 				F4C8B458124C450C00397392 /* ShellCommandWindow.xib */,
 				F4C8B459124C450C00397392 /* SyntaxChecker.xib */,
@@ -623,6 +622,7 @@
 			children = (
 				F4DC074711F629930043764E /* InstallCommandLineTool.sh */,
 				F4DC074911F629930043764E /* UninstallCommandLineTool.sh */,
+				F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */,
 			);
 			name = "CLT Install Scripts";
 			path = Scripts;
@@ -805,7 +805,6 @@
 				F471ED1E122DF096001F4761 /* PlatypusAppIcon.icns in Resources */,
 				F471ED22122DF2D6001F4761 /* Credits.html in Resources */,
 				F4C8B45A124C450C00397392 /* Platypus.xib in Resources */,
-				F4C8B45B124C450C00397392 /* Preferences.xib in Resources */,
 				F4C8B45C124C450C00397392 /* Editor.xib in Resources */,
 				F4C8B45D124C450C00397392 /* ShellCommandWindow.xib in Resources */,
 				F4C8B45E124C450C00397392 /* SyntaxChecker.xib in Resources */,
@@ -839,6 +838,7 @@
 				F4A36B9D14F2C8A70028A227 /* Csh.png in Resources */,
 				F4A36B9E14F2C8A70028A227 /* Ksh.png in Resources */,
 				F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */,
+				F445EA9814FAEEBF00DCCDB3 /* UninstallPlatypus.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
