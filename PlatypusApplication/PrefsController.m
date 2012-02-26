@@ -233,9 +233,11 @@
 
 -(IBAction)uninstallPlatypus:(id)sender
 {
-    if ([PlatypusUtility proceedWarning: @"Are you sure you want to uninstall Platypus?" subText: @"This will move all Platypus-related files to the Trash.  The application will then quit." withAction: @"Uninstall"])
+    if ([PlatypusUtility proceedWarning: @"Are you sure you want to uninstall Platypus?" subText: @"This will move the Platypus application and all related files to the Trash.  The application will then quit." withAction: @"Uninstall"])
+    {
         [self runCLTScript: @"UninstallPlatypus.sh"];
-    [[NSApplication sharedApplication] terminate: self];
+        [[NSApplication sharedApplication] terminate: self];
+    }
 }
 
 /*****************************************
