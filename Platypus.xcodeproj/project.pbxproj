@@ -14,6 +14,8 @@
 		F40F756013C266AE00197499 /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40F755F13C266AE00197499 /* ShellCommandController.m */; };
 		F42C982C14BB55820094CC8D /* platypus.man.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F42C982B14BB55820094CC8D /* platypus.man.pdf */; };
 		F44402CC1493EED300261B21 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949C122C128200094A1B /* ScriptAnalyser.m */; };
+		F445EA7714FAB61900DCCDB3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
+		F445EA7914FAB64C00DCCDB3 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
 		F44E001D1229868100CAC9C2 /* PlatypusStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */; };
 		F44E006D12298B7200CAC9C2 /* PlatypusCube.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006812298B7200CAC9C2 /* PlatypusCube.icns */; };
 		F44E006E12298B7200CAC9C2 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */; };
@@ -106,6 +108,19 @@
 		F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F445EA7814FAB63A00DCCDB3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F445EA7914FAB64C00DCCDB3 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = PlatypusApplication/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -116,6 +131,7 @@
 		F40F755F13C266AE00197499 /* ShellCommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellCommandController.m; path = PlatypusApplication/ShellCommandController.m; sourceTree = "<group>"; };
 		F4185E5811FC57AB0027C8D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PlatypusApplication/Info.plist; sourceTree = "<group>"; };
 		F42C982B14BB55820094CC8D /* platypus.man.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = platypus.man.pdf; path = CommandLineTool/platypus.man.pdf; sourceTree = "<group>"; };
+		F445EA7614FAB61900DCCDB3 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Shared/Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlatypusStatusMenuIcon.png; sourceTree = "<group>"; };
 		F44E006812298B7200CAC9C2 /* PlatypusCube.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusCube.icns; sourceTree = "<group>"; };
 		F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusDefault.icns; sourceTree = "<group>"; };
@@ -248,6 +264,7 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				F4ED1E470CEC17920006636F /* Carbon.framework in Frameworks */,
 				F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */,
+				F445EA7714FAB61900DCCDB3 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +363,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F445EA7614FAB61900DCCDB3 /* Sparkle.framework */,
 				F48B7BAA11F7675900351575 /* WebKit.framework */,
 				F4E1F47C11F756D9007EE2E3 /* Security.framework */,
 				F4ED1E460CEC17920006636F /* Carbon.framework */,
@@ -664,6 +682,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				F445EA7814FAB63A00DCCDB3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -891,7 +910,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Shared/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -924,7 +946,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Shared/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -959,7 +984,10 @@
 		F41B2180085CD8FF00B63B0D /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Shared/Frameworks\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
