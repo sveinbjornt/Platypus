@@ -30,12 +30,12 @@
 #define PROGRAM_DONATIONS			@"http://sveinbjorn.org/donations"
 
 // Application support folder info
-#define	APP_SUPPORT_FOLDER			@"~/Library/Application Support/Platypus/"
-#define TEMP_FOLDER					@"~/Library/Application Support/Platypus/Temp"
-#define EXAMPLES_FOLDER				@"./Examples/"
-#define PROFILES_FOLDER				@"~/Library/Application Support/Platypus/Profiles"
+#define	APP_SUPPORT_FOLDER			[@"~/Library/Application Support/Platypus/" stringByExpandingTildeInPath]
+#define TEMP_FOLDER                 [@"~/Library/Application Support/Platypus/Temp" stringByExpandingTildeInPath]
+#define PROFILES_FOLDER				[@"~/Library/Application Support/Platypus/Profiles" stringByExpandingTildeInPath]
+#define EXAMPLES_FOLDER				"./Examples/"
 #define PROFILES_SUFFIX				@"platypus"
-#define TEMP_ICON_PATH              [[NSString stringWithFormat: @"%@/TmpIcon.icns", APP_SUPPORT_FOLDER] stringByExpandingTildeInPath]
+#define TEMP_ICON_PATH              [NSString stringWithFormat: @"%@/TmpIcon.icns", APP_SUPPORT_FOLDER]
 
 // default output text settings
 #define DEFAULT_OUTPUT_FONT			@"Monaco"
@@ -62,7 +62,6 @@
 #define CMDLINE_NIB_PATH			@"/usr/local/share/platypus/MainMenu.nib"
 #define CMDLINE_ICON_PATH			@"/usr/local/share/platypus/PlatypusDefault.icns"
 
-#define TMP_ICON_PATH               @"/tmp/PlatypusIcon.icns"
 #define IBTOOL_PATH					@"/Developer/usr/bin/ibtool"
 #define LIPO_PATH                   @"/usr/bin/lipo"
 
@@ -91,6 +90,7 @@
 // path to temp script file
 #define TMP_SCRIPT_TEMPLATE					@".plx_tmp.XXXXXX"
 #define TMP_STDIN_PATH                      @"/tmp/.plstdin.XXXXXX"
+#define TMP_ICON_PATH                       @"/tmp/PlatypusIcon.icns"
 
 // this is surely enough
 #define PLATYPUS_MAX_QUEUE_JOBS				255
