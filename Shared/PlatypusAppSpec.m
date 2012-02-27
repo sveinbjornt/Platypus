@@ -810,7 +810,7 @@
 
 + (NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;
 {
-    NSString *defaults = def ? [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultBundleIdentifierPrefix"] : @"";    
+    NSString *defaults = def ? [DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"] : @"";    
     
     NSString *pre = (!def || [defaults isEqualToString: @""]) ? [NSString stringWithFormat: @"org.%@.", NSUserName()] : defaults;
     

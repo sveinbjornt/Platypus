@@ -32,13 +32,13 @@
 	[super loadWindow];
 	
 	// set controls according to NSUserDefaults
-	[defaultEditorMenu setTitle: [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultEditor"]];
-	[defaultTextEncodingPopupButton selectItemWithTag: [[[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultTextEncoding"] intValue]];
-	[defaultBundleIdentifierTextField setStringValue: [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultBundleIdentifierPrefix"]];
-	[defaultAuthorTextField setStringValue: [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultAuthor"]];
-	[revealAppCheckbox setState: [[NSUserDefaults standardUserDefaults] boolForKey:@"RevealApplicationWhenCreated"]];
-    [openAppCheckbox setState: [[NSUserDefaults standardUserDefaults] boolForKey: @"OpenApplicationWhenCreated"]];
-    [createOnScriptChangeCheckbox setState: [[NSUserDefaults standardUserDefaults] boolForKey: @"CreateOnScriptChange"]];
+	[defaultEditorMenu setTitle: [DEFAULTS stringForKey:@"DefaultEditor"]];
+	[defaultTextEncodingPopupButton selectItemWithTag: [[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]];
+	[defaultBundleIdentifierTextField setStringValue: [DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"]];
+	[defaultAuthorTextField setStringValue: [DEFAULTS stringForKey:@"DefaultAuthor"]];
+	[revealAppCheckbox setState: [DEFAULTS boolForKey:@"RevealApplicationWhenCreated"]];
+    [openAppCheckbox setState: [DEFAULTS boolForKey: @"OpenApplicationWhenCreated"]];
+    [createOnScriptChangeCheckbox setState: [DEFAULTS boolForKey: @"CreateOnScriptChange"]];
     
 	//set icons for editor menu
 	[self setIconsForEditorMenu];
@@ -83,29 +83,29 @@
 - (IBAction)applyPrefs:(id)sender
 {
 	// editor
-	[[NSUserDefaults standardUserDefaults] setObject: [defaultEditorMenu titleOfSelectedItem]  forKey:@"DefaultEditor"];
+	[DEFAULTS setObject: [defaultEditorMenu titleOfSelectedItem]  forKey:@"DefaultEditor"];
 	
 	// text encoding
-	[[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithInt: [[defaultTextEncodingPopupButton selectedItem] tag]]  forKey:@"DefaultTextEncoding"];
+	[DEFAULTS setObject: [NSNumber numberWithInt: [[defaultTextEncodingPopupButton selectedItem] tag]]  forKey:@"DefaultTextEncoding"];
 		
 	//bundle identifier
 	//make sure bundle identifier ends with a '.'
 	if ([[defaultBundleIdentifierTextField stringValue] characterAtIndex: [[defaultBundleIdentifierTextField stringValue]length]-1] != '.')
-		[[NSUserDefaults standardUserDefaults] setObject: [[defaultBundleIdentifierTextField stringValue] stringByAppendingString: @"."]  forKey:@"DefaultBundleIdentifierPrefix"];
+		[DEFAULTS setObject: [[defaultBundleIdentifierTextField stringValue] stringByAppendingString: @"."]  forKey:@"DefaultBundleIdentifierPrefix"];
 	else
-		[[NSUserDefaults standardUserDefaults] setObject: [defaultBundleIdentifierTextField stringValue]  forKey:@"DefaultBundleIdentifierPrefix"];
+		[DEFAULTS setObject: [defaultBundleIdentifierTextField stringValue]  forKey:@"DefaultBundleIdentifierPrefix"];
 	//author
-	[[NSUserDefaults standardUserDefaults] setObject: [defaultAuthorTextField stringValue]  forKey:@"DefaultAuthor"];
+	[DEFAULTS setObject: [defaultAuthorTextField stringValue]  forKey:@"DefaultAuthor"];
 
     // create on script change
-    [[NSUserDefaults standardUserDefaults] setBool: [createOnScriptChangeCheckbox state]  forKey:@"CreateOnScriptChange"];
+    [DEFAULTS setBool: [createOnScriptChangeCheckbox state]  forKey:@"CreateOnScriptChange"];
     
 	// reveal
-	[[NSUserDefaults standardUserDefaults] setBool: [revealAppCheckbox state]  forKey:@"RevealApplicationWhenCreated"];
+	[DEFAULTS setBool: [revealAppCheckbox state]  forKey:@"RevealApplicationWhenCreated"];
     
     // open
-    [[NSUserDefaults standardUserDefaults] setBool: [openAppCheckbox state]  forKey:@"OpenApplicationWhenCreated"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [DEFAULTS setBool: [openAppCheckbox state]  forKey:@"OpenApplicationWhenCreated"];
+    [DEFAULTS synchronize];
 	[[self window] close];
 }
 
@@ -131,7 +131,7 @@
 	NSString *bundleId = [NSString stringWithFormat: @"org.%@.", NSUserName()];
 	bundleId = [[bundleId componentsSeparatedByString:@" "] componentsJoinedByString:@""];//remove all spaces
 	[defaultBundleIdentifierTextField setStringValue: bundleId];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [DEFAULTS synchronize];
 }
 
 
@@ -160,7 +160,7 @@
 		[self setIconsForEditorMenu];
 	}
 	else
-		[defaultEditorMenu setTitle: [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultEditor"]];
+		[defaultEditorMenu setTitle: [DEFAULTS stringForKey:@"DefaultEditor"]];
 }
 
 /*****************************************

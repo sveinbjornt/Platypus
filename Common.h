@@ -107,6 +107,6 @@
 
 // code abbreviations, Obj-C is a tediously verbose language
 #define FILEMGR                     [NSFileManager defaultManager]
-
+#define DEFAULTS                    [NSUserDefaults standardUserDefaults]
 
 
