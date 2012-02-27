@@ -26,12 +26,12 @@
 #import "ScriptAnalyser.h"
 #import "PlatypusUtility.h"
 
-#define MAX_APPSPEC_PROPERTIES	255 // whatever...
+#define MAX_APPSPEC_PROPERTIES    255 // whatever...
 
 @interface PlatypusAppSpec : NSObject 
 {
-	NSMutableDictionary		*properties;
-	NSString				*error;
+    NSMutableDictionary     *properties;
+    NSString                *error;
 }
 -(PlatypusAppSpec *)initWithDefaults;
 -(PlatypusAppSpec *)initWithDefaultsFromScript: (NSString *)scriptPath;
@@ -55,6 +55,5 @@
 -(NSDictionary *)properties;
 -(void)addProperties: (NSDictionary *)dict;
 -(NSString *)error;
-
-+ (NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;
++(NSString *)standardBundleIdForAppName: (NSString *)name  usingDefaults: (BOOL)def;
 @end
