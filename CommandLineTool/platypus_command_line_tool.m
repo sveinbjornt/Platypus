@@ -47,7 +47,7 @@
 
 ///////////// DEFINITIONS ////////////////
 
-#define		OPT_STRING			"P:f:a:o:i:u:p:V:I:Q:ASODBRFNydlvhX:T:G:C:b:g:n:E:K:Y:L:H:U:" 
+#define		OPT_STRING			"P:f:a:o:i:u:p:V:I:Q:ASODBRFNydlvhxX:T:G:C:b:g:n:E:K:Y:L:H:U:" 
 
 ///////////// PROTOTYPES ////////////////
 
@@ -310,6 +310,9 @@ int main (int argc, const char * argv[])
             case 'R':
                 [properties setObject:  [NSNumber numberWithBool: NO] forKey: @"RemainRunning"];
                 break;
+            case 'x':
+                [properties setObject:  [NSNumber numberWithBool: YES] forKey: @"UseXMLPlistFormat"];
+                break;
                 
             // Suffixes
             case 'X':
@@ -467,8 +470,10 @@ int main (int argc, const char * argv[])
     NSMutableArray *remainingArgs = [NSMutableArray arrayWithCapacity: ARG_MAX];
     while (optind < argc)
     {
-        NSString *arg = MakeAbsolutePath([NSString stringWithCString: argv[optind] encoding: DEFAULT_OUTPUT_TXT_ENCODING]);        
-        [remainingArgs addObject: arg];
+        NSString *argStr = [NSString stringWithCString: argv[optind] encoding: DEFAULT_OUTPUT_TXT_ENCODING];
+        if (![argStr isEqualToString: @"-"])
+            argStr = MakeAbsolutePath(argStr);        
+        [remainingArgs addObject: argStr];
         optind += 1;
     }
     
@@ -512,11 +517,37 @@ int main (int argc, const char * argv[])
     {
         // get script path, generate default app name
         scriptPath = [remainingArgs objectAtIndex: 0];
-        if ([fm fileExistsAtPath: scriptPath] == NO)
+        if ([scriptPath isEqualToString: @"-"])
+        {
+            // read data
+            NSData *inData = [[NSFileHandle fileHandleWithStandardInput] readDataToEndOfFile];
+            if (!inData)
+            {
+                NSPrintErr(@"Empty buffer, aborting.");
+                exit(1);
+            }
+            
+            // convert to string
+            NSString *inStr = [[NSString alloc] initWithData: inData encoding: NSUTF8StringEncoding];
+            if (!inStr)
+            {
+                NSPrintErr(@"Cannot handle non-text data.");
+                exit(1);
+            }
+            
+            // write to temp file
+            [inStr writeToFile: TMP_STDIN_PATH atomically: YES encoding: DEFAULT_OUTPUT_TXT_ENCODING error: nil];
+            [inStr release];
+            
+            // set temp file as script path
+            scriptPath = TMP_STDIN_PATH;
+        }
+        else if ([fm fileExistsAtPath: scriptPath] == NO)
         {
             NSPrintErr(@"Error: No script file exists at path '%@'", scriptPath);
             exit(1);
         }
+        
         appSpec = [PlatypusAppSpec specWithDefaultsFromScript: scriptPath];
         if ([properties objectForKey: @"Name"] != nil)
         {
@@ -580,7 +611,7 @@ static void PrintVersion (void)
 
 static void PrintUsage (void)
 {
-    NSPrint(@"usage: %@ [-vh] [-O profile] [-FASDNBR] [-ydlH] [-KYL] [-P profile] [-a appName] [-o outputType] [-i icon] [-Q docIcon] [-p interpreter] [-V version] [-u author] [-I identifier] [-f bundledFile] [-X suffixes] [-T filetypes] [-C scriptArgs] [-G interpreterArgs] scriptFile [appPath]", CMDLINE_PROGNAME);
+    NSPrint(@"usage: %@ [-vh] [-O profile] [-FASDNBR] [-ydlHx] [-KYL] [-P profile] [-a appName] [-o outputType] [-i icon] [-Q docIcon] [-p interpreter] [-V version] [-u author] [-I identifier] [-f bundledFile] [-X suffixes] [-T filetypes] [-C scriptArgs] [-G interpreterArgs] scriptFile [appPath]", CMDLINE_PROGNAME);
 }
 
 ////////////////////////////////////////
@@ -630,6 +661,7 @@ Options:\n\
    \n\
    -f [filePath]        Add a bundled file\n\
    \n\
+   -x                   Create XML property lists instead of binary\n\
    -y                   Force mode.  Overwrite any files/folders in path\n\
    -d                   Development version.  Symlink to script instead of copying\n\
    -l                   Optimize application.  Strip and compile bundled nib file\n\

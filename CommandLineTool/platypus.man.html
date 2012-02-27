@@ -1,0 +1,244 @@
+<html><head></head><body><pre><font face="Courier">
+<b>platypus(1)               BSD General Commands Manual              platypus(1)</b>
+
+<b>NAME</b>
+
+     <b>platypus</b> -- create Mac OS X application wrapper around a script.
+
+<b>SYNOPSIS</b>
+
+     <b>platypus</b> [<b>-vh</b>] [<b>-O</b>] [<b>-FASDBR</b>] [<b>-ydlHx</b>] [<b>-bgn</b>] [<b>-KYL</b>] [<b>-P</b> <u>profile</u>]
+              [<b>-a</b> <u>appName</u>] [<b>-o</b> <u>outputType</u>] [<b>-i</b> <u>icon</u>] [<b>-p</b> <u>interpreter</u>]
+              [<b>-V</b> <u>version</u>] [<b>-u</b> <u>author</u>] [<b>-I</b> <u>identifier</u>] [<b>-f</b> <u>bundledFile</u>]
+              [<b>-X</b> <u>suffixes</u>] [<b>-T</b> <u>filetypes</u>] [<b>-G</b> <u>interpreterArgs</u>]
+              [<b>-C</b> <u>scriptArgs</u>] <u>[scriptFile]</u> <u>[destinationPath]</u>
+
+<b>DESCRIPTION</b>
+
+     <b>platypus</b> is the command line counterpart to the Platypus Mac OS X appli-
+     cation.  It is a tool which creates a Mac OS X application bundle which
+     executes a script when run.
+
+     platypus defaults to creating application bundles, but can also create
+     Platypus profiles that can subsequently be loaded by either the command
+     line program or the Platypus graphical application.
+
+     If the scriptFile parameter is '-', platypus will read the script from
+     STDIN.
+
+     The following flags are supported (and are parsed in the order in which
+     they are passed):
+
+     <b>-O</b>   Create profile file as output instead of creating an application
+          bundle.  When you select this option, the &quot;destinationPath&quot; para-
+          mater (i.e. the final parameter to the program) should have a
+          .platypus suffix.  Please note that in order to create reusable pro-
+          files, this option requires that all paths to bundled files, icons
+          etc. be absolute.  If you provide '-' as the output file, the pro-
+          file property list will be dumped to STDOUT.
+
+     <b>-P</b> <u>[profile]</u>
+          Loads all settings from a Platypus profile file.  You will still
+          need to specify a destination path for the application.  It is pos-
+          sible to override individual settings in the profile with subsequent
+          parameters.
+
+     <b>-a</b> <u>[appName]</u>
+          Specifies the name of the application.  This is can be different
+          from the name of the .app bundle itself, and is displayed in the
+          application's menus, &quot;About&quot; window and Info.plist property list.
+
+     <b>-o</b> <u>[outputType]</u>
+          Specifies the script application's output type, which can be one of
+          the following:
+
+          <u>'None'</u> The application does not display any output.
+
+          <u>'Progress</u> <u>Bar'</u> The application displays a progress bar while run-
+          ning.
+
+          <u>'Text</u> <u>Window'</u> The application displays a window with a text field
+          with all script output.
+
+          <u>'Web</u> <u>View'</u> The application displays a window with a web view which
+          renders script output as HTML.
+
+          <u>'Status</u> <u>Menu'</u> The application displays a status menu item in the
+          menubar which runs the script and displays its output when selected.
+
+          <u>'Droplet'</u> The application displays a droplet window for dropping
+          files on for processing by the script.
+
+          The default output type is &quot;Progress Bar&quot;.
+
+     <b>-i</b> <u>[icon]</u>
+          Specifies a file to use as icon for the application bundle. The icon
+          file should be a regular Mac OS X .icns file.  If not specified, the
+          default Platypus app icon will be used. If specified, but left empty
+          (''), no application icon will be set for the app.
+
+     <b>-Q</b> <u>[icon]</u>
+          Specifies a file to use as icon for the application's documents.
+          Should be a Mac OS X .icns file.
+
+     <b>-p</b> <u>[interpreter]</u>
+          Sets the interpreter for your script (e.g. /usr/bin/perl).  If the
+          interpreter is not specified, the command line tool will try to
+          guess the correct interpreter.  If this fails, the standard shell
+          interpreter /bin/sh is used.
+
+     <b>-V</b> <u>[version]</u>
+          Sets the application bundle's version.  This is displayed in the
+          Info.plist property list and About window.
+
+     <b>-u</b> <u>[author]</u>
+          Sets the name of the application author (e.g. &quot;Apple Computer&quot; or
+          &quot;John Smith&quot;).  If not specified, it defaults to the current user's
+          full user name.
+
+     <b>-f</b> <u>[bundledFile]</u>
+          Specifies a file to be bundled with the script application.  This
+          file will be copied over the Resources folder of the application
+          bundle, which is the same folder in which your script will eventu-
+          ally reside.  You can specify any number of files to be bundled, but
+          you must use the -f flag each time, since the flag only accepts a
+          single file path after the -f flag.
+
+     <b>-I</b> <u>[identifier]</u>
+          Sets the application's bundle identifier.  An application identifier
+          is a reverse DNS name (e.g. com.apple.iTunes) that uniquely identi-
+          fies your application.  If this option is left empty, it will
+          default to an identifier of the format &quot;org.username.appname&quot; (e.g.
+          org.sveinbjorn.Platypus).
+
+     <b>-A</b>   This flag makes the application request administrator privileges via
+          Apple's Security Framework (i.e.  prompt for a password) and then
+          executes the script with those privileges. For details on the nature
+          of these privileges, see the Apple documentation for the Authoriza-
+          tionExecuteWithPrivileges() in Security.framework.  This is not
+          quite equivalent to root privileges.
+
+     <b>-S</b>   Secure bundled script.  This encrypts the bundled script, to fend
+          off prying eyes. Please note that nothing will make the script
+          'secure' from anyone knowledgable enough to get a clear text ver-
+          sion.
+
+     <b>-D</b>   Makes your script application droppable, i.e. capable of receiving
+          drag and dropped files as arguments to the script. The application
+          bundle's property list is modified so that it can receive dropped
+          files in the Dock and Finder. These files are then passed on to the
+          script as arguments via @ARGV.
+
+     <b>-F</b>   Makes your script application droppable, so it accepts dragged text
+          snippets, which are passed to script as arguments.
+
+     <b>-B</b>   This option causes the application to run in the background.  Its
+          icon will not appear in the Dock.  This is done by registering the
+          application with the Finder as a user interface element (LSUIEle-
+          ment).
+
+     <b>-R</b>   This option makes the application quit after the script has been
+          executed.
+
+     <b>-X</b> <u>[suffixes]</u>
+          Only appropriate if you are using the -D option. This flag allows
+          you to specify the file suffixes (e.g. .txt, .wav) your application
+          can open.  This should be a |-separated string (e.g. &quot;txt|wav|jpg&quot;).
+
+     <b>-T</b> <u>[filetypes]</u>
+          Only appropriate if you are using the -D option.  This flag allows
+          you to specify the file type codes (e.g. '8BIM', 'TEXT') your appli-
+          cation can open.  This should be a |-separated string of 4-character
+          ASCII strings (e.g. &quot;8BIM|TEXT|R*ch&quot;).
+
+     <b>-G</b> <u>[arguments]</u>
+          Arguments for the script interpreter.  These should be specified as
+          a |-separated string (e.g. '-w|-s|-l').
+
+     <b>-C</b> <u>[arguments]</u>
+          Arguments to the script.  These should be specified as a |-separated
+          string (e.g. '-w|-s|-l').
+
+     <b>-b</b> <u>[hexColor]</u>
+          For Text Window output mode only. Set background color of text out-
+          put (e.g. #ffffff).
+
+     <b>-g</b> <u>[hexColor]</u>
+          For Text Window output mode only. Set foreground color of text out-
+          put (e.g. #000000).
+
+     <b>-n</b> <u>[fontName]</u>
+          For Text Window output mode only. Set font and fontsize for text
+          output field (e.g. 'Monaco 10').
+
+     <b>-E</b> <u>[encodingNumber]</u>
+          For Text Window output mode only. Set text encoding for script out-
+          put.  Must be one of the numbers defined in the NSString class ref-
+          erence (e.g. 4=UTF-8, 1=ASCII, etc.).  Default is UTF8.
+
+     <b>-K</b> <u>[kind]</u>
+          For Status Menu output mode only.  Set display kind for Status Menu
+          output mode.  This can be &quot;Text&quot;, &quot;Icon and text&quot; or &quot;Icon&quot;.
+
+     <b>-Y</b> <u>[title]</u>
+          For Status Menu output mode only.  Set the display title for the
+          status item in Status Menu output mode.
+
+     <b>-L</b> <u>[imagePath]</u>
+          For Status Menu output mode only.  Set the icon image for the status
+          item in Status Menu output mode.  This must be a 16x16 pixel image
+          in one of the image formats supported by the Cocoa APIs.
+
+     <b>-x</b>   Create XML format property lists instead of binary ones.
+
+     <b>-d</b>   Development mode.  A symlink to the original script is created
+          inside the application bundle instead of a copy.  Symlinks are also
+          created for any bundled files.  This option is incompatible with the
+          -S option.
+
+     <b>-l</b>   Don't optimize application.  Platypus defaults to compiling the bun-
+          dled xib file to reduce application size, which makes it uneditable.
+          Optimization only takes place if you have Apple's Developer Tools
+          installed, since it uses the program /Developer/usr/bin/ibtool.
+
+     <b>-y</b>   Force mode.  With this flag set, the program will happily overwrite
+          any previous files and folders in destination path.  Use with cau-
+          tion.
+
+     <b>-H</b> <u>[xibPath]</u>
+          Specify an alternate xib to copy to application bundle.  This allows
+          you to integrate a customised Platypus application xib into your
+          build process.
+
+     <b>-v</b>   Print the version of this program
+
+     <b>-h</b>   Print help and usage string
+
+     Exits 0 on success, and &gt;0 if an error occurs.
+
+<b>EXAMPLES</b>
+
+     platypus -P myProfile.platypus ~/Desktop/MyApplication.app
+
+     platypus -o 'Text Window' script.pl PerlScript.app
+
+     platypus -a 'My App' -p /usr/bin/python myPythonScript
+
+     platypus -D -a MyDroplet -o 'Droplet' ~/droplet.sh
+
+<b>FILES</b>
+
+     /usr/local/bin/platypus                         program binary
+     /usr/local/share/platypus/ScriptExec            executable binary
+     /usr/local/share/platypus/MainMenu.nib          Nib file for app
+     /usr/local/share/platypus/PlatypusDefault.icns  Default icon
+
+<b>AUTHORS</b>
+
+     This manual page was written by Sveinbjorn Thordarson &lt;svein-
+     bjornt@gmail.com&gt; To support Platypus development, please visit
+     http://sveinbjorn.org/donations.
+
+Darwin                         February 27, 2012                        Darwin
+</font></pre>
+</body></html>
