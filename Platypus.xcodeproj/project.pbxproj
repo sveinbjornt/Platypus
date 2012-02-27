@@ -86,6 +86,7 @@
 		F4E1F71111F75A7F007EE2E3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F4ED1E470CEC17920006636F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4ED1E460CEC17920006636F /* Carbon.framework */; };
 		F4FB337714FBDE2200BAECEB /* platypus.man.html in Resources */ = {isa = PBXBuildFile; fileRef = F4FB337614FBDE2200BAECEB /* platypus.man.html */; };
+		F4FB338114FBFC7C00BAECEB /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4FB338014FBFC7C00BAECEB /* License.txt */; };
 		F4FE735F11F7925E005FC23A /* FileTypesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734711F7925E005FC23A /* FileTypesController.m */; };
 		F4FE736111F7925E005FC23A /* IconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734911F7925E005FC23A /* IconController.m */; };
 		F4FE736311F7925E005FC23A /* ArgsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734B11F7925E005FC23A /* ArgsController.m */; };
@@ -181,7 +182,6 @@
 		F4A36B9B14F2C8A70028A227 /* Csh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Csh.png; sourceTree = "<group>"; };
 		F4A36B9C14F2C8A70028A227 /* Ksh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ksh.png; sourceTree = "<group>"; };
 		F4A4338B0E04C962000523E7 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Common.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		F4AF784214D1C66200544C1B /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		F4AF785B14D1E5F200544C1B /* STDragWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragWebView.h; path = Shared/STDragWebView.h; sourceTree = "<group>"; };
 		F4AF785C14D1E5F200544C1B /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = Shared/STDragWebView.m; sourceTree = "<group>"; };
 		F4B5DE3F14919FF500C43901 /* PlatypusUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusUtility.h; path = Shared/PlatypusUtility.h; sourceTree = "<group>"; };
@@ -229,6 +229,7 @@
 		F4FB337314FBDA7E00BAECEB /* platypus.man.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = platypus.man.pdf; path = CommandLineTool/platypus.man.pdf; sourceTree = "<group>"; };
 		F4FB337614FBDE2200BAECEB /* platypus.man.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = platypus.man.html; path = CommandLineTool/platypus.man.html; sourceTree = "<group>"; };
 		F4FB337814FBE04500BAECEB /* update_website_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = update_website_docs.sh; path = CommandLineTool/update_website_docs.sh; sourceTree = "<group>"; };
+		F4FB338014FBFC7C00BAECEB /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		F4FE734611F7925E005FC23A /* FileTypesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = FileTypesController.h; path = PlatypusApplication/FileTypesController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F4FE734711F7925E005FC23A /* FileTypesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = FileTypesController.m; path = PlatypusApplication/FileTypesController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F4FE734811F7925E005FC23A /* IconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = IconController.h; path = PlatypusApplication/IconController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -640,7 +641,7 @@
 				F4DC074F11F629A40043764E /* PlatypusDocumentation.html */,
 				F48002BA121AF042003FB5B3 /* images */,
 				F4DC075011F629A40043764E /* Readme.html */,
-				F4AF784214D1C66200544C1B /* License.txt */,
+				F4FB338014FBFC7C00BAECEB /* License.txt */,
 				F4ECE1A011F7746A000DB012 /* CHANGES.txt */,
 				F4D6DBC513C50F3E0067B136 /* NOTES.txt */,
 				F4ECE1A111F77471000DB012 /* TODO.txt */,
@@ -852,6 +853,7 @@
 				F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */,
 				F445EA9814FAEEBF00DCCDB3 /* UninstallPlatypus.sh in Resources */,
 				F4FB337714FBDE2200BAECEB /* platypus.man.html in Resources */,
+				F4FB338114FBFC7C00BAECEB /* License.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
