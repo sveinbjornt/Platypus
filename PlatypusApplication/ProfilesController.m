@@ -247,7 +247,7 @@
 		[menuItem setEnabled: YES];
 	}
 	else
-		[profilesMenu addItemWithTitle: @"Empty" action: NULL keyEquivalent:@""];
+		[profilesMenu addItemWithTitle: @"Empty" action: nil keyEquivalent: @""];
 }
 
 -(void)openProfilesFolder
@@ -293,7 +293,8 @@
 
 - (BOOL)validateMenuItem:(NSMenuItem*)anItem 
 {
-	if ([[anItem title] isEqualToString:@"Clear All Profiles"] && [[self getProfilesList] count] < 1)
+	if (([[anItem title] isEqualToString:@"Clear All Profiles"] && [[self getProfilesList] count] < 1) ||
+        [[anItem title] isEqualToString: @"Empty"])
 		return NO;
 	
 	return YES;
