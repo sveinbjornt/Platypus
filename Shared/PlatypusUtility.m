@@ -38,7 +38,7 @@
 
 + (BOOL)isTextFile: (NSString *)path
 {
-    NSString *str = [NSString stringWithContentsOfFile: path encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
+    NSString *str = [NSString stringWithContentsOfFile: path encoding: [[DEFAULTS objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
     return (str != nil);
 }
 

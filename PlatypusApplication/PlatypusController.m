@@ -53,7 +53,7 @@
 	[defaultPrefs setObject: NSFullUserName()				forKey: @"DefaultAuthor"];
 	
     // register the dictionary of defaults
-    [[NSUserDefaults standardUserDefaults] registerDefaults: defaultPrefs];
+    [DEFAULTS registerDefaults: defaultPrefs];
 }
 
 - (void)awakeFromNib
@@ -174,7 +174,7 @@
     }
 
     //write the default content to the new script
-	[contentString writeToFile: tempScript atomically: YES encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: NULL];
+	[contentString writeToFile: tempScript atomically: YES encoding: [[DEFAULTS objectForKey: @"DefaultTextEncoding"] intValue] error: NULL];
 
 	return tempScript;
 }
@@ -202,20 +202,20 @@
 	}
 
 	// if the default editor is the built-in editor, we pop down the editor sheet
-	if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultEditor"] isEqualToString: DEFAULT_EDITOR])
+	if ([[DEFAULTS stringForKey:@"DefaultEditor"] isEqualToString: DEFAULT_EDITOR])
 	{
 		[self openScriptInBuiltInEditor: [scriptPathTextField stringValue]];
 	}
 	else // open it in the external application
 	{
-		NSString *defaultEditor = [[NSUserDefaults standardUserDefaults] stringForKey:@"DefaultEditor"];
+		NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
 		if ([[NSWorkspace sharedWorkspace] fullPathForApplication: defaultEditor] != NULL)
 			[[NSWorkspace sharedWorkspace] openFile: [scriptPathTextField stringValue] withApplication: defaultEditor];
 		else
 		{
 			// Complain if editor is not found, set it to the built-in editor
 			[PlatypusUtility alert: @"Application not found" subText: [NSString stringWithFormat: @"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
-			[[NSUserDefaults standardUserDefaults] setObject: DEFAULT_EDITOR  forKey:@"DefaultEditor"];
+			[DEFAULTS setObject: DEFAULT_EDITOR  forKey:@"DefaultEditor"];
 			[self openScriptInBuiltInEditor: [scriptPathTextField stringValue]];
 		}
 	}		
@@ -262,7 +262,7 @@
 
 - (void)scriptFileChanged:(NSNotification *)aNotification
 {
-    if (![[NSUserDefaults standardUserDefaults] boolForKey: @"CreateOnScriptChange"])
+    if (![DEFAULTS boolForKey: @"CreateOnScriptChange"])
         return;
     
     NSString *appBundleName = [NSString stringWithFormat: @"%@.app", [appNameTextField stringValue]];
@@ -397,11 +397,11 @@
 	}
 	
 	// reveal newly create app in Finder, if prefs say so
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"RevealApplicationWhenCreated"])
+	if ([DEFAULTS boolForKey:@"RevealApplicationWhenCreated"])
 		[[NSWorkspace sharedWorkspace] selectFile: appPath inFileViewerRootedAtPath:nil];
 
     // open newly create app, if prefs say so
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"OpenApplicationWhenCreated"])
+	if ([DEFAULTS boolForKey:@"OpenApplicationWhenCreated"])
 		[[NSWorkspace sharedWorkspace] launchApplication: appPath];
 
 	[developmentVersionCheckbox setIntValue: 0];
@@ -841,7 +841,7 @@
 	[versionTextField setStringValue: @"1.0"];
 	
 	[bundleIdentifierTextField setStringValue: [PlatypusAppSpec standardBundleIdForAppName: [appNameTextField stringValue] usingDefaults: YES ]];
-	[authorTextField setStringValue: [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultAuthor"]];
+	[authorTextField setStringValue: [DEFAULTS objectForKey:@"DefaultAuthor"]];
 	
 	//uncheck all options
 	[isDroppableCheckbox setIntValue: 0];

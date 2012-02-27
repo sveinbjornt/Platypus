@@ -34,7 +34,7 @@
 
 - (void)showEditorForFile: (NSString *)path window: (NSWindow *)theWindow
 {	
-    NSString *str = [NSString stringWithContentsOfFile: path encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
+    NSString *str = [NSString stringWithContentsOfFile: path encoding: [[DEFAULTS objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
     if (str == nil)
     {
         [PlatypusUtility alert: @"Error reading document" subText: @"This document does not appear to be a text file and cannot be opened with a text editor."];
@@ -60,7 +60,7 @@
 	if (![FILEMGR isWritableFileAtPath: [scriptPathTextField stringValue]])
         [PlatypusUtility alert: @"Unable to save changes" subText: @"You don't the neccesary privileges to save this text file."];
 	else
-		[[textView string] writeToFile: [scriptPathTextField stringValue] atomically: YES encoding: [[[NSUserDefaults standardUserDefaults] objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
+		[[textView string] writeToFile: [scriptPathTextField stringValue] atomically: YES encoding: [[DEFAULTS objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
 	
 	[NSApp endSheet: [self window]];
 	[NSApp stopModal];
