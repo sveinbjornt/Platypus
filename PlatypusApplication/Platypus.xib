@@ -292,7 +292,6 @@
 							<string key="NSFrame">{{528, 13}, {116, 32}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="895076633">
 								<int key="NSCellFlags">604110336</int>
@@ -410,7 +409,7 @@
 											<string key="NSFrameSize">{585, 124}</string>
 											<reference key="NSSuperview" ref="5750385"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="486925506"/>
+											<reference key="NSNextKeyView" ref="346920152"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="_NSCornerView" key="NSCornerView">
 												<nil key="NSNextResponder"/>
@@ -685,7 +684,7 @@ AAAAAAAAA</bytes>
 							<string key="NSFrame">{{20, 58}, {587, 126}}</string>
 							<reference key="NSSuperview" ref="705059762"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="346920152"/>
+							<reference key="NSNextKeyView" ref="5750385"/>
 							<int key="NSsFlags">133650</int>
 							<reference key="NSVScroller" ref="486925506"/>
 							<reference key="NSHScroller" ref="346920152"/>
@@ -5495,7 +5494,6 @@ b2xvciBzaXQgYW1ldA</bytes>
 							<string key="NSFrame">{{231, 13}, {88, 32}}</string>
 							<reference key="NSSuperview" ref="688429866"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="260266904">
 								<int key="NSCellFlags">67239424</int>
@@ -5665,7 +5663,18 @@ b2xvciBzaXQgYW1ldA</bytes>
 												</object>
 												<int key="NSPeriodicDelay">400</int>
 												<int key="NSPeriodicInterval">75</int>
-												<nil key="NSMenuItem"/>
+												<object class="NSMenuItem" key="NSMenuItem" id="371099234">
+													<reference key="NSMenu" ref="153625662"/>
+													<string key="NSTitle">Built-In</string>
+													<string key="NSKeyEquiv"/>
+													<int key="NSKeyEquivModMask">1048576</int>
+													<int key="NSMnemonicLoc">2147483647</int>
+													<int key="NSState">1</int>
+													<reference key="NSOnImage" ref="58891223"/>
+													<reference key="NSMixedImage" ref="618508391"/>
+													<string key="NSAction">_popUpItemAction:</string>
+													<reference key="NSTarget" ref="419636833"/>
+												</object>
 												<bool key="NSMenuItemRespectAlignment">YES</bool>
 												<object class="NSMenu" key="NSMenu" id="153625662">
 													<object class="NSMutableString" key="NSTitle">
@@ -5697,18 +5706,7 @@ b2xvciBzaXQgYW1ldA</bytes>
 															<string key="NSAction">_popUpItemAction:</string>
 															<reference key="NSTarget" ref="419636833"/>
 														</object>
-														<object class="NSMenuItem" id="371099234">
-															<reference key="NSMenu" ref="153625662"/>
-															<string key="NSTitle">Built-In</string>
-															<string key="NSKeyEquiv"/>
-															<int key="NSKeyEquivModMask">1048576</int>
-															<int key="NSMnemonicLoc">2147483647</int>
-															<int key="NSState">1</int>
-															<reference key="NSOnImage" ref="58891223"/>
-															<reference key="NSMixedImage" ref="618508391"/>
-															<string key="NSAction">_popUpItemAction:</string>
-															<reference key="NSTarget" ref="419636833"/>
-														</object>
+														<reference ref="371099234"/>
 														<object class="NSMenuItem" id="661144137">
 															<reference key="NSMenu" ref="153625662"/>
 															<string key="NSTitle">TextEdit</string>
@@ -8519,14 +8517,6 @@ b2xvciBzaXQgYW1ldA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">defaultEditorMenu</string>
-						<reference key="source" ref="244706526"/>
-						<reference key="destination" ref="153625662"/>
-					</object>
-					<int key="connectionID">11453</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">prefsWindow</string>
 						<reference key="source" ref="244706526"/>
 						<reference key="destination" ref="775060652"/>
@@ -8540,6 +8530,14 @@ b2xvciBzaXQgYW1ldA</bytes>
 						<reference key="destination" ref="1049734414"/>
 					</object>
 					<int key="connectionID">11458</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">defaultEditorMenu</string>
+						<reference key="source" ref="244706526"/>
+						<reference key="destination" ref="543055997"/>
+					</object>
+					<int key="connectionID">11459</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -14447,7 +14445,7 @@ b2xvciBzaXQgYW1ldA</bytes>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">11458</int>
+			<int key="maxID">11459</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
