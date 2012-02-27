@@ -283,7 +283,7 @@
 		return;
 
 	NSSavePanel *sPanel = [NSSavePanel savePanel];
-	[sPanel setPrompt:@"Create"];
+	[sPanel setPrompt: @"Create"];
 	[window setTitle: [NSString stringWithFormat: @"%@ - Select place to create app", PROGRAM_NAME]];
 	[sPanel setAccessoryView: debugSaveOptionView];
 	
@@ -299,8 +299,13 @@
     // optimize application is enabled and on by default if ibtool is present
 	[xmlPlistFormatCheckbox setIntValue: NO];
 	
-	//run save panel
-    [sPanel beginSheetForDirectory: nil file: [appNameTextField stringValue] modalForWindow: window modalDelegate: self didEndSelector: @selector(createConfirmed:returnCode:contextInfo:) contextInfo: nil];
+    // get default app bundle name
+    NSString *defaultAppBundleName = [appNameTextField stringValue];
+    if (![defaultAppBundleName hasSuffix: @"app"])
+        defaultAppBundleName = [NSString stringWithFormat: @"%@.app", defaultAppBundleName];
+	
+    //run save panel
+    [sPanel beginSheetForDirectory: nil file: defaultAppBundleName modalForWindow: window modalDelegate: self didEndSelector: @selector(createConfirmed:returnCode:contextInfo:) contextInfo: nil];
 	[NSApp runModalForWindow: window];
 }
 
