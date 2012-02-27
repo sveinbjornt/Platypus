@@ -46,10 +46,9 @@
 
 #define PROGRAM_MAX_LIST_ITEMS		255
 
-
 // documentation
 #define PROGRAM_README_FILE			@"Readme.html"
-#define PROGRAM_MANPAGE				@"platypus.man.pdf"
+#define PROGRAM_MANPAGE				@"platypus.man.html"
 #define PROGRAM_DOCUMENTATION		@"PlatypusDocumentation.html"
 #define PROGRAM_LICENSE_FILE		@"License.txt"
 
@@ -62,7 +61,6 @@
 #define	CMDLINE_EXEC_PATH			@"/usr/local/share/platypus/ScriptExec"
 #define CMDLINE_NIB_PATH			@"/usr/local/share/platypus/MainMenu.nib"
 #define CMDLINE_ICON_PATH			@"/usr/local/share/platypus/PlatypusDefault.icns"
-
 
 #define TMP_ICON_PATH               @"/tmp/PlatypusIcon.icns"
 #define IBTOOL_PATH					@"/Developer/usr/bin/ibtool"
@@ -92,6 +90,7 @@
 
 // path to temp script file
 #define TMP_SCRIPT_TEMPLATE					@".plx_tmp.XXXXXX"
+#define TMP_STDIN_PATH                      @"/tmp/.plstdin.XXXXXX"
 
 // this is surely enough
 #define PLATYPUS_MAX_QUEUE_JOBS				255
