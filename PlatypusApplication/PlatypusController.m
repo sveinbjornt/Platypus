@@ -62,15 +62,14 @@
 	BOOL isDir;
 	
 	// app support folder
-	if (! [FILEMGR fileExistsAtPath: [APP_SUPPORT_FOLDER stringByExpandingTildeInPath] isDirectory: &isDir])
-		if ( ! [FILEMGR createDirectoryAtPath: [APP_SUPPORT_FOLDER stringByExpandingTildeInPath] withIntermediateDirectories: NO attributes: nil error: nil] )
+	if (! [FILEMGR fileExistsAtPath: APP_SUPPORT_FOLDER isDirectory: &isDir])
+		if ( ! [FILEMGR createDirectoryAtPath: APP_SUPPORT_FOLDER withIntermediateDirectories: NO attributes: nil error: nil] )
 			[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]]; 
 	
 	// profiles folder
-	if (! [FILEMGR fileExistsAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath] isDirectory: &isDir])
-		if ( ! [FILEMGR createDirectoryAtPath: [PROFILES_FOLDER stringByExpandingTildeInPath] withIntermediateDirectories: NO attributes: nil error: nil] )
-			[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Could not create directory '%@'", [PROFILES_FOLDER stringByExpandingTildeInPath]]]; 
-	
+	if (! [FILEMGR fileExistsAtPath: PROFILES_FOLDER isDirectory: &isDir])
+		if ( ! [FILEMGR createDirectoryAtPath: PROFILES_FOLDER withIntermediateDirectories: NO attributes: nil error: nil] )
+			[PlatypusUtility alert: @"Error" subText: [NSString stringWithFormat: @"Could not create directory '%@'", PROFILES_FOLDER ]]; 
 	
 	// we list ourself as an observer of changes to file system, for script
 	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self selector: @selector(controlTextDidChange:) name: UKFileWatcherRenameNotification object: NULL];
