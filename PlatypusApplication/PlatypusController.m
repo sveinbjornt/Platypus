@@ -697,6 +697,8 @@
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsFromScript: filename];
     [self controlsFromAppSpec: spec];
     [spec release];
+    
+    [iconControl setDefaultIcon];
 	
 	// add to recent items menu
 	[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL: [NSURL fileURLWithPath: filename]];
