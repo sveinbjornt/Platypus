@@ -5,22 +5,23 @@ For 5.0
     TODO:  Remove all support for file types.  They are ancient crust now ignored by Mac OS X and should no longer be used.
     TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool.  Also, take a look at the sandbox thing.
     TODO:  Support for creating bundle with JUST executable script, no app binary wrapper.  May not be possible on Mountain Lion.
-
-For 4.7
     TODO:  Rewrite or at least refactor nasty old code in STFileList and derivatives
-    TODO:  Fix temp icon path issue for icons dynamically generated from imported image
-    TODO:  Support reading script from STDIN in command line tool
     TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
-    TODO:  Fix Empty bug w. enabled empty menu item when no profiles in profiles list
     TODO:  Create TextMate plugin
 
-    * XML plist option now available in command line tool
+
+For 4.7
+    TODO:  Fix temp icon path issue for icons dynamically generated from imported image
+
     * New "Uninstall" menu option, which removes all traces of Platypus on a system
-    * Now uses the Sparkle framework for appcasted automatic updates
+    * New update mechanism using the Sparkle framework and appcasting
+    * Command line tool now supports reading script from STDIN
+    * Command line tool now supports XML plist option 
+    * Migrated away from all deprecated Mac OS X API calls
     * Fixed bug where script permissions would be erroneously set
     * Fixed bug which caused Platypus to crash when creating Droplets
-    * Fixed bug with icon missing on creating new script if CLI tool wasn't installed
-    * Migrated away from all deprecated Mac OS X API calls
+    * Fixed bug with icon missing on "New Script" if CLI tool wasn't installed
+    * Fixed bug with enabled an empty menu item when no profiles were in Profiles list
 
 For 4.6
     * "Open" and "Save" menu item option for Platypus-created apps
