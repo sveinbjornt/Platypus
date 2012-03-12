@@ -202,6 +202,7 @@
     remainRunning       = [[appSettingsPlist objectForKey:@"RemainRunningAfterCompletion"] boolValue];
     secureScript        = [[appSettingsPlist objectForKey: @"Secure"] boolValue];
     isDroppable         = [[appSettingsPlist objectForKey: @"Droppable"] boolValue];
+    promptForFileOnLaunch = [[appSettingsPlist objectForKey: @"PromptForFileOnLaunch"] boolValue];
     
     // never privileged execution or droppable w. status menu
     if (outputType == PLATYPUS_STATUSMENU_OUTPUT) 
@@ -297,8 +298,10 @@
     
     // status menu apps just run when item is clicked
     // for all others, we run the script once app is up and running
-    if (outputType != PLATYPUS_STATUSMENU_OUTPUT)
+    if (outputType != PLATYPUS_STATUSMENU_OUTPUT && !promptForFileOnLaunch)
         [self executeScript];
+    else if (promptForFileOnLaunch && isDroppable)
+        [self openFiles: self];
 }
 
 -(void)application: (NSApplication *)theApplication openFiles: (NSArray *)filenames
