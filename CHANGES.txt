@@ -9,7 +9,8 @@ For 5.0
     TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO:  Create TextMate plugin
     TODO:  Fix temp icon path issue for icons dynamically generated from imported image, make it cleaner
-
+    TODO:  Prompt for file with open dialog on launch, in ScripExec, set in Drop Settings
+    TODO:  Make provide as service not enabled by default
 
 For 4.7
     * New "Uninstall" menu option, which removes all traces of Platypus on a system

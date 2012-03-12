@@ -1,2 +1,2 @@
-See NOTES.txt
+See CHANGES.txt
     
