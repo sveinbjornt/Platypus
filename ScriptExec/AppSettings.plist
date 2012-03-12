@@ -32,6 +32,8 @@
 	<true/>
 	<key>RequiresAdminPrivileges</key>
 	<false/>
+	<key>PromptForFileOnLaunch</key>
+	<true/>
 	<key>RunInBackground</key>
 	<false/>
 	<key>AcceptsText</key>

@@ -107,6 +107,7 @@
     BOOL        secureScript;
     BOOL        acceptsFiles;
     BOOL        acceptsText;
+    BOOL        promptForFileOnLaunch;
 
     NSArray     *droppableSuffixes;
     NSArray     *droppableFileTypes;
