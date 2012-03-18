@@ -23,6 +23,14 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 		</dict>
+		<dict>
+    		<key>CFBundleTypeRole</key>
+    		<string>Viewer</string>
+    		<key>LSItemContentTypes</key>
+    		<array>
+    			<string>public.folder</string>
+    		</array>
+    	</dict>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>org.sveinbjorn.ScriptExec</string>

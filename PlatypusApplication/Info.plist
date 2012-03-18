@@ -258,18 +258,18 @@
 	<string>org.sveinbjorn.Platypus</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-    <key>CFBundleVersion</key>
-    <string>4.7</string>
+	<key>CFBundleVersion</key>
+	<string>4.8</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5.0</string>
 	<key>CFBundleGetInfoString</key>
 	<string>© 2003-2012 Sveinbjorn Thordarson.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2003-2012 Sveinbjorn Thordarson.</string>
-    <key>SUPublicDSAKeyFile</key>
-    <string>dsa_pub.pem</string>
-    <key>SUFeedURL</key>
-    <string>http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
+	<key>SUFeedURL</key>
+	<string>http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</string>
 	<key>NSMainNibFile</key>
 	<string>Platypus</string>
 	<key>NSPrincipalClass</key>
