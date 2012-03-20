@@ -162,10 +162,9 @@
 </form>
 
 
-<p>While Platypus is free, it is the product of hundreds of hours of work over the span of several years.  If you find Platypus a useful, please consider <strong><a href="http://sveinbjorn.org/donations">making a donation</a></strong> to support further development.  I rely on donations to encourage me in continuing development of Platypus.</p>
+<p>While Platypus is free, it is the product of hundreds of hours of work over the span of several years.  If Platypus makes your life easier, please <strong><a href="http://sveinbjorn.org/donations">make a donation</a></strong> to support further development.  I rely on donations to encourage me in continuing development of Platypus.</p>
 
-<p>That being said, while I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, <em>I will not respond to queries about scripting and scripting languages</em>.  Productive use of Platypus assumes that you are competent in your scripting language of choice.  I am obliged to note this due to the large number of queries I have received over the years about scripting languages and their use.  I simply do not have the time or expertise to respond to such queries.  There are plenty of good tutorials for most scripting languages freely available online.  Then there's
-    always <a href="http://stackoverflow.com">Stack Overflow</a>.</p>
+<p>That being said, while I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, <em>I will not respond to queries about scripting and scripting languages</em>.  Productive use of Platypus assumes that you are competent in your scripting language of choice.  I am obliged to note this due to the large number of queries I have received over the years about scripting languages and their use.  I simply don't have the time or expertise to respond to such queries.  There are plenty of good tutorials for most scripting languages freely available online.  Bar that, there's always <a href="http://stackoverflow.com">Stack Overflow</a>.</p>
 
 <br><br>
 
@@ -251,7 +250,7 @@
     
 <p>Most of the time, you will not need to specify this manually.  When you select a script file, Platypus will automatically try to determine what kind of script it is by looking at the file suffix and shebang (#!) line.  If you have specified this meta-data in the script file itself, Platypus is smart enough to figure it out.</p>
 
-<p>Please note that the interpreter you selected must exist on the Mac OS X system on which your script application will run.  All the preset scripting language interpreters (e.g. shell, Perl, Python, PHP, Tcl, Expect etc.) are a standard part of all Mac OS X installations.Alternately, you could use <code>/usr/bin/env</code>.</p>
+<p>Please note that the interpreter you selected must exist on the Mac OS X system on which your script application will run.  All the preset scripting language interpreters (e.g. shell, Perl, Python, PHP, Tcl, Expect etc.) are a standard part of all Mac OS X installations.  Alternately, you could use <code>/usr/bin/env</code>.</p>
 
 <p>The <strong>Args</strong> button next to the text field containing your script interpreter setting allows you to specify arguments for the script interpreter and the script itself.</p>
 
@@ -304,7 +303,7 @@
 <br>
 <br>
 
-<p><strong>PLEASE NOTE:</strong> Make sure you flush the output to ensure it is displayed in real-time while the script is running.  For Perl, see <a href="http://perl.plover.com/FAQs/Buffering.html">buffering</a>. See also <a href="#82">My script's output isn't being shown until the script is done</a> in the FAQ.</p>
+<p><strong>PLEASE NOTE:</strong> Make sure you flush the output to ensure it is displayed in real-time while the script is running.  See <a href="#82">My script's output isn't being shown until the script is done</a> in the FAQ.</p>
 
 
 <br><br>
@@ -491,14 +490,14 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></p>
 
 <blockquote><p><code>/usr/local/bin/platypus -P myProfile.platypus MyApp.app</code></p></blockquote>
 
-<p>See the command line tool man page for further details.  A PDF version of this man page is available through the Platypus Help menu.</p>
+<p>See the command line tool man page for further details.  An HTML version of this man page is available through the Platypus Help menu.</p>
 
 <br><br>
 <a name="63"></a>
 
 <h3>Platypus Profile Format</h3>
 
-<p>The Platypus Profile file format is a Mac OS X <a href="http://en.wikipedia.org/wiki/Property_list">property list</a> in XML format.  It can be edited using the Property List Editor application that comes with the Mac OS X developer tools, or with a plain text editor.</p>
+<p>The Platypus Profile file format is a Mac OS X <a href="http://en.wikipedia.org/wiki/Property_list">property list</a> in XML format.  It can be edited using the Property List Editor application that comes with the Mac OS X developer tools (or, if you're on Lion, with XCode), or with a plain text editor.</p>
 
 <br>
 <br>
@@ -614,7 +613,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
     
     <p>The Appcast RSS XML file is located <a href="http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml">here</a>.</p>
     
-    <p>To get the absolutely latest in-development version of Platypus, you can check out the source code on <a href="http://github.com/sveinbjornt/Platypus">GitHub</a>.  The master branch may or may not compile, depending on the current state of development, but specific version branches should all compile just fine.</p>
+    <p>To get the absolutely latest in-development version of Platypus, you can check out the source code on <a href="http://github.com/sveinbjornt/Platypus">GitHub</a>.  The master branch may or may not compile, depending on the current state of development, but specific version branches should all compile just fine.  As of version 4.6, Platypus builds using an XCode 4 project.  Prior versions are XCode &lt;=3 projects.</p>
     
     
     
