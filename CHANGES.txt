@@ -14,6 +14,7 @@ For 4.8
     TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO:  Rewrite or at least refactor nasty old code in STFileList and derivatives
     TODO:  Remove all support for file types.  They are ancient crust now ignored by Mac OS X and should no longer be used.
+    TODO:  Update so that app and generated apps have NSHumanReadableCopyright defined, otherwise no version info in Get Info on Snow Lopeard or later (http://lists.apple.com/archives/cocoa-dev/2009/Sep/msg01710.html)
 
 For 4.7
     * New "Uninstall" menu option, which removes all traces of Platypus on a system
