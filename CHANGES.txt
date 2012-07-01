@@ -26,7 +26,7 @@ For 4.7
     * Fixed bug where script permissions could be erroneously set, resulting in execution failure
     * Fixed bug which caused Platypus to crash when creating Droplets
     * Fixed bug with icon missing on "New Script" if CLI tool wasn't installed
-    * Fixed bug with enabled an empty menu item when no profiles were in Profiles list
+    * Fixed bug with enabled empty menu item when no profiles were in Profiles list
 
 For 4.6
     * "Open" and "Save" menu item option for Platypus-created apps
