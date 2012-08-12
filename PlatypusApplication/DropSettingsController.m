@@ -18,10 +18,10 @@
 
 */
 
-#import "FileTypesController.h"
+#import "DropSettingsController.h"
 #import "Common.h"
 
-@implementation FileTypesController
+@implementation DropSettingsController
 
 /*****************************************
  - init function

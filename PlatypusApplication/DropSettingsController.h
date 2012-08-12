@@ -23,7 +23,7 @@
 #import "SuffixList.h"
 #import "PlatypusUtility.h"
 
-@interface FileTypesController : NSObject <NSTableViewDelegate>
+@interface DropSettingsController : NSObject <NSTableViewDelegate>
 {
 	IBOutlet id appFunctionRadioButtons;
     IBOutlet id addSuffixButton;
