@@ -38,7 +38,7 @@
 #import "EditorController.h"
 #import "ShellCommandController.h"
 
-#import "FileTypesController.h"
+#import "DropSettingsController.h"
 #import "SuffixList.h"
 #import "TypesList.h"
 

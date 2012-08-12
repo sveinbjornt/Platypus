@@ -87,7 +87,7 @@
 		F4ED1E470CEC17920006636F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4ED1E460CEC17920006636F /* Carbon.framework */; };
 		F4FB337714FBDE2200BAECEB /* platypus.man.html in Resources */ = {isa = PBXBuildFile; fileRef = F4FB337614FBDE2200BAECEB /* platypus.man.html */; };
 		F4FB338114FBFC7C00BAECEB /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4FB338014FBFC7C00BAECEB /* License.txt */; };
-		F4FE735F11F7925E005FC23A /* FileTypesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734711F7925E005FC23A /* FileTypesController.m */; };
+		F4FE735F11F7925E005FC23A /* DropSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734711F7925E005FC23A /* DropSettingsController.m */; };
 		F4FE736111F7925E005FC23A /* IconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734911F7925E005FC23A /* IconController.m */; };
 		F4FE736311F7925E005FC23A /* ArgsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734B11F7925E005FC23A /* ArgsController.m */; };
 		F4FE736511F7925E005FC23A /* PlatypusController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734D11F7925E005FC23A /* PlatypusController.m */; };
@@ -230,8 +230,8 @@
 		F4FB337614FBDE2200BAECEB /* platypus.man.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = platypus.man.html; path = CommandLineTool/platypus.man.html; sourceTree = "<group>"; };
 		F4FB337814FBE04500BAECEB /* update_website_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = update_website_docs.sh; path = CommandLineTool/update_website_docs.sh; sourceTree = "<group>"; };
 		F4FB338014FBFC7C00BAECEB /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
-		F4FE734611F7925E005FC23A /* FileTypesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = FileTypesController.h; path = PlatypusApplication/FileTypesController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		F4FE734711F7925E005FC23A /* FileTypesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = FileTypesController.m; path = PlatypusApplication/FileTypesController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		F4FE734611F7925E005FC23A /* DropSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = DropSettingsController.h; path = PlatypusApplication/DropSettingsController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F4FE734711F7925E005FC23A /* DropSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = DropSettingsController.m; path = PlatypusApplication/DropSettingsController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F4FE734811F7925E005FC23A /* IconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = IconController.h; path = PlatypusApplication/IconController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F4FE734911F7925E005FC23A /* IconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = IconController.m; path = PlatypusApplication/IconController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F4FE734A11F7925E005FC23A /* ArgsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = ArgsController.h; path = PlatypusApplication/ArgsController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -493,8 +493,8 @@
 				F482949F122C129400094A1B /* EditorController.m */,
 				F48294A0122C129400094A1B /* SyntaxCheckerController.h */,
 				F48294A1122C129400094A1B /* SyntaxCheckerController.m */,
-				F4FE734611F7925E005FC23A /* FileTypesController.h */,
-				F4FE734711F7925E005FC23A /* FileTypesController.m */,
+				F4FE734611F7925E005FC23A /* DropSettingsController.h */,
+				F4FE734711F7925E005FC23A /* DropSettingsController.m */,
 				F4FE734811F7925E005FC23A /* IconController.h */,
 				F4FE734911F7925E005FC23A /* IconController.m */,
 				F4FE734A11F7925E005FC23A /* ArgsController.h */,
@@ -905,7 +905,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				F4FE735F11F7925E005FC23A /* FileTypesController.m in Sources */,
+				F4FE735F11F7925E005FC23A /* DropSettingsController.m in Sources */,
 				F4FE736111F7925E005FC23A /* IconController.m in Sources */,
 				F4FE736311F7925E005FC23A /* ArgsController.m in Sources */,
 				F4FE736511F7925E005FC23A /* PlatypusController.m in Sources */,
