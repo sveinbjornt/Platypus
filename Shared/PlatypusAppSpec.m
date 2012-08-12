@@ -495,6 +495,7 @@
                         [properties objectForKey: @"Name"],         @"CFBundleDisplayName",
                         [NSString stringWithFormat: @"© %d %@", [[NSCalendarDate calendarDate] yearOfCommonEra], [properties objectForKey: @"Author"] ],             @"NSHumanReadableCopyright", 
                         [properties objectForKey: @"Version"],      @"CFBundleVersion", 
+                        [properties objectForKey: @"Version"],      @"CFBundleShortVersionString",
                         [properties objectForKey: @"Identifier"],   @"CFBundleIdentifier",  
                         [properties objectForKey: @"ShowInDock"],   @"LSUIElement",
                         @"6.0",                                     @"CFBundleInfoDictionaryVersion",
