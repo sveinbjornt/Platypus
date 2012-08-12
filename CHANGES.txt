@@ -7,6 +7,9 @@ For 5.0
     TODO:  Create TextMate plugin
 
 For 4.8
+    * Updated documentation FAQ to address some common questions
+    * Fixed issue where version would not appear in Get Info in Finder (missing CFBundleShortVersionString)
+    
     TODO:  Fix temp icon path issue for icons dynamically generated from imported image, make it cleaner
     TODO:  Prompt for file with open dialog on launch, in ScripExec, set in Drop Settings
     TODO:  Make provide as service not enabled by default, make fields go enabled/disabled based on checkboxes in drop settings

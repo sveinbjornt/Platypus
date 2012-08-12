@@ -131,6 +131,8 @@
             <li><a href="#88">How do I get the path to my application / bundled files within the script?</a></li>
             <li><a href="#89">How do Platypus-generated applications work?</a></li>
             <li><a href="#810">Does Platypus support processor-specific binaries only?</a></li>
+            <li><a href="#811">Can I change the dimensions of the Platypus output window?</a></li>
+            <li><a href="#812">Can I prompt for user input in my Platypus-wrapped scripts?</a></li>
         </ul>
     </li>
 </ul>
@@ -422,17 +424,19 @@ results, use professional Mac OS X icon-editing software and specify a carefully
 
 <p>Please note that syntax checking is only supported for those script types where the interpreter supports it.  As of writing, this includes shell, Perl, Ruby and PHP scripts.  The syntax checking commands issued for each interpreter are the following:</p>
 
-<p>Shell: <code>/bin/sh -n "/path/to/script"</code><br> 
-Perl: <code>/usr/bin/perl -c "/path/to/script"</code><br> 
-Ruby: <code>/usr/bin/ruby -c "/path/to/script"</code><br> 
-PHP: <code>/usr/bin/php -l "/path/to/script"</code></p>
+<div class="codeblock">
+<pre>Shell: <code>/bin/sh -n "/path/to/script"</code>
+Perl: <code>/usr/bin/perl -c "/path/to/script"</code> 
+Ruby: <code>/usr/bin/ruby -c "/path/to/script"</code> 
+PHP: <code>/usr/bin/php -l "/path/to/script"</code></pre>
+</div>
 
 <br><br>
 
 <a name="45"></a>
 <h3>Show Shell Command</h3>
 
-<p>Platypus includes a <strong>command line tool</strong> equivalent to the Platypus.app application, which can be installed into <code>/usr/local/bin/platypus</code> via Platypus Preferences.  The man page for this tool is available from the Help menu and via the command <code>man platypus</code>.</p>
+<p>Platypus includes a <strong>command line tool</strong> equivalent to the Platypus.app application, which can be installed into <code>/usr/local/bin/platypus</code> via Platypus Preferences.  The man page for this tool is available from the Help menu and via the command <code>man platypus</code>.  There is also an online <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">HTML version of the man page</a>.</p>
 
 <p>Under the <strong>Advanced</strong> menu there is a menu command called <strong>Show Shell Command</strong>. Selecting this item will bring down a sheet with a text field containing a command line command for executing the platypus command line with the options you selected in the graphical interface. This can be helpful if you have the command line tool installed and wish to automate the creation of script apps.</p>
 
@@ -488,9 +492,11 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></p>
 
 <p>Profiles can be used with the <code>platypus</code> command line tool.  This allows you to set all the settings for your application within the graphical user interface, save them as a profile and load them with the command line app.  This makes automation more convenient.  The following command would load a profile with the command line tool and create an app from it named MyApp.app:</p>
 
-<blockquote><p><code>/usr/local/bin/platypus -P myProfile.platypus MyApp.app</code></p></blockquote>
+<div class="codeblock">
+<pre>/usr/local/bin/platypus -P myProfile.platypus MyApp.app</pre>
+</div>
 
-<p>See the command line tool man page for further details.  An HTML version of this man page is available through the Platypus Help menu.</p>
+<p>See the command line tool man page for further details.  An HTML version of this man page is available through the Platypus Help menu, and also <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">online here</a>.</p>
 
 <br><br>
 <a name="63"></a>
@@ -543,6 +549,7 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></p>
 
 <p>This short tutorial will outline the process of creating an installer application using a shell script and Platypus.</p>
 
+<blockquote>
 <strong>Step 1: Set Output Type and Args</strong>
 
 <p>Set Output as "Progress Bar" to indicate to the end user that some activity is taking place. Alternately, you choose "Text Window", in which case you should set your script to print out status messages on how the installation is doing into a text window while it is running.</p>
@@ -563,16 +570,18 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></p>
 
 <p>Now it's time to create the script that will actually do the installing. Let us imagine that we've added two files: MyApp.app and MyFramework.framework to the bundled files list. To install these two, we would use the following script:</p>
 
-<pre>
-#!/bin/sh
+<div class="codeblock">
+<pre>#!/bin/sh
 
 echo "Installing MyApp.app in /Applications"
 cp -R "MyApp.app" "/Applications/"
 echo "Installing MyFramework.framework in /Library/Frameworks"
-cp -R "MyFramework.framework" "/Library/Frameworks/"
-</pre>
+cp -R "MyFramework.framework" "/Library/Frameworks/"</pre>
+</div>
 
 <p>The echo messages are optional, but may be helpful if you have set your output type to "Text Window": then your user will see these messages.  You may want to modify permissions using <code>chmod</code> or do extra things like open the application (a simple <code>open /Applications/MyApp.app</code>.</p>
+
+</blockquote>
 
 <p>Press the Create button and you'll have a fully-functioning installer.</p>
 
@@ -587,14 +596,14 @@ cp -R "MyFramework.framework" "/Library/Frameworks/"
 
 <p>Below you can see a shell script that gives an example of how to query for input with a bundled copy of CocoaDialog:</p>
 
-<pre>
+<div class="codeblock"><pre>
 #!/bin/bash
 
 CD="CocoaDialog.app/Contents/MacOS/CocoaDialog"
 
 rv=`$CD yesno-msgbox --string-output` 
-$CD ok-msgbox --no-cancel --text "You pressed $rv"
-</pre>
+$CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
+</div>
 
 <p>This Platypus application will present the user with an alert and several buttons. When the user presses one of the buttons, a feedback dialog is generated notifying the user which button he pressed. While this particular script accomplishes nothing, it serves as an example of how easy it can be to add interactive elements to your script by combining Platypus with CocoaDialog.</p>
 
@@ -611,7 +620,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
     
     <p>New releases may or may not break your saved profiles.  Consult the version change log for details.</p>
     
-    <p>The Appcast RSS XML file is located <a href="http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml">here</a>.</p>
+    <p>The Appcast RSS XML file is located <a href="http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml">here</a> if you want to follow updates programatically.</p>
     
     <p>To get the absolutely latest in-development version of Platypus, you can check out the source code on <a href="http://github.com/sveinbjornt/Platypus">GitHub</a>.  The master branch may or may not compile, depending on the current state of development, but specific version branches should all compile just fine.  As of version 4.6, Platypus builds using an XCode 4 project.  Prior versions are XCode &lt;=3 projects.</p>
     
@@ -655,9 +664,9 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 
 <h3 id="83">Does Platypus support localizations?</h3>
 
-<p>No.  But if you don't select "Optimize nib file" when creating an app, the nib in the application bundle will be editable.  That way, you can localize it manually if you want to.  Localization support is <em>very low</em> on the feature roadmap, since it is tedious and burdensome to implement, and can be adequately dealt with using the method outlined above.</p>
+<p>No.  But if you don't select "Optimize nib file" in the save dialog when creating an app, the nib in the resulting application bundle will be editable using XCode (or Interface Builder).  That way, you can localize it manually if you want to.  Localization support is <em>very low</em> on the feature roadmap, since it is tedious and burdensome to implement, and can be adequately dealt with using the method outlined above.</p>
 
-<p>Please do not send me any localizations you make for Platypus, since I will not include them in the distribution.  Localizations use up disk space and bandwidth, and inhibit the speed and freedom of development.  In my judgment, it simply is not worth it.</p>
+<p><em>Please do not send me any localizations you make for Platypus</em>, since I will not include them in the official distribution.  Localizations use up disk space and bandwidth, and inhibit the speed and freedom of development.  If you know scripting, you probably know English fairly well.  To my mind, localization simply isn't worth the hassle for a specialized developer tool.</p>
     
 <br>
 <br>
@@ -705,9 +714,9 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 <br>
 <br>
 
-<h3 id="88">How do I get the path to my application / bundled files within the script?</h3>
+<h3 id="88">How do I get the path to my application and/or bundled files within the script?</h3>
 
-<p>The script executed by Platypus-generated applications is run from the Resources directory of the application bundle (e.g. MyApp.app/Contents/Resources).  Any bundled files are thus accessible from the script's current working directory.  To get the path to the application bundle itself, or the directory it is in, you can just use <code>..</code> (application bundle) or <code>../..</code> (application's containing directory).</p>
+<p>The script executed by Platypus-generated applications is run from the Resources directory of the application bundle (e.g. <code>MyApp.app/Contents/Resources</code>).  Any bundled files are thus accessible from the script's current working directory.  To get the path to the application bundle itself, or the directory it is in, you can just use <code>..</code> (application bundle) or <code>../..</code> (application's containing directory).</p>
 
 <br>
 <br>
@@ -717,18 +726,20 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
 
 <p>Platypus-generated applications are Mac OS X application (.app) bundles, and have the following directory structure:</p>
 
+<div class="codeblock">
 <pre>
-    MyApp.app/                                      - Application bundle folder
-    MyApp.app/Contents
-    MyApp.app/Contents/Info.plist                   - Info property list for app
-    MyApp.app/Contents/MacOS
-    MyApp.app/Contents/MacOS/MyApp                  - Application binary
-    MyApp.app/Contents/Resources                    - Resources folder
-    MyApp.app/Contents/Resources/appIcon.icns       - Application icon
-    MyApp.app/Contents/Resources/AppSettings.plist  - Application script execution settings
-    MyApp.app/Contents/Resources/MainMenu.nib       - Nib file, stores interface layout
-    MyApp.app/Contents/Resources/script             - Script that is executed by binary
+MyApp.app/                                      - Application bundle folder
+MyApp.app/Contents
+MyApp.app/Contents/Info.plist                   - Info property list for app
+MyApp.app/Contents/MacOS
+MyApp.app/Contents/MacOS/MyApp                  - Application binary
+MyApp.app/Contents/Resources                    - Resources folder
+MyApp.app/Contents/Resources/appIcon.icns       - Application icon
+MyApp.app/Contents/Resources/AppSettings.plist  - Application script execution settings
+MyApp.app/Contents/Resources/MainMenu.nib       - Nib file, stores interface layout
+MyApp.app/Contents/Resources/script             - Script that is executed by binary
 </pre>
+</div>
 
 <p>The application binary reads settings from AppSettings.plist and then runs the script, making use of the configured user interface assets in the nib file to display the script's output.</p>
 
@@ -747,6 +758,31 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"
     <br>
     <br>
     <br>
+    
+    
+<h3 id="811">Can I change the dimensions of the Platypus output window?</h3>
+
+<p>Yes, but only by directly altering the application after it has been created.  When you press Create, you need to uncheck the "Optimize Application (strip nib file)" option in the Save dialog.  You can then edit the nib file for your application, which contains all the user interface assets, using XCode 4 or Interface Builder (if you have an old version of the Apple Developer Tools).  The nib file is stored at the following path within your application bundle.</p>
+
+<div class="codeblock">
+Contents/Resources/MainMenu.nib
+</div>
+
+<p>Alternately, the Platypus command line tool allows you to specify an alternate nib file using the <code>-H</code> flag.</p>
+
+<br>
+<br>
+<br>
+
+<h3 id="812">Can I prompt for user input in my Platypus-wrapped scripts?</h3>
+
+<p>No.  Platypus applications do not present the user with an interactive shell, so no bidirectional communication can take place using standard command line methods.  The Text Window option can only show the user the text output of your script.  It cannot prompt for input, and will not be able to do so in the forseeable future.  This means that any commands that require user input, such as <code>sudo</code>, will not work from within a Platypus-wrapper.</p>
+
+<br>
+<br>
+<br>
+
+    
 <hr>
 
 
