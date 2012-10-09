@@ -39,7 +39,7 @@
 	sleep 1
 	echo "PROGRESS:60"
 	sleep 1
-	echo "Ano now for something completely different"
+	echo "And now for something completely different"
 	echo "PROGRESS:70"
 	sleep 1
 	echo "PROGRESS:80"
