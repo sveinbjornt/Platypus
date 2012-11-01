@@ -950,9 +950,9 @@
     // if web output, we continually re-render to accomodate incoming data, else we scroll down
     if (outputType == PLATYPUS_WEBVIEW_OUTPUT) {
         NSArray *lines = [NSMutableArray arrayWithArray: [[text string] componentsSeparatedByString: @"\n"]];
-        if ([lines count] == 1 && [[outputTextView string] hasPrefix: @"Location:"]) {
-            [webOutputWebView takeStringURLFrom: [lines objectAtIndex: 0]];
-        }
+        if ([lines count] == 0 && [[outputTextView string] hasPrefix: @"Location: "]) {
+            NSString *url = [[lines objectAtIndex: 0] substringFromIndex: 10];
+            [webOutputWebView takeStringURLFrom: url];
         else {
             [[webOutputWebView mainFrame] loadHTMLString: [outputTextView string] baseURL: [NSURL fileURLWithPath: [[NSBundle mainBundle] resourcePath]] ];
         }
