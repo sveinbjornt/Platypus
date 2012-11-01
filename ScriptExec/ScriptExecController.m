@@ -953,6 +953,7 @@
         if ([lines count] == 0 && [[outputTextView string] hasPrefix: @"Location: "]) {
             NSString *url = [[lines objectAtIndex: 0] substringFromIndex: 10];
             [webOutputWebView takeStringURLFrom: url];
+        }
         else {
             [[webOutputWebView mainFrame] loadHTMLString: [outputTextView string] baseURL: [NSURL fileURLWithPath: [[NSBundle mainBundle] resourcePath]] ];
         }
