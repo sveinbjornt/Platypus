@@ -948,8 +948,15 @@
     [text replaceCharactersInRange: NSMakeRange([text length], 0) withString: outputString];
     
     // if web output, we continually re-render to accomodate incoming data, else we scroll down
-    if (outputType == PLATYPUS_WEBVIEW_OUTPUT)
-        [[webOutputWebView mainFrame] loadHTMLString: [outputTextView string] baseURL: [NSURL fileURLWithPath: [[NSBundle mainBundle] resourcePath]] ];
+    if (outputType == PLATYPUS_WEBVIEW_OUTPUT) {
+        NSArray *lines = [NSMutableArray arrayWithArray: [[text string] componentsSeparatedByString: @"\n"]];
+        if ([lines count] == 1 && [[outputTextView string] hasPrefix: @"Location:"]) {
+            [webOutputWebView takeStringURLFrom: [lines objectAtIndex: 0]];
+        }
+        else {
+            [[webOutputWebView mainFrame] loadHTMLString: [outputTextView string] baseURL: [NSURL fileURLWithPath: [[NSBundle mainBundle] resourcePath]] ];
+        }
+    }
     else if (outputType == PLATYPUS_TEXTWINDOW_OUTPUT || outputType == PLATYPUS_PROGRESSBAR_OUTPUT)
         [outputTextView scrollRangeToVisible: NSMakeRange([text length], 0)];
     
