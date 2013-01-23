@@ -634,7 +634,7 @@ Options:\n\
    \n\
    -i [iconPath]        Set icon for application\n\
    -u [author]          Set name of application author\n\
-   -Q [iconPath]        Set icon for doucments\n\
+   -Q [iconPath]        Set icon for documents\n\
    -V [version]         Set version of application\n\
    -I [identifier]      Set bundle identifier (i.e. org.yourname.appname)\n\
    \n\
