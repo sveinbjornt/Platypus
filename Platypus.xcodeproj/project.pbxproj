@@ -370,7 +370,7 @@
 				F4C8B459124C450C00397392 /* SyntaxChecker.xib */,
 				F46EF84E13C3F36900E4C0E4 /* Examples */,
 				F4D6568C14C4BFD6003552F9 /* Images */,
-				F4DC074611F629930043764E /* CLT Install Scripts */,
+				F4DC074611F629930043764E /* Scripts */,
 				F4050E3305DAF44F00BE4CA5 /* Icons */,
 			);
 			name = Resources;
@@ -629,14 +629,13 @@
 			path = InterpreterIcons;
 			sourceTree = "<group>";
 		};
-		F4DC074611F629930043764E /* CLT Install Scripts */ = {
+		F4DC074611F629930043764E /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
 				F4DC074711F629930043764E /* InstallCommandLineTool.sh */,
 				F4DC074911F629930043764E /* UninstallCommandLineTool.sh */,
 				F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */,
 			);
-			name = "CLT Install Scripts";
 			path = Scripts;
 			sourceTree = "<group>";
 		};

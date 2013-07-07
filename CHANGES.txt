@@ -2,24 +2,25 @@ For 5.0
     TODO:  Rethink and redesign the interface. It's a bit cluttered, hasn't changed much for 10 years, and could do with some (Mountain) Lionizing
     TODO:  Get STDERR output and pid for STPrivilegedTask
     TODO:  Create Platypus tutorial videos, make them available online
-    TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool.  Also, take a look at the sandbox thing.
+    TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool.  I need to take a look at the sandbox thing.
     TODO:  Support for creating bundle with JUST executable script, no app binary wrapper.  May not be possible on Mountain Lion.
     TODO:  Create TextMate plugin
-    TODO:  
+    TODO:  Rewrite or at least refactor nasty old code in STFileList and derivatives
+    TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
+    TODO:  Retina size support for custom buttons
 
 For 4.8
-    * Updated documentation FAQ to address some common questions
+    * New "Prompt for file on launch" option
+    * Redesigned Drop Settings sheet
+    * Extensive updates to documentation
     * Fixed issue where version would not appear in Get Info in Finder (missing CFBundleShortVersionString)
+    * Generated apps have NSHumanReadableCopyright defined again
     * Removed all support for file types.  They are ancient crust now mostly ignored by Mac OS X and should no longer be used.
-    * Update so that app and generated apps have NSHumanReadableCopyright defined
-    * Documentation now opens in default browser, not in default .html handling app
+    * Documentation files now open in default browser, not in default .html handling app
 
     TODO:  Fix temp icon path issue for icons dynamically generated from imported image, make it cleaner
-    TODO:  Prompt for file with open dialog on launch, in ScripExec, set in Drop Settings
     TODO:  Make provide as service not enabled by default, make fields go enabled/disabled based on checkboxes in drop settings
     TODO:  Make uninstaller cleaner
-    TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
-    TODO:  Rewrite or at least refactor nasty old code in STFileList and derivatives
 
 For 4.7
     * New "Uninstall" menu option, which removes all traces of Platypus on a system
