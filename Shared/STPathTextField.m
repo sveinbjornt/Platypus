@@ -18,18 +18,18 @@
  See code on how to set the settings for the text field.
  Defaults are the following:
  
- autocompleteStyle = STNoAutocomplete;
- colorInvalidPath = YES;
- foldersAreValid = NO;
- expandTildeInPath = YES;
+     autocompleteStyle = STNoAutocomplete;
+     colorInvalidPath = YES;
+     foldersAreValid = NO;
+     expandTildeInPath = YES;
  
  There are three settings for autocompleteStyle
  
  enum 
  {
- STNoAutocomplete = 0,
- STShellAutocomplete = 1,
- STBrowserAutocomplete = 2
+     STNoAutocomplete = 0,
+     STShellAutocomplete = 1,
+     STBrowserAutocomplete = 2
  };
  
  ************************ LICENSE ***************************
@@ -105,14 +105,15 @@
 }
 
 /*******************************************
- Tell us whether the path in the path text field
- is valid
+ Tell us whether the path in the path text 
+ field is valid
  *********************************************/
 
 -(BOOL)hasValidPath
 {
     BOOL isDir;
-    return ([[NSFileManager defaultManager] fileExistsAtPath: [self stringValue] isDirectory: &isDir] && (!(isDir && !foldersAreValid)));
+    NSString *path = expandTildeInPath ? [[self stringValue] stringByExpandingTildeInPath] : [self stringValue];
+    return ([[NSFileManager defaultManager] fileExistsAtPath: path isDirectory: &isDir] && (!(isDir && !foldersAreValid)));
 }
 
 /*******************************************
