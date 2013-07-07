@@ -28,10 +28,10 @@
  *****************************************/
 
 - (id)init {
-	if (self = [super init]) {
-		suffixList = [[SuffixList alloc] init];
-	}
-	return self;
+    if (self = [super init]) {
+        suffixList = [[SuffixList alloc] init];
+    }
+    return self;
 }
 
 /*****************************************
@@ -40,14 +40,14 @@
  *****************************************/
 
 - (void)dealloc {
-	[suffixList release];
-	[super dealloc];
+    [suffixList release];
+    [super dealloc];
 }
 
 #pragma mark -
 
 - (void)awakeFromNib {
-	[suffixListDataBrowser registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
+    [suffixListDataBrowser registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
 }
 
 /*****************************************
@@ -55,49 +55,49 @@
  *****************************************/
 
 - (IBAction)openDropSettingsSheet:(id)sender {
-	[window setTitle:[NSString stringWithFormat:@"%@ - Drop settings", PROGRAM_NAME]];
-	//clear text fields from last time
-	[suffixTextField setStringValue:@""];
+    [window setTitle:[NSString stringWithFormat:@"%@ - Drop settings", PROGRAM_NAME]];
+    //clear text fields from last time
+    [suffixTextField setStringValue:@""];
     
-	[suffixListDataBrowser setDataSource:suffixList];
-	[suffixListDataBrowser reloadData];
-	[suffixListDataBrowser setDelegate:self];
-	[suffixListDataBrowser setTarget:self];
+    [suffixListDataBrowser setDataSource:suffixList];
+    [suffixListDataBrowser reloadData];
+    [suffixListDataBrowser setDelegate:self];
+    [suffixListDataBrowser setTarget:self];
     
-	// updated text fields reporting no. suffixes and no. file type codes
-	if ([suffixList hasAllSuffixes])
-		[numSuffixesTextField setStringValue:@"All suffixes"];
-	else
-		[numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
+    // updated text fields reporting no. suffixes and no. file type codes
+    if ([suffixList hasAllSuffixes])
+        [numSuffixesTextField setStringValue:@"All suffixes"];
+    else
+        [numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
     
-	// clear any error message
-	[typesErrorTextField setStringValue:@""];
+    // clear any error message
+    [typesErrorTextField setStringValue:@""];
     
-	//open window
-	[NSApp  beginSheet:typesWindow
-	    modalForWindow:window
-	     modalDelegate:nil
-	    didEndSelector:nil
-	       contextInfo:nil];
+    //open window
+    [NSApp  beginSheet:typesWindow
+        modalForWindow:window
+         modalDelegate:nil
+        didEndSelector:nil
+           contextInfo:nil];
     
-	[NSApp runModalForWindow:typesWindow];
+    [NSApp runModalForWindow:typesWindow];
     
-	[NSApp endSheet:typesWindow];
-	[typesWindow orderOut:self];
+    [NSApp endSheet:typesWindow];
+    [typesWindow orderOut:self];
 }
 
 - (IBAction)closeDropSettingsSheet:(id)sender {
-	//make sure suffix list contains valid values
-	if (![suffixList numSuffixes] && [self acceptsFiles]) {
-		[typesErrorTextField setStringValue:@"The suffix list must contain at least one entry."];
-		return;
-	}
+    //make sure suffix list contains valid values
+    if (![suffixList numSuffixes] && [self acceptsFiles]) {
+        [typesErrorTextField setStringValue:@"The suffix list must contain at least one entry."];
+        return;
+    }
     
-	// end drop settings sheet
-	[window setTitle:PROGRAM_NAME];
-	[NSApp stopModal];
-	[NSApp endSheet:typesWindow];
-	[typesWindow orderOut:self];
+    // end drop settings sheet
+    [window setTitle:PROGRAM_NAME];
+    [NSApp stopModal];
+    [NSApp endSheet:typesWindow];
+    [typesWindow orderOut:self];
 }
 
 #pragma mark -
@@ -106,15 +106,15 @@
 
 
 - (IBAction)selectDocIcon:(id)sender {
-	NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-	[oPanel setPrompt:@"Select"];
-	[oPanel setAllowsMultipleSelection:NO];
-	[oPanel setCanChooseDirectories:NO];
-	[oPanel setTitle:@"Select an icns file"];
-	[oPanel setPrompt:@"Select"];
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+    [oPanel setPrompt:@"Select"];
+    [oPanel setAllowsMultipleSelection:NO];
+    [oPanel setCanChooseDirectories:NO];
+    [oPanel setTitle:@"Select an icns file"];
+    [oPanel setPrompt:@"Select"];
     
-	if ([oPanel runModalForDirectory:nil file:nil types:[NSArray arrayWithObject:@"icns"]] == NSOKButton)
-		[self setDocIconPath:[oPanel filename]];
+    if ([oPanel runModalForDirectory:nil file:nil types:[NSArray arrayWithObject:@"icns"]] == NSOKButton)
+        [self setDocIconPath:[oPanel filename]];
 }
 
 #pragma mark -
@@ -125,26 +125,26 @@
 
 - (IBAction)addSuffix:(id)sender;
 {
-	NSString *theSuffix = [suffixTextField stringValue];
+    NSString *theSuffix = [suffixTextField stringValue];
     
-	if ([suffixList hasSuffix:theSuffix] || ([theSuffix length] == 0))
-		return;
+    if ([suffixList hasSuffix:theSuffix] || ([theSuffix length] == 0))
+        return;
     
-	//if the user put in a suffix beginning with a '.', we trim the string to start from index 1
-	if ([theSuffix characterAtIndex:0] == '.')
-		theSuffix = [theSuffix substringFromIndex:1];
+    //if the user put in a suffix beginning with a '.', we trim the string to start from index 1
+    if ([theSuffix characterAtIndex:0] == '.')
+        theSuffix = [theSuffix substringFromIndex:1];
     
-	[suffixList addSuffix:theSuffix];
-	[suffixTextField setStringValue:@""];
-	[self controlTextDidChange:NULL];
+    [suffixList addSuffix:theSuffix];
+    [suffixTextField setStringValue:@""];
+    [self controlTextDidChange:NULL];
     
-	//update
-	[suffixListDataBrowser reloadData];
+    //update
+    [suffixListDataBrowser reloadData];
     
-	if ([suffixList hasAllSuffixes])
-		[numSuffixesTextField setStringValue:@"All suffixes"];
-	else
-		[numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
+    if ([suffixList hasAllSuffixes])
+        [numSuffixesTextField setStringValue:@"All suffixes"];
+    else
+        [numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
 }
 
 
@@ -153,9 +153,9 @@
  *****************************************/
 
 - (IBAction)clearSuffixList:(id)sender {
-	[suffixList clearList];
-	[suffixListDataBrowser reloadData];
-	[numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
+    [suffixList clearList];
+    [suffixListDataBrowser reloadData];
+    [numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
 }
 
 /*****************************************
@@ -164,21 +164,21 @@
 
 - (IBAction)removeSuffix:(id)sender;
 {
-	int i;
-	NSIndexSet *selectedItems = [suffixListDataBrowser selectedRowIndexes];
+    int i;
+    NSIndexSet *selectedItems = [suffixListDataBrowser selectedRowIndexes];
     
-	for (i = [suffixList numSuffixes]; i >= 0; i--) {
-		if ([selectedItems containsIndex:i]) {
-			[suffixList removeSuffix:i];
-			[suffixListDataBrowser reloadData];
-			break;
-		}
-	}
+    for (i = [suffixList numSuffixes]; i >= 0; i--) {
+        if ([selectedItems containsIndex:i]) {
+            [suffixList removeSuffix:i];
+            [suffixListDataBrowser reloadData];
+            break;
+        }
+    }
     
-	if ([suffixList hasAllSuffixes])
-		[numSuffixesTextField setStringValue:@"All suffixes"];
-	else
-		[numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
+    if ([suffixList hasAllSuffixes])
+        [numSuffixesTextField setStringValue:@"All suffixes"];
+    else
+        [numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
 }
 
 /*****************************************
@@ -186,155 +186,155 @@
  *****************************************/
 
 - (IBAction)setToDefaults:(id)sender {
-	//default suffixes
-	[suffixList clearList];
-	[suffixList addSuffix:@"*"];
-	[suffixListDataBrowser reloadData];
+    //default suffixes
+    [suffixList clearList];
+    [suffixList addSuffix:@"*"];
+    [suffixListDataBrowser reloadData];
     
-	if ([suffixList hasAllSuffixes])
-		[numSuffixesTextField setStringValue:@"All suffixes"];
-	else
-		[numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
+    if ([suffixList hasAllSuffixes])
+        [numSuffixesTextField setStringValue:@"All suffixes"];
+    else
+        [numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
     
-	//set app function to default
-	[appFunctionRadioButtons selectCellWithTag:0];
+    //set app function to default
+    [appFunctionRadioButtons selectCellWithTag:0];
     
-	[self setDocIconPath:@""];
-	[self setAcceptsText:NO];
-	[self setAcceptsFiles:YES];
-	[self setDeclareService:NO];
-	[self setPromptsForFileOnLaunch:NO];
+    [self setDocIconPath:@""];
+    [self setAcceptsText:NO];
+    [self setAcceptsFiles:YES];
+    [self setDeclareService:NO];
+    [self setPromptsForFileOnLaunch:NO];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
-	int i;
-	int selected = 0;
-	NSIndexSet *selectedItems;
+    int i;
+    int selected = 0;
+    NSIndexSet *selectedItems;
     
-	if ([aNotification object] == suffixListDataBrowser || [aNotification object] == NULL) {
-		selectedItems = [suffixListDataBrowser selectedRowIndexes];
-		for (i = 0; i < [suffixList numSuffixes]; i++)
-			if ([selectedItems containsIndex:i])
-				selected++;
+    if ([aNotification object] == suffixListDataBrowser || [aNotification object] == NULL) {
+        selectedItems = [suffixListDataBrowser selectedRowIndexes];
+        for (i = 0; i < [suffixList numSuffixes]; i++)
+            if ([selectedItems containsIndex:i])
+                selected++;
         
-		[removeSuffixButton setEnabled:(selected != 0)];
-	}
+        [removeSuffixButton setEnabled:(selected != 0)];
+    }
 }
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
-	//enable/disable buttons for Edit Types window
-	[addSuffixButton setEnabled:([[suffixTextField stringValue] length] > 0)];
+    //enable/disable buttons for Edit Types window
+    [addSuffixButton setEnabled:([[suffixTextField stringValue] length] > 0)];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-	if ([[anItem title] isEqualToString:@"Remove Suffix"] && [suffixListDataBrowser selectedRow] == -1)
-		return NO;
+    if ([[anItem title] isEqualToString:@"Remove Suffix"] && [suffixListDataBrowser selectedRow] == -1)
+        return NO;
     
-	return YES;
+    return YES;
 }
 
 #pragma mark -
 
 - (void)setAcceptsFilesControlsEnabled:(BOOL)enabled {
-	[[droppedFilesSettingsBox contentView] setAlphaValue:0.5 + (enabled * 0.5)];
-	[appFunctionRadioButtons setEnabled:enabled];
-	[addSuffixButton setEnabled:enabled];
-	[numSuffixesTextField setEnabled:enabled];
-	[removeSuffixButton setEnabled:enabled];
-	[suffixListDataBrowser setEnabled:enabled];
-	[suffixTextField setEnabled:enabled];
-	[promptForFileOnLaunchCheckbox setEnabled:enabled];
-	[selectDocumentIconButton setEnabled:enabled];
+    [[droppedFilesSettingsBox contentView] setAlphaValue:0.5 + (enabled * 0.5)];
+    [appFunctionRadioButtons setEnabled:enabled];
+    [addSuffixButton setEnabled:enabled];
+    [numSuffixesTextField setEnabled:enabled];
+    [removeSuffixButton setEnabled:enabled];
+    [suffixListDataBrowser setEnabled:enabled];
+    [suffixTextField setEnabled:enabled];
+    [promptForFileOnLaunchCheckbox setEnabled:enabled];
+    [selectDocumentIconButton setEnabled:enabled];
 }
 
 - (void)setAcceptsTextControlsEnabled:(BOOL)enabled {
-	[declareServiceCheckbox setEnabled:enabled];
+    [declareServiceCheckbox setEnabled:enabled];
 }
 
 - (IBAction)acceptsFilesChanged:(id)sender {
-	[self setAcceptsFilesControlsEnabled:[sender intValue]];
+    [self setAcceptsFilesControlsEnabled:[sender intValue]];
 }
 
 - (IBAction)acceptsTextChanged:(id)sender {
-	[self setAcceptsTextControlsEnabled:[sender intValue]];
+    [self setAcceptsTextControlsEnabled:[sender intValue]];
 }
 
 #pragma mark -
 
 - (SuffixList *)suffixes {
-	return suffixList;
+    return suffixList;
 }
 
 - (UInt64)docIconSize;
 {
-	if ([FILEMGR fileExistsAtPath:docIconPath])
-		return [PlatypusUtility fileOrFolderSize:docIconPath];
-	return 0;
+    if ([FILEMGR fileExistsAtPath:docIconPath])
+        return [PlatypusUtility fileOrFolderSize:docIconPath];
+    return 0;
 }
 
 #pragma mark -
 
 - (BOOL)acceptsText {
-	return [acceptDroppedTextCheckbox intValue];
+    return [acceptDroppedTextCheckbox intValue];
 }
 
 - (void)setAcceptsText:(BOOL)b {
-	[self setAcceptsTextControlsEnabled:b];
-	[acceptDroppedTextCheckbox setIntValue:b];
+    [self setAcceptsTextControlsEnabled:b];
+    [acceptDroppedTextCheckbox setIntValue:b];
 }
 
 - (BOOL)acceptsFiles {
-	return [acceptDroppedFilesCheckbox intValue];
+    return [acceptDroppedFilesCheckbox intValue];
 }
 
 - (void)setAcceptsFiles:(BOOL)b {
-	[self setAcceptsFilesControlsEnabled:b];
-	[acceptDroppedFilesCheckbox setIntValue:b];
+    [self setAcceptsFilesControlsEnabled:b];
+    [acceptDroppedFilesCheckbox setIntValue:b];
 }
 
 - (BOOL)declareService {
-	return [acceptDroppedTextCheckbox intValue];
+    return [acceptDroppedTextCheckbox intValue];
 }
 
 - (void)setDeclareService:(BOOL)b {
-	[declareServiceCheckbox setIntValue:b];
+    [declareServiceCheckbox setIntValue:b];
 }
 
 - (BOOL)promptsForFileOnLaunch {
-	return [promptForFileOnLaunchCheckbox intValue];
+    return [promptForFileOnLaunchCheckbox intValue];
 }
 
 - (void)setPromptsForFileOnLaunch:(BOOL)b {
-	[promptForFileOnLaunchCheckbox setIntValue:b];
+    [promptForFileOnLaunchCheckbox setIntValue:b];
 }
 
 - (NSString *)role {
-	return [[appFunctionRadioButtons selectedCell] title];
+    return [[appFunctionRadioButtons selectedCell] title];
 }
 
 - (void)setRole:(NSString *)role {
-	if ([role isEqualToString:@"Viewer"])
-		[appFunctionRadioButtons selectCellWithTag:0];
-	else
-		[appFunctionRadioButtons selectCellWithTag:1];
+    if ([role isEqualToString:@"Viewer"])
+        [appFunctionRadioButtons selectCellWithTag:0];
+    else
+        [appFunctionRadioButtons selectCellWithTag:1];
 }
 
 - (NSString *)docIconPath {
-	return docIconPath;
+    return docIconPath;
 }
 
 - (void)setDocIconPath:(NSString *)path {
-	[docIconPath release];
-	docIconPath = [path retain];
+    [docIconPath release];
+    docIconPath = [path retain];
     
-	//set document icon to default
-	NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
+    //set document icon to default
+    NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
     
-	if (![path isEqualToString:@""])  // load it from file if it's a path
-		icon = [[[NSImage alloc] initWithContentsOfFile:docIconPath] autorelease];
+    if (![path isEqualToString:@""])  // load it from file if it's a path
+        icon = [[[NSImage alloc] initWithContentsOfFile:docIconPath] autorelease];
     
-	if (icon != nil)
-		[docIconImageView setImage:icon];
+    if (icon != nil)
+        [docIconImageView setImage:icon];
 }
 
 @end

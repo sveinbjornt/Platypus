@@ -24,54 +24,54 @@
 @implementation TextSettingsController
 
 - (void)awakeFromNib {
-	[[NSFontManager sharedFontManager] setDelegate:self];
-	[self setCurrentFont:[NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE]];
+    [[NSFontManager sharedFontManager] setDelegate:self];
+    [self setCurrentFont:[NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE]];
 }
 
 - (void)dealloc {
-	if (currentFont != NULL) {
-		[currentFont release];
-	}
-	[super dealloc];
+    if (currentFont != NULL) {
+        [currentFont release];
+    }
+    [super dealloc];
 }
 
 - (IBAction)show:(id)sender {
-	[window setTitle:[NSString stringWithFormat:@"%@ - Edit Text Field Settings", PROGRAM_NAME]];
+    [window setTitle:[NSString stringWithFormat:@"%@ - Edit Text Field Settings", PROGRAM_NAME]];
     
     
     
-	//open window
-	[NSApp  beginSheet:textSettingsWindow
-	    modalForWindow:window
-	     modalDelegate:nil
-	    didEndSelector:nil
-	       contextInfo:nil];
+    //open window
+    [NSApp  beginSheet:textSettingsWindow
+        modalForWindow:window
+         modalDelegate:nil
+        didEndSelector:nil
+           contextInfo:nil];
     
-	[textSettingsWindow makeFirstResponder:textSettingsWindow];
-	[NSApp runModalForWindow:textSettingsWindow];
+    [textSettingsWindow makeFirstResponder:textSettingsWindow];
+    [NSApp runModalForWindow:textSettingsWindow];
     
-	[NSApp endSheet:textSettingsWindow];
-	[textSettingsWindow orderOut:self];
+    [NSApp endSheet:textSettingsWindow];
+    [textSettingsWindow orderOut:self];
 }
 
 - (IBAction)apply:(id)sender {
-	[[[NSFontManager sharedFontManager] fontPanel:NO] orderOut:self];
-	[[NSColorPanel sharedColorPanel] orderOut:self];
-	[window setTitle:PROGRAM_NAME];
-	[NSApp stopModal];
+    [[[NSFontManager sharedFontManager] fontPanel:NO] orderOut:self];
+    [[NSColorPanel sharedColorPanel] orderOut:self];
+    [window setTitle:PROGRAM_NAME];
+    [NSApp stopModal];
 }
 
 - (IBAction)resetDefaults:(id)sender {
-	[foregroundColorWell setColor:[NSColor blackColor]];
-	[backgroundColorWell setColor:[NSColor whiteColor]];
-	[self setCurrentFont:[NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE]];
-	[textEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]];
-	[self changeColor:self];
+    [foregroundColorWell setColor:[NSColor blackColor]];
+    [backgroundColorWell setColor:[NSColor whiteColor]];
+    [self setCurrentFont:[NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE]];
+    [textEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]];
+    [self changeColor:self];
 }
 
 - (void)changeColor:(id)sender {
-	[textPreviewTextView setBackgroundColor:[backgroundColorWell color]];
-	[textPreviewTextView setTextColor:[foregroundColorWell color]];
+    [textPreviewTextView setBackgroundColor:[backgroundColorWell color]];
+    [textPreviewTextView setTextColor:[foregroundColorWell color]];
 }
 
 #pragma mark -
@@ -83,74 +83,74 @@
 ////////////////////////////////////////////////////////////////////////
 
 - (IBAction)chooseFont:(id)sender {
-	//[textSettingsWindow makeFirstResponder: textEncodingPopupButton];
-	NSFontManager *fontManager = [NSFontManager sharedFontManager];
-	[fontManager setSelectedFont:currentFont isMultiple:NO];
-	[fontManager orderFrontFontPanel:nil];
+    //[textSettingsWindow makeFirstResponder: textEncodingPopupButton];
+    NSFontManager *fontManager = [NSFontManager sharedFontManager];
+    [fontManager setSelectedFont:currentFont isMultiple:NO];
+    [fontManager orderFrontFontPanel:nil];
 }
 
 - (void)setCurrentFont:(NSFont *)font {
-	NSFont *newFont = [font retain];
-	[currentFont release];
-	currentFont = newFont;
-	[self updateFontField];
+    NSFont *newFont = [font retain];
+    [currentFont release];
+    currentFont = newFont;
+    [self updateFontField];
 }
 
 // called by the shared NSFontManager when user chooses a new font or size in the Font Panel
 - (void)changeFont:(id)sender {
-	//[textSettingsWindow makeFirstResponder: textEncodingPopupButton];
-	NSFontManager *fontManager = [NSFontManager sharedFontManager];
-	[self setCurrentFont:[fontManager convertFont:[fontManager selectedFont]]];
+    //[textSettingsWindow makeFirstResponder: textEncodingPopupButton];
+    NSFontManager *fontManager = [NSFontManager sharedFontManager];
+    [self setCurrentFont:[fontManager convertFont:[fontManager selectedFont]]];
 }
 
 - (void)updateFontField {
-	[fontFaceTextField setStringValue:[NSString stringWithFormat:@"%@ %.0f", [currentFont fontName], [currentFont pointSize]]];
-	[textPreviewTextView setFont:currentFont];
+    [fontFaceTextField setStringValue:[NSString stringWithFormat:@"%@ %.0f", [currentFont fontName], [currentFont pointSize]]];
+    [textPreviewTextView setFont:currentFont];
 }
 
 #pragma mark -
 //////////////////////////////////
 
 - (int)getTextEncoding {
-	return [[textEncodingPopupButton selectedItem] tag];
+    return [[textEncodingPopupButton selectedItem] tag];
 }
 
 - (NSFont *)getTextFont {
-	return [textPreviewTextView font];
+    return [textPreviewTextView font];
 }
 
 - (NSColor *)getTextForeground {
-	return [foregroundColorWell color];
+    return [foregroundColorWell color];
 }
 
 - (NSColor *)getTextBackground {
-	return [backgroundColorWell color];
+    return [backgroundColorWell color];
 }
 
 //////////////////////////////////
 
 - (void)setTextEncoding:(int)encoding {
-	[textEncodingPopupButton selectItemWithTag:encoding];
+    [textEncodingPopupButton selectItemWithTag:encoding];
 }
 
 - (void)setTextFont:(NSFont *)font {
-	[self setCurrentFont:font];
+    [self setCurrentFont:font];
 }
 
 - (void)setTextForeground:(NSColor *)color {
-	[foregroundColorWell setColor:color];
-	[self changeColor:self];
+    [foregroundColorWell setColor:color];
+    [self changeColor:self];
 }
 
 - (void)setTextBackground:(NSColor *)color {
-	[backgroundColorWell setColor:color];
-	[self changeColor:self];
+    [backgroundColorWell setColor:color];
+    [self changeColor:self];
 }
 
 #pragma mark -
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-	return [textSettingsButton isEnabled];
+    return [textSettingsButton isEnabled];
 }
 
 @end

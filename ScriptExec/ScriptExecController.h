@@ -33,97 +33,97 @@
 
 @interface ScriptExecController : NSObject <NSMenuDelegate>
 {
-	// progress bar
-	IBOutlet id progressBarCancelButton;
-	IBOutlet id progressBarMessageTextField;
-	IBOutlet id progressBarIndicator;
-	IBOutlet id progressBarWindow;
-	IBOutlet id progressBarTextView;
-	IBOutlet id progressBarDetailsTriangle;
-	IBOutlet id progressBarDetailsLabel;
+    // progress bar
+    IBOutlet id progressBarCancelButton;
+    IBOutlet id progressBarMessageTextField;
+    IBOutlet id progressBarIndicator;
+    IBOutlet id progressBarWindow;
+    IBOutlet id progressBarTextView;
+    IBOutlet id progressBarDetailsTriangle;
+    IBOutlet id progressBarDetailsLabel;
     
-	// text window
-	IBOutlet id textOutputWindow;
-	IBOutlet id textOutputCancelButton;
-	IBOutlet id textOutputTextView;
-	IBOutlet id textOutputProgressIndicator;
-	IBOutlet id textOutputMessageTextField;
+    // text window
+    IBOutlet id textOutputWindow;
+    IBOutlet id textOutputCancelButton;
+    IBOutlet id textOutputTextView;
+    IBOutlet id textOutputProgressIndicator;
+    IBOutlet id textOutputMessageTextField;
     
-	// web view
-	IBOutlet id webOutputWindow;
-	IBOutlet id webOutputCancelButton;
-	IBOutlet id webOutputWebView;
-	IBOutlet id webOutputProgressIndicator;
-	IBOutlet id webOutputMessageTextField;
+    // web view
+    IBOutlet id webOutputWindow;
+    IBOutlet id webOutputCancelButton;
+    IBOutlet id webOutputWebView;
+    IBOutlet id webOutputProgressIndicator;
+    IBOutlet id webOutputMessageTextField;
     
-	// status item menu
-	NSStatusItem *statusItem;
-	NSMenu *statusItemMenu;
+    // status item menu
+    NSStatusItem *statusItem;
+    NSMenu *statusItemMenu;
     
-	// droplet
-	IBOutlet id dropletWindow;
-	IBOutlet id dropletBox;
-	IBOutlet id dropletProgressIndicator;
-	IBOutlet id dropletMessageTextField;
-	IBOutlet id dropletDropFilesLabel;
-	IBOutlet id dropletShader;
+    // droplet
+    IBOutlet id dropletWindow;
+    IBOutlet id dropletBox;
+    IBOutlet id dropletProgressIndicator;
+    IBOutlet id dropletMessageTextField;
+    IBOutlet id dropletDropFilesLabel;
+    IBOutlet id dropletShader;
     
-	//menu items
-	IBOutlet id hideMenuItem;
-	IBOutlet id quitMenuItem;
-	IBOutlet id aboutMenuItem;
+    //menu items
+    IBOutlet id hideMenuItem;
+    IBOutlet id quitMenuItem;
+    IBOutlet id aboutMenuItem;
     
-	NSTextView *outputTextView;
+    NSTextView *outputTextView;
     
-	IBOutlet id windowMenu;
+    IBOutlet id windowMenu;
     
-	// tasks
-	NSTask *task;
-	STPrivilegedTask *privilegedTask;
+    // tasks
+    NSTask *task;
+    STPrivilegedTask *privilegedTask;
     
-	NSTimer *checkStatusTimer;
+    NSTimer *checkStatusTimer;
     
-	NSPipe *outputPipe;
-	NSFileHandle *readHandle;
+    NSPipe *outputPipe;
+    NSFileHandle *readHandle;
     
-	NSMutableArray *arguments;
-	NSMutableArray *fileArgs;
-	NSArray *interpreterArgs;
-	NSArray *scriptArgs;
+    NSMutableArray *arguments;
+    NSMutableArray *fileArgs;
+    NSArray *interpreterArgs;
+    NSArray *scriptArgs;
     
-	NSString *interpreter;
-	NSString *scriptPath;
-	NSString *appName;
+    NSString *interpreter;
+    NSString *scriptPath;
+    NSString *appName;
     
-	NSFont *textFont;
-	NSColor *textForeground;
-	NSColor *textBackground;
-	int textEncoding;
+    NSFont *textFont;
+    NSColor *textForeground;
+    NSColor *textBackground;
+    int textEncoding;
     
-	int execStyle;
-	int outputType;
-	BOOL isDroppable;
-	BOOL remainRunning;
-	BOOL secureScript;
-	BOOL acceptsFiles;
-	BOOL acceptsText;
-	BOOL promptForFileOnLaunch;
+    int execStyle;
+    int outputType;
+    BOOL isDroppable;
+    BOOL remainRunning;
+    BOOL secureScript;
+    BOOL acceptsFiles;
+    BOOL acceptsText;
+    BOOL promptForFileOnLaunch;
     
-	NSArray *droppableSuffixes;
-	NSArray *droppableFileTypes;
-	BOOL acceptAnyDroppedItem;
-	BOOL acceptDroppedFolders;
+    NSArray *droppableSuffixes;
+    NSArray *droppableFileTypes;
+    BOOL acceptAnyDroppedItem;
+    BOOL acceptDroppedFolders;
     
-	NSString *statusItemTitle;
-	NSImage *statusItemIcon;
+    NSString *statusItemTitle;
+    NSImage *statusItemIcon;
     
-	BOOL isTaskRunning;
-	BOOL outputEmpty;
+    BOOL isTaskRunning;
+    BOOL outputEmpty;
     
-	NSString *script;
-	NSString *remnants;
+    NSString *script;
+    NSString *remnants;
     
-	NSMutableArray *jobQueue;
+    NSMutableArray *jobQueue;
 }
 
 - (void)initialiseInterface;

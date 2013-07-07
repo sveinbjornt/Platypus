@@ -23,16 +23,16 @@
 
 @interface StatusItemSettingsController : NSObject
 {
-	IBOutlet id window;
-	IBOutlet id statusItemSettingsWindow;
-	IBOutlet id displayTypePopup;
-	IBOutlet id iconImageView;
-	IBOutlet id selectIconButton;
-	IBOutlet id titleTextField;
-	IBOutlet id titleLabel;
-	IBOutlet id iconLabel;
+    IBOutlet id window;
+    IBOutlet id statusItemSettingsWindow;
+    IBOutlet id displayTypePopup;
+    IBOutlet id iconImageView;
+    IBOutlet id selectIconButton;
+    IBOutlet id titleTextField;
+    IBOutlet id titleLabel;
+    IBOutlet id iconLabel;
     
-	NSStatusItem *pStatusItem;
+    NSStatusItem *pStatusItem;
 }
 - (IBAction)show:(id)sender;
 - (IBAction)close:(id)sender;

@@ -22,7 +22,7 @@
 
 @interface STDragWebView : WebView
 {
-	id delegate;
+    id delegate;
 }
 @end
 

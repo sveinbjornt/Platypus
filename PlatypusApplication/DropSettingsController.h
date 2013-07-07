@@ -24,28 +24,28 @@
 
 @interface DropSettingsController : NSObject <NSTableViewDelegate>
 {
-	IBOutlet id appFunctionRadioButtons;
-	IBOutlet id addSuffixButton;
-	IBOutlet id numSuffixesTextField;
-	IBOutlet id removeSuffixButton;
-	IBOutlet NSTableView *suffixListDataBrowser;
-	IBOutlet id suffixTextField;
-	IBOutlet id promptForFileOnLaunchCheckbox;
+    IBOutlet id appFunctionRadioButtons;
+    IBOutlet id addSuffixButton;
+    IBOutlet id numSuffixesTextField;
+    IBOutlet id removeSuffixButton;
+    IBOutlet NSTableView *suffixListDataBrowser;
+    IBOutlet id suffixTextField;
+    IBOutlet id promptForFileOnLaunchCheckbox;
     
-	IBOutlet id typesWindow;
-	IBOutlet id window;
-	IBOutlet id typesErrorTextField;
+    IBOutlet id typesWindow;
+    IBOutlet id window;
+    IBOutlet id typesErrorTextField;
     
-	IBOutlet id acceptDroppedTextCheckbox;
-	IBOutlet id acceptDroppedFilesCheckbox;
-	IBOutlet id declareServiceCheckbox;
-	IBOutlet id docIconImageView;
+    IBOutlet id acceptDroppedTextCheckbox;
+    IBOutlet id acceptDroppedFilesCheckbox;
+    IBOutlet id declareServiceCheckbox;
+    IBOutlet id docIconImageView;
     
-	IBOutlet id droppedFilesSettingsBox;
-	IBOutlet id selectDocumentIconButton;
+    IBOutlet id droppedFilesSettingsBox;
+    IBOutlet id selectDocumentIconButton;
     
-	NSString *docIconPath;
-	SuffixList *suffixList;
+    NSString *docIconPath;
+    SuffixList *suffixList;
 }
 - (IBAction)addSuffix:(id)sender;
 - (IBAction)clearSuffixList:(id)sender;

@@ -33,63 +33,63 @@
  *****************************************/
 
 + (void)initialize {
-	// create the user defaults here if none exists
-	NSMutableDictionary *defaultPrefs = [NSMutableDictionary dictionary];
+    // create the user defaults here if none exists
+    NSMutableDictionary *defaultPrefs = [NSMutableDictionary dictionary];
     
-	// put default prefs in the dictionary
+    // put default prefs in the dictionary
     
-	// create default bundle identifier string from usename
-	NSString *bundleId = [PlatypusAppSpec standardBundleIdForAppName:@"" usingDefaults:NO];
+    // create default bundle identifier string from usename
+    NSString *bundleId = [PlatypusAppSpec standardBundleIdForAppName:@"" usingDefaults:NO];
     
-	[defaultPrefs setObject:bundleId forKey:@"DefaultBundleIdentifierPrefix"];
-	[defaultPrefs setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
-	[defaultPrefs setObject:[NSArray array]                forKey:@"Profiles"];
-	[defaultPrefs setObject:[NSNumber numberWithBool:NO]   forKey:@"RevealApplicationWhenCreated"];
-	[defaultPrefs setObject:[NSNumber numberWithBool:NO]   forKey:@"OpenApplicationWhenCreated"];
-	[defaultPrefs setObject:[NSNumber numberWithBool:NO]   forKey:@"CreateOnScriptChange"];
-	[defaultPrefs setObject:[NSNumber numberWithInt:DEFAULT_OUTPUT_TXT_ENCODING]
-	                 forKey:@"DefaultTextEncoding"];
-	[defaultPrefs setObject:NSFullUserName()               forKey:@"DefaultAuthor"];
+    [defaultPrefs setObject:bundleId forKey:@"DefaultBundleIdentifierPrefix"];
+    [defaultPrefs setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
+    [defaultPrefs setObject:[NSArray array]                forKey:@"Profiles"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO]   forKey:@"RevealApplicationWhenCreated"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO]   forKey:@"OpenApplicationWhenCreated"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO]   forKey:@"CreateOnScriptChange"];
+    [defaultPrefs setObject:[NSNumber numberWithInt:DEFAULT_OUTPUT_TXT_ENCODING]
+                     forKey:@"DefaultTextEncoding"];
+    [defaultPrefs setObject:NSFullUserName()               forKey:@"DefaultAuthor"];
     
-	// register the dictionary of defaults
-	[DEFAULTS registerDefaults:defaultPrefs];
+    // register the dictionary of defaults
+    [DEFAULTS registerDefaults:defaultPrefs];
 }
 
 - (void)awakeFromNib {
-	// make sure application support folder and subfolders exist
-	BOOL isDir;
+    // make sure application support folder and subfolders exist
+    BOOL isDir;
     
-	// app support folder
-	if (![FILEMGR fileExistsAtPath:APP_SUPPORT_FOLDER isDirectory:&isDir])
-		if (![FILEMGR createDirectoryAtPath:APP_SUPPORT_FOLDER withIntermediateDirectories:NO attributes:nil error:nil])
-			[PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]];
+    // app support folder
+    if (![FILEMGR fileExistsAtPath:APP_SUPPORT_FOLDER isDirectory:&isDir])
+        if (![FILEMGR createDirectoryAtPath:APP_SUPPORT_FOLDER withIntermediateDirectories:NO attributes:nil error:nil])
+            [PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]];
     
-	// profiles folder
-	if (![FILEMGR fileExistsAtPath:PROFILES_FOLDER isDirectory:&isDir])
-		if (![FILEMGR createDirectoryAtPath:PROFILES_FOLDER withIntermediateDirectories:NO attributes:nil error:nil])
-			[PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", PROFILES_FOLDER]];
+    // profiles folder
+    if (![FILEMGR fileExistsAtPath:PROFILES_FOLDER isDirectory:&isDir])
+        if (![FILEMGR createDirectoryAtPath:PROFILES_FOLDER withIntermediateDirectories:NO attributes:nil error:nil])
+            [PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", PROFILES_FOLDER]];
     
-	// we list ourself as an observer of changes to file system, for script
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(controlTextDidChange:) name:UKFileWatcherRenameNotification object:NULL];
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(controlTextDidChange:) name:UKFileWatcherDeleteNotification object:NULL];
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileChanged:) name:UKFileWatcherWriteNotification object:NULL];
+    // we list ourself as an observer of changes to file system, for script
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(controlTextDidChange:) name:UKFileWatcherRenameNotification object:NULL];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(controlTextDidChange:) name:UKFileWatcherDeleteNotification object:NULL];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileChanged:) name:UKFileWatcherWriteNotification object:NULL];
     
-	//populate script type menu
-	[scriptTypePopupMenu addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
-	int i;
-	for (i = 0; i < [[scriptTypePopupMenu itemArray] count]; i++) {
-		NSImage *icon = [NSImage imageNamed:[[scriptTypePopupMenu itemAtIndex:i] title]];
+    //populate script type menu
+    [scriptTypePopupMenu addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
+    int i;
+    for (i = 0; i < [[scriptTypePopupMenu itemArray] count]; i++) {
+        NSImage *icon = [NSImage imageNamed:[[scriptTypePopupMenu itemAtIndex:i] title]];
         
-		[[scriptTypePopupMenu itemAtIndex:i] setImage:icon];
-	}
-	[window registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
-	[window makeFirstResponder:appNameTextField];
+        [[scriptTypePopupMenu itemAtIndex:i] setImage:icon];
+    }
+    [window registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
+    [window makeFirstResponder:appNameTextField];
     
-	// if we haven't already loaded a profile via openfile delegate method
-	// we set all fields to their defaults.  Any profile must contain a name
-	// so we can be sure that one hasn't been loaded if the app name field is empty
-	if ([[appNameTextField stringValue] isEqualToString:@""])
-		[self clearAllFields:self];
+    // if we haven't already loaded a profile via openfile delegate method
+    // we set all fields to their defaults.  Any profile must contain a name
+    // so we can be sure that one hasn't been loaded if the app name field is empty
+    if ([[appNameTextField stringValue] isEqualToString:@""])
+        [self clearAllFields:self];
 }
 
 /*****************************************
@@ -104,9 +104,9 @@
     //        //[[NSProcessInfo processInfo] enableSuddenTermination];
     //    }
     
-	//show window
-	[window center];
-	[window makeKeyAndOrderFront:self];
+    //show window
+    [window center];
+    [window makeKeyAndOrderFront:self];
 }
 
 /*****************************************
@@ -115,12 +115,12 @@
  *****************************************/
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
-	if ([filename hasSuffix:PROFILES_SUFFIX])  //load as profile
-		[profilesControl loadProfileFile:filename];
-	else //load as script
-		[self loadScript:filename];
+    if ([filename hasSuffix:PROFILES_SUFFIX])  //load as profile
+        [profilesControl loadProfileFile:filename];
+    else //load as script
+        [self loadScript:filename];
     
-	return YES;
+    return YES;
 }
 
 #pragma mark Script functions
@@ -130,11 +130,11 @@
  *****************************************/
 
 - (IBAction)newScript:(id)sender {
-	NSString *newScriptPath = [self createNewScript:NULL];
+    NSString *newScriptPath = [self createNewScript:NULL];
     
-	//load and edit the script
-	[self loadScript:newScriptPath];
-	[self editScript:self];
+    //load and edit the script
+    [self loadScript:newScriptPath];
+    [self editScript:self];
 }
 
 /*****************************************
@@ -143,31 +143,31 @@
  *****************************************/
 
 - (NSString *)createNewScript:(NSString *)scriptText {
-	NSString *tempScript, *defaultScript;
-	NSString *interpreter = [interpreterTextField stringValue];
+    NSString *tempScript, *defaultScript;
+    NSString *interpreter = [interpreterTextField stringValue];
     
-	// get a random number to append to script name in /tmp/
-	do {
-		int randnum =  random() / 1000000;
-		tempScript = [NSString stringWithFormat:@"%@Script.%d", [TEMP_FOLDER stringByExpandingTildeInPath], randnum];
-	}
-	while ([FILEMGR fileExistsAtPath:tempScript]);
+    // get a random number to append to script name in /tmp/
+    do {
+        int randnum =  random() / 1000000;
+        tempScript = [NSString stringWithFormat:@"%@Script.%d", [TEMP_FOLDER stringByExpandingTildeInPath], randnum];
+    }
+    while ([FILEMGR fileExistsAtPath:tempScript]);
     
-	//put shebang line in the new script text file
-	NSString *contentString = [NSString stringWithFormat:@"#!%@\n\n", interpreter];
+    //put shebang line in the new script text file
+    NSString *contentString = [NSString stringWithFormat:@"#!%@\n\n", interpreter];
     
-	if (scriptText != NULL && [scriptText length])
-		contentString = [contentString stringByAppendingString:scriptText];
-	else {
-		defaultScript = [[ScriptAnalyser interpreterHelloWorlds] objectForKey:[scriptTypePopupMenu titleOfSelectedItem]];
-		if (defaultScript != nil)
-			contentString = [contentString stringByAppendingString:defaultScript];
-	}
+    if (scriptText != NULL && [scriptText length])
+        contentString = [contentString stringByAppendingString:scriptText];
+    else {
+        defaultScript = [[ScriptAnalyser interpreterHelloWorlds] objectForKey:[scriptTypePopupMenu titleOfSelectedItem]];
+        if (defaultScript != nil)
+            contentString = [contentString stringByAppendingString:defaultScript];
+    }
     
-	//write the default content to the new script
-	[contentString writeToFile:tempScript atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:NULL];
+    //write the default content to the new script
+    [contentString writeToFile:tempScript atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:NULL];
     
-	return tempScript;
+    return tempScript;
 }
 
 /*****************************************
@@ -175,7 +175,7 @@
  *****************************************/
 
 - (IBAction)revealScript:(id)sender {
-	[[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:nil];
+    [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:nil];
 }
 
 /*****************************************
@@ -183,27 +183,27 @@
  *****************************************/
 
 - (IBAction)editScript:(id)sender {
-	//see if file exists
-	if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
-		[PlatypusUtility alert:@"File does not exist" subText:@"No file exists at the specified path"];
-		return;
-	}
+    //see if file exists
+    if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
+        [PlatypusUtility alert:@"File does not exist" subText:@"No file exists at the specified path"];
+        return;
+    }
     
-	// if the default editor is the built-in editor, we pop down the editor sheet
-	if ([[DEFAULTS stringForKey:@"DefaultEditor"] isEqualToString:DEFAULT_EDITOR]) {
-		[self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
-	}
-	else { // open it in the external application
-		NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
-		if ([[NSWorkspace sharedWorkspace] fullPathForApplication:defaultEditor] != NULL)
-			[[NSWorkspace sharedWorkspace] openFile:[scriptPathTextField stringValue] withApplication:defaultEditor];
-		else {
-			// Complain if editor is not found, set it to the built-in editor
-			[PlatypusUtility alert:@"Application not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
-			[DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
-			[self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
-		}
-	}
+    // if the default editor is the built-in editor, we pop down the editor sheet
+    if ([[DEFAULTS stringForKey:@"DefaultEditor"] isEqualToString:DEFAULT_EDITOR]) {
+        [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
+    }
+    else { // open it in the external application
+        NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
+        if ([[NSWorkspace sharedWorkspace] fullPathForApplication:defaultEditor] != NULL)
+            [[NSWorkspace sharedWorkspace] openFile:[scriptPathTextField stringValue] withApplication:defaultEditor];
+        else {
+            // Complain if editor is not found, set it to the built-in editor
+            [PlatypusUtility alert:@"Application not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
+            [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
+            [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
+        }
+    }
 }
 
 /*****************************************
@@ -211,10 +211,10 @@
  *****************************************/
 
 - (IBAction)runScript:(id)sender {
-	NSString *osaCmd = [NSString stringWithFormat:@"tell application \"Terminal\"\n\tdo script \"%@ '%@'\"\nend tell", [interpreterTextField stringValue], [scriptPathTextField stringValue]];
-	NSAppleScript *script = [[NSAppleScript alloc] initWithSource:osaCmd];
-	[script executeAndReturnError:nil];
-	[script release];
+    NSString *osaCmd = [NSString stringWithFormat:@"tell application \"Terminal\"\n\tdo script \"%@ '%@'\"\nend tell", [interpreterTextField stringValue], [scriptPathTextField stringValue]];
+    NSAppleScript *script = [[NSAppleScript alloc] initWithSource:osaCmd];
+    [script executeAndReturnError:nil];
+    [script release];
 }
 
 /*****************************************
@@ -222,14 +222,14 @@
  *****************************************/
 
 - (IBAction)checkSyntaxOfScript:(id)sender {
-	[window setTitle:[NSString stringWithFormat:@"%@ - Syntax Checker", PROGRAM_NAME]];
+    [window setTitle:[NSString stringWithFormat:@"%@ - Syntax Checker", PROGRAM_NAME]];
     
-	[[[SyntaxCheckerController alloc] init]
-	 showSyntaxCheckerForFile:[scriptPathTextField stringValue]
+    [[[SyntaxCheckerController alloc] init]
+     showSyntaxCheckerForFile:[scriptPathTextField stringValue]
      withInterpreter:[interpreterTextField stringValue]
      window:window];
     
-	[window setTitle:PROGRAM_NAME];
+    [window setTitle:PROGRAM_NAME];
 }
 
 /*****************************************
@@ -237,18 +237,18 @@
  *****************************************/
 
 - (void)openScriptInBuiltInEditor:(NSString *)path {
-	[window setTitle:[NSString stringWithFormat:@"%@ - Editing script", PROGRAM_NAME]];
-	[[[EditorController alloc] init] showEditorForFile:[scriptPathTextField stringValue] window:window];
-	[window setTitle:PROGRAM_NAME];
+    [window setTitle:[NSString stringWithFormat:@"%@ - Editing script", PROGRAM_NAME]];
+    [[[EditorController alloc] init] showEditorForFile:[scriptPathTextField stringValue] window:window];
+    [window setTitle:PROGRAM_NAME];
 }
 
 - (void)scriptFileChanged:(NSNotification *)aNotification {
-	if (![DEFAULTS boolForKey:@"CreateOnScriptChange"])
-		return;
+    if (![DEFAULTS boolForKey:@"CreateOnScriptChange"])
+        return;
     
-	NSString *appBundleName = [NSString stringWithFormat:@"%@.app", [appNameTextField stringValue]];
-	NSString *destPath = [[[scriptPathTextField stringValue] stringByDeletingLastPathComponent] stringByAppendingPathComponent:appBundleName];
-	[self createApplication:destPath overwrite:YES];
+    NSString *appBundleName = [NSString stringWithFormat:@"%@.app", [appNameTextField stringValue]];
+    NSString *destPath = [[[scriptPathTextField stringValue] stringByDeletingLastPathComponent] stringByAppendingPathComponent:appBundleName];
+    [self createApplication:destPath overwrite:YES];
 }
 
 #pragma mark Create
@@ -259,140 +259,140 @@
  **********************************************************************/
 
 - (IBAction)createButtonPressed:(id)sender {
-	if (![self verifyFieldContents]) //are there invalid values in the fields?
-		return;
+    if (![self verifyFieldContents]) //are there invalid values in the fields?
+        return;
     
-	NSSavePanel *sPanel = [NSSavePanel savePanel];
-	[sPanel setPrompt:@"Create"];
-	[window setTitle:[NSString stringWithFormat:@"%@ - Select place to create app", PROGRAM_NAME]];
-	[sPanel setAccessoryView:debugSaveOptionView];
+    NSSavePanel *sPanel = [NSSavePanel savePanel];
+    [sPanel setPrompt:@"Create"];
+    [window setTitle:[NSString stringWithFormat:@"%@ - Select place to create app", PROGRAM_NAME]];
+    [sPanel setAccessoryView:debugSaveOptionView];
     
-	// development version checkbox, disable this option if secure bundled script is checked
-	[developmentVersionCheckbox setIntValue:0];
-	[developmentVersionCheckbox setEnabled:![encryptCheckbox intValue]];
+    // development version checkbox, disable this option if secure bundled script is checked
+    [developmentVersionCheckbox setIntValue:0];
+    [developmentVersionCheckbox setEnabled:![encryptCheckbox intValue]];
     
-	// optimize application is enabled and on by default if ibtool is present
-	BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:[PlatypusUtility ibtoolPath]];
-	[optimizeApplicationCheckbox setEnabled:ibtoolInstalled];
-	[optimizeApplicationCheckbox setIntValue:ibtoolInstalled];
+    // optimize application is enabled and on by default if ibtool is present
+    BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:[PlatypusUtility ibtoolPath]];
+    [optimizeApplicationCheckbox setEnabled:ibtoolInstalled];
+    [optimizeApplicationCheckbox setIntValue:ibtoolInstalled];
     
-	// optimize application is enabled and on by default if ibtool is present
-	[xmlPlistFormatCheckbox setIntValue:NO];
+    // optimize application is enabled and on by default if ibtool is present
+    [xmlPlistFormatCheckbox setIntValue:NO];
     
-	// get default app bundle name
-	NSString *defaultAppBundleName = [appNameTextField stringValue];
-	if (![defaultAppBundleName hasSuffix:@"app"])
-		defaultAppBundleName = [NSString stringWithFormat:@"%@.app", defaultAppBundleName];
+    // get default app bundle name
+    NSString *defaultAppBundleName = [appNameTextField stringValue];
+    if (![defaultAppBundleName hasSuffix:@"app"])
+        defaultAppBundleName = [NSString stringWithFormat:@"%@.app", defaultAppBundleName];
     
-	//run save panel
-	[sPanel beginSheetForDirectory:nil file:defaultAppBundleName modalForWindow:window modalDelegate:self didEndSelector:@selector(createConfirmed:returnCode:contextInfo:) contextInfo:nil];
-	[NSApp runModalForWindow:window];
+    //run save panel
+    [sPanel beginSheetForDirectory:nil file:defaultAppBundleName modalForWindow:window modalDelegate:self didEndSelector:@selector(createConfirmed:returnCode:contextInfo:) contextInfo:nil];
+    [NSApp runModalForWindow:window];
 }
 
 - (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result contextInfo:(void *)contextInfo {
-	//restore window title
-	[window setTitle:PROGRAM_NAME];
+    //restore window title
+    [window setTitle:PROGRAM_NAME];
     
-	[NSApp endSheet:window];
-	[NSApp stopModal];
+    [NSApp endSheet:window];
+    [NSApp stopModal];
     
-	//if user pressed cancel, we do nothing
-	if (result != NSOKButton)
-		return;
+    //if user pressed cancel, we do nothing
+    if (result != NSOKButton)
+        return;
     
-	//else, we go ahead with creating the application
-	[NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(createApplicationFromTimer:) userInfo:[sPanel filename] repeats:NO];
+    //else, we go ahead with creating the application
+    [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(createApplicationFromTimer:) userInfo:[sPanel filename] repeats:NO];
 }
 
 - (void)creationStatusUpdated:(NSNotification *)aNotification {
-	[progressDialogStatusLabel setStringValue:[aNotification object]];
-	[[progressDialogStatusLabel window] display];
+    [progressDialogStatusLabel setStringValue:[aNotification object]];
+    [[progressDialogStatusLabel window] display];
 }
 
 - (BOOL)createApplicationFromTimer:(NSTimer *)theTimer {
-	return [self createApplication:[theTimer userInfo] overwrite:NO];
+    return [self createApplication:[theTimer userInfo] overwrite:NO];
 }
 
 - (BOOL)createApplication:(NSString *)destination overwrite:(BOOL)overwrite {
-	[[NSNotificationCenter defaultCenter] addObserver:self
-	                                         selector:@selector(creationStatusUpdated:)
-	                                             name:@"PlatypusAppSpecCreationNotification"
-	                                           object:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(creationStatusUpdated:)
+                                                 name:@"PlatypusAppSpecCreationNotification"
+                                               object:NULL];
     
-	// we begin by making sure destination path ends in .app
-	NSString *appPath = destination;
-	if (![appPath hasSuffix:@".app"])
-		appPath = [appPath stringByAppendingString:@".app"];
+    // we begin by making sure destination path ends in .app
+    NSString *appPath = destination;
+    if (![appPath hasSuffix:@".app"])
+        appPath = [appPath stringByAppendingString:@".app"];
     
-	//check if app already exists, and if so, prompt if to replace
-	if (!overwrite && [FILEMGR fileExistsAtPath:appPath]) {
-		overwrite = [PlatypusUtility proceedWarning:@"Application already exists" subText:@"An application with this name already exists in the location you specified.  Do you want to overwrite it?" withAction:@"Overwrite"];
-		if (!overwrite)
-			return NO;
-	}
+    //check if app already exists, and if so, prompt if to replace
+    if (!overwrite && [FILEMGR fileExistsAtPath:appPath]) {
+        overwrite = [PlatypusUtility proceedWarning:@"Application already exists" subText:@"An application with this name already exists in the location you specified.  Do you want to overwrite it?" withAction:@"Overwrite"];
+        if (!overwrite)
+            return NO;
+    }
     
-	// create spec from controls and verify
-	PlatypusAppSpec *spec = [self appSpecFromControls];
+    // create spec from controls and verify
+    PlatypusAppSpec *spec = [self appSpecFromControls];
     
-	// we set this specifically -- extra profile data
-	[spec setProperty:appPath forKey:@"Destination"];
-	[spec setProperty:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:NULL] forKey:@"ExecutablePath"];
-	[spec setProperty:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:NULL] forKey:@"NibPath"];
-	[spec setProperty:[NSNumber numberWithBool:[developmentVersionCheckbox intValue]] forKey:@"DevelopmentVersion"];
-	[spec setProperty:[NSNumber numberWithBool:[optimizeApplicationCheckbox intValue]] forKey:@"OptimizeApplication"];
-	[spec setProperty:[NSNumber numberWithBool:[xmlPlistFormatCheckbox intValue]] forKey:@"UseXMLPlistFormat"];
-	if (overwrite)
-		[spec setProperty:[NSNumber numberWithBool:YES] forKey:@"DestinationOverride"];
+    // we set this specifically -- extra profile data
+    [spec setProperty:appPath forKey:@"Destination"];
+    [spec setProperty:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:NULL] forKey:@"ExecutablePath"];
+    [spec setProperty:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:NULL] forKey:@"NibPath"];
+    [spec setProperty:[NSNumber numberWithBool:[developmentVersionCheckbox intValue]] forKey:@"DevelopmentVersion"];
+    [spec setProperty:[NSNumber numberWithBool:[optimizeApplicationCheckbox intValue]] forKey:@"OptimizeApplication"];
+    [spec setProperty:[NSNumber numberWithBool:[xmlPlistFormatCheckbox intValue]] forKey:@"UseXMLPlistFormat"];
+    if (overwrite)
+        [spec setProperty:[NSNumber numberWithBool:YES] forKey:@"DestinationOverride"];
     
-	// verify that the values in the spec are OK
-	if (![spec verify]) {
-		[PlatypusUtility alert:@"Spec verification failed" subText:[spec error]];
-		return NO;
-	}
+    // verify that the values in the spec are OK
+    if (![spec verify]) {
+        [PlatypusUtility alert:@"Spec verification failed" subText:[spec error]];
+        return NO;
+    }
     
-	// ok, now we try to create the app
+    // ok, now we try to create the app
     
-	// first, show progress dialog
-	[progressDialogMessageLabel setStringValue:[NSString stringWithFormat:@"Creating application %@", [spec propertyForKey:@"Name"]]];
+    // first, show progress dialog
+    [progressDialogMessageLabel setStringValue:[NSString stringWithFormat:@"Creating application %@", [spec propertyForKey:@"Name"]]];
     
-	[progressBar setUsesThreadedAnimation:YES];
-	[progressBar startAnimation:self];
+    [progressBar setUsesThreadedAnimation:YES];
+    [progressBar startAnimation:self];
     
-	[NSApp  beginSheet:progressDialogWindow
-	    modalForWindow:window
-	     modalDelegate:nil
-	    didEndSelector:nil
-	       contextInfo:nil];
+    [NSApp  beginSheet:progressDialogWindow
+        modalForWindow:window
+         modalDelegate:nil
+        didEndSelector:nil
+           contextInfo:nil];
     
-	// create the app from spec
-	if (![spec create]) {
-		// Dialog ends here.
-		[NSApp endSheet:progressDialogWindow];
-		[progressDialogWindow orderOut:self];
+    // create the app from spec
+    if (![spec create]) {
+        // Dialog ends here.
+        [NSApp endSheet:progressDialogWindow];
+        [progressDialogWindow orderOut:self];
         
-		[PlatypusUtility alert:@"Creating from spec failed" subText:[spec error]];
-		return NO;
-	}
+        [PlatypusUtility alert:@"Creating from spec failed" subText:[spec error]];
+        return NO;
+    }
     
-	// reveal newly create app in Finder, if prefs say so
-	if ([DEFAULTS boolForKey:@"RevealApplicationWhenCreated"])
-		[[NSWorkspace sharedWorkspace] selectFile:appPath inFileViewerRootedAtPath:nil];
+    // reveal newly create app in Finder, if prefs say so
+    if ([DEFAULTS boolForKey:@"RevealApplicationWhenCreated"])
+        [[NSWorkspace sharedWorkspace] selectFile:appPath inFileViewerRootedAtPath:nil];
     
-	// open newly create app, if prefs say so
-	if ([DEFAULTS boolForKey:@"OpenApplicationWhenCreated"])
-		[[NSWorkspace sharedWorkspace] launchApplication:appPath];
+    // open newly create app, if prefs say so
+    if ([DEFAULTS boolForKey:@"OpenApplicationWhenCreated"])
+        [[NSWorkspace sharedWorkspace] launchApplication:appPath];
     
-	[developmentVersionCheckbox setIntValue:0];
-	[optimizeApplicationCheckbox setIntValue:0];
+    [developmentVersionCheckbox setIntValue:0];
+    [optimizeApplicationCheckbox setIntValue:0];
     
-	// Dialog ends here.
-	[NSApp endSheet:progressDialogWindow];
-	[progressDialogWindow orderOut:self];
+    // Dialog ends here.
+    [NSApp endSheet:progressDialogWindow];
+    [progressDialogWindow orderOut:self];
     
-	// Stop observing the filehandle for data since task is done
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"PlatypusAppSpecCreationNotification" object:nil];
+    // Stop observing the filehandle for data since task is done
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PlatypusAppSpecCreationNotification" object:nil];
     
-	return YES;
+    return YES;
 }
 
 /*************************************************
@@ -400,43 +400,43 @@
  **************************************************/
 
 - (BOOL)verifyFieldContents {
-	BOOL isDir;
+    BOOL isDir;
     
-	//file manager
-	NSFileManager *fileManager = FILEMGR;
+    //file manager
+    NSFileManager *fileManager = FILEMGR;
     
-	//script path
-	if ([[appNameTextField stringValue] length] == 0) { //make sure a name has been assigned
-		[PlatypusUtility sheetAlert:@"Invalid Application Name" subText:@"You must specify a name for your application" forWindow:window];
-		return NO;
-	}
+    //script path
+    if ([[appNameTextField stringValue] length] == 0) { //make sure a name has been assigned
+        [PlatypusUtility sheetAlert:@"Invalid Application Name" subText:@"You must specify a name for your application" forWindow:window];
+        return NO;
+    }
     
-	//script path
-	if (([fileManager fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] == NO) || isDir) { //make sure script exists and isn't a folder
-		[PlatypusUtility sheetAlert:@"Invalid Script Path" subText:@"No file exists at the script path you have specified" forWindow:window];
-		return NO;
-	}
+    //script path
+    if (([fileManager fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] == NO) || isDir) { //make sure script exists and isn't a folder
+        [PlatypusUtility sheetAlert:@"Invalid Script Path" subText:@"No file exists at the script path you have specified" forWindow:window];
+        return NO;
+    }
     
-	//make sure we have an icon
-	if (([iconControl hasIcns] && ![[iconControl icnsFilePath] isEqualToString:@""] && ![fileManager fileExistsAtPath:[iconControl icnsFilePath]])
-	    ||  (![(IconController *)iconControl hasIcns] && [(IconController *)iconControl imageData] == nil)) {
-		[PlatypusUtility sheetAlert:@"Missing Icon" subText:@"You must set an icon for your application." forWindow:window];
-		return NO;
-	}
+    //make sure we have an icon
+    if (([iconControl hasIcns] && ![[iconControl icnsFilePath] isEqualToString:@""] && ![fileManager fileExistsAtPath:[iconControl icnsFilePath]])
+        ||  (![(IconController *)iconControl hasIcns] && [(IconController *)iconControl imageData] == nil)) {
+        [PlatypusUtility sheetAlert:@"Missing Icon" subText:@"You must set an icon for your application." forWindow:window];
+        return NO;
+    }
     
-	// let's be certain that the bundled files list doesn't contain entries that have been moved
-	if (![fileList allPathsAreValid]) {
-		[PlatypusUtility sheetAlert:@"Moved or missing files" subText:@"One or more of the files that are to be bundled with the application have been moved.  Please rectify this and try again." forWindow:window];
-		return NO;
-	}
+    // let's be certain that the bundled files list doesn't contain entries that have been moved
+    if (![fileList allPathsAreValid]) {
+        [PlatypusUtility sheetAlert:@"Moved or missing files" subText:@"One or more of the files that are to be bundled with the application have been moved.  Please rectify this and try again." forWindow:window];
+        return NO;
+    }
     
-	//interpreter
-	if ([fileManager fileExistsAtPath:[interpreterTextField stringValue]] == NO) { //make sure interpreter exists
-		if (NO == [PlatypusUtility proceedWarning:@"Invalid Interpreter" subText:@"The specified interpreter does not exist on this system.  Do you wish to proceed anyway?" withAction:@"Proceed"])
-			return NO;
-	}
+    //interpreter
+    if ([fileManager fileExistsAtPath:[interpreterTextField stringValue]] == NO) { //make sure interpreter exists
+        if (NO == [PlatypusUtility proceedWarning:@"Invalid Interpreter" subText:@"The specified interpreter does not exist on this system.  Do you wish to proceed anyway?" withAction:@"Proceed"])
+            return NO;
+    }
     
-	return YES;
+    return YES;
 }
 
 #pragma mark Generate/Read AppSpec
@@ -446,148 +446,148 @@
  **************************************************/
 
 - (id)appSpecFromControls {
-	PlatypusAppSpec *spec = [[[PlatypusAppSpec alloc] initWithDefaults] autorelease];
+    PlatypusAppSpec *spec = [[[PlatypusAppSpec alloc] initWithDefaults] autorelease];
     
-	[spec setProperty:[appNameTextField stringValue]       forKey:@"Name"];
-	[spec setProperty:[scriptPathTextField stringValue]    forKey:@"ScriptPath"];
+    [spec setProperty:[appNameTextField stringValue]       forKey:@"Name"];
+    [spec setProperty:[scriptPathTextField stringValue]    forKey:@"ScriptPath"];
     
-	// set output type to the name of the output type, minus spaces
-	[spec setProperty:[outputTypePopupMenu titleOfSelectedItem]
-	           forKey:@"Output"];
+    // set output type to the name of the output type, minus spaces
+    [spec setProperty:[outputTypePopupMenu titleOfSelectedItem]
+               forKey:@"Output"];
     
-	// icon
-	if ([iconControl hasIcns])
-		[spec setProperty:[iconControl icnsFilePath]       forKey:@"IconPath"];
-	else {
-		[iconControl writeIconToPath:[NSString stringWithFormat:@"%@%@.icns", APP_SUPPORT_FOLDER, [appNameTextField stringValue]]];
-		[spec setProperty:TEMP_ICON_PATH forKey:@"IconPath"];
-	}
+    // icon
+    if ([iconControl hasIcns])
+        [spec setProperty:[iconControl icnsFilePath]       forKey:@"IconPath"];
+    else {
+        [iconControl writeIconToPath:[NSString stringWithFormat:@"%@%@.icns", APP_SUPPORT_FOLDER, [appNameTextField stringValue]]];
+        [spec setProperty:TEMP_ICON_PATH forKey:@"IconPath"];
+    }
     
-	// advanced attributes
-	[spec setProperty:[interpreterTextField stringValue]   forKey:@"Interpreter"];
-	[spec setProperty:[paramsControl interpreterArgs]      forKey:@"InterpreterArgs"];
-	[spec setProperty:[paramsControl scriptArgs]           forKey:@"ScriptArgs"];
-	[spec setProperty:[versionTextField stringValue]       forKey:@"Version"];
-	[spec setProperty:[bundleIdentifierTextField stringValue]
-	           forKey:@"Identifier"];
-	[spec setProperty:[authorTextField stringValue]        forKey:@"Author"];
+    // advanced attributes
+    [spec setProperty:[interpreterTextField stringValue]   forKey:@"Interpreter"];
+    [spec setProperty:[paramsControl interpreterArgs]      forKey:@"InterpreterArgs"];
+    [spec setProperty:[paramsControl scriptArgs]           forKey:@"ScriptArgs"];
+    [spec setProperty:[versionTextField stringValue]       forKey:@"Version"];
+    [spec setProperty:[bundleIdentifierTextField stringValue]
+               forKey:@"Identifier"];
+    [spec setProperty:[authorTextField stringValue]        forKey:@"Author"];
     
-	// checkbox attributes
-	[spec setProperty:[NSNumber numberWithBool:[isDroppableCheckbox state]]
-	           forKey:@"Droppable"];
-	[spec setProperty:[NSNumber numberWithBool:[encryptCheckbox state]]
-	           forKey:@"Secure"];
-	[spec setProperty:[NSNumber numberWithBool:[rootPrivilegesCheckbox state]]
-	           forKey:@"Authentication"];
-	[spec setProperty:[NSNumber numberWithBool:[remainRunningCheckbox state]]
-	           forKey:@"RemainRunning"];
-	[spec setProperty:[NSNumber numberWithBool:[showInDockCheckbox state]]
-	           forKey:@"ShowInDock"];
+    // checkbox attributes
+    [spec setProperty:[NSNumber numberWithBool:[isDroppableCheckbox state]]
+               forKey:@"Droppable"];
+    [spec setProperty:[NSNumber numberWithBool:[encryptCheckbox state]]
+               forKey:@"Secure"];
+    [spec setProperty:[NSNumber numberWithBool:[rootPrivilegesCheckbox state]]
+               forKey:@"Authentication"];
+    [spec setProperty:[NSNumber numberWithBool:[remainRunningCheckbox state]]
+               forKey:@"RemainRunning"];
+    [spec setProperty:[NSNumber numberWithBool:[showInDockCheckbox state]]
+               forKey:@"ShowInDock"];
     
-	// bundled files
-	[spec setProperty:[fileList getFilesArray] forKey:@"BundledFiles"];
+    // bundled files
+    [spec setProperty:[fileList getFilesArray] forKey:@"BundledFiles"];
     
-	// file types
-	[spec setProperty:(NSMutableArray *)[(SuffixList *)[typesControl suffixes] getSuffixArray]         forKey:@"Suffixes"];
-	[spec setProperty:[typesControl role]                                                              forKey:@"Role"];
-	[spec setProperty:[typesControl docIconPath]                                                       forKey:@"DocIcon"];
-	[spec setProperty:[NSNumber numberWithBool:[typesControl acceptsText]]                            forKey:@"AcceptsText"];
-	[spec setProperty:[NSNumber numberWithBool:[typesControl acceptsFiles]]                           forKey:@"AcceptsFiles"];
-	[spec setProperty:[NSNumber numberWithBool:[typesControl declareService]]                         forKey:@"DeclareService"];
-	[spec setProperty:[NSNumber numberWithBool:[typesControl promptsForFileOnLaunch]]                 forKey:@"PromptForFileOnLaunch"];
+    // file types
+    [spec setProperty:(NSMutableArray *)[(SuffixList *)[typesControl suffixes] getSuffixArray]         forKey:@"Suffixes"];
+    [spec setProperty:[typesControl role]                                                              forKey:@"Role"];
+    [spec setProperty:[typesControl docIconPath]                                                       forKey:@"DocIcon"];
+    [spec setProperty:[NSNumber numberWithBool:[typesControl acceptsText]]                            forKey:@"AcceptsText"];
+    [spec setProperty:[NSNumber numberWithBool:[typesControl acceptsFiles]]                           forKey:@"AcceptsFiles"];
+    [spec setProperty:[NSNumber numberWithBool:[typesControl declareService]]                         forKey:@"DeclareService"];
+    [spec setProperty:[NSNumber numberWithBool:[typesControl promptsForFileOnLaunch]]                 forKey:@"PromptForFileOnLaunch"];
     
-	//  text output text settings
-	[spec setProperty:[NSNumber numberWithInt:(int)[textSettingsControl getTextEncoding]]             forKey:@"TextEncoding"];
-	[spec setProperty:[[textSettingsControl getTextFont] fontName]                                     forKey:@"TextFont"];
-	[spec setProperty:[NSNumber numberWithFloat:[[textSettingsControl getTextFont] pointSize]]        forKey:@"TextSize"];
-	[spec setProperty:[[textSettingsControl getTextForeground] hexString]                              forKey:@"TextForeground"];
-	[spec setProperty:[[textSettingsControl getTextBackground] hexString]                              forKey:@"TextBackground"];
+    //  text output text settings
+    [spec setProperty:[NSNumber numberWithInt:(int)[textSettingsControl getTextEncoding]]             forKey:@"TextEncoding"];
+    [spec setProperty:[[textSettingsControl getTextFont] fontName]                                     forKey:@"TextFont"];
+    [spec setProperty:[NSNumber numberWithFloat:[[textSettingsControl getTextFont] pointSize]]        forKey:@"TextSize"];
+    [spec setProperty:[[textSettingsControl getTextForeground] hexString]                              forKey:@"TextForeground"];
+    [spec setProperty:[[textSettingsControl getTextBackground] hexString]                              forKey:@"TextBackground"];
     
-	// status menu settings
-	if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
-		[spec setProperty:[statusItemSettingsControl displayType] forKey:@"StatusItemDisplayType"];
-		[spec setProperty:[statusItemSettingsControl title] forKey:@"StatusItemTitle"];
-		[spec setProperty:[[statusItemSettingsControl icon] TIFFRepresentation] forKey:@"StatusItemIcon"];
-	}
+    // status menu settings
+    if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
+        [spec setProperty:[statusItemSettingsControl displayType] forKey:@"StatusItemDisplayType"];
+        [spec setProperty:[statusItemSettingsControl title] forKey:@"StatusItemTitle"];
+        [spec setProperty:[[statusItemSettingsControl icon] TIFFRepresentation] forKey:@"StatusItemIcon"];
+    }
     
-	return spec;
+    return spec;
 }
 
 - (void)controlsFromAppSpec:(id)spec {
-	[appNameTextField setStringValue:[spec propertyForKey:@"Name"]];
-	[scriptPathTextField setStringValue:[spec propertyForKey:@"ScriptPath"]];
+    [appNameTextField setStringValue:[spec propertyForKey:@"Name"]];
+    [scriptPathTextField setStringValue:[spec propertyForKey:@"ScriptPath"]];
     
-	[versionTextField setStringValue:[spec propertyForKey:@"Version"]];
-	[authorTextField setStringValue:[spec propertyForKey:@"Author"]];
+    [versionTextField setStringValue:[spec propertyForKey:@"Version"]];
+    [authorTextField setStringValue:[spec propertyForKey:@"Author"]];
     
-	[outputTypePopupMenu selectItemWithTitle:[spec propertyForKey:@"Output"]];
-	[self outputTypeWasChanged:NULL];
-	[interpreterTextField setStringValue:[spec propertyForKey:@"Interpreter"]];
+    [outputTypePopupMenu selectItemWithTitle:[spec propertyForKey:@"Output"]];
+    [self outputTypeWasChanged:NULL];
+    [interpreterTextField setStringValue:[spec propertyForKey:@"Interpreter"]];
     
-	//icon
-	if (![[spec propertyForKey:@"IconPath"] isEqualToString:@""])
-		[iconControl loadIcnsFile:[spec propertyForKey:@"IconPath"]];
+    //icon
+    if (![[spec propertyForKey:@"IconPath"] isEqualToString:@""])
+        [iconControl loadIcnsFile:[spec propertyForKey:@"IconPath"]];
     
-	//checkboxes
-	[rootPrivilegesCheckbox setState:[[spec propertyForKey:@"Authentication"] boolValue]];
-	[isDroppableCheckbox setState:[[spec propertyForKey:@"Droppable"] boolValue]];
-	[self isDroppableWasClicked:isDroppableCheckbox];
-	[encryptCheckbox setState:[[spec propertyForKey:@"Secure"] boolValue]];
-	[showInDockCheckbox setState:[[spec propertyForKey:@"ShowInDock"] boolValue]];
-	[remainRunningCheckbox setState:[[spec propertyForKey:@"RemainRunning"] boolValue]];
+    //checkboxes
+    [rootPrivilegesCheckbox setState:[[spec propertyForKey:@"Authentication"] boolValue]];
+    [isDroppableCheckbox setState:[[spec propertyForKey:@"Droppable"] boolValue]];
+    [self isDroppableWasClicked:isDroppableCheckbox];
+    [encryptCheckbox setState:[[spec propertyForKey:@"Secure"] boolValue]];
+    [showInDockCheckbox setState:[[spec propertyForKey:@"ShowInDock"] boolValue]];
+    [remainRunningCheckbox setState:[[spec propertyForKey:@"RemainRunning"] boolValue]];
     
-	//file list
-	[fileList clearList];
-	[fileList addFiles:[spec propertyForKey:@"BundledFiles"]];
+    //file list
+    [fileList clearList];
+    [fileList addFiles:[spec propertyForKey:@"BundledFiles"]];
     
-	//update button status
-	[fileList tableViewSelectionDidChange:NULL];
+    //update button status
+    [fileList tableViewSelectionDidChange:NULL];
     
-	//suffix list
-	[(SuffixList *)[typesControl suffixes] clearList];
-	[(SuffixList *)[typesControl suffixes] addSuffixes :[spec propertyForKey:@"Suffixes"]];
+    //suffix list
+    [(SuffixList *)[typesControl suffixes] clearList];
+    [(SuffixList *)[typesControl suffixes] addSuffixes :[spec propertyForKey:@"Suffixes"]];
     
-	[typesControl tableViewSelectionDidChange:NULL];
-	// role and doc icon
-	[typesControl setRole:[spec propertyForKey:@"Role"]];
-	if ([spec propertyForKey:@"DocIcon"] != nil)
-		[typesControl setDocIconPath:[spec propertyForKey:@"DocIcon"]];
-	if ([spec propertyForKey:@"AcceptsText"] != nil)
-		[typesControl setAcceptsText:[[spec propertyForKey:@"AcceptsText"] boolValue]];
-	if ([spec propertyForKey:@"AcceptsFiles"] != nil)
-		[typesControl setAcceptsFiles:[[spec propertyForKey:@"AcceptsFiles"] boolValue]];
-	if ([spec propertyForKey:@"DeclareService"] != nil)
-		[typesControl setDeclareService:[[spec propertyForKey:@"DeclareService"] boolValue]];
-	if ([spec propertyForKey:@"PromptForFileOnLaunch"] != nil)
-		[typesControl setDeclareService:[[spec propertyForKey:@"PromptForFileOnLaunch"] boolValue]];
+    [typesControl tableViewSelectionDidChange:NULL];
+    // role and doc icon
+    [typesControl setRole:[spec propertyForKey:@"Role"]];
+    if ([spec propertyForKey:@"DocIcon"] != nil)
+        [typesControl setDocIconPath:[spec propertyForKey:@"DocIcon"]];
+    if ([spec propertyForKey:@"AcceptsText"] != nil)
+        [typesControl setAcceptsText:[[spec propertyForKey:@"AcceptsText"] boolValue]];
+    if ([spec propertyForKey:@"AcceptsFiles"] != nil)
+        [typesControl setAcceptsFiles:[[spec propertyForKey:@"AcceptsFiles"] boolValue]];
+    if ([spec propertyForKey:@"DeclareService"] != nil)
+        [typesControl setDeclareService:[[spec propertyForKey:@"DeclareService"] boolValue]];
+    if ([spec propertyForKey:@"PromptForFileOnLaunch"] != nil)
+        [typesControl setDeclareService:[[spec propertyForKey:@"PromptForFileOnLaunch"] boolValue]];
     
-	// parameters
-	[paramsControl setInterpreterArgs:[spec propertyForKey:@"InterpreterArgs"]];
-	[paramsControl setScriptArgs:[spec propertyForKey:@"ScriptArgs"]];
+    // parameters
+    [paramsControl setInterpreterArgs:[spec propertyForKey:@"InterpreterArgs"]];
+    [paramsControl setScriptArgs:[spec propertyForKey:@"ScriptArgs"]];
     
-	// text output settings
-	[textSettingsControl setTextEncoding:[[spec propertyForKey:@"TextEncoding"] intValue]];
-	[textSettingsControl setTextFont:[NSFont fontWithName:[spec propertyForKey:@"TextFont"] size:[[spec propertyForKey:@"TextSize"] intValue]]];
-	[textSettingsControl setTextForeground:[NSColor colorFromHex:[spec propertyForKey:@"TextForeground"]]];
-	[textSettingsControl setTextBackground:[NSColor colorFromHex:[spec propertyForKey:@"TextBackground"]]];
+    // text output settings
+    [textSettingsControl setTextEncoding:[[spec propertyForKey:@"TextEncoding"] intValue]];
+    [textSettingsControl setTextFont:[NSFont fontWithName:[spec propertyForKey:@"TextFont"] size:[[spec propertyForKey:@"TextSize"] intValue]]];
+    [textSettingsControl setTextForeground:[NSColor colorFromHex:[spec propertyForKey:@"TextForeground"]]];
+    [textSettingsControl setTextBackground:[NSColor colorFromHex:[spec propertyForKey:@"TextBackground"]]];
     
-	// status menu settings
-	if ([[spec propertyForKey:@"Output"] isEqualToString:@"Status Menu"]) {
-		if (![[spec propertyForKey:@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
-			NSImage *icon = [[[NSImage alloc] initWithData:[spec propertyForKey:@"StatusItemIcon"]] autorelease];
-			if (icon != NULL)
-				[statusItemSettingsControl setIcon:icon];
-		}
-		[statusItemSettingsControl setTitle:[spec propertyForKey:@"StatusItemTitle"]];
-		[statusItemSettingsControl setDisplayType:[spec propertyForKey:@"StatusItemDisplayType"]];
-	}
+    // status menu settings
+    if ([[spec propertyForKey:@"Output"] isEqualToString:@"Status Menu"]) {
+        if (![[spec propertyForKey:@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
+            NSImage *icon = [[[NSImage alloc] initWithData:[spec propertyForKey:@"StatusItemIcon"]] autorelease];
+            if (icon != NULL)
+                [statusItemSettingsControl setIcon:icon];
+        }
+        [statusItemSettingsControl setTitle:[spec propertyForKey:@"StatusItemTitle"]];
+        [statusItemSettingsControl setDisplayType:[spec propertyForKey:@"StatusItemDisplayType"]];
+    }
     
-	//update buttons
-	[self controlTextDidChange:NULL];
+    //update buttons
+    [self controlTextDidChange:NULL];
     
-	[self updateEstimatedAppSize];
+    [self updateEstimatedAppSize];
     
-	[bundleIdentifierTextField setStringValue:[spec propertyForKey:@"Identifier"]];
+    [bundleIdentifierTextField setStringValue:[spec propertyForKey:@"Identifier"]];
 }
 
 #pragma mark Load/Select script
@@ -597,22 +597,22 @@
  *****************************************/
 
 - (IBAction)selectScript:(id)sender {
-	//create open panel
-	NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-	[oPanel setPrompt:@"Select"];
-	[oPanel setAllowsMultipleSelection:NO];
-	[oPanel setCanChooseDirectories:NO];
+    //create open panel
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+    [oPanel setPrompt:@"Select"];
+    [oPanel setAllowsMultipleSelection:NO];
+    [oPanel setCanChooseDirectories:NO];
     
-	[window setTitle:[NSString stringWithFormat:@"%@ - Select script", PROGRAM_NAME]];
+    [window setTitle:[NSString stringWithFormat:@"%@ - Select script", PROGRAM_NAME]];
     
-	//run open panel
-	[oPanel beginSheetForDirectory:nil file:nil types:nil modalForWindow:window modalDelegate:self didEndSelector:@selector(selectScriptPanelDidEnd:returnCode:contextInfo:) contextInfo:nil];
+    //run open panel
+    [oPanel beginSheetForDirectory:nil file:nil types:nil modalForWindow:window modalDelegate:self didEndSelector:@selector(selectScriptPanelDidEnd:returnCode:contextInfo:) contextInfo:nil];
 }
 
 - (void)selectScriptPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo {
-	if (returnCode == NSOKButton)
-		[self loadScript:[oPanel filename]];
-	[window setTitle:PROGRAM_NAME];
+    if (returnCode == NSOKButton)
+        [self loadScript:[oPanel filename]];
+    [window setTitle:PROGRAM_NAME];
 }
 
 /*****************************************
@@ -620,12 +620,12 @@
  *****************************************/
 
 - (IBAction)scriptTypeSelected:(id)sender {
-	[self setScriptType:[[sender selectedItem] title]];
+    [self setScriptType:[[sender selectedItem] title]];
 }
 
 - (void)selectScriptTypeBasedOnInterpreter {
-	NSString *type = [ScriptAnalyser displayNameForInterpreter:[interpreterTextField stringValue]];
-	[scriptTypePopupMenu selectItemWithTitle:type];
+    NSString *type = [ScriptAnalyser displayNameForInterpreter:[interpreterTextField stringValue]];
+    [scriptTypePopupMenu selectItemWithTitle:type];
 }
 
 /*****************************************
@@ -633,11 +633,11 @@
  *****************************************/
 
 - (void)setScriptType:(NSString *)type {
-	// set the script type based on the number which identifies each type
-	NSString *interpreter = [ScriptAnalyser interpreterForDisplayName:type];
-	[interpreterTextField setStringValue:interpreter];
-	[scriptTypePopupMenu selectItemWithTitle:type];
-	[self controlTextDidChange:NULL];
+    // set the script type based on the number which identifies each type
+    NSString *interpreter = [ScriptAnalyser interpreterForDisplayName:type];
+    [interpreterTextField setStringValue:interpreter];
+    [scriptTypePopupMenu selectItemWithTitle:type];
+    [self controlTextDidChange:NULL];
 }
 
 /*****************************************
@@ -645,22 +645,22 @@
  *****************************************/
 
 - (void)loadScript:(NSString *)filename {
-	//make sure file we're loading actually exists
-	BOOL isDir;
-	if (![FILEMGR fileExistsAtPath:filename isDirectory:&isDir] || isDir)
-		return;
+    //make sure file we're loading actually exists
+    BOOL isDir;
+    if (![FILEMGR fileExistsAtPath:filename isDirectory:&isDir] || isDir)
+        return;
     
-	PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsFromScript:filename];
-	[self controlsFromAppSpec:spec];
-	[spec release];
+    PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsFromScript:filename];
+    [self controlsFromAppSpec:spec];
+    [spec release];
     
-	[iconControl setDefaultIcon];
+    [iconControl setDefaultIcon];
     
-	// add to recent items menu
-	[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
+    // add to recent items menu
+    [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
     
-	//[self controlTextDidChange: NULL];
-	[self updateEstimatedAppSize];
+    //[self controlTextDidChange: NULL];
+    [self updateEstimatedAppSize];
 }
 
 #pragma mark Window interface actions
@@ -671,40 +671,40 @@
  *****************************************/
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
-	BOOL isDir, exists = NO, validName = NO;
+    BOOL isDir, exists = NO, validName = NO;
     
-	//app name or script path was changed
-	if ([aNotification object] == NULL || [aNotification object] == appNameTextField || [aNotification object] == scriptPathTextField) {
-		if ([[appNameTextField stringValue] length] > 0)
-			validName = YES;
+    //app name or script path was changed
+    if ([aNotification object] == NULL || [aNotification object] == appNameTextField || [aNotification object] == scriptPathTextField) {
+        if ([[appNameTextField stringValue] length] > 0)
+            validName = YES;
         
-		if ([scriptPathTextField hasValidPath]) {
-			// add watcher that tracks whether it exists or is edited
-			[[UKKQueue sharedFileWatcher] removeAllPathsFromQueue];
-			[[UKKQueue sharedFileWatcher] addPathToQueue:[scriptPathTextField stringValue]];
-			exists = YES;
-		}
+        if ([scriptPathTextField hasValidPath]) {
+            // add watcher that tracks whether it exists or is edited
+            [[UKKQueue sharedFileWatcher] removeAllPathsFromQueue];
+            [[UKKQueue sharedFileWatcher] addPathToQueue:[scriptPathTextField stringValue]];
+            exists = YES;
+        }
         
-		[scriptPathTextField updateTextColoring];
+        [scriptPathTextField updateTextColoring];
         
-		[editScriptButton setEnabled:exists];
-		[revealScriptButton setEnabled:exists];
+        [editScriptButton setEnabled:exists];
+        [revealScriptButton setEnabled:exists];
         
-		//enable/disable create app button
-		[createAppButton setEnabled:validName && exists];
+        //enable/disable create app button
+        [createAppButton setEnabled:validName && exists];
         
-		//update identifier
-		[bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] usingDefaults:YES]];
-	}
+        //update identifier
+        [bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] usingDefaults:YES]];
+    }
     
-	//interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
-	if ([aNotification object] == interpreterTextField || [aNotification object] == NULL) {
-		[self selectScriptTypeBasedOnInterpreter];
-		if ([FILEMGR fileExistsAtPath:[interpreterTextField stringValue] isDirectory:&isDir] && !isDir)
-			[interpreterTextField setTextColor:[NSColor blackColor]];
-		else
-			[interpreterTextField setTextColor:[NSColor redColor]];
-	}
+    //interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
+    if ([aNotification object] == interpreterTextField || [aNotification object] == NULL) {
+        [self selectScriptTypeBasedOnInterpreter];
+        if ([FILEMGR fileExistsAtPath:[interpreterTextField stringValue] isDirectory:&isDir] && !isDir)
+            [interpreterTextField setTextColor:[NSColor blackColor]];
+        else
+            [interpreterTextField setTextColor:[NSColor redColor]];
+    }
 }
 
 /*****************************************
@@ -712,8 +712,8 @@
  *****************************************/
 
 - (IBAction)isDroppableWasClicked:(id)sender {
-	[editTypesButton setHidden:![isDroppableCheckbox state]];
-	[editTypesButton setEnabled:[isDroppableCheckbox state]];
+    [editTypesButton setHidden:![isDroppableCheckbox state]];
+    [editTypesButton setEnabled:[isDroppableCheckbox state]];
 }
 
 /*****************************************
@@ -721,57 +721,57 @@
  *****************************************/
 
 - (IBAction)outputTypeWasChanged:(id)sender {
-	// we don't show text output settings for output modes None and Web View
-	if (![[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"None"] &&
-	    ![[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Web View"] &&
-	    ![[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Droplet"]) {
-		[textOutputSettingsButton setHidden:NO];
-		[textOutputSettingsButton setEnabled:YES];
-	}
-	else {
-		[textOutputSettingsButton setHidden:YES];
-		[textOutputSettingsButton setEnabled:NO];
-	}
+    // we don't show text output settings for output modes None and Web View
+    if (![[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"None"] &&
+        ![[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Web View"] &&
+        ![[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Droplet"]) {
+        [textOutputSettingsButton setHidden:NO];
+        [textOutputSettingsButton setEnabled:YES];
+    }
+    else {
+        [textOutputSettingsButton setHidden:YES];
+        [textOutputSettingsButton setEnabled:NO];
+    }
     
-	// disable options that don't make sense for status menu output mode
-	if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
-		// disable droppable & admin privileges
-		[isDroppableCheckbox setIntValue:0];
-		[isDroppableCheckbox setEnabled:NO];
-		[self isDroppableWasClicked:self];
-		[rootPrivilegesCheckbox setIntValue:0];
-		[rootPrivilegesCheckbox setEnabled:NO];
+    // disable options that don't make sense for status menu output mode
+    if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
+        // disable droppable & admin privileges
+        [isDroppableCheckbox setIntValue:0];
+        [isDroppableCheckbox setEnabled:NO];
+        [self isDroppableWasClicked:self];
+        [rootPrivilegesCheckbox setIntValue:0];
+        [rootPrivilegesCheckbox setEnabled:NO];
         
-		// force-enable "Remain running"
-		[remainRunningCheckbox setIntValue:1];
-		[remainRunningCheckbox setEnabled:NO];
+        // force-enable "Remain running"
+        [remainRunningCheckbox setIntValue:1];
+        [remainRunningCheckbox setEnabled:NO];
         
-		// check Runs in Background as default for Status Menu output
-		[showInDockCheckbox setIntValue:1];
+        // check Runs in Background as default for Status Menu output
+        [showInDockCheckbox setIntValue:1];
         
-		// show button for special status item settings
-		[statusItemSettingsButton setEnabled:YES];
-		[statusItemSettingsButton setHidden:NO];
-	}
-	else {
-		if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Droplet"]) {
-			[isDroppableCheckbox setIntValue:1];
-			[self isDroppableWasClicked:self];
-		}
+        // show button for special status item settings
+        [statusItemSettingsButton setEnabled:YES];
+        [statusItemSettingsButton setHidden:NO];
+    }
+    else {
+        if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Droplet"]) {
+            [isDroppableCheckbox setIntValue:1];
+            [self isDroppableWasClicked:self];
+        }
         
-		// re-enable droppable
-		[isDroppableCheckbox setEnabled:YES];
-		[rootPrivilegesCheckbox setEnabled:YES];
+        // re-enable droppable
+        [isDroppableCheckbox setEnabled:YES];
+        [rootPrivilegesCheckbox setEnabled:YES];
         
-		// re-enable remain running
-		[remainRunningCheckbox setEnabled:YES];
+        // re-enable remain running
+        [remainRunningCheckbox setEnabled:YES];
         
-		[showInDockCheckbox setIntValue:0];
+        [showInDockCheckbox setIntValue:0];
         
-		// hide special status item settings
-		[statusItemSettingsButton setEnabled:NO];
-		[statusItemSettingsButton setHidden:YES];
-	}
+        // hide special status item settings
+        [statusItemSettingsButton setEnabled:NO];
+        [statusItemSettingsButton setHidden:YES];
+    }
 }
 
 /*****************************************
@@ -780,50 +780,50 @@
  *****************************************/
 
 - (IBAction)clearAllFields:(id)sender {
-	//clear all text field to start value
-	[appNameTextField setStringValue:@""];
-	[scriptPathTextField setStringValue:@""];
-	[versionTextField setStringValue:@"1.0"];
+    //clear all text field to start value
+    [appNameTextField setStringValue:@""];
+    [scriptPathTextField setStringValue:@""];
+    [versionTextField setStringValue:@"1.0"];
     
-	[bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] usingDefaults:YES]];
-	[authorTextField setStringValue:[DEFAULTS objectForKey:@"DefaultAuthor"]];
+    [bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] usingDefaults:YES]];
+    [authorTextField setStringValue:[DEFAULTS objectForKey:@"DefaultAuthor"]];
     
-	//uncheck all options
-	[isDroppableCheckbox setIntValue:0];
-	[self isDroppableWasClicked:isDroppableCheckbox];
-	[encryptCheckbox setIntValue:0];
-	[rootPrivilegesCheckbox setIntValue:0];
-	[remainRunningCheckbox setIntValue:1];
-	[showInDockCheckbox setIntValue:0];
+    //uncheck all options
+    [isDroppableCheckbox setIntValue:0];
+    [self isDroppableWasClicked:isDroppableCheckbox];
+    [encryptCheckbox setIntValue:0];
+    [rootPrivilegesCheckbox setIntValue:0];
+    [remainRunningCheckbox setIntValue:1];
+    [showInDockCheckbox setIntValue:0];
     
-	//clear file list
-	[fileList clearFileList:self];
+    //clear file list
+    [fileList clearFileList:self];
     
-	//clear suffix and types lists to default values
-	[typesControl setToDefaults:self];
+    //clear suffix and types lists to default values
+    [typesControl setToDefaults:self];
     
-	//set parameters to default
-	[paramsControl resetDefaults:self];
+    //set parameters to default
+    [paramsControl resetDefaults:self];
     
-	//set text ouput settings to default
-	[textSettingsControl resetDefaults:self];
+    //set text ouput settings to default
+    [textSettingsControl resetDefaults:self];
     
-	//set status item settings to default
-	[statusItemSettingsControl restoreDefaults:self];
+    //set status item settings to default
+    [statusItemSettingsControl restoreDefaults:self];
     
-	//set script type
-	[self setScriptType:@"Shell"];
+    //set script type
+    [self setScriptType:@"Shell"];
     
-	//set output type
-	[outputTypePopupMenu selectItemWithTitle:DEFAULT_OUTPUT_TYPE];
-	[self outputTypeWasChanged:outputTypePopupMenu];
+    //set output type
+    [outputTypePopupMenu selectItemWithTitle:DEFAULT_OUTPUT_TYPE];
+    [self outputTypeWasChanged:outputTypePopupMenu];
     
-	//update button status
-	[self controlTextDidChange:NULL];
+    //update button status
+    [self controlTextDidChange:NULL];
     
-	[appSizeTextField setStringValue:@""];
+    [appSizeTextField setStringValue:@""];
     
-	[iconControl setDefaultIcon];
+    [iconControl setDefaultIcon];
 }
 
 /*****************************************
@@ -831,14 +831,14 @@
  *****************************************/
 
 - (IBAction)showCommandLineString:(id)sender {
-	if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
-		[PlatypusUtility alert:@"Missing script" subText:[NSString stringWithFormat:@"No file exists at path '%@'", [scriptPathTextField stringValue]]];
-		return;
-	}
+    if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
+        [PlatypusUtility alert:@"Missing script" subText:[NSString stringWithFormat:@"No file exists at path '%@'", [scriptPathTextField stringValue]]];
+        return;
+    }
     
-	[window setTitle:[NSString stringWithFormat:@"%@ - Shell Command String", PROGRAM_NAME]];
-	[[[ShellCommandController alloc] init] showShellCommandForSpec:[self appSpecFromControls] window:window];
-	[window setTitle:PROGRAM_NAME];
+    [window setTitle:[NSString stringWithFormat:@"%@ - Shell Command String", PROGRAM_NAME]];
+    [[[ShellCommandController alloc] init] showShellCommandForSpec:[self appSpecFromControls] window:window];
+    [window setTitle:PROGRAM_NAME];
 }
 
 #pragma mark App Size estimation
@@ -848,7 +848,7 @@
  *****************************************/
 
 - (void)updateEstimatedAppSize {
-	[appSizeTextField setStringValue:[NSString stringWithFormat:@"Estimated final app size: ~%@", [self estimatedAppSize]]];
+    [appSizeTextField setStringValue:[NSString stringWithFormat:@"Estimated final app size: ~%@", [self estimatedAppSize]]];
 }
 
 /*****************************************
@@ -856,25 +856,25 @@
  *****************************************/
 
 - (NSString *)estimatedAppSize {
-	UInt64 estimatedAppSize = 0;
+    UInt64 estimatedAppSize = 0;
     
-	estimatedAppSize += 4096; // Info.plist
-	estimatedAppSize += 4096; // AppSettings.plist
-	estimatedAppSize += [iconControl iconSize];
-	estimatedAppSize += [typesControl docIconSize];
-	estimatedAppSize += [PlatypusUtility fileOrFolderSize:[scriptPathTextField stringValue]];
-	estimatedAppSize += [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:NULL]];     // executable
+    estimatedAppSize += 4096; // Info.plist
+    estimatedAppSize += 4096; // AppSettings.plist
+    estimatedAppSize += [iconControl iconSize];
+    estimatedAppSize += [typesControl docIconSize];
+    estimatedAppSize += [PlatypusUtility fileOrFolderSize:[scriptPathTextField stringValue]];
+    estimatedAppSize += [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:NULL]];     // executable
     
-	// nib size is much smaller if compiled with ibtool
-	UInt64 nibSize = [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:NULL]];     // bundled nib
-	if ([FILEMGR fileExistsAtPath:IBTOOL_PATH])
-		nibSize = 0.2 * nibSize; // compiled nib is approximtely 20% of the size of original
-	estimatedAppSize += nibSize;
+    // nib size is much smaller if compiled with ibtool
+    UInt64 nibSize = [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:NULL]];     // bundled nib
+    if ([FILEMGR fileExistsAtPath:IBTOOL_PATH])
+        nibSize = 0.2 * nibSize; // compiled nib is approximtely 20% of the size of original
+    estimatedAppSize += nibSize;
     
-	// bundled files altogether
-	estimatedAppSize += [fileList getTotalSize];
+    // bundled files altogether
+    estimatedAppSize += [fileList getTotalSize];
     
-	return [PlatypusUtility sizeAsHumanReadable:estimatedAppSize];
+    return [PlatypusUtility sizeAsHumanReadable:estimatedAppSize];
 }
 
 #pragma mark Drag and drop
@@ -884,52 +884,52 @@
  *****************************************/
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
-	NSPasteboard *pboard = [sender draggingPasteboard];
-	NSString *filename;
-	BOOL isDir = FALSE;
+    NSPasteboard *pboard = [sender draggingPasteboard];
+    NSString *filename;
+    BOOL isDir = FALSE;
     
-	if ([[pboard types] containsObject:NSFilenamesPboardType]) {
-		NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
-		filename = [files objectAtIndex:0]; //we only load the first dragged item
-		if ([FILEMGR fileExistsAtPath:filename isDirectory:&isDir] && !isDir) {
-			if ([filename hasSuffix:PROFILES_SUFFIX])
-				[profilesControl loadProfileFile:filename];
-			else
-				[self loadScript:filename];
+    if ([[pboard types] containsObject:NSFilenamesPboardType]) {
+        NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
+        filename = [files objectAtIndex:0]; //we only load the first dragged item
+        if ([FILEMGR fileExistsAtPath:filename isDirectory:&isDir] && !isDir) {
+            if ([filename hasSuffix:PROFILES_SUFFIX])
+                [profilesControl loadProfileFile:filename];
+            else
+                [self loadScript:filename];
             
-			return YES;
-		}
-	}
-	else if ([[pboard types] containsObject:NSStringPboardType]) {
-		// create a new script file with the dropped string, load it
-		NSString *draggedString = [pboard stringForType:NSStringPboardType];
-		NSString *newScriptPath = [self createNewScript:draggedString];
-		[self loadScript:newScriptPath];
-		//[self editScript: self];
-		return YES;
-	}
+            return YES;
+        }
+    }
+    else if ([[pboard types] containsObject:NSStringPboardType]) {
+        // create a new script file with the dropped string, load it
+        NSString *draggedString = [pboard stringForType:NSStringPboardType];
+        NSString *newScriptPath = [self createNewScript:draggedString];
+        [self loadScript:newScriptPath];
+        //[self editScript: self];
+        return YES;
+    }
     
-	return NO;
+    return NO;
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
-	// we accept dragged files
-	if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
-		NSString *file = [[[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType] objectAtIndex:0];
+    // we accept dragged files
+    if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
+        NSString *file = [[[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType] objectAtIndex:0];
         
-		if (![file hasSuffix:@".icns"])
-			return NSDragOperationLink;
-	}
-	else if ([[[sender draggingPasteboard] types] containsObject:NSStringPboardType])
-		return NSDragOperationCopy;
+        if (![file hasSuffix:@".icns"])
+            return NSDragOperationLink;
+    }
+    else if ([[[sender draggingPasteboard] types] containsObject:NSStringPboardType])
+        return NSDragOperationCopy;
     
-	return NSDragOperationNone;
+    return NSDragOperationNone;
 }
 
 // if we just created a file with a dragged string, we open it in default editor
 - (void)concludeDragOperation:(id <NSDraggingInfo> )sender {
-	if ([[[sender draggingPasteboard] types] containsObject:NSStringPboardType])
-		[self editScript:self];
+    if ([[[sender draggingPasteboard] types] containsObject:NSStringPboardType])
+        [self editScript:self];
 }
 
 #pragma mark Menu items
@@ -939,23 +939,23 @@
  *****************************************/
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-	BOOL isDir;
+    BOOL isDir;
     
-	//create app menu
-	if ([[anItem title] isEqualToString:@"Create App"] && ![createAppButton isEnabled])
-		return NO;
+    //create app menu
+    if ([[anItem title] isEqualToString:@"Create App"] && ![createAppButton isEnabled])
+        return NO;
     
-	BOOL validScriptFile = !(![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] || isDir);
+    BOOL validScriptFile = !(![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] || isDir);
     
-	//edit script
-	if (([anItem action] == @selector(editScript:) ||
-	     [anItem action] == @selector(revealScript:) ||
-	     [anItem action] == @selector(runScript:) ||
-	     [anItem action] == @selector(checkSyntaxOfScript:))
-	    && !validScriptFile)
-		return NO;
+    //edit script
+    if (([anItem action] == @selector(editScript:) ||
+         [anItem action] == @selector(revealScript:) ||
+         [anItem action] == @selector(runScript:) ||
+         [anItem action] == @selector(checkSyntaxOfScript:))
+        && !validScriptFile)
+        return NO;
     
-	return YES;
+    return YES;
 }
 
 #pragma mark Help/Documentation
@@ -965,7 +965,7 @@
  *****************************************/
 
 - (IBAction)showHelp:(id)sender {
-	[PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
+    [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
 }
 
 /*****************************************
@@ -973,7 +973,7 @@
  *****************************************/
 
 - (IBAction)showManPage:(id)sender {
-	[PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
+    [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
 }
 
 /*****************************************
@@ -981,7 +981,7 @@
  *****************************************/
 
 - (IBAction)showReadme:(id)sender {
-	[PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
+    [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
 }
 
 /*****************************************
@@ -989,7 +989,7 @@
  *****************************************/
 
 - (IBAction)openWebsite:(id)sender {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
 }
 
 /*****************************************
@@ -997,7 +997,7 @@
  *****************************************/
 
 - (IBAction)openLicense:(id)sender {
-	[PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
+    [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
 }
 
 /*****************************************
@@ -1005,7 +1005,7 @@
  *****************************************/
 
 - (IBAction)openDonations:(id)sender {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_DONATIONS]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_DONATIONS]];
 }
 
 @end

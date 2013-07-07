@@ -23,7 +23,7 @@
 
 @interface ShellCommandController : NSWindowController
 {
-	IBOutlet id textView;
+    IBOutlet id textView;
 }
 - (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow;
 - (IBAction)close:(id)sender;

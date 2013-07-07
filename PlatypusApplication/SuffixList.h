@@ -27,7 +27,7 @@
 
 @interface SuffixList : NSObject <NSTableViewDataSource>
 {
-	NSMutableArray *items;
+    NSMutableArray *items;
 }
 
 - (NSString *)getSuffixAtIndex:(int)index;
