@@ -28,8 +28,11 @@
 
 - (id) init
 {
+    if ((self = [super init]))
+    {
 		items = [[NSMutableArray alloc] init];
-		return self;
+    }
+    return self;
 }
 
 -(void)dealloc

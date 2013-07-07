@@ -27,8 +27,11 @@
 
 - (id) init
 {
-    interpreterArgs = [[NSMutableArray alloc] init];
-    scriptArgs = [[NSMutableArray alloc] init];
+    if ((self = [super init]))
+	{
+        interpreterArgs = [[NSMutableArray alloc] init];
+        scriptArgs = [[NSMutableArray alloc] init];
+    }
     return self;
 }
 
