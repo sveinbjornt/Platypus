@@ -51,7 +51,6 @@
 
 - (void)awakeFromNib
 {
-	[typesListDataBrowser registerForDraggedTypes: [NSArray arrayWithObject: NSFilenamesPboardType]];
 	[suffixListDataBrowser registerForDraggedTypes: [NSArray arrayWithObject: NSFilenamesPboardType]];
 }
 
@@ -64,11 +63,6 @@
 	[window setTitle: [NSString stringWithFormat: @"%@ - Drop settings", PROGRAM_NAME]];
 	//clear text fields from last time
 	[suffixTextField setStringValue: @""];
-	
-	// refresh these guys
-	[typesListDataBrowser reloadData];
-	[typesListDataBrowser setDelegate: self];
-	[typesListDataBrowser setTarget: self];
 
     [suffixListDataBrowser setDataSource: suffixList];
 	[suffixListDataBrowser reloadData];
@@ -107,20 +101,6 @@
 		[NSApp stopModal];
 		[NSApp endSheet:typesWindow];
 		[typesWindow orderOut:self];
-	}
-}
-
-#pragma mark -
-
-- (IBAction)acceptDroppedFilesClicked:(id)sender
-{
-	if ([acceptDroppedFilesCheckbox intValue])
-	{
-		
-	}
-	else
-	{
-		
 	}
 }
 
@@ -260,14 +240,27 @@
 
 - (BOOL)validateMenuItem:(NSMenuItem*)anItem
 {
-	if ([[anItem title] isEqualToString: @"Remove File Type"] && [typesListDataBrowser selectedRow] == -1)
-		return NO;
-	
 	if ([[anItem title] isEqualToString: @"Remove Suffix"] && [suffixListDataBrowser selectedRow] == -1)
 		return NO;
 	
 	return YES;
 }
+
+- (void)setAceptsFilesControlsEnabled: (BOOL)enabled
+{
+    [appFunctionRadioButtons setEnabled: enabled];
+    [addSuffixButton setEnabled: enabled];
+    [numSuffixesTextField setEnabled: enabled];
+    [removeSuffixButton setEnabled: enabled];
+    [suffixListDataBrowser setEnabled: enabled];
+    [suffixTextField setEnabled: enabled];
+    [promptForFileOnLaunchCheckbox setEnabled: enabled];
+}
+
+- (void)setAceptsTextControlsEnabled: (BOOL)enabled
+{
+}
+
 
 #pragma mark -
 
@@ -302,8 +295,19 @@
 }
 
 
+- (IBAction)acceptsFilesChanged:(id)sender
+{
+    [self setAceptsFilesControlsEnabled: [sender intValue]];
+}
+
+- (IBAction)acceptsTextChanged:(id)sender
+{
+    [self setAceptsTextControlsEnabled: [sender intValue]];
+}
+
 - (void)setAcceptsFiles: (BOOL)b
 {
+    [self setAceptsFilesControlsEnabled: b];
     [acceptDroppedFilesCheckbox setIntValue: b];
 }
 

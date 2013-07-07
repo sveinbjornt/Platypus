@@ -99,7 +99,6 @@
 		F4FE736D11F7925E005FC23A /* STFileList.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE735511F7925E005FC23A /* STFileList.m */; };
 		F4FE736F11F7925E005FC23A /* SuffixList.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE735711F7925E005FC23A /* SuffixList.m */; };
 		F4FE737111F7925E005FC23A /* TextSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE735911F7925E005FC23A /* TextSettingsController.m */; };
-		F4FE737311F7925E005FC23A /* TypesList.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE735B11F7925E005FC23A /* TypesList.m */; };
 		F4FE738411F7929E005FC23A /* UKFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE737C11F7929E005FC23A /* UKFileWatcher.m */; };
 		F4FE738611F7929E005FC23A /* UKFNSubscribeFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE737E11F7929E005FC23A /* UKFNSubscribeFileWatcher.m */; };
 		F4FE738811F7929E005FC23A /* UKKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE738011F7929E005FC23A /* UKKQueue.m */; };
@@ -138,7 +137,6 @@
 		F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		F445EA7F14FABE6500DCCDB3 /* generate_keys.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = generate_keys.rb; sourceTree = "<group>"; };
 		F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlatypusAppcast.xml; sourceTree = "<group>"; };
-		F445EA8114FABE6500DCCDB3 /* SampleAppcast.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SampleAppcast.xml; sourceTree = "<group>"; };
 		F445EA8214FABE6500DCCDB3 /* sign_update.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = sign_update.rb; sourceTree = "<group>"; };
 		F445EA8314FABE6500DCCDB3 /* update_appcast.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_appcast.sh; sourceTree = "<group>"; };
 		F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallPlatypus.sh; sourceTree = "<group>"; };
@@ -254,8 +252,6 @@
 		F4FE735711F7925E005FC23A /* SuffixList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuffixList.m; path = PlatypusApplication/SuffixList.m; sourceTree = "<group>"; };
 		F4FE735811F7925E005FC23A /* TextSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextSettingsController.h; path = PlatypusApplication/TextSettingsController.h; sourceTree = "<group>"; };
 		F4FE735911F7925E005FC23A /* TextSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextSettingsController.m; path = PlatypusApplication/TextSettingsController.m; sourceTree = "<group>"; };
-		F4FE735A11F7925E005FC23A /* TypesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypesList.h; path = PlatypusApplication/TypesList.h; sourceTree = "<group>"; };
-		F4FE735B11F7925E005FC23A /* TypesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypesList.m; path = PlatypusApplication/TypesList.m; sourceTree = "<group>"; };
 		F4FE737B11F7929E005FC23A /* UKFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKFileWatcher.h; sourceTree = "<group>"; };
 		F4FE737C11F7929E005FC23A /* UKFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKFileWatcher.m; sourceTree = "<group>"; };
 		F4FE737D11F7929E005FC23A /* UKFNSubscribeFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKFNSubscribeFileWatcher.h; sourceTree = "<group>"; };
@@ -335,7 +331,6 @@
 		29B97314FDCFA39411CA2CEA /* Platypus */ = {
 			isa = PBXGroup;
 			children = (
-				F445EA7C14FABE6500DCCDB3 /* Sparkle */,
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4A4338B0E04C962000523E7 /* Common.h */,
 				F48B7CB611F76B0C00351575 /* Platypus Application */,
@@ -343,6 +338,7 @@
 				F4E1F70711F75A40007EE2E3 /* Command Line Tool */,
 				080E96DDFE201D6D7F000001 /* Shared Classes */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				F445EA7C14FABE6500DCCDB3 /* Sparkle */,
 				F46628A614F441DE0053C601 /* Deprecated */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -427,7 +423,6 @@
 				F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */,
 				F445EA7F14FABE6500DCCDB3 /* generate_keys.rb */,
 				F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */,
-				F445EA8114FABE6500DCCDB3 /* SampleAppcast.xml */,
 				F445EA8214FABE6500DCCDB3 /* sign_update.rb */,
 				F445EA8314FABE6500DCCDB3 /* update_appcast.sh */,
 			);
@@ -521,8 +516,6 @@
 				F4FE735511F7925E005FC23A /* STFileList.m */,
 				F4FE735611F7925E005FC23A /* SuffixList.h */,
 				F4FE735711F7925E005FC23A /* SuffixList.m */,
-				F4FE735A11F7925E005FC23A /* TypesList.h */,
-				F4FE735B11F7925E005FC23A /* TypesList.m */,
 				F4FE735811F7925E005FC23A /* TextSettingsController.h */,
 				F4FE735911F7925E005FC23A /* TextSettingsController.m */,
 			);
@@ -928,7 +921,6 @@
 				F4FE736D11F7925E005FC23A /* STFileList.m in Sources */,
 				F4FE736F11F7925E005FC23A /* SuffixList.m in Sources */,
 				F4FE737111F7925E005FC23A /* TextSettingsController.m in Sources */,
-				F4FE737311F7925E005FC23A /* TypesList.m in Sources */,
 				F4FE738411F7929E005FC23A /* UKFileWatcher.m in Sources */,
 				F4FE738611F7929E005FC23A /* UKFNSubscribeFileWatcher.m in Sources */,
 				F4FE738811F7929E005FC23A /* UKKQueue.m in Sources */,
