@@ -51,7 +51,7 @@
 
 <div style="background-color: white; padding: 40px; border: 1px solid #gray; margin-left: auto; margin-right: auto; width: 720px; text-align: justify; box-shadow: 0px 0px 30px gray;">
 
-<img style="float: left; margin-right: 30px; width: 94px; height: 128px;" src="images/platypus.png">
+<img style="float: left; margin-right: 30px; width: 94px; height: 128px; margin-top: 0; margin-bottom: 0;" src="images/platypus.png">
 
 <h1 style="margin-top: 0px;">Platypus Documentation</h1>
 
@@ -61,7 +61,6 @@
 
 <br>
 <hr>
-<br>
 
 <h1>Index</h1>
 
@@ -142,7 +141,8 @@
             <li><a href="#89">How do Platypus-generated applications work?</a></li>
             <li><a href="#810">Does Platypus support processor-specific binaries only?</a></li>
             <li><a href="#811">Can I change the dimensions of the Platypus output window?</a></li>
-            <li><a href="#812">Can I prompt for user input in my Platypus-wrapped scripts?</a></li>
+            <li><a href="#812">Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?</a></li>
+            <li><a href="#813">Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?</a></li>
         </ul>
     </li>
 </ul>
@@ -162,9 +162,9 @@
 
 <img src="images/script2app.png" style="float: right;">
 
-<p>Platypus is a Mac OS X developer tool which allows you to create application wrappers around scripts.  This means that your scripts can be launched from the Mac OS X window environment -- e.g. the Finder or the Dock -- without requiring use of the command line interface.  Your scripts effectively become regular Mac OS X applications.</p>
+<p>Platypus is a Mac OS X developer tool that creates application wrappers around scripts.  This means that your interpreted scripts can be launched from the Mac OS X window environment -- e.g. the Finder or the Dock -- without requiring use of the command line interface.  They effectively become regular Mac OS X applications.</p>
 
-<p>Platypus was first conceived in 2003 and implemented using the Carbon APIs.  It has since gone through over a dozen major updates, and is now entirely written in Objective C for the Cocoa APIs.</p>
+<p>Platypus was first conceived in 2003 and implemented using the Carbon APIs.  It has since gone through over two dozen major updates, and is now entirely written in Objective C for the Cocoa APIs.</p>
 
 <p>Platypus is free, open-source software distributed under the terms and conditions of the Free Software Foundation's <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a>.  This means the source code is freely available and you are free to modify and distribute it as you see fit, as long as it remains open.  For more information on licensing, see <a href="#81">Can I use Platypus to create proprietary software?</a>.</p>
 
@@ -817,6 +817,16 @@ Contents/Resources/MainMenu.nib
 <h3 id="812">Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?</h3>
 
 <p>No.  Platypus applications do not present the user with an interactive shell, so no bidirectional communication can take place using standard command line methods.  The Text Window option can only show the user the text output of your script.  It cannot prompt for input, and will not be able to do so in the foreseeable future.  This means that any commands that require user input, such as <code>sudo</code>, will not work from within a Platypus-wrapper.</p>
+
+<br>
+<br>
+<br>
+
+<h3 id="813">Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?</h3>
+
+<p>Yes, but it'll be tedious for you. First, you need an <a href="https://developer.apple.com/">ADC account</a>.  Secondly, you need to download the <a href="http://sveinbjorn.org/files/software/platypus/">Platypus source code</a>.  After that, you need to build and sign your own version of the ScriptExec binary using XCode.  Your signed ScriptExec binary should then replace the binary in the Platypus-generated application bundle.</p>
+
+<p>Detailed instructions on how to do this are beyond the scope of this document.  Please don't contact me if you encounter problems this :).</p>
 
 <br>
 <br>
