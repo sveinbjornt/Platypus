@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# UninstallPlatypus.sh
+# Platypus
+#
+# Created by Sveinbjorn Thordarson 2012.
+
+
 cd "$1"
 
 sh UninstallCommandLineTool.sh
