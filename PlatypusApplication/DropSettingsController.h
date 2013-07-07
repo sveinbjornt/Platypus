@@ -42,11 +42,11 @@
     IBOutlet id docIconImageView;
     
 	IBOutlet id droppedFilesSettingsBox;
+    IBOutlet id selectDocumentIconButton;
 	
     NSString    *docIconPath;
 	SuffixList	*suffixList;
 }
-- (IBAction)acceptDroppedFilesClicked:(id)sender;
 - (IBAction)addSuffix:(id)sender;
 - (IBAction)clearSuffixList:(id)sender;
 - (IBAction)openTypesSheet:(id)sender;
