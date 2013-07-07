@@ -108,61 +108,61 @@
 -(void)setDefaults
 {
     // stamp the spec with the creator
-    [properties setObject: PROGRAM_STAMP                                                forKey: @"Creator"];
+    [properties setObject: PROGRAM_STAMP forKey: @"Creator"];
 
     //prior properties
-    [properties setObject: CMDLINE_EXEC_PATH                                            forKey: @"ExecutablePath"];
-    [properties setObject: CMDLINE_NIB_PATH                                                forKey: @"NibPath"];
-    [properties setObject: DEFAULT_DESTINATION_PATH                                     forKey: @"Destination"];
+    [properties setObject: CMDLINE_EXEC_PATH forKey: @"ExecutablePath"];
+    [properties setObject: CMDLINE_NIB_PATH forKey: @"NibPath"];
+    [properties setObject: DEFAULT_DESTINATION_PATH forKey: @"Destination"];
     
-    [properties setValue: [NSNumber numberWithBool: NO]                                    forKey: @"DestinationOverride"];
-    [properties setValue: [NSNumber numberWithBool: NO]                                    forKey: @"DevelopmentVersion"];
-    [properties setValue: [NSNumber numberWithBool: YES]                                forKey: @"OptimizeApplication"];
-    [properties setValue: [NSNumber numberWithBool: YES]                                forKey: @"UseXMLPlistFormat"];
+    [properties setValue: [NSNumber numberWithBool: NO] forKey: @"DestinationOverride"];
+    [properties setValue: [NSNumber numberWithBool: NO] forKey: @"DevelopmentVersion"];
+    [properties setValue: [NSNumber numberWithBool: YES] forKey: @"OptimizeApplication"];
+    [properties setValue: [NSNumber numberWithBool: YES] forKey: @"UseXMLPlistFormat"];
     
     // primary attributes    
-    [properties setObject: DEFAULT_APP_NAME                                                forKey: @"Name"];
-    [properties setObject: @""                                                            forKey: @"ScriptPath"];
-    [properties setObject: DEFAULT_OUTPUT_TYPE                                            forKey: @"Output"];
-    [properties setObject: CMDLINE_ICON_PATH                                            forKey: @"IconPath"];
+    [properties setObject: DEFAULT_APP_NAME forKey: @"Name"];
+    [properties setObject: @"" forKey: @"ScriptPath"];
+    [properties setObject: DEFAULT_OUTPUT_TYPE forKey: @"Output"];
+    [properties setObject: CMDLINE_ICON_PATH forKey: @"IconPath"];
     
     // secondary attributes
-    [properties setObject: DEFAULT_INTERPRETER                                            forKey: @"Interpreter"];
-    [properties setObject: [NSMutableArray array]                                        forKey: @"InterpreterArgs"];
-    [properties setObject: [NSMutableArray array]                                        forKey: @"ScriptArgs"];
-    [properties setObject: DEFAULT_VERSION                                                forKey: @"Version"];
-    [properties setObject: DEFAULT_BUNDLE_ID                                            forKey: @"Identifier"];
-    [properties setObject: NSFullUserName()                                                forKey: @"Author"];
+    [properties setObject: DEFAULT_INTERPRETER forKey: @"Interpreter"];
+    [properties setObject: [NSMutableArray array] forKey: @"InterpreterArgs"];
+    [properties setObject: [NSMutableArray array] forKey: @"ScriptArgs"];
+    [properties setObject: DEFAULT_VERSION forKey: @"Version"];
+    [properties setObject: DEFAULT_BUNDLE_ID forKey: @"Identifier"];
+    [properties setObject: NSFullUserName() forKey: @"Author"];
     
-    [properties setValue: [NSNumber numberWithBool: NO]                                    forKey: @"Droppable"];
-    [properties setValue: [NSNumber numberWithBool: NO]                                    forKey: @"Secure"];
-    [properties setValue: [NSNumber numberWithBool: NO]                                    forKey: @"Authentication"];
-    [properties setValue: [NSNumber numberWithBool: YES]                                forKey: @"RemainRunning"];
-    [properties setValue: [NSNumber numberWithBool: NO]                                    forKey: @"ShowInDock"];
+    [properties setValue: [NSNumber numberWithBool: NO] forKey: @"Droppable"];
+    [properties setValue: [NSNumber numberWithBool: NO] forKey: @"Secure"];
+    [properties setValue: [NSNumber numberWithBool: NO] forKey: @"Authentication"];
+    [properties setValue: [NSNumber numberWithBool: YES] forKey: @"RemainRunning"];
+    [properties setValue: [NSNumber numberWithBool: NO] forKey: @"ShowInDock"];
         
     // bundled files
-    [properties setObject: [NSMutableArray array]                                        forKey: @"BundledFiles"];
+    [properties setObject: [NSMutableArray array] forKey: @"BundledFiles"];
     
     // file/drag acceptance properties
-    [properties setObject: [NSMutableArray arrayWithObject: @"*"]                        forKey: @"Suffixes"];
-    [properties setObject: [NSMutableArray arrayWithObjects: @"****", @"fold", nil]     forKey: @"FileTypes"];
-    [properties setObject: DEFAULT_ROLE                                                    forKey: @"Role"];
-    [properties setObject: [NSNumber numberWithBool: NO]                                forKey: @"AcceptsText"];
-    [properties setObject: [NSNumber numberWithBool: YES]                               forKey: @"AcceptsFiles"];
-    [properties setObject: [NSNumber numberWithBool: NO]                                forKey: @"DeclareService"];
-    [properties setObject: @""                                                          forKey: @"DocIcon"];
+    [properties setObject: [NSMutableArray arrayWithObject: @"*"] forKey: @"Suffixes"];
+    [properties setObject: [NSMutableArray arrayWithObjects: @"****", @"fold", nil] forKey: @"FileTypes"];
+    [properties setObject: DEFAULT_ROLE forKey: @"Role"];
+    [properties setObject: [NSNumber numberWithBool: NO] forKey: @"AcceptsText"];
+    [properties setObject: [NSNumber numberWithBool: YES] forKey: @"AcceptsFiles"];
+    [properties setObject: [NSNumber numberWithBool: NO] forKey: @"DeclareService"];
+    [properties setObject: @"" forKey: @"DocIcon"];
     
     // text output settings
-    [properties setObject: [NSNumber numberWithInt: DEFAULT_OUTPUT_TXT_ENCODING]        forKey: @"TextEncoding"];
-    [properties setObject: DEFAULT_OUTPUT_FONT                                            forKey: @"TextFont"];
-    [properties setObject: [NSNumber numberWithFloat: DEFAULT_OUTPUT_FONTSIZE]            forKey: @"TextSize"];
-    [properties setObject: DEFAULT_OUTPUT_FG_COLOR                                        forKey: @"TextForeground"];
-    [properties setObject: DEFAULT_OUTPUT_BG_COLOR                                        forKey: @"TextBackground"];
+    [properties setObject: [NSNumber numberWithInt: DEFAULT_OUTPUT_TXT_ENCODING] forKey: @"TextEncoding"];
+    [properties setObject: DEFAULT_OUTPUT_FONT forKey: @"TextFont"];
+    [properties setObject: [NSNumber numberWithFloat: DEFAULT_OUTPUT_FONTSIZE] forKey: @"TextSize"];
+    [properties setObject: DEFAULT_OUTPUT_FG_COLOR forKey: @"TextForeground"];
+    [properties setObject: DEFAULT_OUTPUT_BG_COLOR forKey: @"TextBackground"];
 
     // status item settings
-    [properties setObject: DEFAULT_STATUSITEM_DTYPE                                     forKey: @"StatusItemDisplayType"];
-    [properties setObject: DEFAULT_APP_NAME                                                forKey: @"StatusItemTitle"];
-    [properties setObject: [NSData data]                                                forKey: @"StatusItemIcon"];
+    [properties setObject: DEFAULT_STATUSITEM_DTYPE forKey: @"StatusItemDisplayType"];
+    [properties setObject: DEFAULT_APP_NAME forKey: @"StatusItemTitle"];
+    [properties setObject: [NSData data] forKey: @"StatusItemIcon"];
 }
 
 /********************************************************
