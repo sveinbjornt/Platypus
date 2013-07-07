@@ -27,9 +27,9 @@
 
 @interface ProfilesController : NSObject
 {
-	IBOutlet id profilesMenu;
-	IBOutlet id platypusControl;
-	IBOutlet id examplesMenuItem;
+    IBOutlet id profilesMenu;
+    IBOutlet id platypusControl;
+    IBOutlet id examplesMenuItem;
 }
 - (IBAction)loadProfile:(id)sender;
 - (void)loadProfileFile:(NSString *)file;

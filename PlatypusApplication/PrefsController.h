@@ -26,17 +26,17 @@
 
 @interface PrefsController : NSWindowController
 {
-	IBOutlet id revealAppCheckbox;
-	IBOutlet id openAppCheckbox;
-	IBOutlet id createOnScriptChangeCheckbox;
-	IBOutlet id defaultEditorMenu;
-	IBOutlet id defaultTextEncodingPopupButton;
-	IBOutlet id defaultBundleIdentifierTextField;
-	IBOutlet id defaultAuthorTextField;
-	IBOutlet id CLTStatusTextField;
-	IBOutlet id installCLTButton;
-	IBOutlet id installCLTProgressIndicator;
-	IBOutlet id prefsWindow;
+    IBOutlet id revealAppCheckbox;
+    IBOutlet id openAppCheckbox;
+    IBOutlet id createOnScriptChangeCheckbox;
+    IBOutlet id defaultEditorMenu;
+    IBOutlet id defaultTextEncodingPopupButton;
+    IBOutlet id defaultBundleIdentifierTextField;
+    IBOutlet id defaultAuthorTextField;
+    IBOutlet id CLTStatusTextField;
+    IBOutlet id installCLTButton;
+    IBOutlet id installCLTProgressIndicator;
+    IBOutlet id prefsWindow;
 }
 - (IBAction)showWindow:(id)sender;
 - (IBAction)applyPrefs:(id)sender;

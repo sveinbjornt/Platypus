@@ -38,14 +38,14 @@
 
 @interface STPrivilegedTask : NSObject
 {
-	NSArray *arguments;
-	NSString *cwd;
-	NSString *launchPath;
-	BOOL isRunning;
-	pid_t pid;
-	int terminationStatus;
-	NSFileHandle *outputFileHandle;
-	NSTimer *checkStatusTimer;
+    NSArray *arguments;
+    NSString *cwd;
+    NSString *launchPath;
+    BOOL isRunning;
+    pid_t pid;
+    int terminationStatus;
+    NSFileHandle *outputFileHandle;
+    NSTimer *checkStatusTimer;
 }
 - (id)initWithLaunchPath:(NSString *)path;
 - (id)initWithLaunchPath:(NSString *)path arguments:(NSArray *)args;

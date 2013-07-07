@@ -22,28 +22,28 @@
 
 @interface ArgsController : NSObject <NSTableViewDataSource>
 {
-	IBOutlet id argsWindow;
-	IBOutlet id commandTextField;
-	IBOutlet id interpreterTextField;
+    IBOutlet id argsWindow;
+    IBOutlet id commandTextField;
+    IBOutlet id interpreterTextField;
     
-	IBOutlet id interpreterArgsAddButton;
-	IBOutlet id interpreterArgsRemoveButton;
-	IBOutlet id interpreterArgsClearButton;
-	IBOutlet id interpreterArgsTableView;
+    IBOutlet id interpreterArgsAddButton;
+    IBOutlet id interpreterArgsRemoveButton;
+    IBOutlet id interpreterArgsClearButton;
+    IBOutlet id interpreterArgsTableView;
     
-	IBOutlet id scriptArgsAddButton;
-	IBOutlet id scriptArgsRemoveButton;
-	IBOutlet id scriptArgsClearButton;
-	IBOutlet id scriptArgsTableView;
+    IBOutlet id scriptArgsAddButton;
+    IBOutlet id scriptArgsRemoveButton;
+    IBOutlet id scriptArgsClearButton;
+    IBOutlet id scriptArgsTableView;
     
-	IBOutlet id isDroppableCheckbox;
-	IBOutlet id window;
+    IBOutlet id isDroppableCheckbox;
+    IBOutlet id window;
     
-	IBOutlet id scriptArgsContextualMenu;
-	IBOutlet id interpreterArgsContextualMenu;
+    IBOutlet id scriptArgsContextualMenu;
+    IBOutlet id interpreterArgsContextualMenu;
     
-	NSMutableArray *interpreterArgs;
-	NSMutableArray *scriptArgs;
+    NSMutableArray *interpreterArgs;
+    NSMutableArray *scriptArgs;
 }
 // accessors
 

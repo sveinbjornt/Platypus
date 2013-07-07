@@ -22,19 +22,19 @@
 
 @interface TextSettingsController : NSObject
 {
-	IBOutlet id window;
-	IBOutlet id textSettingsWindow;
+    IBOutlet id window;
+    IBOutlet id textSettingsWindow;
     
-	IBOutlet id backgroundColorWell;
-	IBOutlet id foregroundColorWell;
+    IBOutlet id backgroundColorWell;
+    IBOutlet id foregroundColorWell;
     
-	IBOutlet id fontFaceTextField;
-	IBOutlet id textEncodingPopupButton;
+    IBOutlet id fontFaceTextField;
+    IBOutlet id textEncodingPopupButton;
     
-	IBOutlet id textPreviewTextView;
-	IBOutlet id textSettingsButton;
+    IBOutlet id textPreviewTextView;
+    IBOutlet id textSettingsButton;
     
-	NSFont *currentFont;
+    NSFont *currentFont;
 }
 - (IBAction)apply:(id)sender;
 - (IBAction)resetDefaults:(id)sender;

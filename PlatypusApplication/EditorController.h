@@ -25,9 +25,9 @@
 
 @interface EditorController : NSWindowController
 {
-	IBOutlet id scriptPathTextField;
-	IBOutlet id textView;
-	NSWindow *mainWindow;
+    IBOutlet id scriptPathTextField;
+    IBOutlet id textView;
+    NSWindow *mainWindow;
 }
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)window;
 - (IBAction)save:(id)sender;

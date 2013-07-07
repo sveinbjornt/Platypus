@@ -27,14 +27,14 @@
  *****************************************/
 
 - (IBAction)loadProfile:(id)sender {
-	NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-	[oPanel setPrompt:@"Open"];
-	[oPanel setTitle:[NSString stringWithFormat:@"Select %@ Profile", PROGRAM_NAME]];
-	[oPanel setAllowsMultipleSelection:NO];
-	[oPanel setCanChooseDirectories:NO];
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+    [oPanel setPrompt:@"Open"];
+    [oPanel setTitle:[NSString stringWithFormat:@"Select %@ Profile", PROGRAM_NAME]];
+    [oPanel setAllowsMultipleSelection:NO];
+    [oPanel setCanChooseDirectories:NO];
     
-	if (NSOKButton == [oPanel runModalForDirectory:[PROFILES_FOLDER stringByExpandingTildeInPath] file:NULL types:[NSArray arrayWithObjects:@"platypus", NULL]])
-		[self loadProfileFile:[oPanel filename]];
+    if (NSOKButton == [oPanel runModalForDirectory:[PROFILES_FOLDER stringByExpandingTildeInPath] file:NULL types:[NSArray arrayWithObjects:@"platypus", NULL]])
+        [self loadProfileFile:[oPanel filename]];
 }
 
 /*****************************************
@@ -42,39 +42,39 @@
  *****************************************/
 
 - (void)loadProfileFile:(NSString *)file {
-	PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithProfile:file];
+    PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithProfile:file];
     
-	// make sure we got a spec from the file
-	if (spec == NULL) {
-		[PlatypusUtility alert:@"Error" subText:@"Unable to create Platypus spec from profile"];
-		return;
-	}
+    // make sure we got a spec from the file
+    if (spec == NULL) {
+        [PlatypusUtility alert:@"Error" subText:@"Unable to create Platypus spec from profile"];
+        return;
+    }
     
-	// check if it's an example
-	if ([spec propertyForKey:@"Example"] != nil) {
-		// make sure of the example profile's integrity
-		NSString *scriptStr = [spec propertyForKey:@"Script"];
-		NSString *scriptName = [spec propertyForKey:@"ScriptName"];
-		if (scriptStr == nil || scriptName == nil) {
-			[PlatypusUtility alert:@"Error loading example" subText:@"Nil script value(s) in this example's profile dictionary."];
-			[spec release];
-			return;
-		}
-		// write script contained in the example profile dictionary to file
-		NSString *scriptPath = [[NSString stringWithFormat:@"%@%@", TEMP_FOLDER, scriptName] stringByExpandingTildeInPath];
-		[scriptStr writeToFile:scriptPath atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:nil];
+    // check if it's an example
+    if ([spec propertyForKey:@"Example"] != nil) {
+        // make sure of the example profile's integrity
+        NSString *scriptStr = [spec propertyForKey:@"Script"];
+        NSString *scriptName = [spec propertyForKey:@"ScriptName"];
+        if (scriptStr == nil || scriptName == nil) {
+            [PlatypusUtility alert:@"Error loading example" subText:@"Nil script value(s) in this example's profile dictionary."];
+            [spec release];
+            return;
+        }
+        // write script contained in the example profile dictionary to file
+        NSString *scriptPath = [[NSString stringWithFormat:@"%@%@", TEMP_FOLDER, scriptName] stringByExpandingTildeInPath];
+        [scriptStr writeToFile:scriptPath atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:nil];
         
-		// set this path as the source script path
-		[spec setProperty:scriptPath forKey:@"ScriptPath"];
-	}
+        // set this path as the source script path
+        [spec setProperty:scriptPath forKey:@"ScriptPath"];
+    }
     
-	// warn if created with a different version of Platypus
+    // warn if created with a different version of Platypus
     //	if (![[spec propertyForKey: @"Creator"] isEqualToString: PROGRAM_STAMP])
     //		[PlatypusUtility alert:@"Version clash" subText: @"The profile you selected was created with a different version of Platypus and may not load correctly."];
     
-	[platypusControl controlsFromAppSpec:spec];
-	[platypusControl controlTextDidChange:NULL];
-	[spec release];
+    [platypusControl controlsFromAppSpec:spec];
+    [platypusControl controlTextDidChange:NULL];
+    [spec release];
 }
 
 /*****************************************
@@ -83,18 +83,18 @@
 
 - (IBAction)saveProfile:(id)sender;
 {
-	if (![platypusControl verifyFieldContents])
-		return;
+    if (![platypusControl verifyFieldContents])
+        return;
     
-	// get profile from platypus controls
-	NSDictionary *profileDict = [[platypusControl appSpecFromControls] properties];
+    // get profile from platypus controls
+    NSDictionary *profileDict = [[platypusControl appSpecFromControls] properties];
     
-	// create path for profile file and write to it
-	NSString *profileDestPath = [NSString stringWithFormat:@"%@/%@.%@",
-	                             [PROFILES_FOLDER stringByExpandingTildeInPath],
-	                             [profileDict objectForKey:@"Name"],
-	                             PROFILES_SUFFIX];
-	[self writeProfile:profileDict toFile:profileDestPath];
+    // create path for profile file and write to it
+    NSString *profileDestPath = [NSString stringWithFormat:@"%@/%@.%@",
+                                 [PROFILES_FOLDER stringByExpandingTildeInPath],
+                                 [profileDict objectForKey:@"Name"],
+                                 PROFILES_SUFFIX];
+    [self writeProfile:profileDict toFile:profileDestPath];
 }
 
 /*****************************************
@@ -103,25 +103,25 @@
 
 - (IBAction)saveProfileToLocation:(id)sender;
 {
-	if (![platypusControl verifyFieldContents])
-		return;
+    if (![platypusControl verifyFieldContents])
+        return;
     
-	// get profile from platypus controls
-	NSDictionary *profileDict = [[platypusControl appSpecFromControls] properties];
-	NSString *defaultName = [NSString stringWithFormat:@"%@.%@", [profileDict objectForKey:@"Name"], PROFILES_SUFFIX];
+    // get profile from platypus controls
+    NSDictionary *profileDict = [[platypusControl appSpecFromControls] properties];
+    NSString *defaultName = [NSString stringWithFormat:@"%@.%@", [profileDict objectForKey:@"Name"], PROFILES_SUFFIX];
     
-	NSSavePanel *sPanel = [NSSavePanel savePanel];
-	[sPanel setTitle:[NSString stringWithFormat:@"Save %@ Profile", PROGRAM_NAME]];
-	[sPanel setPrompt:@"Save"];
+    NSSavePanel *sPanel = [NSSavePanel savePanel];
+    [sPanel setTitle:[NSString stringWithFormat:@"Save %@ Profile", PROGRAM_NAME]];
+    [sPanel setPrompt:@"Save"];
     
-	if ([sPanel runModalForDirectory:[PROFILES_FOLDER stringByExpandingTildeInPath] file:defaultName] == NSFileHandlingPanelOKButton) {
-		NSString *fileName = [sPanel filename];
+    if ([sPanel runModalForDirectory:[PROFILES_FOLDER stringByExpandingTildeInPath] file:defaultName] == NSFileHandlingPanelOKButton) {
+        NSString *fileName = [sPanel filename];
         
-		if (![fileName hasSuffix:PROFILES_SUFFIX])
-			fileName = [NSString stringWithFormat:@"%@.%@", fileName, PROFILES_SUFFIX];
+        if (![fileName hasSuffix:PROFILES_SUFFIX])
+            fileName = [NSString stringWithFormat:@"%@.%@", fileName, PROFILES_SUFFIX];
         
-		[self writeProfile:profileDict toFile:fileName];
-	}
+        [self writeProfile:profileDict toFile:fileName];
+    }
 }
 
 
@@ -131,13 +131,13 @@
 
 - (void)writeProfile:(NSDictionary *)dict toFile:(NSString *)profileDestPath;
 {
-	// if there's a file already, make sure we can overwrite
-	if ([FILEMGR fileExistsAtPath:profileDestPath] && ![FILEMGR isDeletableFileAtPath:profileDestPath]) {
-		[PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Cannot overwrite file '%@'.", profileDestPath]];
-		return;
-	}
-	[dict writeToFile:profileDestPath atomically:YES];
-	[self constructMenus:self];
+    // if there's a file already, make sure we can overwrite
+    if ([FILEMGR fileExistsAtPath:profileDestPath] && ![FILEMGR isDeletableFileAtPath:profileDestPath]) {
+        [PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Cannot overwrite file '%@'.", profileDestPath]];
+        return;
+    }
+    [dict writeToFile:profileDestPath atomically:YES];
+    [self constructMenus:self];
 }
 
 
@@ -146,18 +146,18 @@
  *****************************************/
 
 - (void)profileMenuItemSelected:(id)sender {
-	BOOL isExample = ([sender tag]  == EXAMPLES_TAG);
-	NSString *folder = PROFILES_FOLDER;
-	if (isExample)
-		folder = [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
+    BOOL isExample = ([sender tag]  == EXAMPLES_TAG);
+    NSString *folder = PROFILES_FOLDER;
+    if (isExample)
+        folder = [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
     
-	NSString *profilePath = [NSString stringWithFormat:@"%@/%@", [folder stringByExpandingTildeInPath], [sender title]];
+    NSString *profilePath = [NSString stringWithFormat:@"%@/%@", [folder stringByExpandingTildeInPath], [sender title]];
     
-	// if command key is down, we reveal in finder
-	if (GetCurrentKeyModifiers() & cmdKey)
-		[[NSWorkspace sharedWorkspace] selectFile:profilePath inFileViewerRootedAtPath:nil];
-	else
-		[self loadProfileFile:profilePath];
+    // if command key is down, we reveal in finder
+    if (GetCurrentKeyModifiers() & cmdKey)
+        [[NSWorkspace sharedWorkspace] selectFile:profilePath inFileViewerRootedAtPath:nil];
+    else
+        [self loadProfileFile:profilePath];
 }
 
 /*****************************************
@@ -165,26 +165,26 @@
  *****************************************/
 
 - (IBAction)clearAllProfiles:(id)sender {
-	if ([PlatypusUtility proceedWarning:@"Delete all profiles?" subText:@"This will permanently delete all profiles in your Profiles folder." withAction:@"Delete"] == 0)
-		return;
+    if ([PlatypusUtility proceedWarning:@"Delete all profiles?" subText:@"This will permanently delete all profiles in your Profiles folder." withAction:@"Delete"] == 0)
+        return;
     
-	//delete all .platypus files in PROFILES_FOLDER
+    //delete all .platypus files in PROFILES_FOLDER
     
-	NSFileManager *manager = FILEMGR;
-	NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
-	NSString *filename;
+    NSFileManager *manager = FILEMGR;
+    NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
+    NSString *filename;
     
-	while ((filename = [dirEnumerator nextObject]) != NULL) {
-		if ([filename hasSuffix:PROFILES_SUFFIX]) {
-			NSString *path = [NSString stringWithFormat:@"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], filename];
-			if (![manager isDeletableFileAtPath:path])
-				[PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Cannot delete file %@.", path]];
-			[manager removeItemAtPath:path error:nil];
-		}
-	}
+    while ((filename = [dirEnumerator nextObject]) != NULL) {
+        if ([filename hasSuffix:PROFILES_SUFFIX]) {
+            NSString *path = [NSString stringWithFormat:@"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], filename];
+            if (![manager isDeletableFileAtPath:path])
+                [PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Cannot delete file %@.", path]];
+            [manager removeItemAtPath:path error:nil];
+        }
+    }
     
-	//regenerate the menu
-	[self constructMenus:self];
+    //regenerate the menu
+    [self constructMenus:self];
 }
 
 /*****************************************
@@ -192,51 +192,51 @@
  *****************************************/
 
 - (IBAction)constructMenus:(id)sender {
-	int i;
-	NSArray *profiles = [self getProfilesList];
-	NSArray *examples = [self getExamplesList];
+    int i;
+    NSArray *profiles = [self getProfilesList];
+    NSArray *examples = [self getExamplesList];
     
-	// Create icon
-	NSImage *icon = [NSImage imageNamed:@"PlatypusProfile"];
-	[icon setSize:NSMakeSize(16, 16)];
+    // Create icon
+    NSImage *icon = [NSImage imageNamed:@"PlatypusProfile"];
+    [icon setSize:NSMakeSize(16, 16)];
     
-	// Create Examples menu
-	NSMenu *em = [[[NSMenu alloc] init] autorelease];
-	for (i = 0; i < [examples count]; i++) {
-		NSMenuItem *menuItem = [em addItemWithTitle:[examples objectAtIndex:i] action:@selector(profileMenuItemSelected:) keyEquivalent:@""];
-		[menuItem setTarget:self];
-		[menuItem setEnabled:YES];
-		[menuItem setImage:icon];
-		[menuItem setTag:EXAMPLES_TAG];
-	}
+    // Create Examples menu
+    NSMenu *em = [[[NSMenu alloc] init] autorelease];
+    for (i = 0; i < [examples count]; i++) {
+        NSMenuItem *menuItem = [em addItemWithTitle:[examples objectAtIndex:i] action:@selector(profileMenuItemSelected:) keyEquivalent:@""];
+        [menuItem setTarget:self];
+        [menuItem setEnabled:YES];
+        [menuItem setImage:icon];
+        [menuItem setTag:EXAMPLES_TAG];
+    }
     
-	[(NSMenuItem *)examplesMenuItem setSubmenu : em];
+    [(NSMenuItem *)examplesMenuItem setSubmenu : em];
     
-	//clear out all menu items
-	while ([profilesMenu numberOfItems] > 6)
-		[profilesMenu removeItemAtIndex:6];
+    //clear out all menu items
+    while ([profilesMenu numberOfItems] > 6)
+        [profilesMenu removeItemAtIndex:6];
     
-	if ([profiles count] > 0) {
-		//populate with contents of array
-		for (i = 0; i < [profiles count]; i++) {
-			NSMenuItem *menuItem = [profilesMenu addItemWithTitle:[profiles objectAtIndex:i] action:@selector(profileMenuItemSelected:) keyEquivalent:@""];
-			[menuItem setTarget:self];
-			[menuItem setEnabled:YES];
-			[menuItem setImage:icon];
-		}
+    if ([profiles count] > 0) {
+        //populate with contents of array
+        for (i = 0; i < [profiles count]; i++) {
+            NSMenuItem *menuItem = [profilesMenu addItemWithTitle:[profiles objectAtIndex:i] action:@selector(profileMenuItemSelected:) keyEquivalent:@""];
+            [menuItem setTarget:self];
+            [menuItem setEnabled:YES];
+            [menuItem setImage:icon];
+        }
         
-		[profilesMenu addItem:[NSMenuItem separatorItem]];
+        [profilesMenu addItem:[NSMenuItem separatorItem]];
         
-		NSMenuItem *menuItem = [profilesMenu addItemWithTitle:@"Open Profiles Folder" action:@selector(openProfilesFolder) keyEquivalent:@""];
-		[menuItem setTarget:self];
-		[menuItem setEnabled:YES];
-	}
-	else
-		[profilesMenu addItemWithTitle:@"Empty" action:nil keyEquivalent:@""];
+        NSMenuItem *menuItem = [profilesMenu addItemWithTitle:@"Open Profiles Folder" action:@selector(openProfilesFolder) keyEquivalent:@""];
+        [menuItem setTarget:self];
+        [menuItem setEnabled:YES];
+    }
+    else
+        [profilesMenu addItemWithTitle:@"Empty" action:nil keyEquivalent:@""];
 }
 
 - (void)openProfilesFolder {
-	[[NSWorkspace sharedWorkspace] selectFile:NULL inFileViewerRootedAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
+    [[NSWorkspace sharedWorkspace] selectFile:NULL inFileViewerRootedAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
 }
 
 /*****************************************
@@ -244,27 +244,27 @@
  *****************************************/
 
 - (NSArray *)getProfilesList {
-	NSMutableArray *profilesArray = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
-	NSFileManager *manager = FILEMGR;
-	NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
-	NSString *filename;
-	while ((filename = [dirEnumerator nextObject]) != NULL) {
-		if ([filename hasSuffix:PROFILES_SUFFIX])
-			[profilesArray addObject:filename];
-	}
-	return profilesArray;
+    NSMutableArray *profilesArray = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
+    NSFileManager *manager = FILEMGR;
+    NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
+    NSString *filename;
+    while ((filename = [dirEnumerator nextObject]) != NULL) {
+        if ([filename hasSuffix:PROFILES_SUFFIX])
+            [profilesArray addObject:filename];
+    }
+    return profilesArray;
 }
 
 - (NSArray *)getExamplesList {
-	NSMutableArray *examplesArray = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
-	NSFileManager *manager = FILEMGR;
-	NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]]];
-	NSString *filename;
-	while ((filename = [dirEnumerator nextObject]) != NULL) {
-		if ([filename hasSuffix:PROFILES_SUFFIX])
-			[examplesArray addObject:filename];
-	}
-	return examplesArray;
+    NSMutableArray *examplesArray = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
+    NSFileManager *manager = FILEMGR;
+    NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]]];
+    NSString *filename;
+    while ((filename = [dirEnumerator nextObject]) != NULL) {
+        if ([filename hasSuffix:PROFILES_SUFFIX])
+            [examplesArray addObject:filename];
+    }
+    return examplesArray;
 }
 
 /*****************************************
@@ -272,16 +272,16 @@
  *****************************************/
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-	if (([[anItem title] isEqualToString:@"Clear All Profiles"] && [[self getProfilesList] count] < 1) ||
-	    [[anItem title] isEqualToString:@"Empty"])
-		return NO;
+    if (([[anItem title] isEqualToString:@"Clear All Profiles"] && [[self getProfilesList] count] < 1) ||
+        [[anItem title] isEqualToString:@"Empty"])
+        return NO;
     
-	return YES;
+    return YES;
 }
 
 - (void)menuWillOpen:(NSMenu *)menu {
-	// we do this lazily
-	[self constructMenus:self];
+    // we do this lazily
+    [self constructMenus:self];
 }
 
 @end

@@ -20,7 +20,6 @@
 
 #import "PrefsController.h"
 
-
 @implementation PrefsController
 
 /*****************************************
@@ -28,22 +27,22 @@
  *****************************************/
 
 - (IBAction)showWindow:(id)sender {
-	[super loadWindow];
+    [super loadWindow];
     
-	// set controls according to NSUserDefaults
-	[defaultEditorMenu setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
-	[defaultTextEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]];
-	[defaultBundleIdentifierTextField setStringValue:[DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"]];
-	[defaultAuthorTextField setStringValue:[DEFAULTS stringForKey:@"DefaultAuthor"]];
-	[revealAppCheckbox setState:[DEFAULTS boolForKey:@"RevealApplicationWhenCreated"]];
-	[openAppCheckbox setState:[DEFAULTS boolForKey:@"OpenApplicationWhenCreated"]];
-	[createOnScriptChangeCheckbox setState:[DEFAULTS boolForKey:@"CreateOnScriptChange"]];
+    // set controls according to NSUserDefaults
+    [defaultEditorMenu setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
+    [defaultTextEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]];
+    [defaultBundleIdentifierTextField setStringValue:[DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"]];
+    [defaultAuthorTextField setStringValue:[DEFAULTS stringForKey:@"DefaultAuthor"]];
+    [revealAppCheckbox setState:[DEFAULTS boolForKey:@"RevealApplicationWhenCreated"]];
+    [openAppCheckbox setState:[DEFAULTS boolForKey:@"OpenApplicationWhenCreated"]];
+    [createOnScriptChangeCheckbox setState:[DEFAULTS boolForKey:@"CreateOnScriptChange"]];
     
-	//set icons for editor menu
-	[self setIconsForEditorMenu];
-	[self updateCLTStatus:CLTStatusTextField];
+    //set icons for editor menu
+    [self setIconsForEditorMenu];
+    [self updateCLTStatus:CLTStatusTextField];
     
-	[super showWindow:sender];
+    [super showWindow:sender];
 }
 
 /*****************************************
@@ -51,24 +50,24 @@
  *****************************************/
 
 - (void)setIconsForEditorMenu {
-	int i;
-	NSSize smallIconSize = { 16, 16 };
+    int i;
+    NSSize smallIconSize = { 16, 16 };
     
-	for (i = 0; i < [defaultEditorMenu numberOfItems]; i++) {
-		if ([[[defaultEditorMenu itemAtIndex:i] title] isEqualToString:DEFAULT_EDITOR] == YES) {
-			NSImage *icon = [NSImage imageNamed:@"PlatypusAppIcon"];
-			[icon setSize:smallIconSize];
-			[[defaultEditorMenu itemAtIndex:i] setImage:icon];
-		}
-		else if ([[[defaultEditorMenu itemAtIndex:i] title] isEqualToString:@"Select..."] == NO && [[[defaultEditorMenu itemAtIndex:i] title] length] > 0) {
-			NSImage *icon = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
-			NSString *appPath = [[NSWorkspace sharedWorkspace] fullPathForApplication:[[defaultEditorMenu itemAtIndex:i] title]];
-			if (appPath != NULL) // app found
-				icon = [[NSWorkspace sharedWorkspace] iconForFile:appPath];
-			[icon setSize:smallIconSize];
-			[[defaultEditorMenu itemAtIndex:i] setImage:icon];
-		}
-	}
+    for (i = 0; i < [defaultEditorMenu numberOfItems]; i++) {
+        if ([[[defaultEditorMenu itemAtIndex:i] title] isEqualToString:DEFAULT_EDITOR] == YES) {
+            NSImage *icon = [NSImage imageNamed:@"PlatypusAppIcon"];
+            [icon setSize:smallIconSize];
+            [[defaultEditorMenu itemAtIndex:i] setImage:icon];
+        }
+        else if ([[[defaultEditorMenu itemAtIndex:i] title] isEqualToString:@"Select..."] == NO && [[[defaultEditorMenu itemAtIndex:i] title] length] > 0) {
+            NSImage *icon = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
+            NSString *appPath = [[NSWorkspace sharedWorkspace] fullPathForApplication:[[defaultEditorMenu itemAtIndex:i] title]];
+            if (appPath != NULL) // app found
+                icon = [[NSWorkspace sharedWorkspace] iconForFile:appPath];
+            [icon setSize:smallIconSize];
+            [[defaultEditorMenu itemAtIndex:i] setImage:icon];
+        }
+    }
 }
 
 /*****************************************
@@ -76,35 +75,35 @@
  *****************************************/
 
 - (IBAction)applyPrefs:(id)sender {
-	// editor
-	[DEFAULTS setObject:[defaultEditorMenu titleOfSelectedItem]  forKey:@"DefaultEditor"];
+    // editor
+    [DEFAULTS setObject:[defaultEditorMenu titleOfSelectedItem]  forKey:@"DefaultEditor"];
     
-	// text encoding
-	[DEFAULTS setObject:[NSNumber numberWithInt:[[defaultTextEncodingPopupButton selectedItem] tag]]  forKey:@"DefaultTextEncoding"];
+    // text encoding
+    [DEFAULTS setObject:[NSNumber numberWithInt:[[defaultTextEncodingPopupButton selectedItem] tag]]  forKey:@"DefaultTextEncoding"];
     
-	//bundle identifier
-	//make sure bundle identifier ends with a '.'
-	if ([[defaultBundleIdentifierTextField stringValue] characterAtIndex:[[defaultBundleIdentifierTextField stringValue]length] - 1] != '.')
-		[DEFAULTS setObject:[[defaultBundleIdentifierTextField stringValue] stringByAppendingString:@"."]  forKey:@"DefaultBundleIdentifierPrefix"];
-	else
-		[DEFAULTS setObject:[defaultBundleIdentifierTextField stringValue]  forKey:@"DefaultBundleIdentifierPrefix"];
-	//author
-	[DEFAULTS setObject:[defaultAuthorTextField stringValue]  forKey:@"DefaultAuthor"];
+    //bundle identifier
+    //make sure bundle identifier ends with a '.'
+    if ([[defaultBundleIdentifierTextField stringValue] characterAtIndex:[[defaultBundleIdentifierTextField stringValue]length] - 1] != '.')
+        [DEFAULTS setObject:[[defaultBundleIdentifierTextField stringValue] stringByAppendingString:@"."]  forKey:@"DefaultBundleIdentifierPrefix"];
+    else
+        [DEFAULTS setObject:[defaultBundleIdentifierTextField stringValue]  forKey:@"DefaultBundleIdentifierPrefix"];
+    //author
+    [DEFAULTS setObject:[defaultAuthorTextField stringValue]  forKey:@"DefaultAuthor"];
     
-	// create on script change
-	[DEFAULTS setBool:[createOnScriptChangeCheckbox state]  forKey:@"CreateOnScriptChange"];
+    // create on script change
+    [DEFAULTS setBool:[createOnScriptChangeCheckbox state]  forKey:@"CreateOnScriptChange"];
     
-	// reveal
-	[DEFAULTS setBool:[revealAppCheckbox state]  forKey:@"RevealApplicationWhenCreated"];
+    // reveal
+    [DEFAULTS setBool:[revealAppCheckbox state]  forKey:@"RevealApplicationWhenCreated"];
     
-	// open
-	[DEFAULTS setBool:[openAppCheckbox state]  forKey:@"OpenApplicationWhenCreated"];
-	[DEFAULTS synchronize];
-	[[self window] close];
+    // open
+    [DEFAULTS setBool:[openAppCheckbox state]  forKey:@"OpenApplicationWhenCreated"];
+    [DEFAULTS synchronize];
+    [[self window] close];
 }
 
 - (IBAction)cancel:(id)sender {
-	[[self window] close];
+    [[self window] close];
 }
 
 /*****************************************
@@ -112,18 +111,18 @@
  *****************************************/
 
 - (IBAction)restoreDefaultPrefs:(id)sender {
-	[revealAppCheckbox setState:NO];
-	[openAppCheckbox setState:NO];
-	[createOnScriptChangeCheckbox setState:NO];
-	[defaultEditorMenu setTitle:DEFAULT_EDITOR];
-	[defaultTextEncodingPopupButton selectItemWithTag:DEFAULT_OUTPUT_TXT_ENCODING];
-	[defaultAuthorTextField setStringValue:NSFullUserName()];
+    [revealAppCheckbox setState:NO];
+    [openAppCheckbox setState:NO];
+    [createOnScriptChangeCheckbox setState:NO];
+    [defaultEditorMenu setTitle:DEFAULT_EDITOR];
+    [defaultTextEncodingPopupButton selectItemWithTag:DEFAULT_OUTPUT_TXT_ENCODING];
+    [defaultAuthorTextField setStringValue:NSFullUserName()];
     
-	// create default bundle identifier prefix string
-	NSString *bundleId = [NSString stringWithFormat:@"org.%@.", NSUserName()];
-	bundleId = [[bundleId componentsSeparatedByString:@" "] componentsJoinedByString:@""]; //remove all spaces
-	[defaultBundleIdentifierTextField setStringValue:bundleId];
-	[DEFAULTS synchronize];
+    // create default bundle identifier prefix string
+    NSString *bundleId = [NSString stringWithFormat:@"org.%@.", NSUserName()];
+    bundleId = [[bundleId componentsSeparatedByString:@" "] componentsJoinedByString:@""]; //remove all spaces
+    [defaultBundleIdentifierTextField setStringValue:bundleId];
+    [DEFAULTS synchronize];
 }
 
 /*****************************************
@@ -131,25 +130,25 @@
  *****************************************/
 
 - (IBAction)selectScriptEditor:(id)sender {
-	int result;
-	NSString *editorName;
+    int result;
+    NSString *editorName;
     
-	//create open panel
-	NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-	[oPanel setTitle:@"Select Editor"];
-	[oPanel setAllowsMultipleSelection:NO];
-	[oPanel setCanChooseDirectories:NO];
+    //create open panel
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+    [oPanel setTitle:@"Select Editor"];
+    [oPanel setAllowsMultipleSelection:NO];
+    [oPanel setCanChooseDirectories:NO];
     
-	//run open panel
-	result = [oPanel runModalForDirectory:nil file:nil types:[NSArray arrayWithObject:@"app"]];
-	if (result == NSOKButton) {
-		//set app name minus .app suffix
-		editorName = [[[oPanel filename] lastPathComponent] stringByDeletingPathExtension];
-		[defaultEditorMenu setTitle:editorName];
-		[self setIconsForEditorMenu];
-	}
-	else
-		[defaultEditorMenu setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
+    //run open panel
+    result = [oPanel runModalForDirectory:nil file:nil types:[NSArray arrayWithObject:@"app"]];
+    if (result == NSOKButton) {
+        //set app name minus .app suffix
+        editorName = [[[oPanel filename] lastPathComponent] stringByDeletingPathExtension];
+        [defaultEditorMenu setTitle:editorName];
+        [self setIconsForEditorMenu];
+    }
+    else
+        [defaultEditorMenu setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
 }
 
 /*****************************************
@@ -158,31 +157,31 @@
  *****************************************/
 
 - (void)updateCLTStatus:(NSTextField *)textField {
-	//set status of clt install button and text field
-	if ([self isCommandLineToolInstalled]) {
-		NSString *versionString = [NSString stringWithContentsOfFile:CMDLINE_VERSION_PATH encoding:NSUTF8StringEncoding error:NULL];
-		if ([versionString length] > 3 && [versionString characterAtIndex:3] == '\n')
-			versionString = [versionString substringToIndex:3];
+    //set status of clt install button and text field
+    if ([self isCommandLineToolInstalled]) {
+        NSString *versionString = [NSString stringWithContentsOfFile:CMDLINE_VERSION_PATH encoding:NSUTF8StringEncoding error:NULL];
+        if ([versionString length] > 3 && [versionString characterAtIndex:3] == '\n')
+            versionString = [versionString substringToIndex:3];
         
-		if ([versionString isEqualToString:PROGRAM_VERSION]) { // it's installed and current
-			[textField setTextColor:[NSColor colorWithCalibratedRed:0.0 green:0.6 blue:0.0 alpha:1.0]];
-			[textField setStringValue:@"Command line tool is installed"];
-		}
-		else { // installed but not this version
-			[textField setTextColor:[NSColor orangeColor]];
+        if ([versionString isEqualToString:PROGRAM_VERSION]) { // it's installed and current
+            [textField setTextColor:[NSColor colorWithCalibratedRed:0.0 green:0.6 blue:0.0 alpha:1.0]];
+            [textField setStringValue:@"Command line tool is installed"];
+        }
+        else { // installed but not this version
+            [textField setTextColor:[NSColor orangeColor]];
             
-			if ([versionString floatValue] < [PROGRAM_VERSION floatValue])
-				[textField setStringValue:@"Old version of command line"];  //older
-			else
-				[textField setStringValue:@"Newer version of command line"];  //newer
-		}
-		[installCLTButton setTitle:@"Uninstall"];
-	}
-	else { // it's not installed at all
-		[textField setStringValue:@"Command line tool is not installed"];
-		[textField setTextColor:[NSColor redColor]];
-		[installCLTButton setTitle:@"Install"];
-	}
+            if ([versionString floatValue] < [PROGRAM_VERSION floatValue])
+                [textField setStringValue:@"Old version of command line"];  //older
+            else
+                [textField setStringValue:@"Newer version of command line"];  //newer
+        }
+        [installCLTButton setTitle:@"Uninstall"];
+    }
+    else { // it's not installed at all
+        [textField setStringValue:@"Command line tool is not installed"];
+        [textField setTextColor:[NSColor redColor]];
+        [installCLTButton setTitle:@"Install"];
+    }
 }
 
 /*****************************************
@@ -191,10 +190,10 @@
 
 - (IBAction)installCLT:(id)sender;
 {
-	if ([self isCommandLineToolInstalled] == NO)
-		[self installCommandLineTool];
-	else
-		[self uninstallCommandLineTool];
+    if ([self isCommandLineToolInstalled] == NO)
+        [self installCommandLineTool];
+    else
+        [self uninstallCommandLineTool];
 }
 
 /*****************************************
@@ -202,7 +201,7 @@
  *****************************************/
 
 - (void)installCommandLineTool {
-	[self runCLTScript:@"InstallCommandLineTool.sh"];
+    [self runCLTScript:@"InstallCommandLineTool.sh"];
 }
 
 /*****************************************
@@ -210,14 +209,14 @@
  *****************************************/
 
 - (void)uninstallCommandLineTool {
-	[self runCLTScript:@"UninstallCommandLineTool.sh"];
+    [self runCLTScript:@"UninstallCommandLineTool.sh"];
 }
 
 - (IBAction)uninstallPlatypus:(id)sender {
-	if ([PlatypusUtility proceedWarning:@"Are you sure you want to uninstall Platypus?" subText:@"This will move the Platypus application and all related files to the Trash.  The application will then quit." withAction:@"Uninstall"]) {
-		[self runCLTScript:@"UninstallPlatypus.sh"];
-		[[NSApplication sharedApplication] terminate:self];
-	}
+    if ([PlatypusUtility proceedWarning:@"Are you sure you want to uninstall Platypus?" subText:@"This will move the Platypus application and all related files to the Trash.  The application will then quit." withAction:@"Uninstall"]) {
+        [self runCLTScript:@"UninstallPlatypus.sh"];
+        [[NSApplication sharedApplication] terminate:self];
+    }
 }
 
 /*****************************************
@@ -225,11 +224,11 @@
  *****************************************/
 
 - (void)runCLTScript:(NSString *)scriptName {
-	[installCLTProgressIndicator setUsesThreadedAnimation:YES];
-	[installCLTProgressIndicator startAnimation:self];
-	[self executeScriptWithPrivileges:[[NSBundle mainBundle] pathForResource:scriptName ofType:NULL]];
-	[self updateCLTStatus:CLTStatusTextField];
-	[installCLTProgressIndicator stopAnimation:self];
+    [installCLTProgressIndicator setUsesThreadedAnimation:YES];
+    [installCLTProgressIndicator startAnimation:self];
+    [self executeScriptWithPrivileges:[[NSBundle mainBundle] pathForResource:scriptName ofType:NULL]];
+    [self updateCLTStatus:CLTStatusTextField];
+    [installCLTProgressIndicator stopAnimation:self];
 }
 
 /*****************************************
@@ -237,19 +236,19 @@
  *****************************************/
 
 - (BOOL)isCommandLineToolInstalled {
-	return     ([FILEMGR fileExistsAtPath:CMDLINE_VERSION_PATH] &&
-	            [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH] &&
-	            [FILEMGR fileExistsAtPath:CMDLINE_MANPAGE_PATH] &&
-	            [FILEMGR fileExistsAtPath:CMDLINE_EXEC_PATH] &&
-	            [FILEMGR fileExistsAtPath:CMDLINE_ICON_PATH]);
+    return     ([FILEMGR fileExistsAtPath:CMDLINE_VERSION_PATH] &&
+                [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH] &&
+                [FILEMGR fileExistsAtPath:CMDLINE_MANPAGE_PATH] &&
+                [FILEMGR fileExistsAtPath:CMDLINE_EXEC_PATH] &&
+                [FILEMGR fileExistsAtPath:CMDLINE_ICON_PATH]);
 }
 
 /*****************************************
  - Run script with privileges using Authentication Manager
  *****************************************/
 - (void)executeScriptWithPrivileges:(NSString *)pathToScript {
-	// execute path, pass Resources directory and version as arguments 1 and 2
-	[STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:pathToScript arguments:[NSArray arrayWithObjects:[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION, nil]];
+    // execute path, pass Resources directory and version as arguments 1 and 2
+    [STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:pathToScript arguments:[NSArray arrayWithObjects:[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION, nil]];
 }
 
 @end

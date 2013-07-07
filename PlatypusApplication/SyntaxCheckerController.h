@@ -24,9 +24,9 @@
 
 @interface SyntaxCheckerController : NSWindowController
 {
-	IBOutlet id platypusWindow;
-	IBOutlet id scriptPathTextField;
-	IBOutlet id textView;
+    IBOutlet id platypusWindow;
+    IBOutlet id scriptPathTextField;
+    IBOutlet id textView;
 }
 - (void)showSyntaxCheckerForFile:(NSString *)path withInterpreter:(NSString *)interpreter window:(NSWindow *)theWindow;
 - (IBAction)close:(id)sender;

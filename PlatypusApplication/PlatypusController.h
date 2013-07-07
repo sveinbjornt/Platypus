@@ -49,60 +49,59 @@
 #import "IconFamily.h"
 #import "UKKQueue.h"
 
-
 @interface PlatypusController : NSObject
 {
-	//basic controls
-	IBOutlet id appNameTextField;
-	IBOutlet id scriptTypePopupMenu;
-	IBOutlet id scriptPathTextField;
-	IBOutlet id editScriptButton;
-	IBOutlet id revealScriptButton;
-	IBOutlet id outputTypePopupMenu;
-	IBOutlet id createAppButton;
-	IBOutlet id textOutputSettingsButton;
-	IBOutlet id statusItemSettingsButton;
+    //basic controls
+    IBOutlet id appNameTextField;
+    IBOutlet id scriptTypePopupMenu;
+    IBOutlet id scriptPathTextField;
+    IBOutlet id editScriptButton;
+    IBOutlet id revealScriptButton;
+    IBOutlet id outputTypePopupMenu;
+    IBOutlet id createAppButton;
+    IBOutlet id textOutputSettingsButton;
+    IBOutlet id statusItemSettingsButton;
     
-	//advanced options controls
-	IBOutlet id interpreterTextField;
-	IBOutlet id versionTextField;
-	IBOutlet id bundleIdentifierTextField;
-	IBOutlet id authorTextField;
+    //advanced options controls
+    IBOutlet id interpreterTextField;
+    IBOutlet id versionTextField;
+    IBOutlet id bundleIdentifierTextField;
+    IBOutlet id authorTextField;
     
-	IBOutlet id rootPrivilegesCheckbox;
-	IBOutlet id encryptCheckbox;
-	IBOutlet id isDroppableCheckbox;
-	IBOutlet id showInDockCheckbox;
-	IBOutlet id remainRunningCheckbox;
+    IBOutlet id rootPrivilegesCheckbox;
+    IBOutlet id encryptCheckbox;
+    IBOutlet id isDroppableCheckbox;
+    IBOutlet id showInDockCheckbox;
+    IBOutlet id remainRunningCheckbox;
     
-	IBOutlet id editTypesButton;
+    IBOutlet id editTypesButton;
     
-	IBOutlet id appSizeTextField;
+    IBOutlet id appSizeTextField;
     
-	// create app dialog view extension
-	IBOutlet id debugSaveOptionView;
-	IBOutlet id developmentVersionCheckbox;
-	IBOutlet id optimizeApplicationCheckbox;
-	IBOutlet id xmlPlistFormatCheckbox;
+    // create app dialog view extension
+    IBOutlet id debugSaveOptionView;
+    IBOutlet id developmentVersionCheckbox;
+    IBOutlet id optimizeApplicationCheckbox;
+    IBOutlet id xmlPlistFormatCheckbox;
     
-	//windows
-	IBOutlet id window;
+    //windows
+    IBOutlet id window;
     
-	//progress bar for creating
-	IBOutlet id progressDialogWindow;
-	IBOutlet id progressBar;
-	IBOutlet id progressDialogMessageLabel;
-	IBOutlet id progressDialogStatusLabel;
+    //progress bar for creating
+    IBOutlet id progressDialogWindow;
+    IBOutlet id progressBar;
+    IBOutlet id progressDialogMessageLabel;
+    IBOutlet id progressDialogStatusLabel;
     
-	// interface controllers
-	IBOutlet id iconControl;
-	IBOutlet id typesControl;
-	IBOutlet id paramsControl;
-	IBOutlet id profilesControl;
-	IBOutlet id textSettingsControl;
-	IBOutlet id statusItemSettingsControl;
+    // interface controllers
+    IBOutlet id iconControl;
+    IBOutlet id typesControl;
+    IBOutlet id paramsControl;
+    IBOutlet id profilesControl;
+    IBOutlet id textSettingsControl;
+    IBOutlet id statusItemSettingsControl;
     
-	IBOutlet id fileList;
+    IBOutlet id fileList;
 }
 
 - (IBAction)newScript:(id)sender;

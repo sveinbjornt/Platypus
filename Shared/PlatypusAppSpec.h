@@ -30,8 +30,8 @@
 
 @interface PlatypusAppSpec : NSObject
 {
-	NSMutableDictionary *properties;
-	NSString *error;
+    NSMutableDictionary *properties;
+    NSString *error;
 }
 - (PlatypusAppSpec *)initWithDefaults;
 - (PlatypusAppSpec *)initWithDefaultsFromScript:(NSString *)scriptPath;

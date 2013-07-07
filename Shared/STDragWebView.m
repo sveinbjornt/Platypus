@@ -23,38 +23,38 @@
 @implementation STDragWebView
 
 - (id)initWithFrame:(NSRect)frameRect frameName:(NSString *)frameName groupName:(NSString *)groupName {
-	if ((self = [super initWithFrame:frameRect frameName:frameName groupName:groupName]))
-		delegate = NULL;
+    if ((self = [super initWithFrame:frameRect frameName:frameName groupName:groupName]))
+        delegate = NULL;
     
-	return self;
+    return self;
 }
 
 //Accepting Drags ------------------------------------------------------------------------------------------------------
 #pragma mark Accepting Drags
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
-	return [delegate draggingEntered:sender];
+    return [delegate draggingEntered:sender];
 }
 
 - (void)draggingExited:(id <NSDraggingInfo> )sender;
 {
-	return [delegate draggingExited:sender];
+    return [delegate draggingExited:sender];
 }
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo> )sender {
-	return [delegate draggingUpdated:sender];
+    return [delegate draggingUpdated:sender];
 }
 
 /*- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
-    return [delegate prepareForDragOperation:sender];
-}*/
+ return [delegate prepareForDragOperation:sender];
+ }*/
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
-	return [delegate performDragOperation:sender];
+    return [delegate performDragOperation:sender];
 }
 
 - (void)concludeDragOperation:(id <NSDraggingInfo> )sender {
-	return [delegate concludeDragOperation:sender];
+    return [delegate concludeDragOperation:sender];
 }
 
 @end

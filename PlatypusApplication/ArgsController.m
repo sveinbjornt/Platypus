@@ -26,224 +26,224 @@
 #define DEFAULT_ARG_VALUE       @"-arg"
 
 - (id)init {
-	if ((self = [super init])) {
-		interpreterArgs = [[NSMutableArray alloc] init];
-		scriptArgs = [[NSMutableArray alloc] init];
-	}
-	return self;
+    if ((self = [super init])) {
+        interpreterArgs = [[NSMutableArray alloc] init];
+        scriptArgs = [[NSMutableArray alloc] init];
+    }
+    return self;
 }
 
 - (void)dealloc {
-	[interpreterArgs release];
-	[scriptArgs release];
-	[super dealloc];
+    [interpreterArgs release];
+    [scriptArgs release];
+    [super dealloc];
 }
 
 - (void)setInterpreterArgs:(NSArray *)array {
-	[interpreterArgs removeAllObjects];
-	[interpreterArgs addObjectsFromArray:array];
-	[interpreterArgsTableView reloadData];
-	[self tableViewSelectionDidChange:NULL];
+    [interpreterArgs removeAllObjects];
+    [interpreterArgs addObjectsFromArray:array];
+    [interpreterArgsTableView reloadData];
+    [self tableViewSelectionDidChange:NULL];
 }
 
 - (void)setScriptArgs:(NSArray *)array {
-	[scriptArgs removeAllObjects];
-	[scriptArgs addObjectsFromArray:array];
-	[scriptArgsTableView reloadData];
-	[self tableViewSelectionDidChange:NULL];
+    [scriptArgs removeAllObjects];
+    [scriptArgs addObjectsFromArray:array];
+    [scriptArgsTableView reloadData];
+    [self tableViewSelectionDidChange:NULL];
 }
 
 - (NSArray *)interpreterArgs {
-	return interpreterArgs;
+    return interpreterArgs;
 }
 
 - (NSArray *)scriptArgs {
-	return scriptArgs;
+    return scriptArgs;
 }
 
 - (IBAction)apply:(id)sender {
-	[window setTitle:PROGRAM_NAME];
-	[NSApp stopModal];
+    [window setTitle:PROGRAM_NAME];
+    [NSApp stopModal];
 }
 
 - (IBAction)addInterpreterArg:(id)sender {
-	[interpreterArgs addObject:DEFAULT_ARG_VALUE];
-	[interpreterArgsTableView reloadData];
-	[interpreterArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[interpreterArgs count] - 1] byExtendingSelection:NO];
-	[self tableViewSelectionDidChange:NULL];
-	[commandTextField setStringValue:[self constructCommandString]];
-	[argsWindow makeFirstResponder:interpreterArgsTableView];
+    [interpreterArgs addObject:DEFAULT_ARG_VALUE];
+    [interpreterArgsTableView reloadData];
+    [interpreterArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[interpreterArgs count] - 1] byExtendingSelection:NO];
+    [self tableViewSelectionDidChange:NULL];
+    [commandTextField setStringValue:[self constructCommandString]];
+    [argsWindow makeFirstResponder:interpreterArgsTableView];
 }
 
 - (IBAction)addScriptArg:(id)sender {
-	[scriptArgs addObject:DEFAULT_ARG_VALUE];
-	[scriptArgsTableView reloadData];
-	[scriptArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[scriptArgs count] - 1] byExtendingSelection:NO];
-	[self tableViewSelectionDidChange:NULL];
-	[commandTextField setStringValue:[self constructCommandString]];
-	[argsWindow makeFirstResponder:scriptArgsTableView];
+    [scriptArgs addObject:DEFAULT_ARG_VALUE];
+    [scriptArgsTableView reloadData];
+    [scriptArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[scriptArgs count] - 1] byExtendingSelection:NO];
+    [self tableViewSelectionDidChange:NULL];
+    [commandTextField setStringValue:[self constructCommandString]];
+    [argsWindow makeFirstResponder:scriptArgsTableView];
 }
 
 - (IBAction)clearInterpreterArgs:(id)sender {
-	[interpreterArgs removeAllObjects];
-	[interpreterArgsTableView reloadData];
-	[self tableViewSelectionDidChange:NULL];
-	[commandTextField setStringValue:[self constructCommandString]];
-	[argsWindow makeFirstResponder:interpreterArgsTableView];
+    [interpreterArgs removeAllObjects];
+    [interpreterArgsTableView reloadData];
+    [self tableViewSelectionDidChange:NULL];
+    [commandTextField setStringValue:[self constructCommandString]];
+    [argsWindow makeFirstResponder:interpreterArgsTableView];
 }
 
 - (IBAction)clearScriptArgs:(id)sender {
-	[scriptArgs removeAllObjects];
-	[scriptArgsTableView reloadData];
-	[self tableViewSelectionDidChange:NULL];
-	[commandTextField setStringValue:[self constructCommandString]];
-	[argsWindow makeFirstResponder:scriptArgsTableView];
+    [scriptArgs removeAllObjects];
+    [scriptArgsTableView reloadData];
+    [self tableViewSelectionDidChange:NULL];
+    [commandTextField setStringValue:[self constructCommandString]];
+    [argsWindow makeFirstResponder:scriptArgsTableView];
 }
 
 - (IBAction)removeInterpreterArg:(id)sender {
-	int selectedRow = [interpreterArgsTableView selectedRow];
-	int rowToSelect;
+    int selectedRow = [interpreterArgsTableView selectedRow];
+    int rowToSelect;
     
-	if (selectedRow == -1 || ![interpreterArgs count])
-		return;
+    if (selectedRow == -1 || ![interpreterArgs count])
+        return;
     
-	[interpreterArgs removeObjectAtIndex:[interpreterArgsTableView selectedRow]];
+    [interpreterArgs removeObjectAtIndex:[interpreterArgsTableView selectedRow]];
     
-	if (![interpreterArgsTableView numberOfRows]) {
-		return;
-	}
+    if (![interpreterArgsTableView numberOfRows]) {
+        return;
+    }
     
-	rowToSelect = selectedRow - 1;
+    rowToSelect = selectedRow - 1;
     
-	[interpreterArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
+    [interpreterArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
     
-	[interpreterArgsTableView reloadData];
-	[self tableViewSelectionDidChange:NULL];
+    [interpreterArgsTableView reloadData];
+    [self tableViewSelectionDidChange:NULL];
     
-	[commandTextField setStringValue:[self constructCommandString]];
-	[argsWindow makeFirstResponder:interpreterArgsTableView];
+    [commandTextField setStringValue:[self constructCommandString]];
+    [argsWindow makeFirstResponder:interpreterArgsTableView];
 }
 
 - (IBAction)removeScriptArg:(id)sender {
-	int selectedRow = [scriptArgsTableView selectedRow];
-	int rowToSelect;
+    int selectedRow = [scriptArgsTableView selectedRow];
+    int rowToSelect;
     
-	if (selectedRow == -1 || ![scriptArgs count])
-		return;
+    if (selectedRow == -1 || ![scriptArgs count])
+        return;
     
-	[scriptArgs removeObjectAtIndex:[scriptArgsTableView selectedRow]];
+    [scriptArgs removeObjectAtIndex:[scriptArgsTableView selectedRow]];
     
-	if (![scriptArgsTableView numberOfRows]) {
-		return;
-	}
+    if (![scriptArgsTableView numberOfRows]) {
+        return;
+    }
     
-	rowToSelect = selectedRow - 1;
+    rowToSelect = selectedRow - 1;
     
-	[scriptArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
+    [scriptArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
     
-	[scriptArgsTableView reloadData];
-	[self tableViewSelectionDidChange:NULL];
+    [scriptArgsTableView reloadData];
+    [self tableViewSelectionDidChange:NULL];
     
-	[commandTextField setStringValue:[self constructCommandString]];
-	[argsWindow makeFirstResponder:scriptArgsTableView];
+    [commandTextField setStringValue:[self constructCommandString]];
+    [argsWindow makeFirstResponder:scriptArgsTableView];
 }
 
 - (IBAction)resetDefaults:(id)sender {
-	[self clearScriptArgs:self];
-	[self clearInterpreterArgs:self];
+    [self clearScriptArgs:self];
+    [self clearInterpreterArgs:self];
 }
 
 - (IBAction)show:(id)sender {
-	[window setTitle:[NSString stringWithFormat:@"%@ - Edit Arguments", PROGRAM_NAME]];
+    [window setTitle:[NSString stringWithFormat:@"%@ - Edit Arguments", PROGRAM_NAME]];
     
-	[commandTextField setStringValue:[self constructCommandString]];
+    [commandTextField setStringValue:[self constructCommandString]];
     
-	//open window
-	[NSApp  beginSheet:argsWindow
-	    modalForWindow:window
-	     modalDelegate:nil
-	    didEndSelector:nil
-	       contextInfo:nil];
+    //open window
+    [NSApp  beginSheet:argsWindow
+        modalForWindow:window
+         modalDelegate:nil
+        didEndSelector:nil
+           contextInfo:nil];
     
-	[NSApp runModalForWindow:argsWindow];
+    [NSApp runModalForWindow:argsWindow];
     
-	[NSApp endSheet:argsWindow];
-	[argsWindow orderOut:self];
+    [NSApp endSheet:argsWindow];
+    [argsWindow orderOut:self];
 }
 
 - (NSString *)constructCommandString {
-	int i;
+    int i;
     
-	// interpreter
-	NSString *cmdString = [NSString stringWithString:[interpreterTextField stringValue]];
+    // interpreter
+    NSString *cmdString = [NSString stringWithString:[interpreterTextField stringValue]];
     
-	// interpreter args
-	for (i = 0; i < [interpreterArgs count]; i++) {
-		cmdString = [cmdString stringByAppendingString:[NSString stringWithFormat:@" %@", [interpreterArgs objectAtIndex:i]]];
-	}
+    // interpreter args
+    for (i = 0; i < [interpreterArgs count]; i++) {
+        cmdString = [cmdString stringByAppendingString:[NSString stringWithFormat:@" %@", [interpreterArgs objectAtIndex:i]]];
+    }
     
-	cmdString = [cmdString stringByAppendingString:@" yourScript"];
+    cmdString = [cmdString stringByAppendingString:@" yourScript"];
     
-	// script args
-	for (i = 0; i < [scriptArgs count]; i++) {
-		cmdString = [cmdString stringByAppendingString:[NSString stringWithFormat:@" %@", [scriptArgs objectAtIndex:i]]];
-	}
+    // script args
+    for (i = 0; i < [scriptArgs count]; i++) {
+        cmdString = [cmdString stringByAppendingString:[NSString stringWithFormat:@" %@", [scriptArgs objectAtIndex:i]]];
+    }
     
-	// file args
-	if ([isDroppableCheckbox state] == NSOnState)
-		cmdString = [cmdString stringByAppendingString:@" [files ...]"];
+    // file args
+    if ([isDroppableCheckbox state] == NSOnState)
+        cmdString = [cmdString stringByAppendingString:@" [files ...]"];
     
-	return cmdString;
+    return cmdString;
 }
 
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView {
-	NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
-	return([args count]);
+    NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
+    return([args count]);
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
-	NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
+    NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
     
-	if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
-		return [args objectAtIndex:rowIndex];
-	}
-	return(@"");
+    if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
+        return [args objectAtIndex:rowIndex];
+    }
+    return(@"");
 }
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-	if (rowIndex < 0)
-		return;
+    if (rowIndex < 0)
+        return;
     
-	NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
+    NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
     
-	if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
-		[args replaceObjectAtIndex:rowIndex withObject:anObject];
-		[commandTextField setStringValue:[self constructCommandString]];
-	}
+    if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
+        [args replaceObjectAtIndex:rowIndex withObject:anObject];
+        [commandTextField setStringValue:[self constructCommandString]];
+    }
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
-	[interpreterArgsRemoveButton setEnabled:([interpreterArgsTableView selectedRow] != -1)];
-	[interpreterArgsClearButton setEnabled:([interpreterArgs count] != 0)];
-	[interpreterArgsAddButton setEnabled:([interpreterArgs count] != PROGRAM_MAX_LIST_ITEMS)];
+    [interpreterArgsRemoveButton setEnabled:([interpreterArgsTableView selectedRow] != -1)];
+    [interpreterArgsClearButton setEnabled:([interpreterArgs count] != 0)];
+    [interpreterArgsAddButton setEnabled:([interpreterArgs count] != PROGRAM_MAX_LIST_ITEMS)];
     
-	[scriptArgsRemoveButton setEnabled:([scriptArgsTableView selectedRow] != -1)];
-	[scriptArgsClearButton setEnabled:([scriptArgs count] != 0)];
-	[scriptArgsAddButton setEnabled:([scriptArgs count] != PROGRAM_MAX_LIST_ITEMS)];
+    [scriptArgsRemoveButton setEnabled:([scriptArgsTableView selectedRow] != -1)];
+    [scriptArgsClearButton setEnabled:([scriptArgs count] != 0)];
+    [scriptArgsAddButton setEnabled:([scriptArgs count] != PROGRAM_MAX_LIST_ITEMS)];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-	if ([anItem menu] == scriptArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [scriptArgsTableView selectedRow] == -1)
-		return NO;
-	if ([anItem menu] == interpreterArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [interpreterArgsTableView selectedRow] == -1)
-		return NO;
+    if ([anItem menu] == scriptArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [scriptArgsTableView selectedRow] == -1)
+        return NO;
+    if ([anItem menu] == interpreterArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [interpreterArgsTableView selectedRow] == -1)
+        return NO;
     
-	return YES;
+    return YES;
 }
 
 - (IBAction)appPathCheckboxClicked:(id)sender {
-	[commandTextField setStringValue:[self constructCommandString]];
+    [commandTextField setStringValue:[self constructCommandString]];
 }
 
 @end

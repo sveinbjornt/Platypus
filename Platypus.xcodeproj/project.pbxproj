@@ -663,12 +663,12 @@
 		F4E1F70711F75A40007EE2E3 /* Command Line Tool */ = {
 			isa = PBXGroup;
 			children = (
-				F4462E3C14FBDA4200E13563 /* cat2html */,
+				F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */,
+				F4FE747E11F793BA005FC23A /* platypus.1 */,
 				F4462E3E14FBDA4D00E13563 /* make_man_html.sh */,
 				F4462E3F14FBDA4D00E13563 /* make_man_pdf.sh */,
 				F4FB337814FBE04500BAECEB /* update_website_docs.sh */,
-				F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */,
-				F4FE747E11F793BA005FC23A /* platypus.1 */,
+				F4462E3C14FBDA4200E13563 /* cat2html */,
 				F4FB337614FBDE2200BAECEB /* platypus.man.html */,
 			);
 			name = "Command Line Tool";

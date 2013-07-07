@@ -1,6 +1,6 @@
 /*
  Platypus - program for creating Mac OS X application wrappers around scripts
- Copyright (C) 2003-2013 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+ Copyright(C) 2003 - 2013 Sveinbjorn Thordarson < sveinbjornt@gmail.com>
  
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -28,19 +28,19 @@
 
 @interface STFileList : NSObject <NSTableViewDataSource>
 {
-	UInt64 totalSize;
-	NSMutableArray *files;
+    UInt64 totalSize;
+    NSMutableArray *files;
     
-	IBOutlet id window;
-	IBOutlet id addFileButton;
-	IBOutlet id removeFileButton;
-	IBOutlet id editFileButton;
-	IBOutlet id revealFileButton;
-	IBOutlet id clearFileListButton;
-	IBOutlet id tableView;
-	IBOutlet id bundleSizeTextField;
-	IBOutlet id contextualMenu;
-	IBOutlet id platypusControl;
+    IBOutlet id window;
+    IBOutlet id addFileButton;
+    IBOutlet id removeFileButton;
+    IBOutlet id editFileButton;
+    IBOutlet id revealFileButton;
+    IBOutlet id clearFileListButton;
+    IBOutlet id tableView;
+    IBOutlet id bundleSizeTextField;
+    IBOutlet id contextualMenu;
+    IBOutlet id platypusControl;
 }
 - (void)itemDoubleClicked:(id)sender;
 - (NSString *)getFileAtIndex:(int)index;
