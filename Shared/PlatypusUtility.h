@@ -30,10 +30,11 @@
 + (BOOL)setPermissions: (short)pp forFile: (NSString *)path;
 + (void)alert: (NSString *)message subText: (NSString *)subtext;
 + (void)fatalAlert: (NSString *)message subText: (NSString *)subtext;
-+ (BOOL) proceedWarning: (NSString *)message subText: (NSString *)subtext withAction: (NSString *)action;
++ (BOOL)proceedWarning: (NSString *)message subText: (NSString *)subtext withAction: (NSString *)action;
 + (void)sheetAlert: (NSString *)message subText: (NSString *)subtext forWindow: (NSWindow *)window;
 + (UInt64) fileOrFolderSize: (NSString *)path;
-+ (NSString *) sizeAsHumanReadable: (UInt64)size;
-+ (NSString *) fileOrFolderSizeAsHumanReadable: (NSString *)path;
++ (NSString *)sizeAsHumanReadable: (UInt64)size;
++ (NSString *)fileOrFolderSizeAsHumanReadable: (NSString *)path;
++ (BOOL)openInDefaultBrowser: (NSString *)path;
 + (NSArray *)imageFileSuffixes;
 @end
