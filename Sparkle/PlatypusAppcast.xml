@@ -6,6 +6,27 @@
         <description>Most recent release list for Platypus, with links to signed updates.</description>
         <language>en</language>
         <item>
+            <title>Version 4.8</title>
+            <pubDate>Sun, 7 Jul 2013 19:28:00 +0000</pubDate>
+            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.8.zip" sparkle:version="4.8" sparkle:shortVersionString="4.7" length="1838456" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCkcSA24nRCSW47lr6VPXMQfJOQKQIVAJo8YRI7yhKDnOjud056KdD9uNLb"/>
+            <sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>Version 4.8 Changes</h2>
+                <ul>
+                    <li>New "Prompt for file on launch" option</li>
+                    <li>Redesigned Drop Settings sheet</li>
+                    <li>Fixed issue where version would not appear in Get Info in Finder (missing CFBundleShortVersionString)</li>
+                    <li>Generated apps have NSHumanReadableCopyright defined again</li>
+                    <li>Extensive updates to documentation</li>
+                    <li>"Provide as a Mac OS X Service" no longer enabled by default</li>
+                    <li>Removed all support for file types.  They are ancient crust now mostly ignored by Mac OS X and should no longer be used.</li>
+                    <li>Improved uninstall script</li>
+                    <li>Fixed issue where a generated icon file referenced in a Profile could be overwritten</li>
+                    <li>Documentation files now open in default browser, not in default .html handling app</li>
+                </ul>
+            ]]></description>
+        </item>
+        <item>
             <title>Version 4.7</title>
             <pubDate>Mon, 27 Feb 2012 17:28:00 +0000</pubDate>
             <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.7.zip" sparkle:version="4.7" sparkle:shortVersionString="4.7" length="1838456" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCkcSA24nRCSW47lr6VPXMQfJOQKQIVAJo8YRI7yhKDnOjud056KdD9uNLb"/>

@@ -4,23 +4,21 @@ For 5.0
     TODO:  Create Platypus tutorial videos, make them available online
     TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool.  I need to take a look at the sandbox thing.
     TODO:  Support for creating bundle with JUST executable script, no app binary wrapper.  May not be possible on Mountain Lion.
-    TODO:  Create TextMate plugin
     TODO:  Rewrite or at least refactor nasty old code in STFileList and derivatives
     TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
-    TODO:  Retina size support for custom buttons
+    TODO:  Retina size support for the buttons with custom backgrounds
 
 For 4.8
     * New "Prompt for file on launch" option
     * Redesigned Drop Settings sheet
-    * Extensive updates to documentation
     * Fixed issue where version would not appear in Get Info in Finder (missing CFBundleShortVersionString)
     * Generated apps have NSHumanReadableCopyright defined again
+    * Extensive updates to documentation
+    * "Provide as a Mac OS X Service" no longer enabled by default
     * Removed all support for file types.  They are ancient crust now mostly ignored by Mac OS X and should no longer be used.
+    * Improved uninstall script
+    * Fixed issue where a generated icon file referenced in a Profile could be overwritten
     * Documentation files now open in default browser, not in default .html handling app
-
-    TODO:  Fix temp icon path issue for icons dynamically generated from imported image, make it cleaner
-    TODO:  Make provide as service not enabled by default, make fields go enabled/disabled based on checkboxes in drop settings
-    TODO:  Make uninstaller cleaner
 
 For 4.7
     * New "Uninstall" menu option, which removes all traces of Platypus on a system
@@ -362,7 +360,7 @@ For 2.0
 
 For 1.8
 
-    * Platypus applications that don't aren't marked 'Is Droppable' now get the path of the app's enclosing folder as first argument ($1, $ARGV[0] etc.). This can be very handy for installers or working with files relative to the app. A sample script that utilises this is included ("AppThatMovesToHomeFolder.sh")
+    * Platypus applications that aren't marked 'Is Droppable' now get the path of the app's enclosing folder as first argument ($1, $ARGV[0] etc.). This can be very handy for installers or working with files relative to the app. A sample script that utilises this is included.
 
 For 1.7
 
