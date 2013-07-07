@@ -23,6 +23,7 @@
  A Swiss Army Knife class with a plethora of utility functions
  
  */
+
 #import "PlatypusUtility.h"
 #import <CoreServices/CoreServices.h>
 #import <ctype.h>
@@ -123,7 +124,7 @@
 	[alert release];
 }
 
-+ (BOOL) proceedWarning: (NSString *)message subText: (NSString *)subtext withAction: (NSString *)action
++ (BOOL)proceedWarning: (NSString *)message subText: (NSString *)subtext withAction: (NSString *)action
 {
 	NSAlert *alert = [[NSAlert alloc] init];
 	[alert addButtonWithTitle: action];
@@ -137,7 +138,7 @@
 	return ret;
 }
 
-+ (UInt64) fileOrFolderSize: (NSString *)path
++ (UInt64)fileOrFolderSize: (NSString *)path
 {
 	UInt64			size = 0;
 	BOOL			isDir;
@@ -160,12 +161,12 @@
 	return size;
 }
 
-+ (NSString *) fileOrFolderSizeAsHumanReadable: (NSString *)path
++ (NSString *)fileOrFolderSizeAsHumanReadable: (NSString *)path
 {
 	return [self sizeAsHumanReadable: [self fileOrFolderSize: path]];
 }
 
-+ (NSString *) sizeAsHumanReadable: (UInt64)size
++ (NSString *)sizeAsHumanReadable: (UInt64)size
 {
 	NSString	*str;
 	
@@ -179,6 +180,29 @@
 		str = [NSString stringWithFormat:@"%.1f GB", size / 1073741824.0];
 
 	return str;
+}
+
++ (BOOL)openInDefaultBrowser: (NSString *)path
+{
+    NSURL *url = [NSURL URLWithString: @"http://"];
+    CFURLRef fromPathURL = NULL;
+    OSStatus err = LSGetApplicationForURL((CFURLRef)url, kLSRolesAll, NULL, &fromPathURL);
+    NSString *app = nil;
+    
+    if (err == noErr)
+    {
+        app = [(NSURL *)fromPathURL path];
+        CFRelease(fromPathURL);
+    }
+    
+    if (!app || err)
+    {
+        NSLog(@"Unable to find default browser");
+        return false;
+    }
+    
+    [[NSWorkspace sharedWorkspace] openFile: path withApplication: app];
+    return true;
 }
 
 // array with suffix of all image types supported by Cocoa

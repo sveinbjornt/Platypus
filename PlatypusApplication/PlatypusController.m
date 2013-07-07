@@ -1038,9 +1038,7 @@
 
 - (IBAction)showHelp:(id)sender
 {
-	[[NSWorkspace sharedWorkspace] openURL:
-	 [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource: PROGRAM_DOCUMENTATION ofType: nil]]
-	];
+    [PlatypusUtility openInDefaultBrowser: [[NSBundle mainBundle] pathForResource: PROGRAM_DOCUMENTATION ofType: nil]];    
 }
 
 /*****************************************
@@ -1048,8 +1046,8 @@
 *****************************************/
 
 - (IBAction)showManPage:(id)sender
-{	
-	[[NSWorkspace sharedWorkspace] openFile: [[NSBundle mainBundle] pathForResource: PROGRAM_MANPAGE ofType: nil]];
+{
+    [PlatypusUtility openInDefaultBrowser: [[NSBundle mainBundle] pathForResource: PROGRAM_MANPAGE ofType: nil]];
 }
 
 /*****************************************
@@ -1058,9 +1056,7 @@
 
 - (IBAction)showReadme:(id)sender
 {
-	[[NSWorkspace sharedWorkspace] openURL: 
-	[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource: PROGRAM_README_FILE ofType: nil]]
-	];
+    [PlatypusUtility openInDefaultBrowser: [[NSBundle mainBundle] pathForResource: PROGRAM_README_FILE ofType: nil]];
 }
 
 /*****************************************
@@ -1077,10 +1073,8 @@
  *****************************************/
 
 - (IBAction)openLicense: (id)sender
-{
-	[[NSWorkspace sharedWorkspace] openURL: 
-	 [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource: PROGRAM_LICENSE_FILE ofType: nil]]
-	 ];
+{    
+    [PlatypusUtility openInDefaultBrowser: [[NSBundle mainBundle] pathForResource: PROGRAM_LICENSE_FILE ofType: nil]];
 }
 
 /*****************************************

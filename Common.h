@@ -50,7 +50,7 @@
 #define PROGRAM_README_FILE			@"Readme.html"
 #define PROGRAM_MANPAGE				@"platypus.man.html"
 #define PROGRAM_DOCUMENTATION		@"PlatypusDocumentation.html"
-#define PROGRAM_LICENSE_FILE		@"License.txt"
+#define PROGRAM_LICENSE_FILE		@"License.html"
 
 // command line tool seetings
 #define CMDLINE_PROGNAME			@"platypus"
