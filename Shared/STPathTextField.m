@@ -249,8 +249,8 @@
         
         return result;
     }
-    
-    return [super textView: aTextView doCommandBySelector: aSelector];
+    return false;
+//    return [super textView: aTextView doCommandBySelector: aSelector];
 }
 
 /*******************************************
