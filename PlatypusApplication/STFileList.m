@@ -34,7 +34,10 @@
 
 - (id) init
 {
-	files = [[NSMutableArray alloc] init];
+    if ((self = [super init]))
+    {
+        files = [[NSMutableArray alloc] init];
+    }
 	return self;
 }
 
