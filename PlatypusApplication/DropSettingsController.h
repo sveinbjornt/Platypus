@@ -30,7 +30,8 @@
     IBOutlet id removeSuffixButton;
     IBOutlet NSTableView *suffixListDataBrowser;
     IBOutlet id suffixTextField;
-    IBOutlet NSTableView *typesListDataBrowser;
+    IBOutlet id promptForFileOnLaunchCheckbox;
+
     IBOutlet id typesWindow;
     IBOutlet id window;
     IBOutlet id typesErrorTextField;
@@ -38,7 +39,6 @@
 	IBOutlet id acceptDroppedTextCheckbox;
 	IBOutlet id acceptDroppedFilesCheckbox;
     IBOutlet id declareServiceCheckbox;
-    IBOutlet id promptForFileOnLaunchCheckbox;
     IBOutlet id docIconImageView;
     
 	IBOutlet id droppedFilesSettingsBox;
@@ -54,6 +54,8 @@
 - (IBAction)removeSuffix:(id)sender;
 - (IBAction)selectDocIcon:(id)sender;
 - (IBAction)setDefaultTypes:(id)sender;
+- (IBAction)acceptsFilesChanged:(id)sender;
+- (IBAction)acceptsTextChanged:(id)sender;
 
 - (SuffixList *)suffixes;
 - (NSString *)docIconPath;
