@@ -58,7 +58,7 @@
  - Display the Edit Types Window as a sheet
 *****************************************/
 
-- (IBAction) openTypesSheet: (id)sender
+- (IBAction)openDropSettingsSheet: (id)sender
 {
 	[window setTitle: [NSString stringWithFormat: @"%@ - Drop settings", PROGRAM_NAME]];
 	//clear text fields from last time
@@ -85,16 +85,16 @@
 						didEndSelector:nil
 						contextInfo:nil];
 
-	 [NSApp runModalForWindow: typesWindow];
-	 
-	 [NSApp endSheet:typesWindow];
-     [typesWindow orderOut:self];
+    [NSApp runModalForWindow: typesWindow];
+
+    [NSApp endSheet:typesWindow];
+    [typesWindow orderOut:self];
 }
 
-- (IBAction)closeTypesSheet:(id)sender
+- (IBAction)closeDropSettingsSheet:(id)sender
 {
 	//make sure suffix list contains valid values
-	if (![suffixList numSuffixes])
+	if (![suffixList numSuffixes] && [self acceptsFiles])
 	{
 		[typesErrorTextField setStringValue: @"The suffix list must contain at least one entry."];
         return;
@@ -251,7 +251,7 @@
 
 #pragma mark -
 
-- (void)setAceptsFilesControlsEnabled: (BOOL)enabled
+- (void)setAcceptsFilesControlsEnabled: (BOOL)enabled
 {
     [[droppedFilesSettingsBox contentView] setAlphaValue: 0.5 + (enabled * 0.5)];
     [appFunctionRadioButtons setEnabled: enabled];
@@ -271,7 +271,7 @@
 
 - (IBAction)acceptsFilesChanged:(id)sender
 {
-    [self setAceptsFilesControlsEnabled: [sender intValue]];
+    [self setAcceptsFilesControlsEnabled: [sender intValue]];
 }
 
 - (IBAction)acceptsTextChanged:(id)sender
@@ -282,7 +282,7 @@
 
 #pragma mark -
 
-- (SuffixList *) suffixes
+- (SuffixList *)suffixes
 {
 	return suffixList;
 }
@@ -314,7 +314,7 @@
 
 - (void)setAcceptsFiles: (BOOL)b
 {
-    [self setAceptsFilesControlsEnabled: b];
+    [self setAcceptsFilesControlsEnabled: b];
     [acceptDroppedFilesCheckbox setIntValue: b];
 }
 

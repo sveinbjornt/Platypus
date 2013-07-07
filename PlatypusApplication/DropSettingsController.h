@@ -47,28 +47,35 @@
     NSString    *docIconPath;
 	SuffixList	*suffixList;
 }
-- (IBAction)addSuffix:(id)sender;
-- (IBAction)clearSuffixList:(id)sender;
-- (IBAction)openTypesSheet:(id)sender;
-- (IBAction)closeTypesSheet:(id)sender;
-- (IBAction)removeSuffix:(id)sender;
-- (IBAction)selectDocIcon:(id)sender;
-- (IBAction)setDefaultTypes:(id)sender;
-- (IBAction)acceptsFilesChanged:(id)sender;
-- (IBAction)acceptsTextChanged:(id)sender;
+-(IBAction)addSuffix:(id)sender;
+-(IBAction)clearSuffixList:(id)sender;
+-(IBAction)openDropSettingsSheet:(id)sender;
+-(IBAction)closeDropSettingsSheet:(id)sender;
+-(IBAction)removeSuffix:(id)sender;
+-(IBAction)selectDocIcon:(id)sender;
+-(IBAction)setToDefaults:(id)sender;
+-(IBAction)acceptsFilesChanged:(id)sender;
+-(IBAction)acceptsTextChanged:(id)sender;
 
-- (SuffixList *)suffixes;
-- (NSString *)docIconPath;
-- (UInt64)docIconSize;
-- (void)setDocIconPath:(NSString *)path;
-- (BOOL)acceptsText;
-- (BOOL)acceptsFiles;
-- (BOOL)declareService;
-- (BOOL)promptsForFileOnLaunch;
-- (void)setAcceptsText: (BOOL)b;
-- (void)setAcceptsFiles: (BOOL)b;
-- (void)setDeclareService: (BOOL)b;
-- (void)setPromptsForFileOnLaunch: (BOOL)b;
-- (NSString *)role;
-- (void)setRole:(NSString *)role;
+-(SuffixList *)suffixes;
+-(UInt64)docIconSize;
+
+// getter/setters
+-(NSString *)docIconPath;
+-(void)setDocIconPath:(NSString *)path;
+
+-(BOOL)acceptsText;
+-(void)setAcceptsText: (BOOL)b;
+
+-(BOOL)acceptsFiles;
+-(void)setAcceptsFiles: (BOOL)b;
+
+-(BOOL)declareService;
+-(void)setDeclareService: (BOOL)b;
+
+-(BOOL)promptsForFileOnLaunch;
+-(void)setPromptsForFileOnLaunch: (BOOL)b;
+
+-(NSString *)role;
+-(void)setRole:(NSString *)role;
 @end
