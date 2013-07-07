@@ -292,7 +292,7 @@
 	[developmentVersionCheckbox setEnabled: ![encryptCheckbox intValue]];	
 	
 	// optimize application is enabled and on by default if ibtool is present
-	BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath: IBTOOL_PATH];
+	BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath: [PlatypusUtility ibtoolPath]];
 	[optimizeApplicationCheckbox setEnabled: ibtoolInstalled];
 	[optimizeApplicationCheckbox setIntValue: ibtoolInstalled];
     
@@ -857,7 +857,7 @@
 	[fileList clearFileList: self];
 	
 	//clear suffix and types lists to default values
-	[typesControl setDefaultTypes: self];
+	[typesControl setToDefaults: self];
 	
 	//set parameters to default
 	[paramsControl resetDefaults: self];

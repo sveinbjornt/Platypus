@@ -63,6 +63,7 @@
 #define CMDLINE_ICON_PATH			@"/usr/local/share/platypus/PlatypusDefault.icns"
 
 #define IBTOOL_PATH					@"/Developer/usr/bin/ibtool"
+#define IBTOOL_PATH_2               @"/Applications/Xcode.app/Contents/Developer/usr/bin/ibtool"
 #define LIPO_PATH                   @"/usr/bin/lipo"
 
 #define DEFAULT_EDITOR              @"Built-In"

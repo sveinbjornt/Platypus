@@ -301,12 +301,14 @@
     [fileManager copyItemAtPath: nibPath toPath: nibDestPath error: nil];
         
     // if optimize application is set, we see if we can compile the nib file
-    if ([[properties objectForKey: @"OptimizeApplication"] boolValue] == YES && [fileManager fileExistsAtPath: IBTOOL_PATH])
+    
+    NSString *ibtoolPath = [PlatypusUtility ibtoolPath];
+    if ([[properties objectForKey: @"OptimizeApplication"] boolValue] == YES && ibtoolPath)
     {
         [self report: @"Optimizing nib file"];
         
         NSTask *ibToolTask = [[NSTask alloc] init];
-        [ibToolTask setLaunchPath: IBTOOL_PATH];
+        [ibToolTask setLaunchPath: ibtoolPath];
         [ibToolTask setArguments: [NSArray arrayWithObjects: @"--strip", nibDestPath, nibDestPath, nil]];
         [ibToolTask launch];
         [ibToolTask waitUntilExit];
