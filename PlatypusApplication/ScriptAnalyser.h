@@ -9,18 +9,17 @@
 #import <Cocoa/Cocoa.h>
 #import "Common.h"
 
-@interface ScriptAnalyser : NSObject 
+@interface ScriptAnalyser : NSObject
 {
-
 }
 + (NSArray *)interpreters;
 + (NSArray *)interpreterDisplayNames;
 + (NSDictionary *)interpreterHelloWorlds;
-+ (NSString *)displayNameForInterpreter: (NSString *)theInterpreter;
-+ (NSString *)interpreterForDisplayName: (NSString *)name;
-+ (NSString *)interpreterFromSuffix: (NSString *)fileName;
-+ (NSArray *)getInterpreterFromShebang: (NSString *)path;
-+ (NSString *)appNameFromScriptFileName: (NSString *)path;
-+ (NSString *)determineInterpreterForScriptFile: (NSString *)path;
-+ (NSString *)checkSyntaxOfFile: (NSString *)scriptPath withInterpreter: (NSString *)suggestedInterpreter;
++ (NSString *)displayNameForInterpreter:(NSString *)theInterpreter;
++ (NSString *)interpreterForDisplayName:(NSString *)name;
++ (NSString *)interpreterFromSuffix:(NSString *)fileName;
++ (NSArray *)getInterpreterFromShebang:(NSString *)path;
++ (NSString *)appNameFromScriptFileName:(NSString *)path;
++ (NSString *)determineInterpreterForScriptFile:(NSString *)path;
++ (NSString *)checkSyntaxOfFile:(NSString *)scriptPath withInterpreter:(NSString *)suggestedInterpreter;
 @end

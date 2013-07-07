@@ -21,11 +21,11 @@
 #import <Cocoa/Cocoa.h>
 #import "PlatypusAppSpec.h"
 
-@interface ShellCommandController : NSWindowController 
+@interface ShellCommandController : NSWindowController
 {
 	IBOutlet id textView;
 }
-- (void)showShellCommandForSpec: (PlatypusAppSpec *)spec window: (NSWindow *)theWindow;
-- (IBAction)close: (id)sender;
+- (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow;
+- (IBAction)close:(id)sender;
 
 @end

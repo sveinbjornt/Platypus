@@ -24,12 +24,12 @@
 #import "STPrivilegedTask.h"
 #import "Common.h"
 
-@interface PrefsController : NSWindowController 
+@interface PrefsController : NSWindowController
 {
 	IBOutlet id revealAppCheckbox;
-    IBOutlet id openAppCheckbox;
-    IBOutlet id createOnScriptChangeCheckbox;
-    IBOutlet id defaultEditorMenu;
+	IBOutlet id openAppCheckbox;
+	IBOutlet id createOnScriptChangeCheckbox;
+	IBOutlet id defaultEditorMenu;
 	IBOutlet id defaultTextEncodingPopupButton;
 	IBOutlet id defaultBundleIdentifierTextField;
 	IBOutlet id defaultAuthorTextField;
@@ -45,11 +45,11 @@
 - (IBAction)installCLT:(id)sender;
 - (void)installCommandLineTool;
 - (void)uninstallCommandLineTool;
--(IBAction)uninstallPlatypus:(id)sender;
-- (void)runCLTScript: (NSString *)scriptName;
+- (IBAction)uninstallPlatypus:(id)sender;
+- (void)runCLTScript:(NSString *)scriptName;
 - (BOOL)isCommandLineToolInstalled;
-- (void)executeScriptWithPrivileges: (NSString *)pathToScript;
-- (IBAction) selectScriptEditor:(id)sender;
-- (void)updateCLTStatus: (NSTextField *)textField;
+- (void)executeScriptWithPrivileges:(NSString *)pathToScript;
+- (IBAction)selectScriptEditor:(id)sender;
+- (void)updateCLTStatus:(NSTextField *)textField;
 - (IBAction)cancel:(id)sender;
 @end

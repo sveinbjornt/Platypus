@@ -31,7 +31,7 @@
 	IBOutlet id titleTextField;
 	IBOutlet id titleLabel;
 	IBOutlet id iconLabel;
-	
+    
 	NSStatusItem *pStatusItem;
 }
 - (IBAction)show:(id)sender;
@@ -40,13 +40,13 @@
 - (IBAction)statusItemDisplayTypeChanged:(id)sender;
 - (IBAction)selectStatusItemIcon:(id)sender;
 - (IBAction)previewStatusItem:(id)sender;
-- (void)setDisplayType: (NSString *)name;
+- (void)setDisplayType:(NSString *)name;
 - (NSString *)displayType;
 - (void)killStatusItem;
 - (BOOL)showingStatusItem;
 - (NSString *)title;
-- (void)setTitle: (NSString *)title;
+- (void)setTitle:(NSString *)title;
 - (NSImage *)icon;
-- (void)setIcon: (NSImage *)img;
+- (void)setIcon:(NSImage *)img;
 
 @end
