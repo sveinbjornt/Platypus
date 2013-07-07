@@ -105,7 +105,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>Zsh Shell Script</string>
+			<string>Ksh Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
@@ -113,7 +113,6 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>pl</string>
-				<string>pm</string>
 				<string>perl</string>
 			</array>
 			<key>LSItemContentTypes</key>
@@ -263,9 +262,9 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5.0</string>
 	<key>CFBundleGetInfoString</key>
-	<string>© 2003-2012 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2013 Sveinbjorn Thordarson.</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2003-2012 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2013 Sveinbjorn Thordarson.</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>
