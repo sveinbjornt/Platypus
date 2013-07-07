@@ -172,7 +172,7 @@
 	if (size < 1024ULL) 
 		str = [NSString stringWithFormat:@"%u bytes", (unsigned int)size];
 	else if (size < 1048576ULL) 
-		str = [NSString stringWithFormat:@"%d KB", (long)size/1024];
+		str = [NSString stringWithFormat:@"%llu KB", (UInt64)size/1024];
 	else if (size < 1073741824ULL) 
 		str = [NSString stringWithFormat:@"%.1f MB", size / 1048576.0];
 	else 
