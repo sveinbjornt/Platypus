@@ -196,7 +196,7 @@
  - called when "Default" button is pressed in Types List
 *****************************************/
 
-- (IBAction) setDefaultTypes:(id)sender
+- (IBAction) setToDefaults:(id)sender
 {
 	//default suffixes
 	[suffixList clearList];
