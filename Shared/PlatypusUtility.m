@@ -43,6 +43,18 @@
     return (str != nil);
 }
 
++ (NSString *)ibtoolPath
+{
+    NSString *ibtoolPath = nil;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath: IBTOOL_PATH])
+        ibtoolPath = IBTOOL_PATH;
+    if ([[NSFileManager defaultManager] fileExistsAtPath: IBTOOL_PATH_2])
+        ibtoolPath = IBTOOL_PATH_2;
+    
+    return [ibtoolPath autorelease];
+}
+
 //+ (NSMutableArray *)splitOnCapitalLetters: (NSString *)str
 //{
 //    if ([str length] < 2)
