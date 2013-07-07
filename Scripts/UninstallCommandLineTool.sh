@@ -4,7 +4,6 @@
 # Platypus
 #
 # Created by Sveinbjorn Thordarson on 6/17/08.
-# Copyright (C) . All rights reserved.
 
 echo "Uninstalling command line tool" > /dev/stderr
 

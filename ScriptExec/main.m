@@ -1,7 +1,6 @@
 /*
-
- ScriptExec - binary bundled into Platypus-created applications
- Copyright (C) 2003-2012 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+ ScriptExec - binary bundled into Platypus-generated applications
+ Copyright (C) 2003-2013 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
  
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,8 +15,7 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- 
- */
+*/
 
 #import <Cocoa/Cocoa.h>
 
