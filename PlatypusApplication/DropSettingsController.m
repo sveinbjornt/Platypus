@@ -249,8 +249,11 @@
 	return YES;
 }
 
+#pragma mark -
+
 - (void)setAceptsFilesControlsEnabled: (BOOL)enabled
 {
+    [[droppedFilesSettingsBox contentView] setAlphaValue: 0.5 + (enabled * 0.5)];
     [appFunctionRadioButtons setEnabled: enabled];
     [addSuffixButton setEnabled: enabled];
     [numSuffixesTextField setEnabled: enabled];
@@ -258,10 +261,22 @@
     [suffixListDataBrowser setEnabled: enabled];
     [suffixTextField setEnabled: enabled];
     [promptForFileOnLaunchCheckbox setEnabled: enabled];
+    [selectDocumentIconButton setEnabled: enabled];
 }
 
-- (void)setAceptsTextControlsEnabled: (BOOL)enabled
+- (void)setAcceptsTextControlsEnabled: (BOOL)enabled
 {
+    [declareServiceCheckbox setEnabled: enabled];
+}
+
+- (IBAction)acceptsFilesChanged:(id)sender
+{
+    [self setAceptsFilesControlsEnabled: [sender intValue]];
+}
+
+- (IBAction)acceptsTextChanged:(id)sender
+{
+    [self setAcceptsTextControlsEnabled: [sender intValue]];
 }
 
 
@@ -272,6 +287,15 @@
 	return suffixList;
 }
 
+- (UInt64)docIconSize;
+{
+    if ([FILEMGR fileExistsAtPath: docIconPath])
+        return [PlatypusUtility fileOrFolderSize: docIconPath];
+    return 0;
+}
+
+#pragma mark -
+
 - (BOOL)acceptsText
 {
     return [acceptDroppedTextCheckbox intValue];
@@ -279,12 +303,19 @@
 
 - (void)setAcceptsText: (BOOL)b
 {
+    [self setAcceptsTextControlsEnabled: b];
     [acceptDroppedTextCheckbox setIntValue: b];
 }
 
 - (BOOL)acceptsFiles
 {
     return [acceptDroppedFilesCheckbox intValue];
+}
+
+- (void)setAcceptsFiles: (BOOL)b
+{
+    [self setAceptsFilesControlsEnabled: b];
+    [acceptDroppedFilesCheckbox setIntValue: b];
 }
 
 - (BOOL)declareService
@@ -297,31 +328,14 @@
     [declareServiceCheckbox setIntValue: b];
 }
 
-
-- (IBAction)acceptsFilesChanged:(id)sender
+- (BOOL)promptsForFileOnLaunch
 {
-    [self setAceptsFilesControlsEnabled: [sender intValue]];
-}
-
-- (IBAction)acceptsTextChanged:(id)sender
-{
-    [self setAceptsTextControlsEnabled: [sender intValue]];
-}
-
-- (void)setAcceptsFiles: (BOOL)b
-{
-    [self setAceptsFilesControlsEnabled: b];
-    [acceptDroppedFilesCheckbox setIntValue: b];
+    return [promptForFileOnLaunchCheckbox intValue];
 }
 
 - (void)setPromptsForFileOnLaunch: (BOOL)b
 {
     [promptForFileOnLaunchCheckbox setIntValue: b];
-}
-
-- (BOOL)promptsForFileOnLaunch
-{
-    return [promptForFileOnLaunchCheckbox intValue];
 }
 
 - (NSString *)role
@@ -335,13 +349,6 @@
 		[appFunctionRadioButtons selectCellWithTag: 0];
 	else
 		[appFunctionRadioButtons selectCellWithTag: 1];
-}
-
-- (UInt64)docIconSize;
-{
-    if ([FILEMGR fileExistsAtPath: docIconPath])
-        return [PlatypusUtility fileOrFolderSize: docIconPath];
-    return 0;
 }
 
 - (NSString *)docIconPath
