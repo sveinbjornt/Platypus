@@ -31,7 +31,6 @@
 {
 	if (self = [super init]) 
 	{
-		typesList = [[TypesList alloc] init];
 		suffixList = [[SuffixList alloc] init];
     }
     return self;
@@ -44,7 +43,6 @@
 
 -(void)dealloc
 {
-	[typesList release];
 	[suffixList release];
 	[super dealloc];
 }
@@ -65,11 +63,9 @@
 {
 	[window setTitle: [NSString stringWithFormat: @"%@ - Drop settings", PROGRAM_NAME]];
 	//clear text fields from last time
-	[typeCodeTextField setStringValue: @""];
 	[suffixTextField setStringValue: @""];
 	
 	// refresh these guys
-    [typesListDataBrowser setDataSource: typesList];
 	[typesListDataBrowser reloadData];
 	[typesListDataBrowser setDelegate: self];
 	[typesListDataBrowser setTarget: self];
@@ -84,13 +80,6 @@
 		[numSuffixesTextField setStringValue: @"All suffixes"];
 	else
 		[numSuffixesTextField setStringValue: [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
-
-	if ([typesList hasAllTypes])
-		[numTypesTextField setStringValue: @"All file types"];
-	else
-		[numTypesTextField setStringValue: [NSString stringWithFormat:@"%d file types", [typesList numTypes]]];
-	if ([typesList hasFolderType])
-		[numTypesTextField setStringValue: [[numTypesTextField stringValue] stringByAppendingString: @" and folders"]];
 		
 	//open window
 	[NSApp beginSheet:	typesWindow
@@ -108,13 +97,12 @@
 - (IBAction)closeTypesSheet:(id)sender
 {
 	//make sure typeslist contains valid values
-	if ([typesList numTypes] <= 0 && [suffixList numSuffixes] <= 0)
+	if (![suffixList numSuffixes])
 	{
-		[typesErrorTextField setStringValue: @"One of the lists must contain at least one entry."];
+		[typesErrorTextField setStringValue: @"The suffix list must contain at least one entry."];
 	}
 	else
 	{
-		[typesErrorTextField setStringValue: @""];
 		[window setTitle: PROGRAM_NAME];
 		[NSApp stopModal];
 		[NSApp endSheet:typesWindow];
@@ -184,35 +172,6 @@
 		[numSuffixesTextField setStringValue: [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
 }
 
-/*****************************************
- - called when [+] button is pressed in Types List
-*****************************************/
-
-- (IBAction) addType:(id)sender;
-{
-	//make sure the type is 4 characters long
-	if ([[typeCodeTextField stringValue] length] != 4)
-	{
-				[PlatypusUtility sheetAlert:@"Invalid File Type" subText: @"A File Type must consist of exactly 4 ASCII characters." forWindow: typesWindow];
-		return;
-	}
-
-	if (![typesList hasType: [typeCodeTextField stringValue]] && ([[typeCodeTextField stringValue] length] > 0))
-	{
-		[typesList addType: [typeCodeTextField stringValue]];
-		[typeCodeTextField setStringValue: @""];
-		[self controlTextDidChange: NULL];
-	}
-	//update
-	[typesListDataBrowser reloadData];
-	
-	if ([typesList hasAllTypes])
-		[numTypesTextField setStringValue: @"All file types"];
-	else
-		[numTypesTextField setStringValue: [NSString stringWithFormat:@"%d file types", [typesList numTypes]]];
-	if ([typesList hasFolderType])
-		[numTypesTextField setStringValue: [[numTypesTextField stringValue] stringByAppendingString: @" and folders"]];
-}
 
 /*****************************************
  - called when [C] button is pressed in Types List
@@ -223,17 +182,6 @@
 	[suffixList clearList];
 	[suffixListDataBrowser reloadData];
 	[numSuffixesTextField setStringValue: [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
-}
-
-/*****************************************
- - called when [C] button is pressed in Types List
-*****************************************/
-
-- (IBAction) clearTypesList:(id)sender
-{
-	[typesList clearList];
-	[typesListDataBrowser reloadData];
-	[numTypesTextField setStringValue: [NSString stringWithFormat:@"%d file types", [typesList numTypes]]];
 }
 
 /*****************************************
@@ -262,51 +210,11 @@
 }
 
 /*****************************************
- - called when [-] button is pressed in Types List
-*****************************************/
-
-- (IBAction) removeType:(id)sender;
-{
-	int i;
-	NSIndexSet *selectedItems = [typesListDataBrowser selectedRowIndexes];
-	
-	for (i = [typesList numTypes]; i >= 0; i--)
-	{
-		if ([selectedItems containsIndex: i])
-		{
-			[typesList removeType: i];
-			[typesListDataBrowser reloadData];
-			break;
-		}
-	}
-	
-	if ([typesList hasAllTypes])
-		[numTypesTextField setStringValue: @"All file types"];
-	else
-		[numTypesTextField setStringValue: [NSString stringWithFormat:@"%d file types", [typesList numTypes]]];
-	if ([typesList hasFolderType])
-		[numTypesTextField setStringValue: [[numTypesTextField stringValue] stringByAppendingString: @" and folders"]];
-}
-
-/*****************************************
  - called when "Default" button is pressed in Types List
 *****************************************/
 
 - (IBAction) setDefaultTypes:(id)sender
 {
-	//default File Types
-	[typesList clearList];
-	[typesList addType: @"****"];
-	[typesList addType: @"fold"];
-	[typesListDataBrowser reloadData];
-	
-    if ([typesList hasAllTypes])
-		[numTypesTextField setStringValue: @"All file types"];
-	else
-		[numTypesTextField setStringValue: [NSString stringWithFormat:@"%d file types", [typesList numTypes]]];
-	if ([typesList hasFolderType])
-		[numTypesTextField setStringValue: [[numTypesTextField stringValue] stringByAppendingString: @" and folders"]];
-    
 	//default suffixes
 	[suffixList clearList];
 	[suffixList addSuffix: @"*"];
@@ -324,6 +232,7 @@
     [self setAcceptsText: NO];
     [self setAcceptsFiles: YES];
     [self setDeclareService: NO];
+    [self setPromptsForFileOnLaunch: NO];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
@@ -341,43 +250,16 @@
 		
         [removeSuffixButton setEnabled: (selected != 0)];
 	}
-	if ([aNotification object] == typesListDataBrowser || [aNotification object] == NULL)
-	{
-		selectedItems = [typesListDataBrowser selectedRowIndexes];
-		for (i = 0; i < [typesList numTypes]; i++)
-			if ([selectedItems containsIndex: i])
-				selected++;
-		
-        [removeTypeButton setEnabled: (selected != 0)];
-	}
 }
 
 - (void)controlTextDidChange:(NSNotification *)aNotification
 {	
-	//bundle signature or "type code" changed
-	if ([aNotification object] == typeCodeTextField || [aNotification object] == NULL)
-	{
-		NSRange	 range = { 0, 4 };
-		NSString *sig = [[aNotification object] stringValue];
-		
-		if ([sig length] > 4)
-			[[aNotification object] setStringValue: [sig substringWithRange: range]];
-		else if ([sig length] < 4)
-			[[aNotification object] setTextColor: [NSColor redColor]];
-		else if ([sig length] == 4)
-			[[aNotification object] setTextColor: [NSColor blackColor]];
-	}
-
 	//enable/disable buttons for Edit Types window
     [addSuffixButton setEnabled: ([[suffixTextField stringValue] length] > 0)];
-    [addTypeButton setEnabled: ([[typeCodeTextField stringValue] length] == 4)];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem*)anItem
 {
-	if (![showTypesButton isEnabled])
-		return NO;
-	
 	if ([[anItem title] isEqualToString: @"Remove File Type"] && [typesListDataBrowser selectedRow] == -1)
 		return NO;
 	
@@ -388,11 +270,6 @@
 }
 
 #pragma mark -
-
-- (TypesList *) types
-{
-	return typesList;
-}
 
 - (SuffixList *) suffixes
 {
@@ -428,6 +305,16 @@
 - (void)setAcceptsFiles: (BOOL)b
 {
     [acceptDroppedFilesCheckbox setIntValue: b];
+}
+
+- (void)setPromptsForFileOnLaunch: (BOOL)b
+{
+    [promptForFileOnLaunchCheckbox setIntValue: b];
+}
+
+- (BOOL)promptsForFileOnLaunch
+{
+    return [promptForFileOnLaunchCheckbox intValue];
 }
 
 - (NSString *)role

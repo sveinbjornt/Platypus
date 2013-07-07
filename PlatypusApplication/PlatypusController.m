@@ -524,13 +524,12 @@
 	
 	// file types
 	[spec setProperty: (NSMutableArray *)[(SuffixList *)[typesControl suffixes] getSuffixArray]			forKey: @"Suffixes"];
-	[spec setProperty: (NSMutableArray *)[(TypesList *)[typesControl types] getTypesArray]				forKey: @"FileTypes"];
 	[spec setProperty: [typesControl role]																forKey: @"Role"];
     [spec setProperty: [typesControl docIconPath]                                                       forKey: @"DocIcon"];
     [spec setProperty: [NSNumber numberWithBool: [typesControl acceptsText]]                            forKey: @"AcceptsText"];
     [spec setProperty: [NSNumber numberWithBool: [typesControl acceptsFiles]]                           forKey: @"AcceptsFiles"];
     [spec setProperty: [NSNumber numberWithBool: [typesControl declareService]]                         forKey: @"DeclareService"];
-
+    [spec setProperty: [NSNumber numberWithBool: [typesControl promptsForFileOnLaunch]]                 forKey: @"PromptForFileOnLaunch"];
     
 	//  text output text settings
 	[spec setProperty: [NSNumber numberWithInt: (int)[textSettingsControl getTextEncoding]]				forKey: @"TextEncoding"];
@@ -584,10 +583,6 @@
     //suffix list
     [(SuffixList *)[typesControl suffixes] clearList];
     [(SuffixList *)[typesControl suffixes] addSuffixes: [spec propertyForKey: @"Suffixes"]];
-
-    //types list
-    [(TypesList *)[typesControl types] clearList];
-    [(TypesList *)[typesControl types] addTypes: [spec propertyForKey: @"FileTypes"]];
     
     [typesControl tableViewSelectionDidChange: NULL];
     // role and doc icon
@@ -599,7 +594,9 @@
     if ([spec propertyForKey: @"AcceptsFiles"] != nil)
         [typesControl setAcceptsFiles: [[spec propertyForKey: @"AcceptsFiles"] boolValue]];
     if ([spec propertyForKey: @"DeclareService"] != nil)
-        [typesControl setDeclareService: [[spec propertyForKey: @"AcceptsFiles"] boolValue]];
+        [typesControl setDeclareService: [[spec propertyForKey: @"DeclareService"] boolValue]];
+    if ([spec propertyForKey: @"PromptForFileOnLaunch"] != nil)
+        [typesControl setDeclareService: [[spec propertyForKey: @"PromptForFileOnLaunch"] boolValue]];
     
 	// parameters
     [paramsControl setInterpreterArgs: [spec propertyForKey: @"InterpreterArgs"]];
