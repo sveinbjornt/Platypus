@@ -52,7 +52,7 @@
 
 <p>For <strong>version 4.8</strong>.  The latest version of this document can be found <a href="http://sveinbjorn.org/platypus_documentation">here</a>.</p>
 
-<p>Last updated on the 20th of March 2012, by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
+<p>Last updated on the 7th of July 2013, by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
 
 <br>
 <hr>
@@ -155,6 +155,8 @@
 <a name="11"></a>
 <h3>About Platypus</h3>
 
+<img src="images/script2app.png" style="float: right;">
+
 <p>Platypus is a Mac OS X developer tool which allows you to create application wrappers around scripts.  This means that your scripts can be launched from the Mac OS X window environment -- e.g. the Finder or the Dock -- without requiring use of the command line interface.  Your scripts effectively become regular Mac OS X applications.</p>
 
 <p>Platypus was first conceived in 2003 and implemented using the Carbon APIs.  It has since gone through over a dozen major updates, and is now entirely written in Objective C for the Cocoa APIs.</p>
@@ -171,7 +173,7 @@
 
 <p>While Platypus is free, it is the product of hundreds of hours of work over the span of several years.  If Platypus makes your life easier, please <strong><a href="http://sveinbjorn.org/donations">make a donation</a></strong> to support further development.  I rely on donations to encourage me in continuing development of Platypus.</p>
 
-<p>That being said, while I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, <em>I will not respond to queries about scripting and scripting languages</em>.  Productive use of Platypus assumes that you are competent in your scripting language of choice.  I am obliged to note this due to the large number of queries I have received over the years about scripting languages and their use.  I simply don't have the time or expertise to respond to such queries.  There are plenty of good tutorials for most scripting languages freely available online.  Bar that, there's always <a href="http://stackoverflow.com">Stack Overflow</a>.</p>
+<p>That being said, while I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, <em>I will not respond to queries about scripting and scripting languages</em>.  Productive use of Platypus assumes that you are competent in your scripting language of choice.  I am obliged to note this due to the large number of queries I have received over the years about scripting languages and their use.  I simply don't have the time or expertise to respond to such queries.  There are plenty of good tutorials for most scripting languages freely available online.  For specific issues, there's always <a href="http://stackoverflow.com">Stack Overflow</a>.</p>
 
 <br><br>
 
@@ -180,6 +182,8 @@
 <h3>Credits</h3>
 
 <p>Platypus was conceived and created, and is currently maintained and developed by me, Sveinbjorn Thordarson &lt;sveinbjornt@gmail.com&gt;</p>
+
+<img style="float: right; margin-left: 30px; width: 94px; height: 128px;" src="images/platypus.png">
 
 <p>The Platypus icon -- <a href="http://www.hexley.com/">Hexley</a>, the Darwin mascot -- was created by Jon Hooper, who was kind enough to grant me permission to use it as the Platypus application icon.  Derivative icons using Hexley were created by Sveinbjorn Thordarson.</p>
 
@@ -236,11 +240,17 @@
 
 <strong>App Name</strong>
 
+<br>
+<img src="images/app_name.png">
+
+
 <p>Here you type in the name of the application you are about to create. Once you press the "Create" button, you will be prompted again for a name for your app. However, that will only be the name of the actual application bundle directory, so make sure you put in the proper application name here.</p> 
 
 <strong>Script Path</strong>
 
 <p>This field contains the path to the script you will create the app from. You either define this manually by typing the path into the text field (which supports shell-style autocomplete), or by pressing the <strong>Select</strong> button and selecting it in a navigation dialog or by dragging your script on to the Platypus window.</p>
+
+<img src="images/script_path.png">
     
 <p>Once you have selected a valid script, you can press the <strong>Edit</strong> button to open it in your default text editor. Platypus includes a very basic built-in text editor as the default editor. You can change this in the Preferences to use any external editor you want.</p>
 
@@ -253,6 +263,8 @@
 
 <strong>Script Type</strong>
 
+<img src="images/script_type.png" style="float: right;">
+
 <p>Depending on the scripting language you use, you will want to select the appropriate kind here.  You can either select one of the predefined scripting languages from the the pop-up menu or type in the path to an interpreter of your own choice in the field next to the pop-up menu.</p>
     
 <p>Most of the time, you will not need to specify this manually.  When you select a script file, Platypus will automatically try to determine what kind of script it is by looking at the file suffix and shebang (#!) line.  If you have specified this meta-data in the script file itself, Platypus is smart enough to figure it out.</p>
@@ -261,11 +273,15 @@
 
 <p>The <strong>Args</strong> button next to the text field containing your script interpreter setting allows you to specify arguments for the script interpreter and the script itself.</p>
 
+<img src="images/args.png">
+
 
 <br><br>
 <a name="23"></a>
 
 <h3>Output Types</h3>
+
+<img src="images/output_type.png" style="float: right;">
 
 <p>The <strong>Output</strong> pop-up button allows you to select what the application you create will do with the output of the Script.  There are four settings available:</p>
 <br>
@@ -319,37 +335,41 @@
 
 <h3>Setting the Icon</h3>
 
-<p>Platypus allows you to set an icon for your application.  You can loop through the Platypus icon presets for your application or, alternately, drag an image or icon file for a custom icon. There are also two menu items in the "Advanced" menu, "Select Custom Icon..." and "Import Custom Icon...", which allow you to select either an image to use as icon, or specify a file whose icon is to be used. The app icon box has a contextual menu which gives easy access to these functions, allowing you to paste an icon from the clipboard. It is also worth mentioning that you can choose the option "Select .icns file", to bypass Platypus' processing of images and copy a given .icns file directly to the application bundle.</p>
+<img src="images/setting_icon.jpg" style="float: right;">
+
+<p>Platypus allows you to set an icon for your application.  You can loop through the Platypus icon presets for your application or, alternately, drag an image or icon file for a custom icon.</p> 
+
+<p>There are also two menu items in the "Advanced" menu, "Select Custom Icon..." and "Import Custom Icon...", which allow you to select either an image to use as icon, or specify a file whose icon is to be used.</p>
+
+<p>The app icon box has a contextual menu which gives easy access to these functions, allowing you to paste an icon from the clipboard. It is also worth mentioning that you can choose the option "Select .icns file", to bypass Platypus' processing of images and copy a given .icns file directly to the application bundle.</p>
 
 <p>Please note that having Platypus create the icon file will not result in an icon that looks good in smaller sizes.  For best
 results, use professional Mac OS X icon-editing software and specify a carefully crafted .icns file with the "Select .icns file" option.</p>
-
-<img src="images/setting_icon.jpg">
 
 <br>
 <br>
 
 <a name="31"></a>
 
-<h3>Author and Version</h3>
+<h3>Identifier, Author and Version</h3>
+
+<p>The <strong>Identifier</strong> text field allows you to set the unique identifier for your application.  If you have typed in a name for your application, the "Identifier" text field will contain something like "org.username.YourAppName".</p>
+
+<p>Every Mac OS X application has a unique string called a bundle identifier, which is in the form of a reverse DNS name (i.e. "com.apple.iTunes", "org.sveinbjorn.Platypus").  Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to something else if you want to.</p>
+
+<p>The default bundle identifier prefix can be set in the Preferences.</p>
+
+<img src="images/author_identifier.png">
 
 <p>The <strong>Author</strong> and <strong>Version</strong> fields allow you to specify just that: the name of the author of your script application and its version.  This will default to the full name associated with your user account, and version 1.0.  This information will appear in the "Get Info" window for your application in the Finder, and in the window that appears when users selected "About this application" in the Application menu of the app.</p>
-
-<br><br>
-<a name="32"></a>
-
-<h3>Identifier</h3>
-
-<p>The <strong>Identifier</strong> text field allows you to set the unique identifier for your application.  If you have typed in a name for your application, the "Identifier" text field will contain something like "org.username.YourAppName". Every Mac OS X application has a unique string called a bundle identifier, which is in the form of a reverse DNS name (i.e. "com.apple.iTunes", "org.sveinbjorn.Platypus").  Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to something else if you want to.</p>
     
-<p>The default bundle identifier prefix can be set in the Preferences.</p>
 
 <br><br>
 <a name="33"></a>
 
 <h3>Special Options</h3>
 
-    <br>
+<img src="images/special_options.png" style="float: right;">
     
 <p><strong>Requires Administrator privileges:</strong>  Checking "Requires Administrator privileges" will cause your application to prompt for an Administrator password and then execute your script with administrative privileges via Apple's Security Framework.  This is not strictly equivalent to running the script as the root user.  For details, see the <a href="http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges">documentation for Apple's Security Framework.</a></p>
 
@@ -371,6 +391,8 @@ results, use professional Mac OS X icon-editing software and specify a carefully
 <h3>Bundled Files</h3>
 
 <p>You can add a list of files to be copied into the Resources folder of your application bundle. These files can then be used by your script.  The default current working directory of your script will be this folder, so you should be able to access them directly from your script's CWD.</p>
+
+<img src="images/bundled_files.png">
 
 <p>See also <a href="#88">How do I get the path to my application / bundled files within the script?</a> in the FAQ.</p>
 
@@ -436,6 +458,8 @@ Ruby: <code>/usr/bin/ruby -c "/path/to/script"</code>
 PHP: <code>/usr/bin/php -l "/path/to/script"</code></pre>
 </div>
 
+<img src="images/syntax_checking.png">
+
 <br><br>
 
 <a name="45"></a>
@@ -444,6 +468,8 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></pre>
 <p>Platypus includes a <strong>command line tool</strong> equivalent to the Platypus.app application, which can be installed into <code>/usr/local/bin/platypus</code> via Platypus Preferences.  The man page for this tool is available from the Help menu and via the command <code>man platypus</code>.  There is also an online <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">HTML version of the man page</a>.</p>
 
 <p>Under the <strong>Advanced</strong> menu there is a menu command called <strong>Show Shell Command</strong>. Selecting this item will bring down a sheet with a text field containing a command line command for executing the platypus command line with the options you selected in the graphical interface. This can be helpful if you have the command line tool installed and wish to automate the creation of script apps.</p>
+
+<img src="images/command_line_command.png">
 
 <p>Please note that Platypus.app is <em>not</em> merely a GUI frontend for the command line tool and, depending on the current state of Platypus development, the command line tool may or may not have feature parity with the GUI application.</p>
 
@@ -472,8 +498,10 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></pre>
 <br>
 <br>
 
-<p>You can set Platypus to reveal the app in the Finder on creation, or launch it immediately.   You can also set Platypus to automatically create an app from the script whenever the selected script file is changed and saved.  This makes for a pretty efficient development process.</p>
+<p>You can set Platypus to reveal the app in the Finder once it has been created, or set it to launch the app immediately. The <strong>Create app on script file change</strong> option makes Platypus automatically create an app from the script whenever the selected script file changes.  This makes for a pretty efficient development process.</p>
 
+<br>
+<br>
 <hr>
 <br>
 <br>
@@ -526,6 +554,7 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></pre>
 
 <p>Platypus includes a number of built-in examples.  These can be opened in the <strong>Examples submenu</strong> of the <strong>Profiles</strong> menu.  You can open the script file associated with each example to see how they work.  Brief explanations of each of the examples follows:</p>
 
+<br>
 <blockquote>
 <p><strong>FastDMGMounter</strong>: This creates a replacement for Mac OS X's DiskImageMounter which uses the command line tool to mount .dmgs much faster, skipping verification and auto-accepting any EULAs. See <a href="http://sveinbjorn.org/macosx_hack_faster_dmg_image_mounting">this page</a> for details.</p>  
 
@@ -544,6 +573,7 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></pre>
 <p><strong>TarGzipper</strong>: Creates a gzipped tar archive of files dropped on it, in the same directory as the files.</p>  
 
 </blockquote>
+<br>
 
 <p>If you come up with a particularly nifty use of Platypus, it might make a suitable addition to this list.  If so, by all means send it to me at <code>sveinbjornt</code>@<code>gmail</code> dot <code>com</code>.</p>
 
