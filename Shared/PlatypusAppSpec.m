@@ -493,7 +493,7 @@
                         [properties objectForKey: @"Name"],         @"CFBundleExecutable", 
                         [properties objectForKey: @"Name"],         @"CFBundleName",
                         [properties objectForKey: @"Name"],         @"CFBundleDisplayName",
-                        [NSString stringWithFormat: @"© %d %@", [[NSCalendarDate calendarDate] yearOfCommonEra], [properties objectForKey: @"Author"] ],             @"NSHumanReadableCopyright", 
+                        [NSString stringWithFormat: @"© %d %@", (int)[[NSCalendarDate calendarDate] yearOfCommonEra], [properties objectForKey: @"Author"] ],             @"NSHumanReadableCopyright",
                         [properties objectForKey: @"Version"],      @"CFBundleVersion", 
                         [properties objectForKey: @"Version"],      @"CFBundleShortVersionString",
                         [properties objectForKey: @"Identifier"],   @"CFBundleIdentifier",  
