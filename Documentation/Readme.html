@@ -38,12 +38,10 @@
 Sveinbjorn Thordarson &lt;sveinbjornt@gmail.com&gt;</p>
 <br>
 <br>
-<br>
-<br>
 
 <h3>What is Platypus?</h3>
 
-<p><a href="http://sveinbjorn.org/platypus">Platypus</a> is a developer tool that creates application wrappers around scripts.  In other words, it creates Mac OS X applications that executes a bundled script. Command line scripts can thus be run transparently from the graphical window environment, integrating seamlessly with the standard user interface.</p>
+<p><a href="http://sveinbjorn.org/platypus">Platypus</a> is a Mac OS X developer tool that creates application wrappers around scripts.  In other words, it creates native applications that execute a bundled script. Scripts in a variety of languages, such as shell scripts, Perl and Python scripts can thus be run transparently from the graphical window environment, integrating seamlessly with the standard user interface.</p>
 
 <p>Platypus is written in Objective-C / Cocoa and is free, open source software distributed under the terms and conditions of the <a href="http://www.fsf.org">Free Software Foundation</a>'s GNU General Public License v2.  The source code is available as a separate download on the <a href="http://sveinbjorn.org/platypus">Platypus website</a> and on <a href="https://github.com/sveinbjornt/Platypus">GitHub</a>.</p>
     
@@ -54,28 +52,30 @@ Sveinbjorn Thordarson &lt;sveinbjornt@gmail.com&gt;</p>
                     <img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/scr/pixel.gif" width="1" height="1">
     </form>
     
-    <p>While Platypus is free, it is the product of hundreds of hours of work over the span of over a decade.  If you find Platypus a useful, please consider <strong><a href="http://sveinbjorn.org/donations">making a donation</a></strong> to support further development.  I rely on donations to encourage me in continuing development of Platypus.</p>
+    <p>While Platypus is free, it is the product of hundreds of hours of work over the span of over a decade.  If you find Platypus a useful, please consider <strong><a href="http://sveinbjorn.org/donations">making a donation</a></strong> to support further development.  I rely on donations to encourage me in continuing development of this tool.</p>
 
 <br>
 
+    
+<h3>How does Platypus work?</h3>
+
+<p>Platypus creates a Mac OS X application bundle (.app) which contains an executable file and your script.  When this application is launched, the executable file gets the script interpreter and other settings (authentication requirements, output type etc.) from configuration files in the Resources folder within the bundle and then executes the script according to those parameters.  Script output can then be presented to the end-user in a variety of ways, ranging from progress bars to windows with text.</p>
+
+<p>Platypus and Platypus-generated applications require <strong>Mac OS X 10.5 or later</strong> and are provided as fat <strong>32-bit/64-bit Intel</strong> binaries.  In order to create Platypus apps that run on PowerPC or prior incarnations of Mac OS X, you must use <a href="http://sveinbjorn.org/files/software/platypus/">Platypus 4.4</a> or older.</p>
+
+<br>
+
+
 <h3>How do I use Platypus?</h3>
 
-<p>Using Platypus is simple enough.  You type in the name you want to assign to the application in the "App Name" field and then locate your script via a navigation dialog by pressing the "Select" button (or alternatively, drag the script or type in the path manually).  You can then create the application by pressing the <strong>Create</strong> button.</p>
+<p>Using Platypus is simple enough.  You type in the name you want to assign to the application in the "App Name" field and then locate your script via a navigation dialog by pressing the "Select" button (or alternatively, drag the script or type in the path manually).  You can then create an  application by pressing the <strong>Create</strong> button.</p>
 
-<p>Platypus sports a number of advanced features that are explained in detail in the documentation.  You can view it by opening Platypus and selecting <strong>Platypus Documentation</strong> from the <strong>Help</strong> menu.  The documentation is quite detailed and includes step by step tutorials, examples and in-depth explanations of advanced features.</p>
+<p>Platypus sports a number of advanced features that are explained in detail in the <a href="http://sveinbjorn.org/files/manpages/PlatypusDocumentation.html">documentation</a>.  If you are offline, you can also view it by opening Platypus and selecting <strong>Platypus Documentation</strong> from the <strong>Help</strong> menu.  The documentation is quite detailed and includes step by step tutorials, examples, an FAQ section, and in-depth explanations of advanced features.</p>
 
 <p>Platypus has a command-line interface counterpart, <code>platypus</code>.  You can install this command line tool from the <strong>Preferences</strong> into the default installation location <code>/usr/local/bin/platypus</code>.  The man page for the command line tool is available both from the terminal and as an HTML document accessible from the Platypus application's Help menu.</p>
 
 <br>
 
-<h3>How does Platypus work?</h3>
-
-<p>Platypus creates a Mac OS X application bundle (.app) which contains an executable file and your script.  When this application is launched, the executable file gets the script interpreter and other settings (authentication requirements, output type etc.) from configuration files in the Resources folder within the bundle and then executes the script according to those parameters.  Script output can then be presented to the end-user in a variety of ways.</p>
-
-<p>Platypus and Platypus-generated applications require <strong>Mac OS X 10.5 or later</strong> and are provided as fat <strong>32-bit/64-bit Intel</strong> binaries.  In order to create Platypus apps that run on PowerPC or previous incarnations of Mac OS X, you must use Platypus 4.4 or older.</p>
-
-<br>
-<br>
 
 <h3>Version History</h3>
 
