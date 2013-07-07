@@ -487,13 +487,14 @@
 -(NSDictionary *)infoPlist
 {
     // create the Info.plist dictionary
+    NSString *humanCopyright = [NSString stringWithFormat: @"© %d %@", (int)[[NSCalendarDate calendarDate] yearOfCommonEra], [properties objectForKey: @"Author"]];
     NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys: 
                                       
                         @"English",                                 @"CFBundleDevelopmentRegion",
                         [properties objectForKey: @"Name"],         @"CFBundleExecutable", 
                         [properties objectForKey: @"Name"],         @"CFBundleName",
                         [properties objectForKey: @"Name"],         @"CFBundleDisplayName",
-                        [NSString stringWithFormat: @"© %d %@", (int)[[NSCalendarDate calendarDate] yearOfCommonEra], [properties objectForKey: @"Author"] ],             @"NSHumanReadableCopyright",
+                        humanCopyright,                             @"NSHumanReadableCopyright",
                         [properties objectForKey: @"Version"],      @"CFBundleVersion", 
                         [properties objectForKey: @"Version"],      @"CFBundleShortVersionString",
                         [properties objectForKey: @"Identifier"],   @"CFBundleIdentifier",  
@@ -502,7 +503,7 @@
                         @"APPL",                                    @"CFBundlePackageType",
                         @"MainMenu",                                @"NSMainNibFile",
                         PROGRAM_MIN_SYS_VERSION,                    @"LSMinimumSystemVersion",
-                        @"NSApplication",                           @"NSPrincipalClass", 
+                        @"NSApplication",                           @"NSPrincipalClass",
                                       
                                       nil];
     
