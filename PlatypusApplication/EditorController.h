@@ -23,15 +23,15 @@
 #import "PlatypusUtility.h"
 #import "SyntaxCheckerController.h"
 
-@interface EditorController : NSWindowController 
+@interface EditorController : NSWindowController
 {
 	IBOutlet id scriptPathTextField;
 	IBOutlet id textView;
-    NSWindow    *mainWindow;
+	NSWindow *mainWindow;
 }
-- (void)showEditorForFile: (NSString *)path window: (NSWindow *)window;
-- (IBAction)save: (id)sender;
-- (IBAction)cancel: (id)sender;
-- (IBAction)checkSyntax: (id)sender;
-- (IBAction)revealInFinder: (id)sender;
+- (void)showEditorForFile:(NSString *)path window:(NSWindow *)window;
+- (IBAction)save:(id)sender;
+- (IBAction)cancel:(id)sender;
+- (IBAction)checkSyntax:(id)sender;
+- (IBAction)revealInFinder:(id)sender;
 @end

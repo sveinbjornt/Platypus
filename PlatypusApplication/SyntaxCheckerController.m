@@ -23,41 +23,36 @@
 
 @implementation SyntaxCheckerController
 
--(id) init
-{
-	return [super initWithWindowNibName: @"SyntaxChecker"];
+- (id)init {
+	return [super initWithWindowNibName:@"SyntaxChecker"];
 }
 
-- (void)awakeFromNib
-{
-	[textView setFont:[NSFont userFixedPitchFontOfSize: 10.0]];
+- (void)awakeFromNib {
+	[textView setFont:[NSFont userFixedPitchFontOfSize:10.0]];
 }
 
-- (void)showSyntaxCheckerForFile: (NSString *)path withInterpreter: (NSString *)interpreter window: (NSWindow *)theWindow
-{	
+- (void)showSyntaxCheckerForFile:(NSString *)path withInterpreter:(NSString *)interpreter window:(NSWindow *)theWindow {
 	[self loadWindow];
-	[scriptPathTextField setStringValue: path];
-	NSString *reportText = [ScriptAnalyser checkSyntaxOfFile: path withInterpreter: interpreter];
-	[textView setString: reportText];
-	
-	[NSApp beginSheet: [self window]
-	   modalForWindow: theWindow 
-		modalDelegate: self
-	   didEndSelector: nil
-		  contextInfo: nil];
-	
-	[NSApp runModalForWindow: [self window]];
+	[scriptPathTextField setStringValue:path];
+	NSString *reportText = [ScriptAnalyser checkSyntaxOfFile:path withInterpreter:interpreter];
+	[textView setString:reportText];
+    
+	[NSApp  beginSheet:[self window]
+	    modalForWindow:theWindow
+	     modalDelegate:self
+	    didEndSelector:nil
+	       contextInfo:nil];
+    
+	[NSApp runModalForWindow:[self window]];
 }
 
-- (IBAction)close: (id)sender
-{
-	[NSApp endSheet: [self window]];
+- (IBAction)close:(id)sender {
+	[NSApp endSheet:[self window]];
 	[NSApp stopModal];
 	[[self window] close];
 }
 
-- (void)windowWillClose:(NSNotification *)notification
-{
+- (void)windowWillClose:(NSNotification *)notification {
 	[self release];
 }
 

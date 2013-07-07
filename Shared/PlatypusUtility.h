@@ -23,19 +23,19 @@
 #import <Cocoa/Cocoa.h>
 #import "Common.h"
 
-@interface PlatypusUtility : NSObject 
-+ (NSString *)removeWhitespaceInString: (NSString *)str;
-+ (BOOL)isTextFile: (NSString *)path;
+@interface PlatypusUtility : NSObject
++ (NSString *)removeWhitespaceInString:(NSString *)str;
++ (BOOL)isTextFile:(NSString *)path;
 + (NSString *)ibtoolPath;
 //+ (BOOL)runningSnowLeopardOrLater;
-+ (BOOL)setPermissions: (short)pp forFile: (NSString *)path;
-+ (void)alert: (NSString *)message subText: (NSString *)subtext;
-+ (void)fatalAlert: (NSString *)message subText: (NSString *)subtext;
-+ (BOOL)proceedWarning: (NSString *)message subText: (NSString *)subtext withAction: (NSString *)action;
-+ (void)sheetAlert: (NSString *)message subText: (NSString *)subtext forWindow: (NSWindow *)window;
-+ (UInt64) fileOrFolderSize: (NSString *)path;
-+ (NSString *)sizeAsHumanReadable: (UInt64)size;
-+ (NSString *)fileOrFolderSizeAsHumanReadable: (NSString *)path;
-+ (BOOL)openInDefaultBrowser: (NSString *)path;
++ (BOOL)setPermissions:(short)pp forFile:(NSString *)path;
++ (void)alert:(NSString *)message subText:(NSString *)subtext;
++ (void)fatalAlert:(NSString *)message subText:(NSString *)subtext;
++ (BOOL)proceedWarning:(NSString *)message subText:(NSString *)subtext withAction:(NSString *)action;
++ (void)sheetAlert:(NSString *)message subText:(NSString *)subtext forWindow:(NSWindow *)window;
++ (UInt64)fileOrFolderSize:(NSString *)path;
++ (NSString *)sizeAsHumanReadable:(UInt64)size;
++ (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path;
++ (BOOL)openInDefaultBrowser:(NSString *)path;
 + (NSArray *)imageFileSuffixes;
 @end

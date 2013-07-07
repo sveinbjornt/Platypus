@@ -22,75 +22,65 @@
 
 @implementation EditorController
 
-- (id)init
-{
-	return [super initWithWindowNibName: @"Editor"];
+- (id)init {
+	return [super initWithWindowNibName:@"Editor"];
 }
 
-- (void)awakeFromNib
-{
-	[textView setFont:[NSFont userFixedPitchFontOfSize: 10.0]];
+- (void)awakeFromNib {
+	[textView setFont:[NSFont userFixedPitchFontOfSize:10.0]];
 }
 
-- (void)showEditorForFile: (NSString *)path window: (NSWindow *)theWindow
-{	
-    NSString *str = [NSString stringWithContentsOfFile: path encoding: [[DEFAULTS objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
-    if (str == nil)
-    {
-        [PlatypusUtility alert: @"Error reading document" subText: @"This document does not appear to be a text file and cannot be opened with a text editor."];
-        return;
-    }
+- (void)showEditorForFile:(NSString *)path window:(NSWindow *)theWindow {
+	NSString *str = [NSString stringWithContentsOfFile:path encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:nil];
+	if (str == nil) {
+		[PlatypusUtility alert:@"Error reading document" subText:@"This document does not appear to be a text file and cannot be opened with a text editor."];
+		return;
+	}
     
 	[self loadWindow];
-	[scriptPathTextField setStringValue: path];
-	[textView setString: str];
-    mainWindow = theWindow;
+	[scriptPathTextField setStringValue:path];
+	[textView setString:str];
+	mainWindow = theWindow;
     
-	[NSApp beginSheet: [self window]
-	   modalForWindow: theWindow 
-		modalDelegate: self
-	   didEndSelector:nil
-		  contextInfo:nil];
-	
-	[NSApp runModalForWindow: [self window]];
+	[NSApp  beginSheet:[self window]
+	    modalForWindow:theWindow
+	     modalDelegate:self
+	    didEndSelector:nil
+	       contextInfo:nil];
+    
+	[NSApp runModalForWindow:[self window]];
 }
 
-- (IBAction)save: (id)sender
-{
-	if (![FILEMGR isWritableFileAtPath: [scriptPathTextField stringValue]])
-        [PlatypusUtility alert: @"Unable to save changes" subText: @"You don't the neccesary privileges to save this text file."];
+- (IBAction)save:(id)sender {
+	if (![FILEMGR isWritableFileAtPath:[scriptPathTextField stringValue]])
+		[PlatypusUtility alert:@"Unable to save changes" subText:@"You don't the neccesary privileges to save this text file."];
 	else
-		[[textView string] writeToFile: [scriptPathTextField stringValue] atomically: YES encoding: [[DEFAULTS objectForKey: @"DefaultTextEncoding"] intValue] error: nil];
-	
-	[NSApp endSheet: [self window]];
+		[[textView string] writeToFile:[scriptPathTextField stringValue] atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:nil];
+    
+	[NSApp endSheet:[self window]];
 	[NSApp stopModal];
 	[[self window] close];
 }
 
-- (IBAction)cancel: (id)sender
-{
-	[NSApp endSheet: [self window]];
+- (IBAction)cancel:(id)sender {
+	[NSApp endSheet:[self window]];
 	[NSApp stopModal];
 	[[self window] close];
 }
 
-- (IBAction)checkSyntax: (id)sender
-{
-	SyntaxCheckerController *syntax = [[SyntaxCheckerController alloc] initWithWindowNibName: @"SyntaxChecker"];
-    [syntax	showSyntaxCheckerForFile: [scriptPathTextField stringValue] 
-						 withInterpreter: nil 
-								  window: mainWindow];
+- (IBAction)checkSyntax:(id)sender {
+	SyntaxCheckerController *syntax = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
+	[syntax showSyntaxCheckerForFile:[scriptPathTextField stringValue]
+	                 withInterpreter:nil
+	                          window:mainWindow];
 }
 
-- (IBAction)revealInFinder: (id)sender
-{
-	[[NSWorkspace sharedWorkspace] selectFile: [scriptPathTextField stringValue] inFileViewerRootedAtPath:nil];
+- (IBAction)revealInFinder:(id)sender {
+	[[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:nil];
 }
 
-- (void)windowWillClose:(NSNotification *)notification
-{
+- (void)windowWillClose:(NSNotification *)notification {
 	[self release];
 }
-
 
 @end
