@@ -19,6 +19,7 @@ For 4.8
     * Improved uninstall script
     * Fixed issue where a generated icon file referenced in a Profile could be overwritten
     * Documentation files now open in default browser, not in default .html handling app
+    * Fixed broken nib optimization. Platypus now correctly detects XCode 4 installs. 
 
 For 4.7
     * New "Uninstall" menu option, which removes all traces of Platypus on a system
