@@ -74,10 +74,13 @@
 		[numSuffixesTextField setStringValue: @"All suffixes"];
 	else
 		[numSuffixesTextField setStringValue: [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
-		
+    
+    // clear any error message
+    [typesErrorTextField setStringValue: @""];
+    
 	//open window
 	[NSApp beginSheet:	typesWindow
-						modalForWindow: window 
+                        modalForWindow: window 
 						modalDelegate:nil
 						didEndSelector:nil
 						contextInfo:nil];
@@ -90,18 +93,18 @@
 
 - (IBAction)closeTypesSheet:(id)sender
 {
-	//make sure typeslist contains valid values
+	//make sure suffix list contains valid values
 	if (![suffixList numSuffixes])
 	{
 		[typesErrorTextField setStringValue: @"The suffix list must contain at least one entry."];
+        return;
 	}
-	else
-	{
-		[window setTitle: PROGRAM_NAME];
-		[NSApp stopModal];
-		[NSApp endSheet:typesWindow];
-		[typesWindow orderOut:self];
-	}
+    
+    // end drop settings sheet
+    [window setTitle: PROGRAM_NAME];
+    [NSApp stopModal];
+    [NSApp endSheet:typesWindow];
+    [typesWindow orderOut:self];
 }
 
 #pragma mark -
