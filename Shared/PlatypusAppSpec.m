@@ -145,11 +145,11 @@
     
     // file/drag acceptance properties
     [properties setObject: [NSMutableArray arrayWithObject: @"*"] forKey: @"Suffixes"];
-    [properties setObject: [NSMutableArray arrayWithObjects: @"****", @"fold", nil] forKey: @"FileTypes"];
     [properties setObject: DEFAULT_ROLE forKey: @"Role"];
     [properties setObject: [NSNumber numberWithBool: NO] forKey: @"AcceptsText"];
     [properties setObject: [NSNumber numberWithBool: YES] forKey: @"AcceptsFiles"];
     [properties setObject: [NSNumber numberWithBool: NO] forKey: @"DeclareService"];
+    [properties setObject: [NSNumber numberWithBool: NO] forKey: @"PromptForFileOnLaunch"];
     [properties setObject: @"" forKey: @"DocIcon"];
     
     // text output settings

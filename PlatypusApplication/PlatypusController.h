@@ -40,7 +40,6 @@
 
 #import "DropSettingsController.h"
 #import "SuffixList.h"
-#import "TypesList.h"
 
 #import "PlatypusUtility.h"
 #import "STPathTextField.h"

@@ -19,7 +19,6 @@
 */
 
 #import <Cocoa/Cocoa.h>
-#import "TypesList.h"
 #import "SuffixList.h"
 #import "PlatypusUtility.h"
 
@@ -27,44 +26,35 @@
 {
 	IBOutlet id appFunctionRadioButtons;
     IBOutlet id addSuffixButton;
-    IBOutlet id addTypeButton;
     IBOutlet id numSuffixesTextField;
-    IBOutlet id numTypesTextField;
     IBOutlet id removeSuffixButton;
-    IBOutlet id removeTypeButton;
     IBOutlet NSTableView *suffixListDataBrowser;
     IBOutlet id suffixTextField;
-    IBOutlet id typeCodeTextField;
-    IBOutlet id typesErrorTextField;
     IBOutlet NSTableView *typesListDataBrowser;
-	IBOutlet id showTypesButton;
     IBOutlet id typesWindow;
     IBOutlet id window;
+    IBOutlet id typesErrorTextField;
 	
 	IBOutlet id acceptDroppedTextCheckbox;
 	IBOutlet id acceptDroppedFilesCheckbox;
     IBOutlet id declareServiceCheckbox;
+    IBOutlet id promptForFileOnLaunchCheckbox;
     IBOutlet id docIconImageView;
     
 	IBOutlet id droppedFilesSettingsBox;
 	
     NSString    *docIconPath;
 	SuffixList	*suffixList;
-	TypesList	*typesList;
 }
 - (IBAction)acceptDroppedFilesClicked:(id)sender;
 - (IBAction)addSuffix:(id)sender;
-- (IBAction)addType:(id)sender;
 - (IBAction)clearSuffixList:(id)sender;
-- (IBAction)clearTypesList:(id)sender;
 - (IBAction)openTypesSheet:(id)sender;
 - (IBAction)closeTypesSheet:(id)sender;
 - (IBAction)removeSuffix:(id)sender;
-- (IBAction)removeType:(id)sender;
-- (IBAction)setDefaultTypes:(id)sender;
 - (IBAction)selectDocIcon:(id)sender;
+- (IBAction)setDefaultTypes:(id)sender;
 
-- (TypesList *)types;
 - (SuffixList *)suffixes;
 - (NSString *)docIconPath;
 - (UInt64)docIconSize;
@@ -72,9 +62,11 @@
 - (BOOL)acceptsText;
 - (BOOL)acceptsFiles;
 - (BOOL)declareService;
+- (BOOL)promptsForFileOnLaunch;
 - (void)setAcceptsText: (BOOL)b;
 - (void)setAcceptsFiles: (BOOL)b;
 - (void)setDeclareService: (BOOL)b;
+- (void)setPromptsForFileOnLaunch: (BOOL)b;
 - (NSString *)role;
 - (void)setRole:(NSString *)role;
 @end
