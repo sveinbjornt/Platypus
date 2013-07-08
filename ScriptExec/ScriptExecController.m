@@ -1085,7 +1085,7 @@
     int i;
     BOOL isDir;
     
-    // Check if it's a folder. If so, we only accept it if 'fold' is specified as accepted file type
+    // Check if it's a folder. If so, we only accept it if folders are accepted
     if ([FILEMGR fileExistsAtPath:file isDirectory:&isDir] && isDir && acceptDroppedFolders)
         return YES;
     
@@ -1136,6 +1136,7 @@
 
 - (void)draggingExited:(id <NSDraggingInfo> )sender;
 {
+    // remove the droplet shading on drag exit
     if (outputType == PLATYPUS_DROPLET_OUTPUT)
         [dropletShader setHidden:YES];
 }
@@ -1143,6 +1144,7 @@
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
     
+    // determine drag data type and dispatch to job queue
     if ([[pboard types] containsObject:NSStringPboardType])
         return [self addDroppedTextJob:[pboard stringForType:NSStringPboardType]];
     else
@@ -1153,9 +1155,12 @@
 
 // once the drag is over, we immediately execute w. files as arguments if not already processing
 - (void)concludeDragOperation:(id <NSDraggingInfo> )sender {
+    
+    // shade droplet
     if (outputType == PLATYPUS_DROPLET_OUTPUT)
         [dropletShader setHidden:YES];
     
+    // fire off the job queue if nothing is running
     if (!isTaskRunning && [jobQueue count] > 0)
         [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(executeScript) userInfo:nil repeats:NO];
 }
