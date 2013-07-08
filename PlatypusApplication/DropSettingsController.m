@@ -23,21 +23,12 @@
 
 @implementation DropSettingsController
 
-/*****************************************
- - init function
- *****************************************/
-
 - (id)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         suffixList = [[SuffixList alloc] init];
     }
     return self;
 }
-
-/*****************************************
- - dealloc for controller object
- release all the stuff we alloc in init
- *****************************************/
 
 - (void)dealloc {
     [suffixList release];
@@ -51,7 +42,7 @@
 }
 
 /*****************************************
- - Display the Edit Types Window as a sheet
+ - Display the Drop Settings Window as a sheet
  *****************************************/
 
 - (IBAction)openDropSettingsSheet:(id)sender {

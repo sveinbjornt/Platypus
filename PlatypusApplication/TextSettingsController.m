@@ -36,9 +36,7 @@
 }
 
 - (IBAction)show:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Edit Text Field Settings", PROGRAM_NAME]];
-    
-    
+    [window setTitle:[NSString stringWithFormat:@"%@ - Edit Text Settings", PROGRAM_NAME]];
     
     //open window
     [NSApp  beginSheet:textSettingsWindow

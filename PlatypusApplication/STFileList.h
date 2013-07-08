@@ -25,7 +25,6 @@
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
 
-
 @interface STFileList : NSObject <NSTableViewDataSource>
 {
     UInt64 totalSize;

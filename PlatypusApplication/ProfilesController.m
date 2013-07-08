@@ -23,7 +23,7 @@
 @implementation ProfilesController
 
 /*****************************************
- - Select dialog for .platypus profile
+ - Select file dialog for .platypus profile
  *****************************************/
 
 - (IBAction)loadProfile:(id)sender {
@@ -78,7 +78,8 @@
 }
 
 /*****************************************
- - Save a profile with values from fields in default location
+ - Save a profile with values from fields 
+   in default location
  *****************************************/
 
 - (IBAction)saveProfile:(id)sender;
@@ -98,7 +99,8 @@
 }
 
 /*****************************************
- - Save a profile with in user-specified location
+ - Save a profile with in user-specified 
+   location
  *****************************************/
 
 - (IBAction)saveProfileToLocation:(id)sender;
@@ -142,7 +144,8 @@
 
 
 /*****************************************
- - Fill Platypus fields in with data from profile when it's selected in the menu
+ - Fill Platypus fields in with data from 
+   profile when it's selected in the menu
  *****************************************/
 
 - (void)profileMenuItemSelected:(id)sender {
@@ -245,8 +248,7 @@
 
 - (NSArray *)getProfilesList {
     NSMutableArray *profilesArray = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
-    NSFileManager *manager = FILEMGR;
-    NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
+    NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
     NSString *filename;
     while ((filename = [dirEnumerator nextObject]) != NULL) {
         if ([filename hasSuffix:PROFILES_SUFFIX])
@@ -257,8 +259,7 @@
 
 - (NSArray *)getExamplesList {
     NSMutableArray *examplesArray = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
-    NSFileManager *manager = FILEMGR;
-    NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]]];
+    NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], PROGRAM_EXAMPLES_FOLDER]];
     NSString *filename;
     while ((filename = [dirEnumerator nextObject]) != NULL) {
         if ([filename hasSuffix:PROFILES_SUFFIX])

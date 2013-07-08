@@ -26,9 +26,6 @@
 
 @implementation IconController
 
-/*****************************************
- - init function
- *****************************************/
 - (id)init {
     if ((self = [super init])) {
         icnsFilePath = nil;
