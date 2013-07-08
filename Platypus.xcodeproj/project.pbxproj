@@ -24,7 +24,6 @@
 		F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F45130791618878800EEB6F9 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F45130781618878800EEB6F9 /* ScriptExec */; };
-		F451307F161887B700EEB6F9 /* platypus_clt in Resources */ = {isa = PBXBuildFile; fileRef = F451307E161887B700EEB6F9 /* platypus_clt */; };
 		F46EF85113C3F36900E4C0E4 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = F46EF84E13C3F36900E4C0E4 /* Examples */; };
 		F471ED1E122DF096001F4761 /* PlatypusAppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */; };
 		F471ED22122DF2D6001F4761 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F471ED21122DF2D6001F4761 /* Credits.html */; };
@@ -490,30 +489,30 @@
 			children = (
 				F4FE734C11F7925E005FC23A /* PlatypusController.h */,
 				F4FE734D11F7925E005FC23A /* PlatypusController.m */,
+				F4FE734A11F7925E005FC23A /* ArgsController.h */,
+				F4FE734B11F7925E005FC23A /* ArgsController.m */,
+				F4FE734611F7925E005FC23A /* DropSettingsController.h */,
+				F4FE734711F7925E005FC23A /* DropSettingsController.m */,
+				F4FE735811F7925E005FC23A /* TextSettingsController.h */,
+				F4FE735911F7925E005FC23A /* TextSettingsController.m */,
+				F4FE735211F7925E005FC23A /* StatusItemSettingsController.h */,
+				F4FE735311F7925E005FC23A /* StatusItemSettingsController.m */,
+				F4FE734811F7925E005FC23A /* IconController.h */,
+				F4FE734911F7925E005FC23A /* IconController.m */,
 				F40F755E13C266AE00197499 /* ShellCommandController.h */,
 				F40F755F13C266AE00197499 /* ShellCommandController.m */,
 				F482949E122C129400094A1B /* EditorController.h */,
 				F482949F122C129400094A1B /* EditorController.m */,
 				F48294A0122C129400094A1B /* SyntaxCheckerController.h */,
 				F48294A1122C129400094A1B /* SyntaxCheckerController.m */,
-				F4FE734611F7925E005FC23A /* DropSettingsController.h */,
-				F4FE734711F7925E005FC23A /* DropSettingsController.m */,
-				F4FE734811F7925E005FC23A /* IconController.h */,
-				F4FE734911F7925E005FC23A /* IconController.m */,
-				F4FE734A11F7925E005FC23A /* ArgsController.h */,
-				F4FE734B11F7925E005FC23A /* ArgsController.m */,
-				F4FE734E11F7925E005FC23A /* PrefsController.h */,
-				F4FE734F11F7925E005FC23A /* PrefsController.m */,
 				F4FE735011F7925E005FC23A /* ProfilesController.h */,
 				F4FE735111F7925E005FC23A /* ProfilesController.m */,
-				F4FE735211F7925E005FC23A /* StatusItemSettingsController.h */,
-				F4FE735311F7925E005FC23A /* StatusItemSettingsController.m */,
 				F4FE735411F7925E005FC23A /* STFileList.h */,
 				F4FE735511F7925E005FC23A /* STFileList.m */,
 				F4FE735611F7925E005FC23A /* SuffixList.h */,
 				F4FE735711F7925E005FC23A /* SuffixList.m */,
-				F4FE735811F7925E005FC23A /* TextSettingsController.h */,
-				F4FE735911F7925E005FC23A /* TextSettingsController.m */,
+				F4FE734E11F7925E005FC23A /* PrefsController.h */,
+				F4FE734F11F7925E005FC23A /* PrefsController.m */,
 			);
 			name = "Interface Controllers";
 			sourceTree = "<group>";
@@ -853,7 +852,6 @@
 				F4FB337714FBDE2200BAECEB /* platypus.man.html in Resources */,
 				F4FB338114FBFC7C00BAECEB /* License.html in Resources */,
 				F45130791618878800EEB6F9 /* ScriptExec in Resources */,
-				F451307F161887B700EEB6F9 /* platypus_clt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -968,7 +966,7 @@
 				GENERATE_PKGINFO_FILE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = PlatypusApplication/Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
@@ -985,7 +983,7 @@
 		F41B217F085CD8FF00B63B0D /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1007,7 +1005,7 @@
 				GENERATE_PKGINFO_FILE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = PlatypusApplication/Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
@@ -1039,7 +1037,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Platypus;
@@ -1067,7 +1065,7 @@
 				GCC_ENABLE_SYMBOL_SEPARATION = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_STRICT_ALIASING = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -1103,7 +1101,7 @@
 				GCC_ENABLE_SYMBOL_SEPARATION = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_STRICT_ALIASING = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -1140,7 +1138,7 @@
 				GCC_ENABLE_SYMBOL_SEPARATION = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_STRICT_ALIASING = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -1228,7 +1226,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INSTALL_PATH = "";
+				INSTALL_PATH = /Applications;
 				MACH_O_TYPE = mh_execute;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
@@ -1245,7 +1243,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INSTALL_PATH = "";
+				INSTALL_PATH = /Applications;
 				MACH_O_TYPE = mh_execute;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;
@@ -1259,7 +1257,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INSTALL_PATH = "";
+				INSTALL_PATH = /Applications;
 				MACH_O_TYPE = mh_execute;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;

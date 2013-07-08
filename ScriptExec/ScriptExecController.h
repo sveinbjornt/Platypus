@@ -110,7 +110,6 @@
     BOOL promptForFileOnLaunch;
     
     NSArray *droppableSuffixes;
-    NSArray *droppableFileTypes;
     BOOL acceptAnyDroppedItem;
     BOOL acceptDroppedFolders;
     
