@@ -45,8 +45,6 @@
     NSMutableArray *interpreterArgs;
     NSMutableArray *scriptArgs;
 }
-// accessors
-
 - (NSArray *)interpreterArgs;
 - (NSArray *)scriptArgs;
 - (void)setInterpreterArgs:(NSArray *)array;

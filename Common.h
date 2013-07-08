@@ -51,6 +51,7 @@
 #define PROGRAM_MANPAGE             @ "platypus.man.html"
 #define PROGRAM_DOCUMENTATION       @ "PlatypusDocumentation.html"
 #define PROGRAM_LICENSE_FILE        @ "License.html"
+#define PROGRAM_EXAMPLES_FOLDER     @ "/Examples/"
 
 // command line tool seetings
 #define CMDLINE_PROGNAME            @ "platypus"
