@@ -49,6 +49,8 @@
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
 		F4B5DE4114919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
 		F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
+		F4BABD76178A47E5003BA0FF /* platypus_clt in Resources */ = {isa = PBXBuildFile; fileRef = F4BABD75178A47E5003BA0FF /* platypus_clt */; };
+		F4BABD78178A47F3003BA0FF /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4BABD77178A47F3003BA0FF /* ScriptExec */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
@@ -149,8 +151,6 @@
 		F44EFF0412296F3700CAC9C2 /* NSColor+HexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+HexTools.h"; path = "Shared/NSColor+HexTools.h"; sourceTree = "<group>"; };
 		F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+HexTools.m"; path = "Shared/NSColor+HexTools.m"; sourceTree = "<group>"; };
 		F45130781618878800EEB6F9 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ScriptExec; sourceTree = "<group>"; };
-		F451307C161887B000EEB6F9 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = "../../Users/sveinbjorn/Library/Developer/Xcode/DerivedData/Platypus-dxcnhwocxikqwhdfyqwrmpoqplpv/Build/Products/Development/ScriptExec.app/Contents/MacOS/ScriptExec"; sourceTree = "<group>"; };
-		F451307E161887B700EEB6F9 /* platypus_clt */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = platypus_clt; path = "../../Users/sveinbjorn/Library/Developer/Xcode/DerivedData/Platypus-dxcnhwocxikqwhdfyqwrmpoqplpv/Build/Products/Development/platypus_clt"; sourceTree = "<group>"; };
 		F46628A714F441DE0053C601 /* AppBuildBoth.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppBuildBoth.sh; sourceTree = "<group>"; };
 		F46628A814F441DE0053C601 /* AppPackageBuildScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppPackageBuildScript.sh; sourceTree = "<group>"; };
 		F46628A914F441DE0053C601 /* AppSourceBuildScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppSourceBuildScript.sh; sourceTree = "<group>"; };
@@ -188,6 +188,8 @@
 		F4AF785C14D1E5F200544C1B /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = Shared/STDragWebView.m; sourceTree = "<group>"; };
 		F4B5DE3F14919FF500C43901 /* PlatypusUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusUtility.h; path = Shared/PlatypusUtility.h; sourceTree = "<group>"; };
 		F4B5DE4014919FF500C43901 /* PlatypusUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusUtility.m; path = Shared/PlatypusUtility.m; sourceTree = "<group>"; };
+		F4BABD75178A47E5003BA0FF /* platypus_clt */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = platypus_clt; path = BuildData/Platypus/Build/Products/Development/platypus_clt; sourceTree = "<group>"; };
+		F4BABD77178A47F3003BA0FF /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = BuildData/Platypus/Build/Products/Development/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
 		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
 		F4C8B455124C450C00397392 /* Platypus.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Platypus.xib; path = PlatypusApplication/Platypus.xib; sourceTree = "<group>"; };
@@ -354,8 +356,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F451307C161887B000EEB6F9 /* ScriptExec */,
-				F451307E161887B700EEB6F9 /* platypus_clt */,
+				F4BABD75178A47E5003BA0FF /* platypus_clt */,
+				F4BABD77178A47F3003BA0FF /* ScriptExec */,
 				F4185E5811FC57AB0027C8D7 /* Info.plist */,
 				F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */,
 				F45130771618878800EEB6F9 /* MacOS */,
@@ -852,6 +854,8 @@
 				F4FB337714FBDE2200BAECEB /* platypus.man.html in Resources */,
 				F4FB338114FBFC7C00BAECEB /* License.html in Resources */,
 				F45130791618878800EEB6F9 /* ScriptExec in Resources */,
+				F4BABD76178A47E5003BA0FF /* platypus_clt in Resources */,
+				F4BABD78178A47F3003BA0FF /* ScriptExec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
