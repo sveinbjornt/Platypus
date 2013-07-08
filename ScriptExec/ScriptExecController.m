@@ -51,9 +51,6 @@
     if (droppableSuffixes != NULL) {
         [droppableSuffixes release];
     }
-    if (droppableFileTypes != NULL) {
-        [droppableFileTypes release];
-    }
     if (interpreterArgs != NULL) {
         [interpreterArgs release];
     }
@@ -241,27 +238,11 @@
         else
             droppableSuffixes = [[NSArray alloc] initWithArray:[NSArray array]];
         [droppableSuffixes retain];
-        
-        // get list of accepted file types
-        if ([appSettingsPlist objectForKey:@"DropTypes"])
-            droppableFileTypes = [[NSArray alloc] initWithArray:[appSettingsPlist objectForKey:@"DropTypes"]];
-        else
-            droppableFileTypes = [[NSArray alloc] initWithArray:[NSArray array]];
-        [droppableFileTypes retain];
-        
-        // see if we accept any dropped item, * suffix or **** file type makes it so
+                
+        // see if we accept any dropped item, * suffix makes it so
         for (i = 0; i < [droppableSuffixes count]; i++)
             if ([[droppableSuffixes objectAtIndex:i] isEqualToString:@"*"]) //* suffix
                 acceptAnyDroppedItem = YES;
-        
-        for (i = 0; i < [droppableFileTypes count]; i++)
-            if ([[droppableFileTypes objectAtIndex:i] isEqualToString:@"****"]) //**** filetype
-                acceptAnyDroppedItem = YES;
-        
-        // see if we acccept dropped folders, requires filetype 'fold'
-        for (i = 0; i < [droppableFileTypes count]; i++)
-            if ([[droppableFileTypes objectAtIndex:i] isEqualToString:@"fold"])
-                acceptDroppedFolders = YES;
     }
     
     //get interpreter
@@ -942,7 +923,6 @@
     if (!acceptAnyDroppedItem) {
         types = [NSMutableArray array];
         [types addObjectsFromArray:droppableSuffixes];
-        [types addObjectsFromArray:droppableFileTypes];
     }
     
     if ([oPanel runModalForDirectory:nil file:nil types:types] == NSOKButton) {
@@ -1117,12 +1097,6 @@
         if ([file hasSuffix:[droppableSuffixes objectAtIndex:i]])
             return YES;
     
-    // see if it has accepted file type
-    NSString *fileType = NSHFSTypeOfFile(file);
-    for (i = 0; i < [droppableFileTypes count]; i++)
-        if ([fileType isEqualToString:[droppableFileTypes objectAtIndex:i]])
-            return YES;
-    
     return NO;
 }
 
@@ -1187,7 +1161,9 @@
 }
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo> )sender {
-    return [self draggingEntered:sender];  // this is needed to keep link instead of the green plus sign on web view
+    // this is needed to keep link instead of the green plus sign on web view
+    // also required to reject non-acceptable dragged items
+    return [self draggingEntered:sender];
 }
 
 #pragma mark - Web View Output updating

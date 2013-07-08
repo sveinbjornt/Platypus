@@ -12,11 +12,7 @@
 	</array>
 	<key>DropSuffixes</key>
 	<array>
-		<string>*</string>
-	</array>
-	<key>DropTypes</key>
-	<array>
-		<string>fold</string>
+		<string>txt</string>
 	</array>
 	<key>Droppable</key>
 	<true/>
