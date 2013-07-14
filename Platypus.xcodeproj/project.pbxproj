@@ -23,7 +23,6 @@
 		F44E007112298B7200CAC9C2 /* PlatypusPlate.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006C12298B7200CAC9C2 /* PlatypusPlate.icns */; };
 		F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
-		F45130791618878800EEB6F9 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F45130781618878800EEB6F9 /* ScriptExec */; };
 		F46EF85113C3F36900E4C0E4 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = F46EF84E13C3F36900E4C0E4 /* Examples */; };
 		F471ED1E122DF096001F4761 /* PlatypusAppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */; };
 		F471ED22122DF2D6001F4761 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F471ED21122DF2D6001F4761 /* Credits.html */; };
@@ -50,7 +49,7 @@
 		F4B5DE4114919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
 		F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
 		F4BABD76178A47E5003BA0FF /* platypus_clt in Resources */ = {isa = PBXBuildFile; fileRef = F4BABD75178A47E5003BA0FF /* platypus_clt */; };
-		F4BABD78178A47F3003BA0FF /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4BABD77178A47F3003BA0FF /* ScriptExec */; };
+		F4BCAAED178DEDC2004ADD86 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4BCAAEC178DEDC2004ADD86 /* ScriptExec */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
@@ -189,7 +188,7 @@
 		F4B5DE3F14919FF500C43901 /* PlatypusUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusUtility.h; path = Shared/PlatypusUtility.h; sourceTree = "<group>"; };
 		F4B5DE4014919FF500C43901 /* PlatypusUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusUtility.m; path = Shared/PlatypusUtility.m; sourceTree = "<group>"; };
 		F4BABD75178A47E5003BA0FF /* platypus_clt */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = platypus_clt; path = BuildData/Platypus/Build/Products/Development/platypus_clt; sourceTree = "<group>"; };
-		F4BABD77178A47F3003BA0FF /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = BuildData/Platypus/Build/Products/Development/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
+		F4BCAAEC178DEDC2004ADD86 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = BuildData/Platypus/Build/Products/Development/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
 		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
 		F4C8B455124C450C00397392 /* Platypus.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Platypus.xib; path = PlatypusApplication/Platypus.xib; sourceTree = "<group>"; };
@@ -357,7 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				F4BABD75178A47E5003BA0FF /* platypus_clt */,
-				F4BABD77178A47F3003BA0FF /* ScriptExec */,
+				F4BCAAEC178DEDC2004ADD86 /* ScriptExec */,
 				F4185E5811FC57AB0027C8D7 /* Info.plist */,
 				F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */,
 				F45130771618878800EEB6F9 /* MacOS */,
@@ -853,9 +852,8 @@
 				F445EA9814FAEEBF00DCCDB3 /* UninstallPlatypus.sh in Resources */,
 				F4FB337714FBDE2200BAECEB /* platypus.man.html in Resources */,
 				F4FB338114FBFC7C00BAECEB /* License.html in Resources */,
-				F45130791618878800EEB6F9 /* ScriptExec in Resources */,
 				F4BABD76178A47E5003BA0FF /* platypus_clt in Resources */,
-				F4BABD78178A47F3003BA0FF /* ScriptExec in Resources */,
+				F4BCAAED178DEDC2004ADD86 /* ScriptExec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

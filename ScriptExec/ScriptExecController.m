@@ -282,13 +282,18 @@
     
     // status menu apps just run when item is clicked
     // for all others, we run the script once app is up and running
-    if (outputType != PLATYPUS_STATUSMENU_OUTPUT && !promptForFileOnLaunch)
-        [self executeScript];
-    else if (promptForFileOnLaunch && isDroppable)
+    if (outputType == PLATYPUS_STATUSMENU_OUTPUT)
+        return;
+
+    NSLog(@"App did finish launching");
+    if (promptForFileOnLaunch && isDroppable && ![jobQueue count])
         [self openFiles:self];
+    else
+        [self executeScript];
 }
 
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames {
+
     // add the dropped files as a job for processing
     int ret = [self addDroppedFilesJob:filenames];
     
@@ -1020,7 +1025,7 @@
         return;
     
     NSString *pboardString = [pboard stringForType:NSStringPboardType];
-    
+
     int ret = [self addDroppedTextJob:pboardString];
     
     if (!isTaskRunning && ret)
