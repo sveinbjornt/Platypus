@@ -242,8 +242,4 @@
     return YES;
 }
 
-- (IBAction)appPathCheckboxClicked:(id)sender {
-    [commandTextField setStringValue:[self constructCommandString]];
-}
-
 @end
