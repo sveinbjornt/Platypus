@@ -1,3 +1,14 @@
 *dsa_priv.pem
 Platypus.build
 BuildData
+.DS_Store
+*.swp
+*~.nib 
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.mode1v3
+*.mode2v3
+*.xcodeproj/xcuserdata/*.xcuserdatad
+*.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad
+xcuserdata
