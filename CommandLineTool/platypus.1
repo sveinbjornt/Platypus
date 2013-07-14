@@ -8,7 +8,7 @@
 .Nm
 .Op Fl vh
 .Op Fl O
-.Op Fl FASDBR
+.Op Fl FASDBRZ
 .Op Fl ydlHx
 .Op Fl bgn
 .Op Fl KYL
@@ -29,7 +29,7 @@
 .Sh DESCRIPTION
 .Nm
 is the command line counterpart to the Platypus Mac OS X application.  It is a tool 
-which creates a Mac OS X application bundle which executes a script when run.
+which creates a Mac OS X application bundle that executes a script when run.
 .Pp
 platypus defaults to creating application bundles, but can also create Platypus profiles that 
 can subsequently be loaded by either the command line program or the Platypus graphical application.
@@ -136,10 +136,8 @@ This option makes the application quit after the script has been executed.
 .It Fl X Ar [suffixes]
 Only appropriate if you are using the -D option. This flag allows you to specify the file suffixes
 (e.g. .txt, .wav) your application can open.  This should be a |-separated string (e.g. "txt|wav|jpg").
-.It Fl T Ar [filetypes]
-Only appropriate if you are using the -D option.  This flag allows you to specify the file type 
-codes (e.g. '8BIM', 'TEXT') your application can open.  This should be a |-separated string of 
-4-character ASCII strings (e.g. "8BIM|TEXT|R*ch").
+.It Fl Z
+Show an Open File dialog as soon as the application launches.
 .It Fl G Ar [arguments]
 Arguments for the script interpreter.  These should be specified as a |-separated string (e.g. '-w|-s|-l').
 .Pp
