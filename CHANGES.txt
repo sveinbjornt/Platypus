@@ -1,6 +1,7 @@
 For 5.0
     TODO:  Rethink and redesign the interface. It's a bit cluttered, hasn't changed much for 10 years, and could do with some (Mountain) Lionizing
     TODO:  Get STDERR output and pid for STPrivilegedTask
+    TODO:  Support for selection in Status Menu output, just like in Tapir. Script called with argument line.
     TODO:  Create Platypus tutorial videos, make them available online
     TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool.  I need to take a look at the sandbox thing.
     TODO:  Rewrite or at least refactor nasty old code in STFileList and SuffixList
@@ -9,8 +10,8 @@ For 5.0
 
 For 4.8
     * New "Prompt for file on launch" option
-    * Redesigned Drop Settings sheet
-    * Fixed issue where version would not appear in Get Info in Finder (missing CFBundleShortVersionString)
+    * Redesigned, user-friendlier Drop Settings sheet
+    * Fixed issue where version of generated apps would not appear in Get Info in Finder (missing CFBundleShortVersionString)
     * Generated apps have NSHumanReadableCopyright defined again
     * Extensive updates to documentation
     * "Provide as a Mac OS X Service" no longer enabled by default
