@@ -343,7 +343,6 @@
     // we  set the suffixes/file types in the AppSettings.plist if app is droppable
     if ([[properties objectForKey:@"Droppable"] boolValue] == YES) {
         [appSettingsPlist setObject:[properties objectForKey:@"Suffixes"] forKey:@"DropSuffixes"];
-        [appSettingsPlist setObject:[properties objectForKey:@"FileTypes"] forKey:@"DropTypes"];
     }
     [appSettingsPlist setObject:[properties objectForKey:@"AcceptsFiles"] forKey:@"AcceptsFiles"];
     [appSettingsPlist setObject:[properties objectForKey:@"AcceptsText"] forKey:@"AcceptsText"];
@@ -479,7 +478,6 @@
     if ([[properties objectForKey:@"Droppable"] boolValue] == YES) {
         NSMutableDictionary *typesAndSuffixesDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                                      [properties objectForKey:@"Suffixes"], @"CFBundleTypeExtensions", //extensions
-                                                     [properties objectForKey:@"FileTypes"], @"CFBundleTypeOSTypes", //os types
                                                      [properties objectForKey:@"Role"], @"CFBundleTypeRole", nil]; //viewer or editor?
         
         // document icon
@@ -610,15 +608,11 @@
     if (![[properties objectForKey:@"Author"] isEqualToString:NSFullUserName()])
         authorString = [NSString stringWithFormat:@" -u '%@' ", [properties objectForKey:@"Author"]];
     
-    // if it's droppable, we need the Types and Suffixes
+    // if it's droppable, we need the Suffixes
     if ([[properties objectForKey:@"Droppable"] boolValue]) {
         //create suffixes param
         suffixesString = [[properties objectForKey:@"Suffixes"] componentsJoinedByString:@"|"];
         suffixesString = [NSString stringWithFormat:@"-X '%@' ", suffixesString];
-        
-        //create filetype codes param
-        filetypesString = [[properties objectForKey:@"FileTypes"] componentsJoinedByString:@"|"];
-        filetypesString = [NSString stringWithFormat:@"-T '%@' ", filetypesString];
     }
     
     //create bundled files string
@@ -691,7 +685,7 @@
     
     // finally, generate the command
     NSString *commandStr = [NSString stringWithFormat:
-                            @"%@ %@%@%@ -o '%@' -p '%@'%@ %@%@%@%@%@%@%@%@%@ '%@'",
+                            @"%@ %@%@%@ -o '%@' -p '%@'%@ %@%@%@%@%@%@%@%@ '%@'",
                             CMDLINE_TOOL_PATH,
                             checkboxParamStr,
                             iconParamStr,
@@ -702,7 +696,6 @@
                             versionString,
                             identifArg,
                             suffixesString,
-                            filetypesString,
                             bundledFilesCmdString,
                             parametersString,
                             textEncodingString,
