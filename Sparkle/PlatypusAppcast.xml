@@ -8,7 +8,7 @@
         <item>
             <title>Version 4.8</title>
             <pubDate>Sun, 7 Jul 2013 19:28:00 +0000</pubDate>
-            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.8.zip" sparkle:version="4.8" sparkle:shortVersionString="4.7" length="1838456" type="application/octet-stream" sparkle:dsaSignature="MC0CFHKG2boDHGhb2WOnsXfPRWdzbKhVAhUAhd6FcLtjnt10DaXYKfzt3dBL86s="/>
+            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.8.zip" sparkle:version="4.8" sparkle:shortVersionString="4.8" length="1668252" type="application/octet-stream" sparkle:dsaSignature="MC0CFHKG2boDHGhb2WOnsXfPRWdzbKhVAhUAhd6FcLtjnt10DaXYKfzt3dBL86s="/>
             <sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
                 <h2>Version 4.8 Changes</h2>
