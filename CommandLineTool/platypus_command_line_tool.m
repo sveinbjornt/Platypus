@@ -583,7 +583,7 @@ static void PrintVersion(void) {
 ///////////////////////////////////////
 
 static void PrintUsage(void) {
-    NSPrint(@"usage: %@ [-vh] [-O profile] [-FASDNBR] [-ydlHx] [-KYL] [-P profile] [-a appName] [-o outputType] [-i icon] [-Q docIcon] [-p interpreter] [-V version] [-u author] [-I identifier] [-f bundledFile] [-X suffixes] [-T filetypes] [-C scriptArgs] [-G interpreterArgs] scriptFile [appPath]", CMDLINE_PROGNAME);
+    NSPrint(@"usage: %@ [-vh] [-O profile] [-FASDNBRZ] [-ydlHx] [-KYL] [-P profile] [-a appName] [-o outputType] [-i icon] [-Q docIcon] [-p interpreter] [-V version] [-u author] [-I identifier] [-f bundledFile] [-X suffixes] [-C scriptArgs] [-G interpreterArgs] scriptFile [appPath]", CMDLINE_PROGNAME);
 }
 
 ////////////////////////////////////////
@@ -613,6 +613,7 @@ static void PrintHelp(void) {
        -S                   Secure bundled script\n\
        -D                   App accepts dropped files as argument to script\n\
        -F                   App accepts dropped text as argument to script\n\
+       -Z                   App presents Open file dialog once launched\n\
        -N                   App registers as a Mac OS X Service\n\
        -B                   App runs in background (LSUI Element)\n\
        -R                   App quits after executing script\n\
@@ -622,7 +623,6 @@ static void PrintHelp(void) {
        -n [fontName]        Set font for text output field (e.g. 'Monaco 10')\n\
        -E [encoding]        Set text encoding for script output (see man page)\n\
        -X [suffixes]        Set suffixes handled by application\n\
-       -T [filetypes]       Set file type codes handled by application\n\
        -G [arguments]       Set arguments for script interpreter, separated by |\n\
        -C [arguments]       Set arguments for script, separated by |\n\
        \n\

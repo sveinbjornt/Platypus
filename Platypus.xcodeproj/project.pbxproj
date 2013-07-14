@@ -954,7 +954,7 @@
 				GENERATE_PKGINFO_FILE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = PlatypusApplication/Info.plist;
-				INSTALL_PATH = /Applications;
+				INSTALL_PATH = /;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
@@ -988,14 +988,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_THREADSAFE_STATICS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GENERATE_PKGINFO_FILE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = PlatypusApplication/Info.plist;
-				INSTALL_PATH = /Applications;
+				INSTALL_PATH = /;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
@@ -1029,7 +1029,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = /Applications;
+				INSTALL_PATH = /;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Platypus;
@@ -1044,13 +1044,13 @@
 		F41B2182085CD8FF00B63B0D /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_CW_ASM_SYNTAX = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
@@ -1058,7 +1058,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_STRICT_ALIASING = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -1067,7 +1067,7 @@
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_OUTPUT_FORMAT = xml;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PLIST_FILE_OUTPUT_FORMAT = binary;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
@@ -1087,7 +1087,7 @@
 				GCC_CW_ASM_SYNTAX = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
@@ -1125,7 +1125,7 @@
 				GCC_CW_ASM_SYNTAX = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
@@ -1169,7 +1169,7 @@
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = xml;
-				INSTALL_PATH = "";
+				INSTALL_PATH = /;
 				ONLY_ACTIVE_ARCH = YES;
 				PLIST_FILE_OUTPUT_FORMAT = xml;
 				PRODUCT_NAME = ScriptExec;
@@ -1188,12 +1188,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_UNROLL_LOOPS = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = binary;
-				INSTALL_PATH = "";
+				INSTALL_PATH = /;
 				PLIST_FILE_OUTPUT_FORMAT = xml;
 				PRODUCT_NAME = ScriptExec;
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -1213,7 +1213,7 @@
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
-				INSTALL_PATH = "";
+				INSTALL_PATH = /;
 				PRODUCT_NAME = ScriptExec;
 			};
 			name = Default;
@@ -1228,7 +1228,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INSTALL_PATH = /Applications;
+				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
@@ -1245,8 +1245,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INSTALL_PATH = /Applications;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;
@@ -1260,8 +1260,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INSTALL_PATH = /Applications;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;

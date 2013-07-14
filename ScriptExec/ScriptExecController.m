@@ -756,7 +756,7 @@
             return;
         }
         else // something went wrong
-            [self fatalAlert:@"Failed to execute script" subText:[NSString stringWithFormat:@"Error %d occurred while executing script with privileges.", err]];
+            [self fatalAlert:@"Failed to execute script" subText:[NSString stringWithFormat:@"Error %d occurred while executing script with privileges.", (int)err]];
     }
     
     if (outputType != PLATYPUS_NONE_OUTPUT) {
