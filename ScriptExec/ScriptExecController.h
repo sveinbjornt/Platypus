@@ -17,6 +17,9 @@
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+/* This is the source code to the main controller for the binary
+ bundled into Platypus-generated applications */
+
 #import <Cocoa/Cocoa.h>
 #import <Security/Authorization.h>
 #import <WebKit/WebKit.h>
