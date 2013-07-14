@@ -61,12 +61,8 @@
 		F4D656A714C4BFD6003552F9 /* Add_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6568F14C4BFD6003552F9 /* Add_Pressed.png */; };
 		F4D656A814C4BFD6003552F9 /* Clear.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569014C4BFD6003552F9 /* Clear.png */; };
 		F4D656A914C4BFD6003552F9 /* Clear_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569114C4BFD6003552F9 /* Clear_Pressed.png */; };
-		F4D656AA14C4BFD6003552F9 /* Edit.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569214C4BFD6003552F9 /* Edit.png */; };
-		F4D656AB14C4BFD6003552F9 /* Edit_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569314C4BFD6003552F9 /* Edit_Pressed.png */; };
 		F4D656AC14C4BFD6003552F9 /* Remove.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569414C4BFD6003552F9 /* Remove.png */; };
 		F4D656AD14C4BFD6003552F9 /* Remove_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569514C4BFD6003552F9 /* Remove_Pressed.png */; };
-		F4D656AE14C4BFD6003552F9 /* RevealInFinder.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569614C4BFD6003552F9 /* RevealInFinder.png */; };
-		F4D656AF14C4BFD6003552F9 /* RevealInFinder_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569714C4BFD6003552F9 /* RevealInFinder_Pressed.png */; };
 		F4D656B014C4BFD6003552F9 /* AppleScript.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569914C4BFD6003552F9 /* AppleScript.png */; };
 		F4D656B114C4BFD6003552F9 /* Bash.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569A14C4BFD6003552F9 /* Bash.png */; };
 		F4D656B214C4BFD6003552F9 /* Env.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569B14C4BFD6003552F9 /* Env.png */; };
@@ -199,12 +195,8 @@
 		F4D6568F14C4BFD6003552F9 /* Add_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add_Pressed.png; sourceTree = "<group>"; };
 		F4D6569014C4BFD6003552F9 /* Clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear.png; sourceTree = "<group>"; };
 		F4D6569114C4BFD6003552F9 /* Clear_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear_Pressed.png; sourceTree = "<group>"; };
-		F4D6569214C4BFD6003552F9 /* Edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit.png; sourceTree = "<group>"; };
-		F4D6569314C4BFD6003552F9 /* Edit_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit_Pressed.png; sourceTree = "<group>"; };
 		F4D6569414C4BFD6003552F9 /* Remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Remove.png; sourceTree = "<group>"; };
 		F4D6569514C4BFD6003552F9 /* Remove_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Remove_Pressed.png; sourceTree = "<group>"; };
-		F4D6569614C4BFD6003552F9 /* RevealInFinder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RevealInFinder.png; sourceTree = "<group>"; };
-		F4D6569714C4BFD6003552F9 /* RevealInFinder_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RevealInFinder_Pressed.png; sourceTree = "<group>"; };
 		F4D6569914C4BFD6003552F9 /* AppleScript.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppleScript.png; sourceTree = "<group>"; };
 		F4D6569A14C4BFD6003552F9 /* Bash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bash.png; sourceTree = "<group>"; };
 		F4D6569B14C4BFD6003552F9 /* Env.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Env.png; sourceTree = "<group>"; };
@@ -594,12 +586,8 @@
 				F4D6568F14C4BFD6003552F9 /* Add_Pressed.png */,
 				F4D6569014C4BFD6003552F9 /* Clear.png */,
 				F4D6569114C4BFD6003552F9 /* Clear_Pressed.png */,
-				F4D6569214C4BFD6003552F9 /* Edit.png */,
-				F4D6569314C4BFD6003552F9 /* Edit_Pressed.png */,
 				F4D6569414C4BFD6003552F9 /* Remove.png */,
 				F4D6569514C4BFD6003552F9 /* Remove_Pressed.png */,
-				F4D6569614C4BFD6003552F9 /* RevealInFinder.png */,
-				F4D6569714C4BFD6003552F9 /* RevealInFinder_Pressed.png */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -828,12 +816,8 @@
 				F4D656A714C4BFD6003552F9 /* Add_Pressed.png in Resources */,
 				F4D656A814C4BFD6003552F9 /* Clear.png in Resources */,
 				F4D656A914C4BFD6003552F9 /* Clear_Pressed.png in Resources */,
-				F4D656AA14C4BFD6003552F9 /* Edit.png in Resources */,
-				F4D656AB14C4BFD6003552F9 /* Edit_Pressed.png in Resources */,
 				F4D656AC14C4BFD6003552F9 /* Remove.png in Resources */,
 				F4D656AD14C4BFD6003552F9 /* Remove_Pressed.png in Resources */,
-				F4D656AE14C4BFD6003552F9 /* RevealInFinder.png in Resources */,
-				F4D656AF14C4BFD6003552F9 /* RevealInFinder_Pressed.png in Resources */,
 				F4D656B014C4BFD6003552F9 /* AppleScript.png in Resources */,
 				F4D656B114C4BFD6003552F9 /* Bash.png in Resources */,
 				F4D656B214C4BFD6003552F9 /* Env.png in Resources */,
