@@ -10,7 +10,6 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F40F756013C266AE00197499 /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40F755F13C266AE00197499 /* ShellCommandController.m */; };
-		F44402CC1493EED300261B21 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949C122C128200094A1B /* ScriptAnalyser.m */; };
 		F445EA7714FAB61900DCCDB3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
 		F445EA7914FAB64C00DCCDB3 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
@@ -28,7 +27,6 @@
 		F471ED22122DF2D6001F4761 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F471ED21122DF2D6001F4761 /* Credits.html */; };
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
 		F480FF7C122B230A00CC51F6 /* PlatypusIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = F480FF7B122B230A00CC51F6 /* PlatypusIconView.m */; };
-		F482949D122C128200094A1B /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949C122C128200094A1B /* ScriptAnalyser.m */; };
 		F48294A2122C129400094A1B /* EditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482949F122C129400094A1B /* EditorController.m */; };
 		F48294A3122C129400094A1B /* SyntaxCheckerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48294A1122C129400094A1B /* SyntaxCheckerController.m */; };
 		F4871B2B1789D19F00DE54F3 /* STPathTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4871B2A1789D19F00DE54F3 /* STPathTextField.m */; };
@@ -36,6 +34,9 @@
 		F4871B2F1789D1B400DE54F3 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4871B2D1789D1B400DE54F3 /* STPrivilegedTask.m */; };
 		F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
+		F48B1EDC17935AF6007DA173 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
+		F48B1EDF17935BBC007DA173 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */; };
+		F48B1EE017935BBC007DA173 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */; };
 		F48B7B8111F7666600351575 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
@@ -46,7 +47,6 @@
 		F4A36B9D14F2C8A70028A227 /* Csh.png in Resources */ = {isa = PBXBuildFile; fileRef = F4A36B9B14F2C8A70028A227 /* Csh.png */; };
 		F4A36B9E14F2C8A70028A227 /* Ksh.png in Resources */ = {isa = PBXBuildFile; fileRef = F4A36B9C14F2C8A70028A227 /* Ksh.png */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
-		F4B5DE4114919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
 		F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
 		F4BABD76178A47E5003BA0FF /* platypus_clt in Resources */ = {isa = PBXBuildFile; fileRef = F4BABD75178A47E5003BA0FF /* platypus_clt */; };
 		F4BCAAED178DEDC2004ADD86 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4BCAAEC178DEDC2004ADD86 /* ScriptExec */; };
@@ -155,8 +155,6 @@
 		F48002BA121AF042003FB5B3 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		F480FF7A122B230A00CC51F6 /* PlatypusIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusIconView.h; path = PlatypusApplication/PlatypusIconView.h; sourceTree = "<group>"; };
 		F480FF7B122B230A00CC51F6 /* PlatypusIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusIconView.m; path = PlatypusApplication/PlatypusIconView.m; sourceTree = "<group>"; };
-		F482949B122C128200094A1B /* ScriptAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptAnalyser.h; path = PlatypusApplication/ScriptAnalyser.h; sourceTree = "<group>"; };
-		F482949C122C128200094A1B /* ScriptAnalyser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptAnalyser.m; path = PlatypusApplication/ScriptAnalyser.m; sourceTree = "<group>"; };
 		F482949E122C129400094A1B /* EditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = EditorController.h; path = PlatypusApplication/EditorController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F482949F122C129400094A1B /* EditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = EditorController.m; path = PlatypusApplication/EditorController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F48294A0122C129400094A1B /* SyntaxCheckerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyntaxCheckerController.h; path = PlatypusApplication/SyntaxCheckerController.h; sourceTree = "<group>"; };
@@ -167,6 +165,8 @@
 		F4871B2D1789D1B400DE54F3 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPrivilegedTask.m; path = Shared/STPrivilegedTask/STPrivilegedTask.m; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
 		F4876F45141D4A3900A428CC /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ScriptExec/MainMenu.xib; sourceTree = "<group>"; };
+		F48B1EDD17935BBC007DA173 /* ScriptAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptAnalyser.h; path = Shared/ScriptAnalyser.h; sourceTree = "<group>"; };
+		F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptAnalyser.m; path = Shared/ScriptAnalyser.m; sourceTree = "<group>"; };
 		F48B774111F7661C00351575 /* ScriptExec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptExec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48B7B9011F766E600351575 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = ScriptExec/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F48B7B9111F766E600351575 /* ScriptExecController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecController.h; path = ScriptExec/ScriptExecController.h; sourceTree = "<group>"; };
@@ -502,8 +502,8 @@
 		F48A724D122E23B200964D71 /* ScriptAnalyser */ = {
 			isa = PBXGroup;
 			children = (
-				F482949B122C128200094A1B /* ScriptAnalyser.h */,
-				F482949C122C128200094A1B /* ScriptAnalyser.m */,
+				F48B1EDD17935BBC007DA173 /* ScriptAnalyser.h */,
+				F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */,
 			);
 			name = ScriptAnalyser;
 			sourceTree = "<group>";
@@ -884,13 +884,13 @@
 				F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
 				F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */,
 				F480FF7C122B230A00CC51F6 /* PlatypusIconView.m in Sources */,
-				F482949D122C128200094A1B /* ScriptAnalyser.m in Sources */,
 				F48294A2122C129400094A1B /* EditorController.m in Sources */,
 				F48294A3122C129400094A1B /* SyntaxCheckerController.m in Sources */,
 				F40F756013C266AE00197499 /* ShellCommandController.m in Sources */,
 				F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */,
 				F4871B2B1789D19F00DE54F3 /* STPathTextField.m in Sources */,
 				F4871B2F1789D1B400DE54F3 /* STPrivilegedTask.m in Sources */,
+				F48B1EE017935BBC007DA173 /* ScriptAnalyser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,10 +910,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F44402CC1493EED300261B21 /* ScriptAnalyser.m in Sources */,
 				F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
+				F48B1EDC17935AF6007DA173 /* PlatypusUtility.m in Sources */,
 				F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */,
-				F4B5DE4114919FF500C43901 /* PlatypusUtility.m in Sources */,
+				F48B1EDF17935BBC007DA173 /* ScriptAnalyser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

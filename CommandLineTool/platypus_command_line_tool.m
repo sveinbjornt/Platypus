@@ -31,9 +31,6 @@
 
 #import "Common.h"
 #import "PlatypusAppSpec.h"
-#import "ScriptAnalyser.h"
-#import "PlatypusUtility.h"
-#import "ScriptAnalyser.h"
 
 #import <stdio.h>
 #import <unistd.h>

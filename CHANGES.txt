@@ -10,6 +10,7 @@ For 5.0
     TODO:  Retina size support for icons and images used in user interface
     TODO:  Fix broken "Select Image file as icon..." functionality
     TODO:  Fix Edit Drop Settings enabled when Accept dropped files is not checked
+    TODO:  Refactor create: method in app spec class
 
 For 4.8
     * New "Prompt for file on launch" option
