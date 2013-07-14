@@ -1,5 +1,6 @@
 For 5.0
     TODO:  Rethink and redesign the interface. It's a bit cluttered, hasn't changed much for 10 years, and could do with some (Mountain) Lionizing
+    TODO:  Implement automated testing for command line tool and other spec'd program functionality
     TODO:  Get STDERR output and pid for STPrivilegedTask
     TODO:  Support for selection in Status Menu output, just like in Tapir. Script called with argument line.
     TODO:  Create Platypus tutorial videos, make them available online

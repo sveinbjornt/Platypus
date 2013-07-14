@@ -66,7 +66,6 @@
 
 - (IBAction)show:(id)sender;
 - (NSString *)constructCommandString;
-- (IBAction)appPathCheckboxClicked:(id)sender;
 
 // table view handling
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView;
