@@ -905,8 +905,19 @@
     [text replaceCharactersInRange:NSMakeRange([text length], 0) withString:outputString];
     
     // if web output, we continually re-render to accomodate incoming data, else we scroll down
-    if (outputType == PLATYPUS_WEBVIEW_OUTPUT)
-        [[webOutputWebView mainFrame] loadHTMLString:[outputTextView string] baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    if (outputType == PLATYPUS_WEBVIEW_OUTPUT) {
+        
+        // first, check for Location:URL. In that case, we load the URL into web view
+        NSArray *lines = [NSArray arrayWithArray: [[text string] componentsSeparatedByString: @"\n"]];
+        if ([lines count] > 0 && [[lines objectAtIndex:1] hasPrefix: @"Location: "]) {
+            NSString *url = [[lines objectAtIndex: 1] substringFromIndex: 10];
+            [[webOutputWebView mainFrame] loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: url]] ];
+        }
+        else {
+            // otherwise, just render script output as the HTML
+            [[webOutputWebView mainFrame] loadHTMLString: [outputTextView string] baseURL: [NSURL fileURLWithPath: [[NSBundle mainBundle] resourcePath]] ];
+        }
+    }
     else if (outputType == PLATYPUS_TEXTWINDOW_OUTPUT || outputType == PLATYPUS_PROGRESSBAR_OUTPUT)
         [outputTextView scrollRangeToVisible:NSMakeRange([text length], 0)];
     
