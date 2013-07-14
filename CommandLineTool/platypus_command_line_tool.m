@@ -47,7 +47,7 @@
 
 ///////////// DEFINITIONS ////////////////
 
-#define OPT_STRING "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:T:G:C:b:g:n:E:K:Y:L:H:U:"
+#define OPT_STRING "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:G:C:b:g:n:E:K:Y:L:H:U:"
 
 ///////////// PROTOTYPES ////////////////
 
