@@ -145,7 +145,6 @@
 		F44E006C12298B7200CAC9C2 /* PlatypusPlate.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusPlate.icns; sourceTree = "<group>"; };
 		F44EFF0412296F3700CAC9C2 /* NSColor+HexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+HexTools.h"; path = "Shared/NSColor+HexTools.h"; sourceTree = "<group>"; };
 		F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+HexTools.m"; path = "Shared/NSColor+HexTools.m"; sourceTree = "<group>"; };
-		F45130781618878800EEB6F9 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ScriptExec; sourceTree = "<group>"; };
 		F46628A714F441DE0053C601 /* AppBuildBoth.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppBuildBoth.sh; sourceTree = "<group>"; };
 		F46628A814F441DE0053C601 /* AppPackageBuildScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppPackageBuildScript.sh; sourceTree = "<group>"; };
 		F46628A914F441DE0053C601 /* AppSourceBuildScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppSourceBuildScript.sh; sourceTree = "<group>"; };
@@ -351,7 +350,6 @@
 				F4BCAAEC178DEDC2004ADD86 /* ScriptExec */,
 				F4185E5811FC57AB0027C8D7 /* Info.plist */,
 				F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */,
-				F45130771618878800EEB6F9 /* MacOS */,
 				F4C8B455124C450C00397392 /* Platypus.xib */,
 				F4C8B457124C450C00397392 /* Editor.xib */,
 				F4C8B458124C450C00397392 /* ShellCommandWindow.xib */,
@@ -455,15 +453,6 @@
 				F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */,
 			);
 			name = "NSColor+HexTools";
-			sourceTree = "<group>";
-		};
-		F45130771618878800EEB6F9 /* MacOS */ = {
-			isa = PBXGroup;
-			children = (
-				F45130781618878800EEB6F9 /* ScriptExec */,
-			);
-			name = MacOS;
-			path = "../../Users/sveinbjorn/Library/Developer/Xcode/DerivedData/Platypus-dxcnhwocxikqwhdfyqwrmpoqplpv/Build/Products/Development/ScriptExec.app/Contents/MacOS";
 			sourceTree = "<group>";
 		};
 		F46628A614F441DE0053C601 /* Deprecated */ = {
