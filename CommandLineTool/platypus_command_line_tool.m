@@ -47,7 +47,7 @@
 
 ///////////// DEFINITIONS ////////////////
 
-#define OPT_STRING "P:f:a:o:i:u:p:V:I:Q:ASODBRFNydlvhxX:T:G:C:b:g:n:E:K:Y:L:H:U:"
+#define OPT_STRING "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:T:G:C:b:g:n:E:K:Y:L:H:U:"
 
 ///////////// PROTOTYPES ////////////////
 
@@ -318,10 +318,13 @@ int main(int argc, const char *argv[]) {
                 // File Types
             case 'T':
             {
-                NSString *filetypesStr = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
-                NSArray *fileTypes = [filetypesStr componentsSeparatedByString:@"|"];
-                [properties setObject:fileTypes forKey:@"FileTypes"];
+                // obsolete option
             }
+                break;
+            
+                // Prompt for file on startup
+            case 'Z':
+                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"PromptForFileOnLaunch"];
                 break;
                 
                 // Arguments for interpreter

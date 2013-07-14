@@ -321,6 +321,7 @@
     [appSettingsPlist setObject:PROGRAM_STAMP forKey:@"Creator"];
     [appSettingsPlist setObject:[properties objectForKey:@"InterpreterArgs"] forKey:@"InterpreterArgs"];
     [appSettingsPlist setObject:[properties objectForKey:@"ScriptArgs"] forKey:@"ScriptArgs"];
+    [appSettingsPlist setObject:[properties objectForKey:@"PromptForFileOnLaunch"] forKey:@"PromptForFileOnLaunch"];
     
     // we need only set text settings for the output types that use this information
     if ([[properties objectForKey:@"Output"] isEqualToString:@"Progress Bar"] ||
@@ -511,7 +512,9 @@
 }
 
 - (void)report:(NSString *)str {
+#ifdef DEBUG
     fprintf(stderr, "%s\n", [str UTF8String]);
+#endif
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PlatypusAppSpecCreationNotification" object:str];
 }
 
@@ -580,7 +583,7 @@
     int i;
     NSString *checkboxParamStr = @"";
     NSString *iconParamStr = @"", *versionString = @"", *authorString = @"";
-    NSString *suffixesString = @"", *filetypesString = @"", *parametersString = @"";
+    NSString *suffixesString = @"", *parametersString = @"";
     NSString *textEncodingString = @"", *textOutputString = @"", *statusMenuOptionsString = @"";
     
     // checkbox parameters
