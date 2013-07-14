@@ -323,7 +323,7 @@
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4A4338B0E04C962000523E7 /* Common.h */,
 				F48B7CB611F76B0C00351575 /* Platypus Application */,
-				F48B7B8811F766CA00351575 /* ScriptExec */,
+				F48B7B8811F766CA00351575 /* ScriptExec Binary */,
 				F4E1F70711F75A40007EE2E3 /* Command Line Tool */,
 				080E96DDFE201D6D7F000001 /* Shared Classes */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -508,7 +508,7 @@
 			name = ScriptAnalyser;
 			sourceTree = "<group>";
 		};
-		F48B7B8811F766CA00351575 /* ScriptExec */ = {
+		F48B7B8811F766CA00351575 /* ScriptExec Binary */ = {
 			isa = PBXGroup;
 			children = (
 				F48B7B9011F766E600351575 /* main.m */,
@@ -516,7 +516,7 @@
 				F48B7B9211F766E600351575 /* ScriptExecController.m */,
 				F48B7C6711F768A000351575 /* Resources */,
 			);
-			name = ScriptExec;
+			name = "ScriptExec Binary";
 			sourceTree = "<group>";
 		};
 		F48B7C6711F768A000351575 /* Resources */ = {
