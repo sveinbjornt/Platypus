@@ -679,10 +679,10 @@
     }
     
     // only set app name arg if we have a proper value
-    NSString *appNameArg = [[properties objectForKey:@"Name"] isEqualToString:@""] ? @"" : [NSString stringWithFormat:@" -a '%@'", [properties objectForKey:@"Name"]];
+    NSString *appNameArg = [[properties objectForKey:@"Name"] isEqualToString:@""] ? @"" : [NSString stringWithFormat:@" -a '%@' ", [properties objectForKey:@"Name"]];
     
     // only add identifier argument if it varies from default
-    NSString *identifArg = [NSString stringWithFormat:@" -I %@", [properties objectForKey:@"Identifier"]];
+    NSString *identifArg = [NSString stringWithFormat:@" -I %@ ", [properties objectForKey:@"Identifier"]];
     if ([[properties objectForKey:@"Identifier"] isEqualToString:[PlatypusAppSpec standardBundleIdForAppName:[properties objectForKey:@"Name"] usingDefaults:NO]])
         identifArg = @"";
     
