@@ -17,6 +17,9 @@ For 4.9
     TODO:  Default profile as a preference
     TODO:  New button-based output mode.
     TODO:  Build with XCode 5, modernize project
+    TODO: If I open Platypus, the cursor starts in the script path field. But I've found (on 10.8.4) that the "Create" button will remain grayed-out even though I fill in the path, then click some boxes, then name the app.
+
+    
 
 For 4.8
     * New "Prompt for file on launch" option
