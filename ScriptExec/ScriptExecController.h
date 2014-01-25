@@ -155,6 +155,8 @@
 - (void)loadSettings;
 - (IBAction)cancel:(id)sender;
 - (IBAction)toggleDetails:(id)sender;
+- (IBAction)showDetails;
+- (IBAction)hideDetails;
 
 - (void)fatalAlert:(NSString *)message subText:(NSString *)subtext;
 @end
