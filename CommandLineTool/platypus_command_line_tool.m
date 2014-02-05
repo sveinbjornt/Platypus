@@ -218,7 +218,7 @@ int main(int argc, const char *argv[]) {
                     }
                     
                     // warn if file doesn't have icns suffix
-                    if ([iconPath hasSuffix:@"icns"])
+                    if (![iconPath hasSuffix:@"icns"])
                         NSPrintErr(@"Warning: '%@' not identified as an Apple .icns file", iconPath);
                 }
                 [properties setObject:iconPath forKey:@"IconPath"];
@@ -240,7 +240,7 @@ int main(int argc, const char *argv[]) {
                     }
                     
                     // warn if file doesn't have icns suffix
-                    if ([iconPath hasSuffix:@"icns"])
+                    if (![iconPath hasSuffix:@"icns"])
                         NSPrintErr(@"Warning: '%@' not identified as an Apple .icns file", iconPath);
                 }
                 [properties setObject:iconPath forKey:@"DocIcon"];
