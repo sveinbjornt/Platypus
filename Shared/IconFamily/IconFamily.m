@@ -9,7 +9,7 @@
 // Problems, shortcomings, and uncertainties that I'm aware of are flagged with "NOTE:".  Please address bug reports, bug fixes, suggestions, etc. to the project Forums and bug tracker at https://sourceforge.net/projects/iconfamily/
 
 /*
-    Copyright (c) 2001-2011 Troy N. Stephens
+    Copyright (c) 2001-2010 Troy N. Stephens
     Portions Copyright (c) 2007 Google Inc.
  
     Use and distribution of this source code is governed by the MIT License, whose terms are as follows.
@@ -48,8 +48,6 @@ enum {
 + (NSImage*) resampleImage:(NSImage*)image toIconWidth:(int)width usingImageInterpolation:(NSImageInterpolation)imageInterpolation;
 
 + (Handle) get32BitDataFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize;
-
-+ (Handle) get8BitDataFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize;
 
 + (Handle) get8BitMaskFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize;
 
@@ -638,13 +636,8 @@ enum {
 	case kLarge1BitMask:
 	    hRawData = [IconFamily get1BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
 	    break;
-            
-	// 'icl8' 32x32 8-bit indexed image data
-	case kLarge8BitData:
-		hRawData = [IconFamily get8BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
-		break;
 
-	// 'is32' 16x16 32-bit RGB image
+    // 'is32' 16x16 32-bit RGB image
 	case kSmall32BitData:
 		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:16];
 		break;
@@ -658,12 +651,6 @@ enum {
 	case kSmall1BitMask:
 	    hRawData = [IconFamily get1BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:16];
 	    break;
-
-	// 'ics8' 16x16 8-bit indexed image data
-	case kSmall8BitData:
-		hRawData = [IconFamily get8BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:16];
-		break;
-            
 	default:
 	    return NO;
     }
@@ -706,7 +693,7 @@ enum {
 	NSString *parentDirectory;
 	
     // Before we do anything, get the original modification time for the target file.
-    NSDate* modificationDate = [[[NSFileManager defaultManager] attributesOfItemAtPath: path error: nil] objectForKey:NSFileModificationDate];
+    NSDate* modificationDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil] objectForKey:NSFileModificationDate];
 
 	if ([path isAbsolutePath])
 		parentDirectory = [path stringByDeletingLastPathComponent];
@@ -820,8 +807,8 @@ enum {
 		return NO;
 	
     // Now set the modification time back to when the file was actually last modified.
-    NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys: modificationDate, NSFileModificationDate, nil];
-    [[NSFileManager defaultManager] setAttributes: attributes ofItemAtPath: path error: nil];
+    NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:modificationDate, NSFileModificationDate, nil];
+    [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:path error:nil];
 
     // Notify the system that the directory containing the file has changed, to
     // give Finder the chance to find out about the file's new custom icon.
@@ -924,7 +911,7 @@ enum {
     iconrPath = [path stringByAppendingPathComponent:@"Icon\r"];
     if( [fm fileExistsAtPath:iconrPath] )
     {
-        if( ![fm removeItemAtPath: iconrPath error: nil] )
+        if( ![fm removeItemAtPath:iconrPath error:nil] )
             return NO;
     }
     if( ![iconrPath getFSRef:&iconrFSRef createFileIfNecessary:YES] )
@@ -1097,7 +1084,7 @@ enum {
             return NO;
     }
 
-    if( ! [[NSFileManager defaultManager] removeItemAtPath:[path stringByAppendingPathComponent:@"Icon\r"] error: nil] )
+    if( ! [[NSFileManager defaultManager] removeItemAtPath:[path stringByAppendingPathComponent:@"Icon\r"] error:nil] )
         return NO;
 	
     return YES;
@@ -1224,12 +1211,10 @@ enum {
     // formats...
     if (isPlanar)
 	{
-		NSLog(@"get32BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to isPlanar == YES");
 		return NULL;
 	}
     if (bitsPerSample != 8)
 	{
-		NSLog(@"get32BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerSample == %d", (int)bitsPerSample);
 		return NULL;
 	}
 
@@ -1280,99 +1265,9 @@ enum {
 	}
 	else
 	{
-		NSLog(@"get32BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to samplesPerPixel == %d, bitsPerPixel == %d", (int)samplesPerPixel, (int)bitsPerPixel);
 		return NULL;
 	}
 
-    return hRawData;
-}
-
-+ (Handle) get8BitDataFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize
-{
-    Handle hRawData;
-    unsigned char* pRawData;
-    Size rawDataSize;
-    unsigned char* pSrc;
-    unsigned char* pDest;
-    int x, y;
-	
-    // Get information about the bitmapImageRep.
-    long pixelsWide      = [bitmapImageRep pixelsWide];
-    long pixelsHigh      = [bitmapImageRep pixelsHigh];
-    long bitsPerSample   = [bitmapImageRep bitsPerSample];
-    long samplesPerPixel = [bitmapImageRep samplesPerPixel];
-    long bitsPerPixel    = [bitmapImageRep bitsPerPixel];
-    BOOL isPlanar       = [bitmapImageRep isPlanar];
-    long bytesPerRow     = [bitmapImageRep bytesPerRow];
-    unsigned char* bitmapData = [bitmapImageRep bitmapData];
-    
-    // Make sure bitmap has the required dimensions.
-    if (pixelsWide != requiredPixelSize || pixelsHigh != requiredPixelSize)
-        return NULL;
-	
-    // So far, this code only handles non-planar 32-bit RGBA and 24-bit RGB source bitmaps.
-    // This could be made more flexible with some additional programming...
-    if (isPlanar)
-	{
-		NSLog(@"get8BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to isPlanar == YES");
-		return NULL;
-	}
-    if (bitsPerSample != 8)
-	{
-		NSLog(@"get8BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerSample == %d", (int)bitsPerSample);
-		return NULL;
-	}
-	
-	if (((samplesPerPixel == 3) && (bitsPerPixel == 24)) || ((samplesPerPixel == 4) && (bitsPerPixel == 32)))
-	{
-		CGDirectPaletteRef cgPal;
-		CGDeviceColor cgCol;
-
-		rawDataSize = pixelsWide * pixelsHigh;
-		hRawData = NewHandle( rawDataSize );
-		if (hRawData == NULL)
-			return NULL;
-		pRawData = (unsigned char*) *hRawData;
-		
-		cgPal = CGPaletteCreateDefaultColorPalette();
-		
-		pDest = pRawData;
-		if (bitsPerPixel == 32) {
-			for (y = 0; y < pixelsHigh; y++) {
-				pSrc = bitmapData + y * bytesPerRow;
-				for (x = 0; x < pixelsWide; x++) {
-					cgCol.red = ((float)*(pSrc)) / 255;
-					cgCol.green = ((float)*(pSrc+1)) / 255;
-					cgCol.blue = ((float)*(pSrc+2)) / 255;
-	
-					*pDest++ = CGPaletteGetIndexForColor(cgPal, cgCol);
-	
-					pSrc+=4;
-				}
-			}
-		} else if (bitsPerPixel == 24) {
-			for (y = 0; y < pixelsHigh; y++) {
-				pSrc = bitmapData + y * bytesPerRow;
-				for (x = 0; x < pixelsWide; x++) {
-					cgCol.red = ((float)*(pSrc)) / 255;
-					cgCol.green = ((float)*(pSrc+1)) / 255;
-					cgCol.blue = ((float)*(pSrc+2)) / 255;
-	
-					*pDest++ = CGPaletteGetIndexForColor(cgPal, cgCol);
-	
-					pSrc+=3;
-				}
-			}
-		}
-		
-		CGPaletteRelease(cgPal);
-	}
-	else
-	{
-		NSLog(@"get8BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to samplesPerPixel == %d, bitsPerPixel == %d", (int)samplesPerPixel, (int)bitsPerPixel);
-		return NULL;
-	}
-	
     return hRawData;
 }
 
@@ -1403,12 +1298,10 @@ enum {
     // This could be made more flexible with some additional programming...
     if (isPlanar)
 	{
-		NSLog(@"get8BitMaskFromBitmapImageRep:requiredPixelSize: returning NULL due to isPlanar == YES");
 		return NULL;
 	}
     if (bitsPerSample != 8)
 	{
-		NSLog(@"get8BitMaskFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerSample == %d", (int)bitsPerSample);
 		return NULL;
 	}
 	
@@ -1445,7 +1338,6 @@ enum {
 	}
 	else
 	{
-		NSLog(@"get8BitMaskFromBitmapImageRep:requiredPixelSize: returning NULL due to samplesPerPixel == %d, bitsPerPixel == %d", (int)samplesPerPixel, (int)bitsPerPixel);
 		return NULL;
 	}
 
@@ -1546,7 +1438,6 @@ enum {
 	}
 	else
 	{
-		NSLog(@"get1BitMaskFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerPixel == %d, samplesPerPixel== %d, bitsPerSample == %d", (int)bitsPerPixel, (int)samplesPerPixel, (int)bitsPerSample);
 		return NULL;
 	}
 	
