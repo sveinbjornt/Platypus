@@ -9,7 +9,7 @@ For 5.0
     TODO:  Retina size support for icons and images used in user interface
 
 For 4.9
-    TODO:  Support carriage returns in script output
+    * Users can now increase/decrease the font size in Platypus-generated apps
     TODO:  Fix Edit Drop Settings menu item enabled when Accept dropped files is not checked
     TODO:  Fix broken "Select Image file as icon..." functionality
     TODO:  Support for selection in Status Menu output, just like in Tapir. Script called with argument line.
@@ -22,8 +22,6 @@ For 4.9
     TODO:  New "Test" button under Args dialog, which executes the shown command in Terminal
     TODO:  Build with XCode 5, modernize project
     TODO: If I open Platypus, the cursor starts in the script path field. But I've found (on 10.8.4) that the "Create" button will remain grayed-out even though I fill in the path, then click some boxes, then name the app.
-
-    
 
 For 4.8
     * New "Prompt for file on launch" option
