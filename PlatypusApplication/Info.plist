@@ -264,9 +264,9 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6.0</string>
 	<key>CFBundleGetInfoString</key>
-	<string>© 2003-2013 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2014 Sveinbjorn Thordarson.</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2003-2013 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2014 Sveinbjorn Thordarson.</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>
