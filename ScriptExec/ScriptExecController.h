@@ -103,8 +103,8 @@
     NSColor *textBackground;
     int textEncoding;
     
-    int execStyle;
-    int outputType;
+    NSInteger execStyle;
+    NSInteger outputType;
     BOOL isDroppable;
     BOOL remainRunning;
     BOOL secureScript;
