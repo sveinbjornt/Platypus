@@ -76,8 +76,6 @@
     [super dealloc];
 }
 
-#pragma mark -
-
 - (void)awakeFromNib {
     // load settings from AppSettings.plist in app bundle
     [self loadSettings];
@@ -986,7 +984,7 @@
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setPrompt:@"Save"];
-    [sPanel setNameFieldLabel:fileName];
+    [sPanel setNameFieldStringValue:fileName];
     
     if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
         [[outputTextView string] writeToFile:[[sPanel URL] path] atomically:YES encoding:textEncoding error:nil];
@@ -1007,6 +1005,10 @@
         (!isDroppable || !acceptsFiles || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS))
         return NO;
     
+    if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_PROGRESSBAR_OUTPUT) {
+        return NO;
+    }
+    
     return YES;
 }
 
@@ -1016,6 +1018,39 @@
     
     if ([[sender title] isEqualToString:@"Quit"])
         [[NSApplication sharedApplication] terminate:self];
+}
+
+#pragma mark - Text resizing
+
+- (void)changeFontSize:(CGFloat)delta; {
+    NSTextView *textView = outputType == PLATYPUS_PROGRESSBAR_OUTPUT ? progressBarTextView : textOutputTextView;
+    
+    NSFontManager * fontManager = [NSFontManager sharedFontManager];
+    NSTextStorage * textStorage = [textView textStorage];
+    [textStorage beginEditing];
+    [textStorage enumerateAttribute:NSFontAttributeName
+                            inRange:NSMakeRange(0, [textStorage length])
+                            options:0
+                         usingBlock:^(id value, NSRange range, BOOL * stop) {
+                             
+                             NSFont * font = value;
+                             font = [fontManager convertFont:font toSize:[font pointSize] + delta];
+                             if (font != nil) {
+                                 [textStorage removeAttribute:NSFontAttributeName range:range];
+                                 [textStorage addAttribute:NSFontAttributeName value:font range:range];
+                             }
+                             
+                         }];
+    [textStorage endEditing];
+    [textView didChangeText];
+}
+
+- (IBAction)makeTextBigger:(id)sender {
+    [self changeFontSize:1];
+}
+
+- (IBAction)makeTextSmaller:(id)sender {
+    [self changeFontSize:-1];
 }
 
 #pragma mark - Service handling

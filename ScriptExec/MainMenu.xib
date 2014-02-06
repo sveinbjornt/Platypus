@@ -229,80 +229,96 @@ Gw
                     </menu>
                 </menuItem>
                 <menuItem title="Edit" id="163">
-                    <menu key="submenu" title="Edit" id="169">
+                    <menu key="submenu" title="Edit" id="8AD-nO-Nv5">
                         <items>
-                            <menuItem title="Undo" keyEquivalent="z" id="158">
+                            <menuItem title="Undo" keyEquivalent="z" id="WsN-Bo-RAi">
                                 <connections>
-                                    <action selector="undo:" target="-1" id="180"/>
+                                    <action selector="undo:" target="-1" id="swp-Rd-xai"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Redo" keyEquivalent="z" id="173">
+                            <menuItem title="Redo" keyEquivalent="z" id="lwR-9k-Jds">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
-                                    <action selector="redo:" target="-1" id="178"/>
+                                    <action selector="redo:" target="-1" id="t0d-JF-Jxf"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="156">
+                            <menuItem isSeparatorItem="YES" id="f7y-jW-w4a">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Cut" keyEquivalent="x" id="160">
+                            <menuItem title="Cut" keyEquivalent="x" id="gYg-Fm-Vd0">
                                 <connections>
-                                    <action selector="cut:" target="-1" id="175"/>
+                                    <action selector="cut:" target="-1" id="uo1-1q-hcK"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Copy" keyEquivalent="c" id="157">
+                            <menuItem title="Copy" keyEquivalent="c" id="gPx-QX-E5Y">
                                 <connections>
-                                    <action selector="copy:" target="-1" id="181"/>
+                                    <action selector="copy:" target="-1" id="dyg-Qh-MrF"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Paste" keyEquivalent="v" id="171">
+                            <menuItem title="Paste" keyEquivalent="v" id="Onj-KJ-eWD">
                                 <connections>
-                                    <action selector="paste:" target="-1" id="176"/>
+                                    <action selector="paste:" target="-1" id="ZQo-9c-pWs"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Delete" id="164">
+                            <menuItem title="Delete" id="NRV-Nu-dQo">
                                 <connections>
-                                    <action selector="delete:" target="-1" id="195"/>
+                                    <action selector="delete:" target="-1" id="PJy-am-8nR"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Select All" keyEquivalent="a" id="172">
+                            <menuItem title="Select All" keyEquivalent="a" id="aZ7-KE-7Nh">
                                 <connections>
-                                    <action selector="selectAll:" target="-1" id="179"/>
+                                    <action selector="selectAll:" target="-1" id="gnq-iF-2hE"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="174">
+                            <menuItem isSeparatorItem="YES" id="ckZ-kQ-yF7">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Find" id="168">
-                                <menu key="submenu" title="Find" id="159">
+                            <menuItem title="Find" id="EgA-FB-eXQ">
+                                <menu key="submenu" title="Find" id="xIX-bE-bd8">
                                     <items>
-                                        <menuItem title="Find…" tag="1" keyEquivalent="f" id="154">
+                                        <menuItem title="Find…" tag="1" keyEquivalent="f" id="3k0-IU-cL5">
                                             <connections>
-                                                <action selector="performFindPanelAction:" target="-1" id="199"/>
+                                                <action selector="performFindPanelAction:" target="-1" id="wAh-50-CiI"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Find Next" tag="2" keyEquivalent="g" id="167">
+                                        <menuItem title="Find Next" tag="2" keyEquivalent="g" id="EAX-qd-XMX">
                                             <connections>
-                                                <action selector="performFindPanelAction:" target="-1" id="200"/>
+                                                <action selector="performFindPanelAction:" target="-1" id="LvO-Xz-du1"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Find Previous" tag="3" keyEquivalent="G" id="162">
+                                        <menuItem title="Find Previous" tag="3" keyEquivalent="G" id="n5T-AH-BNm">
                                             <connections>
-                                                <action selector="performFindPanelAction:" target="-1" id="201"/>
+                                                <action selector="performFindPanelAction:" target="-1" id="FgQ-Gb-Qnu"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Use Selection for Find" tag="7" keyEquivalent="e" id="161">
+                                        <menuItem title="Use Selection for Find" tag="7" keyEquivalent="e" id="xKU-AA-Gj3">
                                             <connections>
-                                                <action selector="performFindPanelAction:" target="-1" id="202"/>
+                                                <action selector="performFindPanelAction:" target="-1" id="j7C-hb-eo3"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Jump to Selection" keyEquivalent="j" id="155">
+                                        <menuItem title="Jump to Selection" keyEquivalent="j" id="mpE-JG-s67">
                                             <connections>
-                                                <action selector="centerSelectionInVisibleArea:" target="-1" id="203"/>
+                                                <action selector="centerSelectionInVisibleArea:" target="-1" id="H4Z-6R-SO2"/>
                                             </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="View" id="KUk-6o-tke">
+                    <menu key="submenu" title="View" id="ITS-DI-OJD">
+                        <items>
+                            <menuItem title="Make Text Bigger" keyEquivalent="+" id="Qae-cV-V7J">
+                                <connections>
+                                    <action selector="makeTextBigger:" target="207" id="cHK-EO-JtV"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Make Text Smaller" keyEquivalent="-" id="Gv4-oc-1eL">
+                                <connections>
+                                    <action selector="makeTextSmaller:" target="207" id="JTY-6k-ZKY"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>
