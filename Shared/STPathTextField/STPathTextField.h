@@ -2,7 +2,7 @@
  STPathTextField.h
  
  Created by Sveinbjorn Thordarson on 6/27/08.
- Copyright (C) 2003-2013 Sveinbjorn Thordarson. All rights reserved.
+ Copyright (C) 2003-2014 Sveinbjorn Thordarson. All rights reserved.
  
  
  See STPathTextField.m for description of the functionality of
