@@ -31,6 +31,6 @@ chmod -R 755 "/usr/local/share/platypus/"
 
 # Create text file with version
 echo "Creating CLT versioning file" > /dev/stderr
-echo "4.8" > "/usr/local/share/platypus/Version"
+echo "4.9" > "/usr/local/share/platypus/Version"
 
 exit 0

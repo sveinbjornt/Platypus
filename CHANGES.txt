@@ -15,6 +15,8 @@ For 4.9
     TODO:  Refactor create: method in app spec class into multiple methods, e.g. infoplist and appsettingsplist getters
     TODO:  Make generated applications function even if they are moved while running
     TODO:  Default profile as a preference
+    TODO:  Fix issue where command line tool complains over valid .icns filenames
+    TODO:  DETAILS:SHOW and DETAILS:HIDE option 
     TODO:  New button-based output mode.
     TODO:  Build with XCode 5, modernize project
     TODO: If I open Platypus, the cursor starts in the script path field. But I've found (on 10.8.4) that the "Create" button will remain grayed-out even though I fill in the path, then click some boxes, then name the app.
