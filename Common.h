@@ -21,9 +21,9 @@
 // General definitions file with various application-wide settings/information
 
 // General program information
-#define PROGRAM_STAMP               @ "Platypus-4.9"
 #define PROGRAM_NAME                @ "Platypus"
 #define PROGRAM_VERSION             @ "4.9"
+#define PROGRAM_STAMP               [NSString stringWithFormat:@"%@-%@", PROGRAM_NAME, PROGRAM_VERSION]
 #define PROGRAM_MIN_SYS_VERSION     @ "10.6.0"
 #define PROGRAM_AUTHOR              @ "Sveinbjorn Thordarson"
 #define PROGRAM_WEBSITE             @ "http://sveinbjorn.org/platypus"
@@ -98,12 +98,14 @@
 #define PLATYPUS_MAX_QUEUE_JOBS             255
 
 // array of output types, used for validation
-#define PLATYPUS_OUTPUT_TYPES       [NSArray arrayWithObjects : @ "None", \
+#define PLATYPUS_OUTPUT_TYPES       [NSArray arrayWithObjects:\
+@ "None", \
 @ "Progress Bar", \
 @ "Text Window", \
 @ "Web View", \
 @ "Droplet", \
-@ "Status Menu", nil]
+@ "Status Menu", \
+nil]
 
 #pragma mark -
 
