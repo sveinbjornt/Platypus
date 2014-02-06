@@ -258,11 +258,11 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleVersion</key>
-	<string>4.8</string>
-    <key>CFBundleShortVersionString</key>
-	<string>4.8</string>
+	<string>4.9</string>
+	<key>CFBundleShortVersionString</key>
+	<string>4.9</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.5.0</string>
+	<string>10.6.0</string>
 	<key>CFBundleGetInfoString</key>
 	<string>© 2003-2013 Sveinbjorn Thordarson.</string>
 	<key>NSHumanReadableCopyright</key>
