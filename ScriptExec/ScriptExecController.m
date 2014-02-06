@@ -104,7 +104,7 @@
  **************************************************/
 
 - (void)loadSettings {
-    int i = 0;
+    NSInteger i = 0;
     NSBundle *appBundle = [NSBundle mainBundle];
     NSFileManager *fmgr = FILEMGR;
     NSDictionary *appSettingsPlist;
@@ -298,7 +298,7 @@
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames {
 
     // add the dropped files as a job for processing
-    int ret = [self addDroppedFilesJob:filenames];
+    NSInteger ret = [self addDroppedFilesJob:filenames];
     
     // if no other job is running, we execute
     if (!isTaskRunning && ret)
@@ -882,7 +882,7 @@
         [lines removeLastObject];
         
         // parse output looking for commands; if none, add line to output text field
-        int i;
+        NSInteger i;
         for (i = 0; i < [lines count]; i++) {
             NSString *theLine = [lines objectAtIndex:i];
             
@@ -943,9 +943,16 @@
         types = [NSMutableArray array];
         [types addObjectsFromArray:droppableSuffixes];
     }
+    [oPanel setAllowedFileTypes:types];
     
-    if ([oPanel runModalForDirectory:nil file:nil types:types] == NSOKButton) {
-        int ret = [self addDroppedFilesJob:[oPanel filenames]];
+    if ([oPanel runModal] == NSFileHandlingPanelOKButton) {
+        // Convert URLs to paths
+        NSMutableArray *files = [NSMutableArray arrayWithArray:[oPanel URLs]];
+        for (NSInteger i = 0; i < [files count]; i++) {
+            [files replaceObjectAtIndex:i withObject:[(NSURL *)[files objectAtIndex:i] path]];
+        }
+        
+        NSInteger ret = [self addDroppedFilesJob:files];
         if (!isTaskRunning && ret)
             [self executeScript];
     }
@@ -979,9 +986,11 @@
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setPrompt:@"Save"];
+    [sPanel setNameFieldLabel:fileName];
     
-    if ([sPanel runModalForDirectory:nil file:fileName] == NSFileHandlingPanelOKButton)
-        [[outputTextView string] writeToFile:[sPanel filename] atomically:YES encoding:textEncoding error:nil];
+    if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
+        [[outputTextView string] writeToFile:[[sPanel URL] path] atomically:YES encoding:textEncoding error:nil];
+    }
 }
 
 // save only works for text window, web view output types
@@ -1040,7 +1049,7 @@
     
     NSString *pboardString = [pboard stringForType:NSStringPboardType];
 
-    int ret = [self addDroppedTextJob:pboardString];
+    NSInteger ret = [self addDroppedTextJob:pboardString];
     
     if (!isTaskRunning && ret)
         [self executeScript];
@@ -1070,7 +1079,7 @@
         return NO;
     
     // Let's see what we have
-    int i;
+    NSInteger i;
     NSMutableArray *acceptedFiles = [[[NSMutableArray alloc] init] autorelease];
     
     // Only accept the drag if at least one of the files meets the required types
@@ -1101,7 +1110,7 @@
  *****************************************************************/
 
 - (BOOL)acceptableFileType:(NSString *)file {
-    int i;
+    NSInteger i;
     BOOL isDir;
     
     // Check if it's a folder. If so, we only accept it if folders are accepted
@@ -1130,7 +1139,7 @@
     // if this is a file being dragged
     if ([[pboard types] containsObject:NSFilenamesPboardType] && acceptsFiles) {
         // loop through files, see if any of the dragged files are acceptable
-        int i;
+        NSInteger i;
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         
         for (i = 0; i < [files count]; i++)
@@ -1215,7 +1224,7 @@
  **************************************************/
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
-    int i;
+    NSInteger i;
     
     // run script and wait until we've received all the script output
     [self executeScript];
