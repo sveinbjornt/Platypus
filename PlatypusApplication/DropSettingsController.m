@@ -221,6 +221,9 @@
     if ([[anItem title] isEqualToString:@"Remove Suffix"] && [suffixListDataBrowser selectedRow] == -1)
         return NO;
     
+    if ([[anItem title] isEqualToString:@"Edit Drop Settings..."])
+        return YES;
+    
     return YES;
 }
 
