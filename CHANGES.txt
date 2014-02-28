@@ -13,7 +13,7 @@ For 4.9
     * Fix issue where command line tool complains over valid .icns filenames
     * Built with XCode 5, modernized project
 
-
+    TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO:  Default profile as a preference
     TODO:  Fix Edit Drop Settings menu item enabled when Accept dropped files is not checked
     TODO:  Fix broken "Select Image file as icon..." functionality
