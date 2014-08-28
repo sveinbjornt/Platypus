@@ -10,8 +10,9 @@ For 5.0
 
 For 4.9
     * Users can now increase/decrease the font size in Platypus-generated apps
-    * Fix issue where command line tool complains over valid .icns filenames
+    * Fix issue where command line tool complained about valid .icns filenames
     * Built with XCode 5, modernized project
+
 
     TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO:  Default profile as a preference
