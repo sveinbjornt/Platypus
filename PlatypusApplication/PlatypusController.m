@@ -692,7 +692,8 @@
         
         //enable/disable create app button
         [createAppButton setEnabled:validName && exists];
-        
+    }
+    if ([aNotification object] == appNameTextField) {
         //update identifier
         [bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] usingDefaults:YES]];
     }
