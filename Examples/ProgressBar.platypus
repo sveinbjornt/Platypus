@@ -23,32 +23,42 @@
     <key>Script</key>
     <string>#!/bin/sh
 
-	echo "PROGRESS:0"
-	echo "Doing something"
-	sleep 1
-	echo "PROGRESS:10"
-	sleep 1
-	echo "PROGRESS:20"
-	sleep 1
-	echo "PROGRESS:30"
-	sleep 1
-	echo "Doing something else"
-	echo "PROGRESS:40"
-	sleep 1
-	echo "PROGRESS:50"
-	sleep 1
-	echo "PROGRESS:60"
-	sleep 1
-	echo "And now for something completely different"
-	echo "PROGRESS:70"
-	sleep 1
-	echo "PROGRESS:80"
-	sleep 1
-	echo "PROGRESS:90"
-	sleep 1
-	echo "PROGRESS:100"
-	echo "Done"
-</string>
+/usr/bin/say "This example shows you can control the progress bar."
+echo "PROGRESS:0"
+echo "Doing something"
+sleep 1
+echo "PROGRESS:10"
+sleep 1
+echo "PROGRESS:20"
+sleep 1
+echo "Showing Details"
+echo "DETAILS:SHOW"
+sleep 1
+echo "PROGRESS:30"
+sleep 1
+echo "Hiding Details"
+sleep 1
+echo "DETAILS:HIDE"
+sleep 1
+echo "Doing something else"
+echo "PROGRESS:40"
+sleep 1
+echo "PROGRESS:50"
+sleep 1
+echo "PROGRESS:60"
+sleep 1
+echo "And now for something completely different"
+echo "PROGRESS:70"
+sleep 1
+echo "Quitting application in 2 seconds"
+sleep 2
+echo "QUITAPP"
+echo "PROGRESS:80"
+sleep 1
+echo "PROGRESS:90"
+sleep 1
+echo "PROGRESS:100"
+echo "Done"</string>
 	<key>Droppable</key>
 	<false/>
 	<key>ExecutablePath</key>
