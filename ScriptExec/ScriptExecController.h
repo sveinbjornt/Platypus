@@ -155,6 +155,8 @@
 - (void)loadSettings;
 - (IBAction)cancel:(id)sender;
 - (IBAction)toggleDetails:(id)sender;
+- (IBAction)showDetails;
+- (IBAction)hideDetails;
 
 - (IBAction)makeTextBigger:(id)sender;
 - (IBAction)makeTextSmaller:(id)sender;
