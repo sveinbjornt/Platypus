@@ -220,7 +220,7 @@
     if ([commandLineArguments count]) {
         [commandLineArguments removeObjectAtIndex:0];
         // hack to remove XCode CLI flags. Really just here to make debugging easier.
-        if ([[commandLineArguments objectAtIndex:0] isEqualToString:@"-NSDocumentRevisionsDebugMode"]) {
+        if ([commandLineArguments count] > 1 && [[commandLineArguments objectAtIndex:0] isEqualToString:@"-NSDocumentRevisionsDebugMode"]) {
             [commandLineArguments removeObjectAtIndex:0];
             [commandLineArguments removeObjectAtIndex:0];
         }

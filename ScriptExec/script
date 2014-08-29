@@ -36,12 +36,24 @@ local $| = 1;
 #}
 #
 
+#!/usr/bin/perl
+
+# If 0 arguments, we show menu
 if (!scalar(@ARGV)) {
-    print system('ps cax | grep httpd');
-    print "\nRestart";
-} elsif ($ARGV[0] eq 'Restart') {
-    system("/usr/bin/say Biatch");
+    print "Life's but a walking shadow, a poor player\n";
+    print "That struts and frets his hour upon the stage\n";
+    print "And then is heard no more.\n";
+} else {
+    system("/usr/bin/say \"$ARGV[0]\"");
 }
+
+
+#if (!scalar(@ARGV)) {
+#    print system('ps cax | grep httpd');
+#    print "\nRestart";
+#} elsif ($ARGV[0] eq 'Restart') {
+#    system("/usr/bin/say Biatch");
+#}
 
 
 #print "PROGRESS:40\n";
