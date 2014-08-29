@@ -51,6 +51,8 @@
                      forKey:@"DefaultTextEncoding"];
     [defaultPrefs setObject:NSFullUserName()               forKey:@"DefaultAuthor"];
     
+    
+    
     // register the dictionary of defaults
     [DEFAULTS registerDefaults:defaultPrefs];
 }

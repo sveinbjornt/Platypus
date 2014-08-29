@@ -16,7 +16,11 @@ For 4.9
     * In Progress Bar output, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility
     * Arguments can now be passed to Platypus-generated apps via the command line
     * Fixed bug where a custom bundle identifier in a saved Profile would not be loaded
+    * Fixed bug where the Create button would remain greyed out even though all requirements were satisfied
 
+    TODO:  It would be great if the Save As dialog remembered the options you last selected for Development version, Optimize NIB and Use XML instead of Binary.
+
+    TODO:  Add EXIT command
     TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO:  Default profile as a preference
     TODO:  Fix Edit Drop Settings menu item enabled when Accept dropped files is not checked
@@ -28,8 +32,6 @@ For 4.9
     TODO:  New "Test" button under Args dialog, which executes the shown command in Terminal
     TODO:  Long GNU named params, e.g. --some-option
 
-    TODO:  It would be great if the Save As dialog remembered the options you last selected for Development version, Optimize NIB and Use XML instead of Binary.
-    TODO: If I open Platypus, the cursor starts in the script path field. But I've found (on 10.8.4) that the "Create" button will remain grayed-out even though I fill in the path, then click some boxes, then name the app.
 
 For 4.8
     * New "Prompt for file on launch" option
