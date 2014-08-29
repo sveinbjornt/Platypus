@@ -15,7 +15,7 @@ For 4.9
     * It is now possible to add a custom MainMenu.nib to bundled files which overwrites default
     * In Progress Bar output, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility
     * Arguments can now be passed to Platypus-generated apps via the command line
-
+    * Fixed bug where a custom bundle identifier in a saved Profile would not be loaded
 
     TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO:  Default profile as a preference
@@ -29,7 +29,6 @@ For 4.9
     TODO:  Long GNU named params, e.g. --some-option
 
     TODO:  It would be great if the Save As dialog remembered the options you last selected for Development version, Optimize NIB and Use XML instead of Binary.
-    TODO:  When I save and reopen a profile, everything seems to load correctly except for the Identifier
     TODO: If I open Platypus, the cursor starts in the script path field. But I've found (on 10.8.4) that the "Create" button will remain grayed-out even though I fill in the path, then click some boxes, then name the app.
 
 For 4.8
