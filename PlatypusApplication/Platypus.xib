@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="14D47B2C-815C-4B36-B352-622BB2C540F1" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="CE108B9C-5AAF-444C-B45A-9F945BE7F3DC" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -866,7 +866,7 @@ CA
                                     <action selector="selectIcon:" target="1215" id="1221"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Select ICNS File as Icon…" toolTip="Select an icns file to use for your application" id="1269">
+                            <menuItem title="Select .icns File as Icon…" toolTip="Select an icns file to use for your application" id="1269">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="selectIcnsFile:" target="1215" id="1272"/>
@@ -2588,7 +2588,9 @@ Gw
         </window>
     </objects>
     <resources>
-        <image name="14D47B2C-815C-4B36-B352-622BB2C540F1" width="16" height="16">
+        <image name="Add" width="23" height="20"/>
+        <image name="Add_Pressed" width="23" height="20"/>
+        <image name="CE108B9C-5AAF-444C-B45A-9F945BE7F3DC" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGRkdYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QDwcI
 ExQZHh8qKyw0NzpAQ1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5T
@@ -2670,8 +2672,6 @@ AREBJAE8AT4BQAFCAUQBRhCOEKoQrxC6EMMQ1hDaEO0Q+BEBEQYRDhERERYRJREpETAROBFFEUoRTBFO
 EVMRWxFeEWMRaxFuEYARgxGIAAAAAAAAAgEAAAAAAAAASgAAAAAAAAAAAAAAAAAAEYo
 </mutableData>
         </image>
-        <image name="Add" width="23" height="20"/>
-        <image name="Add_Pressed" width="23" height="20"/>
         <image name="Clear" width="22" height="20"/>
         <image name="Clear_Pressed" width="22" height="20"/>
         <image name="PlatypusDefault" width="512" height="512"/>
