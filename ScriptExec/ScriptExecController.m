@@ -590,9 +590,6 @@
                 remnants = NULL;
             }
             
-            //update controls for progress bar output
-            [progressBarIndicator stopAnimation:self];
-            
             if (isDroppable) {
                 [progressBarMessageTextField setStringValue:@"Drag files to process"];
                 [progressBarIndicator setIndeterminate:YES];
@@ -607,6 +604,9 @@
                 [progressBarIndicator setIndeterminate:NO];
                 [progressBarIndicator setDoubleValue:100];
             }
+            
+            //update controls for progress bar output
+            [progressBarIndicator stopAnimation:self];
             
             // change button
             [progressBarCancelButton setTitle:@"Quit"];
@@ -920,6 +920,9 @@
                 else if ([detailsCommand isEqualToString:@"HIDE"]) {
                     [self hideDetails];
                 }
+            }
+            else if ([theLine hasPrefix:@"QUITAPP"]) {
+                [[NSApplication sharedApplication] terminate:self];
             }
             else {
                 [dropletMessageTextField setStringValue:theLine];
