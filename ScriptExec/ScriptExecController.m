@@ -894,6 +894,15 @@
                 [progressBarIndicator setIndeterminate:NO];
                 [progressBarIndicator setDoubleValue:[progressPercent doubleValue]];
             }
+            else if ([theLine hasPrefix:@"DETAILS:"]) {
+                NSString *detailsCommand = [theLine substringFromIndex:8];
+                if ([detailsCommand isEqualToString:@"SHOW"]) {
+                    [self showDetails];
+                }
+                else if ([detailsCommand isEqualToString:@"HIDE"]) {
+                    [self hideDetails];
+                }
+            }
             else {
                 [dropletMessageTextField setStringValue:theLine];
                 [progressBarMessageTextField setStringValue:theLine];
@@ -971,6 +980,20 @@
         winRect.origin.y -= 224;
         winRect.size.height += 224;
         [progressBarWindow setFrame:winRect display:TRUE animate:TRUE];
+    }
+}
+
+// show the details text field in progress bar output
+- (IBAction)showDetails {
+    if ([progressBarDetailsTriangle state] == NSOffState) {
+        [progressBarDetailsTriangle performClick:progressBarDetailsTriangle];
+    }
+}
+
+// hide the details text field in progress bar output
+- (IBAction)hideDetails {
+    if ([progressBarDetailsTriangle state] != NSOffState) {
+        [progressBarDetailsTriangle performClick:progressBarDetailsTriangle];
     }
 }
 
