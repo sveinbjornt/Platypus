@@ -142,6 +142,7 @@
             <li><a href="#811">Can I change the dimensions of the Platypus output window?</a></li>
             <li><a href="#812">Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?</a></li>
             <li><a href="#813">Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?</a></li>
+            <li><a href="#814">Can I pass arguments to a Platypus-generated app via the command line?</a></li>
         </ul>
     </li>
 </ul>
@@ -833,8 +834,27 @@ Contents/Resources/MainMenu.nib
 <br>
 <br>
 
+<h3 id="814">Can I pass arguments to a Platypus-generated app via the command line?</h3>
+
+<p>Yes. You can execute a Platypus-generated binary via the command line and any arguments you provide will be passed on to your script. Take the following example:</p>
+
+<div class="codeblock">
+# ./MyApp.app/Contents/MacOS/MyApp -arg1 -arg2
+</div>
+
+<p>In this case, both <code>-arg1</code> and <code>-arg2</code> will be passed on to your script. This feature makes it possible to create protocol handlers for Firefox and other applications that invoke Mac OS X applications from the shell.</p>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
     
 <hr>
+
+
 
 
 <p>Copyright &copy; 2003-2014 Sveinbjorn Thordarson
