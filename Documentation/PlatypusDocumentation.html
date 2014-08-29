@@ -670,9 +670,9 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
 
 <p>As of Platypus 4.9, it is now possible to build relatively sophisticated interactive Status Menu apps. Platypus-generated apps with the Output Mode set to Status Menu will show an icon in the menu bar when launched. When the menu is opened, the script is executed and each line of output shown as a menu item in the menu. 
     
-<p>When the user selects a menu item, the script is executed again, but this time receives the menu title as an argument. Based on whether it receives an argument, the script can thus determine whether it is being invoked to list the menu items or perform some action.</p>
+<p>When the user selects a menu item, the script is executed again, but this time it receives the menu title as an argument. Based on whether it receives an argument, the script can thus determine whether it is being invoked to list the menu items or perform some action for a selected menu item.</p>
 
-<p>If this seems unclear, observe the following Perl script example, which is included in the Examples:</p>
+<p>If this seems unclear, check out the following script, which is part of the MacbethMenu Example:</p>
 
 <div class="codeblock">
 <pre>
@@ -689,7 +689,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
     }</pre>
 </div>
 
-<p>This script would create a Status Menu app which shows a few lines of Shakespeare. When selected, the lines are read by the Mac OS speech synthesizer.</p> 
+<p>This script would create a Status Menu app which shows a few lines of Shakespeare's Macbeth. When selected, the lines are read by the Mac OS speech synthesizer.</p> 
 
 <br>
 <br>
