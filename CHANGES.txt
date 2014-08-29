@@ -11,7 +11,8 @@ For 5.0
 For 4.9
     * Users can now increase/decrease the font size in Platypus-generated apps
     * Fix issue where command line tool complained about valid .icns filenames
-    * Built with XCode 5, modernized project
+    * Built with XCode 5, now requires Mac OS X 10.6 or later
+    * It is now possible to add a custom MainMenu.nib to bundled files which overwrites default
 
 
     TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
@@ -24,7 +25,12 @@ For 4.9
     TODO:  DETAILS:SHOW and DETAILS:HIDE option
     TODO:  New button-based output mode.
     TODO:  New "Test" button under Args dialog, which executes the shown command in Terminal
+    TODO:  Long GNU named params, e.g. --some-option
 
+    TODO:  It would be great if the Save As dialog remembered the options you last selected for Development version, Optimize NIB and Use XML instead of Binary.
+
+    TODO:  Pass command line arguments in CLI invocation of ScriptExec to the app
+    TODO:  When I save and reopen a profile, everything seems to load correctly except for the Identifier
     TODO: If I open Platypus, the cursor starts in the script path field. But I've found (on 10.8.4) that the "Create" button will remain grayed-out even though I fill in the path, then click some boxes, then name the app.
 
 For 4.8

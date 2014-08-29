@@ -409,8 +409,16 @@
         // if it's a development version, we just symlink it
         if ([[properties objectForKey:@"DevelopmentVersion"] boolValue] == YES)
             [fileManager createSymbolicLinkAtPath:bundledFileDestPath withDestinationPath:bundledFilePath error:nil];
-        else // else we copy it
+        else { // else we copy it
+            
+            // remove any file in destination path
+            // NB: This means any previously copied files are overwritten
+            // and so users can bundle in their own MainMenu.nib etc.
+            if ([fileManager fileExistsAtPath:bundledFileDestPath]) {
+                [fileManager removeItemAtPath:bundledFileDestPath error:nil];
+            }
             [fileManager copyItemAtPath:bundledFilePath toPath:bundledFileDestPath error:nil];
+        }
     }
     
     ////////////////////////////////// COPY APP OVER TO FINAL DESTINATION /////////////////////////////////
