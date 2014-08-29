@@ -22,9 +22,9 @@
 #	$i++;
 #}
 local $| = 1;
-print "Hello<br>";
+print "Arguments:\n";
 
-foreach (@ARGV) { print $_ . "\n<br>"; }
+foreach (@ARGV) { print "\t" . $_ . "\n"; }
 
 
 #print "PROGRESS:100\n";

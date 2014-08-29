@@ -13,6 +13,8 @@ For 4.9
     * Fix issue where command line tool complained about valid .icns filenames
     * Built with XCode 5, now requires Mac OS X 10.6 or later
     * It is now possible to add a custom MainMenu.nib to bundled files which overwrites default
+    * In Progress Bar output, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility
+    * Arguments can now be passed to Platypus-generated apps via the command line
 
 
     TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
@@ -22,14 +24,11 @@ For 4.9
     TODO:  Support for selection in Status Menu output, just like in Tapir. Script called with argument line.
     TODO:  Refactor create: method in app spec class into multiple methods, e.g. infoplist and appsettingsplist getters
     TODO:  Make generated applications function even if they are moved while running
-    TODO:  DETAILS:SHOW and DETAILS:HIDE option
     TODO:  New button-based output mode.
     TODO:  New "Test" button under Args dialog, which executes the shown command in Terminal
     TODO:  Long GNU named params, e.g. --some-option
 
     TODO:  It would be great if the Save As dialog remembered the options you last selected for Development version, Optimize NIB and Use XML instead of Binary.
-
-    TODO:  Pass command line arguments in CLI invocation of ScriptExec to the app
     TODO:  When I save and reopen a profile, everything seems to load correctly except for the Identifier
     TODO: If I open Platypus, the cursor starts in the script path field. But I've found (on 10.8.4) that the "Create" button will remain grayed-out even though I fill in the path, then click some boxes, then name the app.
 

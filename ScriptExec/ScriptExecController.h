@@ -90,9 +90,11 @@
     NSFileHandle *readHandle;
     
     NSMutableArray *arguments;
+    NSMutableArray *commandLineArguments;
     NSMutableArray *fileArgs;
     NSArray *interpreterArgs;
     NSArray *scriptArgs;
+    
     
     NSString *interpreter;
     NSString *scriptPath;
