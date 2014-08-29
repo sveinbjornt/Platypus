@@ -7,9 +7,7 @@
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>ScriptArgs</key>
-	<array>
-		<string>ArgTest!</string>
-	</array>
+	<array/>
 	<key>DropSuffixes</key>
 	<array>
 		<string>txt</string>
@@ -17,7 +15,7 @@
 	<key>Droppable</key>
 	<true/>
 	<key>OutputType</key>
-	<string>Droplet</string>
+	<string>Text Window</string>
 	<key>StatusItemDisplayType</key>
 	<string>Text Window</string>
 	<key>StatusItemTitle</key>
@@ -29,7 +27,7 @@
 	<key>RequiresAdminPrivileges</key>
 	<false/>
 	<key>PromptForFileOnLaunch</key>
-	<true/>
+	<false/>
 	<key>RunInBackground</key>
 	<false/>
 	<key>AcceptsText</key>

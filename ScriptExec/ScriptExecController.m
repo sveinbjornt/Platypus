@@ -60,6 +60,9 @@
     if (scriptArgs != NULL) {
         [scriptArgs release];
     }
+    if (commandLineArguments != NULL) {
+        [commandLineArguments release];
+    }
     if (statusItemIcon != NULL) {
         [statusItemIcon release];
     }
@@ -202,7 +205,7 @@
             statusItemTitle = @"Title";
     }
     
-    //load these vars from plist
+    // load these vars from plist
     interpreterArgs     = [[NSArray arrayWithArray:[appSettingsPlist objectForKey:@"InterpreterArgs"]] retain];
     scriptArgs          = [[NSArray arrayWithArray:[appSettingsPlist objectForKey:@"ScriptArgs"]] retain];
     execStyle           = [[appSettingsPlist objectForKey:@"RequiresAdminPrivileges"] boolValue];
@@ -210,6 +213,13 @@
     secureScript        = [[appSettingsPlist objectForKey:@"Secure"] boolValue];
     isDroppable         = [[appSettingsPlist objectForKey:@"Droppable"] boolValue];
     promptForFileOnLaunch = [[appSettingsPlist objectForKey:@"PromptForFileOnLaunch"] boolValue];
+    
+    // read and store command line arguments
+    // the first argument is always the path to the binary, so we remove that
+    commandLineArguments = [[NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]] retain];
+    if ([commandLineArguments count]) {
+        [commandLineArguments removeObjectAtIndex:0];
+    }
     
     // never privileged execution or droppable w. status menu
     if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
@@ -678,6 +688,14 @@
     
     // add arguments for script
     [arguments addObjectsFromArray:scriptArgs];
+    
+    // if initial run of app, add any arguments passed in via the command line (argc)
+    // this is pretty obscure (why CLI args for GUI app?) but apparently helpful for
+    // certain edge cases such as Firefox protocol handlers etc.
+    if (commandLineArguments && [commandLineArguments count]) {
+        [arguments addObjectsFromArray:commandLineArguments];
+        commandLineArguments = nil;
+    }
     
     //finally, add any file arguments we may have received as dropped/opened
     if ([jobQueue count] > 0) { // we have files in the queue, to append as arguments
