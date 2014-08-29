@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Authentication</key>
+	<false/>
+	<key>Author</key>
+	<string>Sveinbjorn Thordarson</string>
+	<key>BundledFiles</key>
+	<array/>
+	<key>Creator</key>
+	<string>Platypus-4.9</string>
+	<key>DestinationOverride</key>
+	<false/>
+	<key>DevelopmentVersion</key>
+	<false/>
+    <key>Example</key>
+    <true/>
+    <key>ScriptName</key>
+    <string>MacbethMenu.pl</string>
+    <key>Script</key>
+    <string>#!/usr/bin/perl
+
+# If 0 arguments, we show menu
+if (!scalar(@ARGV)) {
+    print "Life's but a walking shadow, a poor player\n";
+    print "That struts and frets his hour upon the stage\n";
+    print "And then is heard no more.\n";
+} else {
+    # We get the menu title as an argument
+    # and feed it to the Mac OS X voice synthesizer
+    system("/usr/bin/say \"$ARGV[0]\"");
+}
+</string>
+	<key>Droppable</key>
+	<false/>
+	<key>FileTypes</key>
+	<array>
+		<string>****</string>
+	</array>
+	<key>IconPath</key>
+	<string></string>
+	<key>Identifier</key>
+	<string>org.sveinbjorn.MacbethMenu</string>
+	<key>Interpreter</key>
+	<string>/usr/bin/perl</string>
+	<key>Name</key>
+	<string>MacbethMenu</string>
+	<key>NibPath</key>
+	<string>/usr/local/share/platypus/MainMenu.nib</string>
+	<key>OptimizeApplication</key>
+	<false/>
+	<key>Output</key>
+	<string>Status Menu</string>
+	<key>InterpretarArgs</key>
+	<array/>
+	<key>RemainRunning</key>
+	<true/>
+	<key>Role</key>
+	<string>Viewer</string>
+	<key>Secure</key>
+	<false/>
+	<key>ShowInDock</key>
+	<false/>
+	<key>StatusItemDisplayType</key>
+	<string>Text</string>
+	<key>StatusItemIcon</key>
+	<data>
+	</data>
+	<key>StatusItemTitle</key>
+	<string>Macbeth</string>
+	<key>Suffixes</key>
+	<array>
+		<string>*</string>
+	</array>
+	<key>TextBackground</key>
+	<string>#ffffff</string>
+	<key>TextEncoding</key>
+	<integer>4</integer>
+	<key>TextFont</key>
+	<string>Monaco</string>
+	<key>TextForeground</key>
+	<string>#000000</string>
+	<key>TextSize</key>
+	<real>10</real>
+	<key>Version</key>
+	<string>1.0</string>
+</dict>
+</plist>
