@@ -19,6 +19,7 @@ For 4.9
     * Fixed bug where the Create button would remain greyed out even though all requirements were satisfied
     * Fixed bug where progress indicator would keep animating after execution in Progress Bar output mode
     * New feature: If script prints "QUITAPP" to STDOUT, the wrapper application will quit.
+    * Platypus now remembers opened Profiles in the Open Recent menu
 
     TODO:  It would be great if the Save As dialog remembered the options you last selected for Development version, Optimize NIB and Use XML instead of Binary.
 
