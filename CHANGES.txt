@@ -7,6 +7,9 @@ For 5.0
     TODO:  Rewrite or at least refactor nasty 10 year old code in STFileList and SuffixList
     TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO:  Retina size support for icons and images used in user interface
+    TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
+    TODO:  Fix broken "Select Image file as icon..." functionality on retina displays
+    TODO:  Make generated applications function even if they are moved while running
 
 For 4.9
     * Users can now increase/decrease the font size in Platypus-generated apps
@@ -21,17 +24,17 @@ For 4.9
     * New feature: If script prints "QUITAPP" to STDOUT, the wrapper application will quit.
     * Platypus now remembers opened Profiles in the Open Recent menu
     * Status menu items can now be selected. This will run the script again with the menu title as an argument.
+    * Extended and improved documentation
+    * Platypus now stores and remembers app creation dialog settings such as "Optimize Nib"
+    *
 
-    TODO:  It would be great if the Save As dialog remembered the options you last selected for Development version, Optimize NIB and Use XML instead of Binary.
+    TODO:  New button-based output mode.
 
-    TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
+
+
     TODO:  Default profile as a preference
     TODO:  Fix Edit Drop Settings menu item enabled when Accept dropped files is not checked
-    TODO:  Fix broken "Select Image file as icon..." functionality on retina displays
-    TODO:  Support for selection in Status Menu output, just like in Tapir. Script called with argument line.
     TODO:  Refactor create: method in app spec class into multiple methods, e.g. infoplist and appsettingsplist getters
-    TODO:  Make generated applications function even if they are moved while running
-    TODO:  New button-based output mode.
     TODO:  New "Test" button under Args dialog, which executes the shown command in Terminal
     TODO:  Long GNU named params, e.g. --some-option
 

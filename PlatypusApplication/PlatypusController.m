@@ -575,7 +575,7 @@
     if ([spec propertyForKey:@"DeclareService"] != nil)
         [typesControl setDeclareService:[[spec propertyForKey:@"DeclareService"] boolValue]];
     if ([spec propertyForKey:@"PromptForFileOnLaunch"] != nil)
-        [typesControl setDeclareService:[[spec propertyForKey:@"PromptForFileOnLaunch"] boolValue]];
+        [typesControl setPromptsForFileOnLaunch:[[spec propertyForKey:@"PromptForFileOnLaunch"] boolValue]];
     
     // parameters
     [paramsControl setInterpreterArgs:[spec propertyForKey:@"InterpreterArgs"]];
