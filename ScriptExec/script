@@ -26,12 +26,28 @@ local $| = 1;
 #
 #foreach (@ARGV) { print "\t" . $_ . "\n"; }
 
-print "PROGRESS:40\n";
-print "DETAILS:SHOW\n";
-sleep(3);
-print "DETAILS:HIDE\n";
-sleep(3);
-print "QUITAPP\n";
+#if (scalar(@ARGV) > 0) {
+#    system("/usr/bin/say '$ARGV[0]'");
+#} else {
+#    
+#    print "Hey\n";
+#    print "You\n";
+#    print "There\n";
+#}
+#
+
+if (!scalar(@ARGV)) {
+    print system('ps cax | grep httpd');
+    print "\nRestart";
+} elsif ($ARGV[0] eq 'Restart') {
+    system("/usr/bin/say Biatch");
+}
+
+
+#print "PROGRESS:40\n";
+#print "DETAILS:SHOW\n";
+#print "DETAILS:HIDE\n";
+#print "QUITAPP\n";
 
 #print "DETAILS:HIDE\n";
 

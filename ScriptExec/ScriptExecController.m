@@ -219,6 +219,12 @@
     commandLineArguments = [[NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]] retain];
     if ([commandLineArguments count]) {
         [commandLineArguments removeObjectAtIndex:0];
+        // hack to remove XCode CLI flags. Really just here to make debugging easier.
+        if ([[commandLineArguments objectAtIndex:0] isEqualToString:@"-NSDocumentRevisionsDebugMode"]) {
+            [commandLineArguments removeObjectAtIndex:0];
+            [commandLineArguments removeObjectAtIndex:0];
+        }
+
     }
     
     // never privileged execution or droppable w. status menu
@@ -1039,6 +1045,10 @@
 // and open only works for droppable apps that accept files as script args
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
+    if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
+        return YES;
+    }
+    
     //save to file item
     if ([[anItem title] isEqualToString:@"Save to File…"] &&
         (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT))
@@ -1136,10 +1146,7 @@
 
 #pragma mark - Create drop job
 
-- (BOOL)addDroppedTextJob:(NSString *)text {
-    if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
-        return NO;
-    
+- (BOOL)addTextJob:(NSString *)text {
     if ([text length] <= 0) // ignore empty strings
         return NO;
     
@@ -1149,6 +1156,12 @@
     [jobQueue addObject:args];
     [args release];
     return YES;
+}
+
+- (BOOL)addDroppedTextJob:(NSString *)text {
+    if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
+        return NO;
+    return [self addTextJob:text];
 }
 
 // drop files processing
@@ -1331,13 +1344,18 @@
     //populate menu with output from task
     for (i = [lines count] - 1; i >= 0; i--) {
         // create the menu item
-        NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:@"" action:NULL keyEquivalent:@""] autorelease];
+        NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:[lines objectAtIndex:i] action:@selector(menuItemSelected:) keyEquivalent:@""] autorelease];
         
         // set the formatted menu item string
         NSAttributedString *attStr = [[[NSAttributedString alloc] initWithString:[lines objectAtIndex:i] attributes:textAttributes] autorelease];
         [menuItem setAttributedTitle:attStr];
         [menu insertItem:menuItem atIndex:0];
     }
+}
+- (IBAction)menuItemSelected:(id)sender {
+    [self addTextJob:[sender title]];
+    if (!isTaskRunning && [jobQueue count] > 0)
+        [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(executeScript) userInfo:nil repeats:NO];
 }
 
 #pragma mark - Utility methods
