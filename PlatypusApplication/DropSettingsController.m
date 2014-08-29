@@ -287,7 +287,7 @@
 }
 
 - (BOOL)declareService {
-    return [acceptDroppedTextCheckbox intValue];
+    return [declareServiceCheckbox intValue];
 }
 
 - (void)setDeclareService:(BOOL)b {
