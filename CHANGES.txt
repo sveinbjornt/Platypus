@@ -25,7 +25,7 @@ For 4.9
     TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO:  Default profile as a preference
     TODO:  Fix Edit Drop Settings menu item enabled when Accept dropped files is not checked
-    TODO:  Fix broken "Select Image file as icon..." functionality
+    TODO:  Fix broken "Select Image file as icon..." functionality on retina displays
     TODO:  Support for selection in Status Menu output, just like in Tapir. Script called with argument line.
     TODO:  Refactor create: method in app spec class into multiple methods, e.g. infoplist and appsettingsplist getters
     TODO:  Make generated applications function even if they are moved while running
