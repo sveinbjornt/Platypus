@@ -17,10 +17,11 @@ For 4.9
     * Arguments can now be passed to Platypus-generated apps via the command line
     * Fixed bug where a custom bundle identifier in a saved Profile would not be loaded
     * Fixed bug where the Create button would remain greyed out even though all requirements were satisfied
+    * Fixed bug where progress indicator would keep animating after execution in Progress Bar output mode
+    * New feature: If script prints "QUITAPP" to STDOUT, the wrapper application will quit.
 
     TODO:  It would be great if the Save As dialog remembered the options you last selected for Development version, Optimize NIB and Use XML instead of Binary.
 
-    TODO:  Add EXIT command
     TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO:  Default profile as a preference
     TODO:  Fix Edit Drop Settings menu item enabled when Accept dropped files is not checked

@@ -22,9 +22,18 @@
 #	$i++;
 #}
 local $| = 1;
-print "Arguments:\n";
+#print "Arguments:\n";
+#
+#foreach (@ARGV) { print "\t" . $_ . "\n"; }
 
-foreach (@ARGV) { print "\t" . $_ . "\n"; }
+print "PROGRESS:40\n";
+print "DETAILS:SHOW\n";
+sleep(3);
+print "DETAILS:HIDE\n";
+sleep(3);
+print "QUITAPP\n";
+
+#print "DETAILS:HIDE\n";
 
 
 #print "PROGRESS:100\n";
@@ -33,7 +42,7 @@ foreach (@ARGV) { print "\t" . $_ . "\n"; }
 #	print "PROGRESS:$i\n";
 #	print "http://smu.com\n";
 #	$i++;
-	
+
 #	for ($u = 0; $u < 100000; $u++) {}
 	#system("curl -O http://sveinbjorn.org/index &> /dev/null");
 #}
