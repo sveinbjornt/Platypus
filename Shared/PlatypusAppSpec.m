@@ -404,7 +404,7 @@
         bundledFileDestPath = [bundledFileDestPath stringByAppendingString:[bundledFilePath lastPathComponent]];
         
         NSString *srcFileName = [bundledFilePath lastPathComponent];
-        [self report:[NSString stringWithFormat:@"Copying %@ to bundle", srcFileName]];
+        [self report:[NSString stringWithFormat:@"Copying \"%@\" to bundle", srcFileName]];
         
         // if it's a development version, we just symlink it
         if ([[properties objectForKey:@"DevelopmentVersion"] boolValue] == YES)
@@ -447,6 +447,7 @@
     }
     if ([[properties objectForKey:@"DeclareService"] boolValue]) {
         [self report:@"Updating Dynamic Services"];
+        // This call will refresh Services without user having to log out/in
         NSUpdateDynamicServices();
     }
     
