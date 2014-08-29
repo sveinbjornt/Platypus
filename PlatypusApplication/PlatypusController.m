@@ -43,15 +43,15 @@
     
     [defaultPrefs setObject:bundleId forKey:@"DefaultBundleIdentifierPrefix"];
     [defaultPrefs setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
-    [defaultPrefs setObject:[NSArray array]                forKey:@"Profiles"];
-    [defaultPrefs setObject:[NSNumber numberWithBool:NO]   forKey:@"RevealApplicationWhenCreated"];
-    [defaultPrefs setObject:[NSNumber numberWithBool:NO]   forKey:@"OpenApplicationWhenCreated"];
-    [defaultPrefs setObject:[NSNumber numberWithBool:NO]   forKey:@"CreateOnScriptChange"];
-    [defaultPrefs setObject:[NSNumber numberWithInt:DEFAULT_OUTPUT_TXT_ENCODING]
-                     forKey:@"DefaultTextEncoding"];
-    [defaultPrefs setObject:NSFullUserName()               forKey:@"DefaultAuthor"];
-    
-    
+    [defaultPrefs setObject:[NSArray array] forKey:@"Profiles"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"RevealApplicationWhenCreated"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"OpenApplicationWhenCreated"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"CreateOnScriptChange"];
+    [defaultPrefs setObject:[NSNumber numberWithInt:DEFAULT_OUTPUT_TXT_ENCODING] forKey:@"DefaultTextEncoding"];
+    [defaultPrefs setObject:NSFullUserName() forKey:@"DefaultAuthor"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"OnCreateDevVersion"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:YES] forKey:@"OnCreateOptimizeNib"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"OnCreateUseXMLPlist"];
     
     // register the dictionary of defaults
     [DEFAULTS registerDefaults:defaultPrefs];
@@ -264,22 +264,31 @@
     if (![self verifyFieldContents]) //are there invalid values in the fields?
         return;
     
+    // Create save panel and add our custom accessory view
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setPrompt:@"Create"];
     [window setTitle:[NSString stringWithFormat:@"%@ - Select place to create app", PROGRAM_NAME]];
     [sPanel setAccessoryView:debugSaveOptionView];
     
-    // development version checkbox, disable this option if secure bundled script is checked
-    [developmentVersionCheckbox setIntValue:0];
-    [developmentVersionCheckbox setEnabled:![encryptCheckbox intValue]];
+    // Configure the controls in the accessory view
     
-    // optimize application is enabled and on by default if ibtool is present
+    // development version checkbox: always disable this option if secure bundled script is checked
+    [developmentVersionCheckbox setIntValue:[[DEFAULTS objectForKey:@"OnCreateDevVersion"] boolValue]];
+    [developmentVersionCheckbox setEnabled:![encryptCheckbox intValue]];
+    if ([encryptCheckbox intValue]) {
+        [developmentVersionCheckbox setIntValue:0];
+    }
+    
+    // optimize nib is enabled and on by default if ibtool is present
+    [optimizeApplicationCheckbox setIntValue:[[DEFAULTS objectForKey:@"OnCreateOptimizeNib"] boolValue]];
     BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:[PlatypusUtility ibtoolPath]];
     [optimizeApplicationCheckbox setEnabled:ibtoolInstalled];
-    [optimizeApplicationCheckbox setIntValue:ibtoolInstalled];
+    if (!ibtoolInstalled) {
+        [optimizeApplicationCheckbox setIntValue:0];
+    }
     
     // optimize application is enabled and on by default if ibtool is present
-    [xmlPlistFormatCheckbox setIntValue:NO];
+    [xmlPlistFormatCheckbox setIntValue:[[DEFAULTS objectForKey:@"OnCreateUseXMLPlist"] boolValue]];
     
     // get default app bundle name
     NSString *defaultAppBundleName = [appNameTextField stringValue];
@@ -292,17 +301,22 @@
 }
 
 - (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result contextInfo:(void *)contextInfo {
-    //restore window title
+    // restore window title
     [window setTitle:PROGRAM_NAME];
     
     [NSApp endSheet:window];
     [NSApp stopModal];
     
-    //if user pressed cancel, we do nothing
+    // save accessory debug prefs into defaults
+    [DEFAULTS setBool:[developmentVersionCheckbox state] forKey:@"OnCreateDevVersion"];
+    [DEFAULTS setBool:[optimizeApplicationCheckbox state] forKey:@"OnCreateOptimizeNib"];
+    [DEFAULTS setBool:[xmlPlistFormatCheckbox state] forKey:@"OnCreateUseXMLPlist"];
+    
+    // if user pressed cancel, we do nothing
     if (result != NSOKButton)
         return;
     
-    //else, we go ahead with creating the application
+    // else, we go ahead with creating the application
     [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(createApplicationFromTimer:) userInfo:[sPanel filename] repeats:NO];
 }
 
