@@ -15,7 +15,7 @@
 	<key>Droppable</key>
 	<true/>
 	<key>OutputType</key>
-	<string>Progress Bar</string>
+	<string>Status Menu</string>
 	<key>StatusItemDisplayType</key>
 	<string>Text Window</string>
 	<key>StatusItemTitle</key>
