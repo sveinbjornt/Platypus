@@ -97,7 +97,7 @@ int main(int argc, const char *argv[]) {
                 
                 // warn about diff versions
                 if (![[profileDict objectForKey:@"Creator"] isEqualToString:PROGRAM_STAMP])
-                    NSPrint(@"Warning:  Profile created with different version of %@.", PROGRAM_NAME);
+                    NSPrint(@"Warning: Profile created with different version of %@.", PROGRAM_NAME);
                 
                 // add entries in profile to app properties, overwriting any former values
                 [properties addEntriesFromDictionary:profileDict];

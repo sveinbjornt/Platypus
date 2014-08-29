@@ -42,6 +42,9 @@
  *****************************************/
 
 - (void)loadProfileFile:(NSString *)file {
+    // note it as a recently opened file
+    [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:file]];
+    
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithProfile:file];
     
     // make sure we got a spec from the file
