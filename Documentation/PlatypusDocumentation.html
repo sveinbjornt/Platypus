@@ -118,6 +118,7 @@
             <li><a href="#71">Built-In Examples</a></li>
             <li><a href="#72">Creating an installer</a></li>
             <li><a href="#73">User interaction with CocoaDialog/Pashua</a></li>
+            <li><a href="#74">Creating an interactive Status Menu app</a></li>
         </ul>
     </li>
     <li class="heading">
@@ -216,6 +217,11 @@
 <p>Platypus is not a set of bindings between the Mac OS X APIs and scripting languages.  It is not, in other words, a full development environment for Mac OS X and is not intended to be used to create substantial Mac OS X applications with complex user interaction.  If you want to create advanced Mac OS X applications, you should learn to program with Objective C and the wonderful Cocoa APIs.  Platypus is not and never will be a substitute for learning to use the excellent native application programming interfaces.</p>
 
 <p>That being said, you may be able to add some interactive GUI elements using <a href="#73">CocoaDialog or Pashua.</a></p>
+
+
+
+
+
 
 <br>
 <br>
@@ -573,6 +579,8 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></pre>
 
 <p><strong>SpeakDroplet</strong>: An application which uses the Mac OS X speech synthesiser to read all opened text files.</p>  
 
+<p><strong>MacbethMenu</strong>: An example of a simple interactive status menu app which displays lines by Shakespeare and reads them when selected.</p>
+
 <p><strong>SpotlightInfo</strong>: Drag a file on window to see Spotlight meta-data info on the file.</p>  
 
 <p><strong>SysLoadMenu</strong>: Status menu app which displays the output of <code>w</code>.</p>  
@@ -654,6 +662,39 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
 <br>
 <br>
 <br>
+
+<h3 id="74">Creating an interactive Status Menu app</h3>
+
+
+<img src="images/output_statusmenu.jpg" style="float: right;">
+
+<p>As of Platypus 4.9, it is now possible to build relatively sophisticated interactive Status Menu apps. Platypus-generated apps with the Output Mode set to Status Menu will show an icon in the menu bar when launched. When the menu is opened, the script is executed and each line of output shown as a menu item in the menu. 
+    
+<p>When the user selects a menu item, the script is executed again, but this time receives the menu title as an argument. Based on whether it receives an argument, the script can thus determine whether it is being invoked to list the menu items or perform some action.</p>
+
+<p>If this seems unclear, observe the following Perl script example, which is included in the Examples:</p>
+
+<div class="codeblock">
+<pre>
+    #!/usr/bin/perl
+    
+    # If 0 arguments, we show menu
+    if (!scalar(@ARGV)) {
+        print "Life's but a walking shadow, a poor player\n";
+        print "That struts and frets his hour upon the stage\n";
+        print "And then is heard no more.\n";
+    } else {
+        # We get the menu title as an argument
+        system("/usr/bin/say \"$ARGV[0]\"");
+    }</pre>
+</div>
+
+<p>This script would create a Status Menu app which shows a few lines of Shakespeare. When selected, the lines are read by the Mac OS speech synthesizer.</p> 
+
+<br>
+<br>
+<br>
+
 
 <h2>Updates</h2>
     
@@ -806,13 +847,17 @@ MyApp.app/Contents/Resources/script             - Script that is executed by bin
     
 <h3 id="811">Can I change the dimensions of the Platypus output window?</h3>
 
-<p>Yes, but only by directly altering the application after it has been created.  When you press Create, you need to uncheck the "Optimize Application (strip nib file)" option in the Save dialog.  You can then edit the nib file for your application, which contains all the user interface assets, using XCode 4 or Interface Builder (if you have an old version of the Apple Developer Tools).  The nib file is stored at the following path within your application bundle.</p>
+<p>Yes, but only by directly altering the application after it has been created.  When you press Create, you need to uncheck the "Optimize Application (strip nib file)" option in the Save dialog.  You can then edit the nib file for your application, which contains all the user interface assets, using Apple's XCode.  The nib file is stored at the following path within your application bundle.</p>
 
 <div class="codeblock">
 Contents/Resources/MainMenu.nib
 </div>
 
-<p>Alternately, the Platypus command line tool allows you to specify an alternate nib file using the <code>-H</code> flag.</p>
+<p>If you want to keep your own modified nib for repeated use, you can simply save a copy, edit it and add it in the Bundled Items when you create an app. It will then overwrite the default Platypus MainMenu.nib file:</p>
+
+<img src="images/mainmenu-bundledfile.png">
+
+<p>Alternatively, the Platypus command line tool allows you to specify an alternate nib file using the <code>-H</code> flag.</p>
 
 <br>
 <br>
