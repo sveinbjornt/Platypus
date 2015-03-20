@@ -26,9 +26,13 @@ For 4.9
     * Status menu items can now be selected. This will run the script again with the menu title as an argument.
     * Extended and improved documentation
     * Platypus now stores and remembers app creation dialog settings such as "Optimize Nib"
+    * Fixed a bug where "Provide as a Service" failed to be read from saved profiles
     *
 
     TODO:  New button-based output mode.
+
+    TODO:  If you specify the -x flag, for creating non-binary plists, binary plists are still being created.
+    TODO:  I read in the documentation: If your script prints out "Location:http://some.url.com", it will instruct the web view to render the HTML pointed to by the URL.
 
 
 

@@ -228,7 +228,7 @@
 
 <h3 id="15">System Requirements</h3>
 
-<p>As of version 4.5, both the Platypus application and the applications it generates require <strong>Mac OS X 10.5</strong> or later and are provided as 32-bit/64-bit fat <strong>Intel only</strong> binaries.  If you want to target 10.4 and PowerPC users, you can use version <a href="http://sveinbjorn.org/files/software/platypus/">4.4</a>, which continues to work just fine on older systems.</p>
+<p>As of version 4.5, both the Platypus application and the applications it generates require <strong>Mac OS X 10.6</strong> or later and are provided as 32-bit/64-bit fat <strong>Intel only</strong> binaries.  If you want to target 10.4 and PowerPC users, you can use version <a href="http://sveinbjorn.org/files/software/platypus/">4.4</a>, which continues to work just fine on older systems.</p>
 
 <br>
 <br>
@@ -857,7 +857,7 @@ Contents/Resources/MainMenu.nib
 
 <img src="images/mainmenu-bundledfile.png">
 
-<p>Alternatively, the Platypus command line tool allows you to specify an alternate nib file using the <code>-H</code> flag.</p>
+<p>Alternatively, the Platypus command line tool allows you to specify an alternate nib file using the <code>-H</code> flag. See the <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">man page</a> for details.</p>
 
 <br>
 <br>
@@ -873,9 +873,11 @@ Contents/Resources/MainMenu.nib
 
 <h3 id="813">Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?</h3>
 
-<p>Yes, but it'll be tedious for you. First, you need an <a href="https://developer.apple.com/">ADC account</a>.  Secondly, you need to download the <a href="http://sveinbjorn.org/files/software/platypus/">Platypus source code</a>.  After that, you need to build and sign your own version of the ScriptExec binary using XCode.  Your signed ScriptExec binary should then replace the binary in the Platypus-generated application bundle.</p>
+<p>Neither Platypus nor Platypus-generated apps are signed. This means that due to GateKeeper they won't run out of the box on Mac OS X without user approval. There are no plans to change this in the future. Apple developer accounts cost money and I have no intention of paying for the privilege of developing free software for Mac OS X.</p>
 
-<p>Detailed instructions on how to do this are beyond the scope of this document.  Please don't contact me if you encounter problems this :).</p>
+<p>It is possible to get signed Platypus binaries, but it'll be tedious for you. First, you need an <a href="https://developer.apple.com/">ADC account</a>.  Secondly, you need to download the <a href="http://sveinbjorn.org/files/software/platypus/">Platypus source code</a>.  After that, you need to build and sign your own version of the ScriptExec binary using XCode.  Your signed ScriptExec binary should then replace the binary in the Platypus-generated application bundle.</p>
+
+<p>Detailed instructions on how to do this are beyond the scope of this document.  Please don't contact me if you encounter problems with this.</p>
 
 <br>
 <br>
