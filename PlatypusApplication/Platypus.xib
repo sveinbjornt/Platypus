@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="CE108B9C-5AAF-444C-B45A-9F945BE7F3DC" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="BF53EF5E-FA95-4723-83AF-D1671DBC1F22" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -824,11 +824,6 @@ CA
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="497">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Edit Drop Settings..." keyEquivalent="Y" toolTip="Edit the file types and suffixes accepted by your application" id="3638">
-                                <connections>
-                                    <action selector="openDropSettingsSheet:" target="1364" id="11538"/>
-                                </connections>
                             </menuItem>
                             <menuItem title="Edit Text Output Settings..." toolTip="Configure the text settings for your application's output" id="1212">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -2590,7 +2585,7 @@ Gw
     <resources>
         <image name="Add" width="23" height="20"/>
         <image name="Add_Pressed" width="23" height="20"/>
-        <image name="CE108B9C-5AAF-444C-B45A-9F945BE7F3DC" width="16" height="16">
+        <image name="BF53EF5E-FA95-4723-83AF-D1671DBC1F22" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGRkdYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QDwcI
 ExQZHh8qKyw0NzpAQ1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5T

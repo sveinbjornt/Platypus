@@ -99,8 +99,8 @@ it defaults to the current user's full user name.
 .It Fl f Ar [bundledFile]
 Specifies a file to be bundled with the script application.  This file will be copied over the Resources
 folder of the application bundle, which is the same folder in which your script will eventually reside.  
-You can specify any number of files to be bundled, but you must use the -f flag each time, since
-the flag only accepts a single file path after the -f flag.
+You can specify any number of files to be bundled, but you must use the -f flag each time, since it only 
+accepts a single file path parametermyPythonScript.
 .Pp
 .It Fl I Ar [identifier]
 Sets the application's bundle identifier.  An application identifier is a reverse DNS name
@@ -178,8 +178,7 @@ incompatible with the -S option.
 .Pp
 .It Fl l
 Don't optimize application.  Platypus defaults to compiling the bundled xib file to reduce application size, 
-which makes it uneditable.  Optimization only takes place if you have Apple's Developer Tools installed, 
-since it uses the program /Developer/usr/bin/ibtool.
+which makes it uneditable.  Optimization only takes place if you have Apple's XCode installed.
 .Pp
 .It Fl y
 Force mode.  With this flag set, the program will happily overwrite any previous files and folders 
@@ -204,7 +203,7 @@ platypus -P myProfile.platypus ~/Desktop/MyApplication.app
 .Pp
 platypus -o 'Text Window' script.pl PerlScript.app
 .Pp
-platypus -a 'My App' -p /usr/bin/python myPythonScript
+platypus -a 'My App' -p /usr/bin/python myPythonScript.py
 .Pp
 platypus -D -a MyDroplet -o 'Droplet' ~/droplet.sh
 .Pp
@@ -221,4 +220,4 @@ Default icon
 .El
 .Sh AUTHORS 
 This manual page was written by Sveinbjorn Thordarson <sveinbjornt@gmail.com> 
-To support Platypus development, please visit http://sveinbjorn.org/donations.
+To support Platypus development, please visit http://sveinbjorn.org/platypus.

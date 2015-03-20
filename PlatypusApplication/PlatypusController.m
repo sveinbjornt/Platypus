@@ -734,7 +734,7 @@
 }
 
 /*****************************************
- - called when [X] Is Droppable is pressed
+ - called when Output Type is changed
  *****************************************/
 
 - (IBAction)outputTypeWasChanged:(id)sender {
