@@ -10,6 +10,8 @@
 	<string>Platypus</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>8B7BBC7E8C08E9979746DA3727AF4EC6BE3FCA90</key>
+		<string>https://github.com/uliwitness/IconFamily.git</string>
 		<key>DFF60879964B6407261D876EC5EE798A07462776</key>
 		<string>https://github.com/sveinbjornt/Platypus.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>Platypus.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>8B7BBC7E8C08E9979746DA3727AF4EC6BE3FCA90</key>
+		<string>../../Shared/IconFamily/</string>
 		<key>DFF60879964B6407261D876EC5EE798A07462776</key>
 		<string>../..</string>
 	</dict>
@@ -28,6 +32,14 @@
 	<string>DFF60879964B6407261D876EC5EE798A07462776</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8B7BBC7E8C08E9979746DA3727AF4EC6BE3FCA90</string>
+			<key>IDESourceControlWCCName</key>
+			<string>IconFamily</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
