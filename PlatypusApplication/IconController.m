@@ -218,7 +218,7 @@
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     if ([[anItem title] isEqualToString:@"Paste Icon"]) {
-        NSArray *pbTypes = [NSArray arrayWithObjects:NSTIFFPboardType, NSPDFPboardType, NSPICTPboardType, NSPostScriptPboardType, NULL];
+        NSArray *pbTypes = [NSArray arrayWithObjects:NSTIFFPboardType, NSPDFPboardType, NSPostScriptPboardType, NULL];
         NSString *type = [[NSPasteboard generalPasteboard] availableTypeFromArray:pbTypes];
         
         if (type == NULL)
