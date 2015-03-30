@@ -230,44 +230,46 @@
 #pragma mark -
 
 - (IBAction)selectIcon:(id)sender {
+    [window setTitle:[NSString stringWithFormat:@"%@ - Select an image file", PROGRAM_NAME]];
+    
+    // create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
+    [oPanel setAllowedFileTypes:[PlatypusUtility imageFileSuffixes]];
     
-    [window setTitle:[NSString stringWithFormat:@"%@ - Select an image file", PROGRAM_NAME]];
-    
-    //run open panel
-    [oPanel beginSheetForDirectory:nil file:nil types:[PlatypusUtility imageFileSuffixes] modalForWindow:window modalDelegate:self didEndSelector:@selector(selectIconDidEnd:returnCode:contextInfo:) contextInfo:nil];
-}
-
-- (void)selectIconDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo {
-    if (returnCode == NSOKButton) {
-        if ([[oPanel filename] hasSuffix:@"icns"])
-            [self loadIcnsFile:[oPanel filename]];
-        else
-            [self loadImageFile:[oPanel filename]];
-    }
-    [window setTitle:PROGRAM_NAME];
+    // run open panel sheet
+    [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        if (result == NSOKButton) {
+            NSString *filename = [[[oPanel URLs] objectAtIndex:0] path];
+            if ([filename hasSuffix:@"icns"])
+                [self loadIcnsFile:filename];
+            else
+                [self loadImageFile:filename];
+        }
+        [window setTitle:PROGRAM_NAME];
+    }];
 }
 
 - (IBAction)selectIcnsFile:(id)sender {
+    [window setTitle:[NSString stringWithFormat:@"%@ - Select an icns file", PROGRAM_NAME]];
+
+    // create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    
-    [window setTitle:[NSString stringWithFormat:@"%@ - Select an icns file", PROGRAM_NAME]];
+    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:@"icns"]];
     
     //run open panel
-    [oPanel beginSheetForDirectory:nil file:nil types:[NSArray arrayWithObject:@"icns"] modalForWindow:window modalDelegate:self didEndSelector:@selector(selectIcnsFileDidEnd:returnCode:contextInfo:) contextInfo:nil];
-}
-
-- (void)selectIcnsFileDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo {
-    if (returnCode == NSOKButton)
-        [self loadIcnsFile:[oPanel filename]];
-    
-    [window setTitle:PROGRAM_NAME];
+    [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        if (result == NSOKButton) {
+            NSString *filename = [[[oPanel URLs] objectAtIndex:0] path];
+            [self loadIcnsFile:filename];
+        }
+        [window setTitle:PROGRAM_NAME];
+    }];
 }
 
 #pragma mark -

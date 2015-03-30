@@ -213,23 +213,26 @@
  *****************************************/
 
 - (IBAction)addFileToFileList:(id)sender {
+    [window setTitle:[NSString stringWithFormat:@"%@ - Select files or folders to add", PROGRAM_NAME]];
+    
+    // create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setPrompt:@"Add"];
     [oPanel setCanChooseDirectories:YES];
     [oPanel setAllowsMultipleSelection:YES];
     
-    [window setTitle:[NSString stringWithFormat:@"%@ - Select files or folders to add", PROGRAM_NAME]];
-    
-    //run open panel
-    [oPanel beginSheetForDirectory:nil file:nil types:nil modalForWindow:window modalDelegate:self didEndSelector:@selector(addFilesPanelDidEnd:returnCode:contextInfo:) contextInfo:nil];
-}
-
-- (void)addFilesPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo {
-    if (returnCode == NSOKButton) {
-        [self addFiles:[oPanel filenames]];
-    }
-    
-    [window setTitle:PROGRAM_NAME];
+    //run open panel sheet
+    [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        if (result == NSOKButton) {
+            NSMutableArray *filePaths = [NSMutableArray array];
+            // convert NSURLs to paths
+            for (int i = 0; i < [[oPanel URLs] count]; i++) {
+                [filePaths addObject:[[[oPanel URLs] objectAtIndex:i] path]];
+            }
+            [self addFiles:filePaths];
+        }
+        [window setTitle:PROGRAM_NAME];
+    }];
 }
 
 /*****************************************

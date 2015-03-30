@@ -48,9 +48,7 @@
 - (UInt64)iconSize;
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem;
 - (IBAction)selectIcon:(id)sender;
-- (void)selectIconDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 - (IBAction)selectIcnsFile:(id)sender;
-- (void)selectIcnsFileDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 - (BOOL)loadIcnsFile:(NSString *)filePath;
 - (BOOL)loadImageFile:(NSString *)filePath;
 - (BOOL)loadImageWithData:(NSData *)imgData;

@@ -261,14 +261,23 @@
  **********************************************************************/
 
 - (IBAction)createButtonPressed:(id)sender {
-    if (![self verifyFieldContents]) //are there invalid values in the fields?
+    
+    //are there invalid values in the fields?
+    if (![self verifyFieldContents])
         return;
+    
+    [window setTitle:[NSString stringWithFormat:@"%@ - Select place to create app", PROGRAM_NAME]];
+    
+    // get default app bundle name
+    NSString *defaultAppBundleName = [appNameTextField stringValue];
+    if (![defaultAppBundleName hasSuffix:@"app"])
+        defaultAppBundleName = [NSString stringWithFormat:@"%@.app", defaultAppBundleName];
     
     // Create save panel and add our custom accessory view
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setPrompt:@"Create"];
-    [window setTitle:[NSString stringWithFormat:@"%@ - Select place to create app", PROGRAM_NAME]];
     [sPanel setAccessoryView:debugSaveOptionView];
+    [sPanel setNameFieldStringValue:defaultAppBundleName];
     
     // Configure the controls in the accessory view
     
@@ -290,17 +299,14 @@
     // optimize application is enabled and on by default if ibtool is present
     [xmlPlistFormatCheckbox setIntValue:[[DEFAULTS objectForKey:@"OnCreateUseXMLPlist"] boolValue]];
     
-    // get default app bundle name
-    NSString *defaultAppBundleName = [appNameTextField stringValue];
-    if (![defaultAppBundleName hasSuffix:@"app"])
-        defaultAppBundleName = [NSString stringWithFormat:@"%@.app", defaultAppBundleName];
-    
     //run save panel
-    [sPanel beginSheetForDirectory:nil file:defaultAppBundleName modalForWindow:window modalDelegate:self didEndSelector:@selector(createConfirmed:returnCode:contextInfo:) contextInfo:nil];
-    [NSApp runModalForWindow:window];
+    [sPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        [self createConfirmed:sPanel returnCode:result];
+    }];
+    
 }
 
-- (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result contextInfo:(void *)contextInfo {
+- (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result {
     // restore window title
     [window setTitle:PROGRAM_NAME];
     
@@ -317,7 +323,11 @@
         return;
     
     // else, we go ahead with creating the application
-    [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(createApplicationFromTimer:) userInfo:[sPanel filename] repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.0001
+                                     target:self
+                                   selector:@selector(createApplicationFromTimer:)
+                                   userInfo:[[sPanel URL] path]
+                                    repeats:NO];
 }
 
 - (void)creationStatusUpdated:(NSNotification *)aNotification {
@@ -330,6 +340,7 @@
 }
 
 - (BOOL)createApplication:(NSString *)destination overwrite:(BOOL)overwrite {
+    // observe create notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(creationStatusUpdated:)
                                                  name:@"PlatypusAppSpecCreationNotification"
@@ -340,7 +351,7 @@
     if (![appPath hasSuffix:@".app"])
         appPath = [appPath stringByAppendingString:@".app"];
     
-    //check if app already exists, and if so, prompt if to replace
+    // check if app already exists, and if so, prompt if to replace
     if (!overwrite && [FILEMGR fileExistsAtPath:appPath]) {
         overwrite = [PlatypusUtility proceedWarning:@"Application already exists" subText:@"An application with this name already exists in the location you specified.  Do you want to overwrite it?" withAction:@"Overwrite"];
         if (!overwrite)
@@ -613,22 +624,22 @@
  *****************************************/
 
 - (IBAction)selectScript:(id)sender {
+    [window setTitle:[NSString stringWithFormat:@"%@ - Select script", PROGRAM_NAME]];
+    
     //create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     
-    [window setTitle:[NSString stringWithFormat:@"%@ - Select script", PROGRAM_NAME]];
-    
-    //run open panel
-    [oPanel beginSheetForDirectory:nil file:nil types:nil modalForWindow:window modalDelegate:self didEndSelector:@selector(selectScriptPanelDidEnd:returnCode:contextInfo:) contextInfo:nil];
-}
-
-- (void)selectScriptPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo {
-    if (returnCode == NSOKButton)
-        [self loadScript:[oPanel filename]];
-    [window setTitle:PROGRAM_NAME];
+    //run open panel sheet
+    [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        if (result == NSOKButton) {
+            NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
+            [self loadScript:filePath];
+        }
+        [window setTitle:PROGRAM_NAME];
+    }];
 }
 
 /*****************************************

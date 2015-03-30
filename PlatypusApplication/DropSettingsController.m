@@ -102,11 +102,12 @@
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setTitle:@"Select an icns file"];
-    [oPanel setPrompt:@"Select"];
     [oPanel setAllowedFileTypes:[NSArray arrayWithObject:@"icns"]];
     
-    if ([oPanel runModal] == NSOKButton)
-        [self setDocIconPath:[oPanel filename]];
+    if ([oPanel runModal] == NSOKButton) {
+        NSString *filename = [[[oPanel URLs] objectAtIndex:0] path];
+        [self setDocIconPath:filename];
+    }
 }
 
 #pragma mark -

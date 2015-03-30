@@ -57,7 +57,6 @@
 - (void)openInFinder:(int)index;
 - (IBAction)editFileInFileList:(id)sender;
 - (IBAction)addFileToFileList:(id)sender;
-- (void)addFilesPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 - (IBAction)clearFileList:(id)sender;
 - (IBAction)revealFileInFileList:(id)sender;
 - (IBAction)openFileInFileList:(id)sender;
