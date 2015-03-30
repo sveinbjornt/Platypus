@@ -115,7 +115,7 @@
 - (IBAction)createButtonPressed:(id)sender;
 - (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result;
 - (BOOL)createApplicationFromTimer:(NSTimer *)theTimer;
-- (BOOL)createApplication:(NSString *)destination overwrite:(BOOL)overwrite;
+- (BOOL)createApplication:(NSString *)destination;
 
 - (id)appSpecFromControls;
 - (void)controlsFromAppSpec:(id)spec;
