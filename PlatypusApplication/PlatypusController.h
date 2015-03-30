@@ -113,7 +113,7 @@
 - (void)openScriptInBuiltInEditor:(NSString *)path;
 
 - (IBAction)createButtonPressed:(id)sender;
-- (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result contextInfo:(void *)contextInfo;
+- (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result;
 - (BOOL)createApplicationFromTimer:(NSTimer *)theTimer;
 - (BOOL)createApplication:(NSString *)destination overwrite:(BOOL)overwrite;
 
@@ -125,7 +125,6 @@
 - (void)selectScriptTypeBasedOnInterpreter;
 - (void)setScriptType:(NSString *)type;
 - (IBAction)selectScript:(id)sender;
-- (void)selectScriptPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 - (void)loadScript:(NSString *)filename;
 - (IBAction)isDroppableWasClicked:(id)sender;
 - (IBAction)outputTypeWasChanged:(id)sender;

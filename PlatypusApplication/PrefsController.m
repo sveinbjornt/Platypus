@@ -130,25 +130,24 @@
  *****************************************/
 
 - (IBAction)selectScriptEditor:(id)sender {
-    int result;
-    NSString *editorName;
-    
     //create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setTitle:@"Select Editor"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    
+    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:@"app"]];
+
     //run open panel
-    result = [oPanel runModalForDirectory:nil file:nil types:[NSArray arrayWithObject:@"app"]];
-    if (result == NSOKButton) {
+    if ([oPanel runModal] == NSOKButton) {
         //set app name minus .app suffix
-        editorName = [[[oPanel filename] lastPathComponent] stringByDeletingPathExtension];
+        NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
+        NSString *editorName = [[filePath lastPathComponent] stringByDeletingPathExtension];
         [defaultEditorMenu setTitle:editorName];
         [self setIconsForEditorMenu];
     }
-    else
+    else {
         [defaultEditorMenu setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
+    }
 }
 
 /*****************************************

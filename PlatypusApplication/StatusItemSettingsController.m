@@ -84,8 +84,9 @@
         [titleTextField setHidden:NO];
     }
     
-    if ([self showingStatusItem])
+    if ([self showingStatusItem]) {
         [self previewStatusItem:self];
+    }
 }
 
 - (void)setDisplayType:(NSString *)name {
@@ -103,15 +104,18 @@
     [oPanel setTitle:[NSString stringWithFormat:@"%@ - Select Image", PROGRAM_NAME]];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
+    [oPanel setAllowedFileTypes:[PlatypusUtility imageFileSuffixes]];
     
-    if (NSOKButton == [oPanel runModalForDirectory:NULL file:NULL types:[PlatypusUtility imageFileSuffixes]]) {
-        NSImage *img = [[NSImage alloc] initWithContentsOfFile:[oPanel filename]];
+    if ([oPanel runModal] == NSOKButton) {
+        NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
+        NSImage *img = [[NSImage alloc] initWithContentsOfFile:filePath];
         if (img != NULL) {
             [self setIcon:img];
             [img release];
         }
-        else
+        else {
             [PlatypusUtility alert:@"Corrupt Image File" subText:@"The image file you selected appears to be damaged or corrupt."];
+        }
     }
 }
 

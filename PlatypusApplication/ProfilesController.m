@@ -32,9 +32,13 @@
     [oPanel setTitle:[NSString stringWithFormat:@"Select %@ Profile", PROGRAM_NAME]];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
+    [oPanel setAllowedFileTypes: [NSArray arrayWithObjects:@"platypus", nil]];
+    [oPanel setDirectoryURL:[NSURL fileURLWithPath:[PROFILES_FOLDER stringByExpandingTildeInPath]]];
     
-    if (NSOKButton == [oPanel runModalForDirectory:[PROFILES_FOLDER stringByExpandingTildeInPath] file:NULL types:[NSArray arrayWithObjects:@"platypus", NULL]])
-        [self loadProfileFile:[oPanel filename]];
+    if ([oPanel runModal] == NSOKButton) {
+        NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
+        [self loadProfileFile:filePath];
+    }
 }
 
 /*****************************************
@@ -108,8 +112,9 @@
 
 - (IBAction)saveProfileToLocation:(id)sender;
 {
-    if (![platypusControl verifyFieldContents])
+    if (![platypusControl verifyFieldContents]) {
         return;
+    }
     
     // get profile from platypus controls
     NSDictionary *profileDict = [[platypusControl appSpecFromControls] properties];
@@ -118,13 +123,14 @@
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setTitle:[NSString stringWithFormat:@"Save %@ Profile", PROGRAM_NAME]];
     [sPanel setPrompt:@"Save"];
+    [sPanel setDirectoryURL:[NSURL fileURLWithPath:[PROFILES_FOLDER stringByExpandingTildeInPath]]];
+    [sPanel setNameFieldStringValue:defaultName];
     
-    if ([sPanel runModalForDirectory:[PROFILES_FOLDER stringByExpandingTildeInPath] file:defaultName] == NSFileHandlingPanelOKButton) {
-        NSString *fileName = [sPanel filename];
-        
-        if (![fileName hasSuffix:PROFILES_SUFFIX])
+    if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
+        NSString *fileName = [[sPanel URL] path];
+        if (![fileName hasSuffix:PROFILES_SUFFIX]) {
             fileName = [NSString stringWithFormat:@"%@.%@", fileName, PROFILES_SUFFIX];
-        
+        }
         [self writeProfile:profileDict toFile:fileName];
     }
 }
