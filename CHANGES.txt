@@ -3,33 +3,38 @@ For 5.0
     TODO:  Implement automated testing!
     TODO:  Get STDERR output and pid for STPrivilegedTask
     TODO:  Create Platypus tutorial videos, make them available online
-    TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool.
+    TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
     TODO:  Rewrite or at least refactor nasty 10 year old code in STFileList and SuffixList
     TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO:  Retina size support for icons and images used in user interface
     TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO:  Fix broken "Select Image file as icon..." functionality on retina displays
-    TODO:  Make generated applications function even if they are moved while running
+    TODO:  Make generated applications function even if they are moved while running. Requires IconFamily update.
+
 
 For 4.9
     * Users can now increase/decrease the font size in Platypus-generated apps
-    * Fix issue where command line tool complained about valid .icns filenames
-    * Built with XCode 5, now requires Mac OS X 10.6 or later
-    * It is now possible to add a custom MainMenu.nib to bundled files which overwrites default
-    * In Progress Bar output, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility
+    * Status menu items can now be selected. This will run the script again with the menu title as an argument.
     * Arguments can now be passed to Platypus-generated apps via the command line
+    * In Progress Bar output, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility
+    * New feature: If script prints "QUITAPP" to STDOUT, the wrapper application will quit.
+    * Platypus now remembers app creation dialog settings such as "Optimize Nib"
+    * Platypus now remembers opened Profiles in the Open Recent menu
+    * It is now possible to add a custom MainMenu.nib to bundled files which overwrites default
+    * Extended and improved documentation
+    * Built with XCode 6, now requires Mac OS X 10.6 or later
+    * Fixed a bug where "Provide as a Service" failed to be read from saved profiles
     * Fixed bug where a custom bundle identifier in a saved Profile would not be loaded
     * Fixed bug where the Create button would remain greyed out even though all requirements were satisfied
     * Fixed bug where progress indicator would keep animating after execution in Progress Bar output mode
-    * New feature: If script prints "QUITAPP" to STDOUT, the wrapper application will quit.
-    * Platypus now remembers opened Profiles in the Open Recent menu
-    * Status menu items can now be selected. This will run the script again with the menu title as an argument.
-    * Extended and improved documentation
-    * Platypus now stores and remembers app creation dialog settings such as "Optimize Nib"
-    * Fixed a bug where "Provide as a Service" failed to be read from saved profiles
-    *
+    * Fixed bug where command line tool complained about valid .icns filenames
+    * Refactored all deprecated method invocations
+    * Various minor interface refinements
 
-    TODO:  New button-based output mode.
+    TODO: Document new CLI arguments to Platypus-generated apps
+    TODO: Hide "Check syntax" if file being edited is not a script
+    TODO: Higher row height in bundled file list
+    TODO: New button-based output mode.
 
     TODO:  If you specify the -x flag, for creating non-binary plists, binary plists are still being created.
     TODO:  I read in the documentation: If your script prints out "Location:http://some.url.com", it will instruct the web view to render the HTML pointed to by the URL.
