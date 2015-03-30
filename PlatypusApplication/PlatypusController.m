@@ -250,7 +250,7 @@
     
     NSString *appBundleName = [NSString stringWithFormat:@"%@.app", [appNameTextField stringValue]];
     NSString *destPath = [[[scriptPathTextField stringValue] stringByDeletingLastPathComponent] stringByAppendingPathComponent:appBundleName];
-    [self createApplication:destPath overwrite:YES];
+    [self createApplication:destPath];
 }
 
 #pragma mark Create
@@ -336,10 +336,10 @@
 }
 
 - (BOOL)createApplicationFromTimer:(NSTimer *)theTimer {
-    return [self createApplication:[theTimer userInfo] overwrite:NO];
+    return [self createApplication:[theTimer userInfo]];
 }
 
-- (BOOL)createApplication:(NSString *)destination overwrite:(BOOL)overwrite {
+- (BOOL)createApplication:(NSString *)destination {
     // observe create notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(creationStatusUpdated:)
@@ -351,13 +351,6 @@
     if (![appPath hasSuffix:@".app"])
         appPath = [appPath stringByAppendingString:@".app"];
     
-    // check if app already exists, and if so, prompt if to replace
-    if (!overwrite && [FILEMGR fileExistsAtPath:appPath]) {
-        overwrite = [PlatypusUtility proceedWarning:@"Application already exists" subText:@"An application with this name already exists in the location you specified.  Do you want to overwrite it?" withAction:@"Overwrite"];
-        if (!overwrite)
-            return NO;
-    }
-    
     // create spec from controls and verify
     PlatypusAppSpec *spec = [self appSpecFromControls];
     
@@ -368,8 +361,7 @@
     [spec setProperty:[NSNumber numberWithBool:[developmentVersionCheckbox intValue]] forKey:@"DevelopmentVersion"];
     [spec setProperty:[NSNumber numberWithBool:[optimizeApplicationCheckbox intValue]] forKey:@"OptimizeApplication"];
     [spec setProperty:[NSNumber numberWithBool:[xmlPlistFormatCheckbox intValue]] forKey:@"UseXMLPlistFormat"];
-    if (overwrite)
-        [spec setProperty:[NSNumber numberWithBool:YES] forKey:@"DestinationOverride"];
+    [spec setProperty:[NSNumber numberWithBool:YES] forKey:@"DestinationOverride"];
     
     // verify that the values in the spec are OK
     if (![spec verify]) {
