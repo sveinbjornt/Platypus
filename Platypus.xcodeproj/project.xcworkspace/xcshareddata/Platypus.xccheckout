@@ -20,7 +20,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>8B7BBC7E8C08E9979746DA3727AF4EC6BE3FCA90</key>
-		<string>../../Shared/IconFamily/</string>
+		<string>../../Shared/IconFamily</string>
 		<key>DFF60879964B6407261D876EC5EE798A07462776</key>
 		<string>../..</string>
 	</dict>
