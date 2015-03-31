@@ -25,7 +25,7 @@
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
 
-@interface STFileList : NSObject <NSTableViewDataSource>
+@interface BundledFilesController : NSObject <NSTableViewDataSource>
 {
     UInt64 totalSize;
     NSMutableArray *files;

@@ -43,7 +43,7 @@
 
 #import "PlatypusUtility.h"
 #import "STPathTextField.h"
-#import "STFileList.h"
+#import "BundledFilesController.h"
 #import "NSColor+HexTools.h"
 
 #import "IconFamily.h"

@@ -93,7 +93,7 @@
 		F4FE736711F7925E005FC23A /* PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734F11F7925E005FC23A /* PrefsController.m */; };
 		F4FE736911F7925E005FC23A /* ProfilesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE735111F7925E005FC23A /* ProfilesController.m */; };
 		F4FE736B11F7925E005FC23A /* StatusItemSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE735311F7925E005FC23A /* StatusItemSettingsController.m */; };
-		F4FE736D11F7925E005FC23A /* STFileList.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE735511F7925E005FC23A /* STFileList.m */; };
+		F4FE736D11F7925E005FC23A /* BundledFilesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE735511F7925E005FC23A /* BundledFilesController.m */; };
 		F4FE736F11F7925E005FC23A /* SuffixList.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE735711F7925E005FC23A /* SuffixList.m */; };
 		F4FE737111F7925E005FC23A /* TextSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE735911F7925E005FC23A /* TextSettingsController.m */; };
 		F4FE738411F7929E005FC23A /* UKFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE737C11F7929E005FC23A /* UKFileWatcher.m */; };
@@ -239,8 +239,8 @@
 		F4FE735111F7925E005FC23A /* ProfilesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfilesController.m; path = PlatypusApplication/ProfilesController.m; sourceTree = "<group>"; };
 		F4FE735211F7925E005FC23A /* StatusItemSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusItemSettingsController.h; path = PlatypusApplication/StatusItemSettingsController.h; sourceTree = "<group>"; };
 		F4FE735311F7925E005FC23A /* StatusItemSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusItemSettingsController.m; path = PlatypusApplication/StatusItemSettingsController.m; sourceTree = "<group>"; };
-		F4FE735411F7925E005FC23A /* STFileList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STFileList.h; path = PlatypusApplication/STFileList.h; sourceTree = "<group>"; };
-		F4FE735511F7925E005FC23A /* STFileList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STFileList.m; path = PlatypusApplication/STFileList.m; sourceTree = "<group>"; };
+		F4FE735411F7925E005FC23A /* BundledFilesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BundledFilesController.h; path = PlatypusApplication/BundledFilesController.h; sourceTree = "<group>"; };
+		F4FE735511F7925E005FC23A /* BundledFilesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BundledFilesController.m; path = PlatypusApplication/BundledFilesController.m; sourceTree = "<group>"; };
 		F4FE735611F7925E005FC23A /* SuffixList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuffixList.h; path = PlatypusApplication/SuffixList.h; sourceTree = "<group>"; };
 		F4FE735711F7925E005FC23A /* SuffixList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuffixList.m; path = PlatypusApplication/SuffixList.m; sourceTree = "<group>"; };
 		F4FE735811F7925E005FC23A /* TextSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextSettingsController.h; path = PlatypusApplication/TextSettingsController.h; sourceTree = "<group>"; };
@@ -489,8 +489,8 @@
 				F48294A1122C129400094A1B /* SyntaxCheckerController.m */,
 				F4FE735011F7925E005FC23A /* ProfilesController.h */,
 				F4FE735111F7925E005FC23A /* ProfilesController.m */,
-				F4FE735411F7925E005FC23A /* STFileList.h */,
-				F4FE735511F7925E005FC23A /* STFileList.m */,
+				F4FE735411F7925E005FC23A /* BundledFilesController.h */,
+				F4FE735511F7925E005FC23A /* BundledFilesController.m */,
 				F4FE735611F7925E005FC23A /* SuffixList.h */,
 				F4FE735711F7925E005FC23A /* SuffixList.m */,
 				F4FE734E11F7925E005FC23A /* PrefsController.h */,
@@ -873,7 +873,7 @@
 				F4538B2C1ABFEB14007E6ADF /* NSString+CarbonFSRefCreation.m in Sources */,
 				F4FE736911F7925E005FC23A /* ProfilesController.m in Sources */,
 				F4FE736B11F7925E005FC23A /* StatusItemSettingsController.m in Sources */,
-				F4FE736D11F7925E005FC23A /* STFileList.m in Sources */,
+				F4FE736D11F7925E005FC23A /* BundledFilesController.m in Sources */,
 				F4FE736F11F7925E005FC23A /* SuffixList.m in Sources */,
 				F4FE737111F7925E005FC23A /* TextSettingsController.m in Sources */,
 				F4FE738411F7929E005FC23A /* UKFileWatcher.m in Sources */,
