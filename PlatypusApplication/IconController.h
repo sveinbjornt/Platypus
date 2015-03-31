@@ -27,7 +27,7 @@
     IBOutlet id window;
     IBOutlet id iconToggleButton;
     IBOutlet id iconNameTextField;
-    IBOutlet id platypusControl;
+    IBOutlet id platypusController;
     NSString *icnsFilePath;
 }
 - (IBAction)copyIcon:(id)sender;

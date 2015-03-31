@@ -79,8 +79,8 @@
     //	if (![[spec propertyForKey: @"Creator"] isEqualToString: PROGRAM_STAMP])
     //		[PlatypusUtility alert:@"Version clash" subText: @"The profile you selected was created with a different version of Platypus and may not load correctly."];
     
-    [platypusControl controlsFromAppSpec:spec];
-    [platypusControl controlTextDidChange:NULL];
+    [platypusController controlsFromAppSpec:spec];
+    [platypusController controlTextDidChange:NULL];
     [spec release];
 }
 
@@ -91,11 +91,11 @@
 
 - (IBAction)saveProfile:(id)sender;
 {
-    if (![platypusControl verifyFieldContents])
+    if (![platypusController verifyFieldContents])
         return;
     
     // get profile from platypus controls
-    NSDictionary *profileDict = [[platypusControl appSpecFromControls] properties];
+    NSDictionary *profileDict = [[platypusController appSpecFromControls] properties];
     
     // create path for profile file and write to it
     NSString *profileDestPath = [NSString stringWithFormat:@"%@/%@.%@",
@@ -112,12 +112,12 @@
 
 - (IBAction)saveProfileToLocation:(id)sender;
 {
-    if (![platypusControl verifyFieldContents]) {
+    if (![platypusController verifyFieldContents]) {
         return;
     }
     
     // get profile from platypus controls
-    NSDictionary *profileDict = [[platypusControl appSpecFromControls] properties];
+    NSDictionary *profileDict = [[platypusController appSpecFromControls] properties];
     NSString *defaultName = [NSString stringWithFormat:@"%@.%@", [profileDict objectForKey:@"Name"], PROFILES_SUFFIX];
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
