@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="BE62E578-6EBD-400E-80D6-CA5612C246C5" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="60958519-4E73-4B64-B2B2-31D945C46C93" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -1100,7 +1100,7 @@ CA
                 <outlet property="window" destination="21" id="1218"/>
             </connections>
         </customObject>
-        <customObject id="1234" userLabel="FileList" customClass="STFileList">
+        <customObject id="1234" userLabel="FileList" customClass="BundledFilesController">
             <connections>
                 <outlet property="addFileButton" destination="959" id="1245"/>
                 <outlet property="bundleSizeTextField" destination="664" id="1244"/>
@@ -2583,9 +2583,7 @@ Gw
         </window>
     </objects>
     <resources>
-        <image name="Add" width="23" height="20"/>
-        <image name="Add_Pressed" width="23" height="20"/>
-        <image name="BE62E578-6EBD-400E-80D6-CA5612C246C5" width="16" height="16">
+        <image name="60958519-4E73-4B64-B2B2-31D945C46C93" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -2665,6 +2663,8 @@ VRBoEHMQfBCBEIkQjBCREKAQpBCrELMQwBDFEMcQyRDOENYQ2RDeEOYQ6RD7EP4RAwAAAAAAAAIBAAAA
 AAAAAEIAAAAAAAAAAAAAAAAAABEFA
 </mutableData>
         </image>
+        <image name="Add" width="23" height="20"/>
+        <image name="Add_Pressed" width="23" height="20"/>
         <image name="Clear" width="22" height="20"/>
         <image name="Clear_Pressed" width="22" height="20"/>
         <image name="PlatypusDefault" width="512" height="512"/>

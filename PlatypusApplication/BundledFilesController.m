@@ -24,13 +24,13 @@
 // NOTE: It's also a complete mess and needs to be rewritten, it was one of the very first
 // pieces of code I ever wrote in Objective C, way back in the days...
 
-#import "STFileList.h"
+#import "BundledFilesController.h"
 #import "PlatypusController.h"
 #import "PlatypusUtility.h"
 
 #import "UKKQueue.h"
 
-@implementation STFileList
+@implementation BundledFilesController
 
 - (id)init {
     if ((self = [super init])) {
