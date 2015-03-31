@@ -39,7 +39,7 @@
     IBOutlet id tableView;
     IBOutlet id bundleSizeTextField;
     IBOutlet id contextualMenu;
-    IBOutlet id platypusControl;
+    IBOutlet id platypusController;
 }
 - (void)itemDoubleClicked:(id)sender;
 - (NSString *)getFileAtIndex:(int)index;

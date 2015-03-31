@@ -321,7 +321,7 @@
     //if there are no items, we just list it as 0 items
     if ([self numFiles] <= 0) {
         [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d items", [self numFiles]]];
-        [platypusControl updateEstimatedAppSize];
+        [platypusController updateEstimatedAppSize];
         return;
     }
     
@@ -336,7 +336,7 @@
     else
         [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d item, %@", [self numFiles], totalSizeString]];
     
-    [platypusControl updateEstimatedAppSize];
+    [platypusController updateEstimatedAppSize];
 }
 
 #pragma mark -

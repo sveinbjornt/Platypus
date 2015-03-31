@@ -202,7 +202,7 @@
             [[UKKQueue sharedFileWatcher] addPathToQueue:path];
     }
     [self updateIcnsStatus];
-    [platypusControl updateEstimatedAppSize];
+    [platypusController updateEstimatedAppSize];
 }
 
 - (UInt64)iconSize {
