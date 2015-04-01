@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2001-2011 Troy N. Stephens
+    Copyright (c) 2001-2010 Troy N. Stephens
 
     Use and distribution of this source code is governed by the MIT License, whose terms are as follows.
 
@@ -14,7 +14,7 @@
 
 @implementation NSString (CarbonFSRefCreation)
 
-- (BOOL)getFSRef:(FSRef*)fsRef createFileIfNecessary:(BOOL)createFile
+- (BOOL) getFSRef:(FSRef*)fsRef createFileIfNecessary:(BOOL)createFile
 {
     NSFileManager* fileManager = [NSFileManager defaultManager];
     CFURLRef urlRef;
@@ -23,7 +23,8 @@
     // Check whether the file exists already.  If not, create an empty file if requested.
     if (![fileManager fileExistsAtPath:self]) {
         if (createFile) {
-            if (![@"" writeToFile:self atomically:YES encoding: NSUTF8StringEncoding error: nil]) {
+			NSString *emptyString = @"";
+            if (![emptyString writeToFile:self atomically:YES encoding:NSUTF8StringEncoding error:NULL]) {
                 return NO;
             }
         } else {

@@ -23,23 +23,11 @@
 
 #import "IconFamily.h"
 #import "NSString+CarbonFSRefCreation.h"
-
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
-// This is defined in 10.5 and beyond in IconStorage.h
-enum {
-  kIconServices512PixelDataARGB = 'ic09' /* non-premultiplied 512x512 ARGB bitmap*/
-};
-#endif
-
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_3
-// This is defined in 10.4 and beyond in IconStorage.h
-enum {
-  kIconServices256PixelDataARGB = 'ic08' /* non-premultiplied 256x256 ARGB bitmap*/
-};
-#endif
+#import <Accelerate/Accelerate.h>
 
 // Necessary on 10.5 for Preview's "New with Clipboard" menu item to see the IconFamily data.
 #define ICONFAMILY_UTI @"com.apple.icns"
+
 // Determined by using Pasteboard Manager to put com.apple.icns data on the clipboard. Alternatively, you can determine this by copying an application to the clipboard using the Finder (select an application and press cmd-C).
 #define ICONFAMILY_PBOARD_TYPE @"'icns' (CorePasteboardFlavorType 0x69636E73)"
 
@@ -48,6 +36,8 @@ enum {
 + (NSImage*) resampleImage:(NSImage*)image toIconWidth:(int)width usingImageInterpolation:(NSImageInterpolation)imageInterpolation;
 
 + (Handle) get32BitDataFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize;
+
++ (Handle) get8BitDataFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize;
 
 + (Handle) get8BitMaskFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize;
 
@@ -265,15 +255,19 @@ enum {
 
 - initWithThumbnailsOfImage:(NSImage*)image usingImageInterpolation:(NSImageInterpolation)imageInterpolation
 {
+	NSImage* iconImage1024x1024;
     NSImage* iconImage512x512;
     NSImage* iconImage256x256;
     NSImage* iconImage128x128;
+	NSImage* iconImage48x48;
     NSImage* iconImage32x32;
     NSImage* iconImage16x16;
-    NSImage* bitmappedIconImage512x512;
+    NSImage* bitmappedIconImage1024x1024;
+	NSBitmapImageRep* iconBitmap1024x1024;
     NSBitmapImageRep* iconBitmap512x512;
     NSBitmapImageRep* iconBitmap256x256;
     NSBitmapImageRep* iconBitmap128x128;
+	NSBitmapImageRep* iconBitmap48x48;
     NSBitmapImageRep* iconBitmap32x32;
     NSBitmapImageRep* iconBitmap16x16;
 
@@ -282,43 +276,55 @@ enum {
     if (self == nil)
         return nil;
     
-    // Resample the given image to create a 512x512 pixel, 32-bit RGBA
-    // version, and use that as our "thumbnail" (512x512) icon and mask.
+    // Resample the given image to create a 1024x1024 pixel, 32-bit RGBA
+    // version, and use that as our "thumbnail" (1024x1024) icon and mask.
     //
     // Our +resampleImage:toIconWidth:... method, in its present form,
     // returns an NSImage that contains an NSCacheImageRep, rather than
     // an NSBitmapImageRep.  We convert to an NSBitmapImageRep, so that
     // our methods can scan the image data, using initWithFocusedViewRect:.
-    iconImage512x512 = [IconFamily resampleImage:image toIconWidth:512 usingImageInterpolation:imageInterpolation];
-    if (!iconImage512x512) {
+	
+    iconImage1024x1024 = [IconFamily resampleImage:image toIconWidth:1024 usingImageInterpolation:imageInterpolation];
+    if (!iconImage1024x1024) {
       [self autorelease];
       return nil;
     }
     
-    [iconImage512x512 lockFocus];
-    iconBitmap512x512 = [[[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 512, 512)] autorelease];
-    [iconImage512x512 unlockFocus];
-    if (!iconBitmap512x512) {
+    [iconImage1024x1024 lockFocus];
+    iconBitmap1024x1024 = [[[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 1024, 1024)] autorelease];
+    [iconImage1024x1024 unlockFocus];
+    if (!iconBitmap1024x1024) {
       [self release];
       return nil;
     }
-    // Create an NSImage with the iconBitmap512x512 NSBitmapImageRep, that we
+    // Create an NSImage with the iconBitmap1024x1024 NSBitmapImageRep, that we
     // can resample to create the smaller icon family elements.  (This is
     // most likely more efficient than resampling from the original image again,
     // particularly if it is large.  It produces a slightly different result, but
     // the difference is minor and should not be objectionable...)
     
-    bitmappedIconImage512x512 = [[NSImage alloc] initWithSize:NSMakeSize(512, 512)];
-    [bitmappedIconImage512x512 addRepresentation:iconBitmap512x512];
+    bitmappedIconImage1024x1024 = [[NSImage alloc] initWithSize:NSMakeSize(1024, 1024)];
+    [bitmappedIconImage1024x1024 addRepresentation:iconBitmap1024x1024];
     
-    if (!bitmappedIconImage512x512) {
+    if (!bitmappedIconImage1024x1024) {
       [self autorelease];
       return nil;
     }
     
-    [self setIconFamilyElement:kIconServices512PixelDataARGB fromBitmapImageRep:iconBitmap512x512];
+    [self setIconFamilyElement:kIconServices1024PixelDataARGB fromBitmapImageRep:iconBitmap1024x1024];
     
-    iconImage256x256 = [IconFamily resampleImage:bitmappedIconImage512x512 toIconWidth:256 usingImageInterpolation:imageInterpolation];
+	iconImage512x512 = [IconFamily resampleImage:bitmappedIconImage1024x1024 toIconWidth:512 usingImageInterpolation:imageInterpolation];
+    if (iconImage512x512) {
+		[iconImage512x512 lockFocus];
+		iconBitmap512x512 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 512, 512)];
+		[iconImage512x512 unlockFocus];
+		if (iconImage512x512) {
+			[self setIconFamilyElement:kIconServices512PixelDataARGB fromBitmapImageRep:iconBitmap512x512];
+			[iconBitmap512x512 release];
+		}
+    }
+	
+    iconImage256x256 = [IconFamily resampleImage:bitmappedIconImage1024x1024 toIconWidth:256 usingImageInterpolation:imageInterpolation];
     if (iconImage256x256) {
       [iconImage256x256 lockFocus];
       iconBitmap256x256 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 256, 256)];
@@ -329,53 +335,59 @@ enum {
       }
     }
     
-    iconImage128x128 = [IconFamily resampleImage:bitmappedIconImage512x512 toIconWidth:128 usingImageInterpolation:imageInterpolation];
+    iconImage128x128 = [IconFamily resampleImage:bitmappedIconImage1024x1024 toIconWidth:128 usingImageInterpolation:imageInterpolation];
     if (iconImage128x128) {
       [iconImage128x128 lockFocus];
       iconBitmap128x128 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 128, 128)];
       [iconImage128x128 unlockFocus];
       
       if (iconBitmap128x128) {
-        [self setIconFamilyElement:kThumbnail32BitData fromBitmapImageRep:iconBitmap128x128];
-        [self setIconFamilyElement:kThumbnail8BitMask  fromBitmapImageRep:iconBitmap128x128];
+		  [self setIconFamilyElement:kIconServices128PixelDataARGB fromBitmapImageRep:iconBitmap128x128];
         [iconBitmap128x128 release];
       }
     }
     
-    // Resample the 512x512 image to create a 32x32 pixel, 32-bit RGBA version,
+	// Resample the 1024x1024 image to create a 48x48 pixel, 32-bit RGBA version,
+    // and use that as our "huge" (48x48) icon and 8-bit mask.
+    iconImage48x48 = [IconFamily resampleImage:bitmappedIconImage1024x1024 toIconWidth:48 usingImageInterpolation:imageInterpolation];
+    if (iconImage48x48) {
+		[iconImage48x48 lockFocus];
+		iconBitmap48x48 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 48, 48)];
+		[iconImage48x48 unlockFocus];
+		if (iconBitmap48x48) {
+			[self setIconFamilyElement:kIconServices48PixelDataARGB fromBitmapImageRep:iconBitmap48x48];
+			[iconBitmap48x48 release];
+		}
+    }
+	
+    // Resample the 1024x1024 image to create a 32x32 pixel, 32-bit RGBA version,
     // and use that as our "large" (32x32) icon and 8-bit mask.
-    iconImage32x32 = [IconFamily resampleImage:bitmappedIconImage512x512 toIconWidth:32 usingImageInterpolation:imageInterpolation];
+    iconImage32x32 = [IconFamily resampleImage:bitmappedIconImage1024x1024 toIconWidth:32 usingImageInterpolation:imageInterpolation];
     if (iconImage32x32) {
       [iconImage32x32 lockFocus];
       iconBitmap32x32 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 32, 32)];
       [iconImage32x32 unlockFocus];
       if (iconBitmap32x32) {
-        [self setIconFamilyElement:kLarge32BitData fromBitmapImageRep:iconBitmap32x32];
-        [self setIconFamilyElement:kLarge8BitData fromBitmapImageRep:iconBitmap32x32];
-        [self setIconFamilyElement:kLarge8BitMask fromBitmapImageRep:iconBitmap32x32];
-        [self setIconFamilyElement:kLarge1BitMask fromBitmapImageRep:iconBitmap32x32];
+        [self setIconFamilyElement:kIconServices32PixelDataARGB fromBitmapImageRep:iconBitmap32x32];
         [iconBitmap32x32 release];
       }
     }
     
-    // Resample the 512x512 image to create a 16x16 pixel, 32-bit RGBA version,
+    // Resample the 1024x1024 image to create a 16x16 pixel, 32-bit RGBA version,
     // and use that as our "small" (16x16) icon and 8-bit mask.
-    iconImage16x16 = [IconFamily resampleImage:bitmappedIconImage512x512 toIconWidth:16 usingImageInterpolation:imageInterpolation];
+    iconImage16x16 = [IconFamily resampleImage:bitmappedIconImage1024x1024 toIconWidth:16 usingImageInterpolation:imageInterpolation];
     if (iconImage16x16) {
       [iconImage16x16 lockFocus];
       iconBitmap16x16 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 16, 16)];
       [iconImage16x16 unlockFocus];
       if (iconBitmap16x16) {
-        [self setIconFamilyElement:kSmall32BitData fromBitmapImageRep:iconBitmap16x16];
-        [self setIconFamilyElement:kSmall8BitData fromBitmapImageRep:iconBitmap16x16];
-        [self setIconFamilyElement:kSmall8BitMask fromBitmapImageRep:iconBitmap16x16];
-        [self setIconFamilyElement:kSmall1BitMask fromBitmapImageRep:iconBitmap16x16];
+        [self setIconFamilyElement:kIconServices16PixelDataARGB fromBitmapImageRep:iconBitmap16x16];
         [iconBitmap16x16 release];
       }
     }
     
     // Release the icon.
-    [bitmappedIconImage512x512 release];
+    [bitmappedIconImage1024x1024 release];
         
     // Return the new icon family!
     return self;
@@ -401,13 +413,11 @@ enum {
 - (NSBitmapImageRep*) bitmapImageRepWithAlphaForIconFamilyElement:(OSType)elementType;
 {
     NSBitmapImageRep* bitmapImageRep;
-    int pixelsWide;
+    NSInteger pixelsWide;
     Handle hRawBitmapData;
     Handle hRawMaskData = NULL;
     OSType maskElementType;
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
 	NSBitmapFormat bitmapFormat = NSAlphaFirstBitmapFormat;
-#endif
     OSErr result;
     UInt32* pRawBitmapData;
     UInt32* pRawBitmapDataEnd;
@@ -416,7 +426,34 @@ enum {
 
     // Make sure elementType is a valid type that we know how to handle, and
     // figure out the dimensions and bit depth of the bitmap for that type.
-    switch (elementType) {
+    switch (elementType) 
+	{
+    // 'ic10' 1024x1024 32-bit RGB image
+    case kIconServices512RetinaPixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 1024;
+		break;
+    // 'ic14' 512x512 32-bit RGB image
+    case kIconServices256RetinaPixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 512;
+		break;
+    // 'ic13' 256x256 32-bit RGB image
+    case kIconServices128RetinaPixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 256;
+		break;
+    // 'ic12' 64x64 32-bit RGB image
+    case kIconServices32RetinaPixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 64;
+		break;
+    // 'ic11' 32x32 32-bit RGB image
+    case kIconServices16RetinaPixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 32;
+		break;
+
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
     // 'ic09' 512x512 32-bit RGB image
     case kIconServices512PixelDataARGB:
@@ -425,13 +462,31 @@ enum {
         break;
 #endif
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
 	// 'ic08' 256x256 32-bit ARGB image
 	case kIconServices256PixelDataARGB:
 		maskElementType = 0;
 		pixelsWide = 256;
 	    break;
-#endif
+			
+	case kIconServices128PixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 128;
+		break;
+		
+	case kIconServices48PixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 48;
+		break;
+	
+	case kIconServices32PixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 32;
+		break;
+	
+	case kIconServices16PixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 16;
+		break;
 	    
 	// 'it32' 128x128 32-bit RGB image
 	case kThumbnail32BitData:
@@ -480,65 +535,24 @@ enum {
     }
     
     // The retrieved raw bitmap data is stored in memory as 32 bit per pixel, 8 bit per sample xRGB data.  (The sample order provided by IconServices is the same, regardless of whether we're running on a big-endian (PPC) or little-endian (Intel) architecture.)
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
-    // With proper attention to byte order, we can fold the mask data into the color data in-place, producing ARGB data suitable for handing off to NSBitmapImageRep.
-#else
-    // With proper attention to byte order, we can fold the mask data into the color data in-place, producing RGBA data suitable for handing off to NSBitmapImageRep.
-#endif
-//    HLock( hRawBitmapData ); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
+
     pRawBitmapData = (UInt32*) *hRawBitmapData;
     pRawBitmapDataEnd = pRawBitmapData + pixelsWide * pixelsWide;
     if (hRawMaskData) {
-//        HLock( hRawMaskData ); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
+		
         pRawMaskData = (UInt8*) *hRawMaskData;
         while (pRawBitmapData < pRawBitmapDataEnd) {
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
-            // Convert the xRGB pixel data to ARGB.
-            //                                                          PowerPC         Intel
-            //                                                          -------         -----
-            // Bytes in memory are                                      x R G B         x R G B
-            // *pRawBitmapData loads as 32-bit word into register       xRGB            BGRx
-            // CFSwapInt32HostToBig() swaps this to                     xRGB            xRGB
-            // Loading *pRawMaskData and shifting left 24 bits yields   A000            A000
-            // Bitwise ORing these two words together yields            ARGB            ARGB
-            // CFSwapInt32BigToHost() swaps this to                     ARGB            BGRA
-            // Bytes in memory after they're stored as a 32-bit word    A R G B         A R G B
-            *pRawBitmapData = CFSwapInt32BigToHost((*pRawMaskData++ << 24) | CFSwapInt32HostToBig(*pRawBitmapData));
-#else
-            // Convert the xRGB pixel data to RGBA.
-            //                                                          PowerPC         Intel
-            //                                                          -------         -----
-            // Bytes in memory are                                      x R G B         x R G B
-            // *pRawBitmapData loads as 32-bit word into register       xRGB            BGRx
-            // CFSwapInt32HostToBig() swaps this to                     xRGB            xRGB
-            // Shifting left 8 bits yields ('0' denotes all zero bits)  RGB0            RGB0
-            // Bitwise ORing with *pRawMaskData byte yields             RGBA            RGBA
-            // CFSwapInt32BigToHost() swaps this to                     RGBA            ABGR
-            // Bytes in memory after they're stored as a 32-bit word    R G B A         R G B A
-            *pRawBitmapData = CFSwapInt32BigToHost((CFSwapInt32HostToBig(*pRawBitmapData) << 8) | *pRawMaskData++);
-#endif
+         
+			*pRawBitmapData = CFSwapInt32BigToHost((*pRawMaskData++ << 24) | CFSwapInt32HostToBig(*pRawBitmapData));
             ++pRawBitmapData;
+			
         }
-//        HUnlock( hRawMaskData ); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
+		
     } else {
         if(maskElementType) {
             // We SHOULD have a mask, but apparently not. Fake it with alpha=1.
             while (pRawBitmapData < pRawBitmapDataEnd) {
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
-                // Set alpha byte to 0xff.
-                //                                                                  PowerPC         Intel
-                //                                                                  -------         -----
-                // Bytes in memory are                                              x R G B         x R G B
-                // Writing a single 0xff byte ('1') at pRawBitmapData yields        1 R G B         1 R G B
                 *(unsigned char *)pRawBitmapData = 0xff;
-#else
-                // Set alpha byte to 0xff.
-                //                                                                  PowerPC         Intel
-                //                                                                  -------         -----
-                // Bytes in memory are                                              R G B x         R G B x
-                // Writing a single 0xff byte, 3 bytes past pRawBitmapData yields   R G B 1         R G B 1
-                *((unsigned char *)pRawBitmapData + 3) = 0xff;
-#endif
                 ++pRawBitmapData;
             }
         }
@@ -564,9 +578,7 @@ enum {
                         hasAlpha:YES
                         isPlanar:NO
                   colorSpaceName:NSDeviceRGBColorSpace // NOTE: is this right?
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
                     bitmapFormat:bitmapFormat
-#endif
                      bytesPerRow:0
                     bitsPerPixel:0] autorelease];
     pBitmapImageRepBitmapData = [bitmapImageRep bitmapData];
@@ -598,11 +610,40 @@ enum {
 
 - (BOOL) setIconFamilyElement:(OSType)elementType fromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep
 {
+	if (!bitmapImageRep)
+		return NO;
+	
     Handle hRawData = NULL;
     OSErr result;
 
-    switch (elementType) {
-      // 'ic08' 512x512 32-bit ARGB image
+    switch (elementType)
+	{
+	// 'ic10' 1024x1024 32-bit ARGB image
+	case kIconServices512RetinaPixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:1024];
+		break;
+        
+    // 'ic14' 512x512 32-bit ARGB image
+    case kIconServices256RetinaPixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:512];
+		break;
+        
+    // 'ic13' 256x256 32-bit ARGB image
+    case kIconServices128RetinaPixelDataARGB:
+        hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:256];
+		break;
+        
+    // 'ic12' 64x64 32-bit ARGB image
+    case kIconServices32RetinaPixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:64];
+		break;
+        
+    // 'ic11' 32x32 32-bit ARGB image
+    case kIconServices16RetinaPixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
+		break;
+
+	// 'ic09' 512x512 32-bit ARGB image
     case kIconServices512PixelDataARGB:
         hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:512];
         break;
@@ -612,6 +653,26 @@ enum {
         hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:256];
         break;
 
+	// 'ic07' 128x128 32-bit ARGB image
+	case kIconServices128PixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:128];
+		break;
+
+	// 'ic06' 256x256 32-bit ARGB image
+	case kIconServices48PixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:48];
+		break;
+		
+	// 'ic05' 256x256 32-bit ARGB image
+	case kIconServices32PixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
+		break;
+	
+	// 'ic04' 256x256 32-bit ARGB image
+	case kIconServices16PixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:16];
+		break;
+	
     // 'it32' 128x128 32-bit RGB image
 	case kThumbnail32BitData:
 	    hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:128];
@@ -621,7 +682,27 @@ enum {
 	case kThumbnail8BitMask:
 	    hRawData = [IconFamily get8BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:128];
 	    break;
-	    
+	
+	// 'ih48' 48x48 32-bit RGB image
+	case kHuge32BitData:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:48];
+		break;
+			
+	// 'h8mk' 48x49 8-bit alpha mask
+	case kHuge8BitMask:
+		hRawData = [IconFamily get8BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:48];
+		break;
+			
+	// 'ich#' 48x48 1-bit alpha mask
+	case kHuge1BitMask:
+		hRawData = [IconFamily get1BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:48];
+		break;
+            
+	// 'ich8' 48x48 8-bit indexed image data
+	case kHuge8BitData:
+		hRawData = [IconFamily get8BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:48];
+		break;		
+	
 	// 'il32' 32x32 32-bit RGB image
 	case kLarge32BitData:
 	    hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
@@ -636,8 +717,13 @@ enum {
 	case kLarge1BitMask:
 	    hRawData = [IconFamily get1BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
 	    break;
+            
+	// 'icl8' 32x32 8-bit indexed image data
+	case kLarge8BitData:
+		hRawData = [IconFamily get8BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
+		break;
 
-    // 'is32' 16x16 32-bit RGB image
+	// 'is32' 16x16 32-bit RGB image
 	case kSmall32BitData:
 		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:16];
 		break;
@@ -651,6 +737,12 @@ enum {
 	case kSmall1BitMask:
 	    hRawData = [IconFamily get1BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:16];
 	    break;
+
+	// 'ics8' 16x16 8-bit indexed image data
+	case kSmall8BitData:
+		hRawData = [IconFamily get8BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:16];
+		break;
+            
 	default:
 	    return NO;
     }
@@ -677,10 +769,15 @@ enum {
 
 - (BOOL) setAsCustomIconForFile:(NSString*)path
 {
-    return( [self setAsCustomIconForFile:path withCompatibility:NO] );
+    return( [self setAsCustomIconForFile:path withCompatibility:NO error:NULL] );
 }
 
 - (BOOL) setAsCustomIconForFile:(NSString*)path withCompatibility:(BOOL)compat
+{
+    return( [self setAsCustomIconForFile:path withCompatibility:NO error:NULL] );
+}
+
+- (BOOL) setAsCustomIconForFile:(NSString*)path withCompatibility:(BOOL)compat error:(NSError **)error
 {
     FSRef targetFileFSRef;
     FSRef parentDirectoryFSRef;
@@ -693,7 +790,7 @@ enum {
 	NSString *parentDirectory;
 	
     // Before we do anything, get the original modification time for the target file.
-    NSDate* modificationDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil] objectForKey:NSFileModificationDate];
+    NSDate* modificationDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:error] objectForKey:NSFileModificationDate];
 
 	if ([path isAbsolutePath])
 		parentDirectory = [path stringByDeletingLastPathComponent];
@@ -881,10 +978,15 @@ enum {
 
 - (BOOL) setAsCustomIconForDirectory:(NSString*)path
 {
-    return [self setAsCustomIconForDirectory:path withCompatibility:NO];
+    return [self setAsCustomIconForDirectory:path withCompatibility:NO error:NULL];
 }
 
 - (BOOL) setAsCustomIconForDirectory:(NSString*)path withCompatibility:(BOOL)compat
+{
+    return [self setAsCustomIconForDirectory:path withCompatibility:NO error:NULL];
+}
+
+- (BOOL) setAsCustomIconForDirectory:(NSString*)path withCompatibility:(BOOL)compat error:(NSError **)error
 {
     NSFileManager *fm = [NSFileManager defaultManager];
     BOOL isDir;
@@ -911,7 +1013,7 @@ enum {
     iconrPath = [path stringByAppendingPathComponent:@"Icon\r"];
     if( [fm fileExistsAtPath:iconrPath] )
     {
-        if( ![fm removeItemAtPath:iconrPath error:nil] )
+        if( ![fm removeItemAtPath:iconrPath error:error] )
             return NO;
     }
     if( ![iconrPath getFSRef:&iconrFSRef createFileIfNecessary:YES] )
@@ -1053,6 +1155,11 @@ enum {
 
 + (BOOL) removeCustomIconFromDirectory:(NSString*)path
 {
+    return( [self removeCustomIconFromDirectory:path error:NULL] );
+}
+
++ (BOOL) removeCustomIconFromDirectory:(NSString*)path error:(NSError **)error
+{
     FSRef targetFolderFSRef;
     if( [path getFSRef:&targetFolderFSRef createFileIfNecessary:NO] ) {
         OSStatus result;
@@ -1083,8 +1190,8 @@ enum {
         if (result != noErr)
             return NO;
     }
-
-    if( ! [[NSFileManager defaultManager] removeItemAtPath:[path stringByAppendingPathComponent:@"Icon\r"] error:nil] )
+    
+    if( ! [[NSFileManager defaultManager] removeItemAtPath:[path stringByAppendingPathComponent:@"Icon\r"] error:error] )
         return NO;
 	
     return YES;
@@ -1100,8 +1207,38 @@ enum {
     return [[self data] writeToFile:path atomically:NO];
 }
 
+
+#pragma mark - NSPasteboardReading
+
+- (id)initWithPasteboardPropertyList:(id)data ofType:(NSString *)type {	
+    return [self initWithData:data];
+}
+
++ (NSArray *)readableTypesForPasteboard:(NSPasteboard *)pasteboard {
+	return [NSArray arrayWithObjects:ICONFAMILY_UTI, ICONFAMILY_PBOARD_TYPE, nil];
+}
+
++ (NSPasteboardReadingOptions)readingOptionsForType:(NSString *)type pasteboard:(NSPasteboard *)pasteboard {
+	return NSPasteboardReadingAsData;
+}
+
++ (BOOL)canInitWithPasteboard:(NSPasteboard *)pasteboard {
+	return [pasteboard canReadItemWithDataConformingToTypes:[self.class readableTypesForPasteboard:pasteboard]];
+}
+
+#pragma mark - NSPasteboardWriting
+
+- (NSArray *)writableTypesForPasteboard:(NSPasteboard *)pasteboard {
+	return [self.class readableTypesForPasteboard:pasteboard];
+}
+
+- (id)pasteboardPropertyListForType:(NSString *)type {
+	return self.data;
+}
+
 @end
 
+#pragma mark - Internals
 @implementation IconFamily (Internals)
 
 + (NSImage*) resampleImage:(NSImage*)image toIconWidth:(int)iconWidth usingImageInterpolation:(NSImageInterpolation)imageInterpolation
@@ -1127,7 +1264,7 @@ enum {
     workingImage = [image copyWithZone:[image zone]];
     [workingImage setScalesWhenResized:YES];
     size = [workingImage size];
-    workingImageRep = [NSBitmapImageRep imageRepWithData:[workingImage TIFFRepresentation]];
+    workingImageRep = [workingImage bestRepresentationForRect:NSZeroRect context:nil hints:nil];
     if ([workingImageRep isKindOfClass:[NSBitmapImageRep class]]) {
         pixelSize.width  = [workingImageRep pixelsWide];
         pixelSize.height = [workingImageRep pixelsHigh];
@@ -1186,88 +1323,233 @@ enum {
     Handle hRawData;
     unsigned char* pRawData;
     Size rawDataSize;
-    unsigned char* pSrc;
-    unsigned char* pDest;
-    int x, y;
-    unsigned char alphaByte;
-    float oneOverAlpha;
     
     // Get information about the bitmapImageRep.
-    long pixelsWide      = [bitmapImageRep pixelsWide];
-    long pixelsHigh      = [bitmapImageRep pixelsHigh];
-    long bitsPerSample   = [bitmapImageRep bitsPerSample];
-    long samplesPerPixel = [bitmapImageRep samplesPerPixel];
-    long bitsPerPixel    = [bitmapImageRep bitsPerPixel];
-    BOOL isPlanar       = [bitmapImageRep isPlanar];
-    long bytesPerRow     = [bitmapImageRep bytesPerRow];
-    unsigned char* bitmapData = [bitmapImageRep bitmapData];
+    NSInteger pixelsWide      = [bitmapImageRep pixelsWide];
+    NSInteger pixelsHigh      = [bitmapImageRep pixelsHigh];
+    NSInteger bitsPerSample   = [bitmapImageRep bitsPerSample];
+    NSInteger samplesPerPixel = [bitmapImageRep samplesPerPixel];
+    NSInteger bitsPerPixel    = [bitmapImageRep bitsPerPixel];
+    BOOL isPlanar	          = [bitmapImageRep isPlanar];
 
     // Make sure bitmap has the required dimensions.
     if (pixelsWide != requiredPixelSize || pixelsHigh != requiredPixelSize)
 	return NULL;
 	
-    // So far, this code only handles non-planar 32-bit RGBA and 24-bit RGB source bitmaps.
-    // This could be made more flexible with some additional programming to accommodate other possible
-    // formats...
     if (isPlanar)
 	{
+		NSLog(@"get32BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to isPlanar == YES");
 		return NULL;
 	}
     if (bitsPerSample != 8)
 	{
+		NSLog(@"get32BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerSample == %ld", (long)bitsPerSample);
 		return NULL;
 	}
 
-	if (((samplesPerPixel == 3) && (bitsPerPixel == 24)) || ((samplesPerPixel == 4) && (bitsPerPixel == 32)))
-	{
+	if (((samplesPerPixel == 3) && (bitsPerPixel == 24)) || ((samplesPerPixel == 4) && (bitsPerPixel == 32))) {
 		rawDataSize = pixelsWide * pixelsHigh * 4;
 		hRawData = NewHandle( rawDataSize );
 		if (hRawData == NULL)
 			return NULL;
 		pRawData = (unsigned char*) *hRawData;
-	
-		pDest = pRawData;
+				
+		CGImageRef image = bitmapImageRep.CGImage;
 		
+		CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(image);
+		
+		NSInteger width = CGImageGetWidth(image);
+		NSInteger height = CGImageGetHeight(image);
+		
+		
+		CGDataProviderRef provider = CGImageGetDataProvider(image);
+		CFDataRef data = CGDataProviderCopyData(provider);
+		
+		UInt8* bytes = malloc(width * height * 4);
+		CFDataGetBytes(data, CFRangeMake(0, CFDataGetLength(data)), bytes);
+		CFRelease(data);
+		
+		BOOL alphaFirst    = (alphaInfo == kCGImageAlphaFirst || alphaInfo == kCGImageAlphaPremultipliedFirst);
+		BOOL premultiplied = (alphaInfo == kCGImageAlphaPremultipliedFirst || alphaInfo == kCGImageAlphaPremultipliedLast);
+		BOOL little        = (CGImageGetBitmapInfo(image) == kCGBitmapByteOrder32Little);
+		
+		if (bitsPerPixel == 32) {
+			
+			vImage_Buffer src;
+			src.data = (void*)bytes;
+			src.rowBytes = 4 * width;
+			src.width = width;
+			src.height = height;
+			
+			vImage_Buffer dest;
+			dest.data = pRawData;
+			dest.rowBytes = 4 * width;
+			dest.width = width;
+			dest.height = height;
+						
+			uint8_t permuteMap[4];
+			if (alphaFirst) {
+				if (little) {
+					// BGRA to ARGB
+					permuteMap[0] = 3;
+					permuteMap[1] = 2;
+					permuteMap[2] = 1;
+					permuteMap[3] = 0;
+				} else {
+					// ARGB to ARGB
+					permuteMap[0] = 0;
+					permuteMap[1] = 1;
+					permuteMap[2] = 2;
+					permuteMap[3] = 3;
+				}
+			} else {
+				if (little) {
+					// ABGR to ARGB
+					permuteMap[0] = 0;
+					permuteMap[1] = 3;
+					permuteMap[2] = 2;
+					permuteMap[3] = 1;
+				} else {
+					// RGBA to ARGB
+					permuteMap[0] = 3;
+					permuteMap[1] = 0;
+					permuteMap[2] = 1;
+					permuteMap[3] = 2;
+				}
+			}
+			
+			vImagePermuteChannels_ARGB8888(&src, &dest, permuteMap, 0);
+			
+			if (premultiplied) {
+				vImageUnpremultiplyData_ARGB8888(&dest, &dest, 0);
+			}
+			
+			
+		} else if (bitsPerPixel == 24) {
+			
+			vImage_Buffer src;
+			src.data = (void*)bytes;
+			src.rowBytes = 3 * width;
+			src.width = width;
+			src.height = height;
+			
+			vImage_Buffer dest;
+			dest.data = pRawData;
+			dest.rowBytes = 4 * width;
+			dest.width = width;
+			dest.height = height;
+			
+			vImageConvert_RGB888toARGB8888(&src, NULL, (Pixel_8)0xFFFF, &dest, false, 0);
+			
+			uint8_t permuteMap[4];
+			if (little) { // BGR to RGB
+				permuteMap[0] = 2;
+				permuteMap[1] = 1;
+				permuteMap[2] = 0;
+			} else {
+				permuteMap[0] = 0;
+				permuteMap[1] = 1;
+				permuteMap[2] = 2;
+			}
+			
+			vImagePermuteChannels_ARGB8888(&dest, &dest, permuteMap, 0);
+			
+		}
+		
+		free(bytes);
+	}
+	else
+	{
+		NSLog(@"get32BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to samplesPerPixel == %ld, bitsPerPixel == %ld",
+			  (long)samplesPerPixel, (long)bitsPerPixel);
+		return NULL;
+	}
+
+    return hRawData;
+}
+
++ (Handle) get8BitDataFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize
+{	
+    Handle hRawData;
+    unsigned char* pRawData;
+    Size rawDataSize;
+    unsigned char* pSrc;
+    unsigned char* pDest;
+    int x, y;
+	
+    // Get information about the bitmapImageRep.
+    NSInteger pixelsWide      = [bitmapImageRep pixelsWide];
+    NSInteger pixelsHigh      = [bitmapImageRep pixelsHigh];
+    NSInteger bitsPerSample   = [bitmapImageRep bitsPerSample];
+    NSInteger samplesPerPixel = [bitmapImageRep samplesPerPixel];
+    NSInteger bitsPerPixel    = [bitmapImageRep bitsPerPixel];
+    BOOL isPlanar             = [bitmapImageRep isPlanar];
+    NSInteger bytesPerRow     = [bitmapImageRep bytesPerRow];
+    unsigned char* bitmapData = [bitmapImageRep bitmapData];
+    
+    // Make sure bitmap has the required dimensions.
+    if (pixelsWide != requiredPixelSize || pixelsHigh != requiredPixelSize)
+        return NULL;
+	
+    // So far, this code only handles non-planar 32-bit RGBA and 24-bit RGB source bitmaps.
+    // This could be made more flexible with some additional programming...
+    if (isPlanar)
+	{
+		NSLog(@"get8BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to isPlanar == YES");
+		return NULL;
+	}
+    if (bitsPerSample != 8)
+	{
+		NSLog(@"get8BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerSample == %ld",
+			  (long)bitsPerSample);
+		return NULL;
+	}
+	
+	if (((samplesPerPixel == 3) && (bitsPerPixel == 24)) || ((samplesPerPixel == 4) && (bitsPerPixel == 32)))
+	{
+		rawDataSize = pixelsWide * pixelsHigh;
+		hRawData = NewHandle( rawDataSize );
+		if (hRawData == NULL)
+			return NULL;
+		pRawData = (unsigned char*) *hRawData;
+		
+		pDest = pRawData;
 		if (bitsPerPixel == 32) {
 			for (y = 0; y < pixelsHigh; y++) {
 				pSrc = bitmapData + y * bytesPerRow;
-					for (x = 0; x < pixelsWide; x++) {
-						// Each pixel is 3 bytes of RGB data, followed by 1 byte of
-						// alpha.  The RGB values are premultiplied by the alpha (so
-						// that Quartz can save time when compositing the bitmap to a
-						// destination), and we undo this premultiplication (with some
-						// lossiness unfortunately) when retrieving the bitmap data.
-						*pDest++ = alphaByte = *(pSrc+3);
-						if (alphaByte) {
-							oneOverAlpha = 255.0f / (float)alphaByte;
-							*pDest++ = *(pSrc+0) * oneOverAlpha;
-							*pDest++ = *(pSrc+1) * oneOverAlpha;
-							*pDest++ = *(pSrc+2) * oneOverAlpha;
-						} else {
-							*pDest++ = 0;
-							*pDest++ = 0;
-							*pDest++ = 0;
-						}
-						pSrc+=4;
+				for (x = 0; x < pixelsWide; x++) {
+					unsigned char r = *(pSrc + 1);
+					unsigned char g = *(pSrc + 2);
+					unsigned char b = *(pSrc + 3);
+					
+					*pDest++ = (0 << 24) | (r << 16) | (g << 8) | b;
+	
+					pSrc+=4;
 				}
 			}
 		} else if (bitsPerPixel == 24) {
 			for (y = 0; y < pixelsHigh; y++) {
 				pSrc = bitmapData + y * bytesPerRow;
 				for (x = 0; x < pixelsWide; x++) {
-					*pDest++ = 0xFF;
-					*pDest++ = *pSrc++;
-					*pDest++ = *pSrc++;
-					*pDest++ = *pSrc++;
+					unsigned char r = *(pSrc);
+					unsigned char g = *(pSrc + 1);
+					unsigned char b = *(pSrc + 2);
+	
+					*pDest++ = (0 << 24) | (r << 16) | (g << 8) | b;
+					
+					pSrc+=3;
 				}
 			}
 		}
+		
 	}
 	else
 	{
+		NSLog(@"get8BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to samplesPerPixel == %ld, bitsPerPixel == %ld",
+			  (long)samplesPerPixel, (long)bitsPerPixel);
 		return NULL;
 	}
-
+	
     return hRawData;
 }
 
@@ -1298,10 +1580,12 @@ enum {
     // This could be made more flexible with some additional programming...
     if (isPlanar)
 	{
+		NSLog(@"get8BitMaskFromBitmapImageRep:requiredPixelSize: returning NULL due to isPlanar == YES");
 		return NULL;
 	}
     if (bitsPerSample != 8)
 	{
+		NSLog(@"get8BitMaskFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerSample == %ld", bitsPerSample);
 		return NULL;
 	}
 	
@@ -1338,6 +1622,7 @@ enum {
 	}
 	else
 	{
+		NSLog(@"get8BitMaskFromBitmapImageRep:requiredPixelSize: returning NULL due to samplesPerPixel == %ld, bitsPerPixel == %ld", samplesPerPixel, bitsPerPixel);
 		return NULL;
 	}
 
@@ -1438,6 +1723,7 @@ enum {
 	}
 	else
 	{
+		NSLog(@"get1BitMaskFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerPixel == %ld, samplesPerPixel== %ld, bitsPerSample == %ld", bitsPerPixel, samplesPerPixel, bitsPerSample);
 		return NULL;
 	}
 	
@@ -1458,54 +1744,5 @@ enum {
 
     return YES;
 }
-
 @end
-
-// Methods for interfacing with the Cocoa Pasteboard.
-
-@implementation IconFamily (ScrapAdditions)
-
-+ (BOOL) canInitWithScrap
-{
-    NSArray *types = [[NSPasteboard generalPasteboard] types];
-    return [types containsObject:ICONFAMILY_UTI] || [types containsObject:ICONFAMILY_PBOARD_TYPE];
-}
-
-+ (IconFamily*) iconFamilyWithScrap
-{
-    return [[[IconFamily alloc] initWithScrap] autorelease];
-}
-
-- initWithScrap
-{
-    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
-
-    NSData *data = [pboard dataForType:ICONFAMILY_UTI];
-    if( !data )
-        data = [pboard dataForType:ICONFAMILY_PBOARD_TYPE];
-    if( !data )
-    {
-        [self release];
-        return nil;
-    }
-
-    self = [self initWithData:data];
-
-    return self;
-}
-
-- (BOOL) putOnScrap
-{
-    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
-
-    [pboard declareTypes:[NSArray arrayWithObjects:ICONFAMILY_UTI, ICONFAMILY_PBOARD_TYPE, nil] owner:self];
-    NSData *data = [self data];
-    [pboard setData:data forType:ICONFAMILY_UTI];
-    [pboard setData:data forType:ICONFAMILY_PBOARD_TYPE];
-
-    return YES;
-}
-
-@end
-
 

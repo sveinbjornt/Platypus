@@ -10,6 +10,7 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F40F756013C266AE00197499 /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40F755F13C266AE00197499 /* ShellCommandController.m */; };
+		F425CA6A1ACC42AC001217F4 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F425CA681ACC4273001217F4 /* Accelerate.framework */; };
 		F445EA7714FAB61900DCCDB3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
 		F445EA7914FAB64C00DCCDB3 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
@@ -125,6 +126,7 @@
 		F40F755E13C266AE00197499 /* ShellCommandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShellCommandController.h; path = PlatypusApplication/ShellCommandController.h; sourceTree = "<group>"; };
 		F40F755F13C266AE00197499 /* ShellCommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellCommandController.m; path = PlatypusApplication/ShellCommandController.m; sourceTree = "<group>"; };
 		F4185E5811FC57AB0027C8D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PlatypusApplication/Info.plist; sourceTree = "<group>"; };
+		F425CA681ACC4273001217F4 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
 		F445EA7614FAB61900DCCDB3 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Shared/Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Sparkle/dsa_pub.pem; sourceTree = "<group>"; };
 		F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_priv.pem; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				F4ED1E470CEC17920006636F /* Carbon.framework in Frameworks */,
+				F425CA6A1ACC42AC001217F4 /* Accelerate.framework in Frameworks */,
 				F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */,
 				F445EA7714FAB61900DCCDB3 /* Sparkle.framework in Frameworks */,
 			);
@@ -365,6 +368,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F425CA681ACC4273001217F4 /* Accelerate.framework */,
 				F445EA7614FAB61900DCCDB3 /* Sparkle.framework */,
 				F48B7BAA11F7675900351575 /* WebKit.framework */,
 				F4E1F47C11F756D9007EE2E3 /* Security.framework */,
