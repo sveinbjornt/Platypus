@@ -407,6 +407,10 @@
     return NSDragOperationLink;
 }
 
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+    return 20;
+}
+
 #pragma mark -
 
 /*****************************************
