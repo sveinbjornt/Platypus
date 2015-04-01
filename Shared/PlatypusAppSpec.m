@@ -27,9 +27,6 @@
 @implementation PlatypusAppSpec
 
 #pragma mark - Creation
-/*****************************************
- - init / dealloc functions
- *****************************************/
 
 - (PlatypusAppSpec *)init {
     if (self = [super init]) {
@@ -103,7 +100,7 @@
     [properties setValue:[NSNumber numberWithBool:NO] forKey:@"DestinationOverride"];
     [properties setValue:[NSNumber numberWithBool:NO] forKey:@"DevelopmentVersion"];
     [properties setValue:[NSNumber numberWithBool:YES] forKey:@"OptimizeApplication"];
-    [properties setValue:[NSNumber numberWithBool:YES] forKey:@"UseXMLPlistFormat"];
+    [properties setValue:[NSNumber numberWithBool:NO] forKey:@"UseXMLPlistFormat"];
     
     // primary attributes
     [properties setObject:DEFAULT_APP_NAME forKey:@"Name"];
@@ -750,8 +747,8 @@
 #pragma mark - Class Methods
 
 /*****************************************
- - //return the bundle identifier for the application to be generated
- -  based on username etc. e.g. org.username.AppName
+ - Return the bundle identifier for the application to be generated
+ - based on username etc. e.g. org.username.AppName
  *****************************************/
 
 + (NSString *)standardBundleIdForAppName:(NSString *)name usingDefaults:(BOOL)def;
