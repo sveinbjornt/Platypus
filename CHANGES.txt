@@ -13,7 +13,7 @@ For 5.0
 
 
 For 4.9
-    * Users can now increase/decrease the font size in Platypus-generated apps
+    * Users can now manually increase/decrease the font size in Platypus-generated apps
     * Status menu items can now be selected. This will run the script again with the menu title as an argument.
     * Arguments can now be passed to Platypus-generated apps via the command line
     * In Progress Bar output, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility
@@ -30,22 +30,18 @@ For 4.9
     * Fixed bug where command line tool complained about valid .icns filenames
     * Refactored all deprecated method invocations
     * Various minor interface refinements
+    * Fixed row height in bundled file list
 
     TODO: Document new CLI arguments to Platypus-generated apps
-    TODO: Hide "Check syntax" if file being edited is not a script
-    TODO: Higher row height in bundled file list
     TODO: New button-based output mode.
 
     TODO:  If you specify the -x flag, for creating non-binary plists, binary plists are still being created.
     TODO:  I read in the documentation: If your script prints out "Location:http://some.url.com", it will instruct the web view to render the HTML pointed to by the URL.
 
-
-
-    TODO:  Default profile as a preference
     TODO:  Fix Edit Drop Settings menu item enabled when Accept dropped files is not checked
     TODO:  Refactor create: method in app spec class into multiple methods, e.g. infoplist and appsettingsplist getters
     TODO:  New "Test" button under Args dialog, which executes the shown command in Terminal
-    TODO:  Long GNU named params, e.g. --some-option
+    TODO:  Long GNU named params for command line tool, e.g. --some-option
 
 
 For 4.8
