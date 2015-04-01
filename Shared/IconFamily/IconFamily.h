@@ -38,7 +38,15 @@
 // You can also write an icon family to an .icns file using the -writeToFile:
 // method.
 
-@interface IconFamily : NSObject
+enum {
+	kIconServices512RetinaPixelDataARGB = 'ic10', /* non-premultiplied 1024x1024 ARGB bitmap*/
+    kIconServices256RetinaPixelDataARGB = 'ic14', /* non-premultiplied 512x512 ARGB bitmap*/
+    kIconServices128RetinaPixelDataARGB = 'ic13', /* non-premultiplied 256x256 ARGB bitmap*/
+    kIconServices32RetinaPixelDataARGB  = 'ic12', /* non-premultiplied 64x64 ARGB bitmap*/
+    kIconServices16RetinaPixelDataARGB  = 'ic11'  /* non-premultiplied 32x32 ARGB bitmap*/
+};
+
+@interface IconFamily : NSObject <NSPasteboardReading, NSPasteboardWriting>
 {
     IconFamilyHandle hIconFamily;
 }
@@ -162,11 +170,13 @@
 
 - (BOOL) setAsCustomIconForFile:(NSString*)path;
 - (BOOL) setAsCustomIconForFile:(NSString*)path withCompatibility:(BOOL)compat;
+- (BOOL) setAsCustomIconForFile:(NSString*)path withCompatibility:(BOOL)compat error:(NSError **)error;
 
 // Same as the -setAsCustomIconForFile:... methods, but for folders (directories).
 
 - (BOOL) setAsCustomIconForDirectory:(NSString*)path;
 - (BOOL) setAsCustomIconForDirectory:(NSString*)path withCompatibility:(BOOL)compat;
+- (BOOL) setAsCustomIconForDirectory:(NSString*)path withCompatibility:(BOOL)compat error:(NSError **)error;
 
 // Removes the custom icon (if any) from the specified file's resource fork,
 // and clears the necessary Finder bits for the file.  (Note that this is a
@@ -177,14 +187,9 @@
 //Same as the -removeCustomIconFromFile: method, but for folders (directories).
 
 + (BOOL) removeCustomIconFromDirectory:(NSString*)path;
++ (BOOL) removeCustomIconFromDirectory:(NSString*)path error:(NSError **)error;
 
-@end
+- (NSData *)data;
++ (BOOL)canInitWithPasteboard:(NSPasteboard *)pasteboard;
 
-// Methods for interfacing with the Carbon Scrap Manager (analogous to and
-// interoperable with the Cocoa Pasteboard).
-@interface IconFamily (ScrapAdditions)
-+ (BOOL) canInitWithScrap;
-+ (IconFamily*) iconFamilyWithScrap;
-- initWithScrap;
-- (BOOL) putOnScrap;
 @end
