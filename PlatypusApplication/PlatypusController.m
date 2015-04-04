@@ -118,7 +118,7 @@
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
     if ([filename hasSuffix:PROFILES_SUFFIX])  //load as profile
-        [profilesControl loadProfileFile:filename];
+        [profilesController loadProfileFile:filename];
     else //load as script
         [self loadScript:filename];
     
@@ -437,8 +437,8 @@
     }
     
     //make sure we have an icon
-    if (([iconControl hasIcns] && ![[iconControl icnsFilePath] isEqualToString:@""] && ![fileManager fileExistsAtPath:[iconControl icnsFilePath]])
-        ||  (![(IconController *)iconControl hasIcns] && [(IconController *)iconControl imageData] == nil)) {
+    if (([iconController hasIcns] && ![[iconController icnsFilePath] isEqualToString:@""] && ![fileManager fileExistsAtPath:[iconController icnsFilePath]])
+        ||  (![(IconController *)iconController hasIcns] && [(IconController *)iconController imageData] == nil)) {
         [PlatypusUtility sheetAlert:@"Missing Icon" subText:@"You must set an icon for your application." forWindow:window];
         return NO;
     }
@@ -475,17 +475,17 @@
                forKey:@"Output"];
     
     // icon
-    if ([iconControl hasIcns])
-        [spec setProperty:[iconControl icnsFilePath]       forKey:@"IconPath"];
+    if ([iconController hasIcns])
+        [spec setProperty:[iconController icnsFilePath]       forKey:@"IconPath"];
     else {
-        [iconControl writeIconToPath:[NSString stringWithFormat:@"%@%@.icns", APP_SUPPORT_FOLDER, [appNameTextField stringValue]]];
+        [iconController writeIconToPath:[NSString stringWithFormat:@"%@%@.icns", APP_SUPPORT_FOLDER, [appNameTextField stringValue]]];
         [spec setProperty:TEMP_ICON_PATH forKey:@"IconPath"];
     }
     
     // advanced attributes
     [spec setProperty:[interpreterTextField stringValue]   forKey:@"Interpreter"];
-    [spec setProperty:[paramsControl interpreterArgs]      forKey:@"InterpreterArgs"];
-    [spec setProperty:[paramsControl scriptArgs]           forKey:@"ScriptArgs"];
+    [spec setProperty:[argsController interpreterArgs]      forKey:@"InterpreterArgs"];
+    [spec setProperty:[argsController scriptArgs]           forKey:@"ScriptArgs"];
     [spec setProperty:[versionTextField stringValue]       forKey:@"Version"];
     [spec setProperty:[bundleIdentifierTextField stringValue]
                forKey:@"Identifier"];
@@ -507,26 +507,26 @@
     [spec setProperty:[fileList getFilesArray] forKey:@"BundledFiles"];
     
     // file types
-    [spec setProperty:(NSMutableArray *)[(SuffixList *)[typesControl suffixes] getSuffixArray]         forKey:@"Suffixes"];
-    [spec setProperty:[typesControl role]                                                              forKey:@"Role"];
-    [spec setProperty:[typesControl docIconPath]                                                       forKey:@"DocIcon"];
-    [spec setProperty:[NSNumber numberWithBool:[typesControl acceptsText]]                            forKey:@"AcceptsText"];
-    [spec setProperty:[NSNumber numberWithBool:[typesControl acceptsFiles]]                           forKey:@"AcceptsFiles"];
-    [spec setProperty:[NSNumber numberWithBool:[typesControl declareService]]                         forKey:@"DeclareService"];
-    [spec setProperty:[NSNumber numberWithBool:[typesControl promptsForFileOnLaunch]]                 forKey:@"PromptForFileOnLaunch"];
+    [spec setProperty:(NSMutableArray *)[(SuffixList *)[dropSettingsController suffixes] getSuffixArray]         forKey:@"Suffixes"];
+    [spec setProperty:[dropSettingsController role]                                                              forKey:@"Role"];
+    [spec setProperty:[dropSettingsController docIconPath]                                                       forKey:@"DocIcon"];
+    [spec setProperty:[NSNumber numberWithBool:[dropSettingsController acceptsText]]                            forKey:@"AcceptsText"];
+    [spec setProperty:[NSNumber numberWithBool:[dropSettingsController acceptsFiles]]                           forKey:@"AcceptsFiles"];
+    [spec setProperty:[NSNumber numberWithBool:[dropSettingsController declareService]]                         forKey:@"DeclareService"];
+    [spec setProperty:[NSNumber numberWithBool:[dropSettingsController promptsForFileOnLaunch]]                 forKey:@"PromptForFileOnLaunch"];
     
     //  text output text settings
-    [spec setProperty:[NSNumber numberWithInt:(int)[textSettingsControl getTextEncoding]]             forKey:@"TextEncoding"];
-    [spec setProperty:[[textSettingsControl getTextFont] fontName]                                     forKey:@"TextFont"];
-    [spec setProperty:[NSNumber numberWithFloat:[[textSettingsControl getTextFont] pointSize]]        forKey:@"TextSize"];
-    [spec setProperty:[[textSettingsControl getTextForeground] hexString]                              forKey:@"TextForeground"];
-    [spec setProperty:[[textSettingsControl getTextBackground] hexString]                              forKey:@"TextBackground"];
+    [spec setProperty:[NSNumber numberWithInt:(int)[textSettingsController getTextEncoding]]             forKey:@"TextEncoding"];
+    [spec setProperty:[[textSettingsController getTextFont] fontName]                                     forKey:@"TextFont"];
+    [spec setProperty:[NSNumber numberWithFloat:[[textSettingsController getTextFont] pointSize]]        forKey:@"TextSize"];
+    [spec setProperty:[[textSettingsController getTextForeground] hexString]                              forKey:@"TextForeground"];
+    [spec setProperty:[[textSettingsController getTextBackground] hexString]                              forKey:@"TextBackground"];
     
     // status menu settings
     if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
-        [spec setProperty:[statusItemSettingsControl displayType] forKey:@"StatusItemDisplayType"];
-        [spec setProperty:[statusItemSettingsControl title] forKey:@"StatusItemTitle"];
-        [spec setProperty:[[statusItemSettingsControl icon] TIFFRepresentation] forKey:@"StatusItemIcon"];
+        [spec setProperty:[statusItemSettingsController displayType] forKey:@"StatusItemDisplayType"];
+        [spec setProperty:[statusItemSettingsController title] forKey:@"StatusItemTitle"];
+        [spec setProperty:[[statusItemSettingsController icon] TIFFRepresentation] forKey:@"StatusItemIcon"];
     }
     
     return spec;
@@ -545,7 +545,7 @@
     
     //icon
     if (![[spec propertyForKey:@"IconPath"] isEqualToString:@""])
-        [iconControl loadIcnsFile:[spec propertyForKey:@"IconPath"]];
+        [iconController loadIcnsFile:[spec propertyForKey:@"IconPath"]];
     
     //checkboxes
     [rootPrivilegesCheckbox setState:[[spec propertyForKey:@"Authentication"] boolValue]];
@@ -563,42 +563,42 @@
     [fileList tableViewSelectionDidChange:NULL];
     
     //suffix list
-    [(SuffixList *)[typesControl suffixes] clearList];
-    [(SuffixList *)[typesControl suffixes] addSuffixes :[spec propertyForKey:@"Suffixes"]];
+    [(SuffixList *)[dropSettingsController suffixes] clearList];
+    [(SuffixList *)[dropSettingsController suffixes] addSuffixes :[spec propertyForKey:@"Suffixes"]];
     
-    [typesControl tableViewSelectionDidChange:NULL];
+    [dropSettingsController tableViewSelectionDidChange:NULL];
     // role and doc icon
-    [typesControl setRole:[spec propertyForKey:@"Role"]];
+    [dropSettingsController setRole:[spec propertyForKey:@"Role"]];
     if ([spec propertyForKey:@"DocIcon"] != nil)
-        [typesControl setDocIconPath:[spec propertyForKey:@"DocIcon"]];
+        [dropSettingsController setDocIconPath:[spec propertyForKey:@"DocIcon"]];
     if ([spec propertyForKey:@"AcceptsText"] != nil)
-        [typesControl setAcceptsText:[[spec propertyForKey:@"AcceptsText"] boolValue]];
+        [dropSettingsController setAcceptsText:[[spec propertyForKey:@"AcceptsText"] boolValue]];
     if ([spec propertyForKey:@"AcceptsFiles"] != nil)
-        [typesControl setAcceptsFiles:[[spec propertyForKey:@"AcceptsFiles"] boolValue]];
+        [dropSettingsController setAcceptsFiles:[[spec propertyForKey:@"AcceptsFiles"] boolValue]];
     if ([spec propertyForKey:@"DeclareService"] != nil)
-        [typesControl setDeclareService:[[spec propertyForKey:@"DeclareService"] boolValue]];
+        [dropSettingsController setDeclareService:[[spec propertyForKey:@"DeclareService"] boolValue]];
     if ([spec propertyForKey:@"PromptForFileOnLaunch"] != nil)
-        [typesControl setPromptsForFileOnLaunch:[[spec propertyForKey:@"PromptForFileOnLaunch"] boolValue]];
+        [dropSettingsController setPromptsForFileOnLaunch:[[spec propertyForKey:@"PromptForFileOnLaunch"] boolValue]];
     
     // parameters
-    [paramsControl setInterpreterArgs:[spec propertyForKey:@"InterpreterArgs"]];
-    [paramsControl setScriptArgs:[spec propertyForKey:@"ScriptArgs"]];
+    [argsController setInterpreterArgs:[spec propertyForKey:@"InterpreterArgs"]];
+    [argsController setScriptArgs:[spec propertyForKey:@"ScriptArgs"]];
     
     // text output settings
-    [textSettingsControl setTextEncoding:[[spec propertyForKey:@"TextEncoding"] intValue]];
-    [textSettingsControl setTextFont:[NSFont fontWithName:[spec propertyForKey:@"TextFont"] size:[[spec propertyForKey:@"TextSize"] intValue]]];
-    [textSettingsControl setTextForeground:[NSColor colorFromHex:[spec propertyForKey:@"TextForeground"]]];
-    [textSettingsControl setTextBackground:[NSColor colorFromHex:[spec propertyForKey:@"TextBackground"]]];
+    [textSettingsController setTextEncoding:[[spec propertyForKey:@"TextEncoding"] intValue]];
+    [textSettingsController setTextFont:[NSFont fontWithName:[spec propertyForKey:@"TextFont"] size:[[spec propertyForKey:@"TextSize"] intValue]]];
+    [textSettingsController setTextForeground:[NSColor colorFromHex:[spec propertyForKey:@"TextForeground"]]];
+    [textSettingsController setTextBackground:[NSColor colorFromHex:[spec propertyForKey:@"TextBackground"]]];
     
     // status menu settings
     if ([[spec propertyForKey:@"Output"] isEqualToString:@"Status Menu"]) {
         if (![[spec propertyForKey:@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
             NSImage *icon = [[[NSImage alloc] initWithData:[spec propertyForKey:@"StatusItemIcon"]] autorelease];
             if (icon != NULL)
-                [statusItemSettingsControl setIcon:icon];
+                [statusItemSettingsController setIcon:icon];
         }
-        [statusItemSettingsControl setTitle:[spec propertyForKey:@"StatusItemTitle"]];
-        [statusItemSettingsControl setDisplayType:[spec propertyForKey:@"StatusItemDisplayType"]];
+        [statusItemSettingsController setTitle:[spec propertyForKey:@"StatusItemTitle"]];
+        [statusItemSettingsController setDisplayType:[spec propertyForKey:@"StatusItemDisplayType"]];
     }
     
     //update buttons
@@ -673,7 +673,7 @@
     [self controlsFromAppSpec:spec];
     [spec release];
     
-    [iconControl setDefaultIcon];
+    [iconController setDefaultIcon];
     
     // add to recent items menu
     [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
@@ -820,16 +820,16 @@
     [fileList clearFileList:self];
     
     //clear suffix and types lists to default values
-    [typesControl setToDefaults:self];
+    [dropSettingsController setToDefaults:self];
     
     //set parameters to default
-    [paramsControl resetDefaults:self];
+    [argsController resetDefaults:self];
     
     //set text ouput settings to default
-    [textSettingsControl resetDefaults:self];
+    [textSettingsController resetDefaults:self];
     
     //set status item settings to default
-    [statusItemSettingsControl restoreDefaults:self];
+    [statusItemSettingsController restoreDefaults:self];
     
     //set script type
     [self setScriptType:@"Shell"];
@@ -843,7 +843,7 @@
     
     [appSizeTextField setStringValue:@""];
     
-    [iconControl setDefaultIcon];
+    [iconController setDefaultIcon];
 }
 
 /*****************************************
@@ -880,8 +880,8 @@
     
     estimatedAppSize += 4096; // Info.plist
     estimatedAppSize += 4096; // AppSettings.plist
-    estimatedAppSize += [iconControl iconSize];
-    estimatedAppSize += [typesControl docIconSize];
+    estimatedAppSize += [iconController iconSize];
+    estimatedAppSize += [dropSettingsController docIconSize];
     estimatedAppSize += [PlatypusUtility fileOrFolderSize:[scriptPathTextField stringValue]];
     estimatedAppSize += [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:NULL]];     // executable
     
@@ -913,7 +913,7 @@
         filename = [files objectAtIndex:0]; //we only load the first dragged item
         if ([FILEMGR fileExistsAtPath:filename isDirectory:&isDir] && !isDir) {
             if ([filename hasSuffix:PROFILES_SUFFIX])
-                [profilesControl loadProfileFile:filename];
+                [profilesController loadProfileFile:filename];
             else
                 [self loadScript:filename];
             
