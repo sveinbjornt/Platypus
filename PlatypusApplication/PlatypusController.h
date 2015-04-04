@@ -94,12 +94,12 @@
     IBOutlet id progressDialogStatusLabel;
     
     // interface controllers
-    IBOutlet id iconControl;
-    IBOutlet id typesControl;
-    IBOutlet id paramsControl;
-    IBOutlet id profilesControl;
-    IBOutlet id textSettingsControl;
-    IBOutlet id statusItemSettingsControl;
+    IBOutlet id iconController;
+    IBOutlet id dropSettingsController;
+    IBOutlet id argsController;
+    IBOutlet id profilesController;
+    IBOutlet id textSettingsController;
+    IBOutlet id statusItemSettingsController;
     
     IBOutlet id fileList;
 }
