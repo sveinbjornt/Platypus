@@ -6,6 +6,36 @@
         <description>Most recent release list for Platypus, with links to signed updates.</description>
         <language>en</language>
         <item>
+            <title>Version 4.9</title>
+            <pubDate>Wed, 2 Apr 2015 15:28:00 +0000</pubDate>
+            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.9.zip" sparkle:version="4.9" sparkle:shortVersionString="4.9" length="1668252" type="application/octet-stream" sparkle:dsaSignature="MC0CFCU9a7YtceYxs/6LIpqykQPKghTyAhUAs3SFJFKOn4fXzEy76S3qXVlwGUk="/>
+            <sparkle:minimumSystemVersion>10.6.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>Version 4.9 Changes</h2>
+                <ul>
+                <li>Users can now manually increase/decrease the font size in Platypus-generated apps</li>
+                <li>Status menu items can now be selected. This will run the script again with the menu title as an argument.</li>
+                <li>Arguments can now be passed to Platypus-generated apps via the command line</li>
+                <li>In Progress Bar output, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility</li>
+                <li>New feature: If script prints "QUITAPP" to STDOUT, the wrapper application will quit.</li>
+                <li>Platypus now remembers app creation dialog settings such as "Optimize Nib"</li>
+                <li>Platypus now remembers opened Profiles in the Open Recent menu</li>
+                <li>It is now possible to add a custom MainMenu.nib to bundled files which overwrites default</li>
+                <li>Extended and improved documentation</li>
+                <li>Built with XCode 6, now requires Mac OS X 10.6 or later</li>
+                <li>Fixed a bug where "Provide as a Service" failed to be read from saved profiles</li>
+                <li>Fixed bug where a custom bundle identifier in a saved Profile would not be loaded</li>
+                <li>Fixed bug where the Create button would remain greyed out even though all requirements were satisfied</li>
+                <li>Fixed bug where progress indicator would keep animating after execution in Progress Bar output mode</li>
+                <li>Fixed bug where command line tool complained about valid .icns filenames</li>
+                <li>Fixed bug where command line tool would always create XML property lists instead of binary ones</li>
+                <li>Refactored all deprecated method calls</li>
+                <li>Various minor interface refinements</li>
+                <li>Improved documentation</li>
+                </ul>
+            ]]></description>
+        </item>
+        <item>
             <title>Version 4.8</title>
             <pubDate>Sun, 7 Jul 2013 19:28:00 +0000</pubDate>
             <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.8.zip" sparkle:version="4.8" sparkle:shortVersionString="4.8" length="1668252" type="application/octet-stream" sparkle:dsaSignature="MC0CFHKG2boDHGhb2WOnsXfPRWdzbKhVAhUAhd6FcLtjnt10DaXYKfzt3dBL86s="/>
