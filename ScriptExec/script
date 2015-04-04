@@ -38,14 +38,16 @@ local $| = 1;
 
 #!/usr/bin/perl
 
+print "Location: http://sveinbjorn.org"
+
 # If 0 arguments, we show menu
-if (!scalar(@ARGV)) {
-    print "Life's but a walking shadow, a poor player\n";
-    print "That struts and frets his hour upon the stage\n";
-    print "And then is heard no more.\n";
-} else {
-    system("/usr/bin/say \"$ARGV[0]\"");
-}
+#if (!scalar(@ARGV)) {
+#    print "Life's but a walking shadow, a poor player\n";
+#    print "That struts and frets his hour upon the stage\n";
+#    print "And then is heard no more.\n";
+#} else {
+#    system("/usr/bin/say \"$ARGV[0]\"");
+#}
 
 
 #if (!scalar(@ARGV)) {

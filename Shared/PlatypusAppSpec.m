@@ -179,7 +179,7 @@
     NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];
     NSString *destPath = [NSString stringWithFormat:@"%@/%@.app", parentFolder, appName];
     [self setProperty:destPath forKey:@"Destination"];
-    [self setProperty:[PlatypusAppSpec standardBundleIdForAppName:appName usingDefaults:NO] forKey:@"Identifier"];
+    [self setProperty:[PlatypusAppSpec standardBundleIdForAppName:appName usingDefaults:YES] forKey:@"Identifier"];
 }
 
 /****************************************
