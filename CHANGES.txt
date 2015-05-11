@@ -12,6 +12,8 @@ For 5.0
     TODO:  Make generated applications function even if they are moved while running. Requires IconFamily update.
     TODO:  Long GNU named params for command line tool, e.g. --some-option
     TODO: New button-based output mode?
+    TODO: Initial focus in Platypus window should be "App Name" text field, not Icon View
+    TODO: Make Status Items look good in Yosemite's Dark Mode: http://indiestack.com/2014/10/yosemites-dark-mode/
 
 For 4.9
     * Users can now manually increase/decrease the font size in Platypus-generated apps
