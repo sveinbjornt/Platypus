@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		F40B22731B28D6BC003C05ED /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40B22721B28D6BC003C05ED /* Accelerate.framework */; };
+		F40B22751B28D6CE003C05ED /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40B22741B28D6CE003C05ED /* Carbon.framework */; };
 		F40F756013C266AE00197499 /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40F755F13C266AE00197499 /* ShellCommandController.m */; };
-		F425CA6A1ACC42AC001217F4 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F425CA681ACC4273001217F4 /* Accelerate.framework */; };
 		F445EA7714FAB61900DCCDB3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
 		F445EA7914FAB64C00DCCDB3 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
@@ -84,7 +85,6 @@
 		F4DC075311F629A40043764E /* Readme.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC075011F629A40043764E /* Readme.html */; };
 		F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F4E1F71111F75A7F007EE2E3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		F4ED1E470CEC17920006636F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4ED1E460CEC17920006636F /* Carbon.framework */; };
 		F4FB337714FBDE2200BAECEB /* platypus.man.html in Resources */ = {isa = PBXBuildFile; fileRef = F4FB337614FBDE2200BAECEB /* platypus.man.html */; };
 		F4FB338114FBFC7C00BAECEB /* License.html in Resources */ = {isa = PBXBuildFile; fileRef = F4FB338014FBFC7C00BAECEB /* License.html */; };
 		F4FE735F11F7925E005FC23A /* DropSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE734711F7925E005FC23A /* DropSettingsController.m */; };
@@ -106,6 +106,23 @@
 		F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F40B22761B28D761003C05ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F48B774011F7661C00351575;
+			remoteInfo = ScriptExec;
+		};
+		F40B22781B28D763003C05ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4E1F6FB11F758FB007EE2E3;
+			remoteInfo = platypus;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		F445EA7814FAB63A00DCCDB3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -123,6 +140,8 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = PlatypusApplication/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8D1107320486CEB800E47090 /* Platypus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platypus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F40B22721B28D6BC003C05ED /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		F40B22741B28D6CE003C05ED /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		F40F755E13C266AE00197499 /* ShellCommandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShellCommandController.h; path = PlatypusApplication/ShellCommandController.h; sourceTree = "<group>"; };
 		F40F755F13C266AE00197499 /* ShellCommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellCommandController.m; path = PlatypusApplication/ShellCommandController.m; sourceTree = "<group>"; };
 		F4185E5811FC57AB0027C8D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PlatypusApplication/Info.plist; sourceTree = "<group>"; };
@@ -266,9 +285,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F40B22751B28D6CE003C05ED /* Carbon.framework in Frameworks */,
+				F40B22731B28D6BC003C05ED /* Accelerate.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				F4ED1E470CEC17920006636F /* Carbon.framework in Frameworks */,
-				F425CA6A1ACC42AC001217F4 /* Accelerate.framework in Frameworks */,
 				F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */,
 				F445EA7714FAB61900DCCDB3 /* Sparkle.framework in Frameworks */,
 			);
@@ -368,6 +387,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F40B22741B28D6CE003C05ED /* Carbon.framework */,
+				F40B22721B28D6BC003C05ED /* Accelerate.framework */,
 				F425CA681ACC4273001217F4 /* Accelerate.framework */,
 				F445EA7614FAB61900DCCDB3 /* Sparkle.framework */,
 				F48B7BAA11F7675900351575 /* WebKit.framework */,
@@ -707,6 +728,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				F40B22791B28D763003C05ED /* PBXTargetDependency */,
+				F40B22771B28D761003C05ED /* PBXTargetDependency */,
 			);
 			name = Platypus;
 			productInstallPath = "$(HOME)/Applications";
@@ -922,6 +945,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F40B22771B28D761003C05ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F48B774011F7661C00351575 /* ScriptExec */;
+			targetProxy = F40B22761B28D761003C05ED /* PBXContainerItemProxy */;
+		};
+		F40B22791B28D763003C05ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4E1F6FB11F758FB007EE2E3 /* platypus */;
+			targetProxy = F40B22781B28D763003C05ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F41B217E085CD8FF00B63B0D /* Development */ = {
