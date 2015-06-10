@@ -4,11 +4,7 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
-	<key>CFBundleName</key>
-	<string>Platypus</string>
 	<key>CFBundleDisplayName</key>
-	<string>Platypus</string>
-	<key>CFBundleExecutable</key>
 	<string>Platypus</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
@@ -18,25 +14,21 @@
 				<string>command</string>
 				<string>sh</string>
 			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.shell-script</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.shell-script</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>bash</string>
-			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.bash-script</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
@@ -44,15 +36,15 @@
 			<string>Bash Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.bash-script</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>tcsh</string>
-			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.tcsh-script</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
@@ -60,15 +52,15 @@
 			<string>TENEX C Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.tcsh-script</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>csh</string>
-			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.csh-script</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
@@ -76,15 +68,15 @@
 			<string>C Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.csh-script</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>zsh</string>
-			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.zsh-script</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
@@ -92,15 +84,15 @@
 			<string>Zsh Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.zsh-script</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>ksh</string>
-			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.ksh-script</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
@@ -108,6 +100,10 @@
 			<string>Ksh Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.ksh-script</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -115,16 +111,16 @@
 				<string>pl</string>
 				<string>perl</string>
 			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.perl-script</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Perl Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.perl-script</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -133,16 +129,16 @@
 				<string>objpy</string>
 				<string>python</string>
 			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.python-script</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Python Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.python-script</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -152,16 +148,16 @@
 				<string>rbw</string>
 				<string>ruby</string>
 			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.ruby-script</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Ruby Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.ruby-script</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -170,17 +166,17 @@
 				<string>scpt</string>
 				<string>applescript</string>
 			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.apple.applescript.script</string>
-				<string>com.apple.applescript.text</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>AppleScript File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.apple.applescript.script</string>
+				<string>com.apple.applescript.text</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -188,16 +184,16 @@
 				<string>tcl</string>
 				<string>tclsh</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>PlatypusScriptFile.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Tcl Script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.tcl-script</string>
 			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
-			<key>CFBundleTypeName</key>
-			<string>AppleScript File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -205,16 +201,16 @@
 				<string>exp</string>
 				<string>expect</string>
 			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.expect-script</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Expect Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.expect-script</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -227,16 +223,16 @@
 				<string>ph4</string>
 				<string>phtml</string>
 			</array>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.php-script</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Expect Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.php-script</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -251,29 +247,35 @@
 			<string>Viewer</string>
 		</dict>
 	</array>
+	<key>CFBundleExecutable</key>
+	<string>Platypus</string>
+	<key>CFBundleGetInfoString</key>
+	<string>© 2003-2015 Sveinbjorn Thordarson.</string>
 	<key>CFBundleIconFile</key>
 	<string>PlatypusAppIcon.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.sveinbjorn.Platypus</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleVersion</key>
-	<string>4.9</string>
+	<key>CFBundleName</key>
+	<string>Platypus</string>
 	<key>CFBundleShortVersionString</key>
 	<string>4.9</string>
+	<key>CFBundleVersion</key>
+	<string>4.9</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6.0</string>
-	<key>CFBundleGetInfoString</key>
-	<string>© 2003-2015 Sveinbjorn Thordarson.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2003-2015 Sveinbjorn Thordarson.</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
-	<key>SUFeedURL</key>
-	<string>http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</string>
 	<key>NSMainNibFile</key>
 	<string>Platypus</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
 </dict>
 </plist>
