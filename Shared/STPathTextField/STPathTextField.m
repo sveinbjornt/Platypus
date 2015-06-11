@@ -157,7 +157,7 @@
 - (int)autoComplete:(id)sender {
     NSString *autocompletedPath = NULL;
     NSString *path = [self stringValue];
-    char firstchar;
+    unichar firstchar;
     int dlen, len = [path length];
     BOOL isDir;
     
