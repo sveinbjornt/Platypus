@@ -42,22 +42,7 @@
 
 #define OPT_STRING "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:G:C:b:g:n:E:K:Y:L:H:U:"
 
-//int verbose_flag;
 
-//static struct option long_options[] =
-//{
-//    /* These options set a flag. */
-//    {"verbose", no_argument,       &verbose_flag, 1},
-//    {"brief",   no_argument,       &verbose_flag, 0},
-//    /* These options don't set a flag.
-//     We distinguish them by their indices. */
-//    {"add",     no_argument,       0, 'a'},
-//    {"append",  no_argument,       0, 'b'},
-//    {"delete",  required_argument, 0, 'd'},
-//    {"create",  required_argument, 0, 'c'},
-//    {"file",    required_argument, 0, 'f'},
-//    {0, 0, 0, 0}
-//};
 
 static NSString *MakeAbsolutePath(NSString *path);
 static void PrintVersion(void);
@@ -65,8 +50,24 @@ static void PrintUsage(void);
 static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
+#ifdef DEBUG
+void exceptionHandler(NSException *exception);
+
+void exceptionHandler(NSException *exception) {
+    NSLog(@"%@", [exception reason]);
+    NSLog(@"%@", [exception userInfo]);
+    NSLog(@"%@", [exception callStackReturnAddresses]);
+    NSLog(@"%@", [exception callStackSymbols]);
+}
+#endif
+
 
 int main(int argc, const char *argv[]) {
+    
+#ifdef DEBUG
+    NSSetUncaughtExceptionHandler(&exceptionHandler);
+#endif
+    
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];  //set up autorelease pool
     NSApplication *app = [NSApplication sharedApplication];
     app = app; //establish connection to Window Server
@@ -598,55 +599,90 @@ static void PrintUsage(void) {
 // Print help string to stdout
 ///////////////////////////////////////
 
+
+//static struct option long_options[] = {
+//    {"generate-profile",     required_argument, 0,  0 },
+//    {"load-profile",  no_argument,       0,  0 },
+//    {"name",  required_argument, 0,  0 },
+//    {"output-type", required_argument,       0,  0 },
+//    {"interpreter",  required_argument, 0, 'c'},
+//    {"app-icon",    required_argument, 0,  0 },
+//    {"author",    required_argument, 0,  0 },
+//    {"document-icon",    required_argument, 0,  0 },
+//    {"app-version",    required_argument, 0,  0 },
+//    {"bundle-identifier",    required_argument, 0,  0 },
+//    {"admin-privileges",    required_argument, 0,  0 },
+//    {"secure-script",    required_argument, 0,  0 },
+//    {"droppable",    required_argument, 0,  0 },
+//    {"text-droppable",    required_argument, 0,  0 },
+//    {"file-prompt",    required_argument, 0,  0 },
+//    {"service",    required_argument, 0,  0 },
+//    {"background",    required_argument, 0,  0 },
+//    {"text-droppable",    required_argument, 0,  0 },
+//    {"quit-after-execution",    required_argument, 0,  0 },
+//
+//    {"quit-after-execution",    required_argument, 0,  0 },
+//    {"quit-after-execution",    required_argument, 0,  0 },
+//    {"quit-after-execution",    required_argument, 0,  0 },
+//    {"quit-after-execution",    required_argument, 0,  0 },
+//    {"quit-after-execution",    required_argument, 0,  0 },
+//    {"quit-after-execution",    required_argument, 0,  0 },
+//    {"quit-after-execution",    required_argument, 0,  0 },
+//
+//    
+//    {0,         0,                 0,  0 }
+//};
+
+
 static void PrintHelp(void) {
     NSPrint(@"%@ - command line application wrapper generator for scripts", CMDLINE_PROGNAME);
     PrintVersion();
     PrintUsage();
     printf("\n\
        Options:\n\
-       -O                   Generate a profile instead of an app\n\
+       -O --generate-profile                Generate a profile instead of an app\n\
        \n\
-       -P [profilePath]     Load settings from profile file\n\
-       -a [name]            Set name of application bundle\n\
-       -o [type]            Set output type.  See man page for accepted types\n\
-       -p [interpreterPath] Set interpreter for script\n\
+       -P --load-profile [profilePath]      Load settings from profile file\n\
+       -a --name [name]                     Set name of application bundle\n\
+       -o --output-type [type]              Set output type.  See man page for accepted types\n\
+       -p --interpreter [interpreterPath]   Set interpreter for script\n\
        \n\
-       -i [iconPath]        Set icon for application\n\
-       -u [author]          Set name of application author\n\
-       -Q [iconPath]        Set icon for documents\n\
-       -V [version]         Set version of application\n\
-       -I [identifier]      Set bundle identifier (i.e. org.yourname.appname)\n\
+       -i --app-icon [iconPath]             Set icon for application\n\
+       -u --author [author]                 Set name of application author\n\
+       -Q --document-icon [iconPath]        Set icon for documents\n\
+       -V --app-version [version]           Set version of application\n\
+       -I --bundle-identifier [identifier]  Set bundle identifier (i.e. org.yourname.appname)\n\
        \n\
-       -A                   App runs with Administrator privileges\n\
-       -S                   Secure bundled script\n\
-       -D                   App accepts dropped files as argument to script\n\
-       -F                   App accepts dropped text as argument to script\n\
-       -Z                   App presents Open file dialog once launched\n\
-       -N                   App registers as a Mac OS X Service\n\
-       -B                   App runs in background (LSUI Element)\n\
-       -R                   App quits after executing script\n\
+       -A --admin-privileges                App runs with Administrator privileges\n\
+       -S --secure-script                   Secure bundled script\n\
+       -D --droppable                       App accepts dropped files as argument to script\n\
+       -F --text-droppable                  App accepts dropped text as argument to script\n\
+       -Z --file-prompt                     App presents Open file dialog once launched\n\
+       -N --service                         App registers as a Mac OS X Service\n\
+       -B --background                      App runs in background (LSUIElement)\n\
+       -R --quit-after-execution            App quits after executing script\n\
        \n\
-       -b [hexColor]        Set background color of text output (e.g. #ffffff)\n\
-       -g [hexColor]        Set foreground color of text output (e.g. #000000)\n\
-       -n [fontName]        Set font for text output field (e.g. 'Monaco 10')\n\
-       -E [encoding]        Set text encoding for script output (see man page)\n\
-       -X [suffixes]        Set suffixes handled by application\n\
-       -G [arguments]       Set arguments for script interpreter, separated by |\n\
-       -C [arguments]       Set arguments for script, separated by |\n\
+       -b --text-background-color [color]   Set background color of text output (e.g. #ffffff)\n\
+       -g --text-foreground-color [color]   Set foreground color of text output (e.g. #000000)\n\
+       -n --text-font [fontName]            Set font for text output field (e.g. 'Monaco 10')\n\
+       -E --text-encoding [encoding]        Set text encoding for script output (see man page)\n\
+       -X --suffixes [suffixes]             Set suffixes handled by application\n\
+       -G --interpreter-args [arguments]    Set arguments for script interpreter, separated by |\n\
+       -C --script-args [arguments]         Set arguments for script, separated by |\n\
        \n\
-       -K [kind]            Set Status Item kind ('Icon','Text', 'Icon and Text')\n\
-       -Y [title]           Set title of Status Item\n\
-       -L [imagePath]       Set icon of Status Item\n\
+       -K --status-item-kind [kind]         Set Status Item kind ('Icon','Text', 'Icon and Text')\n\
+       -Y --status-item-title [title]       Set title of Status Item\n\
+       -L --status-item-icon [imagePath]    Set icon of Status Item\n\
        \n\
-       -f [filePath]        Add a bundled file\n\
+       -f --bundled-file [filePath]         Add a bundled file\n\
        \n\
-       -x                   Create XML property lists instead of binary\n\
-       -y                   Force mode.  Overwrite any files/folders in path\n\
-       -d                   Development version.  Symlink to script instead of copying\n\
-       -l                   Optimize application.  Strip and compile bundled nib file\n\
-       -H [xibPath]         Specify alternate xib file to bundle with app\n\n\
-       -h                   Prints help\n\
-       -v                   Prints program name, version and author\n\n");
+       -x --xml-property-lists              Create XML property lists instead of binary\n\
+       -y --force                           Force mode.  Overwrite any files/folders in path\n\
+       -d --development-version             Development version.  Symlink to script instead of copying\n\
+       -l --optimize-xib                    Optimize application.  Strip and compile bundled nib file\n\
+       -H --alternate-xib [xibPath]         Specify alternate xib file to bundle with app\n\n\
+       -h --help                            Prints help\n\
+       -v --version                         Prints program name, version and author\n\n");
 }
 
 #pragma mark -
