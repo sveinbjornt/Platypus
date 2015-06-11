@@ -49,8 +49,6 @@
 - (NSArray *)scriptArgs;
 - (void)setInterpreterArgs:(NSArray *)array;
 - (void)setScriptArgs:(NSArray *)array;
-- (NSArray *)interpreterArgs;
-- (NSArray *)scriptArgs;
 
 - (IBAction)apply:(id)sender;
 
