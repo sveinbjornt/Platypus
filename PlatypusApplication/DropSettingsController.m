@@ -248,11 +248,11 @@
 }
 
 - (IBAction)acceptsFilesChanged:(id)sender {
-    [self setAcceptsFilesControlsEnabled:[sender intValue]];
+    [self setAcceptsFilesControlsEnabled:[sender boolValue]];
 }
 
 - (IBAction)acceptsTextChanged:(id)sender {
-    [self setAcceptsTextControlsEnabled:[sender intValue]];
+    [self setAcceptsTextControlsEnabled:[sender boolValue]];
 }
 
 #pragma mark -
