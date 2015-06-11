@@ -19,6 +19,20 @@
 
 #import <Cocoa/Cocoa.h>
 
+#ifdef DEBUG
+    void exceptionHandler(NSException *exception);
+
+    void exceptionHandler(NSException *exception) {
+        NSLog(@"%@", [exception reason]);
+        NSLog(@"%@", [exception userInfo]);
+        NSLog(@"%@", [exception callStackReturnAddresses]);
+        NSLog(@"%@", [exception callStackSymbols]);
+    }
+#endif
+
 int main(int argc, char *argv[]) {
+#ifdef DEBUG
+    NSSetUncaughtExceptionHandler(&exceptionHandler);
+#endif
     return NSApplicationMain(argc,  (const char **)argv);
 }
