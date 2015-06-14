@@ -32,6 +32,7 @@ either expressed or implied, of the FreeBSD Project.
 #import "PlatypusUtility.h"
 #import "STPrivilegedTask.h"
 #import "Common.h"
+#import "NSFileManager+TempFile.h"
 
 @interface PrefsController : NSWindowController
 {
@@ -55,9 +56,9 @@ either expressed or implied, of the FreeBSD Project.
 - (void)installCommandLineTool;
 - (void)uninstallCommandLineTool;
 - (IBAction)uninstallPlatypus:(id)sender;
-- (void)runCLTScript:(NSString *)scriptName;
+- (void)runCLTTemplateScript:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
 - (BOOL)isCommandLineToolInstalled;
-- (void)executeScriptWithPrivileges:(NSString *)pathToScript;
+- (void)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
 - (IBAction)selectScriptEditor:(id)sender;
 - (void)updateCLTStatus:(NSTextField *)textField;
 - (IBAction)cancel:(id)sender;

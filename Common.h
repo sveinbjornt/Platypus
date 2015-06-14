@@ -100,7 +100,6 @@ either expressed or implied, of the FreeBSD Project.
 #define PLATYPUS_PRIVILEGED_EXECUTION       1
 
 // path to temp script file
-#define TMP_SCRIPT_TEMPLATE                 @ ".plx_tmp.XXXXXX"
 #define TMP_STDIN_PATH                      @ "/tmp/.plstdin.XXXXXX"
 #define TMP_ICON_PATH                       @ "/tmp/PlatypusIcon.icns"
 

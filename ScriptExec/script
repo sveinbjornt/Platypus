@@ -54,7 +54,7 @@ print "Location: http://sveinbjorn.org"
 #    print system('ps cax | grep httpd');
 #    print "\nRestart";
 #} elsif ($ARGV[0] eq 'Restart') {
-#    system("/usr/bin/say Biatch");
+#    system("/usr/bin/say Hello, Dave. It can only be attributable to human error");
 #}
 
 
@@ -73,9 +73,6 @@ print "Location: http://sveinbjorn.org"
 #	print "http://smu.com\n";
 #	$i++;
 
-#	for ($u = 0; $u < 100000; $u++) {}
-	#system("curl -O http://sveinbjorn.org/index &> /dev/null");
-#}
 #print "Done";
 #print "Hola";
 

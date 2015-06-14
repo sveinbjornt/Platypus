@@ -28,6 +28,7 @@ either expressed or implied, of the FreeBSD Project.
  */
 
 #import "PrefsController.h"
+#import <sys/stat.h>
 
 @implementation PrefsController
 
@@ -129,7 +130,7 @@ either expressed or implied, of the FreeBSD Project.
     
     // create default bundle identifier prefix string
     NSString *bundleId = [NSString stringWithFormat:@"org.%@.", NSUserName()];
-    bundleId = [[bundleId componentsSeparatedByString:@" "] componentsJoinedByString:@""]; //remove all spaces
+    bundleId = [bundleId stringByReplacingOccurrencesOfString:@" " withString:@""];
     [defaultBundleIdentifierTextField setStringValue:bundleId];
     [DEFAULTS synchronize];
 }
@@ -209,7 +210,8 @@ either expressed or implied, of the FreeBSD Project.
  *****************************************/
 
 - (void)installCommandLineTool {
-    [self runCLTScript:@"InstallCommandLineTool.sh"];
+    
+    [self runCLTTemplateScript:@"InstallCommandLineTool.sh" usingDictionary:[NSDictionary dictionary]];
 }
 
 /*****************************************
@@ -217,12 +219,14 @@ either expressed or implied, of the FreeBSD Project.
  *****************************************/
 
 - (void)uninstallCommandLineTool {
-    [self runCLTScript:@"UninstallCommandLineTool.sh"];
+    [self runCLTTemplateScript:@"UninstallCommandLineTool.sh" usingDictionary:[NSDictionary dictionary]];
 }
 
 - (IBAction)uninstallPlatypus:(id)sender {
-    if ([PlatypusUtility proceedWarning:@"Are you sure you want to uninstall Platypus?" subText:@"This will move the Platypus application and all related files to the Trash.  The application will then quit." withAction:@"Uninstall"]) {
-        [self runCLTScript:@"UninstallPlatypus.sh"];
+    if ([PlatypusUtility proceedWarning:@"Are you sure you want to uninstall Platypus?"
+                                subText:@"This will move the Platypus application and all related files to the Trash.  The application will then quit."
+                             withAction:@"Uninstall"]) {
+        [self runCLTTemplateScript:@"UninstallPlatypus.sh" usingDictionary:[NSDictionary dictionary]];
         [[NSApplication sharedApplication] terminate:self];
     }
 }
@@ -231,10 +235,10 @@ either expressed or implied, of the FreeBSD Project.
  - Run a script with privileges from the Resources folder
  *****************************************/
 
-- (void)runCLTScript:(NSString *)scriptName {
+- (void)runCLTTemplateScript:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
     [installCLTProgressIndicator setUsesThreadedAnimation:YES];
     [installCLTProgressIndicator startAnimation:self];
-    [self executeScriptWithPrivileges:[[NSBundle mainBundle] pathForResource:scriptName ofType:NULL]];
+    [self executeScriptTemplateWithPrivileges:scriptName usingDictionary:placeholderDict];
     [self updateCLTStatus:CLTStatusTextField];
     [installCLTProgressIndicator stopAnimation:self];
 }
@@ -254,9 +258,16 @@ either expressed or implied, of the FreeBSD Project.
 /*****************************************
  - Run script with privileges using Authentication Manager
  *****************************************/
-- (void)executeScriptWithPrivileges:(NSString *)pathToScript {
+- (void)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
+    
+    NSString *script = [PlatypusUtility loadBundledTemplate:scriptName usingDictionary:placeholderDict];
+    NSString *tmpScriptPath = [FILEMGR createTempFileWithContents:script usingTextEncoding:NSUTF8StringEncoding];
+    chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // 744
+    
     // execute path, pass Resources directory and version as arguments 1 and 2
-    [STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:pathToScript arguments:[NSArray arrayWithObjects:[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION, nil]];
+    [STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:tmpScriptPath arguments:[NSArray arrayWithObjects:[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION, nil]];
+    NSLog(tmpScriptPath);
+    //[FILEMGR removeItemAtPath:tmpScriptPath error:nil];
 }
 
 @end
