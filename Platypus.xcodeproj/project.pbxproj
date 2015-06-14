@@ -893,7 +893,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp $SCRIPT_EXEC_BIN_PATH \"${RESOURCES_DIR}/ScriptExec\"\nrm -r $SCRIPT_EXEC_APP_PATH\n\n";
+			shellScript = "\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp $SCRIPT_EXEC_BIN_PATH \"${RESOURCES_DIR}/ScriptExec\"\nrm -r $SCRIPT_EXEC_APP_PATH\n";
 		};
 		F4FB337514FBDAD500BAECEB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
