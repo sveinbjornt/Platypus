@@ -1,27 +1,31 @@
 #!/bin/sh
-
+#
 # UninstallCommandLineTool.sh
 # Platypus
 #
 # Created by Sveinbjorn Thordarson on 6/17/08.
+#
+# Variables herein defined in Common.h
+#
 
-echo "Uninstalling command line tool" > /dev/stderr
+echo "Uninstalling command line tool"
 
 # Delete resources
-if [ -e "/usr/local/share/platypus/" ]
+if [ -e "%%CMDLINE_SHARE_PATH%%" ]
 then
-    echo "Deleting /usr/local/share/platypus/ directory" > /dev/stderr
-    rm -R "/usr/local/share/platypus/"
+    echo "Deleting '%%CMDLINE_SHARE_PATH%%' directory"
+    rm -R "%%CMDLINE_SHARE_PATH%%"
 fi
 
-if [ -e "/usr/local/bin/platypus" ]
+if [ -e "%%CMDLINE_TOOL_PATH%%" ]
 then
-    echo "Deleting platypus command line tool in /usr/local/bin/platypus" > /dev/stderr
-    rm "/usr/local/bin/platypus"
+    echo "Deleting %%CMDLINE_PROGNAME%% command line tool in %%CMDLINE_TOOL_PATH%%"
+    rm "%%CMDLINE_TOOL_PATH%%"
 fi
 
-if [ -e "/usr/local/share/man/man1/platypus.1" ]
+if [ -e "%%CMDLINE_MANPAGE_PATH%%" ]
 then
-    echo "Deleting platypus man page" > /dev/stderr
-    rm "/usr/local/share/man/man1/platypus.1"
+    echo "Deleting %%CMDLINE_PROGNAME%% man page"
+    rm "%%CMDLINE_MANPAGE_PATH%%"
 fi
+

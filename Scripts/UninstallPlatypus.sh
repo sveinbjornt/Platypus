@@ -1,29 +1,27 @@
 #!/bin/sh
-
+#
 # UninstallPlatypus.sh
 # Platypus
 #
 # Created by Sveinbjorn Thordarson 2012.
-
+#
 
 cd "$1"
 
-sh UninstallCommandLineTool.sh
-
-if [ -e ~/Library/Application\ Support/Platypus ]
+if [ -e "%%APP_SUPPORT_FOLDER%%" ]
 then
-    echo "Deleting application support folder..." > /dev/stderr
-    mv ~/Library/Application\ Support/Platypus ~/.Trash/PlatypusApplicationSupport-TRASHED-$RANDOM
+    echo "Deleting application support folder..."
+    mv "%%APP_SUPPORT_FOLDER%%" "~/.Trash/%%PROGRAM_NAME%%ApplicationSupport-TRASHED-$RANDOM"
 fi
 
-if [ -e ~/Library/Preferences/org.sveinbjorn.platypus.plist ]
+if [ -e "~/Library/Preferences/%%PROGRAM_BUNDLE_IDENTIFIER%%.plist" ]
 then
-    echo "Deleting Platypus preferences..." > /dev/stderr
-    mv ~/Library/Preferences/org.sveinbjorn.platypus.plist ~/.Trash/org.sveinbjorn.platypus-TRASHED-$RANDOM.plist
+    echo "Deleting %%PROGRAM_NAME%% preferences..."
+    mv "~/Library/Preferences/%%PROGRAM_BUNDLE_IDENTIFIER%%.plist" "~/.Trash/%%PROGRAM_BUNDLE_IDENTIFIER%%-TRASHED-$RANDOM.plist"
 fi
 
-if [ -e $1/../../../Platypus.app ]
+if [ -e "$1/../../../%%PROGRAM_NAME%%.app" ]
 then
-    echo "Moving Platypus.app to Trash" > /dev/stderr
-    mv $1/../../../Platypus.app ~/.Trash/Platypus-TRASHED-$RANDOM.app
+    echo "Moving %%PROGRAM_NAME%%.app to Trash"
+    mv "$1/../../../%%PROGRAM_NAME%%.app" "~/.Trash/%%PROGRAM_NAME%%-TRASHED-$RANDOM.app"
 fi

@@ -211,7 +211,35 @@ either expressed or implied, of the FreeBSD Project.
 
 - (void)installCommandLineTool {
     
-    [self runCLTTemplateScript:@"InstallCommandLineTool.sh" usingDictionary:[NSDictionary dictionary]];
+    [self runCLTTemplateScript:@"InstallCommandLineTool.sh" usingDictionary:[self commandLineEnvDict]];
+}
+
+- (NSDictionary *)commandLineEnvDict
+{
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            PROGRAM_NAME, @"PROGRAM_NAME",
+            PROGRAM_VERSION, @"PROGRAM_VERSION",
+            PROGRAM_STAMP, @"PROGRAM_STAMP",
+            PROGRAM_MIN_SYS_VERSION, @"PROGRAM_MIN_SYS_VERSION",
+            PROGRAM_BUNDLE_IDENTIFIER, @"PROGRAM_BUNDLE_IDENTIFIER",
+            PROGRAM_AUTHOR, @"PROGRAM_AUTHOR",
+            CMDLINE_PROGNAME_IN_BUNDLE, @"CMDLINE_PROGNAME_IN_BUNDLE",
+            CMDLINE_PROGNAME, @"CMDLINE_PROGNAME",
+            CMDLINE_SCRIPTEXEC_BIN_NAME, @"CMDLINE_SCRIPTEXEC_BIN_NAME",
+            CMDLINE_DEFAULT_ICON_NAME, @"CMDLINE_DEFAULT_ICON_NAME",
+            CMDLINE_NIB_NAME, @"CMDLINE_NIB_NAME",
+            CMDLINE_BASE_INSTALL_PATH, @"CMDLINE_BASE_INSTALL_PATH",
+            CMDLINE_BIN_PATH, @"CMDLINE_BIN_PATH",
+            CMDLINE_TOOL_PATH, @"CMDLINE_TOOL_PATH",
+            CMDLINE_SHARE_PATH, @"CMDLINE_SHARE_PATH",
+            CMDLINE_VERSION_PATH, @"CMDLINE_VERSION_PATH",
+            CMDLINE_MANDIR_PATH, @"CMDLINE_MANDIR_PATH",
+            CMDLINE_MANPAGE_PATH, @"CMDLINE_MANPAGE_PATH",
+            CMDLINE_EXEC_PATH, @"CMDLINE_EXEC_PATH",
+            CMDLINE_NIB_PATH, @"CMDLINE_NIB_PATH",
+            CMDLINE_SCRIPT_EXEC_PATH, @"CMDLINE_SCRIPT_EXEC_PATH",
+            CMDLINE_ICON_PATH, @"CMDLINE_ICON_PATH", nil];
+    
 }
 
 /*****************************************
@@ -219,14 +247,14 @@ either expressed or implied, of the FreeBSD Project.
  *****************************************/
 
 - (void)uninstallCommandLineTool {
-    [self runCLTTemplateScript:@"UninstallCommandLineTool.sh" usingDictionary:[NSDictionary dictionary]];
+    [self runCLTTemplateScript:@"UninstallCommandLineTool.sh" usingDictionary:[self commandLineEnvDict]];
 }
 
 - (IBAction)uninstallPlatypus:(id)sender {
     if ([PlatypusUtility proceedWarning:@"Are you sure you want to uninstall Platypus?"
                                 subText:@"This will move the Platypus application and all related files to the Trash.  The application will then quit."
                              withAction:@"Uninstall"]) {
-        [self runCLTTemplateScript:@"UninstallPlatypus.sh" usingDictionary:[NSDictionary dictionary]];
+        [self runCLTTemplateScript:@"UninstallPlatypus.sh" usingDictionary:[self commandLineEnvDict]];
         [[NSApplication sharedApplication] terminate:self];
     }
 }
@@ -266,6 +294,8 @@ either expressed or implied, of the FreeBSD Project.
     
     // execute path, pass Resources directory and version as arguments 1 and 2
     [STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:tmpScriptPath arguments:[NSArray arrayWithObjects:[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION, nil]];
+    
+
     NSLog(tmpScriptPath);
     //[FILEMGR removeItemAtPath:tmpScriptPath error:nil];
 }

@@ -34,6 +34,7 @@ either expressed or implied, of the FreeBSD Project.
 #define PROGRAM_VERSION             @ "4.9"
 #define PROGRAM_STAMP               [NSString stringWithFormat:@"%@-%@", PROGRAM_NAME, PROGRAM_VERSION]
 #define PROGRAM_MIN_SYS_VERSION     @ "10.6.0"
+#define PROGRAM_BUNDLE_IDENTIFIER   [NSString stringWithFormat:@"org.sveinbjorn.%@", PROGRAM_NAME]
 #define PROGRAM_AUTHOR              @ "Sveinbjorn Thordarson"
 #define PROGRAM_WEBSITE             @ "http://sveinbjorn.org/platypus"
 #define PROGRAM_DONATIONS           @ "http://sveinbjorn.org/donations"
@@ -48,7 +49,7 @@ either expressed or implied, of the FreeBSD Project.
 
 // default output text settings
 #define DEFAULT_OUTPUT_FONT         @ "Monaco"
-#define DEFAULT_OUTPUT_FONTSIZE     10.0
+#define DEFAULT_OUTPUT_FONTSIZE     13.0
 #define DEFAULT_OUTPUT_FG_COLOR     @ "#000000"
 #define DEFAULT_OUTPUT_BG_COLOR     @ "#ffffff"
 #define DEFAULT_OUTPUT_TXT_ENCODING NSUTF8StringEncoding
@@ -63,15 +64,22 @@ either expressed or implied, of the FreeBSD Project.
 #define PROGRAM_EXAMPLES_FOLDER     @ "/Examples/"
 
 // command line tool seetings
+#define CMDLINE_PROGNAME_IN_BUNDLE  @ "platypus_clt"
 #define CMDLINE_PROGNAME            @ "platypus"
+#define CMDLINE_SCRIPTEXEC_BIN_NAME @ "ScriptExec"
+#define CMDLINE_DEFAULT_ICON_NAME   @ "PlatypusDefault.icns"
+#define CMDLINE_NIB_NAME            @ "MainMenu.nib"
 #define CMDLINE_BASE_INSTALL_PATH   @ "/usr/local"
-#define CMDLINE_TOOL_PATH           [NSString stringWithFormat:@"%@/bin/platypus", CMDLINE_BASE_INSTALL_PATH]
-#define CMDLINE_SHARE_PATH          [NSString stringWithFormat:@"%@/share/platypus/", CMDLINE_BASE_INSTALL_PATH]
-#define CMDLINE_VERSION_PATH        [NSString stringWithFormat:@"%@/share/platypus/Version", CMDLINE_BASE_INSTALL_PATH]
-#define CMDLINE_MANPAGE_PATH        [NSString stringWithFormat:@"%@/share/man/man1/platypus.1", CMDLINE_BASE_INSTALL_PATH]
-#define CMDLINE_EXEC_PATH           [NSString stringWithFormat:@"%@/share/platypus/ScriptExec", CMDLINE_BASE_INSTALL_PATH]
-#define CMDLINE_NIB_PATH            [NSString stringWithFormat:@"%@/share/platypus/MainMenu.nib", CMDLINE_BASE_INSTALL_PATH]
-#define CMDLINE_ICON_PATH           [NSString stringWithFormat:@"%@/share/platypus/PlatypusDefault.icns", CMDLINE_BASE_INSTALL_PATH]
+#define CMDLINE_BIN_PATH            [NSString stringWithFormat:@"%@/bin", CMDLINE_BASE_INSTALL_PATH]
+#define CMDLINE_TOOL_PATH           [NSString stringWithFormat:@"%@/%@", CMDLINE_BIN_PATH, CMDLINE_PROGNAME]
+#define CMDLINE_SHARE_PATH          [NSString stringWithFormat:@"%@/share/%@/", CMDLINE_BASE_INSTALL_PATH, CMDLINE_PROGNAME]
+#define CMDLINE_VERSION_PATH        [NSString stringWithFormat:@"%@/Version", CMDLINE_SHARE_PATH]
+#define CMDLINE_MANDIR_PATH         [NSString stringWithFormat:@"%@/share/man/man1", CMDLINE_BASE_INSTALL_PATH]
+#define CMDLINE_MANPAGE_PATH        [NSString stringWithFormat:@"%@/%@.1", CMDLINE_MANDIR_PATH, CMDLINE_PROGNAME]
+#define CMDLINE_EXEC_PATH           [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_SCRIPTEXEC_BIN_NAME]
+#define CMDLINE_NIB_PATH            [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_NIB_NAME]
+#define CMDLINE_SCRIPT_EXEC_PATH    [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_SCRIPTEXEC_BIN_NAME]
+#define CMDLINE_ICON_PATH           [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_DEFAULT_ICON_NAME]
 
 #define IBTOOL_PATH                 @ "/Developer/usr/bin/ibtool"
 #define IBTOOL_PATH_2               @ "/Applications/Xcode.app/Contents/Developer/usr/bin/ibtool"
