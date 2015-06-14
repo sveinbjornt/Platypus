@@ -434,6 +434,14 @@ either expressed or implied, of the FreeBSD Project.
     if ([[anItem title] isEqualToString:@"Clear File List"] && [self numFiles] >= 1)
         return YES;
     
+    // Folders are never editable
+    if ([[anItem title] isEqualToString:@"Open in Editor"])
+    {
+        BOOL isFolder;
+        [FILEMGR fileExistsAtPath:@"" isDirectory:&isFolder];
+        return !isFolder;
+    }
+    
     if (selectedRow == -1)
         return NO;
     
