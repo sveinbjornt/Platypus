@@ -151,8 +151,11 @@
         //make sure all this data is sane, revert to defaults if not
         
         // font and size
-        if ([appSettingsPlist objectForKey:@"TextFont"] && [appSettingsPlist objectForKey:@"TextSize"])
-            textFont = [NSFont fontWithName:[appSettingsPlist objectForKey:@"TextFont"] size:[[appSettingsPlist objectForKey:@"TextSize"] floatValue]];
+        NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
+        CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [[appSettingsPlist objectForKey:@"TextSize"] floatValue];
+        fontSize = fontSize ? fontSize : DEFAULT_OUTPUT_FONTSIZE;
+        if ([appSettingsPlist objectForKey:@"TextFont"])
+            textFont = [NSFont fontWithName:[appSettingsPlist objectForKey:@"TextFont"] size:fontSize];
         if (!textFont)
             textFont = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE];
         
@@ -302,7 +305,6 @@
     if (outputType == PLATYPUS_STATUSMENU_OUTPUT)
         return;
 
-    NSLog(@"App did finish launching");
     if (promptForFileOnLaunch && isDroppable && ![jobQueue count])
         [self openFiles:self];
     else
@@ -1087,8 +1089,10 @@
                             options:0
                          usingBlock:^(id value, NSRange range, BOOL * stop) {
                              
-                             NSFont * font = value;
-                             font = [fontManager convertFont:font toSize:[font pointSize] + delta];
+                             NSFont *font = value;
+                             CGFloat newFontSize = [font pointSize] + delta;
+                             font = [fontManager convertFont:font toSize:newFontSize];
+                             [DEFAULTS setObject:[NSNumber numberWithFloat:newFontSize] forKey:@"UserFontSize"];
                              if (font != nil) {
                                  [textStorage removeAttribute:NSFontAttributeName range:range];
                                  [textStorage addAttribute:NSFontAttributeName value:font range:range];
