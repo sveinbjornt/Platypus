@@ -57,7 +57,6 @@
 		F4A36B9E14F2C8A70028A227 /* Ksh.png in Resources */ = {isa = PBXBuildFile; fileRef = F4A36B9C14F2C8A70028A227 /* Ksh.png */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
 		F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
-		F4BCAAED178DEDC2004ADD86 /* ScriptExec in Resources */ = {isa = PBXBuildFile; fileRef = F4BCAAEC178DEDC2004ADD86 /* ScriptExec */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
@@ -224,7 +223,6 @@
 		F4AF785C14D1E5F200544C1B /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = Shared/STDragWebView.m; sourceTree = "<group>"; };
 		F4B5DE3F14919FF500C43901 /* PlatypusUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusUtility.h; path = Shared/PlatypusUtility.h; sourceTree = "<group>"; };
 		F4B5DE4014919FF500C43901 /* PlatypusUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusUtility.m; path = Shared/PlatypusUtility.m; sourceTree = "<group>"; };
-		F4BCAAEC178DEDC2004ADD86 /* ScriptExec */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = ScriptExec; path = BuildData/Platypus/Build/Products/Development/ScriptExec.app/Contents/MacOS/ScriptExec; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
 		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
 		F4C8B455124C450C00397392 /* Platypus.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Platypus.xib; path = PlatypusApplication/Platypus.xib; sourceTree = "<group>"; };
@@ -385,7 +383,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F4BCAAEC178DEDC2004ADD86 /* ScriptExec */,
 				F4185E5811FC57AB0027C8D7 /* Info.plist */,
 				F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */,
 				F4C8B455124C450C00397392 /* Platypus.xib */,
@@ -879,7 +876,6 @@
 				F445EA9814FAEEBF00DCCDB3 /* UninstallPlatypus.sh in Resources */,
 				F4FB337714FBDE2200BAECEB /* platypus.man.html in Resources */,
 				F4FB338114FBFC7C00BAECEB /* License.html in Resources */,
-				F4BCAAED178DEDC2004ADD86 /* ScriptExec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,7 +904,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp $SCRIPT_EXEC_BIN_PATH \"${RESOURCES_DIR}/ScriptExec\"\nrm -r $SCRIPT_EXEC_APP_PATH\n";
+			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from within application bundles in the Copy Files phase,\n# we copy the ScriptExec.app bundle over, then copy the binary from it into Resources, then delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp $SCRIPT_EXEC_BIN_PATH \"${RESOURCES_DIR}/ScriptExec\"\nrm -r $SCRIPT_EXEC_APP_PATH\n";
 		};
 		F4FB337514FBDAD500BAECEB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
