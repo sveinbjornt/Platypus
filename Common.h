@@ -31,7 +31,7 @@ either expressed or implied, of the FreeBSD Project.
 
 // General program information
 #define PROGRAM_NAME                @ "Platypus"
-#define PROGRAM_VERSION             @ "4.9"
+#define PROGRAM_VERSION             @ "4.9.1"
 #define PROGRAM_STAMP               [NSString stringWithFormat:@"%@-%@", PROGRAM_NAME, PROGRAM_VERSION]
 #define PROGRAM_MIN_SYS_VERSION     @ "10.6.0"
 #define PROGRAM_BUNDLE_IDENTIFIER   [NSString stringWithFormat:@"org.sveinbjorn.%@", PROGRAM_NAME]
@@ -93,7 +93,7 @@ either expressed or implied, of the FreeBSD Project.
 #define DEFAULT_APP_NAME            @ "MyPlatypusApp"
 #define DEFAULT_DESTINATION_PATH    [[NSString stringWithFormat : @ "~/Desktop/%@.app", DEFAULT_APP_NAME] stringByExpandingTildeInPath]
 #define DEFAULT_OUTPUT_TYPE         @ "Progress Bar"
-#define DEFAULT_BUNDLE_ID           [PlatypusAppSpec standardBundleIdForAppName : DEFAULT_APP_NAME usingDefaults : NO]
+#define DEFAULT_BUNDLE_ID           [PlatypusAppSpec standardBundleIdForAppName:DEFAULT_APP_NAME usingDefaults:NO]
 
 // output modes
 #define PLATYPUS_NONE_OUTPUT                1
