@@ -216,7 +216,7 @@ either expressed or implied, of the FreeBSD Project.
     }
     
     for (NSString *key in dict) {
-        NSString *placeholder = [NSString stringWithFormat:@"%%%@%%", key];
+        NSString *placeholder = [NSString stringWithFormat:@"%%%%%@%%%%", key];
         templateStr = [templateStr stringByReplacingOccurrencesOfString:placeholder withString:[dict objectForKey:key]];
     }
     return templateStr;
