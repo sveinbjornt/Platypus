@@ -169,8 +169,7 @@ either expressed or implied, of the FreeBSD Project.
     //set status of clt install button and text field
     if ([self isCommandLineToolInstalled]) {
         NSString *versionString = [NSString stringWithContentsOfFile:CMDLINE_VERSION_PATH encoding:NSUTF8StringEncoding error:NULL];
-        if ([versionString length] > 3 && [versionString characterAtIndex:3] == '\n')
-            versionString = [versionString substringToIndex:3];
+        versionString = [versionString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         
         if ([versionString isEqualToString:PROGRAM_VERSION]) { // it's installed and current
             [textField setTextColor:[NSColor colorWithCalibratedRed:0.0 green:0.6 blue:0.0 alpha:1.0]];
@@ -178,6 +177,7 @@ either expressed or implied, of the FreeBSD Project.
         }
         else { // installed but not this version
             [textField setTextColor:[NSColor orangeColor]];
+            NSLog(@"%f vs %f", [versionString floatValue], [PROGRAM_VERSION floatValue]);
             
             if ([versionString floatValue] < [PROGRAM_VERSION floatValue])
                 [textField setStringValue:@"Old version of command line"];  //older
@@ -295,8 +295,6 @@ either expressed or implied, of the FreeBSD Project.
     // execute path, pass Resources directory and version as arguments 1 and 2
     [STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:tmpScriptPath arguments:[NSArray arrayWithObjects:[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION, nil]];
     
-
-    NSLog(tmpScriptPath);
     //[FILEMGR removeItemAtPath:tmpScriptPath error:nil];
 }
 
