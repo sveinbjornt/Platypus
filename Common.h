@@ -53,7 +53,7 @@ either expressed or implied, of the FreeBSD Project.
 #define DEFAULT_OUTPUT_BG_COLOR     @ "#ffffff"
 #define DEFAULT_OUTPUT_TXT_ENCODING NSUTF8StringEncoding
 
-#define PROGRAM_MAX_LIST_ITEMS      255
+#define PROGRAM_MAX_LIST_ITEMS      65535
 
 // documentation
 #define PROGRAM_README_FILE         @ "Readme.html"
@@ -64,13 +64,14 @@ either expressed or implied, of the FreeBSD Project.
 
 // command line tool seetings
 #define CMDLINE_PROGNAME            @ "platypus"
-#define CMDLINE_TOOL_PATH           @ "/usr/local/bin/platypus"
-#define CMDLINE_SHARE_PATH          @ "/usr/local/share/platypus/"
-#define CMDLINE_VERSION_PATH        @ "/usr/local/share/platypus/Version"
-#define CMDLINE_MANPAGE_PATH        @ "/usr/local/share/man/man1/platypus.1"
-#define CMDLINE_EXEC_PATH           @ "/usr/local/share/platypus/ScriptExec"
-#define CMDLINE_NIB_PATH            @ "/usr/local/share/platypus/MainMenu.nib"
-#define CMDLINE_ICON_PATH           @ "/usr/local/share/platypus/PlatypusDefault.icns"
+#define CMDLINE_BASE_INSTALL_PATH   @ "/usr/local"
+#define CMDLINE_TOOL_PATH           [NSString stringWithFormat:@"%@/bin/platypus", CMDLINE_BASE_INSTALL_PATH]
+#define CMDLINE_SHARE_PATH          [NSString stringWithFormat:@"%@/share/platypus/", CMDLINE_BASE_INSTALL_PATH]
+#define CMDLINE_VERSION_PATH        [NSString stringWithFormat:@"%@/share/platypus/Version", CMDLINE_BASE_INSTALL_PATH]
+#define CMDLINE_MANPAGE_PATH        [NSString stringWithFormat:@"%@/share/man/man1/platypus.1", CMDLINE_BASE_INSTALL_PATH]
+#define CMDLINE_EXEC_PATH           [NSString stringWithFormat:@"%@/share/platypus/ScriptExec", CMDLINE_BASE_INSTALL_PATH]
+#define CMDLINE_NIB_PATH            [NSString stringWithFormat:@"%@/share/platypus/MainMenu.nib", CMDLINE_BASE_INSTALL_PATH]
+#define CMDLINE_ICON_PATH           [NSString stringWithFormat:@"%@/share/platypus/PlatypusDefault.icns", CMDLINE_BASE_INSTALL_PATH]
 
 #define IBTOOL_PATH                 @ "/Developer/usr/bin/ibtool"
 #define IBTOOL_PATH_2               @ "/Applications/Xcode.app/Contents/Developer/usr/bin/ibtool"
