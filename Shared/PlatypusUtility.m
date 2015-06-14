@@ -206,6 +206,22 @@ either expressed or implied, of the FreeBSD Project.
     return true;
 }
 
++ (NSString *)loadBundledTemplate:(NSString *)templateFileName usingDictionary:(NSDictionary *)dict {
+    
+    NSString *fullPath = [[NSBundle mainBundle] pathForResource:templateFileName ofType:NULL];
+    NSString *templateStr = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
+    if (!templateStr) {
+        NSLog(@"");
+        return nil;
+    }
+    
+    for (NSString *key in dict) {
+        NSString *placeholder = [NSString stringWithFormat:@"%%%@%%", key];
+        templateStr = [templateStr stringByReplacingOccurrencesOfString:placeholder withString:[dict objectForKey:key]];
+    }
+    return templateStr;
+}
+
 // array with suffix of all image types supported by Cocoa
 + (NSArray *)imageFileSuffixes {
     return [NSArray arrayWithObjects:

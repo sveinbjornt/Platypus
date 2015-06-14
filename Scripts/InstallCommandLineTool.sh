@@ -18,6 +18,8 @@ mkdir -p "/usr/local/share/man/man1"
 echo "Changing to directory $1" > /dev/stderr
 cd "$1"
 
+# %%ble%%
+
 # Copy resources over
 echo "Copying resources" > /dev/stderr
 cp "platypus_clt" "/usr/local/bin/platypus"

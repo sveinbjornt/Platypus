@@ -46,5 +46,6 @@ either expressed or implied, of the FreeBSD Project.
 + (NSString *)sizeAsHumanReadable:(UInt64)size;
 + (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path;
 + (BOOL)openInDefaultBrowser:(NSString *)path;
++ (NSString *)loadBundledTemplate:(NSString *)templateFileName usingDictionary:(NSDictionary *)dict;
 + (NSArray *)imageFileSuffixes;
 @end

@@ -33,6 +33,7 @@
 #import "Common.h"
 #import "STPrivilegedTask.h"
 #import "STDragWebView.h"
+#import "NSFileManager+TempFile.h"
 
 @interface ScriptExecController : NSObject <NSMenuDelegate>
 {

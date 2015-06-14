@@ -14,6 +14,8 @@ For 5.0
     TODO: New button-based output mode?
     TODO: Make Status Items look good in Yosemite's Dark Mode: http://indiestack.com/2014/10/yosemites-dark-mode/
     TODO:  Make text in web views smaller or bigger
+    TODO: Save authentication password?
+    TODO: Dynamic (in code) install path for CLT
 
 For 4.9.1
     * Platypus-generated apps now remember font size set by user
