@@ -32,6 +32,7 @@ chmod -R 755 "%%CMDLINE_SHARE_PATH%%"
 
 # Create text file with version number
 echo "Creating CLT versioning file"
+touch "%%CMDLINE_VERSION_PATH%%"
 echo "%%PROGRAM_VERSION%%" > "%%CMDLINE_VERSION_PATH%%"
 
 exit 0

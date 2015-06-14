@@ -72,7 +72,7 @@ either expressed or implied, of the FreeBSD Project.
 #define CMDLINE_BASE_INSTALL_PATH   @ "/usr/local"
 #define CMDLINE_BIN_PATH            [NSString stringWithFormat:@"%@/bin", CMDLINE_BASE_INSTALL_PATH]
 #define CMDLINE_TOOL_PATH           [NSString stringWithFormat:@"%@/%@", CMDLINE_BIN_PATH, CMDLINE_PROGNAME]
-#define CMDLINE_SHARE_PATH          [NSString stringWithFormat:@"%@/share/%@/", CMDLINE_BASE_INSTALL_PATH, CMDLINE_PROGNAME]
+#define CMDLINE_SHARE_PATH          [NSString stringWithFormat:@"%@/share/%@", CMDLINE_BASE_INSTALL_PATH, CMDLINE_PROGNAME]
 #define CMDLINE_VERSION_PATH        [NSString stringWithFormat:@"%@/Version", CMDLINE_SHARE_PATH]
 #define CMDLINE_MANDIR_PATH         [NSString stringWithFormat:@"%@/share/man/man1", CMDLINE_BASE_INSTALL_PATH]
 #define CMDLINE_MANPAGE_PATH        [NSString stringWithFormat:@"%@/%@.1", CMDLINE_MANDIR_PATH, CMDLINE_PROGNAME]
