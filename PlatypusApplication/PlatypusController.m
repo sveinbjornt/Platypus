@@ -118,6 +118,7 @@ either expressed or implied, of the FreeBSD Project.
     //show window
     [window center];
     [window makeKeyAndOrderFront:self];
+    [appNameTextField becomeFirstResponder];
 }
 
 /*****************************************
