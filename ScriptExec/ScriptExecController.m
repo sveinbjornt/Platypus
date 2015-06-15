@@ -666,6 +666,8 @@
         if (!tempScriptPath) {
             [self fatalAlert:@"Failed to write script file" subText:[NSString stringWithFormat:@"Could not create the temp file '%@'", tempScriptPath]];
         }
+        chmod([tempScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);  // chmod 774 - make file executable
+
         scriptPath = [NSString stringWithString:tempScriptPath];
     }
     

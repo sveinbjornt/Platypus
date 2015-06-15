@@ -14,8 +14,6 @@
 		F40B227C1B28EFC7003C05ED /* platypus_clt in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4E1F6FC11F758FB007EE2E3 /* platypus_clt */; };
 		F40B227F1B28F37A003C05ED /* ScriptExec.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = F48B774111F7661C00351575 /* ScriptExec.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F40F756013C266AE00197499 /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40F755F13C266AE00197499 /* ShellCommandController.m */; };
-		F445EA7714FAB61900DCCDB3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
-		F445EA7914FAB64C00DCCDB3 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F445EA7614FAB61900DCCDB3 /* Sparkle.framework */; };
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
 		F445EA9814FAEEBF00DCCDB3 /* UninstallPlatypus.sh in Resources */ = {isa = PBXBuildFile; fileRef = F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */; };
 		F44E001D1229868100CAC9C2 /* PlatypusStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */; };
@@ -53,6 +51,8 @@
 		F4975D751B2E09310099D16E /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D731B2E09310099D16E /* STPrivilegedTask.m */; };
 		F4975D781B2E09450099D16E /* STPathTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D771B2E09450099D16E /* STPathTextField.m */; };
 		F4975D791B2E09450099D16E /* STPathTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D771B2E09450099D16E /* STPathTextField.m */; };
+		F4975D7E1B2E662B0099D16E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4975D7D1B2E662B0099D16E /* Sparkle.framework */; };
+		F4975D7F1B2E663B0099D16E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4975D7D1B2E662B0099D16E /* Sparkle.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F4A36B9D14F2C8A70028A227 /* Csh.png in Resources */ = {isa = PBXBuildFile; fileRef = F4A36B9B14F2C8A70028A227 /* Csh.png */; };
 		F4A36B9E14F2C8A70028A227 /* Ksh.png in Resources */ = {isa = PBXBuildFile; fileRef = F4A36B9C14F2C8A70028A227 /* Ksh.png */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
@@ -144,7 +144,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F445EA7914FAB64C00DCCDB3 /* Sparkle.framework in CopyFiles */,
+				F4975D7F1B2E663B0099D16E /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +160,6 @@
 		F40F755F13C266AE00197499 /* ShellCommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellCommandController.m; path = PlatypusApplication/ShellCommandController.m; sourceTree = "<group>"; };
 		F4185E5811FC57AB0027C8D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PlatypusApplication/Info.plist; sourceTree = "<group>"; };
 		F425CA681ACC4273001217F4 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
-		F445EA7614FAB61900DCCDB3 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Shared/Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Sparkle/dsa_pub.pem; sourceTree = "<group>"; };
 		F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_priv.pem; sourceTree = "<group>"; };
 		F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
@@ -216,6 +215,7 @@
 		F4975D761B2E09450099D16E /* STPathTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPathTextField.h; path = Shared/STPathTextField.h; sourceTree = "<group>"; };
 		F4975D771B2E09450099D16E /* STPathTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPathTextField.m; path = Shared/STPathTextField.m; sourceTree = "<group>"; };
 		F4975D7A1B2E462A0099D16E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		F4975D7D1B2E662B0099D16E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		F4A36B9B14F2C8A70028A227 /* Csh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Csh.png; sourceTree = "<group>"; };
 		F4A36B9C14F2C8A70028A227 /* Ksh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ksh.png; sourceTree = "<group>"; };
 		F4A4338B0E04C962000523E7 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Common.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -298,10 +298,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F40B22751B28D6CE003C05ED /* Carbon.framework in Frameworks */,
+				F4975D7E1B2E662B0099D16E /* Sparkle.framework in Frameworks */,
 				F40B22731B28D6BC003C05ED /* Accelerate.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */,
-				F445EA7714FAB61900DCCDB3 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +401,7 @@
 				F40B22741B28D6CE003C05ED /* Carbon.framework */,
 				F40B22721B28D6BC003C05ED /* Accelerate.framework */,
 				F425CA681ACC4273001217F4 /* Accelerate.framework */,
-				F445EA7614FAB61900DCCDB3 /* Sparkle.framework */,
+				F4975D7D1B2E662B0099D16E /* Sparkle.framework */,
 				F48B7BAA11F7675900351575 /* WebKit.framework */,
 				F4E1F47C11F756D9007EE2E3 /* Security.framework */,
 				F4ED1E460CEC17920006636F /* Carbon.framework */,
@@ -900,7 +900,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from within application bundles in the Copy Files phase,\n# we copy the ScriptExec.app bundle over, then copy the binary from it into Resources, then delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp $SCRIPT_EXEC_BIN_PATH \"${RESOURCES_DIR}/ScriptExec\"\nrm -r $SCRIPT_EXEC_APP_PATH\n";
+			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from\n# within application bundles in the Copy Files\n# phase, we copy the ScriptExec.app bundle over,\n# then copy the binary within into Resources,\n# and then finally delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp $SCRIPT_EXEC_BIN_PATH \"${RESOURCES_DIR}/ScriptExec\"\nrm -r $SCRIPT_EXEC_APP_PATH\n";
 		};
 		F4FB337514FBDAD500BAECEB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1006,7 +1006,8 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Shared/Frameworks\"",
+					"\"$(SRCROOT)/Frameworks\"",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1050,7 +1051,8 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Shared/Frameworks\"",
+					"\"$(SRCROOT)/Frameworks\"",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -1096,7 +1098,8 @@
 				CONFIGURATION_TEMP_DIR = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Shared/Frameworks\"",
+					"\"$(SRCROOT)/Frameworks\"",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
