@@ -357,7 +357,7 @@
 			children = (
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4A4338B0E04C962000523E7 /* Common.h */,
-				F48B7CB611F76B0C00351575 /* Platypus Application */,
+				F48B7CB611F76B0C00351575 /* Application */,
 				F48B7B8811F766CA00351575 /* ScriptExec Binary */,
 				F4E1F70711F75A40007EE2E3 /* Command Line Tool */,
 				080E96DDFE201D6D7F000001 /* Shared Classes */,
@@ -565,7 +565,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		F48B7CB611F76B0C00351575 /* Platypus Application */ = {
+		F48B7CB611F76B0C00351575 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -573,7 +573,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Auxiliary */,
 			);
-			name = "Platypus Application";
+			name = Application;
 			sourceTree = "<group>";
 		};
 		F4975D6D1B2E03250099D16E /* NSFileManager+TempFile */ = {
@@ -1093,6 +1093,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = NO;
+				CONFIGURATION_TEMP_DIR = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Shared/Frameworks\"",
@@ -1198,6 +1199,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CONFIGURATION_TEMP_DIR = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_CW_ASM_SYNTAX = NO;
