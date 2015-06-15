@@ -129,3 +129,8 @@ nil]
 // code abbreviations, Obj-C is a tediously verbose language
 #define FILEMGR                     [NSFileManager defaultManager]
 #define DEFAULTS                    [NSUserDefaults standardUserDefaults]
+
+#ifdef DEBUG
+    #define DLog(...) NSLog(__VA_ARGS__)
+#endif
+

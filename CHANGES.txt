@@ -1,23 +1,26 @@
 For 5.0
-    TODO:  Rethink and redesign the interface. It's a bit cluttered, hasn't changed much for 10 years, and could do with a dash of modernity.
-    TODO:  Implement automated testing!
-    TODO:  Get STDERR output and pid for STPrivilegedTask
-    TODO:  Create Platypus tutorial videos, make them available online
-    TODO:  AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
-    TODO:  Rewrite or at least refactor nasty 10 year old code in STFileList and SuffixList
-    TODO:  Restore "icon from image" functionality in command line tool (window server dependency?)
-    TODO:  Retina size support for icons and images used in user interface
-    TODO:  Hide PROGRESS:XX and other bidirectional communications syntax from output text field
-    TODO:  Fix broken "Select Image file as icon..." functionality on retina displays
-    TODO:  Make generated applications function even if they are moved while running. Requires IconFamily update.
-    TODO:  Long GNU named params for command line tool, e.g. --some-option
+    TODO: Rethink and redesign the interface. It's a bit cluttered, hasn't changed much for 10 years, and could do with a dash of modernity.
+    TODO: Implement automated testing!
+    TODO: Get STDERR output and pid for STPrivilegedTask
+    TODO: Create Platypus tutorial videos, make them available online
+    TODO: AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
+    TODO: Rewrite or at least refactor nasty 10 year old code in STFileList and SuffixList
+    TODO: Restore "icon from image" functionality in command line tool (window server dependency?)
+    TODO: Retina size support for icons and images used in user interface
+    TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
+    TODO: Fix broken "Select Image file as icon..." functionality on retina displays
+    TODO: Make generated applications function even if they are moved while running. Requires IconFamily update.
+    TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: New button-based output mode?
-    TODO: Make Status Items look good in Yosemite's Dark Mode: http://indiestack.com/2014/10/yosemites-dark-mode/
-    TODO:  Make text in web views smaller or bigger
-    TODO: Save authentication password?
-    TODO: Dynamic (in code) install path for CLT
 
 For 4.9.1
+    TODO: Make Status Items look good in Yosemite's Dark Mode: http://indiestack.com/2014/10/yosemites-dark-mode/
+    TODO: Save authentication password?
+    TODO: Make text in web views smaller or bigger using menu items
+    TODO: Fix Provide as Mac OS X service
+    TODO: Support UTIs
+    TODO: Make class based system with inheritance for different output modes in ScriptExec
+    * Dynamic (in code) install path for CLT stuff
     * Platypus-generated apps now remember font size set by user
     * Auto-focus on app name text field on app launch
 
@@ -87,7 +90,7 @@ For 4.6
     * Now using LLVM for builds instead of GCC, which makes for smaller code size
     * Changed "New Script" preset contents to be a "Hello, World" example in the selected language
     * Fixed bug with script path text field tab autocomplete
-    * Fixed bug in shell command generator which errenously inversed the logic of the -R flag
+    * Fixed bug in shell command generator which erronously inversed the logic of the -R flag
     * Fixed bug which caused crash when editing file in Bundled Files list using built-in editor.
     * Fixed bug where text font settings would not be applied
     * Fixed bug with contextual menus in Arguments window
