@@ -175,10 +175,9 @@ either expressed or implied, of the FreeBSD Project.
             [textField setTextColor:[NSColor colorWithCalibratedRed:0.0 green:0.6 blue:0.0 alpha:1.0]];
             [textField setStringValue:@"Command line tool is installed"];
         }
-        else { // installed but not this version
+        else {
+            // installed but not this version
             [textField setTextColor:[NSColor orangeColor]];
-            NSLog(@"%f vs %f", [versionString floatValue], [PROGRAM_VERSION floatValue]);
-            
             if ([versionString floatValue] < [PROGRAM_VERSION floatValue])
                 [textField setStringValue:@"Old version of command line"];  //older
             else

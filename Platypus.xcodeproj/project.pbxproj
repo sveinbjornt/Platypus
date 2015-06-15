@@ -53,8 +53,6 @@
 		F4975D751B2E09310099D16E /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D731B2E09310099D16E /* STPrivilegedTask.m */; };
 		F4975D781B2E09450099D16E /* STPathTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D771B2E09450099D16E /* STPathTextField.m */; };
 		F4975D791B2E09450099D16E /* STPathTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D771B2E09450099D16E /* STPathTextField.m */; };
-		F4975D7B1B2E462A0099D16E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = F4975D7A1B2E462A0099D16E /* README.md */; };
-		F4975D7C1B2E462A0099D16E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = F4975D7A1B2E462A0099D16E /* README.md */; };
 		F4A36B9D14F2C8A70028A227 /* Csh.png in Resources */ = {isa = PBXBuildFile; fileRef = F4A36B9B14F2C8A70028A227 /* Csh.png */; };
 		F4A36B9E14F2C8A70028A227 /* Ksh.png in Resources */ = {isa = PBXBuildFile; fileRef = F4A36B9C14F2C8A70028A227 /* Ksh.png */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
@@ -337,7 +335,7 @@
 				F4AF785E14D1E5F600544C1B /* STDragWebView */,
 				F41306340FBD809A00A319B7 /* STPathTextField */,
 				F44587170FC386B500CD0C02 /* STPrivilegedTask */,
-				F4975D6D1B2E03250099D16E /* New Group */,
+				F4975D6D1B2E03250099D16E /* NSFileManager+TempFile */,
 				F44EFEFF12296F2C00CAC9C2 /* NSColor+HexTools */,
 				F4FE738B11F792C3005FC23A /* IconFamily */,
 			);
@@ -578,13 +576,13 @@
 			name = "Platypus Application";
 			sourceTree = "<group>";
 		};
-		F4975D6D1B2E03250099D16E /* New Group */ = {
+		F4975D6D1B2E03250099D16E /* NSFileManager+TempFile */ = {
 			isa = PBXGroup;
 			children = (
 				F4975D6E1B2E09280099D16E /* NSFileManager+TempFile.h */,
 				F4975D6F1B2E09280099D16E /* NSFileManager+TempFile.m */,
 			);
-			name = "New Group";
+			name = "NSFileManager+TempFile";
 			sourceTree = "<group>";
 		};
 		F4AF785E14D1E5F600544C1B /* STDragWebView */ = {
@@ -938,7 +936,6 @@
 				F4FE736D11F7925E005FC23A /* BundledFilesController.m in Sources */,
 				F4FE736F11F7925E005FC23A /* SuffixList.m in Sources */,
 				F4FE737111F7925E005FC23A /* TextSettingsController.m in Sources */,
-				F4975D7C1B2E462A0099D16E /* README.md in Sources */,
 				F4FE738411F7929E005FC23A /* UKFileWatcher.m in Sources */,
 				F4FE738611F7929E005FC23A /* UKFNSubscribeFileWatcher.m in Sources */,
 				F4FE738811F7929E005FC23A /* UKKQueue.m in Sources */,
@@ -967,7 +964,6 @@
 				F4975D781B2E09450099D16E /* STPathTextField.m in Sources */,
 				F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */,
 				F4975D741B2E09310099D16E /* STPrivilegedTask.m in Sources */,
-				F4975D7B1B2E462A0099D16E /* README.md in Sources */,
 				F4975D701B2E09280099D16E /* NSFileManager+TempFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -211,7 +211,7 @@ either expressed or implied, of the FreeBSD Project.
     NSString *fullPath = [[NSBundle mainBundle] pathForResource:templateFileName ofType:NULL];
     NSString *templateStr = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
     if (!templateStr) {
-        NSLog(@"");
+        NSLog(@"Unable to read template %@", templateFileName);
         return nil;
     }
     
