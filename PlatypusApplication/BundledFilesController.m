@@ -27,7 +27,7 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of the FreeBSD Project.
  */
 
-// STFileList is a controller class around the Bundled Files list in the Platypus
+// This is a controller class around the Bundled Files list in the Platypus
 // window.  It is the data source and delegate of the tableview with the files.
 //
 // NOTE: It's also a complete mess and needs to be rewritten, it was one of the very first

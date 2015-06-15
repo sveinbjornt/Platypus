@@ -59,7 +59,7 @@ either expressed or implied, of the FreeBSD Project.
 // documentation
 #define PROGRAM_README_FILE         @ "Readme.html"
 #define PROGRAM_MANPAGE             @ "platypus.man.html"
-#define PROGRAM_DOCUMENTATION       @ "PlatypusDocumentation.html"
+#define PROGRAM_DOCUMENTATION       @ "Documentation.html"
 #define PROGRAM_LICENSE_FILE        @ "License.html"
 #define PROGRAM_EXAMPLES_FOLDER     @ "/Examples/"
 

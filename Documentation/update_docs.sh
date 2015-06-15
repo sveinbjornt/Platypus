@@ -1,6 +1,6 @@
 #!/bin/sh
 # Copies Platypus documentation files to public web server
 
-scp PlatypusDocumentation.html root@sveinbjorn.org:/www/sveinbjorn/html/files/manpages/PlatypusDocumentation.html
-scp Readme.html root@sveinbjorn.org:/www/sveinbjorn/html/files/manpages/Readme.html
-scp -r images root@sveinbjorn.org:/www/sveinbjorn/html/files/manpages/
+scp Documentation.html root@sveinbjorn.org:/www/sveinbjorn/html/files/software/platypus/documentation/Documentation.html
+scp Readme.html root@sveinbjorn.org:/www/sveinbjorn/html/files/software/platypus/documentation/Readme.html
+scp -r images root@sveinbjorn.org:/www/sveinbjorn/html/files/software/platypus/documentation/
