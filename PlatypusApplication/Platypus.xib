@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="2D4CEC1B-9640-4B15-9999-5C248A957015" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="595CE0D0-0B22-4558-AB4F-7536DAC3B328" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -566,7 +566,7 @@ DQ
                                     <action selector="openDonations:" target="335" id="11101"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="GNU General Public License" id="11096">
+                            <menuItem title="BSD License" id="11096">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openLicense:" target="335" id="11102"/>
@@ -968,7 +968,7 @@ CA
                             <menuItem isSeparatorItem="YES" id="11158">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="GNU General Public License" id="11105">
+                            <menuItem title="BSD License" id="11105">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openLicense:" target="335" id="11108"/>
@@ -2580,7 +2580,7 @@ Gw
         </window>
     </objects>
     <resources>
-        <image name="2D4CEC1B-9640-4B15-9999-5C248A957015" width="16" height="16">
+        <image name="595CE0D0-0B22-4558-AB4F-7536DAC3B328" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
