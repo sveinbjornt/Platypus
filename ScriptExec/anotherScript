@@ -1,3 +1,0 @@
-#!/usr/bin/perl
-
-print STDERR "Hello, world";
