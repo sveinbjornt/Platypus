@@ -145,6 +145,7 @@
 - (IBAction)newScript:(id)sender {
     NSString *newScriptPath = [self createNewScript:NULL];
     
+    
     //load and edit the script
     [self loadScript:newScriptPath];
     [self editScript:self];
