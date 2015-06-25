@@ -145,6 +145,7 @@
             <li><a href="#813">Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?</a></li>
             <li><a href="#814">Can I pass arguments to a Platypus-generated app via the command line?</a></li>
             <li><a href="#815">Can my script control when the wrapper application quits?</a></li>
+            <li><a href="#816">Where is the command line tool installed?</a></li>
         </ul>
     </li>
 </ul>
@@ -747,16 +748,16 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
 
 <h3 id="83">Does Platypus support localizations?</h3>
 
-<p>No.  But if you don't select "Optimize nib file" in the save dialog when creating an app, the nib in the resulting application bundle will be editable using XCode (or Interface Builder).  That way, you can localize it manually if you want to.  Localization support is <em>very low</em> on the feature roadmap, since it is tedious and burdensome to implement, and can be adequately dealt with using the method outlined above.</p>
+<p>No.  But if you don't select "Optimize nib file" in the save dialog when creating an app, the resulting nib in the application bundle can be edited using XCode.  That way, you can localize it manually if you want to.  Localization support is <em>very low</em> on the feature roadmap, since it can be adequately addressed using the method outlined above.</p>
 
-<p><em>Please do not send me any localizations you make for Platypus</em>, since I will not include them in the official distribution.  Localizations use up disk space and bandwidth, and inhibit the speed and freedom of development.  If you know scripting, you probably know English fairly well.  To my mind, localization simply isn't worth the hassle for a specialized developer tool.</p>
+<p><em>Please do not send me any localizations you make for Platypus itself</em>. I will not include them in the official distribution.  Localizations use up disk space and bandwidth, inhibit the speed and freedom of development and are generally tedious to maintain.  If you know enough to write your own scripts, you probably know English at least reasonably well.  To my mind, localization simply isn't worth the hassle for a specialized developer tool.</p>
     
 <br>
 <br>
 
 <h3 id="84">How does my script get the user's environment (e.g. PATH)?</h3>
 
-<p>Assuming that the user's shell is <code>bash</code>, you can set the interpreter to <code>/bin/bash</code> and add the <code>-l</code> flag as an argument to it under "Args".  This makes <code>bash</code> act as if it had been invoked as a login shell.  See <code>man bash</code> for details.</p>
+<p>Assuming that you're using <code>bash</code>, you can set the interpreter to <code>/bin/bash</code> and add the <code>-l</code> flag as an argument under "Args".  This makes <code>bash</code> act as if it had been invoked as a login shell.  See <code>man bash</code> for details.</p>
     
 <br>
 <br>
@@ -770,14 +771,14 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
     
 <h3 id="86">How do I uninstall Platypus?</h3>
 
-<p>Platypus uses less than 5MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select <strong>Uninstall Platypus</strong> from the Platypus application menu.  This will uninstall the command line tool (if you have installed it), and move the Platypus application and all its supporting files to the Trash.</p>
+<p>Platypus uses less than 5MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select <strong>Uninstall Platypus</strong> from the Platypus application menu.  This will uninstall the command line tool (if you have installed it), and move the Platypus application and all its supporting files -- <em>including Profiles</em> -- to the Trash.</p>
 
 <p>If you are using a version of Platypus prior to 4.7, you can remove Platypus manually by doing the following:</p>
 <ul>
     <li>If you have installed the command line tool, go into Preferences, and press "Uninstall Command Line Tool".</li>
     <li>Move Platypus.app to the Trash</li>
     <li>Move <code>~/Library/Application Support/Platypus</code> to the Trash</li>
-    <li>Finally, the Platypus prefs file is in <code>~/Preferences/org.sveinbjorn.Platypus</code> if you also want to delete it.</li>
+    <li>Finally, the Platypus prefs file is in <code>~/Preferences/org.sveinbjorn.Platypus</code> if you want to delete it.</li>
 </ul>
 
 <p>These are <em>all</em> the files Platypus creates on you system.</p>
@@ -903,7 +904,24 @@ Contents/Resources/MainMenu.nib
 <br>
 <br>
 <br>
-    
+
+<h3 id="816">Where is the command line tool installed?</h3>
+
+<p>The Platypus CLT install script creates the following files:</p>
+
+<code><pre>
+    /usr/local/bin/platypus                         program binary
+    /usr/local/share/platypus/ScriptExec            executable binary
+    /usr/local/share/platypus/MainMenu.nib          Nib file for app
+    /usr/local/share/platypus/PlatypusDefault.icns  Default icon
+</code></pre>
+
+<p>These files are all removed by the Platypus CLT uninstall script.</p>
+
+<br>
+<br>
+<br>
+
 <hr>
 
 
