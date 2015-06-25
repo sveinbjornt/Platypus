@@ -32,39 +32,46 @@
 
 @implementation STDragWebView
 
-- (id)initWithFrame:(NSRect)frameRect frameName:(NSString *)frameName groupName:(NSString *)groupName {
-    if ((self = [super initWithFrame:frameRect frameName:frameName groupName:groupName]))
-        delegate = NULL;
-    
-    return self;
-}
-
-//Accepting Drags ------------------------------------------------------------------------------------------------------
 #pragma mark Accepting Drags
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
-    return [delegate draggingEntered:sender];
+    if (delegate && [delegate respondsToSelector:@selector(draggingEntered:)]) {
+        return [delegate draggingEntered:sender];
+    }
+    return NSDragOperationNone;
 }
 
-- (void)draggingExited:(id <NSDraggingInfo> )sender;
-{
-    return [delegate draggingExited:sender];
+- (void)draggingExited:(id <NSDraggingInfo> )sender {
+    if (delegate && [delegate respondsToSelector:@selector(draggingExited:)]) {
+        [delegate draggingExited:sender];
+    }
 }
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo> )sender {
-    return [delegate draggingUpdated:sender];
+    if (delegate && [delegate respondsToSelector:@selector(draggingUpdated:)]) {
+        return [delegate draggingUpdated:sender];
+    }
+    return NSDragOperationNone;
 }
 
-/*- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
- return [delegate prepareForDragOperation:sender];
- }*/
+- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
+    if (delegate && [delegate respondsToSelector:@selector(prepareForDragOperation:)]) {
+        return [delegate prepareForDragOperation:sender];
+    }
+    return NO;
+}
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
-    return [delegate performDragOperation:sender];
+    if (delegate && [delegate respondsToSelector:@selector(performDragOperation:)]) {
+        return [delegate performDragOperation:sender];
+    }
+    return NO;
 }
 
 - (void)concludeDragOperation:(id <NSDraggingInfo> )sender {
-    return [delegate concludeDragOperation:sender];
+    if (delegate && [delegate respondsToSelector:@selector(concludeDragOperation:)]) {
+        [delegate concludeDragOperation:sender];
+    }
 }
 
 @end
