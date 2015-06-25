@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		F40B22731B28D6BC003C05ED /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40B22721B28D6BC003C05ED /* Accelerate.framework */; };
 		F40B22751B28D6CE003C05ED /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40B22741B28D6CE003C05ED /* Carbon.framework */; };
 		F40B227C1B28EFC7003C05ED /* platypus_clt in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4E1F6FC11F758FB007EE2E3 /* platypus_clt */; };
 		F40B227F1B28F37A003C05ED /* ScriptExec.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = F48B774111F7661C00351575 /* ScriptExec.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -75,6 +74,8 @@
 		F4A36B9E14F2C8A70028A227 /* Ksh.png in Resources */ = {isa = PBXBuildFile; fileRef = F4A36B9C14F2C8A70028A227 /* Ksh.png */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
 		F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
+		F4B87C1A1B3C997300F4B8BE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B87C191B3C997300F4B8BE /* Accelerate.framework */; };
+		F4B87C1B1B3C99AD00F4B8BE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B87C191B3C997300F4B8BE /* Accelerate.framework */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
@@ -153,9 +154,7 @@
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Platypus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platypus.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F40B22721B28D6BC003C05ED /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		F40B22741B28D6CE003C05ED /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		F425CA681ACC4273001217F4 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
 		F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Sparkle/dsa_pub.pem; sourceTree = "<group>"; };
 		F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_priv.pem; sourceTree = "<group>"; };
 		F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
@@ -255,6 +254,7 @@
 		F4AF785C14D1E5F200544C1B /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = Shared/STDragWebView.m; sourceTree = "<group>"; };
 		F4B5DE3F14919FF500C43901 /* PlatypusUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusUtility.h; path = Shared/PlatypusUtility.h; sourceTree = "<group>"; };
 		F4B5DE4014919FF500C43901 /* PlatypusUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusUtility.m; path = Shared/PlatypusUtility.m; sourceTree = "<group>"; };
+		F4B87C191B3C997300F4B8BE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
 		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
 		F4D6568E14C4BFD6003552F9 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
@@ -299,7 +299,7 @@
 			files = (
 				F40B22751B28D6CE003C05ED /* Carbon.framework in Frameworks */,
 				F4975D7E1B2E662B0099D16E /* Sparkle.framework in Frameworks */,
-				F40B22731B28D6BC003C05ED /* Accelerate.framework in Frameworks */,
+				F4B87C1B1B3C99AD00F4B8BE /* Accelerate.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */,
 			);
@@ -310,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F48B7B8111F7666600351575 /* Security.framework in Frameworks */,
+				F4B87C1A1B3C997300F4B8BE /* Accelerate.framework in Frameworks */,
 				F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */,
 				F48B7BAB11F7675900351575 /* WebKit.framework in Frameworks */,
 			);
@@ -389,9 +390,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F4B87C191B3C997300F4B8BE /* Accelerate.framework */,
 				F40B22741B28D6CE003C05ED /* Carbon.framework */,
-				F40B22721B28D6BC003C05ED /* Accelerate.framework */,
-				F425CA681ACC4273001217F4 /* Accelerate.framework */,
 				F4975D7D1B2E662B0099D16E /* Sparkle.framework */,
 				F48B7BAA11F7675900351575 /* WebKit.framework */,
 				F4E1F47C11F756D9007EE2E3 /* Security.framework */,

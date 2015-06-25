@@ -118,7 +118,7 @@
 - (NSString *)createNewScript:(NSString *)scriptText;
 - (IBAction)revealScript:(id)sender;
 - (IBAction)editScript:(id)sender;
-- (IBAction)runScript:(id)sender;
+- (IBAction)runScriptInTerminal:(id)sender;
 - (IBAction)checkSyntaxOfScript:(id)sender;
 - (void)openScriptInBuiltInEditor:(NSString *)path;
 
