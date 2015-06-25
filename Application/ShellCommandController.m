@@ -37,7 +37,7 @@
 }
 
 - (void)awakeFromNib {
-    [textView setFont:[NSFont userFixedPitchFontOfSize:10.0]];
+    [textView setFont:SHELL_COMMAND_STRING_FONT];
 }
 
 - (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow {
