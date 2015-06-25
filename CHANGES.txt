@@ -19,6 +19,7 @@ For 4.9.1
     TODO: Make text in web views smaller or bigger using menu items
     TODO: Fix Provide as Mac OS X service
     TODO: Support UTIs
+    TODO: More examples
     TODO: Make class based system with inheritance for different output modes in ScriptExec
     * Dynamic (in code) install path for CLT stuff
     * Platypus-generated apps now remember font size set by user
