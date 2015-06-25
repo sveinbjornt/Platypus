@@ -37,7 +37,7 @@
 }
 
 - (void)awakeFromNib {
-    [textView setFont:[NSFont userFixedPitchFontOfSize:13.0]];
+    [textView setFont:EDITOR_FONT];
 }
 
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)theWindow {
