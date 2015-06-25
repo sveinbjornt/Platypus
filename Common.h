@@ -96,6 +96,9 @@
 #define DEFAULT_OUTPUT_TYPE         @ "Progress Bar"
 #define DEFAULT_BUNDLE_ID           [PlatypusAppSpec standardBundleIdForAppName:DEFAULT_APP_NAME usingDefaults:NO]
 
+#define EDITOR_FONT [NSFont userFixedPitchFontOfSize:13.0]
+
+
 // output modes
 #define PLATYPUS_NONE_OUTPUT                1
 #define PLATYPUS_PROGRESSBAR_OUTPUT         2
