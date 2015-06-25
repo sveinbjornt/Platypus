@@ -32,7 +32,7 @@
                             <rect key="frame" x="1" y="1" width="543" height="320"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" verticallyResizable="YES" id="11">
+                                <textView importsGraphics="NO" richText="NO" selectionGranularity="word" findStyle="panel" allowsUndo="YES" verticallyResizable="YES" id="11">
                                     <rect key="frame" x="0.0" y="0.0" width="543" height="320"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -92,7 +92,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField toolTip="Path to the script being edited" verticalHuggingPriority="750" id="41">
-                        <rect key="frame" x="132" y="375" width="451" height="17"/>
+                        <rect key="frame" x="122" y="375" width="460" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" id="42">
                             <font key="font" metaFont="smallSystem"/>

@@ -224,8 +224,8 @@
  - Run the script in Terminal.app via Apple Event
  *****************************************/
 
-- (IBAction)runScript:(id)sender {
-    NSString *osaCmd = [NSString stringWithFormat:@"tell application \"Terminal\"\n\tdo script \"%@ '%@'\"\nend tell", [interpreterTextField stringValue], [scriptPathTextField stringValue]];
+- (IBAction)runScriptInTerminal:(id)sender {
+    NSString *osaCmd = [NSString stringWithFormat:@"tell application \"Terminal\"\n\tdo script \"%@ '%@'\"\nactivate\nend tell", [interpreterTextField stringValue], [scriptPathTextField stringValue]];
     NSAppleScript *script = [[NSAppleScript alloc] initWithSource:osaCmd];
     [script executeAndReturnError:nil];
     [script release];
@@ -982,7 +982,7 @@
     //edit script
     if (([anItem action] == @selector(editScript:) ||
          [anItem action] == @selector(revealScript:) ||
-         [anItem action] == @selector(runScript:) ||
+         [anItem action] == @selector(runScriptInTerminal:) ||
          [anItem action] == @selector(checkSyntaxOfScript:))
         && !validScriptFile)
         return NO;

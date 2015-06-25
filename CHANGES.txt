@@ -13,6 +13,8 @@ For 5.0
     TODO: New button-based output mode?
 
 For 4.9.1
+    TODO: High res retina icon images
+    TODO: Higher res preset icons
     TODO: Fix issue when icon is dragged around: "sandbox extension creation failed: file system representation creation error for path"
     TODO: Make Status Items look good in Yosemite's Dark Mode: http://indiestack.com/2014/10/yosemites-dark-mode/
     TODO: Save web view output as HTML
@@ -20,11 +22,11 @@ For 4.9.1
     TODO: Make text in web views smaller or bigger using menu items
     TODO: Fix Provide as Mac OS X service
     TODO: Support UTIs
-    TODO: SyntaxKit for built-in editor
-    TODO: Text size modifiable in built-in editor
+
     TODO: More examples
     TODO: Make class based system with inheritance for different output modes in ScriptExec
-    TODO: Documentation on how to install CLT into custom location using bundled install script
+    * Increased text size in built-in editor
+    * Updated documentation on what command line tool installs
     * Dynamic (in code) install path for CLT stuff
     * Platypus-generated apps now remember font size set by user
     * Auto-focus on app name text field on app launch

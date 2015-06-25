@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A598" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment version="1060" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <deployment version="1060" defaultVersion="1060" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ShellCommandController">
@@ -12,8 +12,8 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="comandWindow">
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="comandWindow">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="382" y="325" width="471" height="254"/>
@@ -82,7 +82,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="16">
                             <font key="font" metaFont="smallSystem"/>
-                            <string key="title"> The tool defaults to creating app in the same directory as the script.  You can add an additional argument with the path to where you want your application to be created.</string>
+                            <string key="title">The tool defaults to creating the app in the same directory as the script.  You can add an additional argument with the path to where you want your application to be created.</string>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
