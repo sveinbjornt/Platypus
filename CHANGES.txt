@@ -21,6 +21,7 @@ For 4.9.1
     TODO: Support UTIs
     TODO: More examples
     TODO: Make class based system with inheritance for different output modes in ScriptExec
+    TODO: Documentation on how to install CLT into custom location using bundled install script
     * Dynamic (in code) install path for CLT stuff
     * Platypus-generated apps now remember font size set by user
     * Auto-focus on app name text field on app launch
