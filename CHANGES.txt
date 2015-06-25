@@ -19,6 +19,8 @@ For 4.9.1
     TODO: Make text in web views smaller or bigger using menu items
     TODO: Fix Provide as Mac OS X service
     TODO: Support UTIs
+    TODO: SyntaxKit for built-in editor
+    TODO: Text size modifiable in built-in editor
     TODO: More examples
     TODO: Make class based system with inheritance for different output modes in ScriptExec
     TODO: Documentation on how to install CLT into custom location using bundled install script
