@@ -55,7 +55,7 @@
 #define DEFAULT_OUTPUT_BG_COLOR     @ "#ffffff"
 #define DEFAULT_OUTPUT_TXT_ENCODING NSUTF8StringEncoding
 
-#define PROGRAM_MAX_LIST_ITEMS      65535
+#define PROGRAM_MAX_LIST_ITEMS      255
 
 // documentation
 #define PROGRAM_README_FILE         @ "Readme.html"
@@ -97,7 +97,7 @@
 #define DEFAULT_BUNDLE_ID           [PlatypusAppSpec standardBundleIdForAppName:DEFAULT_APP_NAME usingDefaults:NO]
 
 #define EDITOR_FONT [NSFont userFixedPitchFontOfSize:13.0]
-
+#define SHELL_COMMAND_STRING_FONT [NSFont userFixedPitchFontOfSize:11.0]
 
 // output modes
 #define PLATYPUS_NONE_OUTPUT                1
