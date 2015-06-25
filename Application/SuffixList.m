@@ -57,7 +57,6 @@
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
-    //return ([items objectAtIndex: rowIndex]);
     
     if ([[aTableColumn identifier] caseInsensitiveCompare:@"2"] == NSOrderedSame) {
         return([[items objectAtIndex:rowIndex] objectForKey:@"suffix"]);
@@ -78,7 +77,8 @@
     if ([self hasSuffix:suffix])
         return;
     NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType:suffix];
-    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"suffix", suffix, @"icon", icon, nil];
+    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                            suffix, @"suffix", icon, @"icon", nil];
     [items addObject:infoDict];
 }
 
@@ -87,7 +87,9 @@
     
     for (i = 0; i < [suffixes count]; i++) {
         NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType:[suffixes objectAtIndex:i]];
-        [items addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"suffix", [suffixes objectAtIndex:i], @"icon", icon, nil]];
+        [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                          [suffixes objectAtIndex:i], @"suffix",
+                          icon, @"icon", nil]];
     }
 }
 
@@ -127,7 +129,8 @@
     NSMutableArray *suffices = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
     
     for (i = 0; i < [items count]; i++) {
-        [suffices addObject:[[items objectAtIndex:i] objectForKey:@"suffix"]];
+        NSString *suffix = [[items objectAtIndex:i] objectForKey:@"suffix"];
+        [suffices addObject:suffix];
     }
     
     return suffices;
