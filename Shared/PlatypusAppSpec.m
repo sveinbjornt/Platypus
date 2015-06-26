@@ -748,7 +748,7 @@
 }
 
 - (NSDictionary *)properties {
-    return [properties retain];
+    return properties;
 }
 
 - (NSString *)error {
