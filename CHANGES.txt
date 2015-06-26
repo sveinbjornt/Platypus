@@ -13,6 +13,7 @@ For 5.0
     TODO: New button-based output mode?
 
 For 4.9.1
+    TODO: Copy icon path for icon image well contextual menu
     TODO: High res retina icon images
     TODO: Higher res preset icons
     TODO: Fix issue when icon is dragged around: "sandbox extension creation failed: file system representation creation error for path"

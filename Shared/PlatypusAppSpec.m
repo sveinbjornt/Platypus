@@ -546,6 +546,11 @@
         return 0;
     }
     
+    // warn if font can't be instantiated
+    if ([NSFont fontWithName:[self propertyForKey:@"TextFont"] size:13] == nil) {
+        NSLog(@"Warning: Font \"%@\" cannot be instantiated.", [self propertyForKey:@"TextFont"]);
+    }
+    
     if ([[properties objectForKey:@"Name"] isEqualToString:@""]) {
         error = @"Empty app name";
         return 0;

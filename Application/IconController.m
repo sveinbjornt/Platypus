@@ -62,6 +62,12 @@
 
 #pragma mark -
 
+- (IBAction)copyIconPath:(id)sender {
+    
+    [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
+    [[NSPasteboard generalPasteboard] setString:[self icnsFilePath] forType:NSStringPboardType];
+}
+
 - (IBAction)copyIcon:(id)sender {
     [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSTIFFPboardType] owner:self];
     [[NSPasteboard generalPasteboard] setData:[[iconImageView image] TIFFRepresentation] forType:NSTIFFPboardType];
@@ -233,6 +239,9 @@
         
         if (type == NULL)
             return NO;
+    }
+    if ([[anItem title] isEqualToString:@"Copy Icon Path"]) {
+        
     }
     return YES;
 }

@@ -47,7 +47,6 @@
 - (IBAction)show:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Edit Text Settings", PROGRAM_NAME]];
     
-    //open window
     [NSApp  beginSheet:textSettingsWindow
         modalForWindow:window
          modalDelegate:nil
@@ -81,13 +80,7 @@
     [textPreviewTextView setTextColor:[foregroundColorWell color]];
 }
 
-#pragma mark -
-
-////////////////////////////////////////////////////////////////////////
-//
-//  Functions to handle the font selection manager
-//
-////////////////////////////////////////////////////////////////////////
+#pragma mark - Font Manager
 
 - (IBAction)chooseFont:(id)sender {
     //[textSettingsWindow makeFirstResponder: textEncodingPopupButton];
@@ -116,7 +109,6 @@
 }
 
 #pragma mark -
-//////////////////////////////////
 
 - (int)getTextEncoding {
     return [[textEncodingPopupButton selectedItem] tag];
@@ -133,8 +125,6 @@
 - (NSColor *)getTextBackground {
     return [backgroundColorWell color];
 }
-
-//////////////////////////////////
 
 - (void)setTextEncoding:(int)encoding {
     [textEncodingPopupButton selectItemWithTag:encoding];

@@ -40,6 +40,7 @@
     IBOutlet id platypusController;
     NSString *icnsFilePath;
 }
+- (IBAction)copyIconPath:(id)sender;
 - (IBAction)copyIcon:(id)sender;
 - (IBAction)pasteIcon:(id)sender;
 - (IBAction)revealIconInFinder:(id)sender;

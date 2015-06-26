@@ -124,7 +124,7 @@ DQ
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <button toolTip="Select a script to load" verticalHuggingPriority="750" id="316">
-                        <rect key="frame" x="571" y="398" width="72" height="28"/>
+                        <rect key="frame" x="571" y="397" width="72" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10951">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="E2B6C144-3E52-4D85-8FD2-B63AFDDEE5B7" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="B8B2EE96-BCF4-47B3-ABC5-4F3C211CD17E" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -197,7 +197,7 @@ DQ
                         </scroller>
                     </scrollView>
                     <button toolTip="Open script with default editor" verticalHuggingPriority="750" id="324">
-                        <rect key="frame" x="520" y="398" width="53" height="28"/>
+                        <rect key="frame" x="520" y="397" width="53" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10953">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -217,7 +217,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField toolTip="Path to your script" verticalHuggingPriority="750" id="334" customClass="STPathTextField">
-                        <rect key="frame" x="274" y="425" width="364" height="21"/>
+                        <rect key="frame" x="274" y="424" width="364" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingHead" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="10956">
                             <font key="font" metaFont="system"/>
@@ -249,7 +249,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Create and load a new script" verticalHuggingPriority="750" id="427">
-                        <rect key="frame" x="469" y="398" width="53" height="28"/>
+                        <rect key="frame" x="469" y="397" width="53" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="New" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10959">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -260,7 +260,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Reveal the script in the Finder" verticalHuggingPriority="750" id="429">
-                        <rect key="frame" x="410" y="398" width="61" height="28"/>
+                        <rect key="frame" x="410" y="397" width="61" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Reveal" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10960">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -733,61 +733,6 @@ CA
                                     <action selector="selectAll:" target="-1" id="179"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="174">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Find" id="168">
-                                <menu key="submenu" title="Find" id="159">
-                                    <items>
-                                        <menuItem title="Find…" tag="1" keyEquivalent="f" id="154">
-                                            <connections>
-                                                <action selector="performFindPanelAction:" target="-1" id="199"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Find Next" tag="2" keyEquivalent="g" id="167">
-                                            <connections>
-                                                <action selector="performFindPanelAction:" target="-1" id="200"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Find Previous" tag="3" keyEquivalent="G" id="162">
-                                            <connections>
-                                                <action selector="performFindPanelAction:" target="-1" id="201"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Use Selection for Find" tag="7" keyEquivalent="e" id="161">
-                                            <connections>
-                                                <action selector="performFindPanelAction:" target="-1" id="202"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Jump to Selection" keyEquivalent="j" id="155">
-                                            <connections>
-                                                <action selector="centerSelectionInVisibleArea:" target="-1" id="203"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="Spelling" id="184">
-                                <menu key="submenu" title="Spelling" id="185">
-                                    <items>
-                                        <menuItem title="Spelling…" keyEquivalent=":" id="187">
-                                            <connections>
-                                                <action selector="showGuessPanel:" target="-1" id="188"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Check Spelling" keyEquivalent=";" id="189">
-                                            <connections>
-                                                <action selector="checkSpelling:" target="-1" id="190"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Check Spelling as You Type" id="191">
-                                            <connections>
-                                                <action selector="toggleContinuousSpellChecking:" target="-1" id="192"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -1044,6 +989,11 @@ CA
                         <action selector="copyIcon:" target="1215" id="1262"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Copy Icon Path" id="Ckc-MY-Ido">
+                    <connections>
+                        <action selector="copyIconPath:" target="1215" id="PPq-ra-XGi"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Paste Icon" id="831">
                     <connections>
                         <action selector="pasteIcon:" target="1215" id="1263"/>
@@ -1090,6 +1040,7 @@ CA
             <connections>
                 <outlet property="delegate" destination="1215" id="1260"/>
             </connections>
+            <point key="canvasLocation" x="496" y="494.5"/>
         </menu>
         <customObject id="1215" userLabel="IconController" customClass="IconController">
             <connections>
@@ -2582,9 +2533,7 @@ Gw
     <resources>
         <image name="Add" width="23" height="20"/>
         <image name="Add_Pressed" width="23" height="20"/>
-        <image name="Clear" width="22" height="20"/>
-        <image name="Clear_Pressed" width="22" height="20"/>
-        <image name="E2B6C144-3E52-4D85-8FD2-B63AFDDEE5B7" width="16" height="16">
+        <image name="B8B2EE96-BCF4-47B3-ABC5-4F3C211CD17E" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -2664,6 +2613,8 @@ VRBoEHMQfBCBEIkQjBCREKAQpBCrELMQwBDFEMcQyRDOENYQ2RDeEOYQ6RD7EP4RAwAAAAAAAAIBAAAA
 AAAAAEIAAAAAAAAAAAAAAAAAABEFA
 </mutableData>
         </image>
+        <image name="Clear" width="22" height="20"/>
+        <image name="Clear_Pressed" width="22" height="20"/>
         <image name="PlatypusDefault" width="512" height="512"/>
         <image name="PlatypusStatusMenuIcon" width="16" height="16"/>
         <image name="Remove" width="23" height="20"/>
