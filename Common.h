@@ -112,6 +112,7 @@
 #define PLATYPUS_PRIVILEGED_EXECUTION       1
 
 // path to temp script file
+#define TMP_ICON_FILENAME
 #define TMP_STDIN_PATH                      @ "/tmp/.plstdin.XXXXXX"
 #define TMP_ICON_PATH                       @ "/tmp/PlatypusIcon.icns"
 

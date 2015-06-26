@@ -147,9 +147,6 @@
     return([files count]);
 }
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView {
-    return [self numFiles];
-}
 
 - (NSArray *)getFilesArray {
     NSMutableArray *fileNames = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
@@ -159,24 +156,6 @@
         [fileNames addObject:[[files objectAtIndex:i] objectForKey:@"Path"]];
     
     return fileNames;
-}
-
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
-    if ([[aTableColumn identifier] caseInsensitiveCompare:@"2"] == NSOrderedSame) { //path
-        // check if bundled file still exists at path
-        NSString *filePath = [[files objectAtIndex:rowIndex] objectForKey:@"Path"];
-        if ([FILEMGR fileExistsAtPath:filePath])
-            return([[files objectAtIndex:rowIndex] objectForKey:@"Path"]);
-        else { // if not, we hilight red
-            NSDictionary *attr = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor redColor], NSForegroundColorAttributeName, nil];
-            return([[[NSAttributedString alloc] initWithString:filePath attributes:attr] autorelease]);
-        }
-    }
-    else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) { //icon
-        return [[files objectAtIndex:rowIndex] objectForKey:@"Icon"];
-    }
-    
-    return(@"");
 }
 
 - (void)revealInFinder:(int)index {
@@ -349,7 +328,29 @@
     [platypusController updateEstimatedAppSize];
 }
 
-#pragma mark -
+#pragma mark - NSTableViewDelegate/DataSource
+
+- (int)numberOfRowsInTableView:(NSTableView *)aTableView {
+    return [self numFiles];
+}
+
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
+    if ([[aTableColumn identifier] caseInsensitiveCompare:@"2"] == NSOrderedSame) { //path
+        // check if bundled file still exists at path
+        NSString *filePath = [[files objectAtIndex:rowIndex] objectForKey:@"Path"];
+        if ([FILEMGR fileExistsAtPath:filePath])
+            return([[files objectAtIndex:rowIndex] objectForKey:@"Path"]);
+        else { // if not, we hilight red
+            NSDictionary *attr = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor redColor], NSForegroundColorAttributeName, nil];
+            return([[[NSAttributedString alloc] initWithString:filePath attributes:attr] autorelease]);
+        }
+    }
+    else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) { //icon
+        return [[files objectAtIndex:rowIndex] objectForKey:@"Icon"];
+    }
+    
+    return(@"");
+}
 
 /*****************************************
  - Delegate managing selection in the Bundled Files list

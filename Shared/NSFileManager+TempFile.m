@@ -32,8 +32,7 @@
 
 @implementation NSFileManager (TempFile)
 
-- (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {
-    
+- (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {
     // This could be done by just writing to /tmp, but this method is more secure
     // and will result in the script file being created at a path that looks something
     // like this:  /var/folders/yV/yV8nyB47G-WRvC76fZ3Be++++TI/-Tmp-/
@@ -41,9 +40,9 @@
     // Thanks to Matt Gallagher for this technique:
     // http://cocoawithlove.com/2009/07/temporary-files-and-folders-in-cocoa.html
     
-    NSString *tmpScriptTemplate = @"tmp_file_nsfilemgr_osx.XXXXXX";
+    NSString *tmpFileNameTemplate = fileName ? fileName : @"tmp_file_nsfilemgr_osx.XXXXXX";
     
-    NSString *tempFileTemplate = [NSTemporaryDirectory() stringByAppendingPathComponent:tmpScriptTemplate];
+    NSString *tempFileTemplate = [NSTemporaryDirectory() stringByAppendingPathComponent:tmpFileNameTemplate];
     const char *tempFileTemplateCString = [tempFileTemplate fileSystemRepresentation];
     char *tempFileNameCString = (char *)malloc(strlen(tempFileTemplateCString) + 1);
     strcpy(tempFileNameCString, tempFileTemplateCString);
@@ -70,6 +69,11 @@
         return nil;
     }
     return tempScriptPath;
+
+}
+
+- (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {
+    return [self createTempFileNamed:nil withContents:contentStr usingTextEncoding:textEncoding];
 }
 
 
