@@ -64,6 +64,7 @@
 - (NSArray *)getFilesArray;
 - (void)removeFile:(int)index;
 - (void)revealInFinder:(int)index;
+- (IBAction)copyFilename:(id)sender;
 - (void)openInFinder:(int)index;
 - (IBAction)editFileInFileList:(id)sender;
 - (IBAction)addFileToFileList:(id)sender;
