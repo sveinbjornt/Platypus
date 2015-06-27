@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FCA0E7AD-A1C3-46D9-8B2D-EC64AAA41E93" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="570E2F1B-BC4D-469E-A3F4-9937095DE4EE" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -538,6 +538,7 @@ DQ
                 <outlet property="editTypesButton" destination="372" id="553"/>
                 <outlet property="encryptCheckbox" destination="951" id="954"/>
                 <outlet property="fileList" destination="1234" id="11218"/>
+                <outlet property="generateUniversalBinaryCheckbox" destination="K0A-Y2-Y9M" id="Ux1-SP-T4p"/>
                 <outlet property="iconController" destination="1215" id="eHO-cn-oEo"/>
                 <outlet property="interpreterTextField" destination="305" id="337"/>
                 <outlet property="isDroppableCheckbox" destination="299" id="340"/>
@@ -1162,18 +1163,23 @@ CA
                         <action selector="openFileInFileList:" target="1234" id="8155"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Add New File" id="9750">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Open in Editor" id="11230">
+                    <connections>
+                        <action selector="editFileInFileList:" target="1234" id="11232"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="Reveal in Finder" id="1283">
                     <connections>
                         <action selector="revealFileInFileList:" target="1234" id="1296"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Open in Editor" id="11230">
+                <menuItem title="Copy Filename" id="Xe7-Kg-aaN">
                     <connections>
-                        <action selector="editFileInFileList:" target="1234" id="11232"/>
+                        <action selector="copyFilename:" target="1234" id="Rpz-Vo-FC8"/>
                     </connections>
+                </menuItem>
+                <menuItem title="Add New File" id="9750">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="1275">
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
@@ -2084,11 +2090,11 @@ DQ
             </connections>
         </window>
         <customView id="7866" userLabel="debugSaveOptionView">
-            <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
+            <rect key="frame" x="0.0" y="-3" width="350" height="117"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <button toolTip="Creates symlink to source script instead of copying it into the application bundle" id="7885">
-                    <rect key="frame" x="18" y="58" width="351" height="18"/>
+                    <rect key="frame" x="18" y="81" width="351" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <buttonCell key="cell" type="check" title="Development Version (symlink to script &amp; files)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11051">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2096,7 +2102,7 @@ DQ
                     </buttonCell>
                 </button>
                 <button toolTip="Strips and compiles the nib file in the application about to be created" id="11109">
-                    <rect key="frame" x="18" y="38" width="308" height="18"/>
+                    <rect key="frame" x="18" y="61" width="308" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <buttonCell key="cell" type="check" title="Optimize Application (strip nib file)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11110">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2104,14 +2110,23 @@ DQ
                     </buttonCell>
                 </button>
                 <button toolTip="Use XML property lists instead of binary format. " id="11338">
-                    <rect key="frame" x="18" y="18" width="313" height="18"/>
+                    <rect key="frame" x="18" y="41" width="313" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <buttonCell key="cell" type="check" title="Use XML property list format instead of binary" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="11339">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
+                <button toolTip="Use XML property lists instead of binary format. " id="K0A-Y2-Y9M">
+                    <rect key="frame" x="18" y="20" width="183" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <buttonCell key="cell" type="check" title="Generate Universal Binary" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="yYE-Xv-Cm4">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
             </subviews>
+            <point key="canvasLocation" x="117" y="568.5"/>
         </customView>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="10161" userLabel="statusItemSettingsWindow">
             <windowStyleMask key="styleMask" titled="YES"/>
@@ -2531,11 +2546,7 @@ Gw
         </window>
     </objects>
     <resources>
-        <image name="Add" width="23" height="20"/>
-        <image name="Add_Pressed" width="23" height="20"/>
-        <image name="Clear" width="22" height="20"/>
-        <image name="Clear_Pressed" width="22" height="20"/>
-        <image name="FCA0E7AD-A1C3-46D9-8B2D-EC64AAA41E93" width="16" height="16">
+        <image name="570E2F1B-BC4D-469E-A3F4-9937095DE4EE" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -2615,6 +2626,10 @@ VRBoEHMQfBCBEIkQjBCREKAQpBCrELMQwBDFEMcQyRDOENYQ2RDeEOYQ6RD7EP4RAwAAAAAAAAIBAAAA
 AAAAAEIAAAAAAAAAAAAAAAAAABEFA
 </mutableData>
         </image>
+        <image name="Add" width="23" height="20"/>
+        <image name="Add_Pressed" width="23" height="20"/>
+        <image name="Clear" width="22" height="20"/>
+        <image name="Clear_Pressed" width="22" height="20"/>
         <image name="PlatypusDefault" width="512" height="512"/>
         <image name="PlatypusStatusMenuIcon" width="16" height="16"/>
         <image name="Remove" width="23" height="20"/>

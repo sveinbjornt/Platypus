@@ -197,6 +197,21 @@
     }
 }
 
+- (IBAction)copyFilename:(id)sender {
+    
+     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
+    NSString *copyStr = @"";
+    for (int i = 0; i < [self numFiles]; i++) {
+        if ([selectedItems containsIndex:i]) {
+            NSString *filename = [[[files objectAtIndex:i] objectForKey:@"Path"] lastPathComponent];
+            copyStr = [copyStr stringByAppendingString:[NSString stringWithFormat:@"%@ ", filename]];
+        }
+    }
+    [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
+    [[NSPasteboard generalPasteboard] setString:copyStr forType:NSStringPboardType];
+
+}
+
 /*****************************************
  - called when a [+] button is pressed
  *****************************************/
