@@ -36,13 +36,6 @@
 
 @implementation IconController
 
-- (id)init {
-    if ((self = [super init])) {
-        icnsFilePath = nil;
-    }
-    return self;
-}
-
 - (void)dealloc {
     [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
     
@@ -222,7 +215,6 @@
 }
 
 - (UInt64)iconSize {
-    // if there is no icns associated with the icon, we calculate size of TIFF data
     if (![self hasIcns])
         return 400000; // just guess the icon will be 400k in size
     
@@ -362,8 +354,14 @@
 // sets text to custom icon
 - (void)updateForCustomIcon {
     [iconNameTextField setStringValue:@"Custom Icon"];
-    [self writeIconToPath:TMP_ICON_PATH];
-    [self setIcnsFilePath:TMP_ICON_PATH];
+    
+    NSString *tmpIconPath;
+    do {
+        tmpIconPath = TMP_ICON_PATH;
+    } while ([FILEMGR fileExistsAtPath:tmpIconPath]);
+    
+    [self writeIconToPath:tmpIconPath];
+    [self setIcnsFilePath:tmpIconPath];
 }
 
 #pragma mark -
