@@ -955,19 +955,18 @@
 
 //run open panel, made available to apps that are droppable
 - (IBAction)openFiles:(id)sender {
+    
     //create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setPrompt:@"Open"];
     [oPanel setAllowsMultipleSelection:YES];
+    [oPanel setCanChooseFiles:YES];
     [oPanel setCanChooseDirectories:acceptDroppedFolders];
     
-    // build array of acceptable file types
-    NSMutableArray *types = nil;
+    // set acceptable file types - default allows all
     if (!acceptAnyDroppedItem) {
-        types = [NSMutableArray array];
-        [types addObjectsFromArray:droppableSuffixes];
+        [oPanel setAllowedFileTypes:droppableSuffixes];
     }
-    [oPanel setAllowedFileTypes:types];
     
     if ([oPanel runModal] == NSFileHandlingPanelOKButton) {
         // Convert URLs to paths
@@ -1058,11 +1057,14 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    if (task != NULL)
-        [task terminate];
     
-    if ([[sender title] isEqualToString:@"Quit"])
+    if (task != NULL) {
+        [task terminate];
+    }
+    
+    if ([[sender title] isEqualToString:@"Quit"]) {
         [[NSApplication sharedApplication] terminate:self];
+    }
 }
 
 #pragma mark - Text resizing
@@ -1113,14 +1115,11 @@
 
 #pragma mark - Service handling
 
-// service
-
 - (void)dropService:(NSPasteboard *)pb userData:(NSString *)userData error:(NSString **)err {
     NSArray *types = [pb types];
     BOOL ret = 0;
     id data = nil;
     
-    // file(s)
     if (acceptsFiles && [types containsObject:NSFilenamesPboardType] && (data = [pb propertyListForType:NSFilenamesPboardType]))
         ret = [self addDroppedFilesJob:data];  // files
     else if (acceptsText && [types containsObject:NSStringPboardType] && (data = [pb stringForType:NSStringPboardType]))
@@ -1130,8 +1129,9 @@
         return;
     }
     
-    if (!isTaskRunning && ret)
+    if (!isTaskRunning && ret) {
         [self executeScript];
+    }
 }
 
 // text snippet drag handling
@@ -1144,15 +1144,17 @@
 
     NSInteger ret = [self addDroppedTextJob:pboardString];
     
-    if (!isTaskRunning && ret)
+    if (!isTaskRunning && ret) {
         [self executeScript];
+    }
 }
 
 #pragma mark - Create drop job
 
 - (BOOL)addTextJob:(NSString *)text {
-    if ([text length] <= 0) // ignore empty strings
+    if ([text length] <= 0) { // ignore empty strings
         return NO;
+    }
     
     // add job with text as argument for script
     NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity:ARG_MAX];
@@ -1163,16 +1165,18 @@
 }
 
 - (BOOL)addDroppedTextJob:(NSString *)text {
-    if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
+    if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS) {
         return NO;
+    }
     return [self addTextJob:text];
 }
 
 // drop files processing
 
 - (BOOL)addDroppedFilesJob:(NSArray *)files {
-    if (!isDroppable || !acceptsFiles || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
+    if (!isDroppable || !acceptsFiles || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS) {
         return NO;
+    }
     
     // Let's see what we have
     NSInteger i;
@@ -1210,16 +1214,20 @@
     BOOL isDir;
     
     // Check if it's a folder. If so, we only accept it if folders are accepted
-    if ([FILEMGR fileExistsAtPath:file isDirectory:&isDir] && isDir && acceptDroppedFolders)
+    if ([FILEMGR fileExistsAtPath:file isDirectory:&isDir] && isDir && acceptDroppedFolders) {
         return YES;
+    }
     
-    if (acceptAnyDroppedItem)
+    if (acceptAnyDroppedItem) {
         return YES;
+    }
     
     // see if it has accepted suffix
-    for (i = 0; i < [droppableSuffixes count]; i++)
-        if ([file hasSuffix:[droppableSuffixes objectAtIndex:i]])
+    for (i = 0; i < [droppableSuffixes count]; i++) {
+        if ([file hasSuffix:[droppableSuffixes objectAtIndex:i]]) {
             return YES;
+        }
+    }
     
     return NO;
 }
