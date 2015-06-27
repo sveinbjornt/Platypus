@@ -920,6 +920,7 @@
     NSString *filename;
     BOOL isDir = FALSE;
     
+    // File
     if ([[pboard types] containsObject:NSFilenamesPboardType]) {
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         filename = [files objectAtIndex:0]; //we only load the first dragged item
@@ -932,6 +933,7 @@
             return YES;
         }
     }
+    // String
     else if ([[pboard types] containsObject:NSStringPboardType]) {
         // create a new script file with the dropped string, load it
         NSString *draggedString = [pboard stringForType:NSStringPboardType];
