@@ -112,9 +112,8 @@
 #define PLATYPUS_PRIVILEGED_EXECUTION       1
 
 // path to temp script file
-#define TMP_ICON_FILENAME
 #define TMP_STDIN_PATH                      @ "/tmp/.plstdin.XXXXXX"
-#define TMP_ICON_PATH                       @ "/tmp/PlatypusIcon.icns"
+#define TMP_ICON_PATH                       [NSString stringWithFormat:@"%@/TmpIcon%d.icns", APP_SUPPORT_FOLDER, arc4random()]
 
 // this is surely enough
 #define PLATYPUS_MAX_QUEUE_JOBS             255
