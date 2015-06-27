@@ -20,12 +20,13 @@ For 4.9.1
     TODO: Make Status Items look good in Yosemite's Dark Mode: http://indiestack.com/2014/10/yosemites-dark-mode/
     TODO: Save web view output as HTML
     TODO: Save authentication password?
-    TODO: Make text in web views smaller or bigger using menu items
     TODO: Fix Provide as Mac OS X service
     TODO: Support UTIs
 
     TODO: More examples
     TODO: Make class based system with inheritance for different output modes in ScriptExec
+    * Fixed issue with Open... menu item and file types in ScriptExec
+    * Font size in web output view can now be increased/reduced
     * Increased text size in built-in editor
     * Updated documentation on what command line tool installs
     * Dynamic (in code) install path for CLT stuff

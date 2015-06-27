@@ -24,13 +24,13 @@
 			<string>Viewer</string>
 		</dict>
 		<dict>
-    		<key>CFBundleTypeRole</key>
-    		<string>Viewer</string>
-    		<key>LSItemContentTypes</key>
-    		<array>
-    			<string>public.folder</string>
-    		</array>
-    	</dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.folder</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>org.sveinbjorn.ScriptExec</string>
@@ -44,7 +44,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-    <key>NSServices</key>
+	<key>NSServices</key>
 	<array>
 		<dict>
 			<key>NSMenuItem</key>
@@ -59,7 +59,7 @@
 			<key>NSSendTypes</key>
 			<array>
 				<string>NSFilenamesPboardType</string>
-                <string>NSStringPboardType</string>
+				<string>NSStringPboardType</string>
 			</array>
 		</dict>
 	</array>
