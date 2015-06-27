@@ -83,6 +83,7 @@ int main(int argc, const char *argv[]) {
     NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:ARG_MAX];
     BOOL createProfile = FALSE;
     BOOL loadedProfile = FALSE;
+    BOOL deleteScript = FALSE;
     int optch;
     static char optstring[] = OPT_STRING;
     
@@ -538,6 +539,7 @@ int main(int argc, const char *argv[]) {
             
             // set temp file as script path
             scriptPath = TMP_STDIN_PATH;
+            deleteScript = YES;
         }
         else if ([fm fileExistsAtPath:scriptPath] == NO) {
             NSPrintErr(@"Error: No script file exists at path '%@'", scriptPath);
@@ -569,6 +571,11 @@ int main(int argc, const char *argv[]) {
     if (![appSpec verify] || ![appSpec create]) {
         NSPrintErr(@"Error: %@", [appSpec error]);
         exit(1);
+    }
+    
+    // if script was temporary file created from stdin, we remove it
+    if (deleteScript) {
+        [FILEMGR removeItemAtPath:scriptPath error:nil];
     }
     
     [pool drain];
@@ -690,7 +697,8 @@ static void PrintHelp(void) {
        -l --optimize-xib                    Optimize application.  Strip and compile bundled nib file\n\
        -H --alternate-xib [xibPath]         Specify alternate xib file to bundle with app\n\n\
        -h --help                            Prints help\n\
-       -v --version                         Prints program name, version and author\n\n");
+       -v --version                         Prints program name, version and author\n\n\
+See http://sveinbjorn.org/files/manpages/platypus.man.html for further details.");
 }
 
 #pragma mark -
