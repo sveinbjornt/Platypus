@@ -50,17 +50,15 @@
 
 #define OPT_STRING "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:G:C:b:g:n:E:K:Y:L:H:U:"
 
-
-
 static NSString *MakeAbsolutePath(NSString *path);
 static void PrintVersion(void);
 static void PrintUsage(void);
 static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
+
 #ifdef DEBUG
 void exceptionHandler(NSException *exception);
-
 void exceptionHandler(NSException *exception) {
     NSLog(@"%@", [exception reason]);
     NSLog(@"%@", [exception userInfo]);
@@ -106,8 +104,9 @@ int main(int argc, const char *argv[]) {
                     NSPrintErr(@"Error: Profile '%@' is invalid.  No file at path.", profilePath, PROGRAM_NAME);
                     exit(1);
                 }
-                if (![profilePath hasSuffix:PROFILES_SUFFIX])
+                if (![profilePath hasSuffix:PROFILES_SUFFIX]) {
                     NSPrintErr(@"Warning: Profile '%@' does not have profile suffix.  Trying anyway...");
+                }
                 
                 // read profile dictionary from file
                 NSDictionary *profileDict = [NSDictionary dictionaryWithContentsOfFile:profilePath];
@@ -143,8 +142,9 @@ int main(int argc, const char *argv[]) {
                 }
                 
                 // create bundled files array entry in properties if it doesn't already exist
-                if ([properties objectForKey:@"BundledFiles"] == nil)
+                if ([properties objectForKey:@"BundledFiles"] == nil) {
                     [properties setObject:[NSMutableArray array] forKey:@"BundledFiles"];
+                }
                 
                 // add file argument to it
                 [[properties objectForKey:@"BundledFiles"] addObject:filePath];
@@ -272,8 +272,9 @@ int main(int argc, const char *argv[]) {
             case 'p':
             {
                 NSString *interpreterPath = MakeAbsolutePath([NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING]);
-                if (![fm fileExistsAtPath:interpreterPath])
+                if (![fm fileExistsAtPath:interpreterPath]) {
                     NSPrintErr(@"Warning: Interpreter path '%@' invalid - no file at path.", interpreterPath);
+                }
                 
                 [properties setObject:interpreterPath forKey:@"Interpreter"];
             }
@@ -476,8 +477,9 @@ int main(int argc, const char *argv[]) {
     NSMutableArray *remainingArgs = [NSMutableArray arrayWithCapacity:ARG_MAX];
     while (optind < argc) {
         NSString *argStr = [NSString stringWithCString:argv[optind] encoding:DEFAULT_OUTPUT_TXT_ENCODING];
-        if (![argStr isEqualToString:@"-"])
+        if (![argStr isEqualToString:@"-"]) {
             argStr = MakeAbsolutePath(argStr);
+        }
         [remainingArgs addObject:argStr];
         optind += 1;
     }
@@ -487,29 +489,27 @@ int main(int argc, const char *argv[]) {
         destPath = [remainingArgs objectAtIndex:0];
         
         // append .platypus suffix to destination file if not user-specified
-        if ([destPath hasSuffix:@"-"])
+        if ([destPath hasSuffix:@"-"]) {
             printStdout = TRUE;
-        else if (![destPath hasSuffix:@".platypus"]) {
+        } else if (![destPath hasSuffix:@".platypus"]) {
             NSPrintErr(@"Warning: Appending .platypus extension");
             destPath = [destPath stringByAppendingString:@".platypus"];
         }
+        
         // we then dump the profile dictionary to path and exit
         appSpec = [PlatypusAppSpec specWithDefaults];
         [appSpec addProperties:properties];
         
-        if (printStdout)
-            [appSpec dump];
-        else
-            [appSpec dumpToFile:destPath];
+        printStdout ? [appSpec dump] : [appSpec dumpToFile:destPath];
         
         exit(0);
     }
     // if we loaded a profile, the first remaining arg is destination path, others ignored
     else if (loadedProfile) {
         destPath = [remainingArgs objectAtIndex:0];
-        if (![destPath hasSuffix:@".app"])
+        if (![destPath hasSuffix:@".app"]) {
             destPath = [destPath stringByAppendingString:@".app"];
-        
+        }
         appSpec = [PlatypusAppSpec specWithDefaults];
         [appSpec addProperties:properties];
         [appSpec setProperty:destPath forKey:@"Destination"];
@@ -587,8 +587,9 @@ int main(int argc, const char *argv[]) {
 
 static NSString *MakeAbsolutePath(NSString *path) {
     path = [path stringByExpandingTildeInPath];
-    if ([path isAbsolutePath] == NO)
+    if ([path isAbsolutePath] == NO) {
         path = [[FILEMGR currentDirectoryPath] stringByAppendingPathComponent:path];
+    }
     return [path stringByStandardizingPath];
 }
 
