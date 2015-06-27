@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="B8B2EE96-BCF4-47B3-ABC5-4F3C211CD17E" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FCA0E7AD-A1C3-46D9-8B2D-EC64AAA41E93" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -523,6 +523,159 @@ DQ
                 <outlet property="delegate" destination="335" id="371"/>
             </connections>
         </window>
+        <customObject id="335" userLabel="PlatypusController" customClass="PlatypusController">
+            <connections>
+                <outlet property="appNameTextField" destination="11541" id="11543"/>
+                <outlet property="appSizeTextField" destination="4168" id="4172"/>
+                <outlet property="argsController" destination="1418" id="C4L-bW-IsM"/>
+                <outlet property="authorTextField" destination="1141" id="1147"/>
+                <outlet property="bundleIdentifierTextField" destination="861" id="4163"/>
+                <outlet property="createAppButton" destination="312" id="496"/>
+                <outlet property="debugSaveOptionView" destination="7866" id="7887"/>
+                <outlet property="developmentVersionCheckbox" destination="7885" id="7888"/>
+                <outlet property="dropSettingsController" destination="1364" id="SvR-r8-57E"/>
+                <outlet property="editScriptButton" destination="324" id="491"/>
+                <outlet property="editTypesButton" destination="372" id="553"/>
+                <outlet property="encryptCheckbox" destination="951" id="954"/>
+                <outlet property="fileList" destination="1234" id="11218"/>
+                <outlet property="iconController" destination="1215" id="eHO-cn-oEo"/>
+                <outlet property="interpreterTextField" destination="305" id="337"/>
+                <outlet property="isDroppableCheckbox" destination="299" id="340"/>
+                <outlet property="optimizeApplicationCheckbox" destination="11109" id="11113"/>
+                <outlet property="outputTypePopupMenu" destination="4148" id="4161"/>
+                <outlet property="profilesController" destination="2872" id="Eil-aK-aFN"/>
+                <outlet property="progressBar" destination="11189" id="11191"/>
+                <outlet property="progressDialogMessageLabel" destination="11187" id="11193"/>
+                <outlet property="progressDialogStatusLabel" destination="11236" id="11238"/>
+                <outlet property="progressDialogWindow" destination="11185" id="11190"/>
+                <outlet property="remainRunningCheckbox" destination="697" id="700"/>
+                <outlet property="revealScriptButton" destination="429" id="493"/>
+                <outlet property="rootPrivilegesCheckbox" destination="293" id="4162"/>
+                <outlet property="scriptPathTextField" destination="334" id="344"/>
+                <outlet property="scriptTypePopupMenu" destination="3890" id="4147"/>
+                <outlet property="showInDockCheckbox" destination="523" id="524"/>
+                <outlet property="statusItemSettingsButton" destination="10159" id="10216"/>
+                <outlet property="statusItemSettingsController" destination="10213" id="AFv-S5-sWQ"/>
+                <outlet property="textOutputSettingsButton" destination="2061" id="3145"/>
+                <outlet property="textSettingsController" destination="2364" id="aSO-P4-da9"/>
+                <outlet property="versionTextField" destination="769" id="774"/>
+                <outlet property="window" destination="21" id="1581"/>
+                <outlet property="xmlPlistFormatCheckbox" destination="11338" id="11340"/>
+            </connections>
+        </customObject>
+        <customObject id="1215" userLabel="IconController" customClass="IconController">
+            <connections>
+                <outlet property="iconImageView" destination="300" id="11162"/>
+                <outlet property="iconNameTextField" destination="367" id="1273"/>
+                <outlet property="iconToggleButton" destination="308" id="1258"/>
+                <outlet property="platypusController" destination="335" id="fVm-2P-Z5h"/>
+                <outlet property="window" destination="21" id="1218"/>
+            </connections>
+        </customObject>
+        <customObject id="1234" userLabel="BundledFilesController" customClass="BundledFilesController">
+            <connections>
+                <outlet property="addFileButton" destination="959" id="1245"/>
+                <outlet property="bundleSizeTextField" destination="664" id="1244"/>
+                <outlet property="clearFileListButton" destination="965" id="1246"/>
+                <outlet property="contextualMenu" destination="1274" id="1289"/>
+                <outlet property="editFileButton" destination="11248" id="11252"/>
+                <outlet property="platypusController" destination="335" id="IT2-Hf-ys3"/>
+                <outlet property="removeFileButton" destination="961" id="1247"/>
+                <outlet property="revealFileButton" destination="963" id="1248"/>
+                <outlet property="tableView" destination="310" id="1254"/>
+                <outlet property="window" destination="21" id="1243"/>
+            </connections>
+        </customObject>
+        <customObject id="1364" userLabel="DropSettingsController" customClass="DropSettingsController">
+            <connections>
+                <outlet property="acceptDroppedFilesCheckbox" destination="11149" id="11155"/>
+                <outlet property="acceptDroppedTextCheckbox" destination="11151" id="11156"/>
+                <outlet property="addSuffixButton" destination="984" id="1365"/>
+                <outlet property="appFunctionRadioButtons" destination="672" id="1386"/>
+                <outlet property="declareServiceCheckbox" destination="11326" id="11328"/>
+                <outlet property="docIconImageView" destination="11239" id="11243"/>
+                <outlet property="droppedFilesSettingsBox" destination="11153" id="11154"/>
+                <outlet property="numSuffixesTextField" destination="704" id="1367"/>
+                <outlet property="promptForFileOnLaunchCheckbox" destination="11460" id="11462"/>
+                <outlet property="removeSuffixButton" destination="992" id="1369"/>
+                <outlet property="selectDocumentIconButton" destination="11241" id="11535"/>
+                <outlet property="suffixListDataBrowser" destination="708" id="1371"/>
+                <outlet property="suffixTextField" destination="712" id="1372"/>
+                <outlet property="typesErrorTextField" destination="824" id="1374"/>
+                <outlet property="typesWindow" destination="395" id="1376"/>
+                <outlet property="window" destination="21" id="1385"/>
+            </connections>
+        </customObject>
+        <customObject id="1418" userLabel="ArgsController" customClass="ArgsController">
+            <connections>
+                <outlet property="argsWindow" destination="1394" id="11342"/>
+                <outlet property="commandTextField" destination="1417" id="11341"/>
+                <outlet property="interpreterArgsAddButton" destination="1401" id="11277"/>
+                <outlet property="interpreterArgsClearButton" destination="1399" id="11276"/>
+                <outlet property="interpreterArgsContextualMenu" destination="1810" id="11330"/>
+                <outlet property="interpreterArgsRemoveButton" destination="1397" id="11275"/>
+                <outlet property="interpreterArgsTableView" destination="1405" id="11331"/>
+                <outlet property="interpreterTextField" destination="305" id="1440"/>
+                <outlet property="isDroppableCheckbox" destination="299" id="4911"/>
+                <outlet property="paramsCommandTextField" destination="1417" id="1424"/>
+                <outlet property="paramsTableView" destination="1405" id="1435"/>
+                <outlet property="paramsWindow" destination="1394" id="1419"/>
+                <outlet property="scriptArgsAddButton" destination="11264" id="11279"/>
+                <outlet property="scriptArgsClearButton" destination="11266" id="11281"/>
+                <outlet property="scriptArgsContextualMenu" destination="11293" id="11329"/>
+                <outlet property="scriptArgsRemoveButton" destination="11265" id="11280"/>
+                <outlet property="scriptArgsTableView" destination="11257" id="11332"/>
+                <outlet property="window" destination="21" id="1420"/>
+            </connections>
+        </customObject>
+        <customObject id="2364" userLabel="TextSettingsController" customClass="TextSettingsController">
+            <connections>
+                <outlet property="backgroundColorWell" destination="2079" id="2367"/>
+                <outlet property="fontFaceTextField" destination="2108" id="2369"/>
+                <outlet property="foregroundColorWell" destination="2080" id="2368"/>
+                <outlet property="textEncodingPopupButton" destination="2099" id="2370"/>
+                <outlet property="textPreviewTextView" destination="2078" id="2625"/>
+                <outlet property="textSettingsButton" destination="2061" id="5395"/>
+                <outlet property="textSettingsWindow" destination="2063" id="2365"/>
+                <outlet property="window" destination="21" id="2366"/>
+            </connections>
+        </customObject>
+        <customObject id="2872" userLabel="ProfilesController" customClass="ProfilesController">
+            <connections>
+                <outlet property="examplesMenuItem" destination="11227" id="11234"/>
+                <outlet property="platypusController" destination="335" id="9xD-pE-aYj"/>
+                <outlet property="profilesMenu" destination="788" id="2886"/>
+            </connections>
+        </customObject>
+        <customObject id="10213" userLabel="StatusItemSettingsController" customClass="StatusItemSettingsController">
+            <connections>
+                <outlet property="displayTypePopup" destination="10800" id="10806"/>
+                <outlet property="iconImageView" destination="10197" id="10510"/>
+                <outlet property="iconLabel" destination="10196" id="10512"/>
+                <outlet property="selectIconButton" destination="10194" id="10507"/>
+                <outlet property="statusItemSettingsWindow" destination="10161" id="10214"/>
+                <outlet property="titleLabel" destination="10198" id="10511"/>
+                <outlet property="titleTextField" destination="10199" id="10508"/>
+                <outlet property="window" destination="21" id="10215"/>
+            </connections>
+        </customObject>
+        <customObject id="11195" userLabel="PrefsController" customClass="PrefsController">
+            <connections>
+                <outlet property="CLTStatusTextField" destination="11384" id="11445"/>
+                <outlet property="createOnScriptChangeCheckbox" destination="11379" id="11444"/>
+                <outlet property="defaultAuthorTextField" destination="11393" id="11450"/>
+                <outlet property="defaultBundleIdentifierTextField" destination="11392" id="11451"/>
+                <outlet property="defaultEditorMenu" destination="11386" id="11459"/>
+                <outlet property="defaultTextEncodingPopupButton" destination="11390" id="11452"/>
+                <outlet property="installCLTButton" destination="11389" id="11446"/>
+                <outlet property="installCLTProgressIndicator" destination="11388" id="11447"/>
+                <outlet property="openAppCheckbox" destination="11381" id="11448"/>
+                <outlet property="prefsWindow" destination="11370" id="11454"/>
+                <outlet property="revealAppCheckbox" destination="11382" id="11449"/>
+                <outlet property="window" destination="11370" id="11443"/>
+            </connections>
+        </customObject>
+        <customObject id="11366" customClass="SUUpdater"/>
         <menu title="MainMenu" systemMenu="main" id="29" userLabel="MainMenu">
             <items>
                 <menuItem title="Platypus" id="56">
@@ -942,46 +1095,6 @@ CA
                 <outlet property="delegate" destination="335" id="476"/>
             </connections>
         </menu>
-        <customObject id="335" userLabel="PlatypusController" customClass="PlatypusController">
-            <connections>
-                <outlet property="appNameTextField" destination="11541" id="11543"/>
-                <outlet property="appSizeTextField" destination="4168" id="4172"/>
-                <outlet property="argsController" destination="1418" id="C4L-bW-IsM"/>
-                <outlet property="authorTextField" destination="1141" id="1147"/>
-                <outlet property="bundleIdentifierTextField" destination="861" id="4163"/>
-                <outlet property="createAppButton" destination="312" id="496"/>
-                <outlet property="debugSaveOptionView" destination="7866" id="7887"/>
-                <outlet property="developmentVersionCheckbox" destination="7885" id="7888"/>
-                <outlet property="dropSettingsController" destination="1364" id="SvR-r8-57E"/>
-                <outlet property="editScriptButton" destination="324" id="491"/>
-                <outlet property="editTypesButton" destination="372" id="553"/>
-                <outlet property="encryptCheckbox" destination="951" id="954"/>
-                <outlet property="fileList" destination="1234" id="11218"/>
-                <outlet property="iconController" destination="1215" id="eHO-cn-oEo"/>
-                <outlet property="interpreterTextField" destination="305" id="337"/>
-                <outlet property="isDroppableCheckbox" destination="299" id="340"/>
-                <outlet property="optimizeApplicationCheckbox" destination="11109" id="11113"/>
-                <outlet property="outputTypePopupMenu" destination="4148" id="4161"/>
-                <outlet property="profilesController" destination="2872" id="Eil-aK-aFN"/>
-                <outlet property="progressBar" destination="11189" id="11191"/>
-                <outlet property="progressDialogMessageLabel" destination="11187" id="11193"/>
-                <outlet property="progressDialogStatusLabel" destination="11236" id="11238"/>
-                <outlet property="progressDialogWindow" destination="11185" id="11190"/>
-                <outlet property="remainRunningCheckbox" destination="697" id="700"/>
-                <outlet property="revealScriptButton" destination="429" id="493"/>
-                <outlet property="rootPrivilegesCheckbox" destination="293" id="4162"/>
-                <outlet property="scriptPathTextField" destination="334" id="344"/>
-                <outlet property="scriptTypePopupMenu" destination="3890" id="4147"/>
-                <outlet property="showInDockCheckbox" destination="523" id="524"/>
-                <outlet property="statusItemSettingsButton" destination="10159" id="10216"/>
-                <outlet property="statusItemSettingsController" destination="10213" id="AFv-S5-sWQ"/>
-                <outlet property="textOutputSettingsButton" destination="2061" id="3145"/>
-                <outlet property="textSettingsController" destination="2364" id="aSO-P4-da9"/>
-                <outlet property="versionTextField" destination="769" id="774"/>
-                <outlet property="window" destination="21" id="1581"/>
-                <outlet property="xmlPlistFormatCheckbox" destination="11338" id="11340"/>
-            </connections>
-        </customObject>
         <menu title="Menu" id="830" userLabel="IconContextualMenu">
             <items>
                 <menuItem title="Copy Icon" id="832">
@@ -1042,29 +1155,6 @@ CA
             </connections>
             <point key="canvasLocation" x="496" y="494.5"/>
         </menu>
-        <customObject id="1215" userLabel="IconController" customClass="IconController">
-            <connections>
-                <outlet property="iconImageView" destination="300" id="11162"/>
-                <outlet property="iconNameTextField" destination="367" id="1273"/>
-                <outlet property="iconToggleButton" destination="308" id="1258"/>
-                <outlet property="platypusController" destination="335" id="fVm-2P-Z5h"/>
-                <outlet property="window" destination="21" id="1218"/>
-            </connections>
-        </customObject>
-        <customObject id="1234" userLabel="FileList" customClass="BundledFilesController">
-            <connections>
-                <outlet property="addFileButton" destination="959" id="1245"/>
-                <outlet property="bundleSizeTextField" destination="664" id="1244"/>
-                <outlet property="clearFileListButton" destination="965" id="1246"/>
-                <outlet property="contextualMenu" destination="1274" id="1289"/>
-                <outlet property="editFileButton" destination="11248" id="11252"/>
-                <outlet property="platypusController" destination="335" id="IT2-Hf-ys3"/>
-                <outlet property="removeFileButton" destination="961" id="1247"/>
-                <outlet property="revealFileButton" destination="963" id="1248"/>
-                <outlet property="tableView" destination="310" id="1254"/>
-                <outlet property="window" destination="21" id="1243"/>
-            </connections>
-        </customObject>
         <menu title="Menu" id="1274" userLabel="FileListContextualMenu">
             <items>
                 <menuItem title="Open With Finder" id="8154">
@@ -1463,26 +1553,6 @@ DQ
                 </subviews>
             </view>
         </window>
-        <customObject id="1364" userLabel="DropSettingsController" customClass="DropSettingsController">
-            <connections>
-                <outlet property="acceptDroppedFilesCheckbox" destination="11149" id="11155"/>
-                <outlet property="acceptDroppedTextCheckbox" destination="11151" id="11156"/>
-                <outlet property="addSuffixButton" destination="984" id="1365"/>
-                <outlet property="appFunctionRadioButtons" destination="672" id="1386"/>
-                <outlet property="declareServiceCheckbox" destination="11326" id="11328"/>
-                <outlet property="docIconImageView" destination="11239" id="11243"/>
-                <outlet property="droppedFilesSettingsBox" destination="11153" id="11154"/>
-                <outlet property="numSuffixesTextField" destination="704" id="1367"/>
-                <outlet property="promptForFileOnLaunchCheckbox" destination="11460" id="11462"/>
-                <outlet property="removeSuffixButton" destination="992" id="1369"/>
-                <outlet property="selectDocumentIconButton" destination="11241" id="11535"/>
-                <outlet property="suffixListDataBrowser" destination="708" id="1371"/>
-                <outlet property="suffixTextField" destination="712" id="1372"/>
-                <outlet property="typesErrorTextField" destination="824" id="1374"/>
-                <outlet property="typesWindow" destination="395" id="1376"/>
-                <outlet property="window" destination="21" id="1385"/>
-            </connections>
-        </customObject>
         <window title="Args Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="1394" userLabel="argsWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -1733,28 +1803,6 @@ DQ
                 </subviews>
             </view>
         </window>
-        <customObject id="1418" userLabel="ArgsController" customClass="ArgsController">
-            <connections>
-                <outlet property="argsWindow" destination="1394" id="11342"/>
-                <outlet property="commandTextField" destination="1417" id="11341"/>
-                <outlet property="interpreterArgsAddButton" destination="1401" id="11277"/>
-                <outlet property="interpreterArgsClearButton" destination="1399" id="11276"/>
-                <outlet property="interpreterArgsContextualMenu" destination="1810" id="11330"/>
-                <outlet property="interpreterArgsRemoveButton" destination="1397" id="11275"/>
-                <outlet property="interpreterArgsTableView" destination="1405" id="11331"/>
-                <outlet property="interpreterTextField" destination="305" id="1440"/>
-                <outlet property="isDroppableCheckbox" destination="299" id="4911"/>
-                <outlet property="paramsCommandTextField" destination="1417" id="1424"/>
-                <outlet property="paramsTableView" destination="1405" id="1435"/>
-                <outlet property="paramsWindow" destination="1394" id="1419"/>
-                <outlet property="scriptArgsAddButton" destination="11264" id="11279"/>
-                <outlet property="scriptArgsClearButton" destination="11266" id="11281"/>
-                <outlet property="scriptArgsContextualMenu" destination="11293" id="11329"/>
-                <outlet property="scriptArgsRemoveButton" destination="11265" id="11280"/>
-                <outlet property="scriptArgsTableView" destination="11257" id="11332"/>
-                <outlet property="window" destination="21" id="1420"/>
-            </connections>
-        </customObject>
         <menu title="Menu" id="11293" userLabel="scriptArgsContextualMenu">
             <items>
                 <menuItem title="Add Entry" id="11296">
@@ -2035,25 +2083,6 @@ DQ
                 <outlet property="delegate" destination="2364" id="4669"/>
             </connections>
         </window>
-        <customObject id="2364" userLabel="TextSettingsController" customClass="TextSettingsController">
-            <connections>
-                <outlet property="backgroundColorWell" destination="2079" id="2367"/>
-                <outlet property="fontFaceTextField" destination="2108" id="2369"/>
-                <outlet property="foregroundColorWell" destination="2080" id="2368"/>
-                <outlet property="textEncodingPopupButton" destination="2099" id="2370"/>
-                <outlet property="textPreviewTextView" destination="2078" id="2625"/>
-                <outlet property="textSettingsButton" destination="2061" id="5395"/>
-                <outlet property="textSettingsWindow" destination="2063" id="2365"/>
-                <outlet property="window" destination="21" id="2366"/>
-            </connections>
-        </customObject>
-        <customObject id="2872" userLabel="ProfilesController" customClass="ProfilesController">
-            <connections>
-                <outlet property="examplesMenuItem" destination="11227" id="11234"/>
-                <outlet property="platypusController" destination="335" id="9xD-pE-aYj"/>
-                <outlet property="profilesMenu" destination="788" id="2886"/>
-            </connections>
-        </customObject>
         <customView id="7866" userLabel="debugSaveOptionView">
             <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
             <autoresizingMask key="autoresizingMask"/>
@@ -2223,18 +2252,6 @@ DQ
                 </subviews>
             </view>
         </window>
-        <customObject id="10213" userLabel="StatusItemSettingsControl" customClass="StatusItemSettingsController">
-            <connections>
-                <outlet property="displayTypePopup" destination="10800" id="10806"/>
-                <outlet property="iconImageView" destination="10197" id="10510"/>
-                <outlet property="iconLabel" destination="10196" id="10512"/>
-                <outlet property="selectIconButton" destination="10194" id="10507"/>
-                <outlet property="statusItemSettingsWindow" destination="10161" id="10214"/>
-                <outlet property="titleLabel" destination="10198" id="10511"/>
-                <outlet property="titleTextField" destination="10199" id="10508"/>
-                <outlet property="window" destination="21" id="10215"/>
-            </connections>
-        </customObject>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="11185" userLabel="Progress Dialog">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -2269,23 +2286,6 @@ DQ
                 </subviews>
             </view>
         </window>
-        <customObject id="11195" userLabel="PrefsController" customClass="PrefsController">
-            <connections>
-                <outlet property="CLTStatusTextField" destination="11384" id="11445"/>
-                <outlet property="createOnScriptChangeCheckbox" destination="11379" id="11444"/>
-                <outlet property="defaultAuthorTextField" destination="11393" id="11450"/>
-                <outlet property="defaultBundleIdentifierTextField" destination="11392" id="11451"/>
-                <outlet property="defaultEditorMenu" destination="11386" id="11459"/>
-                <outlet property="defaultTextEncodingPopupButton" destination="11390" id="11452"/>
-                <outlet property="installCLTButton" destination="11389" id="11446"/>
-                <outlet property="installCLTProgressIndicator" destination="11388" id="11447"/>
-                <outlet property="openAppCheckbox" destination="11381" id="11448"/>
-                <outlet property="prefsWindow" destination="11370" id="11454"/>
-                <outlet property="revealAppCheckbox" destination="11382" id="11449"/>
-                <outlet property="window" destination="11370" id="11443"/>
-            </connections>
-        </customObject>
-        <customObject id="11366" customClass="SUUpdater"/>
         <window title="Platypus Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="Platypus Preferences" animationBehavior="default" id="11370" userLabel="prefsWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -2533,7 +2533,9 @@ Gw
     <resources>
         <image name="Add" width="23" height="20"/>
         <image name="Add_Pressed" width="23" height="20"/>
-        <image name="B8B2EE96-BCF4-47B3-ABC5-4F3C211CD17E" width="16" height="16">
+        <image name="Clear" width="22" height="20"/>
+        <image name="Clear_Pressed" width="22" height="20"/>
+        <image name="FCA0E7AD-A1C3-46D9-8B2D-EC64AAA41E93" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -2613,8 +2615,6 @@ VRBoEHMQfBCBEIkQjBCREKAQpBCrELMQwBDFEMcQyRDOENYQ2RDeEOYQ6RD7EP4RAwAAAAAAAAIBAAAA
 AAAAAEIAAAAAAAAAAAAAAAAAABEFA
 </mutableData>
         </image>
-        <image name="Clear" width="22" height="20"/>
-        <image name="Clear_Pressed" width="22" height="20"/>
         <image name="PlatypusDefault" width="512" height="512"/>
         <image name="PlatypusStatusMenuIcon" width="16" height="16"/>
         <image name="Remove" width="23" height="20"/>

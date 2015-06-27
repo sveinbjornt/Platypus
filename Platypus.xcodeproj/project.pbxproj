@@ -373,8 +373,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F4975DB91B2E71FC0099D16E /* Editor.xib */,
 				F4975DBA1B2E71FC0099D16E /* Info.plist */,
+				F4975DB91B2E71FC0099D16E /* Editor.xib */,
 				F4975DBB1B2E71FC0099D16E /* Platypus.xib */,
 				F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */,
 				F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */,
@@ -884,7 +884,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from\n# within application bundles in the Copy Files\n# phase, we copy the ScriptExec.app bundle over,\n# then copy the binary within into Resources,\n# and then finally delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp $SCRIPT_EXEC_BIN_PATH \"${RESOURCES_DIR}/ScriptExec\"\nrm -r $SCRIPT_EXEC_APP_PATH\n";
+			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from\n# within application bundles in the Copy Files\n# phase, we copy the ScriptExec.app bundle over,\n# then copy the binary within into Resources,\n# and finally delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp $SCRIPT_EXEC_BIN_PATH \"${RESOURCES_DIR}/ScriptExec\"\nrm -r $SCRIPT_EXEC_APP_PATH\n";
 		};
 		F4FB337514FBDAD500BAECEB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -990,7 +990,6 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1011,7 +1010,7 @@
 				INFOPLIST_FILE = Application/Resources/Info.plist;
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Platypus;
@@ -1035,10 +1034,9 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
 					"$(PROJECT_DIR)/Frameworks",
 				);
-				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1082,9 +1080,9 @@
 				CONFIGURATION_TEMP_DIR = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
 					"$(PROJECT_DIR)/Frameworks",
 				);
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -1112,7 +1110,7 @@
 		F41B2182085CD8FF00B63B0D /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_CW_ASM_SYNTAX = NO;
@@ -1137,7 +1135,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PLIST_FILE_OUTPUT_FORMAT = XML;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				SYMROOT = "";
 				VALID_ARCHS = "i386 x86_64";
@@ -1175,7 +1173,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PLIST_FILE_OUTPUT_FORMAT = binary;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				SYMROOT = "";
 				VALID_ARCHS = "i386 x86_64";
@@ -1211,7 +1209,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PLIST_FILE_OUTPUT_FORMAT = binary;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				SYMROOT = "";
 			};
@@ -1229,13 +1227,13 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = "";
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = xml;
 				INSTALL_PATH = /;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PLIST_FILE_OUTPUT_FORMAT = xml;
 				PRODUCT_NAME = ScriptExec;
 			};
@@ -1251,14 +1249,14 @@
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = "";
 				GCC_UNROLL_LOOPS = NO;
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INSTALL_PATH = /;
-				PLIST_FILE_OUTPUT_FORMAT = xml;
+				PLIST_FILE_OUTPUT_FORMAT = binary;
 				PRODUCT_NAME = ScriptExec;
 				STRIP_INSTALLED_PRODUCT = YES;
 			};
@@ -1272,7 +1270,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = "";
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
