@@ -255,6 +255,7 @@
 		F4B5DE3F14919FF500C43901 /* PlatypusUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusUtility.h; path = Shared/PlatypusUtility.h; sourceTree = "<group>"; };
 		F4B5DE4014919FF500C43901 /* PlatypusUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusUtility.m; path = Shared/PlatypusUtility.m; sourceTree = "<group>"; };
 		F4B87C191B3C997300F4B8BE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
+		F4B87C501B3F04F400F4B8BE /* cat2html.l */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.lex; name = cat2html.l; path = CommandLineTool/cat2html.l; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
 		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
 		F4D6568E14C4BFD6003552F9 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
@@ -689,6 +690,7 @@
 				F4462E3F14FBDA4D00E13563 /* make_man_pdf.sh */,
 				F4FB337814FBE04500BAECEB /* update_website_docs.sh */,
 				F4462E3C14FBDA4200E13563 /* cat2html */,
+				F4B87C501B3F04F400F4B8BE /* cat2html.l */,
 				F4FB337614FBDE2200BAECEB /* platypus.man.html */,
 			);
 			name = "Command Line Tool";

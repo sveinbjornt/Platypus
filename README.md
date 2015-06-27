@@ -31,9 +31,8 @@ to create a new version which was supposed to leave
 much of the old codebase behind it, but the task grew 
 daunting in size and I was unable to find the time.
 
-That being said, with these caveats being kept in mind, 
-here is the BSD-licensed source code to Platypus.  At 
-least it's meticulously commented.  Enjoy.
+With these caveats in mind, here is the BSD-licensed 
+source code to Platypus. At least it's meticulously commented.
 
 ### License 
 
