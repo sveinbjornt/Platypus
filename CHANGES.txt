@@ -23,6 +23,7 @@ For 4.9.1
     TODO: Fix issue with generating icon from imageview on retina macs
     TODO: More examples
     TODO: Make class based system with inheritance for different output modes in ScriptExec
+    TODO: Fix issue where font size changes don't apply to new text entered in editor
     * Copy icon path in icon image view contextual menu
     * Better keyboard shortcuts for built-in editor
     * Text size can be set in built-in editor

@@ -49,9 +49,9 @@
     [arguments release];
     [cwd release];
     
-    if (outputFileHandle != NULL)
+    if (outputFileHandle != NULL) {
         [outputFileHandle release];
-    
+    }
     [super dealloc];
 }
 
@@ -244,10 +244,9 @@
 - (NSString *)description {
     NSArray *args = [self arguments];
     NSString *cmd = [self launchPath];
-    int i;
-    for (i = 0; i < [args count]; i++)
+    for (int i = 0; i < [args count]; i++) {
         cmd = [cmd stringByAppendingFormat:@" %@", [args objectAtIndex:i]];
-    
+    }
     return [[super description] stringByAppendingFormat:@" %@", cmd];
 }
 
