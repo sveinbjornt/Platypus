@@ -497,6 +497,8 @@
 		F46C60141055AEFA00521A94 /* Interface Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F4975D961B2E71EE0099D16E /* PlatypusController.h */,
+				F4975D971B2E71EE0099D16E /* PlatypusController.m */,
 				F4975D8C1B2E71EE0099D16E /* ArgsController.h */,
 				F4975D8D1B2E71EE0099D16E /* ArgsController.m */,
 				F4975D8E1B2E71EE0099D16E /* BundledFilesController.h */,
@@ -507,8 +509,6 @@
 				F4975D931B2E71EE0099D16E /* EditorController.m */,
 				F4975D941B2E71EE0099D16E /* IconController.h */,
 				F4975D951B2E71EE0099D16E /* IconController.m */,
-				F4975D961B2E71EE0099D16E /* PlatypusController.h */,
-				F4975D971B2E71EE0099D16E /* PlatypusController.m */,
 				F4975D981B2E71EE0099D16E /* PlatypusIconView.h */,
 				F4975D991B2E71EE0099D16E /* PlatypusIconView.m */,
 				F4975D9A1B2E71EE0099D16E /* PrefsController.h */,
