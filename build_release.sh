@@ -27,21 +27,23 @@ xcodebuild  -parallelizeTargets\
             -configuration Deployment \
             CONFIGURATION_BUILD_DIR="${BUILD_DIR}" \
             clean \
-            build
+            build &> /dev/null
 
 # Remove previous app folder
-rm -r "${BUILD_DIR}/${APP_FOLDER_NAME}" &> /dev/null
+rm -r "${BUILD_DIR}/${APP_FOLDER_NAME}" > /dev/null
 
 # Create folder and copy app into it
+echo "Creating app folder ${BUILD_DIR}/${APP_FOLDER_NAME}"
 mkdir "${BUILD_DIR}/${APP_FOLDER_NAME}"
 mv "${BUILD_DIR}/${APP_BUNDLE_NAME}" "${BUILD_DIR}${APP_FOLDER_NAME}/"
 
 # Create symlink to Readme file
+echo "Creating symlink to Readme file"
 cd "${BUILD_DIR}/${APP_FOLDER_NAME}"
 ln -s "${APP_BUNDLE_NAME}/Contents/Resources/Readme.html" "Readme.html"
 
 # Create zip archive and move to desktop
-echo "Creating application archive ..."
+echo "Creating application archive ${APP_ZIP_NAME}..."
 cd "${BUILD_DIR}"
 zip -q --symlinks "${APP_ZIP_NAME}" -r "${APP_FOLDER_NAME}"
 
@@ -54,7 +56,7 @@ fi
 mv "${APP_ZIP_NAME}" ~/Desktop/
 
 # Create source archive
-echo "Creating source archive..."
+echo "Creating source archive ${APP_SRC_ZIP_NAME}..."
 cd "${SRC_DIR}"
 zip -q --symlinks -r "${APP_SRC_ZIP_NAME}" "." -x *.git* -x *.zip* -x *.tgz* -x *.gz* -x *.DS_Store* -x *dsa_priv.pem* -x *Sparkle/dsa_priv.pem*
 
