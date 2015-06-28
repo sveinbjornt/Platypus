@@ -111,6 +111,7 @@
     IBOutlet id profilesController;
     IBOutlet id textSettingsController;
     IBOutlet id statusItemSettingsController;
+    IBOutlet id prefsController;
     
     IBOutlet id fileList;
 }

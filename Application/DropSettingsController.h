@@ -45,6 +45,7 @@
     IBOutlet id typesWindow;
     IBOutlet id window;
     IBOutlet id typesErrorTextField;
+    IBOutlet id droppableEnabledCheckbox;
     
     IBOutlet id acceptDroppedTextCheckbox;
     IBOutlet id acceptDroppedFilesCheckbox;
