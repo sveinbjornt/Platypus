@@ -116,7 +116,7 @@
 #define TMP_ICON_PATH                       [NSString stringWithFormat:@"%@/TmpIcon%d.icns", APP_SUPPORT_FOLDER, arc4random()]
 
 // this is surely enough
-#define PLATYPUS_MAX_QUEUE_JOBS             255
+#define PLATYPUS_MAX_QUEUE_JOBS             4096
 
 // array of output types, used for validation
 #define PLATYPUS_OUTPUT_TYPES       [NSArray arrayWithObjects:\

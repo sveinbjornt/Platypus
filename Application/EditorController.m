@@ -94,26 +94,11 @@
 }
 
 - (void)changeFontSize:(CGFloat)delta {
-        
-    NSFontManager * fontManager = [NSFontManager sharedFontManager];
-    NSTextStorage * textStorage = [textView textStorage];
-    [textStorage beginEditing];
-    [textStorage enumerateAttribute:NSFontAttributeName
-                            inRange:NSMakeRange(0, [textStorage length])
-                            options:0
-                         usingBlock:^(id value, NSRange range, BOOL * stop) {
-                             
-                             NSFont *font = value;
-                             CGFloat newFontSize = [font pointSize] + delta;
-                             font = [fontManager convertFont:font toSize:newFontSize];
-                             [DEFAULTS setObject:[NSNumber numberWithFloat:newFontSize] forKey:@"EditorFontSize"];
-                             if (font != nil) {
-                                 [textStorage removeAttribute:NSFontAttributeName range:range];
-                                 [textStorage addAttribute:NSFontAttributeName value:font range:range];
-                             }
-                             
-                         }];
-    [textStorage endEditing];
+    NSFont *font = [textView font];
+    CGFloat newFontSize = [font pointSize] + delta;
+    font = [[NSFontManager sharedFontManager] convertFont:font toSize:newFontSize];
+    [textView setFont:font];
+    [DEFAULTS setObject:[NSNumber numberWithFloat:newFontSize] forKey:@"EditorFontSize"];
     [textView didChangeText];
 }
 
