@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="6C3B5B89-25DB-488D-8EE2-4C7418E12D70" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="6AB87E38-A578-4A0A-B010-E944ECA104E5" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -539,7 +539,6 @@ DQ
                 <outlet property="editTypesButton" destination="372" id="553"/>
                 <outlet property="encryptCheckbox" destination="951" id="954"/>
                 <outlet property="fileList" destination="1234" id="11218"/>
-                <outlet property="generateUniversalBinaryCheckbox" destination="K0A-Y2-Y9M" id="Ux1-SP-T4p"/>
                 <outlet property="iconController" destination="1215" id="eHO-cn-oEo"/>
                 <outlet property="interpreterTextField" destination="305" id="337"/>
                 <outlet property="isDroppableCheckbox" destination="299" id="340"/>
@@ -2110,11 +2109,11 @@ DQ
             </connections>
         </window>
         <customView id="7866" userLabel="debugSaveOptionView">
-            <rect key="frame" x="0.0" y="-3" width="350" height="117"/>
+            <rect key="frame" x="0.0" y="5" width="350" height="94"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <button toolTip="Creates symlink to source script instead of copying it into the application bundle" id="7885">
-                    <rect key="frame" x="18" y="81" width="351" height="18"/>
+                    <rect key="frame" x="18" y="58" width="351" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <buttonCell key="cell" type="check" title="Development Version (symlink to script &amp; files)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11051">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2122,7 +2121,7 @@ DQ
                     </buttonCell>
                 </button>
                 <button toolTip="Strips and compiles the nib file in the application about to be created" id="11109">
-                    <rect key="frame" x="18" y="61" width="308" height="18"/>
+                    <rect key="frame" x="18" y="38" width="308" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <buttonCell key="cell" type="check" title="Optimize Application (strip nib file)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11110">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2130,23 +2129,15 @@ DQ
                     </buttonCell>
                 </button>
                 <button toolTip="Use XML property lists instead of binary format. " id="11338">
-                    <rect key="frame" x="18" y="41" width="313" height="18"/>
+                    <rect key="frame" x="18" y="18" width="313" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <buttonCell key="cell" type="check" title="Use XML property list format instead of binary" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="11339">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
-                <button toolTip="Use XML property lists instead of binary format. " id="K0A-Y2-Y9M">
-                    <rect key="frame" x="18" y="20" width="183" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <buttonCell key="cell" type="check" title="Generate Universal Binary" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="yYE-Xv-Cm4">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
             </subviews>
-            <point key="canvasLocation" x="117" y="568.5"/>
+            <point key="canvasLocation" x="117" y="557"/>
         </customView>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="10161" userLabel="statusItemSettingsWindow">
             <windowStyleMask key="styleMask" titled="YES"/>
@@ -2567,7 +2558,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="6C3B5B89-25DB-488D-8EE2-4C7418E12D70" width="16" height="16">
+        <image name="6AB87E38-A578-4A0A-B010-E944ECA104E5" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

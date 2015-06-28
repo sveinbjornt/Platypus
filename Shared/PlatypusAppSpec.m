@@ -111,7 +111,6 @@
     [properties setValue:[NSNumber numberWithBool:NO] forKey:@"DevelopmentVersion"];
     [properties setValue:[NSNumber numberWithBool:YES] forKey:@"OptimizeApplication"];
     [properties setValue:[NSNumber numberWithBool:NO] forKey:@"UseXMLPlistFormat"];
-    [properties setValue:[NSNumber numberWithBool:NO] forKey:@"GenerateUniversalBinary"];
     
     // primary attributes
     [properties setObject:DEFAULT_APP_NAME forKey:@"Name"];
@@ -277,13 +276,7 @@
     execDestinationPath = [macosPath stringByAppendingString:@"/"];
     execDestinationPath = [execDestinationPath stringByAppendingString:[properties objectForKey:@"Name"]];
     [fileManager copyItemAtPath:execPath toPath:execDestinationPath error:nil];
-    [PlatypusUtility setPermissions:S_IRWXU | S_IRWXG | S_IROTH forFile:execDestinationPath];
-    
-    if (![[self propertyForKey:@"GenerateUniversalBinary"] boolValue]) {
-        [self report:@"Thinning executable"];
-        NSArray *args = [NSArray arrayWithObjects:@"-remove", @"i386", execDestinationPath, @"-output", execDestinationPath, nil];
-        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/lipo" arguments:args];
-    }
+    [PlatypusUtility setPermissions:S_IRWXU | S_IRWXG | S_IROTH forFile:execDestinationPath];    
     
     //copy nib file to app bundle
     //.app/Contents/Resources/MainMenu.nib
