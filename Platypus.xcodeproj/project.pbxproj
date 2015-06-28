@@ -14,11 +14,8 @@
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
 		F445EA9814FAEEBF00DCCDB3 /* UninstallPlatypus.sh in Resources */ = {isa = PBXBuildFile; fileRef = F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */; };
 		F44E001D1229868100CAC9C2 /* PlatypusStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */; };
-		F44E006D12298B7200CAC9C2 /* PlatypusCube.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006812298B7200CAC9C2 /* PlatypusCube.icns */; };
 		F44E006E12298B7200CAC9C2 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */; };
 		F44E006F12298B7200CAC9C2 /* PlatypusInstaller.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006A12298B7200CAC9C2 /* PlatypusInstaller.icns */; };
-		F44E007012298B7200CAC9C2 /* PlatypusMenu.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006B12298B7200CAC9C2 /* PlatypusMenu.icns */; };
-		F44E007112298B7200CAC9C2 /* PlatypusPlate.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006C12298B7200CAC9C2 /* PlatypusPlate.icns */; };
 		F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F4538B2B1ABFEB14007E6ADF /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = F4538B281ABFEB14007E6ADF /* IconFamily.m */; };
@@ -167,11 +164,8 @@
 		F4462E3E14FBDA4D00E13563 /* make_man_html.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = make_man_html.sh; path = CommandLineTool/make_man_html.sh; sourceTree = "<group>"; };
 		F4462E3F14FBDA4D00E13563 /* make_man_pdf.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = make_man_pdf.sh; path = CommandLineTool/make_man_pdf.sh; sourceTree = "<group>"; };
 		F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlatypusStatusMenuIcon.png; sourceTree = "<group>"; };
-		F44E006812298B7200CAC9C2 /* PlatypusCube.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusCube.icns; sourceTree = "<group>"; };
 		F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusDefault.icns; sourceTree = "<group>"; };
 		F44E006A12298B7200CAC9C2 /* PlatypusInstaller.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusInstaller.icns; sourceTree = "<group>"; };
-		F44E006B12298B7200CAC9C2 /* PlatypusMenu.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusMenu.icns; sourceTree = "<group>"; };
-		F44E006C12298B7200CAC9C2 /* PlatypusPlate.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusPlate.icns; sourceTree = "<group>"; };
 		F44EFF0412296F3700CAC9C2 /* NSColor+HexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+HexTools.h"; path = "Shared/NSColor+HexTools.h"; sourceTree = "<group>"; };
 		F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+HexTools.m"; path = "Shared/NSColor+HexTools.m"; sourceTree = "<group>"; };
 		F4538B271ABFEB14007E6ADF /* IconFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconFamily.h; sourceTree = "<group>"; };
@@ -447,11 +441,8 @@
 		F44E006712298B7200CAC9C2 /* Presets */ = {
 			isa = PBXGroup;
 			children = (
-				F44E006812298B7200CAC9C2 /* PlatypusCube.icns */,
 				F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */,
 				F44E006A12298B7200CAC9C2 /* PlatypusInstaller.icns */,
-				F44E006B12298B7200CAC9C2 /* PlatypusMenu.icns */,
-				F44E006C12298B7200CAC9C2 /* PlatypusPlate.icns */,
 			);
 			name = Presets;
 			path = IconPresets;
@@ -821,12 +812,9 @@
 				F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */,
 				F48002CB121AF042003FB5B3 /* images in Resources */,
 				F44E001D1229868100CAC9C2 /* PlatypusStatusMenuIcon.png in Resources */,
-				F44E006D12298B7200CAC9C2 /* PlatypusCube.icns in Resources */,
 				F4975DC01B2E71FC0099D16E /* Platypus.xib in Resources */,
 				F44E006E12298B7200CAC9C2 /* PlatypusDefault.icns in Resources */,
 				F44E006F12298B7200CAC9C2 /* PlatypusInstaller.icns in Resources */,
-				F44E007012298B7200CAC9C2 /* PlatypusMenu.icns in Resources */,
-				F44E007112298B7200CAC9C2 /* PlatypusPlate.icns in Resources */,
 				F471ED1E122DF096001F4761 /* PlatypusAppIcon.icns in Resources */,
 				F471ED22122DF2D6001F4761 /* Credits.html in Resources */,
 				F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */,
