@@ -19,7 +19,7 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="350" y="24" width="600" height="400"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
-            <value key="minSize" type="size" width="550" height="160"/>
+            <value key="minSize" type="size" width="580" height="160"/>
             <value key="maxSize" type="size" width="1000" height="800"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
@@ -123,7 +123,7 @@
                         </connections>
                     </button>
                     <button toolTip="Decrease text size" verticalHuggingPriority="750" id="I0w-JE-z9j">
-                        <rect key="frame" x="279" y="12" width="38" height="32"/>
+                        <rect key="frame" x="279" y="12" width="48" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="PDv-Wo-FEX">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -136,7 +136,7 @@
                         </connections>
                     </button>
                     <button toolTip="Increase text size" verticalHuggingPriority="750" id="t7s-pR-Awv">
-                        <rect key="frame" x="307" y="12" width="37" height="32"/>
+                        <rect key="frame" x="320" y="12" width="51" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="ng1-bo-ARP">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

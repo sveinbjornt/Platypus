@@ -229,11 +229,14 @@
         NSArray *pbTypes = [NSArray arrayWithObjects:NSTIFFPboardType, NSPDFPboardType, NSPostScriptPboardType, NULL];
         NSString *type = [[NSPasteboard generalPasteboard] availableTypeFromArray:pbTypes];
         
-        if (type == NULL)
+        if (type == NULL) {
             return NO;
+        }
     }
     if ([[anItem title] isEqualToString:@"Copy Icon Path"]) {
-        
+        if (![self icnsFilePath] || [[self icnsFilePath] isEqualToString:@""]) {
+            return NO;
+        }
     }
     return YES;
 }

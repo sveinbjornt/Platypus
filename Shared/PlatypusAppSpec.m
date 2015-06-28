@@ -53,7 +53,7 @@
 }
 
 - (PlatypusAppSpec *)initWithDefaultsFromScript:(NSString *)scriptPath {
-    if (self = [self init]) {
+    if (self = [self initWithDefaults]) {
         [self setDefaultsForScript:scriptPath];
     }
     return self;
@@ -67,8 +67,8 @@
     return self;
 }
 
-- (PlatypusAppSpec *)initWithProfile:(NSString *)filePath {
-    return [self initWithDictionary:[NSMutableDictionary dictionaryWithContentsOfFile:filePath]];
+- (PlatypusAppSpec *)initWithProfile:(NSString *)profilePath {
+    return [self initWithDictionary:[NSMutableDictionary dictionaryWithContentsOfFile:profilePath]];
 }
 
 + (PlatypusAppSpec *)specWithDefaults {
@@ -79,8 +79,8 @@
     return [[[PlatypusAppSpec alloc] initWithDictionary:dict] autorelease];
 }
 
-+ (PlatypusAppSpec *)specFromProfile:(NSString *)filePath {
-    return [[[PlatypusAppSpec alloc] initWithProfile:filePath] autorelease];
++ (PlatypusAppSpec *)specWithProfile:(NSString *)profilePath {
+    return [[[PlatypusAppSpec alloc] initWithProfile:profilePath] autorelease];
 }
 
 + (PlatypusAppSpec *)specWithDefaultsFromScript:(NSString *)scriptPath {
