@@ -298,22 +298,22 @@
 
 <img src="images/output_type.png" style="float: right;">
 
-<p>The <strong>Output</strong> pop-up button allows you to select what the application you create will do with the output of the Script. There are five output modes available:</p>
+<p>The <strong>Output</strong> pop-up button allows you to select what the application you create does with the output of the script. There are five output modes available:</p>
 
 <br>
-<p><strong>None</strong>:  Your application will provide no graphical feedback whatsoever. The application will just launch in the Dock and execute the script without opening any windows.  All script output will go to <code>STDOUT</code> and <code>STDERR</code>, viewable in Console.app.</p>
+<p><strong>None</strong>:  Your application provides no graphical feedback whatsoever. It will launch in the Dock and execute the script without opening any windows.  All script output goes to <code>STDOUT</code> and <code>STDERR</code>, viewable in Console.app.</p>
 
 <br>
 
-<p><strong>Progress Bar</strong>:  A small window with an indeterminate progress bar and a "Cancel" button will appear during the execution of the script.  Script output is fed line by line into the status message above the progress bar. A small arrow to with a "Show details" option will reveal a small text field containing all script output.</p>
+<p><strong>Progress Bar</strong>:  A small window with an indeterminate progress bar and a "Cancel" button appears during the execution of the script.Script output is fed line by line into the status message above the progress bar. A small arrow to with a "Show details" option reveals a small text field containing all script output.</p>
 
-<p>It is worth noting that the script can communicate with the progress bar and notify it of script progress.  All lines of script output with the format 'PROGRESS:\d+' (e.g. PROGRESS:75) will be interpreted as setting the completion percentage of the task. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field.</p>
+<p>It is worth noting that the script can communicate with the progress bar and notify it of script progress.  All lines the script prints out that start with 'PROGRESS:\d+' (e.g. PROGRESS:75) will be interpreted as setting the completion percentage of the task. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
 
 <img src="images/output_progressbar.png">
 <br>
 <br>
 
-<p><strong>Text Window</strong>: A window with a text field will be displayed.  This text field receives all script output. Please note that this text field is <em>not</em> an interactive terminal session, and cannot receive <em>any</em> input from the user.  It does not support any terminal buffering or commands and cannot be used to display ncurses-based interfaces.   It just displays the actual text output of the script as it is being executed.  The properties of the text field can be modified in Platypus by pressing the "Text Settings" button.  This will present an interface pane in which text encoding, font, color and size can be set.</p>
+<p><strong>Text Window</strong>: A window with a text field is displayed.  This text field receives all script output. Please note that the text field is <em>not</em> an interactive terminal session, and cannot receive <em>any</em> input from the user.  It does not support any terminal buffering or commands and cannot be used to display ncurses-based interfaces.   It only displays the actual text output of the script as it is being executed.  The properties of the text field can be modified in Platypus by pressing the "Text Settings" button.  This will present an interface pane where text encoding, font, color and size can be set.</p>
 
 <img src="images/output_textwindow.png">
 <br>
