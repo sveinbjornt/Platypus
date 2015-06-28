@@ -66,10 +66,8 @@
     [suffixListDataBrowser setTarget:self];
     
     // updated text fields reporting no. suffixes and no. file type codes
-    if ([suffixList hasAllSuffixes])
-        [numSuffixesTextField setStringValue:@"All suffixes"];
-    else
-        [numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
+    NSString *numSuffixesStr = [suffixList hasAllSuffixes] ? @"All suffixes" : [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]];
+    [numSuffixesTextField setStringValue:numSuffixesStr];
     
     // clear any error message
     [typesErrorTextField setStringValue:@""];
@@ -130,12 +128,14 @@
 {
     NSString *theSuffix = [suffixTextField stringValue];
     
-    if ([suffixList hasSuffix:theSuffix] || ([theSuffix length] == 0))
+    if ([suffixList hasSuffix:theSuffix] || ([theSuffix length] == 0)) {
         return;
+    }
     
     //if the user put in a suffix beginning with a '.', we trim the string to start from index 1
-    if ([theSuffix characterAtIndex:0] == '.')
+    if ([theSuffix characterAtIndex:0] == '.') {
         theSuffix = [theSuffix substringFromIndex:1];
+    }
     
     [suffixList addSuffix:theSuffix];
     [suffixTextField setStringValue:@""];
@@ -144,10 +144,8 @@
     //update
     [suffixListDataBrowser reloadData];
     
-    if ([suffixList hasAllSuffixes])
-        [numSuffixesTextField setStringValue:@"All suffixes"];
-    else
-        [numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
+    NSString *numSuffixesStr = [suffixList hasAllSuffixes] ? @"All suffixes" : [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]];
+    [numSuffixesTextField setStringValue:numSuffixesStr];
 }
 
 
@@ -178,10 +176,8 @@
         }
     }
     
-    if ([suffixList hasAllSuffixes])
-        [numSuffixesTextField setStringValue:@"All suffixes"];
-    else
-        [numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
+    NSString *numSuffixesStr = [suffixList hasAllSuffixes] ? @"All suffixes" : [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]];
+    [numSuffixesTextField setStringValue:numSuffixesStr];
 }
 
 /*****************************************
@@ -194,10 +190,8 @@
     [suffixList addSuffix:@"*"];
     [suffixListDataBrowser reloadData];
     
-    if ([suffixList hasAllSuffixes])
-        [numSuffixesTextField setStringValue:@"All suffixes"];
-    else
-        [numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
+    NSString *numSuffixesStr = [suffixList hasAllSuffixes] ? @"All suffixes" : [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]];
+    [numSuffixesTextField setStringValue:numSuffixesStr];
     
     //set app function to default
     [appFunctionRadioButtons selectCellWithTag:0];
@@ -276,8 +270,9 @@
 
 - (UInt64)docIconSize;
 {
-    if ([FILEMGR fileExistsAtPath:docIconPath])
+    if ([FILEMGR fileExistsAtPath:docIconPath]) {
         return [PlatypusUtility fileOrFolderSize:docIconPath];
+    }
     return 0;
 }
 
@@ -322,10 +317,7 @@
 }
 
 - (void)setRole:(NSString *)role {
-    if ([role isEqualToString:@"Viewer"])
-        [appFunctionRadioButtons selectCellWithTag:0];
-    else
-        [appFunctionRadioButtons selectCellWithTag:1];
+    [appFunctionRadioButtons selectCellWithTag:![role isEqualToString:@"Viewer"]];
 }
 
 - (NSString *)docIconPath {
@@ -333,17 +325,21 @@
 }
 
 - (void)setDocIconPath:(NSString *)path {
-    [docIconPath release];
+    if (docIconPath) {
+        [docIconPath release];
+    }
     docIconPath = [path retain];
     
     //set document icon to default
     NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
     
-    if (![path isEqualToString:@""])  // load it from file if it's a path
+    if (![path isEqualToString:@""]) { // load it from file if it's a path
         icon = [[[NSImage alloc] initWithContentsOfFile:docIconPath] autorelease];
+    }
     
-    if (icon != nil)
+    if (icon != nil) {
         [docIconImageView setImage:icon];
+    }
 }
 
 @end
