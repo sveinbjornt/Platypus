@@ -484,7 +484,7 @@
 			name = "NSColor+HexTools";
 			sourceTree = "<group>";
 		};
-		F46C60141055AEFA00521A94 /* Interface Controllers */ = {
+		F46C60141055AEFA00521A94 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				F4975D961B2E71EE0099D16E /* PlatypusController.h */,
@@ -516,7 +516,7 @@
 				F4975DA81B2E71EE0099D16E /* TextSettingsController.h */,
 				F4975DA91B2E71EE0099D16E /* TextSettingsController.m */,
 			);
-			name = "Interface Controllers";
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		F48A724D122E23B200964D71 /* ScriptAnalyser */ = {
@@ -554,7 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				F4975D8A1B2E71B80099D16E /* main.m */,
-				F46C60141055AEFA00521A94 /* Interface Controllers */,
+				F46C60141055AEFA00521A94 /* Controllers */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 			);
 			name = Application;
