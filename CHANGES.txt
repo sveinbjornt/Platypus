@@ -22,8 +22,7 @@ For 4.9.1
     TODO: Support UTIs
     TODO: Fix issue with generating icon from imageview on retina macs
     TODO: More examples
-    TODO: Make class based system with inheritance for different output modes in ScriptExec
-    TODO: Fix issue where font size changes don't apply to new text entered in editor
+    * Got rid of old, low-resolution preset icons
     * New release build script
     * Platypus now requires Mac OS X 10.7 or later and a 64-bit Intel system. Older versions continue to work just fine on 32-bit 10.6 systems, and version 4.4 still works on PowerPC. But it's time to leave the past behind. It's been 9 years since the last 32-bit Mac was released.
     * Copy icon path in icon image view contextual menu

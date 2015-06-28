@@ -1120,7 +1120,6 @@
     }
 }
 
-
 - (IBAction)makeTextBigger:(id)sender {
     [self changeFontSize:1];
 }

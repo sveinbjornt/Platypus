@@ -88,7 +88,7 @@
                     <stepper toolTip="Press here to browser through the default icons" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="308">
                         <rect key="frame" x="171" y="432" width="19" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <stepperCell key="cell" continuous="YES" alignment="left" maxValue="5" valueWraps="YES" id="10947"/>
+                        <stepperCell key="cell" continuous="YES" alignment="left" maxValue="2" valueWraps="YES" id="10947"/>
                         <connections>
                             <action selector="switchIcons:" target="1215" id="1224"/>
                         </connections>
@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="919FB91F-5985-4F6F-AD50-1B0D4BFEB827" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="6C3B5B89-25DB-488D-8EE2-4C7418E12D70" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -2567,7 +2567,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="919FB91F-5985-4F6F-AD50-1B0D4BFEB827" width="16" height="16">
+        <image name="6C3B5B89-25DB-488D-8EE2-4C7418E12D70" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

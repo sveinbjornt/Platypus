@@ -39,9 +39,9 @@
 - (void)dealloc {
     [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
     
-    if (icnsFilePath != nil)
+    if (icnsFilePath != nil) {
         [icnsFilePath release];
-    
+    }
     [super dealloc];
 }
 
@@ -77,10 +77,11 @@
 #pragma mark -
 
 - (void)updateIcnsStatus {
-    if ([self hasIcns] && ![FILEMGR fileExistsAtPath:icnsFilePath] && ![icnsFilePath isEqualToString:@""])
+    if ([self hasIcns] && ![FILEMGR fileExistsAtPath:icnsFilePath] && ![icnsFilePath isEqualToString:@""]) {
         [iconNameTextField setTextColor:[NSColor redColor]];
-    else
+    } else {
         [iconNameTextField setTextColor:[NSColor blackColor]];
+    }
 }
 
 // called when user pastes or cuts in field
@@ -91,20 +92,20 @@
 #pragma mark -
 
 - (IBAction)nextIcon:(id)sender {
-    if ([iconToggleButton intValue] + 1 > [iconToggleButton maxValue])
+    if ([iconToggleButton intValue] + 1 > [iconToggleButton maxValue]) {
         [iconToggleButton setIntValue:[iconToggleButton minValue]];
-    else
+    } else {
         [iconToggleButton setIntValue:[iconToggleButton intValue] + 1];
-    
+    }
     [self setAppIconForType:[iconToggleButton intValue]];
 }
 
 - (IBAction)previousIcon:(id)sender {
-    if ([iconToggleButton intValue] - 1 < [iconToggleButton minValue])
+    if ([iconToggleButton intValue] - 1 < [iconToggleButton minValue]) {
         [iconToggleButton setIntValue:[iconToggleButton maxValue]];
-    else
+    } else {
         [iconToggleButton setIntValue:[iconToggleButton intValue] - 1];
-    
+    }
     [self setAppIconForType:[iconToggleButton intValue]];
 }
 
@@ -136,24 +137,6 @@
             break;
             
         case 2:
-            iconImage = [NSImage imageNamed:@"PlatypusPlate"];
-            iconName = @"Platypus Plate";
-            iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusPlate" ofType:@"icns"];
-            break;
-            
-        case 3:
-            iconImage = [NSImage imageNamed:@"PlatypusMenu"];
-            iconName = @"Platypus Menu";
-            iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusMenu" ofType:@"icns"];
-            break;
-            
-        case 4:
-            iconImage = [NSImage imageNamed:@"PlatypusCube"];
-            iconName = @"Platypus Cube";
-            iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusCube" ofType:@"icns"];
-            break;
-            
-        case 5:
             iconImage = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
             [iconImage setSize:NSMakeSize(128, 128)]; // fix the bug where it would appear small
             iconName = @"Generic Application Icon";
@@ -200,12 +183,13 @@
 }
 
 - (void)setIcnsFilePath:(NSString *)path {
-    if (icnsFilePath != nil)
+    if (icnsFilePath != nil) {
         [icnsFilePath release];
+    }
     
-    if (path == nil)
+    if (path == nil) {
         icnsFilePath = nil;
-    else {
+    } else {
         icnsFilePath = [[NSString alloc] initWithString:path];
         if (![icnsFilePath isEqualToString:@""])
             [[UKKQueue sharedFileWatcher] addPathToQueue:path];
@@ -215,9 +199,9 @@
 }
 
 - (UInt64)iconSize {
-    if (![self hasIcns])
+    if (![self hasIcns]) {
         return 400000; // just guess the icon will be 400k in size
-    
+    }
     // else, just size of icns file
     return [PlatypusUtility fileOrFolderSize:[self icnsFilePath]];
 }
@@ -257,10 +241,11 @@
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         if (result == NSOKButton) {
             NSString *filename = [[[oPanel URLs] objectAtIndex:0] path];
-            if ([filename hasSuffix:@"icns"])
+            if ([filename hasSuffix:@"icns"]) {
                 [self loadIcnsFile:filename];
-            else
+            } else {
                 [self loadImageFile:filename];
+            }
         }
         [window setTitle:PROGRAM_NAME];
     }];
@@ -320,9 +305,9 @@
 
 - (BOOL)loadImageWithData:(NSData *)imgData {
     NSImage *img = [[[NSImage alloc] initWithData:imgData] autorelease];
-    
-    if (img == nil)
+    if (img == nil) {
         return NO;
+    }
     
     [iconImageView setImage:img];
     [self updateForCustomIcon];
@@ -331,9 +316,9 @@
 
 - (BOOL)loadImageFromPasteboard {
     NSImage *img = [[[NSImage alloc] initWithPasteboard:[NSPasteboard generalPasteboard]] autorelease];
-    
-    if (img == nil)
+    if (img == nil) {
         return NO;
+    }
     
     [iconImageView setImage:img];
     [self updateForCustomIcon];
@@ -342,11 +327,10 @@
 
 - (BOOL)loadPresetIcon:(NSDictionary *)iconInfo {
     [iconNameTextField setStringValue:[iconInfo objectForKey:@"Name"]];
-    
     NSImage *img = [iconInfo objectForKey:@"Image"];
-    
-    if (img == nil)
+    if (img == nil) {
         return NO;
+    }
     
     [iconImageView setImage:img];
     [self setIcnsFilePath:[iconInfo objectForKey:@"Path"]];
@@ -378,22 +362,28 @@
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
     
-    if ([[pboard types] containsObject:NSFilenamesPboardType]) {
-        int i;
-        NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
-        
-        // first, we look for an icns file, and load it if there is one
-        for (i = 0; i < [files count]; i++)
-            if ([[files objectAtIndex:i] hasSuffix:@"icns"])
-                return [self loadIcnsFile:[files objectAtIndex:i]];
-        
-        // since no icns file, search for an image, load the first one we find
-        for (i = 0; i < [files count]; i++) {
-            NSArray *supportedImageTypes = [PlatypusUtility imageFileSuffixes];
-            int j;
-            for (j = 0; j < [supportedImageTypes count]; j++)
-                if ([[files objectAtIndex:i] hasSuffix:[supportedImageTypes objectAtIndex:j]])
-                    return [self loadImageFile:[files objectAtIndex:i]];
+    if (![[pboard types] containsObject:NSFilenamesPboardType]) {
+        return NO;
+    }
+    
+    int i;
+    NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
+    
+    // first, we look for an icns file, and load it if there is one
+    for (i = 0; i < [files count]; i++) {
+        if ([[files objectAtIndex:i] hasSuffix:@"icns"]) {
+            return [self loadIcnsFile:[files objectAtIndex:i]];
+        }
+    }
+    
+    // since no icns file, search for an image, load the first one we find
+    for (i = 0; i < [files count]; i++) {
+        NSArray *supportedImageTypes = [PlatypusUtility imageFileSuffixes];
+        int j;
+        for (j = 0; j < [supportedImageTypes count]; j++) {
+            if ([[files objectAtIndex:i] hasSuffix:[supportedImageTypes objectAtIndex:j]]) {
+                return [self loadImageFile:[files objectAtIndex:i]];
+            }
         }
     }
     
@@ -407,34 +397,33 @@
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
     // we accept dragged files
     if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
+
         NSArray *files = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
         int i;
         
-        
         // link for icns file, but not if it's a preset icon
         for (i = 0; i < [files count]; i++) {
-            if ([self isPresetIcon:[files objectAtIndex:i]])
+            if ([self isPresetIcon:[files objectAtIndex:i]]) {
                 return NSDragOperationNone;
-            
-            if ([[files objectAtIndex:i] hasSuffix:@"icns"])
+            }
+            if ([[files objectAtIndex:i] hasSuffix:@"icns"]) {
                 return NSDragOperationLink;
+            }
         }
         
         // copy plus for image file
         for (i = 0; i < [files count]; i++) {
             NSArray *supportedImageTypes = [PlatypusUtility imageFileSuffixes];
             int j;
-            for (j = 0; j < [supportedImageTypes count]; j++)
-                if ([[files objectAtIndex:i] hasSuffix:[supportedImageTypes objectAtIndex:j]])
+            for (j = 0; j < [supportedImageTypes count]; j++) {
+                if ([[files objectAtIndex:i] hasSuffix:[supportedImageTypes objectAtIndex:j]]) {
                     return NSDragOperationCopy;
+                }
+            }
         }
     }
     
     return NSDragOperationNone;
-}
-
-// if we just created a file with a dragged string, we open it in default editor
-- (void)concludeDragOperation:(id <NSDraggingInfo> )sender {
 }
 
 @end
