@@ -993,23 +993,24 @@
  *****************************************/
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-    BOOL isDir;
     
-    //create app menu
+    //create app menu item
     if ([[anItem title] isEqualToString:@"Create App"] && ![createAppButton isEnabled]) {
         return NO;
     }
     
-    BOOL validScriptFile = !(![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] || isDir);
-    
-    //edit script
+    //actions on script file
+    BOOL isDir;
+    BOOL badScriptFile = (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] || isDir);
     if (([anItem action] == @selector(editScript:) ||
          [anItem action] == @selector(revealScript:) ||
          [anItem action] == @selector(runScriptInTerminal:) ||
          [anItem action] == @selector(checkSyntaxOfScript:))
-        && !validScriptFile)
+        && badScriptFile) {
         return NO;
-    
+    }
+
+    // show shell command only works if we have a script
     if ([anItem action] == @selector(showCommandLineString:)) {
         if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
             return NO;
