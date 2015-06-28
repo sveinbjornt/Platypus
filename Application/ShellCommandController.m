@@ -29,6 +29,7 @@
  */
 
 #import "ShellCommandController.h"
+#import "PrefsController.h"
 
 @implementation ShellCommandController
 
@@ -44,7 +45,7 @@
     [self loadWindow];
     
     [textView setString:[spec commandString]];
-    [prefsController updateCLTStatus:CLTStatusTextField];
+    [(PrefsController *)prefsController updateCLTStatus:CLTStatusTextField];
     
     [NSApp  beginSheet:[self window]
         modalForWindow:theWindow

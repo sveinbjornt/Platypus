@@ -39,5 +39,6 @@
 }
 - (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow;
 - (IBAction)close:(id)sender;
+- (void)setPrefsController:(id)controller;
 
 @end

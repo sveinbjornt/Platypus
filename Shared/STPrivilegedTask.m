@@ -188,17 +188,19 @@
     chdir(prevCwd);
     
     // free the malloc'd argument strings
-    for (i = 0; i < argumentsCount; i++)
+    for (i = 0; i < argumentsCount; i++) {
         free(args[i]);
+    }
     
     // free the auth ref
     AuthorizationFree(authorizationRef, kAuthorizationFlagDefaults);
     
     // we return err if execution failed
-    if (err != errAuthorizationSuccess)
+    if (err != errAuthorizationSuccess) {
         return err;
-    else
+    } else {
         isRunning = YES;
+    }
     
     // get file handle for the command output
     outputFileHandle = [[NSFileHandle alloc] initWithFileDescriptor:fileno(outputFile) closeOnDealloc:YES];

@@ -57,10 +57,10 @@
 - (void)installCommandLineTool;
 - (void)uninstallCommandLineTool;
 - (IBAction)uninstallPlatypus:(id)sender;
+- (void)updateCLTStatus:(NSTextField *)textField;
 - (void)runCLTTemplateScript:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
 - (BOOL)isCommandLineToolInstalled;
 - (void)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
 - (IBAction)selectScriptEditor:(id)sender;
-- (void)updateCLTStatus:(NSTextField *)textField;
 - (IBAction)cancel:(id)sender;
 @end
