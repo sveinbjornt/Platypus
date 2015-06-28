@@ -51,6 +51,12 @@
     [suffixListDataBrowser registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
 }
 
+- (void)updateNumSuffixesTextField {
+    NSString *numSuffixesStr = [suffixList hasAllSuffixes] ? @"All suffixes" : [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]];
+    [numSuffixesTextField setStringValue:numSuffixesStr];
+
+}
+
 /*****************************************
  - Display the Drop Settings Window as a sheet
  *****************************************/
@@ -66,8 +72,7 @@
     [suffixListDataBrowser setTarget:self];
     
     // updated text fields reporting no. suffixes and no. file type codes
-    NSString *numSuffixesStr = [suffixList hasAllSuffixes] ? @"All suffixes" : [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]];
-    [numSuffixesTextField setStringValue:numSuffixesStr];
+    [self updateNumSuffixesTextField];
     
     // clear any error message
     [typesErrorTextField setStringValue:@""];
@@ -144,8 +149,7 @@
     //update
     [suffixListDataBrowser reloadData];
     
-    NSString *numSuffixesStr = [suffixList hasAllSuffixes] ? @"All suffixes" : [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]];
-    [numSuffixesTextField setStringValue:numSuffixesStr];
+    [self updateNumSuffixesTextField];
 }
 
 
@@ -176,8 +180,7 @@
         }
     }
     
-    NSString *numSuffixesStr = [suffixList hasAllSuffixes] ? @"All suffixes" : [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]];
-    [numSuffixesTextField setStringValue:numSuffixesStr];
+    [self updateNumSuffixesTextField];
 }
 
 /*****************************************
@@ -190,8 +193,7 @@
     [suffixList addSuffix:@"*"];
     [suffixListDataBrowser reloadData];
     
-    NSString *numSuffixesStr = [suffixList hasAllSuffixes] ? @"All suffixes" : [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]];
-    [numSuffixesTextField setStringValue:numSuffixesStr];
+    [self updateNumSuffixesTextField];
     
     //set app function to default
     [appFunctionRadioButtons selectCellWithTag:0];
