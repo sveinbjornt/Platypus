@@ -231,7 +231,7 @@
 
 <h3 id="15">System Requirements</h3>
 
-<p>As of version 4.5, both the Platypus application and the applications it generates require <strong>Mac OS X 10.6</strong> or later and are provided as 32-bit/64-bit fat <strong>Intel only</strong> binaries.  If you want to target 10.4 and PowerPC users, you can use version <a href="http://sveinbjorn.org/files/software/platypus/">4.4</a>, which continues to work just fine on older systems.</p>
+<p>As of version 4.9.1, both the Platypus application and the applications it generates require <strong>Mac OS X 10.7</strong> or later and are provided as 64-bit fat <strong>Intel only</strong> binaries.  If you want to target 10.6 and 32-bit systems, <a href="http://sveinbjorn.org/files/software/platypus/">version 4.9</a> continues to work just fine. If you want to target 10.4 and PowerPC users, you can use version <a href="http://sveinbjorn.org/files/software/platypus/">4.4</a>.</p>
 
 <br>
 <br>
@@ -247,7 +247,7 @@
 
 <h3>Basic Interface</h3>
 
-<p>The basic Platypus interface is pretty straightforward.  As soon as you launch the Platypus application, you will see a window like this:</p>
+<p>The basic Platypus interface is pretty straightforward.  As soon as you launch the Platypus application, you see a window like this:</p>
 
 <img src="images/basic_interface.png">
 
@@ -263,13 +263,13 @@
 
 <strong>Script Path</strong>
 
-<p>This field contains the path to the script you will create the app from. You either define this manually by typing the path into the text field (which supports shell-style autocomplete), or by pressing the <strong>Select</strong> button and selecting it in a navigation dialog or by dragging your script on to the Platypus window.</p>
+<p>This field contains the path to the script you create the app from. You either define this manually by typing the path into the text field (which supports shell-style autocomplete), or by pressing the <strong>Select</strong> button and selecting it in a navigation dialog or by dragging your script on to the Platypus window.</p>
 
 <img src="images/script_path.png">
     
 <p>Once you have selected a valid script, you can press the <strong>Edit</strong> button to open it in your default text editor. Platypus includes a very basic built-in text editor as the default editor. You can change this in the Preferences to use any external editor you want.</p>
 
-<p>You can also press the <strong>New</strong> button. This will create a text file for you in Platypus' Application Support folder and open it in your default editor. The <strong>Reveal</strong> button reveals the script file in the Finder.</p>
+<p>You can also press the <strong>New</strong> button. This creates a text file for you in Platypus' Application Support folder and open it in your default editor. The <strong>Reveal</strong> button reveals the script file in the Finder.</p>
 
 <br><br>
 <a name="22"></a>
@@ -280,9 +280,9 @@
 
 <img src="images/script_type.png" style="float: right;">
 
-<p>Depending on the scripting language you use, you will want to select the appropriate kind here.  You can either select one of the predefined scripting languages from the the pop-up menu or type in the path to an interpreter of your own choice in the field next to the pop-up menu.</p>
+<p>Depending on the scripting language you use, you'll' want to select the appropriate kind here.  You can either select one of the predefined scripting languages from the the pop-up menu or type in the path to an interpreter of your own choice in the field next to the pop-up menu.</p>
     
-<p>Most of the time, you will not need to specify this manually.  When you select a script file, Platypus will automatically try to determine what kind of script it is by looking at the file suffix and shebang (#!) line.  If you have specified this meta-data in the script file itself, Platypus is smart enough to figure it out.</p>
+<p>Most of the time, you do not need to specify this manually.  Whenever you select a script file, Platypus automatically tries to determine what kind of script it is by looking at the file suffix and shebang (#!) line.  If you have specified this meta-data in the script file itself, Platypus is usually smart enough to figure it out.</p>
 
 <p>Please note that the interpreter you selected must exist on the Mac OS X system on which your script application will run.  All the preset scripting language interpreters (e.g. shell, Perl, Python, PHP, Tcl, Expect etc.) are a standard part of all Mac OS X installations.  Alternately, you could use <code>/usr/bin/env</code>.</p>
 
