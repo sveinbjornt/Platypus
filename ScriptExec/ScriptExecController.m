@@ -122,38 +122,42 @@
     NSDictionary *appSettingsPlist;
     
     //make sure all the config files are present -- if not, we quit
-    if (![fmgr fileExistsAtPath:[appBundle pathForResource:@"AppSettings.plist" ofType:nil]])
+    if (![fmgr fileExistsAtPath:[appBundle pathForResource:@"AppSettings.plist" ofType:nil]]) {
         [self fatalAlert:@"Corrupt app bundle" subText:@"AppSettings.plist missing from the application bundle."];
+    }
     
     // get app name
     // first, try to get CFBundleDisplayName from Info.plist
     NSDictionary *infoPlist = [appBundle infoDictionary];
-    if ([infoPlist objectForKey:@"CFBundleDisplayName"] != nil)
+    if ([infoPlist objectForKey:@"CFBundleDisplayName"] != nil) {
         appName = [[NSString alloc] initWithString:[infoPlist objectForKey:@"CFBundleDisplayName"]];
-    else // if that doesn't work, use name of executable file
+    } else { // if that doesn't work, use name of executable file
         appName = [[[appBundle executablePath] lastPathComponent] retain];
+    }
     
     //get dictionary with app settings
     appSettingsPlist = [NSDictionary dictionaryWithContentsOfFile:[appBundle pathForResource:@"AppSettings.plist" ofType:nil]];
-    if (appSettingsPlist == NULL)
+    if (appSettingsPlist == NULL) {
         [self fatalAlert:@"Corrupt app settings" subText:@"AppSettings.plist is corrupt."];
+    }
     
     //determine output type
     NSString *outputTypeStr = [appSettingsPlist objectForKey:@"OutputType"];
-    if ([outputTypeStr isEqualToString:@"Progress Bar"])
+    if ([outputTypeStr isEqualToString:@"Progress Bar"]) {
         outputType = PLATYPUS_PROGRESSBAR_OUTPUT;
-    else if ([outputTypeStr isEqualToString:@"Text Window"])
+    } else if ([outputTypeStr isEqualToString:@"Text Window"]) {
         outputType = PLATYPUS_TEXTWINDOW_OUTPUT;
-    else if ([outputTypeStr isEqualToString:@"Web View"])
+    } else if ([outputTypeStr isEqualToString:@"Web View"]) {
         outputType = PLATYPUS_WEBVIEW_OUTPUT;
-    else if ([outputTypeStr isEqualToString:@"Status Menu"])
+    } else if ([outputTypeStr isEqualToString:@"Status Menu"]) {
         outputType = PLATYPUS_STATUSMENU_OUTPUT;
-    else if ([outputTypeStr isEqualToString:@"Droplet"])
+    } else if ([outputTypeStr isEqualToString:@"Droplet"]) {
         outputType = PLATYPUS_DROPLET_OUTPUT;
-    else if ([outputTypeStr isEqualToString:@"None"])
+    } else if ([outputTypeStr isEqualToString:@"None"]) {
         outputType = PLATYPUS_NONE_OUTPUT;
-    else
+    } else {
         [self fatalAlert:@"Corrupt app settings" subText:@"Invalid Output Mode."];
+    }
     
     // we need some additional info from AppSettings.plist if we are presenting textual output
     if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT ||
@@ -165,28 +169,35 @@
         NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
         CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [[appSettingsPlist objectForKey:@"TextSize"] floatValue];
         fontSize = fontSize ? fontSize : DEFAULT_OUTPUT_FONTSIZE;
-        if ([appSettingsPlist objectForKey:@"TextFont"])
+        if ([appSettingsPlist objectForKey:@"TextFont"]) {
             textFont = [NSFont fontWithName:[appSettingsPlist objectForKey:@"TextFont"] size:fontSize];
-        if (!textFont)
+        }
+        if (!textFont) {
             textFont = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE];
+        }
         
         // foreground
-        if ([appSettingsPlist objectForKey:@"TextForeground"])
+        if ([appSettingsPlist objectForKey:@"TextForeground"]) {
             textForeground = [NSColor colorFromHex:[appSettingsPlist objectForKey:@"TextForeground"]];
-        if (!textForeground)
+        }
+        if (!textForeground) {
             textForeground = [NSColor colorFromHex:DEFAULT_OUTPUT_FG_COLOR];
+        }
         
         // background
-        if ([appSettingsPlist objectForKey:@"TextBackground"] != NULL)
+        if ([appSettingsPlist objectForKey:@"TextBackground"] != NULL) {
             textBackground    = [NSColor colorFromHex:[appSettingsPlist objectForKey:@"TextBackground"]];
-        if (!textBackground)
+        }
+        if (!textBackground) {
             textBackground = [NSColor colorFromHex:DEFAULT_OUTPUT_BG_COLOR];
+        }
         
         // encoding
-        if ([appSettingsPlist objectForKey:@"TextEncoding"])
+        if ([appSettingsPlist objectForKey:@"TextEncoding"]) {
             textEncoding = (int)[[appSettingsPlist objectForKey:@"TextEncoding"] intValue];
-        else
+        } else {
             textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
+        }
         
         [textFont retain];
         [textForeground retain];
@@ -201,9 +212,9 @@
             statusItemTitle = [[appSettingsPlist objectForKey:@"StatusItemTitle"] retain];
             if (statusItemTitle == NULL)
                 [self fatalAlert:@"Error getting title" subText:@"Failed to get Status Item title."];
-        }
-        else
+        } else {
             statusItemTitle = NULL;
+        }
         
         // we load icon if status menu is not only a text label
         if ([[appSettingsPlist objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Icon"] ||
@@ -211,12 +222,13 @@
             statusItemIcon = [[NSImage alloc] initWithData:[appSettingsPlist objectForKey:@"StatusItemIcon"]];
             if (statusItemIcon == NULL)
                 [self fatalAlert:@"Error loading icon" subText:@"Failed to load Status Item icon."];
-        }
-        else
+        } else {
             statusItemIcon = NULL;
+        }
         
-        if (statusItemIcon == NULL && statusItemTitle == NULL)
+        if (statusItemIcon == NULL && statusItemTitle == NULL) {
             statusItemTitle = @"Title";
+        }
     }
     
     // load these vars from plist
@@ -252,8 +264,9 @@
     acceptsFiles = ([appSettingsPlist objectForKey:@"AcceptsFiles"] != nil) ? [[appSettingsPlist objectForKey:@"AcceptsFiles"] boolValue] : YES;
     acceptsText = ([appSettingsPlist objectForKey:@"AcceptsText"] != nil) ? [[appSettingsPlist objectForKey:@"AcceptsText"] boolValue] : NO;
     
-    if (!acceptsFiles && !acceptsText) // equivalent to not being droppable
+    if (!acceptsFiles && !acceptsText) { // equivalent to not being droppable
         isDroppable = FALSE;
+    }
     
     // initialize this to NO, then check the droppableSuffixes for 'fold'
     acceptDroppedFolders = NO;
@@ -264,43 +277,50 @@
     // we use them later as a criterion for in-code drop acceptance
     if (isDroppable && acceptsFiles) {
         // get list of accepted suffixes
-        if ([appSettingsPlist objectForKey:@"DropSuffixes"])
+        if ([appSettingsPlist objectForKey:@"DropSuffixes"]) {
             droppableSuffixes = [[NSArray alloc] initWithArray:[appSettingsPlist objectForKey:@"DropSuffixes"]];
-        else
+        } else {
             droppableSuffixes = [[NSArray alloc] initWithArray:[NSArray array]];
+        }
         [droppableSuffixes retain];
                 
         // see if we accept any dropped item, * suffix makes it so
-        for (i = 0; i < [droppableSuffixes count]; i++)
-            if ([[droppableSuffixes objectAtIndex:i] isEqualToString:@"*"]) //* suffix
+        for (i = 0; i < [droppableSuffixes count]; i++) {
+            if ([[droppableSuffixes objectAtIndex:i] isEqualToString:@"*"]) { //* suffix
                 acceptAnyDroppedItem = YES;
+            }
+        }
     }
     
     //get interpreter
     interpreter = [[NSString stringWithString:[appSettingsPlist objectForKey:@"ScriptInterpreter"]] retain];
-    if (![fmgr fileExistsAtPath:interpreter])
+    if (![fmgr fileExistsAtPath:interpreter]) {
         [self fatalAlert:@"Missing interpreter" subText:[NSString stringWithFormat:@"This application could not run because the interpreter '%@' does not exist on this system.", interpreter]];
+    }
     
     //if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
-    if ((!secureScript && ![fmgr fileExistsAtPath:[appBundle pathForResource:@"script" ofType:NULL]]) || (secureScript && [appSettingsPlist objectForKey:@"TextSettings"] == NULL))
+    if ((!secureScript && ![fmgr fileExistsAtPath:[appBundle pathForResource:@"script" ofType:NULL]]) || (secureScript && [appSettingsPlist objectForKey:@"TextSettings"] == NULL)) {
         [self fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
+    }
     
     //get path to script within app bundle
     if (!secureScript) {
         scriptPath = [[NSString stringWithString:[appBundle pathForResource:@"script" ofType:nil]] retain];
         
         // make sure we can read the script file
-        if (![fmgr isReadableFileAtPath:scriptPath])  // if unreadable
+        if (![fmgr isReadableFileAtPath:scriptPath]) { // if unreadable
             chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);  // chmod 774
-        if (![fmgr isReadableFileAtPath:scriptPath])  // if still unreadable
+        }
+        if (![fmgr isReadableFileAtPath:scriptPath]) { // if still unreadable
             [self fatalAlert:@"Corrupt app bundle" subText:@"Script file is not readable."];
+        }
     }
     //if we have a "secure" script, there is no path to get, we write script to temp location on execution
     else {
         NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData:[appSettingsPlist objectForKey:@"TextSettings"]];
-        if (b_str == NULL)
+        if (b_str == NULL) {
             [self fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
-        
+        }
         // we create string with the script based on the decoded data
         script = [[NSString alloc] initWithData:b_str encoding:textEncoding];
     }
@@ -313,13 +333,15 @@
     
     // status menu apps just run when item is clicked
     // for all others, we run the script once app is up and running
-    if (outputType == PLATYPUS_STATUSMENU_OUTPUT)
+    if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
         return;
-
-    if (promptForFileOnLaunch && isDroppable && ![jobQueue count])
+    }
+    
+    if (promptForFileOnLaunch && isDroppable && ![jobQueue count]) {
         [self openFiles:self];
-    else
+    } else {
         [self executeScript];
+    }
 }
 
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames {
@@ -328,32 +350,37 @@
     NSInteger ret = [self addDroppedFilesJob:filenames];
     
     // if no other job is running, we execute
-    if (!isTaskRunning && ret)
+    if (!isTaskRunning && ret) {
         [self executeScript];
+    }
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
     // again, make absolutely sure we don't leave the clear-text script in temp directory
-    if (secureScript && [FILEMGR fileExistsAtPath:scriptPath])
+    if (secureScript && [FILEMGR fileExistsAtPath:scriptPath]) {
         [FILEMGR removeItemAtPath:scriptPath error:nil];
+    }
     
     //terminate task
     if (task != NULL) {
-        if ([task isRunning])
+        if ([task isRunning]) {
             [task terminate];
+        }
         [task release];
     }
     
     //terminate privileged task
     if (privilegedTask != NULL) {
-        if ([privilegedTask isRunning])
+        if ([privilegedTask isRunning]) {
             [privilegedTask terminate];
+        }
         [privilegedTask release];
     }
     
     // hide status item, if on
-    if (statusItem)
+    if (statusItem) {
         [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
+    }
     
     // clean out the job queue since we're quitting
     [jobQueue removeAllObjects];
@@ -400,8 +427,9 @@
             
         case PLATYPUS_PROGRESSBAR_OUTPUT:
         {
-            if (isDroppable)
+            if (isDroppable) {
                 [progressBarWindow registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
+            }
             
             // add menu item for Show Details
             [[windowMenu insertItemWithTitle:@"Toggle Details" action:@selector(performClick:) keyEquivalent:@"T" atIndex:2] setTarget:progressBarDetailsTriangle];
@@ -414,19 +442,20 @@
             [outputTextView setBackgroundColor:textBackground];
             
             // add drag instructions message if droplet
-            if (isDroppable)
+            if (isDroppable) {
                 [progressBarMessageTextField setStringValue:@"Drag files to process"];
-            else
+            } else {
                 [progressBarMessageTextField setStringValue:@"Running..."];
-            
+            }
             [progressBarIndicator setUsesThreadedAnimation:YES];
             
             //preare window
             [progressBarWindow setTitle:appName];
             
             //center it if first time running the application
-            if ([[progressBarWindow frameAutosaveName] isEqualToString:@""])
+            if ([[progressBarWindow frameAutosaveName] isEqualToString:@""]) {
                 [progressBarWindow center];
+            }
             
             // reveal it
             [progressBarWindow makeKeyAndOrderFront:self];
@@ -449,8 +478,9 @@
             
             // prepare window
             [textOutputWindow setTitle:appName];
-            if ([[textOutputWindow frameAutosaveName] isEqualToString:@""])
+            if ([[textOutputWindow frameAutosaveName] isEqualToString:@""]) {
                 [textOutputWindow center];
+            }
             [textOutputWindow makeKeyAndOrderFront:self];
         }
             break;
@@ -468,8 +498,9 @@
             // prepare window
             [webOutputWindow setTitle:appName];
             [webOutputWindow center];
-            if ([[webOutputWindow frameAutosaveName] isEqualToString:@""])
+            if ([[webOutputWindow frameAutosaveName] isEqualToString:@""]) {
                 [webOutputWindow center];
+            }
             [webOutputWindow makeKeyAndOrderFront:self];
         }
             break;
@@ -481,10 +512,12 @@
             [statusItem setHighlightMode:YES];
             
             // set status item title and icon
-            if (statusItemTitle != NULL)
+            if (statusItemTitle != NULL) {
                 [statusItem setTitle:statusItemTitle];
-            if (statusItemIcon != NULL)
+            }
+            if (statusItemIcon != NULL) {
                 [statusItem setImage:statusItemIcon];
+            }
             
             // create menu for our status item
             statusItemMenu = [[NSMenu alloc] initWithTitle:@""];
@@ -503,15 +536,16 @@
             
         case PLATYPUS_DROPLET_OUTPUT:
         {
-            if (isDroppable)
+            if (isDroppable) {
                 [dropletWindow registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
-            
+            }
             [dropletProgressIndicator setUsesThreadedAnimation:YES];
             
             // prepare window
             [dropletWindow setTitle:appName];
-            if ([[dropletWindow frameAutosaveName] isEqualToString:@""])
+            if ([[dropletWindow frameAutosaveName] isEqualToString:@""]) {
                 [dropletWindow center];
+            }
             [dropletWindow makeKeyAndOrderFront:self];
         }
             break;
@@ -612,14 +646,13 @@
             if (isDroppable) {
                 [progressBarMessageTextField setStringValue:@"Drag files to process"];
                 [progressBarIndicator setIndeterminate:YES];
-            }
-            else {
+            } else {
                 // cleanup - if the script didn't give us a proper status message, then we set one
                 if ([[progressBarMessageTextField stringValue] isEqualToString:@""] ||
                     [[progressBarMessageTextField stringValue] isEqualToString:@"\n"] ||
-                    [[progressBarMessageTextField stringValue] isEqualToString:@"Running..."])
+                    [[progressBarMessageTextField stringValue] isEqualToString:@"Running..."]) {
                     [progressBarMessageTextField setStringValue:@"Task completed"];
-                
+                }
                 [progressBarIndicator setIndeterminate:NO];
                 [progressBarIndicator setDoubleValue:100];
             }
@@ -678,8 +711,9 @@
     [arguments addObjectsFromArray:interpreterArgs];
     
     // add script as argument to interpreter, if it exists
-    if (![FILEMGR fileExistsAtPath:scriptPath])
+    if (![FILEMGR fileExistsAtPath:scriptPath]) {
         [self fatalAlert:@"Missing script" subText:@"Script missing at execution path"];
+    }
     [arguments addObject:scriptPath];
     
     // add arguments for script
@@ -706,11 +740,12 @@
 
 - (void)executeScript {
     // we never execute script if there is one running
-    if (isTaskRunning)
+    if (isTaskRunning) {
         return;
-    
-    if (outputType != PLATYPUS_NONE_OUTPUT)
+    }
+    if (outputType != PLATYPUS_NONE_OUTPUT) {
         outputEmpty = NO;
+    }
     
     [self prepareForExecution];
     [self prepareInterfaceForExecution];
@@ -718,10 +753,11 @@
     isTaskRunning = YES;
     
     // run the task
-    if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) //authenticated task
+    if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { //authenticated task
         [self executeScriptWithPrivileges];
-    else //plain old nstask
+    } else { //plain ol' nstask
         [self executeScriptWithoutPrivileges];
+    }
 }
 
 //launch regular user-privileged process using NSTask
@@ -748,8 +784,9 @@
     [task launch];
     
     // we wait until task exits if this is for the menu
-    if (outputType == PLATYPUS_STATUSMENU_OUTPUT)
+    if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
         [task waitUntilExit];
+    }
 }
 
 //launch task with admin privileges using Authentication Manager
@@ -769,9 +806,9 @@
             outputEmpty = YES;
             [self taskFinished:NULL];
             return;
-        }
-        else // something went wrong
+        }  else { // something went wrong
             [self fatalAlert:@"Failed to execute script" subText:[NSString stringWithFormat:@"Error %d occurred while executing script with privileges.", (int)err]];
+        }
     }
     
     if (outputType != PLATYPUS_NONE_OUTPUT) {
@@ -788,47 +825,48 @@
 // Some cleaning up to do, controls need to be adjusted, etc.
 - (void)taskFinished:(NSNotification *)aNotification {
     // if task already quit, we return
-    if (!isTaskRunning)
+    if (!isTaskRunning) {
         return;
-    
+    }
     isTaskRunning = NO;
     
     // make sure task is dead.  Ideally we'd like to do the same for privileged tasks, but that's just not possible w/o process id
-    if (execStyle == PLATYPUS_NORMAL_EXECUTION && task != NULL && [task isRunning])
+    if (execStyle == PLATYPUS_NORMAL_EXECUTION && task != NULL && [task isRunning]) {
         [task terminate];
-    
+    }
     // did we receive all the data?
-    if (outputEmpty) // if no data left we do the clean up
+    if (outputEmpty) { // if no data left we do the clean up
         [self cleanup];
-    
+    }
     //if we're using the "secure" script, we must remove the temporary clear-text one in temp directory if there is one
-    if (secureScript && [FILEMGR fileExistsAtPath:scriptPath])
+    if (secureScript && [FILEMGR fileExistsAtPath:scriptPath]) {
         [FILEMGR removeItemAtPath:scriptPath error:nil];
-    
+    }
     // we quit now if the app isn't set to continue running
     if (!remainRunning) {
         [[NSApplication sharedApplication] terminate:self];
         return;
     }
-    
     // if there are more jobs waiting for us, execute
-    if ([jobQueue count] > 0)
+    if ([jobQueue count] > 0) {
         [self executeScript];
+    }
 }
 
 - (void)cleanup {
     // we never do cleanup if the task is running
-    if (isTaskRunning)
+    if (isTaskRunning) {
         return;
-    
+    }
     // Stop observing the filehandle for data since task is done
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadCompletionNotification object:readHandle];
     
     // We make sure to clear the filehandle of any remaining data
     if (readHandle != NULL) {
         NSData *data;
-        while ((data = [readHandle availableData]) && [data length])
+        while ((data = [readHandle availableData]) && [data length]) {
             [self appendOutput:data];
+        }
     }
     
     // now, reset all controls etc., general cleanup since task is done
@@ -854,8 +892,9 @@
     }
     else {
         outputEmpty = YES;
-        if (!isTaskRunning)
+        if (!isTaskRunning) {
             [self cleanup];
+        }
     }
 }
 
@@ -867,14 +906,15 @@
     // we decode the script output according to specified character encoding
     NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:textEncoding];
     
-    if (!outputString)
+    if (!outputString) {
         return;
+    }
     
     // we parse output if output type is progress bar, to get progress indicator values and display string
     if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || outputType == PLATYPUS_DROPLET_OUTPUT) {
-        if (remnants != NULL && [remnants length] > 0)
+        if (remnants != NULL && [remnants length] > 0) {
             [outputString insertString:remnants atIndex:0];
-        
+        }
         // parse the data just dumped out
         NSMutableArray *lines = [NSMutableArray arrayWithArray:[outputString componentsSeparatedByString:@"\n"]];
         
@@ -887,9 +927,9 @@
             }
             remnants = [[NSString alloc] initWithString:[lines lastObject]];
             [outputString deleteCharactersInRange:NSMakeRange([outputString length] - [remnants length], [remnants length])];
-        }
-        else
+        } else {
             remnants = NULL;
+        }
         
         [lines removeLastObject];
         
@@ -899,28 +939,25 @@
             NSString *theLine = [lines objectAtIndex:i];
             
             // if the line is empty, we ignore it
-            if ([theLine caseInsensitiveCompare:@""] == NSOrderedSame)
+            if ([theLine caseInsensitiveCompare:@""] == NSOrderedSame) {
                 continue;
+            }
             
             // lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar at
             if ([theLine hasPrefix:@"PROGRESS:"]) {
                 NSString *progressPercent = [theLine substringFromIndex:9];
                 [progressBarIndicator setIndeterminate:NO];
                 [progressBarIndicator setDoubleValue:[progressPercent doubleValue]];
-            }
-            else if ([theLine hasPrefix:@"DETAILS:"]) {
+            } else if ([theLine hasPrefix:@"DETAILS:"]) {
                 NSString *detailsCommand = [theLine substringFromIndex:8];
                 if ([detailsCommand isEqualToString:@"SHOW"]) {
                     [self showDetails];
-                }
-                else if ([detailsCommand isEqualToString:@"HIDE"]) {
+                } else if ([detailsCommand isEqualToString:@"HIDE"]) {
                     [self hideDetails];
                 }
-            }
-            else if ([theLine hasPrefix:@"QUITAPP"]) {
+            } else if ([theLine hasPrefix:@"QUITAPP"]) {
                 [[NSApplication sharedApplication] terminate:self];
-            }
-            else {
+            } else {
                 [dropletMessageTextField setStringValue:theLine];
                 [progressBarMessageTextField setStringValue:theLine];
             }
@@ -939,14 +976,13 @@
         if ([lines count] > 0 && [[lines objectAtIndex:1] hasPrefix: @"Location: "]) {
             NSString *url = [[lines objectAtIndex: 1] substringFromIndex: 10];
             [[webOutputWebView mainFrame] loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: url]] ];
-        }
-        else {
+        } else {
             // otherwise, just render script output as the HTML
             [[webOutputWebView mainFrame] loadHTMLString: [outputTextView string] baseURL: [NSURL fileURLWithPath: [[NSBundle mainBundle] resourcePath]] ];
         }
-    }
-    else if (outputType == PLATYPUS_TEXTWINDOW_OUTPUT || outputType == PLATYPUS_PROGRESSBAR_OUTPUT)
+    } else if (outputType == PLATYPUS_TEXTWINDOW_OUTPUT || outputType == PLATYPUS_PROGRESSBAR_OUTPUT) {
         [outputTextView scrollRangeToVisible:NSMakeRange([text length], 0)];
+    }
     
     [outputString release];
 }
@@ -976,8 +1012,9 @@
         }
         
         NSInteger ret = [self addDroppedFilesJob:files];
-        if (!isTaskRunning && ret)
+        if (!isTaskRunning && ret) {
             [self executeScript];
+        }
     }
 }
 
@@ -1015,9 +1052,9 @@
 
 // save output in text field to file when Save to File menu item is invoked
 - (IBAction)saveToFile:(id)sender {
-    if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT)
+    if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT) {
         return;
-    
+    }
     NSString *outSuffix = (outputType == PLATYPUS_WEBVIEW_OUTPUT) ? @"html" : @"txt";
     NSString *fileName = [NSString stringWithFormat:@"%@ Output.%@", appName, outSuffix];
     
@@ -1040,14 +1077,14 @@
     
     //save to file item
     if ([[anItem title] isEqualToString:@"Save to File…"] &&
-        (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT))
+        (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT)) {
         return NO;
-    
+    }
     //open should only work if it's a droppable app
     if ([[anItem title] isEqualToString:@"Open…"] &&
-        (!isDroppable || !acceptsFiles || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS))
+        (!isDroppable || !acceptsFiles || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)) {
         return NO;
-    
+    }
     // Make text bigger stuff
     if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_PROGRESSBAR_OUTPUT &&outputType != PLATYPUS_WEBVIEW_OUTPUT) {
         return NO;
@@ -1120,11 +1157,11 @@
     BOOL ret = 0;
     id data = nil;
     
-    if (acceptsFiles && [types containsObject:NSFilenamesPboardType] && (data = [pb propertyListForType:NSFilenamesPboardType]))
+    if (acceptsFiles && [types containsObject:NSFilenamesPboardType] && (data = [pb propertyListForType:NSFilenamesPboardType])) {
         ret = [self addDroppedFilesJob:data];  // files
-    else if (acceptsText && [types containsObject:NSStringPboardType] && (data = [pb stringForType:NSStringPboardType]))
+    } else if (acceptsText && [types containsObject:NSStringPboardType] && (data = [pb stringForType:NSStringPboardType])) {
         ret = [self addDroppedTextJob:data];  // text
-    else { // unknown
+    } else { // unknown
         *err = @"Data type in pasteboard cannot be handled by this application.";
         return;
     }
@@ -1137,9 +1174,9 @@
 // text snippet drag handling
 
 - (void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
-    if (!isDroppable || !acceptsText || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)
+    if (!isDroppable || !acceptsText || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS) {
         return;
-    
+    }
     NSString *pboardString = [pboard stringForType:NSStringPboardType];
 
     NSInteger ret = [self addDroppedTextJob:pboardString];
@@ -1185,13 +1222,15 @@
     // Only accept the drag if at least one of the files meets the required types
     for (i = 0; i < [files count]; i++) {
         // if we accept this item, add it to list of accepted files
-        if ([self acceptableFileType:[files objectAtIndex:i]])
+        if ([self acceptableFileType:[files objectAtIndex:i]]) {
             [acceptedFiles addObject:[files objectAtIndex:i]];
+        }
     }
     
     // if at this point there are no accepted files, we refuse drop
-    if ([acceptedFiles count] == 0)
+    if ([acceptedFiles count] == 0) {
         return NO;
+    }
     
     // we create a processing job and add the files as arguments, accept drop
     NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity:ARG_MAX]; //this object is released in -prepareForExecution function
@@ -1246,13 +1285,16 @@
         NSInteger i;
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         
-        for (i = 0; i < [files count]; i++)
-            if ([self acceptableFileType:[files objectAtIndex:i]])
+        for (i = 0; i < [files count]; i++) {
+            if ([self acceptableFileType:[files objectAtIndex:i]]) {
                 acceptDrag = YES;
+            }
+        }
     }
     // see if this is a string being dragged
-    else if ([[pboard types] containsObject:NSStringPboardType] && acceptsText)
+    else if ([[pboard types] containsObject:NSStringPboardType] && acceptsText) {
         acceptDrag = YES;
+    }
     
     if (acceptDrag) {
         // we shade the window if output is droplet mode
@@ -1269,19 +1311,20 @@
 - (void)draggingExited:(id <NSDraggingInfo> )sender;
 {
     // remove the droplet shading on drag exit
-    if (outputType == PLATYPUS_DROPLET_OUTPUT)
+    if (outputType == PLATYPUS_DROPLET_OUTPUT) {
         [dropletShader setHidden:YES];
+    }
 }
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
     
     // determine drag data type and dispatch to job queue
-    if ([[pboard types] containsObject:NSStringPboardType])
+    if ([[pboard types] containsObject:NSStringPboardType]) {
         return [self addDroppedTextJob:[pboard stringForType:NSStringPboardType]];
-    else
+    } else {
         return [self addDroppedFilesJob:[pboard propertyListForType:NSFilenamesPboardType]];
-    
+    }
     return NO;
 }
 
@@ -1289,12 +1332,13 @@
 - (void)concludeDragOperation:(id <NSDraggingInfo> )sender {
     
     // shade droplet
-    if (outputType == PLATYPUS_DROPLET_OUTPUT)
+    if (outputType == PLATYPUS_DROPLET_OUTPUT) {
         [dropletShader setHidden:YES];
-    
+    }
     // fire off the job queue if nothing is running
-    if (!isTaskRunning && [jobQueue count] > 0)
+    if (!isTaskRunning && [jobQueue count] > 0) {
         [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(executeScript) userInfo:nil repeats:NO];
+    }
 }
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo> )sender {
@@ -1366,8 +1410,9 @@
 }
 - (IBAction)menuItemSelected:(id)sender {
     [self addTextJob:[sender title]];
-    if (!isTaskRunning && [jobQueue count] > 0)
+    if (!isTaskRunning && [jobQueue count] > 0) {
         [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(executeScript) userInfo:nil repeats:NO];
+    }
 }
 
 #pragma mark - Utility methods
