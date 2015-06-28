@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment version="1060" defaultVersion="1060" identifier="macosx"/>
+        <deployment version="1060" defaultVersion="1070" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
     </dependencies>
     <objects>
@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="E630A815-EC00-41E2-828B-86585E9F650C" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="919FB91F-5985-4F6F-AD50-1B0D4BFEB827" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -939,7 +939,7 @@ CA
                                     <action selector="show:" target="1418" id="1826"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Edit Drop Settings..." toolTip="Set parameters for the script interpreter" id="pOh-po-cKK">
+                            <menuItem title="Edit Drop Settings..." toolTip="Configure drop settings for app" id="pOh-po-cKK">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openDropSettingsSheet:" target="1364" id="1sV-Cq-8C4"/>
@@ -2567,11 +2567,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="Add" width="23" height="20"/>
-        <image name="Add_Pressed" width="23" height="20"/>
-        <image name="Clear" width="22" height="20"/>
-        <image name="Clear_Pressed" width="22" height="20"/>
-        <image name="E630A815-EC00-41E2-828B-86585E9F650C" width="16" height="16">
+        <image name="919FB91F-5985-4F6F-AD50-1B0D4BFEB827" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -2651,6 +2647,10 @@ VRBoEHMQfBCBEIkQjBCREKAQpBCrELMQwBDFEMcQyRDOENYQ2RDeEOYQ6RD7EP4RAwAAAAAAAAIBAAAA
 AAAAAEIAAAAAAAAAAAAAAAAAABEFA
 </mutableData>
         </image>
+        <image name="Add" width="23" height="20"/>
+        <image name="Add_Pressed" width="23" height="20"/>
+        <image name="Clear" width="22" height="20"/>
+        <image name="Clear_Pressed" width="22" height="20"/>
         <image name="PlatypusDefault" width="512" height="512"/>
         <image name="PlatypusStatusMenuIcon" width="16" height="16"/>
         <image name="Remove" width="23" height="20"/>

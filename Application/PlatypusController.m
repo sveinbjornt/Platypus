@@ -110,12 +110,9 @@
 
 /*****************************************
  - Handler for when app is done launching
- - Set up the window and stuff like that
  *****************************************/
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [[NSProcessInfo processInfo] enableSuddenTermination];
-    
     //show window
     [window center];
     [window makeKeyAndOrderFront:self];
