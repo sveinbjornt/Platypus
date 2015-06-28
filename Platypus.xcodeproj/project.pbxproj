@@ -178,9 +178,6 @@
 		F4538B281ABFEB14007E6ADF /* IconFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconFamily.m; sourceTree = "<group>"; };
 		F4538B291ABFEB14007E6ADF /* NSString+CarbonFSRefCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CarbonFSRefCreation.h"; sourceTree = "<group>"; };
 		F4538B2A1ABFEB14007E6ADF /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CarbonFSRefCreation.m"; sourceTree = "<group>"; };
-		F46628A714F441DE0053C601 /* AppBuildBoth.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppBuildBoth.sh; sourceTree = "<group>"; };
-		F46628A814F441DE0053C601 /* AppPackageBuildScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppPackageBuildScript.sh; sourceTree = "<group>"; };
-		F46628A914F441DE0053C601 /* AppSourceBuildScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = AppSourceBuildScript.sh; sourceTree = "<group>"; };
 		F46EF84E13C3F36900E4C0E4 /* Examples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Examples; sourceTree = "<group>"; };
 		F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusAppIcon.icns; sourceTree = "<group>"; };
 		F471ED21122DF2D6001F4761 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Credits.html; sourceTree = "<group>"; };
@@ -370,7 +367,6 @@
 				080E96DDFE201D6D7F000001 /* Shared Classes */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				F445EA7C14FABE6500DCCDB3 /* Sparkle */,
-				F46628A614F441DE0053C601 /* Deprecated */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = Platypus;
@@ -486,16 +482,6 @@
 				F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */,
 			);
 			name = "NSColor+HexTools";
-			sourceTree = "<group>";
-		};
-		F46628A614F441DE0053C601 /* Deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				F46628A714F441DE0053C601 /* AppBuildBoth.sh */,
-				F46628A814F441DE0053C601 /* AppPackageBuildScript.sh */,
-				F46628A914F441DE0053C601 /* AppSourceBuildScript.sh */,
-			);
-			path = Deprecated;
 			sourceTree = "<group>";
 		};
 		F46C60141055AEFA00521A94 /* Interface Controllers */ = {
