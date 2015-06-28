@@ -27,7 +27,16 @@ xcodebuild  -parallelizeTargets\
             -configuration Deployment \
             CONFIGURATION_BUILD_DIR="${BUILD_DIR}" \
             clean \
-            build &> /dev/null
+            build 1> /dev/null
+
+# Check if build succeeded
+if test $? -eq 0
+then
+    echo "Build successful"
+else
+    echo "Build failed"
+    exit
+fi
 
 # Remove previous app folder
 rm -r "${BUILD_DIR}/${APP_FOLDER_NAME}" > /dev/null
@@ -53,6 +62,7 @@ then
     scp "${APP_ZIP_NAME}" "${REMOTE_DIR}"
 fi
 
+echo "Moving application archive to Desktop"
 mv "${APP_ZIP_NAME}" ~/Desktop/
 
 # Create source archive
@@ -66,6 +76,7 @@ then
     scp "${APP_SRC_ZIP_NAME}" "${REMOTE_DIR}"
 fi
 
+echo "Moving source archive to Desktop"
 mv "${APP_SRC_ZIP_NAME}" ~/Desktop/
 
 
