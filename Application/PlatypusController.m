@@ -872,7 +872,10 @@
     }
     
     [window setTitle:[NSString stringWithFormat:@"%@ - Shell Command String", PROGRAM_NAME]];
-    [[[ShellCommandController alloc] init] showShellCommandForSpec:[self appSpecFromControls] window:window];
+    ShellCommandController *controller = [[ShellCommandController alloc] init];
+    [controller setPrefsController:prefsController];
+    [controller showShellCommandForSpec:[self appSpecFromControls] window:window];
+    
     [window setTitle:PROGRAM_NAME];
 }
 

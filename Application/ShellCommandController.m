@@ -44,6 +44,7 @@
     [self loadWindow];
     
     [textView setString:[spec commandString]];
+    [prefsController updateCLTStatus:CLTStatusTextField];
     
     [NSApp  beginSheet:[self window]
         modalForWindow:theWindow
@@ -62,6 +63,10 @@
 
 - (void)windowWillClose:(NSNotification *)notification {
     [self release];
+}
+
+- (void)setPrefsController:(id)controller {
+    prefsController = controller;
 }
 
 @end

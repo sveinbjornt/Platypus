@@ -34,6 +34,8 @@
 @interface ShellCommandController : NSWindowController
 {
     IBOutlet id textView;
+    IBOutlet id prefsController;
+    IBOutlet id CLTStatusTextField;
 }
 - (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow;
 - (IBAction)close:(id)sender;

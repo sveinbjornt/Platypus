@@ -229,12 +229,15 @@
     [addSuffixButton setEnabled:([[suffixTextField stringValue] length] > 0)];
 }
 
-- (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-    if ([[anItem title] isEqualToString:@"Remove Suffix"] && [suffixListDataBrowser selectedRow] == -1)
-        return NO;
+- (BOOL)validateMenuItem:(NSMenuItem *)item {
     
-    if ([[anItem title] isEqualToString:@"Edit Drop Settings..."])
-        return YES;
+    if ([[item title] isEqualToString:@"Remove Suffix"] && [suffixListDataBrowser selectedRow] == -1) {
+        return NO;
+    }
+    
+    if ([[item title] isEqualToString:@"Edit Drop Settings..."]) {
+        return [droppableEnabledCheckbox intValue];
+    }
     
     return YES;
 }

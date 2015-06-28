@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="3E863BC2-6825-4E14-A8EB-F9B2F454E5D1" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="E630A815-EC00-41E2-828B-86585E9F650C" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -522,6 +522,7 @@ DQ
             <connections>
                 <outlet property="delegate" destination="335" id="371"/>
             </connections>
+            <point key="canvasLocation" x="265" y="-161.5"/>
         </window>
         <customObject id="335" userLabel="PlatypusController" customClass="PlatypusController">
             <connections>
@@ -544,6 +545,7 @@ DQ
                 <outlet property="isDroppableCheckbox" destination="299" id="340"/>
                 <outlet property="optimizeApplicationCheckbox" destination="11109" id="11113"/>
                 <outlet property="outputTypePopupMenu" destination="4148" id="4161"/>
+                <outlet property="prefsController" destination="11195" id="apI-W1-dIt"/>
                 <outlet property="profilesController" destination="2872" id="Eil-aK-aFN"/>
                 <outlet property="progressBar" destination="11189" id="11191"/>
                 <outlet property="progressDialogMessageLabel" destination="11187" id="11193"/>
@@ -595,6 +597,7 @@ DQ
                 <outlet property="appFunctionRadioButtons" destination="672" id="1386"/>
                 <outlet property="declareServiceCheckbox" destination="11326" id="11328"/>
                 <outlet property="docIconImageView" destination="11239" id="11243"/>
+                <outlet property="droppableEnabledCheckbox" destination="299" id="HQA-Ib-ZMr"/>
                 <outlet property="droppedFilesSettingsBox" destination="11153" id="11154"/>
                 <outlet property="numSuffixesTextField" destination="704" id="1367"/>
                 <outlet property="promptForFileOnLaunchCheckbox" destination="11460" id="11462"/>
@@ -934,6 +937,12 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="show:" target="1418" id="1826"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Edit Drop Settings..." toolTip="Set parameters for the script interpreter" id="pOh-po-cKK">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openDropSettingsSheet:" target="1364" id="1sV-Cq-8C4"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="1067">
@@ -2555,9 +2564,14 @@ Gw
                 </subviews>
             </view>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="3E863BC2-6825-4E14-A8EB-F9B2F454E5D1" width="16" height="16">
+        <image name="Add" width="23" height="20"/>
+        <image name="Add_Pressed" width="23" height="20"/>
+        <image name="Clear" width="22" height="20"/>
+        <image name="Clear_Pressed" width="22" height="20"/>
+        <image name="E630A815-EC00-41E2-828B-86585E9F650C" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -2637,10 +2651,6 @@ VRBoEHMQfBCBEIkQjBCREKAQpBCrELMQwBDFEMcQyRDOENYQ2RDeEOYQ6RD7EP4RAwAAAAAAAAIBAAAA
 AAAAAEIAAAAAAAAAAAAAAAAAABEFA
 </mutableData>
         </image>
-        <image name="Add" width="23" height="20"/>
-        <image name="Add_Pressed" width="23" height="20"/>
-        <image name="Clear" width="22" height="20"/>
-        <image name="Clear_Pressed" width="22" height="20"/>
         <image name="PlatypusDefault" width="512" height="512"/>
         <image name="PlatypusStatusMenuIcon" width="16" height="16"/>
         <image name="Remove" width="23" height="20"/>
