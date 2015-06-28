@@ -442,11 +442,8 @@
             [outputTextView setBackgroundColor:textBackground];
             
             // add drag instructions message if droplet
-            if (isDroppable) {
-                [progressBarMessageTextField setStringValue:@"Drag files to process"];
-            } else {
-                [progressBarMessageTextField setStringValue:@"Running..."];
-            }
+            NSString *progBarMsg = isDroppable ? @"Drag files to process" : @"Running...";
+            [progressBarMessageTextField setStringValue:progBarMsg];
             [progressBarIndicator setUsesThreadedAnimation:YES];
             
             //preare window
@@ -512,12 +509,8 @@
             [statusItem setHighlightMode:YES];
             
             // set status item title and icon
-            if (statusItemTitle != NULL) {
-                [statusItem setTitle:statusItemTitle];
-            }
-            if (statusItemIcon != NULL) {
-                [statusItem setImage:statusItemIcon];
-            }
+            [statusItem setTitle:statusItemTitle];
+            [statusItem setImage:statusItemIcon];
             
             // create menu for our status item
             statusItemMenu = [[NSMenu alloc] initWithTitle:@""];

@@ -1010,6 +1010,12 @@
         && !validScriptFile)
         return NO;
     
+    if ([anItem action] == @selector(showCommandLineString:)) {
+        if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
+            return NO;
+        }
+    }
+    
     return YES;
 }
 
