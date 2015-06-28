@@ -256,6 +256,9 @@
 		F4B5DE4014919FF500C43901 /* PlatypusUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusUtility.m; path = Shared/PlatypusUtility.m; sourceTree = "<group>"; };
 		F4B87C191B3C997300F4B8BE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
 		F4B87C501B3F04F400F4B8BE /* cat2html.l */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.lex; name = cat2html.l; path = CommandLineTool/cat2html.l; sourceTree = "<group>"; };
+		F4B87C581B403A6E00F4B8BE /* build_release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_release.sh; sourceTree = "<group>"; };
+		F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = src_loc_stats.sh; sourceTree = "<group>"; };
+		F4B87C5A1B403A6E00F4B8BE /* uncrustify.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
 		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
 		F4D6568E14C4BFD6003552F9 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
@@ -358,6 +361,7 @@
 		29B97314FDCFA39411CA2CEA /* Platypus */ = {
 			isa = PBXGroup;
 			children = (
+				F4B87C571B403A1E00F4B8BE /* Scripts */,
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4A4338B0E04C962000523E7 /* Common.h */,
 				F48B7CB611F76B0C00351575 /* Application */,
@@ -611,6 +615,16 @@
 				F4B5DE4014919FF500C43901 /* PlatypusUtility.m */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		F4B87C571B403A1E00F4B8BE /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				F4B87C581B403A6E00F4B8BE /* build_release.sh */,
+				F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */,
+				F4B87C5A1B403A6E00F4B8BE /* uncrustify.cfg */,
+			);
+			name = Scripts;
 			sourceTree = "<group>";
 		};
 		F4D6568C14C4BFD6003552F9 /* Images */ = {
@@ -886,7 +900,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from\n# within application bundles in the Copy Files\n# phase, we copy the ScriptExec.app bundle over,\n# then copy the binary within into Resources,\n# and finally delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp $SCRIPT_EXEC_BIN_PATH \"${RESOURCES_DIR}/ScriptExec\"\nrm -r $SCRIPT_EXEC_APP_PATH\n";
+			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from\n# within application bundles in the Copy Files\n# phase, we copy the ScriptExec.app bundle over,\n# then copy the binary within into Resources,\n# and finally delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp \"${SCRIPT_EXEC_BIN_PATH}\" \"${RESOURCES_DIR}/ScriptExec\"\nrm -r \"${SCRIPT_EXEC_APP_PATH}\"\n";
 		};
 		F4FB337514FBDAD500BAECEB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

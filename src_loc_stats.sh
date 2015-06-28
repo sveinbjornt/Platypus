@@ -10,7 +10,7 @@ find . -name \*.\[m\] -exec cat {} \; | wc -l
 echo "LOC Total header files"
 find . -name \*.\[h\] -exec cat {} \; | wc -l
 echo "LOC Platypus App"
-find PlatypusApplication -name \*.\[m\|h\] -exec cat {} \; | wc -l
+find Application -name \*.\[m\|h\] -exec cat {} \; | wc -l
 echo "LOC ScriptExec"
 find ScriptExec -name \*.\[m\|h\] -exec cat {} \; | wc -l
 echo "LOC Command Line Tool"

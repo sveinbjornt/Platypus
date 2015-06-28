@@ -117,7 +117,7 @@
 	} else {
 		[dragPasteboard declareTypes:[NSArray arrayWithObject:NSTIFFPboardType] owner:self];
 		[dragPasteboard setData:[delegate imageData] forType:NSTIFFPboardType];
-	}	
+	}
 	
     //draw our original image as 50% transparent
     [dragImage lockFocus];	
