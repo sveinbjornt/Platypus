@@ -90,7 +90,7 @@
                                                 @"echo 'Hello, World'",
                                                 @"",
                                                 @"print \"Hello, World\\n\";",
-                                                @"print \"Hello, World\";",
+                                                @"print \"Hello, World\"",
                                                 @"puts \"Hello, World\";",
                                                 @"",
                                                 @"puts \"Hello, World\";",
@@ -272,7 +272,9 @@
         args = [NSArray arrayWithObjects:@"-c", scriptPath, nil];
     else if ([interpreter isEqualToString:@"/usr/bin/php"])
         args = [NSArray arrayWithObjects:@"-l", scriptPath, nil];
-    else {
+    else if ([interpreter isEqualToString:@"/usr/bin/python"]) {
+        args = [NSArray arrayWithObjects:@"-m", @"py_compile", scriptPath, nil];
+    } else {
         return [NSString stringWithFormat:@"Syntax Checking is not supported by interpreter %@", interpreter];
     }
     
