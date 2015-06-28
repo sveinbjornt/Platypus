@@ -679,11 +679,11 @@ static void PrintHelp(void) {
        -B --background                      App runs in background (LSUIElement)\n\
        -R --quit-after-execution            App quits after executing script\n\
        \n\
-       -b --text-background-color [color]   Set background color of text output (e.g. #ffffff)\n\
-       -g --text-foreground-color [color]   Set foreground color of text output (e.g. #000000)\n\
+       -b --text-background-color [color]   Set background color of text output (e.g. '#ffffff')\n\
+       -g --text-foreground-color [color]   Set foreground color of text output (e.g. '#000000')\n\
        -n --text-font [fontName]            Set font for text output field (e.g. 'Monaco 10')\n\
        -E --text-encoding [encoding]        Set text encoding for script output (see man page)\n\
-       -X --suffixes [suffixes]             Set suffixes handled by application\n\
+       -X --suffixes [suffixes]             Set suffixes handled by application, separated by |\n\
        -G --interpreter-args [arguments]    Set arguments for script interpreter, separated by |\n\
        -C --script-args [arguments]         Set arguments for script, separated by |\n\
        \n\
