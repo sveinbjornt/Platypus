@@ -266,7 +266,7 @@
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.6.0</string>
+	<string>10.7</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2003-2015 Sveinbjorn Thordarson.</string>
 	<key>NSMainNibFile</key>
