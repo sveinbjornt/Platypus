@@ -50,6 +50,7 @@
     // use mkstemp to expand template
     int fileDescriptor = mkstemp(tempFileNameCString);
     if (fileDescriptor == -1) {
+        free(tempFileNameCString);
         NSLog(@"%@", [NSString stringWithFormat:@"Error %d in mkstemp()", errno]);
         close(fileDescriptor);
         return nil;

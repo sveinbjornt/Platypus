@@ -179,9 +179,9 @@
  *****************************************/
 
 - (void)writeIconToPath:(NSString *)path {
-    if ([iconImageView image] == NULL)
+    if ([iconImageView image] == NULL) {
         [PlatypusUtility alert:@"Icon Error" subText:@"No icon could be found for your application.  Please set an icon to fix this."];
-    
+    }
     IconFamily *iconFam = [[IconFamily alloc] initWithThumbnailsOfImage:[iconImageView image]];
     [iconFam writeToFile:path];
     [iconFam release];
@@ -305,8 +305,10 @@
 - (BOOL)loadImageFile:(NSString *)filePath {
     NSImage *img = [[[NSImage alloc] initByReferencingFile:filePath] autorelease];
     
-    if (img == nil)
+    if (img == nil) {
+        NSLog(@"Image at path %@ is nil", filePath);
         return NO;
+    }
     
     [iconImageView setImage:img];
     [self updateForCustomIcon];

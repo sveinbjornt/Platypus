@@ -44,4 +44,6 @@
 - (IBAction)cancel:(id)sender;
 - (IBAction)checkSyntax:(id)sender;
 - (IBAction)revealInFinder:(id)sender;
+- (IBAction)makeTextBigger:(id)sender;
+- (IBAction)makeTextSmaller:(id)sender;
 @end

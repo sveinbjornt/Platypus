@@ -9,11 +9,11 @@ For 5.0
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO: Fix broken "Select Image file as icon..." functionality on retina displays
     TODO: Make generated applications function even if they are moved while running. Requires IconFamily update.
-    TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: New button-based output mode?
 
 For 4.9.1
-    TODO: Copy icon path for icon image well contextual menu
+    TODO: Long GNU named params for command line tool, e.g. --some-option
+    TODO: Show whether command line tool is installed in Show Shell Command window
     TODO: High res retina icon images
     TODO: Higher res preset icons
     TODO: Fix issue when icon is dragged around: "sandbox extension creation failed: file system representation creation error for path"
@@ -21,8 +21,13 @@ For 4.9.1
     TODO: Save authentication password?
     TODO: Fix Provide as Mac OS X service
     TODO: Support UTIs
+    TODO: Fix issue with generating icon from imageview on retina macs
     TODO: More examples
     TODO: Make class based system with inheritance for different output modes in ScriptExec
+    * Copy icon path in icon image view contextual menu
+    * Better keyboard shortcuts for built-in editor
+    * Text size can be set in built-in editor
+    * Proper icon temp file handling
     * Fixed issue with Open... menu item and file types in ScriptExec
     * Font size in web output view can now also be increased/reduced
     * Increased text size in built-in editor
