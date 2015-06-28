@@ -20,10 +20,10 @@ APP_BUNDLE_NAME="${APP_NAME}.app"
 APP_ZIP_NAME="${APP_NAME_LC}${VERSION}.zip"
 APP_SRC_ZIP_NAME="${APP_NAME_LC}${VERSION}.src.zip"
 
-echo "Building ${APP_NAME_LC} version ${VERSION}"
+echo "Building ${APP_NAME} version ${VERSION}"
 
 xcodebuild  -parallelizeTargets\
-            -scheme "Platypus App" \
+            -scheme "Application" \
             -configuration Deployment \
             CONFIGURATION_BUILD_DIR="${BUILD_DIR}" \
             clean \
