@@ -8,6 +8,7 @@
 
 SRC_DIR=$PWD
 BUILD_DIR="/tmp/"
+REMOTE_DIR="root@sveinbjorn.org:/www/sveinbjorn/html/files/software/platypus/"
 
 VERSION=`perl -e 'use Shell;@lines=cat("Common.h");foreach(@lines){if($_=~m/PROGRAM_VERSION.+(\d\.\d.+)\"/){print $1;}}'`
 APP_NAME=`perl -e 'use Shell;@lines=cat("Common.h");foreach(@lines){if($_=~m/PROGRAM_NAME.+\"(.+)\"/){print $1;}}'`
@@ -40,13 +41,36 @@ cd "${BUILD_DIR}/${APP_FOLDER_NAME}"
 ln -s "${APP_BUNDLE_NAME}/Contents/Resources/Readme.html" "Readme.html"
 
 # Create zip archive and move to desktop
-echo "Creating application archive..."
+echo "Creating application archive ..."
 cd "${BUILD_DIR}"
-zip --symlinks "${APP_ZIP_NAME}" -r "${APP_FOLDER_NAME}"
+zip -q --symlinks "${APP_ZIP_NAME}" -r "${APP_FOLDER_NAME}"
+
+if [ $1 ]
+then
+    echo "Uploading application archive ..."
+    scp "${APP_ZIP_NAME}" "${REMOTE_DIR}"
+fi
+
 mv "${APP_ZIP_NAME}" ~/Desktop/
 
 # Create source archive
 echo "Creating source archive..."
 cd "${SRC_DIR}"
-zip --symlinks -r "${APP_SRC_ZIP_NAME}" "." -x *.git* -x *.zip* -x *.tgz* -x *.gz* -x *.DS_Store* -x *dsa_priv.pem* -x *Sparkle/dsa_priv.pem*
+zip -q --symlinks -r "${APP_SRC_ZIP_NAME}" "." -x *.git* -x *.zip* -x *.tgz* -x *.gz* -x *.DS_Store* -x *dsa_priv.pem* -x *Sparkle/dsa_priv.pem*
+
+if [ $1 ]
+then
+    echo "Uploading source archive ..."
+    scp "${APP_SRC_ZIP_NAME}" "${REMOTE_DIR}"
+fi
+
 mv "${APP_SRC_ZIP_NAME}" ~/Desktop/
+
+
+
+
+
+
+
+
+
