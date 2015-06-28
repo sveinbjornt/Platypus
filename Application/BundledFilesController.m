@@ -199,7 +199,7 @@
 
 - (IBAction)copyFilename:(id)sender {
     
-     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
+    NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     NSString *copyStr = @"";
     for (int i = 0; i < [self numFiles]; i++) {
         if ([selectedItems containsIndex:i]) {
@@ -209,7 +209,19 @@
     }
     [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
     [[NSPasteboard generalPasteboard] setString:copyStr forType:NSStringPboardType];
+}
 
+- (IBAction)copyPaths:(id)sender {
+    NSIndexSet *selectedItems = [tableView selectedRowIndexes];
+    NSString *copyStr = @"";
+    for (int i = 0; i < [self numFiles]; i++) {
+        if ([selectedItems containsIndex:i]) {
+            NSString *filename = [[files objectAtIndex:i] objectForKey:@"Path"];
+            copyStr = [copyStr stringByAppendingString:[NSString stringWithFormat:@"%@ ", filename]];
+        }
+    }
+    [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
+    [[NSPasteboard generalPasteboard] setString:copyStr forType:NSStringPboardType];
 }
 
 /*****************************************
@@ -451,16 +463,22 @@
     if ([[anItem title] isEqualToString:@"Clear File List"] && [self numFiles] >= 1)
         return YES;
     
+    if (selectedRow == -1)
+        return NO;
+    
     // Folders are never editable
     if ([[anItem title] isEqualToString:@"Open in Editor"])
     {
-        BOOL isFolder;
-        [FILEMGR fileExistsAtPath:@"" isDirectory:&isFolder];
-        return !isFolder;
+        NSIndexSet *selectedItems = [tableView selectedRowIndexes];
+        for (int i = 0; i < [self numFiles]; i++) {
+            if ([selectedItems containsIndex:i]) {
+                NSString *filename = [[files objectAtIndex:i] objectForKey:@"Path"];
+                BOOL isFolder;
+                [FILEMGR fileExistsAtPath:filename isDirectory:&isFolder];
+                return !isFolder;
+            }
+        }
     }
-    
-    if (selectedRow == -1)
-        return NO;
     
     return YES;
 }

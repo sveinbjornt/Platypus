@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="570E2F1B-BC4D-469E-A3F4-9937095DE4EE" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="3E863BC2-6825-4E14-A8EB-F9B2F454E5D1" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -1158,7 +1158,7 @@ CA
         </menu>
         <menu title="Menu" id="1274" userLabel="FileListContextualMenu">
             <items>
-                <menuItem title="Open With Finder" id="8154">
+                <menuItem title="Open in Finder" id="8154">
                     <connections>
                         <action selector="openFileInFileList:" target="1234" id="8155"/>
                     </connections>
@@ -1173,13 +1173,24 @@ CA
                         <action selector="revealFileInFileList:" target="1234" id="1296"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Copy Filename" id="Xe7-Kg-aaN">
+                <menuItem title="Add New File" id="9750">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="addFileToFileList:" target="1234" id="y36-xi-bir"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="ehY-VZ-9co">
+                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                </menuItem>
+                <menuItem title="Copy File Names" id="Xe7-Kg-aaN">
                     <connections>
                         <action selector="copyFilename:" target="1234" id="Rpz-Vo-FC8"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Add New File" id="9750">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Copy File Paths" id="dQk-4t-FvV">
+                    <connections>
+                        <action selector="copyPaths:" target="1234" id="JbT-8A-vjN"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="1275">
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
@@ -1256,7 +1267,7 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="703">
-                        <rect key="frame" x="19" y="471" width="485" height="43"/>
+                        <rect key="frame" x="19" y="471" width="465" height="43"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="11001">
                             <font key="font" metaFont="smallSystem"/>
@@ -1407,7 +1418,7 @@ DQ
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="zU0-Dr-gG8">
                                                     <rect key="frame" x="1" y="1" width="162" height="104"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="708">
                                                             <rect key="frame" x="0.0" y="0.0" width="161.5" height="18"/>
@@ -2546,7 +2557,7 @@ Gw
         </window>
     </objects>
     <resources>
-        <image name="570E2F1B-BC4D-469E-A3F4-9937095DE4EE" width="16" height="16">
+        <image name="3E863BC2-6825-4E14-A8EB-F9B2F454E5D1" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

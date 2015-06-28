@@ -37,7 +37,11 @@
 }
 
 - (void)awakeFromNib {
-    [textView setFont:EDITOR_FONT];
+    
+    NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"EditorFontSize"];
+    CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : DEFAULT_OUTPUT_FONTSIZE;
+    NSFont *font = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:fontSize];
+    [textView setFont:font];
 }
 
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)theWindow {
@@ -88,6 +92,40 @@
 - (IBAction)revealInFinder:(id)sender {
     [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:nil];
 }
+
+- (void)changeFontSize:(CGFloat)delta {
+        
+    NSFontManager * fontManager = [NSFontManager sharedFontManager];
+    NSTextStorage * textStorage = [textView textStorage];
+    [textStorage beginEditing];
+    [textStorage enumerateAttribute:NSFontAttributeName
+                            inRange:NSMakeRange(0, [textStorage length])
+                            options:0
+                         usingBlock:^(id value, NSRange range, BOOL * stop) {
+                             
+                             NSFont *font = value;
+                             CGFloat newFontSize = [font pointSize] + delta;
+                             font = [fontManager convertFont:font toSize:newFontSize];
+                             [DEFAULTS setObject:[NSNumber numberWithFloat:newFontSize] forKey:@"EditorFontSize"];
+                             if (font != nil) {
+                                 [textStorage removeAttribute:NSFontAttributeName range:range];
+                                 [textStorage addAttribute:NSFontAttributeName value:font range:range];
+                             }
+                             
+                         }];
+    [textStorage endEditing];
+    [textView didChangeText];
+}
+
+
+- (IBAction)makeTextBigger:(id)sender {
+    [self changeFontSize:1];
+}
+
+- (IBAction)makeTextSmaller:(id)sender {
+    [self changeFontSize:-1];
+}
+
 
 - (void)windowWillClose:(NSNotification *)notification {
     [self release];

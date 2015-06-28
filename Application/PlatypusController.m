@@ -62,6 +62,7 @@
     [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"OnCreateDevVersion"];
     [defaultPrefs setObject:[NSNumber numberWithBool:YES] forKey:@"OnCreateOptimizeNib"];
     [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"OnCreateUseXMLPlist"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"GenerateUniversalBinary"];
     
     // register the dictionary of defaults
     [DEFAULTS registerDefaults:defaultPrefs];
@@ -308,8 +309,9 @@
         [optimizeApplicationCheckbox setIntValue:0];
     }
     
-    // optimize application is enabled and on by default if ibtool is present
     [xmlPlistFormatCheckbox setIntValue:[[DEFAULTS objectForKey:@"OnCreateUseXMLPlist"] boolValue]];
+    
+    [generateUniversalBinaryCheckbox setIntValue:[[DEFAULTS objectForKey:@"GenerateUniversalBinary"] boolValue]];
     
     //run save panel
     [sPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
@@ -329,6 +331,7 @@
     [DEFAULTS setBool:[developmentVersionCheckbox state] forKey:@"OnCreateDevVersion"];
     [DEFAULTS setBool:[optimizeApplicationCheckbox state] forKey:@"OnCreateOptimizeNib"];
     [DEFAULTS setBool:[xmlPlistFormatCheckbox state] forKey:@"OnCreateUseXMLPlist"];
+    [DEFAULTS setBool:[generateUniversalBinaryCheckbox state] forKey:@"GenerateUniversalBinary"];
     
     // if user pressed cancel, we do nothing
     if (result != NSOKButton)

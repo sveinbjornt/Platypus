@@ -93,6 +93,7 @@
     IBOutlet id developmentVersionCheckbox;
     IBOutlet id optimizeApplicationCheckbox;
     IBOutlet id xmlPlistFormatCheckbox;
+    IBOutlet id generateUniversalBinaryCheckbox;
     
     //windows
     IBOutlet id window;

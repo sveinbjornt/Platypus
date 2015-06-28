@@ -332,9 +332,10 @@
 			isa = PBXGroup;
 			children = (
 				F4ECE17511F76CC2000DB012 /* PlatypusAppSpec */,
+				F4975DC31B2E721D0099D16E /* UKKQueue */,
+				F4AF785E14D1E5F600544C1B /* STDragWebView */,
 				F4B5DE431491A00900C43901 /* Utility */,
 				F48A724D122E23B200964D71 /* ScriptAnalyser */,
-				F4AF785E14D1E5F600544C1B /* STDragWebView */,
 				F41306340FBD809A00A319B7 /* STPathTextField */,
 				F44587170FC386B500CD0C02 /* STPrivilegedTask */,
 				F4975D6D1B2E03250099D16E /* NSFileManager+TempFile */,
@@ -524,7 +525,6 @@
 				F4975DA71B2E71EE0099D16E /* SyntaxCheckerController.m */,
 				F4975DA81B2E71EE0099D16E /* TextSettingsController.h */,
 				F4975DA91B2E71EE0099D16E /* TextSettingsController.m */,
-				F4975DC31B2E721D0099D16E /* UKKQueue */,
 			);
 			name = "Interface Controllers";
 			sourceTree = "<group>";
