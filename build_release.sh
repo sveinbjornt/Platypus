@@ -12,13 +12,23 @@ REMOTE_DIR="root@sveinbjorn.org:/www/sveinbjorn/html/files/software/platypus/"
 
 VERSION=`perl -e 'use Shell;@lines=cat("Common.h");foreach(@lines){if($_=~m/PROGRAM_VERSION.+(\d\.\d.+)\"/){print $1;}}'`
 APP_NAME=`perl -e 'use Shell;@lines=cat("Common.h");foreach(@lines){if($_=~m/PROGRAM_NAME.+\"(.+)\"/){print $1;}}'`
-APP_NAME_LC=`echo -n "${APP_NAME}" | perl -ne 'print lc'` # lowercase name
+APP_NAME_LC=`echo "${APP_NAME}" | perl -ne 'print lc'` # lowercase name
 
 APP_FOLDER_NAME="${APP_NAME}-${VERSION}"
 APP_BUNDLE_NAME="${APP_NAME}.app"
 
 APP_ZIP_NAME="${APP_NAME_LC}${VERSION}.zip"
 APP_SRC_ZIP_NAME="${APP_NAME_LC}${VERSION}.src.zip"
+
+#echo $VERSION
+#echo $APP_NAME
+#echo $APP_NAME_LC
+#
+#echo $APP_FOLDER_NAME
+#echo $APP_BUNDLE_NAME
+#
+#echo $APP_ZIP_NAME
+#echo $APP_SRC_ZIP_NAME
 
 echo "Building ${APP_NAME} version ${VERSION}"
 

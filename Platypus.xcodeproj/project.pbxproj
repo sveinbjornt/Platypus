@@ -774,7 +774,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Sveinbjorn Thordarson";
 			};
 			buildConfigurationList = F41B2181085CD8FF00B63B0D /* Build configuration list for PBXProject "Platypus" */;

@@ -203,7 +203,7 @@
     NSString *execDestinationPath, *infoPlistPath, *iconPath, *docIconPath, *bundledFileDestPath, *nibDestPath;
     NSString *execPath, *nibPath, *bundledFilePath;
     NSString *appSettingsPlistPath;
-    NSString *b_enc_script = @"";
+    NSData *b_enc_script;
     NSMutableDictionary *appSettingsPlist;
     NSFileManager *fileManager = FILEMGR;
     
@@ -302,9 +302,10 @@
     //.app/Contents/Resources/script
     [self report:@"Copying script"];
     
-    if ([[properties objectForKey:@"Secure"] boolValue])
-        b_enc_script = [NSData dataWithContentsOfFile:[properties objectForKey:@"ScriptPath"]];
-    else {
+    if ([[properties objectForKey:@"Secure"] boolValue]) {
+        NSString *path = [properties objectForKey:@"ScriptPath"];
+        b_enc_script = [NSData dataWithContentsOfFile:path];
+    } else {
         NSString *scriptFilePath = [resourcesPath stringByAppendingString:@"/script"];
         // make a symbolic link instead of copying script if this is a dev version
         if ([[properties objectForKey:@"DevelopmentVersion"] boolValue] == YES)

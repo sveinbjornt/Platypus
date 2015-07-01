@@ -1262,7 +1262,6 @@
     // of the original image, but we shouldn't change the original, so a copy
     // is necessary.
     workingImage = [image copyWithZone:[image zone]];
-    [workingImage setScalesWhenResized:YES];
     size = [workingImage size];
     workingImageRep = [workingImage bestRepresentationForRect:NSZeroRect context:nil hints:nil];
     if ([workingImageRep isKindOfClass:[NSBitmapImageRep class]]) {
