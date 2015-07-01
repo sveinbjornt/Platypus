@@ -124,7 +124,6 @@
     [[self image] drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:0.5];
     
     [dragImage unlockFocus]; //finished drawing
-    [dragImage setScalesWhenResized:YES]; //we want the image to resize
     [dragImage setSize:[self bounds].size]; //change to the size we are displaying
 	
     //execute the drag
