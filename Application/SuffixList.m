@@ -52,30 +52,10 @@
     return ([[items objectAtIndex:index] objectForKey:@"suffix"]);
 }
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView {
-    return ([items count]);
-}
-
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
-    
-    if ([[aTableColumn identifier] caseInsensitiveCompare:@"2"] == NSOrderedSame) {
-        return([[items objectAtIndex:rowIndex] objectForKey:@"suffix"]);
-    }
-    else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
-        if (rowIndex == 0) {
-            NSImageCell *iconCell;
-            iconCell = [[[NSImageCell alloc] init] autorelease];
-            [aTableColumn setDataCell:iconCell];
-        }
-        
-        return [[items objectAtIndex:rowIndex] objectForKey:@"icon"];
-    }
-    return(@"");
-}
-
 - (void)addSuffix:(NSString *)suffix {
-    if ([self hasSuffix:suffix])
+    if ([self hasSuffix:suffix]) {
         return;
+    }
     NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType:suffix];
     NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:
                             suffix, @"suffix", icon, @"icon", nil];
@@ -96,8 +76,9 @@
 - (BOOL)hasSuffix:(NSString *)suffix {
     int i;
     for (i = 0; i < [items count]; i++) {
-        if ([[[items objectAtIndex:i] objectForKey:@"suffix"] isEqualToString:suffix])
+        if ([[[items objectAtIndex:i] objectForKey:@"suffix"] isEqualToString:suffix]) {
             return YES;
+        }
     }
     return NO;
 }
@@ -105,8 +86,9 @@
 - (BOOL)hasAllSuffixes {
     int i;
     for (i = 0; i < [items count]; i++) {
-        if ([[[items objectAtIndex:i] objectForKey:@"suffix"] isEqualToString:@"*"])
+        if ([[[items objectAtIndex:i] objectForKey:@"suffix"] isEqualToString:@"*"]) {
             return YES;
+        }
     }
     return NO;
 }
@@ -116,12 +98,13 @@
 }
 
 - (int)numSuffixes {
-    return ([items count]);
+    return [items count];
 }
 
 - (void)removeSuffix:(int)index {
-    if ([items count] > 0)
+    if ([items count] > 0) {
         [items removeObjectAtIndex:index];
+    }
 }
 
 - (NSArray *)getSuffixArray {
@@ -136,14 +119,37 @@
     return suffices;
 }
 
+#pragma mark - NSTableViewDelegate / DataSource
+
+- (int)numberOfRowsInTableView:(NSTableView *)aTableView {
+    return [items count];
+}
+
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
+    
+    if ([[aTableColumn identifier] caseInsensitiveCompare:@"2"] == NSOrderedSame) {
+        return([[items objectAtIndex:rowIndex] objectForKey:@"suffix"]);
+    } else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
+        if (rowIndex == 0) {
+            NSImageCell *iconCell;
+            iconCell = [[[NSImageCell alloc] init] autorelease];
+            [aTableColumn setDataCell:iconCell];
+        }
+        
+        return [[items objectAtIndex:rowIndex] objectForKey:@"icon"];
+    }
+    return(@"");
+}
+
 - (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(int)row dropOperation:(NSTableViewDropOperation)operation {
     int i;
     NSPasteboard *pboard = [info draggingPasteboard];
     NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
     
     for (i = 0; i < [draggedFiles count]; i++) {
-        if (![[[draggedFiles objectAtIndex:i] pathExtension] isEqualToString:@""])
+        if (![[[draggedFiles objectAtIndex:i] pathExtension] isEqualToString:@""]) {
             [self addSuffix:[[draggedFiles objectAtIndex:i] pathExtension]];
+        }
     }
     [tv reloadData];
     return YES;
