@@ -71,13 +71,15 @@
 #pragma mark -
 
 - (void)itemDoubleClicked:(id)sender {
-    if ([tableView clickedRow] == -1)
+    if ([tableView clickedRow] == -1) {
         return;
+    }
     
-    if (GetCurrentKeyModifiers() & cmdKey)
+    if (GetCurrentKeyModifiers() & cmdKey) {
         [self revealInFinder:[tableView clickedRow]];
-    else
+    } else {
         [self openInFinder:[tableView clickedRow]];
+    }
 }
 
 - (void)trackedFileDidChange {
@@ -93,9 +95,7 @@
 }
 
 - (void)addFiles:(NSArray *)fileNames {
-    int i;
-    
-    for (i = 0; i < [fileNames count]; i++) {
+    for (int i = 0; i < [fileNames count]; i++) {
         NSString *filePath = [fileNames objectAtIndex:i];
         
         if (![self hasFile:filePath]) {
@@ -116,17 +116,16 @@
 }
 
 - (void)updateQueueWatch {
-    int i;
-    for (i = 0; i < [files count]; i++)
+    for (int i = 0; i < [files count]; i++) {
         [[UKKQueue sharedFileWatcher] addPathToQueue:[[files objectAtIndex:i] objectForKey:@"Path"]];
+    }
 }
 
 - (BOOL)hasFile:(NSString *)fileName {
-    int i;
-    
-    for (i = 0; i < [files count]; i++) {
-        if ([[[files objectAtIndex:i] objectForKey:@"Path"] isEqualToString:fileName])
+    for (int i = 0; i < [files count]; i++) {
+        if ([[[files objectAtIndex:i] objectForKey:@"Path"] isEqualToString:fileName]) {
             return YES;
+        }
     }
     return NO;
 }
@@ -146,7 +145,6 @@
 - (int)numFiles {
     return([files count]);
 }
-
 
 - (NSArray *)getFilesArray {
     NSMutableArray *fileNames = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
@@ -181,12 +179,12 @@
         EditorController *editor = [[EditorController alloc] init];
         [editor showEditorForFile:[[files objectAtIndex:index] objectForKey:@"Path"] window:window];
         [window setTitle:PROGRAM_NAME];
-    }
-    else { // open it in the external application
+    } else {
+        // open it in the external application
         NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
-        if ([[NSWorkspace sharedWorkspace] fullPathForApplication:defaultEditor] != NULL)
+        if ([[NSWorkspace sharedWorkspace] fullPathForApplication:defaultEditor] != NULL) {
             [[NSWorkspace sharedWorkspace] openFile:[[files objectAtIndex:index] objectForKey:@"Path"] withApplication:defaultEditor];
-        else {
+        } else {
             // Complain if editor is not found, set it to the built-in editor
             [PlatypusUtility alert:@"Application not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
@@ -264,39 +262,30 @@
     [self updateFileSizeField];
 }
 
-/*****************************************
- - called when [R] button is pressed
- *****************************************/
 - (IBAction)revealFileInFileList:(id)sender {
-    int i;
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    
-    for (i = 0; i < [self numFiles]; i++) {
-        if ([selectedItems containsIndex:i])
+    for (int i = 0; i < [self numFiles]; i++) {
+        if ([selectedItems containsIndex:i]) {
             [self revealInFinder:i];
+        }
     }
 }
 
-/*****************************************
- 
- *****************************************/
 - (IBAction)openFileInFileList:(id)sender {
-    int i;
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    
-    for (i = 0; i < [self numFiles]; i++) {
-        if ([selectedItems containsIndex:i])
+    for (int i = 0; i < [self numFiles]; i++) {
+        if ([selectedItems containsIndex:i]) {
             [self openInFinder:i];
+        }
     }
 }
 
 - (IBAction)editFileInFileList:(id)sender {
-    int i;
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    
-    for (i = 0; i < [self numFiles]; i++) {
-        if ([selectedItems containsIndex:i])
+    for (int i = 0; i < [self numFiles]; i++) {
+        if ([selectedItems containsIndex:i]) {
             [self openInEditor:i];
+        }
     }
 }
 
@@ -328,11 +317,8 @@
  - Updates text field listing total size of bundled files
  *****************************************/
 - (void)updateFileSizeField {
-    int i;
-    
     totalSize = 0;
     NSString *totalSizeString;
-    
     
     //if there are no items, we just list it as 0 items
     if ([self numFiles] <= 0) {
@@ -342,16 +328,16 @@
     }
     
     //otherwise, loop through all files, calculate size
-    for (i = 0; i < [self numFiles]; i++) {
+    for (int i = 0; i < [self numFiles]; i++) {
         totalSize += [PlatypusUtility fileOrFolderSize:[self getFileAtIndex:i]];
     }
     
     totalSizeString = [PlatypusUtility sizeAsHumanReadable:totalSize];
-    if ([self numFiles] > 1)
+    if ([self numFiles] > 1) {
         [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d items, %@", [self numFiles], totalSizeString]];
-    else
+    } else {
         [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d item, %@", [self numFiles], totalSizeString]];
-    
+    }
     [platypusController updateEstimatedAppSize];
 }
 
@@ -365,14 +351,14 @@
     if ([[aTableColumn identifier] caseInsensitiveCompare:@"2"] == NSOrderedSame) { //path
         // check if bundled file still exists at path
         NSString *filePath = [[files objectAtIndex:rowIndex] objectForKey:@"Path"];
-        if ([FILEMGR fileExistsAtPath:filePath])
+        if ([FILEMGR fileExistsAtPath:filePath]) {
             return([[files objectAtIndex:rowIndex] objectForKey:@"Path"]);
-        else { // if not, we hilight red
+        } else {
+            // if not, we hilight red
             NSDictionary *attr = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor redColor], NSForegroundColorAttributeName, nil];
             return([[[NSAttributedString alloc] initWithString:filePath attributes:attr] autorelease]);
         }
-    }
-    else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) { //icon
+    } else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
         return [[files objectAtIndex:rowIndex] objectForKey:@"Icon"];
     }
     
@@ -384,14 +370,13 @@
  *****************************************/
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
-    int i;
     int selected = 0;
     NSIndexSet *selectedItems;
     
     //selection changed in File List
     if ([aNotification object] == tableView || [aNotification object] == NULL) {
         selectedItems = [tableView selectedRowIndexes];
-        for (i = 0; i < [self numFiles]; i++) {
+        for (int i = 0; i < [self numFiles]; i++) {
             if ([selectedItems containsIndex:i]) {
                 selected++;
             }
@@ -402,17 +387,17 @@
             [removeFileButton setEnabled:NO];
             [revealFileButton setEnabled:NO];
             [editFileButton setEnabled:NO];
-        }
-        else {
+        } else {
             [removeFileButton setEnabled:YES];
             [revealFileButton setEnabled:YES];
             [editFileButton setEnabled:YES];
         }
         
-        if ([self numFiles] == 0)
+        if ([self numFiles] == 0) {
             [clearFileListButton setEnabled:NO];
-        else
+        } else {
             [clearFileListButton setEnabled:YES];
+        }
     }
 }
 
@@ -457,18 +442,18 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     int selectedRow = [tableView selectedRow];
     
-    if ([[anItem title] isEqualToString:@"Add New File"] || [[anItem title] isEqualToString:@"Add File To Bundle"])
+    if ([[anItem title] isEqualToString:@"Add New File"] || [[anItem title] isEqualToString:@"Add File To Bundle"]) {
         return YES;
-    
-    if ([[anItem title] isEqualToString:@"Clear File List"] && [self numFiles] >= 1)
+    }
+    if ([[anItem title] isEqualToString:@"Clear File List"] && [self numFiles] >= 1) {
         return YES;
-    
-    if (selectedRow == -1)
+    }
+    if (selectedRow == -1) {
         return NO;
+    }
     
     // Folders are never editable
-    if ([[anItem title] isEqualToString:@"Open in Editor"])
-    {
+    if ([[anItem title] isEqualToString:@"Open in Editor"])  {
         NSIndexSet *selectedItems = [tableView selectedRowIndexes];
         for (int i = 0; i < [self numFiles]; i++) {
             if ([selectedItems containsIndex:i]) {
@@ -489,11 +474,10 @@
  - Tells us whether there are missing/moved files on the list
  *****************************************/
 - (BOOL)allPathsAreValid {
-    int i;
-    
-    for (i = 0; i < [self numFiles]; i++) {
-        if (![FILEMGR fileExistsAtPath:[[files objectAtIndex:i] objectForKey:@"Path"]])
+    for (int i = 0; i < [self numFiles]; i++) {
+        if (![FILEMGR fileExistsAtPath:[[files objectAtIndex:i] objectForKey:@"Path"]]) {
             return NO;
+        }
     }
     return YES;
 }

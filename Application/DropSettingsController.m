@@ -212,10 +212,11 @@
     
     if ([aNotification object] == suffixListDataBrowser || [aNotification object] == NULL) {
         selectedItems = [suffixListDataBrowser selectedRowIndexes];
-        for (i = 0; i < [suffixList numSuffixes]; i++)
-            if ([selectedItems containsIndex:i])
+        for (i = 0; i < [suffixList numSuffixes]; i++) {
+            if ([selectedItems containsIndex:i]) {
                 selected++;
-        
+            }
+        }
         [removeSuffixButton setEnabled:(selected != 0)];
     }
 }

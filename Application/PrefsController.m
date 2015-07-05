@@ -69,12 +69,12 @@
             NSImage *icon = [NSImage imageNamed:@"PlatypusAppIcon"];
             [icon setSize:smallIconSize];
             [[defaultEditorMenu itemAtIndex:i] setImage:icon];
-        }
-        else if ([[[defaultEditorMenu itemAtIndex:i] title] isEqualToString:@"Select..."] == NO && [[[defaultEditorMenu itemAtIndex:i] title] length] > 0) {
+        } else if ([[[defaultEditorMenu itemAtIndex:i] title] isEqualToString:@"Select..."] == NO && [[[defaultEditorMenu itemAtIndex:i] title] length] > 0) {
             NSImage *icon = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
             NSString *appPath = [[NSWorkspace sharedWorkspace] fullPathForApplication:[[defaultEditorMenu itemAtIndex:i] title]];
-            if (appPath != NULL) // app found
+            if (appPath != NULL) { // app found
                 icon = [[NSWorkspace sharedWorkspace] iconForFile:appPath];
+            }
             [icon setSize:smallIconSize];
             [[defaultEditorMenu itemAtIndex:i] setImage:icon];
         }
@@ -94,10 +94,12 @@
     
     //bundle identifier
     //make sure bundle identifier ends with a '.'
-    if ([[defaultBundleIdentifierTextField stringValue] characterAtIndex:[[defaultBundleIdentifierTextField stringValue]length] - 1] != '.')
+    if ([[defaultBundleIdentifierTextField stringValue] characterAtIndex:[[defaultBundleIdentifierTextField stringValue] length] - 1] != '.') {
         [DEFAULTS setObject:[[defaultBundleIdentifierTextField stringValue] stringByAppendingString:@"."]  forKey:@"DefaultBundleIdentifierPrefix"];
-    else
+    } else {
         [DEFAULTS setObject:[defaultBundleIdentifierTextField stringValue]  forKey:@"DefaultBundleIdentifierPrefix"];
+    }
+    
     //author
     [DEFAULTS setObject:[defaultAuthorTextField stringValue]  forKey:@"DefaultAuthor"];
     
@@ -155,8 +157,7 @@
         NSString *editorName = [[filePath lastPathComponent] stringByDeletingPathExtension];
         [defaultEditorMenu setTitle:editorName];
         [self setIconsForEditorMenu];
-    }
-    else {
+    } else {
         [defaultEditorMenu setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
     }
 }
@@ -175,18 +176,17 @@
         if ([versionString isEqualToString:PROGRAM_VERSION]) { // it's installed and current
             [textField setTextColor:[NSColor colorWithCalibratedRed:0.0 green:0.6 blue:0.0 alpha:1.0]];
             [textField setStringValue:@"Command line tool is installed"];
-        }
-        else {
+        } else {
             // installed but not this version
             [textField setTextColor:[NSColor orangeColor]];
-            if ([versionString floatValue] < [PROGRAM_VERSION floatValue])
+            if ([versionString floatValue] < [PROGRAM_VERSION floatValue]) {
                 [textField setStringValue:@"Old version of command line"];  //older
-            else
+            } else {
                 [textField setStringValue:@"Newer version of command line"];  //newer
+            }
         }
         [installCLTButton setTitle:@"Uninstall"];
-    }
-    else { // it's not installed at all
+    } else {
         [textField setStringValue:@"Command line tool is not installed"];
         [textField setTextColor:[NSColor redColor]];
         [installCLTButton setTitle:@"Install"];
@@ -197,12 +197,8 @@
  - Install/uninstall CLT based on install status
  *****************************************/
 
-- (IBAction)installCLT:(id)sender;
-{
-    if ([self isCommandLineToolInstalled] == NO)
-        [self installCommandLineTool];
-    else
-        [self uninstallCommandLineTool];
+- (IBAction)installCLT:(id)sender {
+    [self isCommandLineToolInstalled] == NO ? [self installCommandLineTool] : [self uninstallCommandLineTool];
 }
 
 /*****************************************
@@ -210,7 +206,6 @@
  *****************************************/
 
 - (void)installCommandLineTool {
-    
     [self runCLTTemplateScript:@"InstallCommandLineTool.sh" usingDictionary:[self commandLineEnvDict]];
 }
 
@@ -239,7 +234,6 @@
             CMDLINE_NIB_PATH, @"CMDLINE_NIB_PATH",
             CMDLINE_SCRIPT_EXEC_PATH, @"CMDLINE_SCRIPT_EXEC_PATH",
             CMDLINE_ICON_PATH, @"CMDLINE_ICON_PATH", nil];
-    
 }
 
 /*****************************************
@@ -276,11 +270,11 @@
  *****************************************/
 
 - (BOOL)isCommandLineToolInstalled {
-    return     ([FILEMGR fileExistsAtPath:CMDLINE_VERSION_PATH] &&
-                [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH] &&
-                [FILEMGR fileExistsAtPath:CMDLINE_MANPAGE_PATH] &&
-                [FILEMGR fileExistsAtPath:CMDLINE_EXEC_PATH] &&
-                [FILEMGR fileExistsAtPath:CMDLINE_ICON_PATH]);
+    return ([FILEMGR fileExistsAtPath:CMDLINE_VERSION_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_MANPAGE_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_EXEC_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_ICON_PATH]);
 }
 
 /*****************************************

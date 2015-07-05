@@ -170,16 +170,18 @@
 - (void)profileMenuItemSelected:(id)sender {
     BOOL isExample = ([sender tag]  == EXAMPLES_TAG);
     NSString *folder = PROFILES_FOLDER;
-    if (isExample)
+    if (isExample) {
         folder = [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
+    }
     
     NSString *profilePath = [NSString stringWithFormat:@"%@/%@", [folder stringByExpandingTildeInPath], [sender title]];
     
     // if command key is down, we reveal in finder
-    if (GetCurrentKeyModifiers() & cmdKey)
+    if (GetCurrentKeyModifiers() & cmdKey) {
         [[NSWorkspace sharedWorkspace] selectFile:profilePath inFileViewerRootedAtPath:nil];
-    else
+    } else {
         [self loadProfileFile:profilePath];
+    }
 }
 
 /*****************************************
@@ -187,8 +189,9 @@
  *****************************************/
 
 - (IBAction)clearAllProfiles:(id)sender {
-    if ([PlatypusUtility proceedWarning:@"Delete all profiles?" subText:@"This will permanently delete all profiles in your Profiles folder." withAction:@"Delete"] == 0)
+    if ([PlatypusUtility proceedWarning:@"Delete all profiles?" subText:@"This will permanently delete all profiles in your Profiles folder." withAction:@"Delete"] == 0) {
         return;
+    }
     
     //delete all .platypus files in PROFILES_FOLDER
     
@@ -199,9 +202,11 @@
     while ((filename = [dirEnumerator nextObject]) != NULL) {
         if ([filename hasSuffix:PROFILES_SUFFIX]) {
             NSString *path = [NSString stringWithFormat:@"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], filename];
-            if (![manager isDeletableFileAtPath:path])
+            if (![manager isDeletableFileAtPath:path]) {
                 [PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Cannot delete file %@.", path]];
-            [manager removeItemAtPath:path error:nil];
+            } else {
+                [manager removeItemAtPath:path error:nil];
+            }
         }
     }
     
@@ -232,11 +237,12 @@
         [menuItem setTag:EXAMPLES_TAG];
     }
     
-    [(NSMenuItem *)examplesMenuItem setSubmenu : em];
+    [(NSMenuItem *)examplesMenuItem setSubmenu:em];
     
     //clear out all menu items
-    while ([profilesMenu numberOfItems] > 6)
+    while ([profilesMenu numberOfItems] > 6) {
         [profilesMenu removeItemAtIndex:6];
+    }
     
     if ([profiles count] > 0) {
         //populate with contents of array
@@ -252,9 +258,10 @@
         NSMenuItem *menuItem = [profilesMenu addItemWithTitle:@"Open Profiles Folder" action:@selector(openProfilesFolder) keyEquivalent:@""];
         [menuItem setTarget:self];
         [menuItem setEnabled:YES];
-    }
-    else
+        
+    } else {
         [profilesMenu addItemWithTitle:@"Empty" action:nil keyEquivalent:@""];
+    }
 }
 
 - (void)openProfilesFolder {
@@ -270,8 +277,9 @@
     NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
     NSString *filename;
     while ((filename = [dirEnumerator nextObject]) != NULL) {
-        if ([filename hasSuffix:PROFILES_SUFFIX])
+        if ([filename hasSuffix:PROFILES_SUFFIX]) {
             [profilesArray addObject:filename];
+        }
     }
     return profilesArray;
 }
@@ -281,8 +289,9 @@
     NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], PROGRAM_EXAMPLES_FOLDER]];
     NSString *filename;
     while ((filename = [dirEnumerator nextObject]) != NULL) {
-        if ([filename hasSuffix:PROFILES_SUFFIX])
+        if ([filename hasSuffix:PROFILES_SUFFIX]) {
             [examplesArray addObject:filename];
+        }
     }
     return examplesArray;
 }
@@ -293,9 +302,9 @@
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     if (([[anItem title] isEqualToString:@"Clear All Profiles"] && [[self getProfilesList] count] < 1) ||
-        [[anItem title] isEqualToString:@"Empty"])
+        [[anItem title] isEqualToString:@"Empty"]) {
         return NO;
-    
+    }
     return YES;
 }
 

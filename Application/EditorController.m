@@ -65,6 +65,8 @@
     [NSApp runModalForWindow:[self window]];
 }
 
+#pragma mark -
+
 - (IBAction)save:(id)sender {
     if (![FILEMGR isWritableFileAtPath:[scriptPathTextField stringValue]])
         [PlatypusUtility alert:@"Unable to save changes" subText:@"You don't have the necessary privileges to save this text file."];
@@ -82,6 +84,8 @@
     [[self window] close];
 }
 
+#pragma mark -
+
 - (IBAction)checkSyntax:(id)sender {
     SyntaxCheckerController *syntax = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
     [syntax showSyntaxCheckerForFile:[scriptPathTextField stringValue]
@@ -92,6 +96,8 @@
 - (IBAction)revealInFinder:(id)sender {
     [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:nil];
 }
+
+#pragma mark - Font size
 
 - (void)changeFontSize:(CGFloat)delta {
     NSFont *font = [textView font];
@@ -111,6 +117,7 @@
     [self changeFontSize:-1];
 }
 
+#pragma mark - NSWindowDelegate
 
 - (void)windowWillClose:(NSNotification *)notification {
     [self release];
