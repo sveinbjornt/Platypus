@@ -114,8 +114,9 @@
     int selectedRow = [interpreterArgsTableView selectedRow];
     int rowToSelect;
     
-    if (selectedRow == -1 || ![interpreterArgs count])
+    if (selectedRow == -1 || ![interpreterArgs count]) {
         return;
+    }
     
     [interpreterArgs removeObjectAtIndex:[interpreterArgsTableView selectedRow]];
     
@@ -138,8 +139,9 @@
     int selectedRow = [scriptArgsTableView selectedRow];
     int rowToSelect;
     
-    if (selectedRow == -1 || ![scriptArgs count])
+    if (selectedRow == -1 || ![scriptArgs count]) {
         return;
+    }
     
     [scriptArgs removeObjectAtIndex:[scriptArgsTableView selectedRow]];
     
@@ -200,8 +202,9 @@
     }
     
     // file args
-    if ([isDroppableCheckbox state] == NSOnState)
+    if ([isDroppableCheckbox state] == NSOnState) {
         cmdString = [cmdString stringByAppendingString:@" [files ...]"];
+    }
     
     return cmdString;
 }
@@ -244,10 +247,12 @@
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-    if ([anItem menu] == scriptArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [scriptArgsTableView selectedRow] == -1)
+    if ([anItem menu] == scriptArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [scriptArgsTableView selectedRow] == -1) {
         return NO;
-    if ([anItem menu] == interpreterArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [interpreterArgsTableView selectedRow] == -1)
+    }
+    if ([anItem menu] == interpreterArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [interpreterArgsTableView selectedRow] == -1) {
         return NO;
+    }
     
     return YES;
 }

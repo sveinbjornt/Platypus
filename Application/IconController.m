@@ -119,9 +119,9 @@
 
 // get information about the default icons
 - (NSDictionary *)getIconInfoForType:(int)type {
-    NSImage *iconImage = nil;
-    NSString *iconName = @"";
-    NSString *iconPath = @"";
+    NSImage *iconImage;
+    NSString *iconName;
+    NSString *iconPath;
     
     switch (type) {
         case 0:
@@ -138,10 +138,13 @@
             
         case 2:
             iconImage = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
-            [iconImage setSize:NSMakeSize(128, 128)]; // fix the bug where it would appear small
+            [iconImage setSize:NSMakeSize(256, 256)];
             iconName = @"Generic Application Icon";
             iconPath = @"";
             break;
+        
+        default:
+            return nil;
     }
     
     return [NSDictionary dictionaryWithObjectsAndKeys:iconImage, @"Image", iconName, @"Name", iconPath, @"Path", NULL];
@@ -175,7 +178,7 @@
 }
 
 - (BOOL)hasIcns {
-    return (icnsFilePath != nil);
+    return (icnsFilePath != nil && [FILEMGR fileExistsAtPath:icnsFilePath]);
 }
 
 - (NSString *)icnsFilePath {
@@ -191,8 +194,9 @@
         icnsFilePath = nil;
     } else {
         icnsFilePath = [[NSString alloc] initWithString:path];
-        if (![icnsFilePath isEqualToString:@""])
+        if (![icnsFilePath isEqualToString:@""]) {
             [[UKKQueue sharedFileWatcher] addPathToQueue:path];
+        }
     }
     [self updateIcnsStatus];
     [platypusController updateEstimatedAppSize];

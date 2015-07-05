@@ -33,6 +33,8 @@
 
 @implementation PlatypusIconView
 
+#pragma mark - Delegate
+
 - (void)setDelegate: (id)theDelegate {
 	delegate = theDelegate;
 }

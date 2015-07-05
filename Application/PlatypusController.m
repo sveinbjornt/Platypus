@@ -90,8 +90,7 @@
     
     //populate script type menu
     [scriptTypePopupMenu addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
-    int i;
-    for (i = 0; i < [[scriptTypePopupMenu itemArray] count]; i++) {
+    for (int i = 0; i < [[scriptTypePopupMenu itemArray] count]; i++) {
         NSImage *icon = [NSImage imageNamed:[[scriptTypePopupMenu itemAtIndex:i] title]];
         
         [[scriptTypePopupMenu itemAtIndex:i] setImage:icon];
@@ -124,9 +123,9 @@
  *****************************************/
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
-    if ([filename hasSuffix:PROFILES_SUFFIX]) {  //load as profile
+    if ([filename hasSuffix:PROFILES_SUFFIX]) {
         [profilesController loadProfileFile:filename];
-    } else  {//load as script
+    } else {
         [self loadScript:filename];
     }
     return YES;
@@ -140,9 +139,6 @@
 
 - (IBAction)newScript:(id)sender {
     NSString *newScriptPath = [self createNewScript:NULL];
-    
-    
-    //load and edit the script
     [self loadScript:newScriptPath];
     [self editScript:self];
 }
@@ -156,12 +152,11 @@
     NSString *tempScript, *defaultScript;
     NSString *interpreter = [interpreterTextField stringValue];
     
-    // get a random number to append to script name in /tmp/
+    // get a random number to append to script name in temp dir
     do {
         int randnum =  random() / 1000000;
         tempScript = [NSString stringWithFormat:@"%@Script.%d", [TEMP_FOLDER stringByExpandingTildeInPath], randnum];
-    }
-    while ([FILEMGR fileExistsAtPath:tempScript]);
+    } while ([FILEMGR fileExistsAtPath:tempScript]);
     
     //put shebang line in the new script text file
     NSString *contentString = [NSString stringWithFormat:@"#!%@\n\n", interpreter];
@@ -464,8 +459,8 @@
     }
     
     //interpreter
-    if ([fileManager fileExistsAtPath:[interpreterTextField stringValue]] == NO) { //make sure interpreter exists
-        if (NO == [PlatypusUtility proceedWarning:@"Invalid Interpreter" subText:@"The specified interpreter does not exist on this system.  Do you wish to proceed anyway?" withAction:@"Proceed"]) {
+    if ([fileManager fileExistsAtPath:[interpreterTextField stringValue]] == NO) {
+        if ([PlatypusUtility proceedWarning:@"Invalid Interpreter" subText:@"The specified interpreter does not exist on this system.  Do you wish to proceed anyway?" withAction:@"Proceed"] == NO) {
             return NO;
         }
     }
@@ -956,7 +951,6 @@
     // we accept dragged files
     if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
         NSString *file = [[[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType] objectAtIndex:0];
-        
         if (![file hasSuffix:@".icns"]) {
             return NSDragOperationLink;
         }

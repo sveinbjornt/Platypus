@@ -12,6 +12,8 @@ For 5.0
     TODO: New button-based output mode?
 
 For 4.9.1
+    TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
+    TODO: Fix filewatcher so it doesn't clear queue whenever script file name changes
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Show whether command line tool is installed in Show Shell Command window
     TODO: High res retina icon images
