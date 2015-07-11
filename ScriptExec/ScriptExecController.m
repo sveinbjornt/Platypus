@@ -1354,8 +1354,9 @@
     
     // run script and wait until we've received all the script output
     [self executeScript];
-    while (isTaskRunning)
+    while (isTaskRunning) {
         usleep(50000); // microseconds
+    }
     
     // create an array of lines by separating output by newline
     NSMutableArray *lines = [NSMutableArray arrayWithArray:[[textOutputTextView string] componentsSeparatedByString:@"\n"]];
