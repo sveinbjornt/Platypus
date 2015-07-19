@@ -34,7 +34,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                     </button>
-                    <button toolTip="Check this if your script accepts dropped files as arguments" id="299">
+                    <button toolTip="Check this if your script accepts dropped files or text snippets as arguments" id="299">
                         <rect key="frame" x="144" y="237" width="168" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Accepts dropped items" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="10942">
@@ -143,7 +143,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <scrollView toolTip="The list of files that will be bundled with your script application" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="319">
+                    <scrollView toolTip="The list of files that will be bundled with your application. These files are in the current working directory for your script." autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="319">
                         <rect key="frame" x="20" y="58" width="587" height="126"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <clipView key="contentView" id="AwF-Vu-vkI">
@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="DDFBF3A5-3D37-44D0-A40D-01433EDCAEB3" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="F97DFB31-994C-4078-B83F-8ED27A004E2D" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -237,7 +237,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button hidden="YES" toolTip="Press this button to edit the list of file types the app accepts" verticalHuggingPriority="750" id="372">
+                    <button hidden="YES" toolTip="Press this button to configure what kind of dropped items your app should accept" verticalHuggingPriority="750" id="372">
                         <rect key="frame" x="312" y="230" width="81" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Settings" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10958">
@@ -259,7 +259,7 @@ DQ
                             <action selector="newScript:" target="335" id="9219"/>
                         </connections>
                     </button>
-                    <button toolTip="Reveal the script in the Finder" verticalHuggingPriority="750" id="429">
+                    <button toolTip="Reveal script in Finder" verticalHuggingPriority="750" id="429">
                         <rect key="frame" x="410" y="397" width="61" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Reveal" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10960">
@@ -333,7 +333,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField toolTip="Reverse URL Bundle Identifier for your application (i.e. com.apple.myapp)" verticalHuggingPriority="750" id="861">
+                    <textField toolTip="Reverse URL Bundle Identifier for your application (e.g. com.apple.MyApp)" verticalHuggingPriority="750" id="861">
                         <rect key="frame" x="88" y="295" width="301" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="10970">
@@ -379,7 +379,7 @@ DQ
                             <action selector="removeFileFromFileList:" target="1234" id="1239"/>
                         </connections>
                     </button>
-                    <button toolTip="Reveal file in the Finder" verticalHuggingPriority="750" id="963">
+                    <button toolTip="Reveal file in Finder" verticalHuggingPriority="750" id="963">
                         <rect key="frame" x="615" y="76" width="23" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="smallSquare" title="🔎" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="10974">
@@ -401,7 +401,7 @@ DQ
                             <action selector="editFileInFileList:" target="1234" id="11251"/>
                         </connections>
                     </button>
-                    <button toolTip="Clear bundled files list" verticalHuggingPriority="750" id="965">
+                    <button toolTip="Clear file list" verticalHuggingPriority="750" id="965">
                         <rect key="frame" x="615" y="57" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="smallSquare" title="C" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="10975">
@@ -421,7 +421,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField toolTip="Author Name, displayed in copyright notice and about window" verticalHuggingPriority="750" id="1141">
+                    <textField toolTip="Author name, displayed in copyright notice and About window" verticalHuggingPriority="750" id="1141">
                         <rect key="frame" x="88" y="265" width="301" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="10977">
@@ -430,7 +430,7 @@ DQ
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button toolTip="Edit parameters to interpreter" verticalHuggingPriority="750" id="1390">
+                    <button toolTip="Edit arguments to interpreter and your script" verticalHuggingPriority="750" id="1390">
                         <rect key="frame" x="592" y="455" width="51" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Args" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10979">
@@ -496,7 +496,7 @@ DQ
                             <action selector="outputTypeWasChanged:" target="335" id="4160"/>
                         </connections>
                     </popUpButton>
-                    <textField toolTip="The estimated final size of the application to be created" verticalHuggingPriority="750" id="4168">
+                    <textField toolTip="The estimated final size of the application you are creating" verticalHuggingPriority="750" id="4168">
                         <rect key="frame" x="22" y="20" width="229" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Estimated app size:" id="10983">
@@ -505,7 +505,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="11541">
+                    <textField toolTip="The name of your application" verticalHuggingPriority="750" id="11541">
                         <rect key="frame" x="274" y="493" width="364" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="11542">
@@ -2562,7 +2562,7 @@ Gw
         <image name="Add_Pressed" width="23" height="20"/>
         <image name="Clear" width="22" height="20"/>
         <image name="Clear_Pressed" width="22" height="20"/>
-        <image name="DDFBF3A5-3D37-44D0-A40D-01433EDCAEB3" width="16" height="16">
+        <image name="F97DFB31-994C-4078-B83F-8ED27A004E2D" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
