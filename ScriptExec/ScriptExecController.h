@@ -158,7 +158,7 @@
 - (void)getOutputData:(NSNotification *)aNotification;
 - (void)appendOutput:(NSData *)data;
 
-- (BOOL)acceptableFileType:(NSString *)file;
+- (BOOL)isAcceptableFileType:(NSString *)file;
 - (BOOL)addDroppedFilesJob:(NSArray *)files;
 - (BOOL)addDroppedTextJob:(NSString *)text;
 

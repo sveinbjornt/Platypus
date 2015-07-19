@@ -713,7 +713,7 @@
     // add arguments for script
     [arguments addObjectsFromArray:scriptArgs];
     
-    // if initial run of app, add any arguments passed in via the command line (argc)
+    // if initial run of app, add any arguments passed in via the command line (argv)
     // this is pretty obscure (why CLI args for GUI app typically launched from Finder?)
     // but apparently helpful for certain use cases such as Firefox protocol handlers etc.
     if (commandLineArguments && [commandLineArguments count]) {
@@ -1157,8 +1157,7 @@
     }
 }
 
-// text snippet drag handling
-
+#pragma mark - Text snippet drag handling
 - (void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
     if (!isDroppable || !acceptsText || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS) {
         return;
@@ -1199,15 +1198,11 @@
         return NO;
     }
     
-    // Let's see what we have
-    NSInteger i;
-    NSMutableArray *acceptedFiles = [[[NSMutableArray alloc] init] autorelease];
-    
-    // Only accept the drag if at least one of the files meets the required types
-    for (i = 0; i < [files count]; i++) {
-        // if we accept this item, add it to list of accepted files
-        if ([self acceptableFileType:[files objectAtIndex:i]]) {
-            [acceptedFiles addObject:[files objectAtIndex:i]];
+    // we only accept the drag if at least one of the files meets the required types
+    NSMutableArray *acceptedFiles = [NSMutableArray array];
+    for (NSString *file in files) {
+        if ([self isAcceptableFileType:file]) {
+            [acceptedFiles addObject:file];
         }
     }
     
@@ -1216,23 +1211,22 @@
         return NO;
     }
     
-    // we create a processing job and add the files as arguments, accept drop
+    // we create a processing job and add the files as arguments
     NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity:ARG_MAX]; //this object is released in -prepareForExecution function
-    
     [args addObjectsFromArray:acceptedFiles];
     [jobQueue addObject:args];
     [args release];
+    
+    // accept drop
     return YES;
 }
 
 /*****************************************************************
- 
  Returns whether a given file is accepted by the suffix/types
  criterion specified in AppSettings.plist
- 
  *****************************************************************/
 
-- (BOOL)acceptableFileType:(NSString *)file {
+- (BOOL)isAcceptableFileType:(NSString *)file {
     BOOL isDir;
     
     // Check if it's a folder. If so, we only accept it if folders are accepted
@@ -1267,7 +1261,7 @@
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         
         for (NSString *file in files) {
-            if ([self acceptableFileType:file]) {
+            if ([self isAcceptableFileType:file]) {
                 acceptDrag = YES;
             }
         }
