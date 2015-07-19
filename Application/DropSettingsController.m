@@ -133,7 +133,10 @@
 {
     NSString *theSuffix = [suffixTextField stringValue];
     
-    if ([suffixList hasSuffix:theSuffix] || ([theSuffix length] == 0)) {
+    if (([theSuffix length] == 0)) {
+        if ([suffixList hasSuffix:theSuffix]) {
+            [suffixTextField setStringValue:@""];
+        }
         return;
     }
     
