@@ -83,7 +83,7 @@
 
 - (void)awakeFromNib {
     // load settings from AppSettings.plist in app bundle
-    [self loadSettings];
+    [self loadAppSettings];
     
     // prepare UI
     [self initialiseInterface];
@@ -104,7 +104,7 @@
  application bundle, sanitize it, prepare it
  **************************************************/
 
-- (void)loadSettings {
+- (void)loadAppSettings {
     
     NSDictionary *appSettingsPlist;
     NSBundle *appBundle = [NSBundle mainBundle];
@@ -714,15 +714,16 @@
     [arguments addObjectsFromArray:scriptArgs];
     
     // if initial run of app, add any arguments passed in via the command line (argc)
-    // this is pretty obscure (why CLI args for GUI app?) but apparently helpful for
-    // certain edge cases such as Firefox protocol handlers etc.
+    // this is pretty obscure (why CLI args for GUI app typically launched from Finder?)
+    // but apparently helpful for certain use cases such as Firefox protocol handlers etc.
     if (commandLineArguments && [commandLineArguments count]) {
         [arguments addObjectsFromArray:commandLineArguments];
         commandLineArguments = nil;
     }
     
     //finally, add any file arguments we may have received as dropped/opened
-    if ([jobQueue count] > 0) { // we have files in the queue, to append as arguments
+    if ([jobQueue count] > 0) {
+        // we have files in the queue, to append as arguments
         // we take the first job's arguments and put them into the arg list
         [arguments addObjectsFromArray:[jobQueue objectAtIndex:0]];
         
@@ -749,22 +750,21 @@
     // run the task
     if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { //authenticated task
         [self executeScriptWithPrivileges];
-    } else { //plain ol' nstask
+    } else {
         [self executeScriptWithoutPrivileges];
     }
 }
 
 //launch regular user-privileged process using NSTask
 - (void)executeScriptWithoutPrivileges {
-    //initalize task
+
+    //create task and apply settings
     task = [[NSTask alloc] init];
-    
-    //apply settings for task
     [task setLaunchPath:interpreter];
     [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
     [task setArguments:arguments];
     
-    // set output to file handle and start monitoring it if script provides feedback
+    // direct output to file handle and start monitoring it if script provides feedback
     if (outputType != PLATYPUS_NONE_OUTPUT) {
         outputPipe = [NSPipe pipe];
         [task setStandardOutput:outputPipe];
@@ -777,7 +777,7 @@
     //set it off
     [task launch];
     
-    // we wait until task exits if this is for the menu
+    // we wait until task exits if this is triggered by a status item menu
     if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
         [task waitUntilExit];
     }
@@ -829,19 +829,23 @@
     if (execStyle == PLATYPUS_NORMAL_EXECUTION && task != nil && [task isRunning]) {
         [task terminate];
     }
+    
     // did we receive all the data?
     if (outputEmpty) { // if no data left we do the clean up
         [self cleanup];
     }
-    //if we're using the "secure" script, we must remove the temporary clear-text one in temp directory if there is one
+    
+    // if we're using the "secure" script, we must remove the temporary clear-text one in temp directory if there is one
     if (secureScript && [FILEMGR fileExistsAtPath:scriptPath]) {
         [FILEMGR removeItemAtPath:scriptPath error:nil];
     }
+    
     // we quit now if the app isn't set to continue running
     if (!remainRunning) {
         [[NSApplication sharedApplication] terminate:self];
         return;
     }
+    
     // if there are more jobs waiting for us, execute
     if ([jobQueue count] > 0) {
         [self executeScript];
@@ -853,10 +857,10 @@
     if (isTaskRunning) {
         return;
     }
-    // Stop observing the filehandle for data since task is done
+    // stop observing the filehandle for data since task is done
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadCompletionNotification object:readHandle];
     
-    // We make sure to clear the filehandle of any remaining data
+    // we make sure to clear the filehandle of any remaining data
     if (readHandle != nil) {
         NSData *data;
         while ((data = [readHandle availableData]) && [data length]) {
@@ -870,16 +874,16 @@
 
 #pragma mark - Output
 
-//  read from the file handle and append it to the text window
+// read from the file handle and append it to the text window
 - (void)getOutputData:(NSNotification *)aNotification {
-    //get the data from notification
+    // get the data from notification
     NSData *data = [[aNotification userInfo] objectForKey:NSFileHandleNotificationDataItem];
     
-    //make sure there's actual data
+    // make sure there's actual data
     if ([data length]) {
         outputEmpty = NO;
         
-        //append the output to the text field
+        // append the output to the text field
         [self appendOutput:data];
         
         // we schedule the file handle to go and read more data in the background again.
@@ -893,19 +897,18 @@
     }
 }
 
-//
 // this function receives all new data dumped out by the script and appends it to text field
-// it is *relatively* memory efficient (given the nature of NSTextView) and doesn't leak, as far as I can tell...
-//
+// it is *relatively* memory efficient (given the nature of NSTextView)
 - (void)appendOutput:(NSData *)data {
     // we decode the script output according to specified character encoding
     NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:textEncoding];
     
-    if (!outputString) {
+    if (!outputString || [outputString length] == 0) {
         return;
     }
     
-    // we parse output if output type is progress bar, to get progress indicator values and display string
+    // we parse output if output type is progress bar/droplet
+    // in order to get progress indicator values and display string
     if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || outputType == PLATYPUS_DROPLET_OUTPUT) {
         if (remnants != nil && [remnants length] > 0) {
             [outputString insertString:remnants atIndex:0];
@@ -930,12 +933,10 @@
         [lines removeLastObject];
         
         // parse output looking for commands; if none, add line to output text field
-        NSInteger i;
-        for (i = 0; i < [lines count]; i++) {
-            NSString *theLine = [lines objectAtIndex:i];
+        for (NSString *theLine in lines) {
             
             // if the line is empty, we ignore it
-            if ([theLine caseInsensitiveCompare:@""] == NSOrderedSame) {
+            if ([theLine isEqualToString:@""]) {
                 continue;
             }
             
@@ -961,23 +962,25 @@
     }
     
     // append the ouput to the text in the text field
-    NSTextStorage *text = [outputTextView textStorage];
-    [text replaceCharactersInRange:NSMakeRange([text length], 0) withString:outputString];
+    NSTextStorage *textStorage = [outputTextView textStorage];
+    [textStorage replaceCharactersInRange:NSMakeRange([textStorage length], 0) withString:outputString];
     
     // if web output, we continually re-render to accomodate incoming data, else we scroll down
     if (outputType == PLATYPUS_WEBVIEW_OUTPUT) {
-        
-        // first, check for Location:URL. In that case, we load the URL into web view
-        NSArray *lines = [NSArray arrayWithArray: [[text string] componentsSeparatedByString: @"\n"]];
-        if ([lines count] > 0 && [[lines objectAtIndex:1] hasPrefix: @"Location: "]) {
-            NSString *url = [[lines objectAtIndex: 1] substringFromIndex: 10];
-            [[webOutputWebView mainFrame] loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: url]] ];
+
+        NSArray *lines = [[textStorage string] componentsSeparatedByString: @"\n"];
+
+        // Check for 'Location: *URL*' In that case, we load the URL in the web view
+        if ([lines count] > 0 && [[lines objectAtIndex:1] hasPrefix:@"Location: "]) {
+            NSString *url = [[lines objectAtIndex: 1] substringFromIndex:10];
+            [[webOutputWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: url]] ];
         } else {
-            // otherwise, just render script output as the HTML
-            [[webOutputWebView mainFrame] loadHTMLString: [outputTextView string] baseURL: [NSURL fileURLWithPath: [[NSBundle mainBundle] resourcePath]] ];
+            // otherwise, just load script output as HTML string
+            NSURL *resourcePathURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]];
+            [[webOutputWebView mainFrame] loadHTMLString:[outputTextView string] baseURL:resourcePathURL];
         }
     } else if (outputType == PLATYPUS_TEXTWINDOW_OUTPUT || outputType == PLATYPUS_PROGRESSBAR_OUTPUT) {
-        [outputTextView scrollRangeToVisible:NSMakeRange([text length], 0)];
+        [outputTextView scrollRangeToVisible:NSMakeRange([textStorage length], 0)];
     }
     
     [outputString release];
@@ -1048,7 +1051,9 @@
 
 // save output in text field to file when Save to File menu item is invoked
 - (IBAction)saveToFile:(id)sender {
-    if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT) {
+    if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT &&
+        outputType != PLATYPUS_WEBVIEW_OUTPUT &&
+        outputType != PLATYPUS_PROGRESSBAR_OUTPUT) {
         return;
     }
     NSString *outSuffix = (outputType == PLATYPUS_WEBVIEW_OUTPUT) ? @"html" : @"txt";
@@ -1065,7 +1070,6 @@
 
 // save only works for text window, web view output types
 // and open only works for droppable apps that accept files as script args
-
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
         return YES;
@@ -1073,7 +1077,7 @@
     
     //save to file item
     if ([[anItem title] isEqualToString:@"Save to File…"] &&
-        (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT)) {
+        (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT  && outputType != PLATYPUS_PROGRESSBAR_OUTPUT)) {
         return NO;
     }
     //open should only work if it's a droppable app
@@ -1142,7 +1146,8 @@
         ret = [self addDroppedFilesJob:data];  // files
     } else if (acceptsText && [types containsObject:NSStringPboardType] && (data = [pb stringForType:NSStringPboardType])) {
         ret = [self addDroppedTextJob:data];  // text
-    } else { // unknown
+    } else {
+        // unknown
         *err = @"Data type in pasteboard cannot be handled by this application.";
         return;
     }
@@ -1159,7 +1164,6 @@
         return;
     }
     NSString *pboardString = [pboard stringForType:NSStringPboardType];
-
     NSInteger ret = [self addDroppedTextJob:pboardString];
     
     if (!isTaskRunning && ret) {
@@ -1189,8 +1193,7 @@
     return [self addTextJob:text];
 }
 
-// drop files processing
-
+// processing dropped files
 - (BOOL)addDroppedFilesJob:(NSArray *)files {
     if (!isDroppable || !acceptsFiles || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS) {
         return NO;
@@ -1230,7 +1233,6 @@
  *****************************************************************/
 
 - (BOOL)acceptableFileType:(NSString *)file {
-    NSInteger i;
     BOOL isDir;
     
     // Check if it's a folder. If so, we only accept it if folders are accepted
@@ -1242,9 +1244,9 @@
         return YES;
     }
     
-    // see if it has accepted suffix
-    for (i = 0; i < [droppableSuffixes count]; i++) {
-        if ([file hasSuffix:[droppableSuffixes objectAtIndex:i]]) {
+    // see if file has accepted suffix
+    for (NSString *suffix in droppableSuffixes) {
+        if ([file hasSuffix:suffix]) {
             return YES;
         }
     }
@@ -1255,7 +1257,6 @@
 #pragma mark - Drag and drop handling
 
 // check file types against acceptable drop types here before accepting them
-
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
     BOOL acceptDrag = NO;
     NSPasteboard *pboard = [sender draggingPasteboard];
@@ -1263,16 +1264,15 @@
     // if this is a file being dragged
     if ([[pboard types] containsObject:NSFilenamesPboardType] && acceptsFiles) {
         // loop through files, see if any of the dragged files are acceptable
-        NSInteger i;
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         
-        for (i = 0; i < [files count]; i++) {
-            if ([self acceptableFileType:[files objectAtIndex:i]]) {
+        for (NSString *file in files) {
+            if ([self acceptableFileType:file]) {
                 acceptDrag = YES;
             }
         }
     }
-    // see if this is a string being dragged
+    // if this is a string being dragged
     else if ([[pboard types] containsObject:NSStringPboardType] && acceptsText) {
         acceptDrag = YES;
     }
@@ -1303,7 +1303,7 @@
     // determine drag data type and dispatch to job queue
     if ([[pboard types] containsObject:NSStringPboardType]) {
         return [self addDroppedTextJob:[pboard stringForType:NSStringPboardType]];
-    } else {
+    } else if ([[pboard types] containsObject:NSFilenamesPboardType]) {
         return [self addDroppedFilesJob:[pboard propertyListForType:NSFilenamesPboardType]];
     }
     return NO;
@@ -1331,10 +1331,8 @@
 #pragma mark - Web View Output updating
 
 /**************************************************
- 
  Called whenever web view re-renders.  We scroll to
  the bottom on each re-rendering.
- 
  **************************************************/
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
@@ -1346,10 +1344,8 @@
 #pragma mark - Status Menu
 
 /**************************************************
- 
  Called whenever status item is clicked.  We run
  script, get output and generate menu with the ouput
- 
  **************************************************/
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
@@ -1390,6 +1386,7 @@
         [menu insertItem:menuItem atIndex:0];
     }
 }
+
 - (IBAction)menuItemSelected:(id)sender {
     [self addTextJob:[sender title]];
     if (!isTaskRunning && [jobQueue count] > 0) {

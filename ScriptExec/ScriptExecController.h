@@ -166,7 +166,7 @@
 - (IBAction)saveToFile:(id)sender;
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem;
 
-- (void)loadSettings;
+- (void)loadAppSettings;
 - (IBAction)cancel:(id)sender;
 - (IBAction)toggleDetails:(id)sender;
 - (IBAction)showDetails;
