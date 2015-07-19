@@ -37,20 +37,11 @@
 
 - (id)init {
     if ((self = [super init])) {
-        task = NULL;
-        privilegedTask = NULL;
-        
-        readHandle = NULL;
         arguments = [[NSMutableArray alloc] initWithCapacity:ARG_MAX];
         textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
         isTaskRunning = NO;
         outputEmpty = YES;
         jobQueue = [[NSMutableArray alloc] initWithCapacity:PLATYPUS_MAX_QUEUE_JOBS];
-        
-        statusItem = NULL;
-        statusItemTitle = NULL;
-        statusItemIcon = NULL;
-        statusItemMenu = NULL;
     }
     return self;
 }
@@ -59,31 +50,31 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     // these are explicitly alloc'd in the program
-    if (arguments != NULL) {
+    if (arguments != nil) {
         [arguments release];
     }
-    if (droppableSuffixes != NULL) {
+    if (droppableSuffixes != nil) {
         [droppableSuffixes release];
     }
-    if (interpreterArgs != NULL) {
+    if (interpreterArgs != nil) {
         [interpreterArgs release];
     }
-    if (scriptArgs != NULL) {
+    if (scriptArgs != nil) {
         [scriptArgs release];
     }
-    if (commandLineArguments != NULL) {
+    if (commandLineArguments != nil) {
         [commandLineArguments release];
     }
-    if (statusItemIcon != NULL) {
+    if (statusItemIcon != nil) {
         [statusItemIcon release];
     }
-    if (script != NULL) {
+    if (script != nil) {
         [script release];
     }
-    if (statusItem != NULL) {
+    if (statusItem != nil) {
         [statusItem release];
     }
-    if (statusItemMenu != NULL) {
+    if (statusItemMenu != nil) {
         [statusItemMenu release];
     }
     [jobQueue release];
@@ -103,26 +94,24 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(taskFinished:)
                                                  name:notificationName
-                                               object:NULL];
+                                               object:nil];
 }
 
 #pragma mark - App Settings
 
 /**************************************************
- 
  Load configuration file AppSettings.plist from
  application bundle, sanitize it, prepare it
- 
  **************************************************/
 
 - (void)loadSettings {
-    NSInteger i = 0;
-    NSBundle *appBundle = [NSBundle mainBundle];
-    NSFileManager *fmgr = FILEMGR;
+    
     NSDictionary *appSettingsPlist;
+    NSBundle *appBundle = [NSBundle mainBundle];
+    NSString *appSettingsPath = [appBundle pathForResource:@"AppSettings.plist" ofType:nil];
     
     //make sure all the config files are present -- if not, we quit
-    if (![fmgr fileExistsAtPath:[appBundle pathForResource:@"AppSettings.plist" ofType:nil]]) {
+    if (![FILEMGR fileExistsAtPath:appSettingsPath]) {
         [self fatalAlert:@"Corrupt app bundle" subText:@"AppSettings.plist missing from the application bundle."];
     }
     
@@ -131,14 +120,15 @@
     NSDictionary *infoPlist = [appBundle infoDictionary];
     if ([infoPlist objectForKey:@"CFBundleDisplayName"] != nil) {
         appName = [[NSString alloc] initWithString:[infoPlist objectForKey:@"CFBundleDisplayName"]];
-    } else { // if that doesn't work, use name of executable file
+    } else {
+        // if that doesn't work, use name of executable file
         appName = [[[appBundle executablePath] lastPathComponent] retain];
     }
     
     //get dictionary with app settings
-    appSettingsPlist = [NSDictionary dictionaryWithContentsOfFile:[appBundle pathForResource:@"AppSettings.plist" ofType:nil]];
-    if (appSettingsPlist == NULL) {
-        [self fatalAlert:@"Corrupt app settings" subText:@"AppSettings.plist is corrupt."];
+    appSettingsPlist = [NSDictionary dictionaryWithContentsOfFile:appSettingsPath];
+    if (appSettingsPlist == nil) {
+        [self fatalAlert:@"Corrupt app settings" subText:@"Unable to load AppSettings.plist"];
     }
     
     //determine output type
@@ -185,7 +175,7 @@
         }
         
         // background
-        if ([appSettingsPlist objectForKey:@"TextBackground"] != NULL) {
+        if ([appSettingsPlist objectForKey:@"TextBackground"] != nil) {
             textBackground    = [NSColor colorFromHex:[appSettingsPlist objectForKey:@"TextBackground"]];
         }
         if (!textBackground) {
@@ -206,27 +196,26 @@
     
     // likewise, status menu output has some additional parameters
     if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
+        NSString *statusItemDisplayType = [appSettingsPlist objectForKey:@"StatusItemDisplayType"];
+        
         // we load text label if status menu is not only an icon
-        if ([[appSettingsPlist objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Text"] ||
-            [[appSettingsPlist objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Icon and Text"]) {
+        if ([statusItemDisplayType isEqualToString:@"Text"] || [statusItemDisplayType isEqualToString:@"Icon and Text"]) {
             statusItemTitle = [[appSettingsPlist objectForKey:@"StatusItemTitle"] retain];
-            if (statusItemTitle == NULL)
+            if (statusItemTitle == nil) {
                 [self fatalAlert:@"Error getting title" subText:@"Failed to get Status Item title."];
-        } else {
-            statusItemTitle = NULL;
+            }
         }
         
         // we load icon if status menu is not only a text label
-        if ([[appSettingsPlist objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Icon"] ||
-            [[appSettingsPlist objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Icon and Text"]) {
+        if ([statusItemDisplayType isEqualToString:@"Icon"] || [statusItemDisplayType isEqualToString:@"Icon and Text"]) {
             statusItemIcon = [[NSImage alloc] initWithData:[appSettingsPlist objectForKey:@"StatusItemIcon"]];
-            if (statusItemIcon == NULL)
+            if (statusItemIcon == nil) {
                 [self fatalAlert:@"Error loading icon" subText:@"Failed to load Status Item icon."];
-        } else {
-            statusItemIcon = NULL;
+            }
         }
         
-        if (statusItemIcon == NULL && statusItemTitle == NULL) {
+        // Fallback if no title or icon is specified
+        if (statusItemIcon == nil && statusItemTitle == nil) {
             statusItemTitle = @"Title";
         }
     }
@@ -240,20 +229,30 @@
     isDroppable         = [[appSettingsPlist objectForKey:@"Droppable"] boolValue];
     promptForFileOnLaunch = [[appSettingsPlist objectForKey:@"PromptForFileOnLaunch"] boolValue];
     
-    // read and store command line arguments
-    // the first argument is always the path to the binary, so we remove that
-    commandLineArguments = [[NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]] retain];
-    if ([commandLineArguments count]) {
-        [commandLineArguments removeObjectAtIndex:0];
-        // hack to remove XCode CLI flags. Really just here to make debugging easier.
-        if ([commandLineArguments count] > 1 && [[commandLineArguments objectAtIndex:0] isEqualToString:@"-NSDocumentRevisionsDebugMode"]) {
-            [commandLineArguments removeObjectAtIndex:0];
-            [commandLineArguments removeObjectAtIndex:0];
-        }
+    // read and store command line arguments to the application
+    NSMutableArray *processArgs = [NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]];
 
+    if ([processArgs count]) {
+        // the first argument is always the path to the binary, so we remove that
+        [processArgs removeObjectAtIndex:0];
+        // hack to remove XCode CLI flags. Really just here to make debugging easier.
+        if ([processArgs count] > 1 && [[processArgs objectAtIndex:0] isEqualToString:@"-NSDocumentRevisionsDebugMode"]) {
+            [processArgs removeObjectAtIndex:0];
+            [processArgs removeObjectAtIndex:0];
+        }
     }
     
-    // never privileged execution or droppable w. status menu
+    commandLineArguments = [[NSMutableArray alloc] init];
+    for (NSString *arg in processArgs) {
+        // On older versions of Mac OS X, apps opened from the Finder
+        // are passed a process number argument of the form -psn_0_*******
+        // We don't hand these over to the script
+        if (![arg hasPrefix:@"-psn_"]) {
+            [commandLineArguments addObject:arg];
+        }
+    }
+    
+    // we never have privileged execution or droppable with status menu apps
     if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
         remainRunning = YES;
         execStyle = PLATYPUS_NORMAL_EXECUTION;
@@ -264,7 +263,8 @@
     acceptsFiles = ([appSettingsPlist objectForKey:@"AcceptsFiles"] != nil) ? [[appSettingsPlist objectForKey:@"AcceptsFiles"] boolValue] : YES;
     acceptsText = ([appSettingsPlist objectForKey:@"AcceptsText"] != nil) ? [[appSettingsPlist objectForKey:@"AcceptsText"] boolValue] : NO;
     
-    if (!acceptsFiles && !acceptsText) { // equivalent to not being droppable
+    // equivalent to not being droppable
+    if (!acceptsFiles && !acceptsText) {
         isDroppable = FALSE;
     }
     
@@ -282,43 +282,45 @@
         } else {
             droppableSuffixes = [[NSArray alloc] initWithArray:[NSArray array]];
         }
-        [droppableSuffixes retain];
-                
-        // see if we accept any dropped item, * suffix makes it so
-        for (i = 0; i < [droppableSuffixes count]; i++) {
-            if ([[droppableSuffixes objectAtIndex:i] isEqualToString:@"*"]) { //* suffix
+        
+        // see if we accept any dropped item, * suffix indicates if that is the case
+        for (NSString *suffix in droppableSuffixes) {
+            if ([suffix isEqualToString:@"*"]) {
                 acceptAnyDroppedItem = YES;
             }
         }
     }
     
     //get interpreter
-    interpreter = [[NSString stringWithString:[appSettingsPlist objectForKey:@"ScriptInterpreter"]] retain];
-    if (![fmgr fileExistsAtPath:interpreter]) {
-        [self fatalAlert:@"Missing interpreter" subText:[NSString stringWithFormat:@"This application could not run because the interpreter '%@' does not exist on this system.", interpreter]];
+    NSString *scriptInterpreter = [appSettingsPlist objectForKey:@"ScriptInterpreter"];
+    if (scriptInterpreter == nil || ![FILEMGR fileExistsAtPath:scriptInterpreter]) {
+        [self fatalAlert:@"Missing interpreter" subText:[NSString stringWithFormat:@"This application could not run because the interpreter '%@' does not exist on this system.", scriptInterpreter]];
     }
-    
+    interpreter = [[NSString alloc] initWithString:scriptInterpreter];
+
     //if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
-    if ((!secureScript && ![fmgr fileExistsAtPath:[appBundle pathForResource:@"script" ofType:NULL]]) || (secureScript && [appSettingsPlist objectForKey:@"TextSettings"] == NULL)) {
+    if ((!secureScript && ![FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]]) ||
+        (secureScript && [appSettingsPlist objectForKey:@"TextSettings"] == nil)) {
         [self fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
     }
     
     //get path to script within app bundle
     if (!secureScript) {
-        scriptPath = [[NSString stringWithString:[appBundle pathForResource:@"script" ofType:nil]] retain];
+        scriptPath = [[NSString alloc] initWithString:[appBundle pathForResource:@"script" ofType:nil]];
         
         // make sure we can read the script file
-        if (![fmgr isReadableFileAtPath:scriptPath]) { // if unreadable
-            chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);  // chmod 774
+        if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
+            // chmod 774
+            chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
         }
-        if (![fmgr isReadableFileAtPath:scriptPath]) { // if still unreadable
+        if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) { // if still unreadable
             [self fatalAlert:@"Corrupt app bundle" subText:@"Script file is not readable."];
         }
     }
     //if we have a "secure" script, there is no path to get, we write script to temp location on execution
     else {
         NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData:[appSettingsPlist objectForKey:@"TextSettings"]];
-        if (b_str == NULL) {
+        if (b_str == nil) {
             [self fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
         }
         // we create string with the script based on the decoded data
@@ -332,7 +334,7 @@
     [NSApp setServicesProvider:self]; // register as text handling service
     
     // status menu apps just run when item is clicked
-    // for all others, we run the script once app is up and running
+    // for all others, we run the script once app has been launched
     if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
         return;
     }
@@ -362,7 +364,7 @@
     }
     
     //terminate task
-    if (task != NULL) {
+    if (task != nil) {
         if ([task isRunning]) {
             [task terminate];
         }
@@ -370,7 +372,7 @@
     }
     
     //terminate privileged task
-    if (privilegedTask != NULL) {
+    if (privilegedTask != nil) {
         if ([privilegedTask isRunning]) {
             [privilegedTask terminate];
         }
@@ -391,13 +393,12 @@
 #pragma mark - Interface manipulation
 
 /****************************************
- 
  Set up any menu items, windows, controls
  at application launch time based on output mode
- 
  ****************************************/
 
 - (void)initialiseInterface {
+    
     //put application name into the relevant menu items
     [quitMenuItem setTitle:[NSString stringWithFormat:@"Quit %@", appName]];
     [aboutMenuItem setTitle:[NSString stringWithFormat:@"About %@", appName]];
@@ -629,11 +630,11 @@
         case PLATYPUS_PROGRESSBAR_OUTPUT:
         {
             // if there are any remnants, we append them to output
-            if (remnants != NULL) {
+            if (remnants != nil) {
                 NSTextStorage *text = [outputTextView textStorage];
                 [text replaceCharactersInRange:NSMakeRange([text length], 0) withString:remnants];
                 [remnants release];
-                remnants = NULL;
+                remnants = nil;
             }
             
             if (isDroppable) {
@@ -797,9 +798,10 @@
     if (err != errAuthorizationSuccess) {
         if (err == errAuthorizationCanceled) {
             outputEmpty = YES;
-            [self taskFinished:NULL];
+            [self taskFinished:nil];
             return;
-        }  else { // something went wrong
+        }  else {
+            // something went wrong
             [self fatalAlert:@"Failed to execute script" subText:[NSString stringWithFormat:@"Error %d occurred while executing script with privileges.", (int)err]];
         }
     }
@@ -824,7 +826,7 @@
     isTaskRunning = NO;
     
     // make sure task is dead.  Ideally we'd like to do the same for privileged tasks, but that's just not possible w/o process id
-    if (execStyle == PLATYPUS_NORMAL_EXECUTION && task != NULL && [task isRunning]) {
+    if (execStyle == PLATYPUS_NORMAL_EXECUTION && task != nil && [task isRunning]) {
         [task terminate];
     }
     // did we receive all the data?
@@ -855,7 +857,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadCompletionNotification object:readHandle];
     
     // We make sure to clear the filehandle of any remaining data
-    if (readHandle != NULL) {
+    if (readHandle != nil) {
         NSData *data;
         while ((data = [readHandle availableData]) && [data length]) {
             [self appendOutput:data];
@@ -905,7 +907,7 @@
     
     // we parse output if output type is progress bar, to get progress indicator values and display string
     if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || outputType == PLATYPUS_DROPLET_OUTPUT) {
-        if (remnants != NULL && [remnants length] > 0) {
+        if (remnants != nil && [remnants length] > 0) {
             [outputString insertString:remnants atIndex:0];
         }
         // parse the data just dumped out
@@ -915,13 +917,14 @@
         // Thus, we store the last line and then delete it from the outputstring
         // It'll be appended next time we get output
         if ([(NSString *)[lines lastObject] length] > 0) {
-            if (remnants != NULL) {
-                [remnants release]; remnants = NULL;
+            if (remnants != nil) {
+                [remnants release];
+                remnants = nil;
             }
             remnants = [[NSString alloc] initWithString:[lines lastObject]];
             [outputString deleteCharactersInRange:NSMakeRange([outputString length] - [remnants length], [remnants length])];
         } else {
-            remnants = NULL;
+            remnants = nil;
         }
         
         [lines removeLastObject];
@@ -1088,7 +1091,7 @@
 
 - (IBAction)cancel:(id)sender {
     
-    if (task != NULL) {
+    if (task != nil) {
         [task terminate];
     }
     
@@ -1370,7 +1373,7 @@
                                     //textBackground, NSBackgroundColorAttributeName,
                                     textForeground, NSForegroundColorAttributeName,
                                     textFont, NSFontAttributeName,
-                                    NULL];
+                                    nil];
     
     // remove all items of previous output
     while ([statusItemMenu numberOfItems] > 2)

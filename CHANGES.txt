@@ -39,6 +39,7 @@ For 4.9.1
     * Dynamic (in code) install path for command line tool scripts
     * Platypus-generated apps now remember font size set by user
     * Auto-focus on app name text field on app launch
+    * Process number arguments in the format -psn_0_******* used by old version of the Finder are no longer passed to script
 
 For 4.9
     * Users can now manually increase/decrease the font size in Platypus-generated apps
