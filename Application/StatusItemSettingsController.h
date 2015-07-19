@@ -42,6 +42,8 @@
     IBOutlet id titleLabel;
     IBOutlet id iconLabel;
     
+    IBOutlet id platypusController;
+    
     NSStatusItem *pStatusItem;
 }
 - (IBAction)show:(id)sender;

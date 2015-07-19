@@ -58,6 +58,8 @@
     [statusItemSettingsWindow orderOut:self];
 }
 
+#pragma mark -
+
 - (IBAction)restoreDefaults:(id)sender {
     [titleTextField setStringValue:@"Title"];
     [self setDisplayType:@"Text"];
@@ -121,6 +123,8 @@
     }
 }
 
+#pragma mark - Preview Status Item
+
 - (IBAction)previewStatusItem:(id)sender {
     [self killStatusItem];
     
@@ -160,6 +164,29 @@
     return (pStatusItem != NULL);
 }
 
+- (void)menuForScriptOutput {
+    
+    //create task and apply settings
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath:nil];
+    [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
+    [task setArguments:nil];
+    
+    // direct output to file handle and start monitoring it if script provides feedback
+    NSPipe *outputPipe = [NSPipe pipe];
+    [task setStandardOutput:outputPipe];
+    [task setStandardError:outputPipe];
+    NSFileHandle *readHandle = [outputPipe fileHandleForReading];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOutputData:) name:NSFileHandleReadCompletionNotification object:readHandle];
+    [readHandle readInBackgroundAndNotify];
+    
+    //set it off
+    [task launch];
+    [task waitUntilExit];
+}
+
+#pragma mark -
+
 - (NSString *)title {
     return [titleTextField stringValue];
 }
@@ -167,6 +194,8 @@
 - (void)setTitle:(NSString *)title {
     [titleTextField setStringValue:title];
 }
+
+#pragma mark -
 
 - (NSImage *)icon {
     return [iconImageView image];
