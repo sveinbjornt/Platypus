@@ -42,6 +42,9 @@
     CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : DEFAULT_OUTPUT_FONTSIZE;
     NSFont *font = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:fontSize];
     [textView setFont:font];
+    
+    [textView setAutomaticQuoteSubstitutionEnabled:NO];
+    [textView setAutomaticLinkDetectionEnabled:NO];
 }
 
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)theWindow {
