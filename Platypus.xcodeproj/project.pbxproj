@@ -13,7 +13,7 @@
 		F40B227F1B28F37A003C05ED /* ScriptExec.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = F48B774111F7661C00351575 /* ScriptExec.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
 		F445EA9814FAEEBF00DCCDB3 /* UninstallPlatypus.sh in Resources */ = {isa = PBXBuildFile; fileRef = F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */; };
-		F44E001D1229868100CAC9C2 /* PlatypusStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */; };
+		F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* DefaultStatusMenuIcon.png */; };
 		F44E006E12298B7200CAC9C2 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */; };
 		F44E006F12298B7200CAC9C2 /* PlatypusInstaller.icns in Resources */ = {isa = PBXBuildFile; fileRef = F44E006A12298B7200CAC9C2 /* PlatypusInstaller.icns */; };
 		F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
@@ -163,7 +163,7 @@
 		F4462E3C14FBDA4200E13563 /* cat2html */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = cat2html; path = CommandLineTool/cat2html; sourceTree = "<group>"; };
 		F4462E3E14FBDA4D00E13563 /* make_man_html.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = make_man_html.sh; path = CommandLineTool/make_man_html.sh; sourceTree = "<group>"; };
 		F4462E3F14FBDA4D00E13563 /* make_man_pdf.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = make_man_pdf.sh; path = CommandLineTool/make_man_pdf.sh; sourceTree = "<group>"; };
-		F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlatypusStatusMenuIcon.png; sourceTree = "<group>"; };
+		F44E001C1229868100CAC9C2 /* DefaultStatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultStatusMenuIcon.png; sourceTree = "<group>"; };
 		F44E006912298B7200CAC9C2 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusDefault.icns; sourceTree = "<group>"; };
 		F44E006A12298B7200CAC9C2 /* PlatypusInstaller.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusInstaller.icns; sourceTree = "<group>"; };
 		F44EFF0412296F3700CAC9C2 /* NSColor+HexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+HexTools.h"; path = "Shared/NSColor+HexTools.h"; sourceTree = "<group>"; };
@@ -461,7 +461,7 @@
 		F44E007312298B8C00CAC9C2 /* Status Menu */ = {
 			isa = PBXGroup;
 			children = (
-				F44E001C1229868100CAC9C2 /* PlatypusStatusMenuIcon.png */,
+				F44E001C1229868100CAC9C2 /* DefaultStatusMenuIcon.png */,
 			);
 			name = "Status Menu";
 			sourceTree = "<group>";
@@ -811,7 +811,7 @@
 				F4DC075311F629A40043764E /* Readme.html in Resources */,
 				F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */,
 				F48002CB121AF042003FB5B3 /* images in Resources */,
-				F44E001D1229868100CAC9C2 /* PlatypusStatusMenuIcon.png in Resources */,
+				F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */,
 				F4975DC01B2E71FC0099D16E /* Platypus.xib in Resources */,
 				F44E006E12298B7200CAC9C2 /* PlatypusDefault.icns in Resources */,
 				F44E006F12298B7200CAC9C2 /* PlatypusInstaller.icns in Resources */,

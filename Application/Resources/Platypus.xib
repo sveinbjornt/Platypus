@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="F97DFB31-994C-4078-B83F-8ED27A004E2D" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="458FFE0E-FB00-430E-B583-206DCA077B90" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -2255,14 +2255,13 @@ DQ
                                 <popUpButton toolTip="Select status item display mode" verticalHuggingPriority="750" id="10800">
                                     <rect key="frame" x="94" y="54" width="124" height="26"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <popUpButtonCell key="cell" type="push" title="Icon" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" selectedItem="10804" id="11060">
+                                    <popUpButtonCell key="cell" type="push" title="Text" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" selectedItem="10803" id="11060">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
                                         <menu key="menu" title="OtherViews" id="10802">
                                             <items>
-                                                <menuItem title="Text" id="10803"/>
-                                                <menuItem title="Icon" state="on" id="10804"/>
-                                                <menuItem title="Icon and Text" id="10805"/>
+                                                <menuItem title="Text" state="on" id="10803"/>
+                                                <menuItem title="Icon" id="10804"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
@@ -2558,11 +2557,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="Add" width="23" height="20"/>
-        <image name="Add_Pressed" width="23" height="20"/>
-        <image name="Clear" width="22" height="20"/>
-        <image name="Clear_Pressed" width="22" height="20"/>
-        <image name="F97DFB31-994C-4078-B83F-8ED27A004E2D" width="16" height="16">
+        <image name="458FFE0E-FB00-430E-B583-206DCA077B90" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -2642,6 +2637,10 @@ VRBoEHMQfBCBEIkQjBCREKAQpBCrELMQwBDFEMcQyRDOENYQ2RDeEOYQ6RD7EP4RAwAAAAAAAAIBAAAA
 AAAAAEIAAAAAAAAAAAAAAAAAABEFA
 </mutableData>
         </image>
+        <image name="Add" width="23" height="20"/>
+        <image name="Add_Pressed" width="23" height="20"/>
+        <image name="Clear" width="22" height="20"/>
+        <image name="Clear_Pressed" width="22" height="20"/>
         <image name="PlatypusDefault" width="512" height="512"/>
         <image name="PlatypusStatusMenuIcon" width="16" height="16"/>
         <image name="Remove" width="23" height="20"/>

@@ -33,22 +33,15 @@
 
 @implementation StatusItemSettingsController
 
-- (id)init {
-    if ((self = [super init])) {
-        pStatusItem = NULL;
-    }
-    return self;
-}
-
 - (IBAction)show:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Status Item Settings", PROGRAM_NAME]];
     
     //open window
-    [NSApp  beginSheet:statusItemSettingsWindow
-        modalForWindow:window
-         modalDelegate:NULL
-        didEndSelector:NULL
-           contextInfo:NULL];
+    [NSApp beginSheet:statusItemSettingsWindow
+       modalForWindow:window
+        modalDelegate:nil
+       didEndSelector:nil
+          contextInfo:nil];
     
     [statusItemSettingsWindow makeFirstResponder:statusItemSettingsWindow];
     [NSApp runModalForWindow:statusItemSettingsWindow];
@@ -58,17 +51,17 @@
 }
 
 - (IBAction)close:(id)sender {
+    [self killStatusItem];
     [window setTitle:PROGRAM_NAME];
     [NSApp stopModal];
     [NSApp endSheet:statusItemSettingsWindow];
     [statusItemSettingsWindow orderOut:self];
-    [self killStatusItem];
 }
 
 - (IBAction)restoreDefaults:(id)sender {
     [titleTextField setStringValue:@"Title"];
     [self setDisplayType:@"Text"];
-    [iconImageView setImage:[NSImage imageNamed:@"PlatypusStatusMenuIcon"]];
+    [iconImageView setImage:[NSImage imageNamed:@"DefaultStatusMenuIcon"]];
 }
 
 - (IBAction)statusItemDisplayTypeChanged:(id)sender {
@@ -119,11 +112,10 @@
     if ([oPanel runModal] == NSOKButton) {
         NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
         NSImage *img = [[NSImage alloc] initWithContentsOfFile:filePath];
-        if (img != NULL) {
+        if (img != nil) {
             [self setIcon:img];
             [img release];
-        }
-        else {
+        } else {
             [PlatypusUtility alert:@"Corrupt Image File" subText:@"The image file you selected appears to be damaged or corrupt."];
         }
     }
@@ -140,13 +132,15 @@
     [pStatusItem setHighlightMode:YES];
     
     // set icon / title depending on settings
-    if (dType == 0 || dType == 2)
+    if (dType == 0 || dType == 2) {
         [pStatusItem setTitle:[titleTextField stringValue]];
-    if (dType == 1 || dType == 2)
+    }
+    if (dType == 1 || dType == 2) {
         [pStatusItem setImage:[iconImageView image]];
+    }
     
     //create placeholder menu
-    NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:@"Your script output here" action:NULL keyEquivalent:@""] autorelease];
+    NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:@"Your script output here" action:nil keyEquivalent:@""] autorelease];
     [menu insertItem:menuItem atIndex:0];
     
     // get this thing rolling
@@ -155,10 +149,10 @@
 }
 
 - (void)killStatusItem {
-    if (pStatusItem != NULL) {
+    if (pStatusItem != nil) {
         [[NSStatusBar systemStatusBar] removeStatusItem:pStatusItem]; // remove cleanly from status bar
         [pStatusItem release];
-        pStatusItem = NULL;
+        pStatusItem = nil;
     }
 }
 
@@ -183,10 +177,9 @@
     
     if (originalSize.width == 16 && originalSize.height == 16) {
         [iconImageView setImage:img];
-    }
-    // if the selected image isn't in dimensions 16x16, we scale it to that size
-    else {
-        // draw the image we're handed into a 16x16 bitmap
+    } else {
+        // if the selected image isn't in dimensions 16x16, we scale it to that size
+        // and draw the image we're handed into a 16x16 bitmap
         NSImage *resizedImage = [[[NSImage alloc] initWithSize:NSMakeSize(16, 16)] autorelease];
         [resizedImage lockFocus];
         [img drawInRect:NSMakeRect(0, 0, 16, 16) fromRect:NSMakeRect(0, 0, originalSize.width, originalSize.height) operation:NSCompositeSourceOver fraction:1.0];
