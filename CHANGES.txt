@@ -28,7 +28,7 @@ For 4.9.1
     TODO: Retina icons in script type, using xciconset
     TODO: Previewing status item menu should show script output
     TODO: Show command invoked when checking script syntax
-
+    TODO: Update status item menu default icon to high res
     * Show Shell Command window now shows install status of command line tool
     * Got rid of old, low-resolution preset icons
     * New release build script
