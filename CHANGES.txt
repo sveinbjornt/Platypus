@@ -15,20 +15,25 @@ For 4.9.1
     TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
     TODO: Fix filewatcher so it doesn't clear queue whenever script file name changes
     TODO: Long GNU named params for command line tool, e.g. --some-option
-    TODO: Show whether command line tool is installed in Show Shell Command window
     TODO: High res retina icon images
     TODO: Higher res preset icons
     TODO: Make Status Items look good in Yosemite's Dark Mode: http://indiestack.com/2014/10/yosemites-dark-mode/
+    TODO: Fix issue with status item menu title + icon
+
     TODO: Save authentication password?
     TODO: Fix Provide as Mac OS X service
     TODO: Support UTIs
     TODO: Fix issue with generating icon from imageview on retina macs
     TODO: More examples
     TODO: Retina icons in script type, using xciconset
+    TODO: Previewing status item menu should show script output
+    TODO: Show command invoked when checking script syntax
+
+    * Show Shell Command window now shows install status of command line tool
     * Got rid of old, low-resolution preset icons
     * New release build script
     * Platypus now requires Mac OS X 10.7 or later and a 64-bit Intel system. Older versions continue to work just fine on 32-bit 10.6 systems, and version 4.4 still works on PowerPC. But it's time to leave the past behind. It's been 9 years since the last 32-bit Mac was released.
-    * Copy icon path in icon image view contextual menu
+    * "Copy icon path" option in icon contextual menu
     * Better keyboard shortcuts for built-in editor
     * Text size can be set in built-in editor
     * Proper icon temp file handling
