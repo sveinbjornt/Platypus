@@ -138,7 +138,7 @@
  *****************************************/
 
 - (IBAction)newScript:(id)sender {
-    NSString *newScriptPath = [self createNewScript:NULL];
+    NSString *newScriptPath = [self createNewScript:nil];
     [self loadScript:newScriptPath];
     [self editScript:self];
 }
@@ -161,7 +161,7 @@
     //put shebang line in the new script text file
     NSString *contentString = [NSString stringWithFormat:@"#!%@\n\n", interpreter];
     
-    if (scriptText != NULL && [scriptText length]) {
+    if (scriptText != nil) {
         contentString = [contentString stringByAppendingString:scriptText];
     } else {
         defaultScript = [[ScriptAnalyser interpreterHelloWorlds] objectForKey:[scriptTypePopupMenu titleOfSelectedItem]];
@@ -306,7 +306,9 @@
     
     //run save panel
     [sPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
-        [self createConfirmed:sPanel returnCode:result];
+        if (result == NSOKButton) {
+            [self createConfirmed:sPanel returnCode:result];
+        }
     }];
     
 }
