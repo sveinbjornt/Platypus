@@ -35,7 +35,7 @@
 
 @implementation PlatypusController
 
-#pragma mark Application functions
+#pragma mark - Application
 
 /*****************************************
  - When application is launched by the user for the very first time
@@ -131,7 +131,7 @@
     return YES;
 }
 
-#pragma mark Script functions
+#pragma mark - Script functions
 
 /*****************************************
  - Create a new script and open in default editor
@@ -257,7 +257,7 @@
     [self createApplication:destPath];
 }
 
-#pragma mark Create
+#pragma mark - Create
 
 /*********************************************************************
  - Create button was pressed: Verify that field values are valid
@@ -470,7 +470,7 @@
     return YES;
 }
 
-#pragma mark Generate/Read AppSpec
+#pragma mark - Generate/Read AppSpec
 
 /*************************************************
  - Create app spec and fill it w. data from controls
@@ -622,7 +622,7 @@
     [bundleIdentifierTextField setStringValue:[spec propertyForKey:@"Identifier"]];
 }
 
-#pragma mark Load/Select script
+#pragma mark - Load/Select script
 
 /*****************************************
  - Open sheet to select script to load
@@ -696,7 +696,7 @@
     [self updateEstimatedAppSize];
 }
 
-#pragma mark Window interface actions
+#pragma mark - Window interface actions
 
 /*****************************************
  - Delegate for when text changes in any of
@@ -875,7 +875,7 @@
     [window setTitle:PROGRAM_NAME];
 }
 
-#pragma mark App Size estimation
+#pragma mark - App Size estimation
 
 /*****************************************
  - // set app size textfield to formatted str with app size
@@ -890,17 +890,19 @@
  *****************************************/
 
 - (NSString *)estimatedAppSize {
-    UInt64 estimatedAppSize = 0;
     
+    // estimate the combined size of all the
+    // files that will go into application bundle
+    UInt64 estimatedAppSize = 0;
     estimatedAppSize += 4096; // Info.plist
     estimatedAppSize += 4096; // AppSettings.plist
     estimatedAppSize += [iconController iconSize];
     estimatedAppSize += [dropSettingsController docIconSize];
     estimatedAppSize += [PlatypusUtility fileOrFolderSize:[scriptPathTextField stringValue]];
-    estimatedAppSize += [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:NULL]];     // executable
+    estimatedAppSize += [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:NULL]];
     
     // nib size is much smaller if compiled with ibtool
-    UInt64 nibSize = [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:NULL]];     // bundled nib
+    UInt64 nibSize = [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:NULL]];
     if ([FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
         nibSize = 0.2 * nibSize; // compiled nib is approximtely 20% of the size of original
     }
@@ -912,7 +914,28 @@
     return [PlatypusUtility sizeAsHumanReadable:estimatedAppSize];
 }
 
-#pragma mark Drag and drop
+// Creates an NSTask from settings
+- (NSTask *)taskForCurrentScript {
+    if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
+        return nil;
+    }
+    
+    //create task
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath:[interpreterTextField stringValue]];
+    [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
+    
+    // add arguments
+    NSMutableArray *args = [NSMutableArray array];
+    [args addObjectsFromArray:[argsController interpreterArgs]];
+    [args addObject:[scriptPathTextField stringValue]];
+    [args addObjectsFromArray:[argsController scriptArgs]];
+    [task setArguments:args];
+
+    return [task autorelease];
+}
+
+#pragma mark - Drag and drop
 
 /*****************************************
  - Dragging and dropping for Platypus window
@@ -956,8 +979,7 @@
         if (![file hasSuffix:@".icns"]) {
             return NSDragOperationLink;
         }
-    }
-    else if ([[[sender draggingPasteboard] types] containsObject:NSStringPboardType]) {
+    } else if ([[[sender draggingPasteboard] types] containsObject:NSStringPboardType]) {
         return NSDragOperationCopy;
     }
     
@@ -971,7 +993,7 @@
     }
 }
 
-#pragma mark Menu items
+#pragma mark - Menu items
 
 /*****************************************
  - Delegate function for enabling and disabling menu items
@@ -996,61 +1018,41 @@
     }
 
     // show shell command only works if we have a script
-    if ([anItem action] == @selector(showCommandLineString:)) {
-        if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
-            return NO;
-        }
+    if ([anItem action] == @selector(showCommandLineString:) && badScriptFile) {
+        return NO;
     }
     
     return YES;
 }
 
-#pragma mark Help/Documentation
+#pragma mark - Help/Documentation
 
-/*****************************************
- - Open Platypus Help HTML file within app bundle
- *****************************************/
-
+// Open Documentation.html file within app bundle
 - (IBAction)showHelp:(id)sender {
     [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
 }
 
-/*****************************************
- - Open 'platypus' command line tool man page in PDF
- *****************************************/
-
+// Open html version of 'platypus' command line tool's man page
 - (IBAction)showManPage:(id)sender {
     [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
 }
 
-/*****************************************
- - Open Readme file
- *****************************************/
-
+// Open Readme.html
 - (IBAction)showReadme:(id)sender {
     [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
 }
 
-/*****************************************
- - Open Platypus website in default browser
- *****************************************/
-
+// Open program website
 - (IBAction)openWebsite:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
 }
 
-/*****************************************
- - Open License.txt file
- *****************************************/
-
+// Open License html file
 - (IBAction)openLicense:(id)sender {
     [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
 }
 
-/*****************************************
- - Open donations website
- *****************************************/
-
+// Open donations website
 - (IBAction)openDonations:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_DONATIONS]];
 }

@@ -143,6 +143,7 @@
 - (IBAction)showCommandLineString:(id)sender;
 - (void)updateEstimatedAppSize;
 - (NSString *)estimatedAppSize;
+- (NSTask *)taskForCurrentScript;
 
 //Help
 - (IBAction)showHelp:(id)sender;
