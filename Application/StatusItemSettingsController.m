@@ -33,6 +33,13 @@
 
 @implementation StatusItemSettingsController
 
+- (void)dealloc {
+    if (pStatusItemMenu) {
+        [pStatusItemMenu release];
+    }
+    [super dealloc];
+}
+
 - (IBAction)show:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Status Item Settings", PROGRAM_NAME]];
     
@@ -128,14 +135,13 @@
 - (IBAction)previewStatusItem:(id)sender {
     [self killStatusItem];
     
-    int dType = [displayTypePopup indexOfSelectedItem];
-    NSMenu *menu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
-    
     // create status item
     pStatusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [pStatusItem setHighlightMode:YES];
+    [pStatusItem setMenu:pStatusItemMenu];
     
     // set icon / title depending on settings
+    int dType = [displayTypePopup indexOfSelectedItem];
     if (dType == 0 || dType == 2) {
         [pStatusItem setTitle:[titleTextField stringValue]];
     }
@@ -143,13 +149,14 @@
         [pStatusItem setImage:[iconImageView image]];
     }
     
-    //create placeholder menu
-    NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:@"Your script output here" action:nil keyEquivalent:@""] autorelease];
-    [menu insertItem:menuItem atIndex:0];
+    // create menu
+    pStatusItemMenu = [[NSMenu alloc] initWithTitle:@""];
+    [pStatusItemMenu setDelegate:self];
+    [pStatusItemMenu setAutoenablesItems:NO];
     
     // get this thing rolling
-    [pStatusItem setMenu:menu];
     [pStatusItem setEnabled:YES];
+    [pStatusItem setMenu:pStatusItemMenu];
 }
 
 - (void)killStatusItem {
@@ -164,25 +171,55 @@
     return (pStatusItem != NULL);
 }
 
-- (void)menuForScriptOutput {
+- (void)menuNeedsUpdate:(NSMenu *)menu {
+    [self createMenuForScriptOutput];
+}
+
+- (void)createMenuForScriptOutput {
     
-    //create task and apply settings
-    NSTask *task = [[NSTask alloc] init];
-    [task setLaunchPath:nil];
-    [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
-    [task setArguments:nil];
+    [pStatusItemMenu removeAllItems];
+    
+    NSTask *task = [platypusController taskForCurrentScript];
     
     // direct output to file handle and start monitoring it if script provides feedback
     NSPipe *outputPipe = [NSPipe pipe];
     [task setStandardOutput:outputPipe];
     [task setStandardError:outputPipe];
     NSFileHandle *readHandle = [outputPipe fileHandleForReading];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOutputData:) name:NSFileHandleReadCompletionNotification object:readHandle];
-    [readHandle readInBackgroundAndNotify];
     
-    //set it off
+    // set it off
     [task launch];
     [task waitUntilExit];
+    
+    // get output as string
+    NSData *outputData = [readHandle readDataToEndOfFile];
+    NSString *outputString = [[[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding] autorelease];
+    
+    // create one menu item per line of output
+    NSArray *lines = [outputString componentsSeparatedByString:@"\n"];
+    for (NSString *line in lines) {
+        // ignore empty lines of output
+        if ([line isEqualToString:@""]) {
+            continue;
+        }
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(statusMenuItemSelected) keyEquivalent:@""];
+        [menuItem setTarget:self];
+        [menuItem setEnabled:YES];
+        [pStatusItemMenu addItem:menuItem];
+    }
+    if ([pStatusItemMenu numberOfItems] == 0) {
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"No output" action:nil keyEquivalent:@""];
+        [menuItem setEnabled:NO];
+        [pStatusItemMenu addItem:menuItem];
+    }
+}
+
+- (void)statusMenuItemSelected {
+    NSLog(@"Item selected");
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+    return YES;
 }
 
 #pragma mark -
