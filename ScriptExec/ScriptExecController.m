@@ -904,6 +904,9 @@
     NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:textEncoding];
     
     if (!outputString || [outputString length] == 0) {
+        if (outputString) {
+            [outputString release];
+        }
         return;
     }
     
