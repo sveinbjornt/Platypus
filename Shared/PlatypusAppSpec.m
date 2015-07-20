@@ -203,7 +203,7 @@
     NSString *execDestinationPath, *infoPlistPath, *iconPath, *docIconPath, *bundledFileDestPath, *nibDestPath;
     NSString *execPath, *nibPath, *bundledFilePath;
     NSString *appSettingsPlistPath;
-    NSData *b_enc_script;
+    NSData *b_enc_script = [NSData data];
     NSMutableDictionary *appSettingsPlist;
     NSFileManager *fileManager = FILEMGR;
     
@@ -357,9 +357,9 @@
     [appSettingsPlist setObject:[properties objectForKey:@"AcceptsText"] forKey:@"AcceptsText"];
     
     // if script is "secured" we encoded it into AppSettings property list
-    if ([[properties objectForKey:@"Secure"] boolValue])
+    if ([[properties objectForKey:@"Secure"] boolValue]) {
         [appSettingsPlist setObject:[NSKeyedArchiver archivedDataWithRootObject:b_enc_script] forKey:@"TextSettings"];
-    
+    }
     appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
     
     // write the app settings plist
