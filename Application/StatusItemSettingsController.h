@@ -30,8 +30,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PlatypusUtility.h"
+#import "PlatypusController.h"
 
-@interface StatusItemSettingsController : NSObject
+@class PlatypusController;
+@interface StatusItemSettingsController : NSObject <NSMenuDelegate>
 {
     IBOutlet id window;
     IBOutlet id statusItemSettingsWindow;
@@ -42,9 +44,10 @@
     IBOutlet id titleLabel;
     IBOutlet id iconLabel;
     
-    IBOutlet id platypusController;
+    IBOutlet PlatypusController *platypusController;
     
     NSStatusItem *pStatusItem;
+    NSMenu *pStatusItemMenu;
 }
 - (IBAction)show:(id)sender;
 - (IBAction)close:(id)sender;
