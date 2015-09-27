@@ -195,12 +195,11 @@
 
 <img style="float: right; margin-left: 30px; width: 94px; height: 128px;" src="images/platypus.png">
 
-<p>The Platypus icon -- <a href="http://www.hexley.com/">Hexley</a>, the Darwin mascot -- was created by Jon Hooper, who was kind enough to grant me permission to use it as the Platypus application icon.  Derivative icons using Hexley were created by Sveinbjorn Thordarson.</p>
+<p>The Platypus icon -- <a href="http://www.hexley.com/">Hexley</a>, the Darwin mascot -- was created by Jon Hooper, who was kind enough to grant me permission to use it as the Platypus application icon.</p>
 
-<p>Thanks go to Troy Stephens, author of the <a href="http://iconfamily.sourceforge.net/">IconFamily</a> class used for icon handling in Platypus, Uli Kusterer author of UKKQueue, Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, Andy Matuschak for the Sparkle update framework, and the Adium developers for various code bits.  The OmniGroup Mac OS X Development mailing list has also been invaluable
-    over the years.</p>
+<p>Thanks go to Troy Stephens, author of the <a href="http://iconfamily.sourceforge.net/">IconFamily</a> class used for icon handling in Platypus, Uli Kusterer author of UKKQueue, Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, and Andy Matuschak for the Sparkle update framework.  The OmniGroup Mac OS X Development mailing list and Stack Overflow have also been invaluable over the years.</p>
 
-<p>Finally, I am much indebted to <a href="http://www.wsanchez.net">Wilfredo Sanchez</a>, author of <a href="http://www.wsanchez.net/software/">DropScript</a>, the proof-of-concept project that inspired me to create Platypus in the first place.</p>
+<p>Finally, I am much indebted to <a href="http://www.wsanchez.net">Wilfredo Sanchez</a>, author of <a href="http://www.wsanchez.net/software/">DropScript</a>, the proof-of-concept project which inspired me to create Platypus in the first place.</p>
 
 <br><br>
 
@@ -208,8 +207,7 @@
 
 <h3>How does it work?</h3>
 
-<p>Regular Mac OS X applications are bundles -- special folders with a directory structure within which a binary is stored, along with resources, configuration files and property lists.  Platypus creates applications with a special binary that launches a specified script and captures its output.  It can present this output in a number of ways, for example with a 
-    progress bar, a text view or a WebKit-based web view.</p>
+<p>Regular Mac OS X applications are bundles -- special folders with a directory structure containing a binary, along with resources, configuration files and property lists.  Platypus creates applications with a special binary that launches a specified script and captures its output.  It can present this output in a number of ways, for example with a progress bar, a text view or a WebKit-based web view.</p>
 
 <br><br>
 
@@ -217,7 +215,7 @@
 
 <h3>What Platypus is NOT</h3>
 
-<p>Platypus is not a set of bindings between the Mac OS X APIs and scripting languages.  It is not, in other words, a full development environment for Mac OS X and is not intended to be used to create substantial Mac OS X applications with complex user interaction.  If you want to create advanced Mac OS X applications, you should learn to program with Objective C and the wonderful Cocoa APIs.  Platypus is not and never will be a substitute for learning to use the excellent native application programming interfaces.</p>
+<p>Platypus is not a set of bindings between the native Mac OS X APIs and scripting languages.  It is not, in other words, a full development environment for Mac OS X and is not intended to be used to create substantial Mac OS X applications with complex user interaction.  If you want to create advanced Mac OS X applications, you should learn to program using the Cocoa APIs.  Platypus is not and never will be a substitute for learning to use the excellent native application programming interfaces.</p>
 
 <p>That being said, you may be able to add some interactive GUI elements using <a href="#73">CocoaDialog or Pashua.</a></p>
 
@@ -269,7 +267,7 @@
     
 <p>Once you have selected a valid script, you can press the <strong>Edit</strong> button to open it in your default text editor. Platypus includes a very basic built-in text editor as the default editor. You can change this in the Preferences to use any external editor you want.</p>
 
-<p>You can also press the <strong>New</strong> button. This creates a text file for you in Platypus' Application Support folder and open it in your default editor. The <strong>Reveal</strong> button reveals the script file in the Finder.</p>
+<p>The <strong>New</strong> button creates a text file for you in Platypus' Application Support folder and opens it in your default editor. The <strong>Reveal</strong> button reveals the script file in the Finder.</p>
 
 <br><br>
 <a name="22"></a>
@@ -286,7 +284,7 @@
 
 <p>Please note that the interpreter you selected must exist on the Mac OS X system on which your script application will run.  All the preset scripting language interpreters (e.g. shell, Perl, Python, PHP, Tcl, Expect etc.) are a standard part of all Mac OS X installations.  Alternately, you could use <code>/usr/bin/env</code>.</p>
 
-<p>The <strong>Args</strong> button next to the text field containing your script interpreter setting allows you to specify arguments for the script interpreter and the script itself.</p>
+<p>The <strong>Args</strong> button shows a dialog which allows you to specify arguments for the script interpreter and the script itself.</p>
 
 <img src="images/args.png">
 
@@ -301,11 +299,11 @@
 <p>The <strong>Output</strong> pop-up button allows you to select what the application you create does with the output of the script. There are five output modes available:</p>
 
 <br>
-<p><strong>None</strong>:  Your application provides no graphical feedback whatsoever. It will launch in the Dock and execute the script without opening any windows.  All script output goes to <code>STDOUT</code> and <code>STDERR</code>, viewable in Console.app.</p>
+<p><strong>None</strong>:  Your application provides no graphical feedback whatsoever. It will launch in the Dock and executes the script without opening any windows.  All script output goes to <code>STDOUT</code> and <code>STDERR</code>, viewable in Console.app.</p>
 
 <br>
 
-<p><strong>Progress Bar</strong>:  A small window with an indeterminate progress bar and a "Cancel" button appears during the execution of the script.Script output is fed line by line into the status message above the progress bar. A small arrow to with a "Show details" option reveals a small text field containing all script output.</p>
+<p><strong>Progress Bar</strong>:  A small window with an indeterminate progress bar and a "Cancel" button appears during the execution of the script. Script output is fed line by line into the status message above the progress bar. A small arrow to with a "Show details" option reveals a small text field containing all script output.</p>
 
 <p>It is worth noting that the script can communicate with the progress bar and notify it of script progress.  All lines the script prints out that start with 'PROGRESS:\d+' (e.g. PROGRESS:75) will be interpreted as setting the completion percentage of the task. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
 
