@@ -133,10 +133,8 @@
 {
     NSString *theSuffix = [suffixTextField stringValue];
     
-    if (([theSuffix length] == 0)) {
-        if ([suffixList hasSuffix:theSuffix]) {
-            [suffixTextField setStringValue:@""];
-        }
+    if ([suffixList hasSuffix:theSuffix] || [theSuffix length] == 0) {
+        [suffixTextField setStringValue:@""];
         return;
     }
     
@@ -336,16 +334,14 @@
     }
     docIconPath = [path retain];
     
-    //set document icon to default
-    NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
-    
-    if (![path isEqualToString:@""]) { // load it from file if it's a path
+    NSImage *icon;
+    if (path == nil || [path isEqualToString:@""]) {
+        icon = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
+    } else {
         icon = [[[NSImage alloc] initWithContentsOfFile:docIconPath] autorelease];
     }
     
-    if (icon != nil) {
-        [docIconImageView setImage:icon];
-    }
+    [docIconImageView setImage:icon];
 }
 
 @end
