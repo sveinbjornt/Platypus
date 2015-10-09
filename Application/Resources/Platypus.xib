@@ -163,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="B5FDA2B5-498B-4875-99F4-6F51B1A07263" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="51D58558-62DA-4064-99E7-B184A1436346" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -622,21 +622,18 @@ DQ
         </customObject>
         <customObject id="1418" userLabel="ArgsController" customClass="ArgsController">
             <connections>
-                <outlet property="argsWindow" destination="1394" id="11342"/>
+                <outlet property="argsWindow" destination="1394" id="acr-jx-xzg"/>
                 <outlet property="commandTextField" destination="1417" id="11341"/>
                 <outlet property="interpreterArgsAddButton" destination="1401" id="11277"/>
                 <outlet property="interpreterArgsContextualMenu" destination="1810" id="11330"/>
                 <outlet property="interpreterArgsRemoveButton" destination="1397" id="11275"/>
-                <outlet property="interpreterArgsTableView" destination="1405" id="11331"/>
+                <outlet property="interpreterArgsTableView" destination="1405" id="VyS-tK-5dq"/>
                 <outlet property="interpreterTextField" destination="305" id="1440"/>
                 <outlet property="isDroppableCheckbox" destination="299" id="4911"/>
-                <outlet property="paramsCommandTextField" destination="1417" id="1424"/>
-                <outlet property="paramsTableView" destination="1405" id="1435"/>
-                <outlet property="paramsWindow" destination="1394" id="1419"/>
                 <outlet property="scriptArgsAddButton" destination="11264" id="11279"/>
                 <outlet property="scriptArgsContextualMenu" destination="11293" id="11329"/>
                 <outlet property="scriptArgsRemoveButton" destination="11265" id="11280"/>
-                <outlet property="scriptArgsTableView" destination="11257" id="11332"/>
+                <outlet property="scriptArgsTableView" destination="11257" id="IhY-p0-91j"/>
                 <outlet property="window" destination="21" id="1420"/>
             </connections>
         </customObject>
@@ -1815,6 +1812,7 @@ DQ
                     </button>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="543" y="256"/>
         </window>
         <menu title="Menu" id="11293" userLabel="scriptArgsContextualMenu">
             <items>
@@ -2545,7 +2543,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="B5FDA2B5-498B-4875-99F4-6F51B1A07263" width="16" height="16">
+        <image name="51D58558-62DA-4064-99E7-B184A1436346" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
