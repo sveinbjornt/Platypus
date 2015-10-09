@@ -907,78 +907,85 @@
         return;
     }
     
-    // we parse output if output type is progress bar/droplet
-    // in order to get progress indicator values and display string
-    if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT || outputType == PLATYPUS_DROPLET_OUTPUT) {
-        if (remnants != nil && [remnants length] > 0) {
-            [outputString insertString:remnants atIndex:0];
-        }
-        // parse the data just dumped out
-        NSMutableArray *lines = [NSMutableArray arrayWithArray:[outputString componentsSeparatedByString:@"\n"]];
+    if (remnants != nil && [remnants length] > 0) {
+        [outputString insertString:remnants atIndex:0];
+    }
+    
+    // parse
+    NSMutableArray *lines = [NSMutableArray arrayWithArray:[outputString componentsSeparatedByString:@"\n"]];
         
-        // if the line did not end with a newline, it wasn't a complete line of output
-        // Thus, we store the last line and then delete it from the outputstring
-        // It'll be appended next time we get output
-        if ([(NSString *)[lines lastObject] length] > 0) {
-            if (remnants != nil) {
-                [remnants release];
-                remnants = nil;
-            }
-            remnants = [[NSString alloc] initWithString:[lines lastObject]];
-            [outputString deleteCharactersInRange:NSMakeRange([outputString length] - [remnants length], [remnants length])];
-        } else {
+    // if the line did not end with a newline, it wasn't a complete line of output
+    // Thus, we store the last line and then delete it from the outputstring
+    // It'll be appended next time we get output
+    if ([(NSString *)[lines lastObject] length] > 0) {
+        if (remnants != nil) {
+            [remnants release];
             remnants = nil;
         }
+        remnants = [[NSString alloc] initWithString:[lines lastObject]];
+        [outputString deleteCharactersInRange:NSMakeRange([outputString length] - [remnants length], [remnants length])];
+    } else {
+        remnants = nil;
+    }
+    
+    [lines removeLastObject];
+    
+    // parse output looking for commands; if none, add line to output text field
+    for (NSString *theLine in lines) {
         
-        [lines removeLastObject];
+        // if the line is empty, we ignore it
+        if ([theLine isEqualToString:@""]) {
+            continue;
+        }
         
-        // parse output looking for commands; if none, add line to output text field
-        for (NSString *theLine in lines) {
+        if ([theLine hasPrefix:@"QUITAPP"]) {
+            [[NSApplication sharedApplication] terminate:self];
+            break;
+        }
+        
+        if ([theLine hasPrefix:@"NOTIFICATION:"]) {
+            NSString *notificationString = [theLine substringFromIndex:13];
+            [self showNotification:notificationString];
+            continue;
+        }
+        
+        // special commands to control progress bar output window
+        if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT) {
             
-            // if the line is empty, we ignore it
-            if ([theLine isEqualToString:@""]) {
+            // set progress bar status
+            // lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar
+            if ([theLine hasPrefix:@"PROGRESS:"]) {
+                NSString *progressPercentString = [theLine substringFromIndex:9];
+                
+                // Parse percentage using number formatter
+                NSNumberFormatter *numFormatter = [[NSNumberFormatter alloc] init];
+                numFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+                NSNumber *percentageNumber = [numFormatter numberFromString:progressPercentString];
+                
+                if (percentageNumber != nil) {
+                    [progressBarIndicator setIndeterminate:NO];
+                    [progressBarIndicator setDoubleValue:[percentageNumber doubleValue]];
+                }
+                [numFormatter release];
                 continue;
             }
-            
-            // special commands to control progress bar output window
-            if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT) {
-                
-                // set progress bar status
-                // lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar
-                if ([theLine hasPrefix:@"PROGRESS:"]) {
-                    NSString *progressPercentString = [theLine substringFromIndex:9];
-                    
-                    // Parse percentage using number formatter
-                    NSNumberFormatter *numFormatter = [[NSNumberFormatter alloc] init];
-                    numFormatter.numberStyle = NSNumberFormatterDecimalStyle;
-                    NSNumber *percentageNumber = [numFormatter numberFromString:progressPercentString];
-                    
-                    if (percentageNumber != nil) {
-                        [progressBarIndicator setIndeterminate:NO];
-                        [progressBarIndicator setDoubleValue:[percentageNumber doubleValue]];
-                    }
-                    [numFormatter release];
-                    continue;
-                }
-                // set visibility of details text field
-                else if ([theLine hasPrefix:@"DETAILS:SHOW"]) {
-                    [self showDetails];
-                    continue;
-                }
-                else if ([theLine hasPrefix:@"DETAILS:HIDE"]) {
-                    [self hideDetails];
-                    continue;
-                }
+            // set visibility of details text field
+            else if ([theLine hasPrefix:@"DETAILS:SHOW"]) {
+                [self showDetails];
+                continue;
             }
-            
-            if ([theLine hasPrefix:@"QUITAPP"]) {
-                [[NSApplication sharedApplication] terminate:self];
-                break;
+            else if ([theLine hasPrefix:@"DETAILS:HIDE"]) {
+                [self hideDetails];
+                continue;
             }
-            
-            // ok, line wasn't a command understood by the wrapper
-            // show it in GUI text field if appropriate
+        }
+        
+        // ok, line wasn't a command understood by the wrapper
+        // show it in GUI text field if appropriate
+        if (outputType == PLATYPUS_DROPLET_OUTPUT) {
             [dropletMessageTextField setStringValue:theLine];
+        }
+        if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT) {
             [progressBarMessageTextField setStringValue:theLine];
         }
     }
@@ -1433,6 +1440,15 @@
     [alert runModal];
     [alert release];
     [[NSApplication sharedApplication] terminate:self];
+}
+
+- (void)showNotification:(NSString *)notificationText {
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = appName;
+    notification.informativeText = notificationText;
+    notification.soundName = NSUserNotificationDefaultSoundName;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    [notification release];
 }
 
 @end
