@@ -5,17 +5,17 @@
 	<key>BuildMachineOSBuild</key>
 	<string>15A244d</string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>Sparkle</string>
+	<string>Autoupdate</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.andymatuschak.Sparkle</string>
+	<string>org.sparkle-project.Sparkle.Autoupdate</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>Sparkle</string>
 	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
+	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.11.0</string>
 	<key>CFBundleSignature</key>
@@ -40,5 +40,15 @@
 	<string>0700</string>
 	<key>DTXcodeBuild</key>
 	<string>7A176x</string>
+	<key>LSBackgroundOnly</key>
+	<string>1</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.7</string>
+	<key>LSUIElement</key>
+	<string>1</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
 </dict>
 </plist>
