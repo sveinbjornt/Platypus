@@ -180,6 +180,11 @@
     [pStatusItemMenu removeAllItems];
     
     NSTask *task = [platypusController taskForCurrentScript];
+    if (task == nil) {
+        NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:@"Your script output here" action:NULL keyEquivalent:@""] autorelease];
+        [pStatusItemMenu insertItem:menuItem atIndex:0];
+        return;
+    }
     
     // direct output to file handle and start monitoring it if script provides feedback
     NSPipe *outputPipe = [NSPipe pipe];
@@ -206,11 +211,13 @@
         [menuItem setTarget:self];
         [menuItem setEnabled:YES];
         [pStatusItemMenu addItem:menuItem];
+        [menuItem release];
     }
     if ([pStatusItemMenu numberOfItems] == 0) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"No output" action:nil keyEquivalent:@""];
         [menuItem setEnabled:NO];
         [pStatusItemMenu addItem:menuItem];
+        [menuItem release];
     }
 }
 
