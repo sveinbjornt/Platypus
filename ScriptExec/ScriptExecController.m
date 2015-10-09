@@ -957,6 +957,7 @@
                         [progressBarIndicator setIndeterminate:NO];
                         [progressBarIndicator setDoubleValue:[percentageNumber doubleValue]];
                     }
+                    [numFormatter release];
                     continue;
                 }
                 // set visibility of details text field
@@ -986,7 +987,6 @@
     NSTextStorage *textStorage = [outputTextView textStorage];
     int textReplacementIndex = [textStorage length];
     
-    NSLog(@"Length: %d", [[textStorage string] length]);
     NSRange appendRange = NSMakeRange(textReplacementIndex, 0);
     // this is a hack to fix the bug where NSTextView loses all font attributes
     // if the text storage is empty. We set contents to a newline earlier, now
@@ -996,7 +996,6 @@
     }
     
     [textStorage replaceCharactersInRange:appendRange withString:outputString];
-    NSLog(@"Length: %d", [[textStorage string] length]);
     
     // if web output, we continually re-render to accomodate incoming data, else we scroll down
     if (outputType == PLATYPUS_WEBVIEW_OUTPUT) {

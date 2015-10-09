@@ -39,8 +39,8 @@ local $| = 1;
 #!/usr/bin/perl
 
 $i = 0;
-while ($i < 20) {
-    print "$i\n";
+while ($i < 2000000) {
+    print "! $i\n";
     $i++;
 
 }
