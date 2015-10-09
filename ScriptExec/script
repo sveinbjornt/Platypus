@@ -37,8 +37,13 @@ local $| = 1;
 #
 
 #!/usr/bin/perl
-print "Location: http://sveinbjorn.org"
 
+$i = 0;
+while ($i < 20) {
+    print "$i\n";
+    $i++;
+
+}
 # If 0 arguments, we show menu
 #if (!scalar(@ARGV)) {
 #    print "Life's but a walking shadow, a poor player\n";

@@ -49,7 +49,6 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    // these are explicitly alloc'd in the program
     if (arguments != nil) {
         [arguments release];
     }
@@ -468,6 +467,7 @@
             }
             
             // style the text field
+            [outputTextView setString:@"\n"];
             [outputTextView setFont:textFont];
             [outputTextView setTextColor:textForeground];
             [outputTextView setBackgroundColor:textBackground];
@@ -592,7 +592,7 @@
             
         case PLATYPUS_STATUSMENU_OUTPUT:
         {
-            [outputTextView setString:@""];
+            [outputTextView setString:@"\n"];
         }
             break;
             
@@ -613,7 +613,7 @@
  
  Adjust controls, windows, etc. once script
  is done executing
- 
+
  ****************************************/
 
 - (void)cleanupInterface {
@@ -681,10 +681,7 @@
 
 #pragma mark - Task
 
-//
-// construct arguments list etc.
-// before actually running the script
-//
+// construct arguments list etc. before actually running the script
 - (void)prepareForExecution {
     // if it is a "secure" script, we decode and write it to a temp directory
     if (secureScript) {
@@ -693,8 +690,8 @@
         if (!tempScriptPath) {
             [self fatalAlert:@"Failed to write script file" subText:[NSString stringWithFormat:@"Could not create the temp file '%@'", tempScriptPath]];
         }
-        chmod([tempScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);  // chmod 774 - make file executable
-
+        // chmod 774 - make file executable
+        chmod([tempScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
         scriptPath = [NSString stringWithString:tempScriptPath];
     }
     
@@ -943,30 +940,63 @@
                 continue;
             }
             
-            // lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar at
-            if ([theLine hasPrefix:@"PROGRESS:"]) {
-                NSString *progressPercent = [theLine substringFromIndex:9];
-                [progressBarIndicator setIndeterminate:NO];
-                [progressBarIndicator setDoubleValue:[progressPercent doubleValue]];
-            } else if ([theLine hasPrefix:@"DETAILS:"]) {
-                NSString *detailsCommand = [theLine substringFromIndex:8];
-                if ([detailsCommand isEqualToString:@"SHOW"]) {
-                    [self showDetails];
-                } else if ([detailsCommand isEqualToString:@"HIDE"]) {
-                    [self hideDetails];
+            // special commands to control progress bar output window
+            if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT) {
+                
+                // set progress bar status
+                // lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar
+                if ([theLine hasPrefix:@"PROGRESS:"]) {
+                    NSString *progressPercentString = [theLine substringFromIndex:9];
+                    
+                    // Parse percentage using number formatter
+                    NSNumberFormatter *numFormatter = [[NSNumberFormatter alloc] init];
+                    numFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+                    NSNumber *percentageNumber = [numFormatter numberFromString:progressPercentString];
+                    
+                    if (percentageNumber != nil) {
+                        [progressBarIndicator setIndeterminate:NO];
+                        [progressBarIndicator setDoubleValue:[percentageNumber doubleValue]];
+                    }
+                    continue;
                 }
-            } else if ([theLine hasPrefix:@"QUITAPP"]) {
-                [[NSApplication sharedApplication] terminate:self];
-            } else {
-                [dropletMessageTextField setStringValue:theLine];
-                [progressBarMessageTextField setStringValue:theLine];
+                // set visibility of details text field
+                else if ([theLine hasPrefix:@"DETAILS:SHOW"]) {
+                    [self showDetails];
+                    continue;
+                }
+                else if ([theLine hasPrefix:@"DETAILS:HIDE"]) {
+                    [self hideDetails];
+                    continue;
+                }
             }
+            
+            if ([theLine hasPrefix:@"QUITAPP"]) {
+                [[NSApplication sharedApplication] terminate:self];
+                break;
+            }
+            
+            // ok, line wasn't a command understood by the wrapper
+            // show it in GUI text field if appropriate
+            [dropletMessageTextField setStringValue:theLine];
+            [progressBarMessageTextField setStringValue:theLine];
         }
     }
     
     // append the ouput to the text in the text field
     NSTextStorage *textStorage = [outputTextView textStorage];
-    [textStorage replaceCharactersInRange:NSMakeRange([textStorage length], 0) withString:outputString];
+    int textReplacementIndex = [textStorage length];
+    
+    NSLog(@"Length: %d", [[textStorage string] length]);
+    NSRange appendRange = NSMakeRange(textReplacementIndex, 0);
+    // this is a hack to fix the bug where NSTextView loses all font attributes
+    // if the text storage is empty. We set contents to a newline earlier, now
+    // we remove it and font attributes remain
+    if (textReplacementIndex == 1 && [[outputTextView string] isEqualToString:@"\n"]) {
+        appendRange = NSMakeRange(0, 1);
+    }
+    
+    [textStorage replaceCharactersInRange:appendRange withString:outputString];
+    NSLog(@"Length: %d", [[textStorage string] length]);
     
     // if web output, we continually re-render to accomodate incoming data, else we scroll down
     if (outputType == PLATYPUS_WEBVIEW_OUTPUT) {
@@ -1120,7 +1150,7 @@
         }
     } else {
         // text field
-        NSTextView *textView = outputType == PLATYPUS_PROGRESSBAR_OUTPUT ? progressBarTextView : textOutputTextView;
+        NSTextView *textView = outputTextView;
         NSFont *font = [textView font];
         CGFloat newFontSize = [font pointSize] + delta;
         font = [[NSFontManager sharedFontManager] convertFont:font toSize:newFontSize];
@@ -1215,7 +1245,7 @@
     }
     
     // we create a processing job and add the files as arguments
-    NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity:ARG_MAX]; //this object is released in -prepareForExecution function
+    NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity:ARG_MAX];
     [args addObjectsFromArray:acceptedFiles];
     [jobQueue addObject:args];
     [args release];
@@ -1355,7 +1385,7 @@
     }
     
     // create an array of lines by separating output by newline
-    NSMutableArray *lines = [NSMutableArray arrayWithArray:[[textOutputTextView string] componentsSeparatedByString:@"\n"]];
+    NSMutableArray *lines = [NSMutableArray arrayWithArray:[[outputTextView string] componentsSeparatedByString:@"\n"]];
     
     // clean out any trailing newlines
     while ([[lines lastObject] isEqualToString:@""])
@@ -1369,8 +1399,9 @@
                                     nil];
     
     // remove all items of previous output
-    while ([statusItemMenu numberOfItems] > 2)
+    while ([statusItemMenu numberOfItems] > 2) {
         [statusItemMenu removeItemAtIndex:0];
+    }
     
     //populate menu with output from task
     for (i = [lines count] - 1; i >= 0; i--) {
