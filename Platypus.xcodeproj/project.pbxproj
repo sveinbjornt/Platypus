@@ -11,6 +11,8 @@
 		F40B22751B28D6CE003C05ED /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F40B22741B28D6CE003C05ED /* Carbon.framework */; };
 		F40B227C1B28EFC7003C05ED /* platypus_clt in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4E1F6FC11F758FB007EE2E3 /* platypus_clt */; };
 		F40B227F1B28F37A003C05ED /* ScriptExec.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = F48B774111F7661C00351575 /* ScriptExec.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F43E1D671BC8014E00622B5F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F43E1D651BC8003600622B5F /* Sparkle.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F43E1D691BC801E600622B5F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43E1D651BC8003600622B5F /* Sparkle.framework */; };
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
 		F445EA9814FAEEBF00DCCDB3 /* UninstallPlatypus.sh in Resources */ = {isa = PBXBuildFile; fileRef = F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */; };
 		F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* DefaultStatusMenuIcon.png */; };
@@ -42,8 +44,6 @@
 		F4975D751B2E09310099D16E /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D731B2E09310099D16E /* STPrivilegedTask.m */; };
 		F4975D781B2E09450099D16E /* STPathTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D771B2E09450099D16E /* STPathTextField.m */; };
 		F4975D791B2E09450099D16E /* STPathTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D771B2E09450099D16E /* STPathTextField.m */; };
-		F4975D7E1B2E662B0099D16E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4975D7D1B2E662B0099D16E /* Sparkle.framework */; };
-		F4975D7F1B2E663B0099D16E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4975D7D1B2E662B0099D16E /* Sparkle.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F4975D8B1B2E71B80099D16E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D8A1B2E71B80099D16E /* main.m */; };
 		F4975DAA1B2E71EE0099D16E /* ArgsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D8D1B2E71EE0099D16E /* ArgsController.m */; };
 		F4975DAB1B2E71EE0099D16E /* BundledFilesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D8F1B2E71EE0099D16E /* BundledFilesController.m */; };
@@ -76,12 +76,6 @@
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
-		F4D656A614C4BFD6003552F9 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6568E14C4BFD6003552F9 /* Add.png */; };
-		F4D656A714C4BFD6003552F9 /* Add_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6568F14C4BFD6003552F9 /* Add_Pressed.png */; };
-		F4D656A814C4BFD6003552F9 /* Clear.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569014C4BFD6003552F9 /* Clear.png */; };
-		F4D656A914C4BFD6003552F9 /* Clear_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569114C4BFD6003552F9 /* Clear_Pressed.png */; };
-		F4D656AC14C4BFD6003552F9 /* Remove.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569414C4BFD6003552F9 /* Remove.png */; };
-		F4D656AD14C4BFD6003552F9 /* Remove_Pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569514C4BFD6003552F9 /* Remove_Pressed.png */; };
 		F4D656B014C4BFD6003552F9 /* AppleScript.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569914C4BFD6003552F9 /* AppleScript.png */; };
 		F4D656B114C4BFD6003552F9 /* Bash.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569A14C4BFD6003552F9 /* Bash.png */; };
 		F4D656B214C4BFD6003552F9 /* Env.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D6569B14C4BFD6003552F9 /* Env.png */; };
@@ -142,7 +136,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F4975D7F1B2E663B0099D16E /* Sparkle.framework in CopyFiles */,
+				F43E1D671BC8014E00622B5F /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +146,7 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Platypus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platypus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40B22741B28D6CE003C05ED /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		F43E1D651BC8003600622B5F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Sparkle/dsa_pub.pem; sourceTree = "<group>"; };
 		F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_priv.pem; sourceTree = "<group>"; };
 		F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
@@ -195,7 +190,6 @@
 		F4975D761B2E09450099D16E /* STPathTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPathTextField.h; path = Shared/STPathTextField.h; sourceTree = "<group>"; };
 		F4975D771B2E09450099D16E /* STPathTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPathTextField.m; path = Shared/STPathTextField.m; sourceTree = "<group>"; };
 		F4975D7A1B2E462A0099D16E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		F4975D7D1B2E662B0099D16E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		F4975D8A1B2E71B80099D16E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Application/main.m; sourceTree = "<group>"; };
 		F4975D8C1B2E71EE0099D16E /* ArgsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArgsController.h; path = Application/ArgsController.h; sourceTree = "<group>"; };
 		F4975D8D1B2E71EE0099D16E /* ArgsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArgsController.m; path = Application/ArgsController.m; sourceTree = "<group>"; };
@@ -252,12 +246,6 @@
 		F4B87C5A1B403A6E00F4B8BE /* uncrustify.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
 		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
-		F4D6568E14C4BFD6003552F9 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
-		F4D6568F14C4BFD6003552F9 /* Add_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add_Pressed.png; sourceTree = "<group>"; };
-		F4D6569014C4BFD6003552F9 /* Clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear.png; sourceTree = "<group>"; };
-		F4D6569114C4BFD6003552F9 /* Clear_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clear_Pressed.png; sourceTree = "<group>"; };
-		F4D6569414C4BFD6003552F9 /* Remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Remove.png; sourceTree = "<group>"; };
-		F4D6569514C4BFD6003552F9 /* Remove_Pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Remove_Pressed.png; sourceTree = "<group>"; };
 		F4D6569914C4BFD6003552F9 /* AppleScript.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppleScript.png; sourceTree = "<group>"; };
 		F4D6569A14C4BFD6003552F9 /* Bash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bash.png; sourceTree = "<group>"; };
 		F4D6569B14C4BFD6003552F9 /* Env.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Env.png; sourceTree = "<group>"; };
@@ -293,9 +281,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F40B22751B28D6CE003C05ED /* Carbon.framework in Frameworks */,
-				F4975D7E1B2E662B0099D16E /* Sparkle.framework in Frameworks */,
 				F4B87C1B1B3C99AD00F4B8BE /* Accelerate.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				F43E1D691BC801E600622B5F /* Sparkle.framework in Frameworks */,
 				F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,9 +374,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F43E1D651BC8003600622B5F /* Sparkle.framework */,
 				F4B87C191B3C997300F4B8BE /* Accelerate.framework */,
 				F40B22741B28D6CE003C05ED /* Carbon.framework */,
-				F4975D7D1B2E662B0099D16E /* Sparkle.framework */,
 				F48B7BAA11F7675900351575 /* WebKit.framework */,
 				F4E1F47C11F756D9007EE2E3 /* Security.framework */,
 				F4ED1E460CEC17920006636F /* Carbon.framework */,
@@ -401,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				F44E007212298B7A00CAC9C2 /* Application */,
+				F4D6569814C4BFD6003552F9 /* Interpreters */,
 				F44E006712298B7200CAC9C2 /* Presets */,
 				F44E007312298B8C00CAC9C2 /* Status Menu */,
 			);
@@ -431,9 +420,9 @@
 				F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */,
 				F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */,
 				F445EA7F14FABE6500DCCDB3 /* generate_keys.rb */,
-				F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */,
 				F445EA8214FABE6500DCCDB3 /* sign_update.rb */,
 				F445EA8314FABE6500DCCDB3 /* update_appcast.sh */,
+				F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */,
 			);
 			path = Sparkle;
 			sourceTree = "<group>";
@@ -607,26 +596,11 @@
 		F4D6568C14C4BFD6003552F9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				F4D6568D14C4BFD6003552F9 /* Buttons */,
-				F4D6569814C4BFD6003552F9 /* InterpreterIcons */,
 			);
 			path = Images;
 			sourceTree = "<group>";
 		};
-		F4D6568D14C4BFD6003552F9 /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-				F4D6568E14C4BFD6003552F9 /* Add.png */,
-				F4D6568F14C4BFD6003552F9 /* Add_Pressed.png */,
-				F4D6569014C4BFD6003552F9 /* Clear.png */,
-				F4D6569114C4BFD6003552F9 /* Clear_Pressed.png */,
-				F4D6569414C4BFD6003552F9 /* Remove.png */,
-				F4D6569514C4BFD6003552F9 /* Remove_Pressed.png */,
-			);
-			path = Buttons;
-			sourceTree = "<group>";
-		};
-		F4D6569814C4BFD6003552F9 /* InterpreterIcons */ = {
+		F4D6569814C4BFD6003552F9 /* Interpreters */ = {
 			isa = PBXGroup;
 			children = (
 				F4D6569914C4BFD6003552F9 /* AppleScript.png */,
@@ -644,7 +618,8 @@
 				F4D656A414C4BFD6003552F9 /* Tcsh.png */,
 				F4D656A514C4BFD6003552F9 /* Zsh.png */,
 			);
-			path = InterpreterIcons;
+			name = Interpreters;
+			path = ../Images/InterpreterIcons;
 			sourceTree = "<group>";
 		};
 		F4DC074611F629930043764E /* Scripts */ = {
@@ -821,12 +796,6 @@
 				F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */,
 				F46EF85113C3F36900E4C0E4 /* Examples in Resources */,
 				F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */,
-				F4D656A614C4BFD6003552F9 /* Add.png in Resources */,
-				F4D656A714C4BFD6003552F9 /* Add_Pressed.png in Resources */,
-				F4D656A814C4BFD6003552F9 /* Clear.png in Resources */,
-				F4D656A914C4BFD6003552F9 /* Clear_Pressed.png in Resources */,
-				F4D656AC14C4BFD6003552F9 /* Remove.png in Resources */,
-				F4D656AD14C4BFD6003552F9 /* Remove_Pressed.png in Resources */,
 				F4D656B014C4BFD6003552F9 /* AppleScript.png in Resources */,
 				F4D656B114C4BFD6003552F9 /* Bash.png in Resources */,
 				F4D656B214C4BFD6003552F9 /* Env.png in Resources */,
@@ -1002,7 +971,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
 				PRODUCT_NAME = Platypus;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
@@ -1047,7 +1016,7 @@
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
 				PRODUCT_NAME = Platypus;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
@@ -1087,7 +1056,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
 				PRODUCT_NAME = Platypus;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
@@ -1128,7 +1097,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PLIST_FILE_OUTPUT_FORMAT = XML;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
@@ -1169,7 +1138,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PLIST_FILE_OUTPUT_FORMAT = binary;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
@@ -1208,7 +1177,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PLIST_FILE_OUTPUT_FORMAT = binary;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
