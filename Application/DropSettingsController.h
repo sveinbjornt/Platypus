@@ -29,7 +29,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "SuffixList.h"
+#import "SuffixListController.h"
 #import "PlatypusUtility.h"
 
 @interface DropSettingsController : NSObject <NSTableViewDelegate>
@@ -56,7 +56,7 @@
     IBOutlet id selectDocumentIconButton;
     
     NSString *docIconPath;
-    SuffixList *suffixList;
+    SuffixListController *suffixList;
 }
 - (IBAction)addSuffix:(id)sender;
 - (IBAction)clearSuffixList:(id)sender;
@@ -68,7 +68,7 @@
 - (IBAction)acceptsFilesChanged:(id)sender;
 - (IBAction)acceptsTextChanged:(id)sender;
 
-- (SuffixList *)suffixes;
+- (SuffixListController *)suffixes;
 - (UInt64)docIconSize;
 
 // getter/setters

@@ -31,10 +31,10 @@
 // SuffixList is a controller class around the Suffix list in the Platypus
 // Edit Types window.  It is the data source and delegate of this tableview.
 
-#import "SuffixList.h"
+#import "SuffixListController.h"
 #import "Common.h"
 
-@implementation SuffixList
+@implementation SuffixListController
 
 - (id)init {
     if ((self = [super init])) {

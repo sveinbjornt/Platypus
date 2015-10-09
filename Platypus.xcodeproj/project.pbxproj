@@ -56,7 +56,7 @@
 		F4975DB21B2E71EE0099D16E /* ProfilesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D9D1B2E71EE0099D16E /* ProfilesController.m */; };
 		F4975DB41B2E71EE0099D16E /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DA11B2E71EE0099D16E /* ShellCommandController.m */; };
 		F4975DB51B2E71EE0099D16E /* StatusItemSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DA31B2E71EE0099D16E /* StatusItemSettingsController.m */; };
-		F4975DB61B2E71EE0099D16E /* SuffixList.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DA51B2E71EE0099D16E /* SuffixList.m */; };
+		F4975DB61B2E71EE0099D16E /* SuffixListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DA51B2E71EE0099D16E /* SuffixListController.m */; };
 		F4975DB71B2E71EE0099D16E /* SyntaxCheckerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DA71B2E71EE0099D16E /* SyntaxCheckerController.m */; };
 		F4975DB81B2E71EE0099D16E /* TextSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DA91B2E71EE0099D16E /* TextSettingsController.m */; };
 		F4975DBE1B2E71FC0099D16E /* Editor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DB91B2E71FC0099D16E /* Editor.xib */; };
@@ -219,8 +219,8 @@
 		F4975DA11B2E71EE0099D16E /* ShellCommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellCommandController.m; path = Application/ShellCommandController.m; sourceTree = "<group>"; };
 		F4975DA21B2E71EE0099D16E /* StatusItemSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusItemSettingsController.h; path = Application/StatusItemSettingsController.h; sourceTree = "<group>"; };
 		F4975DA31B2E71EE0099D16E /* StatusItemSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusItemSettingsController.m; path = Application/StatusItemSettingsController.m; sourceTree = "<group>"; };
-		F4975DA41B2E71EE0099D16E /* SuffixList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuffixList.h; path = Application/SuffixList.h; sourceTree = "<group>"; };
-		F4975DA51B2E71EE0099D16E /* SuffixList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuffixList.m; path = Application/SuffixList.m; sourceTree = "<group>"; };
+		F4975DA41B2E71EE0099D16E /* SuffixListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuffixListController.h; path = Application/SuffixListController.h; sourceTree = "<group>"; };
+		F4975DA51B2E71EE0099D16E /* SuffixListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuffixListController.m; path = Application/SuffixListController.m; sourceTree = "<group>"; };
 		F4975DA61B2E71EE0099D16E /* SyntaxCheckerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyntaxCheckerController.h; path = Application/SyntaxCheckerController.h; sourceTree = "<group>"; };
 		F4975DA71B2E71EE0099D16E /* SyntaxCheckerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyntaxCheckerController.m; path = Application/SyntaxCheckerController.m; sourceTree = "<group>"; };
 		F4975DA81B2E71EE0099D16E /* TextSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextSettingsController.h; path = Application/TextSettingsController.h; sourceTree = "<group>"; };
@@ -500,8 +500,8 @@
 				F4975DA11B2E71EE0099D16E /* ShellCommandController.m */,
 				F4975DA21B2E71EE0099D16E /* StatusItemSettingsController.h */,
 				F4975DA31B2E71EE0099D16E /* StatusItemSettingsController.m */,
-				F4975DA41B2E71EE0099D16E /* SuffixList.h */,
-				F4975DA51B2E71EE0099D16E /* SuffixList.m */,
+				F4975DA41B2E71EE0099D16E /* SuffixListController.h */,
+				F4975DA51B2E71EE0099D16E /* SuffixListController.m */,
 				F4975DA61B2E71EE0099D16E /* SyntaxCheckerController.h */,
 				F4975DA71B2E71EE0099D16E /* SyntaxCheckerController.m */,
 				F4975DA81B2E71EE0099D16E /* TextSettingsController.h */,
@@ -897,7 +897,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4975DB61B2E71EE0099D16E /* SuffixList.m in Sources */,
+				F4975DB61B2E71EE0099D16E /* SuffixListController.m in Sources */,
 				F4975D751B2E09310099D16E /* STPrivilegedTask.m in Sources */,
 				F4975DCC1B2E721D0099D16E /* UKFileWatcher.m in Sources */,
 				F4975DB41B2E71EE0099D16E /* ShellCommandController.m in Sources */,
@@ -1101,6 +1101,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CODE_SIGN_IDENTITY = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_CW_ASM_SYNTAX = NO;
@@ -1139,6 +1140,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				BUILD_VARIANTS = normal;
+				CODE_SIGN_IDENTITY = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_CW_ASM_SYNTAX = NO;
@@ -1178,6 +1180,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "";
 				CONFIGURATION_TEMP_DIR = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

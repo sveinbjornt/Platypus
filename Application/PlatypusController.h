@@ -49,7 +49,7 @@
 #import "ShellCommandController.h"
 
 #import "DropSettingsController.h"
-#import "SuffixList.h"
+#import "SuffixListController.h"
 
 #import "PlatypusUtility.h"
 #import "STPathTextField.h"

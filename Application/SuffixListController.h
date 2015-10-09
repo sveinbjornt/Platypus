@@ -35,7 +35,7 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
-@interface SuffixList : NSObject <NSTableViewDataSource>
+@interface SuffixListController : NSObject <NSTableViewDataSource>
 {
     NSMutableArray *items;
 }
