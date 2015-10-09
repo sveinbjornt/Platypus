@@ -91,6 +91,7 @@
     NSTextView *outputTextView;
     
     IBOutlet id windowMenu;
+    IBOutlet id applicationMenu;
     
     // tasks
     NSTask *task;
