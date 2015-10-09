@@ -26,7 +26,18 @@ For 4.9.1
     TODO: Retina icons in script type popup button, using xciconset
     TODO: Show command invoked when checking script syntax
     TODO: Update status item menu default icon to high res version
+TODO: Post notifications
 
+- (IBAction)showNotification:(id)sender{
+NSUserNotification *notification = [[NSUserNotification alloc] init];
+notification.title = @"Hello, World!";
+notification.informativeText = @"A notification";
+notification.soundName = NSUserNotificationDefaultSoundName;
+
+[[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
+    * Scripts can now send messages to Notification Center via the NOTIFICATION:* syntax
     * New help button in main application window
     * Previewing status item menu now shows actual script output instead of placeholder text
     * Status menu items can now only have a title or an icon, not both, due to changes in Mac OS X
