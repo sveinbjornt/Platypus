@@ -513,7 +513,7 @@
     [spec setProperty:[fileList getFilesArray] forKey:@"BundledFiles"];
     
     // file types
-    [spec setProperty:(NSMutableArray *)[(SuffixList *)[dropSettingsController suffixes] getSuffixArray] forKey:@"Suffixes"];
+    [spec setProperty:(NSMutableArray *)[(SuffixListController *)[dropSettingsController suffixes] getSuffixArray] forKey:@"Suffixes"];
     [spec setProperty:[dropSettingsController role] forKey:@"Role"];
     [spec setProperty:[dropSettingsController docIconPath] forKey:@"DocIcon"];
     [spec setProperty:[NSNumber numberWithBool:[dropSettingsController acceptsText]] forKey:@"AcceptsText"];
@@ -570,8 +570,8 @@
     [fileList tableViewSelectionDidChange:NULL];
     
     //suffix list
-    [(SuffixList *)[dropSettingsController suffixes] clearList];
-    [(SuffixList *)[dropSettingsController suffixes] addSuffixes :[spec propertyForKey:@"Suffixes"]];
+    [(SuffixListController *)[dropSettingsController suffixes] clearList];
+    [(SuffixListController *)[dropSettingsController suffixes] addSuffixes :[spec propertyForKey:@"Suffixes"]];
     
     [dropSettingsController tableViewSelectionDidChange:NULL];
     // role and doc icon

@@ -35,7 +35,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        suffixList = [[SuffixList alloc] init];
+        suffixList = [[SuffixListController alloc] init];
     }
     return self;
 }
@@ -268,7 +268,7 @@
 
 #pragma mark -
 
-- (SuffixList *)suffixes {
+- (SuffixListController *)suffixes {
     return suffixList;
 }
 
