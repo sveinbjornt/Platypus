@@ -204,7 +204,6 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
         // we'll have to take for now.
         // Pattern by Andy Kim from Potion Factory LLC
         _AuthExecuteWithPrivsFn = (OSStatus (*)(AuthorizationRef authorization, const char *pathToTool, AuthorizationFlags options, char * const *arguments, FILE **communicationsPipe))dlsym(RTLD_DEFAULT, "AuthorizationExecuteWithPrivileges");
-        
         if (!_AuthExecuteWithPrivsFn) {
             // This version of OS X has finally removed this function. Exit with an error.
             err = errAuthorizationFnNoLongerExists;
@@ -310,7 +309,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
 - (NSString *)description
 {
     NSArray *args = [self arguments];
-    NSString *cmd = [[self launchPath] copy];
+    NSString *cmd = [NSString stringWithFormat:@"%@", [self launchPath]];
     
     for (int i = 0; i < [args count]; i++) {
         cmd = [cmd stringByAppendingFormat:@" %@", args[i]];
