@@ -53,11 +53,12 @@
 
 + (NSString *)ibtoolPath {
     NSString *ibtoolPath = nil;
+
+    if ([[NSFileManager defaultManager] fileExistsAtPath:IBTOOL_PATH_2])
+        ibtoolPath = IBTOOL_PATH_2;
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:IBTOOL_PATH])
         ibtoolPath = IBTOOL_PATH;
-    if ([[NSFileManager defaultManager] fileExistsAtPath:IBTOOL_PATH_2])
-        ibtoolPath = IBTOOL_PATH_2;
     
     return [ibtoolPath autorelease];
 }
@@ -209,7 +210,7 @@
 
 + (NSString *)loadBundledTemplate:(NSString *)templateFileName usingDictionary:(NSDictionary *)dict {
     
-    NSString *fullPath = [[NSBundle mainBundle] pathForResource:templateFileName ofType:NULL];
+    NSString *fullPath = [[NSBundle mainBundle] pathForResource:templateFileName ofType:nil];
     NSString *templateStr = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
     if (!templateStr) {
         NSLog(@"Unable to read template %@", templateFileName);
@@ -260,7 +261,7 @@
             @"PXR",
             @"SCT",
             @"TGA",
-            NULL];
+            nil];
 }
 
 @end

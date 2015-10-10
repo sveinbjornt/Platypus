@@ -63,9 +63,9 @@
     
     // we list ourself as an observer of changes to file system
     [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver:self selector:@selector(trackedFileDidChange) name:UKFileWatcherRenameNotification object:NULL];
+     addObserver:self selector:@selector(trackedFileDidChange) name:UKFileWatcherRenameNotification object:nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver:self selector:@selector(trackedFileDidChange) name:UKFileWatcherDeleteNotification object:NULL];
+     addObserver:self selector:@selector(trackedFileDidChange) name:UKFileWatcherDeleteNotification object:nil];
 }
 
 #pragma mark -
@@ -110,7 +110,7 @@
         }
     }
     [tableView reloadData];
-    [self tableViewSelectionDidChange:NULL];
+    [self tableViewSelectionDidChange:nil];
     [self updateQueueWatch];
     [self updateFileSizeField];
 }
@@ -182,7 +182,7 @@
     } else {
         // open it in the external application
         NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
-        if ([[NSWorkspace sharedWorkspace] fullPathForApplication:defaultEditor] != NULL) {
+        if ([[NSWorkspace sharedWorkspace] fullPathForApplication:defaultEditor] != nil) {
             [[NSWorkspace sharedWorkspace] openFile:[[files objectAtIndex:index] objectForKey:@"Path"] withApplication:defaultEditor];
         } else {
             // Complain if editor is not found, set it to the built-in editor
@@ -258,7 +258,7 @@
     [self updateQueueWatch];
     [tableView reloadData];
     //update button status
-    [self tableViewSelectionDidChange:NULL];
+    [self tableViewSelectionDidChange:nil];
     [self updateFileSizeField];
 }
 
@@ -309,7 +309,7 @@
     }
     
     [tableView reloadData];
-    [self tableViewSelectionDidChange:NULL];
+    [self tableViewSelectionDidChange:nil];
     [self updateFileSizeField];
 }
 
@@ -374,7 +374,7 @@
     NSIndexSet *selectedItems;
     
     //selection changed in File List
-    if ([aNotification object] == tableView || [aNotification object] == NULL) {
+    if ([aNotification object] == tableView || [aNotification object] == nil) {
         selectedItems = [tableView selectedRowIndexes];
         for (int i = 0; i < [self numFiles]; i++) {
             if ([selectedItems containsIndex:i]) {
@@ -420,7 +420,7 @@
         index = [rowIndexes indexGreaterThanIndex:index];
     }
     
-    [pboard declareTypes:[NSArray arrayWithObject:NSFilenamesPboardType] owner:NULL];
+    [pboard declareTypes:[NSArray arrayWithObject:NSFilenamesPboardType] owner:nil];
     [pboard setPropertyList:filenames forType:NSFilenamesPboardType];
     
     return YES;

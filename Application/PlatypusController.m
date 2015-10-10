@@ -84,9 +84,9 @@
     }
     
     // we list ourself as an observer of changes to file system, for script
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(controlTextDidChange:) name:UKFileWatcherRenameNotification object:NULL];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(controlTextDidChange:) name:UKFileWatcherDeleteNotification object:NULL];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileChanged:) name:UKFileWatcherWriteNotification object:NULL];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(controlTextDidChange:) name:UKFileWatcherRenameNotification object:nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(controlTextDidChange:) name:UKFileWatcherDeleteNotification object:nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileChanged:) name:UKFileWatcherWriteNotification object:nil];
     
     //populate script type menu
     [scriptTypePopupButton addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
@@ -171,7 +171,7 @@
     }
     
     //write the default content to the new script
-    [contentString writeToFile:tempScript atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:NULL];
+    [contentString writeToFile:tempScript atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:nil];
     
     return tempScript;
 }
@@ -200,7 +200,7 @@
         [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
     } else { // open it in the external application
         NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
-        if ([[NSWorkspace sharedWorkspace] fullPathForApplication:defaultEditor] != NULL) {
+        if ([[NSWorkspace sharedWorkspace] fullPathForApplication:defaultEditor] != nil) {
             [[NSWorkspace sharedWorkspace] openFile:[scriptPathTextField stringValue] withApplication:defaultEditor];
         } else {
             // Complain if editor is not found, set it to the built-in editor
@@ -352,7 +352,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(creationStatusUpdated:)
                                                  name:@"PlatypusAppSpecCreationNotification"
-                                               object:NULL];
+                                               object:nil];
     
     // we begin by making sure destination path ends in .app
     NSString *appPath = destination;
@@ -365,8 +365,8 @@
     
     // we set this specifically -- extra profile data
     [spec setProperty:appPath forKey:@"Destination"];
-    [spec setProperty:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:NULL] forKey:@"ExecutablePath"];
-    [spec setProperty:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:NULL] forKey:@"NibPath"];
+    [spec setProperty:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil] forKey:@"ExecutablePath"];
+    [spec setProperty:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil] forKey:@"NibPath"];
     [spec setProperty:[NSNumber numberWithBool:[developmentVersionCheckbox intValue]] forKey:@"DevelopmentVersion"];
     [spec setProperty:[NSNumber numberWithBool:[optimizeApplicationCheckbox intValue]] forKey:@"OptimizeApplication"];
     [spec setProperty:[NSNumber numberWithBool:[xmlPlistFormatCheckbox intValue]] forKey:@"UseXMLPlistFormat"];
@@ -546,7 +546,7 @@
     [authorTextField setStringValue:[spec propertyForKey:@"Author"]];
     
     [outputTypePopupMenu selectItemWithTitle:[spec propertyForKey:@"Output"]];
-    [self outputTypeWasChanged:NULL];
+    [self outputTypeWasChanged:nil];
     [interpreterTextField setStringValue:[spec propertyForKey:@"Interpreter"]];
     
     //icon
@@ -607,7 +607,7 @@
     if ([[spec propertyForKey:@"Output"] isEqualToString:@"Status Menu"]) {
         if (![[spec propertyForKey:@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
             NSImage *icon = [[[NSImage alloc] initWithData:[spec propertyForKey:@"StatusItemIcon"]] autorelease];
-            if (icon != NULL) {
+            if (icon != nil) {
                 [statusItemSettingsController setIcon:icon];
             }
         }
@@ -693,7 +693,6 @@
     // add to recent items menu
     [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
     
-    //[self controlTextDidChange: NULL];
     [self updateEstimatedAppSize];
 }
 
@@ -900,11 +899,11 @@
     estimatedAppSize += [iconController iconSize];
     estimatedAppSize += [dropSettingsController docIconSize];
     estimatedAppSize += [PlatypusUtility fileOrFolderSize:[scriptPathTextField stringValue]];
-    estimatedAppSize += [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:NULL]];
+    estimatedAppSize += [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil]];
     
     // nib size is much smaller if compiled with ibtool
-    UInt64 nibSize = [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:NULL]];
-    if ([FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
+    UInt64 nibSize = [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil]];
+    if ([FILEMGR fileExistsAtPath:IBTOOL_PATH] || [FILEMGR fileExistsAtPath:IBTOOL_PATH_2]) {
         nibSize = 0.2 * nibSize; // compiled nib is approximtely 20% of the size of original
     }
     estimatedAppSize += nibSize;

@@ -172,7 +172,7 @@
 - (void)updateCLTStatus:(NSTextField *)textField {
     //set status of clt install button and text field
     if ([self isCommandLineToolInstalled]) {
-        NSString *versionString = [NSString stringWithContentsOfFile:CMDLINE_VERSION_PATH encoding:NSUTF8StringEncoding error:NULL];
+        NSString *versionString = [NSString stringWithContentsOfFile:CMDLINE_VERSION_PATH encoding:NSUTF8StringEncoding error:nil];
         versionString = [versionString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         
         if ([versionString isEqualToString:PROGRAM_VERSION]) { // it's installed and current

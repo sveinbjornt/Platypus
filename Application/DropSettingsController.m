@@ -207,13 +207,13 @@
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
-    int i;
-    int selected = 0;
-    NSIndexSet *selectedItems;
     
-    if ([aNotification object] == suffixListDataBrowser || [aNotification object] == NULL) {
-        selectedItems = [suffixListDataBrowser selectedRowIndexes];
-        for (i = 0; i < [suffixList numSuffixes]; i++) {
+    if (aNotification == nil || [aNotification object] == suffixListDataBrowser || [aNotification object] == nil) {
+        
+        int selected = 0;
+        NSIndexSet *selectedItems = [suffixListDataBrowser selectedRowIndexes];
+        
+        for (int i = 0; i < [suffixList numSuffixes]; i++) {
             if ([selectedItems containsIndex:i]) {
                 selected++;
             }

@@ -62,7 +62,7 @@
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithProfile:file];
     
     // make sure we got a spec from the file
-    if (spec == NULL) {
+    if (spec == nil) {
         [PlatypusUtility alert:@"Error" subText:@"Unable to create Platypus spec from profile"];
         return;
     }
@@ -198,7 +198,7 @@
     NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
     NSString *filename;
     
-    while ((filename = [dirEnumerator nextObject]) != NULL) {
+    while ((filename = [dirEnumerator nextObject]) != nil) {
         if ([filename hasSuffix:PROFILES_SUFFIX]) {
             NSString *path = [NSString stringWithFormat:@"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], filename];
             if (![manager isDeletableFileAtPath:path]) {
@@ -264,7 +264,7 @@
 }
 
 - (void)openProfilesFolder {
-    [[NSWorkspace sharedWorkspace] selectFile:NULL inFileViewerRootedAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
+    [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
 }
 
 /*****************************************
@@ -275,7 +275,7 @@
     NSMutableArray *profilesArray = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
     NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
     NSString *filename;
-    while ((filename = [dirEnumerator nextObject]) != NULL) {
+    while ((filename = [dirEnumerator nextObject]) != nil) {
         if ([filename hasSuffix:PROFILES_SUFFIX]) {
             [profilesArray addObject:filename];
         }
@@ -287,7 +287,7 @@
     NSMutableArray *examplesArray = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
     NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], PROGRAM_EXAMPLES_FOLDER]];
     NSString *filename;
-    while ((filename = [dirEnumerator nextObject]) != NULL) {
+    while ((filename = [dirEnumerator nextObject]) != nil) {
         if ([filename hasSuffix:PROFILES_SUFFIX]) {
             [examplesArray addObject:filename];
         }

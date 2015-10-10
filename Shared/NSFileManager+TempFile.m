@@ -62,7 +62,7 @@
     free(tempFileNameCString);
     
     // write script to the temporary path
-    [contentStr writeToFile:tempScriptPath atomically:YES encoding:textEncoding error:NULL];
+    [contentStr writeToFile:tempScriptPath atomically:YES encoding:textEncoding error:nil];
     
     // make sure writing it was successful
     if (![[NSFileManager defaultManager] fileExistsAtPath:tempScriptPath]) {
