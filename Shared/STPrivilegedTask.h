@@ -1,7 +1,7 @@
 /*
  #
  # STPrivilegedTask - NSTask-like wrapper around AuthorizationExecuteWithPrivileges
- # Copyright (C) 2003-2015 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+ # Copyright (C) 2009-2015 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
  #
  # BSD License
  # Redistribution and use in source and binary forms, with or without
@@ -14,7 +14,7 @@
  #     * Neither the name of Sveinbjorn Thordarson nor that of any other
  #       contributors may be used to endorse or promote products
  #       derived from this software without specific prior written permission.
- #
+ # 
  # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  # ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  # WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -27,51 +27,55 @@
  # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
 #import <Security/Authorization.h>
 #import <Security/AuthorizationTags.h>
 
-#define STPrivilegedTaskDidTerminateNotification        @ "STPrivilegedTaskDidTerminateNotification"
-#define TMP_STDERR_TEMPLATE                             @ ".authStderr.XXXXXX"
+#define STPrivilegedTaskDidTerminateNotification @"STPrivilegedTaskDidTerminateNotification"
+//#define TMP_STDERR_TEMPLATE @".authStderr.XXXXXX"
 
-@interface STPrivilegedTask : NSObject
+// Defines error value for when AuthorizationExecuteWithPrivilleges no longer
+// exists anyplace. Rather than defining a new enum, we just create a global
+// constant
+extern const OSStatus errAuthorizationFnNoLongerExists;
+
+@interface STPrivilegedTask : NSObject 
 {
-    NSArray *arguments;
-    NSString *cwd;
-    NSString *launchPath;
-    BOOL isRunning;
-    pid_t pid;
-    int terminationStatus;
-    NSFileHandle *outputFileHandle;
-    NSTimer *checkStatusTimer;
+    NSArray         *arguments;
+    NSString        *cwd;
+    NSString        *launchPath;
+    BOOL            isRunning;
+    pid_t           pid;
+    int             terminationStatus;
+    NSFileHandle    *outputFileHandle;
+    NSTimer         *checkStatusTimer;
 }
-- (id)initWithLaunchPath:(NSString *)path;
-- (id)initWithLaunchPath:(NSString *)path arguments:(NSArray *)args;
-+ (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path;
-+ (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)arguments;
-- (NSArray *)arguments;
-- (NSString *)currentDirectoryPath;
-- (BOOL)isRunning;
-- (int)launch;
-- (NSString *)launchPath;
-- (int)processIdentifier;
-- (void)setArguments:(NSArray *)arguments;
-- (void)setCurrentDirectoryPath:(NSString *)path;
-- (void)setLaunchPath:(NSString *)path;
-- (NSFileHandle *)outputFileHandle;
-- (void)terminate;  // doesn't work
-- (int)terminationStatus;
-- (void)_checkTaskStatus;
-- (void)waitUntilExit;
+-(id)initWithLaunchPath:(NSString *)path;
+-(id)initWithLaunchPath:(NSString *)path arguments:  (NSArray *)args;
++(STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path;
++(STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)arguments;
+-(NSArray *)arguments;
+-(NSString *)currentDirectoryPath;
+-(BOOL)isRunning;
+-(int)launch;
+-(NSString *)launchPath;
+-(int)processIdentifier;
+-(void)setArguments:(NSArray *)arguments;
+-(void)setCurrentDirectoryPath:(NSString *)path;
+-(void)setLaunchPath:(NSString *)path;
+-(NSFileHandle *)outputFileHandle;
+-(void)terminate;  // doesn't work
+-(int)terminationStatus;
+-(void)_checkTaskStatus;
+-(void)waitUntilExit;
 @end
 /*static OSStatus AuthorizationExecuteWithPrivilegesStdErrAndPid (
- AuthorizationRef authorization,
- const char *pathToTool,
- AuthorizationFlags options,
- char * const *arguments,
- FILE **communicationsPipe,
- FILE **errPipe,
- pid_t* processid
- );*/
+                                                                AuthorizationRef authorization,
+                                                                const char *pathToTool,
+                                                                AuthorizationFlags options,
+                                                                char * const *arguments,
+                                                                FILE **communicationsPipe,
+                                                                FILE **errPipe,
+                                                                pid_t* processid
+                                                                );*/
