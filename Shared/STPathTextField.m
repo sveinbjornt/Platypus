@@ -134,7 +134,7 @@
 
 - (void)setStringValue:(NSString *)aString {
     [super setStringValue:aString];
-    [self textDidChange:nil];
+    [self performSelector:@selector(textDidChange:) withObject:nil];
 }
 
 /*******************************************

@@ -145,7 +145,7 @@
     
     [suffixList addSuffix:theSuffix];
     [suffixTextField setStringValue:@""];
-    [self controlTextDidChange:NULL];
+    [self controlTextDidChange];
     
     //update
     [suffixListDataBrowser reloadData];
@@ -223,6 +223,10 @@
 }
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
+    [self controlTextDidChange];
+}
+
+- (void)controlTextDidChange {
     //enable/disable buttons for Edit Types window
     [addSuffixButton setEnabled:([[suffixTextField stringValue] length] > 0)];
 }

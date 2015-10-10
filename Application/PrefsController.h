@@ -40,7 +40,7 @@
     IBOutlet id revealAppCheckbox;
     IBOutlet id openAppCheckbox;
     IBOutlet id createOnScriptChangeCheckbox;
-    IBOutlet id defaultEditorMenu;
+    IBOutlet NSPopUpButton *defaultEditorPopupButton;
     IBOutlet id defaultTextEncodingPopupButton;
     IBOutlet id defaultBundleIdentifierTextField;
     IBOutlet id defaultAuthorTextField;

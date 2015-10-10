@@ -41,7 +41,7 @@
     [super loadWindow];
     
     // set controls according to NSUserDefaults
-    [defaultEditorMenu setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
+    [defaultEditorPopupButton setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
     [defaultTextEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]];
     [defaultBundleIdentifierTextField setStringValue:[DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"]];
     [defaultAuthorTextField setStringValue:[DEFAULTS stringForKey:@"DefaultAuthor"]];
@@ -61,22 +61,24 @@
  *****************************************/
 
 - (void)setIconsForEditorMenu {
-    int i;
-    NSSize smallIconSize = { 16, 16 };
     
-    for (i = 0; i < [defaultEditorMenu numberOfItems]; i++) {
-        if ([[[defaultEditorMenu itemAtIndex:i] title] isEqualToString:DEFAULT_EDITOR] == YES) {
+    for (int i = 0; i < [defaultEditorPopupButton numberOfItems]; i++) {
+        
+        NSMenuItem *menuItem = [defaultEditorPopupButton itemAtIndex:i];
+        NSSize smallIconSize = { 16, 16 };
+        
+        if ([[menuItem title] isEqualToString:DEFAULT_EDITOR] == YES) {
             NSImage *icon = [NSImage imageNamed:@"PlatypusAppIcon"];
             [icon setSize:smallIconSize];
-            [[defaultEditorMenu itemAtIndex:i] setImage:icon];
-        } else if ([[[defaultEditorMenu itemAtIndex:i] title] isEqualToString:@"Select..."] == NO && [[[defaultEditorMenu itemAtIndex:i] title] length] > 0) {
+            [menuItem setImage:icon];
+        } else if ([[menuItem title] isEqualToString:@"Select..."] == NO && [[menuItem title] length] > 0) {
             NSImage *icon = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
-            NSString *appPath = [[NSWorkspace sharedWorkspace] fullPathForApplication:[[defaultEditorMenu itemAtIndex:i] title]];
-            if (appPath != NULL) { // app found
+            NSString *appPath = [[NSWorkspace sharedWorkspace] fullPathForApplication:[menuItem title]];
+            if (appPath != nil) {
                 icon = [[NSWorkspace sharedWorkspace] iconForFile:appPath];
             }
             [icon setSize:smallIconSize];
-            [[defaultEditorMenu itemAtIndex:i] setImage:icon];
+            [menuItem setImage:icon];
         }
     }
 }
@@ -87,7 +89,7 @@
 
 - (IBAction)applyPrefs:(id)sender {
     // editor
-    [DEFAULTS setObject:[defaultEditorMenu titleOfSelectedItem]  forKey:@"DefaultEditor"];
+    [DEFAULTS setObject:[defaultEditorPopupButton titleOfSelectedItem]  forKey:@"DefaultEditor"];
     
     // text encoding
     [DEFAULTS setObject:[NSNumber numberWithInt:[[defaultTextEncodingPopupButton selectedItem] tag]]  forKey:@"DefaultTextEncoding"];
@@ -127,7 +129,7 @@
     [revealAppCheckbox setState:NO];
     [openAppCheckbox setState:NO];
     [createOnScriptChangeCheckbox setState:NO];
-    [defaultEditorMenu setTitle:DEFAULT_EDITOR];
+    [defaultEditorPopupButton setTitle:DEFAULT_EDITOR];
     [defaultTextEncodingPopupButton selectItemWithTag:DEFAULT_OUTPUT_TXT_ENCODING];
     [defaultAuthorTextField setStringValue:NSFullUserName()];
     
@@ -155,10 +157,10 @@
         //set app name minus .app suffix
         NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
         NSString *editorName = [[filePath lastPathComponent] stringByDeletingPathExtension];
-        [defaultEditorMenu setTitle:editorName];
+        [defaultEditorPopupButton setTitle:editorName];
         [self setIconsForEditorMenu];
     } else {
-        [defaultEditorMenu setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
+        [defaultEditorPopupButton setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
     }
 }
 

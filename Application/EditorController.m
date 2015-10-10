@@ -97,7 +97,7 @@
 }
 
 - (IBAction)revealInFinder:(id)sender {
-    [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:nil];
+    [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:[scriptPathTextField stringValue]];
 }
 
 #pragma mark - Font size

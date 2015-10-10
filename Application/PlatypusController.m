@@ -89,11 +89,11 @@
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileChanged:) name:UKFileWatcherWriteNotification object:NULL];
     
     //populate script type menu
-    [scriptTypePopupMenu addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
-    for (int i = 0; i < [[scriptTypePopupMenu itemArray] count]; i++) {
-        NSImage *icon = [NSImage imageNamed:[[scriptTypePopupMenu itemAtIndex:i] title]];
+    [scriptTypePopupButton addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
+    for (int i = 0; i < [[scriptTypePopupButton itemArray] count]; i++) {
+        NSImage *icon = [NSImage imageNamed:[[scriptTypePopupButton itemAtIndex:i] title]];
         
-        [[scriptTypePopupMenu itemAtIndex:i] setImage:icon];
+        [[scriptTypePopupButton itemAtIndex:i] setImage:icon];
     }
     [window registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
     [window makeFirstResponder:appNameTextField];
@@ -164,7 +164,7 @@
     if (scriptText != nil) {
         contentString = [contentString stringByAppendingString:scriptText];
     } else {
-        defaultScript = [[ScriptAnalyser interpreterHelloWorlds] objectForKey:[scriptTypePopupMenu titleOfSelectedItem]];
+        defaultScript = [[ScriptAnalyser interpreterHelloWorlds] objectForKey:[scriptTypePopupButton titleOfSelectedItem]];
         if (defaultScript != nil) {
             contentString = [contentString stringByAppendingString:defaultScript];
         }
@@ -181,7 +181,7 @@
  *****************************************/
 
 - (IBAction)revealScript:(id)sender {
-    [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:nil];
+    [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:[scriptPathTextField stringValue]];
 }
 
 /*****************************************
@@ -404,7 +404,7 @@
     
     // reveal newly create app in Finder, if prefs say so
     if ([DEFAULTS boolForKey:@"RevealApplicationWhenCreated"]) {
-        [[NSWorkspace sharedWorkspace] selectFile:appPath inFileViewerRootedAtPath:nil];
+        [[NSWorkspace sharedWorkspace] selectFile:appPath inFileViewerRootedAtPath:appPath];
     }
     
     // open newly create app, if prefs say so
@@ -567,13 +567,14 @@
     [fileList addFiles:[spec propertyForKey:@"BundledFiles"]];
     
     //update button status
-    [fileList tableViewSelectionDidChange:NULL];
+    [fileList performSelector:@selector(tableViewSelectionDidChange:) withObject:nil];
     
     //suffix list
     [(SuffixListController *)[dropSettingsController suffixes] clearList];
     [(SuffixListController *)[dropSettingsController suffixes] addSuffixes :[spec propertyForKey:@"Suffixes"]];
     
-    [dropSettingsController tableViewSelectionDidChange:NULL];
+    [dropSettingsController performSelector:@selector(tableViewSelectionDidChange:) withObject:nil];
+    
     // role and doc icon
     [dropSettingsController setRole:[spec propertyForKey:@"Role"]];
     if ([spec propertyForKey:@"DocIcon"] != nil) {
@@ -615,7 +616,7 @@
     }
     
     //update buttons
-    [self controlTextDidChange:NULL];
+    [self performSelector:@selector(controlTextDidChange:) withObject:nil];
     
     [self updateEstimatedAppSize];
     
@@ -657,7 +658,7 @@
 
 - (void)selectScriptTypeBasedOnInterpreter {
     NSString *type = [ScriptAnalyser displayNameForInterpreter:[interpreterTextField stringValue]];
-    [scriptTypePopupMenu selectItemWithTitle:type];
+    [scriptTypePopupButton selectItemWithTitle:type];
 }
 
 /*****************************************
@@ -668,8 +669,8 @@
     // set the script type based on the number which identifies each type
     NSString *interpreter = [ScriptAnalyser interpreterForDisplayName:type];
     [interpreterTextField setStringValue:interpreter];
-    [scriptTypePopupMenu selectItemWithTitle:type];
-    [self controlTextDidChange:NULL];
+    [scriptTypePopupButton selectItemWithTitle:type];
+    [self performSelector:@selector(controlTextDidChange:) withObject:nil];
 }
 
 /*****************************************
@@ -707,7 +708,7 @@
     BOOL isDir, exists = NO, validName = NO;
     
     //app name or script path was changed
-    if ([aNotification object] == NULL || [aNotification object] == appNameTextField || [aNotification object] == scriptPathTextField) {
+    if (aNotification == nil || [aNotification object] == nil || [aNotification object] == appNameTextField || [aNotification object] == scriptPathTextField) {
         if ([[appNameTextField stringValue] length] > 0) {
             validName = YES;
         }
@@ -727,13 +728,13 @@
         //enable/disable create app button
         [createAppButton setEnabled:validName && exists];
     }
-    if ([aNotification object] == appNameTextField) {
+    if (aNotification != nil && [aNotification object] == appNameTextField) {
         //update identifier
         [bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] usingDefaults:YES]];
     }
     
     //interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
-    if ([aNotification object] == interpreterTextField || [aNotification object] == NULL) {
+    if (aNotification == nil || [aNotification object] == interpreterTextField || [aNotification object] == nil) {
         [self selectScriptTypeBasedOnInterpreter];
         NSColor *textColor = ([FILEMGR fileExistsAtPath:[interpreterTextField stringValue] isDirectory:&isDir] && !isDir) ? [NSColor blackColor] : [NSColor redColor];
         [interpreterTextField setTextColor:textColor];
@@ -850,7 +851,7 @@
     [self outputTypeWasChanged:outputTypePopupMenu];
     
     //update button status
-    [self controlTextDidChange:NULL];
+    [self performSelector:@selector(controlTextDidChange:) withObject:nil];
     
     [appSizeTextField setStringValue:@""];
     

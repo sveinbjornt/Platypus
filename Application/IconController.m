@@ -71,7 +71,7 @@
 }
 
 - (IBAction)revealIconInFinder:(id)sender {
-    [[NSWorkspace sharedWorkspace] selectFile:[self icnsFilePath] inFileViewerRootedAtPath:nil];
+    [[NSWorkspace sharedWorkspace] selectFile:[self icnsFilePath] inFileViewerRootedAtPath:[self icnsFilePath]];
 }
 
 #pragma mark -
