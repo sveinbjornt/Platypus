@@ -146,7 +146,9 @@
         [pStatusItem setTitle:[titleTextField stringValue]];
     }
     if (dType == 1 || dType == 2) {
-        [pStatusItem setImage:[iconImageView image]];
+        NSImage *img = [iconImageView image];
+        [img setSize:NSMakeSize(16, 16)];
+        [pStatusItem setImage:img];
     }
     
     // create menu

@@ -32,6 +32,7 @@ For 5.0
     * New release build script
     * Built with XCode 7 and now requires Mac OS X 10.7 or later and a 64-bit Intel system. Older versions continue to work just fine on 32-bit 10.6 systems, and version 4.4 still works on PowerPC. But it's time to leave the past behind. It's been 9 years since the last 32-bit Mac was released.
     * Syntax checker window now shows the command invoked when checking script syntax
+    * App size estimation is now more accurate
     * "Copy icon path" option in icon contextual menu
     * Modernization of some user interface elements
     * Better keyboard shortcuts for built-in editor
