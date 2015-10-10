@@ -1026,6 +1026,23 @@
     return YES;
 }
 
+- (void)menuWillOpen:(NSMenu *)menu {
+    NSArray *items = [menu itemArray];
+    for (NSMenuItem *menuItem in items) {
+        NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+        NSImage *img = [NSImage imageNamed:imageName];
+        [img setSize:NSMakeSize(32, 32)];
+        [menuItem setImage:img];
+    }
+}
+
+- (void)menuDidClose:(NSMenu *)menu {
+    NSArray *items = [menu itemArray];
+    for (NSMenuItem *menuItem in items) {
+        [menuItem setImage:nil];
+    }
+}
+
 #pragma mark - Help/Documentation
 
 // Open Documentation.html file within app bundle
