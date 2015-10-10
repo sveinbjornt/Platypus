@@ -155,7 +155,7 @@
  ********************************************/
 
 - (int)autoComplete:(id)sender {
-    NSString *autocompletedPath = NULL;
+    NSString *autocompletedPath = nil;
     NSString *path = [self stringValue];
     unichar firstchar;
     int dlen, len = [path length];
@@ -177,10 +177,10 @@
     }
     
     // get suggestion for autocompletion
-    [path completePathIntoString:&autocompletedPath caseSensitive:YES matchesIntoArray:NULL filterTypes:NULL];
+    [path completePathIntoString:&autocompletedPath caseSensitive:YES matchesIntoArray:nil filterTypes:nil];
     
     // stop if no suggestions
-    if (autocompletedPath == NULL)
+    if (autocompletedPath == nil)
         return 0;
     
     // stop if suggestion is current value and current value is a valid path

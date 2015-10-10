@@ -53,14 +53,14 @@
     [interpreterArgs removeAllObjects];
     [interpreterArgs addObjectsFromArray:array];
     [interpreterArgsTableView reloadData];
-    [self tableViewSelectionDidChange:NULL];
+    [self tableViewSelectionDidChange:nil];
 }
 
 - (void)setScriptArgs:(NSArray *)array {
     [scriptArgs removeAllObjects];
     [scriptArgs addObjectsFromArray:array];
     [scriptArgsTableView reloadData];
-    [self tableViewSelectionDidChange:NULL];
+    [self tableViewSelectionDidChange:nil];
 }
 
 - (NSArray *)interpreterArgs {
@@ -80,7 +80,7 @@
     [interpreterArgs addObject:DEFAULT_ARG_VALUE];
     [interpreterArgsTableView reloadData];
     [interpreterArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[interpreterArgs count] - 1] byExtendingSelection:NO];
-    [self tableViewSelectionDidChange:NULL];
+    [self tableViewSelectionDidChange:nil];
     [commandTextField setStringValue:[self constructCommandString]];
     [argsWindow makeFirstResponder:interpreterArgsTableView];
 }
@@ -89,7 +89,7 @@
     [scriptArgs addObject:DEFAULT_ARG_VALUE];
     [scriptArgsTableView reloadData];
     [scriptArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[scriptArgs count] - 1] byExtendingSelection:NO];
-    [self tableViewSelectionDidChange:NULL];
+    [self tableViewSelectionDidChange:nil];
     [commandTextField setStringValue:[self constructCommandString]];
     [argsWindow makeFirstResponder:scriptArgsTableView];
 }
@@ -97,7 +97,7 @@
 - (IBAction)clearInterpreterArgs:(id)sender {
     [interpreterArgs removeAllObjects];
     [interpreterArgsTableView reloadData];
-    [self tableViewSelectionDidChange:NULL];
+    [self tableViewSelectionDidChange:nil];
     [commandTextField setStringValue:[self constructCommandString]];
     [argsWindow makeFirstResponder:interpreterArgsTableView];
 }
@@ -105,7 +105,7 @@
 - (IBAction)clearScriptArgs:(id)sender {
     [scriptArgs removeAllObjects];
     [scriptArgsTableView reloadData];
-    [self tableViewSelectionDidChange:NULL];
+    [self tableViewSelectionDidChange:nil];
     [commandTextField setStringValue:[self constructCommandString]];
     [argsWindow makeFirstResponder:scriptArgsTableView];
 }
@@ -129,7 +129,7 @@
     [interpreterArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
     
     [interpreterArgsTableView reloadData];
-    [self tableViewSelectionDidChange:NULL];
+    [self tableViewSelectionDidChange:nil];
     
     [commandTextField setStringValue:[self constructCommandString]];
     [argsWindow makeFirstResponder:interpreterArgsTableView];
@@ -154,7 +154,7 @@
     [scriptArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
     
     [scriptArgsTableView reloadData];
-    [self tableViewSelectionDidChange:NULL];
+    [self tableViewSelectionDidChange:nil];
     
     [commandTextField setStringValue:[self constructCommandString]];
     [argsWindow makeFirstResponder:scriptArgsTableView];

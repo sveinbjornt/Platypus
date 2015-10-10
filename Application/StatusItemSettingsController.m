@@ -168,7 +168,7 @@
 }
 
 - (BOOL)showingStatusItem {
-    return (pStatusItem != NULL);
+    return (pStatusItem != nil);
 }
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
@@ -181,7 +181,7 @@
     
     NSTask *task = [platypusController taskForCurrentScript];
     if (task == nil) {
-        NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:@"Your script output here" action:NULL keyEquivalent:@""] autorelease];
+        NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:@"Your script output here" action:nil keyEquivalent:@""] autorelease];
         [pStatusItemMenu insertItem:menuItem atIndex:0];
         return;
     }

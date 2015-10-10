@@ -38,7 +38,7 @@
 }
 
 - (void)dealloc {
-    if (currentFont != NULL) {
+    if (currentFont != nil) {
         [currentFont release];
     }
     [super dealloc];

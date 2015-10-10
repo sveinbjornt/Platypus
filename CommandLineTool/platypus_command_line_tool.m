@@ -409,7 +409,7 @@ int main(int argc, const char *argv[]) {
             case 'Y':
             {
                 NSString *title = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
-                if ([title isEqualToString:@""] || title == NULL) {
+                if ([title isEqualToString:@""] || title == nil) {
                     NSPrintErr(@"Error: Empty status item title");
                     exit(1);
                 }
@@ -428,7 +428,7 @@ int main(int argc, const char *argv[]) {
                 
                 // read image from file
                 NSImage *iconImage = [[[NSImage alloc] initWithContentsOfFile:iconPath] autorelease];
-                if (iconImage == NULL) {
+                if (iconImage == nil) {
                     NSPrintErr(@"Error: Unable to get image from file '%@'", iconPath);
                     exit(1);
                 }

@@ -48,9 +48,9 @@
 - (void)awakeFromNib {
     // we list ourself as an observer of changes to file system, in case of icns file moving
     [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver:self selector:@selector(updateIcnsStatus) name:UKFileWatcherRenameNotification object:NULL];
+     addObserver:self selector:@selector(updateIcnsStatus) name:UKFileWatcherRenameNotification object:nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver:self selector:@selector(updateIcnsStatus) name:UKFileWatcherDeleteNotification object:NULL];
+     addObserver:self selector:@selector(updateIcnsStatus) name:UKFileWatcherDeleteNotification object:nil];
 }
 
 #pragma mark -
@@ -147,7 +147,7 @@
             return nil;
     }
     
-    return [NSDictionary dictionaryWithObjectsAndKeys:iconImage, @"Image", iconName, @"Name", iconPath, @"Path", NULL];
+    return [NSDictionary dictionaryWithObjectsAndKeys:iconImage, @"Image", iconName, @"Name", iconPath, @"Path", nil];
 }
 
 - (void)setDefaultIcon {
@@ -165,7 +165,7 @@
  *****************************************/
 
 - (void)writeIconToPath:(NSString *)path {
-    if ([iconImageView image] == NULL) {
+    if ([iconImageView image] == nil) {
         [PlatypusUtility alert:@"Icon Error" subText:@"No icon could be found for your application.  Please set an icon to fix this."];
     }
     IconFamily *iconFam = [[IconFamily alloc] initWithThumbnailsOfImage:[iconImageView image]];
@@ -214,10 +214,10 @@
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     if ([[anItem title] isEqualToString:@"Paste Icon"]) {
-        NSArray *pbTypes = [NSArray arrayWithObjects:NSTIFFPboardType, NSPDFPboardType, NSPostScriptPboardType, NULL];
+        NSArray *pbTypes = [NSArray arrayWithObjects:NSTIFFPboardType, NSPDFPboardType, NSPostScriptPboardType, nil];
         NSString *type = [[NSPasteboard generalPasteboard] availableTypeFromArray:pbTypes];
         
-        if (type == NULL) {
+        if (type == nil) {
             return NO;
         }
     }
