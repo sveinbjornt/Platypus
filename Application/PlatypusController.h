@@ -63,7 +63,7 @@
 {
     //basic controls
     IBOutlet id appNameTextField;
-    IBOutlet id scriptTypePopupMenu;
+    IBOutlet NSPopUpButton *scriptTypePopupButton;
     IBOutlet id scriptPathTextField;
     IBOutlet id editScriptButton;
     IBOutlet id revealScriptButton;

@@ -4,10 +4,6 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>ScriptExec</string>
-	<key>CFBundleIconFile</key>
-	<string>PlatypusDefault.icns</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -32,6 +28,10 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleExecutable</key>
+	<string>ScriptExec</string>
+	<key>CFBundleIconFile</key>
+	<string>PlatypusDefault.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.sveinbjorn.ScriptExec</string>
 	<key>CFBundleInfoDictionaryVersion</key>

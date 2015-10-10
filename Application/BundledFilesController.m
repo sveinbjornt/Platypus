@@ -164,7 +164,7 @@
         if (isDir)
             [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:path];
         else
-            [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:nil];
+            [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:path];
     }
 }
 

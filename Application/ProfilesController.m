@@ -90,7 +90,6 @@
     //		[PlatypusUtility alert:@"Version clash" subText: @"The profile you selected was created with a different version of Platypus and may not load correctly."];
     
     [platypusController controlsFromAppSpec:spec];
-    [platypusController controlTextDidChange:NULL];
     [spec release];
 }
 
@@ -178,7 +177,7 @@
     
     // if command key is down, we reveal in finder
     if (GetCurrentKeyModifiers() & cmdKey) {
-        [[NSWorkspace sharedWorkspace] selectFile:profilePath inFileViewerRootedAtPath:nil];
+        [[NSWorkspace sharedWorkspace] selectFile:profilePath inFileViewerRootedAtPath:profilePath];
     } else {
         [self loadProfileFile:profilePath];
     }

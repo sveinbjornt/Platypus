@@ -203,7 +203,8 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
         // sort of exception, this won't fail gracefully, but that's a risk
         // we'll have to take for now.
         // Pattern by Andy Kim from Potion Factory LLC
-        _AuthExecuteWithPrivsFn = (void *)dlsym(RTLD_DEFAULT, "AuthorizationExecuteWithPrivileges");
+        _AuthExecuteWithPrivsFn = (OSStatus (*)(AuthorizationRef authorization, const char *pathToTool, AuthorizationFlags options, char * const *arguments, FILE **communicationsPipe))dlsym(RTLD_DEFAULT, "AuthorizationExecuteWithPrivileges");
+        
         if (!_AuthExecuteWithPrivsFn) {
             // This version of OS X has finally removed this function. Exit with an error.
             err = errAuthorizationFnNoLongerExists;
