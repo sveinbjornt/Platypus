@@ -1,45 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SyntaxCheckerController">
             <connections>
-                <outlet property="scriptPathTextField" destination="5" id="21"/>
                 <outlet property="textView" destination="11" id="23"/>
                 <outlet property="window" destination="3" id="18"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="3" userLabel="syntaxWindow">
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="SyntaxChecker" animationBehavior="default" id="3" userLabel="syntaxWindow">
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="388" y="173" width="473" height="213"/>
+            <rect key="contentRect" x="460" y="400" width="473" height="225"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
-            <value key="minSize" type="size" width="350" height="160"/>
+            <value key="minSize" type="size" width="473" height="200"/>
             <value key="maxSize" type="size" width="600" height="500"/>
             <view key="contentView" id="4">
-                <rect key="frame" x="0.0" y="0.0" width="473" height="213"/>
+                <rect key="frame" x="0.0" y="0.0" width="473" height="225"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView toolTip="Syntax check report" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="8">
-                        <rect key="frame" x="20" y="49" width="433" height="120"/>
+                        <rect key="frame" x="20" y="61" width="433" height="121"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="6ym-1u-9SW">
-                            <rect key="frame" x="1" y="1" width="416" height="118"/>
+                            <rect key="frame" x="1" y="1" width="416" height="119"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="11">
-                                    <rect key="frame" x="0.0" y="0.0" width="416" height="118"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="416" height="119"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="416" height="118"/>
+                                    <size key="minSize" width="416" height="119"/>
                                     <size key="maxSize" width="849" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="416" height="118"/>
+                                    <size key="minSize" width="416" height="119"/>
                                     <size key="maxSize" width="849" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -50,12 +48,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="10">
-                            <rect key="frame" x="417" y="1" width="15" height="118"/>
+                            <rect key="frame" x="417" y="1" width="15" height="119"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                     <button toolTip="Close this window" verticalHuggingPriority="750" id="7">
-                        <rect key="frame" x="375" y="10" width="84" height="32"/>
+                        <rect key="frame" x="375" y="13" width="84" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="12">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -69,21 +67,12 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="6">
-                        <rect key="frame" x="17" y="189" width="436" height="17"/>
+                        <rect key="frame" x="18" y="185" width="436" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="13">
-                            <font key="font" metaFont="smallSystem"/>
-                            <string key="title">Syntax Checker Report for script at path:
+                            <font key="font" metaFont="system"/>
+                            <string key="title">Syntax Checker Report for script
 </string>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField toolTip="Path to the script file of which the syntax has been checked" verticalHuggingPriority="750" id="5">
-                        <rect key="frame" x="18" y="175" width="435" height="14"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="/path/to/script" id="14">
-                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -93,6 +82,7 @@ DQ
             <connections>
                 <outlet property="delegate" destination="-2" id="16"/>
             </connections>
+            <point key="canvasLocation" x="212.5" y="381.5"/>
         </window>
     </objects>
 </document>

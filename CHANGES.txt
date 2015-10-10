@@ -15,8 +15,6 @@ For 4.9.1
     TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
     TODO: Fix filewatcher so it doesn't clear queue whenever script file name changes
     TODO: Long GNU named params for command line tool, e.g. --some-option
-    TODO: High res retina icon images for buttons
-    TODO: Higher res preset icons
     TODO: Make Status Items look good in Yosemite's Dark Mode: http://indiestack.com/2014/10/yosemites-dark-mode/
     TODO: Save authentication password?
     TODO: Fix Provide as Mac OS X service
@@ -24,7 +22,7 @@ For 4.9.1
     TODO: Fix issue with generating icon from imageview on retina macs (IconFamily issue)
     TODO: More examples
     TODO: Retina icons in script type popup button, using xciconset
-    TODO: Show command invoked when checking script syntax
+
     TODO: Update status item menu default icon to high res version
 
     * Scripts can now send messages to Notification Center via the NOTIFICATION:* syntax
@@ -34,15 +32,17 @@ For 4.9.1
     * Show Shell Command window now shows install status of command line tool
     * Got rid of old, low-resolution preset icons
     * New release build script
-    * Platypus now requires Mac OS X 10.7 or later and a 64-bit Intel system. Older versions continue to work just fine on 32-bit 10.6 systems, and version 4.4 still works on PowerPC. But it's time to leave the past behind. It's been 9 years since the last 32-bit Mac was released.
+    * Built with XCode 7 and now requires Mac OS X 10.7 or later and a 64-bit Intel system. Older versions continue to work just fine on 32-bit 10.6 systems, and version 4.4 still works on PowerPC. But it's time to leave the past behind. It's been 9 years since the last 32-bit Mac was released.
+    * Syntax checker window now shows the command invoked when checking script syntax
     * "Copy icon path" option in icon contextual menu
+    * Modernization of some user interface elements
     * Better keyboard shortcuts for built-in editor
     * Text size can be set in built-in editor
     * Proper icon temp file handling
     * Fixed issue with Open... menu item and file types in ScriptExec
     * Font size in web output view can now also be increased/reduced
     * Increased text size in built-in editor
-    * Updated documentation on files installed by command line tool
+    * Revised and updated documentation
     * Dynamic (in code) install path for command line tool scripts
     * Platypus-generated apps now remember font size set by user
     * Auto-focus on app name text field on app launch
