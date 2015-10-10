@@ -95,6 +95,10 @@
         
         [[scriptTypePopupButton itemAtIndex:i] setImage:icon];
     }
+    
+    //populate output type menu
+    [self updateOutputTypeMenu:NSMakeSize(16, 16)];
+    
     [window registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
     [window makeFirstResponder:appNameTextField];
     
@@ -1025,21 +1029,25 @@
     return YES;
 }
 
-- (void)menuWillOpen:(NSMenu *)menu {
-    NSArray *items = [menu itemArray];
+- (void)updateOutputTypeMenu:(NSSize)iconSize {
+    NSArray *items = [outputTypePopupMenu itemArray];
     for (NSMenuItem *menuItem in items) {
-        NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
-        NSImage *img = [NSImage imageNamed:imageName];
-        [img setSize:NSMakeSize(32, 32)];
+        NSImage *img = [menuItem image];
+        if ([menuItem image] == nil) {
+            NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+            img = [NSImage imageNamed:imageName];
+        }
+        [img setSize:iconSize];
         [menuItem setImage:img];
     }
 }
 
+- (void)menuWillOpen:(NSMenu *)menu {
+    [self updateOutputTypeMenu:NSMakeSize(64, 64)];
+}
+
 - (void)menuDidClose:(NSMenu *)menu {
-    NSArray *items = [menu itemArray];
-    for (NSMenuItem *menuItem in items) {
-        [menuItem setImage:nil];
-    }
+    [self updateOutputTypeMenu:NSMakeSize(16, 16)];
 }
 
 #pragma mark - Help/Documentation
