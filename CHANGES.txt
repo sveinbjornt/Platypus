@@ -7,8 +7,8 @@ For 5.0
     TODO: Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO: Retina size support for icons and images used in user interface
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
-    TODO: Fix broken "Select Image file as icon..." functionality on retina displays
-    TODO: Make generated applications function even if they are moved while running. Requires IconFamily update.
+    TODO: Fix broken "Select Image file as icon..." functionality on retina displays. Requires IconFamily update.
+    TODO: Make generated applications function even if they are moved while running.
     TODO: New button-based output mode?
 
 For 4.9.1
@@ -20,22 +20,12 @@ For 4.9.1
     TODO: Make Status Items look good in Yosemite's Dark Mode: http://indiestack.com/2014/10/yosemites-dark-mode/
     TODO: Save authentication password?
     TODO: Fix Provide as Mac OS X service
-    TODO: Support UTIs
+    TODO: Support UTIs for drop settings
     TODO: Fix issue with generating icon from imageview on retina macs (IconFamily issue)
     TODO: More examples
     TODO: Retina icons in script type popup button, using xciconset
     TODO: Show command invoked when checking script syntax
     TODO: Update status item menu default icon to high res version
-TODO: Post notifications
-
-- (IBAction)showNotification:(id)sender{
-NSUserNotification *notification = [[NSUserNotification alloc] init];
-notification.title = @"Hello, World!";
-notification.informativeText = @"A notification";
-notification.soundName = NSUserNotificationDefaultSoundName;
-
-[[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-}
 
     * Scripts can now send messages to Notification Center via the NOTIFICATION:* syntax
     * New help button in main application window
