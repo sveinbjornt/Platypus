@@ -9,18 +9,17 @@ For 5.1
     TODO: Fix broken "Select Image file as icon..." functionality on retina displays. Requires IconFamily update.
     TODO: New button-based output mode?
 
+
 For 5.0
     TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
     TODO: Fix filewatcher so it doesn't clear queue whenever script file name changes
     TODO: Long GNU named params for command line tool, e.g. --some-option
-    TODO: Make Status Items look good in Yosemite's Dark Mode: http://indiestack.com/2014/10/yosemites-dark-mode/
     TODO: Save authentication password?
     TODO: Fix Provide as Mac OS X service
     TODO: Support UTIs for drop settings
     TODO: Fix issue with generating icon from imageview on retina macs (IconFamily issue)
-    TODO: Retina icons in script type popup button, using xciconset
+    TODO: New retina icons in script type popup button
 
-    TODO: Update status item menu default icon to high res version
 
     * More examples
     * Scripts can now send messages to Notification Center via the NOTIFICATION:* syntax
@@ -38,10 +37,12 @@ For 5.0
     * Better keyboard shortcuts for built-in editor
     * Text size can be set in built-in editor
     * Proper icon temp file handling
+    * New retina-quality default status menu icon
     * Fixed issue with Open... menu item and file types in ScriptExec
     * Font size in web output view can now also be increased/reduced
     * Increased text size in built-in editor
     * Revised and updated documentation
+    * Status items can no longer have both icon and title due to changes in OS X Yosemite
     * Dynamic (in code) install path for command line tool scripts
     * Platypus-generated apps now remember font size set by user
     * Auto-focus on app name text field on app launch
