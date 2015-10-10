@@ -34,6 +34,7 @@
 //
 
 #import "ScriptAnalyser.h"
+#import "NSTask+Description.h"
 
 @implementation ScriptAnalyser
 
@@ -295,11 +296,12 @@
     //get output in string
     NSString *outputStr = [[[NSString alloc] initWithData:[readHandle readDataToEndOfFile] encoding:DEFAULT_OUTPUT_TXT_ENCODING] autorelease];
     
-    [task release];
-    
     //if the syntax report string is empty --> no complaints, so we report syntax as OK
     outputStr = [outputStr length] ? outputStr : @"Syntax OK";
+    outputStr = [NSString stringWithFormat:@"%@\n\n%@", [task humanDescription], outputStr];
     
+    [task release];
+
     return outputStr;
 }
 

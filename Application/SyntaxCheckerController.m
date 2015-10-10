@@ -37,12 +37,12 @@
 }
 
 - (void)awakeFromNib {
-    [textView setFont:[NSFont userFixedPitchFontOfSize:10.0]];
+    [textView setFont:[NSFont userFixedPitchFontOfSize:11.0]];
 }
 
 - (void)showSyntaxCheckerForFile:(NSString *)path withInterpreter:(NSString *)interpreter window:(NSWindow *)theWindow {
+    
     [self loadWindow];
-    [scriptPathTextField setStringValue:path];
     NSString *reportText = [ScriptAnalyser checkSyntaxOfFile:path withInterpreter:interpreter];
     [textView setString:reportText];
     
