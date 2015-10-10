@@ -9,7 +9,7 @@
 	<key>BundledFiles</key>
 	<array/>
 	<key>Creator</key>
-	<string>Platypus-4.9.1</string>
+	<string>Platypus-5.0</string>
 	<key>Destination</key>
 	<string>/Users/sveinbjorn/Desktop/MyApp.app</string>
 	<key>DestinationOverride</key>
