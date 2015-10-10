@@ -512,7 +512,7 @@
             // set status item title and icon
             [statusItem setTitle:statusItemTitle];
             NSImage *icon = statusItemIcon;
-            [icon setSize:NSMakeSize(16, 16)];
+            [icon setSize:NSMakeSize(18, 18)];
             [statusItem setImage:icon];
             
             // create menu for our status item
