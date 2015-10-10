@@ -41,6 +41,12 @@
 		F471ED22122DF2D6001F4761 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F471ED21122DF2D6001F4761 /* Credits.html */; };
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
 		F48269691BC9934800169D8B /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269681BC9934800169D8B /* NSTask+Description.m */; settings = {ASSET_TAGS = (); }; };
+		F48269711BC9A03F00169D8B /* Droplet.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696D1BC9A03F00169D8B /* Droplet.png */; settings = {ASSET_TAGS = (); }; };
+		F48269721BC9A03F00169D8B /* Progress-Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696E1BC9A03F00169D8B /* Progress-Bar.png */; settings = {ASSET_TAGS = (); }; };
+		F48269731BC9A03F00169D8B /* Text-Window.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696F1BC9A03F00169D8B /* Text-Window.png */; settings = {ASSET_TAGS = (); }; };
+		F48269741BC9A03F00169D8B /* Web-View.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269701BC9A03F00169D8B /* Web-View.png */; settings = {ASSET_TAGS = (); }; };
+		F48269771BC9A1DC00169D8B /* None.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269751BC9A1DC00169D8B /* None.png */; settings = {ASSET_TAGS = (); }; };
+		F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269761BC9A1DC00169D8B /* Status-Menu.png */; settings = {ASSET_TAGS = (); }; };
 		F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F48B1EDC17935AF6007DA173 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
@@ -188,6 +194,12 @@
 		F48002BA121AF042003FB5B3 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		F48269671BC9934800169D8B /* NSTask+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTask+Description.h"; path = "Shared/NSTask+Description.h"; sourceTree = SOURCE_ROOT; };
 		F48269681BC9934800169D8B /* NSTask+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTask+Description.m"; path = "Shared/NSTask+Description.m"; sourceTree = SOURCE_ROOT; };
+		F482696D1BC9A03F00169D8B /* Droplet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Droplet.png; sourceTree = "<group>"; };
+		F482696E1BC9A03F00169D8B /* Progress-Bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Progress-Bar.png"; sourceTree = "<group>"; };
+		F482696F1BC9A03F00169D8B /* Text-Window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Text-Window.png"; sourceTree = "<group>"; };
+		F48269701BC9A03F00169D8B /* Web-View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Web-View.png"; sourceTree = "<group>"; };
+		F48269751BC9A1DC00169D8B /* None.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = None.png; sourceTree = "<group>"; };
+		F48269761BC9A1DC00169D8B /* Status-Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Status-Menu.png"; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
 		F4876F45141D4A3900A428CC /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ScriptExec/MainMenu.xib; sourceTree = "<group>"; };
 		F48B1EDD17935BBC007DA173 /* ScriptAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptAnalyser.h; path = Shared/ScriptAnalyser.h; sourceTree = "<group>"; };
@@ -391,6 +403,7 @@
 		F4050E3305DAF44F00BE4CA5 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				F482696C1BC9A03F00169D8B /* OutputTypeIcons */,
 				F44E007212298B7A00CAC9C2 /* Application */,
 				F4D6569814C4BFD6003552F9 /* Interpreters */,
 				F44E006712298B7200CAC9C2 /* Presets */,
@@ -510,6 +523,19 @@
 			);
 			name = "NSTask+Description";
 			path = Shared/IconFamily;
+			sourceTree = "<group>";
+		};
+		F482696C1BC9A03F00169D8B /* OutputTypeIcons */ = {
+			isa = PBXGroup;
+			children = (
+				F48269751BC9A1DC00169D8B /* None.png */,
+				F482696E1BC9A03F00169D8B /* Progress-Bar.png */,
+				F482696F1BC9A03F00169D8B /* Text-Window.png */,
+				F48269701BC9A03F00169D8B /* Web-View.png */,
+				F48269761BC9A1DC00169D8B /* Status-Menu.png */,
+				F482696D1BC9A03F00169D8B /* Droplet.png */,
+			);
+			path = OutputTypeIcons;
 			sourceTree = "<group>";
 		};
 		F48A724D122E23B200964D71 /* ScriptAnalyser */ = {
@@ -785,12 +811,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F43E1D7D1BC8048400622B5F /* Ksh.png in Resources */,
+				F48269721BC9A03F00169D8B /* Progress-Bar.png in Resources */,
 				F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */,
 				F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */,
+				F48269731BC9A03F00169D8B /* Text-Window.png in Resources */,
 				F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */,
 				F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */,
 				F4DC075211F629A40043764E /* Documentation.html in Resources */,
 				F43E1D7E1BC8048400622B5F /* Perl.png in Resources */,
+				F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */,
+				F48269771BC9A1DC00169D8B /* None.png in Resources */,
 				F4DC075311F629A40043764E /* Readme.html in Resources */,
 				F43E1D7C1BC8048400622B5F /* Expect.png in Resources */,
 				F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */,
@@ -806,6 +836,7 @@
 				F471ED22122DF2D6001F4761 /* Credits.html in Resources */,
 				F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */,
 				F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */,
+				F48269711BC9A03F00169D8B /* Droplet.png in Resources */,
 				F43E1D821BC8048400622B5F /* Shell.png in Resources */,
 				F46EF85113C3F36900E4C0E4 /* Examples in Resources */,
 				F43E1D791BC8048400622B5F /* Bash.png in Resources */,
@@ -815,6 +846,7 @@
 				F43E1D7B1BC8048400622B5F /* Env.png in Resources */,
 				F43E1D7F1BC8048400622B5F /* PHP.png in Resources */,
 				F43E1D7A1BC8048400622B5F /* Csh.png in Resources */,
+				F48269741BC9A03F00169D8B /* Web-View.png in Resources */,
 				F4975DBE1B2E71FC0099D16E /* Editor.xib in Resources */,
 				F43E1D811BC8048400622B5F /* Ruby.png in Resources */,
 				F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */,

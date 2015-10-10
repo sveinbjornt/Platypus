@@ -5,10 +5,8 @@ For 5.1
     TODO: Create Platypus tutorial videos, make them available online
     TODO: AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
     TODO: Restore "icon from image" functionality in command line tool (window server dependency?)
-    TODO: Retina size support for icons and images used in user interface
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO: Fix broken "Select Image file as icon..." functionality on retina displays. Requires IconFamily update.
-    TODO: Make generated applications function even if they are moved while running.
     TODO: New button-based output mode?
 
 For 5.0
