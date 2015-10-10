@@ -32,7 +32,7 @@
 #import "IconFamily.h"
 #import "Common.h"
 
-@interface PlatypusIconView : NSImageView 
+@interface PlatypusIconView : NSImageView <NSPasteboardItemDataProvider, NSDraggingSource>
 {
 	id delegate;
 	NSEvent *downEvent;
