@@ -20,11 +20,11 @@ For 5.0
     TODO: Fix Provide as Mac OS X service
     TODO: Support UTIs for drop settings
     TODO: Fix issue with generating icon from imageview on retina macs (IconFamily issue)
-    TODO: More examples
     TODO: Retina icons in script type popup button, using xciconset
 
     TODO: Update status item menu default icon to high res version
 
+    * More examples
     * Scripts can now send messages to Notification Center via the NOTIFICATION:* syntax
     * New help button in main application window
     * Previewing status item menu now shows actual script output instead of placeholder text
