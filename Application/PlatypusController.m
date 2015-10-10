@@ -455,7 +455,7 @@
     }
     
     // let's be certain that the bundled files list doesn't contain entries that have been moved
-    if (![fileList allPathsAreValid]) {
+    if (![bundledFilesController allPathsAreValid]) {
         [PlatypusUtility sheetAlert:@"Moved or missing files" subText:@"One or more of the files that are to be bundled with the application have been moved.  Please rectify this and try again." forWindow:window];
         return NO;
     }
@@ -510,7 +510,7 @@
     [spec setProperty:[NSNumber numberWithBool:[showInDockCheckbox state]] forKey:@"ShowInDock"];
     
     // bundled files
-    [spec setProperty:[fileList getFilesArray] forKey:@"BundledFiles"];
+    [spec setProperty:[bundledFilesController getFilesArray] forKey:@"BundledFiles"];
     
     // file types
     [spec setProperty:(NSMutableArray *)[(SuffixListController *)[dropSettingsController suffixes] getSuffixArray] forKey:@"Suffixes"];
@@ -563,11 +563,11 @@
     [remainRunningCheckbox setState:[[spec propertyForKey:@"RemainRunning"] boolValue]];
     
     //file list
-    [fileList clearList];
-    [fileList addFiles:[spec propertyForKey:@"BundledFiles"]];
+    [bundledFilesController clearList];
+    [bundledFilesController addFiles:[spec propertyForKey:@"BundledFiles"]];
     
     //update button status
-    [fileList performSelector:@selector(tableViewSelectionDidChange:) withObject:nil];
+    [bundledFilesController performSelector:@selector(tableViewSelectionDidChange:) withObject:nil];
     
     //suffix list
     [(SuffixListController *)[dropSettingsController suffixes] clearList];
@@ -745,8 +745,8 @@
  *****************************************/
 
 - (IBAction)isDroppableWasClicked:(id)sender {
-    [editTypesButton setHidden:![isDroppableCheckbox state]];
-    [editTypesButton setEnabled:[isDroppableCheckbox state]];
+    [dropSettingsButton setHidden:![isDroppableCheckbox state]];
+    [dropSettingsButton setEnabled:[isDroppableCheckbox state]];
 }
 
 /*****************************************
@@ -828,7 +828,7 @@
     [showInDockCheckbox setIntValue:0];
     
     //clear file list
-    [fileList clearFileList:self];
+    [bundledFilesController clearFileList:self];
     
     //clear suffix and types lists to default values
     [dropSettingsController setToDefaults:self];
@@ -909,7 +909,7 @@
     estimatedAppSize += nibSize;
     
     // bundled files altogether
-    estimatedAppSize += [fileList getTotalSize];
+    estimatedAppSize += [bundledFilesController getTotalSize];
     
     return [PlatypusUtility sizeAsHumanReadable:estimatedAppSize];
 }
