@@ -908,7 +908,7 @@
     // nib size is much smaller if compiled with ibtool
     UInt64 nibSize = [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil]];
     if ([FILEMGR fileExistsAtPath:IBTOOL_PATH] || [FILEMGR fileExistsAtPath:IBTOOL_PATH_2]) {
-        nibSize = 0.2 * nibSize; // compiled nib is approximtely 20% of the size of original
+        nibSize = 0.60 * nibSize; // compiled nib is approximtely 65% of original
     }
     estimatedAppSize += nibSize;
     
@@ -1032,18 +1032,16 @@
 - (void)updateOutputTypeMenu:(NSSize)iconSize {
     NSArray *items = [outputTypePopupMenu itemArray];
     for (NSMenuItem *menuItem in items) {
-        NSImage *img = [menuItem image];
-        if ([menuItem image] == nil) {
-            NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
-            img = [NSImage imageNamed:imageName];
-        }
-        [img setSize:iconSize];
+        NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+        NSImage *img = [NSImage imageNamed:imageName];
+        img.size = iconSize;
+        [menuItem setImage:nil];
         [menuItem setImage:img];
     }
 }
 
 - (void)menuWillOpen:(NSMenu *)menu {
-    [self updateOutputTypeMenu:NSMakeSize(64, 64)];
+    [self updateOutputTypeMenu:NSMakeSize(32, 32)];
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
