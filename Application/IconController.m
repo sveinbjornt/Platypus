@@ -132,20 +132,20 @@
     switch (type) {
         case 0:
             iconImage = [NSImage imageNamed:@"PlatypusDefault"];
-            iconName = @"Platypus Default";
+            iconName = @"Default";
             iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusDefault" ofType:@"icns"];
             break;
             
         case 1:
             iconImage = [NSImage imageNamed:@"PlatypusInstaller"];
-            iconName = @"Platypus Installer";
+            iconName = @"Installer";
             iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusInstaller" ofType:@"icns"];
             break;
             
         case 2:
             iconImage = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
             [iconImage setSize:NSMakeSize(256, 256)];
-            iconName = @"Generic Application Icon";
+            iconName = @"Generic";
             iconPath = @"";
             break;
         
