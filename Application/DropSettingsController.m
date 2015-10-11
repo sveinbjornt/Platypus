@@ -364,4 +364,11 @@
     [docIconImageView setImage:icon];
 }
 
+#pragma mark -
+
+// Open Documentation.html file within app bundle
+- (IBAction)showHelp:(id)sender {
+    [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
+}
+
 @end

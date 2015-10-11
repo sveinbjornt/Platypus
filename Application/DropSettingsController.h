@@ -97,4 +97,6 @@
 - (BOOL)promptsForFileOnLaunch;
 - (void)setPromptsForFileOnLaunch:(BOOL)b;
 
+- (IBAction)showHelp:(id)sender;
+
 @end
