@@ -1056,17 +1056,17 @@
 
 // Open Documentation.html file within app bundle
 - (IBAction)showHelp:(id)sender {
-    [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
+    [PlatypusUtility openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
 }
 
 // Open html version of 'platypus' command line tool's man page
 - (IBAction)showManPage:(id)sender {
-    [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
+    [PlatypusUtility openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
 }
 
 // Open Readme.html
 - (IBAction)showReadme:(id)sender {
-    [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
+    [PlatypusUtility openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
 }
 
 // Open program website
@@ -1076,7 +1076,7 @@
 
 // Open License html file
 - (IBAction)openLicense:(id)sender {
-    [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
+    [PlatypusUtility openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
 }
 
 // Open donations website

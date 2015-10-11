@@ -368,7 +368,7 @@
 
 // Open Documentation.html file within app bundle
 - (IBAction)showHelp:(id)sender {
-    [PlatypusUtility openInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL]];
 }
 
 @end

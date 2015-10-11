@@ -188,7 +188,7 @@
     return str;
 }
 
-+ (BOOL)openInDefaultBrowser:(NSString *)path {
++ (BOOL)openPathInDefaultBrowser:(NSString *)path {
     NSURL *url = [NSURL URLWithString:@"http://"];
     CFURLRef fromPathURL = NULL;
     OSStatus err = LSGetApplicationForURL((CFURLRef)url, kLSRolesAll, NULL, &fromPathURL);
@@ -201,12 +201,14 @@
     
     if (!app || err) {
         NSLog(@"Unable to find default browser");
-        return false;
+        return FALSE;
     }
     
     [[NSWorkspace sharedWorkspace] openFile:path withApplication:app];
-    return true;
+    return TRUE;
 }
+
+
 
 + (NSString *)loadBundledTemplate:(NSString *)templateFileName usingDictionary:(NSDictionary *)dict {
     

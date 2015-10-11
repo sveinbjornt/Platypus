@@ -46,7 +46,7 @@
 + (UInt64)fileOrFolderSize:(NSString *)path;
 + (NSString *)sizeAsHumanReadable:(UInt64)size;
 + (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path;
-+ (BOOL)openInDefaultBrowser:(NSString *)path;
++ (BOOL)openPathInDefaultBrowser:(NSString *)path;
 + (NSString *)loadBundledTemplate:(NSString *)templateFileName usingDictionary:(NSDictionary *)dict;
 + (NSArray *)imageFileSuffixes;
 @end
