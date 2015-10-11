@@ -200,6 +200,7 @@
 		F48269701BC9A03F00169D8B /* Web-View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Web-View.png"; sourceTree = "<group>"; };
 		F48269751BC9A1DC00169D8B /* None.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = None.png; sourceTree = "<group>"; };
 		F48269761BC9A1DC00169D8B /* Status-Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Status-Menu.png"; sourceTree = "<group>"; };
+		F48269791BCA9E5100169D8B /* GenericDocumentIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GenericDocumentIcon.icns; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
 		F4876F45141D4A3900A428CC /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ScriptExec/MainMenu.xib; sourceTree = "<group>"; };
 		F48B1EDD17935BBC007DA173 /* ScriptAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptAnalyser.h; path = Shared/ScriptAnalyser.h; sourceTree = "<group>"; };
@@ -403,6 +404,7 @@
 		F4050E3305DAF44F00BE4CA5 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				F48269791BCA9E5100169D8B /* GenericDocumentIcon.icns */,
 				F482696C1BC9A03F00169D8B /* OutputTypeIcons */,
 				F44E007212298B7A00CAC9C2 /* Application */,
 				F4D6569814C4BFD6003552F9 /* Interpreters */,

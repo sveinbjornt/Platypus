@@ -518,7 +518,6 @@
     
     // file types
     [spec setProperty:(NSMutableArray *)[(SuffixListController *)[dropSettingsController suffixes] getSuffixArray] forKey:@"Suffixes"];
-    [spec setProperty:[dropSettingsController role] forKey:@"Role"];
     [spec setProperty:[dropSettingsController docIconPath] forKey:@"DocIcon"];
     [spec setProperty:[NSNumber numberWithBool:[dropSettingsController acceptsText]] forKey:@"AcceptsText"];
     [spec setProperty:[NSNumber numberWithBool:[dropSettingsController acceptsFiles]] forKey:@"AcceptsFiles"];
@@ -580,7 +579,6 @@
     [dropSettingsController performSelector:@selector(tableViewSelectionDidChange:) withObject:nil];
     
     // role and doc icon
-    [dropSettingsController setRole:[spec propertyForKey:@"Role"]];
     if ([spec propertyForKey:@"DocIcon"] != nil) {
         [dropSettingsController setDocIconPath:[spec propertyForKey:@"DocIcon"]];
     }
