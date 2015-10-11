@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="macosx"/>
         <development version="6300" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
@@ -164,7 +163,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="82B66317-25BC-4370-BCB6-10D3F9790D91" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="9D8D8FAA-1E85-4641-9316-570DC4FB2A18" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -485,7 +484,7 @@ DQ
                             <menu key="menu" title="OtherViews" id="4150">
                                 <items>
                                     <menuItem title="None" id="4152"/>
-                                    <menuItem title="Progress Bar" state="on" tag="1" id="4153"/>
+                                    <menuItem title="Progress Bar" tag="1" id="4153"/>
                                     <menuItem title="Text Window" tag="2" id="4154"/>
                                     <menuItem title="Web View" tag="3" id="4155"/>
                                     <menuItem title="Status Menu" tag="3" id="11095"/>
@@ -608,19 +607,17 @@ DQ
                 <outlet property="acceptDroppedFilesCheckbox" destination="11149" id="11155"/>
                 <outlet property="acceptDroppedTextCheckbox" destination="11151" id="11156"/>
                 <outlet property="addSuffixButton" destination="984" id="1365"/>
-                <outlet property="appFunctionRadioButtons" destination="672" id="1386"/>
                 <outlet property="declareServiceCheckbox" destination="11326" id="11328"/>
                 <outlet property="docIconImageView" destination="11239" id="11243"/>
+                <outlet property="dropSettingsWindow" destination="395" id="PZN-H6-c9M"/>
                 <outlet property="droppableEnabledCheckbox" destination="299" id="HQA-Ib-ZMr"/>
                 <outlet property="droppedFilesSettingsBox" destination="11153" id="11154"/>
-                <outlet property="numSuffixesTextField" destination="704" id="1367"/>
                 <outlet property="promptForFileOnLaunchCheckbox" destination="11460" id="11462"/>
                 <outlet property="removeSuffixButton" destination="992" id="1369"/>
                 <outlet property="selectDocumentIconButton" destination="11241" id="11535"/>
                 <outlet property="suffixListDataBrowser" destination="708" id="1371"/>
                 <outlet property="suffixTextField" destination="712" id="1372"/>
                 <outlet property="typesErrorTextField" destination="824" id="1374"/>
-                <outlet property="typesWindow" destination="395" id="1376"/>
                 <outlet property="window" destination="21" id="1385"/>
             </connections>
         </customObject>
@@ -1248,18 +1245,18 @@ CA
                 <outlet property="delegate" destination="1364" id="7865"/>
             </connections>
         </menu>
-        <window title="File Types List" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="395" userLabel="dropSettingsWindow">
+        <window title="Drop Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="395" userLabel="dropSettingsWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="457" y="200" width="504" height="534"/>
+            <rect key="contentRect" x="457" y="200" width="537" height="534"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <value key="minSize" type="size" width="502" height="362"/>
             <view key="contentView" id="396">
-                <rect key="frame" x="0.0" y="0.0" width="504" height="534"/>
+                <rect key="frame" x="0.0" y="0.0" width="537" height="534"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button toolTip="Apply these settings and close window" verticalHuggingPriority="750" id="540">
-                        <rect key="frame" x="404" y="14" width="84" height="32"/>
+                        <rect key="frame" x="439" y="14" width="84" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="10998">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1273,9 +1270,9 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Restore the default &quot;All types&quot;" verticalHuggingPriority="750" id="557">
-                        <rect key="frame" x="14" y="14" width="86" height="32"/>
+                        <rect key="frame" x="14" y="14" width="150" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <buttonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="10999">
+                        <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="10999">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                             <string key="keyEquivalent">D</string>
@@ -1286,7 +1283,7 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="703">
-                        <rect key="frame" x="19" y="471" width="465" height="43"/>
+                        <rect key="frame" x="18" y="471" width="501" height="43"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="11001">
                             <font key="font" metaFont="smallSystem"/>
@@ -1295,17 +1292,8 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="11463">
-                        <rect key="frame" x="203" y="398" width="281" height="42"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Check here if you want your script to get opened or dropped files passed as arguments to the script.  " id="11464">
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <textField verticalHuggingPriority="750" id="824">
-                        <rect key="frame" x="101" y="20" width="300" height="23"/>
+                        <rect key="frame" x="164" y="20" width="275" height="23"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="11008">
                             <font key="font" metaFont="label"/>
@@ -1314,7 +1302,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button id="11149">
-                        <rect key="frame" x="20" y="423" width="176" height="18"/>
+                        <rect key="frame" x="30" y="416" width="176" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Accept dropped files" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="11150">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1325,7 +1313,7 @@ DQ
                         </connections>
                     </button>
                     <button id="11151">
-                        <rect key="frame" x="20" y="125" width="152" height="18"/>
+                        <rect key="frame" x="30" y="125" width="152" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Accept dropped text" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11152">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1336,7 +1324,7 @@ DQ
                         </connections>
                     </button>
                     <button id="11326">
-                        <rect key="frame" x="206" y="77" width="209" height="18"/>
+                        <rect key="frame" x="217" y="76" width="209" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Provide as a Mac OS X Service" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="11327">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1344,103 +1332,28 @@ DQ
                         </buttonCell>
                     </button>
                     <box autoresizesSubviews="NO" title="Box" borderType="none" titlePosition="noTitle" id="11153">
-                        <rect key="frame" x="19" y="160" width="468" height="236"/>
+                        <rect key="frame" x="17" y="159" width="503" height="250"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="0.0" y="0.0" width="468" height="236"/>
+                            <rect key="frame" x="0.0" y="0.0" width="503" height="250"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <matrix toolTip="Set your app to be an Editor or a Viewer for the specified file types" verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="672">
-                                    <rect key="frame" x="312" y="199" width="134" height="18"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="cellSize" width="65" height="18"/>
-                                    <size key="intercellSpacing" width="4" height="2"/>
-                                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="11062">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <cells>
-                                        <column>
-                                            <buttonCell type="radio" title="Editor" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" tag="1" inset="2" id="679">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                        </column>
-                                        <column>
-                                            <buttonCell type="radio" title="Viewer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="680">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                        </column>
-                                    </cells>
-                                </matrix>
-                                <textField verticalHuggingPriority="750" id="681">
-                                    <rect key="frame" x="249" y="201" width="51" height="17"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="App is:" id="11000">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <textField verticalHuggingPriority="750" id="11246">
-                                    <rect key="frame" x="249" y="168" width="39" height="17"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Icon:" id="11247">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
                                 <box title="Suffixes" id="701">
-                                    <rect key="frame" x="1" y="22" width="226" height="212"/>
+                                    <rect key="frame" x="23" y="57" width="218" height="180"/>
                                     <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                     <view key="contentView">
-                                        <rect key="frame" x="2" y="2" width="222" height="195"/>
+                                        <rect key="frame" x="2" y="2" width="214" height="163"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" id="704">
-                                                <rect key="frame" x="24" y="20" width="134" height="16"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="11002">
-                                                    <font key="font" metaFont="miniSystem"/>
-                                                    <string key="title">All suffixes
-</string>
-                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <textField verticalHuggingPriority="750" id="706">
-                                                <rect key="frame" x="19" y="158" width="30" height="14"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Add" id="11003">
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <textField toolTip="Type in a filename suffix" verticalHuggingPriority="750" id="712">
-                                                <rect key="frame" x="49" y="154" width="62" height="22"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="11004">
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                                <connections>
-                                                    <outlet property="delegate" destination="1364" id="6128"/>
-                                                </connections>
-                                            </textField>
                                             <scrollView toolTip="List of suffixes the application accepts" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="710">
-                                                <rect key="frame" x="22" y="39" width="179" height="106"/>
+                                                <rect key="frame" x="18" y="50" width="179" height="98"/>
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="zU0-Dr-gG8">
-                                                    <rect key="frame" x="1" y="1" width="162" height="104"/>
+                                                    <rect key="frame" x="1" y="1" width="162" height="96"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="708">
-                                                            <rect key="frame" x="0.0" y="0.0" width="161.5" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="18"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1484,12 +1397,33 @@ DQ
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="11072">
-                                                    <rect key="frame" x="163" y="1" width="15" height="104"/>
+                                                    <rect key="frame" x="163" y="1" width="15" height="96"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                             </scrollView>
+                                            <textField verticalHuggingPriority="750" id="706">
+                                                <rect key="frame" x="15" y="24" width="30" height="14"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Add" id="11003">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField toolTip="Type in a filename suffix" verticalHuggingPriority="750" id="712">
+                                                <rect key="frame" x="45" y="20" width="99" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="11004">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                                <connections>
+                                                    <outlet property="delegate" destination="1364" id="6128"/>
+                                                </connections>
+                                            </textField>
                                             <button toolTip="Add suffix to list" verticalHuggingPriority="750" id="984">
-                                                <rect key="frame" x="115" y="153" width="23" height="24"/>
+                                                <rect key="frame" x="143" y="19" width="23" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="11009">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1499,19 +1433,8 @@ DQ
                                                     <action selector="addSuffix:" target="1364" id="1379"/>
                                                 </connections>
                                             </button>
-                                            <button toolTip="Clear suffix list" verticalHuggingPriority="750" id="989">
-                                                <rect key="frame" x="156" y="153" width="23" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="smallSquare" title="✕" bezelStyle="smallSquare" alignment="center" borderStyle="border" inset="2" id="11010">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="clearSuffixList:" target="1364" id="1381"/>
-                                                </connections>
-                                            </button>
                                             <button toolTip="Remove selected suffix" verticalHuggingPriority="750" id="992">
-                                                <rect key="frame" x="178" y="153" width="23" height="24"/>
+                                                <rect key="frame" x="174" y="19" width="23" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="11011">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1528,12 +1451,132 @@ DQ
                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </box>
                                 <imageView id="11239">
-                                    <rect key="frame" x="289" y="168" width="16" height="16"/>
+                                    <rect key="frame" x="29" y="22" width="16" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="11240"/>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="GenericDocumentIcon" id="11240"/>
                                 </imageView>
+                                <button id="11460">
+                                    <rect key="frame" x="260" y="20" width="180" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="Prompt for file on launch" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11461">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <box title="Uniform Type Identifiers" id="e6h-Co-zvh">
+                                    <rect key="frame" x="256" y="57" width="218" height="180"/>
+                                    <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                    <view key="contentView">
+                                        <rect key="frame" x="2" y="2" width="214" height="163"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <scrollView toolTip="List of suffixes the application accepts" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="AOR-Jg-jZl">
+                                                <rect key="frame" x="18" y="50" width="179" height="98"/>
+                                                <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                                <clipView key="contentView" id="xVE-Bl-gWX">
+                                                    <rect key="frame" x="1" y="1" width="162" height="96"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="18"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <size key="intercellSpacing" width="3" height="2"/>
+                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                                            <tableColumns>
+                                                                <tableColumn identifier="1" editable="NO" width="20" minWidth="20" maxWidth="20" id="4Iy-ha-w01">
+                                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Icon">
+                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </tableHeaderCell>
+                                                                    <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="Dgn-i1-HdN">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </textFieldCell>
+                                                                </tableColumn>
+                                                                <tableColumn identifier="2" editable="NO" width="135.50100708007812" minWidth="4" maxWidth="1000" id="edy-nV-7db">
+                                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Suffixes">
+                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                                    </tableHeaderCell>
+                                                                    <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="hJe-BL-0tC">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </tableColumn>
+                                                            </tableColumns>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="1364" id="bab-Dl-A4b"/>
+                                                                <outlet property="menu" destination="1321" id="n4b-dr-Apt"/>
+                                                            </connections>
+                                                        </tableView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </clipView>
+                                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="0Bf-gb-Fei">
+                                                    <rect key="frame" x="-100" y="-100" width="156" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </scroller>
+                                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="dpD-iL-Gat">
+                                                    <rect key="frame" x="163" y="1" width="15" height="96"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </scroller>
+                                            </scrollView>
+                                            <textField verticalHuggingPriority="750" id="4l5-9q-adt">
+                                                <rect key="frame" x="15" y="24" width="30" height="14"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Add" id="H5B-3x-gND">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField toolTip="Type in a filename suffix" verticalHuggingPriority="750" id="4L6-3O-s13">
+                                                <rect key="frame" x="45" y="20" width="99" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="CBc-Ma-4k3">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                                <connections>
+                                                    <outlet property="delegate" destination="1364" id="Umc-ri-J3e"/>
+                                                </connections>
+                                            </textField>
+                                            <button toolTip="Add suffix to list" verticalHuggingPriority="750" id="nC2-fm-W7H">
+                                                <rect key="frame" x="143" y="19" width="23" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="W8j-iQ-Swx">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="addSuffix:" target="1364" id="eKq-Ez-4Px"/>
+                                                </connections>
+                                            </button>
+                                            <button toolTip="Remove selected suffix" verticalHuggingPriority="750" id="tqU-IB-IyA">
+                                                <rect key="frame" x="174" y="19" width="23" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="o7S-P1-crO">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <string key="keyEquivalent"></string>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="removeSuffix:" target="1364" id="cpl-qS-gH6"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </view>
+                                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </box>
                                 <button verticalHuggingPriority="750" id="11241">
-                                    <rect key="frame" x="307" y="161" width="147" height="28"/>
+                                    <rect key="frame" x="47" y="14" width="147" height="28"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Select document icon" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="11242">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1543,42 +1586,34 @@ DQ
                                         <action selector="selectDocIcon:" target="1364" id="11244"/>
                                     </connections>
                                 </button>
-                                <button id="11460">
-                                    <rect key="frame" x="257" y="135" width="180" height="18"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="check" title="Prompt for file on launch" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11461">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                </button>
                             </subviews>
                         </view>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="11245">
-                        <rect key="frame" x="20" y="158" width="462" height="5"/>
+                        <rect key="frame" x="20" y="152" width="497" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="11528">
-                        <rect key="frame" x="22" y="453" width="462" height="5"/>
+                        <rect key="frame" x="20" y="453" width="497" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="11529">
-                        <rect key="frame" x="22" y="58" width="462" height="5"/>
+                        <rect key="frame" x="20" y="58" width="497" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <textField verticalHuggingPriority="750" id="11530">
-                        <rect key="frame" x="206" y="101" width="281" height="42"/>
+                        <rect key="frame" x="218" y="101" width="301" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Check here if you want your script to accept dropped text snippets or text fed in through the Mac OS X Services API.  " id="11531">
                             <font key="font" metaFont="smallSystem"/>
@@ -1586,8 +1621,18 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField verticalHuggingPriority="750" id="11463">
+                        <rect key="frame" x="238" y="407" width="281" height="33"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Check here if you want your script to get opened or dropped files passed as arguments to the script.  " id="11464">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="92.5" y="136"/>
         </window>
         <window title="Args Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="1394" userLabel="argsWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
@@ -2550,7 +2595,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="82B66317-25BC-4370-BCB6-10D3F9790D91" width="16" height="16">
+        <image name="9D8D8FAA-1E85-4641-9316-570DC4FB2A18" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -2631,6 +2676,7 @@ AAAAAEIAAAAAAAAAAAAAAAAAABEFA
 </mutableData>
         </image>
         <image name="DefaultStatusMenuIcon" width="36" height="36"/>
+        <image name="GenericDocumentIcon" width="512" height="512"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="PlatypusDefault" width="512" height="512"/>

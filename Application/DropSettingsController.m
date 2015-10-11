@@ -78,16 +78,16 @@
     [typesErrorTextField setStringValue:@""];
     
     //open window
-    [NSApp  beginSheet:typesWindow
+    [NSApp  beginSheet:dropSettingsWindow
         modalForWindow:window
          modalDelegate:nil
         didEndSelector:nil
            contextInfo:nil];
     
-    [NSApp runModalForWindow:typesWindow];
+    [NSApp runModalForWindow:dropSettingsWindow];
     
-    [NSApp endSheet:typesWindow];
-    [typesWindow orderOut:self];
+    [NSApp endSheet:dropSettingsWindow];
+    [dropSettingsWindow orderOut:self];
 }
 
 - (IBAction)closeDropSettingsSheet:(id)sender {
@@ -100,8 +100,8 @@
     // end drop settings sheet
     [window setTitle:PROGRAM_NAME];
     [NSApp stopModal];
-    [NSApp endSheet:typesWindow];
-    [typesWindow orderOut:self];
+    [NSApp endSheet:dropSettingsWindow];
+    [dropSettingsWindow orderOut:self];
 }
 
 #pragma mark -
@@ -196,9 +196,6 @@
     
     [self updateNumSuffixesTextField];
     
-    //set app function to default
-    [appFunctionRadioButtons selectCellWithTag:0];
-    
     [self setDocIconPath:@""];
     [self setAcceptsText:NO];
     [self setAcceptsFiles:YES];
@@ -248,7 +245,6 @@
 
 - (void)setAcceptsFilesControlsEnabled:(BOOL)enabled {
     [[droppedFilesSettingsBox contentView] setAlphaValue:0.5 + (enabled * 0.5)];
-    [appFunctionRadioButtons setEnabled:enabled];
     [addSuffixButton setEnabled:enabled];
     [numSuffixesTextField setEnabled:enabled];
     [removeSuffixButton setEnabled:enabled];
@@ -318,14 +314,6 @@
 
 - (void)setPromptsForFileOnLaunch:(BOOL)b {
     [promptForFileOnLaunchCheckbox setIntValue:b];
-}
-
-- (NSString *)role {
-    return [[appFunctionRadioButtons selectedCell] title];
-}
-
-- (void)setRole:(NSString *)role {
-    [appFunctionRadioButtons selectCellWithTag:![role isEqualToString:@"Viewer"]];
 }
 
 - (NSString *)docIconPath {

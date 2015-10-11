@@ -34,26 +34,25 @@
 
 @interface DropSettingsController : NSObject <NSTableViewDelegate>
 {
-    IBOutlet id appFunctionRadioButtons;
-    IBOutlet id addSuffixButton;
-    IBOutlet id numSuffixesTextField;
-    IBOutlet id removeSuffixButton;
+    IBOutlet NSButton *addSuffixButton;
+    IBOutlet NSTextField *numSuffixesTextField;
+    IBOutlet NSButton *removeSuffixButton;
     IBOutlet NSTableView *suffixListDataBrowser;
-    IBOutlet id suffixTextField;
-    IBOutlet id promptForFileOnLaunchCheckbox;
+    IBOutlet NSTextField *suffixTextField;
+    IBOutlet NSButton *promptForFileOnLaunchCheckbox;
     
-    IBOutlet id typesWindow;
-    IBOutlet id window;
-    IBOutlet id typesErrorTextField;
-    IBOutlet id droppableEnabledCheckbox;
+    IBOutlet NSWindow *dropSettingsWindow;
+    IBOutlet NSWindow *window;
+    IBOutlet NSTextField *typesErrorTextField;
+    IBOutlet NSButton *droppableEnabledCheckbox;
     
-    IBOutlet id acceptDroppedTextCheckbox;
-    IBOutlet id acceptDroppedFilesCheckbox;
-    IBOutlet id declareServiceCheckbox;
-    IBOutlet id docIconImageView;
+    IBOutlet NSButton *acceptDroppedTextCheckbox;
+    IBOutlet NSButton *acceptDroppedFilesCheckbox;
+    IBOutlet NSButton *declareServiceCheckbox;
+    IBOutlet NSImageView *docIconImageView;
     
     IBOutlet id droppedFilesSettingsBox;
-    IBOutlet id selectDocumentIconButton;
+    IBOutlet NSButton *selectDocumentIconButton;
     
     NSString *docIconPath;
     SuffixListController *suffixList;
@@ -87,6 +86,4 @@
 - (BOOL)promptsForFileOnLaunch;
 - (void)setPromptsForFileOnLaunch:(BOOL)b;
 
-- (NSString *)role;
-- (void)setRole:(NSString *)role;
 @end
