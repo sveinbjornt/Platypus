@@ -31,14 +31,20 @@
 #import <Cocoa/Cocoa.h>
 #import "SuffixListController.h"
 #import "PlatypusUtility.h"
+#import "UniformTypeListController.h"
 
 @interface DropSettingsController : NSObject <NSTableViewDelegate>
 {
     IBOutlet NSButton *addSuffixButton;
-    IBOutlet NSTextField *numSuffixesTextField;
     IBOutlet NSButton *removeSuffixButton;
-    IBOutlet NSTableView *suffixListDataBrowser;
+    IBOutlet NSTableView *suffixListTableView;
     IBOutlet NSTextField *suffixTextField;
+
+    IBOutlet NSButton *addUTIButton;
+    IBOutlet NSButton *removeUTIButton;
+    IBOutlet NSTableView *uniformTypeListTableView;
+    IBOutlet NSTextField *uniformTypeTextField;
+
     IBOutlet NSButton *promptForFileOnLaunchCheckbox;
     
     IBOutlet NSWindow *dropSettingsWindow;
@@ -55,19 +61,24 @@
     IBOutlet NSButton *selectDocumentIconButton;
     
     NSString *docIconPath;
-    SuffixListController *suffixList;
+    SuffixListController *suffixListController;
+    UniformTypeListController *uniformTypeListController;
 }
 - (IBAction)addSuffix:(id)sender;
-- (IBAction)clearSuffixList:(id)sender;
+- (IBAction)removeSuffix:(id)sender;
+
+- (IBAction)addUTI:(id)sender;
+- (IBAction)removeUTI:(id)sender;
+
 - (IBAction)openDropSettingsSheet:(id)sender;
 - (IBAction)closeDropSettingsSheet:(id)sender;
-- (IBAction)removeSuffix:(id)sender;
 - (IBAction)selectDocIcon:(id)sender;
 - (IBAction)setToDefaults:(id)sender;
 - (IBAction)acceptsFilesChanged:(id)sender;
 - (IBAction)acceptsTextChanged:(id)sender;
 
-- (SuffixListController *)suffixes;
+- (SuffixListController *)suffixListController;
+- (UniformTypeListController *)uniformTypesListController;
 - (UInt64)docIconSize;
 
 // getter/setters

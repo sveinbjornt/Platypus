@@ -28,10 +28,9 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "SuffixListController.h"
-#import "Common.h"
+#import "UniformTypeListController.h"
 
-@implementation SuffixListController
+@implementation UniformTypeListController
 
 - (NSImage *)iconForItem:(NSString *)item {
     return [[NSWorkspace sharedWorkspace] iconForFileType:item];
@@ -44,9 +43,10 @@
     
     for (int i = 0; i < [draggedFiles count]; i++) {
         NSString *suffix = [[draggedFiles objectAtIndex:i] pathExtension];
-        if ([suffix isEqualToString:@""] == NO) {
-            [self addItem:suffix];
-        }
+        NSString *UTI = (NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,
+                                                                          (CFStringRef)suffix,
+                                                                          NULL);
+        [self addItem:UTI];
     }
     [tv reloadData];
     return YES;

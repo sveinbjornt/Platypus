@@ -28,28 +28,8 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "SuffixListController.h"
-#import "Common.h"
+#import "TypeListController.h"
 
-@implementation SuffixListController
-
-- (NSImage *)iconForItem:(NSString *)item {
-    return [[NSWorkspace sharedWorkspace] iconForFileType:item];
-}
-
-- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
-    
-    NSPasteboard *pboard = [info draggingPasteboard];
-    NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
-    
-    for (int i = 0; i < [draggedFiles count]; i++) {
-        NSString *suffix = [[draggedFiles objectAtIndex:i] pathExtension];
-        if ([suffix isEqualToString:@""] == NO) {
-            [self addItem:suffix];
-        }
-    }
-    [tv reloadData];
-    return YES;
-}
+@interface UniformTypeListController : TypeListController
 
 @end

@@ -47,6 +47,8 @@
 		F48269741BC9A03F00169D8B /* Web-View.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269701BC9A03F00169D8B /* Web-View.png */; settings = {ASSET_TAGS = (); }; };
 		F48269771BC9A1DC00169D8B /* None.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269751BC9A1DC00169D8B /* None.png */; settings = {ASSET_TAGS = (); }; };
 		F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269761BC9A1DC00169D8B /* Status-Menu.png */; settings = {ASSET_TAGS = (); }; };
+		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; settings = {ASSET_TAGS = (); }; };
+		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; settings = {ASSET_TAGS = (); }; };
 		F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F48B1EDC17935AF6007DA173 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
@@ -201,6 +203,10 @@
 		F48269751BC9A1DC00169D8B /* None.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = None.png; sourceTree = "<group>"; };
 		F48269761BC9A1DC00169D8B /* Status-Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Status-Menu.png"; sourceTree = "<group>"; };
 		F48269791BCA9E5100169D8B /* GenericDocumentIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GenericDocumentIcon.icns; sourceTree = "<group>"; };
+		F482697D1BCAE1EE00169D8B /* TypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypeListController.h; path = Application/TypeListController.h; sourceTree = "<group>"; };
+		F482697E1BCAE1EE00169D8B /* TypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeListController.m; path = Application/TypeListController.m; sourceTree = "<group>"; };
+		F48269811BCAF1D800169D8B /* UniformTypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniformTypeListController.h; path = Application/UniformTypeListController.h; sourceTree = "<group>"; };
+		F48269821BCAF1D800169D8B /* UniformTypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniformTypeListController.m; path = Application/UniformTypeListController.m; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
 		F4876F45141D4A3900A428CC /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ScriptExec/MainMenu.xib; sourceTree = "<group>"; };
 		F48B1EDD17935BBC007DA173 /* ScriptAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptAnalyser.h; path = Shared/ScriptAnalyser.h; sourceTree = "<group>"; };
@@ -491,8 +497,6 @@
 				F4975D8D1B2E71EE0099D16E /* ArgsController.m */,
 				F4975D8E1B2E71EE0099D16E /* BundledFilesController.h */,
 				F4975D8F1B2E71EE0099D16E /* BundledFilesController.m */,
-				F4975D901B2E71EE0099D16E /* DropSettingsController.h */,
-				F4975D911B2E71EE0099D16E /* DropSettingsController.m */,
 				F4975D921B2E71EE0099D16E /* EditorController.h */,
 				F4975D931B2E71EE0099D16E /* EditorController.m */,
 				F4975D941B2E71EE0099D16E /* IconController.h */,
@@ -507,8 +511,7 @@
 				F4975DA11B2E71EE0099D16E /* ShellCommandController.m */,
 				F4975DA21B2E71EE0099D16E /* StatusItemSettingsController.h */,
 				F4975DA31B2E71EE0099D16E /* StatusItemSettingsController.m */,
-				F4975DA41B2E71EE0099D16E /* SuffixListController.h */,
-				F4975DA51B2E71EE0099D16E /* SuffixListController.m */,
+				F48269801BCAE7FA00169D8B /* Drop Settings */,
 				F4975DA61B2E71EE0099D16E /* SyntaxCheckerController.h */,
 				F4975DA71B2E71EE0099D16E /* SyntaxCheckerController.m */,
 				F4975DA81B2E71EE0099D16E /* TextSettingsController.h */,
@@ -538,6 +541,21 @@
 				F482696D1BC9A03F00169D8B /* Droplet.png */,
 			);
 			path = OutputTypeIcons;
+			sourceTree = "<group>";
+		};
+		F48269801BCAE7FA00169D8B /* Drop Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F4975D901B2E71EE0099D16E /* DropSettingsController.h */,
+				F4975D911B2E71EE0099D16E /* DropSettingsController.m */,
+				F482697D1BCAE1EE00169D8B /* TypeListController.h */,
+				F482697E1BCAE1EE00169D8B /* TypeListController.m */,
+				F4975DA41B2E71EE0099D16E /* SuffixListController.h */,
+				F4975DA51B2E71EE0099D16E /* SuffixListController.m */,
+				F48269811BCAF1D800169D8B /* UniformTypeListController.h */,
+				F48269821BCAF1D800169D8B /* UniformTypeListController.m */,
+			);
+			name = "Drop Settings";
 			sourceTree = "<group>";
 		};
 		F48A724D122E23B200964D71 /* ScriptAnalyser */ = {
@@ -934,6 +952,8 @@
 				F4975DCD1B2E721D0099D16E /* UKFNSubscribeFileWatcher.m in Sources */,
 				F48269691BC9934800169D8B /* NSTask+Description.m in Sources */,
 				F4538B2B1ABFEB14007E6ADF /* IconFamily.m in Sources */,
+				F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */,
+				F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */,
 				F48B1EE017935BBC007DA173 /* ScriptAnalyser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1117,14 +1137,16 @@
 		F41B2182085CD8FF00B63B0D /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_TESTABILITY = NO;
 				GCC_CW_ASM_SYNTAX = NO;
-				GCC_ENABLE_CPP_EXCEPTIONS = NO;
-				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1156,15 +1178,17 @@
 		F41B2183085CD8FF00B63B0D /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_VARIANTS = normal;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_TESTABILITY = NO;
 				GCC_CW_ASM_SYNTAX = NO;
-				GCC_ENABLE_CPP_EXCEPTIONS = NO;
-				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -1198,19 +1222,21 @@
 		F41B2184085CD8FF00B63B0D /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "";
 				CONFIGURATION_TEMP_DIR = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_TESTABILITY = NO;
 				GCC_CW_ASM_SYNTAX = NO;
-				GCC_ENABLE_CPP_EXCEPTIONS = NO;
-				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=0";
 				GCC_STRICT_ALIASING = NO;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -1222,7 +1248,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
-				INFOPLIST_OUTPUT_FORMAT = binary;
+				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
 				INFOPLIST_PREPROCESS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
@@ -1238,21 +1264,22 @@
 		F48B774411F7661D00351575 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_CW_ASM_SYNTAX = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = xml;
-				INSTALL_PATH = /;
+				INSTALL_PATH = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PLIST_FILE_OUTPUT_FORMAT = xml;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
@@ -1263,20 +1290,21 @@
 		F48B774511F7661D00351575 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_CW_ASM_SYNTAX = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_UNROLL_LOOPS = NO;
 				GENERATE_PKGINFO_FILE = NO;
-				IBC_FLATTEN_NIBS = NO;
+				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = binary;
-				INSTALL_PATH = /;
+				INSTALL_PATH = "";
 				PLIST_FILE_OUTPUT_FORMAT = binary;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
 				PRODUCT_NAME = ScriptExec;
@@ -1287,16 +1315,17 @@
 		F48B774611F7661D00351575 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_CW_ASM_SYNTAX = NO;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GENERATE_PKGINFO_FILE = NO;
-				IBC_FLATTEN_NIBS = NO;
+				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
-				INSTALL_PATH = /;
+				INSTALL_PATH = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
 				PRODUCT_NAME = ScriptExec;
 			};

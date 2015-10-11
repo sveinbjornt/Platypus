@@ -137,6 +137,7 @@
     
     // file/drag acceptance properties
     [properties setObject:[NSMutableArray arrayWithObject:@"*"] forKey:@"Suffixes"];
+    [properties setObject:[NSMutableArray array] forKey:@"UniformTypes"];
     [properties setObject:DEFAULT_ROLE forKey:@"Role"];
     [properties setObject:[NSNumber numberWithBool:NO] forKey:@"AcceptsText"];
     [properties setObject:[NSNumber numberWithBool:YES] forKey:@"AcceptsFiles"];
@@ -352,6 +353,7 @@
     // we  set the suffixes/file types in the AppSettings.plist if app is droppable
     if ([[properties objectForKey:@"Droppable"] boolValue] == YES) {
         [appSettingsPlist setObject:[properties objectForKey:@"Suffixes"] forKey:@"DropSuffixes"];
+        [appSettingsPlist setObject:[properties objectForKey:@"UniformTypes"] forKey:@"DropUniformTypes"];
     }
     [appSettingsPlist setObject:[properties objectForKey:@"AcceptsFiles"] forKey:@"AcceptsFiles"];
     [appSettingsPlist setObject:[properties objectForKey:@"AcceptsText"] forKey:@"AcceptsText"];
@@ -469,7 +471,9 @@
 
 - (NSDictionary *)infoPlist {
     // create the Info.plist dictionary
-    NSString *humanCopyright = [NSString stringWithFormat:@"© %d %@", (int)[[NSCalendarDate calendarDate] yearOfCommonEra], [properties objectForKey:@"Author"]];
+    NSString *humanCopyright = [NSString stringWithFormat:@"© %d %@",
+                                (int)[[NSCalendarDate calendarDate] yearOfCommonEra],
+                                [properties objectForKey:@"Author"]];
     NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       
                                       @"English",                                 @"CFBundleDevelopmentRegion",
@@ -489,14 +493,17 @@
                                       
                                       nil];
     
-    if (![[properties objectForKey:@"IconPath"] isEqualToString:@""])
+    if (![[properties objectForKey:@"IconPath"] isEqualToString:@""]) {
         [infoPlist setObject:@"appIcon.icns" forKey:@"CFBundleIconFile"];
+    }
     
     // if droppable, we declare the accepted file types
     if ([[properties objectForKey:@"Droppable"] boolValue] == YES) {
         NSMutableDictionary *typesAndSuffixesDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                     [properties objectForKey:@"Suffixes"], @"CFBundleTypeExtensions", //extensions
-                                                     [properties objectForKey:@"Role"], @"CFBundleTypeRole", nil]; //viewer or editor?
+                                                     [properties objectForKey:@"Suffixes"], @"CFBundleTypeExtensions",  nil];
+        if ([properties objectForKey:@"UniformTypes"] != nil && [[properties objectForKey:@"UniformTypes"] count] > 0) {
+            [typesAndSuffixesDict setObject:[properties objectForKey:@"UniformTypes"] forKey:@"LSItemContentTypes"];
+        }
         
         // document icon
         if ([properties objectForKey:@"DocIcon"] && [[NSFileManager defaultManager] fileExistsAtPath:[properties objectForKey:@"DocIcon"]])
@@ -605,7 +612,7 @@
     int i;
     NSString *checkboxParamStr = @"";
     NSString *iconParamStr = @"", *versionString = @"", *authorString = @"";
-    NSString *suffixesString = @"", *parametersString = @"";
+    NSString *suffixesString = @"", *uniformTypesString = @"", *parametersString = @"";
     NSString *textEncodingString = @"", *textOutputString = @"", *statusMenuOptionsString = @"";
     
     // checkbox parameters
@@ -636,8 +643,14 @@
     // if it's droppable, we need the Suffixes
     if ([[properties objectForKey:@"Droppable"] boolValue]) {
         //create suffixes param
-        suffixesString = [[properties objectForKey:@"Suffixes"] componentsJoinedByString:@"|"];
-        suffixesString = [NSString stringWithFormat:@"-X '%@' ", suffixesString];
+        if ([[properties objectForKey:@"Suffixes"] count]) {
+            suffixesString = [[properties objectForKey:@"Suffixes"] componentsJoinedByString:@"|"];
+            suffixesString = [NSString stringWithFormat:@"-X '%@' ", suffixesString];
+        }
+        if ([[properties objectForKey:@"UniformTypes"] count]) {
+            uniformTypesString = [[properties objectForKey:@"UniformTypes"] componentsJoinedByString:@"|"];
+            uniformTypesString = [NSString stringWithFormat:@"-T '%@' ", suffixesString];
+        }
     }
     
     //create bundled files string
@@ -710,7 +723,7 @@
     
     // finally, generate the command
     NSString *commandStr = [NSString stringWithFormat:
-                            @"%@ %@%@%@ -o '%@' -p '%@'%@ %@%@%@%@%@%@%@%@ '%@'",
+                            @"%@ %@%@%@ -o '%@' -p '%@'%@ %@%@%@%@%@%@%@%@%@ '%@'",
                             CMDLINE_TOOL_PATH,
                             checkboxParamStr,
                             iconParamStr,
@@ -721,6 +734,7 @@
                             versionString,
                             identifArg,
                             suffixesString,
+                            uniformTypesString,
                             bundledFilesCmdString,
                             parametersString,
                             textEncodingString,

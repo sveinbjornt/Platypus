@@ -35,26 +35,23 @@
 
 - (id)init {
     if ((self = [super init])) {
-        suffixList = [[SuffixListController alloc] init];
+        suffixListController = [[SuffixListController alloc] init];
+        uniformTypeListController = [[UniformTypeListController alloc] init];
     }
     return self;
 }
 
 - (void)dealloc {
-    [suffixList release];
+    [suffixListController release];
+    [uniformTypeListController release];
     [super dealloc];
 }
 
 #pragma mark -
 
 - (void)awakeFromNib {
-    [suffixListDataBrowser registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
-}
-
-- (void)updateNumSuffixesTextField {
-    NSString *numSuffixesStr = [suffixList hasAllSuffixes] ? @"All suffixes" : [NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]];
-    [numSuffixesTextField setStringValue:numSuffixesStr];
-
+    [suffixListTableView registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
+    [uniformTypeListTableView registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
 }
 
 /*****************************************
@@ -63,18 +60,20 @@
 
 - (IBAction)openDropSettingsSheet:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Drop settings", PROGRAM_NAME]];
-    //clear text fields from last time
+    
+    //do setup
     [suffixTextField setStringValue:@""];
+    [suffixListTableView setDataSource:suffixListController];
+    [suffixListTableView reloadData];
+    [suffixListTableView setDelegate:self];
+    [suffixListTableView setTarget:self];
     
-    [suffixListDataBrowser setDataSource:suffixList];
-    [suffixListDataBrowser reloadData];
-    [suffixListDataBrowser setDelegate:self];
-    [suffixListDataBrowser setTarget:self];
+    [uniformTypeTextField setStringValue:@""];
+    [uniformTypeListTableView setDataSource:uniformTypeListController];
+    [uniformTypeListTableView reloadData];
+    [uniformTypeListTableView setDelegate:self];
+    [uniformTypeListTableView setTarget:self];
     
-    // updated text fields reporting no. suffixes and no. file type codes
-    [self updateNumSuffixesTextField];
-    
-    // clear any error message
     [typesErrorTextField setStringValue:@""];
     
     //open window
@@ -92,7 +91,7 @@
 
 - (IBAction)closeDropSettingsSheet:(id)sender {
     //make sure suffix list contains valid values
-    if (![suffixList numSuffixes] && [self acceptsFiles]) {
+    if (![suffixListController numItems] && [self acceptsFiles]) {
         [typesErrorTextField setStringValue:@"The suffix list must contain at least one entry."];
         return;
     }
@@ -105,9 +104,6 @@
 }
 
 #pragma mark -
-
-//create open panel
-
 
 - (IBAction)selectDocIcon:(id)sender {
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
@@ -125,15 +121,10 @@
 
 #pragma mark -
 
-/*****************************************
- - called when [+] button is pressed in Types List
- *****************************************/
-
-- (IBAction)addSuffix:(id)sender;
-{
-    NSString *theSuffix = [suffixTextField stringValue];
+- (IBAction)addSuffix:(id)sender {
     
-    if ([suffixList hasSuffix:theSuffix] || [theSuffix length] == 0) {
+    NSString *theSuffix = [suffixTextField stringValue];
+    if ([suffixListController hasItem:theSuffix] || [theSuffix length] == 0) {
         [suffixTextField setStringValue:@""];
         return;
     }
@@ -143,58 +134,64 @@
         theSuffix = [theSuffix substringFromIndex:1];
     }
     
-    [suffixList addSuffix:theSuffix];
+    [suffixListController addItem:theSuffix];
     [suffixTextField setStringValue:@""];
     [self controlTextDidChange];
-    
-    //update
-    [suffixListDataBrowser reloadData];
-    
-    [self updateNumSuffixesTextField];
+    [suffixListTableView reloadData];
 }
 
-
-/*****************************************
- - called when [C] button is pressed in Types List
- *****************************************/
-
-- (IBAction)clearSuffixList:(id)sender {
-    [suffixList clearList];
-    [suffixListDataBrowser reloadData];
-    [numSuffixesTextField setStringValue:[NSString stringWithFormat:@"%d suffixes", [suffixList numSuffixes]]];
-}
-
-/*****************************************
- - called when [-] button is pressed in Types List
- *****************************************/
-
-- (IBAction)removeSuffix:(id)sender;
+- (IBAction)removeSuffix:(id)sender
 {
-    int i;
-    NSIndexSet *selectedItems = [suffixListDataBrowser selectedRowIndexes];
-    
-    for (i = [suffixList numSuffixes]; i >= 0; i--) {
+    NSIndexSet *selectedItems = [suffixListTableView selectedRowIndexes];
+    for (int i = [suffixListController numItems]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
-            [suffixList removeSuffix:i];
-            [suffixListDataBrowser reloadData];
+            [suffixListController removeItem:i];
+            [suffixListTableView reloadData];
             break;
         }
     }
-    
-    [self updateNumSuffixesTextField];
 }
+
+- (IBAction)addUTI:(id)sender {
+    
+    NSString *theUTI = [uniformTypeTextField stringValue];
+    
+    if ([uniformTypeListController hasItem:theUTI] || [theUTI length] == 0) {
+        [uniformTypeTextField setStringValue:@""];
+        return;
+    }
+    
+    [uniformTypeListController addItem:theUTI];
+    [uniformTypeTextField setStringValue:@""];
+    [self controlTextDidChange];
+    [uniformTypeListTableView reloadData];
+}
+
+- (IBAction)removeUTI:(id)sender {
+    
+    NSIndexSet *selectedItems = [uniformTypeListTableView selectedRowIndexes];
+    for (int i = [uniformTypeListController numItems]; i >= 0; i--) {
+        if ([selectedItems containsIndex:i]) {
+            [uniformTypeListController removeItem:i];
+            [uniformTypeListTableView reloadData];
+            break;
+        }
+    }
+}
+
+#pragma mark -
 
 /*****************************************
  - called when "Default" button is pressed in Types List
  *****************************************/
 
 - (IBAction)setToDefaults:(id)sender {
-    //default suffixes
-    [suffixList clearList];
-    [suffixList addSuffix:@"*"];
-    [suffixListDataBrowser reloadData];
+    [suffixListController removeAllItems];
+    [suffixListController addItem:@"*"];
+    [suffixListTableView reloadData];
     
-    [self updateNumSuffixesTextField];
+    [uniformTypeListController removeAllItems];
+    [uniformTypeListTableView reloadData];
     
     [self setDocIconPath:@""];
     [self setAcceptsText:NO];
@@ -205,17 +202,30 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
     
-    if (aNotification == nil || [aNotification object] == suffixListDataBrowser || [aNotification object] == nil) {
+    if (aNotification == nil || [aNotification object] == suffixListTableView || [aNotification object] == nil) {
         
         int selected = 0;
-        NSIndexSet *selectedItems = [suffixListDataBrowser selectedRowIndexes];
+        NSIndexSet *selectedItems = [suffixListTableView selectedRowIndexes];
         
-        for (int i = 0; i < [suffixList numSuffixes]; i++) {
+        for (int i = 0; i < [suffixListController numItems]; i++) {
             if ([selectedItems containsIndex:i]) {
                 selected++;
             }
         }
         [removeSuffixButton setEnabled:(selected != 0)];
+    }
+    
+    if (aNotification == nil || [aNotification object] == uniformTypeListTableView || [aNotification object] == nil) {
+        
+        int selected = 0;
+        NSIndexSet *selectedItems = [uniformTypeListTableView selectedRowIndexes];
+        
+        for (int i = 0; i < [uniformTypeListController numItems]; i++) {
+            if ([selectedItems containsIndex:i]) {
+                selected++;
+            }
+        }
+        [removeUTIButton setEnabled:(selected != 0)];
     }
 }
 
@@ -226,11 +236,17 @@
 - (void)controlTextDidChange {
     //enable/disable buttons for Edit Types window
     [addSuffixButton setEnabled:([[suffixTextField stringValue] length] > 0)];
+    [addUTIButton setEnabled:([[uniformTypeTextField stringValue] length] > 0)];
+
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)item {
     
-    if ([[item title] isEqualToString:@"Remove Suffix"] && [suffixListDataBrowser selectedRow] == -1) {
+    if ([[item title] isEqualToString:@"Remove Suffix"] && [suffixListTableView selectedRow] == -1) {
+        return NO;
+    }
+    
+    if ([[item title] isEqualToString:@"Remove Uniform Type"] && [uniformTypeListTableView selectedRow] == -1) {
         return NO;
     }
     
@@ -245,11 +261,17 @@
 
 - (void)setAcceptsFilesControlsEnabled:(BOOL)enabled {
     [[droppedFilesSettingsBox contentView] setAlphaValue:0.5 + (enabled * 0.5)];
+    
     [addSuffixButton setEnabled:enabled];
-    [numSuffixesTextField setEnabled:enabled];
     [removeSuffixButton setEnabled:enabled];
-    [suffixListDataBrowser setEnabled:enabled];
+    [suffixListTableView setEnabled:enabled];
     [suffixTextField setEnabled:enabled];
+    
+    [addUTIButton setEnabled:enabled];
+    [removeUTIButton setEnabled:enabled];
+    [uniformTypeListTableView setEnabled:enabled];
+    [uniformTypeTextField setEnabled:enabled];
+    
     [promptForFileOnLaunchCheckbox setEnabled:enabled];
     [selectDocumentIconButton setEnabled:enabled];
 }
@@ -268,9 +290,15 @@
 
 #pragma mark -
 
-- (SuffixListController *)suffixes {
-    return suffixList;
+- (SuffixListController *)suffixListController {
+    return suffixListController;
 }
+
+- (UniformTypeListController *)uniformTypesListController {
+    return uniformTypeListController;
+}
+
+#pragma mark -
 
 - (UInt64)docIconSize;
 {

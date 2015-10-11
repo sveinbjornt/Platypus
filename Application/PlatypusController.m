@@ -517,7 +517,8 @@
     [spec setProperty:[bundledFilesController getFilesArray] forKey:@"BundledFiles"];
     
     // file types
-    [spec setProperty:(NSMutableArray *)[(SuffixListController *)[dropSettingsController suffixes] getSuffixArray] forKey:@"Suffixes"];
+    [spec setProperty:(NSMutableArray *)[(SuffixListController *)[dropSettingsController suffixListController] getItemsArray] forKey:@"Suffixes"];
+    [spec setProperty:(NSMutableArray *)[(UniformTypeListController *)[dropSettingsController uniformTypesListController] getItemsArray] forKey:@"UniformTypes"];
     [spec setProperty:[dropSettingsController docIconPath] forKey:@"DocIcon"];
     [spec setProperty:[NSNumber numberWithBool:[dropSettingsController acceptsText]] forKey:@"AcceptsText"];
     [spec setProperty:[NSNumber numberWithBool:[dropSettingsController acceptsFiles]] forKey:@"AcceptsFiles"];
@@ -553,7 +554,7 @@
     [interpreterTextField setStringValue:[spec propertyForKey:@"Interpreter"]];
     
     //icon
-    if (![[spec propertyForKey:@"IconPath"] isEqualToString:@""]) {
+    if ([spec propertyForKey:@"IconPath"] && ![[spec propertyForKey:@"IconPath"] isEqualToString:@""]) {
         [iconController loadIcnsFile:[spec propertyForKey:@"IconPath"]];
     }
     
@@ -572,13 +573,14 @@
     //update button status
     [bundledFilesController performSelector:@selector(tableViewSelectionDidChange:) withObject:nil];
     
-    //suffix list
-    [(SuffixListController *)[dropSettingsController suffixes] clearList];
-    [(SuffixListController *)[dropSettingsController suffixes] addSuffixes :[spec propertyForKey:@"Suffixes"]];
-    
+    //drop settings
+    [(SuffixListController *)[dropSettingsController suffixListController] removeAllItems];
+    [(SuffixListController *)[dropSettingsController suffixListController] addItems:[spec propertyForKey:@"Suffixes"]];
+    [(UniformTypeListController *)[dropSettingsController uniformTypesListController] removeAllItems];
+    [(UniformTypeListController *)[dropSettingsController uniformTypesListController] addItems:[spec propertyForKey:@"UniformTypes"]];
+
     [dropSettingsController performSelector:@selector(tableViewSelectionDidChange:) withObject:nil];
     
-    // role and doc icon
     if ([spec propertyForKey:@"DocIcon"] != nil) {
         [dropSettingsController setDocIconPath:[spec propertyForKey:@"DocIcon"]];
     }
@@ -595,7 +597,7 @@
         [dropSettingsController setPromptsForFileOnLaunch:[[spec propertyForKey:@"PromptForFileOnLaunch"] boolValue]];
     }
     
-    // parameters
+    // args
     [argsController setInterpreterArgs:[spec propertyForKey:@"InterpreterArgs"]];
     [argsController setScriptArgs:[spec propertyForKey:@"ScriptArgs"]];
     
