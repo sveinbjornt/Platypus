@@ -32,7 +32,8 @@ much of the old codebase behind it, but the task grew
 daunting in size and I was unable to find the time.
 
 With these caveats in mind, here is the BSD-licensed 
-source code to Platypus. At least it's meticulously commented.
+source code to Platypus. At least it's meticulously 
+commented, albeit naively so.
 
 ### License 
 
