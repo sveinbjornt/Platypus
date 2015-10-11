@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
+        <deployment identifier="macosx"/>
         <development version="6300" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
@@ -163,7 +164,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="9D8D8FAA-1E85-4641-9316-570DC4FB2A18" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="1D4D9A22-BE1B-451D-A48E-87B05AF71B18" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -607,6 +608,7 @@ DQ
                 <outlet property="acceptDroppedFilesCheckbox" destination="11149" id="11155"/>
                 <outlet property="acceptDroppedTextCheckbox" destination="11151" id="11156"/>
                 <outlet property="addSuffixButton" destination="984" id="1365"/>
+                <outlet property="addUTIButton" destination="nC2-fm-W7H" id="leP-yf-xzT"/>
                 <outlet property="declareServiceCheckbox" destination="11326" id="11328"/>
                 <outlet property="docIconImageView" destination="11239" id="11243"/>
                 <outlet property="dropSettingsWindow" destination="395" id="PZN-H6-c9M"/>
@@ -614,10 +616,13 @@ DQ
                 <outlet property="droppedFilesSettingsBox" destination="11153" id="11154"/>
                 <outlet property="promptForFileOnLaunchCheckbox" destination="11460" id="11462"/>
                 <outlet property="removeSuffixButton" destination="992" id="1369"/>
+                <outlet property="removeUTIButton" destination="tqU-IB-IyA" id="5iu-Xf-rvO"/>
                 <outlet property="selectDocumentIconButton" destination="11241" id="11535"/>
-                <outlet property="suffixListDataBrowser" destination="708" id="1371"/>
+                <outlet property="suffixListTableView" destination="708" id="h4Y-1x-x6F"/>
                 <outlet property="suffixTextField" destination="712" id="1372"/>
                 <outlet property="typesErrorTextField" destination="824" id="1374"/>
+                <outlet property="uniformTypeListTableView" destination="abJ-y3-Qtk" id="y83-sn-JNr"/>
+                <outlet property="uniformTypeTextField" destination="4L6-3O-s13" id="BVF-rE-hOI"/>
                 <outlet property="window" destination="21" id="1385"/>
             </connections>
         </customObject>
@@ -1353,7 +1358,7 @@ DQ
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="708">
-                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="161.5" height="18"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1478,7 +1483,7 @@ DQ
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk">
-                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="161.5" height="18"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1555,7 +1560,7 @@ DQ
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="addSuffix:" target="1364" id="eKq-Ez-4Px"/>
+                                                    <action selector="addUTI:" target="1364" id="tK1-Jl-IYZ"/>
                                                 </connections>
                                             </button>
                                             <button toolTip="Remove selected suffix" verticalHuggingPriority="750" id="tqU-IB-IyA">
@@ -1567,7 +1572,7 @@ DQ
                                                     <string key="keyEquivalent"></string>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="removeSuffix:" target="1364" id="cpl-qS-gH6"/>
+                                                    <action selector="removeUTI:" target="1364" id="5da-rh-xnF"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -2595,7 +2600,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="9D8D8FAA-1E85-4641-9316-570DC4FB2A18" width="16" height="16">
+        <image name="1D4D9A22-BE1B-451D-A48E-87B05AF71B18" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

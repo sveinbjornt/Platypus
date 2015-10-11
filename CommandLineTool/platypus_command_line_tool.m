@@ -335,10 +335,12 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // File Types
+                // Uniform Type Identifiers
             case 'T':
             {
-                // obsolete option
+                NSString *utiStr = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSArray *utis = [utiStr componentsSeparatedByString:@"|"];
+                [properties setObject:utis forKey:@"UniformTypes"];
             }
                 break;
             

@@ -28,29 +28,9 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-// SuffixList is a controller class around the Suffix list in the Platypus
-// Edit Types window.  It is the data source and delegate of this tableview.
-
-
-#import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+#import "TypeListController.h"
 
-@interface SuffixListController : NSObject <NSTableViewDataSource>
-{
-    NSMutableArray *items;
-}
+@interface SuffixListController : TypeListController
 
-- (NSString *)getSuffixAtIndex:(int)index;
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView;
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
-- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> ) info row:(int)row dropOperation:(NSTableViewDropOperation)operation;
-- (NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo> ) info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation;
-- (void)addSuffix:(NSString *)suffix;
-- (void)addSuffixes:(NSArray *)suffixes;
-- (BOOL)hasSuffix:(NSString *)suffix;
-- (BOOL)hasAllSuffixes;
-- (void)clearList;
-- (int)numSuffixes;
-- (void)removeSuffix:(int)index;
-- (NSArray *)getSuffixArray;
 @end
