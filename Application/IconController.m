@@ -91,6 +91,12 @@
 
 #pragma mark -
 
+-(IBAction)iconActionButtonPressed:(id)sender {
+    NSButton *button = (NSButton *)sender;
+    NSRect screenRect = [[platypusController window] convertRectToScreen:button.frame];
+    [iconContextualMenu popUpMenuPositioningItem:nil atLocation:screenRect.origin inView:nil ];
+}
+
 - (IBAction)nextIcon:(id)sender {
     if ([iconToggleButton intValue] + 1 > [iconToggleButton maxValue]) {
         [iconToggleButton setIntValue:[iconToggleButton minValue]];

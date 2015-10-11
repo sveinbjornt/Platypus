@@ -38,8 +38,11 @@
     IBOutlet id iconToggleButton;
     IBOutlet id iconNameTextField;
     IBOutlet id platypusController;
+    IBOutlet NSMenu *iconContextualMenu;
+    IBOutlet NSButton *iconActionButton;
     NSString *icnsFilePath;
 }
+- (IBAction)iconActionButtonPressed:(id)sender;
 - (IBAction)copyIconPath:(id)sender;
 - (IBAction)copyIcon:(id)sender;
 - (IBAction)pasteIcon:(id)sender;

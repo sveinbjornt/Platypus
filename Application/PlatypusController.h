@@ -144,6 +144,7 @@
 - (void)updateEstimatedAppSize;
 - (NSString *)estimatedAppSize;
 - (NSTask *)taskForCurrentScript;
+- (NSWindow *)window;
 
 //Help
 - (IBAction)showHelp:(id)sender;

@@ -135,6 +135,10 @@
     return YES;
 }
 
+- (NSWindow *)window {
+    return window;
+}
+
 #pragma mark - Script functions
 
 /*****************************************
