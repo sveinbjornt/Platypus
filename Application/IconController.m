@@ -312,7 +312,6 @@
     NSImage *img = [[[NSImage alloc] initByReferencingFile:filePath] autorelease];
     
     if (img == nil) {
-        NSLog(@"Image at path %@ is nil", filePath);
         return NO;
     }
     

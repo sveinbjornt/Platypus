@@ -224,7 +224,7 @@
 }
 
 - (void)statusMenuItemSelected {
-    NSLog(@"Item selected");
+
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {

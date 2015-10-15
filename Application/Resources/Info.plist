@@ -275,6 +275,8 @@
 	<string>NSApplication</string>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
+    <key>NSSupportsAutomaticTermination</key>
+    <false/>
 	<key>SUFeedURL</key>
 	<string>http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
@@ -284,5 +286,25 @@
         <key>NSAllowsArbitraryLoads</key>
         <true/>
     </dict>
+    <key>UTExportedTypeDeclarations</key>
+    <array>
+        <dict>
+            <key>UTTypeIconFile</key>
+            <array>
+                <string>PlatypusProfile.icns</string>
+            </array>
+            <key>UTTypeDescription</key>
+            <string>Platypus Profile</string>
+            <key>UTTypeIdentifier</key>
+            <string>public.platypus-profile</string>
+            <key>UTTypeTagSpecification</key>
+            <dict>
+                <key>public.filename-extension</key>
+                <array>
+                    <string>platypus</string>
+                </array>
+            </dict>
+        </dict>
+    </array>
 </dict>
 </plist>

@@ -763,8 +763,6 @@
         NSColor *textColor = ([FILEMGR fileExistsAtPath:[interpreterTextField stringValue] isDirectory:&isDir] && !isDir) ? [NSColor blackColor] : [NSColor redColor];
         [interpreterTextField setTextColor:textColor];
     }
-    
-    NSLog(@"FILEWATCH: %@", [fileWatcherQueue description]);
 }
 
 /*****************************************
