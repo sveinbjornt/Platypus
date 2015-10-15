@@ -17,7 +17,7 @@ very easy using Platypus.
 
 ### Some notes on the code
 
-The Platypus source code is in a somewhat sorry state.  
+The Platypus source code is in a somewhat sorry state. 
 It's very old software, dating back to the early days 
 of Mac OS X.  It was originally written in C using the 
 Carbon APIs, but later transitioned to Cocoa during the 
@@ -33,7 +33,7 @@ daunting in size and I was unable to find the time.
 
 With these caveats in mind, here is the BSD-licensed 
 source code to Platypus. At least it's meticulously 
-commented, albeit naively so.
+commented, albeit naively and annoyingly so.
 
 ### License 
 

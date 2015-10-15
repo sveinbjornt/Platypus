@@ -38,34 +38,32 @@
 #import "PlatypusController.h"
 #import "PlatypusUtility.h"
 
-#import "UKKQueue.h"
-
 @implementation BundledFilesController
 
 - (id)init {
     if ((self = [super init])) {
         files = [[NSMutableArray alloc] init];
+        fileWatcherQueue = [[VDKQueue alloc] init];
     }
     return self;
 }
 
 - (void)dealloc {
     [files release];
+    [fileWatcherQueue release];
     [super dealloc];
 }
 
 - (void)awakeFromNib {
-    totalSize = 0;
+    totalFileSize = 0;
     [tableView registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
     [tableView setTarget:self];
     [tableView setDoubleAction:@selector(itemDoubleClicked:)];
     [tableView setDraggingSourceOperationMask:NSDragOperationCopy | NSDragOperationMove forLocal:NO];
     
     // we list ourself as an observer of changes to file system
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver:self selector:@selector(trackedFileDidChange) name:UKFileWatcherRenameNotification object:nil];
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver:self selector:@selector(trackedFileDidChange) name:UKFileWatcherDeleteNotification object:nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(trackedFileDidChange) name:VDKQueueRenameNotification object:nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(trackedFileDidChange) name:VDKQueueDeleteNotification object:nil];
 }
 
 #pragma mark -
@@ -86,7 +84,7 @@
     [tableView reloadData];
 }
 
-- (NSString *)getFileAtIndex:(int)index {
+- (NSString *)filePathAtIndex:(int)index {
     return [[files objectAtIndex:index] objectForKey:@"Path"];
 }
 
@@ -116,8 +114,9 @@
 }
 
 - (void)updateQueueWatch {
-    for (int i = 0; i < [files count]; i++) {
-        [[UKKQueue sharedFileWatcher] addPathToQueue:[[files objectAtIndex:i] objectForKey:@"Path"]];
+    [fileWatcherQueue removeAllPaths];
+    for (NSDictionary *fileItem in files) {
+        [fileWatcherQueue addPath:[fileItem objectForKey:@"Path"]];
     }
 }
 
@@ -146,14 +145,12 @@
     return([files count]);
 }
 
-- (NSArray *)getFilesArray {
-    NSMutableArray *fileNames = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
-    int i;
-    
-    for (i = 0; i < [files count]; i++)
-        [fileNames addObject:[[files objectAtIndex:i] objectForKey:@"Path"]];
-    
-    return fileNames;
+- (NSArray *)filePaths {
+    NSMutableArray *filePaths = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
+    for (NSDictionary *fileItem in files) {
+        [filePaths addObject:[fileItem objectForKey:@"Path"]];
+    }
+    return filePaths;
 }
 
 - (void)revealInFinder:(int)index {
@@ -161,10 +158,8 @@
     NSString *path = [[files objectAtIndex:index] objectForKey:@"Path"];
     
     if ([FILEMGR fileExistsAtPath:path isDirectory:&isDir]) {
-        if (isDir)
-            [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:path];
-        else
-            [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:path];
+        NSString *filePath = isDir ? nil : path;
+        [[NSWorkspace sharedWorkspace] selectFile:filePath inFileViewerRootedAtPath:path];
     }
 }
 
@@ -237,14 +232,18 @@
     
     //run open panel sheet
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
-        if (result == NSOKButton) {
-            NSMutableArray *filePaths = [NSMutableArray array];
-            // convert NSURLs to paths
-            for (int i = 0; i < [[oPanel URLs] count]; i++) {
-                [filePaths addObject:[[[oPanel URLs] objectAtIndex:i] path]];
-            }
-            [self addFiles:filePaths];
+        
+        if (result != NSOKButton) {
+            return;
         }
+        
+        // convert NSURLs to paths
+        NSMutableArray *filePaths = [NSMutableArray array];
+        for (NSURL *url in [oPanel URLs]) {
+            [filePaths addObject:[url path]];
+        }
+        
+        [self addFiles:filePaths];
         [window setTitle:PROGRAM_NAME];
     }];
 }
@@ -257,7 +256,6 @@
     [self clearList];
     [self updateQueueWatch];
     [tableView reloadData];
-    //update button status
     [self tableViewSelectionDidChange:nil];
     [self updateFileSizeField];
 }
@@ -294,11 +292,11 @@
  *****************************************/
 
 - (IBAction)removeFileFromFileList:(id)sender {
-    int i, rowToSelect;
+    int rowToSelect;
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     int selectedRow = [selectedItems firstIndex];
     
-    for (i = [self numFiles]; i >= 0; i--) {
+    for (int i = [self numFiles]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
             [self removeFile:i];
         }
@@ -317,27 +315,22 @@
  - Updates text field listing total size of bundled files
  *****************************************/
 - (void)updateFileSizeField {
-    totalSize = 0;
-    NSString *totalSizeString;
     
     //if there are no items, we just list it as 0 items
-    if ([self numFiles] <= 0) {
-        [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d items", [self numFiles]]];
+    if ([self numFiles] == 0) {
+        [bundleSizeTextField setStringValue:@""];
         [platypusController updateEstimatedAppSize];
         return;
     }
     
     //otherwise, loop through all files, calculate size
     for (int i = 0; i < [self numFiles]; i++) {
-        totalSize += [PlatypusUtility fileOrFolderSize:[self getFileAtIndex:i]];
+        totalFileSize += [PlatypusUtility fileOrFolderSize:[self filePathAtIndex:i]];
     }
     
-    totalSizeString = [PlatypusUtility sizeAsHumanReadable:totalSize];
-    if ([self numFiles] > 1) {
-        [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d items, %@", [self numFiles], totalSizeString]];
-    } else {
-        [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d item, %@", [self numFiles], totalSizeString]];
-    }
+    NSString *totalSizeString = [PlatypusUtility sizeAsHumanReadable:totalFileSize];
+    NSString *pluralS = ([self numFiles] > 1) ? @"s" : @"";
+    [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d item%@, %@", [self numFiles], pluralS, totalSizeString]];
     [platypusController updateEstimatedAppSize];
 }
 
@@ -356,13 +349,13 @@
         } else {
             // if not, we hilight red
             NSDictionary *attr = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor redColor], NSForegroundColorAttributeName, nil];
-            return([[[NSAttributedString alloc] initWithString:filePath attributes:attr] autorelease]);
+            return [[[NSAttributedString alloc] initWithString:filePath attributes:attr] autorelease];
         }
     } else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
         return [[files objectAtIndex:rowIndex] objectForKey:@"Icon"];
     }
     
-    return(@"");
+    return nil;
 }
 
 /*****************************************
@@ -486,8 +479,8 @@
  - Returns the total size of all bundled files at the moment
  *****************************************/
 
-- (UInt64)getTotalSize {
-    return totalSize;
+- (UInt64)totalFileSize {
+    return totalFileSize;
 }
 
 @end

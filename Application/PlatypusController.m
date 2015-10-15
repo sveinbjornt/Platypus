@@ -37,6 +37,18 @@
 
 #pragma mark - Application
 
+- (instancetype)init {
+    if ((self = [super init])) {
+        fileWatcherQueue = [[VDKQueue alloc] init];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [fileWatcherQueue release];
+    [super dealloc];
+}
+
 /*****************************************
  - When application is launched by the user for the very first time
  we create a default set of preferences
@@ -84,9 +96,9 @@
     }
     
     // we list ourself as an observer of changes to file system, for script
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(controlTextDidChange:) name:UKFileWatcherRenameNotification object:nil];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(controlTextDidChange:) name:UKFileWatcherDeleteNotification object:nil];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileChanged:) name:UKFileWatcherWriteNotification object:nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueRenameNotification object:nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueDeleteNotification object:nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileChanged:) name:VDKQueueWriteNotification object:nil];
     
     //populate script type menu
     [scriptTypePopupButton addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
@@ -189,6 +201,9 @@
  *****************************************/
 
 - (IBAction)revealScript:(id)sender {
+    if ([FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]] == NO) {
+        [PlatypusUtility alert:@"File not found" subText:@"No file exists at the specified path"];
+    }
     [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:[scriptPathTextField stringValue]];
 }
 
@@ -253,6 +268,11 @@
     [window setTitle:[NSString stringWithFormat:@"%@ - Editing script", PROGRAM_NAME]];
     [[[EditorController alloc] init] showEditorForFile:[scriptPathTextField stringValue] window:window];
     [window setTitle:PROGRAM_NAME];
+}
+
+- (void)scriptFileSystemChange
+{
+    [scriptPathTextField updateTextColoring];
 }
 
 - (void)scriptFileChanged:(NSNotification *)aNotification {
@@ -518,7 +538,7 @@
     [spec setProperty:[NSNumber numberWithBool:[showInDockCheckbox state]] forKey:@"ShowInDock"];
     
     // bundled files
-    [spec setProperty:[bundledFilesController getFilesArray] forKey:@"BundledFiles"];
+    [spec setProperty:[bundledFilesController filePaths] forKey:@"BundledFiles"];
     
     // file types
     [spec setProperty:(NSMutableArray *)[(SuffixListController *)[dropSettingsController suffixListController] getItemsArray] forKey:@"Suffixes"];
@@ -720,14 +740,11 @@
             validName = YES;
         }
         
+        [fileWatcherQueue removeAllPaths];
         if ([scriptPathTextField hasValidPath]) {
-            // add watcher that tracks whether it exists or is edited
-            [[UKKQueue sharedFileWatcher] removeAllPathsFromQueue];
-            [[UKKQueue sharedFileWatcher] addPathToQueue:[scriptPathTextField stringValue]];
+            [fileWatcherQueue addPath:[scriptPathTextField stringValue]];
             exists = YES;
         }
-        
-        [scriptPathTextField updateTextColoring];
         
         [editScriptButton setEnabled:exists];
         [revealScriptButton setEnabled:exists];
@@ -746,6 +763,8 @@
         NSColor *textColor = ([FILEMGR fileExistsAtPath:[interpreterTextField stringValue] isDirectory:&isDir] && !isDir) ? [NSColor blackColor] : [NSColor redColor];
         [interpreterTextField setTextColor:textColor];
     }
+    
+    NSLog(@"FILEWATCH: %@", [fileWatcherQueue description]);
 }
 
 /*****************************************
@@ -917,7 +936,7 @@
     estimatedAppSize += nibSize;
     
     // bundled files altogether
-    estimatedAppSize += [bundledFilesController getTotalSize];
+    estimatedAppSize += [bundledFilesController totalFileSize];
     
     return [PlatypusUtility sizeAsHumanReadable:estimatedAppSize];
 }

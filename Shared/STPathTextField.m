@@ -142,9 +142,9 @@
  to red if invalid path, black if valid
  ********************************************/
 - (void)updateTextColoring {
-    if (!colorInvalidPath)
+    if (!colorInvalidPath) {
         return;
-    
+    }
     NSColor *textColor = [self hasValidPath] ? [NSColor blackColor] : [NSColor redColor];
     [self setTextColor:textColor];
 }

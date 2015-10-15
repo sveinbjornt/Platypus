@@ -176,9 +176,9 @@
     
     //find an interpreter for it
     NSString *interpreter = [ScriptAnalyser determineInterpreterForScriptFile:scriptPath];
-    if ([interpreter isEqualToString:@""])
+    if (interpreter == nil) {
         interpreter = DEFAULT_INTERPRETER;
-    else {
+    } else {
         // get parameters to interpreter
         NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[ScriptAnalyser getInterpreterFromShebang:scriptPath]];
         [shebangCmdComponents removeObjectAtIndex:0];
