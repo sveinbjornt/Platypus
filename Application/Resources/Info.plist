@@ -296,7 +296,11 @@
             <key>UTTypeDescription</key>
             <string>Platypus Profile</string>
             <key>UTTypeIdentifier</key>
-            <string>public.platypus-profile</string>
+            <string>org.sveinbjorn.platypus-profile</string>
+            <key>UTTypeConformsTo</key>
+            <array>
+                <string>com.apple.property-list</string>
+            </array>
             <key>UTTypeTagSpecification</key>
             <dict>
                 <key>public.filename-extension</key>
