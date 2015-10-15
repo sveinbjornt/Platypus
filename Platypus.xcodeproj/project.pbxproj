@@ -49,6 +49,7 @@
 		F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269761BC9A1DC00169D8B /* Status-Menu.png */; settings = {ASSET_TAGS = (); }; };
 		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; settings = {ASSET_TAGS = (); }; };
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; settings = {ASSET_TAGS = (); }; };
+		F48269861BCB1EAB00169D8B /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269851BCB1EAB00169D8B /* VDKQueue.m */; settings = {ASSET_TAGS = (); }; };
 		F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F48B1EDC17935AF6007DA173 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
@@ -86,10 +87,6 @@
 		F4975DC01B2E71FC0099D16E /* Platypus.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBB1B2E71FC0099D16E /* Platypus.xib */; };
 		F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */; };
 		F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */; };
-		F4975DCC1B2E721D0099D16E /* UKFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DC51B2E721D0099D16E /* UKFileWatcher.m */; };
-		F4975DCD1B2E721D0099D16E /* UKFNSubscribeFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DC71B2E721D0099D16E /* UKFNSubscribeFileWatcher.m */; };
-		F4975DCE1B2E721D0099D16E /* UKKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DC91B2E721D0099D16E /* UKKQueue.m */; };
-		F4975DCF1B2E721D0099D16E /* UKMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DCB1B2E721D0099D16E /* UKMainThreadProxy.m */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
 		F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* PlatypusUtility.m */; };
 		F4B87C1A1B3C997300F4B8BE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B87C191B3C997300F4B8BE /* Accelerate.framework */; };
@@ -207,6 +204,8 @@
 		F482697E1BCAE1EE00169D8B /* TypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeListController.m; path = Application/TypeListController.m; sourceTree = "<group>"; };
 		F48269811BCAF1D800169D8B /* UniformTypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniformTypeListController.h; path = Application/UniformTypeListController.h; sourceTree = "<group>"; };
 		F48269821BCAF1D800169D8B /* UniformTypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniformTypeListController.m; path = Application/UniformTypeListController.m; sourceTree = "<group>"; };
+		F48269841BCB1EAB00169D8B /* VDKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VDKQueue.h; path = Shared/VDKQueue.h; sourceTree = "<group>"; };
+		F48269851BCB1EAB00169D8B /* VDKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VDKQueue.m; path = Shared/VDKQueue.m; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
 		F4876F45141D4A3900A428CC /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ScriptExec/MainMenu.xib; sourceTree = "<group>"; };
 		F48B1EDD17935BBC007DA173 /* ScriptAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptAnalyser.h; path = Shared/ScriptAnalyser.h; sourceTree = "<group>"; };
@@ -260,14 +259,6 @@
 		F4975DBB1B2E71FC0099D16E /* Platypus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Platypus.xib; path = Application/Resources/Platypus.xib; sourceTree = "<group>"; };
 		F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShellCommandWindow.xib; path = Application/Resources/ShellCommandWindow.xib; sourceTree = "<group>"; };
 		F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SyntaxChecker.xib; path = Application/Resources/SyntaxChecker.xib; sourceTree = "<group>"; };
-		F4975DC41B2E721D0099D16E /* UKFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKFileWatcher.h; sourceTree = "<group>"; };
-		F4975DC51B2E721D0099D16E /* UKFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKFileWatcher.m; sourceTree = "<group>"; };
-		F4975DC61B2E721D0099D16E /* UKFNSubscribeFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKFNSubscribeFileWatcher.h; sourceTree = "<group>"; };
-		F4975DC71B2E721D0099D16E /* UKFNSubscribeFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKFNSubscribeFileWatcher.m; sourceTree = "<group>"; };
-		F4975DC81B2E721D0099D16E /* UKKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKKQueue.h; sourceTree = "<group>"; };
-		F4975DC91B2E721D0099D16E /* UKKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKKQueue.m; sourceTree = "<group>"; };
-		F4975DCA1B2E721D0099D16E /* UKMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKMainThreadProxy.h; sourceTree = "<group>"; };
-		F4975DCB1B2E721D0099D16E /* UKMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKMainThreadProxy.m; sourceTree = "<group>"; };
 		F4A4338B0E04C962000523E7 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Common.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F4AF785B14D1E5F200544C1B /* STDragWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragWebView.h; path = Shared/STDragWebView.h; sourceTree = "<group>"; };
 		F4AF785C14D1E5F200544C1B /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = Shared/STDragWebView.m; sourceTree = "<group>"; };
@@ -335,9 +326,9 @@
 		080E96DDFE201D6D7F000001 /* Shared Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F48269871BCB1EAF00169D8B /* VDKQueue */,
 				F48269661BC9929A00169D8B /* NSTask+Description */,
 				F4ECE17511F76CC2000DB012 /* PlatypusAppSpec */,
-				F4975DC31B2E721D0099D16E /* UKKQueue */,
 				F4AF785E14D1E5F600544C1B /* STDragWebView */,
 				F4B5DE431491A00900C43901 /* Utility */,
 				F48A724D122E23B200964D71 /* ScriptAnalyser */,
@@ -558,6 +549,15 @@
 			name = "Drop Settings";
 			sourceTree = "<group>";
 		};
+		F48269871BCB1EAF00169D8B /* VDKQueue */ = {
+			isa = PBXGroup;
+			children = (
+				F48269841BCB1EAB00169D8B /* VDKQueue.h */,
+				F48269851BCB1EAB00169D8B /* VDKQueue.m */,
+			);
+			name = VDKQueue;
+			sourceTree = "<group>";
+		};
 		F48A724D122E23B200964D71 /* ScriptAnalyser */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,22 +606,6 @@
 				F4975D6F1B2E09280099D16E /* NSFileManager+TempFile.m */,
 			);
 			name = "NSFileManager+TempFile";
-			sourceTree = "<group>";
-		};
-		F4975DC31B2E721D0099D16E /* UKKQueue */ = {
-			isa = PBXGroup;
-			children = (
-				F4975DC41B2E721D0099D16E /* UKFileWatcher.h */,
-				F4975DC51B2E721D0099D16E /* UKFileWatcher.m */,
-				F4975DC61B2E721D0099D16E /* UKFNSubscribeFileWatcher.h */,
-				F4975DC71B2E721D0099D16E /* UKFNSubscribeFileWatcher.m */,
-				F4975DC81B2E721D0099D16E /* UKKQueue.h */,
-				F4975DC91B2E721D0099D16E /* UKKQueue.m */,
-				F4975DCA1B2E721D0099D16E /* UKMainThreadProxy.h */,
-				F4975DCB1B2E721D0099D16E /* UKMainThreadProxy.m */,
-			);
-			name = UKKQueue;
-			path = Application/UKKQueue;
 			sourceTree = "<group>";
 		};
 		F4AF785E14D1E5F600544C1B /* STDragWebView */ = {
@@ -926,7 +910,6 @@
 			files = (
 				F4975DB61B2E71EE0099D16E /* SuffixListController.m in Sources */,
 				F4975D751B2E09310099D16E /* STPrivilegedTask.m in Sources */,
-				F4975DCC1B2E721D0099D16E /* UKFileWatcher.m in Sources */,
 				F4975DB41B2E71EE0099D16E /* ShellCommandController.m in Sources */,
 				F4975DAB1B2E71EE0099D16E /* BundledFilesController.m in Sources */,
 				F4975DAA1B2E71EE0099D16E /* ArgsController.m in Sources */,
@@ -936,7 +919,6 @@
 				F4975DB21B2E71EE0099D16E /* ProfilesController.m in Sources */,
 				F4538B2C1ABFEB14007E6ADF /* NSString+CarbonFSRefCreation.m in Sources */,
 				F4975DAF1B2E71EE0099D16E /* PlatypusController.m in Sources */,
-				F4975DCF1B2E721D0099D16E /* UKMainThreadProxy.m in Sources */,
 				F4975DAE1B2E71EE0099D16E /* IconController.m in Sources */,
 				F4975DB01B2E71EE0099D16E /* PlatypusIconView.m in Sources */,
 				F4975DB81B2E71EE0099D16E /* TextSettingsController.m in Sources */,
@@ -945,16 +927,15 @@
 				F4975DAC1B2E71EE0099D16E /* DropSettingsController.m in Sources */,
 				F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
 				F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */,
-				F4975DCE1B2E721D0099D16E /* UKKQueue.m in Sources */,
 				F4975DAD1B2E71EE0099D16E /* EditorController.m in Sources */,
 				F4975D711B2E09280099D16E /* NSFileManager+TempFile.m in Sources */,
 				F4B5DE4214919FF500C43901 /* PlatypusUtility.m in Sources */,
-				F4975DCD1B2E721D0099D16E /* UKFNSubscribeFileWatcher.m in Sources */,
 				F48269691BC9934800169D8B /* NSTask+Description.m in Sources */,
 				F4538B2B1ABFEB14007E6ADF /* IconFamily.m in Sources */,
 				F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */,
 				F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */,
 				F48B1EE017935BBC007DA173 /* ScriptAnalyser.m in Sources */,
+				F48269861BCB1EAB00169D8B /* VDKQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

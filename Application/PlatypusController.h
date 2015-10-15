@@ -57,7 +57,7 @@
 #import "NSColor+HexTools.h"
 
 #import "IconFamily.h"
-#import "UKKQueue.h"
+#import "VDKQueue.h"
 
 @class ProfilesController, StatusItemSettingsController, IconController;
 @interface PlatypusController : NSObject
@@ -113,6 +113,8 @@
     IBOutlet StatusItemSettingsController *statusItemSettingsController;
     IBOutlet PrefsController *prefsController;
     IBOutlet BundledFilesController *bundledFilesController;
+    
+    VDKQueue *fileWatcherQueue;
 }
 
 - (IBAction)newScript:(id)sender;

@@ -34,11 +34,13 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
+#import "VDKQueue.h"
 
 @interface BundledFilesController : NSObject <NSTableViewDataSource>
 {
-    UInt64 totalSize;
+    UInt64 totalFileSize;
     NSMutableArray *files;
+    VDKQueue *fileWatcherQueue;
     
     IBOutlet id window;
     IBOutlet id addFileButton;
@@ -52,7 +54,7 @@
     IBOutlet id platypusController;
 }
 - (void)itemDoubleClicked:(id)sender;
-- (NSString *)getFileAtIndex:(int)index;
+- (NSString *)filePathAtIndex:(int)index;
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView;
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
 - (void)addFile:(NSString *)file;
@@ -61,7 +63,7 @@
 - (void)clearList;
 - (int)numFiles;
 - (void)updateQueueWatch;
-- (NSArray *)getFilesArray;
+- (NSArray *)filePaths;
 - (void)removeFile:(int)index;
 - (void)revealInFinder:(int)index;
 - (IBAction)copyFilename:(id)sender;
@@ -79,7 +81,7 @@
 - (NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo> ) info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation;
 - (void)updateFileSizeField;
 - (BOOL)allPathsAreValid;
-- (UInt64)getTotalSize;
+- (UInt64)totalFileSize;
 - (void)trackedFileDidChange;
 
 @end

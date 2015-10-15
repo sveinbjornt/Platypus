@@ -1,5 +1,4 @@
 For 5.1
-    TODO: Rethink and redesign the interface. It's a bit cluttered, hasn't changed much for 10 years, and could do with a dash of modernity.
     TODO: Implement automated testing!
     TODO: Get STDERR output and pid for STPrivilegedTask
     TODO: Create Platypus tutorial videos, make them available online
@@ -8,22 +7,25 @@ For 5.1
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO: Fix broken "Select Image file as icon..." functionality on retina displays. Requires IconFamily update.
     TODO: New button-based output mode?
+    TODO: New retina icons in script type popup button
+    TODO: Save authentication password?
 
 
 For 5.0
     TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
     TODO: Fix filewatcher so it doesn't clear queue whenever script file name changes
     TODO: Long GNU named params for command line tool, e.g. --some-option
-    TODO: Save authentication password?
     TODO: Fix Provide as Mac OS X service
-    TODO: Support UTIs for drop settings
+    TODO: Update documentation with information for Uniform Type Identifiers
     TODO: Fix issue with generating icon from imageview on retina macs (IconFamily issue)
-    TODO: New retina icons in script type popup button
+    TODO: Drop targets do not work with “Remain running after initial execution” off
+    TODO: Make icon brighter?
 
-
+    * Migrated from UKKqueue to VDKQueue and got all file system watching working properly again
+    * UTIs (Uniform Type Identifiers) are now supported in drop settings
     * More examples
     * Scripts can now send messages to Notification Center via the NOTIFICATION:* syntax
-    * New help button in main application window
+    * New help buttons in main window and drop settings
     * Previewing status item menu now shows actual script output instead of placeholder text
     * Status menu items can now only have a title or an icon, not both, due to changes in Mac OS X
     * Show Shell Command window now shows install status of command line tool
@@ -32,17 +34,17 @@ For 5.0
     * Built with XCode 7 and now requires Mac OS X 10.7 or later and a 64-bit Intel system. Older versions continue to work just fine on 32-bit 10.6 systems, and version 4.4 still works on PowerPC. But it's time to leave the past behind. It's been 9 years since the last 32-bit Mac was released.
     * Syntax checker window now shows the command invoked when checking script syntax
     * App size estimation is now more accurate
+    * New contexual menu button for icon view
     * "Copy icon path" option in icon contextual menu
     * Modernization of some user interface elements
     * Better keyboard shortcuts for built-in editor
-    * Text size can be set in built-in editor
+    * Text size can be controlled in built-in editor
     * Proper icon temp file handling
     * New retina-quality default status menu icon
     * Fixed issue with Open... menu item and file types in ScriptExec
     * Font size in web output view can now also be increased/reduced
     * Increased text size in built-in editor
     * Revised and updated documentation
-    * Status items can no longer have both icon and title due to changes in OS X Yosemite
     * Dynamic (in code) install path for command line tool scripts
     * Platypus-generated apps now remember font size set by user
     * Auto-focus on app name text field on app launch

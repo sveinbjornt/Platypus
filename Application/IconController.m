@@ -31,10 +31,16 @@
 #import "IconController.h"
 #import "IconFamily.h"
 #import "PlatypusUtility.h"
-#import "UKKQueue.h"
 #import "Common.h"
 
 @implementation IconController
+
+- (instancetype)init {
+    if ((self = [super init])) {
+        fileWatcherQueue = [[VDKQueue alloc] init];
+    }
+    return self;
+}
 
 - (void)dealloc {
     [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
@@ -42,15 +48,16 @@
     if (icnsFilePath != nil) {
         [icnsFilePath release];
     }
+    [fileWatcherQueue release];
     [super dealloc];
 }
 
 - (void)awakeFromNib {
     // we list ourself as an observer of changes to file system, in case of icns file moving
     [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver:self selector:@selector(updateIcnsStatus) name:UKFileWatcherRenameNotification object:nil];
+     addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueRenameNotification object:nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter]
-     addObserver:self selector:@selector(updateIcnsStatus) name:UKFileWatcherDeleteNotification object:nil];
+     addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueDeleteNotification object:nil];
 }
 
 #pragma mark -
@@ -77,7 +84,7 @@
 #pragma mark -
 
 - (void)updateIcnsStatus {
-    if ([self hasIcns] && ![FILEMGR fileExistsAtPath:icnsFilePath] && ![icnsFilePath isEqualToString:@""]) {
+    if ([self hasIcns] && ![FILEMGR fileExistsAtPath:icnsFilePath]) {
         [iconNameTextField setTextColor:[NSColor redColor]];
     } else {
         [iconNameTextField setTextColor:[NSColor blackColor]];
@@ -91,9 +98,8 @@
 
 #pragma mark -
 
--(IBAction)iconActionButtonPressed:(id)sender {
-    NSButton *button = (NSButton *)sender;
-    NSRect screenRect = [[platypusController window] convertRectToScreen:button.frame];
+- (IBAction)iconActionButtonPressed:(id)sender {
+    NSRect screenRect = [[platypusController window] convertRectToScreen:[(NSButton *)sender frame]];
     [iconContextualMenu popUpMenuPositioningItem:nil atLocation:screenRect.origin inView:nil ];
 }
 
@@ -184,7 +190,7 @@
 }
 
 - (BOOL)hasIcns {
-    return (icnsFilePath != nil && [FILEMGR fileExistsAtPath:icnsFilePath]);
+    return (icnsFilePath != nil);
 }
 
 - (NSString *)icnsFilePath {
@@ -192,7 +198,9 @@
 }
 
 - (void)setIcnsFilePath:(NSString *)path {
+    
     if (icnsFilePath != nil) {
+        [fileWatcherQueue removePath:icnsFilePath];
         [icnsFilePath release];
     }
     
@@ -201,7 +209,7 @@
     } else {
         icnsFilePath = [[NSString alloc] initWithString:path];
         if (![icnsFilePath isEqualToString:@""]) {
-            [[UKKQueue sharedFileWatcher] addPathToQueue:path];
+            [fileWatcherQueue addPath:path];
         }
     }
     [self updateIcnsStatus];
@@ -209,7 +217,7 @@
 }
 
 - (UInt64)iconSize {
-    if (![self hasIcns]) {
+    if (![self hasIcns] || ![FILEMGR fileExistsAtPath:icnsFilePath]) {
         return 400000; // just guess the icon will be 400k in size
     }
     // else, just size of icns file

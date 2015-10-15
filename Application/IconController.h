@@ -30,6 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PlatypusController.h"
+#import "VDKQueue.h"
 
 @interface IconController : NSObject
 {
@@ -41,6 +42,7 @@
     IBOutlet NSMenu *iconContextualMenu;
     IBOutlet NSButton *iconActionButton;
     NSString *icnsFilePath;
+    VDKQueue *fileWatcherQueue;
 }
 - (IBAction)iconActionButtonPressed:(id)sender;
 - (IBAction)copyIconPath:(id)sender;

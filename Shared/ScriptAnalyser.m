@@ -29,7 +29,7 @@
  */
 
 //
-//  This is a class with convenience and analytical methods for the
+//  This is a class with convenience and analysis methods for the
 //  script file types handled by Platypus.
 //
 
@@ -98,31 +98,33 @@
                                                 @"send \"Hello, world\\n\"",
                                                 @"<?php\necho \"Hello, World\";\n?>",
                                                 @"",
-                                                nil] forKeys:[NSArray arrayWithObjects:
-                                                              @"Shell",
-                                                              @"Bash",
-                                                              @"Csh",
-                                                              @"Tcsh",
-                                                              @"Ksh",
-                                                              @"Zsh",
-                                                              @"Env",
-                                                              @"Perl",
-                                                              @"Python",
-                                                              @"Ruby",
-                                                              @"AppleScript",
-                                                              @"Tcl",
-                                                              @"Expect",
-                                                              @"PHP",
-                                                              @"Other...",
-                                                              nil]];
+                                                nil]
+                                       forKeys:[NSArray arrayWithObjects:
+                                                @"Shell",
+                                                @"Bash",
+                                                @"Csh",
+                                                @"Tcsh",
+                                                @"Ksh",
+                                                @"Zsh",
+                                                @"Env",
+                                                @"Perl",
+                                                @"Python",
+                                                @"Ruby",
+                                                @"AppleScript",
+                                                @"Tcl",
+                                                @"Expect",
+                                                @"PHP",
+                                                @"Other...",
+                                                nil]];
 }
 
 + (NSString *)displayNameForInterpreter:(NSString *)theInterpreter {
     NSArray *interpreters = [self interpreters];
-    int i;
-    for (i = 0; i < [interpreters count]; i++)
-        if ([theInterpreter isEqualToString:[interpreters objectAtIndex:i]])
+    for (int i = 0; i < [interpreters count]; i++) {
+        if ([theInterpreter isEqualToString:[interpreters objectAtIndex:i]]) {
             return [[self interpreterDisplayNames] objectAtIndex:i];
+        }
+    }
     
     return @"Other...";
 }
@@ -131,10 +133,11 @@
     NSArray *interpreters = [self interpreters];
     NSArray *interpreterDisplayNames = [self interpreterDisplayNames];
     
-    int i;
-    for (i = 0; i < [interpreterDisplayNames count]; i++)
-        if ([name isEqualToString:[interpreterDisplayNames objectAtIndex:i]])
+    for (int i = 0; i < [interpreterDisplayNames count]; i++) {
+        if ([name isEqualToString:[interpreterDisplayNames objectAtIndex:i]]) {
             return [interpreters objectAtIndex:i];
+        }
+    }
     
     return @"";
 }
@@ -146,35 +149,35 @@
 + (NSString *)interpreterFromSuffix:(NSString *)fileName {
     NSArray *interpreters = [self interpreters];
     
-    if ([fileName hasSuffix:@".sh"] || [fileName hasSuffix:@".command"])
+    if ([fileName hasSuffix:@".sh"] || [fileName hasSuffix:@".command"]) {
         return [interpreters objectAtIndex:0];
-    else if ([fileName hasSuffix:@".bash"])
+    } else if ([fileName hasSuffix:@".bash"]) {
         return [interpreters objectAtIndex:1];
-    else if ([fileName hasSuffix:@".csh"])
+    } else if ([fileName hasSuffix:@".csh"]) {
         return [interpreters objectAtIndex:2];
-    else if ([fileName hasSuffix:@".tcsh"])
+    } else if ([fileName hasSuffix:@".tcsh"]) {
         return [interpreters objectAtIndex:3];
-    else if ([fileName hasSuffix:@".ksh"])
+    } else if ([fileName hasSuffix:@".ksh"]) {
         return [interpreters objectAtIndex:4];
-    else if ([fileName hasSuffix:@".zsh"])
+    } else if ([fileName hasSuffix:@".zsh"]) {
         return [interpreters objectAtIndex:5];
-    else if ([fileName hasSuffix:@".pl"] || [fileName hasSuffix:@".perl"] || [fileName hasSuffix:@".pm"])
+    } else if ([fileName hasSuffix:@".pl"] || [fileName hasSuffix:@".perl"] || [fileName hasSuffix:@".pm"]) {
         return [interpreters objectAtIndex:6];
-    else if ([fileName hasSuffix:@".py"] || [fileName hasSuffix:@".python"] || [fileName hasSuffix:@".objpy"])
+    } else if ([fileName hasSuffix:@".py"] || [fileName hasSuffix:@".python"] || [fileName hasSuffix:@".objpy"]) {
         return [interpreters objectAtIndex:7];
-    else if ([fileName hasSuffix:@".rb"] || [fileName hasSuffix:@".rbx"] || [fileName hasSuffix:@".ruby"] | [fileName hasSuffix:@".rbw"])
+    } else if ([fileName hasSuffix:@".rb"] || [fileName hasSuffix:@".rbx"] || [fileName hasSuffix:@".ruby"] | [fileName hasSuffix:@".rbw"]) {
         return [interpreters objectAtIndex:8];
-    else if ([fileName hasSuffix:@".scpt"] || [fileName hasSuffix:@".applescript"] || [fileName hasSuffix:@".osascript"])
+    } else if ([fileName hasSuffix:@".scpt"] || [fileName hasSuffix:@".applescript"] || [fileName hasSuffix:@".osascript"]) {
         return [interpreters objectAtIndex:9];
-    else if ([fileName hasSuffix:@".tcl"] || [fileName hasSuffix:@".tcsh"])
+    } else if ([fileName hasSuffix:@".tcl"] || [fileName hasSuffix:@".tcsh"]) {
         return [interpreters objectAtIndex:10];
-    else if ([fileName hasSuffix:@".exp"] || [fileName hasSuffix:@".expect"])
+    } else if ([fileName hasSuffix:@".exp"] || [fileName hasSuffix:@".expect"]) {
         return [interpreters objectAtIndex:11];
-    else if ([fileName hasSuffix:@".php"] || [fileName hasSuffix:@".php4"] || [fileName hasSuffix:@".php5"] ||
-             [fileName hasSuffix:@".php3"] || [fileName hasSuffix:@".hp3"] || [fileName hasSuffix:@".ph4"] || [fileName hasSuffix:@".phtml"])
+    } else if ([fileName hasSuffix:@".php"] || [fileName hasSuffix:@".php4"] || [fileName hasSuffix:@".php5"] ||
+             [fileName hasSuffix:@".php3"] || [fileName hasSuffix:@".hp3"] || [fileName hasSuffix:@".ph4"] || [fileName hasSuffix:@".phtml"]) {
         return [interpreters objectAtIndex:12];
-    
-    return @"";
+    }
+    return nil;
 }
 
 /***********************************************************************************************
@@ -190,13 +193,15 @@
     NSString *firstLine = [lines objectAtIndex:0];
 
     // if shorter than 2 chars, it can't possibly be a shebang line
-    if ([firstLine length] <= 2)
+    if ([firstLine length] <= 2) {
         return [NSArray arrayWithObject:@""];
+    }
     
     // get first two characters of first line
     NSString *shebang = [firstLine substringToIndex:2];  // first two characters should be #!
-    if (![shebang isEqualToString:@"#!"])
+    if (![shebang isEqualToString:@"#!"]) {
         return [NSArray arrayWithObject:@""];
+    }
     
     // get everything that follows after the #!
     // seperate it by whitespaces, in order not to get also the params to the interpreter
@@ -219,10 +224,10 @@
     // iterate over each word, capitalize and append to app name
     NSArray *words = [name componentsSeparatedByString:@" "];
     NSString *appName = @"";
-    int i;
-    for (i = 0; i < [words count]; i++) {
-        if (i != 0)
+    for (int i = 0; i < [words count]; i++) {
+        if (i != 0) {
             appName = [appName stringByAppendingString:@" "];
+        }
         appName = [appName stringByAppendingString:[[words objectAtIndex:i] capitalizedString]];
     }
     return appName;
@@ -234,9 +239,9 @@
 
 + (NSString *)determineInterpreterForScriptFile:(NSString *)path {
     NSString *interpreter = [[self getInterpreterFromShebang:path] objectAtIndex:0];
-    if (![interpreter isEqualToString:@""])
+    if (interpreter != nil && ![interpreter isEqualToString:@""]) {
         return interpreter;
-    
+    }
     return [self interpreterFromSuffix:path];
 }
 
@@ -250,41 +255,41 @@
     NSPipe *outputPipe = [NSPipe pipe];
     NSFileHandle *readHandle;
     
-    if (![FILEMGR fileExistsAtPath:scriptPath])  //make sure it exists
+    if (![FILEMGR fileExistsAtPath:scriptPath]) { //make sure it exists
         return @"File does not exist";
+    }
     
-    if (interpreter == nil || [interpreter isEqualToString:@""])
+    if (interpreter == nil || [interpreter isEqualToString:@""]) {
         interpreter = [self determineInterpreterForScriptFile:scriptPath];
+    }
     
-    if ([interpreter isEqualToString:@""])
+    if (interpreter == nil || [interpreter isEqualToString:@""]) {
         return @"Unable to determine script interpreter";
+    }
     
     //let's see if the script type is supported for syntax checking
     //if so, we set up the task's launch path as the script interpreter and set the relevant flags and arguments
     NSArray *args = nil;
     
-    if ([interpreter isEqualToString:@"/bin/sh"])
+    if ([interpreter isEqualToString:@"/bin/sh"]) {
         args = [NSArray arrayWithObjects:@"-n", scriptPath, nil];
-    else if ([interpreter isEqualToString:@"/bin/bash"])
+    } else if ([interpreter isEqualToString:@"/bin/bash"]) {
         args = [NSArray arrayWithObjects:@"-n", scriptPath, nil];
-    else if ([interpreter isEqualToString:@"/usr/bin/perl"])
+    } else if ([interpreter isEqualToString:@"/usr/bin/perl"]) {
         args = [NSArray arrayWithObjects:@"-c", scriptPath, nil];
-    else if ([interpreter isEqualToString:@"/usr/bin/ruby"])
+    } else if ([interpreter isEqualToString:@"/usr/bin/ruby"]) {
         args = [NSArray arrayWithObjects:@"-c", scriptPath, nil];
-    else if ([interpreter isEqualToString:@"/usr/bin/php"])
+    } else if ([interpreter isEqualToString:@"/usr/bin/php"]) {
         args = [NSArray arrayWithObjects:@"-l", scriptPath, nil];
-    else if ([interpreter isEqualToString:@"/usr/bin/python"]) {
+    } else if ([interpreter isEqualToString:@"/usr/bin/python"]) {
         args = [NSArray arrayWithObjects:@"-m", @"py_compile", scriptPath, nil];
     } else {
         return [NSString stringWithFormat:@"Syntax Checking is not supported by interpreter %@", interpreter];
     }
     
     task = [[NSTask alloc] init];
-    
     [task setLaunchPath:interpreter];
     [task setArguments:args];
-    
-    //direct the output of the task into a file handle for reading
     [task setStandardOutput:outputPipe];
     [task setStandardError:outputPipe];
     readHandle = [outputPipe fileHandleForReading];
