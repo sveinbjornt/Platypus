@@ -30,7 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "SuffixListController.h"
-#import "PlatypusUtility.h"
+#import "Utils.h"
 #import "UniformTypeListController.h"
 
 @interface DropSettingsController : NSObject <NSTableViewDelegate>

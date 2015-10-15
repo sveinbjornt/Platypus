@@ -51,7 +51,7 @@
 #import "DropSettingsController.h"
 #import "SuffixListController.h"
 
-#import "PlatypusUtility.h"
+#import "Utils.h"
 #import "STPathTextField.h"
 #import "BundledFilesController.h"
 #import "NSColor+HexTools.h"

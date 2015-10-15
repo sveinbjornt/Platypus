@@ -85,13 +85,13 @@
     
     // app support folder
     if (![FILEMGR fileExistsAtPath:APP_SUPPORT_FOLDER isDirectory:&isDir] && ![FILEMGR createDirectoryAtPath:APP_SUPPORT_FOLDER withIntermediateDirectories:NO attributes:nil error:nil]) {
-            [PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]];
+            [Utils alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]];
     }
     
     // profiles folder
     if (![FILEMGR fileExistsAtPath:PROFILES_FOLDER isDirectory:&isDir]) {
         if (![FILEMGR createDirectoryAtPath:PROFILES_FOLDER withIntermediateDirectories:NO attributes:nil error:nil]) {
-            [PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", PROFILES_FOLDER]];
+            [Utils alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", PROFILES_FOLDER]];
         }
     }
     
@@ -202,7 +202,7 @@
 
 - (IBAction)revealScript:(id)sender {
     if ([FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]] == NO) {
-        [PlatypusUtility alert:@"File not found" subText:@"No file exists at the specified path"];
+        [Utils alert:@"File not found" subText:@"No file exists at the specified path"];
     }
     [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:[scriptPathTextField stringValue]];
 }
@@ -214,7 +214,7 @@
 - (IBAction)editScript:(id)sender {
     //see if file exists
     if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
-        [PlatypusUtility alert:@"File does not exist" subText:@"No file exists at the specified path"];
+        [Utils alert:@"File does not exist" subText:@"No file exists at the specified path"];
         return;
     }
     
@@ -227,7 +227,7 @@
             [[NSWorkspace sharedWorkspace] openFile:[scriptPathTextField stringValue] withApplication:defaultEditor];
         } else {
             // Complain if editor is not found, set it to the built-in editor
-            [PlatypusUtility alert:@"Application not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
+            [Utils alert:@"Application not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
             [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
         }
@@ -324,7 +324,7 @@
     
     // optimize nib is enabled and on by default if ibtool is present
     [optimizeApplicationCheckbox setIntValue:[[DEFAULTS objectForKey:@"OnCreateOptimizeNib"] boolValue]];
-    BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:[PlatypusUtility ibtoolPath]];
+    BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:[Utils ibtoolPath]];
     [optimizeApplicationCheckbox setEnabled:ibtoolInstalled];
     if (!ibtoolInstalled) {
         [optimizeApplicationCheckbox setIntValue:0];
@@ -402,7 +402,7 @@
     
     // verify that the values in the spec are OK
     if (![spec verify]) {
-        [PlatypusUtility alert:@"Spec verification failed" subText:[spec error]];
+        [Utils alert:@"Spec verification failed" subText:[spec error]];
         return NO;
     }
     
@@ -426,7 +426,7 @@
         [NSApp endSheet:progressDialogWindow];
         [progressDialogWindow orderOut:self];
         
-        [PlatypusUtility alert:@"Creating from spec failed" subText:[spec error]];
+        [Utils alert:@"Creating from spec failed" subText:[spec error]];
         return NO;
     }
     
@@ -465,32 +465,32 @@
     
     //script path
     if ([[appNameTextField stringValue] length] == 0) { //make sure a name has been assigned
-        [PlatypusUtility sheetAlert:@"Invalid Application Name" subText:@"You must specify a name for your application" forWindow:window];
+        [Utils sheetAlert:@"Invalid Application Name" subText:@"You must specify a name for your application" forWindow:window];
         return NO;
     }
     
     //script path
     if (([fileManager fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] == NO) || isDir) { //make sure script exists and isn't a folder
-        [PlatypusUtility sheetAlert:@"Invalid Script Path" subText:@"No file exists at the script path you have specified" forWindow:window];
+        [Utils sheetAlert:@"Invalid Script Path" subText:@"No file exists at the script path you have specified" forWindow:window];
         return NO;
     }
     
     //make sure we have an icon
     if (([iconController hasIcns] && ![[iconController icnsFilePath] isEqualToString:@""] && ![fileManager fileExistsAtPath:[iconController icnsFilePath]])
         ||  (![(IconController *)iconController hasIcns] && [(IconController *)iconController imageData] == nil)) {
-        [PlatypusUtility sheetAlert:@"Missing Icon" subText:@"You must set an icon for your application." forWindow:window];
+        [Utils sheetAlert:@"Missing Icon" subText:@"You must set an icon for your application." forWindow:window];
         return NO;
     }
     
     // let's be certain that the bundled files list doesn't contain entries that have been moved
     if (![bundledFilesController allPathsAreValid]) {
-        [PlatypusUtility sheetAlert:@"Moved or missing files" subText:@"One or more of the files that are to be bundled with the application have been moved.  Please rectify this and try again." forWindow:window];
+        [Utils sheetAlert:@"Moved or missing files" subText:@"One or more of the files that are to be bundled with the application have been moved.  Please rectify this and try again." forWindow:window];
         return NO;
     }
     
     //interpreter
     if ([fileManager fileExistsAtPath:[interpreterTextField stringValue]] == NO) {
-        if ([PlatypusUtility proceedWarning:@"Invalid Interpreter" subText:@"The specified interpreter does not exist on this system.  Do you wish to proceed anyway?" withAction:@"Proceed"] == NO) {
+        if ([Utils proceedWarning:@"Invalid Interpreter" subText:@"The specified interpreter does not exist on this system.  Do you wish to proceed anyway?" withAction:@"Proceed"] == NO) {
             return NO;
         }
     }
@@ -888,7 +888,7 @@
 
 - (IBAction)showCommandLineString:(id)sender {
     if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
-        [PlatypusUtility alert:@"Missing script" subText:[NSString stringWithFormat:@"No file exists at path '%@'", [scriptPathTextField stringValue]]];
+        [Utils alert:@"Missing script" subText:[NSString stringWithFormat:@"No file exists at path '%@'", [scriptPathTextField stringValue]]];
         return;
     }
     
@@ -923,11 +923,11 @@
     estimatedAppSize += 4096; // AppSettings.plist
     estimatedAppSize += [iconController iconSize];
     estimatedAppSize += [dropSettingsController docIconSize];
-    estimatedAppSize += [PlatypusUtility fileOrFolderSize:[scriptPathTextField stringValue]];
-    estimatedAppSize += [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil]];
+    estimatedAppSize += [Utils fileOrFolderSize:[scriptPathTextField stringValue]];
+    estimatedAppSize += [Utils fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil]];
     
     // nib size is much smaller if compiled with ibtool
-    UInt64 nibSize = [PlatypusUtility fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil]];
+    UInt64 nibSize = [Utils fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil]];
     if ([FILEMGR fileExistsAtPath:IBTOOL_PATH] || [FILEMGR fileExistsAtPath:IBTOOL_PATH_2]) {
         nibSize = 0.60 * nibSize; // compiled nib is approximtely 65% of original
     }
@@ -936,7 +936,7 @@
     // bundled files altogether
     estimatedAppSize += [bundledFilesController totalFileSize];
     
-    return [PlatypusUtility sizeAsHumanReadable:estimatedAppSize];
+    return [Utils sizeAsHumanReadable:estimatedAppSize];
 }
 
 // Creates an NSTask from settings
@@ -1073,17 +1073,17 @@
 
 // Open Documentation.html file within app bundle
 - (IBAction)showHelp:(id)sender {
-    [PlatypusUtility openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
+    [Utils openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
 }
 
 // Open html version of 'platypus' command line tool's man page
 - (IBAction)showManPage:(id)sender {
-    [PlatypusUtility openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
+    [Utils openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
 }
 
 // Open Readme.html
 - (IBAction)showReadme:(id)sender {
-    [PlatypusUtility openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
+    [Utils openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
 }
 
 // Open program website
@@ -1093,7 +1093,7 @@
 
 // Open License html file
 - (IBAction)openLicense:(id)sender {
-    [PlatypusUtility openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
+    [Utils openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
 }
 
 // Open donations website

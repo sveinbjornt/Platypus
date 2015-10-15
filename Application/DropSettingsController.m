@@ -303,7 +303,7 @@
 - (UInt64)docIconSize;
 {
     if ([FILEMGR fileExistsAtPath:docIconPath]) {
-        return [PlatypusUtility fileOrFolderSize:docIconPath];
+        return [Utils fileOrFolderSize:docIconPath];
     }
     return 0;
 }

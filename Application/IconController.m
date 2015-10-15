@@ -30,7 +30,7 @@
 
 #import "IconController.h"
 #import "IconFamily.h"
-#import "PlatypusUtility.h"
+#import "Utils.h"
 #import "Common.h"
 
 @implementation IconController
@@ -178,7 +178,7 @@
 
 - (void)writeIconToPath:(NSString *)path {
     if ([iconImageView image] == nil) {
-        [PlatypusUtility alert:@"Icon Error" subText:@"No icon could be found for your application.  Please set an icon to fix this."];
+        [Utils alert:@"Icon Error" subText:@"No icon could be found for your application.  Please set an icon to fix this."];
     }
     IconFamily *iconFam = [[IconFamily alloc] initWithThumbnailsOfImage:[iconImageView image]];
     [iconFam writeToFile:path];
@@ -221,7 +221,7 @@
         return 400000; // just guess the icon will be 400k in size
     }
     // else, just size of icns file
-    return [PlatypusUtility fileOrFolderSize:[self icnsFilePath]];
+    return [Utils fileOrFolderSize:[self icnsFilePath]];
 }
 
 #pragma mark -
@@ -253,7 +253,7 @@
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[PlatypusUtility imageFileSuffixes]];
+    [oPanel setAllowedFileTypes:[Utils imageFileSuffixes]];
     
     // run open panel sheet
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
@@ -395,7 +395,7 @@
     
     // since no icns file, search for an image, load the first one we find
     for (i = 0; i < [files count]; i++) {
-        NSArray *supportedImageTypes = [PlatypusUtility imageFileSuffixes];
+        NSArray *supportedImageTypes = [Utils imageFileSuffixes];
         int j;
         for (j = 0; j < [supportedImageTypes count]; j++) {
             if ([[files objectAtIndex:i] hasSuffix:[supportedImageTypes objectAtIndex:j]]) {
@@ -430,7 +430,7 @@
         
         // copy plus for image file
         for (i = 0; i < [files count]; i++) {
-            NSArray *supportedImageTypes = [PlatypusUtility imageFileSuffixes];
+            NSArray *supportedImageTypes = [Utils imageFileSuffixes];
             int j;
             for (j = 0; j < [supportedImageTypes count]; j++) {
                 if ([[files objectAtIndex:i] hasSuffix:[supportedImageTypes objectAtIndex:j]]) {

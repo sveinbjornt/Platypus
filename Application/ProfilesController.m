@@ -63,7 +63,7 @@
     
     // make sure we got a spec from the file
     if (spec == nil) {
-        [PlatypusUtility alert:@"Error" subText:@"Unable to create Platypus spec from profile"];
+        [Utils alert:@"Error" subText:@"Unable to create Platypus spec from profile"];
         return;
     }
     
@@ -73,7 +73,7 @@
         NSString *scriptStr = [spec propertyForKey:@"Script"];
         NSString *scriptName = [spec propertyForKey:@"ScriptName"];
         if (scriptStr == nil || scriptName == nil) {
-            [PlatypusUtility alert:@"Error loading example" subText:@"Nil script value(s) in this example's profile dictionary."];
+            [Utils alert:@"Error loading example" subText:@"Nil script value(s) in this example's profile dictionary."];
             [spec release];
             return;
         }
@@ -153,7 +153,7 @@
 {
     // if there's a file already, make sure we can overwrite
     if ([FILEMGR fileExistsAtPath:profileDestPath] && ![FILEMGR isDeletableFileAtPath:profileDestPath]) {
-        [PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Cannot overwrite file '%@'.", profileDestPath]];
+        [Utils alert:@"Error" subText:[NSString stringWithFormat:@"Cannot overwrite file '%@'.", profileDestPath]];
         return;
     }
     [dict writeToFile:profileDestPath atomically:YES];
@@ -188,7 +188,7 @@
  *****************************************/
 
 - (IBAction)clearAllProfiles:(id)sender {
-    if ([PlatypusUtility proceedWarning:@"Delete all profiles?" subText:@"This will permanently delete all profiles in your Profiles folder." withAction:@"Delete"] == 0) {
+    if ([Utils proceedWarning:@"Delete all profiles?" subText:@"This will permanently delete all profiles in your Profiles folder." withAction:@"Delete"] == 0) {
         return;
     }
     
@@ -202,7 +202,7 @@
         if ([filename hasSuffix:PROFILES_SUFFIX]) {
             NSString *path = [NSString stringWithFormat:@"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], filename];
             if (![manager isDeletableFileAtPath:path]) {
-                [PlatypusUtility alert:@"Error" subText:[NSString stringWithFormat:@"Cannot delete file %@.", path]];
+                [Utils alert:@"Error" subText:[NSString stringWithFormat:@"Cannot delete file %@.", path]];
             } else {
                 [manager removeItemAtPath:path error:nil];
             }

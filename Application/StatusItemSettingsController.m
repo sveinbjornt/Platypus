@@ -116,7 +116,7 @@
     [oPanel setTitle:[NSString stringWithFormat:@"%@ - Select Image", PROGRAM_NAME]];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[PlatypusUtility imageFileSuffixes]];
+    [oPanel setAllowedFileTypes:[Utils imageFileSuffixes]];
     
     if ([oPanel runModal] == NSOKButton) {
         NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
@@ -125,7 +125,7 @@
             [self setIcon:img];
             [img release];
         } else {
-            [PlatypusUtility alert:@"Corrupt Image File" subText:@"The image file you selected appears to be damaged or corrupt."];
+            [Utils alert:@"Corrupt Image File" subText:@"The image file you selected appears to be damaged or corrupt."];
         }
     }
 }

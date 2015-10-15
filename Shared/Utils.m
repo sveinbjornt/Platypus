@@ -28,17 +28,11 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*
- 
- A Swiss Army Knife class with a plethora of utility functions
- 
- */
-
-#import "PlatypusUtility.h"
+#import "Utils.h"
 #import <CoreServices/CoreServices.h>
 #import <ctype.h>
 
-@implementation PlatypusUtility
+@implementation Utils
 
 + (NSString *)removeWhitespaceInString:(NSString *)str {
     str = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -82,19 +76,6 @@
     }
     
     return wrds;
-}
-
-+ (BOOL)runningSnowLeopardOrLater {
-    SInt32 major = 0;
-    SInt32 minor = 0;
-    
-    Gestalt(gestaltSystemVersionMajor, &major);
-    Gestalt(gestaltSystemVersionMinor, &minor);
-    
-    if ((major == 10 && minor >= 6) || major > 10)
-        return TRUE;
-    
-    return FALSE;
 }
 
 + (BOOL)setPermissions:(short)pp forFile:(NSString *)path {
@@ -207,8 +188,6 @@
     [[NSWorkspace sharedWorkspace] openFile:path withApplication:app];
     return TRUE;
 }
-
-
 
 + (NSString *)loadBundledTemplate:(NSString *)templateFileName usingDictionary:(NSDictionary *)dict {
     
