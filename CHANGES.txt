@@ -22,7 +22,7 @@ For 5.0
     TODO: Make icon brighter?
 
     * Migrated from UKKqueue to VDKQueue and got all file system watching working properly again
-    * UTIs (Uniform Type Identifiers) are now supported in drop settings
+    * Uniform Type Identifiers (UTIs) are now supported in drop settings
     * More examples
     * Scripts can now send messages to Notification Center via the NOTIFICATION:* syntax
     * New help buttons in main window and drop settings
