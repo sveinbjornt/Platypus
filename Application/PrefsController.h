@@ -30,7 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 #include <Security/Authorization.h>
-#import "PlatypusUtility.h"
+#import "Utils.h"
 #import "STPrivilegedTask.h"
 #import "Common.h"
 #import "NSFileManager+TempFile.h"

@@ -28,16 +28,14 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import "Common.h"
 
-@interface PlatypusUtility : NSObject
+@interface Utils : NSObject
 + (NSString *)removeWhitespaceInString:(NSString *)str;
 + (BOOL)isTextFile:(NSString *)path;
 + (NSString *)ibtoolPath;
-//+ (BOOL)runningSnowLeopardOrLater;
 + (BOOL)setPermissions:(short)pp forFile:(NSString *)path;
 + (void)alert:(NSString *)message subText:(NSString *)subtext;
 + (void)fatalAlert:(NSString *)message subText:(NSString *)subtext;

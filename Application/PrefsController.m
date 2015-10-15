@@ -247,7 +247,7 @@
 }
 
 - (IBAction)uninstallPlatypus:(id)sender {
-    if ([PlatypusUtility proceedWarning:@"Are you sure you want to uninstall Platypus?"
+    if ([Utils proceedWarning:@"Are you sure you want to uninstall Platypus?"
                                 subText:@"This will move the Platypus application and all related files to the Trash.  The application will then quit."
                              withAction:@"Uninstall"]) {
         [self runCLTTemplateScript:@"UninstallPlatypus.sh" usingDictionary:[self commandLineEnvDict]];
@@ -284,7 +284,7 @@
  *****************************************/
 - (void)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
     
-    NSString *script = [PlatypusUtility loadBundledTemplate:scriptName usingDictionary:placeholderDict];
+    NSString *script = [Utils loadBundledTemplate:scriptName usingDictionary:placeholderDict];
     NSString *tmpScriptPath = [FILEMGR createTempFileWithContents:script usingTextEncoding:NSUTF8StringEncoding];
     chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // 744
     

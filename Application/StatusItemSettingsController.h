@@ -29,7 +29,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "PlatypusUtility.h"
+#import "Utils.h"
 #import "PlatypusController.h"
 
 @class PlatypusController;

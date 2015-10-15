@@ -277,7 +277,7 @@
     execDestinationPath = [macosPath stringByAppendingString:@"/"];
     execDestinationPath = [execDestinationPath stringByAppendingString:[properties objectForKey:@"Name"]];
     [fileManager copyItemAtPath:execPath toPath:execDestinationPath error:nil];
-    [PlatypusUtility setPermissions:S_IRWXU | S_IRWXG | S_IROTH forFile:execDestinationPath];    
+    [Utils setPermissions:S_IRWXU | S_IRWXG | S_IROTH forFile:execDestinationPath];    
     
     //copy nib file to app bundle
     //.app/Contents/Resources/MainMenu.nib
@@ -287,7 +287,7 @@
     
     // if optimize application is set, we see if we can compile the nib file
     
-    NSString *ibtoolPath = [PlatypusUtility ibtoolPath];
+    NSString *ibtoolPath = [Utils ibtoolPath];
     if ([[properties objectForKey:@"OptimizeApplication"] boolValue] == YES && ibtoolPath) {
         [self report:@"Optimizing nib file"];
         
@@ -314,7 +314,7 @@
         else // copy script over
             [fileManager copyItemAtPath:[properties objectForKey:@"ScriptPath"] toPath:scriptFilePath error:nil];
         
-        [PlatypusUtility setPermissions:S_IRWXU | S_IRWXG | S_IROTH forFile:scriptFilePath];
+        [Utils setPermissions:S_IRWXU | S_IRWXG | S_IROTH forFile:scriptFilePath];
     }
     
     //create AppSettings.plist file
@@ -788,7 +788,7 @@
     NSString *pre = (!def || [defaults isEqualToString:@""]) ? [NSString stringWithFormat:@"org.%@.", NSUserName()] : defaults;
     
     NSString *bundleId = [NSString stringWithFormat:@"%@%@", pre, name];
-    bundleId = [PlatypusUtility removeWhitespaceInString:bundleId]; //no spaces
+    bundleId = [Utils removeWhitespaceInString:bundleId]; //no spaces
     
     return bundleId;
 }

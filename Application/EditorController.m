@@ -50,7 +50,7 @@
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)theWindow {
     NSString *str = [NSString stringWithContentsOfFile:path encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:nil];
     if (str == nil) {
-        [PlatypusUtility alert:@"Error reading document" subText:@"This document does not appear to be a text file and cannot be opened with a text editor."];
+        [Utils alert:@"Error reading document" subText:@"This document does not appear to be a text file and cannot be opened with a text editor."];
         return;
     }
     
@@ -72,7 +72,7 @@
 
 - (IBAction)save:(id)sender {
     if (![FILEMGR isWritableFileAtPath:[scriptPathTextField stringValue]])
-        [PlatypusUtility alert:@"Unable to save changes" subText:@"You don't have the necessary privileges to save this text file."];
+        [Utils alert:@"Unable to save changes" subText:@"You don't have the necessary privileges to save this text file."];
     else
         [[textView string] writeToFile:[scriptPathTextField stringValue] atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:nil];
     
