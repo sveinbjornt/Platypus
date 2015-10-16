@@ -32,6 +32,8 @@
 #import "IconFamily.h"
 #import "Utils.h"
 #import "Common.h"
+#import "PlatypusController.h"
+#import "VDKQueue.h"
 
 @implementation IconController
 

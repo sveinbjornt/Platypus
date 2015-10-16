@@ -29,7 +29,6 @@
  */
 
 #import "TypeListController.h"
-#import "Common.h"
 
 @implementation TypeListController
 

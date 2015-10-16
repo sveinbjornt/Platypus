@@ -29,9 +29,8 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "PlatypusController.h"
-#import "VDKQueue.h"
 
+@class VDKQueue;
 @interface IconController : NSObject
 {
     IBOutlet id iconImageView;

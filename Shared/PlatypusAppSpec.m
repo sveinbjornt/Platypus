@@ -33,6 +33,9 @@
 
 
 #import "PlatypusAppSpec.h"
+#import "Common.h"
+#import "ScriptAnalyser.h"
+#import "Utils.h"
 
 @implementation PlatypusAppSpec
 
@@ -649,7 +652,7 @@
         }
         if ([[properties objectForKey:@"UniformTypes"] count]) {
             uniformTypesString = [[properties objectForKey:@"UniformTypes"] componentsJoinedByString:@"|"];
-            uniformTypesString = [NSString stringWithFormat:@"-T '%@' ", suffixesString];
+            uniformTypesString = [NSString stringWithFormat:@"-T '%@' ", uniformTypesString];
         }
     }
     

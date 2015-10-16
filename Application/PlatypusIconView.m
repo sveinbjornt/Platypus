@@ -29,7 +29,6 @@
  */
 
 #import "PlatypusIconView.h"
-#import "IconController.h"
 
 @implementation PlatypusIconView
 

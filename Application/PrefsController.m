@@ -30,6 +30,11 @@
 
 #import "PrefsController.h"
 #import <sys/stat.h>
+#import "Utils.h"
+#import "STPrivilegedTask.h"
+#import "Common.h"
+#import "NSFileManager+TempFile.h"
+
 
 @implementation PrefsController
 

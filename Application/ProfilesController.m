@@ -28,7 +28,12 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
+#import <Carbon/Carbon.h>
 #import "ProfilesController.h"
+#import "PlatypusAppSpec.h"
+#import "PlatypusController.h"
+#import "Common.h"
+#import "Utils.h"
 
 @implementation ProfilesController
 

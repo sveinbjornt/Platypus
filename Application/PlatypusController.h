@@ -32,34 +32,8 @@
 // main window interface.  Also delegate for the application, and for menus.
 
 #import <Cocoa/Cocoa.h>
-#import <Carbon/Carbon.h>
 
-#import "Common.h"
-
-#import "PlatypusAppSpec.h"
-#import "ScriptAnalyser.h"
-
-#import "IconController.h"
-#import "ArgsController.h"
-#import "ProfilesController.h"
-#import "PrefsController.h"
-#import "TextSettingsController.h"
-#import "StatusItemSettingsController.h"
-#import "EditorController.h"
-#import "ShellCommandController.h"
-
-#import "DropSettingsController.h"
-#import "SuffixListController.h"
-
-#import "Utils.h"
-#import "STPathTextField.h"
-#import "BundledFilesController.h"
-#import "NSColor+HexTools.h"
-
-#import "IconFamily.h"
-#import "VDKQueue.h"
-
-@class ProfilesController, StatusItemSettingsController, IconController;
+@class ProfilesController, StatusItemSettingsController, IconController, STPathTextField, DropSettingsController, ArgsController, ProfilesController, TextSettingsController, StatusItemSettingsController, PrefsController, BundledFilesController, VDKQueue;
 @interface PlatypusController : NSObject
 {
     //basic controls

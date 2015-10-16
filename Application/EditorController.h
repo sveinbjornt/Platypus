@@ -29,9 +29,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "Common.h"
-#import "Utils.h"
-#import "SyntaxCheckerController.h"
 
 @interface EditorController : NSWindowController
 {

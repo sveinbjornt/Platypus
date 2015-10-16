@@ -34,9 +34,13 @@
 // NOTE: It's also a complete mess and needs to be rewritten, it was one of the very first
 // pieces of code I ever wrote in Objective C, way back in the days...
 
+#import <Carbon/Carbon.h>
 #import "BundledFilesController.h"
+#import "VDKQueue.h"
+#import "EditorController.h"
 #import "PlatypusController.h"
 #import "Utils.h"
+#import "Common.h"
 
 @implementation BundledFilesController
 
