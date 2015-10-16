@@ -35,6 +35,7 @@
 #import "PlatypusController.h"
 #import "VDKQueue.h"
 
+
 @implementation IconController
 
 - (instancetype)init {
@@ -86,7 +87,7 @@
 #pragma mark -
 
 - (void)updateIcnsStatus {
-    if ([self hasIcns] && ![FILEMGR fileExistsAtPath:icnsFilePath]) {
+    if ([self hasIcns] && ![icnsFilePath isEqualToString:@""] && ![FILEMGR fileExistsAtPath:icnsFilePath]) {
         [iconNameTextField setTextColor:[NSColor redColor]];
     } else {
         [iconNameTextField setTextColor:[NSColor blackColor]];
@@ -140,7 +141,7 @@
     switch (type) {
         case 0:
             iconImage = [NSImage imageNamed:@"PlatypusDefault"];
-            iconName = @"Default";
+            iconName = @"Platypus Default";
             iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusDefault" ofType:@"icns"];
             break;
             
@@ -152,8 +153,8 @@
             
         case 2:
             iconImage = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
-            [iconImage setSize:NSMakeSize(256, 256)];
-            iconName = @"Generic";
+            [iconImage setSize:NSMakeSize(512, 512)];
+            iconName = @"Generic Application";
             iconPath = @"";
             break;
         

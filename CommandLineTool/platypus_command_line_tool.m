@@ -32,7 +32,6 @@
  Support files required for this program are defined in Common.h
  */
 
-#import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
 #import "Common.h"
