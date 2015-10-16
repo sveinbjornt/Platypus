@@ -23,6 +23,7 @@ For 5.0
     TODO: Get rid of crazy pattern where objects release themselves in the window controllers
     TODO: New high res images for documentation
 
+    * The built-in editor has been much improved, with line numbering, configurable text size and no more annoying quote substitution issues
     * Migrated from UKKqueue to VDKQueue and got all file system watching working properly again
     * Uniform Type Identifiers (UTIs) are now supported in drop settings
     * More examples
@@ -39,18 +40,15 @@ For 5.0
     * New contexual menu button for icon view
     * "Copy icon path" option in icon contextual menu
     * Modernization of some user interface elements
-    * Better keyboard shortcuts for built-in editor
-    * Text size can be controlled in built-in editor
     * Proper icon temp file handling
     * New retina-quality default status menu icon
     * Fixed issue with Open... menu item and file types in ScriptExec
     * Font size in web output view can now also be increased/reduced
-    * Increased text size in built-in editor
+
     * Revised and updated documentation
     * Dynamic (in code) install path for command line tool scripts
     * Platypus-generated apps now remember font size set by user
     * Auto-focus on app name text field on app launch
-    * Removed annoying smart quote substitution in built-in editor
     * Process number arguments in the format -psn_0_******* used by old version of the Finder are no longer passed to script
 
 For 4.9

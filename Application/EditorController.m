@@ -32,6 +32,7 @@
 #import "Common.h"
 #import "Utils.h"
 #import "SyntaxCheckerController.h"
+#import "NSTextView+JSDExtensions.h"
 
 @implementation EditorController
 
@@ -59,7 +60,14 @@
     
     [self loadWindow];
     [scriptPathTextField setStringValue:path];
+
+    [textView setShowsLineNumbers:YES];
+    
+    [wordWrapCheckbox setIntValue:[DEFAULTS boolForKey:@"EditorWordWrap"]];
+    [textView setWordwrapsText:[DEFAULTS boolForKey:@"EditorWordWrap"]];
+    
     [textView setString:str];
+    
     mainWindow = theWindow;
     
     [NSApp  beginSheet:[self window]
@@ -74,10 +82,11 @@
 #pragma mark -
 
 - (IBAction)save:(id)sender {
-    if (![FILEMGR isWritableFileAtPath:[scriptPathTextField stringValue]])
+    if (![FILEMGR isWritableFileAtPath:[scriptPathTextField stringValue]]) {
         [Utils alert:@"Unable to save changes" subText:@"You don't have the necessary privileges to save this text file."];
-    else
+    } else {
         [[textView string] writeToFile:[scriptPathTextField stringValue] atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:nil];
+    }
     
     [NSApp endSheet:[self window]];
     [NSApp stopModal];
@@ -101,6 +110,11 @@
 
 - (IBAction)revealInFinder:(id)sender {
     [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:[scriptPathTextField stringValue]];
+}
+
+- (IBAction)wordWrapCheckboxClicked:(id)sender {
+    [textView setWordwrapsText:[sender intValue]];
+    [DEFAULTS setBool:[sender intValue] forKey:@"EditorWordWrap"];
 }
 
 #pragma mark - Font size
