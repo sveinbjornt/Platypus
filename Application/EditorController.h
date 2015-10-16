@@ -34,6 +34,7 @@
 {
     IBOutlet id scriptPathTextField;
     IBOutlet id textView;
+    IBOutlet id wordWrapCheckbox;
     NSWindow *mainWindow;
 }
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)window;
@@ -43,4 +44,5 @@
 - (IBAction)revealInFinder:(id)sender;
 - (IBAction)makeTextBigger:(id)sender;
 - (IBAction)makeTextSmaller:(id)sender;
+- (IBAction)wordWrapCheckboxClicked:(id)sender;
 @end

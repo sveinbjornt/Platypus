@@ -92,6 +92,9 @@
 		F4B87C1B1B3C99AD00F4B8BE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B87C191B3C997300F4B8BE /* Accelerate.framework */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
+		F4C19A7C1BD1B7C100F411BD /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A771BD1B7C100F411BD /* NoodleLineNumberMarker.m */; settings = {ASSET_TAGS = (); }; };
+		F4C19A7D1BD1B7C100F411BD /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A791BD1B7C100F411BD /* NoodleLineNumberView.m */; settings = {ASSET_TAGS = (); }; };
+		F4C19A7E1BD1B7C100F411BD /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A7B1BD1B7C100F411BD /* NSTextView+JSDExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
 		F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074711F629930043764E /* InstallCommandLineTool.sh */; };
 		F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074911F629930043764E /* UninstallCommandLineTool.sh */; };
@@ -271,6 +274,12 @@
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
 		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
 		F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		F4C19A761BD1B7C100F411BD /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberMarker.h; sourceTree = "<group>"; };
+		F4C19A771BD1B7C100F411BD /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
+		F4C19A781BD1B7C100F411BD /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
+		F4C19A791BD1B7C100F411BD /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
+		F4C19A7A1BD1B7C100F411BD /* NSTextView+JSDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+JSDExtensions.h"; sourceTree = "<group>"; };
+		F4C19A7B1BD1B7C100F411BD /* NSTextView+JSDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+JSDExtensions.m"; sourceTree = "<group>"; };
 		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074911F629930043764E /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
@@ -325,6 +334,7 @@
 		080E96DDFE201D6D7F000001 /* Shared Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F4C19A751BD1B7C100F411BD /* NSTextView+JSDExtensions */,
 				F48269871BCB1EAF00169D8B /* VDKQueue */,
 				F48269661BC9929A00169D8B /* NSTask+Description */,
 				F4ECE17511F76CC2000DB012 /* PlatypusAppSpec */,
@@ -636,6 +646,20 @@
 			name = Scripts;
 			sourceTree = "<group>";
 		};
+		F4C19A751BD1B7C100F411BD /* NSTextView+JSDExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				F4C19A761BD1B7C100F411BD /* NoodleLineNumberMarker.h */,
+				F4C19A771BD1B7C100F411BD /* NoodleLineNumberMarker.m */,
+				F4C19A781BD1B7C100F411BD /* NoodleLineNumberView.h */,
+				F4C19A791BD1B7C100F411BD /* NoodleLineNumberView.m */,
+				F4C19A7A1BD1B7C100F411BD /* NSTextView+JSDExtensions.h */,
+				F4C19A7B1BD1B7C100F411BD /* NSTextView+JSDExtensions.m */,
+			);
+			name = "NSTextView+JSDExtensions";
+			path = "Shared/NSTextView+JSDExtensions";
+			sourceTree = "<group>";
+		};
 		F4D6569814C4BFD6003552F9 /* Interpreters */ = {
 			isa = PBXGroup;
 			children = (
@@ -912,7 +936,9 @@
 				F4975D751B2E09310099D16E /* STPrivilegedTask.m in Sources */,
 				F4975DB41B2E71EE0099D16E /* ShellCommandController.m in Sources */,
 				F4975DAB1B2E71EE0099D16E /* BundledFilesController.m in Sources */,
+				F4C19A7E1BD1B7C100F411BD /* NSTextView+JSDExtensions.m in Sources */,
 				F4975DAA1B2E71EE0099D16E /* ArgsController.m in Sources */,
+				F4C19A7C1BD1B7C100F411BD /* NoodleLineNumberMarker.m in Sources */,
 				F4975D8B1B2E71B80099D16E /* main.m in Sources */,
 				F4975DB51B2E71EE0099D16E /* StatusItemSettingsController.m in Sources */,
 				F4975DB11B2E71EE0099D16E /* PrefsController.m in Sources */,
@@ -925,6 +951,7 @@
 				F4975DB71B2E71EE0099D16E /* SyntaxCheckerController.m in Sources */,
 				F4975D791B2E09450099D16E /* STPathTextField.m in Sources */,
 				F4975DAC1B2E71EE0099D16E /* DropSettingsController.m in Sources */,
+				F4C19A7D1BD1B7C100F411BD /* NoodleLineNumberView.m in Sources */,
 				F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
 				F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */,
 				F4975DAD1B2E71EE0099D16E /* EditorController.m in Sources */,
