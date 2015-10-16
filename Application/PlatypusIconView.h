@@ -29,8 +29,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "IconFamily.h"
-#import "Common.h"
 
 @interface PlatypusIconView : NSImageView <NSPasteboardItemDataProvider, NSDraggingSource>
 {

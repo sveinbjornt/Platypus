@@ -29,8 +29,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ScriptAnalyser.h"
-#import "Common.h"
 
 @interface SyntaxCheckerController : NSWindowController
 {

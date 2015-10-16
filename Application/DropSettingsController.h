@@ -29,10 +29,8 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "SuffixListController.h"
-#import "Utils.h"
-#import "UniformTypeListController.h"
 
+@class SuffixListController, UniformTypeListController;
 @interface DropSettingsController : NSObject <NSTableViewDelegate>
 {
     IBOutlet NSButton *addSuffixButton;

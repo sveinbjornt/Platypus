@@ -29,7 +29,6 @@
  */
 
 #import "SuffixListController.h"
-#import "Common.h"
 
 @implementation SuffixListController
 

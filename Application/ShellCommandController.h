@@ -29,8 +29,8 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "PlatypusAppSpec.h"
 
+@class PlatypusAppSpec;
 @interface ShellCommandController : NSWindowController
 {
     IBOutlet id textView;

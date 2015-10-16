@@ -29,6 +29,9 @@
  */
 
 #import "EditorController.h"
+#import "Common.h"
+#import "Utils.h"
+#import "SyntaxCheckerController.h"
 
 @implementation EditorController
 

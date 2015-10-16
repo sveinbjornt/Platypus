@@ -30,6 +30,8 @@
 
 #import "StatusItemSettingsController.h"
 #import "Common.h"
+#import "Utils.h"
+#import "PlatypusController.h"
 
 @implementation StatusItemSettingsController
 

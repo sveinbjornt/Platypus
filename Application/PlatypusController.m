@@ -32,6 +32,29 @@
 // main window interface.  Also delegate for the application, and for menus.
 
 #import "PlatypusController.h"
+#import "Common.h"
+
+#import "PlatypusAppSpec.h"
+#import "ScriptAnalyser.h"
+
+#import "IconController.h"
+#import "ArgsController.h"
+#import "ProfilesController.h"
+#import "TextSettingsController.h"
+#import "StatusItemSettingsController.h"
+#import "EditorController.h"
+#import "ShellCommandController.h"
+#import "STPathTextField.h"
+#import "DropSettingsController.h"
+#import "SuffixListController.h"
+#import "SyntaxCheckerController.h"
+
+#import "Utils.h"
+#import "BundledFilesController.h"
+#import "NSColor+HexTools.h"
+
+#import "VDKQueue.h"
+
 
 @implementation PlatypusController
 

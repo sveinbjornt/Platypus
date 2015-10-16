@@ -20,6 +20,7 @@ For 5.0
     TODO: Fix issue with generating icon from imageview on retina macs (IconFamily issue)
     TODO: Drop targets do not work with “Remain running after initial execution” off
     TODO: Make icon brighter?
+    TODO: Get rid of crazy pattern where objects release themselves in the window controllers
 
     * Migrated from UKKqueue to VDKQueue and got all file system watching working properly again
     * Uniform Type Identifiers (UTIs) are now supported in drop settings

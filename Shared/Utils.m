@@ -31,6 +31,7 @@
 #import "Utils.h"
 #import <CoreServices/CoreServices.h>
 #import <ctype.h>
+#import "Common.h"
 
 @implementation Utils
 

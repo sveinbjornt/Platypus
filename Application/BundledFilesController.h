@@ -31,11 +31,9 @@
 // This is a controller class around the Bundled Files list in the Platypus
 // window.  It is the data source and delegate of the tableview with the files.
 
-#import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
-#import <AppKit/AppKit.h>
-#import "VDKQueue.h"
 
+@class VDKQueue;
 @interface BundledFilesController : NSObject <NSTableViewDataSource>
 {
     UInt64 totalFileSize;

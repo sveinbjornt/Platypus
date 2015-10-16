@@ -30,6 +30,9 @@
 
 #import "DropSettingsController.h"
 #import "Common.h"
+#import "SuffixListController.h"
+#import "Utils.h"
+#import "UniformTypeListController.h"
 
 @implementation DropSettingsController
 

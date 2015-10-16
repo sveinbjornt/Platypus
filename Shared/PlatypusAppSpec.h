@@ -32,11 +32,8 @@
 // all the information / specifications for creating a Platypus application.
 
 #import <Cocoa/Cocoa.h>
-#import "Common.h"
-#import "ScriptAnalyser.h"
-#import "Utils.h"
 
-#define MAX_APPSPEC_PROPERTIES    255 // whatever...
+#define MAX_APPSPEC_PROPERTIES    65536 // whatever...
 
 @interface PlatypusAppSpec : NSObject
 {

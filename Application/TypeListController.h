@@ -28,8 +28,7 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
-#import <AppKit/AppKit.h>
+#import <Cocoa/Cocoa.h>
 
 @interface TypeListController : NSObject <NSTableViewDataSource>
 {

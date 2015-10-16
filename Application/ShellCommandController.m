@@ -30,6 +30,8 @@
 
 #import "ShellCommandController.h"
 #import "PrefsController.h"
+#import "PlatypusAppSpec.h"
+#import "Common.h"
 
 @implementation ShellCommandController
 

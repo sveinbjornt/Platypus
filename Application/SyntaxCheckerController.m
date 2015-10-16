@@ -29,6 +29,7 @@
  */
 
 #import "SyntaxCheckerController.h"
+#import "ScriptAnalyser.h"
 
 @implementation SyntaxCheckerController
 

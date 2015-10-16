@@ -28,9 +28,7 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
-#import "Common.h"
 
 @interface Utils : NSObject
 + (NSString *)removeWhitespaceInString:(NSString *)str;
