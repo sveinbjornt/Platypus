@@ -22,6 +22,7 @@ For 5.0
     TODO: Make icon brighter?
     TODO: Get rid of crazy pattern where objects release themselves in the window controllers
     TODO: New high res images for documentation
+    TODO: File watching still broken for script path
 
     * The built-in editor has been much improved, with line numbering, configurable text size and no more annoying quote substitution issues
     * Migrated from UKKqueue to VDKQueue and got all file system watching working properly again

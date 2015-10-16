@@ -198,7 +198,7 @@
     // get a random number to append to script name in temp dir
     do {
         int randnum =  random() / 1000000;
-        tempScript = [NSString stringWithFormat:@"%@/MyScript.%d", [TEMP_FOLDER stringByExpandingTildeInPath], randnum];
+        tempScript = [NSString stringWithFormat:@"%@/%@.%d", [TEMP_FOLDER stringByExpandingTildeInPath], NEW_SCRIPT_FILENAME, randnum];
     } while ([FILEMGR fileExistsAtPath:tempScript]);
     
     //put shebang line in the new script text file

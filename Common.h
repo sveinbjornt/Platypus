@@ -48,6 +48,7 @@
 #define PROFILES_FOLDER             [NSString stringWithFormat:@"%@/Profiles", APP_SUPPORT_FOLDER]
 #define PROFILES_SUFFIX             @ "platypus"
 #define TEMP_ICON_PATH              [NSString stringWithFormat : @ "%@/TmpIcon.icns", APP_SUPPORT_FOLDER]
+#define NEW_SCRIPT_FILENAME         @ "Script"
 
 // default output text settings
 #define DEFAULT_OUTPUT_FONT         @ "Monaco"
