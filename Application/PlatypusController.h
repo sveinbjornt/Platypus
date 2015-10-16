@@ -72,7 +72,7 @@
     //windows
     IBOutlet NSWindow *window;
     
-    //progress bar for creating
+    //progress sheet when creating
     IBOutlet NSWindow *progressDialogWindow;
     IBOutlet NSProgressIndicator *progressBar;
     IBOutlet NSTextField *progressDialogMessageLabel;
@@ -122,7 +122,6 @@
 - (NSTask *)taskForCurrentScript;
 - (NSWindow *)window;
 
-//Help
 - (IBAction)showHelp:(id)sender;
 - (IBAction)showReadme:(id)sender;
 - (IBAction)showManPage:(id)sender;

@@ -28,9 +28,9 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "PlatypusIconView.h"
+#import "STDragImageView.h"
 
-@implementation PlatypusIconView
+@implementation STDragImageView
 
 #pragma mark - Delegate
 
