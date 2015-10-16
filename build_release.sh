@@ -10,8 +10,8 @@ SRC_DIR=$PWD
 BUILD_DIR="/tmp/"
 REMOTE_DIR="root@sveinbjorn.org:/www/sveinbjorn/html/files/software/platypus/"
 
-VERSION=`perl -e 'use Shell;@lines=cat("Common.h");foreach(@lines){if($_=~m/PROGRAM_VERSION.+@.+(\d\.\d+)\"/){print $1;}}'`
-APP_NAME=`perl -e 'use Shell;@lines=cat("Common.h");foreach(@lines){if($_=~m/PROGRAM_NAME.+\"(.+)\"/){print $1;}}'`
+VERSION=`perl -e 'open(FH,"< Common.h") or die($!);@lines=<FH>;close(FH);foreach(@lines){if($_=~m/PROGRAM_VERSION.+@.+(\d\.\d+)\"/){print $1;}}'`
+APP_NAME=`perl -e 'open(FH,"< Common.h") or die($!);@lines=<FH>;close(FH);foreach(@lines){if($_=~m/PROGRAM_NAME.+\"(.+)\"/){print $1;}}'`
 APP_NAME_LC=`echo "${APP_NAME}" | perl -ne 'print lc'` # lowercase name
 
 APP_FOLDER_NAME="${APP_NAME}-${VERSION}"
@@ -37,7 +37,7 @@ xcodebuild  -parallelizeTargets\
             -configuration Deployment \
             CONFIGURATION_BUILD_DIR="${BUILD_DIR}" \
             clean \
-            build 1> /dev/null
+build #1> /dev/null
 
 # Check if build succeeded
 if test $? -eq 0
@@ -49,7 +49,7 @@ else
 fi
 
 # Remove previous app folder
-rm -r "${BUILD_DIR}/${APP_FOLDER_NAME}" > /dev/null
+rm -r "${BUILD_DIR}/${APP_FOLDER_NAME}" &> /dev/null
 
 # Create folder and copy app into it
 echo "Creating app folder ${BUILD_DIR}/${APP_FOLDER_NAME}"
