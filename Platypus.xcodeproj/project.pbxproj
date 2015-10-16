@@ -89,7 +89,6 @@
 		F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
 		F4B5DE4214919FF500C43901 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B5DE4014919FF500C43901 /* Utils.m */; };
-		F4B87C1A1B3C997300F4B8BE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B87C191B3C997300F4B8BE /* Accelerate.framework */; };
 		F4B87C1B1B3C99AD00F4B8BE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B87C191B3C997300F4B8BE /* Accelerate.framework */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
@@ -271,7 +270,7 @@
 		F4B87C5A1B403A6E00F4B8BE /* uncrustify.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
 		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
-		F4C19A731BD1A7AB00F411BD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = Application/PrefixHeader.pch; sourceTree = "<group>"; };
+		F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074911F629930043764E /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
@@ -307,7 +306,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F48B7B8111F7666600351575 /* Security.framework in Frameworks */,
-				F4B87C1A1B3C997300F4B8BE /* Accelerate.framework in Frameworks */,
 				F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */,
 				F48B7BAB11F7675900351575 /* WebKit.framework in Frameworks */,
 			);
@@ -358,6 +356,7 @@
 				F4B87C571B403A1E00F4B8BE /* Scripts */,
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4A4338B0E04C962000523E7 /* Common.h */,
+				F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */,
 				F48B7CB611F76B0C00351575 /* Application */,
 				F48B7B8811F766CA00351575 /* ScriptExec Binary */,
 				F4E1F70711F75A40007EE2E3 /* Command Line Tool */,
@@ -593,7 +592,6 @@
 		F48B7CB611F76B0C00351575 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				F4C19A731BD1A7AB00F411BD /* PrefixHeader.pch */,
 				F4975D8A1B2E71B80099D16E /* main.m */,
 				F46C60141055AEFA00521A94 /* Controllers */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -1002,7 +1000,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Application/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
@@ -1051,7 +1049,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Application/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
@@ -1096,7 +1094,7 @@
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Application/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
@@ -1256,8 +1254,8 @@
 				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
@@ -1280,8 +1278,8 @@
 				GCC_CW_ASM_SYNTAX = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_UNROLL_LOOPS = NO;
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = YES;
@@ -1303,8 +1301,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_CW_ASM_SYNTAX = NO;
 				GCC_ENABLE_PASCAL_STRINGS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_FILE = ScriptExec/Info.plist;
@@ -1322,7 +1320,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1339,7 +1338,8 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_DYNAMIC_NO_PIC = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
 				OTHER_LDFLAGS = "";
@@ -1353,7 +1353,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
 				OTHER_LDFLAGS = "";
