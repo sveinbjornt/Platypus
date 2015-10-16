@@ -44,7 +44,7 @@
 
 // Application support folder info
 #define APP_SUPPORT_FOLDER          [@ "~/Library/Application Support/Platypus/" stringByExpandingTildeInPath]
-#define TEMP_FOLDER                 [NSString stringWithFormat:@"%@/Temp", APP_SUPPORT_FOLDER]
+#define TEMP_FOLDER                 [NSString stringWithFormat:@"%@/", APP_SUPPORT_FOLDER]
 #define PROFILES_FOLDER             [NSString stringWithFormat:@"%@/Profiles", APP_SUPPORT_FOLDER]
 #define PROFILES_SUFFIX             @ "platypus"
 #define TEMP_ICON_PATH              [NSString stringWithFormat : @ "%@/TmpIcon.icns", APP_SUPPORT_FOLDER]
