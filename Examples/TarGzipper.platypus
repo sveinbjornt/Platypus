@@ -65,7 +65,7 @@ system("$cmd $dest_path $files");
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
-	<string>org.sveinbjorn.TempScript</string>
+	<string>org.sveinbjorn.TarGzipper</string>
 	<key>Interpreter</key>
 	<string>/usr/bin/perl</string>
 	<key>Name</key>
