@@ -30,11 +30,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PlatypusIconView : NSImageView <NSPasteboardItemDataProvider, NSDraggingSource>
+@interface STDragImageView : NSImageView <NSPasteboardItemDataProvider, NSDraggingSource>
 {
 	id delegate;
-	NSEvent *downEvent;
 }
--(void)setDelegate: (id)theDelegate;
+-(void)setDelegate:(id)theDelegate;
 -(id)delegate;
 @end

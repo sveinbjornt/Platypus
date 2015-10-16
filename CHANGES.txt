@@ -44,7 +44,6 @@ For 5.0
     * New retina-quality default status menu icon
     * Fixed issue with Open... menu item and file types in ScriptExec
     * Font size in web output view can now also be increased/reduced
-
     * Revised and updated documentation
     * Dynamic (in code) install path for command line tool scripts
     * Platypus-generated apps now remember font size set by user

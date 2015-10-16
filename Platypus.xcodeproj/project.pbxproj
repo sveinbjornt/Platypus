@@ -75,7 +75,6 @@
 		F4975DAD1B2E71EE0099D16E /* EditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D931B2E71EE0099D16E /* EditorController.m */; };
 		F4975DAE1B2E71EE0099D16E /* IconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D951B2E71EE0099D16E /* IconController.m */; };
 		F4975DAF1B2E71EE0099D16E /* PlatypusController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D971B2E71EE0099D16E /* PlatypusController.m */; };
-		F4975DB01B2E71EE0099D16E /* PlatypusIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D991B2E71EE0099D16E /* PlatypusIconView.m */; };
 		F4975DB11B2E71EE0099D16E /* PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D9B1B2E71EE0099D16E /* PrefsController.m */; };
 		F4975DB21B2E71EE0099D16E /* ProfilesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D9D1B2E71EE0099D16E /* ProfilesController.m */; };
 		F4975DB41B2E71EE0099D16E /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DA11B2E71EE0099D16E /* ShellCommandController.m */; };
@@ -95,6 +94,7 @@
 		F4C19A7C1BD1B7C100F411BD /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A771BD1B7C100F411BD /* NoodleLineNumberMarker.m */; settings = {ASSET_TAGS = (); }; };
 		F4C19A7D1BD1B7C100F411BD /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A791BD1B7C100F411BD /* NoodleLineNumberView.m */; settings = {ASSET_TAGS = (); }; };
 		F4C19A7E1BD1B7C100F411BD /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A7B1BD1B7C100F411BD /* NSTextView+JSDExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A841BD1BFAB00F411BD /* STDragImageView.m */; settings = {ASSET_TAGS = (); }; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
 		F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074711F629930043764E /* InstallCommandLineTool.sh */; };
 		F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074911F629930043764E /* UninstallCommandLineTool.sh */; };
@@ -240,8 +240,6 @@
 		F4975D951B2E71EE0099D16E /* IconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconController.m; path = Application/IconController.m; sourceTree = "<group>"; };
 		F4975D961B2E71EE0099D16E /* PlatypusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusController.h; path = Application/PlatypusController.h; sourceTree = "<group>"; };
 		F4975D971B2E71EE0099D16E /* PlatypusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusController.m; path = Application/PlatypusController.m; sourceTree = "<group>"; };
-		F4975D981B2E71EE0099D16E /* PlatypusIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusIconView.h; path = Application/PlatypusIconView.h; sourceTree = "<group>"; };
-		F4975D991B2E71EE0099D16E /* PlatypusIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusIconView.m; path = Application/PlatypusIconView.m; sourceTree = "<group>"; };
 		F4975D9A1B2E71EE0099D16E /* PrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsController.h; path = Application/PrefsController.h; sourceTree = "<group>"; };
 		F4975D9B1B2E71EE0099D16E /* PrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsController.m; path = Application/PrefsController.m; sourceTree = "<group>"; };
 		F4975D9C1B2E71EE0099D16E /* ProfilesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfilesController.h; path = Application/ProfilesController.h; sourceTree = "<group>"; };
@@ -280,6 +278,8 @@
 		F4C19A791BD1B7C100F411BD /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
 		F4C19A7A1BD1B7C100F411BD /* NSTextView+JSDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+JSDExtensions.h"; sourceTree = "<group>"; };
 		F4C19A7B1BD1B7C100F411BD /* NSTextView+JSDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+JSDExtensions.m"; sourceTree = "<group>"; };
+		F4C19A831BD1BFAB00F411BD /* STDragImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragImageView.h; path = Shared/STDragImageView.h; sourceTree = "<group>"; };
+		F4C19A841BD1BFAB00F411BD /* STDragImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragImageView.m; path = Shared/STDragImageView.m; sourceTree = "<group>"; };
 		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074911F629930043764E /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
@@ -334,6 +334,7 @@
 		080E96DDFE201D6D7F000001 /* Shared Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F4C19A821BD1BF7400F411BD /* STDragImageView */,
 				F4C19A751BD1B7C100F411BD /* NSTextView+JSDExtensions */,
 				F48269871BCB1EAF00169D8B /* VDKQueue */,
 				F48269661BC9929A00169D8B /* NSTask+Description */,
@@ -502,8 +503,6 @@
 				F4975D931B2E71EE0099D16E /* EditorController.m */,
 				F4975D941B2E71EE0099D16E /* IconController.h */,
 				F4975D951B2E71EE0099D16E /* IconController.m */,
-				F4975D981B2E71EE0099D16E /* PlatypusIconView.h */,
-				F4975D991B2E71EE0099D16E /* PlatypusIconView.m */,
 				F4975D9A1B2E71EE0099D16E /* PrefsController.h */,
 				F4975D9B1B2E71EE0099D16E /* PrefsController.m */,
 				F4975D9C1B2E71EE0099D16E /* ProfilesController.h */,
@@ -658,6 +657,15 @@
 			);
 			name = "NSTextView+JSDExtensions";
 			path = "Shared/NSTextView+JSDExtensions";
+			sourceTree = "<group>";
+		};
+		F4C19A821BD1BF7400F411BD /* STDragImageView */ = {
+			isa = PBXGroup;
+			children = (
+				F4C19A831BD1BFAB00F411BD /* STDragImageView.h */,
+				F4C19A841BD1BFAB00F411BD /* STDragImageView.m */,
+			);
+			name = STDragImageView;
 			sourceTree = "<group>";
 		};
 		F4D6569814C4BFD6003552F9 /* Interpreters */ = {
@@ -946,7 +954,6 @@
 				F4538B2C1ABFEB14007E6ADF /* NSString+CarbonFSRefCreation.m in Sources */,
 				F4975DAF1B2E71EE0099D16E /* PlatypusController.m in Sources */,
 				F4975DAE1B2E71EE0099D16E /* IconController.m in Sources */,
-				F4975DB01B2E71EE0099D16E /* PlatypusIconView.m in Sources */,
 				F4975DB81B2E71EE0099D16E /* TextSettingsController.m in Sources */,
 				F4975DB71B2E71EE0099D16E /* SyntaxCheckerController.m in Sources */,
 				F4975D791B2E09450099D16E /* STPathTextField.m in Sources */,
@@ -960,6 +967,7 @@
 				F48269691BC9934800169D8B /* NSTask+Description.m in Sources */,
 				F4538B2B1ABFEB14007E6ADF /* IconFamily.m in Sources */,
 				F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */,
+				F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */,
 				F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */,
 				F48B1EE017935BBC007DA173 /* ScriptAnalyser.m in Sources */,
 				F48269861BCB1EAB00169D8B /* VDKQueue.m in Sources */,
