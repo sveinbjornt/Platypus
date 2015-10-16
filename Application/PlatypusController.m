@@ -1075,9 +1075,12 @@
 
 - (void)updateOutputTypeMenu:(NSSize)iconSize {
     NSArray *items = [outputTypePopupMenu itemArray];
+    NSImage *img = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
     for (NSMenuItem *menuItem in items) {
-        NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
-        NSImage *img = [NSImage imageNamed:imageName];
+        if ([outputTypePopupMenu itemAtIndex:0] != menuItem) {
+            NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+            img = [NSImage imageNamed:imageName];
+        }
         img.size = iconSize;
         [menuItem setImage:nil];
         [menuItem setImage:img];
