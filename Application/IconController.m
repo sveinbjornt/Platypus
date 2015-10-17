@@ -242,8 +242,8 @@
             return NO;
         }
     }
-    if ([[anItem title] isEqualToString:@"Copy Icon Path"]) {
-        if (![self icnsFilePath] || [[self icnsFilePath] isEqualToString:@""]) {
+    if ([[anItem title] isEqualToString:@"Copy Icon Path"] || [[anItem title] isEqualToString:@"Show in Finder"]) {
+        if ([self icnsFilePath] == nil || [[self icnsFilePath] isEqualToString:@""]) {
             return NO;
         }
     }

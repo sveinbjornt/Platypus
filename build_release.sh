@@ -86,6 +86,12 @@ then
     scp "${APP_SRC_ZIP_NAME}" "${REMOTE_DIR}"
 fi
 
+if [ $1 ]
+then
+    echo "Updating documentation on server ..."
+    sh "Documentation/update_docs.sh"
+fi
+
 echo "Moving source archive to Desktop"
 mv "${APP_SRC_ZIP_NAME}" ~/Desktop/
 
