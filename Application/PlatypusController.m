@@ -534,15 +534,14 @@
     [spec setProperty:[scriptPathTextField stringValue] forKey:@"ScriptPath"];
     
     // set output type to the name of the output type, minus spaces
-    [spec setProperty:[outputTypePopupMenu titleOfSelectedItem]
-               forKey:@"Output"];
+    [spec setProperty:[outputTypePopupMenu titleOfSelectedItem] forKey:@"Output"];
     
     // icon
     if ([iconController hasIcns]) {
         [spec setProperty:[iconController icnsFilePath] forKey:@"IconPath"];
     } else {
-        [iconController writeIconToPath:[NSString stringWithFormat:@"%@%@.icns", APP_SUPPORT_FOLDER, [appNameTextField stringValue]]];
-        [spec setProperty:TEMP_ICON_PATH forKey:@"IconPath"];
+        NSString *tmpIconPath = [NSString stringWithFormat:@"%@%@.icns", APP_SUPPORT_FOLDER, [appNameTextField stringValue]];
+        [spec setProperty:tmpIconPath forKey:@"IconPath"];
     }
     
     // advanced attributes
