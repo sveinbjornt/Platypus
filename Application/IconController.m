@@ -179,13 +179,19 @@
  - Write an NSImage as icon to a path
  *****************************************/
 
-- (void)writeIconToPath:(NSString *)path {
+- (BOOL)writeIconToPath:(NSString *)path {
     if ([iconImageView image] == nil) {
         [Utils alert:@"Icon Error" subText:@"No icon could be found for your application.  Please set an icon to fix this."];
+        return NO;
     }
     IconFamily *iconFam = [[IconFamily alloc] initWithThumbnailsOfImage:[iconImageView image]];
+    if (!iconFam) {
+        NSLog(@"Failed to create IconFamily from image");
+        return NO;
+    }
     [iconFam writeToFile:path];
     [iconFam release];
+    return YES;
 }
 
 - (NSData *)imageData {
@@ -211,8 +217,8 @@
         icnsFilePath = nil;
     } else {
         icnsFilePath = [[NSString alloc] initWithString:path];
-        if (![icnsFilePath isEqualToString:@""]) {
-            [fileWatcherQueue addPath:path];
+        if (icnsFilePath != nil && ![icnsFilePath isEqualToString:@""]) {
+            [fileWatcherQueue addPath:icnsFilePath];
         }
     }
     [self updateIcnsStatus];

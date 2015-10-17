@@ -56,7 +56,7 @@
 - (NSDictionary *)getIconInfoForType:(int)type;
 - (void)setDefaultIcon;
 - (IBAction)switchIcons:(id)sender;
-- (void)writeIconToPath:(NSString *)path;
+- (BOOL)writeIconToPath:(NSString *)path;
 - (NSData *)imageData;
 - (BOOL)hasIcns;
 - (NSString *)icnsFilePath;
