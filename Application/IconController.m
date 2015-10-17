@@ -220,6 +220,10 @@
 }
 
 - (UInt64)iconSize {
+    if ([icnsFilePath isEqualToString:@""]) {
+        return 0;
+    }
+    
     if (![self hasIcns] || ![FILEMGR fileExistsAtPath:icnsFilePath]) {
         return 400000; // just guess the icon will be 400k in size
     }

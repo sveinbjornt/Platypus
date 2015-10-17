@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="EditorController">
             <connections>
+                <outlet property="scriptIconImageView" destination="k8s-HM-fuN" id="nhS-FH-YkD"/>
                 <outlet property="scriptPathTextField" destination="41" id="47"/>
                 <outlet property="textView" destination="11" id="38"/>
                 <outlet property="window" destination="1" id="49"/>
@@ -55,11 +56,11 @@
                         </connections>
                     </button>
                     <textField toolTip="Path to the script being edited" verticalHuggingPriority="750" id="41">
-                        <rect key="frame" x="39" y="373" width="512" height="17"/>
+                        <rect key="frame" x="43" y="372" width="508" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <animations/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" id="42">
-                            <font key="font" metaFont="system" size="11"/>
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -122,18 +123,8 @@
                             <action selector="revealInFinder:" target="-2" id="exp-t5-k8s"/>
                         </connections>
                     </button>
-                    <textField toolTip="Path to the script being edited" verticalHuggingPriority="750" id="5">
-                        <rect key="frame" x="20" y="373" width="22" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <animations/>
-                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="✎" id="14">
-                            <font key="font" size="16" name="LucidaGrande"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <button id="fhP-jQ-moR">
-                        <rect key="frame" x="237" y="21" width="105" height="18"/>
+                        <rect key="frame" x="234" y="21" width="129" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
                         <buttonCell key="cell" type="check" title="Word wrap" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="0Op-C9-3Nv">
@@ -172,6 +163,12 @@
                             <action selector="makeTextBigger:" target="-2" id="pcg-2Z-Ymf"/>
                         </connections>
                     </button>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="k8s-HM-fuN">
+                        <rect key="frame" x="22" y="372" width="21" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <animations/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="CnJ-CU-J3l"/>
+                    </imageView>
                 </subviews>
                 <animations/>
             </view>
