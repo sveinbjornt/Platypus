@@ -288,7 +288,7 @@
  *****************************************/
 
 - (void)openScriptInBuiltInEditor:(NSString *)path {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Editing script", PROGRAM_NAME]];
+    [window setTitle:[NSString stringWithFormat:@"%@ - Script Editor", PROGRAM_NAME]];
     [[[EditorController alloc] init] showEditorForFile:[scriptPathTextField stringValue] window:window];
     [window setTitle:PROGRAM_NAME];
 }
@@ -1088,11 +1088,15 @@
 }
 
 - (void)menuWillOpen:(NSMenu *)menu {
-    [self updateOutputTypeMenu:NSMakeSize(32, 32)];
+    if (menu == [outputTypePopupMenu menu]) {
+        [self updateOutputTypeMenu:NSMakeSize(32, 32)];
+    }
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
-    [self updateOutputTypeMenu:NSMakeSize(16, 16)];
+    if (menu == [outputTypePopupMenu menu]) {
+        [self updateOutputTypeMenu:NSMakeSize(16, 16)];
+    }
 }
 
 #pragma mark - Help/Documentation
