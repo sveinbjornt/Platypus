@@ -280,6 +280,7 @@
 		F4C19A7B1BD1B7C100F411BD /* NSTextView+JSDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+JSDExtensions.m"; sourceTree = "<group>"; };
 		F4C19A831BD1BFAB00F411BD /* STDragImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragImageView.h; path = Shared/STDragImageView.h; sourceTree = "<group>"; };
 		F4C19A841BD1BFAB00F411BD /* STDragImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragImageView.m; path = Shared/STDragImageView.m; sourceTree = "<group>"; };
+		F4C19A861BD1D02700F411BD /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = update_docs.sh; path = Documentation/update_docs.sh; sourceTree = "<group>"; };
 		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074911F629930043764E /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
@@ -641,6 +642,7 @@
 				F4B87C581B403A6E00F4B8BE /* build_release.sh */,
 				F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */,
 				F4B87C5A1B403A6E00F4B8BE /* uncrustify.cfg */,
+				F4C19A861BD1D02700F411BD /* update_docs.sh */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
