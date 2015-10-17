@@ -60,7 +60,11 @@
     
     [self loadWindow];
     [scriptPathTextField setStringValue:path];
-
+    NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:path];
+    [icon setSize:NSMakeSize(16, 16)];
+    [scriptIconImageView setImage:icon];
+    
+    
     [textView setShowsLineNumbers:YES];
     
     [wordWrapCheckbox setIntValue:[DEFAULTS boolForKey:@"EditorWordWrap"]];

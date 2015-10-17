@@ -35,6 +35,7 @@
     IBOutlet id scriptPathTextField;
     IBOutlet id textView;
     IBOutlet id wordWrapCheckbox;
+    IBOutlet NSImageView *scriptIconImageView;
     NSWindow *mainWindow;
 }
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)window;

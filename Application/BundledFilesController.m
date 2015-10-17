@@ -172,26 +172,26 @@
 }
 
 - (void)openInEditor:(int)index {
-    // if the default editor is the built-in editor, we pop down the editor sheet
-    if ([[DEFAULTS stringForKey:@"DefaultEditor"] isEqualToString:DEFAULT_EDITOR]) {
-        [window setTitle:[NSString stringWithFormat:@"%@ - Editing script", PROGRAM_NAME]];
-        EditorController *editor = [[EditorController alloc] init];
-        [editor showEditorForFile:[[files objectAtIndex:index] objectForKey:@"Path"] window:window];
-        [window setTitle:PROGRAM_NAME];
-    } else {
+
+    NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
+    NSString *path = [[files objectAtIndex:index] objectForKey:@"Path"];
+    
+    if ([defaultEditor isEqualToString:DEFAULT_EDITOR] == NO) {
         // open it in the external application
-        NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
         if ([[NSWorkspace sharedWorkspace] fullPathForApplication:defaultEditor] != nil) {
-            [[NSWorkspace sharedWorkspace] openFile:[[files objectAtIndex:index] objectForKey:@"Path"] withApplication:defaultEditor];
+            [[NSWorkspace sharedWorkspace] openFile:path withApplication:defaultEditor];
+            return;
         } else {
-            // Complain if editor is not found, set it to the built-in editor
-            [Utils alert:@"Application not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
+            [Utils alert:@"Editor not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
-            [window setTitle:[NSString stringWithFormat:@"%@ - Editing script", PROGRAM_NAME]];
-            [[[EditorController alloc] init] showEditorForFile:[[files objectAtIndex:index] objectForKey:@"Path"] window:window];
-            [window setTitle:PROGRAM_NAME];
         }
     }
+    
+    // Open in built-in editor
+    [window setTitle:[NSString stringWithFormat:@"%@ - Editing %@", PROGRAM_NAME, [path lastPathComponent]]];
+    EditorController *editor = [[EditorController alloc] init];
+    [editor showEditorForFile:path window:window];
+    [window setTitle:PROGRAM_NAME];
 }
 
 - (IBAction)copyFilename:(id)sender {
