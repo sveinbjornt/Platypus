@@ -1411,13 +1411,29 @@
         NSString *line = [lines objectAtIndex:i];
         NSImage *icon = nil;
         
-        if ([line hasPrefix:@"MENUITEMICON:"]) {
-            NSArray *tokens = [line componentsSeparatedByString:@":"];
+        if ([line hasPrefix:@"MENUITEMICON|"]) {
+            NSArray *tokens = [line componentsSeparatedByString:@"|"];
             if ([tokens count] < 3) {
                 continue;
             }
-            NSString *imageName = [tokens objectAtIndex:1];
-            icon = [NSImage imageNamed:imageName];
+            NSString *imageToken = [tokens objectAtIndex:1];
+            // is it a bundled image?
+            icon = [NSImage imageNamed:imageToken];
+            
+            // if not, it could be a URL
+            if (icon == nil) {
+                // or a file system path
+                BOOL isDir;
+                if ([FILEMGR fileExistsAtPath:imageToken isDirectory:&isDir] && !isDir) {
+                    icon = [[[NSImage alloc] initByReferencingFile:imageToken] autorelease];
+                } else {
+                    NSURL *url = [NSURL URLWithString:imageToken];
+                    if (url != nil) {
+                        icon = [[[NSImage alloc] initWithContentsOfURL:url] autorelease];
+                    }
+                }
+            }
+            
             [icon setSize:NSMakeSize(16, 16)];
             line = [tokens objectAtIndex:2];
         }
