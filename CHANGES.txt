@@ -13,18 +13,19 @@ For 5.1
 
 For 5.0
     TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
-    TODO: Fix filewatcher so it doesn't clear queue whenever script file name changes
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Fix Provide as Mac OS X service
     TODO: Update documentation with information for Uniform Type Identifiers
     TODO: Fix issue with generating icon from imageview on retina macs (IconFamily issue)
     TODO: Drop targets do not work with “Remain running after initial execution” off
     TODO: Make icon brighter?
-    TODO: Get rid of crazy pattern where objects release themselves in the window controllers
+    TODO: Get rid of crazy pattern where objects release themselves in the window controllers. What was I thinking?
     TODO: New high res images for documentation
     TODO: File watching still broken for script path
 
-    * The built-in editor has been much improved, with line numbering, configurable text size and no more annoying quote substitution issues
+    * New default "Use system font" option for status menu item output
+    * New MENUITEMICON: syntax to set menu item icon in status menu output mode
+    * The built-in editor has been much enhanced, with line numbering, configurable text size and other improvements
     * Migrated from UKKqueue to VDKQueue and got all file system watching working properly again
     * Uniform Type Identifiers (UTIs) are now supported in drop settings
     * More examples

@@ -95,6 +95,7 @@
 		F4C19A7D1BD1B7C100F411BD /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A791BD1B7C100F411BD /* NoodleLineNumberView.m */; settings = {ASSET_TAGS = (); }; };
 		F4C19A7E1BD1B7C100F411BD /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A7B1BD1B7C100F411BD /* NSTextView+JSDExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A841BD1BFAB00F411BD /* STDragImageView.m */; settings = {ASSET_TAGS = (); }; };
+		F4C19A881BD4275300F411BD /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C19A871BD4275300F411BD /* image.png */; settings = {ASSET_TAGS = (); }; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
 		F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074711F629930043764E /* InstallCommandLineTool.sh */; };
 		F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074911F629930043764E /* UninstallCommandLineTool.sh */; };
@@ -281,6 +282,7 @@
 		F4C19A831BD1BFAB00F411BD /* STDragImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragImageView.h; path = Shared/STDragImageView.h; sourceTree = "<group>"; };
 		F4C19A841BD1BFAB00F411BD /* STDragImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragImageView.m; path = Shared/STDragImageView.m; sourceTree = "<group>"; };
 		F4C19A861BD1D02700F411BD /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = update_docs.sh; path = Documentation/update_docs.sh; sourceTree = "<group>"; };
+		F4C19A871BD4275300F411BD /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = ScriptExec/image.png; sourceTree = "<group>"; };
 		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074911F629930043764E /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
@@ -594,6 +596,7 @@
 				F48B7C7B11F7691600351575 /* Info.plist */,
 				F4876F45141D4A3900A428CC /* MainMenu.xib */,
 				F48B7B9F11F7672700351575 /* AppSettings.plist */,
+				F4C19A871BD4275300F411BD /* image.png */,
 				F48B7BA111F7672700351575 /* script */,
 			);
 			name = Resources;
@@ -901,6 +904,7 @@
 				F48B7BA211F7672700351575 /* AppSettings.plist in Resources */,
 				F48B7BA411F7672700351575 /* script in Resources */,
 				F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */,
+				F4C19A881BD4275300F411BD /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

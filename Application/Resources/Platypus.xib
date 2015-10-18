@@ -177,7 +177,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="BC126290-2A6B-40E2-93D8-E3C8BD890799" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="3C11852B-4291-4438-8B16-8CDB32B86464" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -736,6 +736,7 @@ DQ
                 <outlet property="statusItemSettingsWindow" destination="10161" id="10214"/>
                 <outlet property="titleLabel" destination="10198" id="10511"/>
                 <outlet property="titleTextField" destination="10199" id="10508"/>
+                <outlet property="useSystemFontCheckbox" destination="RGs-kk-3Zk" id="uMU-RD-Jgv"/>
                 <outlet property="window" destination="21" id="10215"/>
             </connections>
         </customObject>
@@ -2490,13 +2491,13 @@ DQ
                                     </textFieldCell>
                                 </textField>
                                 <imageView hidden="YES" toolTip="Title icon for your status item" id="10197">
-                                    <rect key="frame" x="292" y="16" width="36" height="36"/>
+                                    <rect key="frame" x="292" y="51" width="36" height="36"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" image="DefaultStatusMenuIcon" id="11056"/>
                                 </imageView>
                                 <textField hidden="YES" verticalHuggingPriority="750" id="10196">
-                                    <rect key="frame" x="253" y="26" width="34" height="17"/>
+                                    <rect key="frame" x="253" y="61" width="34" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Icon" id="11055">
@@ -2514,7 +2515,7 @@ DQ
                                     <font key="titleFont" metaFont="system"/>
                                 </box>
                                 <button hidden="YES" toolTip="Press this button to select an image to use as icon for your status item" verticalHuggingPriority="750" id="10194">
-                                    <rect key="frame" x="333" y="19" width="78" height="28"/>
+                                    <rect key="frame" x="333" y="54" width="78" height="28"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="11054">
@@ -2543,6 +2544,15 @@ DQ
                                         <action selector="statusItemDisplayTypeChanged:" target="10213" id="10807"/>
                                     </connections>
                                 </popUpButton>
+                                <button id="RGs-kk-3Zk">
+                                    <rect key="frame" x="252" y="18" width="189" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <animations/>
+                                    <buttonCell key="cell" type="check" title="Use system font for output" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Bu4-Zq-VsS">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
                             </subviews>
                             <animations/>
                         </view>
@@ -2862,7 +2872,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="BC126290-2A6B-40E2-93D8-E3C8BD890799" width="16" height="16">
+        <image name="3C11852B-4291-4438-8B16-8CDB32B86464" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

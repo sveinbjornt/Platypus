@@ -126,6 +126,7 @@
     BOOL acceptsFiles;
     BOOL acceptsText;
     BOOL promptForFileOnLaunch;
+    BOOL statusItemUsesSystemFont;
     
     NSArray *droppableSuffixes;
     BOOL acceptAnyDroppedItem;

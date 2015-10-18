@@ -73,6 +73,7 @@
     [titleTextField setStringValue:@"Title"];
     [self setDisplayType:@"Text"];
     [iconImageView setImage:[NSImage imageNamed:@"DefaultStatusMenuIcon"]];
+    [useSystemFontCheckbox setIntValue:TRUE];
 }
 
 - (IBAction)statusItemDisplayTypeChanged:(id)sender {
@@ -226,7 +227,7 @@
 }
 
 - (void)statusMenuItemSelected {
-
+    
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
@@ -267,6 +268,16 @@
         
         [iconImageView setImage:resizedImage];
     }
+}
+
+#pragma mark -
+
+- (void)setUsesSystemFont:(BOOL)useSysFont {
+    [useSystemFontCheckbox setIntValue:useSysFont];
+}
+
+- (BOOL)usesSystemFont {
+    return [useSystemFontCheckbox intValue];
 }
 
 @end
