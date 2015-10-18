@@ -41,6 +41,7 @@
     IBOutlet id titleTextField;
     IBOutlet id titleLabel;
     IBOutlet id iconLabel;
+    IBOutlet NSButton *useSystemFontCheckbox;
     
     IBOutlet PlatypusController *platypusController;
     
@@ -61,5 +62,7 @@
 - (void)setTitle:(NSString *)title;
 - (NSImage *)icon;
 - (void)setIcon:(NSImage *)img;
+- (void)setUsesSystemFont:(BOOL)useSysFont;
+- (BOOL)usesSystemFont;
 
 @end

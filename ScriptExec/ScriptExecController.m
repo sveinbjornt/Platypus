@@ -217,6 +217,8 @@
         if (statusItemIcon == nil && statusItemTitle == nil) {
             statusItemTitle = @"Title";
         }
+        
+        statusItemUsesSystemFont = [[appSettingsPlist objectForKey:@"StatusItemUseSystemFont"] boolValue];
     }
     
     // load these vars from plist
@@ -1384,27 +1386,20 @@
  **************************************************/
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
-    NSInteger i;
     
     // run script and wait until we've received all the script output
     [self executeScript];
     while (isTaskRunning) {
-        usleep(50000); // microseconds
+        usleep(5000); // microseconds
     }
     
     // create an array of lines by separating output by newline
     NSMutableArray *lines = [NSMutableArray arrayWithArray:[[outputTextView string] componentsSeparatedByString:@"\n"]];
     
     // clean out any trailing newlines
-    while ([[lines lastObject] isEqualToString:@""])
+    while ([[lines lastObject] isEqualToString:@""]) {
         [lines removeLastObject];
-    
-    // create a dict of text attributes based on settings
-    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    //textBackground, NSBackgroundColorAttributeName,
-                                    textForeground, NSForegroundColorAttributeName,
-                                    textFont, NSFontAttributeName,
-                                    nil];
+    }
     
     // remove all items of previous output
     while ([statusItemMenu numberOfItems] > 2) {
@@ -1412,13 +1407,43 @@
     }
     
     //populate menu with output from task
-    for (i = [lines count] - 1; i >= 0; i--) {
+    for (int i = [lines count] - 1; i >= 0; i--) {
+        NSString *line = [lines objectAtIndex:i];
+        NSImage *icon = nil;
+        
+        if ([line hasPrefix:@"MENUITEMICON:"]) {
+            NSArray *tokens = [line componentsSeparatedByString:@":"];
+            if ([tokens count] < 3) {
+                continue;
+            }
+            NSString *imageName = [tokens objectAtIndex:1];
+            icon = [NSImage imageNamed:imageName];
+            [icon setSize:NSMakeSize(16, 16)];
+            line = [tokens objectAtIndex:2];
+        }
+        
         // create the menu item
-        NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:[lines objectAtIndex:i] action:@selector(menuItemSelected:) keyEquivalent:@""] autorelease];
+        NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:line action:@selector(menuItemSelected:) keyEquivalent:@""] autorelease];
         
         // set the formatted menu item string
-        NSAttributedString *attStr = [[[NSAttributedString alloc] initWithString:[lines objectAtIndex:i] attributes:textAttributes] autorelease];
-        [menuItem setAttributedTitle:attStr];
+        if (statusItemUsesSystemFont) {
+            [menuItem setTitle:line];
+        } else {
+            // create a dict of text attributes based on settings
+            NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                            //textBackground, NSBackgroundColorAttributeName,
+                                            textForeground, NSForegroundColorAttributeName,
+                                            textFont, NSFontAttributeName,
+                                            nil];
+            
+            NSAttributedString *attStr = [[[NSAttributedString alloc] initWithString:line attributes:textAttributes] autorelease];
+            [menuItem setAttributedTitle:attStr];
+        }
+        
+        if (icon != nil) {
+            [menuItem setImage:icon];
+        }
+        
         [menu insertItem:menuItem atIndex:0];
     }
 }

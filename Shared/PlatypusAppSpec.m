@@ -159,6 +159,7 @@
     [properties setObject:DEFAULT_STATUSITEM_DTYPE forKey:@"StatusItemDisplayType"];
     [properties setObject:DEFAULT_APP_NAME forKey:@"StatusItemTitle"];
     [properties setObject:[NSData data] forKey:@"StatusItemIcon"];
+    [properties setObject:[NSNumber numberWithBool:YES] forKey:@"StatusItemUseSystemFont"];
 }
 
 /********************************************************
@@ -351,6 +352,7 @@
         [appSettingsPlist setObject:[properties objectForKey:@"StatusItemDisplayType"] forKey:@"StatusItemDisplayType"];
         [appSettingsPlist setObject:[properties objectForKey:@"StatusItemTitle"] forKey:@"StatusItemTitle"];
         [appSettingsPlist setObject:[properties objectForKey:@"StatusItemIcon"] forKey:@"StatusItemIcon"];
+        [appSettingsPlist setObject:[properties objectForKey:@"StatusItemUseSystemFont"] forKey:@"StatusItemUseSystemFont"];
     }
     
     // we  set the suffixes/file types in the AppSettings.plist if app is droppable

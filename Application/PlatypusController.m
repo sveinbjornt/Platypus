@@ -583,6 +583,7 @@
         [spec setProperty:[statusItemSettingsController displayType] forKey:@"StatusItemDisplayType"];
         [spec setProperty:[statusItemSettingsController title] forKey:@"StatusItemTitle"];
         [spec setProperty:[[statusItemSettingsController icon] TIFFRepresentation] forKey:@"StatusItemIcon"];
+        [spec setProperty:[NSNumber numberWithBool:[statusItemSettingsController usesSystemFont]] forKey:@"StatusItemUseSystemFont"];
     }
     
     return spec;
@@ -663,6 +664,7 @@
         }
         [statusItemSettingsController setTitle:[spec propertyForKey:@"StatusItemTitle"]];
         [statusItemSettingsController setDisplayType:[spec propertyForKey:@"StatusItemDisplayType"]];
+        [statusItemSettingsController setUsesSystemFont:[spec propertyForKey:@"StatusItemUseSystemFont"]];
     }
     
     //update buttons

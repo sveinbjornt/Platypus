@@ -36,21 +36,22 @@ local $| = 1;
 #}
 #
 
+print "MENUITEMICON:image.png:Hello, Kitty\n";
 
-use Shell;
-
-print ps("caux");
+#use Shell;
+#
+#print ps("caux");
 
 #!/usr/bin/perl
 
 #print "<html><body bgcolor='#F1F1DE'><center><font color='blue'><h1>Hello, World</h1></font></center></body></html>\n";
 
-$i = 0;
-while ($i < 1) {
-    print "NOTIFICATION:$i\n";
-    $i++;
-
-}
+#$i = 0;
+#while ($i < 1) {
+#    print "NOTIFICATION:$i\n";
+#    $i++;
+#
+#}
 # If 0 arguments, we show menu
 #if (!scalar(@ARGV)) {
 #    print "Life's but a walking shadow, a poor player\n";
