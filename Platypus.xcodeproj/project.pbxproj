@@ -596,8 +596,8 @@
 				F48B7C7B11F7691600351575 /* Info.plist */,
 				F4876F45141D4A3900A428CC /* MainMenu.xib */,
 				F48B7B9F11F7672700351575 /* AppSettings.plist */,
-				F4C19A871BD4275300F411BD /* image.png */,
 				F48B7BA111F7672700351575 /* script */,
+				F4C19A871BD4275300F411BD /* image.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
