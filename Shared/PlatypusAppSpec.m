@@ -479,6 +479,17 @@
     NSString *humanCopyright = [NSString stringWithFormat:@"© %d %@",
                                 (int)[[NSCalendarDate calendarDate] yearOfCommonEra],
                                 [properties objectForKey:@"Author"]];
+    
+    NSString *appTransportSecurity = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+                                                                 forKey:@"NSAllowsArbitraryLoads"];
+
+//    <key>NSAppTransportSecurity</key>
+//    <dict>
+//    <key>NSAllowsArbitraryLoads</key>
+//    <true/>
+//    </dict>
+    
+    
     NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       
                                       @"English",                                 @"CFBundleDevelopmentRegion",
@@ -495,7 +506,7 @@
                                       @"MainMenu",                                @"NSMainNibFile",
                                       PROGRAM_MIN_SYS_VERSION,                    @"LSMinimumSystemVersion",
                                       @"NSApplication",                           @"NSPrincipalClass",
-                                      
+                                      appTransportSecurity,                       @"NSAppTransportSecurity",
                                       nil];
     
     if (![[properties objectForKey:@"IconPath"] isEqualToString:@""]) {
