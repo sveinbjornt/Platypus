@@ -36,7 +36,7 @@ local $| = 1;
 #}
 #
 
-print "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Hello, Kitty\n";
+print "MENUITEMICON|appIcon.icns|Hello, World!\n";
 
 #use Shell;
 #
