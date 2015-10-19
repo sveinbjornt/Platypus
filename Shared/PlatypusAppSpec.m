@@ -475,38 +475,32 @@
 }
 
 - (NSDictionary *)infoPlist {
-    // create the Info.plist dictionary
+
     NSString *humanCopyright = [NSString stringWithFormat:@"© %d %@",
                                 (int)[[NSCalendarDate calendarDate] yearOfCommonEra],
                                 [properties objectForKey:@"Author"]];
     
-    NSString *appTransportSecurity = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
-                                                                 forKey:@"NSAllowsArbitraryLoads"];
-
-//    <key>NSAppTransportSecurity</key>
-//    <dict>
-//    <key>NSAllowsArbitraryLoads</key>
-//    <true/>
-//    </dict>
+    NSDictionary *appTransportSecurity = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"NSAllowsArbitraryLoads"];
     
     
     NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       
-                                      @"English",                                 @"CFBundleDevelopmentRegion",
-                                      [properties objectForKey:@"Name"],         @"CFBundleExecutable",
-                                      [properties objectForKey:@"Name"],         @"CFBundleName",
-                                      [properties objectForKey:@"Name"],         @"CFBundleDisplayName",
-                                      humanCopyright,                             @"NSHumanReadableCopyright",
-                                      [properties objectForKey:@"Version"],      @"CFBundleVersion",
-                                      [properties objectForKey:@"Version"],      @"CFBundleShortVersionString",
-                                      [properties objectForKey:@"Identifier"],   @"CFBundleIdentifier",
-                                      [properties objectForKey:@"ShowInDock"],   @"LSUIElement",
-                                      @"6.0",                                     @"CFBundleInfoDictionaryVersion",
-                                      @"APPL",                                    @"CFBundlePackageType",
-                                      @"MainMenu",                                @"NSMainNibFile",
-                                      PROGRAM_MIN_SYS_VERSION,                    @"LSMinimumSystemVersion",
-                                      @"NSApplication",                           @"NSPrincipalClass",
-                                      appTransportSecurity,                       @"NSAppTransportSecurity",
+                                      @"English",                               @"CFBundleDevelopmentRegion",
+                                      [properties objectForKey:@"Name"],        @"CFBundleExecutable",
+                                      [properties objectForKey:@"Name"],        @"CFBundleName",
+                                      [properties objectForKey:@"Name"],        @"CFBundleDisplayName",
+                                      humanCopyright,                           @"NSHumanReadableCopyright",
+                                      [properties objectForKey:@"Version"],     @"CFBundleVersion",
+                                      [properties objectForKey:@"Version"],     @"CFBundleShortVersionString",
+                                      [properties objectForKey:@"Identifier"],  @"CFBundleIdentifier",
+                                      [properties objectForKey:@"ShowInDock"],  @"LSUIElement",
+                                      @"6.0",                                   @"CFBundleInfoDictionaryVersion",
+                                      @"APPL",                                  @"CFBundlePackageType",
+                                      @"MainMenu",                              @"NSMainNibFile",
+                                      PROGRAM_MIN_SYS_VERSION,                  @"LSMinimumSystemVersion",
+                                      @"NSApplication",                         @"NSPrincipalClass",
+                                      appTransportSecurity,                     @"NSAppTransportSecurity",
+                                      
                                       nil];
     
     if (![[properties objectForKey:@"IconPath"] isEqualToString:@""]) {
@@ -622,7 +616,7 @@
     fprintf(stdout, "%s\n", [[properties description] UTF8String]);
 }
 
-// generates the command that would create this spec using flags to the platypus command line tool
+// generates the command line command that would create this spec
 
 - (NSString *)commandString {
     int i;
