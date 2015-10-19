@@ -37,7 +37,7 @@
     NSString *string = [self launchPath];
     NSArray *args = [self arguments];
     for (NSString *argument in args) {
-        string = [string stringByAppendingFormat:@" %@", argument];
+        string = [string stringByAppendingFormat:@" '%@'", argument];
     }
     return string;
 }
