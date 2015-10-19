@@ -1100,14 +1100,18 @@
         return;
     }
     NSString *outSuffix = (outputType == PLATYPUS_WEBVIEW_OUTPUT) ? @"html" : @"txt";
-    NSString *fileName = [NSString stringWithFormat:@"%@ Output.%@", appName, outSuffix];
+    NSString *fileName = [NSString stringWithFormat:@"%@-Output.%@", appName, outSuffix];
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setPrompt:@"Save"];
     [sPanel setNameFieldStringValue:fileName];
     
     if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
-        [[outputTextView string] writeToFile:[[sPanel URL] path] atomically:YES encoding:textEncoding error:nil];
+        NSError *err;
+        [[outputTextView string] writeToFile:[[sPanel URL] path] atomically:YES encoding:textEncoding error:&err];
+        if (err != nil) {
+            [self alert:@"Error" subText:[err localizedDescription]];
+        }
     }
 }
 
@@ -1473,8 +1477,7 @@
 
 #pragma mark - Utility methods
 
-// show error alert and then exit application
-- (void)fatalAlert:(NSString *)message subText:(NSString *)subtext {
+- (void)alert:(NSString *)message subText:(NSString *)subtext {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
     [alert setMessageText:message];
@@ -1482,6 +1485,10 @@
     [alert setAlertStyle:NSCriticalAlertStyle];
     [alert runModal];
     [alert release];
+}
+
+- (void)fatalAlert:(NSString *)message subText:(NSString *)subtext {
+    [self alert:message subText:subtext];
     [[NSApplication sharedApplication] terminate:self];
 }
 
