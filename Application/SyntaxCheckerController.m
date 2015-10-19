@@ -47,11 +47,11 @@
     NSString *reportText = [ScriptAnalyser checkSyntaxOfFile:path withInterpreter:interpreter];
     [textView setString:reportText];
     
-    [NSApp  beginSheet:[self window]
-        modalForWindow:theWindow
-         modalDelegate:self
-        didEndSelector:nil
-           contextInfo:nil];
+    [NSApp beginSheet:[self window]
+       modalForWindow:theWindow
+        modalDelegate:self
+       didEndSelector:nil
+          contextInfo:nil];
     
     [NSApp runModalForWindow:[self window]];
 }
