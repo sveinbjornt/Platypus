@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 # Test script for ScriptExec binary
 #
 
@@ -16,9 +16,9 @@
 #$i = 0;
 #while ($i < 9000)
 #{ print "$i: Smusmu\n"; 
-
-	#print "PROGRESS:" . int($i / 100) . "\n";
-
+#
+#	print "PROGRESS:" . int($i / 100) . "\n";
+#
 #	$i++;
 #}
 local $| = 1;
@@ -36,9 +36,9 @@ local $| = 1;
 #}
 #
 
-print "MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n";
-print "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
-print "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
+#print "MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n";
+#print "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
+#print "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
 
 
 #use Shell;
@@ -49,12 +49,14 @@ print "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
 
 #print "<html><body bgcolor='#F1F1DE'><center><font color='blue'><h1>Hello, World</h1></font></center></body></html>\n";
 
-#$i = 0;
-#while ($i < 1) {
-#    print "NOTIFICATION:$i\n";
-#    $i++;
-#
-#}
+my $i = 0;
+while ($i < 1) {
+    print "PROGRESS:$i";
+    $i++;
+
+}
+
+#sleep 1;
 # If 0 arguments, we show menu
 #if (!scalar(@ARGV)) {
 #    print "Life's but a walking shadow, a poor player\n";
@@ -85,7 +87,7 @@ print "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
 #	print STDOUT "Doing $i\r";
 #	print "Number $i\n";
 #	print "PROGRESS:$i\n";
-#	print "http://smu.com\n";
+#	print "http://gnu.org\n";
 #	$i++;
 
 #print "Done";

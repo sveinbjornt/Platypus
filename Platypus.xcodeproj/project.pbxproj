@@ -1068,7 +1068,7 @@
 				SECTORDER_FLAGS = "";
 				STRIP_INSTALLED_PRODUCT = NO;
 				VALIDATE_PRODUCT = NO;
-				WARNING_CFLAGS = "";
+				WARNING_CFLAGS = "-Wno-gnu";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Development;
@@ -1117,7 +1117,7 @@
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				STRIP_INSTALLED_PRODUCT = YES;
 				VALIDATE_PRODUCT = YES;
-				WARNING_CFLAGS = "";
+				WARNING_CFLAGS = "-Wno-gnu";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Deployment;
@@ -1157,7 +1157,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
 				VALIDATE_PRODUCT = NO;
-				WARNING_CFLAGS = "";
+				WARNING_CFLAGS = "-Wno-gnu";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Default;
