@@ -155,7 +155,7 @@
  autocompletion.
  ********************************************/
 
-- (int)autoComplete:(id)sender {
+- (BOOL)autoComplete:(id)sender {
     NSString *autocompletedPath = nil;
     NSString *path = [self stringValue];
     unichar firstchar;
@@ -163,13 +163,14 @@
     BOOL isDir;
     
     // let's not waste time if the string is empty
-    if (len == 0)
-        return 0;
-    
+    if (len == 0) {
+        return NO;
+    }
     // we only try to expand if this looks like a real path, i.e. starts with / or ~
     firstchar = [path characterAtIndex:0];
-    if (firstchar != '/' && firstchar != '~')
-        return 0;
+    if (firstchar != '/' && firstchar != '~') {
+        return NO;
+    }
     
     // expand tilde to home dir
     if (firstchar == '~' && expandTildeInPath) {
@@ -181,14 +182,16 @@
     [path completePathIntoString:&autocompletedPath caseSensitive:YES matchesIntoArray:nil filterTypes:nil];
     
     // stop if no suggestions
-    if (autocompletedPath == nil)
-        return 0;
+    if (autocompletedPath == nil) {
+        return NO;
+    }
     
     // stop if suggestion is current value and current value is a valid path
     if ([autocompletedPath isEqualToString:[self stringValue]] &&
         [[NSFileManager defaultManager] fileExistsAtPath:autocompletedPath isDirectory:&isDir] &&
-        !(isDir && !foldersAreValid))
-        return 0;
+        !(isDir && !foldersAreValid)) {
+        return NO;
+    }
     
     // replace field string with autocompleted string
     [self setStringValue:autocompletedPath];
@@ -200,7 +203,7 @@
         [[self currentEditor] setSelectedRange:NSMakeRange(len, dlen)];
     }
     
-    return 1;
+    return YES;
 }
 
 // we make sure coloring is correct whenever text changes
@@ -242,11 +245,11 @@
  Accessor functions for settings
  ********************************************/
 
-- (void)setAutocompleteStyle:(int)style {
+- (void)setAutocompleteStyle:(STPathTextFieldAutocompleteStyle)style {
     autocompleteStyle = style;
 }
 
-- (int)autocompleteStyle {
+- (STPathTextFieldAutocompleteStyle)autocompleteStyle {
     return autocompleteStyle;
 }
 
