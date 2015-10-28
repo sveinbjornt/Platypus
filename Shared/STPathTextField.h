@@ -30,25 +30,25 @@
 
 #import <Cocoa/Cocoa.h>
 
-enum {
+typedef enum {
     STNoAutocomplete = 0,
     STShellAutocomplete = 1,
     STBrowserAutocomplete = 2
-};
+} STPathTextFieldAutocompleteStyle;
 
 @interface STPathTextField : NSTextField <NSTextViewDelegate>
 {
-    BOOL autocompleteStyle;
+    STPathTextFieldAutocompleteStyle autocompleteStyle;
     BOOL colorInvalidPath;
     BOOL foldersAreValid;
     BOOL expandTildeInPath;
 }
 - (void)updateTextColoring;
-- (int)autoComplete:(id)sender;
+- (BOOL)autoComplete:(id)sender;
 - (BOOL)hasValidPath;
 
-- (void)setAutocompleteStyle:(int)style;
-- (int)autocompleteStyle;
+- (void)setAutocompleteStyle:(STPathTextFieldAutocompleteStyle)style;
+- (STPathTextFieldAutocompleteStyle)autocompleteStyle;
 
 - (void)setColorInvalidPath:(BOOL)val;
 - (BOOL)colorInvalidPath;
