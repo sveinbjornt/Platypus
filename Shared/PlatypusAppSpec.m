@@ -35,7 +35,6 @@
 #import "PlatypusAppSpec.h"
 #import "Common.h"
 #import "ScriptAnalyser.h"
-#import "Utils.h"
 
 @implementation PlatypusAppSpec
 
@@ -281,7 +280,10 @@
     execDestinationPath = [macosPath stringByAppendingString:@"/"];
     execDestinationPath = [execDestinationPath stringByAppendingString:[properties objectForKey:@"Name"]];
     [fileManager copyItemAtPath:execPath toPath:execDestinationPath error:nil];
-    [Utils setPermissions:S_IRWXU | S_IRWXG | S_IROTH forFile:execDestinationPath];    
+    NSDictionary *execAttrDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithShort:S_IRWXU | S_IRWXG | S_IROTH]
+                                                             forKey:NSFilePosixPermissions];
+    [[NSFileManager defaultManager] setAttributes:execAttrDict ofItemAtPath:execDestinationPath error:nil];
+
     
     //copy nib file to app bundle
     //.app/Contents/Resources/MainMenu.nib
@@ -290,13 +292,11 @@
     [fileManager copyItemAtPath:nibPath toPath:nibDestPath error:nil];
     
     // if optimize application is set, we see if we can compile the nib file
-    
-    NSString *ibtoolPath = [Utils ibtoolPath];
-    if ([[properties objectForKey:@"OptimizeApplication"] boolValue] == YES && ibtoolPath) {
+    if ([[properties objectForKey:@"OptimizeApplication"] boolValue] == YES && [FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
         [self report:@"Optimizing nib file"];
         
         NSTask *ibToolTask = [[NSTask alloc] init];
-        [ibToolTask setLaunchPath:ibtoolPath];
+        [ibToolTask setLaunchPath:IBTOOL_PATH];
         [ibToolTask setArguments:[NSArray arrayWithObjects:@"--strip", nibDestPath, nibDestPath, nil]];
         [ibToolTask launch];
         [ibToolTask waitUntilExit];
@@ -318,7 +318,9 @@
         else // copy script over
             [fileManager copyItemAtPath:[properties objectForKey:@"ScriptPath"] toPath:scriptFilePath error:nil];
         
-        [Utils setPermissions:S_IRWXU | S_IRWXG | S_IROTH forFile:scriptFilePath];
+        NSDictionary *fileAttrDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithShort:S_IRWXU | S_IRWXG | S_IROTH]
+                                                                 forKey:NSFilePosixPermissions];
+        [[NSFileManager defaultManager] setAttributes:fileAttrDict ofItemAtPath:scriptFilePath error:nil];
     }
     
     //create AppSettings.plist file
@@ -798,7 +800,7 @@
     NSString *pre = (!def || [defaults isEqualToString:@""]) ? [NSString stringWithFormat:@"org.%@.", NSUserName()] : defaults;
     
     NSString *bundleId = [NSString stringWithFormat:@"%@%@", pre, name];
-    bundleId = [Utils removeWhitespaceInString:bundleId]; //no spaces
+    bundleId = [bundleId stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     return bundleId;
 }

@@ -48,9 +48,10 @@
 #import "DropSettingsController.h"
 #import "SuffixListController.h"
 #import "SyntaxCheckerController.h"
-
-#import "Utils.h"
 #import "BundledFilesController.h"
+
+#import "NSFileManager+Additions.h"
+#import "Alerts.h"
 #import "NSColor+HexTools.h"
 
 #import "VDKQueue.h"
@@ -108,13 +109,13 @@
     
     // app support folder
     if (![FILEMGR fileExistsAtPath:APP_SUPPORT_FOLDER isDirectory:&isDir] && ![FILEMGR createDirectoryAtPath:APP_SUPPORT_FOLDER withIntermediateDirectories:NO attributes:nil error:nil]) {
-            [Utils alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]];
+            [Alerts alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]];
     }
     
     // profiles folder
     if (![FILEMGR fileExistsAtPath:PROFILES_FOLDER isDirectory:&isDir]) {
         if (![FILEMGR createDirectoryAtPath:PROFILES_FOLDER withIntermediateDirectories:NO attributes:nil error:nil]) {
-            [Utils alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", PROFILES_FOLDER]];
+            [Alerts alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", PROFILES_FOLDER]];
         }
     }
     
@@ -225,7 +226,7 @@
 
 - (IBAction)revealScript:(id)sender {
     if ([FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]] == NO) {
-        [Utils alert:@"File not found" subText:@"No file exists at the specified path"];
+        [Alerts alert:@"File not found" subText:@"No file exists at the specified path"];
     }
     [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:[scriptPathTextField stringValue]];
 }
@@ -237,7 +238,7 @@
 - (IBAction)editScript:(id)sender {
     //see if file exists
     if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
-        [Utils alert:@"File does not exist" subText:@"No file exists at the specified path"];
+        [Alerts alert:@"File does not exist" subText:@"No file exists at the specified path"];
         return;
     }
     
@@ -250,7 +251,7 @@
             [[NSWorkspace sharedWorkspace] openFile:[scriptPathTextField stringValue] withApplication:defaultEditor];
         } else {
             // Complain if editor is not found, set it to the built-in editor
-            [Utils alert:@"Application not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
+            [Alerts alert:@"Application not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
             [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
         }
@@ -347,7 +348,7 @@
     
     // optimize nib is enabled and on by default if ibtool is present
     [optimizeApplicationCheckbox setIntValue:[[DEFAULTS objectForKey:@"OnCreateOptimizeNib"] boolValue]];
-    BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:[Utils ibtoolPath]];
+    BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:IBTOOL_PATH];
     [optimizeApplicationCheckbox setEnabled:ibtoolInstalled];
     if (!ibtoolInstalled) {
         [optimizeApplicationCheckbox setIntValue:0];
@@ -425,7 +426,7 @@
     
     // verify that the values in the spec are OK
     if (![spec verify]) {
-        [Utils alert:@"Spec verification failed" subText:[spec error]];
+        [Alerts alert:@"Spec verification failed" subText:[spec error]];
         return NO;
     }
     
@@ -449,7 +450,7 @@
         [NSApp endSheet:progressDialogWindow];
         [progressDialogWindow orderOut:self];
         
-        [Utils alert:@"Creating from spec failed" subText:[spec error]];
+        [Alerts alert:@"Creating from spec failed" subText:[spec error]];
         return NO;
     }
     
@@ -488,32 +489,32 @@
     
     //script path
     if ([[appNameTextField stringValue] length] == 0) { //make sure a name has been assigned
-        [Utils sheetAlert:@"Invalid Application Name" subText:@"You must specify a name for your application" forWindow:window];
+        [Alerts sheetAlert:@"Invalid Application Name" subText:@"You must specify a name for your application" forWindow:window];
         return NO;
     }
     
     //script path
     if (([fileManager fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] == NO) || isDir) { //make sure script exists and isn't a folder
-        [Utils sheetAlert:@"Invalid Script Path" subText:@"No file exists at the script path you have specified" forWindow:window];
+        [Alerts sheetAlert:@"Invalid Script Path" subText:@"No file exists at the script path you have specified" forWindow:window];
         return NO;
     }
     
     //make sure we have an icon
     if (([iconController hasIcns] && ![[iconController icnsFilePath] isEqualToString:@""] && ![fileManager fileExistsAtPath:[iconController icnsFilePath]])
         ||  (![(IconController *)iconController hasIcns] && [(IconController *)iconController imageData] == nil)) {
-        [Utils sheetAlert:@"Missing Icon" subText:@"You must set an icon for your application." forWindow:window];
+        [Alerts sheetAlert:@"Missing Icon" subText:@"You must set an icon for your application." forWindow:window];
         return NO;
     }
     
     // let's be certain that the bundled files list doesn't contain entries that have been moved
     if (![bundledFilesController allPathsAreValid]) {
-        [Utils sheetAlert:@"Moved or missing files" subText:@"One or more of the files that are to be bundled with the application have been moved.  Please rectify this and try again." forWindow:window];
+        [Alerts sheetAlert:@"Moved or missing files" subText:@"One or more of the files that are to be bundled with the application have been moved.  Please rectify this and try again." forWindow:window];
         return NO;
     }
     
     //interpreter
     if ([fileManager fileExistsAtPath:[interpreterTextField stringValue]] == NO) {
-        if ([Utils proceedWarning:@"Invalid Interpreter" subText:@"The specified interpreter does not exist on this system.  Do you wish to proceed anyway?" withAction:@"Proceed"] == NO) {
+        if ([Alerts proceedAlert:@"Invalid Interpreter" subText:@"The specified interpreter does not exist on this system.  Do you wish to proceed anyway?" withAction:@"Proceed"] == NO) {
             return NO;
         }
     }
@@ -912,14 +913,15 @@
 
 - (IBAction)showCommandLineString:(id)sender {
     if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
-        [Utils alert:@"Missing script" subText:[NSString stringWithFormat:@"No file exists at path '%@'", [scriptPathTextField stringValue]]];
+        [Alerts alert:@"Missing script"
+              subText:[NSString stringWithFormat:@"No file exists at path '%@'", [scriptPathTextField stringValue]]];
         return;
     }
     
     [window setTitle:[NSString stringWithFormat:@"%@ - Shell Command String", PROGRAM_NAME]];
-    ShellCommandController *controller = [[ShellCommandController alloc] init];
-    [controller setPrefsController:prefsController];
-    [controller showShellCommandForSpec:[self appSpecFromControls] window:window];
+    ShellCommandController *shellCommandController = [[ShellCommandController alloc] init];
+    [shellCommandController setPrefsController:prefsController];
+    [shellCommandController showShellCommandForSpec:[self appSpecFromControls] window:window];
     
     [window setTitle:PROGRAM_NAME];
 }
@@ -947,12 +949,12 @@
     estimatedAppSize += 4096; // AppSettings.plist
     estimatedAppSize += [iconController iconSize];
     estimatedAppSize += [dropSettingsController docIconSize];
-    estimatedAppSize += [Utils fileOrFolderSize:[scriptPathTextField stringValue]];
-    estimatedAppSize += [Utils fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil]];
+    estimatedAppSize += [FILEMGR fileOrFolderSize:[scriptPathTextField stringValue]];
+    estimatedAppSize += [FILEMGR fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil]];
     
     // nib size is much smaller if compiled with ibtool
-    UInt64 nibSize = [Utils fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil]];
-    if ([FILEMGR fileExistsAtPath:IBTOOL_PATH] || [FILEMGR fileExistsAtPath:IBTOOL_PATH_2]) {
+    UInt64 nibSize = [FILEMGR fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil]];
+    if ([FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
         nibSize = 0.60 * nibSize; // compiled nib is approximtely 65% of original
     }
     estimatedAppSize += nibSize;
@@ -960,7 +962,7 @@
     // bundled files altogether
     estimatedAppSize += [bundledFilesController totalFileSize];
     
-    return [Utils sizeAsHumanReadable:estimatedAppSize];
+    return [FILEMGR sizeAsHumanReadable:estimatedAppSize];
 }
 
 // Creates an NSTask from settings
@@ -1104,17 +1106,17 @@
 
 // Open Documentation.html file within app bundle
 - (IBAction)showHelp:(id)sender {
-    [Utils openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
+    [FILEMGR openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
 }
 
 // Open html version of 'platypus' command line tool's man page
 - (IBAction)showManPage:(id)sender {
-    [Utils openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
+    [FILEMGR openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
 }
 
 // Open Readme.html
 - (IBAction)showReadme:(id)sender {
-    [Utils openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
+    [FILEMGR openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
 }
 
 // Open program website
@@ -1124,7 +1126,7 @@
 
 // Open License html file
 - (IBAction)openLicense:(id)sender {
-    [Utils openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
+    [FILEMGR openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
 }
 
 // Open donations website

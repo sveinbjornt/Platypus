@@ -33,7 +33,7 @@
 #import "PlatypusAppSpec.h"
 #import "PlatypusController.h"
 #import "Common.h"
-#import "Utils.h"
+#import "Alerts.h"
 
 @implementation ProfilesController
 
@@ -68,7 +68,7 @@
     
     // make sure we got a spec from the file
     if (spec == nil) {
-        [Utils alert:@"Error" subText:@"Unable to create Platypus spec from profile"];
+        [Alerts alert:@"Error" subText:@"Unable to create Platypus spec from profile"];
         return;
     }
     
@@ -78,7 +78,7 @@
         NSString *scriptStr = [spec propertyForKey:@"Script"];
         NSString *scriptName = [spec propertyForKey:@"ScriptName"];
         if (scriptStr == nil || scriptName == nil) {
-            [Utils alert:@"Error loading example" subText:@"Nil script value(s) in this example's profile dictionary."];
+            [Alerts alert:@"Error loading example" subText:@"Nil script value(s) in this example's profile dictionary."];
             [spec release];
             return;
         }
@@ -158,7 +158,7 @@
 {
     // if there's a file already, make sure we can overwrite
     if ([FILEMGR fileExistsAtPath:profileDestPath] && ![FILEMGR isDeletableFileAtPath:profileDestPath]) {
-        [Utils alert:@"Error" subText:[NSString stringWithFormat:@"Cannot overwrite file '%@'.", profileDestPath]];
+        [Alerts alert:@"Error" subText:[NSString stringWithFormat:@"Cannot overwrite file '%@'.", profileDestPath]];
         return;
     }
     [dict writeToFile:profileDestPath atomically:YES];
@@ -193,7 +193,7 @@
  *****************************************/
 
 - (IBAction)clearAllProfiles:(id)sender {
-    if ([Utils proceedWarning:@"Delete all profiles?" subText:@"This will permanently delete all profiles in your Profiles folder." withAction:@"Delete"] == 0) {
+    if ([Alerts proceedAlert:@"Delete all profiles?" subText:@"This will permanently delete all profiles in your Profiles folder." withAction:@"Delete"] == NO) {
         return;
     }
     
@@ -207,7 +207,7 @@
         if ([filename hasSuffix:PROFILES_SUFFIX]) {
             NSString *path = [NSString stringWithFormat:@"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], filename];
             if (![manager isDeletableFileAtPath:path]) {
-                [Utils alert:@"Error" subText:[NSString stringWithFormat:@"Cannot delete file %@.", path]];
+                [Alerts alert:@"Error" subText:[NSString stringWithFormat:@"Cannot delete file %@.", path]];
             } else {
                 [manager removeItemAtPath:path error:nil];
             }

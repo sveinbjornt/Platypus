@@ -30,7 +30,7 @@
 
 #import "EditorController.h"
 #import "Common.h"
-#import "Utils.h"
+#import "Alerts.h"
 #import "SyntaxCheckerController.h"
 #import "NSTextView+JSDExtensions.h"
 
@@ -54,7 +54,7 @@
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)theWindow {
     NSString *str = [NSString stringWithContentsOfFile:path encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:nil];
     if (str == nil) {
-        [Utils alert:@"Error reading document" subText:@"This document does not appear to be a text file and cannot be opened with a text editor."];
+        [Alerts alert:@"Error reading document" subText:@"This document does not appear to be a text file and cannot be opened with a text editor."];
         return;
     }
     
@@ -87,7 +87,7 @@
 
 - (IBAction)save:(id)sender {
     if (![FILEMGR isWritableFileAtPath:[scriptPathTextField stringValue]]) {
-        [Utils alert:@"Unable to save changes" subText:@"You don't have the necessary privileges to save this text file."];
+        [Alerts alert:@"Unable to save changes" subText:@"You don't have the necessary privileges to save this text file."];
     } else {
         [[textView string] writeToFile:[scriptPathTextField stringValue] atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:nil];
     }
@@ -106,10 +106,10 @@
 #pragma mark -
 
 - (IBAction)checkSyntax:(id)sender {
-    SyntaxCheckerController *syntax = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
-    [syntax showSyntaxCheckerForFile:[scriptPathTextField stringValue]
-                     withInterpreter:nil
-                              window:mainWindow];
+    SyntaxCheckerController *syntaxController = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
+    [syntaxController showSyntaxCheckerForFile:[scriptPathTextField stringValue]
+                               withInterpreter:nil
+                                        window:mainWindow];
 }
 
 - (IBAction)revealInFinder:(id)sender {

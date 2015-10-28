@@ -84,9 +84,7 @@
 #define CMDLINE_SCRIPT_EXEC_PATH    [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_SCRIPTEXEC_BIN_NAME]
 #define CMDLINE_ICON_PATH           [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_DEFAULT_ICON_NAME]
 
-#define IBTOOL_PATH                 @ "/Developer/usr/bin/ibtool"
-#define IBTOOL_PATH_2               @ "/Applications/Xcode.app/Contents/Developer/usr/bin/ibtool"
-#define LIPO_PATH                   @ "/usr/bin/lipo"
+#define IBTOOL_PATH                 @ "/Applications/Xcode.app/Contents/Developer/usr/bin/ibtool"
 
 #define DEFAULT_EDITOR              @ "Built-In"
 #define DEFAULT_INTERPRETER         @ "/bin/sh"

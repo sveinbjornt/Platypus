@@ -30,6 +30,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSFileManager (TempFile)
-- (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
+@interface NSBundle (Templates)
+
+- (NSString *)loadTemplate:(NSString *)templateFileName usingDictionary:(NSDictionary *)dict;
+
 @end
