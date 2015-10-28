@@ -32,6 +32,7 @@
  bundled into Platypus-generated applications */
 
 #import "ScriptExecController.h"
+#import "Alerts.h"
 
 @implementation ScriptExecController
 
@@ -111,7 +112,7 @@
     
     //make sure all the config files are present -- if not, we quit
     if (![FILEMGR fileExistsAtPath:appSettingsPath]) {
-        [self fatalAlert:@"Corrupt app bundle" subText:@"AppSettings.plist missing from the application bundle."];
+        [Alerts fatalAlert:@"Corrupt app bundle" subText:@"AppSettings.plist missing from the application bundle."];
     }
     
     // get app name
@@ -127,7 +128,7 @@
     //get dictionary with app settings
     appSettingsPlist = [NSDictionary dictionaryWithContentsOfFile:appSettingsPath];
     if (appSettingsPlist == nil) {
-        [self fatalAlert:@"Corrupt app settings" subText:@"Unable to load AppSettings.plist"];
+        [Alerts fatalAlert:@"Corrupt app settings" subText:@"Unable to load AppSettings.plist"];
     }
     
     //determine output type
@@ -145,7 +146,7 @@
     } else if ([outputTypeStr isEqualToString:@"None"]) {
         outputType = PLATYPUS_NONE_OUTPUT;
     } else {
-        [self fatalAlert:@"Corrupt app settings" subText:@"Invalid Output Mode."];
+        [Alerts fatalAlert:@"Corrupt app settings" subText:@"Invalid Output Mode."];
     }
     
     // we need some additional info from AppSettings.plist if we are presenting textual output
@@ -201,7 +202,7 @@
         if ([statusItemDisplayType isEqualToString:@"Text"] || [statusItemDisplayType isEqualToString:@"Icon and Text"]) {
             statusItemTitle = [[appSettingsPlist objectForKey:@"StatusItemTitle"] retain];
             if (statusItemTitle == nil) {
-                [self fatalAlert:@"Error getting title" subText:@"Failed to get Status Item title."];
+                [Alerts fatalAlert:@"Error getting title" subText:@"Failed to get Status Item title."];
             }
         }
         
@@ -209,7 +210,7 @@
         if ([statusItemDisplayType isEqualToString:@"Icon"] || [statusItemDisplayType isEqualToString:@"Icon and Text"]) {
             statusItemIcon = [[NSImage alloc] initWithData:[appSettingsPlist objectForKey:@"StatusItemIcon"]];
             if (statusItemIcon == nil) {
-                [self fatalAlert:@"Error loading icon" subText:@"Failed to load Status Item icon."];
+                [Alerts fatalAlert:@"Error loading icon" subText:@"Failed to load Status Item icon."];
             }
         }
         
@@ -295,14 +296,14 @@
     //get interpreter
     NSString *scriptInterpreter = [appSettingsPlist objectForKey:@"ScriptInterpreter"];
     if (scriptInterpreter == nil || ![FILEMGR fileExistsAtPath:scriptInterpreter]) {
-        [self fatalAlert:@"Missing interpreter" subText:[NSString stringWithFormat:@"This application could not run because the interpreter '%@' does not exist on this system.", scriptInterpreter]];
+        [Alerts fatalAlert:@"Missing interpreter" subText:[NSString stringWithFormat:@"This application could not run because the interpreter '%@' does not exist on this system.", scriptInterpreter]];
     }
     interpreter = [[NSString alloc] initWithString:scriptInterpreter];
 
     //if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
     if ((!secureScript && ![FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]]) ||
         (secureScript && [appSettingsPlist objectForKey:@"TextSettings"] == nil)) {
-        [self fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
+        [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
     }
     
     //get path to script within app bundle
@@ -315,14 +316,14 @@
             chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
         }
         if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) { // if still unreadable
-            [self fatalAlert:@"Corrupt app bundle" subText:@"Script file is not readable."];
+            [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is not readable."];
         }
     }
     //if we have a "secure" script, there is no path to get, we write script to temp location on execution
     else {
         NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData:[appSettingsPlist objectForKey:@"TextSettings"]];
         if (b_str == nil) {
-            [self fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
+            [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
         }
         // we create string with the script based on the decoded data
         script = [[NSString alloc] initWithData:b_str encoding:textEncoding];
@@ -692,7 +693,7 @@
         
         NSString *tempScriptPath = [FILEMGR createTempFileWithContents:script usingTextEncoding:textEncoding];
         if (!tempScriptPath) {
-            [self fatalAlert:@"Failed to write script file" subText:[NSString stringWithFormat:@"Could not create the temp file '%@'", tempScriptPath]];
+            [Alerts fatalAlert:@"Failed to write script file" subText:[NSString stringWithFormat:@"Could not create the temp file '%@'", tempScriptPath]];
         }
         // chmod 774 - make file executable
         chmod([tempScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
@@ -707,7 +708,7 @@
     
     // add script as argument to interpreter, if it exists
     if (![FILEMGR fileExistsAtPath:scriptPath]) {
-        [self fatalAlert:@"Missing script" subText:@"Script missing at execution path"];
+        [Alerts fatalAlert:@"Missing script" subText:@"Script missing at execution path"];
     }
     [arguments addObject:scriptPath];
     
@@ -803,7 +804,7 @@
             return;
         }  else {
             // something went wrong
-            [self fatalAlert:@"Failed to execute script" subText:[NSString stringWithFormat:@"Error %d occurred while executing script with privileges.", (int)err]];
+            [Alerts fatalAlert:@"Failed to execute script" subText:[NSString stringWithFormat:@"Error %d occurred while executing script with privileges.", (int)err]];
         }
     }
     
@@ -1011,11 +1012,11 @@
     // if web output, we continually re-render to accomodate incoming data, else we scroll down
     if (outputType == PLATYPUS_WEBVIEW_OUTPUT) {
 
-        NSArray *lines = [[textStorage string] componentsSeparatedByString: @"\n"];
+        NSArray *htmlLines = [[textStorage string] componentsSeparatedByString: @"\n"];
 
         // Check for 'Location: *URL*' In that case, we load the URL in the web view
-        if ([lines count] > 0 && [[lines objectAtIndex:1] hasPrefix:@"Location: "]) {
-            NSString *url = [[lines objectAtIndex: 1] substringFromIndex:10];
+        if ([htmlLines count] > 0 && [[htmlLines objectAtIndex:1] hasPrefix:@"Location: "]) {
+            NSString *url = [[htmlLines objectAtIndex: 1] substringFromIndex:10];
             [[webOutputWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: url]] ];
         } else {
             // otherwise, just load script output as HTML string
@@ -1110,7 +1111,7 @@
         NSError *err;
         [[outputTextView string] writeToFile:[[sPanel URL] path] atomically:YES encoding:textEncoding error:&err];
         if (err != nil) {
-            [self alert:@"Error" subText:[err localizedDescription]];
+            [Alerts alert:@"Error writing file" subText:[err localizedDescription]];
         }
     }
 }
@@ -1169,7 +1170,7 @@
         CGFloat newFontSize = [font pointSize] + delta;
         font = [[NSFontManager sharedFontManager] convertFont:font toSize:newFontSize];
         [textView setFont:font];
-        [DEFAULTS setObject:[NSNumber numberWithFloat:newFontSize] forKey:@"UserFontSize"];
+        [DEFAULTS setObject:[NSNumber numberWithFloat:(float)newFontSize] forKey:@"UserFontSize"];
         [textView didChangeText];
     }
 }
@@ -1476,21 +1477,6 @@
 }
 
 #pragma mark - Utility methods
-
-- (void)alert:(NSString *)message subText:(NSString *)subtext {
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"OK"];
-    [alert setMessageText:message];
-    [alert setInformativeText:subtext];
-    [alert setAlertStyle:NSCriticalAlertStyle];
-    [alert runModal];
-    [alert release];
-}
-
-- (void)fatalAlert:(NSString *)message subText:(NSString *)subtext {
-    [self alert:message subText:subtext];
-    [[NSApplication sharedApplication] terminate:self];
-}
 
 - (void)showNotification:(NSString *)notificationText {
     NSUserNotification *notification = [[NSUserNotification alloc] init];

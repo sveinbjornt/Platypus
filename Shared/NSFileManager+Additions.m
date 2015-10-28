@@ -28,9 +28,76 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "NSFileManager+TempFile.h"
+#import "NSFileManager+Additions.h"
 
 @implementation NSFileManager (TempFile)
+
+#pragma mark - File/folder size
+
+- (UInt64)fileOrFolderSize:(NSString *)path {
+    UInt64 size = 0;
+    BOOL isDir;
+    
+    if (path == nil || ![self fileExistsAtPath:path isDirectory:&isDir]) {
+        return size;
+    }
+    
+    if (isDir) {
+        NSDirectoryEnumerator *dirEnumerator = [self enumeratorAtPath:path];
+        while ([dirEnumerator nextObject]) {
+            if ([NSFileTypeRegular isEqualToString:[[dirEnumerator fileAttributes] fileType]]) {
+                size += [[dirEnumerator fileAttributes] fileSize];
+            }
+        }
+    } else {
+        size = [[FILEMGR attributesOfItemAtPath:path error:nil] fileSize];
+    }
+    
+    return size;
+}
+
+- (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path {
+    return [self sizeAsHumanReadable:[self fileOrFolderSize:path]];
+}
+
+- (NSString *)sizeAsHumanReadable:(UInt64)size {
+    NSString *str;
+    
+    if (size < 1024ULL) {
+        str = [NSString stringWithFormat:@"%u bytes", (unsigned int)size];
+    } else if (size < 1048576ULL) {
+        str = [NSString stringWithFormat:@"%llu KB", (UInt64)size / 1024];
+    } else if (size < 1073741824ULL) {
+        str = [NSString stringWithFormat:@"%.1f MB", size / 1048576.0];
+    } else {
+        str = [NSString stringWithFormat:@"%.1f GB", size / 1073741824.0];
+    }
+    return str;
+}
+
+- (BOOL)openPathInDefaultBrowser:(NSString *)path {
+    NSURL *url = [NSURL URLWithString:@"http://"];
+    CFURLRef fromPathURL = NULL;
+    OSStatus err = LSGetApplicationForURL((CFURLRef)url, kLSRolesAll, NULL, &fromPathURL);
+    NSString *app = nil;
+    
+    if (fromPathURL) {
+        if (err == noErr) {
+            app = [(NSURL *)fromPathURL path];
+        }
+        CFRelease(fromPathURL);
+    }
+    
+    if (!app || err) {
+        NSLog(@"Unable to find default browser");
+        return FALSE;
+    }
+    
+    [[NSWorkspace sharedWorkspace] openFile:path withApplication:app];
+    return TRUE;
+}
+
+#pragma mark - Temp file
 
 - (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {
     // This could be done by just writing to /tmp, but this method is more secure
@@ -76,7 +143,5 @@
 - (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {
     return [self createTempFileNamed:nil withContents:contentStr usingTextEncoding:textEncoding];
 }
-
-
 
 @end

@@ -44,7 +44,7 @@
 #import "Common.h"
 #import "STPrivilegedTask.h"
 #import "STDragWebView.h"
-#import "NSFileManager+TempFile.h"
+#import "NSFileManager+Additions.h"
 
 @interface ScriptExecController : NSObject <NSMenuDelegate>
 {
@@ -107,7 +107,6 @@
     NSMutableArray *fileArgs;
     NSArray *interpreterArgs;
     NSArray *scriptArgs;
-    
     
     NSString *interpreter;
     NSString *scriptPath;
@@ -177,5 +176,4 @@
 - (IBAction)makeTextBigger:(id)sender;
 - (IBAction)makeTextSmaller:(id)sender;
 
-- (void)fatalAlert:(NSString *)message subText:(NSString *)subtext;
 @end

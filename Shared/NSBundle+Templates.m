@@ -28,21 +28,24 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Cocoa/Cocoa.h>
+#import "NSBundle+Templates.h"
 
-@interface Utils : NSObject
-+ (NSString *)removeWhitespaceInString:(NSString *)str;
-+ (BOOL)isTextFile:(NSString *)path;
-+ (NSString *)ibtoolPath;
-+ (BOOL)setPermissions:(short)pp forFile:(NSString *)path;
-+ (void)alert:(NSString *)message subText:(NSString *)subtext;
-+ (void)fatalAlert:(NSString *)message subText:(NSString *)subtext;
-+ (BOOL)proceedWarning:(NSString *)message subText:(NSString *)subtext withAction:(NSString *)action;
-+ (void)sheetAlert:(NSString *)message subText:(NSString *)subtext forWindow:(NSWindow *)window;
-+ (UInt64)fileOrFolderSize:(NSString *)path;
-+ (NSString *)sizeAsHumanReadable:(UInt64)size;
-+ (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path;
-+ (BOOL)openPathInDefaultBrowser:(NSString *)path;
-+ (NSString *)loadBundledTemplate:(NSString *)templateFileName usingDictionary:(NSDictionary *)dict;
-+ (NSArray *)imageFileSuffixes;
+@implementation NSBundle (Templates)
+
+- (NSString *)loadTemplate:(NSString *)templateFileName usingDictionary:(NSDictionary *)dict {
+    
+    NSString *fullPath = [self pathForResource:templateFileName ofType:nil];
+    NSString *templateStr = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
+    if (!templateStr) {
+        NSLog(@"Unable to read template %@", templateFileName);
+        return nil;
+    }
+    
+    for (NSString *key in dict) {
+        NSString *placeholder = [NSString stringWithFormat:@"%%%%%@%%%%", key];
+        templateStr = [templateStr stringByReplacingOccurrencesOfString:placeholder withString:[dict objectForKey:key]];
+    }
+    return templateStr;
+}
+
 @end

@@ -28,28 +28,14 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "UniformTypeListController.h"
+#import <Foundation/Foundation.h>
 
-@implementation UniformTypeListController
+@interface NSFileManager (Additions)
 
-- (NSImage *)iconForItem:(NSString *)item {
-    return [[NSWorkspace sharedWorkspace] iconForFileType:item];
-}
-
-- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
-    
-    NSPasteboard *pboard = [info draggingPasteboard];
-    NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
-    
-    for (int i = 0; i < [draggedFiles count]; i++) {
-        NSString *suffix = [[draggedFiles objectAtIndex:i] pathExtension];
-        NSString *UTI = (NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,
-                                                                          (CFStringRef)suffix,
-                                                                          NULL);
-        [self addItem:[UTI autorelease]];
-    }
-    [tv reloadData];
-    return YES;
-}
+- (UInt64)fileOrFolderSize:(NSString *)path;
+- (NSString *)sizeAsHumanReadable:(UInt64)size;
+- (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path;
+- (BOOL)openPathInDefaultBrowser:(NSString *)path;
+- (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
 
 @end

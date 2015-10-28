@@ -39,7 +39,8 @@
 #import "VDKQueue.h"
 #import "EditorController.h"
 #import "PlatypusController.h"
-#import "Utils.h"
+#import "NSFileManager+Additions.h"
+#import "Alerts.h"
 #import "Common.h"
 
 @implementation BundledFilesController
@@ -182,15 +183,15 @@
             [[NSWorkspace sharedWorkspace] openFile:path withApplication:defaultEditor];
             return;
         } else {
-            [Utils alert:@"Editor not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
+            [Alerts alert:@"Editor not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
         }
     }
     
     // Open in built-in editor
     [window setTitle:[NSString stringWithFormat:@"%@ - Editing %@", PROGRAM_NAME, [path lastPathComponent]]];
-    EditorController *editor = [[EditorController alloc] init];
-    [editor showEditorForFile:path window:window];
+    EditorController *editorController = [[EditorController alloc] init];
+    [editorController showEditorForFile:path window:window];
     [window setTitle:PROGRAM_NAME];
 }
 
@@ -329,10 +330,10 @@
     
     //otherwise, loop through all files, calculate size
     for (int i = 0; i < [self numFiles]; i++) {
-        totalFileSize += [Utils fileOrFolderSize:[self filePathAtIndex:i]];
+        totalFileSize += [FILEMGR fileOrFolderSize:[self filePathAtIndex:i]];
     }
     
-    NSString *totalSizeString = [Utils sizeAsHumanReadable:totalFileSize];
+    NSString *totalSizeString = [FILEMGR sizeAsHumanReadable:totalFileSize];
     NSString *pluralS = ([self numFiles] > 1) ? @"s" : @"";
     [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d item%@, %@", [self numFiles], pluralS, totalSizeString]];
     [platypusController updateEstimatedAppSize];

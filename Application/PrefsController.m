@@ -30,11 +30,11 @@
 
 #import "PrefsController.h"
 #import <sys/stat.h>
-#import "Utils.h"
+#import "Alerts.h"
 #import "STPrivilegedTask.h"
 #import "Common.h"
-#import "NSFileManager+TempFile.h"
-
+#import "NSFileManager+Additions.h"
+#import "NSBundle+Templates.h"
 
 @implementation PrefsController
 
@@ -252,9 +252,9 @@
 }
 
 - (IBAction)uninstallPlatypus:(id)sender {
-    if ([Utils proceedWarning:@"Are you sure you want to uninstall Platypus?"
-                                subText:@"This will move the Platypus application and all related files to the Trash.  The application will then quit."
-                             withAction:@"Uninstall"]) {
+    if ([Alerts proceedAlert:@"Are you sure you want to uninstall Platypus?"
+                     subText:@"This will move the Platypus application and all related files to the Trash.  The application will then quit."
+                  withAction:@"Uninstall"] == YES) {
         [self runCLTTemplateScript:@"UninstallPlatypus.sh" usingDictionary:[self commandLineEnvDict]];
         [[NSApplication sharedApplication] terminate:self];
     }
@@ -289,7 +289,7 @@
  *****************************************/
 - (void)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
     
-    NSString *script = [Utils loadBundledTemplate:scriptName usingDictionary:placeholderDict];
+    NSString *script = [[NSBundle mainBundle] loadTemplate:scriptName usingDictionary:placeholderDict];
     NSString *tmpScriptPath = [FILEMGR createTempFileWithContents:script usingTextEncoding:NSUTF8StringEncoding];
     chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // 744
     

@@ -23,6 +23,8 @@ For 5.0
     TODO: New high res images for documentation
     TODO: File watching still broken for script path
     TODO: Better error handling in file operations (use NSError object)
+    TODO: Use UTI methods instead of deprecated imageFileTypes
+    TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
 
     * New default "Use system font" option for status menu item output
     * New MENUITEMICON: syntax to set menu item icon in status menu output mode

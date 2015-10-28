@@ -30,8 +30,8 @@
 
 #import "StatusItemSettingsController.h"
 #import "Common.h"
-#import "Utils.h"
 #import "PlatypusController.h"
+#import "Alerts.h"
 
 @implementation StatusItemSettingsController
 
@@ -119,7 +119,7 @@
     [oPanel setTitle:[NSString stringWithFormat:@"%@ - Select Image", PROGRAM_NAME]];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[Utils imageFileSuffixes]];
+    [oPanel setAllowedFileTypes:[NSImage imageFileTypes]];
     
     if ([oPanel runModal] == NSOKButton) {
         NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
@@ -128,7 +128,7 @@
             [self setIcon:img];
             [img release];
         } else {
-            [Utils alert:@"Corrupt Image File" subText:@"The image file you selected appears to be damaged or corrupt."];
+            [Alerts alert:@"Corrupt Image File" subText:@"The image file you selected appears to be damaged or corrupt."];
         }
     }
 }
