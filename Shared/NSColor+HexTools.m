@@ -73,9 +73,9 @@
     [convertedColor getRed:&redFloatValue green:&greenFloatValue blue:&blueFloatValue alpha:NULL];
     
     // Convert the components to numbers (unsigned decimal integer) between 0 and 255
-    redIntValue = redFloatValue * 255.99999f;
-    greenIntValue = greenFloatValue * 255.99999f;
-    blueIntValue = blueFloatValue * 255.99999f;
+    redIntValue = (int)(redFloatValue * 255.99999f);
+    greenIntValue = (int)(greenFloatValue * 255.99999f);
+    blueIntValue = (int)(blueFloatValue * 255.99999f);
     
     // Convert the numbers to hex strings
     redHexValue = [NSString stringWithFormat:@"%02x", redIntValue];
