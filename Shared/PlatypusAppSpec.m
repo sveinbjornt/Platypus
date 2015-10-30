@@ -487,7 +487,7 @@
     
     NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       
-                                      @"English",                               @"CFBundleDevelopmentRegion",
+                                      @"en",                                    @"CFBundleDevelopmentRegion",
                                       [properties objectForKey:@"Name"],        @"CFBundleExecutable",
                                       [properties objectForKey:@"Name"],        @"CFBundleName",
                                       [properties objectForKey:@"Name"],        @"CFBundleDisplayName",
