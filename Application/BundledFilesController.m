@@ -78,7 +78,9 @@
         return;
     }
     
-    if (GetCurrentKeyModifiers() & cmdKey) {
+    BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
+    
+    if (commandKeyDown) {
         [self revealInFinder:[tableView clickedRow]];
     } else {
         [self openInFinder:[tableView clickedRow]];

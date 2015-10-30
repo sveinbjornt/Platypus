@@ -181,7 +181,8 @@
     NSString *profilePath = [NSString stringWithFormat:@"%@/%@", [folder stringByExpandingTildeInPath], [sender title]];
     
     // if command key is down, we reveal in finder
-    if (GetCurrentKeyModifiers() & cmdKey) {
+    BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
+    if (commandKeyDown) {
         [[NSWorkspace sharedWorkspace] selectFile:profilePath inFileViewerRootedAtPath:profilePath];
     } else {
         [self loadProfileFile:profilePath];

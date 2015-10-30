@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Print total lines of code data for Platypus project
+# Print total lines of code for project
 #
 
 echo "LOC Total:"
