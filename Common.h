@@ -136,5 +136,7 @@ nil]
 
 #ifdef DEBUG
     #define PLog(...) NSLog(__VA_ARGS__)
+#else
+    #define PLog(...)
 #endif
 

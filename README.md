@@ -1,5 +1,7 @@
 # Platypus
 
+<img align="right" src="https://raw.githubusercontent.com/sveinbjornt/Platypus/master/Documentation/images/platypus.png" style="float: right; margin-left: 30px;">
+
 Platypus is a developer tool for the Mac OS X operating system. 
 
 It can be used to create native Mac OS X applications from interpreted 
