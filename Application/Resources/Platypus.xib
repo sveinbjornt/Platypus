@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <development version="6000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -69,7 +69,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField toolTip="Path to the script interpreter used to execute your script" verticalHuggingPriority="750" id="305" customClass="STPathTextField">
+                    <textField toolTip="Path to script interpreter" verticalHuggingPriority="750" id="305" customClass="STPathTextField">
                         <rect key="frame" x="411" y="459" width="178" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
@@ -92,7 +92,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <stepper toolTip="Press here to browser through the default icons" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="308">
+                    <stepper toolTip="Press to browse through default icons" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="308">
                         <rect key="frame" x="168" y="429" width="19" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
@@ -177,7 +177,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="3C11852B-4291-4438-8B16-8CDB32B86464" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="4D0FC71C-E8C7-408A-9076-85FA78988C6F" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -236,7 +236,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField toolTip="Path to your script" verticalHuggingPriority="750" id="334" customClass="STPathTextField">
+                    <textField toolTip="Path to script" verticalHuggingPriority="750" id="334" customClass="STPathTextField">
                         <rect key="frame" x="274" y="424" width="364" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
@@ -304,7 +304,7 @@ DQ
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                     </button>
-                    <textField toolTip="Number of bundled files" verticalHuggingPriority="750" id="664">
+                    <textField verticalHuggingPriority="750" id="664">
                         <rect key="frame" x="23" y="39" width="229" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
@@ -472,7 +472,7 @@ DQ
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button toolTip="Edit arguments to interpreter and your script" verticalHuggingPriority="750" id="1390">
+                    <button toolTip="Edit arguments passed to interpreter and script" verticalHuggingPriority="750" id="1390">
                         <rect key="frame" x="592" y="455" width="51" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
@@ -484,7 +484,7 @@ DQ
                             <action selector="show:" target="1418" id="1433"/>
                         </connections>
                     </button>
-                    <button hidden="YES" toolTip="Edit text settings for Text Window output mode" verticalHuggingPriority="750" id="2061">
+                    <button hidden="YES" toolTip="Edit text settings output mode" verticalHuggingPriority="750" id="2061">
                         <rect key="frame" x="301" y="340" width="97" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
@@ -496,7 +496,7 @@ DQ
                             <action selector="show:" target="2364" id="2374"/>
                         </connections>
                     </button>
-                    <button hidden="YES" toolTip="Edit text settings for Status Menu output mode" verticalHuggingPriority="750" id="10159">
+                    <button hidden="YES" toolTip="Edit settings for Status Menu output mode" verticalHuggingPriority="750" id="10159">
                         <rect key="frame" x="396" y="340" width="132" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
@@ -515,7 +515,11 @@ DQ
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" id="10981">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
-                            <menu key="menu" title="OtherViews" id="3892"/>
+                            <menu key="menu" title="OtherViews" id="3892">
+                                <connections>
+                                    <outlet property="delegate" destination="335" id="nku-02-Ocm"/>
+                                </connections>
+                            </menu>
                         </popUpButtonCell>
                         <connections>
                             <action selector="scriptTypeSelected:" target="335" id="4145"/>
@@ -546,7 +550,7 @@ DQ
                             <action selector="outputTypeWasChanged:" target="335" id="4160"/>
                         </connections>
                     </popUpButton>
-                    <textField toolTip="The estimated final size of the application you are creating" verticalHuggingPriority="750" id="4168">
+                    <textField verticalHuggingPriority="750" id="4168">
                         <rect key="frame" x="22" y="20" width="229" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
@@ -556,7 +560,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField toolTip="The name of your application" verticalHuggingPriority="750" id="11541">
+                    <textField toolTip="Name of application" verticalHuggingPriority="750" id="11541">
                         <rect key="frame" x="274" y="493" width="364" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
@@ -569,7 +573,7 @@ DQ
                             <outlet property="delegate" destination="335" id="CTd-Em-PrL"/>
                         </connections>
                     </textField>
-                    <button verticalHuggingPriority="750" id="0lI-4s-sC8">
+                    <button toolTip="Select Icon Action" verticalHuggingPriority="750" id="0lI-4s-sC8">
                         <rect key="frame" x="22" y="345" width="24" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
@@ -581,7 +585,7 @@ DQ
                             <action selector="iconActionButtonPressed:" target="1215" id="MX7-yS-Ch2"/>
                         </connections>
                     </button>
-                    <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="AEA-iE-Tgw">
+                    <button toolTip="Show Help for Platypus" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="AEA-iE-Tgw">
                         <rect key="frame" x="612" y="343" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <animations/>
@@ -599,7 +603,7 @@ DQ
             <connections>
                 <outlet property="delegate" destination="335" id="371"/>
             </connections>
-            <point key="canvasLocation" x="-71" y="-180.5"/>
+            <point key="canvasLocation" x="234" y="-259.5"/>
         </window>
         <customObject id="335" userLabel="PlatypusController" customClass="PlatypusController">
             <connections>
@@ -1159,10 +1163,16 @@ CA
                                     <action selector="openLicense:" target="335" id="11108"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Open Platypus Website" toolTip="Visit the Platypus website" id="5634">
+                            <menuItem title="Platypus Website" toolTip="Visit the Platypus website" id="5634">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openWebsite:" target="335" id="5635"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Platypus on GitHub" toolTip="Visit the Platypus website" id="gaW-DK-3fq">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openGitHubWebsite:" target="335" id="9k1-Ne-mfY"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="11157">
@@ -1322,7 +1332,7 @@ CA
                 <rect key="frame" x="0.0" y="0.0" width="537" height="534"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button toolTip="Apply these settings and close window" verticalHuggingPriority="750" id="540">
+                    <button toolTip="Apply Settings and Close Window" verticalHuggingPriority="750" id="540">
                         <rect key="frame" x="439" y="14" width="84" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <animations/>
@@ -1337,7 +1347,7 @@ DQ
                             <action selector="closeDropSettingsSheet:" target="1364" id="11536"/>
                         </connections>
                     </button>
-                    <button toolTip="Restore the default &quot;All types&quot;" verticalHuggingPriority="750" id="557">
+                    <button toolTip="Restore all fields to default" verticalHuggingPriority="750" id="557">
                         <rect key="frame" x="14" y="14" width="150" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
@@ -1372,7 +1382,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button id="11149">
+                    <button toolTip="Check here if you want your script to get opened or dropped files passed as arguments to the script.  " id="11149">
                         <rect key="frame" x="30" y="416" width="176" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
@@ -1384,7 +1394,7 @@ DQ
                             <action selector="acceptsFilesChanged:" target="1364" id="11532"/>
                         </connections>
                     </button>
-                    <button id="11151">
+                    <button toolTip="Check here if you want your script to accept dropped text snippets or text fed in through the Mac OS X Services API.  " id="11151">
                         <rect key="frame" x="30" y="125" width="152" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
@@ -1490,7 +1500,7 @@ DQ
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField toolTip="Type in a filename suffix" verticalHuggingPriority="750" id="712">
+                                            <textField toolTip="Add file suffix" verticalHuggingPriority="750" id="712">
                                                 <rect key="frame" x="45" y="20" width="99" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <animations/>
@@ -1557,7 +1567,7 @@ DQ
                                         <rect key="frame" x="2" y="2" width="214" height="163"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <scrollView toolTip="List of suffixes the application accepts" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="AOR-Jg-jZl">
+                                            <scrollView toolTip="List of UTIs the application accepts" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="AOR-Jg-jZl">
                                                 <rect key="frame" x="18" y="50" width="179" height="98"/>
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="xVE-Bl-gWX">
@@ -1628,7 +1638,7 @@ DQ
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField toolTip="Type in a filename suffix" verticalHuggingPriority="750" id="4L6-3O-s13">
+                                            <textField toolTip="Add UTI" verticalHuggingPriority="750" id="4L6-3O-s13">
                                                 <rect key="frame" x="45" y="20" width="99" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <animations/>
@@ -1641,7 +1651,7 @@ DQ
                                                     <outlet property="delegate" destination="1364" id="Umc-ri-J3e"/>
                                                 </connections>
                                             </textField>
-                                            <button toolTip="Add suffix to list" verticalHuggingPriority="750" id="nC2-fm-W7H">
+                                            <button toolTip="Add UTI to list" verticalHuggingPriority="750" id="nC2-fm-W7H">
                                                 <rect key="frame" x="143" y="19" width="23" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                                 <animations/>
@@ -1653,7 +1663,7 @@ DQ
                                                     <action selector="addUTI:" target="1364" id="tK1-Jl-IYZ"/>
                                                 </connections>
                                             </button>
-                                            <button toolTip="Remove selected suffix" verticalHuggingPriority="750" id="tqU-IB-IyA">
+                                            <button toolTip="Remove selected UTI" verticalHuggingPriority="750" id="tqU-IB-IyA">
                                                 <rect key="frame" x="174" y="19" width="23" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                                 <animations/>
@@ -1736,7 +1746,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="9Zx-mR-czF">
+                    <button toolTip="Show Help for Drop Settings" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="9Zx-mR-czF">
                         <rect key="frame" x="168" y="18" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
@@ -2000,10 +2010,22 @@ DQ
                             <action selector="resetDefaults:" target="1418" id="1430"/>
                         </connections>
                     </button>
+                    <button toolTip="Show help for Arguments Editor" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="waL-t3-sB1">
+                        <rect key="frame" x="103" y="16" width="25" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VMZ-5n-MUu">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showHelp:" target="1418" id="QEr-9E-BmC"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <animations/>
             </view>
-            <point key="canvasLocation" x="543" y="256"/>
+            <point key="canvasLocation" x="318" y="93"/>
         </window>
         <menu title="Menu" id="11293" userLabel="scriptArgsContextualMenu">
             <items>
@@ -2563,7 +2585,7 @@ DQ
                 </subviews>
                 <animations/>
             </view>
-            <point key="canvasLocation" x="208.5" y="-628"/>
+            <point key="canvasLocation" x="168.5" y="-326"/>
         </window>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="11185" userLabel="Progress Dialog">
             <windowStyleMask key="styleMask" titled="YES"/>
@@ -2872,7 +2894,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="3C11852B-4291-4438-8B16-8CDB32B86464" width="16" height="16">
+        <image name="4D0FC71C-E8C7-408A-9076-85FA78988C6F" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

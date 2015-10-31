@@ -126,6 +126,7 @@
 - (IBAction)showReadme:(id)sender;
 - (IBAction)showManPage:(id)sender;
 - (IBAction)openWebsite:(id)sender;
+- (IBAction)openGitHubWebsite:(id)sender;
 - (IBAction)openLicense:(id)sender;
 - (IBAction)openDonations:(id)sender;
 
