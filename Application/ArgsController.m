@@ -257,4 +257,11 @@
     return YES;
 }
 
+#pragma mark -
+
+// Open Documentation.html file within app bundle
+- (IBAction)showHelp:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL]];
+}
+
 @end

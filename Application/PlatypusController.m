@@ -128,7 +128,7 @@
     [scriptTypePopupButton addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
     for (int i = 0; i < [[scriptTypePopupButton itemArray] count]; i++) {
         NSImage *icon = [NSImage imageNamed:[[scriptTypePopupButton itemAtIndex:i] title]];
-        
+        [icon setSize:NSMakeSize(16, 16)];
         [[scriptTypePopupButton itemAtIndex:i] setImage:icon];
     }
     
@@ -1122,6 +1122,11 @@
 // Open program website
 - (IBAction)openWebsite:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
+}
+
+// Open program GitHub website
+- (IBAction)openGitHubWebsite:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_GITHUB_WEBSITE]];
 }
 
 // Open License html file

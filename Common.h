@@ -38,9 +38,12 @@
 #define PROGRAM_BUNDLE_IDENTIFIER   [NSString stringWithFormat:@"org.sveinbjorn.%@", PROGRAM_NAME]
 #define PROGRAM_AUTHOR              @ "Sveinbjorn Thordarson"
 #define PROGRAM_WEBSITE             @ "http://sveinbjorn.org/platypus"
+#define PROGRAM_GITHUB_WEBSITE      @ "http://github.com/sveinbjornt/Platypus"
 #define PROGRAM_DONATIONS           @ "http://sveinbjorn.org/donations"
 #define PROGRAM_DOCUMENTATION_URL   @ "http://sveinbjorn.org/files/manpages/PlatypusDocumentation.html"
 #define PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL [NSString stringWithFormat:@"%@#41",PROGRAM_DOCUMENTATION_URL]
+#define PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL [NSString stringWithFormat:@"%@#22",PROGRAM_DOCUMENTATION_URL]
+
 
 // Application support folder info
 #define APP_SUPPORT_FOLDER          [@ "~/Library/Application Support/Platypus/" stringByExpandingTildeInPath]
