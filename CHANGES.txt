@@ -6,7 +6,6 @@ For 5.1
     TODO: Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO: Fix broken "Select Image file as icon..." functionality on retina displays. Requires IconFamily update.
     TODO: New button-based output mode?
-    TODO: New retina icons in script type popup button
     TODO: Save authentication password and reuse for subsequent execution
 
 For 5.0
@@ -15,6 +14,7 @@ For 5.0
     TODO: Fix Provide as Mac OS X service
     TODO: Update documentation with information about Uniform Type Identifiers
     TODO: Fix issue with generating icon from imageview on retina macs (IconFamily issue)
+    TODO: Fix issue with icon masks not being generated properly in latest IconFamily
     TODO: Drop targets do not work with “Remain running after initial execution” off
     TODO: Make icon brighter?
     TODO: Get rid of crazy pattern where objects release themselves in the window controllers. What was I thinking?
@@ -25,8 +25,10 @@ For 5.0
     TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
     TODO: Use bindings for defaults
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
-    TODO: Stop linking to Carbon only for GetCurrentKeyModifiers()
+    TODO: Fix issue with delete button in args window (& possibly drop settings too)
 
+    * New retina icons in script type popup button
+    * No longer linking to Carbon framework
     * CFBundleDevelopmentRegion in generated apps now declared using ISO code
     * New default "Use system font" option for status menu item output
     * New MENUITEMICON: syntax to set menu item icon in status menu output mode
