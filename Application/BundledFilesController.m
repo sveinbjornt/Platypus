@@ -117,6 +117,7 @@
     [tableView reloadData];
     [self tableViewSelectionDidChange:nil];
     [self updateQueueWatch];
+    
     [self updateFileSizeField];
 }
 
@@ -323,6 +324,8 @@
  *****************************************/
 - (void)updateFileSizeField {
     
+    totalFileSize = 0;
+    
     //if there are no items, we just list it as 0 items
     if ([self numFiles] == 0) {
         [bundleSizeTextField setStringValue:@""];
@@ -330,15 +333,24 @@
         return;
     }
     
-    //otherwise, loop through all files, calculate size
-    for (int i = 0; i < [self numFiles]; i++) {
-        totalFileSize += [FILEMGR fileOrFolderSize:[self filePathAtIndex:i]];
-    }
+    //otherwise, loop through all files, calculate size in a separate queue
+    [bundleSizeTextField setStringValue:@"Calculating size..."];
     
-    NSString *totalSizeString = [FILEMGR sizeAsHumanReadable:totalFileSize];
-    NSString *pluralS = ([self numFiles] > 1) ? @"s" : @"";
-    [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d item%@, %@", [self numFiles], pluralS, totalSizeString]];
-    [platypusController updateEstimatedAppSize];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        
+        for (int i = 0; i < [self numFiles]; i++) {
+            totalFileSize += [FILEMGR fileOrFolderSize:[self filePathAtIndex:i]];
+        }
+        
+        NSString *totalSizeString = [FILEMGR sizeAsHumanReadable:totalFileSize];
+        NSString *pluralS = ([self numFiles] > 1) ? @"s" : @"";
+
+        //run UI updates on main thread
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d item%@, %@", [self numFiles], pluralS, totalSizeString]];
+            [platypusController updateEstimatedAppSize];
+        });
+    });
 }
 
 #pragma mark - NSTableViewDelegate/DataSource
