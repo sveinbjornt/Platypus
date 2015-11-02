@@ -26,6 +26,8 @@ For 5.0
     TODO: Use bindings for defaults
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO: Fix issue with delete button in args window (& possibly drop settings too)
+    TODO: Fix issue with estimated app size not getting updated when items removed from bundled files list
+    TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
 
     * New retina icons in script type popup button
     * No longer linking to Carbon framework

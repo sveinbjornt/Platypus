@@ -115,10 +115,10 @@
     NSFont *textFont;
     NSColor *textForeground;
     NSColor *textBackground;
-    int textEncoding;
+    NSStringEncoding textEncoding;
     
-    NSInteger execStyle;
-    NSInteger outputType;
+    PlatypusExecStyle execStyle;
+    PlatypusOutputType outputType;
     BOOL isDroppable;
     BOOL remainRunning;
     BOOL secureScript;
@@ -137,7 +137,7 @@
     BOOL isTaskRunning;
     BOOL outputEmpty;
     
-    NSString *script;
+    NSString *scriptText;
     NSString *remnants;
     
     NSMutableArray *jobQueue;

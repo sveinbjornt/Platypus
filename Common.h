@@ -99,20 +99,8 @@
 #define DEFAULT_OUTPUT_TYPE         @ "Progress Bar"
 #define DEFAULT_BUNDLE_ID           [PlatypusAppSpec standardBundleIdForAppName:DEFAULT_APP_NAME usingDefaults:NO]
 
-#define EDITOR_FONT [NSFont userFixedPitchFontOfSize:13.0]
-#define SHELL_COMMAND_STRING_FONT [NSFont userFixedPitchFontOfSize:11.0]
-
-// output modes
-#define PLATYPUS_NONE_OUTPUT                1
-#define PLATYPUS_PROGRESSBAR_OUTPUT         2
-#define PLATYPUS_TEXTWINDOW_OUTPUT          3
-#define PLATYPUS_WEBVIEW_OUTPUT             4
-#define PLATYPUS_STATUSMENU_OUTPUT          5
-#define PLATYPUS_DROPLET_OUTPUT             6
-
-// execution style
-#define PLATYPUS_NORMAL_EXECUTION           0
-#define PLATYPUS_PRIVILEGED_EXECUTION       1
+#define EDITOR_FONT                 [NSFont userFixedPitchFontOfSize:13.0]
+#define SHELL_COMMAND_STRING_FONT   [NSFont userFixedPitchFontOfSize:11.0]
 
 // path to temp script file
 #define TMP_STDIN_PATH                      @ "/tmp/.plstdin.XXXXXX"
@@ -121,8 +109,24 @@
 // this is surely enough
 #define PLATYPUS_MAX_QUEUE_JOBS             1024
 
+// execution style
+typedef enum PlatypusExecStyle {
+    PLATYPUS_NORMAL_EXECUTION = 0,
+    PLATYPUS_PRIVILEGED_EXECUTION = 1
+} PlatypusExecStyle;
+
+// output modes
+typedef enum PlatypusOutputType {
+    PLATYPUS_NONE_OUTPUT = 0,
+    PLATYPUS_PROGRESSBAR_OUTPUT = 1,
+    PLATYPUS_TEXTWINDOW_OUTPUT = 2,
+    PLATYPUS_WEBVIEW_OUTPUT = 3,
+    PLATYPUS_STATUSMENU_OUTPUT = 4,
+    PLATYPUS_DROPLET_OUTPUT = 5,
+} PlatypusOutputType;
+
 // array of output types, used for validation
-#define PLATYPUS_OUTPUT_TYPES       [NSArray arrayWithObjects:\
+#define PLATYPUS_OUTPUT_TYPES   [NSArray arrayWithObjects:\
 @ "None", \
 @ "Progress Bar", \
 @ "Text Window", \
