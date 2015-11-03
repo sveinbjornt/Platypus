@@ -185,11 +185,14 @@
  ***********************************************************************************************/
 
 + (NSArray *)getInterpreterFromShebang:(NSString *)path {
+    
     // get the first line of the script
     NSString *script = [NSString stringWithContentsOfFile:path encoding:DEFAULT_OUTPUT_TXT_ENCODING error:nil];
     NSArray *lines = [script componentsSeparatedByString:@"\n"];
-    if (![lines count]) // empty file
+    if ([lines count] == 0) {
+        // empty file
         return [NSArray arrayWithObject:@""];
+    }
     NSString *firstLine = [lines objectAtIndex:0];
 
     // if shorter than 2 chars, it can't possibly be a shebang line

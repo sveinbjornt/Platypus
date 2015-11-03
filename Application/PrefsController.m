@@ -180,10 +180,10 @@
         NSString *versionString = [NSString stringWithContentsOfFile:CMDLINE_VERSION_PATH encoding:NSUTF8StringEncoding error:nil];
         versionString = [versionString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         
-        if ([versionString isEqualToString:PROGRAM_VERSION]) { // it's installed and current
+        if (versionString && [versionString isEqualToString:PROGRAM_VERSION]) { // it's installed and current
             [textField setTextColor:[NSColor colorWithCalibratedRed:0.0 green:0.6 blue:0.0 alpha:1.0]];
             [textField setStringValue:@"Command line tool is installed"];
-        } else {
+        } else if (versionString) {
             // installed but not this version
             [textField setTextColor:[NSColor orangeColor]];
             if ([versionString floatValue] < [PROGRAM_VERSION floatValue]) {
