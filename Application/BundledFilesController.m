@@ -154,7 +154,7 @@
 }
 
 - (NSArray *)filePaths {
-    NSMutableArray *filePaths = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
+    NSMutableArray *filePaths = [NSMutableArray array];
     for (NSDictionary *fileItem in files) {
         [filePaths addObject:[fileItem objectForKey:@"Path"]];
     }

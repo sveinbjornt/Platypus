@@ -278,7 +278,7 @@
  *****************************************/
 
 - (NSArray *)getProfilesList {
-    NSMutableArray *profilesArray = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
+    NSMutableArray *profilesArray = [NSMutableArray array];
     NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
     NSString *filename;
     while ((filename = [dirEnumerator nextObject]) != nil) {
@@ -290,7 +290,7 @@
 }
 
 - (NSArray *)getExamplesList {
-    NSMutableArray *examplesArray = [NSMutableArray arrayWithCapacity:PROGRAM_MAX_LIST_ITEMS];
+    NSMutableArray *examplesArray = [NSMutableArray array];
     NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], PROGRAM_EXAMPLES_FOLDER]];
     NSString *filename;
     while ((filename = [dirEnumerator nextObject]) != nil) {
