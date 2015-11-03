@@ -14,7 +14,10 @@
 + (void)alert:(NSString *)message subText:(NSString *)subtext style:(NSAlertStyle)style;
 + (void)alert:(NSString *)message subText:(NSString *)subtext;
 + (void)fatalAlert:(NSString *)message subText:(NSString *)subtext;
+
 + (void)sheetAlert:(NSString *)message subText:(NSString *)subtext forWindow:(NSWindow *)window;
++ (void)sheetAlert:(NSString *)message subText:(NSString *)subtext style:(NSAlertStyle)style forWindow:(NSWindow *)window;
+
 + (BOOL)proceedAlert:(NSString *)message subText:(NSString *)subtext withAction:(NSString *)action;
 
 @end
