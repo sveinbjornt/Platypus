@@ -94,7 +94,7 @@
     
     // we listen to different kind of notification depending on whether we're running
     // an NSTask or an STPrivilegedTask
-    NSString *notificationName = (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) ? STPrivilegedTaskDidTerminateNotification : NSTaskDidTerminateNotification;
+    NSString *notificationName = (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) ? STPrivilegedTaskDidTerminateNotification : NSTaskDidTerminateNotification;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(taskFinished:)
                                                  name:notificationName
@@ -142,9 +142,9 @@
     outputType = [PLATYPUS_OUTPUT_TYPES indexOfObject:outputTypeStr];
     
     // we need some additional info from AppSettings.plist if we are presenting textual output
-    if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT ||
-        outputType == PLATYPUS_TEXTWINDOW_OUTPUT ||
-        outputType == PLATYPUS_STATUSMENU_OUTPUT) {
+    if (outputType == PLATYPUS_OUTPUT_PROGRESSBAR ||
+        outputType == PLATYPUS_OUTPUT_TEXTWINDOW ||
+        outputType == PLATYPUS_OUTPUT_STATUSMENU) {
         
         //make sure all this data is sane, revert to defaults if not
         
@@ -187,7 +187,7 @@
     }
     
     // likewise, status menu output has some additional parameters
-    if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
+    if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
         NSString *statusItemDisplayType = [appSettingsDict objectForKey:@"StatusItemDisplayType"];
         
         // we load text label if status menu is not only an icon
@@ -247,9 +247,9 @@
     }
     
     // we never have privileged execution or droppable with status menu apps
-    if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
+    if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
         remainRunning = YES;
-        execStyle = PLATYPUS_NORMAL_EXECUTION;
+        execStyle = PLATYPUS_EXECSTYLE_NORMAL;
         isDroppable = NO;
     }
     
@@ -329,7 +329,7 @@
     
     // status menu apps just run when item is clicked
     // for all others, we run the script once app has been launched
-    if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
+    if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
         return;
     }
     
@@ -406,7 +406,7 @@
     // window come to the front.  It is to my knowledge the only way to make an
     // application with LSUIElement set to true come to the front on launch
     // We don't do this for applications with no user interface output
-    if (outputType != PLATYPUS_NONE_OUTPUT) {
+    if (outputType != PLATYPUS_OUTPUT_NONE) {
 //        ProcessSerialNumber process;
 //        GetCurrentProcess(&process);
 //        SetFrontProcess(&process);
@@ -416,13 +416,13 @@
     
     //prepare controls etc. for different output types
     switch (outputType) {
-        case PLATYPUS_NONE_OUTPUT:
+        case PLATYPUS_OUTPUT_NONE:
         {
             // nothing to do
         }
             break;
             
-        case PLATYPUS_PROGRESSBAR_OUTPUT:
+        case PLATYPUS_OUTPUT_PROGRESSBAR:
         {
             if (isDroppable) {
                 [progressBarWindow registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
@@ -456,7 +456,7 @@
         }
             break;
             
-        case PLATYPUS_TEXTWINDOW_OUTPUT:
+        case PLATYPUS_OUTPUT_TEXTWINDOW:
         {
             if (isDroppable) {
                 [textOutputWindow registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
@@ -480,7 +480,7 @@
         }
             break;
             
-        case PLATYPUS_WEBVIEW_OUTPUT:
+        case PLATYPUS_OUTPUT_WEBVIEW:
         {
             if (isDroppable) {
                 [webOutputWindow registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
@@ -500,7 +500,7 @@
         }
             break;
             
-        case PLATYPUS_STATUSMENU_OUTPUT:
+        case PLATYPUS_OUTPUT_STATUSMENU:
         {
             // create and activate status item
             statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
@@ -527,7 +527,7 @@
         }
             break;
             
-        case PLATYPUS_DROPLET_OUTPUT:
+        case PLATYPUS_OUTPUT_DROPLET:
         {
             if (isDroppable) {
                 [dropletWindow registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
@@ -554,54 +554,54 @@
 
 - (void)prepareInterfaceForExecution {
     switch (outputType) {
-        case PLATYPUS_NONE_OUTPUT:
+        case PLATYPUS_OUTPUT_NONE:
         {
             
         }
             break;
             
-        case PLATYPUS_PROGRESSBAR_OUTPUT:
+        case PLATYPUS_OUTPUT_PROGRESSBAR:
         {
             [progressBarIndicator setIndeterminate:YES];
             [progressBarIndicator startAnimation:self];
             [progressBarMessageTextField setStringValue:@"Running..."];
             [outputTextView setString:@"\n"];
             [progressBarCancelButton setTitle:@"Cancel"];
-            if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) {
+            if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
                 [progressBarCancelButton setEnabled:NO];
             }
         }
             break;
             
-        case PLATYPUS_TEXTWINDOW_OUTPUT:
+        case PLATYPUS_OUTPUT_TEXTWINDOW:
         {
             [outputTextView setString:@"\n"];
             [textOutputCancelButton setTitle:@"Cancel"];
-            if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) {
+            if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
                 [textOutputCancelButton setEnabled:NO];
             }
             [textOutputProgressIndicator startAnimation:self];
         }
             break;
             
-        case PLATYPUS_WEBVIEW_OUTPUT:
+        case PLATYPUS_OUTPUT_WEBVIEW:
         {
             [outputTextView setString:@"\n"];
             [webOutputCancelButton setTitle:@"Cancel"];
-            if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) {
+            if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
                 [webOutputCancelButton setEnabled:NO];
             }
             [webOutputProgressIndicator startAnimation:self];
         }
             break;
             
-        case PLATYPUS_STATUSMENU_OUTPUT:
+        case PLATYPUS_OUTPUT_STATUSMENU:
         {
             [outputTextView setString:@"\n"];
         }
             break;
             
-        case PLATYPUS_DROPLET_OUTPUT:
+        case PLATYPUS_OUTPUT_DROPLET:
         {
             [dropletProgressIndicator setIndeterminate:YES];
             [dropletProgressIndicator startAnimation:self];
@@ -625,14 +625,14 @@
 - (void)cleanupInterface {
     switch (outputType) {
             
-        case PLATYPUS_NONE_OUTPUT:
-        case PLATYPUS_STATUSMENU_OUTPUT:
+        case PLATYPUS_OUTPUT_NONE:
+        case PLATYPUS_OUTPUT_STATUSMENU:
         {
             
         }
             break;
 
-        case PLATYPUS_TEXTWINDOW_OUTPUT:
+        case PLATYPUS_OUTPUT_TEXTWINDOW:
         {
             //update controls for text output window
             [textOutputCancelButton setTitle:@"Quit"];
@@ -641,7 +641,7 @@
         }
             break;
             
-        case PLATYPUS_PROGRESSBAR_OUTPUT:
+        case PLATYPUS_OUTPUT_PROGRESSBAR:
         {
             // if there are any remnants, we append them to output
             if (remnants != nil) {
@@ -674,7 +674,7 @@
         }
             break;
             
-        case PLATYPUS_WEBVIEW_OUTPUT:
+        case PLATYPUS_OUTPUT_WEBVIEW:
         {
             //update controls for web output window
             [webOutputCancelButton setTitle:@"Quit"];
@@ -683,7 +683,7 @@
         }
             break;
             
-        case PLATYPUS_DROPLET_OUTPUT:
+        case PLATYPUS_OUTPUT_DROPLET:
         {
             [dropletProgressIndicator stopAnimation:self];
             [dropletDropFilesLabel setHidden:NO];
@@ -749,7 +749,7 @@
     if (isTaskRunning) {
         return;
     }
-    if (outputType != PLATYPUS_NONE_OUTPUT) {
+    if (outputType != PLATYPUS_OUTPUT_NONE) {
         outputEmpty = NO;
     }
     
@@ -759,7 +759,7 @@
     isTaskRunning = YES;
     
     // run the task
-    if (execStyle == PLATYPUS_PRIVILEGED_EXECUTION) { //authenticated task
+    if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) { //authenticated task
         [self executeScriptWithPrivileges];
     } else {
         [self executeScriptWithoutPrivileges];
@@ -776,7 +776,7 @@
     [task setArguments:arguments];
     
     // direct output to file handle and start monitoring it if script provides feedback
-    if (outputType != PLATYPUS_NONE_OUTPUT) {
+    if (outputType != PLATYPUS_OUTPUT_NONE) {
         outputPipe = [NSPipe pipe];
         [task setStandardOutput:outputPipe];
         [task setStandardError:outputPipe];
@@ -789,7 +789,7 @@
     [task launch];
     
     // we wait until task exits if this is triggered by a status item menu
-    if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
+    if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
         [task waitUntilExit];
     }
 }
@@ -817,7 +817,7 @@
         }
     }
     
-    if (outputType != PLATYPUS_NONE_OUTPUT) {
+    if (outputType != PLATYPUS_OUTPUT_NONE) {
         // Success!  Now, start monitoring output file handle for data
         readHandle = [privilegedTask outputFileHandle];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOutputData:) name:NSFileHandleReadCompletionNotification object:readHandle];
@@ -837,7 +837,7 @@
     isTaskRunning = NO;
     
     // make sure task is dead.  Ideally we'd like to do the same for privileged tasks, but that's just not possible w/o process id
-    if (execStyle == PLATYPUS_NORMAL_EXECUTION && task != nil && [task isRunning]) {
+    if (execStyle == PLATYPUS_EXECSTYLE_NORMAL && task != nil && [task isRunning]) {
         [task terminate];
     }
     
@@ -964,7 +964,7 @@
         }
         
         // special commands to control progress bar output window
-        if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT) {
+        if (outputType == PLATYPUS_OUTPUT_PROGRESSBAR) {
             
             // set progress bar status
             // lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar
@@ -996,10 +996,10 @@
         
         // ok, line wasn't a command understood by the wrapper
         // show it in GUI text field if appropriate
-        if (outputType == PLATYPUS_DROPLET_OUTPUT) {
+        if (outputType == PLATYPUS_OUTPUT_DROPLET) {
             [dropletMessageTextField setStringValue:theLine];
         }
-        if (outputType == PLATYPUS_PROGRESSBAR_OUTPUT) {
+        if (outputType == PLATYPUS_OUTPUT_PROGRESSBAR) {
             [progressBarMessageTextField setStringValue:theLine];
         }
     }
@@ -1019,7 +1019,7 @@
     [textStorage replaceCharactersInRange:appendRange withString:outputString];
     
     // if web output, we continually re-render to accomodate incoming data, else we scroll down
-    if (outputType == PLATYPUS_WEBVIEW_OUTPUT) {
+    if (outputType == PLATYPUS_OUTPUT_WEBVIEW) {
 
         NSArray *htmlLines = [[textStorage string] componentsSeparatedByString: @"\n"];
 
@@ -1032,7 +1032,7 @@
             NSURL *resourcePathURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]];
             [[webOutputWebView mainFrame] loadHTMLString:[outputTextView string] baseURL:resourcePathURL];
         }
-    } else if (outputType == PLATYPUS_TEXTWINDOW_OUTPUT || outputType == PLATYPUS_PROGRESSBAR_OUTPUT) {
+    } else if (outputType == PLATYPUS_OUTPUT_TEXTWINDOW || outputType == PLATYPUS_OUTPUT_PROGRESSBAR) {
         [outputTextView scrollRangeToVisible:NSMakeRange([textStorage length], 0)];
     }
     
@@ -1104,12 +1104,12 @@
 
 // save output in text field to file when Save to File menu item is invoked
 - (IBAction)saveToFile:(id)sender {
-    if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT &&
-        outputType != PLATYPUS_WEBVIEW_OUTPUT &&
-        outputType != PLATYPUS_PROGRESSBAR_OUTPUT) {
+    if (outputType != PLATYPUS_OUTPUT_TEXTWINDOW &&
+        outputType != PLATYPUS_OUTPUT_WEBVIEW &&
+        outputType != PLATYPUS_OUTPUT_PROGRESSBAR) {
         return;
     }
-    NSString *outSuffix = (outputType == PLATYPUS_WEBVIEW_OUTPUT) ? @"html" : @"txt";
+    NSString *outSuffix = (outputType == PLATYPUS_OUTPUT_WEBVIEW) ? @"html" : @"txt";
     NSString *fileName = [NSString stringWithFormat:@"%@-Output.%@", appName, outSuffix];
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
@@ -1128,13 +1128,13 @@
 // save only works for text window, web view output types
 // and open only works for droppable apps that accept files as script args
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-    if (outputType == PLATYPUS_STATUSMENU_OUTPUT) {
+    if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
         return YES;
     }
     
     //save to file item
     if ([[anItem title] isEqualToString:@"Save to File…"] &&
-        (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_WEBVIEW_OUTPUT  && outputType != PLATYPUS_PROGRESSBAR_OUTPUT)) {
+        (outputType != PLATYPUS_OUTPUT_TEXTWINDOW && outputType != PLATYPUS_OUTPUT_WEBVIEW  && outputType != PLATYPUS_OUTPUT_PROGRESSBAR)) {
         return NO;
     }
     //open should only work if it's a droppable app
@@ -1143,7 +1143,7 @@
         return NO;
     }
     // Make text bigger stuff
-    if (outputType != PLATYPUS_TEXTWINDOW_OUTPUT && outputType != PLATYPUS_PROGRESSBAR_OUTPUT &&outputType != PLATYPUS_WEBVIEW_OUTPUT) {
+    if (outputType != PLATYPUS_OUTPUT_TEXTWINDOW && outputType != PLATYPUS_OUTPUT_PROGRESSBAR &&outputType != PLATYPUS_OUTPUT_WEBVIEW) {
         return NO;
     }
     
@@ -1165,7 +1165,7 @@
 
 - (void)changeFontSize:(CGFloat)delta {
     
-    if (outputType == PLATYPUS_WEBVIEW_OUTPUT) {
+    if (outputType == PLATYPUS_OUTPUT_WEBVIEW) {
         // web view
         if (delta > 0) {
             [webOutputWebView makeTextLarger:self];
@@ -1330,7 +1330,7 @@
     
     if (acceptDrag) {
         // we shade the window if output is droplet mode
-        if (outputType == PLATYPUS_DROPLET_OUTPUT) {
+        if (outputType == PLATYPUS_OUTPUT_DROPLET) {
             [dropletShader setAlphaValue:0.3];
             [dropletShader setHidden:NO];
         }
@@ -1343,7 +1343,7 @@
 - (void)draggingExited:(id <NSDraggingInfo> )sender;
 {
     // remove the droplet shading on drag exit
-    if (outputType == PLATYPUS_DROPLET_OUTPUT) {
+    if (outputType == PLATYPUS_OUTPUT_DROPLET) {
         [dropletShader setHidden:YES];
     }
 }
@@ -1364,7 +1364,7 @@
 - (void)concludeDragOperation:(id <NSDraggingInfo> )sender {
     
     // shade droplet
-    if (outputType == PLATYPUS_DROPLET_OUTPUT) {
+    if (outputType == PLATYPUS_OUTPUT_DROPLET) {
         [dropletShader setHidden:YES];
     }
     // fire off the job queue if nothing is running

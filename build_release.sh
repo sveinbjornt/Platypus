@@ -10,8 +10,8 @@ SRC_DIR=$PWD
 BUILD_DIR="/tmp/"
 REMOTE_DIR="root@sveinbjorn.org:/www/sveinbjorn/html/files/software/platypus/"
 
-VERSION=`perl -e 'open(FH,"< Common.h") or die($!);@lines=<FH>;close(FH);foreach(@lines){if($_=~m/PROGRAM_VERSION.+@.+(\d\.\d+)\"/){print $1;}}'`
-APP_NAME=`perl -e 'open(FH,"< Common.h") or die($!);@lines=<FH>;close(FH);foreach(@lines){if($_=~m/PROGRAM_NAME.+\"(.+)\"/){print $1;}}'`
+VERSION=`perl -e 'open(FH,"< Common.h") or die($!);@lines=<FH>;close(FH);foreach(@lines){if($_=~m/PROGRAM_VERSION.+@.+(\d\.\d+)\"/){print $1;exit;}}'`
+APP_NAME=`perl -e 'open(FH,"< Common.h") or die($!);@lines=<FH>;close(FH);foreach(@lines){if($_=~m/PROGRAM_NAME.+\"(.+)\"/){print $1;exit;}}'`
 APP_NAME_LC=`echo "${APP_NAME}" | perl -ne 'print lc'` # lowercase name
 
 APP_FOLDER_NAME="${APP_NAME}-${VERSION}"

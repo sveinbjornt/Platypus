@@ -323,7 +323,7 @@
     //create AppSettings.plist file
     //.app/Contents/Resources/AppSettings.plist
     [self report:@"Creating AppSettings property list"];
-    appSettingsPlist = [NSMutableDictionary dictionaryWithCapacity:PROGRAM_MAX_LIST_ITEMS];
+    appSettingsPlist = [NSMutableDictionary dictionary];
     [appSettingsPlist setObject:[properties objectForKey:@"Authentication"] forKey:@"RequiresAdminPrivileges"];
     [appSettingsPlist setObject:[properties objectForKey:@"Droppable"] forKey:@"Droppable"];
     [appSettingsPlist setObject:[properties objectForKey:@"RemainRunning"] forKey:@"RemainRunningAfterCompletion"];

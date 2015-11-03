@@ -239,11 +239,11 @@
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
     [interpreterArgsRemoveButton setEnabled:([interpreterArgsTableView selectedRow] != -1)];
     [interpreterArgsClearButton setEnabled:([interpreterArgs count] != 0)];
-    [interpreterArgsAddButton setEnabled:([interpreterArgs count] != PROGRAM_MAX_LIST_ITEMS)];
+    [interpreterArgsAddButton setEnabled:YES];
     
     [scriptArgsRemoveButton setEnabled:([scriptArgsTableView selectedRow] != -1)];
     [scriptArgsClearButton setEnabled:([scriptArgs count] != 0)];
-    [scriptArgsAddButton setEnabled:([scriptArgs count] != PROGRAM_MAX_LIST_ITEMS)];
+    [scriptArgsAddButton setEnabled:YES];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {

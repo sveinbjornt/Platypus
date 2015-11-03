@@ -44,13 +44,11 @@
 #define PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL [NSString stringWithFormat:@"%@#41",PROGRAM_DOCUMENTATION_URL]
 #define PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL [NSString stringWithFormat:@"%@#22",PROGRAM_DOCUMENTATION_URL]
 
-
 // Application support folder info
 #define APP_SUPPORT_FOLDER          [@ "~/Library/Application Support/Platypus/" stringByExpandingTildeInPath]
 #define TEMP_FOLDER                 [NSString stringWithFormat:@"%@/", APP_SUPPORT_FOLDER]
 #define PROFILES_FOLDER             [NSString stringWithFormat:@"%@/Profiles", APP_SUPPORT_FOLDER]
 #define PROFILES_SUFFIX             @ "platypus"
-#define TEMP_ICON_PATH              [NSString stringWithFormat : @ "%@/TmpIcon.icns", APP_SUPPORT_FOLDER]
 #define NEW_SCRIPT_FILENAME         @ "Script"
 
 // default output text settings
@@ -59,8 +57,6 @@
 #define DEFAULT_OUTPUT_FG_COLOR     @ "#000000"
 #define DEFAULT_OUTPUT_BG_COLOR     @ "#ffffff"
 #define DEFAULT_OUTPUT_TXT_ENCODING NSUTF8StringEncoding
-
-#define PROGRAM_MAX_LIST_ITEMS      255
 
 // documentation
 #define PROGRAM_README_FILE         @ "Readme.html"
@@ -111,18 +107,18 @@
 
 // execution style
 typedef enum PlatypusExecStyle {
-    PLATYPUS_NORMAL_EXECUTION = 0,
-    PLATYPUS_PRIVILEGED_EXECUTION = 1
+    PLATYPUS_EXECSTYLE_NORMAL = 0,
+    PLATYPUS_EXECSTYLE_PRIVILEGED = 1
 } PlatypusExecStyle;
 
 // output modes
 typedef enum PlatypusOutputType {
-    PLATYPUS_NONE_OUTPUT = 0,
-    PLATYPUS_PROGRESSBAR_OUTPUT = 1,
-    PLATYPUS_TEXTWINDOW_OUTPUT = 2,
-    PLATYPUS_WEBVIEW_OUTPUT = 3,
-    PLATYPUS_STATUSMENU_OUTPUT = 4,
-    PLATYPUS_DROPLET_OUTPUT = 5,
+    PLATYPUS_OUTPUT_NONE = 0,
+    PLATYPUS_OUTPUT_PROGRESSBAR = 1,
+    PLATYPUS_OUTPUT_TEXTWINDOW = 2,
+    PLATYPUS_OUTPUT_WEBVIEW = 3,
+    PLATYPUS_OUTPUT_STATUSMENU = 4,
+    PLATYPUS_OUTPUT_DROPLET = 5
 } PlatypusOutputType;
 
 // array of output types, used for validation
