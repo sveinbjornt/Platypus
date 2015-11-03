@@ -120,9 +120,9 @@
     }
     
     // we list ourself as an observer of changes to file system, for script
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueRenameNotification object:nil];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueDeleteNotification object:nil];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(scriptFileChanged:) name:VDKQueueWriteNotification object:nil];
+    [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueRenameNotification object:nil];
+    [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueDeleteNotification object:nil];
+    [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileChanged:) name:VDKQueueWriteNotification object:nil];
     
     //populate script type menu
     [scriptTypePopupButton addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
@@ -233,7 +233,7 @@
     if ([FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]] == NO) {
         [Alerts alert:@"File not found" subText:@"No file exists at the specified path"];
     }
-    [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:[scriptPathTextField stringValue]];
+    [WORKSPACE selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:[scriptPathTextField stringValue]];
 }
 
 /*****************************************
@@ -252,8 +252,8 @@
         [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
     } else { // open it in the external application
         NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
-        if ([[NSWorkspace sharedWorkspace] fullPathForApplication:defaultEditor] != nil) {
-            [[NSWorkspace sharedWorkspace] openFile:[scriptPathTextField stringValue] withApplication:defaultEditor];
+        if ([WORKSPACE fullPathForApplication:defaultEditor] != nil) {
+            [WORKSPACE openFile:[scriptPathTextField stringValue] withApplication:defaultEditor];
         } else {
             // Complain if editor is not found, set it to the built-in editor
             [Alerts alert:@"Application not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
@@ -461,12 +461,12 @@
     
     // reveal newly create app in Finder, if prefs say so
     if ([DEFAULTS boolForKey:@"RevealApplicationWhenCreated"]) {
-        [[NSWorkspace sharedWorkspace] selectFile:appPath inFileViewerRootedAtPath:appPath];
+        [WORKSPACE selectFile:appPath inFileViewerRootedAtPath:appPath];
     }
     
     // open newly create app, if prefs say so
     if ([DEFAULTS boolForKey:@"OpenApplicationWhenCreated"]) {
-        [[NSWorkspace sharedWorkspace] launchApplication:appPath];
+        [WORKSPACE launchApplication:appPath];
     }
     
     [developmentVersionCheckbox setIntValue:0];
@@ -1127,12 +1127,12 @@
 
 // Open program website
 - (IBAction)openWebsite:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
+    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
 }
 
 // Open program GitHub website
 - (IBAction)openGitHubWebsite:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_GITHUB_WEBSITE]];
+    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_GITHUB_WEBSITE]];
 }
 
 // Open License html file
@@ -1142,7 +1142,7 @@
 
 // Open donations website
 - (IBAction)openDonations:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_DONATIONS]];
+    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DONATIONS]];
 }
 
 @end
