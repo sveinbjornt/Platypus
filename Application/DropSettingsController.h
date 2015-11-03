@@ -63,10 +63,8 @@
     UniformTypeListController *uniformTypeListController;
 }
 - (IBAction)addSuffix:(id)sender;
-- (IBAction)removeSuffix:(id)sender;
-
 - (IBAction)addUTI:(id)sender;
-- (IBAction)removeUTI:(id)sender;
+- (IBAction)removeListItem:(id)sender;
 
 - (IBAction)openDropSettingsSheet:(id)sender;
 - (IBAction)closeDropSettingsSheet:(id)sender;

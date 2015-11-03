@@ -79,7 +79,7 @@
     
     [typesErrorTextField setStringValue:@""];
     [self controlTextDidChange];
-    [self tableViewSelectionDidChange:nil];
+    [self updateButtonStatus];
     
     //open window
     [NSApp  beginSheet:dropSettingsWindow
@@ -145,18 +145,6 @@
     [suffixListTableView reloadData];
 }
 
-- (IBAction)removeSuffix:(id)sender
-{
-    NSIndexSet *selectedItems = [suffixListTableView selectedRowIndexes];
-    for (int i = [suffixListController numItems]; i >= 0; i--) {
-        if ([selectedItems containsIndex:i]) {
-            [suffixListController removeItem:i];
-            [suffixListTableView reloadData];
-            break;
-        }
-    }
-}
-
 - (IBAction)addUTI:(id)sender {
     
     NSString *theUTI = [uniformTypeTextField stringValue];
@@ -172,13 +160,28 @@
     [uniformTypeListTableView reloadData];
 }
 
-- (IBAction)removeUTI:(id)sender {
+- (IBAction)removeListItem:(id)sender
+{
+    NSTableView *tableView;
+    TypeListController *typeListController;
     
-    NSIndexSet *selectedItems = [uniformTypeListTableView selectedRowIndexes];
-    for (int i = [uniformTypeListController numItems]; i >= 0; i--) {
+    sender = [dropSettingsWindow firstResponder];
+
+    if (sender == suffixListTableView) {
+        tableView = suffixListTableView;
+        typeListController = suffixListController;
+    } else if (sender == uniformTypeListTableView) {
+        tableView = uniformTypeListTableView;
+        typeListController = uniformTypeListController;
+    } else {
+        return;
+    }
+    
+    NSIndexSet *selectedItems = [tableView selectedRowIndexes];
+    for (int i = [typeListController numItems]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
-            [uniformTypeListController removeItem:i];
-            [uniformTypeListTableView reloadData];
+            [typeListController removeItem:i];
+            [tableView reloadData];
             break;
         }
     }
@@ -206,21 +209,25 @@
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
-    
+    [self updateButtonStatus];
+}
+
+- (void)updateButtonStatus {
+    // suffix delete button
     int selected = 0;
     NSIndexSet *selectedItems = [suffixListTableView selectedRowIndexes];
-        
+    
     for (int i = 0; i < [suffixListController numItems]; i++) {
         if ([selectedItems containsIndex:i]) {
             selected++;
         }
     }
     [removeSuffixButton setEnabled:(selected != 0)];
-
     
+    // UTI delete button
     selected = 0;
     selectedItems = [uniformTypeListTableView selectedRowIndexes];
-        
+    
     for (int i = 0; i < [uniformTypeListController numItems]; i++) {
         if ([selectedItems containsIndex:i]) {
             selected++;

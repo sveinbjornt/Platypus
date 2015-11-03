@@ -22,9 +22,9 @@ For 5.0
     TODO: New high res images for documentation
     TODO: File watching still broken for script path
     TODO: Use UTI methods instead of deprecated imageFileTypes
+    TODO: Implement UI stuff making clear that UTIs exclude suffixes
     TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
-    TODO: Fix issue with delete button in args window (& possibly drop settings too)
     TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
     TODO: Drag and drop for icon view should be file based, not TIFF pasteboard data
 
