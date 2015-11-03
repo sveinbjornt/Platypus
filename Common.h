@@ -134,8 +134,9 @@ nil]
 #pragma mark -
 
 // code abbreviations, Obj-C is a tediously verbose language
-#define FILEMGR                     [NSFileManager defaultManager]
-#define DEFAULTS                    [NSUserDefaults standardUserDefaults]
+#define FILEMGR     [NSFileManager defaultManager]
+#define DEFAULTS    [NSUserDefaults standardUserDefaults]
+#define WORKSPACE   [NSWorkspace sharedWorkspace]
 
 #ifdef DEBUG
     #define PLog(...) NSLog(__VA_ARGS__)

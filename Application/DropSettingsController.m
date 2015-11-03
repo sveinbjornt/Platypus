@@ -359,7 +359,7 @@
     
     NSImage *icon;
     if (path == nil || [path isEqualToString:@""]) {
-        icon = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
+        icon = [WORKSPACE iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
     } else {
         icon = [[[NSImage alloc] initWithContentsOfFile:docIconPath] autorelease];
     }
@@ -371,7 +371,7 @@
 
 // Open Documentation.html file within app bundle
 - (IBAction)showHelp:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL]];
+    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL]];
 }
 
 @end

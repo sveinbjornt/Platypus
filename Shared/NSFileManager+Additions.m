@@ -93,7 +93,7 @@
         return FALSE;
     }
     
-    [[NSWorkspace sharedWorkspace] openFile:path withApplication:app];
+    [WORKSPACE openFile:path withApplication:app];
     return TRUE;
 }
 

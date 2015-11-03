@@ -54,7 +54,7 @@
 }
 
 - (NSImage *)iconForItem:(NSString *)item {
-    return [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
+    return [WORKSPACE iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
 }
 
 - (void)addItems:(NSArray *)theItems {

@@ -183,7 +183,7 @@
     // if command key is down, we reveal in finder
     BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
     if (commandKeyDown) {
-        [[NSWorkspace sharedWorkspace] selectFile:profilePath inFileViewerRootedAtPath:profilePath];
+        [WORKSPACE selectFile:profilePath inFileViewerRootedAtPath:profilePath];
     } else {
         [self loadProfileFile:profilePath];
     }
@@ -270,7 +270,7 @@
 }
 
 - (void)openProfilesFolder {
-    [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
+    [WORKSPACE selectFile:nil inFileViewerRootedAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
 }
 
 /*****************************************

@@ -78,9 +78,9 @@
             [menuItem setImage:icon];
         } else if ([[menuItem title] isEqualToString:@"Select..."] == NO && [[menuItem title] length] > 0) {
             NSImage *icon = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
-            NSString *appPath = [[NSWorkspace sharedWorkspace] fullPathForApplication:[menuItem title]];
+            NSString *appPath = [WORKSPACE fullPathForApplication:[menuItem title]];
             if (appPath != nil) {
-                icon = [[NSWorkspace sharedWorkspace] iconForFile:appPath];
+                icon = [WORKSPACE iconForFile:appPath];
             }
             [icon setSize:smallIconSize];
             [menuItem setImage:icon];

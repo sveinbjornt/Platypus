@@ -61,7 +61,7 @@
     
     [self loadWindow];
     [scriptPathTextField setStringValue:path];
-    NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:path];
+    NSImage *icon = [WORKSPACE iconForFile:path];
     [icon setSize:NSMakeSize(16, 16)];
     [scriptIconImageView setImage:icon];
     
@@ -114,7 +114,7 @@
 }
 
 - (IBAction)revealInFinder:(id)sender {
-    [[NSWorkspace sharedWorkspace] selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:[scriptPathTextField stringValue]];
+    [WORKSPACE selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:[scriptPathTextField stringValue]];
 }
 
 - (IBAction)wordWrapCheckboxClicked:(id)sender {

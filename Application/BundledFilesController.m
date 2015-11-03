@@ -67,8 +67,8 @@
     [tableView setDraggingSourceOperationMask:NSDragOperationCopy | NSDragOperationMove forLocal:NO];
     
     // we list ourself as an observer of changes to file system
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(trackedFileDidChange) name:VDKQueueRenameNotification object:nil];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(trackedFileDidChange) name:VDKQueueDeleteNotification object:nil];
+    [[WORKSPACE notificationCenter] addObserver:self selector:@selector(trackedFileDidChange) name:VDKQueueRenameNotification object:nil];
+    [[WORKSPACE notificationCenter] addObserver:self selector:@selector(trackedFileDidChange) name:VDKQueueDeleteNotification object:nil];
 }
 
 #pragma mark -
@@ -107,7 +107,7 @@
             NSMutableDictionary *fileInfoDict = [NSMutableDictionary dictionaryWithCapacity:10];
             [fileInfoDict setObject:filePath forKey:@"Path"];
             
-            NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:filePath];
+            NSImage *icon = [WORKSPACE iconForFile:filePath];
             [icon setSize:NSMakeSize(16, 16)];
             
             [fileInfoDict setObject:icon forKey:@"Icon"];
@@ -166,12 +166,12 @@
     NSString *path = [[files objectAtIndex:index] objectForKey:@"Path"];
     
     if ([FILEMGR fileExistsAtPath:path isDirectory:&isDir]) {
-        [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:@""];
+        [WORKSPACE selectFile:path inFileViewerRootedAtPath:@""];
     }
 }
 
 - (void)openInFinder:(int)index {
-    [[NSWorkspace sharedWorkspace] openFile:[[files objectAtIndex:index] objectForKey:@"Path"]];
+    [WORKSPACE openFile:[[files objectAtIndex:index] objectForKey:@"Path"]];
 }
 
 - (void)openInEditor:(int)index {
@@ -181,8 +181,8 @@
     
     if ([defaultEditor isEqualToString:DEFAULT_EDITOR] == NO) {
         // open it in the external application
-        if ([[NSWorkspace sharedWorkspace] fullPathForApplication:defaultEditor] != nil) {
-            [[NSWorkspace sharedWorkspace] openFile:path withApplication:defaultEditor];
+        if ([WORKSPACE fullPathForApplication:defaultEditor] != nil) {
+            [WORKSPACE openFile:path withApplication:defaultEditor];
             return;
         } else {
             [Alerts alert:@"Editor not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];

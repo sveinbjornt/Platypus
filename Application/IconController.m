@@ -47,7 +47,7 @@
 }
 
 - (void)dealloc {
-    [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+    [[WORKSPACE notificationCenter] removeObserver:self];
     
     if (icnsFilePath != nil) {
         [icnsFilePath release];
@@ -58,9 +58,9 @@
 
 - (void)awakeFromNib {
     // we list ourself as an observer of changes to file system, in case of icns file moving
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
+    [[WORKSPACE notificationCenter]
      addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueRenameNotification object:nil];
-    [[[NSWorkspace sharedWorkspace] notificationCenter]
+    [[WORKSPACE notificationCenter]
      addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueDeleteNotification object:nil];
 }
 
@@ -82,7 +82,7 @@
 }
 
 - (IBAction)revealIconInFinder:(id)sender {
-    [[NSWorkspace sharedWorkspace] selectFile:[self icnsFilePath] inFileViewerRootedAtPath:[self icnsFilePath]];
+    [WORKSPACE selectFile:[self icnsFilePath] inFileViewerRootedAtPath:[self icnsFilePath]];
 }
 
 #pragma mark -

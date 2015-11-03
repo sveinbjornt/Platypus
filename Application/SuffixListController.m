@@ -33,7 +33,7 @@
 @implementation SuffixListController
 
 - (NSImage *)iconForItem:(NSString *)item {
-    return [[NSWorkspace sharedWorkspace] iconForFileType:item];
+    return [WORKSPACE iconForFileType:item];
 }
 
 - (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
