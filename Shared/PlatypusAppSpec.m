@@ -214,25 +214,24 @@
     // get temporary directory, make sure it's kosher.  Apparently NSTemporaryDirectory() can return nil
     // see http://www.cocoadev.com/index.pl?NSTemporaryDirectory
     NSString *tmpPath = NSTemporaryDirectory();
-    if (!tmpPath)
+    if (!tmpPath) {
         tmpPath = @"/tmp/";
-    
-    // Now, make sure conditions are acceptable
+    }
     
     // make sure we can write to temp path
     if (![fileManager isWritableFileAtPath:tmpPath]) {
         error = [NSString stringWithFormat:@"Could not write to the temp directory '%@'.", tmpPath];
-        return 0;
+        return FALSE;
     }
     
     //check if app already exists
     if ([fileManager fileExistsAtPath:[properties objectForKey:@"Destination"]]) {
-        if (![[properties objectForKey:@"DestinationOverride"] boolValue]) {
+        if ([[properties objectForKey:@"DestinationOverride"] boolValue] == FALSE) {
             error = [NSString stringWithFormat:@"App already exists at path %@. Use -y flag to overwrite.", [properties objectForKey:@"Destination"]];
-            return 0;
-        }
-        else
+            return FALSE;
+        } else {
             [self report:[NSString stringWithFormat:@"Overwriting app at path %@", [properties objectForKey:@"Destination"]]];
+        }
     }
     
     // check if executable exists
@@ -252,8 +251,7 @@
     ////////////////////////// CREATE THE FOLDER HIERARCHY //////////////////////////
     
     // we begin by creating the application bundle at temp path
-    
-    [self report:@"Creating app bundle hierarchy"];
+    [self report:@"Creating application bundle folder hierarchy"];
     
     //Application.app bundle
     tmpPath = [tmpPath stringByAppendingString:[[properties objectForKey:@"Destination"] lastPathComponent]];
@@ -294,7 +292,6 @@
     // if optimize application is set, we see if we can compile the nib file
     if ([[properties objectForKey:@"OptimizeApplication"] boolValue] == YES && [FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
         [self report:@"Optimizing nib file"];
-        
         NSTask *ibToolTask = [[NSTask alloc] init];
         [ibToolTask setLaunchPath:IBTOOL_PATH];
         [ibToolTask setArguments:[NSArray arrayWithObjects:@"--strip", nibDestPath, nibDestPath, nil]];
@@ -313,11 +310,11 @@
     } else {
         NSString *scriptFilePath = [resourcesPath stringByAppendingString:@"/script"];
         // make a symbolic link instead of copying script if this is a dev version
-        if ([[properties objectForKey:@"DevelopmentVersion"] boolValue] == YES)
+        if ([[properties objectForKey:@"DevelopmentVersion"] boolValue] == YES) {
             [fileManager createSymbolicLinkAtPath:scriptFilePath withDestinationPath:[properties objectForKey:@"ScriptPath"] error:nil];
-        else // copy script over
+        } else { // copy script over
             [fileManager copyItemAtPath:[properties objectForKey:@"ScriptPath"] toPath:scriptFilePath error:nil];
-        
+        }
         NSDictionary *fileAttrDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithShort:S_IRWXU | S_IRWXG | S_IROTH]
                                                                  forKey:NSFilePosixPermissions];
         [[NSFileManager defaultManager] setAttributes:fileAttrDict ofItemAtPath:scriptFilePath error:nil];
@@ -325,7 +322,7 @@
     
     //create AppSettings.plist file
     //.app/Contents/Resources/AppSettings.plist
-    [self report:@"Creating property lists"];
+    [self report:@"Creating AppSettings property list"];
     appSettingsPlist = [NSMutableDictionary dictionaryWithCapacity:PROGRAM_MAX_LIST_ITEMS];
     [appSettingsPlist setObject:[properties objectForKey:@"Authentication"] forKey:@"RequiresAdminPrivileges"];
     [appSettingsPlist setObject:[properties objectForKey:@"Droppable"] forKey:@"Droppable"];
@@ -372,14 +369,14 @@
     appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
     
     // write the app settings plist
-    if (![[properties objectForKey:@"UseXMLPlistFormat"] boolValue]) {
+    if ([[properties objectForKey:@"UseXMLPlistFormat"] boolValue] == FALSE) {
         NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList:appSettingsPlist
                                                                           format:NSPropertyListBinaryFormat_v1_0
                                                                 errorDescription:nil];
         [binPlistData writeToFile:appSettingsPlistPath atomically:YES];
-    }
-    else
+    } else {
         [appSettingsPlist writeToFile:appSettingsPlistPath atomically:YES];
+    }
     
     //create icon
     //.app/Contents/Resources/appIcon.icns
@@ -397,19 +394,18 @@
     
     //create Info.plist file
     //.app/Contents/Info.plist
-    [self report:@"Creating Info.plist"];
+    [self report:@"Writing Info.plist"];
     NSDictionary *infoPlist = [self infoPlist];
     infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
-    
-    [self report:@"Writing Info.plist"];
     if (![[properties objectForKey:@"UseXMLPlistFormat"] boolValue]) { // if binary
         NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList:infoPlist
                                                                           format:NSPropertyListBinaryFormat_v1_0
                                                                 errorDescription:nil];
         [binPlistData writeToFile:infoPlistPath atomically:YES];
     }
-    else
-        [infoPlist writeToFile:infoPlistPath atomically:YES];   // if xml
+    else {
+        [infoPlist writeToFile:infoPlistPath atomically:YES];
+    }
     
     //copy files in file list to the Resources folder
     //.app/Contents/Resources/*
@@ -424,11 +420,11 @@
         [self report:[NSString stringWithFormat:@"Copying \"%@\" to bundle", srcFileName]];
         
         // if it's a development version, we just symlink it
-        if ([[properties objectForKey:@"DevelopmentVersion"] boolValue] == YES)
+        if ([[properties objectForKey:@"DevelopmentVersion"] boolValue] == YES) {
             [fileManager createSymbolicLinkAtPath:bundledFileDestPath withDestinationPath:bundledFilePath error:nil];
-        else { // else we copy it
-            
-            // remove any file in destination path
+        } else {
+            // otherwise we copy it
+            // first remove any file in destination path
             // NB: This means any previously copied files are overwritten
             // and so users can bundle in their own MainMenu.nib etc.
             if ([fileManager fileExistsAtPath:bundledFileDestPath]) {
@@ -442,11 +438,12 @@
     
     // we've created the application bundle in the temporary directory
     // now it's time to move it to the destination specified by the user
-    [self report:@"Moving app to destination"];
+    [self report:@"Moving app to destination directory"];
     
     // first, let's see if there's anything there.  If we have override set on, we just delete that stuff.
-    if ([fileManager fileExistsAtPath:[properties objectForKey:@"Destination"]] && [[properties objectForKey:@"DestinationOverride"] boolValue])
+    if ([fileManager fileExistsAtPath:[properties objectForKey:@"Destination"]] && [[properties objectForKey:@"DestinationOverride"] boolValue]) {
         [fileManager removeItemAtPath:[properties objectForKey:@"Destination"] error:nil];
+    }
     
     //if delete wasn't a success and there's still something there
     if ([fileManager fileExistsAtPath:[properties objectForKey:@"Destination"]]) {
@@ -470,10 +467,7 @@
     
     [self report:@"Done"];
     
-    // notify workspace that the file changed
-    [[NSWorkspace sharedWorkspace] noteFileSystemChanged:[properties objectForKey:@"Destination"]];
-    
-    return 1;
+    return TRUE;
 }
 
 - (NSDictionary *)infoPlist {
