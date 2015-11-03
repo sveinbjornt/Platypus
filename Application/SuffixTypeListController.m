@@ -28,9 +28,9 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "SuffixListController.h"
+#import "SuffixTypeListController.h"
 
-@implementation SuffixListController
+@implementation SuffixTypeListController
 
 - (NSImage *)iconForItem:(NSString *)item {
     return [WORKSPACE iconForFileType:item];

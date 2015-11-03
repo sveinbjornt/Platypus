@@ -30,7 +30,7 @@
 
 #import "DropSettingsController.h"
 #import "Common.h"
-#import "SuffixListController.h"
+#import "SuffixTypeListController.h"
 #import "NSFileManager+Additions.h"
 #import "UniformTypeListController.h"
 
@@ -38,7 +38,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        suffixListController = [[SuffixListController alloc] init];
+        suffixListController = [[SuffixTypeListController alloc] init];
         uniformTypeListController = [[UniformTypeListController alloc] init];
     }
     return self;
@@ -78,6 +78,8 @@
     [uniformTypeListTableView setTarget:self];
     
     [typesErrorTextField setStringValue:@""];
+    [self controlTextDidChange];
+    [self tableViewSelectionDidChange:nil];
     
     //open window
     [NSApp  beginSheet:dropSettingsWindow
@@ -205,31 +207,26 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
     
-    if (aNotification == nil || [aNotification object] == suffixListTableView || [aNotification object] == nil) {
+    int selected = 0;
+    NSIndexSet *selectedItems = [suffixListTableView selectedRowIndexes];
         
-        int selected = 0;
-        NSIndexSet *selectedItems = [suffixListTableView selectedRowIndexes];
-        
-        for (int i = 0; i < [suffixListController numItems]; i++) {
-            if ([selectedItems containsIndex:i]) {
-                selected++;
-            }
+    for (int i = 0; i < [suffixListController numItems]; i++) {
+        if ([selectedItems containsIndex:i]) {
+            selected++;
         }
-        [removeSuffixButton setEnabled:(selected != 0)];
     }
+    [removeSuffixButton setEnabled:(selected != 0)];
+
     
-    if (aNotification == nil || [aNotification object] == uniformTypeListTableView || [aNotification object] == nil) {
+    selected = 0;
+    selectedItems = [uniformTypeListTableView selectedRowIndexes];
         
-        int selected = 0;
-        NSIndexSet *selectedItems = [uniformTypeListTableView selectedRowIndexes];
-        
-        for (int i = 0; i < [uniformTypeListController numItems]; i++) {
-            if ([selectedItems containsIndex:i]) {
-                selected++;
-            }
+    for (int i = 0; i < [uniformTypeListController numItems]; i++) {
+        if ([selectedItems containsIndex:i]) {
+            selected++;
         }
-        [removeUTIButton setEnabled:(selected != 0)];
     }
+    [removeUTIButton setEnabled:(selected != 0)];
 }
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
@@ -293,7 +290,7 @@
 
 #pragma mark -
 
-- (SuffixListController *)suffixListController {
+- (SuffixTypeListController *)suffixListController {
     return suffixListController;
 }
 

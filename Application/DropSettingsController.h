@@ -30,7 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class SuffixListController, UniformTypeListController;
+@class SuffixTypeListController, UniformTypeListController;
 @interface DropSettingsController : NSObject <NSTableViewDelegate>
 {
     IBOutlet NSButton *addSuffixButton;
@@ -59,7 +59,7 @@
     IBOutlet NSButton *selectDocumentIconButton;
     
     NSString *docIconPath;
-    SuffixListController *suffixListController;
+    SuffixTypeListController *suffixListController;
     UniformTypeListController *uniformTypeListController;
 }
 - (IBAction)addSuffix:(id)sender;
@@ -75,7 +75,7 @@
 - (IBAction)acceptsFilesChanged:(id)sender;
 - (IBAction)acceptsTextChanged:(id)sender;
 
-- (SuffixListController *)suffixListController;
+- (SuffixTypeListController *)suffixListController;
 - (UniformTypeListController *)uniformTypesListController;
 - (UInt64)docIconSize;
 
