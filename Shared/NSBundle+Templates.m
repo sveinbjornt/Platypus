@@ -35,8 +35,9 @@
 - (NSString *)loadTemplate:(NSString *)templateFileName usingDictionary:(NSDictionary *)dict {
     
     NSString *fullPath = [self pathForResource:templateFileName ofType:nil];
-    NSString *templateStr = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
-    if (!templateStr) {
+    NSError *err;
+    NSString *templateStr = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:&err];
+    if (err != nil || !templateStr) {
         NSLog(@"Unable to read template %@", templateFileName);
         return nil;
     }

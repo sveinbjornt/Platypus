@@ -44,6 +44,13 @@
 #define PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL [NSString stringWithFormat:@"%@#41",PROGRAM_DOCUMENTATION_URL]
 #define PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL [NSString stringWithFormat:@"%@#22",PROGRAM_DOCUMENTATION_URL]
 
+// documentation
+#define PROGRAM_README_FILE         @ "Readme.html"
+#define PROGRAM_MANPAGE             @ "platypus.man.html"
+#define PROGRAM_DOCUMENTATION       @ "Documentation.html"
+#define PROGRAM_LICENSE_FILE        @ "License.html"
+#define PROGRAM_EXAMPLES_FOLDER     @ "/Examples/"
+
 // Application support folder info
 #define APP_SUPPORT_FOLDER          [@ "~/Library/Application Support/Platypus/" stringByExpandingTildeInPath]
 #define TEMP_FOLDER                 [NSString stringWithFormat:@"%@/", APP_SUPPORT_FOLDER]
@@ -57,13 +64,6 @@
 #define DEFAULT_OUTPUT_FG_COLOR     @ "#000000"
 #define DEFAULT_OUTPUT_BG_COLOR     @ "#ffffff"
 #define DEFAULT_OUTPUT_TXT_ENCODING NSUTF8StringEncoding
-
-// documentation
-#define PROGRAM_README_FILE         @ "Readme.html"
-#define PROGRAM_MANPAGE             @ "platypus.man.html"
-#define PROGRAM_DOCUMENTATION       @ "Documentation.html"
-#define PROGRAM_LICENSE_FILE        @ "License.html"
-#define PROGRAM_EXAMPLES_FOLDER     @ "/Examples/"
 
 // command line tool seetings
 #define CMDLINE_PROGNAME_IN_BUNDLE  @ "platypus_clt"
@@ -99,8 +99,8 @@
 #define SHELL_COMMAND_STRING_FONT   [NSFont userFixedPitchFontOfSize:11.0]
 
 // path to temp script file
-#define TMP_STDIN_PATH                      @ "/tmp/.plstdin.XXXXXX"
-#define TMP_ICON_PATH                       [NSString stringWithFormat:@"%@/TmpIcon%d.icns", APP_SUPPORT_FOLDER, arc4random()]
+#define TMP_STDIN_PATH              @ "/tmp/.plstdin.XXXXXX"
+#define TMP_ICON_PATH               [NSString stringWithFormat:@"%@/TmpIcon%d.icns", APP_SUPPORT_FOLDER, arc4random()]
 
 // this is surely enough
 #define PLATYPUS_MAX_QUEUE_JOBS             1024

@@ -215,7 +215,12 @@
     }
     
     //write the default content to the new script
-    [contentString writeToFile:tempScript atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:nil];
+    NSError *err;
+    [contentString writeToFile:tempScript atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:&err];
+    if (err != nil) {
+        [Alerts alert:@"Error creating file" subText:[err localizedDescription]];
+        return nil;
+    }
     
     return tempScript;
 }
@@ -1015,9 +1020,10 @@
         // create a new script file with the dropped string, load it
         NSString *draggedString = [pboard stringForType:NSStringPboardType];
         NSString *newScriptPath = [self createNewScript:draggedString];
-        [self loadScript:newScriptPath];
-        //[self editScript: self];
-        return YES;
+        if (newScriptPath) {
+            [self loadScript:newScriptPath];
+            return YES;
+        }
     }
     
     return NO;

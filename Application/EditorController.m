@@ -52,9 +52,10 @@
 }
 
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)theWindow {
-    NSString *str = [NSString stringWithContentsOfFile:path encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:nil];
-    if (str == nil) {
-        [Alerts alert:@"Error reading document" subText:@"This document does not appear to be a text file and cannot be opened with a text editor."];
+    NSError *err;
+    NSString *str = [NSString stringWithContentsOfFile:path encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:&err];
+    if (str == nil || err != nil) {
+        [Alerts alert:@"Error reading document" subText:@"This document could not be opened with the text editor."];
         return;
     }
     
@@ -86,10 +87,10 @@
 #pragma mark -
 
 - (IBAction)save:(id)sender {
-    if (![FILEMGR isWritableFileAtPath:[scriptPathTextField stringValue]]) {
-        [Alerts alert:@"Unable to save changes" subText:@"You don't have the necessary privileges to save this text file."];
-    } else {
-        [[textView string] writeToFile:[scriptPathTextField stringValue] atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:nil];
+    NSError *err;
+    [[textView string] writeToFile:[scriptPathTextField stringValue] atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:&err];
+    if (err != nil) {
+        [Alerts alert:@"Error saving document" subText:[err localizedDescription]];
     }
     
     [NSApp endSheet:[self window]];

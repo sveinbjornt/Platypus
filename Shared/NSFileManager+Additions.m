@@ -108,8 +108,12 @@
     // http://cocoawithlove.com/2009/07/temporary-files-and-folders-in-cocoa.html
     
     NSString *tmpFileNameTemplate = fileName ? fileName : @"tmp_file_nsfilemgr_osx.XXXXXX";
+    NSString *tmpDir = NSTemporaryDirectory();
+    if (!tmpDir) {
+        return nil;
+    }
     
-    NSString *tempFileTemplate = [NSTemporaryDirectory() stringByAppendingPathComponent:tmpFileNameTemplate];
+    NSString *tempFileTemplate = [tmpDir stringByAppendingPathComponent:tmpFileNameTemplate];
     const char *tempFileTemplateCString = [tempFileTemplate fileSystemRepresentation];
     char *tempFileNameCString = (char *)malloc(strlen(tempFileTemplateCString) + 1);
     strcpy(tempFileNameCString, tempFileTemplateCString);
@@ -129,15 +133,15 @@
     free(tempFileNameCString);
     
     // write script to the temporary path
-    [contentStr writeToFile:tempScriptPath atomically:YES encoding:textEncoding error:nil];
+    NSError *err;
+    [contentStr writeToFile:tempScriptPath atomically:YES encoding:textEncoding error:&err];
     
     // make sure writing it was successful
-    if (![[NSFileManager defaultManager] fileExistsAtPath:tempScriptPath]) {
-        NSLog(@"%@", [NSString stringWithFormat:@"Could not create the temp file '%@'", tempScriptPath]);
+    if (err != nil || [[NSFileManager defaultManager] fileExistsAtPath:tempScriptPath] == FALSE) {
+        NSLog(@"Could not create the temp file '%@'", tempScriptPath);
         return nil;
     }
     return tempScriptPath;
-
 }
 
 - (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {
