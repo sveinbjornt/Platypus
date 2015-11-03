@@ -660,7 +660,7 @@ static void PrintHelp(void) {
     NSPrint(@"%@ - command line application wrapper generator for scripts", CMDLINE_PROGNAME);
     PrintVersion();
     PrintUsage();
-    printf("\n\
+    NSPrint(@"\n\
        Options:\n\
        -O --generate-profile                Generate a profile instead of an app\n\
        \n\
@@ -705,7 +705,7 @@ static void PrintHelp(void) {
        -H --alternate-xib [xibPath]         Specify alternate xib file to bundle with app\n\n\
        -h --help                            Prints help\n\
        -v --version                         Prints program name, version and author\n\n\
-See http://sveinbjorn.org/files/manpages/platypus.man.html for further details.");
+See %@ for further details.", PROGRAM_MANPAGE_URL);
 }
 
 #pragma mark -

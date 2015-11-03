@@ -29,15 +29,23 @@
     [[NSApplication sharedApplication] terminate:self];
 }
 
+#pragma mark -
+
 + (void)sheetAlert:(NSString *)message subText:(NSString *)subtext forWindow:(NSWindow *)window {
+    [self sheetAlert:message subText:subtext style:NSCriticalAlertStyle forWindow:window];
+}
+
++ (void)sheetAlert:(NSString *)message subText:(NSString *)subtext style:(NSAlertStyle)style forWindow:(NSWindow *)window {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
     [alert setMessageText:message];
     [alert setInformativeText:subtext];
-    [alert setAlertStyle:NSCriticalAlertStyle];
+    [alert setAlertStyle:style];
     [alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:nil contextInfo:nil];
     [alert release];
 }
+
+#pragma mark -
 
 + (BOOL)proceedAlert:(NSString *)message subText:(NSString *)subtext withAction:(NSString *)action {
     NSAlert *alert = [[NSAlert alloc] init];

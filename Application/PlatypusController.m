@@ -459,6 +459,14 @@
         return NO;
     }
     
+    // check if icon creation failed
+    NSString *appIconPath = [NSString stringWithFormat:@"%@/Contents/Resources/appIcon.icns", appPath];
+    unsigned long long fileSize = [[FILEMGR attributesOfItemAtPath:appIconPath error:nil] fileSize];
+    if (fileSize == 0) {
+        [Alerts alert:@"Failed to create icon" subText:@"Icon generation from images is currently not supported on retina Macs. To fix this, launch the Platypus application in Low Resolution mode and try again."];
+    }
+
+    
     // reveal newly create app in Finder, if prefs say so
     if ([DEFAULTS boolForKey:@"RevealApplicationWhenCreated"]) {
         [WORKSPACE selectFile:appPath inFileViewerRootedAtPath:appPath];
