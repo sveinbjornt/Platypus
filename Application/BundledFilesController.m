@@ -166,8 +166,7 @@
     NSString *path = [[files objectAtIndex:index] objectForKey:@"Path"];
     
     if ([FILEMGR fileExistsAtPath:path isDirectory:&isDir]) {
-        NSString *filePath = isDir ? nil : path;
-        [[NSWorkspace sharedWorkspace] selectFile:filePath inFileViewerRootedAtPath:path];
+        [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:@""];
     }
 }
 
