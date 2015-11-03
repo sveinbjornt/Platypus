@@ -113,9 +113,7 @@
 - (IBAction)removeListItem:(id)sender
 {
     NSMutableArray *args;
-    
     sender = [argsWindow firstResponder];
-    NSLog([sender description]);
     
     if (sender == scriptArgsTableView) {
         args = scriptArgs;
