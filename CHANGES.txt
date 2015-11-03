@@ -21,7 +21,6 @@ For 5.0
     TODO: Get rid of crazy pattern where objects release themselves in the window controllers. What was I thinking?
     TODO: New high res images for documentation
     TODO: File watching still broken for script path
-    TODO: Better error handling in file operations (use NSError object)
     TODO: Use UTI methods instead of deprecated imageFileTypes
     TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
@@ -29,6 +28,7 @@ For 5.0
     TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
     TODO: Drag and drop for icon view should be file based, not TIFF pasteboard data
 
+    * Better error handling in file operations
     * New retina icons in script type popup button
     * No longer linking to Carbon framework
     * CFBundleDevelopmentRegion in generated apps now declared using ISO code
