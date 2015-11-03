@@ -63,12 +63,12 @@
 - (IBAction)apply:(id)sender;
 
 - (IBAction)addInterpreterArg:(id)sender;
-- (IBAction)removeInterpreterArg:(id)sender;
 - (IBAction)clearInterpreterArgs:(id)sender;
 
 - (IBAction)addScriptArg:(id)sender;
-- (IBAction)removeScriptArg:(id)sender;
 - (IBAction)clearScriptArgs:(id)sender;
+
+- (IBAction)removeListItem:(id)sender;
 
 - (IBAction)resetDefaults:(id)sender;
 

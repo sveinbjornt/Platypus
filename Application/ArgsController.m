@@ -110,54 +110,45 @@
     [argsWindow makeFirstResponder:scriptArgsTableView];
 }
 
-- (IBAction)removeInterpreterArg:(id)sender {
-    int selectedRow = [interpreterArgsTableView selectedRow];
-    int rowToSelect;
+- (IBAction)removeListItem:(id)sender
+{
+    NSMutableArray *args;
     
-    if (selectedRow == -1 || ![interpreterArgs count]) {
+    sender = [argsWindow firstResponder];
+    NSLog([sender description]);
+    
+    if (sender == scriptArgsTableView) {
+        args = scriptArgs;
+    } else if (sender == interpreterArgsTableView) {
+        args = interpreterArgs;
+    } else {
         return;
     }
     
-    [interpreterArgs removeObjectAtIndex:[interpreterArgsTableView selectedRow]];
-    
-    if (![interpreterArgsTableView numberOfRows]) {
-        return;
-    }
-    
-    rowToSelect = selectedRow - 1;
-    
-    [interpreterArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
-    
-    [interpreterArgsTableView reloadData];
-    [self tableViewSelectionDidChange:nil];
-    
-    [commandTextField setStringValue:[self constructCommandString]];
-    [argsWindow makeFirstResponder:interpreterArgsTableView];
-}
+    NSTableView *tableView = sender;
 
-- (IBAction)removeScriptArg:(id)sender {
-    int selectedRow = [scriptArgsTableView selectedRow];
+    int selectedRow = [tableView selectedRow];
     int rowToSelect;
     
-    if (selectedRow == -1 || ![scriptArgs count]) {
+    if (selectedRow == -1 || ![args count]) {
         return;
     }
     
-    [scriptArgs removeObjectAtIndex:[scriptArgsTableView selectedRow]];
+    [args removeObjectAtIndex:[tableView selectedRow]];
     
-    if (![scriptArgsTableView numberOfRows]) {
+    if (![tableView numberOfRows]) {
         return;
     }
     
     rowToSelect = selectedRow - 1;
     
-    [scriptArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
+    [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
     
-    [scriptArgsTableView reloadData];
+    [tableView reloadData];
     [self tableViewSelectionDidChange:nil];
     
     [commandTextField setStringValue:[self constructCommandString]];
-    [argsWindow makeFirstResponder:scriptArgsTableView];
+    [argsWindow makeFirstResponder:tableView];
 }
 
 - (IBAction)resetDefaults:(id)sender {
