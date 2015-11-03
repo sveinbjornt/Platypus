@@ -30,6 +30,6 @@
 
 #import "TypeListController.h"
 
-@interface SuffixListController : TypeListController
+@interface SuffixTypeListController : TypeListController
 
 @end

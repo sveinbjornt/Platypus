@@ -46,7 +46,7 @@
 #import "ShellCommandController.h"
 #import "STPathTextField.h"
 #import "DropSettingsController.h"
-#import "SuffixListController.h"
+#import "SuffixTypeListController.h"
 #import "SyntaxCheckerController.h"
 #import "BundledFilesController.h"
 
@@ -466,7 +466,6 @@
         [Alerts alert:@"Failed to create icon" subText:@"Icon generation from images is currently not supported on retina Macs. To fix this, launch the Platypus application in Low Resolution mode and try again."];
     }
 
-    
     // reveal newly create app in Finder, if prefs say so
     if ([DEFAULTS boolForKey:@"RevealApplicationWhenCreated"]) {
         [WORKSPACE selectFile:appPath inFileViewerRootedAtPath:appPath];
@@ -577,7 +576,7 @@
     [spec setProperty:[bundledFilesController filePaths] forKey:@"BundledFiles"];
     
     // file types
-    [spec setProperty:(NSMutableArray *)[(SuffixListController *)[dropSettingsController suffixListController] getItemsArray] forKey:@"Suffixes"];
+    [spec setProperty:(NSMutableArray *)[(SuffixTypeListController *)[dropSettingsController suffixListController] getItemsArray] forKey:@"Suffixes"];
     [spec setProperty:(NSMutableArray *)[(UniformTypeListController *)[dropSettingsController uniformTypesListController] getItemsArray] forKey:@"UniformTypes"];
     [spec setProperty:[dropSettingsController docIconPath] forKey:@"DocIcon"];
     [spec setProperty:[NSNumber numberWithBool:[dropSettingsController acceptsText]] forKey:@"AcceptsText"];
@@ -635,8 +634,8 @@
     [bundledFilesController performSelector:@selector(tableViewSelectionDidChange:) withObject:nil];
     
     //drop settings
-    [(SuffixListController *)[dropSettingsController suffixListController] removeAllItems];
-    [(SuffixListController *)[dropSettingsController suffixListController] addItems:[spec propertyForKey:@"Suffixes"]];
+    [(SuffixTypeListController *)[dropSettingsController suffixListController] removeAllItems];
+    [(SuffixTypeListController *)[dropSettingsController suffixListController] addItems:[spec propertyForKey:@"Suffixes"]];
     [(UniformTypeListController *)[dropSettingsController uniformTypesListController] removeAllItems];
     [(UniformTypeListController *)[dropSettingsController uniformTypesListController] addItems:[spec propertyForKey:@"UniformTypes"]];
 
