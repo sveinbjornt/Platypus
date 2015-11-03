@@ -49,12 +49,12 @@ local $| = 1;
 
 #print "<html><body bgcolor='#F1F1DE'><center><font color='blue'><h1>Hello, World</h1></font></center></body></html>\n";
 
-my $i = 0;
-while ($i < 1) {
-    print "PROGRESS:$i";
-    $i++;
-
-}
+#my $i = 0;
+#while ($i < 1) {
+#    print "PROGRESS:$i";
+#    $i++;
+#
+#}
 
 #sleep 1;
 # If 0 arguments, we show menu
@@ -81,6 +81,14 @@ while ($i < 1) {
 #print "QUITAPP\n";
 
 #print "DETAILS:HIDE\n";
+
+#!/bin/sh
+# The Platypus wrapper parses NOTIFICATION:* and sends on to Notification Center
+print "NOTIFICATION:Hello, world!\n"
+#sleep 2
+#echo "NOTIFICATION:Hello, again!"
+#sleep 2
+
 
 
 #print "PROGRESS:100\n";

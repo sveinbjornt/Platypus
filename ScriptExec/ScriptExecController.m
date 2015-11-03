@@ -410,6 +410,7 @@
 //        ProcessSerialNumber process;
 //        GetCurrentProcess(&process);
 //        SetFrontProcess(&process);
+        // Old Carbon SetFrontProcess call replaced with Cocoa
         [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
     }
     
