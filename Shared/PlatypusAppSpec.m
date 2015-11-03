@@ -613,7 +613,6 @@
 // generates the command line command that would create this spec
 
 - (NSString *)commandString {
-    int i;
     NSString *checkboxParamStr = @"";
     NSString *iconParamStr = @"", *versionString = @"", *authorString = @"";
     NSString *suffixesString = @"", *uniformTypesString = @"", *parametersString = @"";
@@ -660,7 +659,7 @@
     //create bundled files string
     NSString *bundledFilesCmdString = @"";
     NSArray *bundledFiles = (NSArray *)[properties objectForKey:@"BundledFiles"];
-    for (i = 0; i < [bundledFiles count]; i++) {
+    for (int i = 0; i < [bundledFiles count]; i++) {
         bundledFilesCmdString = [bundledFilesCmdString stringByAppendingString:[NSString stringWithFormat:@"-f '%@' ", [bundledFiles objectAtIndex:i]]];
     }
     
@@ -678,30 +677,38 @@
     if (([[properties objectForKey:@"Output"] isEqualToString:@"Text Window"] ||
          [[properties objectForKey:@"Output"] isEqualToString:@"Progress Bar"] ||
          [[properties objectForKey:@"Output"] isEqualToString:@"Status Menu"])) {
-        NSString *textFgString = @"", *textBgString = @"", *textFontString = @"";
-        if (![[properties objectForKey:@"TextForeground"] isEqualToString:DEFAULT_OUTPUT_FG_COLOR])
-            textFgString = [NSString stringWithFormat:@" -g '%@' ", [properties objectForKey:@"TextForeground"]];
         
-        if (![[properties objectForKey:@"TextBackground"] isEqualToString:DEFAULT_OUTPUT_BG_COLOR])
+        NSString *textFgString = @"", *textBgString = @"", *textFontString = @"";
+        if (![[properties objectForKey:@"TextForeground"] isEqualToString:DEFAULT_OUTPUT_FG_COLOR]) {
+            textFgString = [NSString stringWithFormat:@" -g '%@' ", [properties objectForKey:@"TextForeground"]];
+        }
+        
+        if (![[properties objectForKey:@"TextBackground"] isEqualToString:DEFAULT_OUTPUT_BG_COLOR]) {
             textBgString = [NSString stringWithFormat:@" -b '%@' ", [properties objectForKey:@"TextForeground"]];
+        }
         
         if ([[properties objectForKey:@"TextSize"] floatValue] != DEFAULT_OUTPUT_FONTSIZE ||
-            ![[properties objectForKey:@"TextFont"] isEqualToString:DEFAULT_OUTPUT_FONT])
+            ![[properties objectForKey:@"TextFont"] isEqualToString:DEFAULT_OUTPUT_FONT]) {
             textFontString = [NSString stringWithFormat:@" -n '%@ %2.f' ", [properties objectForKey:@"TextFont"], [[properties objectForKey:@"TextSize"] floatValue]];
+        }
         
         textOutputString = [NSString stringWithFormat:@"%@%@%@", textFgString, textBgString, textFontString];
     }
     
     //    text encoding
-    if ([[properties objectForKey:@"TextEncoding"] intValue] != DEFAULT_OUTPUT_TXT_ENCODING)
+    if ([[properties objectForKey:@"TextEncoding"] intValue] != DEFAULT_OUTPUT_TXT_ENCODING) {
         textEncodingString = [NSString stringWithFormat:@" -E %d ", [[properties objectForKey:@"TextEncoding"] intValue]];
+    }
     
     //create custom icon string
-    if (![[properties objectForKey:@"IconPath"] isEqualToString:CMDLINE_ICON_PATH] && ![[properties objectForKey:@"IconPath"] isEqualToString:@""])
+    if (![[properties objectForKey:@"IconPath"] isEqualToString:CMDLINE_ICON_PATH] && ![[properties objectForKey:@"IconPath"] isEqualToString:@""]) {
         iconParamStr = [NSString stringWithFormat:@" -i '%@' ", [properties objectForKey:@"IconPath"]];
+    }
+    
     //create custom icon string
-    if ([properties objectForKey:@"DocIcon"] && ![[properties objectForKey:@"DocIcon"] isEqualToString:@""])
+    if ([properties objectForKey:@"DocIcon"] && ![[properties objectForKey:@"DocIcon"] isEqualToString:@""]) {
         iconParamStr = [iconParamStr stringByAppendingFormat:@" -Q '%@' ", [properties objectForKey:@"DocIcon"]];
+    }
     
     //status menu settings, if output mode is status menu
     if ([[properties objectForKey:@"Output"] isEqualToString:@"Status Menu"]) {
@@ -709,20 +716,22 @@
         statusMenuOptionsString = [statusMenuOptionsString stringByAppendingString:[NSString stringWithFormat:@"-K '%@' ", [properties objectForKey:@"StatusItemDisplayType"]]];
         
         // -L /path/to/image
-        if (![[properties objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Text"])
+        if (![[properties objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingString:@"-L '/path/to/image' "];
+        }
         
         // -Y 'Title'
-        if (![[properties objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Icon"])
+        if (![[properties objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Icon"]) {
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingString:[NSString stringWithFormat:@"-Y '%@' ", [properties objectForKey:@"StatusItemTitle"]]];
+        }
     }
     
     // only set app name arg if we have a proper value
-    NSString *appNameArg = [[properties objectForKey: @"Name"] isEqualToString: @""] ? @"" : [NSString stringWithFormat: @" -a '%@' ", [properties objectForKey: @"Name"]];
+    NSString *appNameArg = [[properties objectForKey: @"Name"] isEqualToString:@""] ? @"" : [NSString stringWithFormat: @" -a '%@' ", [properties objectForKey: @"Name"]];
     
     // only add identifier argument if it varies from default
     NSString *identifArg = [NSString stringWithFormat: @" -I %@ ", [properties objectForKey: @"Identifier"]];
-    if ([[properties objectForKey: @"Identifier"] isEqualToString: [PlatypusAppSpec standardBundleIdForAppName: [properties objectForKey: @"Name"] usingDefaults: NO]])
+    if ([[properties objectForKey: @"Identifier"] isEqualToString:[PlatypusAppSpec standardBundleIdForAppName:[properties objectForKey: @"Name"] usingDefaults: NO]])
         identifArg = @"";
     
     // finally, generate the command

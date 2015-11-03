@@ -216,8 +216,8 @@
     
     //write the default content to the new script
     NSError *err;
-    [contentString writeToFile:tempScript atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:&err];
-    if (err != nil) {
+    BOOL success = [contentString writeToFile:tempScript atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:&err];
+    if (!success) {
         [Alerts alert:@"Error creating file" subText:[err localizedDescription]];
         return nil;
     }
