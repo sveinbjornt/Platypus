@@ -88,6 +88,7 @@
 		F4AB186F1BE1908100B83A95 /* NSBundle+Templates.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186E1BE1908100B83A95 /* NSBundle+Templates.m */; };
 		F4AB18721BE19CAC00B83A95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AB18711BE19CAC00B83A95 /* Foundation.framework */; };
 		F4AB18741BE19CD100B83A95 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AB18731BE19CD100B83A95 /* AppKit.framework */; };
+		F4AB18971BEAA88800B83A95 /* NSFileManager+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSFileManager+Additions.m */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
 		F4B87C1B1B3C99AD00F4B8BE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B87C191B3C997300F4B8BE /* Accelerate.framework */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
@@ -1045,6 +1046,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4AB18971BEAA88800B83A95 /* NSFileManager+Additions.m in Sources */,
 				F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
 				F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */,
 				F48B1EDF17935BBC007DA173 /* ScriptAnalyser.m in Sources */,

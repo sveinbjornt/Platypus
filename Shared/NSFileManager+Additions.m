@@ -75,6 +75,8 @@
     return str;
 }
 
+#pragma mark -
+
 - (BOOL)openPathInDefaultBrowser:(NSString *)path {
     NSURL *url = [NSURL URLWithString:@"http://"];
     CFURLRef fromPathURL = NULL;
@@ -147,5 +149,22 @@
 - (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {
     return [self createTempFileNamed:nil withContents:contentStr usingTextEncoding:textEncoding];
 }
+
+#pragma mark - Notify Finder
+
+- (void)notifyFinderFileChangedAtPath:(NSString *)path {
+    [[NSWorkspace sharedWorkspace] noteFileSystemChanged:path];
+    NSString *source = [NSString stringWithFormat:@"tell application \"Finder\" to update item (POSIX file \"%@\")", path];
+    
+    NSAppleScript *appleScript = [[NSAppleScript alloc] initWithSource:source];
+    if (appleScript != nil) {
+        [appleScript executeAndReturnError:nil];
+    }
+}
+
+
+
+
+
 
 @end

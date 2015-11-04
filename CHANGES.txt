@@ -13,7 +13,7 @@ For 5.0
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Fix Provide as Mac OS X service
     TODO: Update documentation with information about Uniform Type Identifiers
-
+    TODO: Overhaul very old and in many respects out of date documentation
     TODO: Drop targets do not work with “Remain running after initial execution” off
     TODO: Make main application icon brighter and higher res
     TODO: Get rid of crazy pattern where objects release themselves in the window controllers. What was I thinking?
@@ -26,10 +26,9 @@ For 5.0
     TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
     TODO: Drag and drop for icon view should be file based, not TIFF pasteboard data
 
-    * Fix broken "Select Image file as icon..." functionality on retina displays. Requires IconFamily update.
-    * Fix issue with generating icon from imageview on retina macs (IconFamily issue)
-    * Fix issue with icon masks not being generated properly in latest IconFamily
-
+    * Fixed issue with generating icon from images on retina macs (IconFamily)
+    * Fixed issue with icon alpha channels (IconFamily)
+    * Finder now refreshes display of overwritten applications
     * Better error handling in file operations
     * New retina icons in script type popup button
     * No longer linking to Carbon framework

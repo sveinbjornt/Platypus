@@ -36,6 +36,8 @@
 - (NSString *)sizeAsHumanReadable:(UInt64)size;
 - (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path;
 - (BOOL)openPathInDefaultBrowser:(NSString *)path;
+- (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
 - (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
+- (void)notifyFinderFileChangedAtPath:(NSString *)path;
 
 @end
