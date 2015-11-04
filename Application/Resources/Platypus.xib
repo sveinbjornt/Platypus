@@ -177,7 +177,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="984054FB-97BA-4DBD-B0BC-B032DAA0AC04" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="99CD806B-3D30-45BD-A71E-565DAE94EBCA" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -1307,20 +1307,18 @@ CA
                 <outlet property="delegate" destination="1234" id="1287"/>
             </connections>
         </menu>
-        <menu title="Menu" id="1321" userLabel="suffixListContextualMenu">
+        <menu title="Menu" id="1321" userLabel="DropTypeListContextualMenu">
             <items>
-                <menuItem title="Remove Suffix" id="1328">
+                <menuItem title="Remove Item" id="1328">
                     <connections>
-                        <action selector="removeSuffix:" target="1364" id="5399"/>
+                        <action selector="removeListItem:" target="1364" id="Fi7-j6-mOD"/>
                     </connections>
-                </menuItem>
-                <menuItem title="Clear List" id="1329">
-                    <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
             </items>
             <connections>
                 <outlet property="delegate" destination="1364" id="7865"/>
             </connections>
+            <point key="canvasLocation" x="-289.5" y="45.5"/>
         </menu>
         <window title="Drop Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="395" userLabel="dropSettingsWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
@@ -1830,7 +1828,7 @@ DQ
                             <animations/>
                         </tableHeaderView>
                         <connections>
-                            <outlet property="menu" destination="1810" id="11322"/>
+                            <outlet property="menu" destination="1321" id="r1S-Un-pr8"/>
                         </connections>
                     </scrollView>
                     <scrollView toolTip="List of arguments to script interpreter" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="11253">
@@ -1889,7 +1887,7 @@ DQ
                             <animations/>
                         </tableHeaderView>
                         <connections>
-                            <outlet property="menu" destination="11293" id="11321"/>
+                            <outlet property="menu" destination="1321" id="pl3-56-pCK"/>
                         </connections>
                     </scrollView>
                     <button toolTip="Apply these settings" verticalHuggingPriority="750" id="1398">
@@ -2037,7 +2035,7 @@ DQ
                 </menuItem>
                 <menuItem title="Remove Entry" id="11297">
                     <connections>
-                        <action selector="removeScriptArg:" target="1418" id="11302"/>
+                        <action selector="removeListItem:" target="1418" id="SRB-5r-S31"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Clear List" id="11294">
@@ -2059,6 +2057,7 @@ DQ
             <connections>
                 <outlet property="delegate" destination="1418" id="11319"/>
             </connections>
+            <point key="canvasLocation" x="-298.5" y="-81.5"/>
         </menu>
         <menu title="Menu" id="1810" userLabel="interpreterArgsContextualMenu">
             <items>
@@ -2070,7 +2069,7 @@ DQ
                 </menuItem>
                 <menuItem title="Remove Entry" id="1813">
                     <connections>
-                        <action selector="removeInterpreterArg:" target="1418" id="11324"/>
+                        <action selector="removeListItem:" target="1418" id="OrO-op-9ct"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Clear List" id="1816">
@@ -2894,7 +2893,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="984054FB-97BA-4DBD-B0BC-B032DAA0AC04" width="16" height="16">
+        <image name="99CD806B-3D30-45BD-A71E-565DAE94EBCA" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

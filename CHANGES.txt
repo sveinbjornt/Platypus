@@ -4,7 +4,6 @@ For 5.1
     TODO: Create Platypus tutorial videos, make them available online
     TODO: AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
     TODO: Restore "icon from image" functionality in command line tool (window server dependency?)
-    TODO: Fix broken "Select Image file as icon..." functionality on retina displays. Requires IconFamily update.
     TODO: New button-based output mode?
     TODO: Save authentication password and reuse for subsequent execution
     TODO: Use bindings for defaults?
@@ -14,8 +13,7 @@ For 5.0
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Fix Provide as Mac OS X service
     TODO: Update documentation with information about Uniform Type Identifiers
-    TODO: Fix issue with generating icon from imageview on retina macs (IconFamily issue)
-    TODO: Fix issue with icon masks not being generated properly in latest IconFamily
+
     TODO: Drop targets do not work with “Remain running after initial execution” off
     TODO: Make main application icon brighter and higher res
     TODO: Get rid of crazy pattern where objects release themselves in the window controllers. What was I thinking?
@@ -27,6 +25,10 @@ For 5.0
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
     TODO: Drag and drop for icon view should be file based, not TIFF pasteboard data
+
+    * Fix broken "Select Image file as icon..." functionality on retina displays. Requires IconFamily update.
+    * Fix issue with generating icon from imageview on retina macs (IconFamily issue)
+    * Fix issue with icon masks not being generated properly in latest IconFamily
 
     * Better error handling in file operations
     * New retina icons in script type popup button
