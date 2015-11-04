@@ -35,6 +35,7 @@
 #import "PlatypusAppSpec.h"
 #import "Common.h"
 #import "ScriptAnalyser.h"
+#import "NSFileManager+Additions.h"
 
 @implementation PlatypusAppSpec
 
@@ -438,25 +439,32 @@
     // now it's time to move it to the destination specified by the user
     [self report:@"Moving app to destination directory"];
     
+    NSString *destPath = [properties objectForKey:@"Destination"];
+    
+    
     // first, let's see if there's anything there.  If we have override set on, we just delete that stuff.
-    if ([FILEMGR fileExistsAtPath:[properties objectForKey:@"Destination"]] && [[properties objectForKey:@"DestinationOverride"] boolValue]) {
-        [FILEMGR removeItemAtPath:[properties objectForKey:@"Destination"] error:nil];
+    if ([FILEMGR fileExistsAtPath:destPath] && [[properties objectForKey:@"DestinationOverride"] boolValue]) {
+        [FILEMGR removeItemAtPath:destPath error:nil];
+        [FILEMGR notifyFinderFileChangedAtPath:destPath];
     }
     
     //if delete wasn't a success and there's still something there
-    if ([FILEMGR fileExistsAtPath:[properties objectForKey:@"Destination"]]) {
-        [FILEMGR removeItemAtPath:tmpPath error:nil];
+    if ([FILEMGR fileExistsAtPath:destPath]) {
         error = @"Could not remove pre-existing item at destination path";
-        return 0;
+        return FALSE;
     }
     
     // now, move the newly created app to the destination
-    [FILEMGR moveItemAtPath:tmpPath toPath:[properties objectForKey:@"Destination"] error:nil];    //move
-    if (![FILEMGR fileExistsAtPath:[properties objectForKey:@"Destination"]]) { //if move wasn't a success
+    [FILEMGR moveItemAtPath:tmpPath toPath:destPath error:nil];    //move
+    if (![FILEMGR fileExistsAtPath:destPath]) {
+        //if move wasn't a success, clean up app in tmp dir
         [FILEMGR removeItemAtPath:tmpPath error:nil];
         error = @"Failed to create application at the specified destination";
-        return 0;
+        return FALSE;
     }
+    [FILEMGR notifyFinderFileChangedAtPath:destPath];
+    
+    // Update Services
     if ([[properties objectForKey:@"DeclareService"] boolValue]) {
         [self report:@"Updating Dynamic Services"];
         // This call will refresh Services without user having to log out/in
@@ -540,9 +548,7 @@
 }
 
 - (void)report:(NSString *)str {
-#ifdef DEBUG
     fprintf(stderr, "%s\n", [str UTF8String]);
-#endif
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PlatypusAppSpecCreationNotification" object:str];
 }
 
