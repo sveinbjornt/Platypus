@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <development version="6000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="EditorController">
@@ -28,7 +28,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button toolTip="Save changes and close editor" verticalHuggingPriority="750" id="7">
+                    <button toolTip="Save Changes and Close Editor" verticalHuggingPriority="750" id="7">
                         <rect key="frame" x="492" y="12" width="94" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <animations/>
@@ -42,7 +42,7 @@
                             <action selector="save:" target="-2" id="31"/>
                         </connections>
                     </button>
-                    <button toolTip="Close editor without saving changes" verticalHuggingPriority="750" id="6">
+                    <button toolTip="Close without saving changes" verticalHuggingPriority="750" id="6">
                         <rect key="frame" x="398" y="12" width="94" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <animations/>
@@ -56,7 +56,7 @@
                             <action selector="cancel:" target="-2" id="39"/>
                         </connections>
                     </button>
-                    <textField toolTip="Path to the script being edited" verticalHuggingPriority="750" id="41">
+                    <textField toolTip="Path to the file being edited" verticalHuggingPriority="750" id="41">
                         <rect key="frame" x="43" y="372" width="508" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <animations/>
@@ -112,7 +112,7 @@
                             <animations/>
                         </scroller>
                     </scrollView>
-                    <button verticalHuggingPriority="750" id="qQb-YV-phA">
+                    <button toolTip="Show File in Finder" verticalHuggingPriority="750" id="qQb-YV-phA">
                         <rect key="frame" x="557" y="372" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <animations/>
@@ -124,7 +124,7 @@
                             <action selector="revealInFinder:" target="-2" id="exp-t5-k8s"/>
                         </connections>
                     </button>
-                    <button id="fhP-jQ-moR">
+                    <button toolTip="Toggle Word Wrap in Editor" id="fhP-jQ-moR">
                         <rect key="frame" x="234" y="21" width="129" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>

@@ -54,7 +54,7 @@
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)theWindow {
     NSError *err;
     NSString *str = [NSString stringWithContentsOfFile:path encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:&err];
-    if (str == nil || err != nil) {
+    if (str == nil) {
         [Alerts alert:@"Error reading document" subText:@"This document could not be opened with the text editor."];
         return;
     }
@@ -88,8 +88,7 @@
 
 - (IBAction)save:(id)sender {
     NSError *err;
-    [[textView string] writeToFile:[scriptPathTextField stringValue] atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:&err];
-    if (err != nil) {
+    if ([[textView string] writeToFile:[scriptPathTextField stringValue] atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:&err] == FALSE) {
         [Alerts alert:@"Error saving document" subText:[err localizedDescription]];
     }
     

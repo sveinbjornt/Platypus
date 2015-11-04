@@ -1118,8 +1118,8 @@
     
     if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
         NSError *err;
-        [[outputTextView string] writeToFile:[[sPanel URL] path] atomically:YES encoding:textEncoding error:&err];
-        if (err != nil) {
+        BOOL success = [[outputTextView string] writeToFile:[[sPanel URL] path] atomically:YES encoding:textEncoding error:&err];
+        if (!success) {
             [Alerts alert:@"Error writing file" subText:[err localizedDescription]];
         }
     }
