@@ -35,7 +35,7 @@
 #import "PlatypusAppSpec.h"
 #import "Common.h"
 #import "ScriptAnalyser.h"
-#import "NSFileManager+Additions.h"
+#import "NSWorkspace+Additions.h"
 
 @implementation PlatypusAppSpec
 
@@ -445,7 +445,7 @@
     // first, let's see if there's anything there.  If we have override set on, we just delete that stuff.
     if ([FILEMGR fileExistsAtPath:destPath] && [[properties objectForKey:@"DestinationOverride"] boolValue]) {
         [FILEMGR removeItemAtPath:destPath error:nil];
-        [FILEMGR notifyFinderFileChangedAtPath:destPath];
+        [WORKSPACE notifyFinderFileChangedAtPath:destPath];
     }
     
     //if delete wasn't a success and there's still something there
@@ -462,7 +462,7 @@
         error = @"Failed to create application at the specified destination";
         return FALSE;
     }
-    [FILEMGR notifyFinderFileChangedAtPath:destPath];
+    [WORKSPACE notifyFinderFileChangedAtPath:destPath];
     
     // Update Services
     if ([[properties objectForKey:@"DeclareService"] boolValue]) {

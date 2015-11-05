@@ -39,7 +39,7 @@
 #import "VDKQueue.h"
 #import "EditorController.h"
 #import "PlatypusController.h"
-#import "NSFileManager+Additions.h"
+#import "NSWorkspace+Additions.h"
 #import "Alerts.h"
 #import "Common.h"
 
@@ -338,10 +338,10 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         
         for (int i = 0; i < [self numFiles]; i++) {
-            totalFileSize += [FILEMGR fileOrFolderSize:[self filePathAtIndex:i]];
+            totalFileSize += [WORKSPACE fileOrFolderSize:[self filePathAtIndex:i]];
         }
         
-        NSString *totalSizeString = [FILEMGR sizeAsHumanReadable:totalFileSize];
+        NSString *totalSizeString = [WORKSPACE sizeAsHumanReadable:totalFileSize];
         NSString *pluralS = ([self numFiles] > 1) ? @"s" : @"";
 
         //run UI updates on main thread

@@ -28,9 +28,9 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "NSFileManager+Additions.h"
+#import "NSWorkspace+Additions.h"
 
-@implementation NSFileManager (TempFile)
+@implementation NSWorkspace (Additions)
 
 #pragma mark - File/folder size
 
@@ -38,12 +38,12 @@
     UInt64 size = 0;
     BOOL isDir;
     
-    if (path == nil || ![self fileExistsAtPath:path isDirectory:&isDir]) {
+    if (path == nil || ![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]) {
         return size;
     }
     
     if (isDir) {
-        NSDirectoryEnumerator *dirEnumerator = [self enumeratorAtPath:path];
+        NSDirectoryEnumerator *dirEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:path];
         while ([dirEnumerator nextObject]) {
             if ([NSFileTypeRegular isEqualToString:[[dirEnumerator fileAttributes] fileType]]) {
                 size += [[dirEnumerator fileAttributes] fileSize];
@@ -162,9 +162,12 @@
     }
 }
 
-
-
-
-
+- (void)runCommandInTerminal:(NSString *)cmd {
+    
+    NSString *osaCmd = [NSString stringWithFormat:@"tell application \"Terminal\"\n\tdo script \"%@\"\nactivate\nend tell", cmd];
+    NSAppleScript *script = [[NSAppleScript alloc] initWithSource:osaCmd];
+    [script executeAndReturnError:nil];
+    [script release];
+}
 
 @end

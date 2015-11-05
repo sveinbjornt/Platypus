@@ -30,7 +30,7 @@
 
 #import "IconController.h"
 #import "IconFamily.h"
-#import "NSFileManager+Additions.h"
+#import "NSWorkspace+Additions.h"
 #import "Alerts.h"
 #import "Common.h"
 #import "PlatypusController.h"
@@ -235,7 +235,7 @@
         return 400000; // just guess the icon will be 400k in size
     }
     // else, just size of icns file
-    return [FILEMGR fileOrFolderSize:[self icnsFilePath]];
+    return [WORKSPACE fileOrFolderSize:[self icnsFilePath]];
 }
 
 #pragma mark -

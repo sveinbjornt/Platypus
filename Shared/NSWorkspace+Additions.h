@@ -30,7 +30,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSFileManager (Additions)
+@interface NSWorkspace (Additions)
 
 - (UInt64)fileOrFolderSize:(NSString *)path;
 - (NSString *)sizeAsHumanReadable:(UInt64)size;
@@ -39,5 +39,6 @@
 - (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
 - (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
 - (void)notifyFinderFileChangedAtPath:(NSString *)path;
+- (void)runCommandInTerminal:(NSString *)cmd;
 
 @end

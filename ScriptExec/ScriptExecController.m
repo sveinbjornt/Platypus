@@ -700,7 +700,7 @@
     // if it is a "secure" script, we decode and write it to a temp directory
     if (secureScript) {
         
-        NSString *tempScriptPath = [FILEMGR createTempFileWithContents:scriptText usingTextEncoding:textEncoding];
+        NSString *tempScriptPath = [WORKSPACE createTempFileWithContents:scriptText usingTextEncoding:textEncoding];
         if (!tempScriptPath) {
             [Alerts fatalAlert:@"Failed to write script file" subText:[NSString stringWithFormat:@"Could not create the temp file '%@'", tempScriptPath]];
         }

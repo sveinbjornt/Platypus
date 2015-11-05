@@ -32,6 +32,7 @@
 #import "PrefsController.h"
 #import "PlatypusAppSpec.h"
 #import "Common.h"
+#import "NSWorkspace+Additions.h"
 
 @implementation ShellCommandController
 
@@ -80,6 +81,10 @@
 
 - (void)setPrefsController:(id)controller {
     prefsController = controller;
+}
+
+- (IBAction)runInTerminal:(id)sender {
+    [WORKSPACE runCommandInTerminal:[textView string]];
 }
 
 @end

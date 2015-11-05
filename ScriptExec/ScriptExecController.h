@@ -44,7 +44,7 @@
 #import "Common.h"
 #import "STPrivilegedTask.h"
 #import "STDragWebView.h"
-#import "NSFileManager+Additions.h"
+#import "NSWorkspace+Additions.h"
 
 @interface ScriptExecController : NSObject <NSMenuDelegate>
 {

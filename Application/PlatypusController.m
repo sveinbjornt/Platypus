@@ -50,7 +50,7 @@
 #import "SyntaxCheckerController.h"
 #import "BundledFilesController.h"
 
-#import "NSFileManager+Additions.h"
+#import "NSWorkspace+Additions.h"
 #import "Alerts.h"
 #import "NSColor+HexTools.h"
 
@@ -268,10 +268,8 @@
  *****************************************/
 
 - (IBAction)runScriptInTerminal:(id)sender {
-    NSString *osaCmd = [NSString stringWithFormat:@"tell application \"Terminal\"\n\tdo script \"%@ '%@'\"\nactivate\nend tell", [interpreterTextField stringValue], [scriptPathTextField stringValue]];
-    NSAppleScript *script = [[NSAppleScript alloc] initWithSource:osaCmd];
-    [script executeAndReturnError:nil];
-    [script release];
+    NSString *cmd = [NSString stringWithFormat:@"%@ '%@'", [interpreterTextField stringValue], [scriptPathTextField stringValue]];
+    [WORKSPACE runCommandInTerminal:cmd];
 }
 
 /*****************************************
@@ -961,11 +959,11 @@
     estimatedAppSize += 4096; // AppSettings.plist
     estimatedAppSize += [iconController iconSize];
     estimatedAppSize += [dropSettingsController docIconSize];
-    estimatedAppSize += [FILEMGR fileOrFolderSize:[scriptPathTextField stringValue]];
-    estimatedAppSize += [FILEMGR fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil]];
+    estimatedAppSize += [WORKSPACE fileOrFolderSize:[scriptPathTextField stringValue]];
+    estimatedAppSize += [WORKSPACE fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil]];
     
     // nib size is much smaller if compiled with ibtool
-    UInt64 nibSize = [FILEMGR fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil]];
+    UInt64 nibSize = [WORKSPACE fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil]];
     if ([FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
         nibSize = 0.60 * nibSize; // compiled nib is approximtely 65% of original
     }
@@ -974,7 +972,7 @@
     // bundled files altogether
     estimatedAppSize += [bundledFilesController totalFileSize];
     
-    return [FILEMGR sizeAsHumanReadable:estimatedAppSize];
+    return [WORKSPACE sizeAsHumanReadable:estimatedAppSize];
 }
 
 // Creates an NSTask from settings
@@ -1119,17 +1117,17 @@
 
 // Open Documentation.html file within app bundle
 - (IBAction)showHelp:(id)sender {
-    [FILEMGR openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
+    [WORKSPACE openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
 }
 
 // Open html version of 'platypus' command line tool's man page
 - (IBAction)showManPage:(id)sender {
-    [FILEMGR openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
+    [WORKSPACE openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
 }
 
 // Open Readme.html
 - (IBAction)showReadme:(id)sender {
-    [FILEMGR openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
+    [WORKSPACE openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
 }
 
 // Open program website
@@ -1144,7 +1142,7 @@
 
 // Open License html file
 - (IBAction)openLicense:(id)sender {
-    [FILEMGR openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
+    [WORKSPACE openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
 }
 
 // Open donations website

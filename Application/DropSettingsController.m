@@ -31,7 +31,7 @@
 #import "DropSettingsController.h"
 #import "Common.h"
 #import "SuffixTypeListController.h"
-#import "NSFileManager+Additions.h"
+#import "NSWorkspace+Additions.h"
 #import "UniformTypeListController.h"
 
 @implementation DropSettingsController
@@ -310,7 +310,7 @@
 - (UInt64)docIconSize;
 {
     if ([FILEMGR fileExistsAtPath:docIconPath]) {
-        return [FILEMGR fileOrFolderSize:docIconPath];
+        return [WORKSPACE fileOrFolderSize:docIconPath];
     }
     return 0;
 }
