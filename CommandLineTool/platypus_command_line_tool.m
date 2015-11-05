@@ -660,51 +660,54 @@ static void PrintHelp(void) {
     NSPrint(@"%@ - command line application wrapper generator for scripts", CMDLINE_PROGNAME);
     PrintVersion();
     PrintUsage();
+    
     NSPrint(@"\n\
-       Options:\n\
-       -O --generate-profile                Generate a profile instead of an app\n\
-       \n\
-       -P --load-profile [profilePath]      Load settings from profile file\n\
-       -a --name [name]                     Set name of application bundle\n\
-       -o --output-type [type]              Set output type.  See man page for accepted types\n\
-       -p --interpreter [interpreterPath]   Set interpreter for script\n\
-       \n\
-       -i --app-icon [iconPath]             Set icon for application\n\
-       -u --author [author]                 Set name of application author\n\
-       -Q --document-icon [iconPath]        Set icon for documents\n\
-       -V --app-version [version]           Set version of application\n\
-       -I --bundle-identifier [identifier]  Set bundle identifier (i.e. org.yourname.appname)\n\
-       \n\
-       -A --admin-privileges                App runs with Administrator privileges\n\
-       -S --secure-script                   Secure bundled script\n\
-       -D --droppable                       App accepts dropped files as argument to script\n\
-       -F --text-droppable                  App accepts dropped text as argument to script\n\
-       -Z --file-prompt                     App presents Open file dialog once launched\n\
-       -N --service                         App registers as a Mac OS X Service\n\
-       -B --background                      App runs in background (LSUIElement)\n\
-       -R --quit-after-execution            App quits after executing script\n\
-       \n\
-       -b --text-background-color [color]   Set background color of text output (e.g. '#ffffff')\n\
-       -g --text-foreground-color [color]   Set foreground color of text output (e.g. '#000000')\n\
-       -n --text-font [fontName]            Set font for text output field (e.g. 'Monaco 10')\n\
-       -E --text-encoding [encoding]        Set text encoding for script output (see man page)\n\
-       -X --suffixes [suffixes]             Set suffixes handled by application, separated by |\n\
-       -G --interpreter-args [arguments]    Set arguments for script interpreter, separated by |\n\
-       -C --script-args [arguments]         Set arguments for script, separated by |\n\
-       \n\
-       -K --status-item-kind [kind]         Set Status Item kind ('Icon','Text', 'Icon and Text')\n\
-       -Y --status-item-title [title]       Set title of Status Item\n\
-       -L --status-item-icon [imagePath]    Set icon of Status Item\n\
-       \n\
-       -f --bundled-file [filePath]         Add a bundled file\n\
-       \n\
-       -x --xml-property-lists              Create XML property lists instead of binary\n\
-       -y --force                           Force mode.  Overwrite any files/folders in path\n\
-       -d --development-version             Development version.  Symlink to script instead of copying\n\
-       -l --optimize-xib                    Optimize application.  Strip and compile bundled nib file\n\
-       -H --alternate-xib [xibPath]         Specify alternate xib file to bundle with app\n\n\
-       -h --help                            Prints help\n\
-       -v --version                         Prints program name, version and author\n\n\
+            Options:\n\
+            -O --generate-profile                Generate a profile instead of an app\n\
+            \n\
+            -P --load-profile [profilePath]      Load settings from profile file\n\
+            -a --name [name]                     Set name of application bundle\n\
+            -o --output-type [type]              Set output type.  See man page for accepted types\n\
+            -p --interpreter [interpreterPath]   Set interpreter for script\n\
+            \n\
+            -i --app-icon [iconPath]             Set icon for application\n\
+            -u --author [author]                 Set name of application author\n\
+            -Q --document-icon [iconPath]        Set icon for documents\n\
+            -V --app-version [version]           Set version of application\n\
+            -I --bundle-identifier [identifier]  Set bundle identifier (i.e. org.yourname.appname)\n\
+            \n\
+            -A --admin-privileges                App runs with Administrator privileges\n\
+            -S --secure-script                   Secure bundled script\n\
+            -D --droppable                       App accepts dropped files as argument to script\n\
+            -F --text-droppable                  App accepts dropped text as argument to script\n\
+            -Z --file-prompt                     App presents Open file dialog once launched\n\
+            -N --service                         App registers as a Mac OS X Service\n\
+            -B --background                      App runs in background (LSUIElement)\n\
+            -R --quit-after-execution            App quits after executing script\n\
+            \n\
+            -b --text-background-color [color]   Set background color of text output (e.g. '#ffffff')\n\
+            -g --text-foreground-color [color]   Set foreground color of text output (e.g. '#000000')\n\
+            -n --text-font [fontName]            Set font for text output field (e.g. 'Monaco 10')\n\
+            -E --text-encoding [encoding]        Set text encoding for script output (see man page)\n\
+            -X --suffixes [suffixes]             Set suffixes handled by application, separated by |\n\
+            -T --uniform-type-identifiers        Set uniform type identifiers handled by application, separated by |\n\
+            -G --interpreter-args [arguments]    Set arguments for script interpreter, separated by |\n\
+            -C --script-args [arguments]         Set arguments for script, separated by |\n\
+            \n\
+            -K --status-item-kind [kind]         Set Status Item kind ('Icon','Text', 'Icon and Text')\n\
+            -Y --status-item-title [title]       Set title of Status Item\n\
+            -L --status-item-icon [imagePath]    Set icon of Status Item\n\
+            -c --status-item-sysfont             Make Status Item use system font for menu\n\
+            \n\
+            -f --bundled-file [filePath]         Add a bundled file\n\
+            \n\
+            -x --xml-property-lists              Create XML property lists instead of binary\n\
+            -y --force                           Force mode.  Overwrite any files/folders in path\n\
+            -d --development-version             Development version.  Symlink to script instead of copying\n\
+            -l --optimize-xib                    Optimize application.  Strip and compile bundled nib file\n\
+            -H --alternate-xib [xibPath]         Specify alternate xib file to bundle with app\n\n\
+            -h --help                            Prints help\n\
+            -v --version                         Prints program name, version and author\n\n\
 See %@ for further details.", PROGRAM_MANPAGE_URL);
 }
 

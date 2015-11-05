@@ -39,14 +39,19 @@
     return [super initWithWindowNibName:@"ShellCommandWindow"];
 }
 
+- (void)dealloc {
+    [appSpec release];
+    [super dealloc];
+}
+
 - (void)awakeFromNib {
     [textView setFont:SHELL_COMMAND_STRING_FONT];
 }
 
 - (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow {
     [self loadWindow];
-    
-    [textView setString:[spec commandString]];
+    appSpec = [spec retain];
+    [textView setString:[appSpec commandString:![useShortOptsCheckbox intValue]]];
     [(PrefsController *)prefsController updateCLTStatus:CLTStatusTextField];
     
     [NSApp  beginSheet:[self window]
@@ -63,6 +68,11 @@
     [NSApp stopModal];
     [[self window] close];
 }
+
+- (IBAction)useShortOptsCheckboxClicked:(id)sender {
+    [textView setString:[appSpec commandString:![sender intValue]]];
+}
+
 
 - (void)windowWillClose:(NSNotification *)notification {
     [self release];
