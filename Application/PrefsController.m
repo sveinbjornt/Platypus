@@ -33,7 +33,7 @@
 #import "Alerts.h"
 #import "STPrivilegedTask.h"
 #import "Common.h"
-#import "NSFileManager+Additions.h"
+#import "NSWorkspace+Additions.h"
 #import "NSBundle+Templates.h"
 
 @implementation PrefsController
@@ -290,7 +290,7 @@
 - (void)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
     
     NSString *script = [[NSBundle mainBundle] loadTemplate:scriptName usingDictionary:placeholderDict];
-    NSString *tmpScriptPath = [FILEMGR createTempFileWithContents:script usingTextEncoding:NSUTF8StringEncoding];
+    NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script usingTextEncoding:NSUTF8StringEncoding];
     chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // 744
     
     // execute path, pass Resources directory and version as arguments 1 and 2

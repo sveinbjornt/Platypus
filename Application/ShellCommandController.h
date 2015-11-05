@@ -42,5 +42,5 @@
 - (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow;
 - (IBAction)close:(id)sender;
 - (void)setPrefsController:(id)controller;
-
+- (IBAction)runInTerminal:(id)sender;
 @end
