@@ -56,7 +56,7 @@
 - (void)report:(NSString *)str;
 - (void)dumpToFile:(NSString *)filePath;
 - (void)dump;
-- (NSString *)commandString;
+- (NSString *)commandString:(BOOL)longOpts;
 - (void)setProperty:(id)property forKey:(NSString *)theKey;
 - (id)propertyForKey:(NSString *)theKey;
 - (NSDictionary *)properties;

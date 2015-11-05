@@ -616,49 +616,82 @@
     fprintf(stdout, "%s\n", [[properties description] UTF8String]);
 }
 
-// generates the command line command that would create this spec
-
-- (NSString *)commandString {
+- (NSString *)commandString:(BOOL)shortOpts {
+    BOOL longOpts = !shortOpts;
     NSString *checkboxParamStr = @"";
-    NSString *iconParamStr = @"", *versionString = @"", *authorString = @"";
-    NSString *suffixesString = @"", *uniformTypesString = @"", *parametersString = @"";
-    NSString *textEncodingString = @"", *textOutputString = @"", *statusMenuOptionsString = @"";
+    NSString *iconParamStr = @"";
+    NSString *versionString = @"";
+    NSString *authorString = @"";
+    NSString *suffixesString = @"";
+    NSString *uniformTypesString = @"";
+    NSString *parametersString = @"";
+    NSString *textEncodingString = @"";
+    NSString *textOutputString = @"";
+    NSString *statusMenuOptionsString = @"";
     
     // checkbox parameters
-    if ([[properties objectForKey:@"Authentication"] boolValue])
-        checkboxParamStr = [checkboxParamStr stringByAppendingString:@"A"];
-    if ([[properties objectForKey:@"Secure"] boolValue])
-        checkboxParamStr = [checkboxParamStr stringByAppendingString:@"S"];
-    if ([[properties objectForKey:@"Droppable"] boolValue] && [[properties objectForKey:@"AcceptsFiles"] boolValue])
-        checkboxParamStr = [checkboxParamStr stringByAppendingString:@"D"];
-    if ([[properties objectForKey:@"Droppable"] boolValue] && [[properties objectForKey:@"AcceptsText"] boolValue])
-        checkboxParamStr = [checkboxParamStr stringByAppendingString:@"F"];
-    if ([[properties objectForKey:@"Droppable"] boolValue] && [[properties objectForKey:@"DeclareService"] boolValue])
-        checkboxParamStr = [checkboxParamStr stringByAppendingString:@"N"];
-    if ([[properties objectForKey:@"ShowInDock"] boolValue])
-        checkboxParamStr = [checkboxParamStr stringByAppendingString:@"B"];
-    if (![[properties objectForKey:@"RemainRunning"] boolValue])
-        checkboxParamStr = [checkboxParamStr stringByAppendingString:@"R"];
+    if ([[properties objectForKey:@"Authentication"] boolValue]) {
+        NSString *str = longOpts ? @"-A " : @"--admin-privileges ";
+        checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
+    }
     
-    if ([checkboxParamStr length] != 0)
-        checkboxParamStr = [NSString stringWithFormat:@"-%@ ", checkboxParamStr];
+    if ([[properties objectForKey:@"Secure"] boolValue]) {
+        NSString *str = longOpts ? @"-S " : @"--secure-script ";
+        checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
+    }
     
-    if (![[properties objectForKey:@"Version"] isEqualToString:@"1.0"])
-        versionString = [NSString stringWithFormat:@" -V '%@' ", [properties objectForKey:@"Version"]];
+    if ([[properties objectForKey:@"AcceptsFiles"] boolValue] && [[properties objectForKey:@"Droppable"] boolValue]) {
+        NSString *str = longOpts ? @"-D " : @"--droppable ";
+        checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
+    }
     
-    if (![[properties objectForKey:@"Author"] isEqualToString:NSFullUserName()])
-        authorString = [NSString stringWithFormat:@" -u '%@' ", [properties objectForKey:@"Author"]];
+    if ([[properties objectForKey:@"AcceptsText"] boolValue] && [[properties objectForKey:@"Droppable"] boolValue]) {
+        NSString *str = longOpts ? @"-F " : @"--text-droppable ";
+        checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
+    }
     
-    // if it's droppable, we need the Suffixes
+    if ([[properties objectForKey:@"DeclareService"] boolValue] && [[properties objectForKey:@"Droppable"] boolValue]) {
+        NSString *str = longOpts ? @"-N " : @"--service ";
+        checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
+    }
+    
+    if ([[properties objectForKey:@"ShowInDock"] boolValue]) {
+        NSString *str = longOpts ? @"-B " : @"--background ";
+        checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
+    }
+    
+    if ([[properties objectForKey:@"RemainRunning"] boolValue] == FALSE) {
+        NSString *str = longOpts ? @"-R " : @"--quit-after-execution ";
+        checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
+    }
+    
+    if ([[properties objectForKey:@"Version"] isEqualToString:@"1.0"] == FALSE) {
+        NSString *str = longOpts ? @"-V" : @"--app-version";
+        versionString = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"Version"]];
+    }
+    
+    if (![[properties objectForKey:@"Author"] isEqualToString:NSFullUserName()]) {
+        NSString *str = longOpts ? @"-u" : @"--author";
+        authorString = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"Author"]];
+    }
+    
+    NSString *promptForFileString = @"";
     if ([[properties objectForKey:@"Droppable"] boolValue]) {
-        //create suffixes param
+        //  suffixes param
         if ([[properties objectForKey:@"Suffixes"] count]) {
+            NSString *str = longOpts ? @"-X" : @"--suffixes";
             suffixesString = [[properties objectForKey:@"Suffixes"] componentsJoinedByString:@"|"];
-            suffixesString = [NSString stringWithFormat:@"-X '%@' ", suffixesString];
+            suffixesString = [NSString stringWithFormat:@"%@ '%@' ", str, suffixesString];
         }
+        // uniform type identifier params
         if ([[properties objectForKey:@"UniformTypes"] count]) {
             uniformTypesString = [[properties objectForKey:@"UniformTypes"] componentsJoinedByString:@"|"];
             uniformTypesString = [NSString stringWithFormat:@"-T '%@' ", uniformTypesString];
+        }
+        // file prompt
+        if ([[properties objectForKey:@"PromptForFileOnLaunch"] boolValue]) {
+            NSString *str = longOpts ? @"-Z" : @"--file-prompt";
+            promptForFileString = [NSString stringWithFormat:@"%@ ", str];
         }
     }
     
@@ -666,17 +699,20 @@
     NSString *bundledFilesCmdString = @"";
     NSArray *bundledFiles = (NSArray *)[properties objectForKey:@"BundledFiles"];
     for (int i = 0; i < [bundledFiles count]; i++) {
-        bundledFilesCmdString = [bundledFilesCmdString stringByAppendingString:[NSString stringWithFormat:@"-f '%@' ", [bundledFiles objectAtIndex:i]]];
+        NSString *str = longOpts ? @"-f" : @"--bundled-file";
+        bundledFilesCmdString = [bundledFilesCmdString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, [bundledFiles objectAtIndex:i]]];
     }
     
     // create interpreter and script args flags
     if ([(NSArray *)[properties objectForKey:@"InterpreterArgs"] count]) {
+        NSString *str = longOpts ? @"-G" : @"--interpreter-args";
         NSString *arg = [[properties objectForKey:@"InterpreterArgs"] componentsJoinedByString:@"|"];
-        parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"-G '%@' ", arg]];
+        parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, arg]];
     }
     if ([(NSArray *)[properties objectForKey:@"ScriptArgs"] count]) {
+        NSString *str = longOpts ? @"-C" : @"--script-args";
         NSString *arg = [[properties objectForKey:@"ScriptArgs"] componentsJoinedByString:@"|"];
-        parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"-C '%@' ", arg]];
+        parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, arg]];
     }
     
     //  create args for text settings if progress bar/text window or status menu
@@ -686,74 +722,106 @@
         
         NSString *textFgString = @"", *textBgString = @"", *textFontString = @"";
         if (![[properties objectForKey:@"TextForeground"] isEqualToString:DEFAULT_OUTPUT_FG_COLOR]) {
-            textFgString = [NSString stringWithFormat:@" -g '%@' ", [properties objectForKey:@"TextForeground"]];
+            NSString *str = longOpts ? @"-g" : @"--text-foreground-color";
+            textFgString = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"TextForeground"]];
         }
         
         if (![[properties objectForKey:@"TextBackground"] isEqualToString:DEFAULT_OUTPUT_BG_COLOR]) {
-            textBgString = [NSString stringWithFormat:@" -b '%@' ", [properties objectForKey:@"TextForeground"]];
+            NSString *str = longOpts ? @"-b" : @"--text-background-color";
+            textBgString = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"TextForeground"]];
         }
         
         if ([[properties objectForKey:@"TextSize"] floatValue] != DEFAULT_OUTPUT_FONTSIZE ||
             ![[properties objectForKey:@"TextFont"] isEqualToString:DEFAULT_OUTPUT_FONT]) {
-            textFontString = [NSString stringWithFormat:@" -n '%@ %2.f' ", [properties objectForKey:@"TextFont"], [[properties objectForKey:@"TextSize"] floatValue]];
+            NSString *str = longOpts ? @"-n" : @"--text-font";
+            textFontString = [NSString stringWithFormat:@" %@ '%@ %2.f' ", str, [properties objectForKey:@"TextFont"], [[properties objectForKey:@"TextSize"] floatValue]];
         }
         
         textOutputString = [NSString stringWithFormat:@"%@%@%@", textFgString, textBgString, textFontString];
     }
     
-    //    text encoding
+    //text encoding
     if ([[properties objectForKey:@"TextEncoding"] intValue] != DEFAULT_OUTPUT_TXT_ENCODING) {
-        textEncodingString = [NSString stringWithFormat:@" -E %d ", [[properties objectForKey:@"TextEncoding"] intValue]];
+        NSString *str = longOpts ? @"-E" : @"--text-encoding";
+        textEncodingString = [NSString stringWithFormat:@" %@ %d ", str, [[properties objectForKey:@"TextEncoding"] intValue]];
     }
     
     //create custom icon string
     if (![[properties objectForKey:@"IconPath"] isEqualToString:CMDLINE_ICON_PATH] && ![[properties objectForKey:@"IconPath"] isEqualToString:@""]) {
-        iconParamStr = [NSString stringWithFormat:@" -i '%@' ", [properties objectForKey:@"IconPath"]];
+        NSString *str = longOpts ? @"-i" : @"--app-icon";
+        iconParamStr = [NSString stringWithFormat:@"%@ '%@' ", str, [properties objectForKey:@"IconPath"]];
     }
     
     //create custom icon string
     if ([properties objectForKey:@"DocIcon"] && ![[properties objectForKey:@"DocIcon"] isEqualToString:@""]) {
-        iconParamStr = [iconParamStr stringByAppendingFormat:@" -Q '%@' ", [properties objectForKey:@"DocIcon"]];
+        NSString *str = longOpts ? @"-Q" : @"--document-icon";
+        iconParamStr = [iconParamStr stringByAppendingFormat:@" %@ '%@' ", str, [properties objectForKey:@"DocIcon"]];
     }
     
     //status menu settings, if output mode is status menu
     if ([[properties objectForKey:@"Output"] isEqualToString:@"Status Menu"]) {
         // -K kind
-        statusMenuOptionsString = [statusMenuOptionsString stringByAppendingString:[NSString stringWithFormat:@"-K '%@' ", [properties objectForKey:@"StatusItemDisplayType"]]];
+        NSString *str = longOpts ? @"-K" : @"--status-item-kind";
+        statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, [properties objectForKey:@"StatusItemDisplayType"]];
         
         // -L /path/to/image
         if (![[properties objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
-            statusMenuOptionsString = [statusMenuOptionsString stringByAppendingString:@"-L '/path/to/image' "];
+            str = longOpts ? @"-L" : @"--status-item-icon";
+            statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '/path/to/image' ", str];
         }
         
         // -Y 'Title'
         if (![[properties objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Icon"]) {
-            statusMenuOptionsString = [statusMenuOptionsString stringByAppendingString:[NSString stringWithFormat:@"-Y '%@' ", [properties objectForKey:@"StatusItemTitle"]]];
+            str = longOpts ? @"-Y" : @"--status-item-title";
+            statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, [properties objectForKey:@"StatusItemTitle"]];
+        }
+        
+        // -c
+        if (![[properties objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Icon"]) {
+            str = longOpts ? @"-c" : @"--status-item-sysfont";
+            statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ ", str];
         }
     }
     
     // only set app name arg if we have a proper value
-    NSString *appNameArg = [[properties objectForKey: @"Name"] isEqualToString:@""] ? @"" : [NSString stringWithFormat: @" -a '%@' ", [properties objectForKey: @"Name"]];
+    NSString *appNameArg = @"";
+    if ([[properties objectForKey: @"Name"] isEqualToString:@""] == FALSE) {
+        NSString *str = longOpts ? @"-a" : @"--name";
+        appNameArg = [NSString stringWithFormat: @" %@ '%@' ", str,  [properties objectForKey: @"Name"]];
+    }
     
     // only add identifier argument if it varies from default
-    NSString *identifArg = [NSString stringWithFormat: @" -I %@ ", [properties objectForKey: @"Identifier"]];
-    if ([[properties objectForKey: @"Identifier"] isEqualToString:[PlatypusAppSpec standardBundleIdForAppName:[properties objectForKey: @"Name"] usingDefaults: NO]])
-        identifArg = @"";
+    NSString *identifierArg = @"";
+    NSString *standardIdentifier = [PlatypusAppSpec standardBundleIdForAppName:[properties objectForKey: @"Name"] usingDefaults: NO];
+    if ([[properties objectForKey: @"Identifier"] isEqualToString:standardIdentifier] == FALSE) {
+        NSString *str = longOpts ? @"-I" : @"--bundle-identifier";
+        identifierArg = [NSString stringWithFormat: @" %@ %@ ", str, [properties objectForKey: @"Identifier"]];
+    }
     
+    // output type
+    NSString *str = longOpts ? @"-o" : @"--output-type";
+    NSString *outputArg = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"Output"]];
+
+    // interpreter
+    str = longOpts ? @"-p" : @"--interpreter";
+    NSString *interpreterArg = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"Interpreter"]];
+
+
     // finally, generate the command
     NSString *commandStr = [NSString stringWithFormat:
-                            @"%@ %@%@%@ -o '%@' -p '%@'%@ %@%@%@%@%@%@%@%@%@ '%@'",
+                            @"%@ %@%@%@%@%@%@ %@%@%@%@%@%@%@%@%@%@ '%@'",
                             CMDLINE_TOOL_PATH,
                             checkboxParamStr,
                             iconParamStr,
                             appNameArg,
-                            [properties objectForKey:@"Output"],
-                            [properties objectForKey:@"Interpreter"],
+                            outputArg,
+                            interpreterArg,
                             authorString,
                             versionString,
-                            identifArg,
+                            identifierArg,
                             suffixesString,
                             uniformTypesString,
+                            promptForFileString,
                             bundledFilesCmdString,
                             parametersString,
                             textEncodingString,
@@ -802,9 +870,9 @@
 
 + (NSString *)standardBundleIdForAppName:(NSString *)name usingDefaults:(BOOL)def;
 {
-    NSString *defaults = def ? [DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"] : @"";
+    NSString *defaults = def ? [DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"] : nil;
     
-    NSString *pre = (!def || [defaults isEqualToString:@""]) ? [NSString stringWithFormat:@"org.%@.", NSUserName()] : defaults;
+    NSString *pre = defaults == nil ? [NSString stringWithFormat:@"org.%@.", NSUserName()] : defaults;
     
     NSString *bundleId = [NSString stringWithFormat:@"%@%@", pre, name];
     bundleId = [bundleId stringByReplacingOccurrencesOfString:@" " withString:@""];
