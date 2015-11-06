@@ -99,14 +99,17 @@
     
     NSTimer *checkStatusTimer;
     
+    NSPipe *inputPipe;
+    NSFileHandle *inputWriteFileHandle;
     NSPipe *outputPipe;
-    NSFileHandle *readHandle;
+    NSFileHandle *outputReadFileHandle;
     
     NSMutableArray *arguments;
     NSMutableArray *commandLineArguments;
     NSMutableArray *fileArgs;
     NSArray *interpreterArgs;
     NSArray *scriptArgs;
+    NSString *stdinString;
     
     NSString *interpreter;
     NSString *scriptPath;

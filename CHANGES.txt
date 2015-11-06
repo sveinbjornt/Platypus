@@ -6,7 +6,7 @@ For 5.1
     TODO: Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO: New button-based output mode?
     TODO: Save authentication password and reuse for subsequent execution
-    TODO: Use bindings for defaults?
+    TODO: Use bindings for defaults
 
 For 5.0
     TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
@@ -26,6 +26,7 @@ For 5.0
     TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
     TODO: Drag and drop for icon view should be file based, not TIFF pasteboard data
 
+    * Dropped text input is now passed to script via STDIN, whereas files remain arguments
     * Fixed issue with generating icon from images on retina macs (IconFamily)
     * Fixed issue with icon alpha channels (IconFamily)
     * Finder now refreshes display of overwritten applications

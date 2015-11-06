@@ -21,7 +21,7 @@
 #
 #	$i++;
 #}
-local $| = 1;
+#local $| = 1;
 #print "Arguments:\n";
 #
 #foreach (@ARGV) { print "\t" . $_ . "\n"; }
@@ -35,6 +35,13 @@ local $| = 1;
 #    print "There\n";
 #}
 #
+
+print "STDIN:";
+print while (<STDIN>);
+print "\nARGS:\n";
+foreach (@ARGV) {
+    print "$_\n";
+}
 
 #print "MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n";
 #print "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
