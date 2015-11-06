@@ -7,6 +7,8 @@ For 5.1
     TODO: New button-based output mode?
     TODO: Save authentication password and reuse for subsequent execution
     TODO: Use bindings for defaults
+    TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
+    TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
 
 For 5.0
     TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
@@ -23,10 +25,8 @@ For 5.0
     TODO: Implement UI stuff making clear that UTIs exclude suffixes
     TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
-    TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
-    TODO: Drag and drop for icon view should be file based, not TIFF pasteboard data
 
-    * Dropped text input is now passed to script via STDIN, whereas files remain arguments
+    * Dropped text input is now passed to script via STDIN, not as an argument. This allows differentiation between dropped text snippets and dropped files.
     * Fixed issue with generating icon from images on retina macs (IconFamily)
     * Fixed issue with icon alpha channels (IconFamily)
     * Finder now refreshes display of overwritten applications
@@ -40,7 +40,7 @@ For 5.0
     * Migrated from UKKqueue to VDKQueue and got all file system watching working properly again
     * Uniform Type Identifiers (UTIs) are now supported in drop settings
     * More examples
-    * Scripts can now send messages to Notification Center via the NOTIFICATION:* syntax
+    * Scripts can now send messages to User Notification Center via the NOTIFICATION:* syntax
     * New help buttons in main window and drop settings
     * Previewing status item menu now shows actual script output instead of placeholder text
     * Status menu items can now only have a title or an icon, not both, due to changes in Mac OS X
