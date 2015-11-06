@@ -290,6 +290,9 @@
 - (void)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
     
     NSString *script = [[NSBundle mainBundle] loadTemplate:scriptName usingDictionary:placeholderDict];
+    if (script == nil) {
+        
+    }
     NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script usingTextEncoding:NSUTF8StringEncoding];
     chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // 744
     

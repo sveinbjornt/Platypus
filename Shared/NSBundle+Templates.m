@@ -37,8 +37,8 @@
     NSString *fullPath = [self pathForResource:templateFileName ofType:nil];
     NSError *err;
     NSString *templateStr = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:&err];
-    if (err != nil || !templateStr) {
-        NSLog(@"Unable to read template %@", templateFileName);
+    if (!templateStr) {
+        NSLog(@"Unable to read template %@: %@", templateFileName, [err localizedDescription]);
         return nil;
     }
     
