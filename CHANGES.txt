@@ -25,6 +25,7 @@ For 5.0
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
     TODO: Drag and drop for icon view should be file based, not TIFF pasteboard data
+    TODO : Fix "Create app on script file change" feature
 
     * Fixed issue with generating icon from images on retina macs (IconFamily)
     * Fixed issue with icon alpha channels (IconFamily)
