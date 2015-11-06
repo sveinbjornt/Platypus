@@ -25,6 +25,10 @@
     {
         color: #79693F;
     }
+    img
+    {
+        max-width: 100%;
+    }
     code
     {
         font-size: 0.9em;
@@ -191,13 +195,13 @@
 
 <h3>Credits</h3>
 
-<p>Platypus was conceived and created, and is currently maintained and developed by me, Sveinbjorn Thordarson &lt;sveinbjornt@gmail.com&gt;</p>
+<p>Platypus was conceived and created, and is currently maintained and developed by me, Sveinbjorn Thordarson <a href="mailto:sveinbjornt@gmail.com">&lt;sveinbjornt@gmail.com&gt;</a></p>
 
 <img style="float: right; margin-left: 30px; width: 94px; height: 128px;" src="images/platypus.png">
 
 <p>The Platypus icon -- <a href="http://www.hexley.com/">Hexley</a>, the Darwin mascot -- was created by Jon Hooper, who was kind enough to grant me permission to use it as the Platypus application icon.</p>
 
-<p>Thanks go to Troy Stephens, author of the <a href="http://iconfamily.sourceforge.net/">IconFamily</a> class used for icon handling in Platypus, Uli Kusterer author of UKKQueue, Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, and Andy Matuschak for the Sparkle update framework.  The OmniGroup Mac OS X Development mailing list and Stack Overflow have also been invaluable over the years.</p>
+<p>Thanks go to Troy Stephens, author of the <a href="http://iconfamily.sourceforge.net/">IconFamily</a> class used for icon handling in Platypus, Bryan D K Jones author of <a href="https://github.com/bdkjones/VDKQueue">VDKQueue</a>, Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, and Andy Matuschak for the <a href="http://sparkle-project.org">Sparkle</a> update framework.  The <a href="https://www.omnigroup.com">OmniGroup</a> Mac OS X Development mailing list and <a href="http://stackoverflow.com">Stack Overflow</a> have also been invaluable over the years.</p>
 
 <p>Finally, I am much indebted to <a href="http://www.wsanchez.net">Wilfredo Sanchez</a>, author of <a href="http://www.wsanchez.net/software/">DropScript</a>, the proof-of-concept project which inspired me to create Platypus in the first place.</p>
 
@@ -276,7 +280,7 @@
 
 <strong>Script Type</strong>
 
-<img src="images/script_type.png" style="float: right;">
+<img src="images/script_type.png" style="float: right; width:169px; height:340px;">
 
 <p>Here you can specify the scripting language you are using.  You can either select one of the predefined scripting languages from the the pop-up menu or type in the path to an interpreter of choice.</p>
     
@@ -294,7 +298,7 @@
 
 <h3>Output Types</h3>
 
-<img src="images/output_type.png" style="float: right;">
+<img src="images/output_type.png" style="float: right; width:193px; height:258px;">
 
 <p><strong>Output</strong> lets you select what the application you create does with the output of the script. There are five output modes available:</p>
 
@@ -307,13 +311,13 @@
 
 <p>It is worth noting that the script can communicate with the progress bar and notify it of script progress.  All lines of script output in the format 'PROGRESS:\d+' (e.g. PROGRESS:75) are parsed and used to set the completion percentage of the task. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
 
-<img src="images/output_progressbar.png">
+<center><img src="images/output_progressbar.png" style="width:524px; height:194px;">
 <br>
 <br>
 
 <p><strong>Text Window</strong>: A window with a text field is displayed.  This text field receives all script output. Please note that the text field is <em>not</em> an interactive terminal session, and cannot receive <em>any</em> input from the user.  It does not support any terminal buffering or commands and cannot be used to display ncurses-based interfaces.   It only displays the actual text output of the script as it is being executed.  The properties of the text field can be modified in Platypus by pressing the "Text Settings" button.  This will present an interface pane where text encoding, font, color and size can be set.</p>
 
-<img src="images/output_textwindow.png">
+<img src="images/output_textwindow.png" style="width:594px; height:502px;">
 <br>
 <br>
 <br>
@@ -324,13 +328,11 @@
 
 <p>If your script prints out "Location: http://some.url.com" (mind the whitespace), it will instruct the web view to render the HTML pointed to by the URL.</p>
 
-<img src="images/output_webview.png">
+<img src="images/output_webview.jpg" style="width:620px; height:525px;">
 <br>
 <br>
 
 <p><strong>Status Menu</strong>: Status Menu output is slightly different from the other output modes.  Your Platypus-generated application will create a Status Item in the menu bar.  Every time the status item is clicked, your script will be executed and the text output displayed line for line as menu items.</p>
-
-<p>It is worth noting that <a href="http://sveinbjorn.org/tapir">Tapir</a> allows for more sophisticated development of Status Items that display script output.</p>
 
 <img src="images/output_statusmenu.jpg">
 <br>
