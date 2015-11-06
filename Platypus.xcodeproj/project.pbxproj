@@ -89,6 +89,7 @@
 		F4AB18721BE19CAC00B83A95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AB18711BE19CAC00B83A95 /* Foundation.framework */; };
 		F4AB18741BE19CD100B83A95 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AB18731BE19CD100B83A95 /* AppKit.framework */; };
 		F4AB18971BEAA88800B83A95 /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
+		F4AB189A1BED3A0B00B83A95 /* ScriptExecJob.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
 		F4B87C1B1B3C99AD00F4B8BE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B87C191B3C997300F4B8BE /* Accelerate.framework */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
@@ -271,6 +272,8 @@
 		F4AB186E1BE1908100B83A95 /* NSBundle+Templates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Templates.m"; path = "Shared/NSBundle+Templates.m"; sourceTree = "<group>"; };
 		F4AB18711BE19CAC00B83A95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F4AB18731BE19CD100B83A95 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F4AB18981BED3A0B00B83A95 /* ScriptExecJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecJob.h; path = ScriptExec/ScriptExecJob.h; sourceTree = "<group>"; };
+		F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptExecJob.m; path = ScriptExec/ScriptExecJob.m; sourceTree = "<group>"; };
 		F4AF785B14D1E5F200544C1B /* STDragWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragWebView.h; path = Shared/STDragWebView.h; sourceTree = "<group>"; };
 		F4AF785C14D1E5F200544C1B /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = Shared/STDragWebView.m; sourceTree = "<group>"; };
 		F4B87C191B3C997300F4B8BE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
@@ -589,6 +592,8 @@
 				F48B7B9011F766E600351575 /* main.m */,
 				F48B7B9111F766E600351575 /* ScriptExecController.h */,
 				F48B7B9211F766E600351575 /* ScriptExecController.m */,
+				F4AB18981BED3A0B00B83A95 /* ScriptExecJob.h */,
+				F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */,
 				F48B7C6711F768A000351575 /* Resources */,
 			);
 			name = "ScriptExec Binary";
@@ -1039,6 +1044,7 @@
 				F4975D741B2E09310099D16E /* STPrivilegedTask.m in Sources */,
 				F4AB186B1BE182FA00B83A95 /* Alerts.m in Sources */,
 				F4975D701B2E09280099D16E /* NSWorkspace+Additions.m in Sources */,
+				F4AB189A1BED3A0B00B83A95 /* ScriptExecJob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
