@@ -136,6 +136,7 @@
     if (appleScript != nil) {
         [appleScript executeAndReturnError:nil];
     }
+    [appleScript release];
 }
 
 #pragma mark - Misc
