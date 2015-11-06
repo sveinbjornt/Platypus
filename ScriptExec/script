@@ -36,8 +36,8 @@
 #}
 #
 
-print "STDIN:";
-print while (<STDIN>);
+#print "STDIN:";
+#print while (<STDIN>);
 print "\nARGS:\n";
 foreach (@ARGV) {
     print "$_\n";

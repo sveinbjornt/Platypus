@@ -128,8 +128,8 @@ typedef enum PlatypusOutputType {
 @ "Progress Bar", \
 @ "Text Window", \
 @ "Web View", \
-@ "Droplet", \
 @ "Status Menu", \
+@ "Droplet", \
 nil]
 
 #pragma mark -
