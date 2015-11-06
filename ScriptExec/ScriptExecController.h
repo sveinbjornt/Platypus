@@ -46,7 +46,7 @@
 #import "STDragWebView.h"
 #import "NSWorkspace+Additions.h"
 
-@interface ScriptExecController : NSObject <NSMenuDelegate>
+@interface ScriptExecController : NSObject <NSMenuDelegate, NSUserNotificationCenterDelegate>
 {
     // progress bar
     IBOutlet id progressBarCancelButton;

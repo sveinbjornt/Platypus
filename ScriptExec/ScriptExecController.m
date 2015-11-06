@@ -327,6 +327,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [NSApp setServicesProvider:self]; // register as text handling service
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
     // status menu apps just run when item is clicked
     // for all others, we run the script once app has been launched
@@ -339,6 +340,10 @@
     } else {
         [self executeScript];
     }
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
+    return YES;
 }
 
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames {
@@ -1231,6 +1236,7 @@
 }
 
 #pragma mark - Text snippet drag handling
+
 - (void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
     if (!isDroppable || !acceptsText || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS) {
         return;
