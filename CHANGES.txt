@@ -12,8 +12,6 @@ For 5.1
     TODO: Get rid of crazy pattern where objects release themselves in the window controllers. What was I thinking?
 
 For 5.0
-    TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
-    TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Fix Provide as Mac OS X service
     TODO: Update documentation with information about Uniform Type Identifiers
     TODO: Overhaul very old and in many respects out of date documentation
@@ -25,6 +23,9 @@ For 5.0
     TODO: Implement UI stuff making clear that UTIs exclude suffixes
     TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
+
+    TODO: Long GNU named params for command line tool, e.g. --some-option
+    TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
 
     * Dropped text input (NSPboardText) is now passed to script via STDIN, not as an argument. This allows differentiation between dropped text snippets and dropped files in applications made to handle both.
     * Fixed issue with generating icon from images on retina macs (IconFamily)
