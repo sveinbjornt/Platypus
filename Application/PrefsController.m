@@ -290,7 +290,7 @@
 - (void)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
     
     NSString *script = [[NSBundle mainBundle] loadTemplate:scriptName usingDictionary:placeholderDict];
-    NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script usingTextEncoding:NSUTF8StringEncoding];
+    NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script];
     chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // 744
     
     // execute path, pass Resources directory and version as arguments 1 and 2

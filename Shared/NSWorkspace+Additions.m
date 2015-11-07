@@ -122,6 +122,14 @@
     return tempScriptPath;
 }
 
+- (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr {
+    [self createTempFileNamed:fileName withContents:contentStr usingTextEncoding:NSUTF8StringEncoding];
+}
+
+- (NSString *)createTempFileWithContents:(NSString *)contentStr {
+    return [self createTempFileNamed:nil withContents:contentStr usingTextEncoding:NSUTF8StringEncoding];
+}
+
 - (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {
     return [self createTempFileNamed:nil withContents:contentStr usingTextEncoding:textEncoding];
 }
