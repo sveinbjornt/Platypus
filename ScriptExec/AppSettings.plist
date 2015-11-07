@@ -23,7 +23,7 @@
 		<true/>
 	</dict>
 	<key>OutputType</key>
-	<string>Droplet</string>
+	<string>Status Menu</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunningAfterCompletion</key>

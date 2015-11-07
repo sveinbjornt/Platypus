@@ -1045,9 +1045,10 @@
         NSArray *htmlLines = [[textStorage string] componentsSeparatedByString: @"\n"];
 
         // Check for 'Location: *URL*' In that case, we load the URL in the web view
-        if ([htmlLines count] > 0 && [[htmlLines objectAtIndex:1] hasPrefix:@"Location: "]) {
-            NSString *url = [[htmlLines objectAtIndex: 1] substringFromIndex:10];
-            [[webOutputWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: url]] ];
+        if ([htmlLines count] > 0 && [[htmlLines objectAtIndex:1] hasPrefix:@"Location:"]) {
+            NSString *url = [[htmlLines objectAtIndex: 1] substringFromIndex:9];
+            url = [url stringByReplacingOccurrencesOfString:@" " withString:@""];
+            [[webOutputWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] ];
         } else {
             // otherwise, just load script output as HTML string
             NSURL *resourcePathURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]];

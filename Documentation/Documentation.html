@@ -309,7 +309,7 @@
 
 <p><strong>Progress Bar</strong>:  A small window with an indeterminate progress bar and a "Cancel" button appears during the execution of the script. Script output is fed line by line into the text field above the progress bar. "Show details" reveals a small text view containing script output.</p>
 
-<p>It is worth noting that the script can communicate with the progress bar and notify it of script progress.  All lines of script output in the format 'PROGRESS:\d+' (e.g. PROGRESS:75) are parsed and used to set the completion percentage of the task. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
+<p>The script can communicate with the progress bar by notifying it of script progress.  All lines of script output in the format 'PROGRESS:\d+' (e.g. PROGRESS:75) are parsed and used to set the completion percentage of the progress bar. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
 
 <center><img src="images/output_progressbar.png" style="width:524px; height:194px;"></center>
 <br>
@@ -326,15 +326,15 @@
 
 <p>The base directory for the browser instance is the application bundle's Resources directory, so you can bundle images and other support files by adding them to the Bundled Files list and referencing them relative to the directory.</p>
 
-<p>If your script prints out "Location: http://some.url.com" (mind the whitespace), it will instruct the web view to render the HTML pointed to by the URL.</p>
+<p>If your script prints "Location:http://some.url.com\n", the Web View will load the URL.</p>
 
 <img src="images/output_webview.jpg" style="width:620px; height:525px;">
 <br>
 <br>
 
-<p><strong>Status Menu</strong>: Status Menu output is slightly different from the other output modes.  Your Platypus-generated application creates a Status Item in the menu bar.  Every time the status item is clicked, your script will be executed and the text output displayed line for line in a menu.</p>
+<p><strong>Status Menu</strong>: Status Menus are a bit different from the other output modes. The application creates a Status Item in the menu bar.  Every time the status item is clicked, the script is executed and its text output displayed line for line in a menu.</p>
 
-<img src="images/output_statusmenu.jpg">
+<img src="images/output_statusmenu.png" style="width:315px; height:144px;">
 <br>
 <br>
 
@@ -353,16 +353,11 @@
 
 <h3>Setting the Icon</h3>
 
-<img src="images/setting_icon.jpg" style="float: right;">
+<img src="images/setting_icon.png" style="width:207px; height:398px; float: right;">
 
-<p>Platypus allows you to set an icon for your application.  You can loop through the Platypus icon presets for your application or, alternately, drag an image or icon file for a custom icon.</p> 
+<p>Platypus lets you set an icon for your application.  You can pick from the icon presets, paste your own image or select an image or icon file.</p>
 
-<p>There are also two menu items in the "Advanced" menu, "Select Custom Icon..." and "Import Custom Icon...", which allow you to select either an image to use as icon, or specify a file whose icon is to be used.</p>
-
-<p>The app icon box has a contextual menu which gives easy access to these functions, allowing you to paste an icon from the clipboard. It is also worth mentioning that you can choose the option "Select .icns file", to bypass Platypus' processing of images and copy a given .icns file directly to the application bundle.</p>
-
-<p>Please note that having Platypus create the icon file will not result in an icon that looks good in smaller sizes.  For best
-results, use professional Mac OS X icon-editing software and specify a carefully crafted .icns file with the "Select .icns file" option.</p>
+<p>Please note that having Platypus create the icon from an image file will typically not result in an icon that looks good in smaller sizes.  For best results, use professional Mac OS X icon-editing software and specify a carefully crafted .icns file using the "Select .icns file" option.</p>
 
 <br>
 <br>
@@ -671,7 +666,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
 
 <img src="images/output_statusmenu.jpg" style="float: right;">
 
-<p>As of Platypus 4.9, it is now possible to build relatively sophisticated interactive Status Menu apps. Platypus-generated apps with the Output Mode set to Status Menu will show an icon in the menu bar when launched. When the menu is opened, the script is executed and each line of output shown as a menu item in the menu. 
+<p>As of Platypus 4.9, it is now possible to build relatively sophisticated interactive Status Menu apps. Platypus-generated apps with the Output Mode set to Status Menu display an item in the menu bar when launched. When this item is pressed, a menu is opened, the script is executed and each line of output shown as a menu item in the menu.
     
 <p>When the user selects a menu item, the script is executed again, but this time it receives the menu title as an argument. Based on whether it receives an argument, the script can thus determine whether it is being invoked to list the menu items or perform some action for a selected menu item.</p>
 
@@ -692,7 +687,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
     }</pre>
 </div>
 
-<p>This script would create a Status Menu app which shows a few lines of Shakespeare's Macbeth. When selected, the lines are read by the Mac OS speech synthesizer.</p> 
+<p>This script would create a Status Menu app which shows a few lines of Shakespeare's Macbeth. When selected, the lines are fed into the Mac OS X speech synthesizer.</p>
 
 <br>
 <br>
@@ -723,12 +718,12 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
 <br>
 <h3 id="81">Can I use Platypus to create proprietary software?</h3>
 
-<p>Yes.  Platypus is distributed under the terms and conditions of the three-clause <a href="http://www.sveinbjorn.org/files/software/platypus/documentation/License.html">BSD License</a>, which means that you are free more or less free to do what you see with fit Platypus and applications you create using it, as long as you keep my name out of it.</p>
+<p>Yes.  Platypus is distributed under the terms and conditions of the three-clause <a href="http://www.sveinbjorn.org/files/software/platypus/documentation/License.html">BSD License</a>, which means that you are free more or less free to do what you see with fit Platypus and applications you create using it -- as long as you keep my name out of it.</p>
     
 <br>
 <br>
 
-<h3 id="82">My script's output isn't being shown until the script is done</h3>
+<h3 id="82">My script's output isn't being shown until the script is done running</h3>
 
 <p>You need to autoflush the script output buffer.  In Perl, this is done with the following command at the start of your script:</p>
 
@@ -750,9 +745,9 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
 
 <h3 id="83">Does Platypus support localizations?</h3>
 
-<p>No.  But if you don't select "Optimize nib file" in the save dialog when creating an app, the resulting nib in the application bundle can be edited using XCode.  That way, you can localize it manually if you want to.  Localization support is <em>very low</em> on the feature roadmap, since it can be adequately addressed using the method outlined above.</p>
+<p>No. But if you don't select "Optimize nib file" in the save dialog when creating an app, the resulting nib in the application bundle can be edited using XCode.  You can thus localize your app manually if you want to.  Localization support is <em>very low</em> on the feature roadmap, since it can be adequately addressed using the aforementioned method.</p>
 
-<p><em>Please do not send me any localizations you make for Platypus itself</em>, since I will not include them in the official distribution.  Localizations use up disk space and bandwidth, inhibit the speed and freedom of development and are generally tedious to maintain. To my mind, it simply isn't worth the hassle for a specialized developer tool.</p>
+<p><em>Please do not send me any localizations you make for the Platypus application itself</em>, since I will not include them in the official distribution.  Localizations use up disk space and bandwidth, inhibit the speed and freedom of development and are generally tedious to maintain. To my mind, it just isn't worth the hassle for a specialized developer tool.</p>
     
 <br>
 <br>
@@ -839,7 +834,7 @@ MyApp.app/Contents/Resources/script             - Script that is executed by bin
 
 <h3 id="810">Does Platypus support processor-specific binaries only?</h3>
 
-<p>No.  As of version 4.5, Platypus generates "fat" 32-bit/64-bit Intel binaries.  <a href="http://sveinbjorn.org/files/software/platypus">Platypus 4.4 and earlier</a> support the PowerPC architecture.  If you want a binary only for your architecture, you can use the <code>lipo</code> command line tool to make the binary "thin" after creating the application.  See <code>man lipo</code>.</p>
+<p>No. As of version 5.0, Platypus generates 64-bit Intel binaries that require Mac OS X 10.7 "Lion" or later to run, so this question has become less relevant. Version 4.9 has support for 10.6 and and creates "fat" 32-bit/6-bit binaries while  <a href="http://sveinbjorn.org/files/software/platypus">Platypus 4.4 and earlier</a> support the old PowerPC architecture.</p>
 
     <br>
     <br>
@@ -848,17 +843,17 @@ MyApp.app/Contents/Resources/script             - Script that is executed by bin
     
 <h3 id="811">Can I change the dimensions of the Platypus output window?</h3>
 
-<p>Yes, but only by directly altering the application after it has been created.  When you press Create, you need to uncheck the "Optimize Application (strip nib file)" option in the Save dialog.  You can then edit the nib file for your application, which contains all the user interface assets, using Apple's XCode.  The nib file is stored at the following path within your application bundle.</p>
+<p>Yes, but only by directly altering the application after it has been created.  When you press Create, you need to uncheck the "Optimize Application (strip nib file)" option in the Save dialog.  You can then edit the user interface assets in the nib file using Apple's XCode.  The nib file is stored at the following path within your application bundle.</p>
 
 <div class="codeblock">
 Contents/Resources/MainMenu.nib
 </div>
 
-<p>If you want to keep your own modified nib for repeated use, you can simply save a copy, edit it and add it in the Bundled Items when you create an app. It will then overwrite the default Platypus MainMenu.nib file:</p>
+<p>If you want to keep your own modified nib for repeated use, you can simply save a copy, edit it and add it in the Bundled Items when you create an app. It will then overwrite the default MainMenu.nib file:</p>
 
 <img src="images/mainmenu-bundledfile.png">
 
-<p>Alternatively, the Platypus command line tool allows you to specify an alternate nib file using the <code>-H</code> flag. See the <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">man page</a> for details.</p>
+<p>The Platypus command line tool also allows you to specify an alternate nib file using the <code>-H</code> flag. See the <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">man page</a> for details.</p>
 
 <br>
 <br>
@@ -866,7 +861,7 @@ Contents/Resources/MainMenu.nib
 
 <h3 id="812">Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?</h3>
 
-<p>No.  Platypus applications do not present the user with an interactive shell, so no bidirectional communication can take place using standard command line methods.  The Text Window option can only show the user the text output of your script.  It cannot prompt for input, and will not be able to do so in the foreseeable future.  This means that any commands that require user input, such as <code>sudo</code>, will not work from within a Platypus-wrapper.</p>
+<p>No.  Platypus applications do not present the user with an interactive shell, and therefore no bidirectional communication can take place using standard input.  Platypus apps can only show the text output of your script to the user.  It cannot prompt for input, and will not be able to do so in the foreseeable future.  This means that any commands that require user input via STDIN, such as <code>sudo</code>, will not work from within a Platypus application.</p>
 
 <br>
 <br>
@@ -874,9 +869,9 @@ Contents/Resources/MainMenu.nib
 
 <h3 id="813">Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?</h3>
 
-<p>Neither Platypus nor Platypus-generated apps are signed. This means that due to GateKeeper they won't run out of the box on Mac OS X without user approval. There are no plans to change this in the future. Apple developer accounts cost money and I have no intention of paying for the privilege of maintaining and developing free software for Mac OS X.</p>
+<p>Neither Platypus nor Platypus-generated apps are signed. This means that due to GateKeeper they won't run out of the box on Mac OS X without prompting the user for approval. There are no plans to change this in the future. Apple developer accounts cost money and I have no intention of paying for the privilege of maintaining and developing free software for Mac OS X.</p>
 
-<p>It is possible to get signed Platypus binaries, but it'll be a laborious task. First, you need an <a href="https://developer.apple.com/">ADC account</a>.  Secondly, you need to download the <a href="http://sveinbjorn.org/files/software/platypus/">Platypus source code</a>.  After that, you need to build and sign your own version of the ScriptExec binary using Apple's XCode IDE.  Your signed ScriptExec binary should then replace the binary in the Platypus-generated application bundle.</p>
+<p>It is possible to sign the Platypus binaries yourself, but it's a laborious task. First, you need a paid <a href="https://developer.apple.com/">ADC account</a> for Mac development.  Secondly, you need to download the <a href="http://sveinbjorn.org/files/software/platypus/">Platypus source code</a>.  After that, you need to build and sign your own version of the ScriptExec binary in the project using Apple's XCode IDE.  Your can then manually replace the the binary in the Platypus-generated application bundle with your signed version.</p>
 
 <p>Detailed instructions on how to do this are beyond the scope of this document. There be dragons.</p>
 
@@ -886,13 +881,13 @@ Contents/Resources/MainMenu.nib
 
 <h3 id="814">Can I pass arguments to a Platypus-generated app via the command line?</h3>
 
-<p>Yes. You can execute a Platypus-generated binary via the command line and any arguments you provide will be passed on to your script. Take the following example:</p>
+<p>Yes. You can execute a Platypus-generated binary via the command line. Any arguments you provide will be passed on to your script. Take the following example:</p>
 
 <div class="codeblock">
 # ./MyApp.app/Contents/MacOS/MyApp -arg1 -arg2
 </div>
 
-<p>In this case, both <code>-arg1</code> and <code>-arg2</code> will be passed on to your script. This feature makes it possible to create protocol handlers for Firefox and other applications that invoke Mac OS X applications from the shell.</p>
+<p>In this case, both <code>-arg1</code> and <code>-arg2</code> will be passed on as arguments to your script. This feature makes it possible to create protocol handlers for Firefox and other applications that invoke Mac OS X applications from the shell.</p>
 
 <br>
 <br>
@@ -901,7 +896,7 @@ Contents/Resources/MainMenu.nib
 
 <h3 id="815">Can my script control when the wrapper application quits?</h3>
 
-<p>Yes. As long as your Output Mode is not set to None, the output from your script is parsed by the wrapper application. If your script prints the string "QUITAPP\n" to STDOUT the application will quit.</p>
+<p>If your script prints the string "QUITAPP\n" to STDOUT, the application will quit.</p>
 
 <br>
 <br>
@@ -919,7 +914,7 @@ Contents/Resources/MainMenu.nib
     /usr/local/share/man/man1/platypus.1            Man page
 </code></pre>
 
-<p>These files are all removed by the Platypus uninstall script.</p>
+<p>These files are all removed by the Platypus uninstall script available in the Platypus application menu.</p>
 
 <br>
 <br>
