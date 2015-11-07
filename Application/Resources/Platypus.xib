@@ -177,7 +177,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="99CD806B-3D30-45BD-A71E-565DAE94EBCA" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="1040E1BB-E803-43EE-8784-32429632C984" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -214,18 +214,6 @@ DQ
                             <animations/>
                         </scroller>
                     </scrollView>
-                    <button toolTip="Open script with default editor" verticalHuggingPriority="750" id="324">
-                        <rect key="frame" x="520" y="397" width="53" height="28"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <animations/>
-                        <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10953">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="editScript:" target="335" id="350"/>
-                        </connections>
-                    </button>
                     <textField verticalHuggingPriority="750" id="327">
                         <rect key="frame" x="193" y="493" width="74" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
@@ -272,10 +260,10 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Create and load a new script" verticalHuggingPriority="750" id="427">
-                        <rect key="frame" x="469" y="397" width="53" height="28"/>
+                        <rect key="frame" x="453" y="397" width="60" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
-                        <buttonCell key="cell" type="push" title="New" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10959">
+                        <buttonCell key="cell" type="push" title="+ New" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10959">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
@@ -284,10 +272,10 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Reveal script in Finder" verticalHuggingPriority="750" id="429">
-                        <rect key="frame" x="410" y="397" width="61" height="28"/>
+                        <rect key="frame" x="376" y="397" width="79" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
-                        <buttonCell key="cell" type="push" title="Reveal" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10960">
+                        <buttonCell key="cell" type="push" title="🔍 Reveal" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10960">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
@@ -595,6 +583,18 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="showHelp:" target="335" id="LzK-L9-TUV"/>
+                        </connections>
+                    </button>
+                    <button toolTip="Open script with default editor" verticalHuggingPriority="750" id="324">
+                        <rect key="frame" x="511" y="397" width="62" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="✎ Edit" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10953">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="editScript:" target="335" id="350"/>
                         </connections>
                     </button>
                 </subviews>
@@ -2893,7 +2893,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="99CD806B-3D30-45BD-A71E-565DAE94EBCA" width="16" height="16">
+        <image name="1040E1BB-E803-43EE-8784-32429632C984" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

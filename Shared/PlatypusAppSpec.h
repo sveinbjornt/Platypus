@@ -62,5 +62,7 @@
 - (NSDictionary *)properties;
 - (void)addProperties:(NSDictionary *)dict;
 - (NSString *)error;
-+ (NSString *)standardBundleIdForAppName:(NSString *)name usingDefaults:(BOOL)def;
++ (NSString *)standardBundleIdForAppName:(NSString *)name
+                              authorName:(NSString *)authorName
+                           usingDefaults:(BOOL)def;
 @end

@@ -126,7 +126,7 @@
     [properties setObject:[NSMutableArray array] forKey:@"InterpreterArgs"];
     [properties setObject:[NSMutableArray array] forKey:@"ScriptArgs"];
     [properties setObject:DEFAULT_VERSION forKey:@"Version"];
-    [properties setObject:DEFAULT_BUNDLE_ID forKey:@"Identifier"];
+    [properties setObject:[PlatypusAppSpec standardBundleIdForAppName:DEFAULT_APP_NAME authorName:nil usingDefaults:YES] forKey:@"Identifier"];
     [properties setObject:NSFullUserName() forKey:@"Author"];
     
     [properties setValue:[NSNumber numberWithBool:NO] forKey:@"Droppable"];
@@ -194,7 +194,7 @@
     NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];
     NSString *destPath = [NSString stringWithFormat:@"%@/%@.app", parentFolder, appName];
     [self setProperty:destPath forKey:@"Destination"];
-    [self setProperty:[PlatypusAppSpec standardBundleIdForAppName:appName usingDefaults:YES] forKey:@"Identifier"];
+    [self setProperty:[PlatypusAppSpec standardBundleIdForAppName:appName authorName:nil usingDefaults:YES] forKey:@"Identifier"];
 }
 
 /****************************************
@@ -792,7 +792,7 @@
     
     // only add identifier argument if it varies from default
     NSString *identifierArg = @"";
-    NSString *standardIdentifier = [PlatypusAppSpec standardBundleIdForAppName:[properties objectForKey: @"Name"] usingDefaults: NO];
+    NSString *standardIdentifier = [PlatypusAppSpec standardBundleIdForAppName:[properties objectForKey: @"Name"] authorName:nil usingDefaults: NO];
     if ([[properties objectForKey: @"Identifier"] isEqualToString:standardIdentifier] == FALSE) {
         NSString *str = longOpts ? @"-I" : @"--bundle-identifier";
         identifierArg = [NSString stringWithFormat: @" %@ %@ ", str, [properties objectForKey: @"Identifier"]];
@@ -868,12 +868,11 @@
  - based on username etc. e.g. org.username.AppName
  *****************************************/
 
-+ (NSString *)standardBundleIdForAppName:(NSString *)name usingDefaults:(BOOL)def;
-{
++ (NSString *)standardBundleIdForAppName:(NSString *)name authorName:(NSString *)authorName usingDefaults:(BOOL)def {
+    
     NSString *defaults = def ? [DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"] : nil;
-    
-    NSString *pre = defaults == nil ? [NSString stringWithFormat:@"org.%@.", NSUserName()] : defaults;
-    
+    NSString *author = authorName ? [authorName stringByReplacingOccurrencesOfString:@" " withString:@""] : NSUserName();
+    NSString *pre = defaults == nil ? [NSString stringWithFormat:@"org.%@.", author] : defaults;
     NSString *bundleId = [NSString stringWithFormat:@"%@%@", pre, name];
     bundleId = [bundleId stringByReplacingOccurrencesOfString:@" " withString:@""];
     
