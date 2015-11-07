@@ -537,9 +537,9 @@ int main(int argc, const char *argv[]) {
             
             // write to temp file
             NSError *err;
-            [inStr writeToFile:TMP_STDIN_PATH atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:&err];
+            BOOL success = [inStr writeToFile:TMP_STDIN_PATH atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:&err];
             [inStr release];
-            if (err != nil) {
+            if (!success) {
                 NSPrintErr(@"%@", err);
             }
             
