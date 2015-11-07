@@ -777,7 +777,7 @@
         }
         
         // -c
-        if (![[properties objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Icon"]) {
+        if (![[properties objectForKey:@"StatusItemUseSystemFont"] boolValue]) {
             str = longOpts ? @"-c" : @"--status-item-sysfont";
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ ", str];
         }
