@@ -26,7 +26,7 @@ For 5.0
     TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
 
-    * Dropped text input is now passed to script via STDIN, not as an argument. This allows differentiation between dropped text snippets and dropped files.
+    * Dropped text input (NSPboardText) is now passed to script via STDIN, not as an argument. This allows differentiation between dropped text snippets and dropped files in applications made to handle both.
     * Fixed issue with generating icon from images on retina macs (IconFamily)
     * Fixed issue with icon alpha channels (IconFamily)
     * Finder now refreshes display of overwritten applications
