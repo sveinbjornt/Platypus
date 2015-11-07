@@ -9,6 +9,7 @@ For 5.1
     TODO: Use bindings for defaults
     TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
+    TODO: Get rid of crazy pattern where objects release themselves in the window controllers. What was I thinking?
 
 For 5.0
     TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
@@ -18,7 +19,6 @@ For 5.0
     TODO: Overhaul very old and in many respects out of date documentation
     TODO: Drop targets do not work with “Remain running after initial execution” off
     TODO: Make main application icon brighter and higher res
-    TODO: Get rid of crazy pattern where objects release themselves in the window controllers. What was I thinking?
     TODO: New high res images for documentation
     TODO: File watching still broken for script path
     TODO: Use UTI methods instead of deprecated imageFileTypes
