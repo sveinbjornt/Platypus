@@ -123,7 +123,7 @@
 }
 
 - (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr {
-    [self createTempFileNamed:fileName withContents:contentStr usingTextEncoding:NSUTF8StringEncoding];
+    return [self createTempFileNamed:fileName withContents:contentStr usingTextEncoding:NSUTF8StringEncoding];
 }
 
 - (NSString *)createTempFileWithContents:(NSString *)contentStr {

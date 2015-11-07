@@ -23,10 +23,9 @@ For 5.0
     TODO: Implement UI stuff making clear that UTIs exclude suffixes
     TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
-
     TODO: Long GNU named params for command line tool, e.g. --some-option
-    TODO: It used to be that passing -u Username to the command line tool would have the bundle identifier of the resulting app be set to org.Username.Appname (unless the user overrode this with -I).
 
+    * Author name argument is now used to generate default bundle identifier in command line tool
     * Dropped text input (NSPboardText) is now passed to script via STDIN, not as an argument. This allows differentiation between dropped text snippets and dropped files in applications made to handle both.
     * Fixed issue with generating icon from images on retina macs (IconFamily)
     * Fixed issue with icon alpha channels (IconFamily)
