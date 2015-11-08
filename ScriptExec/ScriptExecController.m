@@ -984,6 +984,12 @@
             continue;
         }
         
+        if ([theLine hasPrefix:@"ALERT:"]) {
+            NSString *alertString = [theLine substringFromIndex:6];
+            [Alerts alert:alertString subText:alertString];
+            continue;
+        }
+        
         // special commands to control progress bar output window
         if (outputType == PLATYPUS_OUTPUT_PROGRESSBAR) {
             

@@ -25,6 +25,7 @@ For 5.0
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO: Long GNU named params for command line tool, e.g. --some-option
 
+    * Added ALERT:\.+ syntax, which triggers a modal alert dialog
     * Author name argument is now used to generate default bundle identifier in command line tool
     * Dropped text input (NSPboardText) is now passed to script via STDIN, not as an argument. This allows differentiation between dropped text snippets and dropped files in applications made to handle both.
     * Fixed issue with generating icon from images on retina macs (IconFamily)
