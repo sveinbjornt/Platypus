@@ -986,7 +986,9 @@
         
         if ([theLine hasPrefix:@"ALERT:"]) {
             NSString *alertString = [theLine substringFromIndex:6];
-            [Alerts alert:alertString subText:alertString];
+            NSArray *components = [alertString componentsSeparatedByString:@"|"];
+            [Alerts alert:[components objectAtIndex:0]
+                  subText:[components count] > 1 ? [components objectAtIndex:1] : [components objectAtIndex:0]];
             continue;
         }
         

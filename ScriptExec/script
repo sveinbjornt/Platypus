@@ -21,7 +21,7 @@
 #
 #	$i++;
 #}
-#local $| = 1;
+local $| = 1;
 #print "Arguments:\n";
 #
 #foreach (@ARGV) { print "\t" . $_ . "\n"; }
@@ -44,9 +44,15 @@
 #}
 
 print "Here's some script output\n";
-print "MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n";
-print "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
-print "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
+sleep 3;
+print "ALERT:Hello, world!|This is a test\n";
+sleep 2;
+print "Yo!\n";
+print "QUITAPP\n";
+
+#print "MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n";
+#print "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
+#print "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
 
 #use Shell;
 #
