@@ -177,7 +177,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="1040E1BB-E803-43EE-8784-32429632C984" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="6EFB262B-AA4F-4DE6-8DAF-417BC8129861" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -2717,7 +2717,7 @@ Gw
                                     <rect key="frame" x="43" y="343" width="208" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
-                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="11412">
+                                    <popUpButtonCell key="cell" type="push" title="Brackets" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="5DT-3a-Rc5" id="11412">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
                                         <menu key="menu" title="OtherViews" id="11413">
@@ -2730,7 +2730,7 @@ Gw
                                                 <menuItem isSeparatorItem="YES" id="11427">
                                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                 </menuItem>
-                                                <menuItem title="Built-In" id="11424"/>
+                                                <menuItem title="Built-In" state="on" id="11424"/>
                                                 <menuItem title="TextEdit" id="11422"/>
                                                 <menuItem title="TextMate" id="11417"/>
                                                 <menuItem title="SubEthaEdit" id="11423"/>
@@ -2739,11 +2739,16 @@ Gw
                                                 <menuItem title="BBEdit" id="11425"/>
                                                 <menuItem title="TextWrangler" id="11428"/>
                                                 <menuItem title="TextForge" id="11429"/>
+                                                <menuItem title="UltraEdit" id="yhX-q4-fXn"/>
+                                                <menuItem title="CodeRunner 2" id="GpM-GS-tk4"/>
                                                 <menuItem title="Sublime Text 2" id="11421"/>
+                                                <menuItem title="Atom" id="pW6-0a-QiL"/>
+                                                <menuItem title="Textastic" id="Tjx-4E-Kz0"/>
                                                 <menuItem title="MacVim" id="11420"/>
                                                 <menuItem title="Emacs" id="11419"/>
                                                 <menuItem title="Komodo Edit" id="11414"/>
                                                 <menuItem title="BlueFish" id="11418"/>
+                                                <menuItem title="Brackets" id="5DT-3a-Rc5"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
@@ -2893,7 +2898,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="1040E1BB-E803-43EE-8784-32429632C984" width="16" height="16">
+        <image name="6EFB262B-AA4F-4DE6-8DAF-417BC8129861" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
