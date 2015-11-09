@@ -74,7 +74,6 @@
     [textView setString:[appSpec commandString:![sender intValue]]];
 }
 
-
 - (void)windowWillClose:(NSNotification *)notification {
     [self release];
 }

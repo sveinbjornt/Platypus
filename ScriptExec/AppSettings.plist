@@ -5,7 +5,7 @@
 	<key>AcceptsFiles</key>
 	<true/>
 	<key>AcceptsText</key>
-	<false/>
+	<true/>
 	<key>Creator</key>
 	<string>Platypus-5.0</string>
 	<key>DropSuffixes</key>

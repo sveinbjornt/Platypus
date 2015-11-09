@@ -231,8 +231,14 @@
         if (i != 0) {
             appName = [appName stringByAppendingString:@" "];
         }
-        appName = [appName stringByAppendingString:[[words objectAtIndex:i] capitalizedString]];
+        NSString *word = [words objectAtIndex:i];
+        NSString *firstCharacter = [word substringWithRange:NSMakeRange(0,1)];
+        if ([firstCharacter isEqualToString:[firstCharacter uppercaseString]] == FALSE) {
+            word = [word capitalizedString];
+        }
+        appName = [appName stringByAppendingString:word];
     }
+    
     return appName;
 }
 

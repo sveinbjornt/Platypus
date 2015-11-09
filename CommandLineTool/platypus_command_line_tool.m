@@ -469,7 +469,7 @@ int main(int argc, const char *argv[]) {
         NSPrintErr(@"Error: Missing argument");
         PrintUsage();
         exit(1);
-    }
+    }    
     
     PlatypusAppSpec *appSpec = nil;
     NSString *scriptPath = nil;
@@ -538,13 +538,11 @@ int main(int argc, const char *argv[]) {
             // write to temp file
             NSError *err;
             BOOL success = [inStr writeToFile:TMP_STDIN_PATH atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:&err];
-            
+            [inStr release];
             if (!success) {
                 NSPrintErr(@"Error writing script to path %: %@", TMP_STDIN_PATH, [err localizedDescription]);
                 exit(1);
             }
-            
-            [inStr release];
             
             // set temp file as script path
             scriptPath = TMP_STDIN_PATH;
@@ -563,6 +561,16 @@ int main(int argc, const char *argv[]) {
             [appSpec setProperty:destPath forKey:@"Destination"];
         }
         [appSpec addProperties:properties];
+        
+        // if author name is supplied but no identifier, we create a default identifier with author name as clue
+        if ([properties objectForKey:@"Author"] && [properties objectForKey:@"Identifier"] == nil) {
+            NSString *identifier = [PlatypusAppSpec standardBundleIdForAppName:[appSpec propertyForKey:@"Name"]
+                                                                    authorName:[properties objectForKey:@"Author"]
+                                                                 usingDefaults:NO];
+            if (identifier) {
+                [appSpec setProperty:identifier forKey:@"Identifier"];
+            }
+        }
         
         // if there's another argument after the script path, it means a destination path has been specified
         if ([remainingArgs count] > 1) {
