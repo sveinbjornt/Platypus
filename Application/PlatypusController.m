@@ -458,11 +458,11 @@
     }
     
     // check if icon creation failed
-    NSString *appIconPath = [NSString stringWithFormat:@"%@/Contents/Resources/appIcon.icns", appPath];
-    unsigned long long fileSize = [[FILEMGR attributesOfItemAtPath:appIconPath error:nil] fileSize];
-    if (fileSize == 0) {
-        [Alerts alert:@"Failed to create icon" subText:@"Creating the application has failed. Please report this bug."];
-    }
+//    NSString *appIconPath = [NSString stringWithFormat:@"%@/Contents/Resources/appIcon.icns", appPath];
+//    unsigned long long fileSize = [[FILEMGR attributesOfItemAtPath:appIconPath error:nil] fileSize];
+//    if (fileSize == 0) {
+//        [Alerts alert:@"Failed to create icon" subText:@"Creating the application has failed. Please report this bug."];
+//    }
 
     // reveal newly create app in Finder, if prefs say so
     if ([DEFAULTS boolForKey:@"RevealApplicationWhenCreated"]) {
