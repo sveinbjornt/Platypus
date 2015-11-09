@@ -15,7 +15,6 @@ For 5.0
     TODO: Fix Provide as Mac OS X service
     TODO: Update documentation with information about Uniform Type Identifiers
     TODO: Overhaul very old and in many respects out of date documentation
-    TODO: Drop targets do not work with “Remain running after initial execution” off
     TODO: New high res images for documentation
     TODO: File watching still broken for script path
     TODO: Use UTI methods instead of deprecated imageFileTypes
@@ -23,10 +22,10 @@ For 5.0
     TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO: Long GNU named params for command line tool, e.g. --some-option
-    TODO: Fix red "Generic Application" icon text
     TODO: Add example showing STATUSMENUICON: syntax in action
     TODO: Add documentation for ALERT:Title|Info syntax
 
+    TODO: Drop targets do not work with “Remain running after initial execution” off
     * New high resolution (1024x1024) application icons
     * Added ALERT:\.+ syntax, which triggers a modal alert dialog
     * Author name argument is now used to generate default bundle identifier in command line tool

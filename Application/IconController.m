@@ -156,7 +156,7 @@
             iconImage = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
             [iconImage setSize:NSMakeSize(512, 512)];
             iconName = @"Generic Application";
-            iconPath = @"";
+            iconPath = nil;
             break;
         
         default:
