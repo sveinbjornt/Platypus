@@ -38,7 +38,7 @@
     NSError *err;
     NSString *templateStr = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:&err];
     if (!templateStr) {
-        NSLog(@"Unable to read template %@: %@", templateFileName, [err localizedDescription]);
+        NSLog(@"Unable to read template '%@': %@", templateFileName, [err localizedDescription]);
         return nil;
     }
     
