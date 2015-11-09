@@ -30,27 +30,28 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class NSResponderNotifyingTableView;
 @interface ArgsController : NSObject <NSTableViewDataSource>
 {
-    IBOutlet id argsWindow;
+    IBOutlet NSWindow *argsWindow;
     IBOutlet id commandTextField;
     IBOutlet id interpreterTextField;
     
     IBOutlet id interpreterArgsAddButton;
     IBOutlet id interpreterArgsRemoveButton;
     IBOutlet id interpreterArgsClearButton;
-    IBOutlet id interpreterArgsTableView;
+    IBOutlet NSResponderNotifyingTableView *interpreterArgsTableView;
     
     IBOutlet id scriptArgsAddButton;
     IBOutlet id scriptArgsRemoveButton;
     IBOutlet id scriptArgsClearButton;
-    IBOutlet id scriptArgsTableView;
+    IBOutlet NSResponderNotifyingTableView *scriptArgsTableView;
     
-    IBOutlet id isDroppableCheckbox;
-    IBOutlet id window;
+    IBOutlet NSButton *isDroppableCheckbox;
+    IBOutlet NSWindow *window;
     
-    IBOutlet id scriptArgsContextualMenu;
-    IBOutlet id interpreterArgsContextualMenu;
+    IBOutlet NSMenu *scriptArgsContextualMenu;
+    IBOutlet NSMenu *interpreterArgsContextualMenu;
     
     NSMutableArray *interpreterArgs;
     NSMutableArray *scriptArgs;
@@ -73,7 +74,7 @@
 - (IBAction)resetDefaults:(id)sender;
 
 - (IBAction)show:(id)sender;
-- (NSString *)constructCommandString;
+- (void)constructCommandString;
 
 // table view handling
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView;
