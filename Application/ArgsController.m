@@ -155,17 +155,15 @@
     
     [args removeObjectAtIndex:[tableView selectedRow]];
     
-    if (![tableView numberOfRows]) {
+    if ([tableView numberOfRows] == 0) {
         return;
     }
     
     rowToSelect = selectedRow - 1;
     
-    [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
-    
     [tableView reloadData];
+    [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
     [self tableViewSelectionDidChange:nil];
-    
     [self constructCommandString];
     [argsWindow makeFirstResponder:tableView];
 }

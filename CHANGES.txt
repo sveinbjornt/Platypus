@@ -25,8 +25,9 @@ For 5.0
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Add example showing STATUSMENUICON: syntax in action
     TODO: Add documentation for ALERT:Title|Info syntax
-
     TODO: Drop targets do not work with “Remain running after initial execution” off
+
+    * Arguments window now highlights arguments and argument groups in command preview field
     * New high resolution (1024x1024) application icons
     * Added ALERT:\.+ syntax, which triggers a modal alert dialog
     * Author name argument is now used to generate default bundle identifier in command line tool

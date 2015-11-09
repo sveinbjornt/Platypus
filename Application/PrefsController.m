@@ -267,7 +267,9 @@
 - (void)runCLTTemplateScript:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
     [installCLTProgressIndicator setUsesThreadedAnimation:YES];
     [installCLTProgressIndicator startAnimation:self];
-    [self executeScriptTemplateWithPrivileges:scriptName usingDictionary:placeholderDict];
+    if ([self executeScriptTemplateWithPrivileges:scriptName usingDictionary:placeholderDict] == NO) {
+        [Alerts alert:@"Error running script" subText:[NSString stringWithFormat:@"Could not run script '%@'", scriptName]];
+    }
     [self updateCLTStatus:CLTStatusTextField];
     [installCLTProgressIndicator stopAnimation:self];
 }

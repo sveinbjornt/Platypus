@@ -55,7 +55,7 @@
 - (void)updateCLTStatus:(NSTextField *)textField;
 - (void)runCLTTemplateScript:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
 - (BOOL)isCommandLineToolInstalled;
-- (void)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
+- (BOOL)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
 - (IBAction)selectScriptEditor:(id)sender;
 - (IBAction)cancel:(id)sender;
 @end
