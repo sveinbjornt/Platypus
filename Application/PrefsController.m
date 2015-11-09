@@ -287,19 +287,20 @@
 /*****************************************
  - Run script with privileges using Authentication Manager
  *****************************************/
-- (void)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
+- (BOOL)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
     
     NSString *script = [[NSBundle mainBundle] loadTemplate:scriptName usingDictionary:placeholderDict];
     if (script == nil) {
-        
+        return NO;
     }
-    NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script usingTextEncoding:NSUTF8StringEncoding];
+    NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script];
     chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // 744
     
     // execute path, pass Resources directory and version as arguments 1 and 2
     [STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:tmpScriptPath arguments:[NSArray arrayWithObjects:[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION, nil]];
     
     //[FILEMGR removeItemAtPath:tmpScriptPath error:nil];
+    return YES;
 }
 
 @end

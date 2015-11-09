@@ -33,6 +33,7 @@
 
 #import "ScriptExecController.h"
 #import "Alerts.h"
+#import "ScriptExecJob.h"
 
 @implementation ScriptExecController
 
@@ -326,6 +327,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [NSApp setServicesProvider:self]; // register as text handling service
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
     // status menu apps just run when item is clicked
     // for all others, we run the script once app has been launched
@@ -338,6 +340,10 @@
     } else {
         [self executeScript];
     }
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
+    return YES;
 }
 
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames {
@@ -732,14 +738,17 @@
         commandLineArguments = nil;
     }
     
-    //finally, add any file arguments we may have received as dropped/opened
+    //finally, dequeue job and add arguments 
     if ([jobQueue count] > 0) {
+        ScriptExecJob *job = [jobQueue objectAtIndex:0];
+
         // we have files in the queue, to append as arguments
         // we take the first job's arguments and put them into the arg list
-        [arguments addObjectsFromArray:[jobQueue objectAtIndex:0]];
+        if ([job arguments]) {
+            [arguments addObjectsFromArray:[job arguments]];
+        }
+        stdinString = [[job standardInputString] copy];
         
-        // then we remove the job from the queue
-        //[[jobQueue objectAtIndex: 0] release]; // release
         [jobQueue removeObjectAtIndex:0];
     }
 }
@@ -759,7 +768,7 @@
     isTaskRunning = YES;
     
     // run the task
-    if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) { //authenticated task
+    if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
         [self executeScriptWithPrivileges];
     } else {
         [self executeScriptWithoutPrivileges];
@@ -780,13 +789,25 @@
         outputPipe = [NSPipe pipe];
         [task setStandardOutput:outputPipe];
         [task setStandardError:outputPipe];
-        readHandle = [outputPipe fileHandleForReading];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOutputData:) name:NSFileHandleReadCompletionNotification object:readHandle];
-        [readHandle readInBackgroundAndNotify];
+        outputReadFileHandle = [outputPipe fileHandleForReading];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
+        [outputReadFileHandle readInBackgroundAndNotify];
     }
+    
+    // set up stdin for writing
+    inputPipe = [NSPipe pipe];
+    [task setStandardInput:inputPipe];
+    inputWriteFileHandle = [[task standardInput] fileHandleForWriting];
     
     //set it off
     [task launch];
+    
+    // write input, if any, to stdin, and then close
+    if (stdinString) {
+        [inputWriteFileHandle writeData:[stdinString dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    [inputWriteFileHandle closeFile];
+    stdinString = nil;
     
     // we wait until task exits if this is triggered by a status item menu
     if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
@@ -819,9 +840,9 @@
     
     if (outputType != PLATYPUS_OUTPUT_NONE) {
         // Success!  Now, start monitoring output file handle for data
-        readHandle = [privilegedTask outputFileHandle];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOutputData:) name:NSFileHandleReadCompletionNotification object:readHandle];
-        [readHandle readInBackgroundAndNotify];
+        outputReadFileHandle = [privilegedTask outputFileHandle];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
+        [outputReadFileHandle readInBackgroundAndNotify];
     }
 }
 
@@ -869,12 +890,12 @@
         return;
     }
     // stop observing the filehandle for data since task is done
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadCompletionNotification object:readHandle];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
     
     // we make sure to clear the filehandle of any remaining data
-    if (readHandle != nil) {
+    if (outputReadFileHandle != nil) {
         NSData *data;
-        while ((data = [readHandle availableData]) && [data length]) {
+        while ((data = [outputReadFileHandle availableData]) && [data length]) {
             [self appendOutput:data];
         }
     }
@@ -963,6 +984,14 @@
             continue;
         }
         
+        if ([theLine hasPrefix:@"ALERT:"]) {
+            NSString *alertString = [theLine substringFromIndex:6];
+            NSArray *components = [alertString componentsSeparatedByString:@"|"];
+            [Alerts alert:[components objectAtIndex:0]
+                  subText:[components count] > 1 ? [components objectAtIndex:1] : [components objectAtIndex:0]];
+            continue;
+        }
+        
         // special commands to control progress bar output window
         if (outputType == PLATYPUS_OUTPUT_PROGRESSBAR) {
             
@@ -1024,9 +1053,10 @@
         NSArray *htmlLines = [[textStorage string] componentsSeparatedByString: @"\n"];
 
         // Check for 'Location: *URL*' In that case, we load the URL in the web view
-        if ([htmlLines count] > 0 && [[htmlLines objectAtIndex:1] hasPrefix:@"Location: "]) {
-            NSString *url = [[htmlLines objectAtIndex: 1] substringFromIndex:10];
-            [[webOutputWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: url]] ];
+        if ([htmlLines count] > 0 && [[htmlLines objectAtIndex:1] hasPrefix:@"Location:"]) {
+            NSString *url = [[htmlLines objectAtIndex: 1] substringFromIndex:9];
+            url = [url stringByReplacingOccurrencesOfString:@" " withString:@""];
+            [[webOutputWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] ];
         } else {
             // otherwise, just load script output as HTML string
             NSURL *resourcePathURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]];
@@ -1215,6 +1245,7 @@
 }
 
 #pragma mark - Text snippet drag handling
+
 - (void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
     if (!isDroppable || !acceptsText || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS) {
         return;
@@ -1235,10 +1266,8 @@
     }
     
     // add job with text as argument for script
-    NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity:ARG_MAX];
-    [args addObject:text];
-    [jobQueue addObject:args];
-    [args release];
+    ScriptExecJob *job = [ScriptExecJob jobWithArguments:nil andStandardInput:text];
+    [jobQueue addObject:job];
     return YES;
 }
 
@@ -1269,10 +1298,10 @@
     }
     
     // we create a processing job and add the files as arguments
-    NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity:ARG_MAX];
+    NSMutableArray *args = [NSMutableArray array];
     [args addObjectsFromArray:acceptedFiles];
-    [jobQueue addObject:args];
-    [args release];
+    ScriptExecJob *job = [ScriptExecJob jobWithArguments:args andStandardInput:nil];
+    [jobQueue addObject:job];
     
     // accept drop
     return YES;

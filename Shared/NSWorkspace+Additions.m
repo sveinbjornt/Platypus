@@ -75,30 +75,6 @@
     return str;
 }
 
-#pragma mark -
-
-- (BOOL)openPathInDefaultBrowser:(NSString *)path {
-    NSURL *url = [NSURL URLWithString:@"http://"];
-    CFURLRef fromPathURL = NULL;
-    OSStatus err = LSGetApplicationForURL((CFURLRef)url, kLSRolesAll, NULL, &fromPathURL);
-    NSString *app = nil;
-    
-    if (fromPathURL) {
-        if (err == noErr) {
-            app = [(NSURL *)fromPathURL path];
-        }
-        CFRelease(fromPathURL);
-    }
-    
-    if (!app || err) {
-        NSLog(@"Unable to find default browser");
-        return FALSE;
-    }
-    
-    [WORKSPACE openFile:path withApplication:app];
-    return TRUE;
-}
-
 #pragma mark - Temp file
 
 - (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {
@@ -146,6 +122,14 @@
     return tempScriptPath;
 }
 
+- (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr {
+    return [self createTempFileNamed:fileName withContents:contentStr usingTextEncoding:NSUTF8StringEncoding];
+}
+
+- (NSString *)createTempFileWithContents:(NSString *)contentStr {
+    return [self createTempFileNamed:nil withContents:contentStr usingTextEncoding:NSUTF8StringEncoding];
+}
+
 - (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {
     return [self createTempFileNamed:nil withContents:contentStr usingTextEncoding:textEncoding];
 }
@@ -160,6 +144,31 @@
     if (appleScript != nil) {
         [appleScript executeAndReturnError:nil];
     }
+    [appleScript release];
+}
+
+#pragma mark - Misc
+
+- (BOOL)openPathInDefaultBrowser:(NSString *)path {
+    NSURL *url = [NSURL URLWithString:@"http://"];
+    CFURLRef fromPathURL = NULL;
+    OSStatus err = LSGetApplicationForURL((CFURLRef)url, kLSRolesAll, NULL, &fromPathURL);
+    NSString *app = nil;
+    
+    if (fromPathURL) {
+        if (err == noErr) {
+            app = [(NSURL *)fromPathURL path];
+        }
+        CFRelease(fromPathURL);
+    }
+    
+    if (!app || err) {
+        NSLog(@"Unable to find default browser");
+        return FALSE;
+    }
+    
+    [WORKSPACE openFile:path withApplication:app];
+    return TRUE;
 }
 
 - (void)runCommandInTerminal:(NSString *)cmd {

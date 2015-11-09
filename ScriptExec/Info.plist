@@ -28,8 +28,8 @@
 			</array>
 		</dict>
 	</array>
-    <key>LSUIElement</key>
-    <true/>
+	<key>LSUIElement</key>
+	<false/>
 	<key>CFBundleExecutable</key>
 	<string>ScriptExec</string>
 	<key>CFBundleIconFile</key>

@@ -85,7 +85,7 @@
     // put default prefs in the dictionary
     
     // create default bundle identifier string from usename
-    NSString *bundleId = [PlatypusAppSpec standardBundleIdForAppName:@"" usingDefaults:NO];
+    NSString *bundleId = [PlatypusAppSpec standardBundleIdForAppName:@"" authorName:nil usingDefaults:NO];
     
     [defaultPrefs setObject:bundleId forKey:@"DefaultBundleIdentifierPrefix"];
     [defaultPrefs setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
@@ -461,7 +461,7 @@
     NSString *appIconPath = [NSString stringWithFormat:@"%@/Contents/Resources/appIcon.icns", appPath];
     unsigned long long fileSize = [[FILEMGR attributesOfItemAtPath:appIconPath error:nil] fileSize];
     if (fileSize == 0) {
-        [Alerts alert:@"Failed to create icon" subText:@"Icon generation from images is currently not supported on retina Macs. To fix this, launch the Platypus application in Low Resolution mode and try again."];
+        [Alerts alert:@"Failed to create icon" subText:@"Creating the application has failed. Please report this bug."];
     }
 
     // reveal newly create app in Finder, if prefs say so
@@ -493,38 +493,35 @@
 
 - (BOOL)verifyFieldContents {
     BOOL isDir;
-    
-    //file manager
     NSFileManager *fileManager = FILEMGR;
     
-    //script path
-    if ([[appNameTextField stringValue] length] == 0) { //make sure a name has been assigned
+    //make sure a name has been assigned
+    if ([[appNameTextField stringValue] length] == 0) {
         [Alerts sheetAlert:@"Invalid Application Name" subText:@"You must specify a name for your application" forWindow:window];
         return NO;
     }
     
-    //script path
+    //verify that script exists at path
     if (([fileManager fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] == NO) || isDir) { //make sure script exists and isn't a folder
         [Alerts sheetAlert:@"Invalid Script Path" subText:@"No file exists at the script path you have specified" forWindow:window];
         return NO;
     }
     
     //make sure we have an icon
-    if (([iconController hasIcns] && ![[iconController icnsFilePath] isEqualToString:@""] && ![fileManager fileExistsAtPath:[iconController icnsFilePath]])
-        ||  (![(IconController *)iconController hasIcns] && [(IconController *)iconController imageData] == nil)) {
+    if (([iconController hasIcns] && ![[iconController icnsFilePath] isEqualToString:@""] && ![fileManager fileExistsAtPath:[iconController icnsFilePath]])) {
         [Alerts sheetAlert:@"Missing Icon" subText:@"You must set an icon for your application." forWindow:window];
         return NO;
     }
     
-    // let's be certain that the bundled files list doesn't contain entries that have been moved
+    //let's be certain that the bundled files list doesn't contain entries that have been moved
     if (![bundledFilesController allPathsAreValid]) {
-        [Alerts sheetAlert:@"Moved or missing files" subText:@"One or more of the files that are to be bundled with the application have been moved.  Please rectify this and try again." forWindow:window];
+        [Alerts sheetAlert:@"Bundled files missing" subText:@"One or more of the files that are to be bundled with the application could not be found. Please rectify this and try again." forWindow:window];
         return NO;
     }
     
     //interpreter
     if ([fileManager fileExistsAtPath:[interpreterTextField stringValue]] == NO) {
-        if ([Alerts proceedAlert:@"Invalid Interpreter" subText:@"The specified interpreter does not exist on this system.  Do you wish to proceed anyway?" withAction:@"Proceed"] == NO) {
+        if ([Alerts proceedAlert:@"Invalid Interpreter" subText:[NSString stringWithFormat:@"The interpreter '%@' does not exist on this system.  Do you wish to proceed anyway?", [interpreterTextField stringValue]] withAction:@"Proceed"] == NO) {
             return NO;
         }
     }
@@ -789,7 +786,7 @@
     }
     if (aNotification != nil && [aNotification object] == appNameTextField) {
         //update identifier
-        [bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] usingDefaults:YES]];
+        [bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES]];
     }
     
     //interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
@@ -876,7 +873,7 @@
     [scriptPathTextField setStringValue:@""];
     [versionTextField setStringValue:@"1.0"];
     
-    [bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] usingDefaults:YES]];
+    [bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES]];
     [authorTextField setStringValue:[DEFAULTS objectForKey:@"DefaultAuthor"]];
     
     //uncheck all options

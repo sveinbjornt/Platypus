@@ -88,7 +88,7 @@
 #pragma mark -
 
 - (void)updateIcnsStatus {
-    if ([self hasIcns] && ![icnsFilePath isEqualToString:@""] && ![FILEMGR fileExistsAtPath:icnsFilePath]) {
+    if ([self hasIcns] && [FILEMGR fileExistsAtPath:icnsFilePath] == FALSE) {
         [iconNameTextField setTextColor:[NSColor redColor]];
     } else {
         [iconNameTextField setTextColor:[NSColor blackColor]];

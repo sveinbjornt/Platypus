@@ -140,6 +140,7 @@
 - (void)clearList {
     [files removeAllObjects];
     [self updateQueueWatch];
+    [self updateFileSizeField];
     [tableView reloadData];
 }
 
