@@ -540,7 +540,8 @@ int main(int argc, const char *argv[]) {
             BOOL success = [inStr writeToFile:TMP_STDIN_PATH atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:&err];
             [inStr release];
             if (!success) {
-                NSPrintErr(@"%@", err);
+                NSPrintErr(@"Error writing script to path %: %@", TMP_STDIN_PATH, [err localizedDescription]);
+                exit(1);
             }
             
             // set temp file as script path
@@ -578,7 +579,8 @@ int main(int argc, const char *argv[]) {
         }
     }
     
-    if (![appSpec propertyForKey:@"ScriptPath"] || [[appSpec propertyForKey:@"ScriptPath"] isEqualToString:@""]) {
+    NSString *path = [appSpec propertyForKey:@"ScriptPath"];
+    if (path == nil || [path isEqualToString:@""]) {
         NSPrintErr(@"Error: Missing script path.");
         exit(1);
     }

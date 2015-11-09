@@ -112,11 +112,11 @@
     
     // write script to the temporary path
     NSError *err;
-    [contentStr writeToFile:tempScriptPath atomically:YES encoding:textEncoding error:&err];
+    BOOL success = [contentStr writeToFile:tempScriptPath atomically:YES encoding:textEncoding error:&err];
     
     // make sure writing it was successful
-    if (err != nil || [[NSFileManager defaultManager] fileExistsAtPath:tempScriptPath] == FALSE) {
-        NSLog(@"Could not create the temp file '%@'", tempScriptPath);
+    if (!success || [[NSFileManager defaultManager] fileExistsAtPath:tempScriptPath] == FALSE) {
+        NSLog(@"Erroring creating temp file '%@': %@", tempScriptPath, [err localizedDescription]);
         return nil;
     }
     return tempScriptPath;

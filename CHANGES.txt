@@ -21,6 +21,7 @@ For 5.0
     TODO: Implement UI stuff making clear that UTIs exclude suffixes
     TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
+    TODO : Fix "Create app on script file change" feature
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Add example showing STATUSMENUICON: syntax in action
     TODO: Add documentation for ALERT:Title|Info syntax
