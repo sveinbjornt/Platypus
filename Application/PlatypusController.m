@@ -104,6 +104,10 @@
 }
 
 - (void)awakeFromNib {
+    [window setRepresentedURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
+    NSButton *button = [window standardWindowButton:NSWindowDocumentIconButton];
+    [button setImage:[NSApp applicationIconImage]];
+    
     // make sure application support folder and subfolders exist
     BOOL isDir;
     
