@@ -31,11 +31,7 @@
 #import "ArgsController.h"
 #import "Common.h"
 
-
-@protocol NSResponderNotifyingTableViewDelegate <NSTableViewDelegate>
-- (void)tableViewDidBecomeFirstResponder:(id)sender;
-@end
-
+// Table view extension notifies delegate when it becomes first responder
 @interface NSResponderNotifyingTableView : NSTableView
 
 @end
@@ -70,6 +66,8 @@
     [super dealloc];
 }
 
+#pragma mark - Getters/setters
+
 - (void)setInterpreterArgs:(NSArray *)array {
     [interpreterArgs removeAllObjects];
     [interpreterArgs addObjectsFromArray:array];
@@ -92,10 +90,103 @@
     return scriptArgs;
 }
 
+#pragma mark -
+
 - (IBAction)apply:(id)sender {
     [window setTitle:PROGRAM_NAME];
     [NSApp stopModal];
 }
+
+- (IBAction)resetDefaults:(id)sender {
+    [self clearScriptArgs:self];
+    [self clearInterpreterArgs:self];
+}
+
+- (IBAction)showHelp:(id)sender {
+    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL]];
+}
+
+- (IBAction)show:(id)sender {
+    [window setTitle:[NSString stringWithFormat:@"%@ - Edit Arguments", PROGRAM_NAME]];
+    
+    [self constructCommandString];
+    
+    //open window
+    [NSApp  beginSheet:argsWindow
+        modalForWindow:window
+         modalDelegate:nil
+        didEndSelector:nil
+           contextInfo:nil];
+    
+    [NSApp runModalForWindow:argsWindow];
+    
+    [NSApp endSheet:argsWindow];
+    [argsWindow orderOut:self];
+}
+
+- (void)constructCommandString {
+    
+    // interpreter
+    NSMutableAttributedString *cmdString = [[NSMutableAttributedString alloc] initWithString:[interpreterTextField stringValue]];
+    NSMutableDictionary *defaultAttrs = [NSMutableDictionary dictionaryWithObject:[NSColor textColor]
+                                                                           forKey:NSForegroundColorAttributeName];
+    
+    // interpreter args
+    for (int i = 0; i < [interpreterArgs count]; i++)
+    {
+        NSString *a = [NSString stringWithFormat:@" %@", [interpreterArgs objectAtIndex:i]];
+        NSMutableDictionary *attrs = [[defaultAttrs mutableCopy] autorelease];
+        
+        if ([interpreterArgsTableView selectedRow] == i && interpreterArgsTableView == [argsWindow firstResponder]) {
+            [attrs setObject:[NSColor selectedControlColor] forKey:NSBackgroundColorAttributeName];
+        }
+        
+        NSMutableAttributedString *attrStr = [[[NSMutableAttributedString alloc] initWithString:a attributes:attrs] autorelease];
+        if (interpreterArgsTableView == [argsWindow firstResponder]) {
+            [attrStr beginEditing];
+            [attrStr addAttribute:NSFontAttributeName
+                            value:[NSFont boldSystemFontOfSize:11]
+                            range:NSMakeRange(0, [attrStr length])];
+            [attrStr endEditing];
+        }
+        [cmdString appendAttributedString:attrStr];
+    }
+    
+    // yourScript
+    NSAttributedString *scriptString = [[[NSAttributedString alloc] initWithString:@" yourScript " attributes:nil] autorelease];
+    [cmdString appendAttributedString:scriptString];
+    
+    // script args
+    for (int i = 0; i < [scriptArgs count]; i++)
+    {
+        NSString *a = [NSString stringWithFormat:@"%@ ", [scriptArgs objectAtIndex:i]];
+        NSMutableDictionary *attrs = [[defaultAttrs mutableCopy] autorelease];
+        
+        if ([scriptArgsTableView selectedRow] == i && scriptArgsTableView == [argsWindow firstResponder]) {
+            [attrs setObject:[NSColor selectedControlColor] forKey:NSBackgroundColorAttributeName];
+        }
+        
+        NSMutableAttributedString *attrStr = [[[NSMutableAttributedString alloc] initWithString:a attributes:attrs] autorelease];
+        if (scriptArgsTableView == [argsWindow firstResponder]) {
+            [attrStr beginEditing];
+            [attrStr addAttribute:NSFontAttributeName
+                            value:[NSFont boldSystemFontOfSize:11]
+                            range:NSMakeRange(0, [attrStr length])];
+            [attrStr endEditing];
+        }
+        [cmdString appendAttributedString:attrStr];
+    }
+    
+    // file args
+    if ([isDroppableCheckbox state] == NSOnState) {
+        NSAttributedString *attrStr = [[[NSAttributedString alloc] initWithString:@" [files ...]" attributes:defaultAttrs] autorelease];
+        [cmdString appendAttributedString:attrStr];
+    }
+    
+    [commandTextField setAttributedStringValue:[cmdString autorelease]];
+}
+
+#pragma mark -
 
 - (IBAction)addInterpreterArg:(id)sender {
     [interpreterArgs addObject:DEFAULT_ARG_VALUE];
@@ -120,7 +211,6 @@
     [interpreterArgsTableView reloadData];
     [self tableViewSelectionDidChange:nil];
     [self constructCommandString];
-    [argsWindow makeFirstResponder:interpreterArgsTableView];
 }
 
 - (IBAction)clearScriptArgs:(id)sender {
@@ -128,7 +218,6 @@
     [scriptArgsTableView reloadData];
     [self tableViewSelectionDidChange:nil];
     [self constructCommandString];
-    [argsWindow makeFirstResponder:scriptArgsTableView];
 }
 
 - (IBAction)removeListItem:(id)sender
@@ -164,103 +253,17 @@
     [tableView reloadData];
     [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
     [self tableViewSelectionDidChange:nil];
-    [self constructCommandString];
     [argsWindow makeFirstResponder:tableView];
 }
 
-- (IBAction)resetDefaults:(id)sender {
-    [self clearScriptArgs:self];
-    [self clearInterpreterArgs:self];
-}
+#pragma mark - NSTableViewDelegate
 
-- (IBAction)show:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Edit Arguments", PROGRAM_NAME]];
-    
-    [self constructCommandString];
-    
-    //open window
-    [NSApp  beginSheet:argsWindow
-        modalForWindow:window
-         modalDelegate:nil
-        didEndSelector:nil
-           contextInfo:nil];
-    
-    [NSApp runModalForWindow:argsWindow];
-    
-    [NSApp endSheet:argsWindow];
-    [argsWindow orderOut:self];
-}
-
-- (void)constructCommandString {
-    
-    // interpreter
-    NSMutableAttributedString *cmdString = [[NSMutableAttributedString alloc] initWithString:[interpreterTextField stringValue]];
-    NSMutableDictionary *defaultAttrs = [NSMutableDictionary dictionaryWithObject:[NSColor textColor]
-                                                                           forKey:NSForegroundColorAttributeName];
-    
-    // interpreter args
-    for (int i = 0; i < [interpreterArgs count]; i++)
-    {
-        NSString *a = [NSString stringWithFormat:@" %@", [interpreterArgs objectAtIndex:i]];
-        NSMutableDictionary *attrs = [defaultAttrs mutableCopy];
-        
-        if ([interpreterArgsTableView selectedRow] == i && interpreterArgsTableView == [argsWindow firstResponder]) {
-            [attrs setObject:[NSColor selectedControlColor] forKey:NSBackgroundColorAttributeName];
-        }
-        
-        NSMutableAttributedString *attrStr = [[[NSMutableAttributedString alloc] initWithString:a attributes:attrs] autorelease];
-        if (interpreterArgsTableView == [argsWindow firstResponder]) {
-            [attrStr beginEditing];
-            [attrStr addAttribute:NSFontAttributeName
-                            value:[NSFont boldSystemFontOfSize:10]
-                            range:NSMakeRange(0, [attrStr length])];
-            [attrStr endEditing];
-        }
-        [cmdString appendAttributedString:attrStr];
-    }
-    
-    // yourScript
-    NSAttributedString *scriptString = [[[NSAttributedString alloc] initWithString:@" yourScript " attributes:nil] autorelease];
-    [cmdString appendAttributedString:scriptString];
-    
-    for (int i = 0; i < [scriptArgs count]; i++)
-    {
-        NSString *a = [NSString stringWithFormat:@"%@ ", [scriptArgs objectAtIndex:i]];
-        NSMutableDictionary *attrs = [defaultAttrs mutableCopy];
-        
-        if ([scriptArgsTableView selectedRow] == i && scriptArgsTableView == [argsWindow firstResponder]) {
-            [attrs setObject:[NSColor selectedControlColor] forKey:NSBackgroundColorAttributeName];
-        }
-        
-        NSMutableAttributedString *attrStr = [[[NSMutableAttributedString alloc] initWithString:a attributes:attrs] autorelease];
-        if (scriptArgsTableView == [argsWindow firstResponder]) {
-            [attrStr beginEditing];
-            [attrStr addAttribute:NSFontAttributeName
-                               value:[NSFont boldSystemFontOfSize:10]
-                               range:NSMakeRange(0, [attrStr length])];
-            [attrStr endEditing];
-        }
-        [cmdString appendAttributedString:attrStr];
-    }
-    
-    // file args
-    if ([isDroppableCheckbox state] == NSOnState) {
-        NSDictionary *attrs = [NSDictionary dictionaryWithObject:[NSColor textColor]
-                                                          forKey:NSForegroundColorAttributeName];
-        NSAttributedString *attrStr = [[[NSAttributedString alloc] initWithString:@" [files ...]" attributes:attrs] autorelease];
-        [cmdString appendAttributedString:attrStr];
-    }
-
-    [commandTextField setAttributedStringValue:[cmdString autorelease]];
-    
-}
-
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView {
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
     NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
     return([args count]);
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
     NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
     
     if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
@@ -269,11 +272,8 @@
     return(@"");
 }
 
-- (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
-    if (rowIndex < 0)
-        return;
-    
     NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
     
     if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
@@ -284,11 +284,9 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
     [interpreterArgsRemoveButton setEnabled:([interpreterArgsTableView selectedRow] != -1)];
-    [interpreterArgsClearButton setEnabled:([interpreterArgs count] != 0)];
     [interpreterArgsAddButton setEnabled:YES];
     
     [scriptArgsRemoveButton setEnabled:([scriptArgsTableView selectedRow] != -1)];
-    [scriptArgsClearButton setEnabled:([scriptArgs count] != 0)];
     [scriptArgsAddButton setEnabled:YES];
     
     [self constructCommandString];
@@ -307,13 +305,6 @@
     }
     
     return YES;
-}
-
-#pragma mark -
-
-// Open Documentation.html file within app bundle
-- (IBAction)showHelp:(id)sender {
-    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL]];
 }
 
 @end
