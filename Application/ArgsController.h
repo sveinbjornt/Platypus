@@ -34,17 +34,15 @@
 @interface ArgsController : NSObject <NSTableViewDataSource>
 {
     IBOutlet NSWindow *argsWindow;
-    IBOutlet id commandTextField;
-    IBOutlet id interpreterTextField;
+    IBOutlet NSTextField *commandTextField;
+    IBOutlet NSTextField *interpreterTextField;
     
-    IBOutlet id interpreterArgsAddButton;
-    IBOutlet id interpreterArgsRemoveButton;
-    IBOutlet id interpreterArgsClearButton;
+    IBOutlet NSButton *interpreterArgsAddButton;
+    IBOutlet NSButton *interpreterArgsRemoveButton;
     IBOutlet NSResponderNotifyingTableView *interpreterArgsTableView;
     
-    IBOutlet id scriptArgsAddButton;
-    IBOutlet id scriptArgsRemoveButton;
-    IBOutlet id scriptArgsClearButton;
+    IBOutlet NSButton *scriptArgsAddButton;
+    IBOutlet NSButton *scriptArgsRemoveButton;
     IBOutlet NSResponderNotifyingTableView *scriptArgsTableView;
     
     IBOutlet NSButton *isDroppableCheckbox;
@@ -58,10 +56,9 @@
 }
 - (NSArray *)interpreterArgs;
 - (NSArray *)scriptArgs;
+
 - (void)setInterpreterArgs:(NSArray *)array;
 - (void)setScriptArgs:(NSArray *)array;
-
-- (IBAction)apply:(id)sender;
 
 - (IBAction)addInterpreterArg:(id)sender;
 - (IBAction)clearInterpreterArgs:(id)sender;
@@ -72,16 +69,10 @@
 - (IBAction)removeListItem:(id)sender;
 
 - (IBAction)resetDefaults:(id)sender;
-
+- (IBAction)apply:(id)sender;
 - (IBAction)show:(id)sender;
-- (void)constructCommandString;
-
-// table view handling
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView;
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification;
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
-- (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
-
 - (IBAction)showHelp:(id)sender;
+
+- (void)constructCommandString;
 
 @end
