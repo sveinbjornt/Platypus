@@ -104,6 +104,11 @@
 }
 
 - (void)awakeFromNib {
+    // put application icon in window title bar
+    [window setRepresentedURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
+    NSButton *button = [window standardWindowButton:NSWindowDocumentIconButton];
+    [button setImage:[NSApp applicationIconImage]];
+    
     // make sure application support folder and subfolders exist
     BOOL isDir;
     
@@ -173,6 +178,11 @@
 
 - (NSWindow *)window {
     return window;
+}
+
+- (BOOL)window:(NSWindow *)window shouldPopUpDocumentPathMenu:(NSMenu *)menu {
+    // prevent popup menu when window icon/title is cmd-clicked
+    return NO;
 }
 
 #pragma mark - Script functions

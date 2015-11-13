@@ -182,7 +182,6 @@
 
 - (BOOL)writeIconToPath:(NSString *)path {
     if ([iconImageView image] == nil) {
-        [Alerts alert:@"Icon Error" subText:@"No icon could be found for your application.  Please set an icon to fix this."];
         return NO;
     }
     IconFamily *iconFam = [[IconFamily alloc] initWithThumbnailsOfImage:[iconImageView image]];
@@ -227,11 +226,11 @@
 }
 
 - (UInt64)iconSize {
-    if ([icnsFilePath isEqualToString:@""]) {
+    if (icnsFilePath == nil) {
         return 0;
     }
     
-    if (![self hasIcns] || ![FILEMGR fileExistsAtPath:icnsFilePath]) {
+    if (![FILEMGR fileExistsAtPath:icnsFilePath]) {
         return 400000; // just guess the icon will be 400k in size
     }
     // else, just size of icns file
@@ -380,8 +379,11 @@
         tmpIconPath = TMP_ICON_PATH;
     } while ([FILEMGR fileExistsAtPath:tmpIconPath]);
     
-    [self writeIconToPath:tmpIconPath];
-    [self setIcnsFilePath:tmpIconPath];
+    if ([self writeIconToPath:tmpIconPath]) {
+        [self setIcnsFilePath:tmpIconPath];
+    } else {
+        [self setDefaultIcon];
+    }
 }
 
 #pragma mark -
