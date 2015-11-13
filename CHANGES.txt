@@ -21,12 +21,12 @@ For 5.0
     TODO: Implement UI stuff making clear that UTIs exclude suffixes
     TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
-    TODO : Fix "Create app on script file change" feature
+    TODO: Fix "Create app on script file change" feature
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Add example showing STATUSMENUICON: syntax in action
     TODO: Add documentation for ALERT:Title|Info syntax
+    TODO: Add sample profile
     TODO: Drop targets do not work with “Remain running after initial execution” off
-
     * Arguments window now highlights arguments and argument groups in command preview field
     * New high resolution (1024x1024) application icons
     * Added ALERT:\.+ syntax, which triggers a modal alert dialog
@@ -41,7 +41,7 @@ For 5.0
     * CFBundleDevelopmentRegion in generated apps now declared using ISO code
     * New default "Use system font" option for status menu item output
     * New MENUITEMICON: syntax to set menu item icon in status menu output mode
-    * The built-in editor has been much enhanced, with line numbering, configurable text size and other improvements
+    * The built-in editor has been much enhanced, with line numbering, configurable text size, word wrap and other improvements
     * Migrated from UKKqueue to VDKQueue and got all file system watching working properly again
     * Uniform Type Identifiers (UTIs) are now supported in drop settings
     * More examples
