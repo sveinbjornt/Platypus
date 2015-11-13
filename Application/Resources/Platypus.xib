@@ -177,7 +177,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="89C838A7-4A3F-4981-AFD3-E48C922AE592" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="82A0F1E8-1B9C-4596-BA62-A648838DF42E" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -2730,7 +2730,7 @@ Gw
                                                 <menuItem isSeparatorItem="YES" id="11427">
                                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                 </menuItem>
-                                                <menuItem title="Built-In" state="on" id="11424"/>
+                                                <menuItem title="Built-In" id="11424"/>
                                                 <menuItem title="TextEdit" id="11422"/>
                                                 <menuItem title="TextMate" id="11417"/>
                                                 <menuItem title="SubEthaEdit" id="11423"/>
@@ -2898,7 +2898,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="89C838A7-4A3F-4981-AFD3-E48C922AE592" width="16" height="16">
+        <image name="82A0F1E8-1B9C-4596-BA62-A648838DF42E" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

@@ -233,16 +233,21 @@
     [icon setSize:NSMakeSize(16, 16)];
     
     // Create Examples menu
-    NSMenu *em = [[[NSMenu alloc] init] autorelease];
+    NSMenu *examplesMenu = [[[NSMenu alloc] init] autorelease];
     for (i = 0; i < [examples count]; i++) {
-        NSMenuItem *menuItem = [em addItemWithTitle:[examples objectAtIndex:i] action:@selector(profileMenuItemSelected:) keyEquivalent:@""];
+        NSMenuItem *menuItem = [examplesMenu addItemWithTitle:[examples objectAtIndex:i] action:@selector(profileMenuItemSelected:) keyEquivalent:@""];
         [menuItem setTarget:self];
         [menuItem setEnabled:YES];
         [menuItem setImage:icon];
         [menuItem setTag:EXAMPLES_TAG];
     }
+    [examplesMenu addItem:[NSMenuItem separatorItem]];
     
-    [(NSMenuItem *)examplesMenuItem setSubmenu:em];
+    NSMenuItem *examplesFolderItem = [examplesMenu addItemWithTitle:@"Open Examples Folder" action:@selector(openExamplesFolder) keyEquivalent:@""];
+    [examplesFolderItem setTarget:self];
+    [examplesFolderItem setEnabled:YES];
+    
+    [(NSMenuItem *)examplesMenuItem setSubmenu:examplesMenu];
     
     //clear out all menu items
     while ([profilesMenu numberOfItems] > 6) {
@@ -272,6 +277,12 @@
 - (void)openProfilesFolder {
     [WORKSPACE selectFile:nil inFileViewerRootedAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
 }
+
+- (void)openExamplesFolder {
+    [WORKSPACE selectFile:nil inFileViewerRootedAtPath:[[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], PROGRAM_EXAMPLES_FOLDER] stringByExpandingTildeInPath]];
+}
+
+
 
 /*****************************************
  - Get list of .platypus files in Profiles folder
