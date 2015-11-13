@@ -185,6 +185,11 @@
     return NO;
 }
 
+- (BOOL)window:(NSWindow *)window shouldDragDocumentWithEvent:(NSEvent *)event from:(NSPoint)dragImageLocation withPasteboard:(NSPasteboard *)pasteboard {
+    // prevent dragging of title bar icon
+    return NO;
+}
+
 #pragma mark - Script functions
 
 /*****************************************
