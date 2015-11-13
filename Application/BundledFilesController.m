@@ -151,7 +151,7 @@
 }
 
 - (int)numFiles {
-    return([files count]);
+    return [files count];
 }
 
 - (NSArray *)filePaths {
@@ -324,10 +324,9 @@
  *****************************************/
 - (void)updateFileSizeField {
     
-    totalFileSize = 0;
-    
-    //if there are no items, we just list it as 0 items
+    //if there are no items
     if ([self numFiles] == 0) {
+        totalFileSize = 0;
         [bundleSizeTextField setStringValue:@""];
         [platypusController updateEstimatedAppSize];
         return;
@@ -336,18 +335,23 @@
     //otherwise, loop through all files, calculate size in a separate queue
     [bundleSizeTextField setStringValue:@"Calculating size..."];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^(void){
         
+        UInt64 size = 0;
         for (int i = 0; i < [self numFiles]; i++) {
-            totalFileSize += [WORKSPACE fileOrFolderSize:[self filePathAtIndex:i]];
+            size += [WORKSPACE fileOrFolderSize:[self filePathAtIndex:i]];
         }
         
-        NSString *totalSizeString = [WORKSPACE sizeAsHumanReadable:totalFileSize];
+        NSString *totalSizeString = [WORKSPACE sizeAsHumanReadable:size];
         NSString *pluralS = ([self numFiles] > 1) ? @"s" : @"";
-
+        NSString *itemsSizeString = [NSString stringWithFormat:@"%d item%@, %@", [self numFiles], pluralS, totalSizeString];
+        NSString *tooltipString = [NSString stringWithFormat:@"%d item%@ (%llu bytes)", [self numFiles], pluralS, size];
+        totalFileSize = size;
+        
         //run UI updates on main thread
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            [bundleSizeTextField setStringValue:[NSString stringWithFormat:@"%d item%@, %@", [self numFiles], pluralS, totalSizeString]];
+            [bundleSizeTextField setStringValue:itemsSizeString];
+            [bundleSizeTextField setToolTip:tooltipString];
             [platypusController updateEstimatedAppSize];
         });
     });
