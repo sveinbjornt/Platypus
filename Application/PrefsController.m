@@ -119,7 +119,7 @@
     [oPanel setTitle:@"Select Editor"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:(NSString *)kUTTypeApplication]];
+    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:(NSString *)kUTTypeApplicationBundle]];
 
     //run open panel
     if ([oPanel runModal] == NSOKButton) {

@@ -57,6 +57,9 @@
     if (droppableSuffixes != nil) {
         [droppableSuffixes release];
     }
+    if (droppableUniformTypes != nil) {
+        [droppableUniformTypes release];
+    }
     if (interpreterArgs != nil) {
         [interpreterArgs release];
     }
@@ -132,7 +135,7 @@
     //load dictionary containing app settings from property list
     NSDictionary *appSettingsDict = [NSDictionary dictionaryWithContentsOfFile:appSettingsPath];
     if (appSettingsDict == nil) {
-        [Alerts fatalAlert:@"Corrupt app settings" subText:@"Unable to load AppSettings.plist"];
+        [Alerts fatalAlert:@"Corrupt app settings" subText:@"Unable to read AppSettings.plist"];
     }
     
     //determine output type
@@ -278,18 +281,24 @@
             droppableSuffixes = [[NSArray alloc] initWithArray:[NSArray array]];
         }
         
-        // see if we accept any dropped item, * suffix indicates if that is the case
-        for (NSString *suffix in droppableSuffixes) {
-            if ([suffix isEqualToString:@"*"]) {
-                acceptAnyDroppedItem = YES;
-            }
+        if ([appSettingsDict objectForKey:@"DropUniformTypes"]) {
+            droppableUniformTypes = [[NSArray alloc] initWithArray:[appSettingsDict objectForKey:@"DropUniformTypes"]];
+        } else {
+            droppableUniformTypes = [[NSArray alloc] initWithArray:[NSArray array]];
+        }
+        
+        if ([droppableSuffixes containsObject:@"*"] || [droppableUniformTypes containsObject:@"public.item"]) {
+            acceptAnyDroppedItem = YES;
+        }
+        if ([droppableUniformTypes containsObject:(NSString *)kUTTypeFolder]) {
+            acceptDroppedFolders = YES;
         }
     }
     
     //get interpreter
     NSString *scriptInterpreter = [appSettingsDict objectForKey:@"ScriptInterpreter"];
     if (scriptInterpreter == nil || ![FILEMGR fileExistsAtPath:scriptInterpreter]) {
-        [Alerts fatalAlert:@"Missing interpreter" subText:[NSString stringWithFormat:@"This application cannot run because the interpreter '%@' does not exist on this system.", scriptInterpreter]];
+        [Alerts fatalAlert:@"Missing interpreter" subText:[NSString stringWithFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreter]];
     }
     interpreter = [[NSString alloc] initWithString:scriptInterpreter];
 
@@ -309,7 +318,7 @@
             chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
         }
         if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
-            [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is not readable."];
+            [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is unreadable."];
         }
     }
     //if we have a "secure" script, there is no path to get. We write script to temp location on execution
