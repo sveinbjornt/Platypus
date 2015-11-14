@@ -129,22 +129,38 @@
 }
 
 - (UInt64)fileOrFolderSize:(NSString *)path {
+    NSString *fileOrFolderPath = [[path copy] autorelease];
+    
     BOOL isDir;
     if (path == nil || ![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]) {
         return 0;
     }
     
+    // resolve if symlink
+    NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:fileOrFolderPath error:nil];
+    if (fileAttrs) {
+        NSString *fileType = [fileAttrs fileType];
+        if ([fileType isEqualToString:NSFileTypeSymbolicLink]) {
+            NSError *err;
+            fileOrFolderPath = [[NSFileManager defaultManager] destinationOfSymbolicLinkAtPath:fileOrFolderPath error:&err];
+            if (fileOrFolderPath == nil) {
+                NSLog(@"Error resolving symlink %@: %@", path, [err localizedDescription]);
+                fileOrFolderPath = path;
+            }
+        }
+    }
+    
     UInt64 size = 0;
     if (isDir) {
-        NSDirectoryEnumerator *dirEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:path];
+        NSDirectoryEnumerator *dirEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:fileOrFolderPath];
         while ([dirEnumerator nextObject]) {
             if ([NSFileTypeRegular isEqualToString:[[dirEnumerator fileAttributes] fileType]]) {
                 size += [[dirEnumerator fileAttributes] fileSize];
             }
         }
-        size = [[NSWorkspace sharedWorkspace] nrCalculateFolderSize:path];
+        size = [[NSWorkspace sharedWorkspace] nrCalculateFolderSize:fileOrFolderPath];
     } else {
-        size = [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil] fileSize];
+        size = [[[NSFileManager defaultManager] attributesOfItemAtPath:fileOrFolderPath error:nil] fileSize];
     }
     
     return size;
