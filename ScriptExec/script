@@ -29,14 +29,14 @@ echo "RUNNING!"
 echo "FILE ARGS:"
 echo $@ | say
 echo "STDIN:"
-say Hello
-while read LINE; do
-    say World
-    #echo "YO: ${LINE}" > /Users/sveinbjorn/Desktop/smu.txt    # do something with it here
-    echo ${LINE}
-done
-
-echo ${LINE}
+#say Hello
+#while read LINE; do
+#    say World
+#    #echo "YO: ${LINE}" > /Users/sveinbjorn/Desktop/smu.txt    # do something with it here
+#    echo ${LINE}
+#done
+#
+#echo ${LINE}
 #say ${LINE}
 
 #print "Arguments:\n";
@@ -67,9 +67,9 @@ echo ${LINE}
 #print "Yo!\n";
 #print "QUITAPP\n";
 #
-#print "MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n";
-#print "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
-#print "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
+echo "MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n";
+echo "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
+echo "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
 
 #use Shell;
 #
