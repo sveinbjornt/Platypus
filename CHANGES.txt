@@ -28,6 +28,7 @@ For 5.0
     TODO: Documentation on reading dropped text from STDIN
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
 
+    * Fixed issue where a status menu could display an empty menu if clicked repeatedly
     * Use UTI methods instead of deprecated imageFileTypes
     * Fixed issue where dropping text on an app wouldn't work with “Remain running after initial execution” off
     * Symlinks now resolved when adding files to bundled files list
