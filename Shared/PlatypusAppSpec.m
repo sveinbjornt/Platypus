@@ -277,7 +277,7 @@
     execDestinationPath = [macosPath stringByAppendingString:@"/"];
     execDestinationPath = [execDestinationPath stringByAppendingString:[properties objectForKey:@"Name"]];
     [FILEMGR copyItemAtPath:execPath toPath:execDestinationPath error:nil];
-    NSDictionary *execAttrDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithShort:S_IRWXU | S_IRWXG | S_IROTH]
+    NSDictionary *execAttrDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLong:0755]
                                                              forKey:NSFilePosixPermissions];
     [FILEMGR setAttributes:execAttrDict ofItemAtPath:execDestinationPath error:nil];
 
@@ -314,7 +314,7 @@
         } else { // copy script over
             [FILEMGR copyItemAtPath:[properties objectForKey:@"ScriptPath"] toPath:scriptFilePath error:nil];
         }
-        NSDictionary *fileAttrDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithShort:S_IRWXU | S_IRWXG | S_IROTH]
+        NSDictionary *fileAttrDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLong:0755]
                                                                  forKey:NSFilePosixPermissions];
         [FILEMGR setAttributes:fileAttrDict ofItemAtPath:scriptFilePath error:nil];
     }
