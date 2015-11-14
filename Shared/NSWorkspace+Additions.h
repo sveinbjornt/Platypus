@@ -35,7 +35,7 @@
 
 - (unsigned long long)nrCalculateFolderSize:(NSString *)folderPath;
 - (UInt64)fileOrFolderSize:(NSString *)path;
-- (NSString *)sizeAsHumanReadable:(UInt64)size;
+- (NSString *)fileSizeAsHumanReadableString:(UInt64)size;
 - (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path;
 - (BOOL)openPathInDefaultBrowser:(NSString *)path;
 - (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;

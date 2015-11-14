@@ -984,7 +984,7 @@
     // bundled files altogether
     estimatedAppSize += [bundledFilesController totalFileSize];
     
-    return [WORKSPACE sizeAsHumanReadable:estimatedAppSize];
+    return [WORKSPACE fileSizeAsHumanReadableString:estimatedAppSize];
 }
 
 // Creates an NSTask from settings

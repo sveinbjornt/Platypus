@@ -167,10 +167,10 @@
 }
 
 - (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path {
-    return [self sizeAsHumanReadable:[self fileOrFolderSize:path]];
+    return [self fileSizeAsHumanReadableString:[self fileOrFolderSize:path]];
 }
 
-- (NSString *)sizeAsHumanReadable:(UInt64)size {
+- (NSString *)fileSizeAsHumanReadableString:(UInt64)size {
     NSString *str;
     
     if (size < 1024ULL) {
