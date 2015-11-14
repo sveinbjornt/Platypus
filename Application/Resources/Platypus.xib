@@ -17,7 +17,7 @@
                 <outlet property="delegate" destination="335" id="5160"/>
             </connections>
         </customObject>
-        <window title="Platypus" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="21" userLabel="platypusWindow">
+        <window title="Platypus" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="PlatypusWindow" animationBehavior="default" id="21" userLabel="platypusWindow">
             <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="369" y="131" width="658" height="529"/>
@@ -178,7 +178,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="E7494FB3-ACCA-430B-8F3B-4938B4475556" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="0C02FF60-2F0B-4899-9D09-E66672E688A1" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -2899,8 +2899,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="DefaultStatusMenuIcon" width="36" height="36"/>
-        <image name="E7494FB3-ACCA-430B-8F3B-4938B4475556" width="16" height="16">
+        <image name="0C02FF60-2F0B-4899-9D09-E66672E688A1" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -2980,6 +2979,7 @@ EKAQrRCyELQQthC7EMMQxhDLENMQ1hDoEOsQ8AAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAABDy
 A
 </mutableData>
         </image>
+        <image name="DefaultStatusMenuIcon" width="36" height="36"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
