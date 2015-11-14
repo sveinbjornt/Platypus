@@ -1,3 +1,4 @@
+#!/bin/sh
 #!/usr/bin/perl -w
 # Test script for ScriptExec binary
 #
@@ -21,7 +22,23 @@
 #
 #	$i++;
 #}
-local $| = 1;
+#local $| = 1;
+
+#say Hello
+echo "RUNNING!"
+echo "FILE ARGS:"
+echo $@ | say
+echo "STDIN:"
+say Hello
+while read LINE; do
+    say World
+    #echo "YO: ${LINE}" > /Users/sveinbjorn/Desktop/smu.txt    # do something with it here
+    echo ${LINE}
+done
+
+echo ${LINE}
+#say ${LINE}
+
 #print "Arguments:\n";
 #
 #foreach (@ARGV) { print "\t" . $_ . "\n"; }
@@ -43,13 +60,13 @@ local $| = 1;
 #    print "$_\n";
 #}
 
-print "Here's some script output\n";
-sleep 3;
-print "ALERT:Hello, world!|This is a test\n";
-sleep 2;
-print "Yo!\n";
-print "QUITAPP\n";
-
+#print "Here's some script output\n";
+#sleep 3;
+#print "ALERT:Hello, world!|This is a test\n";
+#sleep 2;
+#print "Yo!\n";
+#print "QUITAPP\n";
+#
 #print "MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n";
 #print "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
 #print "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";

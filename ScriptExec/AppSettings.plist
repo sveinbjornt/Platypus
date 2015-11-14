@@ -27,7 +27,7 @@
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunningAfterCompletion</key>
-	<true/>
+	<false/>
 	<key>RequiresAdminPrivileges</key>
 	<false/>
 	<key>ScriptArgs</key>
