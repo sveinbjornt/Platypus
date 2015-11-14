@@ -229,27 +229,36 @@
     
     // read and store command line arguments to the application
     NSMutableArray *processArgs = [NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]];
+    commandLineArguments = [[NSMutableArray alloc] init];
 
-    if ([processArgs count]) {
+    if ([processArgs count] > 1) {
         // the first argument is always the path to the binary, so we remove that
         [processArgs removeObjectAtIndex:0];
-        // hack to remove XCode CLI flags. Really just here to make debugging easier.
-        if ([processArgs count] > 1 && [[processArgs objectAtIndex:0] isEqualToString:@"-NSDocumentRevisionsDebugMode"]) {
-            [processArgs removeObjectAtIndex:0];
-            [processArgs removeObjectAtIndex:0];
-        }
-    }
-    
-    commandLineArguments = [[NSMutableArray alloc] init];
-    for (NSString *arg in processArgs) {
-        // On older versions of Mac OS X, apps opened from the Finder
-        // are passed a process number argument of the form -psn_0_*******
-        // We don't hand these over to the script
-        if ([arg hasPrefix:@"-psn_"] == FALSE) {
+        BOOL lastWasDocRevFlag = NO;
+        for (NSString *arg in processArgs) {
+            
+            // On older versions of Mac OS X, apps opened from the Finder
+            // are passed a process number argument of the form -psn_0_*******
+            // We ignore these
+            if ([arg hasPrefix:@"-psn_"]) {
+                continue;
+            }
+            // Hack to remove XCode CLI flags -NSDocumentRevisionsDebugMode YES.
+            // Really just here to make debugging easier.
+            if ([arg isEqualToString:@"YES"] && lastWasDocRevFlag) {
+                continue;
+            }
+            if ([arg isEqualToString:@"-NSDocumentRevisionsDebugMode"]) {
+                lastWasDocRevFlag = YES;
+                continue;
+            } else {
+                lastWasDocRevFlag = NO;
+            }
+            
             [commandLineArguments addObject:arg];
         }
     }
-    
+
     // we never have privileged execution or droppable with status menu apps
     if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
         remainRunning = YES;
@@ -357,6 +366,14 @@
 
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames {
 
+    if (hasTaskRun == FALSE && commandLineArguments != nil) {
+        for (NSString *filePath in filenames) {
+            if ([commandLineArguments containsObject:filePath]) {
+                return;
+            }
+        }
+    }
+    
     // add the dropped files as a job for processing
     NSInteger ret = [self addDroppedFilesJob:filenames];
     
@@ -744,10 +761,11 @@
     // but apparently helpful for certain use cases such as Firefox protocol handlers etc.
     if (commandLineArguments && [commandLineArguments count]) {
         [arguments addObjectsFromArray:commandLineArguments];
+        [commandLineArguments release];
         commandLineArguments = nil;
     }
     
-    //finally, dequeue job and add arguments 
+    //finally, dequeue job and add arguments
     if ([jobQueue count] > 0) {
         ScriptExecJob *job = [jobQueue objectAtIndex:0];
 
@@ -1308,7 +1326,6 @@
             [acceptedFiles addObject:file];
         }
     }
-    
     // if at this point there are no accepted files, we refuse drop
     if ([acceptedFiles count] == 0) {
         return NO;

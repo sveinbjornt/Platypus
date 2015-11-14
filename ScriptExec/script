@@ -27,8 +27,9 @@
 #say Hello
 echo "RUNNING!"
 echo "FILE ARGS:"
-echo $@ | say
-echo "STDIN:"
+echo $@
+#echo $@ | say
+#echo "STDIN:"
 #say Hello
 #while read LINE; do
 #    say World
@@ -67,9 +68,9 @@ echo "STDIN:"
 #print "Yo!\n";
 #print "QUITAPP\n";
 #
-echo "MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n";
-echo "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
-echo "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
+#echo "MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n";
+#echo "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
+#echo "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
 
 #use Shell;
 #
