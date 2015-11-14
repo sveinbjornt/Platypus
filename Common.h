@@ -44,6 +44,7 @@
 #define PROGRAM_MANPAGE_URL         @ "http://sveinbjorn.org/files/manpages/platypus.man.html"
 #define PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL [NSString stringWithFormat:@"%@#41",PROGRAM_DOCUMENTATION_URL]
 #define PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL [NSString stringWithFormat:@"%@#22",PROGRAM_DOCUMENTATION_URL]
+#define PROGRAM_PROFILE_UTI         @"org.sveinbjorn.platypus-profile"
 
 // documentation
 #define PROGRAM_README_FILE         @ "Readme.html"
