@@ -18,17 +18,17 @@ For 5.0
     TODO: Overhaul very old and in many respects out of date documentation
     TODO: New high res images for documentation
     TODO: File watching still broken for script path
-    TODO: Use UTI methods instead of deprecated imageFileTypes
     TODO: Implement UI stuff making clear that UTIs exclude suffixes
-    TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
+    TODO: Test UTI stuff
     TODO: Fix "Create app on script file change" feature
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Add example showing STATUSMENUICON: syntax in action
     TODO: Add documentation for ALERT:Title|Info syntax
     TODO: Add sample profile
-
+    TODO: Documentation on reading dropped text from STDIN
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
 
+    * Use UTI methods instead of deprecated imageFileTypes
     * Fixed issue where dropping text on an app wouldn't work with “Remain running after initial execution” off
     * Symlinks now resolved when adding files to bundled files list
     * Folder sizes are now calculated much faster when adding to bundled files list
