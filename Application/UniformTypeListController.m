@@ -44,7 +44,7 @@
     for (NSString *filePath in draggedFiles) {
         BOOL isDir;
         [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDir];
-        if (isDir) {
+        if (isDir && [WORKSPACE isFilePackageAtPath:filePath] == FALSE) {
             [self addItem:(NSString *)kUTTypeFolder];
         } else {
             NSString *uti = [WORKSPACE typeOfFile:filePath error:nil];
