@@ -1440,7 +1440,7 @@
     // run script and wait until we've received all the script output
     [self executeScript];
     while (isTaskRunning) {
-        usleep(5000); // microseconds
+        usleep(100000); // microseconds
     }
     
     // create an array of lines by separating output by newline
