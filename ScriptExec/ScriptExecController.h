@@ -139,6 +139,7 @@
     
     BOOL isTaskRunning;
     BOOL outputEmpty;
+    BOOL hasTaskRun;
     
     NSString *scriptText;
     NSString *remnants;

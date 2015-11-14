@@ -338,7 +338,7 @@
     if (promptForFileOnLaunch && isDroppable && ![jobQueue count]) {
         [self openFiles:self];
     } else {
-        [self executeScript];
+        [self performSelector:@selector(executeScriptIfNothingDropped) withObject:nil afterDelay:0.1];
     }
 }
 
@@ -753,7 +753,15 @@
     }
 }
 
+- (void)executeScriptIfNothingDropped {
+    if (hasTaskRun == FALSE) {
+        [self executeScript];
+    }
+}
+
 - (void)executeScript {
+    hasTaskRun = YES;
+    
     // we never execute script if there is one running
     if (isTaskRunning) {
         return;
@@ -872,15 +880,14 @@
         [FILEMGR removeItemAtPath:scriptPath error:nil];
     }
     
-    // we quit now if the app isn't set to continue running
-    if (!remainRunning) {
-        [[NSApplication sharedApplication] terminate:self];
-        return;
-    }
-    
     // if there are more jobs waiting for us, execute
     if ([jobQueue count] > 0) {
         [self executeScript];
+    }
+    
+    // we quit now if the app isn't set to continue running
+    if (!remainRunning) {
+        [[NSApplication sharedApplication] terminate:self];
     }
 }
 

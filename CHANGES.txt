@@ -26,10 +26,10 @@ For 5.0
     TODO: Add example showing STATUSMENUICON: syntax in action
     TODO: Add documentation for ALERT:Title|Info syntax
     TODO: Add sample profile
-    TODO: Dropping text on app doesn't work with “Remain running after initial execution” off
 
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
 
+    * Fixed issue where dropping text on an app wouldn't work with “Remain running after initial execution” off
     * Symlinks now resolved when adding files to bundled files list
     * Folder sizes are now calculated much faster when adding to bundled files list
     * Arguments window now highlights arguments and argument groups in command preview field
