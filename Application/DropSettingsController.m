@@ -81,12 +81,14 @@
     [self controlTextDidChange];
     [self updateButtonStatus];
     
+    [self setSuffixListEnabled:([uniformTypeListController numItems] == 0)];
+    
     //open window
-    [NSApp  beginSheet:dropSettingsWindow
-        modalForWindow:window
-         modalDelegate:nil
-        didEndSelector:nil
-           contextInfo:nil];
+    [NSApp beginSheet:dropSettingsWindow
+       modalForWindow:window
+        modalDelegate:nil
+       didEndSelector:nil
+          contextInfo:nil];
     
     [NSApp runModalForWindow:dropSettingsWindow];
     
@@ -158,6 +160,7 @@
     [uniformTypeTextField setStringValue:@""];
     [self controlTextDidChange];
     [uniformTypeListTableView reloadData];
+    [self setSuffixListEnabled:NO];
 }
 
 - (IBAction)removeListItem:(id)sender
@@ -185,6 +188,8 @@
             break;
         }
     }
+    
+    [self setSuffixListEnabled:([uniformTypeListController numItems] == 0)];
 }
 
 #pragma mark -
@@ -206,6 +211,15 @@
     [self setAcceptsFiles:YES];
     [self setDeclareService:NO];
     [self setPromptsForFileOnLaunch:NO];
+    [self setSuffixListEnabled:([uniformTypeListController numItems] == 0)];
+}
+
+- (void)setSuffixListEnabled:(BOOL)enabled {
+    [suffixListTableView setEnabled:enabled];
+    [addSuffixButton setEnabled:enabled];
+    [removeSuffixButton setEnabled:enabled];
+    [suffixTextField setEnabled:enabled];
+    [suffixListBox setAlphaValue:0.5 + (enabled * 0.5)];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {

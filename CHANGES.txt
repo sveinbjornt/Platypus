@@ -18,7 +18,6 @@ For 5.0
     TODO: Overhaul very old and in many respects out of date documentation
     TODO: New high res images for documentation
     TODO: File watching still broken for script path
-    TODO: Implement UI stuff making clear that UTIs exclude suffixes
     TODO: Test UTI stuff
     TODO: Fix "Create app on script file change" feature
     TODO: Long GNU named params for command line tool, e.g. --some-option
@@ -28,6 +27,7 @@ For 5.0
     TODO: Documentation on reading dropped text from STDIN
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
 
+    * Implemented UI stuff making clear that UTIs exclude suffixes
     * Fixed issue where a status menu could display an empty menu if clicked repeatedly
     * Use UTI methods instead of deprecated imageFileTypes
     * Fixed issue where dropping text on an app wouldn't work with “Remain running after initial execution” off

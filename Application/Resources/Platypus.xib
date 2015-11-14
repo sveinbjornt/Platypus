@@ -178,7 +178,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="0C02FF60-2F0B-4899-9D09-E66672E688A1" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="A078DFD5-298E-4047-B0A8-66952A13A7CF" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -687,6 +687,7 @@ DQ
                 <outlet property="removeSuffixButton" destination="992" id="1369"/>
                 <outlet property="removeUTIButton" destination="tqU-IB-IyA" id="5iu-Xf-rvO"/>
                 <outlet property="selectDocumentIconButton" destination="11241" id="11535"/>
+                <outlet property="suffixListBox" destination="701" id="QaT-6S-E2N"/>
                 <outlet property="suffixListTableView" destination="708" id="h4Y-1x-x6F"/>
                 <outlet property="suffixTextField" destination="712" id="1372"/>
                 <outlet property="typesErrorTextField" destination="824" id="1374"/>
@@ -2899,7 +2900,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="0C02FF60-2F0B-4899-9D09-E66672E688A1" width="16" height="16">
+        <image name="A078DFD5-298E-4047-B0A8-66952A13A7CF" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

@@ -33,6 +33,7 @@
 @class SuffixTypeListController, UniformTypeListController;
 @interface DropSettingsController : NSObject <NSTableViewDelegate>
 {
+    IBOutlet NSBox *suffixListBox;
     IBOutlet NSButton *addSuffixButton;
     IBOutlet NSButton *removeSuffixButton;
     IBOutlet NSTableView *suffixListTableView;
