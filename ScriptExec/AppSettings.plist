@@ -23,11 +23,11 @@
 		<true/>
 	</dict>
 	<key>OutputType</key>
-	<string>Status Menu</string>
+	<string>Text Window</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunningAfterCompletion</key>
-	<false/>
+	<true/>
 	<key>RequiresAdminPrivileges</key>
 	<false/>
 	<key>ScriptArgs</key>
