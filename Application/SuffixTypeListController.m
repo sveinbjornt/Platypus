@@ -32,8 +32,19 @@
 
 @implementation SuffixTypeListController
 
-- (NSImage *)iconForItem:(NSString *)item {
-    return [WORKSPACE iconForFileType:item];
+- (NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo> )info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation {
+    
+    NSPasteboard *pboard = [info draggingPasteboard];
+    NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
+    BOOL hasSuffix = NO;
+    for (NSString *filePath in draggedFiles) {
+        NSString *suffix = [filePath pathExtension];
+        if ([suffix isEqualToString:@""] == NO) {
+            hasSuffix = YES;
+        }
+    }
+    
+    return hasSuffix ? NSDragOperationCopy : NSDragOperationNone;
 }
 
 - (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {

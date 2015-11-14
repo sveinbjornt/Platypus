@@ -178,7 +178,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="A078DFD5-298E-4047-B0A8-66952A13A7CF" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="A8960880-4048-4558-9305-6EE1D8623537" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="537" minWidth="33.28857421875" maxWidth="1000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -1171,7 +1171,7 @@ CA
                                     <action selector="openWebsite:" target="335" id="5635"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Platypus on GitHub" toolTip="Visit the Platypus website" id="gaW-DK-3fq">
+                            <menuItem title="Platypus on GitHub" toolTip="Visit the Platypus GitHub site" id="gaW-DK-3fq">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openGitHubWebsite:" target="335" id="9k1-Ne-mfY"/>
@@ -1446,7 +1446,7 @@ DQ
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </textFieldCell>
                                                                 </tableColumn>
-                                                                <tableColumn identifier="2" editable="NO" width="135.50100708007812" minWidth="4" maxWidth="1000" id="812">
+                                                                <tableColumn identifier="2" editable="NO" width="51" minWidth="4" maxWidth="1000" id="812">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Suffixes">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2900,7 +2900,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="A078DFD5-298E-4047-B0A8-66952A13A7CF" width="16" height="16">
+        <image name="A8960880-4048-4558-9305-6EE1D8623537" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
