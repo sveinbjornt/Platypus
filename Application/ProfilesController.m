@@ -227,7 +227,6 @@
  *****************************************/
 
 - (IBAction)constructMenus:(id)sender {
-    int i;
     NSArray *profiles = [self getProfilesList];
     NSArray *examples = [self getExamplesList];
     
@@ -237,7 +236,7 @@
     
     // Create Examples menu
     NSMenu *examplesMenu = [[[NSMenu alloc] init] autorelease];
-    for (i = 0; i < [examples count]; i++) {
+    for (int i = 0; i < [examples count]; i++) {
         NSMenuItem *menuItem = [examplesMenu addItemWithTitle:[examples objectAtIndex:i] action:@selector(profileMenuItemSelected:) keyEquivalent:@""];
         [menuItem setTarget:self];
         [menuItem setEnabled:YES];
@@ -259,7 +258,7 @@
     
     if ([profiles count] > 0) {
         //populate with contents of array
-        for (i = 0; i < [profiles count]; i++) {
+        for (int i = 0; i < [profiles count]; i++) {
             NSMenuItem *menuItem = [profilesMenu addItemWithTitle:[profiles objectAtIndex:i] action:@selector(profileMenuItemSelected:) keyEquivalent:@""];
             [menuItem setTarget:self];
             [menuItem setEnabled:YES];

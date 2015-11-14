@@ -41,13 +41,20 @@
     NSPasteboard *pboard = [info draggingPasteboard];
     NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
     
-    for (int i = 0; i < [draggedFiles count]; i++) {
-        NSString *suffix = [[draggedFiles objectAtIndex:i] pathExtension];
-        NSString *UTI = (NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,
-                                                                          (CFStringRef)suffix,
-                                                                          NULL);
-        [self addItem:[UTI autorelease]];
+    for (NSString *filePath in draggedFiles) {
+        BOOL isDir;
+        [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDir];
+        if (isDir) {
+            [self addItem:(NSString *)kUTTypeFolder];
+        } else {
+            NSString *uti = [WORKSPACE typeOfFile:filePath error:nil];
+            if (uti) {
+                [self addItem:uti];
+            }
+        }
+
     }
+    
     [tv reloadData];
     return YES;
 }
