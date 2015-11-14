@@ -54,6 +54,10 @@
 }
 
 - (NSImage *)iconForItem:(NSString *)item {
+    NSImage *icon = [WORKSPACE iconForFileType:item];
+    if (icon != nil) {
+        return icon;
+    }
     return [WORKSPACE iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
 }
 
