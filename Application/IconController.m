@@ -266,7 +266,7 @@
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[NSImage imageFileTypes]];
+    [oPanel setAllowedFileTypes:[NSImage imageTypes]];
     
     // run open panel sheet
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
@@ -372,14 +372,13 @@
 
 // sets text to custom icon
 - (void)updateForCustomIcon {
-    [iconNameTextField setStringValue:@"Custom Icon"];
-    
     NSString *tmpIconPath;
     do {
         tmpIconPath = TMP_ICON_PATH;
     } while ([FILEMGR fileExistsAtPath:tmpIconPath]);
     
     if ([self writeIconToPath:tmpIconPath]) {
+        [iconNameTextField setStringValue:@"Custom Icon"];
         [self setIcnsFilePath:tmpIconPath];
     } else {
         [self setDefaultIcon];
@@ -388,35 +387,32 @@
 
 #pragma mark -
 
-/*****************************************
+/*************************************************
  - Dragging and dropping for the PlatypusIconView
- *****************************************/
+ *************************************************/
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
-    
+
     if (![[pboard types] containsObject:NSFilenamesPboardType]) {
         return NO;
     }
     
-    int i;
     NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
     
     // first, we look for an icns file, and load it if there is one
-    for (i = 0; i < [files count]; i++) {
-        if ([[files objectAtIndex:i] hasSuffix:@"icns"]) {
-            return [self loadIcnsFile:[files objectAtIndex:i]];
+    for (NSString *filename in files) {
+        if ([filename hasSuffix:@"icns"]) {
+            return [self loadIcnsFile:filename];
         }
     }
     
     // since no icns file, search for an image, load the first one we find
-    for (i = 0; i < [files count]; i++) {
-        NSArray *supportedImageTypes = [NSImage imageFileTypes];
-        int j;
-        for (j = 0; j < [supportedImageTypes count]; j++) {
-            if ([[files objectAtIndex:i] hasSuffix:[supportedImageTypes objectAtIndex:j]]) {
-                return [self loadImageFile:[files objectAtIndex:i]];
-            }
+    NSArray *supportedImageTypes = [NSImage imageTypes];
+    for (NSString *filename in files) {
+        NSString *uti = [[NSWorkspace sharedWorkspace] typeOfFile:filename error:nil];
+        if ([supportedImageTypes containsObject:uti]) {
+            return [self loadImageFile:filename];
         }
     }
     
@@ -424,7 +420,7 @@
 }
 
 - (BOOL)isPresetIcon:(NSString *)str {
-    return ([str hasPrefix:[[NSBundle mainBundle] resourcePath]]);
+    return [str hasPrefix:[[NSBundle mainBundle] resourcePath]];
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
@@ -432,26 +428,23 @@
     if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
 
         NSArray *files = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-        int i;
         
-        // link for icns file, but not if it's a preset icon
-        for (i = 0; i < [files count]; i++) {
-            if ([self isPresetIcon:[files objectAtIndex:i]]) {
+        // link operation for icns file, but not if it's a preset icon
+        for (NSString *filename in files) {
+            if ([self isPresetIcon:filename]) {
                 return NSDragOperationNone;
             }
-            if ([[files objectAtIndex:i] hasSuffix:@"icns"]) {
+            if ([filename hasSuffix:@"icns"]) {
                 return NSDragOperationLink;
             }
         }
         
-        // copy plus for image file
-        for (i = 0; i < [files count]; i++) {
-            NSArray *supportedImageTypes = [NSImage imageFileTypes];
-            int j;
-            for (j = 0; j < [supportedImageTypes count]; j++) {
-                if ([[files objectAtIndex:i] hasSuffix:[supportedImageTypes objectAtIndex:j]]) {
-                    return NSDragOperationCopy;
-                }
+        // copy operation icon for image file
+        NSArray *supportedImageTypes = [NSImage imageTypes];
+        for (NSString *filename in files) {
+            NSString *uti = [[NSWorkspace sharedWorkspace] typeOfFile:filename error:nil];
+            if ([supportedImageTypes containsObject:uti]) {
+                return NSDragOperationCopy;
             }
         }
     }

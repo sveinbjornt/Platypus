@@ -119,7 +119,7 @@
     [oPanel setTitle:[NSString stringWithFormat:@"%@ - Select Image", PROGRAM_NAME]];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[NSImage imageFileTypes]];
+    [oPanel setAllowedFileTypes:[NSImage imageTypes]];
     
     if ([oPanel runModal] == NSOKButton) {
         NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
