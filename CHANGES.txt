@@ -10,6 +10,7 @@ For 5.1
     TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: Get rid of crazy pattern where objects release themselves in the window controllers. What was I thinking?
+    TODO: Add URI handling https://github.com/barryk/DropScript/commit/3fa2d00177cc22680c54edeb6f433a658f6b07e8
 
 For 5.0
     TODO: Fix Provide as Mac OS X service
@@ -20,13 +21,17 @@ For 5.0
     TODO: Use UTI methods instead of deprecated imageFileTypes
     TODO: Implement UI stuff making clear that UTIs exclude suffixes
     TODO: Test new imageFileTypes stuff + UTI change + ibtool stuff
-    TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO: Fix "Create app on script file change" feature
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Add example showing STATUSMENUICON: syntax in action
     TODO: Add documentation for ALERT:Title|Info syntax
     TODO: Add sample profile
-    TODO: Drop targets do not work with “Remain running after initial execution” off
+    TODO: Dropping text on app doesn't work with “Remain running after initial execution” off
+
+    TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
+
+    * Symlinks now resolved when adding files to bundled files list
+    * Folder sizes are now calculated much faster when adding to bundled files list
     * Arguments window now highlights arguments and argument groups in command preview field
     * New high resolution (1024x1024) application icons
     * Added ALERT:\.+ syntax, which triggers a modal alert dialog
