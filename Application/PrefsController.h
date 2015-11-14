@@ -30,25 +30,28 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class PlatypusController;
 @interface PrefsController : NSWindowController
 {
-    IBOutlet id revealAppCheckbox;
-    IBOutlet id openAppCheckbox;
-    IBOutlet id createOnScriptChangeCheckbox;
+    IBOutlet NSButton *revealAppCheckbox;
+    IBOutlet NSButton *openAppCheckbox;
+    IBOutlet NSButton *createOnScriptChangeCheckbox;
     IBOutlet NSPopUpButton *defaultEditorPopupButton;
-    IBOutlet id defaultTextEncodingPopupButton;
-    IBOutlet id defaultBundleIdentifierTextField;
-    IBOutlet id defaultAuthorTextField;
-    IBOutlet id CLTStatusTextField;
-    IBOutlet id installCLTButton;
-    IBOutlet id installCLTProgressIndicator;
-    IBOutlet id prefsWindow;
+    IBOutlet NSPopUpButton *defaultTextEncodingPopupButton;
+    IBOutlet NSTextField *defaultBundleIdentifierTextField;
+    IBOutlet NSTextField *defaultAuthorTextField;
+    IBOutlet NSTextField *CLTStatusTextField;
+    IBOutlet NSButton *installCLTButton;
+    IBOutlet NSProgressIndicator *installCLTProgressIndicator;
+    IBOutlet NSWindow *prefsWindow;
+    IBOutlet PlatypusController *platypusController;
 }
++ (NSDictionary *)defaultsDictionary;
 - (IBAction)showWindow:(id)sender;
 - (IBAction)applyPrefs:(id)sender;
 - (void)setIconsForEditorMenu;
 - (IBAction)restoreDefaultPrefs:(id)sender;
-- (IBAction)installCLT:(id)sender;
+- (IBAction)commandLineInstallButtonClicked:(id)sender;
 - (void)installCommandLineTool;
 - (void)uninstallCommandLineTool;
 - (IBAction)uninstallPlatypus:(id)sender;
@@ -57,5 +60,4 @@
 - (BOOL)isCommandLineToolInstalled;
 - (BOOL)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
 - (IBAction)selectScriptEditor:(id)sender;
-- (IBAction)cancel:(id)sender;
 @end
