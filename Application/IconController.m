@@ -270,15 +270,20 @@
     
     // run open panel sheet
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
-        if (result == NSOKButton) {
-            NSString *filename = [[[oPanel URLs] objectAtIndex:0] path];
-            if ([filename hasSuffix:@"icns"]) {
-                [self loadIcnsFile:filename];
-            } else {
-                [self loadImageFile:filename];
-            }
-        }
         [window setTitle:PROGRAM_NAME];
+        if (result != NSOKButton) {
+            return;
+        }
+            
+        NSString *filename = [[[oPanel URLs] objectAtIndex:0] path];
+        NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
+        
+        if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
+            [self loadIcnsFile:filename];
+        } else {
+            [self loadImageFile:filename];
+        }
+        
     }];
 }
 
@@ -290,15 +295,15 @@
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:@"icns"]];
+    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:(NSString *)kUTTypeAppleICNS]];
     
     //run open panel
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        [window setTitle:PROGRAM_NAME];
         if (result == NSOKButton) {
             NSString *filename = [[[oPanel URLs] objectAtIndex:0] path];
             [self loadIcnsFile:filename];
         }
-        [window setTitle:PROGRAM_NAME];
     }];
 }
 

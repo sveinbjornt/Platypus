@@ -1016,16 +1016,25 @@
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
-    NSString *filename;
-    BOOL isDir = FALSE;
     
     // File
     if ([[pboard types] containsObject:NSFilenamesPboardType]) {
+        
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
-        filename = [files objectAtIndex:0]; //we only load the first dragged item
+        NSString *filename = [files objectAtIndex:0]; //we only load the first dragged item
+        NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
+        
+
+        BOOL isDir;
         if ([FILEMGR fileExistsAtPath:filename isDirectory:&isDir] && !isDir) {
-            if ([filename hasSuffix:PROFILES_SUFFIX]) {
+            if ([filename hasSuffix:PROFILES_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
                 [profilesController loadProfileFile:filename];
+            } else if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeImage]) {
+                if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
+                    [iconController loadIcnsFile:filename];
+                } else {
+                    [iconController loadImageFile:filename];
+                }
             } else {
                 [self loadScript:filename];
             }
@@ -1047,12 +1056,9 @@
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
-    // we accept dragged files
+    
     if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
-        NSString *file = [[[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType] objectAtIndex:0];
-        if (![file hasSuffix:@".icns"]) {
-            return NSDragOperationLink;
-        }
+        return NSDragOperationLink;
     } else if ([[[sender draggingPasteboard] types] containsObject:NSStringPboardType]) {
         return NSDragOperationCopy;
     }
