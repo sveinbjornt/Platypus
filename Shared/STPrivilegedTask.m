@@ -37,7 +37,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
 
 @implementation STPrivilegedTask
 
-- (id)init
+- (instancetype)init
 {
     if ((self = [super init])) {
         launchPath = @"";

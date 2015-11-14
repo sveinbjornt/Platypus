@@ -31,6 +31,32 @@
 #import "TextSettingsController.h"
 #import "Common.h"
 
+@interface TextSettingsController()
+{
+    IBOutlet id window;
+    IBOutlet id textSettingsWindow;
+    
+    IBOutlet id backgroundColorWell;
+    IBOutlet id foregroundColorWell;
+    
+    IBOutlet id fontFaceTextField;
+    IBOutlet id textEncodingPopupButton;
+    
+    IBOutlet id textPreviewTextView;
+    IBOutlet id textSettingsButton;
+    
+    NSFont *currentFont;
+}
+- (IBAction)apply:(id)sender;
+- (IBAction)show:(id)sender;
+- (void)changeColor:(id)sender;
+- (IBAction)chooseFont:(id)sender;
+- (void)changeFont:(id)sender;
+- (void)setCurrentFont:(NSFont *)font;
+- (void)updateFontField;
+
+@end
+
 @implementation TextSettingsController
 
 - (void)awakeFromNib {

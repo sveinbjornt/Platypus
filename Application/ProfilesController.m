@@ -34,6 +34,25 @@
 #import "Common.h"
 #import "Alerts.h"
 
+#define EXAMPLES_TAG    7
+
+@interface ProfilesController()
+{
+    IBOutlet id profilesMenu;
+    IBOutlet id platypusController;
+    IBOutlet id examplesMenuItem;
+}
+- (IBAction)loadProfile:(id)sender;
+- (IBAction)saveProfile:(id)sender;
+- (IBAction)saveProfileToLocation:(id)sender;
+- (void)writeProfile:(NSDictionary *)dict toFile:(NSString *)profileDestPath;
+- (void)profileMenuItemSelected:(id)sender;
+- (IBAction)clearAllProfiles:(id)sender;
+- (IBAction)constructMenus:(id)sender;
+- (NSArray *)getProfilesList;
+- (NSArray *)getExamplesList;
+@end
+
 @implementation ProfilesController
 
 /*****************************************
@@ -51,7 +70,7 @@
     
     if ([oPanel runModal] == NSOKButton) {
         NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
-        [self loadProfileFile:filePath];
+        [self loadProfileAtPath:filePath];
     }
 }
 
@@ -59,7 +78,7 @@
  - Deal with dropped .platypus profile files
  *****************************************/
 
-- (void)loadProfileFile:(NSString *)file {
+- (void)loadProfileAtPath:(NSString *)file {
     // note it as a recently opened file
     [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:file]];
     
@@ -187,7 +206,7 @@
     if (commandKeyDown) {
         [WORKSPACE selectFile:profilePath inFileViewerRootedAtPath:profilePath];
     } else {
-        [self loadProfileFile:profilePath];
+        [self loadProfileAtPath:profilePath];
     }
 }
 

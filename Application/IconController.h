@@ -30,44 +30,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class VDKQueue;
 @interface IconController : NSObject
-{
-    IBOutlet id iconImageView;
-    IBOutlet id window;
-    IBOutlet id iconToggleButton;
-    IBOutlet id iconNameTextField;
-    IBOutlet id platypusController;
-    IBOutlet NSMenu *iconContextualMenu;
-    IBOutlet NSButton *iconActionButton;
-    NSString *icnsFilePath;
-    VDKQueue *fileWatcherQueue;
-}
-- (IBAction)iconActionButtonPressed:(id)sender;
-- (IBAction)copyIconPath:(id)sender;
-- (IBAction)copyIcon:(id)sender;
-- (IBAction)pasteIcon:(id)sender;
-- (IBAction)revealIconInFinder:(id)sender;
-- (void)updateIcnsStatus;
-- (IBAction)contentsWereAltered:(id)sender;
-- (IBAction)nextIcon:(id)sender;
-- (IBAction)previousIcon:(id)sender;
-- (void)setAppIconForType:(int)type;
-- (NSDictionary *)getIconInfoForType:(int)type;
-- (void)setDefaultIcon;
-- (IBAction)switchIcons:(id)sender;
-- (BOOL)writeIconToPath:(NSString *)path;
-- (NSData *)imageData;
+
 - (BOOL)hasIcns;
 - (NSString *)icnsFilePath;
 - (UInt64)iconSize;
-- (BOOL)validateMenuItem:(NSMenuItem *)anItem;
-- (IBAction)selectIcon:(id)sender;
-- (IBAction)selectIcnsFile:(id)sender;
+- (void)setDefaultIcon;
 - (BOOL)loadIcnsFile:(NSString *)filePath;
 - (BOOL)loadImageFile:(NSString *)filePath;
-- (BOOL)loadImageWithData:(NSData *)imgData;
-- (BOOL)loadImageFromPasteboard;
-- (BOOL)loadPresetIcon:(NSDictionary *)iconInfo;
-- (void)updateForCustomIcon;
+
 @end

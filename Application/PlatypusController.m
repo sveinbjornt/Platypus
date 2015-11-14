@@ -53,9 +53,98 @@
 #import "NSWorkspace+Additions.h"
 #import "Alerts.h"
 #import "NSColor+HexTools.h"
-
 #import "VDKQueue.h"
 
+@interface PlatypusController()
+{
+    //basic controls
+    IBOutlet NSTextField *appNameTextField;
+    IBOutlet NSPopUpButton *scriptTypePopupButton;
+    IBOutlet STPathTextField *scriptPathTextField;
+    IBOutlet NSButton *editScriptButton;
+    IBOutlet NSButton *revealScriptButton;
+    IBOutlet NSPopUpButton *outputTypePopupMenu;
+    IBOutlet NSButton *createAppButton;
+    IBOutlet NSButton *textOutputSettingsButton;
+    IBOutlet NSButton *statusItemSettingsButton;
+    
+    //advanced options controls
+    IBOutlet NSTextField *interpreterTextField;
+    IBOutlet NSTextField *versionTextField;
+    IBOutlet NSTextField *bundleIdentifierTextField;
+    IBOutlet NSTextField *authorTextField;
+    
+    IBOutlet NSButton *rootPrivilegesCheckbox;
+    IBOutlet NSButton *encryptCheckbox;
+    IBOutlet NSButton *isDroppableCheckbox;
+    IBOutlet NSButton *showInDockCheckbox;
+    IBOutlet NSButton *remainRunningCheckbox;
+    
+    IBOutlet NSButton *dropSettingsButton;
+    
+    IBOutlet NSTextField *appSizeTextField;
+    
+    // create app dialog view extension
+    IBOutlet NSView *debugSaveOptionView;
+    IBOutlet NSButton *developmentVersionCheckbox;
+    IBOutlet NSButton *optimizeApplicationCheckbox;
+    IBOutlet NSButton *xmlPlistFormatCheckbox;
+    
+    //windows
+    IBOutlet NSWindow *window;
+    
+    //progress sheet when creating
+    IBOutlet NSWindow *progressDialogWindow;
+    IBOutlet NSProgressIndicator *progressBar;
+    IBOutlet NSTextField *progressDialogMessageLabel;
+    IBOutlet NSTextField *progressDialogStatusLabel;
+    
+    // interface controllers
+    IBOutlet IconController *iconController;
+    IBOutlet DropSettingsController *dropSettingsController;
+    IBOutlet ArgsController *argsController;
+    IBOutlet ProfilesController *profilesController;
+    IBOutlet TextSettingsController *textSettingsController;
+    IBOutlet StatusItemSettingsController *statusItemSettingsController;
+    IBOutlet PrefsController *prefsController;
+    IBOutlet BundledFilesController *bundledFilesController;
+    
+    VDKQueue *fileWatcherQueue;
+}
+
+- (IBAction)newScript:(id)sender;
+- (NSString *)createNewScript:(NSString *)scriptText;
+- (IBAction)revealScript:(id)sender;
+- (IBAction)editScript:(id)sender;
+- (IBAction)runScriptInTerminal:(id)sender;
+- (IBAction)checkSyntaxOfScript:(id)sender;
+- (void)openScriptInBuiltInEditor:(NSString *)path;
+
+- (IBAction)createButtonPressed:(id)sender;
+- (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result;
+- (BOOL)createApplicationFromTimer:(NSTimer *)theTimer;
+- (BOOL)createApplication:(NSString *)destination;
+- (IBAction)scriptTypeSelected:(id)sender;
+- (void)selectScriptTypeBasedOnInterpreter;
+- (void)setScriptType:(NSString *)type;
+- (IBAction)selectScript:(id)sender;
+- (void)loadScript:(NSString *)filename;
+- (IBAction)isDroppableWasClicked:(id)sender;
+- (IBAction)outputTypeWasChanged:(id)sender;
+- (IBAction)clearAllFields:(id)sender;
+- (IBAction)showCommandLineString:(id)sender;
+- (NSString *)estimatedAppSize;
+- (NSWindow *)window;
+
+- (IBAction)showHelp:(id)sender;
+- (IBAction)showReadme:(id)sender;
+- (IBAction)showManPage:(id)sender;
+- (IBAction)openWebsite:(id)sender;
+- (IBAction)openGitHubWebsite:(id)sender;
+- (IBAction)openLicense:(id)sender;
+- (IBAction)openDonations:(id)sender;
+
+@end
 
 @implementation PlatypusController
 
@@ -144,7 +233,7 @@
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
     if ([filename hasSuffix:PROFILES_SUFFIX]) {
-        [profilesController loadProfileFile:filename];
+        [profilesController loadProfileAtPath:filename];
     } else {
         [self loadScript:filename];
     }
@@ -601,7 +690,7 @@
     [remainRunningCheckbox setState:[[spec propertyForKey:@"RemainRunning"] boolValue]];
     
     //file list
-    [bundledFilesController clearList];
+    [bundledFilesController clearFileList:self];
     [bundledFilesController addFiles:[spec propertyForKey:@"BundledFiles"]];
     
     //update button status
@@ -992,7 +1081,7 @@
         BOOL isDir;
         if ([FILEMGR fileExistsAtPath:filename isDirectory:&isDir] && !isDir) {
             if ([filename hasSuffix:PROFILES_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
-                [profilesController loadProfileFile:filename];
+                [profilesController loadProfileAtPath:filename];
             } else if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeImage]) {
                 if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
                     [iconController loadIcnsFile:filename];

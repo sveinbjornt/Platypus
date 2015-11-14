@@ -30,38 +30,19 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class PlatypusController;
 @interface StatusItemSettingsController : NSObject <NSMenuDelegate>
-{
-    IBOutlet id window;
-    IBOutlet id statusItemSettingsWindow;
-    IBOutlet id displayTypePopup;
-    IBOutlet id iconImageView;
-    IBOutlet id selectIconButton;
-    IBOutlet id titleTextField;
-    IBOutlet id titleLabel;
-    IBOutlet id iconLabel;
-    IBOutlet NSButton *useSystemFontCheckbox;
-    
-    IBOutlet PlatypusController *platypusController;
-    
-    NSStatusItem *pStatusItem;
-    NSMenu *pStatusItemMenu;
-}
-- (IBAction)show:(id)sender;
-- (IBAction)close:(id)sender;
+
 - (IBAction)restoreDefaults:(id)sender;
-- (IBAction)statusItemDisplayTypeChanged:(id)sender;
-- (IBAction)selectStatusItemIcon:(id)sender;
-- (IBAction)previewStatusItem:(id)sender;
+
 - (void)setDisplayType:(NSString *)name;
 - (NSString *)displayType;
-- (void)killStatusItem;
-- (BOOL)showingStatusItem;
+
 - (NSString *)title;
 - (void)setTitle:(NSString *)title;
+
 - (NSImage *)icon;
 - (void)setIcon:(NSImage *)img;
+
 - (void)setUsesSystemFont:(BOOL)useSysFont;
 - (BOOL)usesSystemFont;
 

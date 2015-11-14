@@ -31,19 +31,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface EditorController : NSWindowController
-{
-    IBOutlet id scriptPathTextField;
-    IBOutlet id textView;
-    IBOutlet id wordWrapCheckbox;
-    IBOutlet NSImageView *scriptIconImageView;
-    NSWindow *mainWindow;
-}
+
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)window;
-- (IBAction)save:(id)sender;
-- (IBAction)cancel:(id)sender;
-- (IBAction)checkSyntax:(id)sender;
-- (IBAction)revealInFinder:(id)sender;
-- (IBAction)makeTextBigger:(id)sender;
-- (IBAction)makeTextSmaller:(id)sender;
-- (IBAction)wordWrapCheckboxClicked:(id)sender;
+
 @end

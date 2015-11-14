@@ -31,15 +31,13 @@
 #import <Cocoa/Cocoa.h>
 
 @interface TypeListController : NSObject <NSTableViewDataSource>
-{
-    NSMutableArray *items;
-}
+
 - (void)addItem:(NSString *)item;
-- (void)addItems:(NSArray *)theItems;
+- (void)addItems:(NSArray *)items;
 - (BOOL)hasItem:(NSString *)item;
 - (void)removeAllItems;
 - (int)numItems;
-- (void)removeItem:(int)index;
+- (void)removeItemAtIndex:(int)index;
 - (NSArray *)getItemsArray;
 
 @end

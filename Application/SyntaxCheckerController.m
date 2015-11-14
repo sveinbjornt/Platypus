@@ -31,9 +31,16 @@
 #import "SyntaxCheckerController.h"
 #import "ScriptAnalyser.h"
 
+@interface SyntaxCheckerController()
+{
+    IBOutlet NSTextView *textView;
+}
+- (IBAction)close:(id)sender;
+@end
+
 @implementation SyntaxCheckerController
 
-- (id)init {
+- (instancetype)init {
     return [super initWithWindowNibName:@"SyntaxChecker"];
 }
 

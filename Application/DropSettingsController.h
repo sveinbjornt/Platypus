@@ -32,47 +32,8 @@
 
 @class SuffixTypeListController, UniformTypeListController;
 @interface DropSettingsController : NSObject <NSTableViewDelegate>
-{
-    IBOutlet NSBox *suffixListBox;
-    IBOutlet NSButton *addSuffixButton;
-    IBOutlet NSButton *removeSuffixButton;
-    IBOutlet NSTableView *suffixListTableView;
-    IBOutlet NSTextField *suffixTextField;
 
-    IBOutlet NSButton *addUTIButton;
-    IBOutlet NSButton *removeUTIButton;
-    IBOutlet NSTableView *uniformTypeListTableView;
-    IBOutlet NSTextField *uniformTypeTextField;
-
-    IBOutlet NSButton *promptForFileOnLaunchCheckbox;
-    
-    IBOutlet NSWindow *dropSettingsWindow;
-    IBOutlet NSWindow *window;
-    IBOutlet NSTextField *typesErrorTextField;
-    IBOutlet NSButton *droppableEnabledCheckbox;
-    
-    IBOutlet NSButton *acceptDroppedTextCheckbox;
-    IBOutlet NSButton *acceptDroppedFilesCheckbox;
-    IBOutlet NSButton *declareServiceCheckbox;
-    IBOutlet NSImageView *docIconImageView;
-    
-    IBOutlet id droppedFilesSettingsBox;
-    IBOutlet NSButton *selectDocumentIconButton;
-    
-    NSString *docIconPath;
-    SuffixTypeListController *suffixListController;
-    UniformTypeListController *uniformTypeListController;
-}
-- (IBAction)addSuffix:(id)sender;
-- (IBAction)addUTI:(id)sender;
-- (IBAction)removeListItem:(id)sender;
-
-- (IBAction)openDropSettingsSheet:(id)sender;
-- (IBAction)closeDropSettingsSheet:(id)sender;
-- (IBAction)selectDocIcon:(id)sender;
 - (IBAction)setToDefaults:(id)sender;
-- (IBAction)acceptsFilesChanged:(id)sender;
-- (IBAction)acceptsTextChanged:(id)sender;
 
 - (SuffixTypeListController *)suffixListController;
 - (UniformTypeListController *)uniformTypesListController;
@@ -93,7 +54,5 @@
 
 - (BOOL)promptsForFileOnLaunch;
 - (void)setPromptsForFileOnLaunch:(BOOL)b;
-
-- (IBAction)showHelp:(id)sender;
 
 @end

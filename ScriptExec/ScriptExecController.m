@@ -37,7 +37,7 @@
 
 @implementation ScriptExecController
 
-- (id)init {
+- (instancetype)init {
     if ((self = [super init])) {
         arguments = [[NSMutableArray alloc] initWithCapacity:ARG_MAX];
         textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;

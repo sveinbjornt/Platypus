@@ -31,9 +31,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface SyntaxCheckerController : NSWindowController
-{
-    IBOutlet id textView;
-}
+
 - (void)showSyntaxCheckerForFile:(NSString *)path withInterpreter:(NSString *)interpreter window:(NSWindow *)theWindow;
-- (IBAction)close:(id)sender;
+
 @end

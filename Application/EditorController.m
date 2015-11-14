@@ -34,9 +34,26 @@
 #import "SyntaxCheckerController.h"
 #import "NSTextView+JSDExtensions.h"
 
+@interface EditorController()
+{
+    IBOutlet id scriptPathTextField;
+    IBOutlet id textView;
+    IBOutlet id wordWrapCheckbox;
+    IBOutlet NSImageView *scriptIconImageView;
+    NSWindow *mainWindow;
+}
+- (IBAction)save:(id)sender;
+- (IBAction)cancel:(id)sender;
+- (IBAction)checkSyntax:(id)sender;
+- (IBAction)revealInFinder:(id)sender;
+- (IBAction)makeTextBigger:(id)sender;
+- (IBAction)makeTextSmaller:(id)sender;
+- (IBAction)wordWrapCheckboxClicked:(id)sender;
+@end
+
 @implementation EditorController
 
-- (id)init {
+- (instancetype)init {
     return [super initWithWindowNibName:@"Editor"];
 }
 

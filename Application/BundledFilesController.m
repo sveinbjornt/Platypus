@@ -42,9 +42,48 @@
 #import "Alerts.h"
 #import "Common.h"
 
+@interface BundledFilesController()
+{
+    UInt64 totalFileSize;
+    NSMutableArray *files;
+    VDKQueue *fileWatcherQueue;
+    
+    IBOutlet id window;
+    IBOutlet id addFileButton;
+    IBOutlet id removeFileButton;
+    IBOutlet id editFileButton;
+    IBOutlet id revealFileButton;
+    IBOutlet id clearFileListButton;
+    IBOutlet id tableView;
+    IBOutlet id bundleSizeTextField;
+    IBOutlet id contextualMenu;
+    IBOutlet id platypusController;
+}
+- (void)itemDoubleClicked:(id)sender;
+- (NSString *)filePathAtIndex:(int)index;
+- (int)numberOfRowsInTableView:(NSTableView *)aTableView;
+- (void)addFile:(NSString *)file;
+- (BOOL)hasFile:(NSString *)fileName;
+- (int)numFiles;
+- (void)updateQueueWatch;
+- (void)removeFile:(int)index;
+- (void)revealInFinder:(int)index;
+- (IBAction)copyFilename:(id)sender;
+- (IBAction)copyPaths:(id)sender;
+- (void)openInFinder:(int)index;
+- (IBAction)editFileInFileList:(id)sender;
+- (IBAction)addFileToFileList:(id)sender;
+- (IBAction)revealFileInFileList:(id)sender;
+- (IBAction)openFileInFileList:(id)sender;
+- (IBAction)removeFileFromFileList:(id)sender;
+- (void)updateFileSizeField;
+- (void)trackedFileDidChange;
+
+@end
+
 @implementation BundledFilesController
 
-- (id)init {
+- (instancetype)init {
     if ((self = [super init])) {
         files = [[NSMutableArray alloc] init];
         fileWatcherQueue = [[VDKQueue alloc] init];
@@ -134,13 +173,6 @@
         }
     }
     return NO;
-}
-
-- (void)clearList {
-    [files removeAllObjects];
-    [self updateQueueWatch];
-    [self updateFileSizeField];
-    [tableView reloadData];
 }
 
 - (void)removeFile:(int)index {
@@ -255,16 +287,12 @@
     }];
 }
 
-/*****************************************
- - called when [C] button is pressed
- *****************************************/
-
 - (IBAction)clearFileList:(id)sender {
-    [self clearList];
+    [files removeAllObjects];
     [self updateQueueWatch];
+    [self updateFileSizeField];
     [tableView reloadData];
     [self tableViewSelectionDidChange:nil];
-    [self updateFileSizeField];
 }
 
 - (IBAction)revealFileInFileList:(id)sender {
@@ -362,7 +390,7 @@
     return [self numFiles];
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
     if ([[aTableColumn identifier] caseInsensitiveCompare:@"2"] == NSOrderedSame) { //path
         // check if bundled file still exists at path
         NSString *filePath = [[files objectAtIndex:rowIndex] objectForKey:@"Path"];
@@ -419,7 +447,7 @@
 /*****************************************
  - Drag and drop handling
  *****************************************/
-- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(int)row dropOperation:(NSTableViewDropOperation)operation {
+- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
     NSPasteboard *pboard = [info draggingPasteboard];
     NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
     [self addFiles:draggedFiles];
@@ -441,7 +469,7 @@
     return YES;
 }
 
-- (NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo> )info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation {
+- (NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo> )info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation {
     return NSDragOperationLink;
 }
 
