@@ -407,7 +407,8 @@
     
     // first, we look for an icns file, and load it if there is one
     for (NSString *filename in files) {
-        if ([filename hasSuffix:@"icns"]) {
+        NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
+        if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
             return [self loadIcnsFile:filename];
         }
     }
@@ -439,7 +440,8 @@
             if ([self isPresetIcon:filename]) {
                 return NSDragOperationNone;
             }
-            if ([filename hasSuffix:@"icns"]) {
+            NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
+            if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
                 return NSDragOperationLink;
             }
         }

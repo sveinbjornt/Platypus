@@ -237,9 +237,11 @@ int main(int argc, const char *argv[]) {
                         exit(1);
                     }
                     
-                    // warn if file doesn't have icns suffix
-                    if (![iconPath hasSuffix:@"icns"])
+                    // warn if file doesn't seem to be icns
+                    NSString *fileType = [WORKSPACE typeOfFile:iconPath error:nil];
+                    if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == FALSE) {
                         NSPrintErr(@"Warning: '%@' not identified as an Apple .icns file", iconPath);
+                    }
                 }
                 [properties setObject:iconPath forKey:@"IconPath"];
             }
@@ -259,8 +261,9 @@ int main(int argc, const char *argv[]) {
                         exit(1);
                     }
                     
-                    // warn if file doesn't have icns suffix
-                    if (![iconPath hasSuffix:@"icns"]) {
+                    // warn if file doesn't seem to be icns
+                    NSString *fileType = [WORKSPACE typeOfFile:iconPath error:nil];
+                    if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == FALSE) {
                         NSPrintErr(@"Warning: '%@' not identified as an Apple .icns file", iconPath);
                     }
                 }
