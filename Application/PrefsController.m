@@ -33,50 +33,31 @@
 #import "Alerts.h"
 #import "STPrivilegedTask.h"
 #import "Common.h"
+#import "PlatypusController.h"
 #import "NSWorkspace+Additions.h"
 #import "NSBundle+Templates.h"
+#import "PlatypusAppSpec.h"
 
 @implementation PrefsController
 
-/*****************************************
- - Set controls according to data in NSUserDefaults
- *****************************************/
-
 - (IBAction)showWindow:(id)sender {
-    [super loadWindow];
-    
-    // set controls according to NSUserDefaults
-    [defaultEditorPopupButton setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
-    [defaultTextEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]];
-    [defaultBundleIdentifierTextField setStringValue:[DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"]];
-    [defaultAuthorTextField setStringValue:[DEFAULTS stringForKey:@"DefaultAuthor"]];
-    [revealAppCheckbox setState:[DEFAULTS boolForKey:@"RevealApplicationWhenCreated"]];
-    [openAppCheckbox setState:[DEFAULTS boolForKey:@"OpenApplicationWhenCreated"]];
-    [createOnScriptChangeCheckbox setState:[DEFAULTS boolForKey:@"CreateOnScriptChange"]];
-    
-    //set icons for editor menu
-    [self setIconsForEditorMenu];
+    [self window];
     [self updateCLTStatus:CLTStatusTextField];
-    
+    [self setIconsForEditorMenu];
     [super showWindow:sender];
 }
 
-/*****************************************
- - Set the icons for the menu items in the Editors list
- *****************************************/
-
 - (void)setIconsForEditorMenu {
-    
     for (int i = 0; i < [defaultEditorPopupButton numberOfItems]; i++) {
         
         NSMenuItem *menuItem = [defaultEditorPopupButton itemAtIndex:i];
         NSSize smallIconSize = { 16, 16 };
         
-        if ([[menuItem title] isEqualToString:DEFAULT_EDITOR] == YES) {
+        if ([[menuItem title] isEqualToString:DEFAULT_EDITOR]) {
             NSImage *icon = [NSImage imageNamed:@"PlatypusAppIcon"];
             [icon setSize:smallIconSize];
             [menuItem setImage:icon];
-        } else if ([[menuItem title] isEqualToString:@"Select..."] == NO && [[menuItem title] length] > 0) {
+        } else if ([[menuItem title] isEqualToString:@"Select..."] == FALSE) {
             NSImage *icon = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
             NSString *appPath = [WORKSPACE fullPathForApplication:[menuItem title]];
             if (appPath != nil) {
@@ -88,66 +69,49 @@
     }
 }
 
-/*****************************************
- - Set NSUserDefaults according to control settings
- *****************************************/
++ (NSDictionary *)defaultsDictionary {
+    NSMutableDictionary *defaultPrefs = [NSMutableDictionary dictionary];
+    
+    // create default bundle identifier string from usename
+    NSString *bundleId = [PlatypusAppSpec standardBundleIdForAppName:@""
+                                                          authorName:nil
+                                                       usingDefaults:NO];
+    
+    [defaultPrefs setObject:bundleId forKey:@"DefaultBundleIdentifierPrefix"];
+    [defaultPrefs setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
+    [defaultPrefs setObject:[NSArray array] forKey:@"Profiles"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"RevealApplicationWhenCreated"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"OpenApplicationWhenCreated"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"CreateOnScriptChange"];
+    [defaultPrefs setObject:[NSNumber numberWithInt:DEFAULT_OUTPUT_TXT_ENCODING] forKey:@"DefaultTextEncoding"];
+    [defaultPrefs setObject:NSFullUserName() forKey:@"DefaultAuthor"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"OnCreateDevVersion"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:YES] forKey:@"OnCreateOptimizeNib"];
+    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"OnCreateUseXMLPlist"];
+    
+    return defaultPrefs;
+}
+
+#pragma mark - Interface actions
 
 - (IBAction)applyPrefs:(id)sender {
-    // editor
-    [DEFAULTS setObject:[defaultEditorPopupButton titleOfSelectedItem]  forKey:@"DefaultEditor"];
-    
-    // text encoding
-    [DEFAULTS setObject:[NSNumber numberWithInt:[[defaultTextEncodingPopupButton selectedItem] tag]]  forKey:@"DefaultTextEncoding"];
-    
-    //bundle identifier
     //make sure bundle identifier ends with a '.'
-    if ([[defaultBundleIdentifierTextField stringValue] characterAtIndex:[[defaultBundleIdentifierTextField stringValue] length] - 1] != '.') {
-        [DEFAULTS setObject:[[defaultBundleIdentifierTextField stringValue] stringByAppendingString:@"."]  forKey:@"DefaultBundleIdentifierPrefix"];
-    } else {
-        [DEFAULTS setObject:[defaultBundleIdentifierTextField stringValue]  forKey:@"DefaultBundleIdentifierPrefix"];
+    NSString *identifier = [defaultBundleIdentifierTextField stringValue];
+    if ([identifier characterAtIndex:[identifier length] - 1] != '.') {
+        [DEFAULTS setObject:[identifier stringByAppendingString:@"."]  forKey:@"DefaultBundleIdentifierPrefix"];
     }
-    
-    //author
-    [DEFAULTS setObject:[defaultAuthorTextField stringValue]  forKey:@"DefaultAuthor"];
-    
-    // create on script change
-    [DEFAULTS setBool:[createOnScriptChangeCheckbox state]  forKey:@"CreateOnScriptChange"];
-    
-    // reveal
-    [DEFAULTS setBool:[revealAppCheckbox state]  forKey:@"RevealApplicationWhenCreated"];
-    
-    // open
-    [DEFAULTS setBool:[openAppCheckbox state]  forKey:@"OpenApplicationWhenCreated"];
+    [prefsWindow makeFirstResponder:nil];
     [DEFAULTS synchronize];
     [[self window] close];
 }
-
-- (IBAction)cancel:(id)sender {
-    [[self window] close];
-}
-
-/*****************************************
- - Restore prefs to their default value
- *****************************************/
 
 - (IBAction)restoreDefaultPrefs:(id)sender {
-    [revealAppCheckbox setState:NO];
-    [openAppCheckbox setState:NO];
-    [createOnScriptChangeCheckbox setState:NO];
-    [defaultEditorPopupButton setTitle:DEFAULT_EDITOR];
-    [defaultTextEncodingPopupButton selectItemWithTag:DEFAULT_OUTPUT_TXT_ENCODING];
-    [defaultAuthorTextField setStringValue:NSFullUserName()];
-    
-    // create default bundle identifier prefix string
-    NSString *bundleId = [NSString stringWithFormat:@"org.%@.", NSUserName()];
-    bundleId = [bundleId stringByReplacingOccurrencesOfString:@" " withString:@""];
-    [defaultBundleIdentifierTextField setStringValue:bundleId];
+    NSDictionary *dict = [PrefsController defaultsDictionary];
+    for (NSString *key in dict) {
+        [DEFAULTS setObject:[dict objectForKey:key] forKey:key];
+    }
     [DEFAULTS synchronize];
 }
-
-/*****************************************
- - For selecting any application as the external editor for script
- *****************************************/
 
 - (IBAction)selectScriptEditor:(id)sender {
     //create open panel
@@ -155,7 +119,7 @@
     [oPanel setTitle:@"Select Editor"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:@"app"]];
+    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:(NSString *)kUTTypeApplication]];
 
     //run open panel
     if ([oPanel runModal] == NSOKButton) {
@@ -169,10 +133,11 @@
     }
 }
 
-/*****************************************
- - Update report on command line tool install status
- -- both text field and button
- *****************************************/
+- (IBAction)commandLineInstallButtonClicked:(id)sender {
+    [self isCommandLineToolInstalled] == NO ? [self installCommandLineTool] : [self uninstallCommandLineTool];
+}
+
+#pragma mark - Install/Uninstall
 
 - (void)updateCLTStatus:(NSTextField *)textField {
     //set status of clt install button and text field
@@ -200,20 +165,29 @@
     }
 }
 
-/*****************************************
- - Install/uninstall CLT based on install status
- *****************************************/
-
-- (IBAction)installCLT:(id)sender {
-    [self isCommandLineToolInstalled] == NO ? [self installCommandLineTool] : [self uninstallCommandLineTool];
+- (BOOL)isCommandLineToolInstalled {
+    return ([FILEMGR fileExistsAtPath:CMDLINE_VERSION_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_MANPAGE_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_EXEC_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_ICON_PATH]);
 }
-
-/*****************************************
- - Run install script for CLT stuff
- *****************************************/
 
 - (void)installCommandLineTool {
     [self runCLTTemplateScript:@"InstallCommandLineTool.sh" usingDictionary:[self commandLineEnvDict]];
+}
+
+- (void)uninstallCommandLineTool {
+    [self runCLTTemplateScript:@"UninstallCommandLineTool.sh" usingDictionary:[self commandLineEnvDict]];
+}
+
+- (IBAction)uninstallPlatypus:(id)sender {
+    if ([Alerts proceedAlert:@"Are you sure you want to uninstall Platypus?"
+                     subText:@"This will move the Platypus application and all related files to the Trash.  The application will then quit."
+                  withAction:@"Uninstall"] == YES) {
+        [self runCLTTemplateScript:@"UninstallPlatypus.sh" usingDictionary:[self commandLineEnvDict]];
+        [[NSApplication sharedApplication] terminate:self];
+    }
 }
 
 - (NSDictionary *)commandLineEnvDict
@@ -243,26 +217,7 @@
             CMDLINE_ICON_PATH, @"CMDLINE_ICON_PATH", nil];
 }
 
-/*****************************************
- - Run UNinstall script for CLT stuff
- *****************************************/
-
-- (void)uninstallCommandLineTool {
-    [self runCLTTemplateScript:@"UninstallCommandLineTool.sh" usingDictionary:[self commandLineEnvDict]];
-}
-
-- (IBAction)uninstallPlatypus:(id)sender {
-    if ([Alerts proceedAlert:@"Are you sure you want to uninstall Platypus?"
-                     subText:@"This will move the Platypus application and all related files to the Trash.  The application will then quit."
-                  withAction:@"Uninstall"] == YES) {
-        [self runCLTTemplateScript:@"UninstallPlatypus.sh" usingDictionary:[self commandLineEnvDict]];
-        [[NSApplication sharedApplication] terminate:self];
-    }
-}
-
-/*****************************************
- - Run a script with privileges from the Resources folder
- *****************************************/
+#pragma mark - Utils
 
 - (void)runCLTTemplateScript:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
     [installCLTProgressIndicator setUsesThreadedAnimation:YES];
@@ -274,21 +229,6 @@
     [installCLTProgressIndicator stopAnimation:self];
 }
 
-/*****************************************
- - Determine whether command line tool is installed
- *****************************************/
-
-- (BOOL)isCommandLineToolInstalled {
-    return ([FILEMGR fileExistsAtPath:CMDLINE_VERSION_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_MANPAGE_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_EXEC_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_ICON_PATH]);
-}
-
-/*****************************************
- - Run script with privileges using Authentication Manager
- *****************************************/
 - (BOOL)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
     
     NSString *script = [[NSBundle mainBundle] loadTemplate:scriptName usingDictionary:placeholderDict];

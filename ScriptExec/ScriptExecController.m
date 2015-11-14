@@ -1090,6 +1090,7 @@
     
     // set acceptable file types - default allows all
     if (!acceptAnyDroppedItem) {
+        // TODO: FIX THIS TO USE UTIs
         [oPanel setAllowedFileTypes:droppableSuffixes];
     }
     

@@ -46,7 +46,7 @@
     [oPanel setTitle:[NSString stringWithFormat:@"Select %@ Profile", PROGRAM_NAME]];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes: [NSArray arrayWithObjects:@"platypus", nil]];
+    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:@"platypus"]];
     [oPanel setDirectoryURL:[NSURL fileURLWithPath:[PROFILES_FOLDER stringByExpandingTildeInPath]]];
     
     if ([oPanel runModal] == NSOKButton) {
