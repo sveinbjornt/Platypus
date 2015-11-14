@@ -31,39 +31,19 @@
 #import <Cocoa/Cocoa.h>
 
 @interface TextSettingsController : NSObject
-{
-    IBOutlet id window;
-    IBOutlet id textSettingsWindow;
-    
-    IBOutlet id backgroundColorWell;
-    IBOutlet id foregroundColorWell;
-    
-    IBOutlet id fontFaceTextField;
-    IBOutlet id textEncodingPopupButton;
-    
-    IBOutlet id textPreviewTextView;
-    IBOutlet id textSettingsButton;
-    
-    NSFont *currentFont;
-}
-- (IBAction)apply:(id)sender;
-- (IBAction)resetDefaults:(id)sender;
-- (IBAction)show:(id)sender;
-- (void)changeColor:(id)sender;
-- (IBAction)chooseFont:(id)sender;
-- (void)changeFont:(id)sender;
-- (void)setCurrentFont:(NSFont *)font;
-- (void)updateFontField;
 
-- (int)getTextEncoding;
-- (NSFont *)getTextFont;
-- (NSColor *)getTextForeground;
-- (NSColor *)getTextBackground;
+- (IBAction)resetDefaults:(id)sender;
 
 - (void)setTextEncoding:(int)encoding;
-- (void)setTextFont:(NSFont *)font;
-- (void)setTextForeground:(NSColor *)color;
-- (void)setTextBackground:(NSColor *)color;
+- (int)getTextEncoding;
 
+- (void)setTextFont:(NSFont *)font;
+- (NSFont *)getTextFont;
+
+- (void)setTextForeground:(NSColor *)color;
+- (NSColor *)getTextForeground;
+
+- (void)setTextBackground:(NSColor *)color;
+- (NSColor *)getTextBackground;
 
 @end

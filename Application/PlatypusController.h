@@ -33,102 +33,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ProfilesController, StatusItemSettingsController, IconController, STPathTextField, DropSettingsController, ArgsController, ProfilesController, TextSettingsController, StatusItemSettingsController, PrefsController, BundledFilesController, VDKQueue;
 @interface PlatypusController : NSObject
-{
-    //basic controls
-    IBOutlet NSTextField *appNameTextField;
-    IBOutlet NSPopUpButton *scriptTypePopupButton;
-    IBOutlet STPathTextField *scriptPathTextField;
-    IBOutlet NSButton *editScriptButton;
-    IBOutlet NSButton *revealScriptButton;
-    IBOutlet NSPopUpButton *outputTypePopupMenu;
-    IBOutlet NSButton *createAppButton;
-    IBOutlet NSButton *textOutputSettingsButton;
-    IBOutlet NSButton *statusItemSettingsButton;
-    
-    //advanced options controls
-    IBOutlet NSTextField *interpreterTextField;
-    IBOutlet NSTextField *versionTextField;
-    IBOutlet NSTextField *bundleIdentifierTextField;
-    IBOutlet NSTextField *authorTextField;
-    
-    IBOutlet NSButton *rootPrivilegesCheckbox;
-    IBOutlet NSButton *encryptCheckbox;
-    IBOutlet NSButton *isDroppableCheckbox;
-    IBOutlet NSButton *showInDockCheckbox;
-    IBOutlet NSButton *remainRunningCheckbox;
-    
-    IBOutlet NSButton *dropSettingsButton;
-    
-    IBOutlet NSTextField *appSizeTextField;
-    
-    // create app dialog view extension
-    IBOutlet NSView *debugSaveOptionView;
-    IBOutlet NSButton *developmentVersionCheckbox;
-    IBOutlet NSButton *optimizeApplicationCheckbox;
-    IBOutlet NSButton *xmlPlistFormatCheckbox;
-    
-    //windows
-    IBOutlet NSWindow *window;
-    
-    //progress sheet when creating
-    IBOutlet NSWindow *progressDialogWindow;
-    IBOutlet NSProgressIndicator *progressBar;
-    IBOutlet NSTextField *progressDialogMessageLabel;
-    IBOutlet NSTextField *progressDialogStatusLabel;
-    
-    // interface controllers
-    IBOutlet IconController *iconController;
-    IBOutlet DropSettingsController *dropSettingsController;
-    IBOutlet ArgsController *argsController;
-    IBOutlet ProfilesController *profilesController;
-    IBOutlet TextSettingsController *textSettingsController;
-    IBOutlet StatusItemSettingsController *statusItemSettingsController;
-    IBOutlet PrefsController *prefsController;
-    IBOutlet BundledFilesController *bundledFilesController;
-    
-    VDKQueue *fileWatcherQueue;
-}
-
-- (IBAction)newScript:(id)sender;
-- (NSString *)createNewScript:(NSString *)scriptText;
-- (IBAction)revealScript:(id)sender;
-- (IBAction)editScript:(id)sender;
-- (IBAction)runScriptInTerminal:(id)sender;
-- (IBAction)checkSyntaxOfScript:(id)sender;
-- (void)openScriptInBuiltInEditor:(NSString *)path;
-
-- (IBAction)createButtonPressed:(id)sender;
-- (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result;
-- (BOOL)createApplicationFromTimer:(NSTimer *)theTimer;
-- (BOOL)createApplication:(NSString *)destination;
-
-- (id)appSpecFromControls;
-- (void)controlsFromAppSpec:(id)spec;
 
 - (BOOL)verifyFieldContents;
-- (IBAction)scriptTypeSelected:(id)sender;
-- (void)selectScriptTypeBasedOnInterpreter;
-- (void)setScriptType:(NSString *)type;
-- (IBAction)selectScript:(id)sender;
-- (void)loadScript:(NSString *)filename;
-- (IBAction)isDroppableWasClicked:(id)sender;
-- (IBAction)outputTypeWasChanged:(id)sender;
-- (IBAction)clearAllFields:(id)sender;
-- (IBAction)showCommandLineString:(id)sender;
-- (void)updateEstimatedAppSize;
-- (NSString *)estimatedAppSize;
+- (id)appSpecFromControls;
+- (void)controlsFromAppSpec:(id)spec;
 - (NSTask *)taskForCurrentScript;
-- (NSWindow *)window;
-
-- (IBAction)showHelp:(id)sender;
-- (IBAction)showReadme:(id)sender;
-- (IBAction)showManPage:(id)sender;
-- (IBAction)openWebsite:(id)sender;
-- (IBAction)openGitHubWebsite:(id)sender;
-- (IBAction)openLicense:(id)sender;
-- (IBAction)openDonations:(id)sender;
-
+- (void)updateEstimatedAppSize;
 
 @end

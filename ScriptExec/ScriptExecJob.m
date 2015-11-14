@@ -8,6 +8,13 @@
 
 #import "ScriptExecJob.h"
 
+@interface ScriptExecJob()
+{
+    NSArray *arguments;
+    NSString *standardInputString;
+}
+@end
+
 @implementation ScriptExecJob
 
 - (instancetype)initWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr {

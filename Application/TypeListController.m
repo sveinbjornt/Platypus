@@ -31,8 +31,11 @@
 #import "TypeListController.h"
 
 @implementation TypeListController
+{
+    NSMutableArray *items;
+}
 
-- (id)init {
+- (instancetype)init {
     if ((self = [super init])) {
         items = [[NSMutableArray alloc] init];
     }
@@ -61,15 +64,15 @@
     return [WORKSPACE iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
 }
 
-- (void)addItems:(NSArray *)theItems {
-    for (int i = 0; i < [theItems count]; i++) {
-        [self addItem:[theItems objectAtIndex:i]];
+- (void)addItems:(NSArray *)itemsToAdd {
+    for (id item in itemsToAdd) {
+        [self addItem:item];
     }
 }
 
 - (BOOL)hasItem:(NSString *)item {
-    for (int i = 0; i < [items count]; i++) {
-        if ([[[items objectAtIndex:i] objectForKey:@"name"] isEqualToString:item]) {
+    for (NSDictionary *i in items) {
+        if ([[i objectForKey:@"name"] isEqualToString:item]) {
             return YES;
         }
     }
@@ -84,8 +87,8 @@
     return [items count];
 }
 
-- (void)removeItem:(int)index {
-    if ([items count] > 0) {
+- (void)removeItemAtIndex:(int)index {
+    if ([items count] > index) {
         [items removeObjectAtIndex:index];
     }
 }

@@ -33,53 +33,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class VDKQueue;
 @interface BundledFilesController : NSObject <NSTableViewDataSource>
-{
-    UInt64 totalFileSize;
-    NSMutableArray *files;
-    VDKQueue *fileWatcherQueue;
-    
-    IBOutlet id window;
-    IBOutlet id addFileButton;
-    IBOutlet id removeFileButton;
-    IBOutlet id editFileButton;
-    IBOutlet id revealFileButton;
-    IBOutlet id clearFileListButton;
-    IBOutlet id tableView;
-    IBOutlet id bundleSizeTextField;
-    IBOutlet id contextualMenu;
-    IBOutlet id platypusController;
-}
-- (void)itemDoubleClicked:(id)sender;
-- (NSString *)filePathAtIndex:(int)index;
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView;
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
-- (void)addFile:(NSString *)file;
-- (void)addFiles:(NSArray *)fileNames;
-- (BOOL)hasFile:(NSString *)fileName;
-- (void)clearList;
-- (int)numFiles;
-- (void)updateQueueWatch;
-- (NSArray *)filePaths;
-- (void)removeFile:(int)index;
-- (void)revealInFinder:(int)index;
-- (IBAction)copyFilename:(id)sender;
-- (IBAction)copyPaths:(id)sender;
-- (void)openInFinder:(int)index;
-- (IBAction)editFileInFileList:(id)sender;
-- (IBAction)addFileToFileList:(id)sender;
+
 - (IBAction)clearFileList:(id)sender;
-- (IBAction)revealFileInFileList:(id)sender;
-- (IBAction)openFileInFileList:(id)sender;
-- (IBAction)removeFileFromFileList:(id)sender;
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification;
-- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> ) info row:(int)row dropOperation:(NSTableViewDropOperation)operation;
-- (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard;
-- (NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo> ) info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation;
-- (void)updateFileSizeField;
+- (void)addFiles:(NSArray *)fileNames;
 - (BOOL)allPathsAreValid;
 - (UInt64)totalFileSize;
-- (void)trackedFileDidChange;
+- (NSArray *)filePaths;
 
 @end

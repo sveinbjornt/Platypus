@@ -34,9 +34,54 @@
 #import "NSWorkspace+Additions.h"
 #import "UniformTypeListController.h"
 
+@interface DropSettingsController()
+{
+    IBOutlet NSBox *suffixListBox;
+    IBOutlet NSButton *addSuffixButton;
+    IBOutlet NSButton *removeSuffixButton;
+    IBOutlet NSTableView *suffixListTableView;
+    IBOutlet NSTextField *suffixTextField;
+    
+    IBOutlet NSButton *addUTIButton;
+    IBOutlet NSButton *removeUTIButton;
+    IBOutlet NSTableView *uniformTypeListTableView;
+    IBOutlet NSTextField *uniformTypeTextField;
+    
+    IBOutlet NSButton *promptForFileOnLaunchCheckbox;
+    
+    IBOutlet NSWindow *dropSettingsWindow;
+    IBOutlet NSWindow *window;
+    IBOutlet NSTextField *errorTextField;
+    IBOutlet NSButton *droppableEnabledCheckbox;
+    
+    IBOutlet NSButton *acceptDroppedTextCheckbox;
+    IBOutlet NSButton *acceptDroppedFilesCheckbox;
+    IBOutlet NSButton *declareServiceCheckbox;
+    IBOutlet NSImageView *docIconImageView;
+    
+    IBOutlet NSBox *droppedFilesSettingsBox;
+    IBOutlet NSButton *selectDocumentIconButton;
+    
+    NSString *docIconPath;
+    SuffixTypeListController *suffixListController;
+    UniformTypeListController *uniformTypeListController;
+}
+- (IBAction)addSuffix:(id)sender;
+- (IBAction)addUTI:(id)sender;
+- (IBAction)removeListItem:(id)sender;
+
+- (IBAction)openDropSettingsSheet:(id)sender;
+- (IBAction)closeDropSettingsSheet:(id)sender;
+- (IBAction)selectDocIcon:(id)sender;
+- (IBAction)acceptsFilesChanged:(id)sender;
+- (IBAction)acceptsTextChanged:(id)sender;
+- (IBAction)showHelp:(id)sender;
+
+@end
+
 @implementation DropSettingsController
 
-- (id)init {
+- (instancetype)init {
     if ((self = [super init])) {
         suffixListController = [[SuffixTypeListController alloc] init];
         uniformTypeListController = [[UniformTypeListController alloc] init];
@@ -77,7 +122,7 @@
     [uniformTypeListTableView setDelegate:self];
     [uniformTypeListTableView setTarget:self];
     
-    [typesErrorTextField setStringValue:@""];
+    [errorTextField setStringValue:@""];
     [self controlTextDidChange];
     [self updateButtonStatus];
     
@@ -99,7 +144,7 @@
 - (IBAction)closeDropSettingsSheet:(id)sender {
     //make sure suffix list contains valid values
     if (![suffixListController numItems] && [self acceptsFiles]) {
-        [typesErrorTextField setStringValue:@"The suffix list must contain at least one entry."];
+        [errorTextField setStringValue:@"The suffix list must contain at least one entry."];
         return;
     }
     
@@ -183,7 +228,7 @@
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     for (int i = [typeListController numItems]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
-            [typeListController removeItem:i];
+            [typeListController removeItemAtIndex:i];
             [tableView reloadData];
             break;
         }

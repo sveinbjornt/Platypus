@@ -38,6 +38,35 @@
 #import "NSBundle+Templates.h"
 #import "PlatypusAppSpec.h"
 
+@interface PrefsController()
+{
+    IBOutlet NSButton *revealAppCheckbox;
+    IBOutlet NSButton *openAppCheckbox;
+    IBOutlet NSButton *createOnScriptChangeCheckbox;
+    IBOutlet NSPopUpButton *defaultEditorPopupButton;
+    IBOutlet NSPopUpButton *defaultTextEncodingPopupButton;
+    IBOutlet NSTextField *defaultBundleIdentifierTextField;
+    IBOutlet NSTextField *defaultAuthorTextField;
+    IBOutlet NSTextField *CLTStatusTextField;
+    IBOutlet NSButton *installCLTButton;
+    IBOutlet NSProgressIndicator *installCLTProgressIndicator;
+    IBOutlet NSWindow *prefsWindow;
+    IBOutlet PlatypusController *platypusController;
+}
+- (IBAction)showWindow:(id)sender;
+- (IBAction)applyPrefs:(id)sender;
+- (void)setIconsForEditorMenu;
+- (IBAction)restoreDefaultPrefs:(id)sender;
+- (IBAction)commandLineInstallButtonClicked:(id)sender;
+- (void)installCommandLineTool;
+- (void)uninstallCommandLineTool;
+- (IBAction)uninstallPlatypus:(id)sender;
+- (void)runCLTTemplateScript:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
+- (BOOL)isCommandLineToolInstalled;
+- (BOOL)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
+- (IBAction)selectScriptEditor:(id)sender;
+@end
+
 @implementation PrefsController
 
 - (IBAction)showWindow:(id)sender {

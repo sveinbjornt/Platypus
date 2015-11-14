@@ -31,22 +31,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-#define EXAMPLES_TAG    7
-
 @interface ProfilesController : NSObject
-{
-    IBOutlet id profilesMenu;
-    IBOutlet id platypusController;
-    IBOutlet id examplesMenuItem;
-}
-- (IBAction)loadProfile:(id)sender;
-- (void)loadProfileFile:(NSString *)file;
-- (IBAction)saveProfile:(id)sender;
-- (IBAction)saveProfileToLocation:(id)sender;
-- (void)writeProfile:(NSDictionary *)dict toFile:(NSString *)profileDestPath;
-- (void)profileMenuItemSelected:(id)sender;
-- (IBAction)clearAllProfiles:(id)sender;
-- (IBAction)constructMenus:(id)sender;
-- (NSArray *)getProfilesList;
-- (NSArray *)getExamplesList;
+
+- (void)loadProfileAtPath:(NSString *)file;
+
 @end

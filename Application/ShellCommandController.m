@@ -34,9 +34,23 @@
 #import "Common.h"
 #import "NSWorkspace+Additions.h"
 
+@interface ShellCommandController()
+{
+    IBOutlet id textView;
+    IBOutlet id prefsController;
+    IBOutlet id CLTStatusTextField;
+    IBOutlet NSButton *useShortOptsCheckbox;
+    PlatypusAppSpec *appSpec;
+}
+- (IBAction)close:(id)sender;
+- (IBAction)runInTerminal:(id)sender;
+- (IBAction)useShortOptsCheckboxClicked:(id)sender;
+
+@end
+
 @implementation ShellCommandController
 
-- (id)init {
+- (instancetype)init {
     return [super initWithWindowNibName:@"ShellCommandWindow"];
 }
 

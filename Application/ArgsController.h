@@ -30,49 +30,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class NSResponderNotifyingTableView;
 @interface ArgsController : NSObject <NSTableViewDataSource>
-{
-    IBOutlet NSWindow *argsWindow;
-    IBOutlet NSTextField *commandTextField;
-    IBOutlet NSTextField *interpreterTextField;
-    
-    IBOutlet NSButton *interpreterArgsAddButton;
-    IBOutlet NSButton *interpreterArgsRemoveButton;
-    IBOutlet NSResponderNotifyingTableView *interpreterArgsTableView;
-    
-    IBOutlet NSButton *scriptArgsAddButton;
-    IBOutlet NSButton *scriptArgsRemoveButton;
-    IBOutlet NSResponderNotifyingTableView *scriptArgsTableView;
-    
-    IBOutlet NSButton *isDroppableCheckbox;
-    IBOutlet NSWindow *window;
-    
-    IBOutlet NSMenu *scriptArgsContextualMenu;
-    IBOutlet NSMenu *interpreterArgsContextualMenu;
-    
-    NSMutableArray *interpreterArgs;
-    NSMutableArray *scriptArgs;
-}
+
 - (NSArray *)interpreterArgs;
 - (NSArray *)scriptArgs;
-
 - (void)setInterpreterArgs:(NSArray *)array;
 - (void)setScriptArgs:(NSArray *)array;
-
-- (IBAction)addInterpreterArg:(id)sender;
-- (IBAction)clearInterpreterArgs:(id)sender;
-
-- (IBAction)addScriptArg:(id)sender;
-- (IBAction)clearScriptArgs:(id)sender;
-
-- (IBAction)removeListItem:(id)sender;
-
 - (IBAction)resetDefaults:(id)sender;
-- (IBAction)apply:(id)sender;
-- (IBAction)show:(id)sender;
-- (IBAction)showHelp:(id)sender;
-
-- (void)constructCommandString;
 
 @end

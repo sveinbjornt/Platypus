@@ -48,11 +48,45 @@
 
 @end
 
-@implementation ArgsController
-
 #define DEFAULT_ARG_VALUE       @"-arg"
 
-- (id)init {
+@interface ArgsController()
+{
+    IBOutlet NSWindow *argsWindow;
+    IBOutlet NSTextField *commandTextField;
+    IBOutlet NSTextField *interpreterTextField;
+    
+    IBOutlet NSButton *interpreterArgsAddButton;
+    IBOutlet NSButton *interpreterArgsRemoveButton;
+    IBOutlet NSResponderNotifyingTableView *interpreterArgsTableView;
+    
+    IBOutlet NSButton *scriptArgsAddButton;
+    IBOutlet NSButton *scriptArgsRemoveButton;
+    IBOutlet NSResponderNotifyingTableView *scriptArgsTableView;
+    
+    IBOutlet NSButton *isDroppableCheckbox;
+    IBOutlet NSWindow *window;
+    
+    IBOutlet NSMenu *scriptArgsContextualMenu;
+    IBOutlet NSMenu *interpreterArgsContextualMenu;
+    
+    NSMutableArray *interpreterArgs;
+    NSMutableArray *scriptArgs;
+}
+- (IBAction)addInterpreterArg:(id)sender;
+- (IBAction)clearInterpreterArgs:(id)sender;
+- (IBAction)addScriptArg:(id)sender;
+- (IBAction)clearScriptArgs:(id)sender;
+- (IBAction)removeListItem:(id)sender;
+- (IBAction)apply:(id)sender;
+- (IBAction)show:(id)sender;
+- (IBAction)showHelp:(id)sender;
+- (void)constructCommandString;
+@end
+
+@implementation ArgsController
+
+- (instancetype)init {
     if ((self = [super init])) {
         interpreterArgs = [[NSMutableArray alloc] init];
         scriptArgs = [[NSMutableArray alloc] init];

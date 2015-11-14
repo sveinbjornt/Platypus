@@ -36,6 +36,41 @@
 #import "PlatypusController.h"
 #import "VDKQueue.h"
 
+@interface IconController()
+{
+    IBOutlet id iconImageView;
+    IBOutlet id window;
+    IBOutlet id iconToggleButton;
+    IBOutlet id iconNameTextField;
+    IBOutlet id platypusController;
+    IBOutlet NSMenu *iconContextualMenu;
+    IBOutlet NSButton *iconActionButton;
+    NSString *icnsFilePath;
+    VDKQueue *fileWatcherQueue;
+}
+- (IBAction)iconActionButtonPressed:(id)sender;
+- (IBAction)copyIconPath:(id)sender;
+- (IBAction)copyIcon:(id)sender;
+- (IBAction)pasteIcon:(id)sender;
+- (IBAction)revealIconInFinder:(id)sender;
+- (void)updateIcnsStatus;
+- (IBAction)contentsWereAltered:(id)sender;
+- (IBAction)nextIcon:(id)sender;
+- (IBAction)previousIcon:(id)sender;
+- (void)setAppIconForType:(int)type;
+- (NSDictionary *)getIconInfoForType:(int)type;
+- (IBAction)switchIcons:(id)sender;
+- (BOOL)writeIconToPath:(NSString *)path;
+- (NSData *)imageData;
+- (BOOL)validateMenuItem:(NSMenuItem *)anItem;
+- (IBAction)selectIcon:(id)sender;
+- (IBAction)selectIcnsFile:(id)sender;
+- (BOOL)loadImageWithData:(NSData *)imgData;
+- (BOOL)loadImageFromPasteboard;
+- (BOOL)loadPresetIcon:(NSDictionary *)iconInfo;
+- (void)updateForCustomIcon;
+
+@end
 
 @implementation IconController
 

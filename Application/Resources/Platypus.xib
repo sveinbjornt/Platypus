@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="macosx"/>
         <development version="6000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
@@ -548,7 +547,7 @@ DQ
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowHeight="16" headerView="hqk-wE-xqo" id="310">
-                                    <rect key="frame" x="0.0" y="0.0" width="586" height="108"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="585" height="108"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -561,9 +560,9 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="1F246240-2B11-4428-8355-081A5788E5E7" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="8F5615A7-F64A-4E68-8B26-7DD9944BC4E6" id="1249"/>
                                         </tableColumn>
-                                        <tableColumn identifier="2" editable="NO" width="560" minWidth="33.28857421875" maxWidth="2000" id="503">
+                                        <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -689,6 +688,7 @@ DQ
                 <outlet property="dropSettingsWindow" destination="395" id="PZN-H6-c9M"/>
                 <outlet property="droppableEnabledCheckbox" destination="299" id="HQA-Ib-ZMr"/>
                 <outlet property="droppedFilesSettingsBox" destination="11153" id="11154"/>
+                <outlet property="errorTextField" destination="824" id="VY0-bx-E3i"/>
                 <outlet property="promptForFileOnLaunchCheckbox" destination="11460" id="11462"/>
                 <outlet property="removeSuffixButton" destination="992" id="1369"/>
                 <outlet property="removeUTIButton" destination="tqU-IB-IyA" id="5iu-Xf-rvO"/>
@@ -696,7 +696,6 @@ DQ
                 <outlet property="suffixListBox" destination="701" id="QaT-6S-E2N"/>
                 <outlet property="suffixListTableView" destination="708" id="h4Y-1x-x6F"/>
                 <outlet property="suffixTextField" destination="712" id="1372"/>
-                <outlet property="typesErrorTextField" destination="824" id="1374"/>
                 <outlet property="uniformTypeListTableView" destination="abJ-y3-Qtk" id="y83-sn-JNr"/>
                 <outlet property="uniformTypeTextField" destination="4L6-3O-s13" id="BVF-rE-hOI"/>
                 <outlet property="window" destination="21" id="1385"/>
@@ -1572,7 +1571,7 @@ DQ
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk">
-                                                            <rect key="frame" x="0.0" y="0.0" width="161.5" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="18"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <animations/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -2946,7 +2945,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="1F246240-2B11-4428-8355-081A5788E5E7" width="16" height="16">
+        <image name="8F5615A7-F64A-4E68-8B26-7DD9944BC4E6" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

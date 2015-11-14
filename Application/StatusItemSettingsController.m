@@ -33,6 +33,33 @@
 #import "PlatypusController.h"
 #import "Alerts.h"
 
+@interface StatusItemSettingsController()
+{
+    IBOutlet id window;
+    IBOutlet id statusItemSettingsWindow;
+    IBOutlet id displayTypePopup;
+    IBOutlet id iconImageView;
+    IBOutlet id selectIconButton;
+    IBOutlet id titleTextField;
+    IBOutlet id titleLabel;
+    IBOutlet id iconLabel;
+    IBOutlet NSButton *useSystemFontCheckbox;
+    
+    IBOutlet PlatypusController *platypusController;
+    
+    NSStatusItem *pStatusItem;
+    NSMenu *pStatusItemMenu;
+}
+- (IBAction)show:(id)sender;
+- (IBAction)close:(id)sender;
+- (IBAction)statusItemDisplayTypeChanged:(id)sender;
+- (IBAction)selectStatusItemIcon:(id)sender;
+- (IBAction)previewStatusItem:(id)sender;
+- (void)killStatusItem;
+- (BOOL)showingStatusItem;
+
+@end
+
 @implementation StatusItemSettingsController
 
 - (void)dealloc {
