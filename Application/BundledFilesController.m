@@ -342,7 +342,7 @@
             size += [WORKSPACE fileOrFolderSize:[self filePathAtIndex:i]];
         }
         
-        NSString *totalSizeString = [WORKSPACE sizeAsHumanReadable:size];
+        NSString *totalSizeString = [WORKSPACE fileSizeAsHumanReadableString:size];
         NSString *pluralS = ([self numFiles] > 1) ? @"s" : @"";
         NSString *itemsSizeString = [NSString stringWithFormat:@"%d item%@, %@", [self numFiles], pluralS, totalSizeString];
         NSString *tooltipString = [NSString stringWithFormat:@"%d item%@ (%llu bytes)", [self numFiles], pluralS, size];
