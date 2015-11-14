@@ -131,6 +131,7 @@
     BOOL statusItemUsesSystemFont;
     
     NSArray *droppableSuffixes;
+    NSArray *droppableUniformTypes;
     BOOL acceptAnyDroppedItem;
     BOOL acceptDroppedFolders;
     
