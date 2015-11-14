@@ -41,8 +41,8 @@
     NSPasteboard *pboard = [info draggingPasteboard];
     NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
     
-    for (int i = 0; i < [draggedFiles count]; i++) {
-        NSString *suffix = [[draggedFiles objectAtIndex:i] pathExtension];
+    for (NSString *filePath in draggedFiles) {
+        NSString *suffix = [filePath pathExtension];
         if ([suffix isEqualToString:@""] == NO) {
             [self addItem:suffix];
         }
