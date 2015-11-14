@@ -14,6 +14,7 @@
     body
     {
         font-family: "Lucida Grande", Arial, Helvetica, sans-serif;
+        font-size: 0.95em;
         line-height: 1.4em;
     }
     
@@ -169,7 +170,7 @@
 <a name="11"></a>
 <h3>About Platypus</h3>
 
-<img src="images/script2app.png" style="float: right;">
+<img src="images/script2app.png" style="width: 140px; height: 56px; float: right;">
 
 <p>Platypus is a Mac OS X developer tool that creates application wrappers around scripts.  This means that your interpreted scripts can be launched from the Mac OS X window environment -- e.g. the Finder or the Dock -- without requiring use of the command line interface.  They effectively become regular Mac OS X applications.</p>
 
@@ -177,7 +178,7 @@
 
 <p>Platypus is free, open-source software distributed under the terms and conditions of the BSD license.  This means the source code is freely available and you are free to modify and distribute it as you see fit.  For more information on licensing, see <a href="#81">Can I use Platypus to create proprietary software?</a>.</p>
 
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="float: right; margin-left: 20px;">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="float: right; margin-left: 40px;">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="BDT58J7HYKAEE">
 <input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" width="92" height="26">
@@ -506,7 +507,7 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></pre>
 
 <p>The Platypus Preferences should be pretty self-explanatory.  You can select an editor of choice, set the default author and bundle identifier settings, set default text encoding, set the behaviour of Platypus on app creation, and install/uninstall the <code>platypus</code> command line tool.</p>
 
-<img src="images/preferences.png">
+<img src="images/preferences.png" style="width: 445px; height: 606px;">
 
 <br>
 <br>
@@ -529,7 +530,7 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></pre>
 
 <p>You can load a profile by selecting it from the menu, which lists all profiles in the Profiles folder.  To reveal a profile in the Finder, hold down the Command key and select the profile.  Profiles have a <code>.platypus</code> filename suffix.  Please note that profiles may or may not work between different versions of Platypus, depending on the extent of changes between versions.</p>
 
-<img src="images/profiles.png">
+<img src="images/profiles.png" style="width: 212px; height: 203px;">
 <br><br>
 
 <a name="62"></a>
@@ -542,7 +543,7 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></pre>
 <pre>/usr/local/bin/platypus -P myProfile.platypus MyApp.app</pre>
 </div>
 
-<p>See the command line tool man page for further details.  An HTML version of this man page is available through the Platypus Help menu, and also <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">online here</a>.</p>
+<p>See the command line tool man page for further details.  An HTML version of the man page is available <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">here</a>.</p>
 
 <br><br>
 <a name="63"></a>
@@ -565,27 +566,31 @@ PHP: <code>/usr/bin/php -l "/path/to/script"</code></pre>
 
 <a name="71"></a>
 
-<p>Platypus includes a number of built-in examples.  These can be opened in the <strong>Examples submenu</strong> of the <strong>Profiles</strong> menu.  You can open the script file associated with each example to see how they work.  Brief explanations of each of the examples follows:</p>
+<p>Platypus includes a number of built-in examples.  These can be opened in the <strong>Examples</strong> submenu of the <strong>Profiles</strong> menu.  You can open the script file associated with each example to see how they work.  Brief explanation of each of the examples:</p>
 
 <br>
 <blockquote>
-<p><strong>FastDMGMounter</strong>: This creates a replacement for Mac OS X's DiskImageMounter which uses the command line tool to mount .dmgs much faster, skipping verification and auto-accepting any EULAs. See <a href="http://sveinbjorn.org/macosx_hack_faster_dmg_image_mounting">this page</a> for details.</p>  
+<p><strong>FastDMGMounter</strong>: Creates a replacement for Mac OS X's DiskImageMounter, uses the command line tool to mount <code>.dmg</code> disk images much faster, skipping verification and auto-accepting any EULAs. See <a href="http://sveinbjorn.org/macosx_hack_faster_dmg_image_mounting">this page</a> for details.</p>
 
-<p><strong>ProcessMenu</strong>: Creates an application which places a status menu in your menu bar, which will display the output of <code>ps cax</code> when opened.</p>  
+<p><strong>MacbethMenu</strong>: Simple interactive status menu app which displays lines by Shakespeare and feeds them to the speech synthesizer when selected.</p>
 
-<p><strong>ProgressBar</strong>: An example demonstrating how progress bar status can be controlled with script output.</p>  
+<p><strong>PostToNotificationCenter</strong>: Creates notifications in Notification Center via script output using the custom NOTIFICATION: syntax.</p>
 
-<p><strong>SpeakDroplet</strong>: An application which uses the Mac OS X speech synthesiser to read all opened text files.</p>  
+<p><strong>ProcessMenu</strong>: Creates a status menu which displays the output of <code>ps cax</code> when clicked.</p>
 
-<p><strong>MacbethMenu</strong>: An example of a simple interactive status menu app which displays lines by Shakespeare and reads them when selected.</p>
+<p><strong>ProgressBar</strong>: Demonstrates how the status of the progress bar can be controlled with script output.</p>
 
-<p><strong>SpotlightInfo</strong>: Drag a file on window to see Spotlight meta-data info on the file.</p>  
+<p><strong>SpeakDroplet</strong>: Uses the Mac OS X speech synthesiser to read all opened text files.</p>
+
+<p><strong>SpotlightInfo</strong>: Drag a file on window to see its Spotlight metadata.</p>
+
+<p><strong>StatusMenuIconDemo</strong>: Shows how to set menu item icons in Status Menu output mode.</p>
 
 <p><strong>SysLoadMenu</strong>: Status menu app which displays the output of <code>w</code>.</p>  
 
-<p><strong>SystemProfiler</strong>: Displays all system profiling information about your system in a text window.  Uses Apple's <code>system_profiler</code> tool.</p>  
+<p><strong>SystemProfiler</strong>: Displays all profiling information about your system in a text window.  Uses Apple's <code>system_profiler</code> tool.</p>
 
-<p><strong>TarGzipper</strong>: Creates a gzipped tar archive of files dropped on it, in the same directory as the files.</p>  
+<p><strong>TarGzipper</strong>: Creates a gzipped tar archive of any dropped files.</p>
 
 </blockquote>
 <br>
@@ -718,7 +723,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
 <br>
 <h3 id="81">Can I use Platypus to create proprietary software?</h3>
 
-<p>Yes.  Platypus is distributed under the terms and conditions of the three-clause <a href="http://www.sveinbjorn.org/files/software/platypus/documentation/License.html">BSD License</a>, which means that you are free more or less free to do what you see with fit Platypus and applications you create using it -- as long as you keep my name out of it.</p>
+<p>Yes.  Platypus is distributed under the terms and conditions of the three-clause <a href="http://www.sveinbjorn.org/files/software/platypus/documentation/License.html">BSD License</a>, which means that you are free more or less free to do as you see fit with Platypus and any applications you create using it.</p>
     
 <br>
 <br>
@@ -797,7 +802,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre>
 
 <h3 id="88">How do I get the path to my application and/or bundled files within the script?</h3>
 
-<p>The script executed by Platypus-generated applications is run from the Resources directory of the application bundle (e.g. <code>MyApp.app/Contents/Resources</code>).  Any bundled files are thus accessible from the script's current working directory.  To get the path to the application bundle itself, or the directory it is in, you can just use <code>../..</code> (application bundle) or <code>../../..</code> (application's containing directory).</p>
+<p>The script executed by Platypus-generated applications runs from the Resources directory of the application bundle (e.g. <code>MyApp.app/Contents/Resources</code>).  Any bundled files are thus accessible from the script's current working directory.  To get the path to the application bundle itself, or the directory it is in, you can just use <code>../..</code> (application bundle) or <code>../../..</code> (application's containing directory).</p>
 
 <br>
 <br>
@@ -818,7 +823,7 @@ MyApp.app/Contents/Resources                    - Resources folder
 MyApp.app/Contents/Resources/appIcon.icns       - Application icon
 MyApp.app/Contents/Resources/AppSettings.plist  - Application script execution settings
 MyApp.app/Contents/Resources/MainMenu.nib       - Nib file, stores interface layout
-MyApp.app/Contents/Resources/script             - Script that is executed by binary
+MyApp.app/Contents/Resources/script             - Script executed by application binary
 </pre>
 </div>
 
@@ -843,13 +848,13 @@ MyApp.app/Contents/Resources/script             - Script that is executed by bin
     
 <h3 id="811">Can I change the dimensions of the Platypus output window?</h3>
 
-<p>Yes, but only by directly altering the application after it has been created.  When you press Create, you need to uncheck the "Optimize Application (strip nib file)" option in the Save dialog.  You can then edit the user interface assets in the nib file using Apple's XCode.  The nib file is stored at the following path within your application bundle.</p>
+<p>Yes, but only by altering the application manually after it has been created.  When you press Create, you need to uncheck the "Optimize Application (strip nib file)" option in the dialog.  You can then edit the user interface assets in the nib file using Apple's XCode.  The nib file is stored at the following path within your application bundle.</p>
 
 <div class="codeblock">
 Contents/Resources/MainMenu.nib
 </div>
 
-<p>If you want to keep your own modified nib for repeated use, you can simply save a copy, edit it and add it in the Bundled Items when you create an app. It will then overwrite the default MainMenu.nib file:</p>
+<p>If you want to keep your own modified nib for repeated use, you can simply save a copy, edit it and add it to <strong>Bundled Files</strong> when you create an app. It will then overwrite the default MainMenu.nib file:</p>
 
 <img src="images/mainmenu-bundledfile.png">
 

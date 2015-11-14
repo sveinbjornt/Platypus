@@ -6,7 +6,6 @@ For 5.1
     TODO: Restore "icon from image" functionality in command line tool (window server dependency?)
     TODO: New button-based output mode?
     TODO: Save authentication password and reuse for subsequent execution
-    TODO: Use bindings for defaults
     TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
     TODO: Make type lists in drop settings editable like those in Args controller
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
@@ -28,6 +27,7 @@ For 5.0
     TODO: Documentation on reading dropped text from STDIN
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
 
+    * Now using bindings for defaults
     * Implemented UI stuff making clear that UTIs exclude suffixes
     * Fixed issue where a status menu could display an empty menu if clicked repeatedly
     * Use UTI methods instead of deprecated imageFileTypes
