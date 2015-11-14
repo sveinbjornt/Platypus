@@ -22,7 +22,6 @@
 */
 
 #import <Cocoa/Cocoa.h>
-#import <Carbon/Carbon.h>
 
 // This class is a Cocoa/Objective-C wrapper for the Mac OS X Carbon API's
 // "icon family" data type.  Its main purpose is to enable Cocoa applications

@@ -28,7 +28,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import <Carbon/Carbon.h>
 #import <Security/Authorization.h>
 #import <Security/AuthorizationTags.h>
 
