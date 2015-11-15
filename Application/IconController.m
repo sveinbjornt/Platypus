@@ -377,13 +377,18 @@
 }
 
 - (BOOL)loadPresetIcon:(NSDictionary *)iconInfo {
+    if (!iconInfo) {
+        return NO;
+    }
+    
     [iconNameTextField setStringValue:iconInfo[@"Name"]];
+    
     NSImage *img = iconInfo[@"Image"];
     if (img == nil) {
         return NO;
     }
-    
     [iconImageView setImage:img];
+    
     [self setIcnsFilePath:iconInfo[@"Path"]];
     
     return YES;
