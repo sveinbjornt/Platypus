@@ -57,11 +57,9 @@
     unsigned long long accumulatedSize = 0;
     
     // prefetching some properties during traversal will speed up things a bit.
-    NSArray *prefetchedProperties = [NSArray arrayWithObjects:
-                                      NSURLIsRegularFileKey,
+    NSArray *prefetchedProperties = @[NSURLIsRegularFileKey,
                                       NSURLFileAllocatedSizeKey,
-                                      NSURLTotalFileAllocatedSizeKey,
-                                      nil];
+                                      NSURLTotalFileAllocatedSizeKey];
     
     // The error handler simply signals errors to outside code.
     __block BOOL errorDidOccur = NO;

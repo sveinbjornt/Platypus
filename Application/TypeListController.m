@@ -30,10 +30,13 @@
 
 #import "TypeListController.h"
 
-@implementation TypeListController
+@interface TypeListController()
 {
     NSMutableArray *items;
 }
+@end
+
+@implementation TypeListController
 
 - (instancetype)init {
     if ((self = [super init])) {
@@ -52,7 +55,7 @@
         return;
     }
     NSImage *icon = [self iconForItem:item];
-    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:item, @"name", icon, @"icon", nil];
+    NSDictionary *infoDict = @{@"name": item, @"icon": icon};
     [items addObject:infoDict];
 }
 
@@ -72,7 +75,7 @@
 
 - (BOOL)hasItem:(NSString *)item {
     for (NSDictionary *i in items) {
-        if ([[i objectForKey:@"name"] isEqualToString:item]) {
+        if ([i[@"name"] isEqualToString:item]) {
             return YES;
         }
     }
@@ -97,7 +100,7 @@
     NSMutableArray *itemsArray = [NSMutableArray array];
     
     for (int i = 0; i < [items count]; i++) {
-        NSString *itemName = [[items objectAtIndex:i] objectForKey:@"name"];
+        NSString *itemName = items[i][@"name"];
         [itemsArray addObject:itemName];
     }
     
@@ -113,7 +116,7 @@
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
     
     if ([[aTableColumn identifier] caseInsensitiveCompare:@"2"] == NSOrderedSame) {
-        return([[items objectAtIndex:rowIndex] objectForKey:@"name"]);
+        return(items[rowIndex][@"name"]);
     } else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
         if (rowIndex == 0) {
             NSImageCell *iconCell;
@@ -121,7 +124,7 @@
             [aTableColumn setDataCell:iconCell];
         }
         
-        return [[items objectAtIndex:rowIndex] objectForKey:@"icon"];
+        return items[rowIndex][@"icon"];
     }
     return(@"");
 }
@@ -130,9 +133,8 @@
     
     NSPasteboard *pboard = [info draggingPasteboard];
     NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
-    
-    for (int i = 0; i < [draggedFiles count]; i++) {
-        [self addItem:[draggedFiles objectAtIndex:i]];
+    for (NSString *filePath in draggedFiles) {
+        [self addItem:filePath];
     }
     [tv reloadData];
     return YES;

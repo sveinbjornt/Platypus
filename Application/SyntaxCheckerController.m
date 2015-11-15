@@ -35,7 +35,9 @@
 {
     IBOutlet NSTextView *textView;
 }
+
 - (IBAction)close:(id)sender;
+
 @end
 
 @implementation SyntaxCheckerController

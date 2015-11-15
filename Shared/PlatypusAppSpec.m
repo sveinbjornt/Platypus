@@ -103,63 +103,63 @@
 
 - (void)setDefaults {
     // stamp the spec with the creator
-    [properties setObject:PROGRAM_STAMP forKey:@"Creator"];
+    properties[@"Creator"] = PROGRAM_STAMP;
     
     //prior properties
-    [properties setObject:CMDLINE_EXEC_PATH forKey:@"ExecutablePath"];
-    [properties setObject:CMDLINE_NIB_PATH forKey:@"NibPath"];
-    [properties setObject:DEFAULT_DESTINATION_PATH forKey:@"Destination"];
+    properties[@"ExecutablePath"] = CMDLINE_EXEC_PATH;
+    properties[@"NibPath"] = CMDLINE_NIB_PATH;
+    properties[@"Destination"] = DEFAULT_DESTINATION_PATH;
     
-    [properties setValue:[NSNumber numberWithBool:NO] forKey:@"DestinationOverride"];
-    [properties setValue:[NSNumber numberWithBool:NO] forKey:@"DevelopmentVersion"];
-    [properties setValue:[NSNumber numberWithBool:YES] forKey:@"OptimizeApplication"];
-    [properties setValue:[NSNumber numberWithBool:NO] forKey:@"UseXMLPlistFormat"];
+    [properties setValue:@NO forKey:@"DestinationOverride"];
+    [properties setValue:@NO forKey:@"DevelopmentVersion"];
+    [properties setValue:@YES forKey:@"OptimizeApplication"];
+    [properties setValue:@NO forKey:@"UseXMLPlistFormat"];
     
     // primary attributes
-    [properties setObject:DEFAULT_APP_NAME forKey:@"Name"];
-    [properties setObject:@"" forKey:@"ScriptPath"];
-    [properties setObject:DEFAULT_OUTPUT_TYPE forKey:@"Output"];
-    [properties setObject:CMDLINE_ICON_PATH forKey:@"IconPath"];
+    properties[@"Name"] = DEFAULT_APP_NAME;
+    properties[@"ScriptPath"] = @"";
+    properties[@"Output"] = DEFAULT_OUTPUT_TYPE;
+    properties[@"IconPath"] = CMDLINE_ICON_PATH;
     
     // secondary attributes
-    [properties setObject:DEFAULT_INTERPRETER forKey:@"Interpreter"];
-    [properties setObject:[NSMutableArray array] forKey:@"InterpreterArgs"];
-    [properties setObject:[NSMutableArray array] forKey:@"ScriptArgs"];
-    [properties setObject:DEFAULT_VERSION forKey:@"Version"];
-    [properties setObject:[PlatypusAppSpec standardBundleIdForAppName:DEFAULT_APP_NAME authorName:nil usingDefaults:YES] forKey:@"Identifier"];
-    [properties setObject:NSFullUserName() forKey:@"Author"];
+    properties[@"Interpreter"] = DEFAULT_INTERPRETER;
+    properties[@"InterpreterArgs"] = [NSMutableArray array];
+    properties[@"ScriptArgs"] = [NSMutableArray array];
+    properties[@"Version"] = DEFAULT_VERSION;
+    properties[@"Identifier"] = [PlatypusAppSpec standardBundleIdForAppName:DEFAULT_APP_NAME authorName:nil usingDefaults:YES];
+    properties[@"Author"] = NSFullUserName();
     
-    [properties setValue:[NSNumber numberWithBool:NO] forKey:@"Droppable"];
-    [properties setValue:[NSNumber numberWithBool:NO] forKey:@"Secure"];
-    [properties setValue:[NSNumber numberWithBool:NO] forKey:@"Authentication"];
-    [properties setValue:[NSNumber numberWithBool:YES] forKey:@"RemainRunning"];
-    [properties setValue:[NSNumber numberWithBool:NO] forKey:@"ShowInDock"];
+    [properties setValue:@NO forKey:@"Droppable"];
+    [properties setValue:@NO forKey:@"Secure"];
+    [properties setValue:@NO forKey:@"Authentication"];
+    [properties setValue:@YES forKey:@"RemainRunning"];
+    [properties setValue:@NO forKey:@"ShowInDock"];
     
     // bundled files
-    [properties setObject:[NSMutableArray array] forKey:@"BundledFiles"];
+    properties[@"BundledFiles"] = [NSMutableArray array];
     
     // file/drag acceptance properties
-    [properties setObject:[NSMutableArray arrayWithObject:@"*"] forKey:@"Suffixes"];
-    [properties setObject:[NSMutableArray array] forKey:@"UniformTypes"];
-    [properties setObject:DEFAULT_ROLE forKey:@"Role"];
-    [properties setObject:[NSNumber numberWithBool:NO] forKey:@"AcceptsText"];
-    [properties setObject:[NSNumber numberWithBool:YES] forKey:@"AcceptsFiles"];
-    [properties setObject:[NSNumber numberWithBool:NO] forKey:@"DeclareService"];
-    [properties setObject:[NSNumber numberWithBool:NO] forKey:@"PromptForFileOnLaunch"];
-    [properties setObject:@"" forKey:@"DocIcon"];
+    properties[@"Suffixes"] = [NSMutableArray arrayWithObject:@"*"];
+    properties[@"UniformTypes"] = [NSMutableArray array];
+    properties[@"Role"] = DEFAULT_ROLE;
+    properties[@"AcceptsText"] = @NO;
+    properties[@"AcceptsFiles"] = @YES;
+    properties[@"DeclareService"] = @NO;
+    properties[@"PromptForFileOnLaunch"] = @NO;
+    properties[@"DocIcon"] = @"";
     
     // text output settings
-    [properties setObject:[NSNumber numberWithInt:DEFAULT_OUTPUT_TXT_ENCODING] forKey:@"TextEncoding"];
-    [properties setObject:DEFAULT_OUTPUT_FONT forKey:@"TextFont"];
-    [properties setObject:[NSNumber numberWithFloat:DEFAULT_OUTPUT_FONTSIZE] forKey:@"TextSize"];
-    [properties setObject:DEFAULT_OUTPUT_FG_COLOR forKey:@"TextForeground"];
-    [properties setObject:DEFAULT_OUTPUT_BG_COLOR forKey:@"TextBackground"];
+    properties[@"TextEncoding"] = [NSNumber numberWithInt:DEFAULT_OUTPUT_TXT_ENCODING];
+    properties[@"TextFont"] = DEFAULT_OUTPUT_FONT;
+    properties[@"TextSize"] = [NSNumber numberWithFloat:DEFAULT_OUTPUT_FONTSIZE];
+    properties[@"TextForeground"] = DEFAULT_OUTPUT_FG_COLOR;
+    properties[@"TextBackground"] = DEFAULT_OUTPUT_BG_COLOR;
     
     // status item settings
-    [properties setObject:DEFAULT_STATUSITEM_DTYPE forKey:@"StatusItemDisplayType"];
-    [properties setObject:DEFAULT_APP_NAME forKey:@"StatusItemTitle"];
-    [properties setObject:[NSData data] forKey:@"StatusItemIcon"];
-    [properties setObject:[NSNumber numberWithBool:YES] forKey:@"StatusItemUseSystemFont"];
+    properties[@"StatusItemDisplayType"] = DEFAULT_STATUSITEM_DTYPE;
+    properties[@"StatusItemTitle"] = DEFAULT_APP_NAME;
+    properties[@"StatusItemIcon"] = [NSData data];
+    properties[@"StatusItemUseSystemFont"] = @YES;
 }
 
 /********************************************************
@@ -184,7 +184,7 @@
         interpreter = DEFAULT_INTERPRETER;
     } else {
         // get parameters to interpreter
-        NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[ScriptAnalyser getInterpreterFromShebang:scriptPath]];
+        NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[ScriptAnalyser parseInterpreterFromShebang:scriptPath]];
         [shebangCmdComponents removeObjectAtIndex:0];
         [self setProperty:shebangCmdComponents forKey:@"InterpreterArgs"];
     }
@@ -224,24 +224,24 @@
     }
     
     //check if app already exists
-    if ([FILEMGR fileExistsAtPath:[properties objectForKey:@"Destination"]]) {
-        if ([[properties objectForKey:@"DestinationOverride"] boolValue] == FALSE) {
-            error = [NSString stringWithFormat:@"App already exists at path %@. Use -y flag to overwrite.", [properties objectForKey:@"Destination"]];
+    if ([FILEMGR fileExistsAtPath:properties[@"Destination"]]) {
+        if ([properties[@"DestinationOverride"] boolValue] == FALSE) {
+            error = [NSString stringWithFormat:@"App already exists at path %@. Use -y flag to overwrite.", properties[@"Destination"]];
             return FALSE;
         } else {
-            [self report:[NSString stringWithFormat:@"Overwriting app at path %@", [properties objectForKey:@"Destination"]]];
+            [self report:[NSString stringWithFormat:@"Overwriting app at path %@", properties[@"Destination"]]];
         }
     }
     
     // check if executable exists
-    execPath = [properties objectForKey:@"ExecutablePath"];
+    execPath = properties[@"ExecutablePath"];
     if (![FILEMGR fileExistsAtPath:execPath] || ![FILEMGR isReadableFileAtPath:execPath]) {
         [self report:[NSString stringWithFormat:@"Executable %@ does not exist. Aborting.", execPath, nil]];
         return NO;
     }
     
     // check if source nib exists
-    nibPath = [properties objectForKey:@"NibPath"];
+    nibPath = properties[@"NibPath"];
     if (![FILEMGR fileExistsAtPath:nibPath] || ![FILEMGR isReadableFileAtPath:nibPath]) {
         [self report:[NSString stringWithFormat:@"Nib file %@ does not exist. Aborting.", nibPath, nil]];
         return NO;
@@ -253,7 +253,7 @@
     [self report:@"Creating application bundle folder hierarchy"];
     
     //Application.app bundle
-    tmpPath = [tmpPath stringByAppendingString:[[properties objectForKey:@"Destination"] lastPathComponent]];
+    tmpPath = [tmpPath stringByAppendingString:[properties[@"Destination"] lastPathComponent]];
     [FILEMGR createDirectoryAtPath:tmpPath withIntermediateDirectories:NO attributes:nil error:nil];
     
     //.app/Contents
@@ -275,10 +275,9 @@
     //copy exec file
     //.app/Contents/Resources/MacOS/ScriptExec
     execDestinationPath = [macosPath stringByAppendingString:@"/"];
-    execDestinationPath = [execDestinationPath stringByAppendingString:[properties objectForKey:@"Name"]];
+    execDestinationPath = [execDestinationPath stringByAppendingString:properties[@"Name"]];
     [FILEMGR copyItemAtPath:execPath toPath:execDestinationPath error:nil];
-    NSDictionary *execAttrDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLong:0755]
-                                                             forKey:NSFilePosixPermissions];
+    NSDictionary *execAttrDict = @{NSFilePosixPermissions: @0755UL};
     [FILEMGR setAttributes:execAttrDict ofItemAtPath:execDestinationPath error:nil];
 
     
@@ -289,11 +288,11 @@
     [FILEMGR copyItemAtPath:nibPath toPath:nibDestPath error:nil];
     
     // if optimize application is set, we see if we can compile the nib file
-    if ([[properties objectForKey:@"OptimizeApplication"] boolValue] == YES && [FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
+    if ([properties[@"OptimizeApplication"] boolValue] == YES && [FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
         [self report:@"Optimizing nib file"];
         NSTask *ibToolTask = [[NSTask alloc] init];
         [ibToolTask setLaunchPath:IBTOOL_PATH];
-        [ibToolTask setArguments:[NSArray arrayWithObjects:@"--strip", nibDestPath, nibDestPath, nil]];
+        [ibToolTask setArguments:@[@"--strip", nibDestPath, nibDestPath]];
         [ibToolTask launch];
         [ibToolTask waitUntilExit];
         [ibToolTask release];
@@ -303,19 +302,18 @@
     //.app/Contents/Resources/script
     [self report:@"Copying script"];
     
-    if ([[properties objectForKey:@"Secure"] boolValue]) {
-        NSString *path = [properties objectForKey:@"ScriptPath"];
+    if ([properties[@"Secure"] boolValue]) {
+        NSString *path = properties[@"ScriptPath"];
         b_enc_script = [NSData dataWithContentsOfFile:path];
     } else {
         NSString *scriptFilePath = [resourcesPath stringByAppendingString:@"/script"];
         // make a symbolic link instead of copying script if this is a dev version
-        if ([[properties objectForKey:@"DevelopmentVersion"] boolValue] == YES) {
-            [FILEMGR createSymbolicLinkAtPath:scriptFilePath withDestinationPath:[properties objectForKey:@"ScriptPath"] error:nil];
+        if ([properties[@"DevelopmentVersion"] boolValue] == YES) {
+            [FILEMGR createSymbolicLinkAtPath:scriptFilePath withDestinationPath:properties[@"ScriptPath"] error:nil];
         } else { // copy script over
-            [FILEMGR copyItemAtPath:[properties objectForKey:@"ScriptPath"] toPath:scriptFilePath error:nil];
+            [FILEMGR copyItemAtPath:properties[@"ScriptPath"] toPath:scriptFilePath error:nil];
         }
-        NSDictionary *fileAttrDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLong:0755]
-                                                                 forKey:NSFilePosixPermissions];
+        NSDictionary *fileAttrDict = @{NSFilePosixPermissions: @0755UL};
         [FILEMGR setAttributes:fileAttrDict ofItemAtPath:scriptFilePath error:nil];
     }
     
@@ -323,52 +321,52 @@
     //.app/Contents/Resources/AppSettings.plist
     [self report:@"Creating AppSettings property list"];
     appSettingsPlist = [NSMutableDictionary dictionary];
-    [appSettingsPlist setObject:[properties objectForKey:@"Authentication"] forKey:@"RequiresAdminPrivileges"];
-    [appSettingsPlist setObject:[properties objectForKey:@"Droppable"] forKey:@"Droppable"];
-    [appSettingsPlist setObject:[properties objectForKey:@"RemainRunning"] forKey:@"RemainRunningAfterCompletion"];
-    [appSettingsPlist setObject:[properties objectForKey:@"Secure"] forKey:@"Secure"];
-    [appSettingsPlist setObject:[properties objectForKey:@"Output"] forKey:@"OutputType"];
-    [appSettingsPlist setObject:[properties objectForKey:@"Interpreter"] forKey:@"ScriptInterpreter"];
-    [appSettingsPlist setObject:PROGRAM_STAMP forKey:@"Creator"];
-    [appSettingsPlist setObject:[properties objectForKey:@"InterpreterArgs"] forKey:@"InterpreterArgs"];
-    [appSettingsPlist setObject:[properties objectForKey:@"ScriptArgs"] forKey:@"ScriptArgs"];
-    [appSettingsPlist setObject:[properties objectForKey:@"PromptForFileOnLaunch"] forKey:@"PromptForFileOnLaunch"];
+    appSettingsPlist[@"RequiresAdminPrivileges"] = properties[@"Authentication"];
+    appSettingsPlist[@"Droppable"] = properties[@"Droppable"];
+    appSettingsPlist[@"RemainRunningAfterCompletion"] = properties[@"RemainRunning"];
+    appSettingsPlist[@"Secure"] = properties[@"Secure"];
+    appSettingsPlist[@"OutputType"] = properties[@"Output"];
+    appSettingsPlist[@"ScriptInterpreter"] = properties[@"Interpreter"];
+    appSettingsPlist[@"Creator"] = PROGRAM_STAMP;
+    appSettingsPlist[@"InterpreterArgs"] = properties[@"InterpreterArgs"];
+    appSettingsPlist[@"ScriptArgs"] = properties[@"ScriptArgs"];
+    appSettingsPlist[@"PromptForFileOnLaunch"] = properties[@"PromptForFileOnLaunch"];
     
     // we need only set text settings for the output types that use this information
-    if ([[properties objectForKey:@"Output"] isEqualToString:@"Progress Bar"] ||
-        [[properties objectForKey:@"Output"] isEqualToString:@"Text Window"] ||
-        [[properties objectForKey:@"Output"] isEqualToString:@"Status Menu"]) {
-        [appSettingsPlist setObject:[properties objectForKey:@"TextFont"] forKey:@"TextFont"];
-        [appSettingsPlist setObject:[properties objectForKey:@"TextSize"] forKey:@"TextSize"];
-        [appSettingsPlist setObject:[properties objectForKey:@"TextForeground"] forKey:@"TextForeground"];
-        [appSettingsPlist setObject:[properties objectForKey:@"TextBackground"] forKey:@"TextBackground"];
-        [appSettingsPlist setObject:[properties objectForKey:@"TextEncoding"] forKey:@"TextEncoding"];
+    if ([properties[@"Output"] isEqualToString:@"Progress Bar"] ||
+        [properties[@"Output"] isEqualToString:@"Text Window"] ||
+        [properties[@"Output"] isEqualToString:@"Status Menu"]) {
+        appSettingsPlist[@"TextFont"] = properties[@"TextFont"];
+        appSettingsPlist[@"TextSize"] = properties[@"TextSize"];
+        appSettingsPlist[@"TextForeground"] = properties[@"TextForeground"];
+        appSettingsPlist[@"TextBackground"] = properties[@"TextBackground"];
+        appSettingsPlist[@"TextEncoding"] = properties[@"TextEncoding"];
     }
     
     // likewise, status menu settings are only written if that is the output type
-    if ([[properties objectForKey:@"Output"] isEqualToString:@"Status Menu"] == YES) {
-        [appSettingsPlist setObject:[properties objectForKey:@"StatusItemDisplayType"] forKey:@"StatusItemDisplayType"];
-        [appSettingsPlist setObject:[properties objectForKey:@"StatusItemTitle"] forKey:@"StatusItemTitle"];
-        [appSettingsPlist setObject:[properties objectForKey:@"StatusItemIcon"] forKey:@"StatusItemIcon"];
-        [appSettingsPlist setObject:[properties objectForKey:@"StatusItemUseSystemFont"] forKey:@"StatusItemUseSystemFont"];
+    if ([properties[@"Output"] isEqualToString:@"Status Menu"] == YES) {
+        appSettingsPlist[@"StatusItemDisplayType"] = properties[@"StatusItemDisplayType"];
+        appSettingsPlist[@"StatusItemTitle"] = properties[@"StatusItemTitle"];
+        appSettingsPlist[@"StatusItemIcon"] = properties[@"StatusItemIcon"];
+        appSettingsPlist[@"StatusItemUseSystemFont"] = properties[@"StatusItemUseSystemFont"];
     }
     
     // we  set the suffixes/file types in the AppSettings.plist if app is droppable
-    if ([[properties objectForKey:@"Droppable"] boolValue] == YES) {
-        [appSettingsPlist setObject:[properties objectForKey:@"Suffixes"] forKey:@"DropSuffixes"];
-        [appSettingsPlist setObject:[properties objectForKey:@"UniformTypes"] forKey:@"DropUniformTypes"];
+    if ([properties[@"Droppable"] boolValue] == YES) {
+        appSettingsPlist[@"DropSuffixes"] = properties[@"Suffixes"];
+        appSettingsPlist[@"DropUniformTypes"] = properties[@"UniformTypes"];
     }
-    [appSettingsPlist setObject:[properties objectForKey:@"AcceptsFiles"] forKey:@"AcceptsFiles"];
-    [appSettingsPlist setObject:[properties objectForKey:@"AcceptsText"] forKey:@"AcceptsText"];
+    appSettingsPlist[@"AcceptsFiles"] = properties[@"AcceptsFiles"];
+    appSettingsPlist[@"AcceptsText"] = properties[@"AcceptsText"];
     
     // if script is "secured" we encoded it into AppSettings property list
-    if ([[properties objectForKey:@"Secure"] boolValue]) {
-        [appSettingsPlist setObject:[NSKeyedArchiver archivedDataWithRootObject:b_enc_script] forKey:@"TextSettings"];
+    if ([properties[@"Secure"] boolValue]) {
+        appSettingsPlist[@"TextSettings"] = [NSKeyedArchiver archivedDataWithRootObject:b_enc_script];
     }
     appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
     
     // write the app settings plist
-    if ([[properties objectForKey:@"UseXMLPlistFormat"] boolValue] == FALSE) {
+    if ([properties[@"UseXMLPlistFormat"] boolValue] == FALSE) {
         NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList:appSettingsPlist
                                                                           format:NSPropertyListBinaryFormat_v1_0
                                                                 errorDescription:nil];
@@ -379,16 +377,16 @@
     
     //create icon
     //.app/Contents/Resources/appIcon.icns
-    if ([properties objectForKey:@"IconPath"] && ![[properties objectForKey:@"IconPath"] isEqualToString:@""]) {
+    if (properties[@"IconPath"] && ![properties[@"IconPath"] isEqualToString:@""]) {
         [self report:@"Writing application icon"];
         iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
-        [FILEMGR copyItemAtPath:[properties objectForKey:@"IconPath"] toPath:iconPath error:nil];
+        [FILEMGR copyItemAtPath:properties[@"IconPath"] toPath:iconPath error:nil];
     }
     
-    if ([properties objectForKey:@"DocIcon"] && ![[properties objectForKey:@"DocIcon"] isEqualToString:@""]) {
+    if (properties[@"DocIcon"] && ![properties[@"DocIcon"] isEqualToString:@""]) {
         [self report:@"Writing document icon"];
         docIconPath = [resourcesPath stringByAppendingString:@"/docIcon.icns"];
-        [FILEMGR copyItemAtPath:[properties objectForKey:@"DocIcon"] toPath:docIconPath error:nil];
+        [FILEMGR copyItemAtPath:properties[@"DocIcon"] toPath:docIconPath error:nil];
     }
     
     //create Info.plist file
@@ -396,7 +394,7 @@
     [self report:@"Writing Info.plist"];
     NSDictionary *infoPlist = [self infoPlist];
     infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
-    if (![[properties objectForKey:@"UseXMLPlistFormat"] boolValue]) { // if binary
+    if (![properties[@"UseXMLPlistFormat"] boolValue]) { // if binary
         NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList:infoPlist
                                                                           format:NSPropertyListBinaryFormat_v1_0
                                                                 errorDescription:nil];
@@ -410,8 +408,8 @@
     //.app/Contents/Resources/*
     [self report:@"Copying bundled files"];
     
-    for (int i = 0; i < [[properties objectForKey:@"BundledFiles"] count]; i++) {
-        bundledFilePath = [[properties objectForKey:@"BundledFiles"] objectAtIndex:i];
+    for (int i = 0; i < [properties[@"BundledFiles"] count]; i++) {
+        bundledFilePath = properties[@"BundledFiles"][i];
         bundledFileDestPath = [resourcesPath stringByAppendingString:@"/"];
         bundledFileDestPath = [bundledFileDestPath stringByAppendingString:[bundledFilePath lastPathComponent]];
         
@@ -419,7 +417,7 @@
         [self report:[NSString stringWithFormat:@"Copying \"%@\" to bundle", srcFileName]];
         
         // if it's a development version, we just symlink it
-        if ([[properties objectForKey:@"DevelopmentVersion"] boolValue] == YES) {
+        if ([properties[@"DevelopmentVersion"] boolValue] == YES) {
             [FILEMGR createSymbolicLinkAtPath:bundledFileDestPath withDestinationPath:bundledFilePath error:nil];
         } else {
             // otherwise we copy it
@@ -439,11 +437,11 @@
     // now it's time to move it to the destination specified by the user
     [self report:@"Moving app to destination directory"];
     
-    NSString *destPath = [properties objectForKey:@"Destination"];
+    NSString *destPath = properties[@"Destination"];
     
     
     // first, let's see if there's anything there.  If we have override set on, we just delete that stuff.
-    if ([FILEMGR fileExistsAtPath:destPath] && [[properties objectForKey:@"DestinationOverride"] boolValue]) {
+    if ([FILEMGR fileExistsAtPath:destPath] && [properties[@"DestinationOverride"] boolValue]) {
         [FILEMGR removeItemAtPath:destPath error:nil];
         [WORKSPACE notifyFinderFileChangedAtPath:destPath];
     }
@@ -465,7 +463,7 @@
     [WORKSPACE notifyFinderFileChangedAtPath:destPath];
     
     // Update Services
-    if ([[properties objectForKey:@"DeclareService"] boolValue]) {
+    if ([properties[@"DeclareService"] boolValue]) {
         [self report:@"Updating Dynamic Services"];
         // This call will refresh Services without user having to log out/in
         NSUpdateDynamicServices();
@@ -480,68 +478,65 @@
 
     NSString *humanCopyright = [NSString stringWithFormat:@"© %d %@",
                                 (int)[[NSCalendarDate calendarDate] yearOfCommonEra],
-                                [properties objectForKey:@"Author"]];
-    
-    NSDictionary *appTransportSecurity = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"NSAllowsArbitraryLoads"];
-    
+                                properties[@"Author"]];
     
     NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       
-                                      @"en",                                    @"CFBundleDevelopmentRegion",
-                                      [properties objectForKey:@"Name"],        @"CFBundleExecutable",
-                                      [properties objectForKey:@"Name"],        @"CFBundleName",
-                                      [properties objectForKey:@"Name"],        @"CFBundleDisplayName",
-                                      humanCopyright,                           @"NSHumanReadableCopyright",
-                                      [properties objectForKey:@"Version"],     @"CFBundleVersion",
-                                      [properties objectForKey:@"Version"],     @"CFBundleShortVersionString",
-                                      [properties objectForKey:@"Identifier"],  @"CFBundleIdentifier",
-                                      [properties objectForKey:@"ShowInDock"],  @"LSUIElement",
-                                      @"6.0",                                   @"CFBundleInfoDictionaryVersion",
-                                      @"APPL",                                  @"CFBundlePackageType",
-                                      @"MainMenu",                              @"NSMainNibFile",
-                                      PROGRAM_MIN_SYS_VERSION,                  @"LSMinimumSystemVersion",
-                                      @"NSApplication",                         @"NSPrincipalClass",
-                                      appTransportSecurity,                     @"NSAppTransportSecurity",
+          @"en",                                    @"CFBundleDevelopmentRegion",
+          properties[@"Name"],                      @"CFBundleExecutable",
+          properties[@"Name"],                      @"CFBundleName",
+          properties[@"Name"],                      @"CFBundleDisplayName",
+          humanCopyright,                           @"NSHumanReadableCopyright",
+          properties[@"Version"],                   @"CFBundleVersion",
+          properties[@"Version"],                   @"CFBundleShortVersionString",
+          properties[@"Identifier"],                @"CFBundleIdentifier",
+          properties[@"ShowInDock"],                @"LSUIElement",
+          @"6.0",                                   @"CFBundleInfoDictionaryVersion",
+          @"APPL",                                  @"CFBundlePackageType",
+          @"MainMenu",                              @"NSMainNibFile",
+          PROGRAM_MIN_SYS_VERSION,                  @"LSMinimumSystemVersion",
+          @"NSApplication",                         @"NSPrincipalClass",
+          @{@"NSAllowsArbitraryLoads": @YES},       @"NSAppTransportSecurity",
                                       
-                                      nil];
+                                                    nil];
     
-    if (![[properties objectForKey:@"IconPath"] isEqualToString:@""]) {
-        [infoPlist setObject:@"appIcon.icns" forKey:@"CFBundleIconFile"];
+    if (properties[@"IconPath"] && [properties[@"IconPath"] isEqualToString:@""] == NO) {
+        infoPlist[@"CFBundleIconFile"] = @"appIcon.icns";
     }
     
     // if droppable, we declare the accepted file types
-    if ([[properties objectForKey:@"Droppable"] boolValue] == YES) {
+    if ([properties[@"Droppable"] boolValue] == YES) {
         NSMutableDictionary *typesAndSuffixesDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                     [properties objectForKey:@"Suffixes"], @"CFBundleTypeExtensions",  nil];
-        if ([properties objectForKey:@"UniformTypes"] != nil && [[properties objectForKey:@"UniformTypes"] count] > 0) {
-            [typesAndSuffixesDict setObject:[properties objectForKey:@"UniformTypes"] forKey:@"LSItemContentTypes"];
+                                                     properties[@"Suffixes"], @"CFBundleTypeExtensions",  nil];
+        if (properties[@"UniformTypes"] != nil && [properties[@"UniformTypes"] count] > 0) {
+            typesAndSuffixesDict[@"LSItemContentTypes"] = properties[@"UniformTypes"];
         }
         
         // document icon
-        if ([properties objectForKey:@"DocIcon"] && [FILEMGR fileExistsAtPath:[properties objectForKey:@"DocIcon"]])
-            [typesAndSuffixesDict setObject:@"docIcon.icns" forKey:@"CFBundleTypeIconFile"];
+        if (properties[@"DocIcon"] && [FILEMGR fileExistsAtPath:properties[@"DocIcon"]])
+            typesAndSuffixesDict[@"CFBundleTypeIconFile"] = @"docIcon.icns";
         
         // set file types and suffixes
-        [infoPlist setObject:[NSArray arrayWithObject:typesAndSuffixesDict] forKey:@"CFBundleDocumentTypes"];
+        infoPlist[@"CFBundleDocumentTypes"] = @[typesAndSuffixesDict];
         
         // add service settings to Info.plist
-        if ([[properties objectForKey:@"DeclareService"] boolValue]) {
+        if ([properties[@"DeclareService"] boolValue]) {
             // service data type handling
             NSMutableArray *sendTypes = [NSMutableArray arrayWithCapacity:2];
-            if ([[properties objectForKey:@"AcceptsFiles"] boolValue])
+            if ([properties[@"AcceptsFiles"] boolValue])
                 [sendTypes addObject:@"NSFilenamesPboardType"];
-            if ([[properties objectForKey:@"AcceptsText"] boolValue])
+            if ([properties[@"AcceptsText"] boolValue])
                 [sendTypes addObject:@"NSStringPboardType"];
             
-            NSString *appName = [properties objectForKey:@"Name"];
+            NSString *appName = properties[@"Name"];
             NSMutableDictionary *serviceDict = [NSMutableDictionary dictionaryWithCapacity:10];
-            NSDictionary *menuItemDict = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Process with %@", appName] forKey:@"default"];
+            NSDictionary *menuItemDict = @{@"default": [NSString stringWithFormat:@"Process with %@", appName]};
             
-            [serviceDict setObject:menuItemDict forKey:@"NSMenuItem"];
-            [serviceDict setObject:@"dropService"  forKey:@"NSMessage"];
-            [serviceDict setObject:appName forKey:@"NSPortName"];
-            [serviceDict setObject:sendTypes forKey:@"NSSendTypes"];
-            [infoPlist setObject:[NSArray arrayWithObject:serviceDict] forKey:@"NSServices"];
+            serviceDict[@"NSMenuItem"] = menuItemDict;
+            serviceDict[@"NSMessage"] = @"dropService";
+            serviceDict[@"NSPortName"] = appName;
+            serviceDict[@"NSSendTypes"] = sendTypes;
+            infoPlist[@"NSServices"] = @[serviceDict];
         }
     }
     return infoPlist;
@@ -559,7 +554,7 @@
 - (BOOL)verify {
     BOOL isDir;
     
-    if (![[properties objectForKey:@"Destination"] hasSuffix:@"app"]) {
+    if (![properties[@"Destination"] hasSuffix:@"app"]) {
         error = @"Destination must end with .app";
         return 0;
     }
@@ -569,35 +564,35 @@
         NSLog(@"Warning: Font \"%@\" cannot be instantiated.", [self propertyForKey:@"TextFont"]);
     }
     
-    if ([[properties objectForKey:@"Name"] isEqualToString:@""]) {
+    if ([properties[@"Name"] isEqualToString:@""]) {
         error = @"Empty app name";
         return 0;
     }
     
-    if (![FILEMGR fileExistsAtPath:[properties objectForKey:@"ScriptPath"] isDirectory:&isDir] || isDir) {
-        error = [NSString stringWithFormat:@"Script not found at path '%@'", [properties objectForKey:@"ScriptPath"], nil];
+    if (![FILEMGR fileExistsAtPath:properties[@"ScriptPath"] isDirectory:&isDir] || isDir) {
+        error = [NSString stringWithFormat:@"Script not found at path '%@'", properties[@"ScriptPath"], nil];
         return 0;
     }
     
-    if (![FILEMGR fileExistsAtPath:[properties objectForKey:@"NibPath"] isDirectory:&isDir]) {
-        error = [NSString stringWithFormat:@"Nib not found at path '%@'", [properties objectForKey:@"NibPath"], nil];
+    if (![FILEMGR fileExistsAtPath:properties[@"NibPath"] isDirectory:&isDir]) {
+        error = [NSString stringWithFormat:@"Nib not found at path '%@'", properties[@"NibPath"], nil];
         return 0;
     }
     
-    if (![FILEMGR fileExistsAtPath:[properties objectForKey:@"ExecutablePath"] isDirectory:&isDir] || isDir) {
-        error = [NSString stringWithFormat:@"Executable not found at path '%@'", [properties objectForKey:@"ExecutablePath"], nil];
+    if (![FILEMGR fileExistsAtPath:properties[@"ExecutablePath"] isDirectory:&isDir] || isDir) {
+        error = [NSString stringWithFormat:@"Executable not found at path '%@'", properties[@"ExecutablePath"], nil];
         return 0;
     }
     
     //make sure destination directory exists
-    if (![FILEMGR fileExistsAtPath:[[properties objectForKey:@"Destination"] stringByDeletingLastPathComponent] isDirectory:&isDir] || !isDir) {
-        error = [NSString stringWithFormat:@"Destination directory '%@' does not exist.", [[properties objectForKey:@"Destination"] stringByDeletingLastPathComponent], nil];
+    if (![FILEMGR fileExistsAtPath:[properties[@"Destination"] stringByDeletingLastPathComponent] isDirectory:&isDir] || !isDir) {
+        error = [NSString stringWithFormat:@"Destination directory '%@' does not exist.", [properties[@"Destination"] stringByDeletingLastPathComponent], nil];
         return 0;
     }
     
     //make sure we have write privileges for the destination directory
-    if (![FILEMGR isWritableFileAtPath:[[properties objectForKey:@"Destination"] stringByDeletingLastPathComponent]]) {
-        error = [NSString stringWithFormat:@"Don't have permission to write to the destination directory '%@'", [properties objectForKey:@"Destination"]];
+    if (![FILEMGR isWritableFileAtPath:[properties[@"Destination"] stringByDeletingLastPathComponent]]) {
+        error = [NSString stringWithFormat:@"Don't have permission to write to the destination directory '%@'", properties[@"Destination"]];
         return 0;
     }
     
@@ -630,66 +625,66 @@
     NSString *statusMenuOptionsString = @"";
     
     // checkbox parameters
-    if ([[properties objectForKey:@"Authentication"] boolValue]) {
+    if ([properties[@"Authentication"] boolValue]) {
         NSString *str = longOpts ? @"-A " : @"--admin-privileges ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([[properties objectForKey:@"Secure"] boolValue]) {
+    if ([properties[@"Secure"] boolValue]) {
         NSString *str = longOpts ? @"-S " : @"--secure-script ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([[properties objectForKey:@"AcceptsFiles"] boolValue] && [[properties objectForKey:@"Droppable"] boolValue]) {
+    if ([properties[@"AcceptsFiles"] boolValue] && [properties[@"Droppable"] boolValue]) {
         NSString *str = longOpts ? @"-D " : @"--droppable ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([[properties objectForKey:@"AcceptsText"] boolValue] && [[properties objectForKey:@"Droppable"] boolValue]) {
+    if ([properties[@"AcceptsText"] boolValue] && [properties[@"Droppable"] boolValue]) {
         NSString *str = longOpts ? @"-F " : @"--text-droppable ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([[properties objectForKey:@"DeclareService"] boolValue] && [[properties objectForKey:@"Droppable"] boolValue]) {
+    if ([properties[@"DeclareService"] boolValue] && [properties[@"Droppable"] boolValue]) {
         NSString *str = longOpts ? @"-N " : @"--service ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([[properties objectForKey:@"ShowInDock"] boolValue]) {
+    if ([properties[@"ShowInDock"] boolValue]) {
         NSString *str = longOpts ? @"-B " : @"--background ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([[properties objectForKey:@"RemainRunning"] boolValue] == FALSE) {
+    if ([properties[@"RemainRunning"] boolValue] == FALSE) {
         NSString *str = longOpts ? @"-R " : @"--quit-after-execution ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([[properties objectForKey:@"Version"] isEqualToString:@"1.0"] == FALSE) {
+    if ([properties[@"Version"] isEqualToString:@"1.0"] == FALSE) {
         NSString *str = longOpts ? @"-V" : @"--app-version";
-        versionString = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"Version"]];
+        versionString = [NSString stringWithFormat:@" %@ '%@' ", str, properties[@"Version"]];
     }
     
-    if (![[properties objectForKey:@"Author"] isEqualToString:NSFullUserName()]) {
+    if (![properties[@"Author"] isEqualToString:NSFullUserName()]) {
         NSString *str = longOpts ? @"-u" : @"--author";
-        authorString = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"Author"]];
+        authorString = [NSString stringWithFormat:@" %@ '%@' ", str, properties[@"Author"]];
     }
     
     NSString *promptForFileString = @"";
-    if ([[properties objectForKey:@"Droppable"] boolValue]) {
+    if ([properties[@"Droppable"] boolValue]) {
         //  suffixes param
-        if ([[properties objectForKey:@"Suffixes"] count]) {
+        if ([properties[@"Suffixes"] count]) {
             NSString *str = longOpts ? @"-X" : @"--suffixes";
-            suffixesString = [[properties objectForKey:@"Suffixes"] componentsJoinedByString:@"|"];
+            suffixesString = [properties[@"Suffixes"] componentsJoinedByString:@"|"];
             suffixesString = [NSString stringWithFormat:@"%@ '%@' ", str, suffixesString];
         }
         // uniform type identifier params
-        if ([[properties objectForKey:@"UniformTypes"] count]) {
-            uniformTypesString = [[properties objectForKey:@"UniformTypes"] componentsJoinedByString:@"|"];
+        if ([properties[@"UniformTypes"] count]) {
+            uniformTypesString = [properties[@"UniformTypes"] componentsJoinedByString:@"|"];
             uniformTypesString = [NSString stringWithFormat:@"-T '%@' ", uniformTypesString];
         }
         // file prompt
-        if ([[properties objectForKey:@"PromptForFileOnLaunch"] boolValue]) {
+        if ([properties[@"PromptForFileOnLaunch"] boolValue]) {
             NSString *str = longOpts ? @"-Z" : @"--file-prompt";
             promptForFileString = [NSString stringWithFormat:@"%@ ", str];
         }
@@ -697,87 +692,87 @@
     
     //create bundled files string
     NSString *bundledFilesCmdString = @"";
-    NSArray *bundledFiles = (NSArray *)[properties objectForKey:@"BundledFiles"];
+    NSArray *bundledFiles = (NSArray *)properties[@"BundledFiles"];
     for (int i = 0; i < [bundledFiles count]; i++) {
         NSString *str = longOpts ? @"-f" : @"--bundled-file";
-        bundledFilesCmdString = [bundledFilesCmdString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, [bundledFiles objectAtIndex:i]]];
+        bundledFilesCmdString = [bundledFilesCmdString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, bundledFiles[i]]];
     }
     
     // create interpreter and script args flags
-    if ([(NSArray *)[properties objectForKey:@"InterpreterArgs"] count]) {
+    if ([(NSArray *)properties[@"InterpreterArgs"] count]) {
         NSString *str = longOpts ? @"-G" : @"--interpreter-args";
-        NSString *arg = [[properties objectForKey:@"InterpreterArgs"] componentsJoinedByString:@"|"];
+        NSString *arg = [properties[@"InterpreterArgs"] componentsJoinedByString:@"|"];
         parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, arg]];
     }
-    if ([(NSArray *)[properties objectForKey:@"ScriptArgs"] count]) {
+    if ([(NSArray *)properties[@"ScriptArgs"] count]) {
         NSString *str = longOpts ? @"-C" : @"--script-args";
-        NSString *arg = [[properties objectForKey:@"ScriptArgs"] componentsJoinedByString:@"|"];
+        NSString *arg = [properties[@"ScriptArgs"] componentsJoinedByString:@"|"];
         parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, arg]];
     }
     
     //  create args for text settings if progress bar/text window or status menu
-    if (([[properties objectForKey:@"Output"] isEqualToString:@"Text Window"] ||
-         [[properties objectForKey:@"Output"] isEqualToString:@"Progress Bar"] ||
-         [[properties objectForKey:@"Output"] isEqualToString:@"Status Menu"])) {
+    if (([properties[@"Output"] isEqualToString:@"Text Window"] ||
+         [properties[@"Output"] isEqualToString:@"Progress Bar"] ||
+         [properties[@"Output"] isEqualToString:@"Status Menu"])) {
         
         NSString *textFgString = @"", *textBgString = @"", *textFontString = @"";
-        if (![[properties objectForKey:@"TextForeground"] isEqualToString:DEFAULT_OUTPUT_FG_COLOR]) {
+        if (![properties[@"TextForeground"] isEqualToString:DEFAULT_OUTPUT_FG_COLOR]) {
             NSString *str = longOpts ? @"-g" : @"--text-foreground-color";
-            textFgString = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"TextForeground"]];
+            textFgString = [NSString stringWithFormat:@" %@ '%@' ", str, properties[@"TextForeground"]];
         }
         
-        if (![[properties objectForKey:@"TextBackground"] isEqualToString:DEFAULT_OUTPUT_BG_COLOR]) {
+        if (![properties[@"TextBackground"] isEqualToString:DEFAULT_OUTPUT_BG_COLOR]) {
             NSString *str = longOpts ? @"-b" : @"--text-background-color";
-            textBgString = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"TextForeground"]];
+            textBgString = [NSString stringWithFormat:@" %@ '%@' ", str, properties[@"TextForeground"]];
         }
         
-        if ([[properties objectForKey:@"TextSize"] floatValue] != DEFAULT_OUTPUT_FONTSIZE ||
-            ![[properties objectForKey:@"TextFont"] isEqualToString:DEFAULT_OUTPUT_FONT]) {
+        if ([properties[@"TextSize"] floatValue] != DEFAULT_OUTPUT_FONTSIZE ||
+            ![properties[@"TextFont"] isEqualToString:DEFAULT_OUTPUT_FONT]) {
             NSString *str = longOpts ? @"-n" : @"--text-font";
-            textFontString = [NSString stringWithFormat:@" %@ '%@ %2.f' ", str, [properties objectForKey:@"TextFont"], [[properties objectForKey:@"TextSize"] floatValue]];
+            textFontString = [NSString stringWithFormat:@" %@ '%@ %2.f' ", str, properties[@"TextFont"], [properties[@"TextSize"] floatValue]];
         }
         
         textOutputString = [NSString stringWithFormat:@"%@%@%@", textFgString, textBgString, textFontString];
     }
     
     //text encoding
-    if ([[properties objectForKey:@"TextEncoding"] intValue] != DEFAULT_OUTPUT_TXT_ENCODING) {
+    if ([properties[@"TextEncoding"] intValue] != DEFAULT_OUTPUT_TXT_ENCODING) {
         NSString *str = longOpts ? @"-E" : @"--text-encoding";
-        textEncodingString = [NSString stringWithFormat:@" %@ %d ", str, [[properties objectForKey:@"TextEncoding"] intValue]];
+        textEncodingString = [NSString stringWithFormat:@" %@ %d ", str, [properties[@"TextEncoding"] intValue]];
     }
     
     //create custom icon string
-    if (![[properties objectForKey:@"IconPath"] isEqualToString:CMDLINE_ICON_PATH] && ![[properties objectForKey:@"IconPath"] isEqualToString:@""]) {
+    if (![properties[@"IconPath"] isEqualToString:CMDLINE_ICON_PATH] && ![properties[@"IconPath"] isEqualToString:@""]) {
         NSString *str = longOpts ? @"-i" : @"--app-icon";
-        iconParamStr = [NSString stringWithFormat:@"%@ '%@' ", str, [properties objectForKey:@"IconPath"]];
+        iconParamStr = [NSString stringWithFormat:@"%@ '%@' ", str, properties[@"IconPath"]];
     }
     
     //create custom icon string
-    if ([properties objectForKey:@"DocIcon"] && ![[properties objectForKey:@"DocIcon"] isEqualToString:@""]) {
+    if (properties[@"DocIcon"] && ![properties[@"DocIcon"] isEqualToString:@""]) {
         NSString *str = longOpts ? @"-Q" : @"--document-icon";
-        iconParamStr = [iconParamStr stringByAppendingFormat:@" %@ '%@' ", str, [properties objectForKey:@"DocIcon"]];
+        iconParamStr = [iconParamStr stringByAppendingFormat:@" %@ '%@' ", str, properties[@"DocIcon"]];
     }
     
     //status menu settings, if output mode is status menu
-    if ([[properties objectForKey:@"Output"] isEqualToString:@"Status Menu"]) {
+    if ([properties[@"Output"] isEqualToString:@"Status Menu"]) {
         // -K kind
         NSString *str = longOpts ? @"-K" : @"--status-item-kind";
-        statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, [properties objectForKey:@"StatusItemDisplayType"]];
+        statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, properties[@"StatusItemDisplayType"]];
         
         // -L /path/to/image
-        if (![[properties objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
+        if (![properties[@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
             str = longOpts ? @"-L" : @"--status-item-icon";
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '/path/to/image' ", str];
         }
         
         // -Y 'Title'
-        if (![[properties objectForKey:@"StatusItemDisplayType"] isEqualToString:@"Icon"]) {
+        if (![properties[@"StatusItemDisplayType"] isEqualToString:@"Icon"]) {
             str = longOpts ? @"-Y" : @"--status-item-title";
-            statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, [properties objectForKey:@"StatusItemTitle"]];
+            statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, properties[@"StatusItemTitle"]];
         }
         
         // -c
-        if (![[properties objectForKey:@"StatusItemUseSystemFont"] boolValue]) {
+        if (![properties[@"StatusItemUseSystemFont"] boolValue]) {
             str = longOpts ? @"-c" : @"--status-item-sysfont";
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ ", str];
         }
@@ -785,26 +780,26 @@
     
     // only set app name arg if we have a proper value
     NSString *appNameArg = @"";
-    if ([[properties objectForKey: @"Name"] isEqualToString:@""] == FALSE) {
+    if ([properties[@"Name"] isEqualToString:@""] == FALSE) {
         NSString *str = longOpts ? @"-a" : @"--name";
-        appNameArg = [NSString stringWithFormat: @" %@ '%@' ", str,  [properties objectForKey: @"Name"]];
+        appNameArg = [NSString stringWithFormat: @" %@ '%@' ", str,  properties[@"Name"]];
     }
     
     // only add identifier argument if it varies from default
     NSString *identifierArg = @"";
-    NSString *standardIdentifier = [PlatypusAppSpec standardBundleIdForAppName:[properties objectForKey: @"Name"] authorName:nil usingDefaults: NO];
-    if ([[properties objectForKey: @"Identifier"] isEqualToString:standardIdentifier] == FALSE) {
+    NSString *standardIdentifier = [PlatypusAppSpec standardBundleIdForAppName:properties[@"Name"] authorName:nil usingDefaults: NO];
+    if ([properties[@"Identifier"] isEqualToString:standardIdentifier] == FALSE) {
         NSString *str = longOpts ? @"-I" : @"--bundle-identifier";
-        identifierArg = [NSString stringWithFormat: @" %@ %@ ", str, [properties objectForKey: @"Identifier"]];
+        identifierArg = [NSString stringWithFormat: @" %@ %@ ", str, properties[@"Identifier"]];
     }
     
     // output type
     NSString *str = longOpts ? @"-o" : @"--output-type";
-    NSString *outputArg = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"Output"]];
+    NSString *outputArg = [NSString stringWithFormat:@" %@ '%@' ", str, properties[@"Output"]];
 
     // interpreter
     str = longOpts ? @"-p" : @"--interpreter";
-    NSString *interpreterArg = [NSString stringWithFormat:@" %@ '%@' ", str, [properties objectForKey:@"Interpreter"]];
+    NSString *interpreterArg = [NSString stringWithFormat:@" %@ '%@' ", str, properties[@"Interpreter"]];
 
 
     // finally, generate the command
@@ -827,7 +822,7 @@
                             textEncodingString,
                             textOutputString,
                             statusMenuOptionsString,
-                            [properties objectForKey:@"ScriptPath"],
+                            properties[@"ScriptPath"],
                             nil];
     
     return commandStr;
@@ -838,11 +833,11 @@
  *****************************/
 
 - (void)setProperty:(id)property forKey:(NSString *)theKey {
-    [properties setObject:property forKey:theKey];
+    properties[theKey] = property;
 }
 
 - (id)propertyForKey:(NSString *)theKey {
-    return [properties objectForKey:theKey];
+    return properties[theKey];
 }
 
 - (void)addProperties:(NSDictionary *)dict {

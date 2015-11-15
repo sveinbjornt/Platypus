@@ -560,7 +560,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="8F5615A7-F64A-4E68-8B26-7DD9944BC4E6" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="BC5D607D-48A6-4260-990F-65F91CF4B85C" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -2237,7 +2237,7 @@ DQ
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="resetDefaults:" target="2364" id="2372"/>
+                            <action selector="setToDefaults:" target="2364" id="1eN-QU-TbB"/>
                         </connections>
                     </button>
                     <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="2114">
@@ -2488,7 +2488,7 @@ DQ
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="restoreDefaults:" target="10213" id="10503"/>
+                            <action selector="setToDefaults:" target="10213" id="lnR-iz-LHq"/>
                         </connections>
                     </button>
                     <button toolTip="Preview how your status item will appear in the menu bar" verticalHuggingPriority="750" id="10513">
@@ -2945,7 +2945,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="8F5615A7-F64A-4E68-8B26-7DD9944BC4E6" width="16" height="16">
+        <image name="BC5D607D-48A6-4260-990F-65F91CF4B85C" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

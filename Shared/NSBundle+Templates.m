@@ -44,7 +44,7 @@
     
     for (NSString *key in dict) {
         NSString *placeholder = [NSString stringWithFormat:@"%%%%%@%%%%", key];
-        templateStr = [templateStr stringByReplacingOccurrencesOfString:placeholder withString:[dict objectForKey:key]];
+        templateStr = [templateStr stringByReplacingOccurrencesOfString:placeholder withString:dict[key]];
     }
     return templateStr;
 }

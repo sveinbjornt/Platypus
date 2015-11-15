@@ -33,10 +33,8 @@
 
 #import "PlatypusController.h"
 #import "Common.h"
-
 #import "PlatypusAppSpec.h"
 #import "ScriptAnalyser.h"
-
 #import "IconController.h"
 #import "ArgsController.h"
 #import "ProfilesController.h"
@@ -119,7 +117,6 @@
 - (IBAction)runScriptInTerminal:(id)sender;
 - (IBAction)checkSyntaxOfScript:(id)sender;
 - (void)openScriptInBuiltInEditor:(NSString *)path;
-
 - (IBAction)createButtonPressed:(id)sender;
 - (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result;
 - (BOOL)createApplicationFromTimer:(NSTimer *)theTimer;
@@ -134,8 +131,6 @@
 - (IBAction)clearAllFields:(id)sender;
 - (IBAction)showCommandLineString:(id)sender;
 - (NSString *)estimatedAppSize;
-- (NSWindow *)window;
-
 - (IBAction)showHelp:(id)sender;
 - (IBAction)showReadme:(id)sender;
 - (IBAction)showManPage:(id)sender;
@@ -204,7 +199,7 @@
     //populate output type menu
     [self updateOutputTypeMenu:NSMakeSize(16, 16)];
     
-    [window registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
+    [window registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
     [window makeFirstResponder:appNameTextField];
     
     // if we haven't already loaded a profile via openfile delegate method
@@ -287,7 +282,7 @@
     if (scriptText != nil) {
         contentString = [contentString stringByAppendingString:scriptText];
     } else {
-        defaultScript = [[ScriptAnalyser interpreterHelloWorlds] objectForKey:[scriptTypePopupButton titleOfSelectedItem]];
+        defaultScript = [ScriptAnalyser helloWorldProgramForDisplayName:[scriptTypePopupButton titleOfSelectedItem]];
         if (defaultScript != nil) {
             contentString = [contentString stringByAppendingString:defaultScript];
         }
@@ -424,13 +419,13 @@
     // development version checkbox: always disable this option if secure bundled script is checked
     [developmentVersionCheckbox setEnabled:![encryptCheckbox intValue]];
     if ([encryptCheckbox intValue]) {
-        [DEFAULTS setObject:[NSNumber numberWithBool:NO] forKey:@"OnCreateDevVersion"];
+        [DEFAULTS setObject:@NO forKey:@"OnCreateDevVersion"];
     }
     
     // optimize nib is enabled and on by default if ibtool is present
     BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:IBTOOL_PATH];
     if (ibtoolInstalled == FALSE) {
-        [DEFAULTS setObject:[NSNumber numberWithBool:NO] forKey:@"OnCreateOptimizeNib"];
+        [DEFAULTS setObject:@NO forKey:@"OnCreateOptimizeNib"];
     }
     
     //run save panel
@@ -493,7 +488,7 @@
     [spec setProperty:[NSNumber numberWithBool:[developmentVersionCheckbox intValue]] forKey:@"DevelopmentVersion"];
     [spec setProperty:[NSNumber numberWithBool:[optimizeApplicationCheckbox intValue]] forKey:@"OptimizeApplication"];
     [spec setProperty:[NSNumber numberWithBool:[xmlPlistFormatCheckbox intValue]] forKey:@"UseXMLPlistFormat"];
-    [spec setProperty:[NSNumber numberWithBool:YES] forKey:@"DestinationOverride"];
+    [spec setProperty:@YES forKey:@"DestinationOverride"];
     
     // verify that the values in the spec are OK
     if (![spec verify]) {
@@ -642,24 +637,24 @@
     [spec setProperty:(NSMutableArray *)[(SuffixTypeListController *)[dropSettingsController suffixListController] getItemsArray] forKey:@"Suffixes"];
     [spec setProperty:(NSMutableArray *)[(UniformTypeListController *)[dropSettingsController uniformTypesListController] getItemsArray] forKey:@"UniformTypes"];
     [spec setProperty:[dropSettingsController docIconPath] forKey:@"DocIcon"];
-    [spec setProperty:[NSNumber numberWithBool:[dropSettingsController acceptsText]] forKey:@"AcceptsText"];
-    [spec setProperty:[NSNumber numberWithBool:[dropSettingsController acceptsFiles]] forKey:@"AcceptsFiles"];
-    [spec setProperty:[NSNumber numberWithBool:[dropSettingsController declareService]] forKey:@"DeclareService"];
-    [spec setProperty:[NSNumber numberWithBool:[dropSettingsController promptsForFileOnLaunch]] forKey:@"PromptForFileOnLaunch"];
+    [spec setProperty:@([dropSettingsController acceptsText]) forKey:@"AcceptsText"];
+    [spec setProperty:@([dropSettingsController acceptsFiles]) forKey:@"AcceptsFiles"];
+    [spec setProperty:@([dropSettingsController declareService]) forKey:@"DeclareService"];
+    [spec setProperty:@([dropSettingsController promptsForFileOnLaunch]) forKey:@"PromptForFileOnLaunch"];
     
     //  text output text settings
-    [spec setProperty:[NSNumber numberWithInt:(int)[textSettingsController getTextEncoding]] forKey:@"TextEncoding"];
-    [spec setProperty:[[textSettingsController getTextFont] fontName] forKey:@"TextFont"];
-    [spec setProperty:[NSNumber numberWithFloat:[[textSettingsController getTextFont] pointSize]] forKey:@"TextSize"];
-    [spec setProperty:[[textSettingsController getTextForeground] hexString] forKey:@"TextForeground"];
-    [spec setProperty:[[textSettingsController getTextBackground] hexString] forKey:@"TextBackground"];
+    [spec setProperty:@((int)[textSettingsController textEncoding]) forKey:@"TextEncoding"];
+    [spec setProperty:[[textSettingsController textFont] fontName] forKey:@"TextFont"];
+    [spec setProperty:[NSNumber numberWithFloat:[[textSettingsController textFont] pointSize]] forKey:@"TextSize"];
+    [spec setProperty:[[textSettingsController textForegroundColor] hexString] forKey:@"TextForeground"];
+    [spec setProperty:[[textSettingsController textBackgroundColor] hexString] forKey:@"TextBackground"];
     
     // status menu settings
     if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
         [spec setProperty:[statusItemSettingsController displayType] forKey:@"StatusItemDisplayType"];
         [spec setProperty:[statusItemSettingsController title] forKey:@"StatusItemTitle"];
         [spec setProperty:[[statusItemSettingsController icon] TIFFRepresentation] forKey:@"StatusItemIcon"];
-        [spec setProperty:[NSNumber numberWithBool:[statusItemSettingsController usesSystemFont]] forKey:@"StatusItemUseSystemFont"];
+        [spec setProperty:@([statusItemSettingsController usesSystemFont]) forKey:@"StatusItemUseSystemFont"];
     }
     
     return spec;
@@ -727,8 +722,8 @@
     // text output settings
     [textSettingsController setTextEncoding:[[spec propertyForKey:@"TextEncoding"] intValue]];
     [textSettingsController setTextFont:[NSFont fontWithName:[spec propertyForKey:@"TextFont"] size:[[spec propertyForKey:@"TextSize"] intValue]]];
-    [textSettingsController setTextForeground:[NSColor colorFromHex:[spec propertyForKey:@"TextForeground"]]];
-    [textSettingsController setTextBackground:[NSColor colorFromHex:[spec propertyForKey:@"TextBackground"]]];
+    [textSettingsController setTextForegroundColor:[NSColor colorFromHex:[spec propertyForKey:@"TextForeground"]]];
+    [textSettingsController setTextBackgroundColor:[NSColor colorFromHex:[spec propertyForKey:@"TextBackground"]]];
     
     // status menu settings
     if ([[spec propertyForKey:@"Output"] isEqualToString:@"Status Menu"]) {
@@ -769,7 +764,7 @@
     //run open panel sheet
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         if (result == NSOKButton) {
-            NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
+            NSString *filePath = [[oPanel URLs][0] path];
             [self loadScript:filePath];
         }
         [window setTitle:PROGRAM_NAME];
@@ -816,7 +811,7 @@
     [self controlsFromAppSpec:spec];
     [spec release];
     
-    [iconController setDefaultIcon];
+    [iconController setToDefaults];
     
     // add to recent items menu
     [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
@@ -962,10 +957,10 @@
     [argsController resetDefaults:self];
     
     //set text ouput settings to default
-    [textSettingsController resetDefaults:self];
+    [textSettingsController setToDefaults:self];
     
     //set status item settings to default
-    [statusItemSettingsController restoreDefaults:self];
+    [statusItemSettingsController setToDefaults:self];
     
     //set script type
     [self setScriptType:@"Shell"];
@@ -979,7 +974,7 @@
     
     [appSizeTextField setStringValue:@""];
     
-    [iconController setDefaultIcon];
+    [iconController setToDefaults];
 }
 
 /*****************************************
@@ -1074,7 +1069,7 @@
     if ([[pboard types] containsObject:NSFilenamesPboardType]) {
         
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
-        NSString *filename = [files objectAtIndex:0]; //we only load the first dragged item
+        NSString *filename = files[0]; //we only load the first dragged item
         NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
         
 

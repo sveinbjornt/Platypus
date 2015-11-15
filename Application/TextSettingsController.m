@@ -35,25 +35,19 @@
 {
     IBOutlet id window;
     IBOutlet id textSettingsWindow;
-    
     IBOutlet id backgroundColorWell;
     IBOutlet id foregroundColorWell;
-    
     IBOutlet id fontFaceTextField;
     IBOutlet id textEncodingPopupButton;
-    
     IBOutlet id textPreviewTextView;
     IBOutlet id textSettingsButton;
     
     NSFont *currentFont;
 }
+
 - (IBAction)apply:(id)sender;
 - (IBAction)show:(id)sender;
-- (void)changeColor:(id)sender;
 - (IBAction)chooseFont:(id)sender;
-- (void)changeFont:(id)sender;
-- (void)setCurrentFont:(NSFont *)font;
-- (void)updateFontField;
 
 @end
 
@@ -94,7 +88,7 @@
     [NSApp stopModal];
 }
 
-- (IBAction)resetDefaults:(id)sender {
+- (IBAction)setToDefaults:(id)sender {
     [foregroundColorWell setColor:[NSColor blackColor]];
     [backgroundColorWell setColor:[NSColor whiteColor]];
     [self setCurrentFont:[NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE]];
@@ -137,33 +131,33 @@
 
 #pragma mark -
 
-- (int)getTextEncoding {
+- (int)textEncoding {
     return [[textEncodingPopupButton selectedItem] tag];
-}
-
-- (NSFont *)getTextFont {
-    return [textPreviewTextView font];
-}
-
-- (NSColor *)getTextForeground {
-    return [foregroundColorWell color];
-}
-
-- (NSColor *)getTextBackground {
-    return [backgroundColorWell color];
 }
 
 - (void)setTextEncoding:(int)encoding {
     [textEncodingPopupButton selectItemWithTag:encoding];
 }
 
+- (NSFont *)textFont {
+    return [textPreviewTextView font];
+}
+
 - (void)setTextFont:(NSFont *)font {
     [self setCurrentFont:font];
+}
+
+- (NSColor *)textForegroundColor {
+    return [foregroundColorWell color];
 }
 
 - (void)setTextForeground:(NSColor *)color {
     [foregroundColorWell setColor:color];
     [self changeColor:self];
+}
+
+- (NSColor *)textBackgroundColor {
+    return [backgroundColorWell color];
 }
 
 - (void)setTextBackground:(NSColor *)color {

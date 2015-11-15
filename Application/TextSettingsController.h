@@ -32,18 +32,11 @@
 
 @interface TextSettingsController : NSObject
 
-- (IBAction)resetDefaults:(id)sender;
+@property (nonatomic) int textEncoding;
+@property (nonatomic, copy) NSFont *textFont;
+@property (nonatomic, copy) NSColor *textForegroundColor;
+@property (nonatomic, copy) NSColor *textBackgroundColor;
 
-- (void)setTextEncoding:(int)encoding;
-- (int)getTextEncoding;
-
-- (void)setTextFont:(NSFont *)font;
-- (NSFont *)getTextFont;
-
-- (void)setTextForeground:(NSColor *)color;
-- (NSColor *)getTextForeground;
-
-- (void)setTextBackground:(NSColor *)color;
-- (NSColor *)getTextBackground;
+- (IBAction)setToDefaults:(id)sender;
 
 @end

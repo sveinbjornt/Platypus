@@ -32,31 +32,21 @@
 
 @implementation STDragImageView
 
-#pragma mark - Delegate
-
-- (void)setDelegate: (id)theDelegate {
-	delegate = theDelegate;
-}
-
-- (id)delegate {
-	return delegate;
-}
-
 #pragma mark - Dragging
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
 {
-    if (delegate && [delegate respondsToSelector:@selector(draggingEntered:)]) {
-		return [delegate draggingEntered:sender];
+    if (_delegate && [_delegate respondsToSelector:@selector(draggingEntered:)]) {
+		return [_delegate draggingEntered:sender];
     } else {
 		return [super draggingEntered:sender];
     }
 }
 
-- (void)draggingExited:(id <NSDraggingInfo>)sender;
+- (void)draggingExited:(id <NSDraggingInfo>)sender
 {
-	if (delegate && [delegate respondsToSelector:@selector(draggingExited:)]) {
-        [delegate draggingExited:sender];
+	if (_delegate && [_delegate respondsToSelector:@selector(draggingExited:)]) {
+        [_delegate draggingExited:sender];
 	} else {
         [super draggingExited:sender];
     }
@@ -64,8 +54,8 @@
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender
 {
-	if (delegate && [delegate respondsToSelector:@selector(draggingUpdated:)]) {
-		return [delegate draggingUpdated:sender];
+	if (_delegate && [_delegate respondsToSelector:@selector(draggingUpdated:)]) {
+		return [_delegate draggingUpdated:sender];
 	} else {
 		return [super draggingUpdated:sender];
     }
@@ -73,8 +63,8 @@
 
 - (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender
 {
-	if (delegate && [delegate respondsToSelector:@selector(prepareForDragOperation:)]) {
-		return [delegate prepareForDragOperation:sender];
+	if (_delegate && [_delegate respondsToSelector:@selector(prepareForDragOperation:)]) {
+		return [_delegate prepareForDragOperation:sender];
 	} else {
 		return [super prepareForDragOperation:sender];
     }
@@ -82,8 +72,8 @@
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo>)sender
 {
-	if (delegate && [delegate respondsToSelector:@selector(performDragOperation:)]) {
-		return [delegate performDragOperation:sender];
+	if (_delegate && [_delegate respondsToSelector:@selector(performDragOperation:)]) {
+		return [_delegate performDragOperation:sender];
 	} else {
 		return [super performDragOperation:sender];
     }
@@ -91,8 +81,8 @@
 
 - (void)concludeDragOperation:(id <NSDraggingInfo>)sender
 {
-	if (delegate && [delegate respondsToSelector:@selector(concludeDragOperation:)]) {
-		[delegate concludeDragOperation:sender];
+	if (_delegate && [_delegate respondsToSelector:@selector(concludeDragOperation:)]) {
+		[_delegate concludeDragOperation:sender];
     } else {
 		[super concludeDragOperation:sender];
     }
@@ -116,7 +106,7 @@
      * representations of our data (the image).  Rather than compute both of these representations now, promise that
      * we will provide either of these representations when asked.  When a receiver wants our data in one of the above
      * representations, we'll get a call to  the NSPasteboardItemDataProvider protocol method –pasteboard:item:provideDataForType:. */
-    [pbItem setDataProvider:self forTypes:[NSArray arrayWithObjects:NSPasteboardTypeTIFF, nil]];
+    [pbItem setDataProvider:self forTypes:@[NSPasteboardTypeTIFF]];
     
     //create a new NSDraggingItem with our pasteboard item.
     NSDraggingItem *dragItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pbItem];
@@ -135,7 +125,7 @@
     [dragItem setDraggingFrame:draggingRect contents:[self image]];
     
     //create a dragging session with our drag item and ourself as the source.
-    NSDraggingSession *draggingSession = [self beginDraggingSessionWithItems:[NSArray arrayWithObject:[dragItem autorelease]] event:event source:self];
+    NSDraggingSession *draggingSession = [self beginDraggingSessionWithItems:@[[dragItem autorelease]] event:event source:self];
     //causes the dragging item to slide back to the source if the drag fails.
     draggingSession.animatesToStartingPositionsOnCancelOrFail = YES;
     

@@ -32,18 +32,11 @@
 
 @interface StatusItemSettingsController : NSObject <NSMenuDelegate>
 
-- (IBAction)restoreDefaults:(id)sender;
+@property (nonatomic, copy) NSString *displayType;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSImage *icon;
+@property (nonatomic) BOOL usesSystemFont;
 
-- (void)setDisplayType:(NSString *)name;
-- (NSString *)displayType;
-
-- (NSString *)title;
-- (void)setTitle:(NSString *)title;
-
-- (NSImage *)icon;
-- (void)setIcon:(NSImage *)img;
-
-- (void)setUsesSystemFont:(BOOL)useSysFont;
-- (BOOL)usesSystemFont;
+- (IBAction)setToDefaults:(id)sender;
 
 @end
