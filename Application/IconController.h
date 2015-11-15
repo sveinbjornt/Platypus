@@ -31,11 +31,11 @@
 #import <Cocoa/Cocoa.h>
 #import "STDragImageView.h"
 
-typedef enum {
+typedef NS_ENUM(unsigned int, PlatypusIconPreset) {
     PlatypusPresetIconDefault = 0,
     PlatypusPresetIconInstaller = 1,
     PlatypusPresetIconGenericApplication = 2
-} PlatypusIconPreset;
+};
 
 @interface IconController : NSObject <STDragImageViewDragDelegate>
 

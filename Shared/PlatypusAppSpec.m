@@ -181,7 +181,7 @@
     [self setProperty:scriptPath forKey:@"ScriptPath"];
     
     //determine app name based on script filename
-    NSString *appName = [ScriptAnalyser appNameFromScriptFileName:scriptPath];
+    NSString *appName = [ScriptAnalyser appNameFromScriptFilePath:scriptPath];
     [self setProperty:appName forKey:@"Name"];
     
     //find an interpreter for it

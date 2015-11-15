@@ -31,14 +31,16 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ScriptAnalyser : NSObject
+
 + (NSArray *)interpreters;
 + (NSArray *)interpreterDisplayNames;
 + (NSString *)helloWorldProgramForDisplayName:(NSString *)name;
 + (NSString *)displayNameForInterpreter:(NSString *)theInterpreter;
 + (NSString *)interpreterForDisplayName:(NSString *)name;
-+ (NSString *)interpreterFromSuffix:(NSString *)fileName;
++ (NSString *)interpreterForFileSuffix:(NSString *)fileName;
 + (NSArray *)parseInterpreterFromShebang:(NSString *)path;
-+ (NSString *)appNameFromScriptFileName:(NSString *)path;
++ (NSString *)appNameFromScriptFilePath:(NSString *)path;
 + (NSString *)determineInterpreterForScriptFile:(NSString *)path;
 + (NSString *)checkSyntaxOfFile:(NSString *)scriptPath withInterpreter:(NSString *)suggestedInterpreter;
+
 @end

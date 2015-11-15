@@ -30,11 +30,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef enum {
+typedef NS_ENUM(unsigned int, STPathTextFieldAutocompleteStyle) {
     STNoAutocomplete = 0,
     STShellAutocomplete = 1,
     STBrowserAutocomplete = 2
-} STPathTextFieldAutocompleteStyle;
+};
 
 @interface STPathTextField : NSTextField <NSTextViewDelegate>
 {

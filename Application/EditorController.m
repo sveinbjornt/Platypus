@@ -145,7 +145,7 @@
     CGFloat newFontSize = [font pointSize] + delta;
     font = [[NSFontManager sharedFontManager] convertFont:font toSize:newFontSize];
     [textView setFont:font];
-    [DEFAULTS setObject:[NSNumber numberWithFloat:(float)newFontSize] forKey:@"EditorFontSize"];
+    [DEFAULTS setObject:@((float)newFontSize) forKey:@"EditorFontSize"];
     [textView didChangeText];
 }
 
