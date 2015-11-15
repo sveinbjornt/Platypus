@@ -28,16 +28,9 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-// This is a controller class around the Bundled Files list in the Platypus
-// window.  It is the data source and delegate of the tableview with the files.
-//
-// NOTE: It's also a complete mess and needs to be rewritten, it was one of the very first
-// pieces of code I ever wrote in Objective C, way back in the days...
-
 #import "BundledFilesController.h"
 #import "VDKQueue.h"
 #import "EditorController.h"
-#import "PlatypusController.h"
 #import "NSWorkspace+Additions.h"
 #import "Alerts.h"
 #import "Common.h"
@@ -48,16 +41,15 @@
     NSMutableArray *files;
     VDKQueue *fileWatcherQueue;
     
-    IBOutlet id window;
-    IBOutlet id addFileButton;
-    IBOutlet id removeFileButton;
-    IBOutlet id editFileButton;
-    IBOutlet id revealFileButton;
-    IBOutlet id clearFileListButton;
-    IBOutlet id tableView;
-    IBOutlet id bundleSizeTextField;
-    IBOutlet id contextualMenu;
-    IBOutlet id platypusController;
+    IBOutlet NSWindow *window;
+    IBOutlet NSButton *addFileButton;
+    IBOutlet NSButton *removeFileButton;
+    IBOutlet NSButton *editFileButton;
+    IBOutlet NSButton *revealFileButton;
+    IBOutlet NSButton *clearFileListButton;
+    IBOutlet NSTableView *tableView;
+    IBOutlet NSTextField *bundleSizeTextField;
+    IBOutlet NSMenu *contextualMenu;
 }
 
 - (IBAction)copyFilenames:(id)sender;
@@ -233,10 +225,6 @@
     [[NSPasteboard generalPasteboard] setString:copyStr forType:NSStringPboardType];
 }
 
-/*****************************************
- - called when a [+] button is pressed
- *****************************************/
-
 - (IBAction)addFileToFileList:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Select files or folders to add", PROGRAM_NAME]];
     
@@ -299,10 +287,6 @@
     }
 }
 
-/*****************************************
- - called when [-] button is pressed
- *****************************************/
-
 - (IBAction)removeFileFromFileList:(id)sender {
     int rowToSelect;
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
@@ -323,16 +307,13 @@
     [self updateFileSizeField];
 }
 
-/*****************************************
- - Updates text field listing total size of bundled files
- *****************************************/
 - (void)updateFileSizeField {
     
     //if there are no items
     if ([files count] == 0) {
         totalFileSize = 0;
         [bundleSizeTextField setStringValue:@""];
-        [platypusController updateEstimatedAppSize];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
         return;
     }
     
@@ -352,11 +333,12 @@
         NSString *tooltipString = [NSString stringWithFormat:@"%lu item%@ (%llu bytes)", (unsigned long)[files count], pluralS, size];
         totalFileSize = size;
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
+        
         //run UI updates on main thread
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [bundleSizeTextField setStringValue:itemsSizeString];
             [bundleSizeTextField setToolTip:tooltipString];
-            [platypusController updateEstimatedAppSize];
         });
     });
 }

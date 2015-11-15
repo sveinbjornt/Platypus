@@ -35,14 +35,14 @@
 
 @interface StatusItemSettingsController()
 {
-    IBOutlet id window;
-    IBOutlet id statusItemSettingsWindow;
-    IBOutlet id displayTypePopup;
-    IBOutlet id iconImageView;
-    IBOutlet id selectIconButton;
-    IBOutlet id titleTextField;
-    IBOutlet id titleLabel;
-    IBOutlet id iconLabel;
+    IBOutlet NSWindow *window;
+    IBOutlet NSWindow *statusItemSettingsWindow;
+    IBOutlet NSPopUpButton *displayTypePopup;
+    IBOutlet NSImageView *iconImageView;
+    IBOutlet NSButton *selectIconButton;
+    IBOutlet NSTextField *titleTextField;
+    IBOutlet NSTextField *titleLabelTextField;
+    IBOutlet NSTextField *iconLabelTextField;
     IBOutlet NSButton *useSystemFontCheckbox;
     
     IBOutlet PlatypusController *platypusController;
@@ -104,39 +104,30 @@
 
 - (IBAction)statusItemDisplayTypeChanged:(id)sender {
     if ([sender indexOfSelectedItem] == 0) {
-        [iconLabel setHidden:YES];
+        [iconLabelTextField setHidden:YES];
         [iconImageView setHidden:YES];
         [selectIconButton setHidden:YES];
-        [titleLabel setHidden:NO];
+        [titleLabelTextField setHidden:NO];
         [titleTextField setHidden:NO];
     }
     else if ([sender indexOfSelectedItem] == 1) {
-        [iconLabel setHidden:NO];
+        [iconLabelTextField setHidden:NO];
         [iconImageView setHidden:NO];
         [selectIconButton setHidden:NO];
-        [titleLabel setHidden:YES];
+        [titleLabelTextField setHidden:YES];
         [titleTextField setHidden:YES];
     }
     else if ([sender indexOfSelectedItem] == 2) {
-        [iconLabel setHidden:NO];
+        [iconLabelTextField setHidden:NO];
         [iconImageView setHidden:NO];
         [selectIconButton setHidden:NO];
-        [titleLabel setHidden:NO];
+        [titleLabelTextField setHidden:NO];
         [titleTextField setHidden:NO];
     }
     
     if (pStatusItem != nil) {
         [self previewStatusItem:self];
     }
-}
-
-- (void)setDisplayType:(NSString *)name {
-    [displayTypePopup selectItemWithTitle:name];
-    [self statusItemDisplayTypeChanged:displayTypePopup];
-}
-
-- (NSString *)displayType {
-    return [displayTypePopup titleOfSelectedItem];
 }
 
 - (IBAction)selectStatusItemIcon:(id)sender {
@@ -260,7 +251,7 @@
     return YES;
 }
 
-#pragma mark -
+#pragma mark - Setters/Getters
 
 - (NSString *)title {
     return [titleTextField stringValue];
@@ -268,6 +259,17 @@
 
 - (void)setTitle:(NSString *)title {
     [titleTextField setStringValue:title];
+}
+
+#pragma mark -
+
+- (void)setDisplayType:(NSString *)name {
+    [displayTypePopup selectItemWithTitle:name];
+    [self statusItemDisplayTypeChanged:displayTypePopup];
+}
+
+- (NSString *)displayType {
+    return [displayTypePopup titleOfSelectedItem];
 }
 
 #pragma mark -

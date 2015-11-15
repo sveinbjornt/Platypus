@@ -28,7 +28,6 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 #import <Cocoa/Cocoa.h>
 
 @interface ProfilesController : NSObject

@@ -33,16 +33,14 @@
 #import "NSWorkspace+Additions.h"
 #import "Alerts.h"
 #import "Common.h"
-#import "PlatypusController.h"
 #import "VDKQueue.h"
 
 @interface IconController()
 {
-    IBOutlet id iconImageView;
-    IBOutlet id window;
-    IBOutlet id iconToggleButton;
-    IBOutlet id iconNameTextField;
-    IBOutlet id platypusController;
+    IBOutlet STDragImageView *iconImageView;
+    IBOutlet NSWindow *window;
+    IBOutlet NSStepper *iconToggleButton;
+    IBOutlet NSTextField *iconNameTextField;
     IBOutlet NSMenu *iconContextualMenu;
     IBOutlet NSButton *iconActionButton;
     NSString *icnsFilePath;
@@ -130,7 +128,7 @@
 #pragma mark -
 
 - (IBAction)iconActionButtonPressed:(id)sender {
-    NSRect screenRect = [[platypusController window] convertRectToScreen:[(NSButton *)sender frame]];
+    NSRect screenRect = [window convertRectToScreen:[(NSButton *)sender frame]];
     [iconContextualMenu popUpMenuPositioningItem:nil atLocation:screenRect.origin inView:nil ];
 }
 
@@ -151,10 +149,6 @@
     }
     [self setAppIconForType:[iconToggleButton intValue]];
 }
-
-/*****************************************
- - Set the icon according to the default icon number index
- *****************************************/
 
 - (void)setAppIconForType:(int)type {
     [self loadPresetIcon:[self getIconInfoForType:type]];
@@ -203,10 +197,6 @@
 
 #pragma mark -
 
-/*****************************************
- - Write an NSImage as icon to a path
- *****************************************/
-
 - (BOOL)writeIconToPath:(NSString *)path {
     if ([iconImageView image] == nil) {
         return NO;
@@ -239,7 +229,7 @@
     }
     
     [self updateIcnsStatus];
-    [platypusController updateEstimatedAppSize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
 }
 
 - (UInt64)iconSize {
@@ -407,11 +397,7 @@
     }
 }
 
-#pragma mark -
-
-/*************************************************
- - Dragging and dropping for the PlatypusIconView
- *************************************************/
+#pragma mark - STDragImageViewDelegate
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
@@ -442,10 +428,6 @@
     return NO;
 }
 
-- (BOOL)isPresetIcon:(NSString *)str {
-    return [str hasPrefix:[[NSBundle mainBundle] resourcePath]];
-}
-
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
     // we accept dragged files
     if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
@@ -474,6 +456,12 @@
     }
     
     return NSDragOperationNone;
+}
+
+#pragma mark - Util
+
+- (BOOL)isPresetIcon:(NSString *)str {
+    return [str hasPrefix:[[NSBundle mainBundle] resourcePath]];
 }
 
 @end

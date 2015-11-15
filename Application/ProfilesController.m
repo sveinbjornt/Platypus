@@ -38,13 +38,10 @@
 
 @interface ProfilesController()
 {
-    IBOutlet id profilesMenu;
-    IBOutlet id platypusController;
-    IBOutlet id examplesMenuItem;
+    IBOutlet NSMenu *profilesMenu;
+    IBOutlet PlatypusController *platypusController;
+    IBOutlet NSMenuItem *examplesMenuItem;
 }
-
-@property (nonatomic, readonly, copy) NSArray *profilesList;
-@property (nonatomic, readonly, copy) NSArray *examplesList;
 
 - (IBAction)loadProfile:(id)sender;
 - (IBAction)saveProfile:(id)sender;
@@ -172,7 +169,7 @@
 #pragma mark - Menu
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-    if (([[anItem title] isEqualToString:@"Clear All Profiles"] && [[self getProfilesList] count] < 1) ||
+    if (([[anItem title] isEqualToString:@"Clear All Profiles"] && [[self readProfilesList] count] < 1) ||
         [[anItem title] isEqualToString:@"Empty"]) {
         return NO;
     }
@@ -185,8 +182,8 @@
 }
 
 - (IBAction)constructMenus:(id)sender {
-    NSArray *profiles = [self getProfilesList];
-    NSArray *examples = [self getExamplesList];
+    NSArray *profiles = [self readProfilesList];
+    NSArray *examples = [self readExamplesList];
     
     // Create icon
     NSImage *icon = [NSImage imageNamed:@"PlatypusProfile"];
@@ -294,7 +291,7 @@
 
 #pragma mark -
 
-- (NSArray *)getProfilesList {
+- (NSArray *)readProfilesList {
     NSMutableArray *profilesArray = [NSMutableArray array];
     NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
     NSString *filename;
@@ -306,7 +303,7 @@
     return profilesArray;
 }
 
-- (NSArray *)getExamplesList {
+- (NSArray *)readExamplesList {
     NSMutableArray *examplesArray = [NSMutableArray array];
     NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], PROGRAM_EXAMPLES_FOLDER]];
     NSString *filename;

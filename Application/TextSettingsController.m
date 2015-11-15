@@ -33,14 +33,14 @@
 
 @interface TextSettingsController()
 {
-    IBOutlet id window;
-    IBOutlet id textSettingsWindow;
-    IBOutlet id backgroundColorWell;
-    IBOutlet id foregroundColorWell;
-    IBOutlet id fontFaceTextField;
-    IBOutlet id textEncodingPopupButton;
-    IBOutlet id textPreviewTextView;
-    IBOutlet id textSettingsButton;
+    IBOutlet NSWindow *window;
+    IBOutlet NSWindow *textSettingsWindow;
+    IBOutlet NSColorWell *backgroundColorWell;
+    IBOutlet NSColorWell *foregroundColorWell;
+    IBOutlet NSTextField *fontFaceTextField;
+    IBOutlet NSPopUpButton *textEncodingPopupButton;
+    IBOutlet NSTextView *textPreviewTextView;
+    IBOutlet NSButton *textSettingsButton;
     
     NSFont *currentFont;
 }
@@ -93,10 +93,10 @@
     [backgroundColorWell setColor:[NSColor whiteColor]];
     [self setCurrentFont:[NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE]];
     [textEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]];
-    [self changeColor:self];
+    [self updateTextViewColor];
 }
 
-- (void)changeColor:(id)sender {
+- (void)updateTextViewColor {
     [textPreviewTextView setBackgroundColor:[backgroundColorWell color]];
     [textPreviewTextView setTextColor:[foregroundColorWell color]];
 }
@@ -119,7 +119,6 @@
 
 // called by the shared NSFontManager when user chooses a new font or size in the Font Panel
 - (void)changeFont:(id)sender {
-    //[textSettingsWindow makeFirstResponder: textEncodingPopupButton];
     NSFontManager *fontManager = [NSFontManager sharedFontManager];
     [self setCurrentFont:[fontManager convertFont:[fontManager selectedFont]]];
 }
@@ -131,11 +130,11 @@
 
 #pragma mark -
 
-- (int)textEncoding {
-    return [[textEncodingPopupButton selectedItem] tag];
+- (NSStringEncoding)textEncoding {
+    return (NSStringEncoding)[[textEncodingPopupButton selectedItem] tag];
 }
 
-- (void)setTextEncoding:(int)encoding {
+- (void)setTextEncoding:(NSStringEncoding)encoding {
     [textEncodingPopupButton selectItemWithTag:encoding];
 }
 
@@ -153,7 +152,7 @@
 
 - (void)setTextForeground:(NSColor *)color {
     [foregroundColorWell setColor:color];
-    [self changeColor:self];
+    [self updateTextViewColor];
 }
 
 - (NSColor *)textBackgroundColor {
@@ -162,7 +161,7 @@
 
 - (void)setTextBackground:(NSColor *)color {
     [backgroundColorWell setColor:color];
-    [self changeColor:self];
+    [self updateTextViewColor];
 }
 
 #pragma mark -

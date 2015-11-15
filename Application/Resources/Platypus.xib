@@ -560,7 +560,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="4F3BFCC7-6023-43EC-A535-D0D0F001AC3A" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="5E35F1D5-58C9-488B-A151-726653A9979D" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -659,7 +659,6 @@ DQ
                 <outlet property="iconImageView" destination="300" id="11162"/>
                 <outlet property="iconNameTextField" destination="367" id="1273"/>
                 <outlet property="iconToggleButton" destination="308" id="1258"/>
-                <outlet property="platypusController" destination="335" id="fVm-2P-Z5h"/>
                 <outlet property="window" destination="21" id="1218"/>
             </connections>
         </customObject>
@@ -670,7 +669,6 @@ DQ
                 <outlet property="clearFileListButton" destination="965" id="1246"/>
                 <outlet property="contextualMenu" destination="1274" id="1289"/>
                 <outlet property="editFileButton" destination="11248" id="11252"/>
-                <outlet property="platypusController" destination="335" id="IT2-Hf-ys3"/>
                 <outlet property="removeFileButton" destination="961" id="1247"/>
                 <outlet property="revealFileButton" destination="963" id="1248"/>
                 <outlet property="tableView" destination="310" id="1254"/>
@@ -741,11 +739,11 @@ DQ
             <connections>
                 <outlet property="displayTypePopup" destination="10800" id="10806"/>
                 <outlet property="iconImageView" destination="10197" id="10510"/>
-                <outlet property="iconLabel" destination="10196" id="10512"/>
+                <outlet property="iconLabelTextField" destination="10196" id="Qez-dV-02m"/>
                 <outlet property="platypusController" destination="335" id="A6E-z6-4qu"/>
                 <outlet property="selectIconButton" destination="10194" id="10507"/>
                 <outlet property="statusItemSettingsWindow" destination="10161" id="10214"/>
-                <outlet property="titleLabel" destination="10198" id="10511"/>
+                <outlet property="titleLabelTextField" destination="10198" id="VHt-8F-TSX"/>
                 <outlet property="titleTextField" destination="10199" id="10508"/>
                 <outlet property="useSystemFontCheckbox" destination="RGs-kk-3Zk" id="uMU-RD-Jgv"/>
                 <outlet property="window" destination="21" id="10215"/>
@@ -2945,7 +2943,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="4F3BFCC7-6023-43EC-A535-D0D0F001AC3A" width="16" height="16">
+        <image name="5E35F1D5-58C9-488B-A151-726653A9979D" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

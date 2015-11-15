@@ -33,36 +33,34 @@
 
 #import <Cocoa/Cocoa.h>
 
-#define MAX_APPSPEC_PROPERTIES    65536 // whatever...
-
 @interface PlatypusAppSpec : NSObject
-{
-    NSMutableDictionary *properties;
-    NSString *error;
-}
+
+@property (nonatomic, readonly, strong) NSString *error;
+
 - (PlatypusAppSpec *)initWithDefaults;
 - (PlatypusAppSpec *)initWithDefaultsFromScript:(NSString *)scriptPath;
 - (PlatypusAppSpec *)initWithDictionary:(NSDictionary *)dict;
 - (PlatypusAppSpec *)initWithProfile:(NSString *)filePath;
+
 + (PlatypusAppSpec *)specWithDefaults;
 + (PlatypusAppSpec *)specWithDictionary:(NSDictionary *)dict;
 + (PlatypusAppSpec *)specWithProfile:(NSString *)filePath;
 + (PlatypusAppSpec *)specWithDefaultsFromScript:(NSString *)scriptPath;
-- (void)setDefaults;
-- (void)setDefaultsForScript:(NSString *)scriptPath;
+
 - (BOOL)create;
-- (NSDictionary *)infoPlist;
 - (BOOL)verify;
-- (void)report:(NSString *)str;
-- (void)dumpToFile:(NSString *)filePath;
 - (void)dump;
+- (void)writeToFile:(NSString *)filePath;
+
 - (NSString *)commandString:(BOOL)longOpts;
+
 - (void)setProperty:(id)property forKey:(NSString *)theKey;
 - (id)propertyForKey:(NSString *)theKey;
 - (NSDictionary *)properties;
 - (void)addProperties:(NSDictionary *)dict;
-- (NSString *)error;
+
 + (NSString *)standardBundleIdForAppName:(NSString *)name
                               authorName:(NSString *)authorName
                            usingDefaults:(BOOL)def;
+
 @end
