@@ -239,7 +239,7 @@
         case PlatypusPresetIconInstaller:
         {
             NSString *installerIconPath = @"/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns";
-            iconImage = [[NSImage alloc] initByReferencingFile:installerIconPath];
+            iconImage = [[[NSImage alloc] initByReferencingFile:installerIconPath] autorelease];
             [iconImage setSize:NSMakeSize(512, 512)];
             iconName = @"Installer";
             iconPath = installerIconPath;
