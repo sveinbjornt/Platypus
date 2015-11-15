@@ -111,9 +111,8 @@
     }
     
     [tableView reloadData];
-    [self tableViewSelectionDidChange:nil];
+    [self updateButtonStatus];
     [self updateQueueWatch];
-    
     [self updateFileSizeField];
 }
 
@@ -295,7 +294,7 @@
     [self updateQueueWatch];
     [self updateFileSizeField];
     [tableView reloadData];
-    [self tableViewSelectionDidChange:nil];
+    [self updateButtonStatus];
 }
 
 - (IBAction)revealFileInFileList:(id)sender {
@@ -341,7 +340,7 @@
     }
     
     [tableView reloadData];
-    [self tableViewSelectionDidChange:nil];
+    [self updateButtonStatus];
     [self updateFileSizeField];
 }
 
@@ -369,36 +368,32 @@
     return nil;
 }
 
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
-    int selected = 0;
-    NSIndexSet *selectedItems;
-    
+- (void)updateButtonStatus {
     //selection changed in File List
-    if ([aNotification object] == tableView || [aNotification object] == nil) {
-        selectedItems = [tableView selectedRowIndexes];
-        for (int i = 0; i < [files count]; i++) {
-            if ([selectedItems containsIndex:i]) {
-                selected++;
-            }
-        }
-        
-        //update button status
-        if (selected == 0) {
-            [removeFileButton setEnabled:NO];
-            [revealFileButton setEnabled:NO];
-            [editFileButton setEnabled:NO];
-        } else {
-            [removeFileButton setEnabled:YES];
-            [revealFileButton setEnabled:YES];
-            [editFileButton setEnabled:YES];
-        }
-        
-        if ([files count] == 0) {
-            [clearFileListButton setEnabled:NO];
-        } else {
-            [clearFileListButton setEnabled:YES];
+    int selected = 0;
+    NSIndexSet *selectedItems = [tableView selectedRowIndexes];
+    for (int i = 0; i < [files count]; i++) {
+        if ([selectedItems containsIndex:i]) {
+            selected++;
         }
     }
+    
+    //update button status
+    if (selected == 0) {
+        [removeFileButton setEnabled:NO];
+        [revealFileButton setEnabled:NO];
+        [editFileButton setEnabled:NO];
+    } else {
+        [removeFileButton setEnabled:YES];
+        [revealFileButton setEnabled:YES];
+        [editFileButton setEnabled:YES];
+    }
+    
+    [clearFileListButton setEnabled:([files count] != 0)];
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
+    [self updateButtonStatus];
 }
 
 - (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {

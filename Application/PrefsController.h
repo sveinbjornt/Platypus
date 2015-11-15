@@ -33,6 +33,6 @@
 @interface PrefsController : NSWindowController
 
 + (NSDictionary *)defaultsDictionary;
-- (void)updateCLTStatus:(NSTextField *)textField;
++ (BOOL)putCommandLineToolInstallStatusInTextField:(NSTextField *)textField;
 
 @end

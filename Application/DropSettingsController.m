@@ -352,12 +352,22 @@
 
 #pragma mark -
 
-- (SuffixTypeListController *)suffixListController {
-    return suffixListController;
+- (NSArray *)suffixList {
+    return [suffixListController itemsArray];
 }
 
-- (UniformTypeListController *)uniformTypesListController {
-    return uniformTypeListController;
+- (void)setSuffixList:(NSArray *)suffixList {
+    [suffixListController removeAllItems];
+    [suffixListController addItems:suffixList];
+}
+
+- (NSArray *)uniformTypesList {
+    return [uniformTypeListController itemsArray];
+}
+
+- (void)setUniformTypesList:(NSArray *)uniformTypesList {
+    [uniformTypeListController removeAllItems];
+    [uniformTypeListController addItems:uniformTypesList];
 }
 
 #pragma mark -
@@ -414,7 +424,7 @@
     if (docIconPath) {
         [docIconPath release];
     }
-    docIconPath = [path retain];
+    docIconPath = [path copy];
     
     NSImage *icon;
     if (path == nil || [path isEqualToString:@""]) {

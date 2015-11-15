@@ -310,7 +310,7 @@
     }
     
     if (![FILEMGR fileExistsAtPath:icnsFilePath]) {
-        return 400000; // just guess the icon will be 400k in size
+        return 500000; // just guess the icon will be 400k in size
     }
     // else, just size of icns file
     return [WORKSPACE fileOrFolderSize:[self icnsFilePath]];
@@ -323,6 +323,11 @@
 #pragma mark - Loading icon
 
 - (BOOL)loadIcnsFile:(NSString *)filePath {
+    if (filePath == nil || [filePath isEqualToString:@""]) {
+        [self setAppIconForType:PlatypusPresetIconGenericApplication];
+        return YES;
+    }
+    
     [iconNameTextField setStringValue:[filePath lastPathComponent]];
     
     NSImage *img = [[[NSImage alloc] initByReferencingFile:filePath] autorelease];
@@ -341,7 +346,6 @@
 
 - (BOOL)loadImageFile:(NSString *)filePath {
     NSImage *img = [[[NSImage alloc] initByReferencingFile:filePath] autorelease];
-    
     if (img == nil) {
         return NO;
     }

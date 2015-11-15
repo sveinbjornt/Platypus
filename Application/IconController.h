@@ -45,7 +45,5 @@ typedef NS_ENUM(unsigned int, PlatypusIconPreset) {
 
 - (void)setToDefaults;
 - (BOOL)loadIcnsFile:(NSString *)filePath;
-- (BOOL)loadImageFile:(NSString *)filePath;
-- (void)setAppIconForType:(PlatypusIconPreset)type;
 
 @end
