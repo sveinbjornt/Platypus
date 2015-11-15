@@ -58,14 +58,9 @@
 
 - (IBAction)showWindow:(id)sender;
 - (IBAction)applyPrefs:(id)sender;
-- (void)setIconsForEditorMenu;
 - (IBAction)restoreDefaultPrefs:(id)sender;
 - (IBAction)commandLineInstallButtonClicked:(id)sender;
-- (void)installCommandLineTool;
-- (void)uninstallCommandLineTool;
 - (IBAction)uninstallPlatypus:(id)sender;
-- (void)runCLTTemplateScript:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
-- (BOOL)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
 - (IBAction)selectScriptEditor:(id)sender;
 
 @end

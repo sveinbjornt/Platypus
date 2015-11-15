@@ -111,26 +111,18 @@
 }
 
 - (IBAction)newScript:(id)sender;
-- (NSString *)createNewScript:(NSString *)scriptText;
 - (IBAction)revealScript:(id)sender;
 - (IBAction)editScript:(id)sender;
 - (IBAction)runScriptInTerminal:(id)sender;
 - (IBAction)checkSyntaxOfScript:(id)sender;
-- (void)openScriptInBuiltInEditor:(NSString *)path;
 - (IBAction)createButtonPressed:(id)sender;
-- (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result;
-- (BOOL)createApplicationFromTimer:(NSTimer *)theTimer;
-- (BOOL)createApplication:(NSString *)destination;
 - (IBAction)scriptTypeSelected:(id)sender;
-- (void)selectScriptTypeBasedOnInterpreter;
-- (void)setScriptType:(NSString *)type;
 - (IBAction)selectScript:(id)sender;
-- (void)loadScript:(NSString *)filename;
 - (IBAction)isDroppableWasClicked:(id)sender;
 - (IBAction)outputTypeWasChanged:(id)sender;
 - (IBAction)clearAllFields:(id)sender;
 - (IBAction)showCommandLineString:(id)sender;
-- (NSString *)estimatedAppSize;
+
 - (IBAction)showHelp:(id)sender;
 - (IBAction)showReadme:(id)sender;
 - (IBAction)showManPage:(id)sender;
@@ -183,6 +175,10 @@
         }
     }
     
+    if ([DEFAULTS objectForKey:@"FirstLaunch"] == nil) {
+        // TODO: Create sample profile in Profiles folder
+    }
+    
     // we list ourself as an observer of changes to file system, for script
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueRenameNotification object:nil];
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueDeleteNotification object:nil];
@@ -219,6 +215,10 @@
     [window center];
     [window makeKeyAndOrderFront:self];
     [appNameTextField becomeFirstResponder];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)aNotification {
+    [DEFAULTS setObject:@NO forKey:@"FirstLaunch"];
 }
 
 /*****************************************
@@ -577,7 +577,7 @@
     }
     
     //let's be certain that the bundled files list doesn't contain entries that have been moved
-    if (![bundledFilesController allPathsAreValid]) {
+    if (![bundledFilesController areAllPathsAreValid]) {
         [Alerts sheetAlert:@"Bundled files missing" subText:@"One or more of the files that are to be bundled with the application could not be found. Please rectify this and try again." forWindow:window];
         return NO;
     }

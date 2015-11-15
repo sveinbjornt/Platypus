@@ -35,7 +35,7 @@
 
 @interface BundledFilesController : NSObject <NSTableViewDataSource>
 
-@property (nonatomic, readonly) BOOL allPathsAreValid;
+@property (nonatomic, readonly) BOOL areAllPathsAreValid;
 @property (nonatomic, readonly) UInt64 totalFileSize;
 @property (nonatomic, readonly, copy) NSArray *filePaths;
 

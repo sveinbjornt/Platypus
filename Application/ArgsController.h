@@ -34,6 +34,7 @@
 
 @property (nonatomic, copy) NSArray *interpreterArgs;
 @property (nonatomic, copy) NSArray *scriptArgs;
+
 - (IBAction)resetDefaults:(id)sender;
 
 @end
