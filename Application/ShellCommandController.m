@@ -36,9 +36,9 @@
 
 @interface ShellCommandController()
 {
-    IBOutlet id textView;
-    IBOutlet id prefsController;
-    IBOutlet id CLTStatusTextField;
+    IBOutlet NSTextView *textView;
+    IBOutlet PrefsController *prefsController;
+    IBOutlet NSTextField *CLTStatusTextField;
     IBOutlet NSButton *useShortOptsCheckbox;
     PlatypusAppSpec *appSpec;
 }

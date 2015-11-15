@@ -29,16 +29,15 @@
  */
 
 // PlatypusController class is the controller class for the basic Platypus
-// main window interface.  Also delegate for the application, and for menus.
+// main window interface.  Also delegate for the application and for menus.
 
 #import <Cocoa/Cocoa.h>
 
-@interface PlatypusController : NSObject
+@interface PlatypusController : NSObject <NSApplicationDelegate, NSMenuDelegate, NSWindowDelegate>
 
 - (BOOL)verifyFieldContents;
 - (id)appSpecFromControls;
 - (void)controlsFromAppSpec:(id)spec;
 - (NSTask *)taskForCurrentScript;
-- (void)updateEstimatedAppSize;
 
 @end

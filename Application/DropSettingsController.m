@@ -102,10 +102,6 @@
     [uniformTypeListTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
 }
 
-/*****************************************
- - Display the Drop Settings Window as a sheet
- *****************************************/
-
 - (IBAction)openDropSettingsSheet:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Drop settings", PROGRAM_NAME]];
     
@@ -238,10 +234,6 @@
 }
 
 #pragma mark -
-
-/*****************************************
- - called when "Default" button is pressed in Types List
- *****************************************/
 
 - (IBAction)setToDefaults:(id)sender {
     [suffixListController removeAllItems];

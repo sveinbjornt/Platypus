@@ -99,6 +99,10 @@
 #define EDITOR_FONT                 [NSFont userFixedPitchFontOfSize:13.0]
 #define SHELL_COMMAND_STRING_FONT   [NSFont userFixedPitchFontOfSize:11.0]
 
+// notifications
+#define PLATYPUS_APP_SPEC_CREATED_NOTIFICATION  @"PlatypusAppSpecCreationNotification"
+#define PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION  @"PlatypusAppSizeChangedNotification"
+
 // path to temp script file
 #define TMP_STDIN_PATH              @ "/tmp/.plstdin.XXXXXX"
 #define TMP_ICON_PATH               [NSString stringWithFormat:@"%@/TmpIcon%d.icns", APP_SUPPORT_FOLDER, arc4random()]

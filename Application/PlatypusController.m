@@ -145,6 +145,7 @@
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [fileWatcherQueue release];
     [super dealloc];
 }
@@ -206,10 +207,6 @@
     }
 }
 
-/*****************************************
- - Handler for when app is done launching
- *****************************************/
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     //show window
     [window center];
@@ -220,11 +217,6 @@
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     [DEFAULTS setObject:@NO forKey:@"FirstLaunch"];
 }
-
-/*****************************************
- - Handler for dragged files and/or files opened via the Finder
- We handle these as scripts, not bundled files
- *****************************************/
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
     if ([filename hasSuffix:PROFILES_SUFFIX]) {
@@ -251,20 +243,11 @@
 
 #pragma mark - Script functions
 
-/*****************************************
- - Create a new script and open in default editor
- *****************************************/
-
 - (IBAction)newScript:(id)sender {
     NSString *newScriptPath = [self createNewScript:nil];
     [self loadScript:newScriptPath];
     [self editScript:self];
 }
-
-/*****************************************
- - Create a new script in app support directory
- with settings etc. from controls
- *****************************************/
 
 - (NSString *)createNewScript:(NSString *)scriptText {
     NSString *tempScript, *defaultScript;
@@ -299,20 +282,12 @@
     return tempScript;
 }
 
-/*****************************************
- - Reveal script in Finder
- *****************************************/
-
 - (IBAction)revealScript:(id)sender {
     if ([FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]] == NO) {
         [Alerts alert:@"File not found" subText:@"No file exists at the specified path"];
     }
     [WORKSPACE selectFile:[scriptPathTextField stringValue] inFileViewerRootedAtPath:[scriptPathTextField stringValue]];
 }
-
-/*****************************************
- - Open script in external editor
- *****************************************/
 
 - (IBAction)editScript:(id)sender {
     //see if file exists
@@ -337,18 +312,10 @@
     }
 }
 
-/*****************************************
- - Run the script in Terminal.app via Apple Event
- *****************************************/
-
 - (IBAction)runScriptInTerminal:(id)sender {
     NSString *cmd = [NSString stringWithFormat:@"%@ '%@'", [interpreterTextField stringValue], [scriptPathTextField stringValue]];
     [WORKSPACE runCommandInTerminal:cmd];
 }
-
-/*****************************************
- - Report on syntax of script
- *****************************************/
 
 - (IBAction)checkSyntaxOfScript:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Syntax Checker", PROGRAM_NAME]];
@@ -360,10 +327,6 @@
     
     [window setTitle:PROGRAM_NAME];
 }
-
-/*****************************************
- - Built-In script editor
- *****************************************/
 
 - (void)openScriptInBuiltInEditor:(NSString *)path {
     [window setTitle:[NSString stringWithFormat:@"%@ - Script Editor", PROGRAM_NAME]];
@@ -387,11 +350,6 @@
 }
 
 #pragma mark - Create
-
-/*********************************************************************
- - Create button was pressed: Verify that field values are valid
- - Then put up a sheet for designating location to create application
- **********************************************************************/
 
 - (IBAction)createButtonPressed:(id)sender {
     
@@ -466,10 +424,14 @@
 }
 
 - (BOOL)createApplication:(NSString *)destination {
-    // observe create notifications
+    // observe create and size changed notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(creationStatusUpdated:)
-                                                 name:@"PlatypusAppSpecCreationNotification"
+                                                 name:PLATYPUS_APP_SPEC_CREATED_NOTIFICATION
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateEstimatedAppSize)
+                                                 name:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION
                                                object:nil];
     
     // we begin by making sure destination path ends in .app
@@ -544,15 +506,8 @@
     [NSApp endSheet:progressDialogWindow];
     [progressDialogWindow orderOut:self];
     
-    // Stop observing the filehandle for data since task is done
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PlatypusAppSpecCreationNotification" object:nil];
-    
     return YES;
 }
-
-/*************************************************
- - Make sure that all fields contain valid values
- **************************************************/
 
 - (BOOL)verifyFieldContents {
     BOOL isDir;
@@ -592,11 +547,7 @@
     return YES;
 }
 
-#pragma mark - Generate/Read AppSpec
-
-/*************************************************
- - Create app spec and fill it w. data from controls
- **************************************************/
+#pragma mark - Generate/read AppSpec
 
 - (id)appSpecFromControls {
     PlatypusAppSpec *spec = [[[PlatypusAppSpec alloc] initWithDefaults] autorelease];
@@ -748,10 +699,6 @@
 
 #pragma mark - Load/Select script
 
-/*****************************************
- - Open sheet to select script to load
- *****************************************/
-
 - (IBAction)selectScript:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Select script", PROGRAM_NAME]];
     
@@ -771,10 +718,6 @@
     }];
 }
 
-/*****************************************
- - Called when script type is changed
- *****************************************/
-
 - (IBAction)scriptTypeSelected:(id)sender {
     [self setScriptType:[[sender selectedItem] title]];
 }
@@ -784,10 +727,6 @@
     [scriptTypePopupButton selectItemWithTitle:type];
 }
 
-/*****************************************
- - Updates data in interpreter, icon and output type popup button
- *****************************************/
-
 - (void)setScriptType:(NSString *)type {
     // set the script type based on the number which identifies each type
     NSString *interpreter = [ScriptAnalyser interpreterForDisplayName:type];
@@ -795,10 +734,6 @@
     [scriptTypePopupButton selectItemWithTitle:type];
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
 }
-
-/*****************************************
- - Loads script data into platypus window
- *****************************************/
 
 - (void)loadScript:(NSString *)filename {
     //make sure file we're loading actually exists
@@ -819,12 +754,7 @@
     [self updateEstimatedAppSize];
 }
 
-#pragma mark - Window interface actions
-
-/*****************************************
- - Delegate for when text changes in any of
- the text fields
- *****************************************/
+#pragma mark - Interface actions
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
     BOOL isDir, exists = NO, validName = NO;
@@ -860,18 +790,10 @@
     }
 }
 
-/*****************************************
- - called when Droppable checkbox is clicked
- *****************************************/
-
 - (IBAction)isDroppableWasClicked:(id)sender {
     [dropSettingsButton setHidden:![isDroppableCheckbox state]];
     [dropSettingsButton setEnabled:[isDroppableCheckbox state]];
 }
-
-/*****************************************
- - called when Output Type is changed
- *****************************************/
 
 - (IBAction)outputTypeWasChanged:(id)sender {
     // we don't show text output settings for output modes None and Web View
@@ -925,11 +847,6 @@
     }
 }
 
-/*****************************************
- - called when (Clear) button is pressed
- -- restores fields to startup values
- *****************************************/
-
 - (IBAction)clearAllFields:(id)sender {
     //clear all text field to start value
     [appNameTextField setStringValue:@""];
@@ -977,10 +894,6 @@
     [iconController setToDefaults];
 }
 
-/*****************************************
- - Show shell command window
- *****************************************/
-
 - (IBAction)showCommandLineString:(id)sender {
     if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
         [Alerts alert:@"Missing script"
@@ -998,17 +911,9 @@
 
 #pragma mark - App Size estimation
 
-/*****************************************
- - // set app size textfield to formatted str with app size
- *****************************************/
-
 - (void)updateEstimatedAppSize {
     [appSizeTextField setStringValue:[NSString stringWithFormat:@"Estimated final app size: ~%@", [self estimatedAppSize]]];
 }
-
-/*****************************************
- - // Make a decent guess concerning final app size
- *****************************************/
 
 - (NSString *)estimatedAppSize {
     
@@ -1035,6 +940,8 @@
     return [WORKSPACE fileSizeAsHumanReadableString:estimatedAppSize];
 }
 
+#pragma mark -
+
 // Creates an NSTask from settings
 - (NSTask *)taskForCurrentScript {
     if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
@@ -1057,10 +964,6 @@
 }
 
 #pragma mark - Drag and drop
-
-/*****************************************
- - Dragging and dropping for Platypus window
- *****************************************/
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
@@ -1121,16 +1024,12 @@
     }
 }
 
-#pragma mark - Menu items
-
-/*****************************************
- - Delegate function for enabling and disabling menu items
- *****************************************/
+#pragma mark - Menu delegate
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     
     //create app menu item
-    if ([[anItem title] isEqualToString:@"Create App"] && ![createAppButton isEnabled]) {
+    if ([anItem action]  == @selector(createButtonPressed:) && [createAppButton isEnabled] == NO) {
         return NO;
     }
     

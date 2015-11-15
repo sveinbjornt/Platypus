@@ -32,7 +32,7 @@
 
 @interface TextSettingsController : NSObject
 
-@property (nonatomic) int textEncoding;
+@property (nonatomic) NSStringEncoding textEncoding;
 @property (nonatomic, copy) NSFont *textFont;
 @property (nonatomic, copy) NSColor *textForegroundColor;
 @property (nonatomic, copy) NSColor *textBackgroundColor;

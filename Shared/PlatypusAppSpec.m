@@ -37,15 +37,26 @@
 #import "ScriptAnalyser.h"
 #import "NSWorkspace+Additions.h"
 
+@interface PlatypusAppSpec()
+{
+    NSMutableDictionary *properties;
+}
+@end
+
 @implementation PlatypusAppSpec
 
 #pragma mark - Creation
 
 - (PlatypusAppSpec *)init {
     if (self = [super init]) {
-        properties = [[NSMutableDictionary alloc] initWithCapacity:MAX_APPSPEC_PROPERTIES];
+        properties = [[NSMutableDictionary alloc] init];
     }
     return self;
+}
+
+- (void)dealloc {
+    [properties release];
+    [super dealloc];
 }
 
 - (PlatypusAppSpec *)initWithDefaults {
@@ -88,11 +99,6 @@
 
 + (PlatypusAppSpec *)specWithDefaultsFromScript:(NSString *)scriptPath {
     return [[[PlatypusAppSpec alloc] initWithDefaultsFromScript:scriptPath] autorelease];
-}
-
-- (void)dealloc {
-    [properties release];
-    [super dealloc];
 }
 
 #pragma mark - Instance methods
@@ -197,6 +203,8 @@
     [self setProperty:[PlatypusAppSpec standardBundleIdForAppName:appName authorName:nil usingDefaults:YES] forKey:@"Identifier"];
 }
 
+#pragma mark -
+
 /****************************************
  This function creates the Platypus app
  based on the data contained in the spec.
@@ -219,14 +227,14 @@
     
     // make sure we can write to temp path
     if ([FILEMGR isWritableFileAtPath:tmpPath] == NO) {
-        error = [NSString stringWithFormat:@"Could not write to the temp directory '%@'.", tmpPath];
+        _error = [NSString stringWithFormat:@"Could not write to the temp directory '%@'.", tmpPath];
         return FALSE;
     }
     
     //check if app already exists
     if ([FILEMGR fileExistsAtPath:properties[@"Destination"]]) {
         if ([properties[@"DestinationOverride"] boolValue] == FALSE) {
-            error = [NSString stringWithFormat:@"App already exists at path %@. Use -y flag to overwrite.", properties[@"Destination"]];
+            _error = [NSString stringWithFormat:@"App already exists at path %@. Use -y flag to overwrite.", properties[@"Destination"]];
             return FALSE;
         } else {
             [self report:[NSString stringWithFormat:@"Overwriting app at path %@", properties[@"Destination"]]];
@@ -448,7 +456,7 @@
     
     //if delete wasn't a success and there's still something there
     if ([FILEMGR fileExistsAtPath:destPath]) {
-        error = @"Could not remove pre-existing item at destination path";
+        _error = @"Could not remove pre-existing item at destination path";
         return FALSE;
     }
     
@@ -457,7 +465,7 @@
     if (![FILEMGR fileExistsAtPath:destPath]) {
         //if move wasn't a success, clean up app in tmp dir
         [FILEMGR removeItemAtPath:tmpPath error:nil];
-        error = @"Failed to create application at the specified destination";
+        _error = @"Failed to create application at the specified destination";
         return FALSE;
     }
     [WORKSPACE notifyFinderFileChangedAtPath:destPath];
@@ -506,8 +514,11 @@
     
     // if droppable, we declare the accepted file types
     if ([properties[@"Droppable"] boolValue] == YES) {
-        NSMutableDictionary *typesAndSuffixesDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                     properties[@"Suffixes"], @"CFBundleTypeExtensions",  nil];
+        
+        NSMutableDictionary *typesAndSuffixesDict = [NSMutableDictionary dictionary];
+        
+        typesAndSuffixesDict[@"CFBundleTypeExtensions"] = properties[@"Suffixes"];
+        
         if (properties[@"UniformTypes"] != nil && [properties[@"UniformTypes"] count] > 0) {
             typesAndSuffixesDict[@"LSItemContentTypes"] = properties[@"UniformTypes"];
         }
@@ -544,7 +555,7 @@
 
 - (void)report:(NSString *)str {
     fprintf(stderr, "%s\n", [str UTF8String]);
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"PlatypusAppSpecCreationNotification" object:str];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SPEC_CREATED_NOTIFICATION object:str];
 }
 
 /********************************************
@@ -555,8 +566,8 @@
     BOOL isDir;
     
     if (![properties[@"Destination"] hasSuffix:@"app"]) {
-        error = @"Destination must end with .app";
-        return 0;
+        _error = @"Destination must end with .app";
+        return NO;
     }
     
     // warn if font can't be instantiated
@@ -565,51 +576,55 @@
     }
     
     if ([properties[@"Name"] isEqualToString:@""]) {
-        error = @"Empty app name";
-        return 0;
+        _error = @"Empty app name";
+        return NO;
     }
     
     if (![FILEMGR fileExistsAtPath:properties[@"ScriptPath"] isDirectory:&isDir] || isDir) {
-        error = [NSString stringWithFormat:@"Script not found at path '%@'", properties[@"ScriptPath"], nil];
-        return 0;
+        _error = [NSString stringWithFormat:@"Script not found at path '%@'", properties[@"ScriptPath"], nil];
+        return NO;
     }
     
     if (![FILEMGR fileExistsAtPath:properties[@"NibPath"] isDirectory:&isDir]) {
-        error = [NSString stringWithFormat:@"Nib not found at path '%@'", properties[@"NibPath"], nil];
-        return 0;
+        _error = [NSString stringWithFormat:@"Nib not found at path '%@'", properties[@"NibPath"], nil];
+        return NO;
     }
     
     if (![FILEMGR fileExistsAtPath:properties[@"ExecutablePath"] isDirectory:&isDir] || isDir) {
-        error = [NSString stringWithFormat:@"Executable not found at path '%@'", properties[@"ExecutablePath"], nil];
-        return 0;
+        _error = [NSString stringWithFormat:@"Executable not found at path '%@'", properties[@"ExecutablePath"], nil];
+        return NO;
     }
     
     //make sure destination directory exists
     if (![FILEMGR fileExistsAtPath:[properties[@"Destination"] stringByDeletingLastPathComponent] isDirectory:&isDir] || !isDir) {
-        error = [NSString stringWithFormat:@"Destination directory '%@' does not exist.", [properties[@"Destination"] stringByDeletingLastPathComponent], nil];
-        return 0;
+        _error = [NSString stringWithFormat:@"Destination directory '%@' does not exist.", [properties[@"Destination"] stringByDeletingLastPathComponent], nil];
+        return NO;
     }
     
     //make sure we have write privileges for the destination directory
     if (![FILEMGR isWritableFileAtPath:[properties[@"Destination"] stringByDeletingLastPathComponent]]) {
-        error = [NSString stringWithFormat:@"Don't have permission to write to the destination directory '%@'", properties[@"Destination"]];
-        return 0;
+        _error = [NSString stringWithFormat:@"Don't have permission to write to the destination directory '%@'", properties[@"Destination"]];
+        return NO;
     }
     
-    return 1;
+    return YES;
 }
 
-/********************************
- Dump properties array to a file
- ********************************/
+#pragma mark -
 
-- (void)dumpToFile:(NSString *)filePath {
+- (void)writeToFile:(NSString *)filePath {
     [properties writeToFile:filePath atomically:YES];
 }
 
 - (void)dump {
     fprintf(stdout, "%s\n", [[properties description] UTF8String]);
 }
+
+- (NSString *)description {
+    return [properties description];
+}
+
+#pragma mark - Command string generation
 
 - (NSString *)commandString:(BOOL)shortOpts {
     BOOL longOpts = !shortOpts;
@@ -828,9 +843,7 @@
     return commandStr;
 }
 
-/****************************
- Accessor functions
- *****************************/
+#pragma mark - Get/Set Properties
 
 - (void)setProperty:(id)property forKey:(NSString *)theKey {
     properties[theKey] = property;
@@ -846,14 +859,6 @@
 
 - (NSDictionary *)properties {
     return properties;
-}
-
-- (NSString *)error {
-    return error;
-}
-
-- (NSString *)description {
-    return [properties description];
 }
 
 #pragma mark - Class Methods

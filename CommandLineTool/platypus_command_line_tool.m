@@ -505,7 +505,7 @@ int main(int argc, const char *argv[]) {
         appSpec = [PlatypusAppSpec specWithDefaults];
         [appSpec addProperties:properties];
         
-        printStdout ? [appSpec dump] : [appSpec dumpToFile:destPath];
+        printStdout ? [appSpec dump] : [appSpec writeToFile:destPath];
         
         exit(0);
     }
