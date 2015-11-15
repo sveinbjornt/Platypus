@@ -32,6 +32,8 @@
 
 @interface SyntaxCheckerController : NSWindowController
 
-- (void)showSyntaxCheckerForFile:(NSString *)path withInterpreter:(NSString *)interpreter window:(NSWindow *)theWindow;
+- (void)showSyntaxCheckerForFile:(NSString *)path
+                 withInterpreter:(NSString *)interpreter
+                          window:(NSWindow *)theWindow;
 
 @end

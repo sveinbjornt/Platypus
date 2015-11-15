@@ -48,6 +48,7 @@
     NSString *icnsFilePath;
     VDKQueue *fileWatcherQueue;
 }
+
 - (IBAction)iconActionButtonPressed:(id)sender;
 - (IBAction)copyIconPath:(id)sender;
 - (IBAction)copyIcon:(id)sender;
@@ -61,7 +62,6 @@
 - (NSDictionary *)getIconInfoForType:(int)type;
 - (IBAction)switchIcons:(id)sender;
 - (BOOL)writeIconToPath:(NSString *)path;
-- (NSData *)imageData;
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem;
 - (IBAction)selectIcon:(id)sender;
 - (IBAction)selectIcnsFile:(id)sender;
@@ -73,6 +73,7 @@
 @end
 
 @implementation IconController
+@synthesize icnsFilePath = icnsFilePath;
 
 - (instancetype)init {
     if ((self = [super init])) {
@@ -103,12 +104,12 @@
 
 - (IBAction)copyIconPath:(id)sender {
     
-    [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
+    [[NSPasteboard generalPasteboard] declareTypes:@[NSStringPboardType] owner:self];
     [[NSPasteboard generalPasteboard] setString:[self icnsFilePath] forType:NSStringPboardType];
 }
 
 - (IBAction)copyIcon:(id)sender {
-    [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSTIFFPboardType] owner:self];
+    [[NSPasteboard generalPasteboard] declareTypes:@[NSTIFFPboardType] owner:self];
     [[NSPasteboard generalPasteboard] setData:[[iconImageView image] TIFFRepresentation] forType:NSTIFFPboardType];
 }
 
@@ -198,10 +199,10 @@
             return nil;
     }
     
-    return [NSDictionary dictionaryWithObjectsAndKeys:iconImage, @"Image", iconName, @"Name", iconPath, @"Path", nil];
+    return @{@"Image": iconImage, @"Name": iconName, @"Path": iconPath};
 }
 
-- (void)setDefaultIcon {
+- (void)setToDefaults {
     [self setAppIconForType:0];
 }
 
@@ -229,16 +230,8 @@
     return YES;
 }
 
-- (NSData *)imageData {
-    return [[iconImageView image] TIFFRepresentation];
-}
-
 - (BOOL)hasIcns {
     return (icnsFilePath != nil);
-}
-
-- (NSString *)icnsFilePath {
-    return icnsFilePath;
 }
 
 - (void)setIcnsFilePath:(NSString *)path {
@@ -246,16 +239,14 @@
     if (icnsFilePath != nil) {
         [fileWatcherQueue removePath:icnsFilePath];
         [icnsFilePath release];
+        icnsFilePath = nil;
     }
     
-    if (path == nil) {
-        icnsFilePath = nil;
-    } else {
+    if (path != nil && [icnsFilePath isEqualToString:@""] == NO) {
         icnsFilePath = [[NSString alloc] initWithString:path];
-        if (icnsFilePath != nil && ![icnsFilePath isEqualToString:@""]) {
-            [fileWatcherQueue addPath:icnsFilePath];
-        }
+        [fileWatcherQueue addPath:icnsFilePath];
     }
+    
     [self updateIcnsStatus];
     [platypusController updateEstimatedAppSize];
 }
@@ -276,7 +267,7 @@
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     if ([[anItem title] isEqualToString:@"Paste Icon"]) {
-        NSArray *pbTypes = [NSArray arrayWithObjects:NSTIFFPboardType, NSPDFPboardType, NSPostScriptPboardType, nil];
+        NSArray *pbTypes = @[NSTIFFPboardType, NSPDFPboardType, NSPostScriptPboardType];
         NSString *type = [[NSPasteboard generalPasteboard] availableTypeFromArray:pbTypes];
         
         if (type == nil) {
@@ -310,7 +301,7 @@
             return;
         }
             
-        NSString *filename = [[[oPanel URLs] objectAtIndex:0] path];
+        NSString *filename = [[oPanel URLs][0] path];
         NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
         
         if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
@@ -330,13 +321,13 @@
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:(NSString *)kUTTypeAppleICNS]];
+    [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeAppleICNS]];
     
     //run open panel
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         [window setTitle:PROGRAM_NAME];
         if (result == NSOKButton) {
-            NSString *filename = [[[oPanel URLs] objectAtIndex:0] path];
+            NSString *filename = [[oPanel URLs][0] path];
             [self loadIcnsFile:filename];
         }
     }];
@@ -396,14 +387,14 @@
 }
 
 - (BOOL)loadPresetIcon:(NSDictionary *)iconInfo {
-    [iconNameTextField setStringValue:[iconInfo objectForKey:@"Name"]];
-    NSImage *img = [iconInfo objectForKey:@"Image"];
+    [iconNameTextField setStringValue:iconInfo[@"Name"]];
+    NSImage *img = iconInfo[@"Image"];
     if (img == nil) {
         return NO;
     }
     
     [iconImageView setImage:img];
-    [self setIcnsFilePath:[iconInfo objectForKey:@"Path"]];
+    [self setIcnsFilePath:iconInfo[@"Path"]];
     
     return YES;
 }
@@ -421,7 +412,7 @@
         [iconNameTextField setStringValue:@"Custom Icon"];
         [self setIcnsFilePath:tmpIconPath];
     } else {
-        [self setDefaultIcon];
+        [self setToDefaults];
     }
 }
 

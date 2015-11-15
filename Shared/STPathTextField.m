@@ -74,7 +74,7 @@
     foldersAreValid = NO;
     expandTildeInPath = YES;
     
-    [self registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, nil]];
+    [self registerForDraggedTypes:@[NSFilenamesPboardType]];
 }
 
 /*******************************************
@@ -95,7 +95,7 @@
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
     if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
         NSArray *files = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-        [self setStringValue:[files objectAtIndex:0]];
+        [self setStringValue:files[0]];
         return YES;
     }
     return NO;

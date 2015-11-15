@@ -53,6 +53,9 @@
     IBOutlet NSWindow *prefsWindow;
     IBOutlet PlatypusController *platypusController;
 }
+
+@property (nonatomic, getter=isCommandLineToolInstalled, readonly) BOOL commandLineToolInstalled;
+
 - (IBAction)showWindow:(id)sender;
 - (IBAction)applyPrefs:(id)sender;
 - (void)setIconsForEditorMenu;
@@ -62,9 +65,9 @@
 - (void)uninstallCommandLineTool;
 - (IBAction)uninstallPlatypus:(id)sender;
 - (void)runCLTTemplateScript:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
-- (BOOL)isCommandLineToolInstalled;
 - (BOOL)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict;
 - (IBAction)selectScriptEditor:(id)sender;
+
 @end
 
 @implementation PrefsController
@@ -106,17 +109,17 @@
                                                           authorName:nil
                                                        usingDefaults:NO];
     
-    [defaultPrefs setObject:bundleId forKey:@"DefaultBundleIdentifierPrefix"];
-    [defaultPrefs setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
-    [defaultPrefs setObject:[NSArray array] forKey:@"Profiles"];
-    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"RevealApplicationWhenCreated"];
-    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"OpenApplicationWhenCreated"];
-    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"CreateOnScriptChange"];
-    [defaultPrefs setObject:[NSNumber numberWithInt:DEFAULT_OUTPUT_TXT_ENCODING] forKey:@"DefaultTextEncoding"];
-    [defaultPrefs setObject:NSFullUserName() forKey:@"DefaultAuthor"];
-    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"OnCreateDevVersion"];
-    [defaultPrefs setObject:[NSNumber numberWithBool:YES] forKey:@"OnCreateOptimizeNib"];
-    [defaultPrefs setObject:[NSNumber numberWithBool:NO] forKey:@"OnCreateUseXMLPlist"];
+    defaultPrefs[@"DefaultBundleIdentifierPrefix"] = bundleId;
+    defaultPrefs[@"DefaultEditor"] = DEFAULT_EDITOR;
+    defaultPrefs[@"Profiles"] = @[];
+    defaultPrefs[@"RevealApplicationWhenCreated"] = @NO;
+    defaultPrefs[@"OpenApplicationWhenCreated"] = @NO;
+    defaultPrefs[@"CreateOnScriptChange"] = @NO;
+    defaultPrefs[@"DefaultTextEncoding"] = [NSNumber numberWithUnsignedLong:DEFAULT_OUTPUT_TXT_ENCODING];
+    defaultPrefs[@"DefaultAuthor"] = NSFullUserName();
+    defaultPrefs[@"OnCreateDevVersion"] = @NO;
+    defaultPrefs[@"OnCreateOptimizeNib"] = @YES;
+    defaultPrefs[@"OnCreateUseXMLPlist"] = @NO;
     
     return defaultPrefs;
 }
@@ -137,7 +140,7 @@
 - (IBAction)restoreDefaultPrefs:(id)sender {
     NSDictionary *dict = [PrefsController defaultsDictionary];
     for (NSString *key in dict) {
-        [DEFAULTS setObject:[dict objectForKey:key] forKey:key];
+        [DEFAULTS setObject:dict[key] forKey:key];
     }
     [DEFAULTS synchronize];
 }
@@ -148,12 +151,12 @@
     [oPanel setTitle:@"Select Editor"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:(NSString *)kUTTypeApplicationBundle]];
+    [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeApplicationBundle]];
 
     //run open panel
     if ([oPanel runModal] == NSOKButton) {
         //set app name minus .app suffix
-        NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
+        NSString *filePath = [[oPanel URLs][0] path];
         NSString *editorName = [[filePath lastPathComponent] stringByDeletingPathExtension];
         [defaultEditorPopupButton setTitle:editorName];
         [self setIconsForEditorMenu];
@@ -221,29 +224,28 @@
 
 - (NSDictionary *)commandLineEnvDict
 {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            PROGRAM_NAME, @"PROGRAM_NAME",
-            PROGRAM_VERSION, @"PROGRAM_VERSION",
-            PROGRAM_STAMP, @"PROGRAM_STAMP",
-            PROGRAM_MIN_SYS_VERSION, @"PROGRAM_MIN_SYS_VERSION",
-            PROGRAM_BUNDLE_IDENTIFIER, @"PROGRAM_BUNDLE_IDENTIFIER",
-            PROGRAM_AUTHOR, @"PROGRAM_AUTHOR",
-            CMDLINE_PROGNAME_IN_BUNDLE, @"CMDLINE_PROGNAME_IN_BUNDLE",
-            CMDLINE_PROGNAME, @"CMDLINE_PROGNAME",
-            CMDLINE_SCRIPTEXEC_BIN_NAME, @"CMDLINE_SCRIPTEXEC_BIN_NAME",
-            CMDLINE_DEFAULT_ICON_NAME, @"CMDLINE_DEFAULT_ICON_NAME",
-            CMDLINE_NIB_NAME, @"CMDLINE_NIB_NAME",
-            CMDLINE_BASE_INSTALL_PATH, @"CMDLINE_BASE_INSTALL_PATH",
-            CMDLINE_BIN_PATH, @"CMDLINE_BIN_PATH",
-            CMDLINE_TOOL_PATH, @"CMDLINE_TOOL_PATH",
-            CMDLINE_SHARE_PATH, @"CMDLINE_SHARE_PATH",
-            CMDLINE_VERSION_PATH, @"CMDLINE_VERSION_PATH",
-            CMDLINE_MANDIR_PATH, @"CMDLINE_MANDIR_PATH",
-            CMDLINE_MANPAGE_PATH, @"CMDLINE_MANPAGE_PATH",
-            CMDLINE_EXEC_PATH, @"CMDLINE_EXEC_PATH",
-            CMDLINE_NIB_PATH, @"CMDLINE_NIB_PATH",
-            CMDLINE_SCRIPT_EXEC_PATH, @"CMDLINE_SCRIPT_EXEC_PATH",
-            CMDLINE_ICON_PATH, @"CMDLINE_ICON_PATH", nil];
+    return @{@"PROGRAM_NAME": PROGRAM_NAME,
+            @"PROGRAM_VERSION": PROGRAM_VERSION,
+            @"PROGRAM_STAMP": PROGRAM_STAMP,
+            @"PROGRAM_MIN_SYS_VERSION": PROGRAM_MIN_SYS_VERSION,
+            @"PROGRAM_BUNDLE_IDENTIFIER": PROGRAM_BUNDLE_IDENTIFIER,
+            @"PROGRAM_AUTHOR": PROGRAM_AUTHOR,
+            @"CMDLINE_PROGNAME_IN_BUNDLE": CMDLINE_PROGNAME_IN_BUNDLE,
+            @"CMDLINE_PROGNAME": CMDLINE_PROGNAME,
+            @"CMDLINE_SCRIPTEXEC_BIN_NAME": CMDLINE_SCRIPTEXEC_BIN_NAME,
+            @"CMDLINE_DEFAULT_ICON_NAME": CMDLINE_DEFAULT_ICON_NAME,
+            @"CMDLINE_NIB_NAME": CMDLINE_NIB_NAME,
+            @"CMDLINE_BASE_INSTALL_PATH": CMDLINE_BASE_INSTALL_PATH,
+            @"CMDLINE_BIN_PATH": CMDLINE_BIN_PATH,
+            @"CMDLINE_TOOL_PATH": CMDLINE_TOOL_PATH,
+            @"CMDLINE_SHARE_PATH": CMDLINE_SHARE_PATH,
+            @"CMDLINE_VERSION_PATH": CMDLINE_VERSION_PATH,
+            @"CMDLINE_MANDIR_PATH": CMDLINE_MANDIR_PATH,
+            @"CMDLINE_MANPAGE_PATH": CMDLINE_MANPAGE_PATH,
+            @"CMDLINE_EXEC_PATH": CMDLINE_EXEC_PATH,
+            @"CMDLINE_NIB_PATH": CMDLINE_NIB_PATH,
+            @"CMDLINE_SCRIPT_EXEC_PATH": CMDLINE_SCRIPT_EXEC_PATH,
+            @"CMDLINE_ICON_PATH": CMDLINE_ICON_PATH};
 }
 
 #pragma mark - Utils
@@ -267,11 +269,21 @@
     NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script];
     chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // 744
     
-    // execute path, pass Resources directory and version as arguments 1 and 2
-    [STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:tmpScriptPath arguments:[NSArray arrayWithObjects:[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION, nil]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(scriptTaskFinished:)
+                                                 name:STPrivilegedTaskDidTerminateNotification
+                                               object:tmpScriptPath];
     
-    //[FILEMGR removeItemAtPath:tmpScriptPath error:nil];
+    // execute path, pass Resources directory and version as arguments 1 and 2
+    NSArray *args = @[[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION];
+    [STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:tmpScriptPath arguments:args];
+    
     return YES;
+}
+
+- (void)scriptTaskFinished:(NSNotification *)notification {
+    //[FILEMGR removeItemAtPath:tmpScriptPath error:nil];
+    NSLog(@"Script finished: %@", [notification object]);
 }
 
 @end

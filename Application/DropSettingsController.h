@@ -33,26 +33,15 @@
 @class SuffixTypeListController, UniformTypeListController;
 @interface DropSettingsController : NSObject <NSTableViewDelegate>
 
+@property (nonatomic, readonly, strong) SuffixTypeListController *suffixListController;
+@property (nonatomic, readonly, strong) UniformTypeListController *uniformTypesListController;
+@property (nonatomic, readonly) UInt64 docIconSize;
+@property (nonatomic, copy) NSString *docIconPath;
+@property (nonatomic) BOOL acceptsText;
+@property (nonatomic) BOOL acceptsFiles;
+@property (nonatomic) BOOL declareService;
+@property (nonatomic) BOOL promptsForFileOnLaunch;
+
 - (IBAction)setToDefaults:(id)sender;
-
-- (SuffixTypeListController *)suffixListController;
-- (UniformTypeListController *)uniformTypesListController;
-- (UInt64)docIconSize;
-
-// getter/setters
-- (NSString *)docIconPath;
-- (void)setDocIconPath:(NSString *)path;
-
-- (BOOL)acceptsText;
-- (void)setAcceptsText:(BOOL)b;
-
-- (BOOL)acceptsFiles;
-- (void)setAcceptsFiles:(BOOL)b;
-
-- (BOOL)declareService;
-- (void)setDeclareService:(BOOL)b;
-
-- (BOOL)promptsForFileOnLaunch;
-- (void)setPromptsForFileOnLaunch:(BOOL)b;
 
 @end

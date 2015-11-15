@@ -36,12 +36,13 @@
 
 @interface EditorController()
 {
-    IBOutlet id scriptPathTextField;
-    IBOutlet id textView;
-    IBOutlet id wordWrapCheckbox;
+    IBOutlet NSTextField *scriptPathTextField;
+    IBOutlet NSTextView *textView;
+    IBOutlet NSButton *wordWrapCheckbox;
     IBOutlet NSImageView *scriptIconImageView;
     NSWindow *mainWindow;
 }
+
 - (IBAction)save:(id)sender;
 - (IBAction)cancel:(id)sender;
 - (IBAction)checkSyntax:(id)sender;
@@ -49,6 +50,7 @@
 - (IBAction)makeTextBigger:(id)sender;
 - (IBAction)makeTextSmaller:(id)sender;
 - (IBAction)wordWrapCheckboxClicked:(id)sender;
+
 @end
 
 @implementation EditorController
@@ -63,9 +65,10 @@
     CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : DEFAULT_OUTPUT_FONTSIZE;
     NSFont *font = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:fontSize];
     [textView setFont:font];
-    
+
     [textView setAutomaticQuoteSubstitutionEnabled:NO];
     [textView setAutomaticLinkDetectionEnabled:NO];
+    [textView setShowsLineNumbers:YES];
 }
 
 - (void)showEditorForFile:(NSString *)path window:(NSWindow *)theWindow {
@@ -82,12 +85,9 @@
     [icon setSize:NSMakeSize(16, 16)];
     [scriptIconImageView setImage:icon];
     
-    
-    [textView setShowsLineNumbers:YES];
-    
+    // configure our custom text view
     [wordWrapCheckbox setIntValue:[DEFAULTS boolForKey:@"EditorWordWrap"]];
     [textView setWordwrapsText:[DEFAULTS boolForKey:@"EditorWordWrap"]];
-    
     [textView setString:str];
     
     mainWindow = theWindow;
@@ -145,10 +145,9 @@
     CGFloat newFontSize = [font pointSize] + delta;
     font = [[NSFontManager sharedFontManager] convertFont:font toSize:newFontSize];
     [textView setFont:font];
-    [DEFAULTS setObject:[NSNumber numberWithFloat:newFontSize] forKey:@"EditorFontSize"];
+    [DEFAULTS setObject:[NSNumber numberWithFloat:(float)newFontSize] forKey:@"EditorFontSize"];
     [textView didChangeText];
 }
-
 
 - (IBAction)makeTextBigger:(id)sender {
     [self changeFontSize:1];

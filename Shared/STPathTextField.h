@@ -45,17 +45,13 @@ typedef enum {
 }
 - (void)updateTextColoring;
 - (BOOL)autoComplete:(id)sender;
-- (BOOL)hasValidPath;
+@property (nonatomic, readonly) BOOL hasValidPath;
 
-- (void)setAutocompleteStyle:(STPathTextFieldAutocompleteStyle)style;
-- (STPathTextFieldAutocompleteStyle)autocompleteStyle;
+@property (nonatomic) STPathTextFieldAutocompleteStyle autocompleteStyle;
 
-- (void)setColorInvalidPath:(BOOL)val;
-- (BOOL)colorInvalidPath;
+@property (nonatomic) BOOL colorInvalidPath;
 
-- (void)setFoldersAreValid:(BOOL)val;
-- (BOOL)foldersAreValid;
+@property (nonatomic) BOOL foldersAreValid;
 
-- (void)setExpandTildeInPath:(BOOL)val;
-- (BOOL)expandTildeInPath;
+@property (nonatomic) BOOL expandTildeInPath;
 @end

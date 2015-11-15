@@ -30,10 +30,20 @@
 
 #import <Cocoa/Cocoa.h>
 
+@protocol STDragImageViewDragDelegate <NSObject>
+@required
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender;
+@optional
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender;
+- (void)draggingExited:(id <NSDraggingInfo>)sender;
+- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender;
+- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender;
+- (void)concludeDragOperation:(id <NSDraggingInfo>)sender;
+@end
+
+
 @interface STDragImageView : NSImageView <NSPasteboardItemDataProvider, NSDraggingSource>
-{
-	id delegate;
-}
--(void)setDelegate:(id)theDelegate;
--(id)delegate;
+
+@property (nonatomic, assign) id<STDragImageViewDragDelegate> delegate;
+
 @end

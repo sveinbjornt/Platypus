@@ -42,18 +42,23 @@
     IBOutlet id platypusController;
     IBOutlet id examplesMenuItem;
 }
+
+@property (nonatomic, assign) IBOutlet NSMenu *profilesMenu;
+@property (nonatomic, assign) IBOutlet NSMenuItem *examplesMenuItem;
+@property (nonatomic, assign) IBOutlet PlatypusController *platypusController;
+@property (nonatomic, readonly, copy) NSArray *profilesList;
+@property (nonatomic, readonly, copy) NSArray *examplesList;
+
 - (IBAction)loadProfile:(id)sender;
 - (IBAction)saveProfile:(id)sender;
 - (IBAction)saveProfileToLocation:(id)sender;
-- (void)writeProfile:(NSDictionary *)dict toFile:(NSString *)profileDestPath;
-- (void)profileMenuItemSelected:(id)sender;
 - (IBAction)clearAllProfiles:(id)sender;
 - (IBAction)constructMenus:(id)sender;
-- (NSArray *)getProfilesList;
-- (NSArray *)getExamplesList;
+
 @end
 
 @implementation ProfilesController
+@synthesize profilesMenu = profilesMenu, examplesMenuItem = examplesMenuItem, platypusController = platypusController;
 
 /*****************************************
  - Select file dialog for .platypus profile
@@ -65,11 +70,11 @@
     [oPanel setTitle:[NSString stringWithFormat:@"Select %@ Profile", PROGRAM_NAME]];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:@"platypus"]];
+    [oPanel setAllowedFileTypes:@[PROFILES_SUFFIX]];
     [oPanel setDirectoryURL:[NSURL fileURLWithPath:[PROFILES_FOLDER stringByExpandingTildeInPath]]];
     
     if ([oPanel runModal] == NSOKButton) {
-        NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
+        NSString *filePath = [[oPanel URLs][0] path];
         [self loadProfileAtPath:filePath];
     }
 }
@@ -135,7 +140,7 @@
     // create path for profile file and write to it
     NSString *profileDestPath = [NSString stringWithFormat:@"%@/%@.%@",
                                  [PROFILES_FOLDER stringByExpandingTildeInPath],
-                                 [profileDict objectForKey:@"Name"],
+                                 profileDict[@"Name"],
                                  PROFILES_SUFFIX];
     [self writeProfile:profileDict toFile:profileDestPath];
 }
@@ -153,7 +158,7 @@
     
     // get profile from platypus controls
     NSDictionary *profileDict = [[platypusController appSpecFromControls] properties];
-    NSString *defaultName = [NSString stringWithFormat:@"%@.%@", [profileDict objectForKey:@"Name"], PROFILES_SUFFIX];
+    NSString *defaultName = [NSString stringWithFormat:@"%@.%@", profileDict[@"Name"], PROFILES_SUFFIX];
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setTitle:[NSString stringWithFormat:@"Save %@ Profile", PROGRAM_NAME]];
@@ -254,8 +259,11 @@
     
     // Create Examples menu
     NSMenu *examplesMenu = [[[NSMenu alloc] init] autorelease];
-    for (int i = 0; i < [examples count]; i++) {
-        NSMenuItem *menuItem = [examplesMenu addItemWithTitle:[examples objectAtIndex:i] action:@selector(profileMenuItemSelected:) keyEquivalent:@""];
+    
+    for (NSString *exampleName in examples) {
+        NSMenuItem *menuItem = [examplesMenu addItemWithTitle:exampleName
+                                                       action:@selector(profileMenuItemSelected:)
+                                                keyEquivalent:@""];
         [menuItem setTarget:self];
         [menuItem setEnabled:YES];
         [menuItem setImage:icon];
@@ -275,9 +283,10 @@
     }
     
     if ([profiles count] > 0) {
-        //populate with contents of array
-        for (int i = 0; i < [profiles count]; i++) {
-            NSMenuItem *menuItem = [profilesMenu addItemWithTitle:[profiles objectAtIndex:i] action:@selector(profileMenuItemSelected:) keyEquivalent:@""];
+        for (NSString *profileName in profiles) {
+            NSMenuItem *menuItem = [profilesMenu addItemWithTitle:profileName
+                                                           action:@selector(profileMenuItemSelected:)
+                                                    keyEquivalent:@""];
             [menuItem setTarget:self];
             [menuItem setEnabled:YES];
             [menuItem setImage:icon];

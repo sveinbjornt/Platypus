@@ -66,10 +66,10 @@
     SuffixTypeListController *suffixListController;
     UniformTypeListController *uniformTypeListController;
 }
+
 - (IBAction)addSuffix:(id)sender;
 - (IBAction)addUTI:(id)sender;
 - (IBAction)removeListItem:(id)sender;
-
 - (IBAction)openDropSettingsSheet:(id)sender;
 - (IBAction)closeDropSettingsSheet:(id)sender;
 - (IBAction)selectDocIcon:(id)sender;
@@ -98,8 +98,8 @@
 #pragma mark -
 
 - (void)awakeFromNib {
-    [suffixListTableView registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
-    [uniformTypeListTableView registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
+    [suffixListTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
+    [uniformTypeListTableView registerForDraggedTypes:@[NSFilenamesPboardType]];
 }
 
 /*****************************************
@@ -163,10 +163,10 @@
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setTitle:@"Select an icns file"];
-    [oPanel setAllowedFileTypes:[NSArray arrayWithObject:(NSString *)kUTTypeAppleICNS]];
+    [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeAppleICNS]];
         
     if ([oPanel runModal] == NSOKButton) {
-        NSString *filename = [[[oPanel URLs] objectAtIndex:0] path];
+        NSString *filename = [[oPanel URLs][0] path];
         [self setDocIconPath:filename];
     }
 }

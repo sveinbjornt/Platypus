@@ -39,8 +39,7 @@
 @implementation ScriptAnalyser
 
 + (NSArray *)interpreters {
-    return [NSArray arrayWithObjects:
-            @"/bin/sh",
+    return @[@"/bin/sh",
             @"/bin/bash",
             @"/bin/csh",
             @"/bin/tcsh",
@@ -54,13 +53,11 @@
             @"/usr/bin/tclsh",
             @"/usr/bin/expect",
             @"/usr/bin/php",
-            @"",
-            nil];
+            @""];
 }
 
 + (NSArray *)interpreterDisplayNames {
-    return [NSArray arrayWithObjects:
-            @"Shell",
+    return @[@"Shell",
             @"Bash",
             @"Csh",
             @"Tcsh",
@@ -74,55 +71,45 @@
             @"Tcl",
             @"Expect",
             @"PHP",
-            @"Other...",
-            nil];
+            @"Other..."];
 }
 
 // a mapping between scripting languages and a simple hello world program
 // implemented in said language
 
 + (NSDictionary *)interpreterHelloWorlds {
-    return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-                                                @"echo 'Hello, World'",
-                                                @"echo 'Hello, World'",
-                                                @"echo 'Hello, World'",
-                                                @"echo 'Hello, World'",
-                                                @"echo 'Hello, World'",
-                                                @"echo 'Hello, World'",
-                                                @"",
-                                                @"print \"Hello, World\\n\";",
-                                                @"print \"Hello, World\"",
-                                                @"puts \"Hello, World\";",
-                                                @"",
-                                                @"puts \"Hello, World\";",
-                                                @"send \"Hello, world\\n\"",
-                                                @"<?php\necho \"Hello, World\";\n?>",
-                                                @"",
-                                                nil]
-                                       forKeys:[NSArray arrayWithObjects:
-                                                @"Shell",
-                                                @"Bash",
-                                                @"Csh",
-                                                @"Tcsh",
-                                                @"Ksh",
-                                                @"Zsh",
-                                                @"Env",
-                                                @"Perl",
-                                                @"Python",
-                                                @"Ruby",
-                                                @"AppleScript",
-                                                @"Tcl",
-                                                @"Expect",
-                                                @"PHP",
-                                                @"Other...",
-                                                nil]];
+    return @{@"Shell": @"echo 'Hello, World'",
+                                                @"Bash": @"echo 'Hello, World'",
+                                                @"Csh": @"echo 'Hello, World'",
+                                                @"Tcsh": @"echo 'Hello, World'",
+                                                @"Ksh": @"echo 'Hello, World'",
+                                                @"Zsh": @"echo 'Hello, World'",
+                                                @"Env": @"",
+                                                @"Perl": @"print \"Hello, World\\n\";",
+                                                @"Python": @"print \"Hello, World\"",
+                                                @"Ruby": @"puts \"Hello, World\";",
+                                                @"AppleScript": @"",
+                                                @"Tcl": @"puts \"Hello, World\";",
+                                                @"Expect": @"send \"Hello, world\\n\"",
+                                                @"PHP": @"<?php\necho \"Hello, World\";\n?>",
+                                                @"Other...": @""};
+}
+
++ (NSString *)helloWorldProgramForDisplayName:(NSString *)name {
+    NSArray *displayNames = [ScriptAnalyser interpreterDisplayNames];
+    int index = [displayNames indexOfObject:name];
+    if (index == NSNotFound) {
+        return @"";
+    }
+    NSDictionary *helloWorldDict = [ScriptAnalyser interpreterHelloWorlds];
+    return helloWorldDict[name];
 }
 
 + (NSString *)displayNameForInterpreter:(NSString *)theInterpreter {
     NSArray *interpreters = [self interpreters];
     for (int i = 0; i < [interpreters count]; i++) {
-        if ([theInterpreter isEqualToString:[interpreters objectAtIndex:i]]) {
-            return [[self interpreterDisplayNames] objectAtIndex:i];
+        if ([theInterpreter isEqualToString:interpreters[i]]) {
+            return [self interpreterDisplayNames][i];
         }
     }
     
@@ -134,8 +121,8 @@
     NSArray *interpreterDisplayNames = [self interpreterDisplayNames];
     
     for (int i = 0; i < [interpreterDisplayNames count]; i++) {
-        if ([name isEqualToString:[interpreterDisplayNames objectAtIndex:i]]) {
-            return [interpreters objectAtIndex:i];
+        if ([name isEqualToString:interpreterDisplayNames[i]]) {
+            return interpreters[i];
         }
     }
     
@@ -150,32 +137,32 @@
     NSArray *interpreters = [self interpreters];
     
     if ([fileName hasSuffix:@".sh"] || [fileName hasSuffix:@".command"]) {
-        return [interpreters objectAtIndex:0];
+        return interpreters[0];
     } else if ([fileName hasSuffix:@".bash"]) {
-        return [interpreters objectAtIndex:1];
+        return interpreters[1];
     } else if ([fileName hasSuffix:@".csh"]) {
-        return [interpreters objectAtIndex:2];
+        return interpreters[2];
     } else if ([fileName hasSuffix:@".tcsh"]) {
-        return [interpreters objectAtIndex:3];
+        return interpreters[3];
     } else if ([fileName hasSuffix:@".ksh"]) {
-        return [interpreters objectAtIndex:4];
+        return interpreters[4];
     } else if ([fileName hasSuffix:@".zsh"]) {
-        return [interpreters objectAtIndex:5];
+        return interpreters[5];
     } else if ([fileName hasSuffix:@".pl"] || [fileName hasSuffix:@".perl"] || [fileName hasSuffix:@".pm"]) {
-        return [interpreters objectAtIndex:6];
+        return interpreters[6];
     } else if ([fileName hasSuffix:@".py"] || [fileName hasSuffix:@".python"] || [fileName hasSuffix:@".objpy"]) {
-        return [interpreters objectAtIndex:7];
+        return interpreters[7];
     } else if ([fileName hasSuffix:@".rb"] || [fileName hasSuffix:@".rbx"] || [fileName hasSuffix:@".ruby"] | [fileName hasSuffix:@".rbw"]) {
-        return [interpreters objectAtIndex:8];
+        return interpreters[8];
     } else if ([fileName hasSuffix:@".scpt"] || [fileName hasSuffix:@".applescript"] || [fileName hasSuffix:@".osascript"]) {
-        return [interpreters objectAtIndex:9];
+        return interpreters[9];
     } else if ([fileName hasSuffix:@".tcl"] || [fileName hasSuffix:@".tcsh"]) {
-        return [interpreters objectAtIndex:10];
+        return interpreters[10];
     } else if ([fileName hasSuffix:@".exp"] || [fileName hasSuffix:@".expect"]) {
-        return [interpreters objectAtIndex:11];
+        return interpreters[11];
     } else if ([fileName hasSuffix:@".php"] || [fileName hasSuffix:@".php4"] || [fileName hasSuffix:@".php5"] ||
              [fileName hasSuffix:@".php3"] || [fileName hasSuffix:@".hp3"] || [fileName hasSuffix:@".ph4"] || [fileName hasSuffix:@".phtml"]) {
-        return [interpreters objectAtIndex:12];
+        return interpreters[12];
     }
     return nil;
 }
@@ -184,26 +171,26 @@
  - Parse the Shebang line (#!) to get the interpreter for the script + arguments to interpreter
  ***********************************************************************************************/
 
-+ (NSArray *)getInterpreterFromShebang:(NSString *)path {
++ (NSArray *)parseInterpreterFromShebang:(NSString *)path {
     
     // get the first line of the script
     NSString *script = [NSString stringWithContentsOfFile:path encoding:DEFAULT_OUTPUT_TXT_ENCODING error:nil];
     NSArray *lines = [script componentsSeparatedByString:@"\n"];
     if ([lines count] == 0) {
         // empty file
-        return [NSArray arrayWithObject:@""];
+        return @[@""];
     }
-    NSString *firstLine = [lines objectAtIndex:0];
+    NSString *firstLine = lines[0];
 
     // if shorter than 2 chars, it can't possibly be a shebang line
     if ([firstLine length] <= 2) {
-        return [NSArray arrayWithObject:@""];
+        return @[@""];
     }
     
     // get first two characters of first line
     NSString *shebang = [firstLine substringToIndex:2];  // first two characters should be #!
     if (![shebang isEqualToString:@"#!"]) {
-        return [NSArray arrayWithObject:@""];
+        return @[@""];
     }
     
     // get everything that follows after the #!
@@ -231,7 +218,7 @@
         if (i != 0) {
             appName = [appName stringByAppendingString:@" "];
         }
-        NSString *word = [words objectAtIndex:i];
+        NSString *word = words[i];
         NSString *firstCharacter = [word substringWithRange:NSMakeRange(0,1)];
         if ([firstCharacter isEqualToString:[firstCharacter uppercaseString]] == FALSE) {
             word = [word capitalizedString];
@@ -247,7 +234,7 @@
  *****************************************/
 
 + (NSString *)determineInterpreterForScriptFile:(NSString *)path {
-    NSString *interpreter = [[self getInterpreterFromShebang:path] objectAtIndex:0];
+    NSString *interpreter = [self parseInterpreterFromShebang:path][0];
     if (interpreter != nil && ![interpreter isEqualToString:@""]) {
         return interpreter;
     }
@@ -281,17 +268,17 @@
     NSArray *args = nil;
     
     if ([interpreter isEqualToString:@"/bin/sh"]) {
-        args = [NSArray arrayWithObjects:@"-n", scriptPath, nil];
+        args = @[@"-n", scriptPath];
     } else if ([interpreter isEqualToString:@"/bin/bash"]) {
-        args = [NSArray arrayWithObjects:@"-n", scriptPath, nil];
+        args = @[@"-n", scriptPath];
     } else if ([interpreter isEqualToString:@"/usr/bin/perl"]) {
-        args = [NSArray arrayWithObjects:@"-c", scriptPath, nil];
+        args = @[@"-c", scriptPath];
     } else if ([interpreter isEqualToString:@"/usr/bin/ruby"]) {
-        args = [NSArray arrayWithObjects:@"-c", scriptPath, nil];
+        args = @[@"-c", scriptPath];
     } else if ([interpreter isEqualToString:@"/usr/bin/php"]) {
-        args = [NSArray arrayWithObjects:@"-l", scriptPath, nil];
+        args = @[@"-l", scriptPath];
     } else if ([interpreter isEqualToString:@"/usr/bin/python"]) {
-        args = [NSArray arrayWithObjects:@"-m", @"py_compile", scriptPath, nil];
+        args = @[@"-m", @"py_compile", scriptPath];
     } else {
         return [NSString stringWithFormat:@"Syntax Checking is not supported by interpreter %@", interpreter];
     }

@@ -42,6 +42,7 @@
     IBOutlet NSButton *useShortOptsCheckbox;
     PlatypusAppSpec *appSpec;
 }
+
 - (IBAction)close:(id)sender;
 - (IBAction)runInTerminal:(id)sender;
 - (IBAction)useShortOptsCheckboxClicked:(id)sender;

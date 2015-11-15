@@ -73,6 +73,7 @@
     NSMutableArray *interpreterArgs;
     NSMutableArray *scriptArgs;
 }
+
 - (IBAction)addInterpreterArg:(id)sender;
 - (IBAction)clearInterpreterArgs:(id)sender;
 - (IBAction)addScriptArg:(id)sender;
@@ -82,6 +83,7 @@
 - (IBAction)show:(id)sender;
 - (IBAction)showHelp:(id)sender;
 - (void)constructCommandString;
+
 @end
 
 @implementation ArgsController
@@ -168,11 +170,11 @@
     // interpreter args
     for (int i = 0; i < [interpreterArgs count]; i++)
     {
-        NSString *a = [NSString stringWithFormat:@" %@", [interpreterArgs objectAtIndex:i]];
+        NSString *a = [NSString stringWithFormat:@" %@", interpreterArgs[i]];
         NSMutableDictionary *attrs = [[defaultAttrs mutableCopy] autorelease];
         
         if ([interpreterArgsTableView selectedRow] == i && interpreterArgsTableView == [argsWindow firstResponder]) {
-            [attrs setObject:[NSColor selectedControlColor] forKey:NSBackgroundColorAttributeName];
+            attrs[NSBackgroundColorAttributeName] = [NSColor selectedControlColor];
         }
         
         NSMutableAttributedString *attrStr = [[[NSMutableAttributedString alloc] initWithString:a attributes:attrs] autorelease];
@@ -193,11 +195,11 @@
     // script args
     for (int i = 0; i < [scriptArgs count]; i++)
     {
-        NSString *a = [NSString stringWithFormat:@"%@ ", [scriptArgs objectAtIndex:i]];
+        NSString *a = [NSString stringWithFormat:@"%@ ", scriptArgs[i]];
         NSMutableDictionary *attrs = [[defaultAttrs mutableCopy] autorelease];
         
         if ([scriptArgsTableView selectedRow] == i && scriptArgsTableView == [argsWindow firstResponder]) {
-            [attrs setObject:[NSColor selectedControlColor] forKey:NSBackgroundColorAttributeName];
+            attrs[NSBackgroundColorAttributeName] = [NSColor selectedControlColor];
         }
         
         NSMutableAttributedString *attrStr = [[[NSMutableAttributedString alloc] initWithString:a attributes:attrs] autorelease];
@@ -301,7 +303,7 @@
     NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
     
     if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
-        return [args objectAtIndex:rowIndex];
+        return args[rowIndex];
     }
     return(@"");
 }
@@ -311,7 +313,7 @@
     NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
     
     if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
-        [args replaceObjectAtIndex:rowIndex withObject:anObject];
+        args[rowIndex] = anObject;
         [self constructCommandString];
     }
 }

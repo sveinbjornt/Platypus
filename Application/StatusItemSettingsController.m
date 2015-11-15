@@ -50,13 +50,12 @@
     NSStatusItem *pStatusItem;
     NSMenu *pStatusItemMenu;
 }
+
 - (IBAction)show:(id)sender;
 - (IBAction)close:(id)sender;
 - (IBAction)statusItemDisplayTypeChanged:(id)sender;
 - (IBAction)selectStatusItemIcon:(id)sender;
 - (IBAction)previewStatusItem:(id)sender;
-- (void)killStatusItem;
-- (BOOL)showingStatusItem;
 
 @end
 
@@ -96,7 +95,7 @@
 
 #pragma mark -
 
-- (IBAction)restoreDefaults:(id)sender {
+- (IBAction)setToDefaults:(id)sender {
     [titleTextField setStringValue:@"Title"];
     [self setDisplayType:@"Text"];
     [iconImageView setImage:[NSImage imageNamed:@"DefaultStatusMenuIcon"]];
@@ -126,7 +125,7 @@
         [titleTextField setHidden:NO];
     }
     
-    if ([self showingStatusItem]) {
+    if (pStatusItem != nil) {
         [self previewStatusItem:self];
     }
 }
@@ -149,7 +148,7 @@
     [oPanel setAllowedFileTypes:[NSImage imageTypes]];
     
     if ([oPanel runModal] == NSOKButton) {
-        NSString *filePath = [[[oPanel URLs] objectAtIndex:0] path];
+        NSString *filePath = [[oPanel URLs][0] path];
         NSImage *img = [[NSImage alloc] initWithContentsOfFile:filePath];
         if (img != nil) {
             [self setIcon:img];

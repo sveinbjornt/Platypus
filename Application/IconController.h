@@ -29,13 +29,15 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "STDragImageView.h"
 
-@interface IconController : NSObject
+@interface IconController : NSObject <STDragImageViewDragDelegate>
 
-- (BOOL)hasIcns;
-- (NSString *)icnsFilePath;
-- (UInt64)iconSize;
-- (void)setDefaultIcon;
+@property (nonatomic, readonly) BOOL hasIcns;
+@property (nonatomic, readonly, copy) NSString *icnsFilePath;
+@property (nonatomic, readonly) UInt64 iconSize;
+
+- (void)setToDefaults;
 - (BOOL)loadIcnsFile:(NSString *)filePath;
 - (BOOL)loadImageFile:(NSString *)filePath;
 
