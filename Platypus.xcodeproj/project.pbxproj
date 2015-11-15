@@ -271,7 +271,6 @@
 		F4AB18981BED3A0B00B83A95 /* ScriptExecJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecJob.h; path = ScriptExec/ScriptExecJob.h; sourceTree = "<group>"; };
 		F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptExecJob.m; path = ScriptExec/ScriptExecJob.m; sourceTree = "<group>"; };
 		F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PlatypusDefault.icns; path = Icons/PlatypusDefault.icns; sourceTree = SOURCE_ROOT; };
-		F4AB189C1BEFAF1900B83A95 /* PlatypusInstaller.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PlatypusInstaller.icns; path = Icons/PlatypusInstaller.icns; sourceTree = SOURCE_ROOT; };
 		F4AF785B14D1E5F200544C1B /* STDragWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragWebView.h; path = Shared/STDragWebView.h; sourceTree = "<group>"; };
 		F4AF785C14D1E5F200544C1B /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = Shared/STDragWebView.m; sourceTree = "<group>"; };
 		F4B87C191B3C997300F4B8BE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
@@ -465,7 +464,6 @@
 			isa = PBXGroup;
 			children = (
 				F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */,
-				F4AB189C1BEFAF1900B83A95 /* PlatypusInstaller.icns */,
 			);
 			name = Presets;
 			path = IconPresets;

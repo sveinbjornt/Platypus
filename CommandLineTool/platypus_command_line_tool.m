@@ -77,7 +77,7 @@ int main(int argc, const char *argv[]) {
     NSApplication *app = [NSApplication sharedApplication];
     app = app; //establish connection to Window Server
     NSFileManager *fm = FILEMGR;
-    NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:ARG_MAX];
+    NSMutableDictionary *properties = [NSMutableDictionary dictionary];
     BOOL createProfile = FALSE;
     BOOL loadedProfile = FALSE;
     BOOL deleteScript = FALSE;
@@ -86,14 +86,15 @@ int main(int argc, const char *argv[]) {
     
     while ((optch = getopt(argc, (char *const *)argv, optstring)) != -1) {
         switch (optch) {
-                // tells the command line app to create a profile from its data rather than an app
+
+            // tells the command line app to create a profile from its data rather than an app
             case 'O':
             {
                 createProfile = TRUE;
             }
                 break;
-                
-                // Load Profile
+
+            // Load Profile
             case 'P':
             {
                 NSString *profilePath = MakeAbsolutePath(@(optarg));
@@ -124,12 +125,12 @@ int main(int argc, const char *argv[]) {
                 loadedProfile = TRUE;
             }
                 break;
-                
+
                 // App Name
             case 'a':
                 properties[@"Name"] = @(optarg);
                 break;
-                
+
                 // A bundled file.  This flag can be passed multiple times to include more than one bundled file
             case 'f':
             {
@@ -163,7 +164,7 @@ int main(int argc, const char *argv[]) {
                 properties[@"Output"] = @(optarg);
             }
                 break;
-                
+
                 // background color of text output
             case 'b':
             {
@@ -480,7 +481,7 @@ int main(int argc, const char *argv[]) {
     NSString *destPath = nil;
     
     // read remaining args as paths
-    NSMutableArray *remainingArgs = [NSMutableArray arrayWithCapacity:ARG_MAX];
+    NSMutableArray *remainingArgs = [NSMutableArray array];
     while (optind < argc) {
         NSString *argStr = @(argv[optind]);
         if (![argStr isEqualToString:@"-"]) {
@@ -617,26 +618,13 @@ static NSString *MakeAbsolutePath(NSString *path) {
 
 #pragma mark -
 
-////////////////////////////////////////
-// Print version and author to stdout
-///////////////////////////////////////
-
 static void PrintVersion(void) {
     NSPrint(@"%@ version %@ by %@", CMDLINE_PROGNAME, PROGRAM_VERSION, PROGRAM_AUTHOR);
 }
 
-////////////////////////////////////////
-// Print usage string to stdout
-///////////////////////////////////////
-
 static void PrintUsage(void) {
     NSPrint(@"usage: %@ [-vh] [-O profile] [-FASDNBRZ] [-ydlHx] [-KYL] [-P profile] [-a appName] [-o outputType] [-i icon] [-Q docIcon] [-p interpreter] [-V version] [-u author] [-I identifier] [-f bundledFile] [-X suffixes] [-C scriptArgs] [-G interpreterArgs] scriptFile [appPath]", CMDLINE_PROGNAME);
 }
-
-////////////////////////////////////////
-// Print help string to stdout
-///////////////////////////////////////
-
 
 //static struct option long_options[] = {
 //    {"generate-profile",     required_argument, 0,  0 },
