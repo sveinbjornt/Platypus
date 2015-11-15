@@ -117,13 +117,12 @@
 }
 
 + (NSString *)interpreterForDisplayName:(NSString *)name {
-    NSArray *interpreters = [self interpreters];
     NSArray *interpreterDisplayNames = [self interpreterDisplayNames];
-    
-    for (int i = 0; i < [interpreterDisplayNames count]; i++) {
-        if ([name isEqualToString:interpreterDisplayNames[i]]) {
-            return interpreters[i];
-        }
+    NSArray *interpreters = [self interpreters];
+
+    NSUInteger index = [interpreterDisplayNames indexOfObject:name];
+    if (index != NSNotFound) {
+        return interpreters[index];
     }
     
     return @"";
