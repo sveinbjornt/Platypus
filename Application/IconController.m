@@ -226,27 +226,41 @@
     NSString *iconPath;
     
     switch (type) {
+            
         case 0:
+        {
             iconImage = [NSImage imageNamed:@"PlatypusDefault"];
             iconName = @"Platypus Default";
+            [iconImage setSize:NSMakeSize(512, 512)];
             iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusDefault" ofType:@"icns"];
-            break;
+        }
+        break;
             
         case 1:
-            iconImage = [NSImage imageNamed:@"PlatypusInstaller"];
+        {
+            NSString *installerIconPath = @"/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns";
+            iconImage = [[NSImage alloc] initByReferencingFile:installerIconPath];
+            [iconImage setSize:NSMakeSize(512, 512)];
             iconName = @"Installer";
-            iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusInstaller" ofType:@"icns"];
-            break;
+            iconPath = installerIconPath;
+        }
+        break;
             
         case 2:
+        {
             iconImage = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
             [iconImage setSize:NSMakeSize(512, 512)];
             iconName = @"Generic Application";
             iconPath = nil;
-            break;
+            
+            return @{@"Image": iconImage, @"Name": iconName};
+        }
+        break;
         
         default:
+        {
             return nil;
+        }
     }
     
     return @{@"Image": iconImage, @"Name": iconName, @"Path": iconPath};

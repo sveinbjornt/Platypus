@@ -101,7 +101,7 @@
     return [[[PlatypusAppSpec alloc] initWithDefaultsFromScript:scriptPath] autorelease];
 }
 
-#pragma mark - Instance methods
+#pragma mark - Set default values
 
 /**********************************
  init a spec with default values for everything
@@ -863,12 +863,12 @@
  - based on username etc. e.g. org.username.AppName
  ******************************************************************/
 
-+ (NSString *)standardBundleIdForAppName:(NSString *)name authorName:(NSString *)authorName usingDefaults:(BOOL)def {
++ (NSString *)standardBundleIdForAppName:(NSString *)appName authorName:(NSString *)authorName usingDefaults:(BOOL)def {
     
     NSString *defaults = def ? [DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"] : nil;
     NSString *author = authorName ? [authorName stringByReplacingOccurrencesOfString:@" " withString:@""] : NSUserName();
     NSString *pre = defaults == nil ? [NSString stringWithFormat:@"org.%@.", author] : defaults;
-    NSString *bundleId = [NSString stringWithFormat:@"%@%@", pre, name];
+    NSString *bundleId = [NSString stringWithFormat:@"%@%@", pre, appName];
     bundleId = [bundleId stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     return bundleId;
