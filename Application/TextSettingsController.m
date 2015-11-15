@@ -48,6 +48,7 @@
 - (IBAction)apply:(id)sender;
 - (IBAction)show:(id)sender;
 - (IBAction)chooseFont:(id)sender;
+- (IBAction)updateTextViewColor:(id)sender;
 
 @end
 
@@ -93,10 +94,10 @@
     [backgroundColorWell setColor:[NSColor whiteColor]];
     [self setCurrentFont:[NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE]];
     [textEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]];
-    [self updateTextViewColor];
+    [self updateTextViewColor:self];
 }
 
-- (void)updateTextViewColor {
+- (IBAction)updateTextViewColor:(id)sender {
     [textPreviewTextView setBackgroundColor:[backgroundColorWell color]];
     [textPreviewTextView setTextColor:[foregroundColorWell color]];
 }
@@ -152,7 +153,7 @@
 
 - (void)setTextForeground:(NSColor *)color {
     [foregroundColorWell setColor:color];
-    [self updateTextViewColor];
+    [self updateTextViewColor:self];
 }
 
 - (NSColor *)textBackgroundColor {
@@ -161,7 +162,7 @@
 
 - (void)setTextBackground:(NSColor *)color {
     [backgroundColorWell setColor:color];
-    [self updateTextViewColor];
+    [self updateTextViewColor:self];
 }
 
 #pragma mark -

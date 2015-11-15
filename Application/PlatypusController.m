@@ -28,9 +28,6 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-// PlatypusController class is the controller class for the basic Platypus
-// main window interface.  Also delegate for the application, and for menus.
-
 #import "PlatypusController.h"
 #import "Common.h"
 #import "PlatypusAppSpec.h"
@@ -184,6 +181,13 @@
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueRenameNotification object:nil];
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueDeleteNotification object:nil];
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileChanged:) name:VDKQueueWriteNotification object:nil];
+    
+    // listen for app size change notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateEstimatedAppSize)
+                                                 name:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION
+                                               object:nil];
+
     
     //populate script type menu
     [scriptTypePopupButton addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
@@ -428,10 +432,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(creationStatusUpdated:)
                                                  name:PLATYPUS_APP_SPEC_CREATED_NOTIFICATION
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateEstimatedAppSize)
-                                                 name:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION
                                                object:nil];
     
     // we begin by making sure destination path ends in .app
@@ -912,10 +912,10 @@
 #pragma mark - App Size estimation
 
 - (void)updateEstimatedAppSize {
-    [appSizeTextField setStringValue:[NSString stringWithFormat:@"Estimated final app size: ~%@", [self estimatedAppSize]]];
+    [appSizeTextField setStringValue:[NSString stringWithFormat:@"Estimated final app size: ~%@", [self estimatedAppSizeString]]];
 }
 
-- (NSString *)estimatedAppSize {
+- (NSString *)estimatedAppSizeString {
     
     // estimate the combined size of all the
     // files that will go into application bundle
