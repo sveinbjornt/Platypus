@@ -129,7 +129,7 @@
     [textPreviewTextView setFont:currentFont];
 }
 
-#pragma mark -
+#pragma mark - Getters/Setters
 
 - (NSStringEncoding)textEncoding {
     return (NSStringEncoding)[[textEncodingPopupButton selectedItem] tag];

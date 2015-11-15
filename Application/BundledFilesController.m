@@ -92,20 +92,6 @@
 
 #pragma mark -
 
-- (void)itemDoubleClicked:(id)sender {
-    if ([tableView clickedRow] == -1) {
-        return;
-    }
-    
-    BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
-    
-    if (commandKeyDown) {
-        [self revealInFinder:[tableView clickedRow]];
-    } else {
-        [self openInFinder:[tableView clickedRow]];
-    }
-}
-
 - (void)trackedFileDidChange {
     [tableView reloadData];
 }
@@ -139,6 +125,42 @@
     }
 }
 
+- (void)updateFileSizeField {
+    
+    //if there are no items
+    if ([files count] == 0) {
+        totalFileSize = 0;
+        [bundleSizeTextField setStringValue:@""];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
+        return;
+    }
+    
+    //otherwise, loop through all files, calculate size in a separate queue
+    [bundleSizeTextField setStringValue:@"Calculating size..."];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^(void){
+        
+        UInt64 size = 0;
+        for (NSDictionary *fileInfoDict in files) {
+            size += [WORKSPACE fileOrFolderSize:fileInfoDict[@"Path"]];
+        }
+        
+        NSString *totalSizeString = [WORKSPACE fileSizeAsHumanReadableString:size];
+        NSString *pluralS = ([files count] > 1) ? @"s" : @"";
+        NSString *itemsSizeString = [NSString stringWithFormat:@"%lu item%@, %@", (unsigned long)[files count], pluralS, totalSizeString];
+        NSString *tooltipString = [NSString stringWithFormat:@"%lu item%@ (%llu bytes)", (unsigned long)[files count], pluralS, size];
+        totalFileSize = size;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
+        
+        //run UI updates on main thread
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [bundleSizeTextField setStringValue:itemsSizeString];
+            [bundleSizeTextField setToolTip:tooltipString];
+        });
+    });
+}
+
 - (BOOL)hasFile:(NSString *)fileName {
     for (int i = 0; i < [files count]; i++) {
         if ([files[i][@"Path"] isEqualToString:fileName]) {
@@ -148,7 +170,7 @@
     return NO;
 }
 
-- (void)removeFile:(int)index {
+- (void)removeFileAtIndex:(int)index {
     [files removeObjectAtIndex:index];
     [self updateQueueWatch];
     [tableView reloadData];
@@ -160,6 +182,22 @@
         [filePaths addObject:fileItem[@"Path"]];
     }
     return filePaths;
+}
+
+#pragma mark - Interface actions
+
+- (void)itemDoubleClicked:(id)sender {
+    if ([tableView clickedRow] == -1) {
+        return;
+    }
+    
+    BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
+    
+    if (commandKeyDown) {
+        [self revealInFinder:[tableView clickedRow]];
+    } else {
+        [self openInFinder:[tableView clickedRow]];
+    }
 }
 
 - (void)revealInFinder:(int)index {
@@ -294,7 +332,7 @@
     
     for (int i = [files count]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
-            [self removeFile:i];
+            [self removeFileAtIndex:i];
         }
     }
     if ([tableView numberOfRows]) {
@@ -305,42 +343,6 @@
     [tableView reloadData];
     [self tableViewSelectionDidChange:nil];
     [self updateFileSizeField];
-}
-
-- (void)updateFileSizeField {
-    
-    //if there are no items
-    if ([files count] == 0) {
-        totalFileSize = 0;
-        [bundleSizeTextField setStringValue:@""];
-        [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
-        return;
-    }
-    
-    //otherwise, loop through all files, calculate size in a separate queue
-    [bundleSizeTextField setStringValue:@"Calculating size..."];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^(void){
-        
-        UInt64 size = 0;
-        for (NSDictionary *fileInfoDict in files) {
-            size += [WORKSPACE fileOrFolderSize:fileInfoDict[@"Path"]];
-        }
-        
-        NSString *totalSizeString = [WORKSPACE fileSizeAsHumanReadableString:size];
-        NSString *pluralS = ([files count] > 1) ? @"s" : @"";
-        NSString *itemsSizeString = [NSString stringWithFormat:@"%lu item%@, %@", (unsigned long)[files count], pluralS, totalSizeString];
-        NSString *tooltipString = [NSString stringWithFormat:@"%lu item%@ (%llu bytes)", (unsigned long)[files count], pluralS, size];
-        totalFileSize = size;
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
-        
-        //run UI updates on main thread
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            [bundleSizeTextField setStringValue:itemsSizeString];
-            [bundleSizeTextField setToolTip:tooltipString];
-        });
-    });
 }
 
 #pragma mark - NSTableViewDelegate/DataSource

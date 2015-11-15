@@ -132,7 +132,7 @@
     [NSApp stopModal];
 }
 
-- (IBAction)resetDefaults:(id)sender {
+- (IBAction)setToDefaults:(id)sender {
     [self clearScriptArgs:self];
     [self clearInterpreterArgs:self];
 }
@@ -221,7 +221,7 @@
     [commandTextField setAttributedStringValue:[cmdString autorelease]];
 }
 
-#pragma mark -
+#pragma mark - Manipulating list contents
 
 - (IBAction)addInterpreterArg:(id)sender {
     [interpreterArgs addObject:DEFAULT_ARG_VALUE];

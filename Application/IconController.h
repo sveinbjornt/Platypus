@@ -33,7 +33,7 @@
 
 @interface IconController : NSObject <STDragImageViewDragDelegate>
 
-@property (nonatomic, readonly) BOOL hasIcns;
+@property (nonatomic, readonly) BOOL hasIconFile;
 @property (nonatomic, readonly, copy) NSString *icnsFilePath;
 @property (nonatomic, readonly) UInt64 iconSize;
 

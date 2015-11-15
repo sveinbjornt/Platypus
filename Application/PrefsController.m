@@ -168,7 +168,7 @@
 
 - (void)updateCLTStatus:(NSTextField *)textField {
     //set status of clt install button and text field
-    if ([self isCommandLineToolInstalled]) {
+    if ([self isCommandLineToolInstalled] == YES) {
         NSString *versionString = [NSString stringWithContentsOfFile:CMDLINE_VERSION_PATH encoding:NSUTF8StringEncoding error:nil];
         versionString = [versionString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         
@@ -210,7 +210,7 @@
 
 - (IBAction)uninstallPlatypus:(id)sender {
     if ([Alerts proceedAlert:@"Are you sure you want to uninstall Platypus?"
-                     subText:@"This will move the Platypus application and all related files to the Trash.  The application will then quit."
+                     subText:@"This will move the Platypus application and all related files to the Trash. The application will then quit."
                   withAction:@"Uninstall"] == YES) {
         [self runCLTTemplateScript:@"UninstallPlatypus.sh" usingDictionary:[self commandLineEnvDict]];
         [[NSApplication sharedApplication] terminate:self];
