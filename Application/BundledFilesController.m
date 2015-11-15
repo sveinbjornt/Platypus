@@ -60,25 +60,13 @@
     IBOutlet id platypusController;
 }
 
-- (void)itemDoubleClicked:(id)sender;
-- (NSString *)filePathAtIndex:(int)index;
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView;
-- (void)addFile:(NSString *)file;
-- (BOOL)hasFile:(NSString *)fileName;
-@property (nonatomic, readonly) int numFiles;
-- (void)updateQueueWatch;
-- (void)removeFile:(int)index;
-- (void)revealInFinder:(int)index;
-- (IBAction)copyFilename:(id)sender;
+- (IBAction)copyFilenames:(id)sender;
 - (IBAction)copyPaths:(id)sender;
-- (void)openInFinder:(int)index;
 - (IBAction)editFileInFileList:(id)sender;
 - (IBAction)addFileToFileList:(id)sender;
 - (IBAction)revealFileInFileList:(id)sender;
 - (IBAction)openFileInFileList:(id)sender;
 - (IBAction)removeFileFromFileList:(id)sender;
-- (void)updateFileSizeField;
-- (void)trackedFileDidChange;
 
 @end
 
@@ -130,14 +118,6 @@
     [tableView reloadData];
 }
 
-- (NSString *)filePathAtIndex:(int)index {
-    return files[index][@"Path"];
-}
-
-- (void)addFile:(NSString *)fileName {
-    [self addFiles:@[fileName]];
-}
-
 - (void)addFiles:(NSArray *)fileNames {
     for (int i = 0; i < [fileNames count]; i++) {
         NSString *filePath = fileNames[i];
@@ -180,10 +160,6 @@
     [files removeObjectAtIndex:index];
     [self updateQueueWatch];
     [tableView reloadData];
-}
-
-- (int)numFiles {
-    return [files count];
 }
 
 - (NSArray *)filePaths {
@@ -230,11 +206,11 @@
     [window setTitle:PROGRAM_NAME];
 }
 
-- (IBAction)copyFilename:(id)sender {
+- (IBAction)copyFilenames:(id)sender {
     
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     NSString *copyStr = @"";
-    for (int i = 0; i < [self numFiles]; i++) {
+    for (int i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
             NSString *filename = [files[i][@"Path"] lastPathComponent];
             copyStr = [copyStr stringByAppendingString:[NSString stringWithFormat:@"%@ ", filename]];
@@ -247,7 +223,7 @@
 - (IBAction)copyPaths:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     NSString *copyStr = @"";
-    for (int i = 0; i < [self numFiles]; i++) {
+    for (int i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
             NSString *filename = files[i][@"Path"];
             copyStr = [copyStr stringByAppendingString:[NSString stringWithFormat:@"%@ ", filename]];
@@ -298,7 +274,7 @@
 
 - (IBAction)revealFileInFileList:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    for (int i = 0; i < [self numFiles]; i++) {
+    for (int i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
             [self revealInFinder:i];
         }
@@ -307,7 +283,7 @@
 
 - (IBAction)openFileInFileList:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    for (int i = 0; i < [self numFiles]; i++) {
+    for (int i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
             [self openInFinder:i];
         }
@@ -316,7 +292,7 @@
 
 - (IBAction)editFileInFileList:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    for (int i = 0; i < [self numFiles]; i++) {
+    for (int i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
             [self openInEditor:i];
         }
@@ -332,7 +308,7 @@
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     int selectedRow = [selectedItems firstIndex];
     
-    for (int i = [self numFiles]; i >= 0; i--) {
+    for (int i = [files count]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
             [self removeFile:i];
         }
@@ -353,7 +329,7 @@
 - (void)updateFileSizeField {
     
     //if there are no items
-    if ([self numFiles] == 0) {
+    if ([files count] == 0) {
         totalFileSize = 0;
         [bundleSizeTextField setStringValue:@""];
         [platypusController updateEstimatedAppSize];
@@ -366,14 +342,14 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^(void){
         
         UInt64 size = 0;
-        for (int i = 0; i < [self numFiles]; i++) {
-            size += [WORKSPACE fileOrFolderSize:[self filePathAtIndex:i]];
+        for (NSDictionary *fileInfoDict in files) {
+            size += [WORKSPACE fileOrFolderSize:fileInfoDict[@"Path"]];
         }
         
         NSString *totalSizeString = [WORKSPACE fileSizeAsHumanReadableString:size];
-        NSString *pluralS = ([self numFiles] > 1) ? @"s" : @"";
-        NSString *itemsSizeString = [NSString stringWithFormat:@"%d item%@, %@", [self numFiles], pluralS, totalSizeString];
-        NSString *tooltipString = [NSString stringWithFormat:@"%d item%@ (%llu bytes)", [self numFiles], pluralS, size];
+        NSString *pluralS = ([files count] > 1) ? @"s" : @"";
+        NSString *itemsSizeString = [NSString stringWithFormat:@"%lu item%@, %@", (unsigned long)[files count], pluralS, totalSizeString];
+        NSString *tooltipString = [NSString stringWithFormat:@"%lu item%@ (%llu bytes)", (unsigned long)[files count], pluralS, size];
         totalFileSize = size;
         
         //run UI updates on main thread
@@ -387,8 +363,8 @@
 
 #pragma mark - NSTableViewDelegate/DataSource
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView {
-    return [self numFiles];
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
+    return [files count];
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
@@ -409,10 +385,6 @@
     return nil;
 }
 
-/*****************************************
- - Delegate managing selection in the Bundled Files list
- *****************************************/
-
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
     int selected = 0;
     NSIndexSet *selectedItems;
@@ -420,7 +392,7 @@
     //selection changed in File List
     if ([aNotification object] == tableView || [aNotification object] == nil) {
         selectedItems = [tableView selectedRowIndexes];
-        for (int i = 0; i < [self numFiles]; i++) {
+        for (int i = 0; i < [files count]; i++) {
             if ([selectedItems containsIndex:i]) {
                 selected++;
             }
@@ -437,7 +409,7 @@
             [editFileButton setEnabled:YES];
         }
         
-        if ([self numFiles] == 0) {
+        if ([files count] == 0) {
             [clearFileListButton setEnabled:NO];
         } else {
             [clearFileListButton setEnabled:YES];
@@ -445,9 +417,6 @@
     }
 }
 
-/*****************************************
- - Drag and drop handling
- *****************************************/
 - (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
     NSPasteboard *pboard = [info draggingPasteboard];
     NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
@@ -475,21 +444,18 @@
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
-    return 20;
+    return 22;
 }
 
-#pragma mark -
+#pragma mark - Menu delegate
 
-/*****************************************
- - Delegate for enabling and disabling contextual menu items
- *****************************************/
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     int selectedRow = [tableView selectedRow];
     
     if ([[anItem title] isEqualToString:@"Add New File"] || [[anItem title] isEqualToString:@"Add File To Bundle"]) {
         return YES;
     }
-    if ([[anItem title] isEqualToString:@"Clear File List"] && [self numFiles] >= 1) {
+    if ([[anItem title] isEqualToString:@"Clear File List"] && [files count] >= 1) {
         return YES;
     }
     if (selectedRow == -1) {
@@ -499,7 +465,7 @@
     // Folders are never editable
     if ([[anItem title] isEqualToString:@"Open in Editor"])  {
         NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-        for (int i = 0; i < [self numFiles]; i++) {
+        for (int i = 0; i < [files count]; i++) {
             if ([selectedItems containsIndex:i]) {
                 NSString *filename = files[i][@"Path"];
                 BOOL isFolder;
@@ -514,21 +480,14 @@
 
 #pragma mark -
 
-/*****************************************
- - Tells us whether there are missing/moved files on the list
- *****************************************/
-- (BOOL)allPathsAreValid {
-    for (int i = 0; i < [self numFiles]; i++) {
-        if (![FILEMGR fileExistsAtPath:files[i][@"Path"]]) {
+- (BOOL)areAllPathsAreValid {
+    for (NSDictionary *fileInfoDict in files) {
+        if (![FILEMGR fileExistsAtPath:fileInfoDict[@"Path"]]) {
             return NO;
         }
     }
     return YES;
 }
-
-/*****************************************
- - Returns the total size of all bundled files at the moment
- *****************************************/
 
 - (UInt64)totalFileSize {
     return totalFileSize;

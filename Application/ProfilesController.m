@@ -43,9 +43,6 @@
     IBOutlet id examplesMenuItem;
 }
 
-@property (nonatomic, assign) IBOutlet NSMenu *profilesMenu;
-@property (nonatomic, assign) IBOutlet NSMenuItem *examplesMenuItem;
-@property (nonatomic, assign) IBOutlet PlatypusController *platypusController;
 @property (nonatomic, readonly, copy) NSArray *profilesList;
 @property (nonatomic, readonly, copy) NSArray *examplesList;
 
@@ -58,11 +55,8 @@
 @end
 
 @implementation ProfilesController
-@synthesize profilesMenu = profilesMenu, examplesMenuItem = examplesMenuItem, platypusController = platypusController;
 
-/*****************************************
- - Select file dialog for .platypus profile
- *****************************************/
+#pragma mark - Loading
 
 - (IBAction)loadProfile:(id)sender {
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
@@ -78,10 +72,6 @@
         [self loadProfileAtPath:filePath];
     }
 }
-
-/*****************************************
- - Deal with dropped .platypus profile files
- *****************************************/
 
 - (void)loadProfileAtPath:(NSString *)file {
     // note it as a recently opened file
@@ -124,15 +114,13 @@
     [spec release];
 }
 
-/*****************************************
- - Save a profile with values from fields 
-   in default location
- *****************************************/
+#pragma mark - Saving
 
 - (IBAction)saveProfile:(id)sender;
 {
-    if (![platypusController verifyFieldContents])
+    if (![platypusController verifyFieldContents]) {
         return;
+    }
     
     // get profile from platypus controls
     NSDictionary *profileDict = [[platypusController appSpecFromControls] properties];
@@ -144,11 +132,6 @@
                                  PROFILES_SUFFIX];
     [self writeProfile:profileDict toFile:profileDestPath];
 }
-
-/*****************************************
- - Save a profile with in user-specified 
-   location
- *****************************************/
 
 - (IBAction)saveProfileToLocation:(id)sender;
 {
@@ -175,15 +158,10 @@
     }    
 }
 
-
-/*****************************************
- - Write profile dictionary to path
- *****************************************/
-
 - (void)writeProfile:(NSDictionary *)dict toFile:(NSString *)profileDestPath;
 {
     // if there's a file already, make sure we can overwrite
-    if ([FILEMGR fileExistsAtPath:profileDestPath] && ![FILEMGR isDeletableFileAtPath:profileDestPath]) {
+    if ([FILEMGR fileExistsAtPath:profileDestPath] && [FILEMGR isDeletableFileAtPath:profileDestPath] == NO) {
         [Alerts alert:@"Error" subText:[NSString stringWithFormat:@"Cannot overwrite file '%@'.", profileDestPath]];
         return;
     }
@@ -191,63 +169,20 @@
     [self constructMenus:self];
 }
 
+#pragma mark - Menu
 
-/*****************************************
- - Fill Platypus fields in with data from 
-   profile when it's selected in the menu
- *****************************************/
-
-- (void)profileMenuItemSelected:(id)sender {
-    BOOL isExample = ([sender tag]  == EXAMPLES_TAG);
-    NSString *folder = PROFILES_FOLDER;
-    if (isExample) {
-        folder = [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
+- (BOOL)validateMenuItem:(NSMenuItem *)anItem {
+    if (([[anItem title] isEqualToString:@"Clear All Profiles"] && [[self getProfilesList] count] < 1) ||
+        [[anItem title] isEqualToString:@"Empty"]) {
+        return NO;
     }
-    
-    NSString *profilePath = [NSString stringWithFormat:@"%@/%@", [folder stringByExpandingTildeInPath], [sender title]];
-    
-    // if command key is down, we reveal in finder
-    BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
-    if (commandKeyDown) {
-        [WORKSPACE selectFile:profilePath inFileViewerRootedAtPath:profilePath];
-    } else {
-        [self loadProfileAtPath:profilePath];
-    }
+    return YES;
 }
 
-/*****************************************
- - Clear the profiles list
- *****************************************/
-
-- (IBAction)clearAllProfiles:(id)sender {
-    if ([Alerts proceedAlert:@"Delete all profiles?" subText:@"This will permanently delete all profiles in your Profiles folder." withAction:@"Delete"] == NO) {
-        return;
-    }
-    
-    //delete all .platypus files in PROFILES_FOLDER
-    
-    NSFileManager *manager = FILEMGR;
-    NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
-    NSString *filename;
-    
-    while ((filename = [dirEnumerator nextObject]) != nil) {
-        if ([filename hasSuffix:PROFILES_SUFFIX]) {
-            NSString *path = [NSString stringWithFormat:@"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], filename];
-            if (![manager isDeletableFileAtPath:path]) {
-                [Alerts alert:@"Error" subText:[NSString stringWithFormat:@"Cannot delete file %@.", path]];
-            } else {
-                [manager removeItemAtPath:path error:nil];
-            }
-        }
-    }
-    
-    //regenerate the menu
+- (void)menuWillOpen:(NSMenu *)menu {
+    // we do this lazily
     [self constructMenus:self];
 }
-
-/*****************************************
- - Generate the Profiles menu according to the save profiles
- *****************************************/
 
 - (IBAction)constructMenus:(id)sender {
     NSArray *profiles = [self getProfilesList];
@@ -303,6 +238,52 @@
     }
 }
 
+#pragma mark - Menu actions
+
+- (void)profileMenuItemSelected:(id)sender {
+    BOOL isExample = ([sender tag]  == EXAMPLES_TAG);
+    NSString *folder = PROFILES_FOLDER;
+    if (isExample) {
+        folder = [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
+    }
+    
+    NSString *profilePath = [NSString stringWithFormat:@"%@/%@", [folder stringByExpandingTildeInPath], [sender title]];
+    
+    // if command key is down, we reveal in finder
+    BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
+    if (commandKeyDown) {
+        [WORKSPACE selectFile:profilePath inFileViewerRootedAtPath:profilePath];
+    } else {
+        [self loadProfileAtPath:profilePath];
+    }
+}
+
+- (IBAction)clearAllProfiles:(id)sender {
+    if ([Alerts proceedAlert:@"Delete all profiles?" subText:@"This will permanently delete all profiles in your Profiles folder." withAction:@"Delete"] == NO) {
+        return;
+    }
+    
+    //delete all .platypus files in PROFILES_FOLDER
+
+    NSFileManager *manager = FILEMGR;
+    NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
+    NSString *filename;
+    
+    while ((filename = [dirEnumerator nextObject]) != nil) {
+        if ([filename hasSuffix:PROFILES_SUFFIX]) {
+            NSString *path = [NSString stringWithFormat:@"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], filename];
+            if (![manager isDeletableFileAtPath:path]) {
+                [Alerts alert:@"Error" subText:[NSString stringWithFormat:@"Cannot delete file %@.", path]];
+            } else {
+                [manager removeItemAtPath:path error:nil];
+            }
+        }
+    }
+    
+    //regenerate the menu
+    [self constructMenus:self];
+}
+
 - (void)openProfilesFolder {
     [WORKSPACE selectFile:nil inFileViewerRootedAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
 }
@@ -311,11 +292,7 @@
     [WORKSPACE selectFile:nil inFileViewerRootedAtPath:[[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], PROGRAM_EXAMPLES_FOLDER] stringByExpandingTildeInPath]];
 }
 
-
-
-/*****************************************
- - Get list of .platypus files in Profiles folder
- *****************************************/
+#pragma mark -
 
 - (NSArray *)getProfilesList {
     NSMutableArray *profilesArray = [NSMutableArray array];
@@ -339,23 +316,6 @@
         }
     }
     return examplesArray;
-}
-
-/*****************************************
- - Profile menu item validation
- *****************************************/
-
-- (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-    if (([[anItem title] isEqualToString:@"Clear All Profiles"] && [[self getProfilesList] count] < 1) ||
-        [[anItem title] isEqualToString:@"Empty"]) {
-        return NO;
-    }
-    return YES;
-}
-
-- (void)menuWillOpen:(NSMenu *)menu {
-    // we do this lazily
-    [self constructMenus:self];
 }
 
 @end

@@ -82,7 +82,6 @@
 - (IBAction)apply:(id)sender;
 - (IBAction)show:(id)sender;
 - (IBAction)showHelp:(id)sender;
-- (void)constructCommandString;
 
 @end
 

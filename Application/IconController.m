@@ -54,21 +54,12 @@
 - (IBAction)copyIcon:(id)sender;
 - (IBAction)pasteIcon:(id)sender;
 - (IBAction)revealIconInFinder:(id)sender;
-- (void)updateIcnsStatus;
 - (IBAction)contentsWereAltered:(id)sender;
 - (IBAction)nextIcon:(id)sender;
 - (IBAction)previousIcon:(id)sender;
-- (void)setAppIconForType:(int)type;
-- (NSDictionary *)getIconInfoForType:(int)type;
 - (IBAction)switchIcons:(id)sender;
-- (BOOL)writeIconToPath:(NSString *)path;
-- (BOOL)validateMenuItem:(NSMenuItem *)anItem;
 - (IBAction)selectIcon:(id)sender;
 - (IBAction)selectIcnsFile:(id)sender;
-- (BOOL)loadImageWithData:(NSData *)imgData;
-- (BOOL)loadImageFromPasteboard;
-- (BOOL)loadPresetIcon:(NSDictionary *)iconInfo;
-- (void)updateForCustomIcon;
 
 @end
 
