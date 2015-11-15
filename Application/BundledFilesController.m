@@ -364,7 +364,7 @@
         // check if bundled file still exists at path
         NSString *filePath = files[rowIndex][@"Path"];
         if ([FILEMGR fileExistsAtPath:filePath]) {
-            return(files[rowIndex][@"Path"]);
+            return files[rowIndex][@"Path"];
         } else {
             // if not, we hilight red
             NSDictionary *attr = @{NSForegroundColorAttributeName: [NSColor redColor]};
