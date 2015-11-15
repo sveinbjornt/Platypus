@@ -66,8 +66,9 @@
     //Convert the NSColor to the RGB color space before we can access its components
     NSColor *convertedColor = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
     
-    if (!convertedColor)
+    if (!convertedColor) {
         return nil;
+    }
     
     // Get the red, green, and blue components of the color
     [convertedColor getRed:&redFloatValue green:&greenFloatValue blue:&blueFloatValue alpha:NULL];

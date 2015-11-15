@@ -279,12 +279,13 @@
     return TRUE;
 }
 
-- (void)runCommandInTerminal:(NSString *)cmd {
+- (BOOL)runCommandInTerminal:(NSString *)cmd {
     
     NSString *osaCmd = [NSString stringWithFormat:@"tell application \"Terminal\"\n\tdo script \"%@\"\nactivate\nend tell", cmd];
     NSAppleScript *script = [[NSAppleScript alloc] initWithSource:osaCmd];
-    [script executeAndReturnError:nil];
+    id ret = [script executeAndReturnError:nil];
     [script release];
+    return (ret != nil);
 }
 
 @end

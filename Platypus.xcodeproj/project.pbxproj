@@ -357,7 +357,7 @@
 				F48A724D122E23B200964D71 /* ScriptAnalyser */,
 				F41306340FBD809A00A319B7 /* STPathTextField */,
 				F44587170FC386B500CD0C02 /* STPrivilegedTask */,
-				F4975D6D1B2E03250099D16E /* NSFileManager+Additions */,
+				F4975D6D1B2E03250099D16E /* NSWorkspace+Additions */,
 				F44EFEFF12296F2C00CAC9C2 /* NSColor+HexTools */,
 				F4FE738B11F792C3005FC23A /* IconFamily */,
 			);
@@ -620,13 +620,13 @@
 			name = Application;
 			sourceTree = "<group>";
 		};
-		F4975D6D1B2E03250099D16E /* NSFileManager+Additions */ = {
+		F4975D6D1B2E03250099D16E /* NSWorkspace+Additions */ = {
 			isa = PBXGroup;
 			children = (
 				F4975D6E1B2E09280099D16E /* NSWorkspace+Additions.h */,
 				F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */,
 			);
-			name = "NSFileManager+Additions";
+			name = "NSWorkspace+Additions";
 			sourceTree = "<group>";
 		};
 		F4AB18701BE1911500B83A95 /* NSBundle+Templates */ = {

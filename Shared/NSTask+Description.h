@@ -31,5 +31,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSTask (Description)
+
 @property (nonatomic, readonly, copy) NSString *humanDescription;
+
 @end

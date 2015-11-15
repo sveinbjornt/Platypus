@@ -96,7 +96,7 @@ int main(int argc, const char *argv[]) {
                 // Load Profile
             case 'P':
             {
-                NSString *profilePath = MakeAbsolutePath([NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING]);
+                NSString *profilePath = MakeAbsolutePath(@(optarg));
                 
                 // error if profile doesn't exists, warn if w/o profile suffix
                 if (![fm fileExistsAtPath:profilePath]) {
@@ -114,9 +114,10 @@ int main(int argc, const char *argv[]) {
                     exit(1);
                 }
                 
-                // warn about diff versions
-                if (![[profileDict objectForKey:@"Creator"] isEqualToString:PROGRAM_STAMP])
+                // warn if created by different version
+                if (![profileDict[@"Creator"] isEqualToString:PROGRAM_STAMP]) {
                     NSPrint(@"Warning: Profile created with different version of %@.", PROGRAM_NAME);
+                }
                 
                 // add entries in profile to app properties, overwriting any former values
                 [properties addEntriesFromDictionary:profileDict];
@@ -126,13 +127,13 @@ int main(int argc, const char *argv[]) {
                 
                 // App Name
             case 'a':
-                [properties setObject:[NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING] forKey:@"Name"];
+                properties[@"Name"] = @(optarg);
                 break;
                 
                 // A bundled file.  This flag can be passed multiple times to include more than one bundled file
             case 'f':
             {
-                NSString *filePath = MakeAbsolutePath([NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING]);
+                NSString *filePath = MakeAbsolutePath(@(optarg));
                 
                 // make sure file exists
                 if (![fm fileExistsAtPath:filePath]) {
@@ -141,56 +142,56 @@ int main(int argc, const char *argv[]) {
                 }
                 
                 // create bundled files array entry in properties if it doesn't already exist
-                if ([properties objectForKey:@"BundledFiles"] == nil) {
-                    [properties setObject:[NSMutableArray array] forKey:@"BundledFiles"];
+                if (properties[@"BundledFiles"] == nil) {
+                    properties[@"BundledFiles"] = [NSMutableArray array];
                 }
                 
                 // add file argument to it
-                [[properties objectForKey:@"BundledFiles"] addObject:filePath];
+                [properties[@"BundledFiles"] addObject:filePath];
             }
                 break;
                 
                 // Output Type
             case 'o':
             {
-                NSString *outputType = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *outputType = @(optarg);
                 if (![PLATYPUS_OUTPUT_TYPES containsObject:outputType]) {
                     NSPrintErr(@"Error: Invalid output type '%@'.  Valid types are:", outputType);
                     NSPrintErr([PLATYPUS_OUTPUT_TYPES description]);
                     exit(1);
                 }
-                [properties setObject:[NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING] forKey:@"Output"];
+                properties[@"Output"] = @(optarg);
             }
                 break;
                 
                 // background color of text output
             case 'b':
             {
-                NSString *hexColorStr = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *hexColorStr = @(optarg);
                 if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex:0] != '#') {
                     NSPrintErr(@"Error: '%@' is not a valid color spec.  Must be 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
                     exit(1);
                 }
-                [properties setObject:[NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING] forKey:@"TextBackground"];
+                properties[@"TextBackground"] = @(optarg);
             }
                 break;
                 
                 // foreground color of text output
             case 'g':
             {
-                NSString *hexColorStr = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *hexColorStr = @(optarg);
                 if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex:0] != '#') {
                     NSPrintErr(@"Error: '%@' is not a valid color spec.  Must be 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
                     exit(1);
                 }
-                [properties setObject:[NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING] forKey:@"TextForeground"];
+                properties[@"TextForeground"] = @(optarg);
             }
                 break;
                 
                 // font and size of text output
             case 'n':
             {
-                NSString *fontStr = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *fontStr = @(optarg);
                 NSMutableArray *words = [NSMutableArray arrayWithArray:[fontStr componentsSeparatedByString:@" "]];
                 if ([words count] < 2) {
                     NSPrintErr(@"Error: '%@' is not a valid font.  Must be fontname followed by size, e.g. 'Monaco 10'", fontStr);
@@ -200,33 +201,33 @@ int main(int argc, const char *argv[]) {
                 float fontSize = [[words lastObject] floatValue];
                 [words removeLastObject];
                 NSString *fontName = [words componentsJoinedByString:@" "];
-                [properties setObject:fontName forKey:@"TextFont"];
-                [properties setObject:[NSNumber numberWithFloat:fontSize] forKey:@"TextSize"];
+                properties[@"TextFont"] = fontName;
+                properties[@"TextSize"] = @(fontSize);
             }
                 break;
                 
                 // text encoding to use
             case 'E':
             {
-                NSString *encNumStr = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *encNumStr = @(optarg);
                 int textEncoding = [encNumStr intValue];
                 if (textEncoding <= 0) {
                     NSPrintErr(@"Error: Invalid text encoding specified");
                     exit(1);
                 }
-                [properties setObject:[NSNumber numberWithInt:textEncoding] forKey:@"TextEncoding"];
+                properties[@"TextEncoding"] = @(textEncoding);
             }
                 break;
                 
                 // Author
             case 'u':
-                [properties setObject:[NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING] forKey:@"Author"];
+                properties[@"Author"] = @(optarg);
                 break;
                 
                 // Icon
             case 'i':
             {
-                NSString *iconPath = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *iconPath = @(optarg);
                 
                 // empty icon path means just default app icon, otherwise a path to an icns file
                 if (![iconPath isEqualTo:@""]) {
@@ -243,14 +244,14 @@ int main(int argc, const char *argv[]) {
                         NSPrintErr(@"Warning: '%@' not identified as an Apple .icns file", iconPath);
                     }
                 }
-                [properties setObject:iconPath forKey:@"IconPath"];
+                properties[@"IconPath"] = iconPath;
             }
                 break;
                 
                 // Document icon
             case 'Q':
             {
-                NSString *iconPath = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *iconPath = @(optarg);
                 
                 // empty icon path means just default app icon, otherwise a path to an icns file
                 if (![iconPath isEqualTo:@""]) {
@@ -267,164 +268,164 @@ int main(int argc, const char *argv[]) {
                         NSPrintErr(@"Warning: '%@' not identified as an Apple .icns file", iconPath);
                     }
                 }
-                [properties setObject:iconPath forKey:@"DocIcon"];
+                properties[@"DocIcon"] = iconPath;
             }
                 break;
                 
                 // Interpreter
             case 'p':
             {
-                NSString *interpreterPath = MakeAbsolutePath([NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING]);
+                NSString *interpreterPath = MakeAbsolutePath(@(optarg));
                 if (![fm fileExistsAtPath:interpreterPath]) {
                     NSPrintErr(@"Warning: Interpreter path '%@' invalid - no file at path.", interpreterPath);
                 }
                 
-                [properties setObject:interpreterPath forKey:@"Interpreter"];
+                properties[@"Interpreter"] = interpreterPath;
             }
                 break;
                 
                 // Version
             case 'V':
-                [properties setObject:[NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING] forKey:@"Version"];
+                properties[@"Version"] = @(optarg);
                 break;
                 
                 // Identifier
             case 'I':
-                [properties setObject:[NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING] forKey:@"Identifier"];
+                properties[@"Identifier"] = @(optarg);
                 break;
                 
                 // The checkbox options
             case 'A':
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"Authentication"];
+                properties[@"Authentication"] = @YES;
                 break;
                 
             case 'S':
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"Secure"];
+                properties[@"Secure"] = @YES;
                 break;
                 
             case 'D':
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"Droppable"];
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"AcceptsFiles"];
+                properties[@"Droppable"] = @YES;
+                properties[@"AcceptsFiles"] = @YES;
                 break;
                 
             case 'F':
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"Droppable"];
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"AcceptsText"];
+                properties[@"Droppable"] = @YES;
+                properties[@"AcceptsText"] = @YES;
                 break;
                 
             case 'N':
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"DeclareService"];
+                properties[@"DeclareService"] = @YES;
                 break;
                 
             case 'B':
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"ShowInDock"];
+                properties[@"ShowInDock"] = @YES;
                 break;
                 
             case 'R':
-                [properties setObject:[NSNumber numberWithBool:NO] forKey:@"RemainRunning"];
+                properties[@"RemainRunning"] = @NO;
                 break;
                 
             case 'x':
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"UseXMLPlistFormat"];
+                properties[@"UseXMLPlistFormat"] = @YES;
                 break;
                 
                 // Suffixes
             case 'X':
             {
-                NSString *suffixesStr = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *suffixesStr = @(optarg);
                 NSArray *suffixes = [suffixesStr componentsSeparatedByString:@"|"];
-                [properties setObject:suffixes forKey:@"Suffixes"];
+                properties[@"Suffixes"] = suffixes;
             }
                 break;
                 
                 // Uniform Type Identifiers
             case 'T':
             {
-                NSString *utiStr = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *utiStr = @(optarg);
                 NSArray *utis = [utiStr componentsSeparatedByString:@"|"];
-                [properties setObject:utis forKey:@"UniformTypes"];
+                properties[@"UniformTypes"] = utis;
             }
                 break;
             
                 // Prompt for file on startup
             case 'Z':
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"PromptForFileOnLaunch"];
+                properties[@"PromptForFileOnLaunch"] = @YES;
                 break;
                 
                 // Arguments for interpreter
             case 'G':
             {
-                NSString *parametersString = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *parametersString = @(optarg);
                 NSArray *parametersArray = [parametersString componentsSeparatedByString:@"|"];
-                [properties setObject:parametersArray forKey:@"InterpreterArgs"];
+                properties[@"InterpreterArgs"] = parametersArray;
             }
                 break;
                 
                 // Arguments for script
             case 'C':
             {
-                NSString *parametersString = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *parametersString = @(optarg);
                 NSArray *parametersArray = [parametersString componentsSeparatedByString:@"|"];
-                [properties setObject:parametersArray forKey:@"ScriptArgs"];
+                properties[@"ScriptArgs"] = parametersArray;
             }
                 break;
                 
                 // force overwrite mode
             case 'y':
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"DestinationOverride"];
+                properties[@"DestinationOverride"] = @YES;
                 break;
                 
                 // development version, symlink to script
             case 'd':
-                [properties setObject:[NSNumber numberWithBool:YES] forKey:@"DevelopmentVersion"];
+                properties[@"DevelopmentVersion"] = @YES;
                 break;
                 
                 // don't optimize application by stripping/compiling nib files
             case 'l':
-                [properties setObject:[NSNumber numberWithBool:NO] forKey:@"OptimizeApplication"];
+                properties[@"OptimizeApplication"] = @NO;
                 break;
                 
                 // custom nib path
             case 'H':
             {
-                NSString *nibPath = MakeAbsolutePath([NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING]);
+                NSString *nibPath = MakeAbsolutePath(@(optarg));
                 // make sure we have a nib file that exists at this path
                 if (![fm fileExistsAtPath:nibPath] || ![nibPath hasSuffix:@"nib"]) {
                     NSPrintErr(@"Error: No nib file exists at path '%@'", nibPath);
                     exit(1);
                 }
-                [properties setObject:nibPath forKey:@"NibPath"];
+                properties[@"NibPath"] = nibPath;
             }
                 break;
                 
                 // set display kind for Status Menu output
             case 'K':
             {
-                NSString *kind = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *kind = @(optarg);
                 if (![kind isEqualToString:@"Text"] && ![kind isEqualToString:@"Icon"] && ![kind isEqualToString:@"Icon and Text"]) {
                     NSPrintErr(@"Error: Invalid status item kind '%@'", kind);
                     exit(1);
                 }
-                [properties setObject:kind forKey:@"StatusItemDisplayType"];
+                properties[@"StatusItemDisplayType"] = kind;
             }
                 break;
                 
                 // set title of status item for Status Menu output
             case 'Y':
             {
-                NSString *title = [NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+                NSString *title = @(optarg);
                 if ([title isEqualToString:@""] || title == nil) {
                     NSPrintErr(@"Error: Empty status item title");
                     exit(1);
                 }
-                [properties setObject:title forKey:@"StatusItemTitle"];
+                properties[@"StatusItemTitle"] = title;
             }
                 break;
                 
                 // set icon image of status item for Status Menu output
             case 'L':
             {
-                NSString *iconPath = MakeAbsolutePath([NSString stringWithCString:optarg encoding:DEFAULT_OUTPUT_TXT_ENCODING]);
+                NSString *iconPath = MakeAbsolutePath(@(optarg));
                 if (![fm fileExistsAtPath:iconPath]) {
                     NSPrintErr(@"Error: No image file exists at path '%@'", iconPath);
                     exit(1);
@@ -443,7 +444,7 @@ int main(int argc, const char *argv[]) {
                     NSPrintErr(@"Error: Dimensions of image '%@' is not 16x16", iconPath);
                     exit(1);
                 }
-                [properties setObject:[iconImage TIFFRepresentation] forKey:@"StatusItemIcon"];
+                properties[@"StatusItemIcon"] = [iconImage TIFFRepresentation];
             }
                 break;
                 
@@ -481,7 +482,7 @@ int main(int argc, const char *argv[]) {
     // read remaining args as paths
     NSMutableArray *remainingArgs = [NSMutableArray arrayWithCapacity:ARG_MAX];
     while (optind < argc) {
-        NSString *argStr = [NSString stringWithCString:argv[optind] encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+        NSString *argStr = @(argv[optind]);
         if (![argStr isEqualToString:@"-"]) {
             argStr = MakeAbsolutePath(argStr);
         }
@@ -491,7 +492,7 @@ int main(int argc, const char *argv[]) {
     
     if (createProfile) {
         BOOL printStdout = FALSE;
-        destPath = [remainingArgs objectAtIndex:0];
+        destPath = remainingArgs[0];
         
         // append .platypus suffix to destination file if not user-specified
         if ([destPath hasSuffix:@"-"]) {
@@ -511,7 +512,7 @@ int main(int argc, const char *argv[]) {
     }
     // if we loaded a profile, the first remaining arg is destination path, others ignored
     else if (loadedProfile) {
-        destPath = [remainingArgs objectAtIndex:0];
+        destPath = remainingArgs[0];
         if (![destPath hasSuffix:@".app"]) {
             destPath = [destPath stringByAppendingString:@".app"];
         }
@@ -522,7 +523,7 @@ int main(int argc, const char *argv[]) {
     // if we're creating an app, first argument must be script path, second (optional) argument is destination
     else {
         // get script path, generate default app name
-        scriptPath = [remainingArgs objectAtIndex:0];
+        scriptPath = remainingArgs[0];
         if ([scriptPath isEqualToString:@"-"]) {
             // read data
             NSData *inData = [[NSFileHandle fileHandleWithStandardInput] readDataToEndOfFile];
@@ -557,8 +558,8 @@ int main(int argc, const char *argv[]) {
         }
         
         appSpec = [PlatypusAppSpec specWithDefaultsFromScript:scriptPath];
-        if ([properties objectForKey:@"Name"] != nil) {
-            NSString *appBundleName = [NSString stringWithFormat:@"%@.app", [properties objectForKey:@"Name"]];
+        if (properties[@"Name"] != nil) {
+            NSString *appBundleName = [NSString stringWithFormat:@"%@.app", properties[@"Name"]];
             NSString *scriptFolder = [scriptPath stringByDeletingLastPathComponent];
             destPath = [scriptFolder stringByAppendingPathComponent:appBundleName];
             [appSpec setProperty:destPath forKey:@"Destination"];
@@ -566,9 +567,9 @@ int main(int argc, const char *argv[]) {
         [appSpec addProperties:properties];
         
         // if author name is supplied but no identifier, we create a default identifier with author name as clue
-        if ([properties objectForKey:@"Author"] && [properties objectForKey:@"Identifier"] == nil) {
+        if (properties[@"Author"] && properties[@"Identifier"] == nil) {
             NSString *identifier = [PlatypusAppSpec standardBundleIdForAppName:[appSpec propertyForKey:@"Name"]
-                                                                    authorName:[properties objectForKey:@"Author"]
+                                                                    authorName:properties[@"Author"]
                                                                  usingDefaults:NO];
             if (identifier) {
                 [appSpec setProperty:identifier forKey:@"Identifier"];
@@ -577,7 +578,7 @@ int main(int argc, const char *argv[]) {
         
         // if there's another argument after the script path, it means a destination path has been specified
         if ([remainingArgs count] > 1) {
-            destPath = [remainingArgs objectAtIndex:1];
+            destPath = remainingArgs[1];
             [appSpec setProperty:destPath forKey:@"Destination"];
         }
     }

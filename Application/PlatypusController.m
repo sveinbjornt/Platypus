@@ -447,9 +447,9 @@
     [spec setProperty:appPath forKey:@"Destination"];
     [spec setProperty:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil] forKey:@"ExecutablePath"];
     [spec setProperty:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil] forKey:@"NibPath"];
-    [spec setProperty:[NSNumber numberWithBool:[developmentVersionCheckbox intValue]] forKey:@"DevelopmentVersion"];
-    [spec setProperty:[NSNumber numberWithBool:[optimizeApplicationCheckbox intValue]] forKey:@"OptimizeApplication"];
-    [spec setProperty:[NSNumber numberWithBool:[xmlPlistFormatCheckbox intValue]] forKey:@"UseXMLPlistFormat"];
+    [spec setProperty:@((BOOL)[developmentVersionCheckbox intValue]) forKey:@"DevelopmentVersion"];
+    [spec setProperty:@((BOOL)[optimizeApplicationCheckbox intValue]) forKey:@"OptimizeApplication"];
+    [spec setProperty:@((BOOL)[xmlPlistFormatCheckbox intValue]) forKey:@"UseXMLPlistFormat"];
     [spec setProperty:@YES forKey:@"DestinationOverride"];
     
     // verify that the values in the spec are OK
@@ -574,11 +574,11 @@
     [spec setProperty:[authorTextField stringValue] forKey:@"Author"];
     
     // checkbox attributes
-    [spec setProperty:[NSNumber numberWithBool:[isDroppableCheckbox state]] forKey:@"Droppable"];
-    [spec setProperty:[NSNumber numberWithBool:[encryptCheckbox state]] forKey:@"Secure"];
-    [spec setProperty:[NSNumber numberWithBool:[rootPrivilegesCheckbox state]] forKey:@"Authentication"];
-    [spec setProperty:[NSNumber numberWithBool:[remainRunningCheckbox state]] forKey:@"RemainRunning"];
-    [spec setProperty:[NSNumber numberWithBool:[showInDockCheckbox state]] forKey:@"ShowInDock"];
+    [spec setProperty:@((BOOL)[isDroppableCheckbox state]) forKey:@"Droppable"];
+    [spec setProperty:@((BOOL)[encryptCheckbox state]) forKey:@"Secure"];
+    [spec setProperty:@((BOOL)[rootPrivilegesCheckbox state]) forKey:@"Authentication"];
+    [spec setProperty:@((BOOL)[remainRunningCheckbox state]) forKey:@"RemainRunning"];
+    [spec setProperty:@((BOOL)[showInDockCheckbox state]) forKey:@"ShowInDock"];
     
     // bundled files
     [spec setProperty:[bundledFilesController filePaths] forKey:@"BundledFiles"];
@@ -587,15 +587,15 @@
     [spec setProperty:(NSMutableArray *)[(SuffixTypeListController *)[dropSettingsController suffixListController] itemsArray] forKey:@"Suffixes"];
     [spec setProperty:(NSMutableArray *)[(UniformTypeListController *)[dropSettingsController uniformTypesListController] itemsArray] forKey:@"UniformTypes"];
     [spec setProperty:[dropSettingsController docIconPath] forKey:@"DocIcon"];
-    [spec setProperty:@([dropSettingsController acceptsText]) forKey:@"AcceptsText"];
-    [spec setProperty:@([dropSettingsController acceptsFiles]) forKey:@"AcceptsFiles"];
-    [spec setProperty:@([dropSettingsController declareService]) forKey:@"DeclareService"];
-    [spec setProperty:@([dropSettingsController promptsForFileOnLaunch]) forKey:@"PromptForFileOnLaunch"];
+    [spec setProperty:@((BOOL)[dropSettingsController acceptsText]) forKey:@"AcceptsText"];
+    [spec setProperty:@((BOOL)[dropSettingsController acceptsFiles]) forKey:@"AcceptsFiles"];
+    [spec setProperty:@((BOOL)[dropSettingsController declareService]) forKey:@"DeclareService"];
+    [spec setProperty:@((BOOL)[dropSettingsController promptsForFileOnLaunch]) forKey:@"PromptForFileOnLaunch"];
     
     //  text output text settings
     [spec setProperty:@((int)[textSettingsController textEncoding]) forKey:@"TextEncoding"];
     [spec setProperty:[[textSettingsController textFont] fontName] forKey:@"TextFont"];
-    [spec setProperty:[NSNumber numberWithFloat:[[textSettingsController textFont] pointSize]] forKey:@"TextSize"];
+    [spec setProperty:@((float)[[textSettingsController textFont] pointSize]) forKey:@"TextSize"];
     [spec setProperty:[[textSettingsController textForegroundColor] hexString] forKey:@"TextForeground"];
     [spec setProperty:[[textSettingsController textBackgroundColor] hexString] forKey:@"TextBackground"];
     
@@ -604,7 +604,7 @@
         [spec setProperty:[statusItemSettingsController displayType] forKey:@"StatusItemDisplayType"];
         [spec setProperty:[statusItemSettingsController title] forKey:@"StatusItemTitle"];
         [spec setProperty:[[statusItemSettingsController icon] TIFFRepresentation] forKey:@"StatusItemIcon"];
-        [spec setProperty:@([statusItemSettingsController usesSystemFont]) forKey:@"StatusItemUseSystemFont"];
+        [spec setProperty:@((BOOL)[statusItemSettingsController usesSystemFont]) forKey:@"StatusItemUseSystemFont"];
     }
     
     return spec;

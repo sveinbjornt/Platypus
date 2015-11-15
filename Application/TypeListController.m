@@ -96,7 +96,7 @@
     }
 }
 
-- (NSArray *)itemsArray {
+- (NSMutableArray *)itemsArray {
     NSMutableArray *array = [NSMutableArray array];
     for (NSDictionary *itemDict in items) {
         [array addObject:itemDict[@"name"]];

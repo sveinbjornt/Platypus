@@ -74,8 +74,8 @@
             @"Other..."];
 }
 
-// a mapping between scripting languages and a simple hello world program
-// implemented in said language
+// a mapping between scripting languages and a simple hello world
+// program implemented in said language
 
 + (NSDictionary *)interpreterHelloWorlds {
     return @{@"Shell": @"echo 'Hello, World'",
@@ -106,34 +106,31 @@
 }
 
 + (NSString *)displayNameForInterpreter:(NSString *)theInterpreter {
-    NSArray *interpreters = [self interpreters];
-    for (int i = 0; i < [interpreters count]; i++) {
-        if ([theInterpreter isEqualToString:interpreters[i]]) {
-            return [self interpreterDisplayNames][i];
-        }
-    }
+    NSArray *interpreters = [ScriptAnalyser interpreters];
+    NSArray *displayNames = [ScriptAnalyser interpreterDisplayNames];
     
+    NSUInteger index = [interpreters indexOfObject:theInterpreter];
+    if (index != NSNotFound) {
+        return displayNames[index];
+    }
     return @"Other...";
 }
 
 + (NSString *)interpreterForDisplayName:(NSString *)name {
-    NSArray *interpreterDisplayNames = [self interpreterDisplayNames];
-    NSArray *interpreters = [self interpreters];
+    NSArray *interpreterDisplayNames = [ScriptAnalyser interpreterDisplayNames];
+    NSArray *interpreters = [ScriptAnalyser interpreters];
 
     NSUInteger index = [interpreterDisplayNames indexOfObject:name];
     if (index != NSNotFound) {
         return interpreters[index];
     }
-    
     return @"";
 }
 
-/**************************************************
- - Determine script type based on a file's suffix
- **************************************************/
+#pragma mark -
 
-+ (NSString *)interpreterFromSuffix:(NSString *)fileName {
-    NSArray *interpreters = [self interpreters];
++ (NSString *)interpreterForFileSuffix:(NSString *)fileName {
+    NSArray *interpreters = [ScriptAnalyser interpreters];
     
     if ([fileName hasSuffix:@".sh"] || [fileName hasSuffix:@".command"]) {
         return interpreters[0];
@@ -166,10 +163,6 @@
     return nil;
 }
 
-/***********************************************************************************************
- - Parse the Shebang line (#!) to get the interpreter for the script + arguments to interpreter
- ***********************************************************************************************/
-
 + (NSArray *)parseInterpreterFromShebang:(NSString *)path {
     
     // get the first line of the script
@@ -199,11 +192,7 @@
     return ([[words retain] autorelease]); // return array w. interpreter + arguments for it
 }
 
-/********************************************************
- - Utility method used by both app and command line tool
- ********************************************************/
-
-+ (NSString *)appNameFromScriptFileName:(NSString *)path {
++ (NSString *)appNameFromScriptFilePath:(NSString *)path {
     NSString *name = [[path lastPathComponent] stringByDeletingPathExtension];
     
     // replace these common filename word separators w. spaces
@@ -228,21 +217,13 @@
     return appName;
 }
 
-/*****************************************
- - Try to determine the interpreter of the script, return path to it
- *****************************************/
-
 + (NSString *)determineInterpreterForScriptFile:(NSString *)path {
-    NSString *interpreter = [self parseInterpreterFromShebang:path][0];
+    NSString *interpreter = [ScriptAnalyser parseInterpreterFromShebang:path][0];
     if (interpreter != nil && ![interpreter isEqualToString:@""]) {
         return interpreter;
     }
-    return [self interpreterFromSuffix:path];
+    return [ScriptAnalyser interpreterForFileSuffix:path];
 }
-
-/*****************************************
- - Report on syntax of script
- *****************************************/
 
 + (NSString *)checkSyntaxOfFile:(NSString *)scriptPath withInterpreter:(NSString *)suggestedInterpreter {
     NSTask *task;
@@ -255,7 +236,7 @@
     }
     
     if (interpreter == nil || [interpreter isEqualToString:@""]) {
-        interpreter = [self determineInterpreterForScriptFile:scriptPath];
+        interpreter = [ScriptAnalyser determineInterpreterForScriptFile:scriptPath];
     }
     
     if (interpreter == nil || [interpreter isEqualToString:@""]) {
