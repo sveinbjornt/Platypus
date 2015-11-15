@@ -468,9 +468,9 @@
 
 #pragma mark -
 
-- (BOOL)areAllPathsAreValid {
+- (BOOL)allPathsAreValid {
     for (NSDictionary *fileInfoDict in files) {
-        if (![FILEMGR fileExistsAtPath:fileInfoDict[@"Path"]]) {
+        if ([FILEMGR fileExistsAtPath:fileInfoDict[@"Path"]] == NO) {
             return NO;
         }
     }

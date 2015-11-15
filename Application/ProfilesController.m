@@ -34,7 +34,7 @@
 #import "Common.h"
 #import "Alerts.h"
 
-#define EXAMPLES_TAG    7
+#define EXAMPLES_TAG 7
 
 @interface ProfilesController()
 {
@@ -118,25 +118,24 @@
     }
     
     // get profile from platypus controls
-    NSDictionary *profileDict = [[platypusController appSpecFromControls] properties];
-    
+    PlatypusAppSpec *spec = [platypusController appSpecFromControls];
+
     // create path for profile file and write to it
     NSString *profileDestPath = [NSString stringWithFormat:@"%@/%@.%@",
                                  [PROFILES_FOLDER stringByExpandingTildeInPath],
-                                 profileDict[@"Name"],
+                                 spec[@"Name"],
                                  PROFILES_SUFFIX];
-    [self writeProfile:profileDict toFile:profileDestPath];
+    [spec writeToFile:profileDestPath];
 }
 
-- (IBAction)saveProfileToLocation:(id)sender;
-{
-    if (![platypusController verifyFieldContents]) {
+- (IBAction)saveProfileToLocation:(id)sender {
+    if ([platypusController verifyFieldContents] == NO) {
         return;
     }
     
     // get profile from platypus controls
-    NSDictionary *profileDict = [[platypusController appSpecFromControls] properties];
-    NSString *defaultName = [NSString stringWithFormat:@"%@.%@", profileDict[@"Name"], PROFILES_SUFFIX];
+    PlatypusAppSpec *spec = [platypusController appSpecFromControls];
+    NSString *defaultName = [NSString stringWithFormat:@"%@.%@", spec[@"Name"], PROFILES_SUFFIX];
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setTitle:[NSString stringWithFormat:@"Save %@ Profile", PROGRAM_NAME]];
@@ -145,23 +144,13 @@
     [sPanel setNameFieldStringValue:defaultName];
     
     if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
-        NSString *fileName = [[sPanel URL] path];
-        if (![fileName hasSuffix:PROFILES_SUFFIX]) {
-            fileName = [NSString stringWithFormat:@"%@.%@", fileName, PROFILES_SUFFIX];
+        NSString *filePath = [[sPanel URL] path];
+        if ([filePath hasSuffix:PROFILES_SUFFIX] == NO) {
+            filePath = [NSString stringWithFormat:@"%@.%@", filePath, PROFILES_SUFFIX];
         }
-        [self writeProfile:profileDict toFile:fileName];
-    }    
-}
-
-- (void)writeProfile:(NSDictionary *)dict toFile:(NSString *)profileDestPath;
-{
-    // if there's a file already, make sure we can overwrite
-    if ([FILEMGR fileExistsAtPath:profileDestPath] && [FILEMGR isDeletableFileAtPath:profileDestPath] == NO) {
-        [Alerts alert:@"Error" subText:[NSString stringWithFormat:@"Cannot overwrite file '%@'.", profileDestPath]];
-        return;
+        [spec writeToFile:filePath];
+        [self constructMenus:self];
     }
-    [dict writeToFile:profileDestPath atomically:YES];
-    [self constructMenus:self];
 }
 
 #pragma mark - Menu
@@ -259,7 +248,6 @@
     }
     
     //delete all .platypus files in PROFILES_FOLDER
-
     NSFileManager *manager = FILEMGR;
     NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
     NSString *filename;
@@ -275,7 +263,6 @@
         }
     }
     
-    //regenerate the menu
     [self constructMenus:self];
 }
 

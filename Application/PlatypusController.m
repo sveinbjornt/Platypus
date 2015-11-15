@@ -440,7 +440,7 @@
     // create spec from controls and verify
     PlatypusAppSpec *spec = [self appSpecFromControls];
     
-    // we set this specifically -- extra profile data
+    // we set this specifically
     spec[@"Destination"] = appPath;
     spec[@"ExecutablePath"] = [[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil];
     spec[@"NibPath"] = [[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil];
@@ -517,7 +517,7 @@
     }
     
     //let's be certain that the bundled files list doesn't contain entries that have been moved
-    if ([bundledFilesController areAllPathsAreValid] == NO) {
+    if ([bundledFilesController allPathsAreValid] == NO) {
         [Alerts sheetAlert:@"Bundled files missing" subText:@"One or more of the files that are to be bundled with the application could not be found. Please rectify this and try again." forWindow:window];
         return NO;
     }
