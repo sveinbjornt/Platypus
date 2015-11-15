@@ -89,7 +89,6 @@
 		F4AB18971BEAA88800B83A95 /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F4AB189A1BED3A0B00B83A95 /* ScriptExecJob.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */; };
 		F4AB189D1BEFAF1900B83A95 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */; };
-		F4AB189E1BEFAF1900B83A95 /* PlatypusInstaller.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189C1BEFAF1900B83A95 /* PlatypusInstaller.icns */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
 		F4B87C1B1B3C99AD00F4B8BE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B87C191B3C997300F4B8BE /* Accelerate.framework */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
@@ -909,7 +908,6 @@
 				F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */,
 				F4DC075211F629A40043764E /* Documentation.html in Resources */,
 				F43E1D7E1BC8048400622B5F /* Perl.png in Resources */,
-				F4AB189E1BEFAF1900B83A95 /* PlatypusInstaller.icns in Resources */,
 				F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */,
 				F48269771BC9A1DC00169D8B /* None.png in Resources */,
 				F4DC075311F629A40043764E /* Readme.html in Resources */,
