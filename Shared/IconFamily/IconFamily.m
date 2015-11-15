@@ -769,12 +769,12 @@
 
 - (BOOL) setAsCustomIconForFile:(NSString*)path
 {
-    return( [self setAsCustomIconForFile:path withCompatibility:NO error:NULL] );
+    return [self setAsCustomIconForFile:path withCompatibility:NO error:NULL];
 }
 
 - (BOOL) setAsCustomIconForFile:(NSString*)path withCompatibility:(BOOL)compat
 {
-    return( [self setAsCustomIconForFile:path withCompatibility:NO error:NULL] );
+    return [self setAsCustomIconForFile:path withCompatibility:NO error:NULL];
 }
 
 - (BOOL) setAsCustomIconForFile:(NSString*)path withCompatibility:(BOOL)compat error:(NSError **)error
@@ -1155,7 +1155,7 @@
 
 + (BOOL) removeCustomIconFromDirectory:(NSString*)path
 {
-    return( [self removeCustomIconFromDirectory:path error:NULL] );
+    return [self removeCustomIconFromDirectory:path error:NULL];
 }
 
 + (BOOL) removeCustomIconFromDirectory:(NSString*)path error:(NSError **)error

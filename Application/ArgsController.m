@@ -39,16 +39,16 @@
 @implementation NSResponderNotifyingTableView
 
 -(BOOL)becomeFirstResponder {
-    BOOL become = [super becomeFirstResponder];
-    if (become && [self delegate] && [[self delegate] respondsToSelector:@selector(tableViewDidBecomeFirstResponder:)]) {
-        [self.delegate performSelector:@selector(tableViewDidBecomeFirstResponder:) withObject:self];
+    BOOL becoming = [super becomeFirstResponder];
+    if (becoming && [self delegate] && [[self delegate] respondsToSelector:@selector(tableViewDidBecomeFirstResponder:)]) {
+        [[self delegate] performSelector:@selector(tableViewDidBecomeFirstResponder:) withObject:self];
     }
-    return become;
+    return becoming;
 }
 
 @end
 
-#define DEFAULT_ARG_VALUE       @"-arg"
+#define DEFAULT_ARG_VALUE @"-arg"
 
 @interface ArgsController()
 {
@@ -305,7 +305,7 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
     NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
-    return([args count]);
+    return [args count];
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
@@ -314,7 +314,7 @@
     if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
         return args[rowIndex];
     }
-    return(@"");
+    return @"";
 }
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex

@@ -113,7 +113,7 @@
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
     
     if ([[aTableColumn identifier] caseInsensitiveCompare:@"2"] == NSOrderedSame) {
-        return(items[rowIndex][@"name"]);
+        return items[rowIndex][@"name"];
     } else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
         if (rowIndex == 0) {
             NSImageCell *iconCell;
@@ -123,7 +123,7 @@
         
         return items[rowIndex][@"icon"];
     }
-    return(@"");
+    return @"";
 }
 
 - (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
