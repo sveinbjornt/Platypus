@@ -526,7 +526,7 @@
     }
     
     //make sure we have an icon
-    if (([iconController hasIcns] && ![[iconController icnsFilePath] isEqualToString:@""] && ![fileManager fileExistsAtPath:[iconController icnsFilePath]])) {
+    if (([iconController hasIconFile] && ![[iconController icnsFilePath] isEqualToString:@""] && ![fileManager fileExistsAtPath:[iconController icnsFilePath]])) {
         [Alerts sheetAlert:@"Missing Icon" subText:@"You must set an icon for your application." forWindow:window];
         return NO;
     }
@@ -559,7 +559,7 @@
     [spec setProperty:[outputTypePopupMenu titleOfSelectedItem] forKey:@"Output"];
     
     // icon
-    if ([iconController hasIcns]) {
+    if ([iconController hasIconFile]) {
         [spec setProperty:[iconController icnsFilePath] forKey:@"IconPath"];
     } else {
         NSString *tmpIconPath = [NSString stringWithFormat:@"%@%@.icns", APP_SUPPORT_FOLDER, [appNameTextField stringValue]];
@@ -585,8 +585,8 @@
     [spec setProperty:[bundledFilesController filePaths] forKey:@"BundledFiles"];
     
     // file types
-    [spec setProperty:(NSMutableArray *)[(SuffixTypeListController *)[dropSettingsController suffixListController] getItemsArray] forKey:@"Suffixes"];
-    [spec setProperty:(NSMutableArray *)[(UniformTypeListController *)[dropSettingsController uniformTypesListController] getItemsArray] forKey:@"UniformTypes"];
+    [spec setProperty:(NSMutableArray *)[(SuffixTypeListController *)[dropSettingsController suffixListController] itemsArray] forKey:@"Suffixes"];
+    [spec setProperty:(NSMutableArray *)[(UniformTypeListController *)[dropSettingsController uniformTypesListController] itemsArray] forKey:@"UniformTypes"];
     [spec setProperty:[dropSettingsController docIconPath] forKey:@"DocIcon"];
     [spec setProperty:@([dropSettingsController acceptsText]) forKey:@"AcceptsText"];
     [spec setProperty:@([dropSettingsController acceptsFiles]) forKey:@"AcceptsFiles"];
@@ -864,19 +864,10 @@
     [remainRunningCheckbox setIntValue:1];
     [showInDockCheckbox setIntValue:0];
     
-    //clear file list
     [bundledFilesController clearFileList:self];
-    
-    //clear suffix and types lists to default values
     [dropSettingsController setToDefaults:self];
-    
-    //set parameters to default
-    [argsController resetDefaults:self];
-    
-    //set text ouput settings to default
+    [argsController setToDefaults:self];
     [textSettingsController setToDefaults:self];
-    
-    //set status item settings to default
     [statusItemSettingsController setToDefaults:self];
     
     //set script type

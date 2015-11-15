@@ -96,15 +96,12 @@
     }
 }
 
-- (NSArray *)getItemsArray {
-    NSMutableArray *itemsArray = [NSMutableArray array];
-    
-    for (int i = 0; i < [items count]; i++) {
-        NSString *itemName = items[i][@"name"];
-        [itemsArray addObject:itemName];
+- (NSArray *)itemsArray {
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSDictionary *itemDict in items) {
+        [array addObject:itemDict[@"name"]];
     }
-    
-    return itemsArray;
+    return array;
 }
 
 #pragma mark - NSTableViewDelegate / DataSource / Drag

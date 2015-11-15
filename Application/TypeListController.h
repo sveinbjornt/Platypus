@@ -33,7 +33,7 @@
 @interface TypeListController : NSObject <NSTableViewDataSource>
 
 @property (nonatomic, readonly) int numItems;
-@property (nonatomic, getter=getItemsArray, readonly, copy) NSArray *itemsArray;
+@property (nonatomic, readonly, copy) NSArray *itemsArray;
 
 - (void)addItem:(NSString *)item;
 - (void)addItems:(NSArray *)items;

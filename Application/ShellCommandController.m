@@ -64,20 +64,24 @@
     [textView setFont:SHELL_COMMAND_STRING_FONT];
 }
 
+#pragma mark -
+
 - (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow {
     [self loadWindow];
     appSpec = [spec retain];
     [textView setString:[appSpec commandString:![useShortOptsCheckbox intValue]]];
     [(PrefsController *)prefsController updateCLTStatus:CLTStatusTextField];
     
-    [NSApp  beginSheet:[self window]
-        modalForWindow:theWindow
-         modalDelegate:self
-        didEndSelector:nil
-           contextInfo:nil];
+    [NSApp beginSheet:[self window]
+       modalForWindow:theWindow
+        modalDelegate:self
+       didEndSelector:nil
+          contextInfo:nil];
     
     [NSApp runModalForWindow:[self window]];
 }
+
+#pragma mark - Interface actions
 
 - (IBAction)close:(id)sender {
     [NSApp endSheet:[self window]];
@@ -89,16 +93,18 @@
     [textView setString:[appSpec commandString:![sender intValue]]];
 }
 
+- (IBAction)runInTerminal:(id)sender {
+    [WORKSPACE runCommandInTerminal:[textView string]];
+}
+
+#pragma mark -
+
 - (void)windowWillClose:(NSNotification *)notification {
     [self release];
 }
 
 - (void)setPrefsController:(id)controller {
     prefsController = controller;
-}
-
-- (IBAction)runInTerminal:(id)sender {
-    [WORKSPACE runCommandInTerminal:[textView string]];
 }
 
 @end

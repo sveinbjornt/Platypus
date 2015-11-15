@@ -89,7 +89,7 @@
      addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueDeleteNotification object:nil];
 }
 
-#pragma mark -
+#pragma mark - Interface actions
 
 - (IBAction)copyIconPath:(id)sender {
     
@@ -110,22 +110,59 @@
     [WORKSPACE selectFile:[self icnsFilePath] inFileViewerRootedAtPath:[self icnsFilePath]];
 }
 
-#pragma mark -
+- (IBAction)selectIcon:(id)sender {
+    [window setTitle:[NSString stringWithFormat:@"%@ - Select an image file", PROGRAM_NAME]];
+    
+    // create open panel
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+    [oPanel setPrompt:@"Select"];
+    [oPanel setAllowsMultipleSelection:NO];
+    [oPanel setCanChooseDirectories:NO];
+    [oPanel setAllowedFileTypes:[NSImage imageTypes]];
+    
+    // run open panel sheet
+    [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        [window setTitle:PROGRAM_NAME];
+        if (result != NSOKButton) {
+            return;
+        }
+        
+        NSString *filename = [[oPanel URLs][0] path];
+        NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
+        
+        if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
+            [self loadIcnsFile:filename];
+        } else {
+            [self loadImageFile:filename];
+        }
+        
+    }];
+}
 
-- (void)updateIcnsStatus {
-    if ([self hasIcns] && [FILEMGR fileExistsAtPath:icnsFilePath] == FALSE) {
-        [iconNameTextField setTextColor:[NSColor redColor]];
-    } else {
-        [iconNameTextField setTextColor:[NSColor blackColor]];
-    }
+- (IBAction)selectIcnsFile:(id)sender {
+    [window setTitle:[NSString stringWithFormat:@"%@ - Select an icns file", PROGRAM_NAME]];
+    
+    // create open panel
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+    [oPanel setPrompt:@"Select"];
+    [oPanel setAllowsMultipleSelection:NO];
+    [oPanel setCanChooseDirectories:NO];
+    [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeAppleICNS]];
+    
+    //run open panel
+    [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        [window setTitle:PROGRAM_NAME];
+        if (result == NSOKButton) {
+            NSString *filename = [[oPanel URLs][0] path];
+            [self loadIcnsFile:filename];
+        }
+    }];
 }
 
 // called when user pastes or cuts in field
 - (IBAction)contentsWereAltered:(id)sender {
     [self updateForCustomIcon];
 }
-
-#pragma mark -
 
 - (IBAction)iconActionButtonPressed:(id)sender {
     NSRect screenRect = [window convertRectToScreen:[(NSButton *)sender frame]];
@@ -150,11 +187,39 @@
     [self setAppIconForType:[iconToggleButton intValue]];
 }
 
+- (IBAction)switchIcons:(id)sender {
+    [self setAppIconForType:[sender intValue]];
+}
+
+#pragma mark -
+
+- (void)updateIcnsStatus {
+    if ([self hasIconFile] && [FILEMGR fileExistsAtPath:icnsFilePath] == FALSE) {
+        [iconNameTextField setTextColor:[NSColor redColor]];
+    } else {
+        [iconNameTextField setTextColor:[NSColor blackColor]];
+    }
+}
+
+// sets text to custom icon
+- (void)updateForCustomIcon {
+    NSString *tmpIconPath;
+    do {
+        tmpIconPath = TMP_ICON_PATH;
+    } while ([FILEMGR fileExistsAtPath:tmpIconPath]);
+    
+    if ([self writeIconToPath:tmpIconPath]) {
+        [iconNameTextField setStringValue:@"Custom Icon"];
+        [self setIcnsFilePath:tmpIconPath];
+    } else {
+        [self setToDefaults];
+    }
+}
+
 - (void)setAppIconForType:(int)type {
     [self loadPresetIcon:[self getIconInfoForType:type]];
 }
 
-// get information about the default icons
 - (NSDictionary *)getIconInfoForType:(int)type {
     NSImage *iconImage;
     NSString *iconName;
@@ -191,10 +256,6 @@
     [self setAppIconForType:0];
 }
 
-- (IBAction)switchIcons:(id)sender {
-    [self setAppIconForType:[sender intValue]];
-}
-
 #pragma mark -
 
 - (BOOL)writeIconToPath:(NSString *)path {
@@ -211,7 +272,7 @@
     return YES;
 }
 
-- (BOOL)hasIcns {
+- (BOOL)hasIconFile {
     return (icnsFilePath != nil);
 }
 
@@ -244,77 +305,11 @@
     return [WORKSPACE fileOrFolderSize:[self icnsFilePath]];
 }
 
-#pragma mark -
-
-- (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-    if ([[anItem title] isEqualToString:@"Paste Icon"]) {
-        NSArray *pbTypes = @[NSTIFFPboardType, NSPDFPboardType, NSPostScriptPboardType];
-        NSString *type = [[NSPasteboard generalPasteboard] availableTypeFromArray:pbTypes];
-        
-        if (type == nil) {
-            return NO;
-        }
-    }
-    if ([[anItem title] isEqualToString:@"Copy Icon Path"] || [[anItem title] isEqualToString:@"Show in Finder"]) {
-        if ([self icnsFilePath] == nil || [[self icnsFilePath] isEqualToString:@""]) {
-            return NO;
-        }
-    }
-    return YES;
+- (BOOL)isPresetIcon:(NSString *)str {
+    return [str hasPrefix:[[NSBundle mainBundle] resourcePath]];
 }
 
-#pragma mark -
-
-- (IBAction)selectIcon:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Select an image file", PROGRAM_NAME]];
-    
-    // create open panel
-    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-    [oPanel setPrompt:@"Select"];
-    [oPanel setAllowsMultipleSelection:NO];
-    [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:[NSImage imageTypes]];
-    
-    // run open panel sheet
-    [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
-        [window setTitle:PROGRAM_NAME];
-        if (result != NSOKButton) {
-            return;
-        }
-            
-        NSString *filename = [[oPanel URLs][0] path];
-        NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
-        
-        if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
-            [self loadIcnsFile:filename];
-        } else {
-            [self loadImageFile:filename];
-        }
-        
-    }];
-}
-
-- (IBAction)selectIcnsFile:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Select an icns file", PROGRAM_NAME]];
-
-    // create open panel
-    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-    [oPanel setPrompt:@"Select"];
-    [oPanel setAllowsMultipleSelection:NO];
-    [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeAppleICNS]];
-    
-    //run open panel
-    [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
-        [window setTitle:PROGRAM_NAME];
-        if (result == NSOKButton) {
-            NSString *filename = [[oPanel URLs][0] path];
-            [self loadIcnsFile:filename];
-        }
-    }];
-}
-
-#pragma mark -
+#pragma mark - Loading icon
 
 - (BOOL)loadIcnsFile:(NSString *)filePath {
     [iconNameTextField setStringValue:[filePath lastPathComponent]];
@@ -382,20 +377,23 @@
 
 #pragma mark -
 
-// sets text to custom icon
-- (void)updateForCustomIcon {
-    NSString *tmpIconPath;
-    do {
-        tmpIconPath = TMP_ICON_PATH;
-    } while ([FILEMGR fileExistsAtPath:tmpIconPath]);
-    
-    if ([self writeIconToPath:tmpIconPath]) {
-        [iconNameTextField setStringValue:@"Custom Icon"];
-        [self setIcnsFilePath:tmpIconPath];
-    } else {
-        [self setToDefaults];
+- (BOOL)validateMenuItem:(NSMenuItem *)anItem {
+    if ([[anItem title] isEqualToString:@"Paste Icon"]) {
+        NSArray *pbTypes = @[NSTIFFPboardType, NSPDFPboardType, NSPostScriptPboardType];
+        NSString *type = [[NSPasteboard generalPasteboard] availableTypeFromArray:pbTypes];
+        
+        if (type == nil) {
+            return NO;
+        }
     }
+    if ([[anItem title] isEqualToString:@"Copy Icon Path"] || [[anItem title] isEqualToString:@"Show in Finder"]) {
+        if ([self icnsFilePath] == nil || [[self icnsFilePath] isEqualToString:@""]) {
+            return NO;
+        }
+    }
+    return YES;
 }
+
 
 #pragma mark - STDragImageViewDelegate
 
@@ -456,12 +454,6 @@
     }
     
     return NSDragOperationNone;
-}
-
-#pragma mark - Util
-
-- (BOOL)isPresetIcon:(NSString *)str {
-    return [str hasPrefix:[[NSBundle mainBundle] resourcePath]];
 }
 
 @end
