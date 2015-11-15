@@ -375,10 +375,11 @@
     }
     NSString *appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
     if ([self[@"UseXMLPlistFormat"] boolValue] == FALSE) {
-        NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList:appSettingsPlist
-                                                                          format:NSPropertyListBinaryFormat_v1_0
-                                                                errorDescription:nil];
-        [binPlistData writeToFile:appSettingsPlistPath atomically:YES];
+        NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:appSettingsPlist
+                                                                       format:NSPropertyListBinaryFormat_v1_0
+                                                                      options:0
+                                                                        error:nil];
+        [plistData writeToFile:appSettingsPlistPath atomically:YES];
     } else {
         [appSettingsPlist writeToFile:appSettingsPlistPath atomically:YES];
     }
@@ -405,10 +406,11 @@
     NSDictionary *infoPlist = [self infoPlist];
     infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
     if (![self[@"UseXMLPlistFormat"] boolValue]) { // if binary
-        NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList:infoPlist
-                                                                          format:NSPropertyListBinaryFormat_v1_0
-                                                                errorDescription:nil];
-        [binPlistData writeToFile:infoPlistPath atomically:YES];
+        NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:infoPlist
+                                                                       format:NSPropertyListBinaryFormat_v1_0
+                                                                      options:0
+                                                                        error:nil];
+        [plistData writeToFile:infoPlistPath atomically:YES];
     }
     else {
         [infoPlist writeToFile:infoPlistPath atomically:YES];
