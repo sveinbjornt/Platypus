@@ -240,6 +240,7 @@
     [window setTitle:[NSString stringWithFormat:@"%@ - Editing %@", PROGRAM_NAME, [path lastPathComponent]]];
     EditorController *editorController = [[EditorController alloc] init];
     [editorController showEditorForFile:path window:window];
+    [editorController release];
     [window setTitle:PROGRAM_NAME];
 }
 

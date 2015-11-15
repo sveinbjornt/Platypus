@@ -71,8 +71,4 @@
     [[self window] close];
 }
 
-- (void)windowWillClose:(NSNotification *)notification {
-    [self release];
-}
-
 @end

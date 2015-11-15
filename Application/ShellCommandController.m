@@ -96,10 +96,4 @@
     [WORKSPACE runCommandInTerminal:[textView string]];
 }
 
-#pragma mark -
-
-- (void)windowWillClose:(NSNotification *)notification {
-    [self release];
-}
-
 @end
