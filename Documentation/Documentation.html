@@ -97,7 +97,16 @@
         <ul>
             <li><a href="#21">Basic Interface</a></li>
             <li><a href="#22">Interpreter</a></li>
-            <li><a href="#23">Output Types</a></li>
+            <li><a href="#23">Output Type</a>
+                <ul>
+                    <li><a href="#231">None</a></li>
+                    <li><a href="#232">Progress Bar</a></li>
+                    <li><a href="#233">Text Window</a></li>
+                    <li><a href="#234">Web View</a></li>
+                    <li><a href="#235">Status Menu</a></li>
+                    <li><a href="#236">Droplet</a></li>
+                </ul>
+            </li>
             <li><a href="#24">Setting the Icon</a></li>
             <li><a href="#31">Identifier, Author and Version</a></li>
             <li><a href="#33">Special Options</a></li>
@@ -112,7 +121,6 @@
             <li><a href="#43">Built-In Editor</a></li>
             <li><a href="#44">Syntax Checking</a></li>
             <li><a href="#45">Show Shell Command</a></li>
-            <li><a href="#46">Run in Terminal</a></li>
         </ul>
     </li>
     <li class="heading">
@@ -207,7 +215,7 @@
 
 <h3>Credits</h3>
 
-<p>Platypus was conceived and created, and is currently maintained and developed by me, Sveinbjorn Thordarson <a href="mailto:sveinbjornt@gmail.com">&lt;sveinbjornt@gmail.com&gt;</a></p>
+<p>Platypus was conceived and created by me, Sveinbjorn Thordarson <a href="mailto:sveinbjornt@gmail.com">&lt;sveinbjornt@gmail.com&gt;</a></p>
 
 <img style="float: right; margin-left: 30px; width: 94px; height: 128px;" src="images/platypus.png">
 
@@ -221,9 +229,11 @@
 
 <a name="13"></a>
 
-<h3>How does Platyppus work?</h3>
+<h3>How does Platypus work?</h3>
 
-<p>Regular Mac OS X applications are bundles -- special folders with a directory structure containing a binary, along with resources and configuration files.  Platypus creates applications bundles with a special binary that launches a specified script and captures its output.  The binary can then present the script's text output in the GUI in various ways, for example by showing a progress bar, a text view, a Status Item menu or a WebKit-based web view.</p>
+<p>Regular Mac OS X applications are <a href="https://en.wikipedia.org/wiki/Bundle_(OS_X)#OS_X_application_bundles">bundles</a> -- special folders with a specific directory structure. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the bundle is opened in the graphical user interface.</p>
+
+<p>Platypus creates applications bundles with a special executable binary that launches a script and captures its output.  The binary can be configured to present the script's text output in the GUI in various ways, for example by showing a progress bar, a text view, a Status Item menu or a WebKit-based web view.</p>
 
 <br><br>
 
@@ -277,7 +287,7 @@
 
 <img src="images/script_path.png" style="width: 492px; height: 66px;" class="centered-image">
     
-<p>Once you have selected a valid script, you can press the <strong>Edit</strong> button to open it in your default text editor. Platypus includes a very basic built-in text editor. You can change this in the Preferences to use any external editor you want.</p>
+<p>Once you have selected a valid script, you can press the <strong>Edit</strong> button to open it in your default text editor. Platypus includes a very basic built-in text editor. You can change this in the <strong>Preferences</strong> to use any external editor you want.</p>
 
 <p>The <strong>New</strong> button creates a text file for you in Platypus' Application Support folder and opens it in your default editor. The <strong>Reveal</strong> button reveals the script file in the Finder.</p>
 
@@ -308,14 +318,15 @@
 
 <img src="images/output_type.png" style="float: right; width:193px; height:258px;" class="centered-image">
 
-<p><strong>Output</strong> lets you select what the application you create does with the output of the script. There are five output modes available:</p>
+<p><strong>Output</strong> sets the user interface for the application. There are six output modes available:</p>
 
-<br>
-<p><strong>None</strong>:  Your application provides no graphical feedback whatsoever. It will launch in the Dock and executes the script without opening any windows.  All script output goes to <code>STDOUT</code> and <code>STDERR</code>, viewable in Console.app.</p>
+<a name="231"></a>
+<h4>None</h4>
+<p>Windowless application that provides no graphical feedback. All script output goes to <code>STDOUT</code> and <code>STDERR</code>, viewable in Console.app.</p>
 
-<br>
-
-<p><strong>Progress Bar</strong>:  A small window with an indeterminate progress bar and a "Cancel" button appears during the execution of the script. Script output is fed line by line into the text field above the progress bar. "Show details" reveals a small text view containing script output.</p>
+<a name="232"></a>
+<h4>Progress Bar</h4>
+<p>A small window with an indeterminate progress bar and a "Cancel" button appears during the execution of the script. Script output is fed line by line into the text field above the progress bar. "Show details" triangle reveals a small text view containing script output.</p>
 
 <p>The script can communicate with the progress bar by notifying it of script progress.  All lines of script output in the format 'PROGRESS:\d+' (e.g. PROGRESS:75) are parsed and used to set the completion percentage of the progress bar. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
 
@@ -323,16 +334,22 @@
 <br>
 <br>
 
-<p><strong>Text Window</strong>: A window with a text field is displayed.  This text field receives all script output. Please note that the text field is <em>not</em> an interactive terminal session, and cannot receive <em>any</em> input from the user.  It does not support any terminal buffering or commands and cannot be used to display ncurses-based interfaces.   It only displays the actual text output of the script as it is being executed.  The properties of the text field can be modified in Platypus by pressing the "Text Settings" button.  This will present an interface pane where text encoding, font, color and size can be set.</p>
+<a name="233"></a>
+<h4>Text Window</h4>
+<p>Shows a window with a text field. This text field displays all script output. Please note that the text field is <em>not</em> an interactive terminal session, and cannot prompt for input from the user via STDIN.  It does not support any terminal commands and cannot be used to display ncurses-based interfaces.  It only displays the actual text output of the script.
+
+<p>The styling and properties of the text field can be set by pressing the <strong>Text Settings</strong> button.  This will present a dialog where text encoding, font, color and size can be configured.</p>
 
 <img src="images/output_textwindow.png" style="width:594px; height:502px;" class="centered-image">
 <br>
 <br>
 <br>
 
-<p><strong>Web View</strong>: Web View output means that the output from your script will be interpreted as HTML and passed on to a WebView in the output window -- i.e. an instance of the WebKit rendering engine used in Safari.  This allows you to use HTML formatting and web technologies/markup to provide feedback on script execution.</p>
+<a name="234"></a>
+<h4>Web View</h4>
+<p>Output from the script will be interpreted as HTML and rendered in a WebView in the output window -- an instance of the WebKit rendering engine used in Safari.  This allows you to use HTML formatting and web technologies/markup to provide feedback on script execution.</p>
 
-<p>The base directory for the browser instance is the application bundle's Resources directory, so you can bundle images and other support files by adding them to the Bundled Files list and referencing them relative to the directory.</p>
+<p>The base directory for the browser instance is the application bundle's Resources directory, so you can bundle images and other support files by adding them to the <strong>Bundled Files</strong> list and referencing them relative to the directory.</p>
 
 <p>If your script prints "Location:http://some.url.com\n", the Web View will load the URL.</p>
 
@@ -340,19 +357,24 @@
 <br>
 <br>
 
-<p><strong>Status Menu</strong>: Status Menus are a bit different from the other output modes. The application creates a Status Item in the menu bar.  Every time the status item is clicked, the script is executed and its text output displayed line for line in a menu.</p>
+<a name="235"></a>
+<h4>Status Menu</h4>
+<p>Aplication creates a Status Item in the menu bar when launched.  Every time the status item is clicked, the script is executed and its text output displayed line for line in a menu.</p>
+
+<p>The properties of the Status Item can be configured by pressing the <strong>Status Item Settings</strong> button.</p>
+
 
 <img src="images/output_statusmenu.png" style="width:315px; height:144px;" class="centered-image">
 <br>
 <br>
 
-<p><strong>Droplet</strong>: Creates a square window instructing the user to drop files on it for processing.  While processing, script output will be displayed line for line within the box along with an indeterminate circular progress indicator.</p>
+<a name="236"></a>
+<h4>Droplet</h4>
+<p>Creates a square window instructing the user to drop files on it for processing.  While processing, script output will be displayed line for line within the box along with an indeterminate circular progress indicator.</p>
 
 <img src="images/output_droplet.jpg" style="width:300px; height:322px;" class="centered-image">
 <br>
 <br>
-
-<p><strong>PLEASE NOTE:</strong> Make sure you flush the output to ensure it is displayed in real-time while the script is running.  See <a href="#82">My script's output isn't being shown until the script is done</a> in the FAQ.</p>
 
 
 <br><br>
@@ -376,7 +398,7 @@
 
 <p>The <strong>Identifier</strong> text field allows you to set the unique identifier for your application.  If you have provided a name for your application, this will default to something in the form of "org.username.YourAppName".</p>
 
-<p>Every Mac OS X application has a unique string called a bundle identifier, in the form of a reverse DNS name (e.g. "com.apple.iTunes" or "org.sveinbjorn.Platypus"). Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to something else if you want to. The default bundle identifier prefix used to autogenerate the identifier can be configured in the Preferences.</p>
+<p>Every Mac OS X application has a unique string called a bundle identifier, in the form of a reverse DNS name (e.g. "com.apple.iTunes" or "org.sveinbjorn.Platypus"). Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to something else if you want to. The default bundle identifier prefix used to autogenerate the identifier can be configured in the <strong>Preferences</strong>.</p>
 
 <img src="images/author_identifier.png" style="width: 427px; height: 113px;" class="centered-image">
 
@@ -396,13 +418,13 @@
 
 <p>Please note that if this option is selected, the script will not print <code>STDERR</code> output due to limitations in the Security APIs.  This can be circumvented by using a shell script to execute another script while piping <code>STDERR</code> into <code>STDOUT</code> (e.g. <code>perl myScript.pl 2>&amp;1</code>).</p>
 
-<p><strong>Secure bundled script:</strong> Checking this option will bundle your script into the generated application in a simple, encrypted format instead of plain text. Please note that <em>this will not stop a determined hacker from getting a clear-text version of your script</em>.  In order for your script to be executed, it must be presented in clear text to the interpreter, and can thus never be truly safe from prying eyes. However, this may serve to dissuade a less determined tinkerer.</p>
-
-<p><strong>Accept dropped items:</strong>  Makes your application accept drag and dropped files, or dragged text snippets. The filepaths (or text strings) are then passed on to the script as arguments when it is run.  If this option is checked, a small button called "Settings" appears next to the checkbox. Pressing it opens a sheet which allows you to specify what kind of files your script application accepts.  This is discussed in greater detail later in this document.</p>
+<p><strong>Secure bundled script:</strong> Checking this option will bundle your script into the generated application in an obfuscated format instead. Please note that <em>this will not seriously prevent anyone from getting a clear-text version of the script</em>.  In order for the script to be executed, it must be presented in clear text to the interpreter, and is thus never safe from prying eyes.</p>
 
 <p><strong>Runs in background:</strong> If you select this, your application will register itself as a User Interface Element. When the app is launched, it will not show up in the Dock.</p>
 
 <p><strong>Remain running after completion</strong>: This option will cause your application to stay open once the script has been executed.</p>
+
+
 
 <br><br>
 <a name="34"></a>
@@ -427,11 +449,11 @@
 <a name="41"></a>
 <h3>Accepting files and dragged items</h3>
 
-<p>If you set your script application to accept dropped items as arguments, you may wish to restrict what sort of files the user can legitimately drop on your app. To edit the file types, suffixes and drag data types your application accepts, you have to check the "Accept dropped items" checkbox and then press the small "Settings" button which appears. This will display the following window:</p>
+<p>Selecting <strong>Accept dropped items</strong> makes the application bundle accept drag and dropped files, or dragged text snippets. The paths of dropped or opened files are passed on to the script as arguments.  If this option is selected, a small button called "Settings" appears next to the checkbox. Pressing it opens a sheet where it is possible to specify which file types and draggable data the application accepts.</p>
 
 <img src="images/edittypes.png" style="width: 537px; height: 555px;" class="centered-image">
 
-<p>The default behaviour is to accept files only, all file types and folders. You can edit those two lists to suit your needs. If you want your application to accept dropped folders, you should add the File Type 'fold'. You can also set whether your application is an Editor or a Viewer for files. This is not really important, but it is one of many pieces of information the Finder stores about application bundles. In the bottom right corner, you can select a document icon (.icns file) for the files "owned" by your app.</p>
+<p>The default behaviour is to accept all files. You can edit those two lists to suit your needs.You can select a document icon (.icns file) for the files "owned" by your app.</p>
 
 <p>You can also set your application accept dragged snippets of text, in which case each string will be passed as an argument to the script.</p>
 
@@ -444,9 +466,9 @@
 
 <img src="images/create_options.png" style="width: 424px; height: 282px;" class="centered-image">
 
-<p>Another option, <strong>Optimize Application</strong>, will strip and compile the nib file in the generated application in order to reduce its size. This will result in the application's nib being uneditable.  This option is only available if you have Apple's Developer Tools installed.</p>
+<p><strong>Optimize Application</strong>: Strip and compile the nib file in the generated application in order to reduce its size. This makes the nib uneditable. Only works if XCode is installed.</p>
 
-<p>The third option, <strong>Use XML property lists instead of binary</strong>, will create human-readable and human-editable XML property lists in the application bundle.  XML property lists are slower to parse and use up more space, but can be edited with a plain text editor, whereas binary property lists can only be edited using XCode or third-party property list editors.</p>
+<p><strong>Use XML property lists instead of binary</strong>: Create human-readable and human-editable plain text XML property lists in the application bundle.  XML property lists are slower to parse and use up more space, but can be edited with a plain text editor, whereas binary property lists can only be edited using XCode or third-party Apple Property List editors.</p>
     
 <br>
 <br>
@@ -455,11 +477,11 @@
 <a name="43"></a>
 <h3>Built-In Editor</h3>
 
-<p>Platypus includes a very basic built-in text editor for editing scripts.</p>
+<p>Platypus includes a very basic built-in text editor for editing scripts within the application. Press the <strong>Edit</strong> button to bring it up.</p>
 
 <img src="images/built-in_editor.png" style="width: 600px; height: 400px;" class="centered-image">
 
-<p>Platypus defaults to using the built-in editor, but you can easily change this in the Preferences.</p>
+<p>A more capable external editor can be chosen in <strong>Preferences.</strong></p>
 
 <br><br>
 
@@ -479,20 +501,13 @@
 
 <p>Platypus includes a <strong>command line tool</strong> equivalent to the Platypus.app application, which can be installed into <code>/usr/local/bin/platypus</code> via Platypus Preferences.  The man page for this tool is available from the Help menu and via the command <code>man platypus</code>.  There is also an online <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">HTML version of the man page</a>.</p>
 
-<p>Under the <strong>Advanced</strong> menu there is a menu command called <strong>Show Shell Command</strong>. Selecting this item will bring down a sheet with a text field containing a command line command for executing the platypus command line with the options you selected in the graphical interface. This can be helpful if you have the command line tool installed and wish to automate the creation of script apps.</p>
+<p>Under the <strong>Advanced</strong> menu there is a menu item called <strong>Show Shell Command</strong>. Selecting this item will bring down a sheet with a text field containing a command line command for executing the platypus command line with the options you selected in the graphical interface. This can be helpful if you have the command line tool installed and wish to automate the creation of script apps.</p>
 
 <img src="images/shell_command.png" style="width:472px; height: 375px;" class="centered-image">
 
-<p>Please note that Platypus.app is <em>not</em> merely a GUI frontend for the command line tool and, depending on the current state of Platypus development, the command line tool may or may not have feature parity with the GUI application.</p>
+<p>Please note that Platypus.app is not a GUI frontend for the command line tool and, depending on the current state of development, the command line tool may or may not have feature parity with the Mac OS X application.</p>
 
-<p>The command line tool does not in any way depend on the Platypus application once it has been installed, so if you just use the command line tool, you can get rid of the application without affecting its functionality.</p>
-
-<br><br>
-
-<a name="46"></a>
-<h3>Run in Terminal</h3>
-
-<p>The <strong>File</strong> menu has a <strong>Run in Terminal</strong> command which runs your script in the Terminal.  This allows you to test your script in the shell before creating an application from it.</p>
+<p>The command line tool does not in any way depend on the Platypus application once it has been installed.</p>
 
 <br>
 <br>
