@@ -30,7 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface TypeListController : NSObject <NSTableViewDataSource>
+@interface TypeListController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (nonatomic, readonly) int numItems;
 @property (nonatomic, readonly, copy) NSArray *itemsArray;

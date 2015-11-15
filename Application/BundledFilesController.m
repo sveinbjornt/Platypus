@@ -274,6 +274,7 @@
     //run open panel sheet
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         
+        [window setTitle:PROGRAM_NAME];
         if (result != NSOKButton) {
             return;
         }
@@ -285,7 +286,7 @@
         }
         
         [self addFiles:filePaths];
-        [window setTitle:PROGRAM_NAME];
+        
     }];
 }
 
@@ -427,7 +428,7 @@
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
-    return 22;
+    return 20;
 }
 
 #pragma mark - Menu delegate

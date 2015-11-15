@@ -263,6 +263,10 @@
     [self updateButtonStatus];
 }
 
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+    return 20;
+}
+
 - (void)updateButtonStatus {
     // suffix delete button
     int selected = 0;

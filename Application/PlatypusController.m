@@ -914,7 +914,7 @@
     UInt64 estimatedAppSize = 0;
     estimatedAppSize += 4096; // Info.plist
     estimatedAppSize += 4096; // AppSettings.plist
-    estimatedAppSize += [iconController iconSize];
+    estimatedAppSize += [iconController iconFileSize];
     estimatedAppSize += [dropSettingsController docIconSize];
     estimatedAppSize += [WORKSPACE fileOrFolderSize:[scriptPathTextField stringValue]];
     estimatedAppSize += [WORKSPACE fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil]];

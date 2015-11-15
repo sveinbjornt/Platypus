@@ -41,7 +41,7 @@ typedef enum {
 
 @property (nonatomic, readonly) BOOL hasIconFile;
 @property (nonatomic, readonly, copy) NSString *icnsFilePath;
-@property (nonatomic, readonly) UInt64 iconSize;
+@property (nonatomic, readonly) UInt64 iconFileSize;
 
 - (void)setToDefaults;
 - (BOOL)loadIcnsFile:(NSString *)filePath;

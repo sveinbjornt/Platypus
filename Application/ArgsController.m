@@ -327,9 +327,15 @@
     [self constructCommandString];
 }
 
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+    return 20;
+}
+
 - (void)tableViewDidBecomeFirstResponder:(id)sender {
     [self constructCommandString];
 }
+
+#pragma mark -
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     if ([anItem menu] == scriptArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [scriptArgsTableView selectedRow] == -1) {

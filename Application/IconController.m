@@ -304,7 +304,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
 }
 
-- (UInt64)iconSize {
+- (UInt64)iconFileSize {
     if (icnsFilePath == nil) {
         return 0;
     }
