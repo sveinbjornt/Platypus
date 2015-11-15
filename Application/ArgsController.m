@@ -107,14 +107,14 @@
     [interpreterArgs removeAllObjects];
     [interpreterArgs addObjectsFromArray:array];
     [interpreterArgsTableView reloadData];
-    [self tableViewSelectionDidChange:nil];
+    [self updateGUIStatus];
 }
 
 - (void)setScriptArgs:(NSArray *)array {
     [scriptArgs removeAllObjects];
     [scriptArgs addObjectsFromArray:array];
     [scriptArgsTableView reloadData];
-    [self tableViewSelectionDidChange:nil];
+    [self updateGUIStatus];
 }
 
 - (NSArray *)interpreterArgs {
@@ -221,13 +221,23 @@
     [commandTextField setAttributedStringValue:[cmdString autorelease]];
 }
 
+- (void)updateGUIStatus {
+    [interpreterArgsRemoveButton setEnabled:([interpreterArgsTableView selectedRow] != -1)];
+    [interpreterArgsAddButton setEnabled:YES];
+    
+    [scriptArgsRemoveButton setEnabled:([scriptArgsTableView selectedRow] != -1)];
+    [scriptArgsAddButton setEnabled:YES];
+    
+    [self constructCommandString];
+}
+
 #pragma mark - Manipulating list contents
 
 - (IBAction)addInterpreterArg:(id)sender {
     [interpreterArgs addObject:DEFAULT_ARG_VALUE];
     [interpreterArgsTableView reloadData];
     [interpreterArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[interpreterArgs count] - 1] byExtendingSelection:NO];
-    [self tableViewSelectionDidChange:nil];
+    [self updateGUIStatus];
     [self constructCommandString];
     [argsWindow makeFirstResponder:interpreterArgsTableView];
 }
@@ -236,7 +246,7 @@
     [scriptArgs addObject:DEFAULT_ARG_VALUE];
     [scriptArgsTableView reloadData];
     [scriptArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[scriptArgs count] - 1] byExtendingSelection:NO];
-    [self tableViewSelectionDidChange:nil];
+    [self updateGUIStatus];
     [self constructCommandString];
     [argsWindow makeFirstResponder:scriptArgsTableView];
 }
@@ -244,14 +254,14 @@
 - (IBAction)clearInterpreterArgs:(id)sender {
     [interpreterArgs removeAllObjects];
     [interpreterArgsTableView reloadData];
-    [self tableViewSelectionDidChange:nil];
+    [self updateGUIStatus];
     [self constructCommandString];
 }
 
 - (IBAction)clearScriptArgs:(id)sender {
     [scriptArgs removeAllObjects];
     [scriptArgsTableView reloadData];
-    [self tableViewSelectionDidChange:nil];
+    [self updateGUIStatus];
     [self constructCommandString];
 }
 
@@ -287,7 +297,7 @@
     
     [tableView reloadData];
     [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
-    [self tableViewSelectionDidChange:nil];
+    [self updateGUIStatus];
     [argsWindow makeFirstResponder:tableView];
 }
 
@@ -318,13 +328,7 @@
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
-    [interpreterArgsRemoveButton setEnabled:([interpreterArgsTableView selectedRow] != -1)];
-    [interpreterArgsAddButton setEnabled:YES];
-    
-    [scriptArgsRemoveButton setEnabled:([scriptArgsTableView selectedRow] != -1)];
-    [scriptArgsAddButton setEnabled:YES];
-    
-    [self constructCommandString];
+    [self updateGUIStatus];
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {

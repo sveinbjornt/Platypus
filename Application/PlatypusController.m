@@ -584,8 +584,8 @@
     [spec setProperty:[bundledFilesController filePaths] forKey:@"BundledFiles"];
     
     // file types
-    [spec setProperty:(NSMutableArray *)[(SuffixTypeListController *)[dropSettingsController suffixListController] itemsArray] forKey:@"Suffixes"];
-    [spec setProperty:(NSMutableArray *)[(UniformTypeListController *)[dropSettingsController uniformTypesListController] itemsArray] forKey:@"UniformTypes"];
+    [spec setProperty:[dropSettingsController suffixList] forKey:@"Suffixes"];
+    [spec setProperty:[dropSettingsController uniformTypesList] forKey:@"UniformTypes"];
     [spec setProperty:[dropSettingsController docIconPath] forKey:@"DocIcon"];
     [spec setProperty:@((BOOL)[dropSettingsController acceptsText]) forKey:@"AcceptsText"];
     [spec setProperty:@((BOOL)[dropSettingsController acceptsFiles]) forKey:@"AcceptsFiles"];
@@ -622,11 +622,7 @@
     [interpreterTextField setStringValue:[spec propertyForKey:@"Interpreter"]];
     
     //icon
-    if ([spec propertyForKey:@"IconPath"] == nil || [[spec propertyForKey:@"IconPath"] isEqualToString:@""]) {
-        [iconController setAppIconForType:PlatypusPresetIconGenericApplication];
-    } else {
-        [iconController loadIcnsFile:[spec propertyForKey:@"IconPath"]];
-    }
+    [iconController loadIcnsFile:[spec propertyForKey:@"IconPath"]];
     
     //checkboxes
     [rootPrivilegesCheckbox setState:[[spec propertyForKey:@"Authentication"] boolValue]];
@@ -640,17 +636,10 @@
     [bundledFilesController clearFileList:self];
     [bundledFilesController addFiles:[spec propertyForKey:@"BundledFiles"]];
     
-    //update button status
-    [bundledFilesController performSelector:@selector(tableViewSelectionDidChange:) withObject:nil];
-    
     //drop settings
-    [(SuffixTypeListController *)[dropSettingsController suffixListController] removeAllItems];
-    [(SuffixTypeListController *)[dropSettingsController suffixListController] addItems:[spec propertyForKey:@"Suffixes"]];
-    [(UniformTypeListController *)[dropSettingsController uniformTypesListController] removeAllItems];
-    [(UniformTypeListController *)[dropSettingsController uniformTypesListController] addItems:[spec propertyForKey:@"UniformTypes"]];
+    [dropSettingsController setSuffixList:[spec propertyForKey:@"Suffixes"]];
+    [dropSettingsController setUniformTypesList:[spec propertyForKey:@"UniformTypes"]];
 
-    [dropSettingsController performSelector:@selector(tableViewSelectionDidChange:) withObject:nil];
-    
     if ([spec propertyForKey:@"DocIcon"] != nil) {
         [dropSettingsController setDocIconPath:[spec propertyForKey:@"DocIcon"]];
     }
@@ -895,7 +884,6 @@
     
     [window setTitle:[NSString stringWithFormat:@"%@ - Shell Command String", PROGRAM_NAME]];
     ShellCommandController *shellCommandController = [[ShellCommandController alloc] init];
-    [shellCommandController setPrefsController:prefsController];
     [shellCommandController showShellCommandForSpec:[self appSpecFromControls] window:window];
     
     [window setTitle:PROGRAM_NAME];
@@ -979,11 +967,7 @@
         }
         // image
         else if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeImage]) {
-            if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
-                [iconController loadIcnsFile:filename];
-            } else {
-                [iconController loadImageFile:filename];
-            }
+            [iconController performDragOperation:sender];
         }
         // something else
         else {

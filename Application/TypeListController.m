@@ -96,12 +96,12 @@
     }
 }
 
-- (NSMutableArray *)itemsArray {
+- (NSArray *)itemsArray {
     NSMutableArray *array = [NSMutableArray array];
     for (NSDictionary *itemDict in items) {
         [array addObject:itemDict[@"name"]];
     }
-    return array;
+    return [NSArray arrayWithArray:array];
 }
 
 #pragma mark - NSTableViewDelegate / DataSource / Drag

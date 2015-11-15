@@ -34,6 +34,5 @@
 @interface ShellCommandController : NSWindowController
 
 - (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow;
-- (void)setPrefsController:(id)controller;
 
 @end

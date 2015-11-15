@@ -54,8 +54,6 @@
     IBOutlet PlatypusController *platypusController;
 }
 
-@property (nonatomic, getter=isCommandLineToolInstalled, readonly) BOOL commandLineToolInstalled;
-
 - (IBAction)showWindow:(id)sender;
 - (IBAction)applyPrefs:(id)sender;
 - (IBAction)restoreDefaultPrefs:(id)sender;
@@ -161,22 +159,33 @@
 }
 
 - (IBAction)commandLineInstallButtonClicked:(id)sender {
-    [self isCommandLineToolInstalled] == NO ? [self installCommandLineTool] : [self uninstallCommandLineTool];
+    [PrefsController isCommandLineToolInstalled] ? [self uninstallCommandLineTool] : [self installCommandLineTool];
 }
 
 #pragma mark - Install/Uninstall
 
-- (void)updateCLTStatus:(NSTextField *)textField {
-    //set status of clt install button and text field
-    if ([self isCommandLineToolInstalled] == YES) {
++ (BOOL)isCommandLineToolInstalled {
+    return ([FILEMGR fileExistsAtPath:CMDLINE_VERSION_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_MANPAGE_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_EXEC_PATH] &&
+            [FILEMGR fileExistsAtPath:CMDLINE_ICON_PATH]);
+}
+
++ (BOOL)putCommandLineToolInstallStatusInTextField:(NSTextField *)textField {
+    BOOL isInstalled = [PrefsController isCommandLineToolInstalled];
+    if (isInstalled) {
         NSString *versionString = [NSString stringWithContentsOfFile:CMDLINE_VERSION_PATH encoding:NSUTF8StringEncoding error:nil];
         versionString = [versionString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         
-        if (versionString && [versionString isEqualToString:PROGRAM_VERSION]) { // it's installed and current
+        // it's installed and current
+        if (versionString && [versionString isEqualToString:PROGRAM_VERSION]) {
             [textField setTextColor:[NSColor colorWithCalibratedRed:0.0 green:0.6 blue:0.0 alpha:1.0]];
             [textField setStringValue:@"Command line tool is installed"];
-        } else if (versionString) {
-            // installed but not this version
+        }
+        // installed but not this version
+        else if (versionString) {
+            
             [textField setTextColor:[NSColor orangeColor]];
             if ([versionString floatValue] < [PROGRAM_VERSION floatValue]) {
                 [textField setStringValue:@"Old version of command line"];  //older
@@ -184,20 +193,18 @@
                 [textField setStringValue:@"Newer version of command line"];  //newer
             }
         }
-        [installCLTButton setTitle:@"Uninstall"];
+        
     } else {
         [textField setStringValue:@"Command line tool is not installed"];
         [textField setTextColor:[NSColor redColor]];
-        [installCLTButton setTitle:@"Install"];
     }
+    return isInstalled;
 }
 
-- (BOOL)isCommandLineToolInstalled {
-    return ([FILEMGR fileExistsAtPath:CMDLINE_VERSION_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_MANPAGE_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_EXEC_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_ICON_PATH]);
+- (void)updateCLTStatus:(NSTextField *)textField {
+    NSString *buttonTitle = [PrefsController isCommandLineToolInstalled] ? @"Uninstall" : @"Install";
+    [installCLTButton setTitle:buttonTitle];
+    [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
 }
 
 - (void)installCommandLineTool {

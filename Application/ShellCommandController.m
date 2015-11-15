@@ -37,7 +37,6 @@
 @interface ShellCommandController()
 {
     IBOutlet NSTextView *textView;
-    IBOutlet PrefsController *prefsController;
     IBOutlet NSTextField *CLTStatusTextField;
     IBOutlet NSButton *useShortOptsCheckbox;
     PlatypusAppSpec *appSpec;
@@ -70,7 +69,7 @@
     [self loadWindow];
     appSpec = [spec retain];
     [textView setString:[appSpec commandString:![useShortOptsCheckbox intValue]]];
-    [(PrefsController *)prefsController updateCLTStatus:CLTStatusTextField];
+    [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
     
     [NSApp beginSheet:[self window]
        modalForWindow:theWindow
@@ -101,10 +100,6 @@
 
 - (void)windowWillClose:(NSNotification *)notification {
     [self release];
-}
-
-- (void)setPrefsController:(id)controller {
-    prefsController = controller;
 }
 
 @end
