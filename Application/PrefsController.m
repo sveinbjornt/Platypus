@@ -208,23 +208,23 @@
 }
 
 - (void)installCommandLineTool {
-    [self runCLTTemplateScript:@"InstallCommandLineTool.sh" usingDictionary:[self commandLineEnvDict]];
+    [self runCLTTemplateScript:@"InstallCommandLineTool.sh" usingDictionary:[self commandEnvironmentDictionary]];
 }
 
 - (void)uninstallCommandLineTool {
-    [self runCLTTemplateScript:@"UninstallCommandLineTool.sh" usingDictionary:[self commandLineEnvDict]];
+    [self runCLTTemplateScript:@"UninstallCommandLineTool.sh" usingDictionary:[self commandEnvironmentDictionary]];
 }
 
 - (IBAction)uninstallPlatypus:(id)sender {
     if ([Alerts proceedAlert:@"Are you sure you want to uninstall Platypus?"
                      subText:@"This will move the Platypus application and all related files to the Trash. The application will then quit."
                   withAction:@"Uninstall"] == YES) {
-        [self runCLTTemplateScript:@"UninstallPlatypus.sh" usingDictionary:[self commandLineEnvDict]];
+        [self runCLTTemplateScript:@"UninstallPlatypus.sh" usingDictionary:[self commandEnvironmentDictionary]];
         [[NSApplication sharedApplication] terminate:self];
     }
 }
 
-- (NSDictionary *)commandLineEnvDict
+- (NSDictionary *)commandEnvironmentDictionary
 {
     return @{@"PROGRAM_NAME": PROGRAM_NAME,
             @"PROGRAM_VERSION": PROGRAM_VERSION,
@@ -268,13 +268,15 @@
     if (script == nil) {
         return NO;
     }
+    
     NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script];
     chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // 744
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(scriptTaskFinished:)
                                                  name:STPrivilegedTaskDidTerminateNotification
-                                               object:tmpScriptPath];
+                                               object:nil];
+
     
     // execute path, pass Resources directory and version as arguments 1 and 2
     NSArray *args = @[[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION];
@@ -283,9 +285,12 @@
     return YES;
 }
 
-- (void)scriptTaskFinished:(NSNotification *)notification {
-    //[FILEMGR removeItemAtPath:tmpScriptPath error:nil];
-    NSLog(@"Script finished: %@", [notification object]);
+- (void)scriptTaskFinished:(id)sender {
+    STPrivilegedTask *task = (STPrivilegedTask *)[sender object];
+    NSString *tmpScriptPath = [task launchPath];
+    [FILEMGR removeItemAtPath:tmpScriptPath error:nil];
+    NSLog(@"Removed: %@", tmpScriptPath);
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
