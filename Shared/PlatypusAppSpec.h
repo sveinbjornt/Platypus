@@ -33,12 +33,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PlatypusAppSpec : NSObject
+@interface PlatypusAppSpec : NSMutableDictionary
 
 @property (nonatomic, readonly, strong) NSString *error;
 
 - (PlatypusAppSpec *)initWithDefaults;
-- (PlatypusAppSpec *)initWithDefaultsFromScript:(NSString *)scriptPath;
+- (PlatypusAppSpec *)initWithDefaultsForScript:(NSString *)scriptPath;
 - (PlatypusAppSpec *)initWithDictionary:(NSDictionary *)dict;
 - (PlatypusAppSpec *)initWithProfile:(NSString *)filePath;
 
@@ -54,12 +54,7 @@
 
 - (NSString *)commandString:(BOOL)longOpts;
 
-- (void)setProperty:(id)property forKey:(NSString *)theKey;
-- (id)propertyForKey:(NSString *)theKey;
-- (NSDictionary *)properties;
-- (void)addProperties:(NSDictionary *)dict;
-
-+ (NSString *)standardBundleIdForAppName:(NSString *)name
++ (NSString *)bundleIdentifierForAppName:(NSString *)name
                               authorName:(NSString *)authorName
                            usingDefaults:(BOOL)def;
 
