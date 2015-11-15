@@ -1475,7 +1475,7 @@
 				F41B2180085CD8FF00B63B0D /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		F41B2181085CD8FF00B63B0D /* Build configuration list for PBXProject "Platypus" */ = {
 			isa = XCConfigurationList;
@@ -1485,7 +1485,7 @@
 				F41B2184085CD8FF00B63B0D /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		F48B774711F7661D00351575 /* Build configuration list for PBXNativeTarget "ScriptExec" */ = {
 			isa = XCConfigurationList;
@@ -1495,7 +1495,7 @@
 				F48B774611F7661D00351575 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		F4E1F70611F75921007EE2E3 /* Build configuration list for PBXNativeTarget "platypus" */ = {
 			isa = XCConfigurationList;
@@ -1505,7 +1505,7 @@
 				F4E1F70011F758FC007EE2E3 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 /* End XCConfigurationList section */
 	};

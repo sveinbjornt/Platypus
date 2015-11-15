@@ -479,9 +479,10 @@
 // Generate Info.plist dictionary
 - (NSDictionary *)infoPlist {
 
-    NSString *humanCopyright = [NSString stringWithFormat:@"© %d %@",
-                                (int)[[NSCalendarDate calendarDate] yearOfCommonEra],
-                                properties[@"Author"]];
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    [formatter setDateFormat:@"yyyy"];
+    NSString *yearString = [formatter stringFromDate:[NSDate date]];
+    NSString *copyrightString = [NSString stringWithFormat:@"© %@ %@", yearString, properties[@"Author"]];
     
     NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       
@@ -489,7 +490,7 @@
           properties[@"Name"],                      @"CFBundleExecutable",
           properties[@"Name"],                      @"CFBundleName",
           properties[@"Name"],                      @"CFBundleDisplayName",
-          humanCopyright,                           @"NSHumanReadableCopyright",
+          copyrightString,                          @"NSHumanReadableCopyright",
           properties[@"Version"],                   @"CFBundleVersion",
           properties[@"Version"],                   @"CFBundleShortVersionString",
           properties[@"Identifier"],                @"CFBundleIdentifier",
