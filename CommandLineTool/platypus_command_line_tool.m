@@ -505,7 +505,7 @@ int main(int argc, const char *argv[]) {
         
         // we then dump the profile dictionary to path and exit
         appSpec = [PlatypusAppSpec specWithDefaults];
-        [appSpec addProperties:properties];
+        [appSpec addEntriesFromDictionary:properties];
         
         printStdout ? [appSpec dump] : [appSpec writeToFile:destPath];
         
@@ -518,8 +518,8 @@ int main(int argc, const char *argv[]) {
             destPath = [destPath stringByAppendingString:@".app"];
         }
         appSpec = [PlatypusAppSpec specWithDefaults];
-        [appSpec addProperties:properties];
-        [appSpec setProperty:destPath forKey:@"Destination"];
+        [appSpec addEntriesFromDictionary:properties];
+        appSpec[@"Destination"] = destPath;
     }
     // if we're creating an app, first argument must be script path, second (optional) argument is destination
     else {
@@ -563,28 +563,28 @@ int main(int argc, const char *argv[]) {
             NSString *appBundleName = [NSString stringWithFormat:@"%@.app", properties[@"Name"]];
             NSString *scriptFolder = [scriptPath stringByDeletingLastPathComponent];
             destPath = [scriptFolder stringByAppendingPathComponent:appBundleName];
-            [appSpec setProperty:destPath forKey:@"Destination"];
+            appSpec[@"Destination"] = destPath;
         }
-        [appSpec addProperties:properties];
+        [appSpec addEntriesFromDictionary:properties];
         
         // if author name is supplied but no identifier, we create a default identifier with author name as clue
         if (properties[@"Author"] && properties[@"Identifier"] == nil) {
-            NSString *identifier = [PlatypusAppSpec standardBundleIdForAppName:[appSpec propertyForKey:@"Name"]
+            NSString *identifier = [PlatypusAppSpec bundleIdentifierForAppName:appSpec[@"Name"]
                                                                     authorName:properties[@"Author"]
                                                                  usingDefaults:NO];
             if (identifier) {
-                [appSpec setProperty:identifier forKey:@"Identifier"];
+                appSpec[@"Identifier"] = identifier;
             }
         }
         
         // if there's another argument after the script path, it means a destination path has been specified
         if ([remainingArgs count] > 1) {
             destPath = remainingArgs[1];
-            [appSpec setProperty:destPath forKey:@"Destination"];
+            appSpec[@"Destination"] = destPath;
         }
     }
     
-    NSString *path = [appSpec propertyForKey:@"ScriptPath"];
+    NSString *path = appSpec[@"ScriptPath"];
     if (path == nil || [path isEqualToString:@""]) {
         NSPrintErr(@"Error: Missing script path.");
         exit(1);

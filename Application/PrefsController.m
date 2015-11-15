@@ -98,7 +98,7 @@
     NSMutableDictionary *defaultPrefs = [NSMutableDictionary dictionary];
     
     // create default bundle identifier string from usename
-    NSString *bundleId = [PlatypusAppSpec standardBundleIdForAppName:@""
+    NSString *bundleId = [PlatypusAppSpec bundleIdentifierForAppName:@""
                                                           authorName:nil
                                                        usingDefaults:NO];
     

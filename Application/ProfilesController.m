@@ -83,10 +83,10 @@
     }
     
     // check if it's an example
-    if ([spec propertyForKey:@"Example"] != nil) {
+    if (spec[@"Example"] != nil) {
         // make sure of the example profile's integrity
-        NSString *scriptStr = [spec propertyForKey:@"Script"];
-        NSString *scriptName = [spec propertyForKey:@"ScriptName"];
+        NSString *scriptStr = spec[@"Script"];
+        NSString *scriptName = spec[@"ScriptName"];
         if (scriptStr == nil || scriptName == nil) {
             [Alerts alert:@"Error loading example" subText:@"Nil script value(s) in this example's profile dictionary."];
             [spec release];
@@ -95,12 +95,10 @@
         
         scriptStr = [scriptStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
-        // write script contained in the example profile dictionary to file
+        // write script contained in the example profile dictionary to file and set as script path
         NSString *scriptPath = [[NSString stringWithFormat:@"%@%@", TEMP_FOLDER, scriptName] stringByExpandingTildeInPath];
         [scriptStr writeToFile:scriptPath atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:nil];
-        
-        // set this path as the source script path
-        [spec setProperty:scriptPath forKey:@"ScriptPath"];
+        spec[@"ScriptPath"] = scriptPath;
     }
     
     // warn if created with a different version of Platypus

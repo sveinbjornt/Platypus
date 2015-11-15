@@ -374,7 +374,7 @@
     
     // Configure the controls in the accessory view
     
-    // development version checkbox: always disable this option if secure bundled script is checked
+    // development version checkbox: always disable this option if secure script is checked
     [developmentVersionCheckbox setEnabled:![encryptCheckbox intValue]];
     if ([encryptCheckbox intValue]) {
         [DEFAULTS setObject:@NO forKey:@"OnCreateDevVersion"];
@@ -382,8 +382,9 @@
     
     // optimize nib is enabled and on by default if ibtool is present
     BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:IBTOOL_PATH];
-    if ([DEFAULTS objectForKey:<#(nonnull NSString *)#>]
-    [DEFAULTS setObject:@((BOOL)ibtoolInstalled) forKey:@"OnCreateOptimizeNib"];
+    if ([[DEFAULTS objectForKey:@"OnCreateOptimizeNib"] boolValue] == YES && ibtoolInstalled == NO) {
+        [DEFAULTS setObject:@NO forKey:@"OnCreateOptimizeNib"];
+    }
     [optimizeApplicationCheckbox setEnabled:ibtoolInstalled];
     
     //run save panel
@@ -440,13 +441,13 @@
     PlatypusAppSpec *spec = [self appSpecFromControls];
     
     // we set this specifically -- extra profile data
-    [spec setProperty:appPath forKey:@"Destination"];
-    [spec setProperty:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil] forKey:@"ExecutablePath"];
-    [spec setProperty:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil] forKey:@"NibPath"];
-    [spec setProperty:@((BOOL)[developmentVersionCheckbox intValue]) forKey:@"DevelopmentVersion"];
-    [spec setProperty:@((BOOL)[optimizeApplicationCheckbox intValue]) forKey:@"OptimizeApplication"];
-    [spec setProperty:@((BOOL)[xmlPlistFormatCheckbox intValue]) forKey:@"UseXMLPlistFormat"];
-    [spec setProperty:@YES forKey:@"DestinationOverride"];
+    spec[@"Destination"] = appPath;
+    spec[@"ExecutablePath"] = [[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil];
+    spec[@"NibPath"] = [[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil];
+    spec[@"DevelopmentVersion"] = @((BOOL)[developmentVersionCheckbox intValue]);
+    spec[@"OptimizeApplication"] = @((BOOL)[optimizeApplicationCheckbox intValue]);
+    spec[@"UseXMLPlistFormat"] = @((BOOL)[xmlPlistFormatCheckbox intValue]);
+    spec[@"DestinationOverride"] = @YES;
     
     // verify that the values in the spec are OK
     if (![spec verify]) {
@@ -457,7 +458,7 @@
     // ok, now we try to create the app
     
     // first, show progress dialog
-    [progressDialogMessageLabel setStringValue:[NSString stringWithFormat:@"Creating application %@", [spec propertyForKey:@"Name"]]];
+    [progressDialogMessageLabel setStringValue:[NSString stringWithFormat:@"Creating application %@", spec[@"Name"]]];
     [progressBar setUsesThreadedAnimation:YES];
     [progressBar startAnimation:self];
 
@@ -536,128 +537,106 @@
 - (id)appSpecFromControls {
     PlatypusAppSpec *spec = [[[PlatypusAppSpec alloc] initWithDefaults] autorelease];
     
-    [spec setProperty:[appNameTextField stringValue] forKey:@"Name"];
-    [spec setProperty:[scriptPathTextField stringValue] forKey:@"ScriptPath"];
-    [spec setProperty:[outputTypePopupMenu titleOfSelectedItem] forKey:@"Output"];
+    spec[@"Name"] = [appNameTextField stringValue];
+    spec[@"ScriptPath"] = [scriptPathTextField stringValue];
+    spec[@"Output"] = [outputTypePopupMenu titleOfSelectedItem];
+    spec[@"IconPath"] = [iconController hasIconFile] ? [iconController icnsFilePath] : @"";
     
-    // icon
-    if ([iconController hasIconFile]) {
-        [spec setProperty:[iconController icnsFilePath] forKey:@"IconPath"];
-    } else {
-        [spec setProperty:@"" forKey:@"IconPath"];
-    }
+    spec[@"Interpreter"] = [interpreterTextField stringValue];
+    spec[@"InterpreterArgs"] = [argsController interpreterArgs];
+    spec[@"ScriptArgs"] = [argsController scriptArgs];
+    spec[@"Version"] = [versionTextField stringValue];
+    spec[@"Identifier"] = [bundleIdentifierTextField stringValue];
+    spec[@"Author"] = [authorTextField stringValue];
     
-    // advanced attributes
-    [spec setProperty:[interpreterTextField stringValue] forKey:@"Interpreter"];
-    [spec setProperty:[argsController interpreterArgs] forKey:@"InterpreterArgs"];
-    [spec setProperty:[argsController scriptArgs] forKey:@"ScriptArgs"];
-    [spec setProperty:[versionTextField stringValue] forKey:@"Version"];
-    [spec setProperty:[bundleIdentifierTextField stringValue] forKey:@"Identifier"];
-    [spec setProperty:[authorTextField stringValue] forKey:@"Author"];
+    spec[@"Droppable"] = @((BOOL)[isDroppableCheckbox state]);
+    spec[@"Secure"] = @((BOOL)[encryptCheckbox state]);
+    spec[@"Authentication"] = @((BOOL)[rootPrivilegesCheckbox state]);
+    spec[@"RemainRunning"] = @((BOOL)[remainRunningCheckbox state]);
+    spec[@"ShowInDock"] = @((BOOL)[showInDockCheckbox state]);
     
-    // checkbox attributes
-    [spec setProperty:@((BOOL)[isDroppableCheckbox state]) forKey:@"Droppable"];
-    [spec setProperty:@((BOOL)[encryptCheckbox state]) forKey:@"Secure"];
-    [spec setProperty:@((BOOL)[rootPrivilegesCheckbox state]) forKey:@"Authentication"];
-    [spec setProperty:@((BOOL)[remainRunningCheckbox state]) forKey:@"RemainRunning"];
-    [spec setProperty:@((BOOL)[showInDockCheckbox state]) forKey:@"ShowInDock"];
+    spec[@"BundledFiles"] = [bundledFilesController filePaths];
     
-    // bundled files
-    [spec setProperty:[bundledFilesController filePaths] forKey:@"BundledFiles"];
+    spec[@"Suffixes"] = [dropSettingsController suffixList];
+    spec[@"UniformTypes"] = [dropSettingsController uniformTypesList];
+    spec[@"DocIcon"] = [dropSettingsController docIconPath];
+    spec[@"AcceptsText"] = @((BOOL)[dropSettingsController acceptsText]);
+    spec[@"AcceptsFiles"] = @((BOOL)[dropSettingsController acceptsFiles]);
+    spec[@"DeclareService"] = @((BOOL)[dropSettingsController declareService]);
+    spec[@"PromptForFileOnLaunch"] = @((BOOL)[dropSettingsController promptsForFileOnLaunch]);
     
-    // file types
-    [spec setProperty:[dropSettingsController suffixList] forKey:@"Suffixes"];
-    [spec setProperty:[dropSettingsController uniformTypesList] forKey:@"UniformTypes"];
-    [spec setProperty:[dropSettingsController docIconPath] forKey:@"DocIcon"];
-    [spec setProperty:@((BOOL)[dropSettingsController acceptsText]) forKey:@"AcceptsText"];
-    [spec setProperty:@((BOOL)[dropSettingsController acceptsFiles]) forKey:@"AcceptsFiles"];
-    [spec setProperty:@((BOOL)[dropSettingsController declareService]) forKey:@"DeclareService"];
-    [spec setProperty:@((BOOL)[dropSettingsController promptsForFileOnLaunch]) forKey:@"PromptForFileOnLaunch"];
-    
-    //  text output text settings
-    [spec setProperty:@((int)[textSettingsController textEncoding]) forKey:@"TextEncoding"];
-    [spec setProperty:[[textSettingsController textFont] fontName] forKey:@"TextFont"];
-    [spec setProperty:@((float)[[textSettingsController textFont] pointSize]) forKey:@"TextSize"];
-    [spec setProperty:[[textSettingsController textForegroundColor] hexString] forKey:@"TextForeground"];
-    [spec setProperty:[[textSettingsController textBackgroundColor] hexString] forKey:@"TextBackground"];
+    spec[@"TextEncoding"] = @((int)[textSettingsController textEncoding]);
+    spec[@"TextFont"] = [[textSettingsController textFont] fontName];
+    spec[@"TextSize"] = @((float)[[textSettingsController textFont] pointSize]);
+    spec[@"TextForeground"] = [[textSettingsController textForegroundColor] hexString];
+    spec[@"TextBackground"] = [[textSettingsController textBackgroundColor] hexString];
     
     // status menu settings
     if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
-        [spec setProperty:[statusItemSettingsController displayType] forKey:@"StatusItemDisplayType"];
-        [spec setProperty:[statusItemSettingsController title] forKey:@"StatusItemTitle"];
-        [spec setProperty:[[statusItemSettingsController icon] TIFFRepresentation] forKey:@"StatusItemIcon"];
-        [spec setProperty:@((BOOL)[statusItemSettingsController usesSystemFont]) forKey:@"StatusItemUseSystemFont"];
+        spec[@"StatusItemDisplayType"] = [statusItemSettingsController displayType];
+        spec[@"StatusItemTitle"] = [statusItemSettingsController title];
+        spec[@"StatusItemIcon"] = [[statusItemSettingsController icon] TIFFRepresentation];
+        spec[@"StatusItemUseSystemFont"] = @((BOOL)[statusItemSettingsController usesSystemFont]);
     }
     
     return spec;
 }
 
 - (void)controlsFromAppSpec:(id)spec {
-    [appNameTextField setStringValue:[spec propertyForKey:@"Name"]];
-    [scriptPathTextField setStringValue:[spec propertyForKey:@"ScriptPath"]];
+    [appNameTextField setStringValue:spec[@"Name"]];
+    [scriptPathTextField setStringValue:spec[@"ScriptPath"]];
     
-    [versionTextField setStringValue:[spec propertyForKey:@"Version"]];
-    [authorTextField setStringValue:[spec propertyForKey:@"Author"]];
+    [versionTextField setStringValue:spec[@"Version"]];
+    [authorTextField setStringValue:spec[@"Author"]];
     
-    [outputTypePopupMenu selectItemWithTitle:[spec propertyForKey:@"Output"]];
+    [outputTypePopupMenu selectItemWithTitle:spec[@"Output"]];
     [self outputTypeWasChanged:nil];
-    [interpreterTextField setStringValue:[spec propertyForKey:@"Interpreter"]];
+    [interpreterTextField setStringValue:spec[@"Interpreter"]];
     
     //icon
-    [iconController loadIcnsFile:[spec propertyForKey:@"IconPath"]];
+    [iconController loadIcnsFile:spec[@"IconPath"]];
     
     //checkboxes
-    [rootPrivilegesCheckbox setState:[[spec propertyForKey:@"Authentication"] boolValue]];
-    [isDroppableCheckbox setState:[[spec propertyForKey:@"Droppable"] boolValue]];
+    [rootPrivilegesCheckbox setState:[spec[@"Authentication"] boolValue]];
+    [isDroppableCheckbox setState:[spec[@"Droppable"] boolValue]];
     [self isDroppableWasClicked:isDroppableCheckbox];
-    [encryptCheckbox setState:[[spec propertyForKey:@"Secure"] boolValue]];
-    [showInDockCheckbox setState:[[spec propertyForKey:@"ShowInDock"] boolValue]];
-    [remainRunningCheckbox setState:[[spec propertyForKey:@"RemainRunning"] boolValue]];
+    [encryptCheckbox setState:[spec[@"Secure"] boolValue]];
+    [showInDockCheckbox setState:[spec[@"ShowInDock"] boolValue]];
+    [remainRunningCheckbox setState:[spec[@"RemainRunning"] boolValue]];
     
     //file list
-    [bundledFilesController setFilePaths:[spec propertyForKey:@"BundledFiles"]];
+    [bundledFilesController setFilePaths:spec[@"BundledFiles"]];
     
     //drop settings
-    [dropSettingsController setSuffixList:[spec propertyForKey:@"Suffixes"]];
-    [dropSettingsController setUniformTypesList:[spec propertyForKey:@"UniformTypes"]];
-
-    if ([spec propertyForKey:@"DocIcon"] != nil) {
-        [dropSettingsController setDocIconPath:[spec propertyForKey:@"DocIcon"]];
-    }
-    if ([spec propertyForKey:@"AcceptsText"] != nil) {
-        [dropSettingsController setAcceptsText:[[spec propertyForKey:@"AcceptsText"] boolValue]];
-    }
-    if ([spec propertyForKey:@"AcceptsFiles"] != nil) {
-        [dropSettingsController setAcceptsFiles:[[spec propertyForKey:@"AcceptsFiles"] boolValue]];
-    }
-    if ([spec propertyForKey:@"DeclareService"] != nil) {
-        [dropSettingsController setDeclareService:[[spec propertyForKey:@"DeclareService"] boolValue]];
-    }
-    if ([spec propertyForKey:@"PromptForFileOnLaunch"] != nil) {
-        [dropSettingsController setPromptsForFileOnLaunch:[[spec propertyForKey:@"PromptForFileOnLaunch"] boolValue]];
-    }
+    [dropSettingsController setSuffixList:spec[@"Suffixes"]];
+    [dropSettingsController setUniformTypesList:spec[@"UniformTypes"]];
+    [dropSettingsController setDocIconPath:spec[@"DocIcon"]];
+    [dropSettingsController setAcceptsText:[spec[@"AcceptsText"] boolValue]];
+    [dropSettingsController setAcceptsFiles:[spec[@"AcceptsFiles"] boolValue]];
+    [dropSettingsController setDeclareService:[spec[@"DeclareService"] boolValue]];
+    [dropSettingsController setPromptsForFileOnLaunch:[spec[@"PromptForFileOnLaunch"] boolValue]];
     
     // args
-    [argsController setInterpreterArgs:[spec propertyForKey:@"InterpreterArgs"]];
-    [argsController setScriptArgs:[spec propertyForKey:@"ScriptArgs"]];
+    [argsController setInterpreterArgs:spec[@"InterpreterArgs"]];
+    [argsController setScriptArgs:spec[@"ScriptArgs"]];
     
     // text output settings
-    [textSettingsController setTextEncoding:[[spec propertyForKey:@"TextEncoding"] intValue]];
-    [textSettingsController setTextFont:[NSFont fontWithName:[spec propertyForKey:@"TextFont"] size:[[spec propertyForKey:@"TextSize"] intValue]]];
-    [textSettingsController setTextForegroundColor:[NSColor colorFromHex:[spec propertyForKey:@"TextForeground"]]];
-    [textSettingsController setTextBackgroundColor:[NSColor colorFromHex:[spec propertyForKey:@"TextBackground"]]];
+    [textSettingsController setTextEncoding:[spec[@"TextEncoding"] intValue]];
+    [textSettingsController setTextFont:[NSFont fontWithName:spec[@"TextFont"] size:[spec[@"TextSize"] intValue]]];
+    [textSettingsController setTextForegroundColor:[NSColor colorFromHex:spec[@"TextForeground"]]];
+    [textSettingsController setTextBackgroundColor:[NSColor colorFromHex:spec[@"TextBackground"]]];
     
     // status menu settings
-    if ([[spec propertyForKey:@"Output"] isEqualToString:@"Status Menu"]) {
-        if (![[spec propertyForKey:@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
-            NSImage *icon = [[[NSImage alloc] initWithData:[spec propertyForKey:@"StatusItemIcon"]] autorelease];
+    if ([spec[@"Output"] isEqualToString:@"Status Menu"]) {
+        if (![spec[@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
+            NSImage *icon = [[[NSImage alloc] initWithData:spec[@"StatusItemIcon"]] autorelease];
             if (icon != nil) {
                 [statusItemSettingsController setIcon:icon];
             }
         }
-        [statusItemSettingsController setTitle:[spec propertyForKey:@"StatusItemTitle"]];
-        [statusItemSettingsController setDisplayType:[spec propertyForKey:@"StatusItemDisplayType"]];
-        [statusItemSettingsController setUsesSystemFont:[spec propertyForKey:@"StatusItemUseSystemFont"]];
+        [statusItemSettingsController setTitle:spec[@"StatusItemTitle"]];
+        [statusItemSettingsController setDisplayType:spec[@"StatusItemDisplayType"]];
+        [statusItemSettingsController setUsesSystemFont:spec[@"StatusItemUseSystemFont"]];
     }
     
     //update buttons
@@ -665,7 +644,7 @@
     
     [self updateEstimatedAppSize];
     
-    [bundleIdentifierTextField setStringValue:[spec propertyForKey:@"Identifier"]];
+    [bundleIdentifierTextField setStringValue:spec[@"Identifier"]];
 }
 
 #pragma mark - Load/Select script
@@ -713,7 +692,7 @@
         return;
     }
     
-    PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsFromScript:filename];
+    PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsForScript:filename];
     [self controlsFromAppSpec:spec];
     [spec release];
     
@@ -750,7 +729,7 @@
     }
     if (aNotification != nil && [aNotification object] == appNameTextField) {
         //update identifier
-        [bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES]];
+        [bundleIdentifierTextField setStringValue:[PlatypusAppSpec bundleIdentifierForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES]];
     }
     
     //interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
@@ -824,7 +803,7 @@
     [scriptPathTextField setStringValue:@""];
     [versionTextField setStringValue:DEFAULT_VERSION];
     
-    NSString *bundleId = [PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES];
+    NSString *bundleId = [PlatypusAppSpec bundleIdentifierForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES];
     [bundleIdentifierTextField setStringValue:bundleId];
     [authorTextField setStringValue:[DEFAULTS objectForKey:@"DefaultAuthor"]];
     
