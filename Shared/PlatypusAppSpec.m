@@ -155,9 +155,9 @@
     properties[@"DocIcon"] = @"";
     
     // text output settings
-    properties[@"TextEncoding"] = [NSNumber numberWithInt:DEFAULT_OUTPUT_TXT_ENCODING];
+    properties[@"TextEncoding"] = @(DEFAULT_OUTPUT_TXT_ENCODING);
     properties[@"TextFont"] = DEFAULT_OUTPUT_FONT;
-    properties[@"TextSize"] = [NSNumber numberWithFloat:DEFAULT_OUTPUT_FONTSIZE];
+    properties[@"TextSize"] = @(DEFAULT_OUTPUT_FONTSIZE);
     properties[@"TextForeground"] = DEFAULT_OUTPUT_FG_COLOR;
     properties[@"TextBackground"] = DEFAULT_OUTPUT_BG_COLOR;
     
@@ -212,11 +212,9 @@
 
 - (BOOL)create {
     NSString *contentsPath, *macosPath, *resourcesPath;
-    NSString *execDestinationPath, *infoPlistPath, *iconPath, *docIconPath, *bundledFileDestPath, *nibDestPath;
-    NSString *execPath, *nibPath, *bundledFilePath;
-    NSString *appSettingsPlistPath;
+    NSString *execDestinationPath, *infoPlistPath, *iconPath, *docIconPath, *nibDestPath;
+    NSString *execPath, *nibPath;
     NSData *b_enc_script = [NSData data];
-    NSMutableDictionary *appSettingsPlist;
     
     // get temporary directory, make sure it's kosher.  Apparently NSTemporaryDirectory() can return nil
     // see http://www.cocoadev.com/index.pl?NSTemporaryDirectory
@@ -288,22 +286,15 @@
     NSDictionary *execAttrDict = @{NSFilePosixPermissions: @0755UL};
     [FILEMGR setAttributes:execAttrDict ofItemAtPath:execDestinationPath error:nil];
 
-    
     //copy nib file to app bundle
     //.app/Contents/Resources/MainMenu.nib
     [self report:@"Copying nib file to bundle"];
     nibDestPath = [resourcesPath stringByAppendingString:@"/MainMenu.nib"];
     [FILEMGR copyItemAtPath:nibPath toPath:nibDestPath error:nil];
-    
-    // if optimize application is set, we see if we can compile the nib file
+
     if ([properties[@"OptimizeApplication"] boolValue] == YES && [FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
         [self report:@"Optimizing nib file"];
-        NSTask *ibToolTask = [[NSTask alloc] init];
-        [ibToolTask setLaunchPath:IBTOOL_PATH];
-        [ibToolTask setArguments:@[@"--strip", nibDestPath, nibDestPath]];
-        [ibToolTask launch];
-        [ibToolTask waitUntilExit];
-        [ibToolTask release];
+        [PlatypusAppSpec optimizeNibFile:nibDestPath];
     }
     
     // create script file in app bundle
@@ -328,7 +319,122 @@
     //create AppSettings.plist file
     //.app/Contents/Resources/AppSettings.plist
     [self report:@"Creating AppSettings property list"];
-    appSettingsPlist = [NSMutableDictionary dictionary];
+    NSMutableDictionary *appSettingsPlist = [self appSettingsPlist];
+    if ([properties[@"Secure"] boolValue]) {
+        // if script is "secured" we encode it into AppSettings property list
+        appSettingsPlist[@"TextSettings"] = [NSKeyedArchiver archivedDataWithRootObject:b_enc_script];
+    }
+    NSString *appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
+    if ([properties[@"UseXMLPlistFormat"] boolValue] == FALSE) {
+        NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList:appSettingsPlist
+                                                                          format:NSPropertyListBinaryFormat_v1_0
+                                                                errorDescription:nil];
+        [binPlistData writeToFile:appSettingsPlistPath atomically:YES];
+    } else {
+        [appSettingsPlist writeToFile:appSettingsPlistPath atomically:YES];
+    }
+    
+    //create icon
+    //.app/Contents/Resources/appIcon.icns
+    if (properties[@"IconPath"] && ![properties[@"IconPath"] isEqualToString:@""]) {
+        [self report:@"Writing application icon"];
+        iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
+        [FILEMGR copyItemAtPath:properties[@"IconPath"] toPath:iconPath error:nil];
+    }
+    
+    //document icon
+    //.app/Contents/Resources/docIcon.icns
+    if (properties[@"DocIcon"] && ![properties[@"DocIcon"] isEqualToString:@""]) {
+        [self report:@"Writing document icon"];
+        docIconPath = [resourcesPath stringByAppendingString:@"/docIcon.icns"];
+        [FILEMGR copyItemAtPath:properties[@"DocIcon"] toPath:docIconPath error:nil];
+    }
+    
+    //create Info.plist file
+    //.app/Contents/Info.plist
+    [self report:@"Writing Info.plist"];
+    NSDictionary *infoPlist = [self infoPlist];
+    infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
+    if (![properties[@"UseXMLPlistFormat"] boolValue]) { // if binary
+        NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList:infoPlist
+                                                                          format:NSPropertyListBinaryFormat_v1_0
+                                                                errorDescription:nil];
+        [binPlistData writeToFile:infoPlistPath atomically:YES];
+    }
+    else {
+        [infoPlist writeToFile:infoPlistPath atomically:YES];
+    }
+    
+    //copy bundled files to Resources folder
+    //.app/Contents/Resources/*
+    [self report:@"Copying bundled files"];
+    
+    for (NSString *bundledFilePath in properties[@"BundledFiles"]) {
+        NSString *fileName = [bundledFilePath lastPathComponent];
+        NSString *bundledFileDestPath = [resourcesPath stringByAppendingString:@"/"];
+        bundledFileDestPath = [bundledFileDestPath stringByAppendingString:fileName];
+        
+        [self report:[NSString stringWithFormat:@"Copying \"%@\" to bundle", fileName]];
+        
+        // if it's a development version, we just symlink it
+        if ([properties[@"DevelopmentVersion"] boolValue] == YES) {
+            [FILEMGR createSymbolicLinkAtPath:bundledFileDestPath withDestinationPath:bundledFilePath error:nil];
+        } else {
+            // otherwise we copy it
+            // first remove any file in destination path
+            // NB: This means any previously copied files are overwritten
+            // and so users can bundle in their own MainMenu.nib etc.
+            if ([FILEMGR fileExistsAtPath:bundledFileDestPath]) {
+                [FILEMGR removeItemAtPath:bundledFileDestPath error:nil];
+            }
+            [FILEMGR copyItemAtPath:bundledFilePath toPath:bundledFileDestPath error:nil];
+        }
+    }
+    
+    // COPY APP OVER TO FINAL DESTINATION
+    // we've created the application bundle in the temporary directory
+    // now it's time to move it to the destination specified by the user
+    [self report:@"Moving app to destination directory"];
+    
+    NSString *destPath = properties[@"Destination"];
+    
+    // first, let's see if there's anything there.  If we have override set on, we just delete that stuff.
+    if ([FILEMGR fileExistsAtPath:destPath] && [properties[@"DestinationOverride"] boolValue]) {
+        [FILEMGR removeItemAtPath:destPath error:nil];
+        [WORKSPACE notifyFinderFileChangedAtPath:destPath];
+    }
+    
+    //if delete wasn't a success and there's still something there
+    if ([FILEMGR fileExistsAtPath:destPath]) {
+        _error = @"Could not remove pre-existing item at destination path";
+        return FALSE;
+    }
+    
+    // now, move the newly created app to the destination
+    [FILEMGR moveItemAtPath:tmpPath toPath:destPath error:nil];    //move
+    if (![FILEMGR fileExistsAtPath:destPath]) {
+        //if move wasn't a success, clean up app in tmp dir
+        [FILEMGR removeItemAtPath:tmpPath error:nil];
+        _error = @"Failed to create application at the specified destination";
+        return FALSE;
+    }
+    [WORKSPACE notifyFinderFileChangedAtPath:destPath];
+    
+    // Update Services
+    if ([properties[@"DeclareService"] boolValue]) {
+        [self report:@"Updating Dynamic Services"];
+        // This call will refresh Services without user having to log out/in
+        NSUpdateDynamicServices();
+    }
+    
+    [self report:@"Done"];
+    
+    return TRUE;
+}
+
+// Generate AppSettings.plist dictionary
+- (NSMutableDictionary *)appSettingsPlist {
+    NSMutableDictionary *appSettingsPlist = [NSMutableDictionary dictionary];
     appSettingsPlist[@"RequiresAdminPrivileges"] = properties[@"Authentication"];
     appSettingsPlist[@"Droppable"] = properties[@"Droppable"];
     appSettingsPlist[@"RemainRunningAfterCompletion"] = properties[@"RemainRunning"];
@@ -367,121 +473,10 @@
     appSettingsPlist[@"AcceptsFiles"] = properties[@"AcceptsFiles"];
     appSettingsPlist[@"AcceptsText"] = properties[@"AcceptsText"];
     
-    // if script is "secured" we encoded it into AppSettings property list
-    if ([properties[@"Secure"] boolValue]) {
-        appSettingsPlist[@"TextSettings"] = [NSKeyedArchiver archivedDataWithRootObject:b_enc_script];
-    }
-    appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
-    
-    // write the app settings plist
-    if ([properties[@"UseXMLPlistFormat"] boolValue] == FALSE) {
-        NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList:appSettingsPlist
-                                                                          format:NSPropertyListBinaryFormat_v1_0
-                                                                errorDescription:nil];
-        [binPlistData writeToFile:appSettingsPlistPath atomically:YES];
-    } else {
-        [appSettingsPlist writeToFile:appSettingsPlistPath atomically:YES];
-    }
-    
-    //create icon
-    //.app/Contents/Resources/appIcon.icns
-    if (properties[@"IconPath"] && ![properties[@"IconPath"] isEqualToString:@""]) {
-        [self report:@"Writing application icon"];
-        iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
-        [FILEMGR copyItemAtPath:properties[@"IconPath"] toPath:iconPath error:nil];
-    }
-    
-    if (properties[@"DocIcon"] && ![properties[@"DocIcon"] isEqualToString:@""]) {
-        [self report:@"Writing document icon"];
-        docIconPath = [resourcesPath stringByAppendingString:@"/docIcon.icns"];
-        [FILEMGR copyItemAtPath:properties[@"DocIcon"] toPath:docIconPath error:nil];
-    }
-    
-    //create Info.plist file
-    //.app/Contents/Info.plist
-    [self report:@"Writing Info.plist"];
-    NSDictionary *infoPlist = [self infoPlist];
-    infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
-    if (![properties[@"UseXMLPlistFormat"] boolValue]) { // if binary
-        NSData *binPlistData = [NSPropertyListSerialization dataFromPropertyList:infoPlist
-                                                                          format:NSPropertyListBinaryFormat_v1_0
-                                                                errorDescription:nil];
-        [binPlistData writeToFile:infoPlistPath atomically:YES];
-    }
-    else {
-        [infoPlist writeToFile:infoPlistPath atomically:YES];
-    }
-    
-    //copy files in file list to the Resources folder
-    //.app/Contents/Resources/*
-    [self report:@"Copying bundled files"];
-    
-    for (int i = 0; i < [properties[@"BundledFiles"] count]; i++) {
-        bundledFilePath = properties[@"BundledFiles"][i];
-        bundledFileDestPath = [resourcesPath stringByAppendingString:@"/"];
-        bundledFileDestPath = [bundledFileDestPath stringByAppendingString:[bundledFilePath lastPathComponent]];
-        
-        NSString *srcFileName = [bundledFilePath lastPathComponent];
-        [self report:[NSString stringWithFormat:@"Copying \"%@\" to bundle", srcFileName]];
-        
-        // if it's a development version, we just symlink it
-        if ([properties[@"DevelopmentVersion"] boolValue] == YES) {
-            [FILEMGR createSymbolicLinkAtPath:bundledFileDestPath withDestinationPath:bundledFilePath error:nil];
-        } else {
-            // otherwise we copy it
-            // first remove any file in destination path
-            // NB: This means any previously copied files are overwritten
-            // and so users can bundle in their own MainMenu.nib etc.
-            if ([FILEMGR fileExistsAtPath:bundledFileDestPath]) {
-                [FILEMGR removeItemAtPath:bundledFileDestPath error:nil];
-            }
-            [FILEMGR copyItemAtPath:bundledFilePath toPath:bundledFileDestPath error:nil];
-        }
-    }
-    
-    ////////////////////////////////// COPY APP OVER TO FINAL DESTINATION /////////////////////////////////
-    
-    // we've created the application bundle in the temporary directory
-    // now it's time to move it to the destination specified by the user
-    [self report:@"Moving app to destination directory"];
-    
-    NSString *destPath = properties[@"Destination"];
-    
-    
-    // first, let's see if there's anything there.  If we have override set on, we just delete that stuff.
-    if ([FILEMGR fileExistsAtPath:destPath] && [properties[@"DestinationOverride"] boolValue]) {
-        [FILEMGR removeItemAtPath:destPath error:nil];
-        [WORKSPACE notifyFinderFileChangedAtPath:destPath];
-    }
-    
-    //if delete wasn't a success and there's still something there
-    if ([FILEMGR fileExistsAtPath:destPath]) {
-        _error = @"Could not remove pre-existing item at destination path";
-        return FALSE;
-    }
-    
-    // now, move the newly created app to the destination
-    [FILEMGR moveItemAtPath:tmpPath toPath:destPath error:nil];    //move
-    if (![FILEMGR fileExistsAtPath:destPath]) {
-        //if move wasn't a success, clean up app in tmp dir
-        [FILEMGR removeItemAtPath:tmpPath error:nil];
-        _error = @"Failed to create application at the specified destination";
-        return FALSE;
-    }
-    [WORKSPACE notifyFinderFileChangedAtPath:destPath];
-    
-    // Update Services
-    if ([properties[@"DeclareService"] boolValue]) {
-        [self report:@"Updating Dynamic Services"];
-        // This call will refresh Services without user having to log out/in
-        NSUpdateDynamicServices();
-    }
-    
-    [self report:@"Done"];
-    
-    return TRUE;
+    return appSettingsPlist;
 }
 
+// Generate Info.plist dictionary
 - (NSDictionary *)infoPlist {
 
     NSString *humanCopyright = [NSString stringWithFormat:@"© %d %@",
@@ -558,9 +553,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SPEC_CREATED_NOTIFICATION object:str];
 }
 
-/********************************************
+/****************************************
  Make sure the data in the spec is sane
- *********************************************/
+ ****************************************/
 
 - (BOOL)verify {
     BOOL isDir;
@@ -863,10 +858,10 @@
 
 #pragma mark - Class Methods
 
-/*****************************************
+/*******************************************************************
  - Return the bundle identifier for the application to be generated
  - based on username etc. e.g. org.username.AppName
- *****************************************/
+ ******************************************************************/
 
 + (NSString *)standardBundleIdForAppName:(NSString *)name authorName:(NSString *)authorName usingDefaults:(BOOL)def {
     
@@ -877,6 +872,15 @@
     bundleId = [bundleId stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     return bundleId;
+}
+
++ (void)optimizeNibFile:(NSString *)nibPath {
+    NSTask *ibToolTask = [[NSTask alloc] init];
+    [ibToolTask setLaunchPath:IBTOOL_PATH];
+    [ibToolTask setArguments:@[@"--strip", nibPath, nibPath]];
+    [ibToolTask launch];
+    [ibToolTask waitUntilExit];
+    [ibToolTask release];
 }
 
 @end

@@ -96,21 +96,20 @@
     [tableView reloadData];
 }
 
-- (void)addFiles:(NSArray *)fileNames {
-    for (int i = 0; i < [fileNames count]; i++) {
-        NSString *filePath = fileNames[i];
-        
-        if (![self hasFile:filePath]) {
-            NSMutableDictionary *fileInfoDict = [NSMutableDictionary dictionaryWithCapacity:10];
-            fileInfoDict[@"Path"] = filePath;
+- (void)addFiles:(NSArray *)filePaths {
+    for (NSString *filePath in filePaths) {
+        if ([self hasFile:filePath] == NO) {
+            NSMutableDictionary *fileInfoDict = [NSMutableDictionary dictionary];
             
             NSImage *icon = [WORKSPACE iconForFile:filePath];
             [icon setSize:NSMakeSize(16, 16)];
-            
             fileInfoDict[@"Icon"] = icon;
+            fileInfoDict[@"Path"] = filePath;
+
             [files addObject:fileInfoDict];
         }
     }
+    
     [tableView reloadData];
     [self tableViewSelectionDidChange:nil];
     [self updateQueueWatch];
@@ -161,9 +160,9 @@
     });
 }
 
-- (BOOL)hasFile:(NSString *)fileName {
-    for (int i = 0; i < [files count]; i++) {
-        if ([files[i][@"Path"] isEqualToString:fileName]) {
+- (BOOL)hasFile:(NSString *)filePath {
+    for (NSDictionary *fileInfoDict in files) {
+        if ([fileInfoDict[@"Path"] isEqualToString:filePath]) {
             return YES;
         }
     }

@@ -225,11 +225,11 @@
     for (int i = [typeListController numItems]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
             [typeListController removeItemAtIndex:i];
-            [tableView reloadData];
             break;
         }
     }
     
+    [tableView reloadData];
     [self setSuffixListEnabled:([uniformTypeListController numItems] == 0)];
 }
 
