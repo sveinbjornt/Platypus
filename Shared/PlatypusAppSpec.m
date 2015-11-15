@@ -551,7 +551,7 @@
 
 - (void)report:(NSString *)str {
     fprintf(stderr, "%s\n", [str UTF8String]);
-    [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SPEC_CREATED_NOTIFICATION object:str];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SPEC_CREATION_NOTIFICATION object:str];
 }
 
 /****************************************

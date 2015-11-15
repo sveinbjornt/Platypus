@@ -101,7 +101,7 @@
 #define SHELL_COMMAND_STRING_FONT   [NSFont userFixedPitchFontOfSize:11.0]
 
 // notifications
-#define PLATYPUS_APP_SPEC_CREATED_NOTIFICATION  @"PlatypusAppSpecCreationNotification"
+#define PLATYPUS_APP_SPEC_CREATION_NOTIFICATION @"PlatypusAppSpecCreationNotification"
 #define PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION  @"PlatypusAppSizeChangedNotification"
 
 // path to temp script file
