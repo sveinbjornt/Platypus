@@ -107,9 +107,6 @@
 #define TMP_STDIN_PATH              @ "/tmp/.plstdin.XXXXXX"
 #define TMP_ICON_PATH               [NSString stringWithFormat:@"%@/TmpIcon%d.icns", APP_SUPPORT_FOLDER, arc4random()]
 
-// this is surely enough
-#define PLATYPUS_MAX_QUEUE_JOBS             1024
-
 // execution style
 typedef enum PlatypusExecStyle {
     PLATYPUS_EXECSTYLE_NORMAL = 0,

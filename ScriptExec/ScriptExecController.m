@@ -39,11 +39,11 @@
 
 - (instancetype)init {
     if ((self = [super init])) {
-        arguments = [[NSMutableArray alloc] initWithCapacity:ARG_MAX];
+        arguments = [[NSMutableArray alloc] init];
         textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
         isTaskRunning = NO;
         outputEmpty = YES;
-        jobQueue = [[NSMutableArray alloc] initWithCapacity:PLATYPUS_MAX_QUEUE_JOBS];
+        jobQueue = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -107,26 +107,22 @@
 
 #pragma mark - App Settings
 
-/**************************************************
- Load configuration file AppSettings.plist from
- application bundle, sanitize it, prepare it
- **************************************************/
-
+// Load configuration from AppSettings.plist, sanitize it, etc.
 - (void)loadAppSettings {
     
     NSBundle *appBundle = [NSBundle mainBundle];
     NSString *appSettingsPath = [appBundle pathForResource:@"AppSettings.plist" ofType:nil];
     
     //make sure all the config files are present -- if not, we quit
-    if (![FILEMGR fileExistsAtPath:appSettingsPath]) {
-        [Alerts fatalAlert:@"Corrupt app bundle" subText:@"AppSettings.plist missing from the application bundle."];
+    if ([FILEMGR fileExistsAtPath:appSettingsPath] == FALSE) {
+        [Alerts fatalAlert:@"Corrupt app bundle" subText:@"AppSettings.plist not found in application bundle."];
     }
     
     // get app name
     // first, try to get CFBundleDisplayName from Info.plist
     NSDictionary *infoPlist = [appBundle infoDictionary];
-    if ([infoPlist objectForKey:@"CFBundleDisplayName"] != nil) {
-        appName = [[NSString alloc] initWithString:[infoPlist objectForKey:@"CFBundleDisplayName"]];
+    if (infoPlist[@"CFBundleDisplayName"] != nil) {
+        appName = [[NSString alloc] initWithString:infoPlist[@"CFBundleDisplayName"]];
     } else {
         // if that doesn't work, use name of executable file
         appName = [[NSString alloc] initWithString:[[appBundle executablePath] lastPathComponent]];
@@ -139,7 +135,7 @@
     }
     
     //determine output type
-    NSString *outputTypeStr = [appSettingsDict objectForKey:@"OutputType"];
+    NSString *outputTypeStr = appSettingsDict[@"OutputType"];
     if ([PLATYPUS_OUTPUT_TYPES containsObject:outputTypeStr] == FALSE) {
         [Alerts fatalAlert:@"Corrupt app settings" subText:@"Invalid Output Mode."];
     }
@@ -154,26 +150,26 @@
         
         // font and size
         NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
-        CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [[appSettingsDict objectForKey:@"TextSize"] floatValue];
+        CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[@"TextSize"] floatValue];
         fontSize = fontSize ? fontSize : DEFAULT_OUTPUT_FONTSIZE;
-        if ([appSettingsDict objectForKey:@"TextFont"]) {
-            textFont = [NSFont fontWithName:[appSettingsDict objectForKey:@"TextFont"] size:fontSize];
+        if (appSettingsDict[@"TextFont"]) {
+            textFont = [NSFont fontWithName:appSettingsDict[@"TextFont"] size:fontSize];
         }
         if (!textFont) {
             textFont = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE];
         }
         
         // foreground color
-        if ([appSettingsDict objectForKey:@"TextForeground"]) {
-            textForeground = [NSColor colorFromHex:[appSettingsDict objectForKey:@"TextForeground"]];
+        if (appSettingsDict[@"TextForeground"]) {
+            textForeground = [NSColor colorFromHex:appSettingsDict[@"TextForeground"]];
         }
         if (textForeground == nil) {
             textForeground = [NSColor colorFromHex:DEFAULT_OUTPUT_FG_COLOR];
         }
         
         // background color
-        if ([appSettingsDict objectForKey:@"TextBackground"] != nil) {
-            textBackground = [NSColor colorFromHex:[appSettingsDict objectForKey:@"TextBackground"]];
+        if (appSettingsDict[@"TextBackground"] != nil) {
+            textBackground = [NSColor colorFromHex:appSettingsDict[@"TextBackground"]];
         }
         if (textBackground == nil) {
             textBackground = [NSColor colorFromHex:DEFAULT_OUTPUT_BG_COLOR];
@@ -181,8 +177,8 @@
         
         // encoding
         textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
-        if ([appSettingsDict objectForKey:@"TextEncoding"] != nil) {
-            textEncoding = (int)[[appSettingsDict objectForKey:@"TextEncoding"] intValue];
+        if (appSettingsDict[@"TextEncoding"] != nil) {
+            textEncoding = (int)[appSettingsDict[@"TextEncoding"] intValue];
         }
         
         [textFont retain];
@@ -192,11 +188,11 @@
     
     // likewise, status menu output has some additional parameters
     if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
-        NSString *statusItemDisplayType = [appSettingsDict objectForKey:@"StatusItemDisplayType"];
+        NSString *statusItemDisplayType = appSettingsDict[@"StatusItemDisplayType"];
         
         // we load text label if status menu is not only an icon
         if ([statusItemDisplayType isEqualToString:@"Text"] || [statusItemDisplayType isEqualToString:@"Icon and Text"]) {
-            statusItemTitle = [[appSettingsDict objectForKey:@"StatusItemTitle"] retain];
+            statusItemTitle = [appSettingsDict[@"StatusItemTitle"] retain];
             if (statusItemTitle == nil) {
                 [Alerts fatalAlert:@"Error getting title" subText:@"Failed to get Status Item title."];
             }
@@ -204,7 +200,7 @@
         
         // we load icon if status menu is not only a text label
         if ([statusItemDisplayType isEqualToString:@"Icon"] || [statusItemDisplayType isEqualToString:@"Icon and Text"]) {
-            statusItemIcon = [[NSImage alloc] initWithData:[appSettingsDict objectForKey:@"StatusItemIcon"]];
+            statusItemIcon = [[NSImage alloc] initWithData:appSettingsDict[@"StatusItemIcon"]];
             if (statusItemIcon == nil) {
                 [Alerts fatalAlert:@"Error loading icon" subText:@"Failed to load Status Item icon."];
             }
@@ -215,17 +211,17 @@
             statusItemTitle = @"Title";
         }
         
-        statusItemUsesSystemFont = [[appSettingsDict objectForKey:@"StatusItemUseSystemFont"] boolValue];
+        statusItemUsesSystemFont = [appSettingsDict[@"StatusItemUseSystemFont"] boolValue];
     }
     
     // load these vars from plist
-    interpreterArgs     = [[NSArray arrayWithArray:[appSettingsDict objectForKey:@"InterpreterArgs"]] retain];
-    scriptArgs          = [[NSArray arrayWithArray:[appSettingsDict objectForKey:@"ScriptArgs"]] retain];
-    execStyle           = [[appSettingsDict objectForKey:@"RequiresAdminPrivileges"] boolValue];
-    remainRunning       = [[appSettingsDict objectForKey:@"RemainRunningAfterCompletion"] boolValue];
-    secureScript        = [[appSettingsDict objectForKey:@"Secure"] boolValue];
-    isDroppable         = [[appSettingsDict objectForKey:@"Droppable"] boolValue];
-    promptForFileOnLaunch = [[appSettingsDict objectForKey:@"PromptForFileOnLaunch"] boolValue];
+    interpreterArgs = [appSettingsDict[@"InterpreterArgs"] retain];
+    scriptArgs = [appSettingsDict[@"ScriptArgs"] retain];
+    execStyle = [appSettingsDict[@"RequiresAdminPrivileges"] boolValue];
+    remainRunning = [appSettingsDict[@"RemainRunningAfterCompletion"] boolValue];
+    secureScript = [appSettingsDict[@"Secure"] boolValue];
+    isDroppable = [appSettingsDict[@"Droppable"] boolValue];
+    promptForFileOnLaunch = [appSettingsDict[@"PromptForFileOnLaunch"] boolValue];
     
     // read and store command line arguments to the application
     NSMutableArray *processArgs = [NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]];
@@ -267,36 +263,34 @@
     }
     
     // load settings for drop acceptance, default is to accept files and not text snippets
-    acceptsFiles = ([appSettingsDict objectForKey:@"AcceptsFiles"] != nil) ? [[appSettingsDict objectForKey:@"AcceptsFiles"] boolValue] : YES;
-    acceptsText = ([appSettingsDict objectForKey:@"AcceptsText"] != nil) ? [[appSettingsDict objectForKey:@"AcceptsText"] boolValue] : NO;
+    acceptsFiles = (appSettingsDict[@"AcceptsFiles"] != nil) ? [appSettingsDict[@"AcceptsFiles"] boolValue] : YES;
+    acceptsText = (appSettingsDict[@"AcceptsText"] != nil) ? [appSettingsDict[@"AcceptsText"] boolValue] : NO;
     
     // equivalent to not being droppable
     if (!acceptsFiles && !acceptsText) {
         isDroppable = FALSE;
     }
-    
-    // initialize this to NO, then check the droppableSuffixes for 'fold'
+
     acceptDroppedFolders = NO;
-    // initialize this to NO, then check the droppableSuffixes for *, and droppableFileTypes for ****
     acceptAnyDroppedItem = NO;
     
     // if app is droppable, the AppSettings.plist contains list of accepted file types / suffixes
     // we use them later as a criterion for in-code drop acceptance
     if (isDroppable && acceptsFiles) {
         // get list of accepted suffixes
-        if ([appSettingsDict objectForKey:@"DropSuffixes"]) {
-            droppableSuffixes = [[NSArray alloc] initWithArray:[appSettingsDict objectForKey:@"DropSuffixes"]];
+        if (appSettingsDict[@"DropSuffixes"] != nil) {
+            droppableSuffixes = [[NSArray alloc] initWithArray:appSettingsDict[@"DropSuffixes"]];
         } else {
-            droppableSuffixes = [[NSArray alloc] initWithArray:[NSArray array]];
+            droppableSuffixes = [[NSArray alloc] init];
         }
         
-        if ([appSettingsDict objectForKey:@"DropUniformTypes"]) {
-            droppableUniformTypes = [[NSArray alloc] initWithArray:[appSettingsDict objectForKey:@"DropUniformTypes"]];
+        if (appSettingsDict[@"DropUniformTypes"] != nil) {
+            droppableUniformTypes = [[NSArray alloc] initWithArray:appSettingsDict[@"DropUniformTypes"]];
         } else {
-            droppableUniformTypes = [[NSArray alloc] initWithArray:[NSArray array]];
+            droppableUniformTypes = [[NSArray alloc] init];
         }
         
-        if ([droppableSuffixes containsObject:@"*"] || [droppableUniformTypes containsObject:@"public.item"]) {
+        if ([droppableSuffixes containsObject:@"*"] || [droppableUniformTypes containsObject:@"public.data"]) {
             acceptAnyDroppedItem = YES;
         }
         if ([droppableUniformTypes containsObject:(NSString *)kUTTypeFolder]) {
@@ -305,7 +299,7 @@
     }
     
     //get interpreter
-    NSString *scriptInterpreter = [appSettingsDict objectForKey:@"ScriptInterpreter"];
+    NSString *scriptInterpreter = appSettingsDict[@"ScriptInterpreter"];
     if (scriptInterpreter == nil || ![FILEMGR fileExistsAtPath:scriptInterpreter]) {
         [Alerts fatalAlert:@"Missing interpreter" subText:[NSString stringWithFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreter]];
     }
@@ -313,7 +307,7 @@
 
     //if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
     if ((!secureScript && ![FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]]) ||
-        (secureScript && [appSettingsDict objectForKey:@"TextSettings"] == nil)) {
+        (secureScript && appSettingsDict[@"TextSettings"] == nil)) {
         [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
     }
     
@@ -332,7 +326,7 @@
     }
     //if we have a "secure" script, there is no path to get. We write script to temp location on execution
     else {
-        NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData:[appSettingsDict objectForKey:@"TextSettings"]];
+        NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData:appSettingsDict[@"TextSettings"]];
         if (b_str == nil) {
             [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
         }
@@ -360,7 +354,7 @@
     }
 }
 
-- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
     return YES;
 }
 
@@ -418,11 +412,7 @@
 
 #pragma mark - Interface manipulation
 
-/****************************************
- Set up any menu items, windows, controls
- at application launch time based on output mode
- ****************************************/
-
+// Set up any menu items, windows, controls at application launch
 - (void)initialiseInterface {
     
     //put application name into the relevant menu items
@@ -457,7 +447,7 @@
         case PLATYPUS_OUTPUT_PROGRESSBAR:
         {
             if (isDroppable) {
-                [progressBarWindow registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
+                [progressBarWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
             }
             
             // add menu item for Show Details
@@ -482,8 +472,6 @@
             if ([[progressBarWindow frameAutosaveName] isEqualToString:@""]) {
                 [progressBarWindow center];
             }
-            
-            // reveal it
             [progressBarWindow makeKeyAndOrderFront:self];
         }
             break;
@@ -491,7 +479,7 @@
         case PLATYPUS_OUTPUT_TEXTWINDOW:
         {
             if (isDroppable) {
-                [textOutputWindow registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
+                [textOutputWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
                 [textOutputMessageTextField setStringValue:@"Drag files on window to process them"];
             }
             
@@ -515,8 +503,8 @@
         case PLATYPUS_OUTPUT_WEBVIEW:
         {
             if (isDroppable) {
-                [webOutputWindow registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
-                [webOutputWebView registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
+                [webOutputWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
+                [webOutputWebView registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
                 [webOutputMessageTextField setStringValue:@"Drag files on window to process them"];
             }
             
@@ -553,8 +541,6 @@
             NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Quit %@", appName] action:@selector(terminate:) keyEquivalent:@""] autorelease];
             [statusItemMenu insertItem:menuItem atIndex:0];
             [statusItemMenu insertItem:[NSMenuItem separatorItem] atIndex:0];
-            
-            // enable it
             [statusItem setEnabled:YES];
         }
             break;
@@ -562,7 +548,7 @@
         case PLATYPUS_OUTPUT_DROPLET:
         {
             if (isDroppable) {
-                [dropletWindow registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, NSStringPboardType, nil]];
+                [dropletWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
             }
             [dropletProgressIndicator setUsesThreadedAnimation:YES];
             
@@ -577,13 +563,7 @@
     }
 }
 
-/****************************************
- 
- Prepare all the controls, windows, etc.
- prior to the execution of the script
- 
- ****************************************/
-
+// Prepare all the controls, windows, etc prior to executing script
 - (void)prepareInterfaceForExecution {
     switch (outputType) {
         case PLATYPUS_OUTPUT_NONE:
@@ -647,13 +627,7 @@
     }
 }
 
-/****************************************
- 
- Adjust controls, windows, etc. once script
- is done executing
-
- ****************************************/
-
+// Adjust controls, windows, etc. once script is done executing
 - (void)cleanupInterface {
     switch (outputType) {
             
@@ -767,7 +741,7 @@
     
     //finally, dequeue job and add arguments
     if ([jobQueue count] > 0) {
-        ScriptExecJob *job = [jobQueue objectAtIndex:0];
+        ScriptExecJob *job = jobQueue[0];
 
         // we have files in the queue, to append as arguments
         // we take the first job's arguments and put them into the arg list
@@ -943,7 +917,7 @@
 // read from the file handle and append it to the text window
 - (void)getOutputData:(NSNotification *)aNotification {
     // get the data from notification
-    NSData *data = [[aNotification userInfo] objectForKey:NSFileHandleNotificationDataItem];
+    NSData *data = [aNotification userInfo][NSFileHandleNotificationDataItem];
     
     // make sure there's actual data
     if ([data length]) {
@@ -1021,8 +995,8 @@
         if ([theLine hasPrefix:@"ALERT:"]) {
             NSString *alertString = [theLine substringFromIndex:6];
             NSArray *components = [alertString componentsSeparatedByString:@"|"];
-            [Alerts alert:[components objectAtIndex:0]
-                  subText:[components count] > 1 ? [components objectAtIndex:1] : [components objectAtIndex:0]];
+            [Alerts alert:components[0]
+                  subText:[components count] > 1 ? components[1] : components[0]];
             continue;
         }
         
@@ -1087,8 +1061,8 @@
         NSArray *htmlLines = [[textStorage string] componentsSeparatedByString: @"\n"];
 
         // Check for 'Location: *URL*' In that case, we load the URL in the web view
-        if ([htmlLines count] > 0 && [[htmlLines objectAtIndex:1] hasPrefix:@"Location:"]) {
-            NSString *url = [[htmlLines objectAtIndex: 1] substringFromIndex:9];
+        if ([htmlLines count] > 0 && [htmlLines[1] hasPrefix:@"Location:"]) {
+            NSString *url = [htmlLines[1] substringFromIndex:9];
             url = [url stringByReplacingOccurrencesOfString:@" " withString:@""];
             [[webOutputWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] ];
         } else {
@@ -1125,7 +1099,7 @@
         // Convert URLs to paths
         NSMutableArray *files = [NSMutableArray arrayWithArray:[oPanel URLs]];
         for (NSInteger i = 0; i < [files count]; i++) {
-            [files replaceObjectAtIndex:i withObject:[(NSURL *)[files objectAtIndex:i] path]];
+            files[i] = [(NSURL *)files[i] path];
         }
         
         NSInteger ret = [self addDroppedFilesJob:files];
@@ -1204,7 +1178,7 @@
     }
     //open should only work if it's a droppable app
     if ([[anItem title] isEqualToString:@"Open…"] &&
-        (!isDroppable || !acceptsFiles || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS)) {
+        (!isDroppable || !acceptsFiles)) {
         return NO;
     }
     // Make text bigger stuff
@@ -1244,7 +1218,7 @@
         CGFloat newFontSize = [font pointSize] + delta;
         font = [[NSFontManager sharedFontManager] convertFont:font toSize:newFontSize];
         [textView setFont:font];
-        [DEFAULTS setObject:[NSNumber numberWithFloat:(float)newFontSize] forKey:@"UserFontSize"];
+        [DEFAULTS setObject:@((float)newFontSize) forKey:@"UserFontSize"];
         [textView didChangeText];
     }
 }
@@ -1282,7 +1256,7 @@
 #pragma mark - Text snippet drag handling
 
 - (void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
-    if (!isDroppable || !acceptsText || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS) {
+    if (!isDroppable || !acceptsText) {
         return;
     }
     NSString *pboardString = [pboard stringForType:NSStringPboardType];
@@ -1307,7 +1281,7 @@
 }
 
 - (BOOL)addDroppedTextJob:(NSString *)text {
-    if (!isDroppable || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS) {
+    if (!isDroppable) {
         return NO;
     }
     return [self addTextJob:text];
@@ -1315,7 +1289,7 @@
 
 // processing dropped files
 - (BOOL)addDroppedFilesJob:(NSArray *)files {
-    if (!isDroppable || !acceptsFiles || [jobQueue count] >= PLATYPUS_MAX_QUEUE_JOBS) {
+    if (!isDroppable || !acceptsFiles) {
         return NO;
     }
     
@@ -1485,7 +1459,7 @@
     
     //populate menu with output from task
     for (int i = [lines count] - 1; i >= 0; i--) {
-        NSString *line = [lines objectAtIndex:i];
+        NSString *line = lines[i];
         NSImage *icon = nil;
         
         if ([line hasPrefix:@"MENUITEMICON|"]) {
@@ -1493,7 +1467,7 @@
             if ([tokens count] < 3) {
                 continue;
             }
-            NSString *imageToken = [tokens objectAtIndex:1];
+            NSString *imageToken = tokens[1];
             // is it a bundled image?
             icon = [NSImage imageNamed:imageToken];
             
@@ -1512,7 +1486,7 @@
             }
             
             [icon setSize:NSMakeSize(16, 16)];
-            line = [tokens objectAtIndex:2];
+            line = tokens[2];
         }
         
         // create the menu item
@@ -1523,11 +1497,8 @@
             [menuItem setTitle:line];
         } else {
             // create a dict of text attributes based on settings
-            NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                            //textBackground, NSBackgroundColorAttributeName,
-                                            textForeground, NSForegroundColorAttributeName,
-                                            textFont, NSFontAttributeName,
-                                            nil];
+            NSDictionary *textAttributes = @{NSForegroundColorAttributeName: textForeground,
+                                            NSFontAttributeName: textFont};
             
             NSAttributedString *attStr = [[[NSAttributedString alloc] initWithString:line attributes:textAttributes] autorelease];
             [menuItem setAttributedTitle:attStr];
