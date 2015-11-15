@@ -119,7 +119,6 @@
 - (IBAction)outputTypeWasChanged:(id)sender;
 - (IBAction)clearAllFields:(id)sender;
 - (IBAction)showCommandLineString:(id)sender;
-
 - (IBAction)showHelp:(id)sender;
 - (IBAction)showReadme:(id)sender;
 - (IBAction)showManPage:(id)sender;
@@ -223,7 +222,8 @@
 }
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
-    if ([filename hasSuffix:PROFILES_SUFFIX]) {
+    NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
+    if ([filename hasSuffix:PROFILES_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
         [profilesController loadProfileAtPath:filename];
     } else {
         [self loadScript:filename];
@@ -964,25 +964,33 @@
     if ([[pboard types] containsObject:NSFilenamesPboardType]) {
         
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
-        NSString *filename = files[0]; //we only load the first dragged item
+        NSString *filename = files[0]; // only load the first dragged item
         NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
-        
 
+        // We don't accept folders
         BOOL isDir;
-        if ([FILEMGR fileExistsAtPath:filename isDirectory:&isDir] && !isDir) {
-            if ([filename hasSuffix:PROFILES_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
-                [profilesController loadProfileAtPath:filename];
-            } else if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeImage]) {
-                if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
-                    [iconController loadIcnsFile:filename];
-                } else {
-                    [iconController loadImageFile:filename];
-                }
-            } else {
-                [self loadScript:filename];
-            }
-            return YES;
+        if ([FILEMGR fileExistsAtPath:filename isDirectory:&isDir] == NO || isDir) {
+            return NO;
         }
+
+        // profile
+        if ([filename hasSuffix:PROFILES_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
+            [profilesController loadProfileAtPath:filename];
+        }
+        // image
+        else if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeImage]) {
+            if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
+                [iconController loadIcnsFile:filename];
+            } else {
+                [iconController loadImageFile:filename];
+            }
+        }
+        // something else
+        else {
+            [self loadScript:filename];
+        }
+        
+        return YES;
     }
     // String
     else if ([[pboard types] containsObject:NSStringPboardType]) {
