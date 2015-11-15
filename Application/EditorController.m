@@ -40,7 +40,6 @@
     IBOutlet NSTextView *textView;
     IBOutlet NSButton *wordWrapCheckbox;
     IBOutlet NSImageView *scriptIconImageView;
-    NSWindow *mainWindow;
 }
 
 - (IBAction)save:(id)sender;
@@ -80,6 +79,7 @@
     }
     
     [self loadWindow];
+    
     [scriptPathTextField setStringValue:path];
     NSImage *icon = [WORKSPACE iconForFile:path];
     [icon setSize:NSMakeSize(16, 16)];
@@ -90,13 +90,11 @@
     [textView setWordwrapsText:[DEFAULTS boolForKey:@"EditorWordWrap"]];
     [textView setString:str];
     
-    mainWindow = theWindow;
-    
-    [NSApp  beginSheet:[self window]
-        modalForWindow:theWindow
-         modalDelegate:self
-        didEndSelector:nil
-           contextInfo:nil];
+    [NSApp beginSheet:[self window]
+       modalForWindow:theWindow
+        modalDelegate:self
+       didEndSelector:nil
+          contextInfo:nil];
     
     [NSApp runModalForWindow:[self window]];
 }
@@ -123,10 +121,11 @@
 #pragma mark -
 
 - (IBAction)checkSyntax:(id)sender {
-    SyntaxCheckerController *syntaxController = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
-    [syntaxController showSyntaxCheckerForFile:[scriptPathTextField stringValue]
+    SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
+    [controller showSyntaxCheckerForFile:[scriptPathTextField stringValue]
                                withInterpreter:nil
-                                        window:mainWindow];
+                                        window:[self window]];
+    [controller release];
 }
 
 - (IBAction)revealInFinder:(id)sender {
@@ -155,12 +154,6 @@
 
 - (IBAction)makeTextSmaller:(id)sender {
     [self changeFontSize:-1];
-}
-
-#pragma mark - NSWindowDelegate
-
-- (void)windowWillClose:(NSNotification *)notification {
-    [self release];
 }
 
 @end

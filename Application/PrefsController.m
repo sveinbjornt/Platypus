@@ -33,7 +33,6 @@
 #import "Alerts.h"
 #import "STPrivilegedTask.h"
 #import "Common.h"
-#import "PlatypusController.h"
 #import "NSWorkspace+Additions.h"
 #import "NSBundle+Templates.h"
 #import "PlatypusAppSpec.h"
@@ -51,7 +50,6 @@
     IBOutlet NSButton *installCLTButton;
     IBOutlet NSProgressIndicator *installCLTProgressIndicator;
     IBOutlet NSWindow *prefsWindow;
-    IBOutlet PlatypusController *platypusController;
 }
 
 - (IBAction)showWindow:(id)sender;
@@ -289,7 +287,7 @@
     STPrivilegedTask *task = (STPrivilegedTask *)[sender object];
     NSString *tmpScriptPath = [task launchPath];
     [FILEMGR removeItemAtPath:tmpScriptPath error:nil];
-    NSLog(@"Removed: %@", tmpScriptPath);
+//    NSLog(@"Removed: %@", tmpScriptPath);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

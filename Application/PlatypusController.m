@@ -319,23 +319,23 @@
 
 - (IBAction)checkSyntaxOfScript:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Syntax Checker", PROGRAM_NAME]];
-    
-    [[[SyntaxCheckerController alloc] init]
-     showSyntaxCheckerForFile:[scriptPathTextField stringValue]
-     withInterpreter:[interpreterTextField stringValue]
-     window:window];
-    
+    SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] init];
+    [controller showSyntaxCheckerForFile:[scriptPathTextField stringValue]
+                         withInterpreter:[interpreterTextField stringValue]
+                                  window:window];
+    [controller release];
     [window setTitle:PROGRAM_NAME];
 }
 
 - (void)openScriptInBuiltInEditor:(NSString *)path {
     [window setTitle:[NSString stringWithFormat:@"%@ - Script Editor", PROGRAM_NAME]];
-    [[[EditorController alloc] init] showEditorForFile:[scriptPathTextField stringValue] window:window];
+    EditorController *controller = [[EditorController alloc] init];
+    [controller showEditorForFile:[scriptPathTextField stringValue] window:window];
+    [controller release];
     [window setTitle:PROGRAM_NAME];
 }
 
-- (void)scriptFileSystemChange
-{
+- (void)scriptFileSystemChange {
     [scriptPathTextField updateTextColoring];
 }
 
@@ -845,7 +845,7 @@
     [window setTitle:[NSString stringWithFormat:@"%@ - Shell Command String", PROGRAM_NAME]];
     ShellCommandController *shellCommandController = [[ShellCommandController alloc] init];
     [shellCommandController showShellCommandForSpec:[self appSpecFromControls] window:window];
-    
+    [shellCommandController release];
     [window setTitle:PROGRAM_NAME];
 }
 
