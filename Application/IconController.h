@@ -31,6 +31,12 @@
 #import <Cocoa/Cocoa.h>
 #import "STDragImageView.h"
 
+typedef enum {
+    PlatypusPresetIconDefault = 0,
+    PlatypusPresetIconInstaller = 1,
+    PlatypusPresetIconGenericApplication = 2
+} PlatypusIconPreset;
+
 @interface IconController : NSObject <STDragImageViewDragDelegate>
 
 @property (nonatomic, readonly) BOOL hasIconFile;
@@ -40,5 +46,6 @@
 - (void)setToDefaults;
 - (BOOL)loadIcnsFile:(NSString *)filePath;
 - (BOOL)loadImageFile:(NSString *)filePath;
+- (void)setAppIconForType:(PlatypusIconPreset)type;
 
 @end
