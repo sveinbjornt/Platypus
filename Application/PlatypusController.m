@@ -211,14 +211,10 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    //show window
+    [DEFAULTS setObject:@NO forKey:@"FirstLaunch"];
     [window center];
     [window makeKeyAndOrderFront:self];
     [appNameTextField becomeFirstResponder];
-}
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    [DEFAULTS setObject:@NO forKey:@"FirstLaunch"];
 }
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
@@ -386,9 +382,9 @@
     
     // optimize nib is enabled and on by default if ibtool is present
     BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:IBTOOL_PATH];
-    if (ibtoolInstalled == FALSE) {
-        [DEFAULTS setObject:@NO forKey:@"OnCreateOptimizeNib"];
-    }
+    if ([DEFAULTS objectForKey:<#(nonnull NSString *)#>]
+    [DEFAULTS setObject:@((BOOL)ibtoolInstalled) forKey:@"OnCreateOptimizeNib"];
+    [optimizeApplicationCheckbox setEnabled:ibtoolInstalled];
     
     //run save panel
     [sPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
@@ -431,7 +427,7 @@
     // observe create and size changed notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(creationStatusUpdated:)
-                                                 name:PLATYPUS_APP_SPEC_CREATED_NOTIFICATION
+                                                 name:PLATYPUS_APP_SPEC_CREATION_NOTIFICATION
                                                object:nil];
     
     // we begin by making sure destination path ends in .app
@@ -462,15 +458,14 @@
     
     // first, show progress dialog
     [progressDialogMessageLabel setStringValue:[NSString stringWithFormat:@"Creating application %@", [spec propertyForKey:@"Name"]]];
-    
     [progressBar setUsesThreadedAnimation:YES];
     [progressBar startAnimation:self];
-    
-    [NSApp  beginSheet:progressDialogWindow
-        modalForWindow:window
-         modalDelegate:nil
-        didEndSelector:nil
-           contextInfo:nil];
+
+    [NSApp beginSheet:progressDialogWindow
+       modalForWindow:window
+        modalDelegate:nil
+       didEndSelector:nil
+          contextInfo:nil];
     
     // create the app from spec
     if (![spec create]) {
@@ -481,28 +476,18 @@
         [Alerts alert:@"Creating from spec failed" subText:[spec error]];
         return NO;
     }
-    
-    // check if icon creation failed
-//    NSString *appIconPath = [NSString stringWithFormat:@"%@/Contents/Resources/appIcon.icns", appPath];
-//    unsigned long long fileSize = [[FILEMGR attributesOfItemAtPath:appIconPath error:nil] fileSize];
-//    if (fileSize == 0) {
-//        [Alerts alert:@"Failed to create icon" subText:@"Creating the application has failed. Please report this bug."];
-//    }
 
-    // reveal newly create app in Finder, if prefs say so
+    // reveal newly created app in Finder
     if ([DEFAULTS boolForKey:@"RevealApplicationWhenCreated"]) {
         [WORKSPACE selectFile:appPath inFileViewerRootedAtPath:appPath];
     }
     
-    // open newly create app, if prefs say so
+    // open newly created app
     if ([DEFAULTS boolForKey:@"OpenApplicationWhenCreated"]) {
         [WORKSPACE launchApplication:appPath];
     }
     
-    [developmentVersionCheckbox setIntValue:0];
-    [optimizeApplicationCheckbox setIntValue:0];
-    
-    // Dialog ends here.
+    // Dialog ends here
     [NSApp endSheet:progressDialogWindow];
     [progressDialogWindow orderOut:self];
     
@@ -510,8 +495,6 @@
 }
 
 - (BOOL)verifyFieldContents {
-    BOOL isDir;
-    NSFileManager *fileManager = FILEMGR;
     
     //make sure a name has been assigned
     if ([[appNameTextField stringValue] length] == 0) {
@@ -519,26 +502,27 @@
         return NO;
     }
     
-    //verify that script exists at path
-    if (([fileManager fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] == NO) || isDir) { //make sure script exists and isn't a folder
+    //verify that script exists at path and isn't a directory
+    BOOL isDir;
+    if ([FILEMGR fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] == NO || isDir) {
         [Alerts sheetAlert:@"Invalid Script Path" subText:@"No file exists at the script path you have specified" forWindow:window];
         return NO;
     }
     
     //make sure we have an icon
-    if (([iconController hasIconFile] && ![[iconController icnsFilePath] isEqualToString:@""] && ![fileManager fileExistsAtPath:[iconController icnsFilePath]])) {
+    if (([iconController hasIconFile] && ![[iconController icnsFilePath] isEqualToString:@""] && ![FILEMGR fileExistsAtPath:[iconController icnsFilePath]])) {
         [Alerts sheetAlert:@"Missing Icon" subText:@"You must set an icon for your application." forWindow:window];
         return NO;
     }
     
     //let's be certain that the bundled files list doesn't contain entries that have been moved
-    if (![bundledFilesController areAllPathsAreValid]) {
+    if ([bundledFilesController areAllPathsAreValid] == NO) {
         [Alerts sheetAlert:@"Bundled files missing" subText:@"One or more of the files that are to be bundled with the application could not be found. Please rectify this and try again." forWindow:window];
         return NO;
     }
     
     //interpreter
-    if ([fileManager fileExistsAtPath:[interpreterTextField stringValue]] == NO) {
+    if ([FILEMGR fileExistsAtPath:[interpreterTextField stringValue]] == NO) {
         if ([Alerts proceedAlert:@"Invalid Interpreter" subText:[NSString stringWithFormat:@"The interpreter '%@' does not exist on this system.  Do you wish to proceed anyway?", [interpreterTextField stringValue]] withAction:@"Proceed"] == NO) {
             return NO;
         }
@@ -554,8 +538,6 @@
     
     [spec setProperty:[appNameTextField stringValue] forKey:@"Name"];
     [spec setProperty:[scriptPathTextField stringValue] forKey:@"ScriptPath"];
-    
-    // set output type to the name of the output type, minus spaces
     [spec setProperty:[outputTypePopupMenu titleOfSelectedItem] forKey:@"Output"];
     
     // icon
