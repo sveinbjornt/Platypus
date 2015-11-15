@@ -216,7 +216,7 @@
     }
 }
 
-- (void)setAppIconForType:(int)type {
+- (void)setAppIconForType:(PlatypusIconPreset)type {
     [self loadPresetIcon:[self getIconInfoForType:type]];
 }
 
@@ -227,7 +227,7 @@
     
     switch (type) {
             
-        case 0:
+        case PlatypusPresetIconDefault:
         {
             iconImage = [NSImage imageNamed:@"PlatypusDefault"];
             iconName = @"Platypus Default";
@@ -236,7 +236,7 @@
         }
         break;
             
-        case 1:
+        case PlatypusPresetIconInstaller:
         {
             NSString *installerIconPath = @"/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns";
             iconImage = [[NSImage alloc] initByReferencingFile:installerIconPath];
@@ -245,8 +245,9 @@
             iconPath = installerIconPath;
         }
         break;
-            
-        case 2:
+        
+        default:
+        case PlatypusPresetIconGenericApplication:
         {
             iconImage = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
             [iconImage setSize:NSMakeSize(512, 512)];
@@ -257,10 +258,6 @@
         }
         break;
         
-        default:
-        {
-            return nil;
-        }
     }
     
     return @{@"Image": iconImage, @"Name": iconName, @"Path": iconPath};

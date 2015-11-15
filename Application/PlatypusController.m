@@ -562,8 +562,7 @@
     if ([iconController hasIconFile]) {
         [spec setProperty:[iconController icnsFilePath] forKey:@"IconPath"];
     } else {
-        NSString *tmpIconPath = [NSString stringWithFormat:@"%@%@.icns", APP_SUPPORT_FOLDER, [appNameTextField stringValue]];
-        [spec setProperty:tmpIconPath forKey:@"IconPath"];
+        [spec setProperty:@"" forKey:@"IconPath"];
     }
     
     // advanced attributes
@@ -623,7 +622,9 @@
     [interpreterTextField setStringValue:[spec propertyForKey:@"Interpreter"]];
     
     //icon
-    if ([spec propertyForKey:@"IconPath"] && ![[spec propertyForKey:@"IconPath"] isEqualToString:@""]) {
+    if ([spec propertyForKey:@"IconPath"] == nil || [[spec propertyForKey:@"IconPath"] isEqualToString:@""]) {
+        [iconController setAppIconForType:PlatypusPresetIconGenericApplication];
+    } else {
         [iconController loadIcnsFile:[spec propertyForKey:@"IconPath"]];
     }
     
