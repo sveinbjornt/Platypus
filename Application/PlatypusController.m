@@ -633,8 +633,7 @@
     [remainRunningCheckbox setState:[[spec propertyForKey:@"RemainRunning"] boolValue]];
     
     //file list
-    [bundledFilesController clearFileList:self];
-    [bundledFilesController addFiles:[spec propertyForKey:@"BundledFiles"]];
+    [bundledFilesController setFilePaths:[spec propertyForKey:@"BundledFiles"]];
     
     //drop settings
     [dropSettingsController setSuffixList:[spec propertyForKey:@"Suffixes"]];
@@ -736,7 +735,7 @@
     [self controlsFromAppSpec:spec];
     [spec release];
     
-    [iconController setToDefaults];
+    [iconController setToDefaults:self];
     
     // add to recent items menu
     [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
@@ -841,9 +840,10 @@
     //clear all text field to start value
     [appNameTextField setStringValue:@""];
     [scriptPathTextField setStringValue:@""];
-    [versionTextField setStringValue:@"1.0"];
+    [versionTextField setStringValue:DEFAULT_VERSION];
     
-    [bundleIdentifierTextField setStringValue:[PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES]];
+    NSString *bundleId = [PlatypusAppSpec standardBundleIdForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES];
+    [bundleIdentifierTextField setStringValue:bundleId];
     [authorTextField setStringValue:[DEFAULTS objectForKey:@"DefaultAuthor"]];
     
     //uncheck all options
@@ -854,14 +854,15 @@
     [remainRunningCheckbox setIntValue:1];
     [showInDockCheckbox setIntValue:0];
     
-    [bundledFilesController clearFileList:self];
+    [bundledFilesController setToDefaults:self];
     [dropSettingsController setToDefaults:self];
     [argsController setToDefaults:self];
     [textSettingsController setToDefaults:self];
     [statusItemSettingsController setToDefaults:self];
-    
+    [iconController setToDefaults:self];
+
     //set script type
-    [self setScriptType:@"Shell"];
+    [self setScriptType:DEFAULT_SCRIPT_TYPE];
     
     //set output type
     [outputTypePopupMenu selectItemWithTitle:DEFAULT_OUTPUT_TYPE];
@@ -871,8 +872,6 @@
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
     
     [appSizeTextField setStringValue:@""];
-    
-    [iconController setToDefaults];
 }
 
 - (IBAction)showCommandLineString:(id)sender {

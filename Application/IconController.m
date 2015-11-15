@@ -212,7 +212,7 @@
         [iconNameTextField setStringValue:@"Custom Icon"];
         [self setIcnsFilePath:tmpIconPath];
     } else {
-        [self setToDefaults];
+        [self setToDefaults:self];
     }
 }
 
@@ -263,7 +263,7 @@
     return @{@"Image": iconImage, @"Name": iconName, @"Path": iconPath};
 }
 
-- (void)setToDefaults {
+- (IBAction)setToDefaults:(id)sender {
     [self setAppIconForType:0];
 }
 
