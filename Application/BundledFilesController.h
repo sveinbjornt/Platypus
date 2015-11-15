@@ -37,9 +37,8 @@
 
 @property (nonatomic, readonly) BOOL areAllPathsAreValid;
 @property (nonatomic, readonly) UInt64 totalFileSize;
-@property (nonatomic, readonly, copy) NSArray *filePaths;
+@property (nonatomic, copy) NSArray *filePaths;
 
-- (IBAction)clearFileList:(id)sender;
-- (void)addFiles:(NSArray *)fileNames;
+- (IBAction)setToDefaults:(id)sender;
 
 @end

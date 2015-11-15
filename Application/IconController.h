@@ -43,7 +43,7 @@ typedef NS_ENUM(unsigned int, PlatypusIconPreset) {
 @property (nonatomic, readonly, copy) NSString *icnsFilePath;
 @property (nonatomic, readonly) UInt64 iconFileSize;
 
-- (void)setToDefaults;
+- (IBAction)setToDefaults:(id)sender;
 - (BOOL)loadIcnsFile:(NSString *)filePath;
 
 @end

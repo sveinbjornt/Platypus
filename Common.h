@@ -95,6 +95,7 @@
 #define DEFAULT_APP_NAME            @ "MyPlatypusApp"
 #define DEFAULT_DESTINATION_PATH    [[NSString stringWithFormat : @ "~/Desktop/%@.app", DEFAULT_APP_NAME] stringByExpandingTildeInPath]
 #define DEFAULT_OUTPUT_TYPE         @ "Progress Bar"
+#define DEFAULT_SCRIPT_TYPE         @ "Shell"
 
 #define EDITOR_FONT                 [NSFont userFixedPitchFontOfSize:13.0]
 #define SHELL_COMMAND_STRING_FONT   [NSFont userFixedPitchFontOfSize:11.0]

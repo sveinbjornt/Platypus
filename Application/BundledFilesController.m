@@ -182,6 +182,15 @@
     return filePaths;
 }
 
+- (void)setFilePaths:(NSArray *)filePaths {
+    [self clearFileList:self];
+    [self addFiles:filePaths];
+}
+
+- (IBAction)setToDefaults:(id)sender {
+    [self setFilePaths:@[]];
+}
+
 #pragma mark - Interface actions
 
 - (void)itemDoubleClicked:(id)sender {
