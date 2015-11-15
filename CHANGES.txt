@@ -14,18 +14,21 @@ For 5.1
 
 For 5.0
     TODO: Fix Provide as Mac OS X service
-    TODO: Update documentation with information about Uniform Type Identifiers
-    TODO: Overhaul very old and in many respects out of date documentation
-    TODO: New high res images for documentation
     TODO: File watching still broken for script path
     TODO: Test UTI stuff
     TODO: Fix "Create app on script file change" feature
     TODO: Long GNU named params for command line tool, e.g. --some-option
-    TODO: Add documentation for ALERT:Title|Info syntax
     TODO: Add sample profile
-    TODO: Documentation on reading dropped text from STDIN
     TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
+    TODO: ALERT: syntax doesn't work in Output Type None
+    TODO: Create ALERT: example
 
+    TODO: Overhaul very old and in many respects out of date documentation
+        TODO: Add documentation for ALERT:Title|Info syntax
+        TODO: Add documentation about Uniform Type Identifiers
+        TODO: Add documentation on reading dropped text from STDIN
+
+    * New high res images for documentation
     * Added example showing STATUSMENUICON: syntax in action
     * Migrated source to modern Objective-C syntax (literals, properties etc.)
     * Now using bindings for defaults

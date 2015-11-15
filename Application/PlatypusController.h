@@ -28,9 +28,6 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-// PlatypusController class is the controller class for the basic Platypus
-// main window interface.  Also delegate for the application and for menus.
-
 #import <Cocoa/Cocoa.h>
 
 @interface PlatypusController : NSObject <NSApplicationDelegate, NSMenuDelegate, NSWindowDelegate>
