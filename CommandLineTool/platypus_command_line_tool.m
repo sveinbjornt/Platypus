@@ -397,7 +397,7 @@ int main(int argc, const char *argv[]) {
                 }
                 properties[@"NibPath"] = nibPath;
             }
-                break;
+            break;
                 
                 // set display kind for Status Menu output
             case 'K':
@@ -409,7 +409,7 @@ int main(int argc, const char *argv[]) {
                 }
                 properties[@"StatusItemDisplayType"] = kind;
             }
-                break;
+            break;
                 
                 // set title of status item for Status Menu output
             case 'Y':
@@ -421,7 +421,7 @@ int main(int argc, const char *argv[]) {
                 }
                 properties[@"StatusItemTitle"] = title;
             }
-                break;
+            break;
                 
                 // set icon image of status item for Status Menu output
             case 'L':
@@ -438,34 +438,33 @@ int main(int argc, const char *argv[]) {
                     NSPrintErr(@"Error: Unable to get image from file '%@'", iconPath);
                     exit(1);
                 }
-                
-                // make sure it's 16x16 pixels
-                NSSize imgSize = [iconImage size];
-                if (imgSize.width != 16 || imgSize.height != 16) {
-                    NSPrintErr(@"Error: Dimensions of image '%@' is not 16x16", iconPath);
-                    exit(1);
-                }
                 properties[@"StatusItemIcon"] = [iconImage TIFFRepresentation];
             }
-                break;
+            break;
                 
                 // print version
             case 'v':
+            {
                 PrintVersion();
                 exit(0);
-                break;
+            }
+            break;
                 
                 // print help with list of options
             case 'h':
+            {
                 PrintHelp();
                 return 0;
-                break;
+            }
+            break;
                 
                 // default to printing usage string
             default:
+            {
                 PrintUsage();
                 return 0;
-                break;
+            }
+            break;
         }
     }
     
@@ -525,6 +524,8 @@ int main(int argc, const char *argv[]) {
     else {
         // get script path, generate default app name
         scriptPath = remainingArgs[0];
+        
+        // A script path of - means read from STDIN
         if ([scriptPath isEqualToString:@"-"]) {
             // read data
             NSData *inData = [[NSFileHandle fileHandleWithStandardInput] readDataToEndOfFile];
