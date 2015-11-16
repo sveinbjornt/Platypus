@@ -6,6 +6,53 @@
         <description>Most recent release list for Platypus, with links to signed updates.</description>
         <language>en</language>
         <item>
+            <title>Version 5.0</title>
+            <pubDate>Wed, 2 Apr 2015 15:28:00 +0000</pubDate>
+            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus5.0.zip" sparkle:version="5.0" sparkle:shortVersionString="5.0" length="" type="application/octet-stream" sparkle:dsaSignature=""/>
+            <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>Version 5.0 Changes</h2>
+                <ul>
+                    <li>This is a major update to Platypus with lots of new features</li>
+                    <li>Modernised user interface with ultra high-resolution icons and interface assets</li>
+                    <li>Added support for Uniform Type Identifiers (UTIs) in Drop Settings</li>
+                    <li>Added NOTIFICATION: syntax, which sends a notification to User Notification Center</li>
+                    <li>Added ALERT: syntax, which triggers a modal alert dialog</li>
+                    <li>Added MENUITEMICON: syntax, which sets menu item icon in status item menus</li>
+                    <li>Dropped text input (NSPboardText) is now passed to script via STDIN, not as an argument. This allows differentiation between dropped text snippets and dropped files in applications that are made to handle both.</li>
+                    <li>The built-in editor has been much enhanced, with line numbering, configurable text size, word wrap and other improvements</li>
+                    <li>Documentation completely overhauled and expanded</li>
+                    <li>New "Use System Font" option for status menu items</li>
+                    <li>Symlinks now resolved when adding files to Bundled Files list</li>
+                    <li>Folder sizes are now calculated much faster (and asynchronously) when added to Bundled Files list</li>
+                    <li>Arguments window now highlights arguments and argument groups in command preview field</li>
+                    <li>Previewing status item menu now shows actual script output instead of placeholder text</li>
+                    <li>Many new examples</li>
+                    <li>Command line tool now supports --long-options</li>
+                    <li>Author name argument is now used to generate default bundle identifier in command line tool</li>
+                    <li>Finder now refreshes display of overwritten applications</li>
+                    <li>Status menu items can now only have a title or an icon, not both, due to changes in Mac OS X</li>
+                    <li>Show Shell Command window now shows install status of command line tool</li>
+                    <li>Syntax checker window now shows the command invoked when checking script syntax</li>
+                    <li>App size estimation is now more accurate</li>
+                    <li>Font size in web output view can now also be increased/reduced</li>
+                    <li>New contexual menu button for icon view</li>
+                    <li>New "Copy icon path" option in icon contextual menu</li>
+                    <li>Platypus-generated apps now remember font size set by user</li>
+                    <li>Fixed issue with generating icon from images on retina macs (IconFamily)</li>
+                    <li>Fixed issue with broken icon image alpha channels (IconFamily)</li>
+                    <li>Fixed issue where a status menu could display an empty menu if clicked repeatedly</li>
+                    <li>Fixed issue where dropping text on an app wouldn't work with “Remain running after initial execution” off</li>
+                    <li>Fixed issue with Open... menu item and file types in ScriptExec</li>
+                    <li>Fixed bug where Status Item menu intermittently showed empty output</li>
+                    <li>Fixed issue where process number arguments in the format -psn_0_* were passed to script</li>
+                    <li>Fixed issue where command line arguments for ScriptExec were being passed incorrectly to script</li>
+                    <li>Many, many minor bugfixes, tweaks and improvements
+                    <li>Codebase migrated to modern Objective-C syntax. Built with XCode 7 and now requires Mac OS X 10.7 or later and a 64-bit Intel system. Older versions continue to work just fine on 32-bit 10.6 systems, and version 4.4 still works on PowerPC. But it's time to leave the past behind. It's been 9 years since the last 32-bit Mac was released.</li>
+                </ul>
+            ]]></description>
+        </item>
+        <item>
             <title>Version 4.9</title>
             <pubDate>Wed, 2 Apr 2015 15:28:00 +0000</pubDate>
             <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.9.zip" sparkle:version="4.9" sparkle:shortVersionString="4.9" length="1668252" type="application/octet-stream" sparkle:dsaSignature="MC0CFCU9a7YtceYxs/6LIpqykQPKghTyAhUAs3SFJFKOn4fXzEy76S3qXVlwGUk="/>
