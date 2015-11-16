@@ -9,9 +9,8 @@ For 5.1
     TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
     TODO: Make the type lists in drop settings editable like those in Args controller
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
-    TODO: Get rid of crazy pattern where objects release themselves in the window controllers. What was I thinking?
     TODO: Add URI handling https://github.com/barryk/DropScript/commit/3fa2d00177cc22680c54edeb6f433a658f6b07e8
-    TODO: Asynchronous creation in background thread
+    TODO: Asynchronous app creation in background thread
 
 For 5.0
     TODO: Fix Provide as Mac OS X service
