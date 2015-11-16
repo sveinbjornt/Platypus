@@ -17,3 +17,5 @@ echo "LOC Command Line Tool"
 find CommandLineTool -name \*.\[m\|h\] -exec cat {} \; | wc -l
 echo "LOC Shared"
 find Shared -name \*.\[m\|h\] -exec cat {} \; | wc -l
+echo "LOC Shared (Others)"
+find Shared/Others -name \*.\[m\|h\] -exec cat {} \; | wc -l
