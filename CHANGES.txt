@@ -24,7 +24,7 @@ For 5.0
         TODO: Add documentation for ALERT:Title|Info syntax
         TODO: Add documentation about Uniform Type Identifiers
         TODO: Add documentation on reading dropped text from STDIN
-
+    TODO: Resizable Progress Bar window
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Test UTI stuff
 

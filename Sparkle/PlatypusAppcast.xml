@@ -14,7 +14,7 @@
                 <h2>Version 5.0 Changes</h2>
                 <ul>
                     <li>This is a major update to Platypus with lots of new features</li>
-                    <li>Modernised user interface with ultra high-resolution icons and interface assets</li>
+                    <li>Modernised user interface with high-resolution icons and interface assets</li>
                     <li>Added support for Uniform Type Identifiers (UTIs) in Drop Settings</li>
                     <li>Added NOTIFICATION: syntax, which sends a notification to User Notification Center</li>
                     <li>Added ALERT: syntax, which triggers a modal alert dialog</li>
@@ -41,10 +41,9 @@
                     <li>Platypus-generated apps now remember font size set by user</li>
                     <li>Fixed issue with generating icon from images on retina macs (IconFamily)</li>
                     <li>Fixed issue with broken icon image alpha channels (IconFamily)</li>
-                    <li>Fixed issue where a status menu could display an empty menu if clicked repeatedly</li>
+                    <li>Fixed issue where a status item menu would display an empty menu if clicked repeatedly</li>
                     <li>Fixed issue where dropping text on an app wouldn't work with “Remain running after initial execution” off</li>
                     <li>Fixed issue with Open... menu item and file types in ScriptExec</li>
-                    <li>Fixed bug where Status Item menu intermittently showed empty output</li>
                     <li>Fixed issue where process number arguments in the format -psn_0_* were passed to script</li>
                     <li>Fixed issue where command line arguments for ScriptExec were being passed incorrectly to script</li>
                     <li>Many, many minor bugfixes, tweaks and improvements

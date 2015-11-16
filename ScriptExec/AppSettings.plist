@@ -23,7 +23,7 @@
 		<true/>
 	</dict>
 	<key>OutputType</key>
-	<string>Text Window</string>
+	<string>Progress Bar</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunningAfterCompletion</key>
