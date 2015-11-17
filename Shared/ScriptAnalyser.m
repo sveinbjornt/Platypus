@@ -34,7 +34,7 @@
 //
 
 #import "ScriptAnalyser.h"
-#import "NSTask+Description.h"
+//#import "NSTask+Description.h"
 
 @implementation ScriptAnalyser
 
@@ -279,7 +279,7 @@
     
     //if the syntax report string is empty --> no complaints, so we report syntax as OK
     outputStr = [outputStr length] ? outputStr : @"Syntax OK";
-    outputStr = [NSString stringWithFormat:@"%@\n\n%@", [task humanDescription], outputStr];
+    outputStr = [NSString stringWithFormat:@"%@", outputStr];
     
     [task release];
 

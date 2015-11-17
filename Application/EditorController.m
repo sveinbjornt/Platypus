@@ -33,6 +33,7 @@
 #import "Alerts.h"
 #import "SyntaxCheckerController.h"
 #import "NSTextView+JSDExtensions.h"
+#import "NSWorkspace+Additions.h"
 
 @interface EditorController()
 {
@@ -121,10 +122,15 @@
 #pragma mark -
 
 - (IBAction)checkSyntax:(id)sender {
+    NSString *currentScriptText = [textView string];
+    NSString *tmpPath = [WORKSPACE createTempFileWithContents:currentScriptText];
+    
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
-    [controller showSyntaxCheckerForFile:[scriptPathTextField stringValue]
-                               withInterpreter:nil
-                                        window:[self window]];
+    [controller showSyntaxCheckerForFile:tmpPath
+                         withInterpreter:nil
+                                  window:[self window]];
+    
+    [FILEMGR removeItemAtPath:tmpPath error:nil];
     [controller release];
 }
 

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AcceptsFiles</key>
+	<true/>
+	<key>AcceptsText</key>
+	<false/>
+	<key>Authentication</key>
+	<false/>
+	<key>Author</key>
+	<string>Sveinbjorn Thordarson</string>
+	<key>BundledFiles</key>
+	<array/>
+	<key>Creator</key>
+	<string>Platypus-5.0</string>
+	<key>DeclareService</key>
+	<false/>
+	<key>Destination</key>
+	<string>/Users/sveinbjorn/Desktop/MyPlatypusApp.app</string>
+	<key>DestinationOverride</key>
+	<false/>
+	<key>DevelopmentVersion</key>
+	<false/>
+    <key>Example</key>
+    <true/>
+    <key>ScriptName</key>
+    <string>DataURLifier.sh</string>
+    <key>Script</key>
+    <string>#!/bin/sh
+
+if [ ! -e "$1" ]
+	then
+	echo "Drop a file to see its Data URL"
+	exit
+fi
+# Data urls have the form data:MIME_TYPE;base64,DATA
+FILE_PATH="$1"
+BASE64_DATA=$( base64 "$FILE_PATH" )
+MIME_TYPE=$( file -b --mime-type "$FILE_PATH" )
+echo "data:$MIME_TYPE;base64,$BASE64_DATA"
+    
+    </string>
+	<key>DocIcon</key>
+	<string></string>
+	<key>Droppable</key>
+	<true/>
+	<key>ExecutablePath</key>
+	<string>/usr/local/share/platypus/ScriptExec</string>
+	<key>IconPath</key>
+	<string></string>
+	<key>Identifier</key>
+	<string>org.sveinbjorn.DataURLifier</string>
+	<key>Interpreter</key>
+	<string>/bin/sh</string>
+	<key>InterpreterArgs</key>
+	<array/>
+	<key>Name</key>
+	<string>DataURLifier</string>
+	<key>NibPath</key>
+	<string>/usr/local/share/platypus/MainMenu.nib</string>
+	<key>OptimizeApplication</key>
+	<true/>
+	<key>Output</key>
+	<string>Text Window</string>
+	<key>PromptForFileOnLaunch</key>
+	<false/>
+	<key>RemainRunning</key>
+	<true/>
+	<key>Role</key>
+	<string>Viewer</string>
+	<key>ScriptArgs</key>
+	<array/>
+	<key>ScriptPath</key>
+	<string>/Users/sveinbjorn/Library/Application Support/Platypus/DataURLifier.sh</string>
+	<key>Secure</key>
+	<false/>
+	<key>ShowInDock</key>
+	<false/>
+	<key>StatusItemDisplayType</key>
+	<string>Text</string>
+	<key>StatusItemIcon</key>
+	<data>
+	</data>
+	<key>StatusItemTitle</key>
+	<string>MyPlatypusApp</string>
+	<key>StatusItemUseSystemFont</key>
+	<true/>
+	<key>Suffixes</key>
+	<array>
+		<string>*</string>
+	</array>
+	<key>TextBackground</key>
+	<string>#ffffff</string>
+	<key>TextEncoding</key>
+	<integer>4</integer>
+	<key>TextFont</key>
+	<string>Monaco</string>
+	<key>TextForeground</key>
+	<string>#000000</string>
+	<key>TextSize</key>
+	<real>13</real>
+	<key>UniformTypes</key>
+	<array/>
+	<key>UseXMLPlistFormat</key>
+	<false/>
+	<key>Version</key>
+	<string>1.0</string>
+</dict>
+</plist>

@@ -27,6 +27,7 @@ For 5.0
     TODO: Resizable Progress Bar window
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Test UTI stuff
+    TODO: Font styling changes in DataURLifier.  Why?
 
     * Fixed bug where Status Item menu intermittently showed empty output
     * New high res images for documentation
