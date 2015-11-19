@@ -1,12 +1,12 @@
 #!/bin/sh
-
-if [ ! -e "$1" ]
-then
+echo $@
+#if [ ! -e "$1" ]
+#then
 printf "Drop a file to see its Data URL\n"
 #printf "ALERT:Hey!|What's up?\n"
 printf "NOTIFICATION:Hello, dude\n"
 exit
-fi
+#fi
 # Data urls have the form data:MIME_TYPE;base64,DATA
 FILE_PATH="$1"
 BASE64_DATA=$( base64 "$FILE_PATH" )

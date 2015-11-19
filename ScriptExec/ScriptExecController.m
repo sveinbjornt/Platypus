@@ -147,50 +147,46 @@
     outputType = [PLATYPUS_OUTPUT_TYPES indexOfObject:outputTypeStr];
     
     // we need some additional info from AppSettings.plist if we are presenting textual output
-    if (outputType == PLATYPUS_OUTPUT_PROGRESSBAR ||
-        outputType == PLATYPUS_OUTPUT_TEXTWINDOW ||
-        outputType == PLATYPUS_OUTPUT_STATUSMENU) {
-        
-        //make sure all this data is sane, revert to defaults if not
-        
-        // font and size
-        NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
-        CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[@"TextSize"] floatValue];
-        fontSize = fontSize ? fontSize : DEFAULT_OUTPUT_FONTSIZE;
-        
-        if (appSettingsDict[@"TextFont"] != nil) {
-            textFont = [NSFont fontWithName:appSettingsDict[@"TextFont"] size:fontSize];
-        }
-        if (textFont == nil) {
-            textFont = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE];
-        }
-        
-        // foreground color
-        if (appSettingsDict[@"TextForeground"] != nil) {
-            textForegroundColor = [NSColor colorFromHex:appSettingsDict[@"TextForeground"]];
-        }
-        if (textForegroundColor == nil) {
-            textForegroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_FG_COLOR];
-        }
-        
-        // background color
-        if (appSettingsDict[@"TextBackground"] != nil) {
-            textBackgroundColor = [NSColor colorFromHex:appSettingsDict[@"TextBackground"]];
-        }
-        if (textBackgroundColor == nil) {
-            textBackgroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_BG_COLOR];
-        }
-        
-        // encoding
-        textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
-        if (appSettingsDict[@"TextEncoding"] != nil) {
-            textEncoding = (int)[appSettingsDict[@"TextEncoding"] intValue];
-        }
-        
-        [textFont retain];
-        [textForegroundColor retain];
-        [textBackgroundColor retain];
+    
+    //make sure all this data is sane, revert to defaults if not
+    
+    // font and size
+    NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
+    CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[@"TextSize"] floatValue];
+    fontSize = fontSize ? fontSize : DEFAULT_OUTPUT_FONTSIZE;
+    
+    if (appSettingsDict[@"TextFont"] != nil) {
+        textFont = [NSFont fontWithName:appSettingsDict[@"TextFont"] size:fontSize];
     }
+    if (textFont == nil) {
+        textFont = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE];
+    }
+    
+    // foreground color
+    if (appSettingsDict[@"TextForeground"] != nil) {
+        textForegroundColor = [NSColor colorFromHex:appSettingsDict[@"TextForeground"]];
+    }
+    if (textForegroundColor == nil) {
+        textForegroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_FG_COLOR];
+    }
+    
+    // background color
+    if (appSettingsDict[@"TextBackground"] != nil) {
+        textBackgroundColor = [NSColor colorFromHex:appSettingsDict[@"TextBackground"]];
+    }
+    if (textBackgroundColor == nil) {
+        textBackgroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_BG_COLOR];
+    }
+    
+    // encoding
+    textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
+    if (appSettingsDict[@"TextEncoding"] != nil) {
+        textEncoding = (int)[appSettingsDict[@"TextEncoding"] intValue];
+    }
+    
+    [textFont retain];
+    [textForegroundColor retain];
+    [textBackgroundColor retain];
     
     // likewise, status menu output has some additional parameters
     if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
@@ -793,14 +789,12 @@
     [task setArguments:arguments];
     
     // direct output to file handle and start monitoring it if script provides feedback
-    if (outputType != PLATYPUS_OUTPUT_NONE) {
-        outputPipe = [NSPipe pipe];
-        [task setStandardOutput:outputPipe];
-        [task setStandardError:outputPipe];
-        outputReadFileHandle = [outputPipe fileHandleForReading];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
-        [outputReadFileHandle readInBackgroundAndNotify];
-    }
+    outputPipe = [NSPipe pipe];
+    [task setStandardOutput:outputPipe];
+    [task setStandardError:outputPipe];
+    outputReadFileHandle = [outputPipe fileHandleForReading];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
+    [outputReadFileHandle readInBackgroundAndNotify];
     
     // set up stdin for writing
     inputPipe = [NSPipe pipe];
@@ -866,6 +860,7 @@
         return;
     }
     isTaskRunning = NO;
+    PLog(@"Task finished");
     
     // make sure task is dead.  Ideally we'd like to do the same for privileged tasks, but that's just not possible w/o process id
     if (execStyle == PLATYPUS_EXECSTYLE_NORMAL && task != nil && [task isRunning]) {
@@ -1074,7 +1069,13 @@
 
 - (void)appendStringToTextView:(NSString *)string {
     PLog(@"Appending output: \"%@\"", string);
-
+//    if (outputType == PLATYPUS_OUTPUT_NONE) {
+////        fprintf(stdout, "%s", [string cStringUsingEncoding:textEncoding]);
+//        NSData *strData = [string dataUsingEncoding:textEncoding];
+//        [[NSFileHandle fileHandleWithStandardError] writeData:strData];
+//        return;
+//    }
+    
     NSTextStorage *textStorage = [outputTextView textStorage];
     NSRange appendRange = NSMakeRange([textStorage length], 0);
     [textStorage replaceCharactersInRange:appendRange withString:string];
