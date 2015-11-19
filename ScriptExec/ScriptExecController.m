@@ -99,7 +99,10 @@
     
     // we listen to different kind of notification depending on whether we're running
     // an NSTask or an STPrivilegedTask
-    NSString *notificationName = (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) ? STPrivilegedTaskDidTerminateNotification : NSTaskDidTerminateNotification;
+    NSString *notificationName = NSTaskDidTerminateNotification;
+    if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
+        notificationName = STPrivilegedTaskDidTerminateNotification;
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(taskFinished:)
                                                  name:notificationName
@@ -138,7 +141,8 @@
     //determine output type
     NSString *outputTypeStr = appSettingsDict[@"OutputType"];
     if ([PLATYPUS_OUTPUT_TYPES containsObject:outputTypeStr] == FALSE) {
-        [Alerts fatalAlert:@"Corrupt app settings" subText:@"Invalid Output Mode."];
+        [Alerts fatalAlert:@"Corrupt app settings"
+                   subText:[NSString stringWithFormat:@"Invalid Output Mode: '%@'.", outputTypeStr]];
     }
     outputType = [PLATYPUS_OUTPUT_TYPES indexOfObject:outputTypeStr];
     
@@ -153,15 +157,16 @@
         NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
         CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[@"TextSize"] floatValue];
         fontSize = fontSize ? fontSize : DEFAULT_OUTPUT_FONTSIZE;
-        if (appSettingsDict[@"TextFont"]) {
+        
+        if (appSettingsDict[@"TextFont"] != nil) {
             textFont = [NSFont fontWithName:appSettingsDict[@"TextFont"] size:fontSize];
         }
-        if (!textFont) {
+        if (textFont == nil) {
             textFont = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE];
         }
         
         // foreground color
-        if (appSettingsDict[@"TextForeground"]) {
+        if (appSettingsDict[@"TextForeground"] != nil) {
             textForegroundColor = [NSColor colorFromHex:appSettingsDict[@"TextForeground"]];
         }
         if (textForegroundColor == nil) {
@@ -215,7 +220,6 @@
         statusItemUsesSystemFont = [appSettingsDict[@"StatusItemUseSystemFont"] boolValue];
     }
     
-    // load these vars from plist
     interpreterArgs = [appSettingsDict[@"InterpreterArgs"] retain];
     scriptArgs = [appSettingsDict[@"ScriptArgs"] retain];
     execStyle = [appSettingsDict[@"RequiresAdminPrivileges"] boolValue];
@@ -294,7 +298,7 @@
         if ([droppableSuffixes containsObject:@"*"] || [droppableUniformTypes containsObject:@"public.data"]) {
             acceptAnyDroppedItem = YES;
         }
-        if ([droppableUniformTypes containsObject:(NSString *)kUTTypeFolder]) {
+        if ([droppableSuffixes containsObject:@"fold"] || [droppableUniformTypes containsObject:(NSString *)kUTTypeFolder]) {
             acceptDroppedFolders = YES;
         }
     }
