@@ -116,8 +116,8 @@
     NSString *appName;
     
     NSFont *textFont;
-    NSColor *textForeground;
-    NSColor *textBackground;
+    NSColor *textForegroundColor;
+    NSColor *textBackgroundColor;
     NSStringEncoding textEncoding;
     
     PlatypusExecStyle execStyle;
