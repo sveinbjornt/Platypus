@@ -34,6 +34,7 @@
 #import "ScriptExecController.h"
 #import "Alerts.h"
 #import "ScriptExecJob.h"
+#import "NSTask+Description.h"
 
 @implementation ScriptExecController
 
@@ -161,18 +162,18 @@
         
         // foreground color
         if (appSettingsDict[@"TextForeground"]) {
-            textForeground = [NSColor colorFromHex:appSettingsDict[@"TextForeground"]];
+            textForegroundColor = [NSColor colorFromHex:appSettingsDict[@"TextForeground"]];
         }
-        if (textForeground == nil) {
-            textForeground = [NSColor colorFromHex:DEFAULT_OUTPUT_FG_COLOR];
+        if (textForegroundColor == nil) {
+            textForegroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_FG_COLOR];
         }
         
         // background color
         if (appSettingsDict[@"TextBackground"] != nil) {
-            textBackground = [NSColor colorFromHex:appSettingsDict[@"TextBackground"]];
+            textBackgroundColor = [NSColor colorFromHex:appSettingsDict[@"TextBackground"]];
         }
-        if (textBackground == nil) {
-            textBackground = [NSColor colorFromHex:DEFAULT_OUTPUT_BG_COLOR];
+        if (textBackgroundColor == nil) {
+            textBackgroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_BG_COLOR];
         }
         
         // encoding
@@ -182,8 +183,8 @@
         }
         
         [textFont retain];
-        [textForeground retain];
-        [textBackground retain];
+        [textForegroundColor retain];
+        [textBackgroundColor retain];
     }
     
     // likewise, status menu output has some additional parameters
@@ -456,9 +457,6 @@
             
             // style the text field
             outputTextView = progressBarTextView;
-            [outputTextView setFont:textFont];
-            [outputTextView setTextColor:textForeground];
-            [outputTextView setBackgroundColor:textBackground];
             
             // add drag instructions message if droplet
             NSString *progBarMsg = isDroppable ? @"Drag files to process" : @"Running...";
@@ -482,12 +480,6 @@
                 [textOutputWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
                 [textOutputMessageTextField setStringValue:@"Drag files on window to process them"];
             }
-            
-            // style the text field
-            [outputTextView setString:@"\n"];
-            [outputTextView setFont:textFont];
-            [outputTextView setTextColor:textForeground];
-            [outputTextView setBackgroundColor:textBackground];
             
             [textOutputProgressIndicator setUsesThreadedAnimation:YES];
             
@@ -565,6 +557,8 @@
 
 // Prepare all the controls, windows, etc prior to executing script
 - (void)prepareInterfaceForExecution {
+    [outputTextView setString:@""];
+    
     switch (outputType) {
         case PLATYPUS_OUTPUT_NONE:
         {
@@ -577,7 +571,6 @@
             [progressBarIndicator setIndeterminate:YES];
             [progressBarIndicator startAnimation:self];
             [progressBarMessageTextField setStringValue:@"Running..."];
-            [outputTextView setString:@"\n"];
             [progressBarCancelButton setTitle:@"Cancel"];
             if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
                 [progressBarCancelButton setEnabled:NO];
@@ -587,7 +580,6 @@
             
         case PLATYPUS_OUTPUT_TEXTWINDOW:
         {
-            [outputTextView setString:@"\n"];
             [textOutputCancelButton setTitle:@"Cancel"];
             if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
                 [textOutputCancelButton setEnabled:NO];
@@ -598,7 +590,6 @@
             
         case PLATYPUS_OUTPUT_WEBVIEW:
         {
-            [outputTextView setString:@"\n"];
             [webOutputCancelButton setTitle:@"Cancel"];
             if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
                 [webOutputCancelButton setEnabled:NO];
@@ -609,7 +600,7 @@
             
         case PLATYPUS_OUTPUT_STATUSMENU:
         {
-            [outputTextView setString:@"\n"];
+
         }
             break;
             
@@ -620,7 +611,6 @@
             [dropletDropFilesLabel setHidden:YES];
             [dropletMessageTextField setHidden:NO];
             [dropletMessageTextField setStringValue:@"Processing..."];
-            [outputTextView setString:@"\n"];
         }
             break;
             
@@ -640,6 +630,13 @@
 
         case PLATYPUS_OUTPUT_TEXTWINDOW:
         {
+            // if there are any remnants, we append them to output
+            if (remnants != nil) {
+                [self appendStringToTextView:remnants];
+                [remnants release];
+                remnants = nil;
+            }
+            
             //update controls for text output window
             [textOutputCancelButton setTitle:@"Quit"];
             [textOutputCancelButton setEnabled:YES];
@@ -651,8 +648,7 @@
         {
             // if there are any remnants, we append them to output
             if (remnants != nil) {
-                NSTextStorage *text = [outputTextView textStorage];
-                [text replaceCharactersInRange:NSMakeRange([text length], 0) withString:remnants];
+                [self appendStringToTextView:remnants];
                 [remnants release];
                 remnants = nil;
             }
@@ -662,9 +658,8 @@
                 [progressBarIndicator setIndeterminate:YES];
             } else {
                 // cleanup - if the script didn't give us a proper status message, then we set one
-                if ([[progressBarMessageTextField stringValue] isEqualToString:@""] ||
-                    [[progressBarMessageTextField stringValue] isEqualToString:@"\n"] ||
-                    [[progressBarMessageTextField stringValue] isEqualToString:@"Running..."]) {
+                NSString *msg = [progressBarMessageTextField stringValue];
+                if ([msg isEqualToString:@""] || [msg isEqualToString:@"\n"] || [msg isEqualToString:@"Running..."]) {
                     [progressBarMessageTextField setStringValue:@"Task completed"];
                 }
                 [progressBarIndicator setIndeterminate:NO];
@@ -809,6 +804,7 @@
     inputWriteFileHandle = [[task standardInput] fileHandleForWriting];
     
     //set it off
+    PLog(@"Running task\n%@", [task humanDescription]);
     [task launch];
     
     // write input, if any, to stdin, and then close
@@ -835,6 +831,7 @@
     [privilegedTask setArguments:arguments];
     
     //set it off
+    PLog(@"Running task\n%@", [privilegedTask description]);
     OSStatus err = [privilegedTask launch];
     if (err != errAuthorizationSuccess) {
         if (err == errAuthorizationCanceled) {
@@ -937,16 +934,13 @@
     }
 }
 
-// this function receives all new data dumped out by the script and appends it to text field
-// it is *relatively* memory efficient (given the nature of NSTextView)
+// this function receives script output text and appends it to text view
 - (void)appendOutput:(NSData *)data {
-    // we decode the script output according to specified character encoding
+
     NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:textEncoding];
     
-    if (!outputString || [outputString length] == 0) {
-        if (outputString) {
-            [outputString release];
-        }
+    if (!outputString) {
+        PLog(@"Output string is nil");
         return;
     }
     
@@ -954,36 +948,40 @@
         [outputString insertString:remnants atIndex:0];
     }
     
-    // parse
-    NSMutableArray *lines = [NSMutableArray arrayWithArray:[outputString componentsSeparatedByString:@"\n"]];
-        
+   // PLog(@"Appending text output: \"%@\"", outputString);
+    
+    // parse line by line
+    NSMutableArray<NSString*> *lines = [[outputString componentsSeparatedByString:@"\n"] mutableCopy];
+    [outputString release];
+    
     // if the line did not end with a newline, it wasn't a complete line of output
     // Thus, we store the last line and then delete it from the outputstring
     // It'll be appended next time we get output
-    if ([(NSString *)[lines lastObject] length] > 0) {
+    if ([[lines lastObject] length] > 0) {
         if (remnants != nil) {
             [remnants release];
             remnants = nil;
         }
         remnants = [[NSString alloc] initWithString:[lines lastObject]];
-        [outputString deleteCharactersInRange:NSMakeRange([outputString length] - [remnants length], [remnants length])];
     } else {
         remnants = nil;
     }
     
     [lines removeLastObject];
     
-    // parse output looking for commands; if none, add line to output text field
+    
+    NSURL *locationURL = nil;
+    
+    // parse output looking for commands; if none, append line to output text field
     for (NSString *theLine in lines) {
         
-        // if the line is empty, we ignore it
-        if ([theLine isEqualToString:@""]) {
+        if ([theLine length] == 0) {
             continue;
         }
         
-        if ([theLine hasPrefix:@"QUITAPP"]) {
+        if ([theLine isEqualToString:@"QUITAPP"]) {
             [[NSApplication sharedApplication] terminate:self];
-            break;
+            continue;
         }
         
         if ([theLine hasPrefix:@"NOTIFICATION:"]) {
@@ -1021,15 +1019,25 @@
                 continue;
             }
             // set visibility of details text field
-            else if ([theLine hasPrefix:@"DETAILS:SHOW"]) {
+            else if ([theLine isEqualToString:@"DETAILS:SHOW"]) {
                 [self showDetails];
                 continue;
             }
-            else if ([theLine hasPrefix:@"DETAILS:HIDE"]) {
+            else if ([theLine isEqualToString:@"DETAILS:HIDE"]) {
                 [self hideDetails];
                 continue;
             }
         }
+        
+        if (outputType == PLATYPUS_OUTPUT_WEBVIEW) {
+            if ([[outputTextView textStorage] length] == 0 && [theLine hasPrefix:@"Location:"]) {
+                NSString *urlString = [theLine substringFromIndex:9];
+                urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@""];
+                locationURL = [NSURL URLWithString:urlString];
+            }
+        }
+        
+        [self appendStringToTextView:theLine];
         
         // ok, line wasn't a command understood by the wrapper
         // show it in GUI text field if appropriate
@@ -1041,40 +1049,37 @@
         }
     }
     
-    // append the ouput to the text in the text field
-    NSTextStorage *textStorage = [outputTextView textStorage];
-    int textReplacementIndex = [textStorage length];
+    [lines release];
     
-    NSRange appendRange = NSMakeRange(textReplacementIndex, 0);
-    // this is a hack to fix the bug where NSTextView loses all font attributes
-    // if the text storage is empty. We set contents to a newline earlier, now
-    // we remove it and font attributes remain
-    if (textReplacementIndex == 1 && [[outputTextView string] isEqualToString:@"\n"]) {
-        appendRange = NSMakeRange(0, 1);
-    }
-    
-    [textStorage replaceCharactersInRange:appendRange withString:outputString];
-    
-    // if web output, we continually re-render to accomodate incoming data, else we scroll down
+    // if web output, we continually re-render to accomodate incoming data
     if (outputType == PLATYPUS_OUTPUT_WEBVIEW) {
-
-        NSArray *htmlLines = [[textStorage string] componentsSeparatedByString: @"\n"];
-
-        // Check for 'Location: *URL*' In that case, we load the URL in the web view
-        if ([htmlLines count] > 0 && [htmlLines[1] hasPrefix:@"Location:"]) {
-            NSString *url = [htmlLines[1] substringFromIndex:9];
-            url = [url stringByReplacingOccurrencesOfString:@" " withString:@""];
-            [[webOutputWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] ];
+        if (locationURL) {
+            // If Location, we load the provided URL
+            [[webOutputWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:locationURL]];
         } else {
             // otherwise, just load script output as HTML string
             NSURL *resourcePathURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]];
             [[webOutputWebView mainFrame] loadHTMLString:[outputTextView string] baseURL:resourcePathURL];
         }
-    } else if (outputType == PLATYPUS_OUTPUT_TEXTWINDOW || outputType == PLATYPUS_OUTPUT_PROGRESSBAR) {
-        [outputTextView scrollRangeToVisible:NSMakeRange([textStorage length], 0)];
     }
     
-    [outputString release];
+    if (outputType == PLATYPUS_OUTPUT_TEXTWINDOW || outputType == PLATYPUS_OUTPUT_PROGRESSBAR) {
+        [outputTextView scrollRangeToVisible:NSMakeRange([[outputTextView textStorage] length], 0)];
+    }
+}
+
+- (void)appendStringToTextView:(NSString *)string {
+    PLog(@"Appending output: \"%@\"", string);
+
+    NSTextStorage *textStorage = [outputTextView textStorage];
+    NSRange appendRange = NSMakeRange([textStorage length], 0);
+    [textStorage replaceCharactersInRange:appendRange withString:string];
+    [textStorage replaceCharactersInRange:NSMakeRange([textStorage length], 0) withString:@"\n"];
+    NSDictionary *attributes = @{   NSBackgroundColorAttributeName: textBackgroundColor,
+                                    NSForegroundColorAttributeName: textForegroundColor,
+                                    NSFontAttributeName: textFont
+                                };
+    [textStorage setAttributes:attributes range:NSMakeRange(appendRange.location, [string length])];
 }
 
 #pragma mark - Interface actions
@@ -1213,13 +1218,14 @@
         }
     } else {
         // text field
-        NSTextView *textView = outputTextView;
-        NSFont *font = [textView font];
-        CGFloat newFontSize = [font pointSize] + delta;
-        font = [[NSFontManager sharedFontManager] convertFont:font toSize:newFontSize];
-        [textView setFont:font];
+        CGFloat newFontSize = [textFont pointSize] + delta;
+//        if (textFont != nil) {
+//            [textFont release];
+//        }
+        textFont = [[NSFontManager sharedFontManager] convertFont:textFont toSize:newFontSize];
+        [outputTextView setFont:textFont];
         [DEFAULTS setObject:@((float)newFontSize) forKey:@"UserFontSize"];
-        [textView didChangeText];
+        [outputTextView didChangeText];
     }
 }
 
@@ -1497,7 +1503,7 @@
             [menuItem setTitle:line];
         } else {
             // create a dict of text attributes based on settings
-            NSDictionary *textAttributes = @{NSForegroundColorAttributeName: textForeground,
+            NSDictionary *textAttributes = @{NSForegroundColorAttributeName: textForegroundColor,
                                             NSFontAttributeName: textFont};
             
             NSAttributedString *attStr = [[[NSAttributedString alloc] initWithString:line attributes:textAttributes] autorelease];

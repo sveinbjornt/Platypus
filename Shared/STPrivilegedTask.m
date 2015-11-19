@@ -312,7 +312,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     NSString *cmd = [NSString stringWithFormat:@"%@", [self launchPath]];
     
     for (int i = 0; i < [args count]; i++) {
-        cmd = [cmd stringByAppendingFormat:@" %@", args[i]];
+        cmd = [cmd stringByAppendingFormat:@" '%@'", args[i]];
     }
     
     return [[super description] stringByAppendingFormat:@" %@", cmd];

@@ -1,4 +1,19 @@
 #!/bin/sh
+
+if [ ! -e "$1" ]
+then
+printf "Drop a file to see its Data URL\n"
+#printf "ALERT:Hey!|What's up?\n"
+printf "NOTIFICATION:Hello, dude\n"
+exit
+fi
+# Data urls have the form data:MIME_TYPE;base64,DATA
+FILE_PATH="$1"
+BASE64_DATA=$( base64 "$FILE_PATH" )
+MIME_TYPE=$( file -b --mime-type "$FILE_PATH" )
+echo "data:$MIME_TYPE;base64,$BASE64_DATA"
+
+#!/bin/sh
 #!/usr/bin/perl -w
 # Test script for ScriptExec binary
 #
@@ -25,9 +40,9 @@
 #local $| = 1;
 
 #say Hello
-echo "RUNNING!"
-echo "FILE ARGS:"
-echo $@
+#echo "RUNNING!"
+#echo "FILE ARGS:"
+#echo $@
 #echo $@ | say
 #echo "STDIN:"
 #say Hello
