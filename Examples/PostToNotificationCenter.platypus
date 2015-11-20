@@ -10,22 +10,20 @@
 	<array/>
 	<key>Creator</key>
 	<string>Platypus-5.0</string>
-	<key>Destination</key>
-	<string>/Users/sveinbjorn/Desktop/MyApp.app</string>
 	<key>DestinationOverride</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
-    <key>Example</key>
-    <true/>
-    <key>ScriptName</key>
-    <string>PostToNotificationCenter.sh</string>
-    <key>Script</key>
-    <string>#!/bin/sh 
+	<key>Example</key>
+	<true/>
+	<key>ScriptName</key>
+	<string>PostToNotificationCenter.sh</string>
+	<key>Script</key>
+	<string>#!/bin/sh 
 # The Platypus wrapper parses NOTIFICATION:* and sends on to Notification Center
-echo "NOTIFICATION:Hello, world!"
+echo &quot;NOTIFICATION:Hello, world!&quot;
 sleep 2
-echo "NOTIFICATION:Hello, again!"
+echo &quot;NOTIFICATION:Hello, again!&quot;
 sleep 2
     </string>
 	<key>Droppable</key>
@@ -63,8 +61,7 @@ sleep 2
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
-	<data>
-	</data>
+	<data></data>
 	<key>StatusItemTitle</key>
 	<string>MyApp</string>
 	<key>Suffixes</key>

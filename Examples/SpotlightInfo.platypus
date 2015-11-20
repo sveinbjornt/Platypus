@@ -10,26 +10,24 @@
 	<array/>
 	<key>Creator</key>
 	<string>Platypus-5.0</string>
-	<key>Destination</key>
-	<string>/Users/sveinbjorn/Desktop/MyApp.app</string>
 	<key>DestinationOverride</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
-    <key>Example</key>
-    <true/>
-    <key>ScriptName</key>
-    <string>SpotlightInfo.sh</string>
-    <key>Script</key>
-    <string>#!/usr/bin/perl 
+	<key>Example</key>
+	<true/>
+	<key>ScriptName</key>
+	<string>SpotlightInfo.sh</string>
+	<key>Script</key>
+	<string>#!/usr/bin/perl 
 # Uses the mdls command to list meta data info on dropped files
 use Shell;
 
 foreach(@ARGV)
 {
-    print "META-DATA INFO FOR '$_':\n";
-    system("/usr/bin/mdls '$_'");
-    print "------------||------------\n\n";
+    print &quot;META-DATA INFO FOR &apos;$_&apos;:\n&quot;;
+    system(&quot;/usr/bin/mdls &apos;$_&apos;&quot;);
+    print &quot;------------||------------\n\n&quot;;
 }
     </string>
 	<key>Droppable</key>
@@ -39,7 +37,7 @@ foreach(@ARGV)
 	<key>FileTypes</key>
 	<array>
 		<string>****</string>
-        <string>fold</string>
+		<string>fold</string>
 	</array>
 	<key>IconPath</key>
 	<string></string>
@@ -68,8 +66,7 @@ foreach(@ARGV)
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
-	<data>
-	</data>
+	<data></data>
 	<key>StatusItemTitle</key>
 	<string>MyApp</string>
 	<key>Suffixes</key>

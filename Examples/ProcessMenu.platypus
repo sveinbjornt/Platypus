@@ -10,18 +10,16 @@
 	<array/>
 	<key>Creator</key>
 	<string>Platypus-5.0</string>
-	<key>Destination</key>
-	<string>/Users/sveinbjorn/Desktop/MyApp.app</string>
 	<key>DestinationOverride</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
-    <key>Example</key>
-    <true/>
-    <key>ScriptName</key>
-    <string>ProcessMenu.sh</string>
-    <key>Script</key>
-    <string>#!/bin/sh 
+	<key>Example</key>
+	<true/>
+	<key>ScriptName</key>
+	<string>ProcessMenu.sh</string>
+	<key>Script</key>
+	<string>#!/bin/sh 
         
 # terse process listing
 ps cax
@@ -62,8 +60,7 @@ ps cax
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
-	<data>
-	</data>
+	<data></data>
 	<key>StatusItemTitle</key>
 	<string>PS</string>
 	<key>Suffixes</key>
