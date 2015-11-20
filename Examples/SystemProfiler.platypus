@@ -10,19 +10,17 @@
 	<array/>
 	<key>Creator</key>
 	<string>Platypus-5.0</string>
-	<key>Destination</key>
-	<string>/Users/sveinbjorn/Desktop/MyApp.app</string>
 	<key>DestinationOverride</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
-    <key>Example</key>
-    <true/>
-    <key>ScriptName</key>
-    <string>SystemProfiler.sh</string>
-    <key>Script</key>
-    <string>#!/bin/sh 
-# Print out system profiler info using Apple's tool
+	<key>Example</key>
+	<true/>
+	<key>ScriptName</key>
+	<string>SystemProfiler.sh</string>
+	<key>Script</key>
+	<string>#!/bin/sh 
+# Print out system profiler info using Apple&apos;s tool
 /usr/sbin/system_profiler
     </string>
 	<key>Droppable</key>
@@ -60,8 +58,7 @@
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
-	<data>
-	</data>
+	<data></data>
 	<key>StatusItemTitle</key>
 	<string>MyApp</string>
 	<key>Suffixes</key>

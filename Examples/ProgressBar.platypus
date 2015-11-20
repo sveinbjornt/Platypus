@@ -10,55 +10,53 @@
 	<array/>
 	<key>Creator</key>
 	<string>Platypus-5.0</string>
-	<key>Destination</key>
-	<string>/Users/sveinbjorn/Desktop/MyApp.app</string>
 	<key>DestinationOverride</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
-    <key>Example</key>
-    <true/>
-    <key>ScriptName</key>
-    <string>ProgressBar.sh</string>
-    <key>Script</key>
-    <string>#!/bin/sh
+	<key>Example</key>
+	<true/>
+	<key>ScriptName</key>
+	<string>ProgressBar.sh</string>
+	<key>Script</key>
+	<string>#!/bin/sh
 
-/usr/bin/say "This example shows you can control the progress bar."
-echo "PROGRESS:0"
-echo "Doing something"
+/usr/bin/say &quot;This example shows you can control the progress bar.&quot;
+echo &quot;PROGRESS:0&quot;
+echo &quot;Doing something&quot;
 sleep 1
-echo "PROGRESS:10"
+echo &quot;PROGRESS:10&quot;
 sleep 1
-echo "PROGRESS:20"
+echo &quot;PROGRESS:20&quot;
 sleep 1
-echo "Showing Details"
-echo "DETAILS:SHOW"
+echo &quot;Showing Details&quot;
+echo &quot;DETAILS:SHOW&quot;
 sleep 1
-echo "PROGRESS:30"
+echo &quot;PROGRESS:30&quot;
 sleep 1
-echo "Hiding Details"
+echo &quot;Hiding Details&quot;
 sleep 1
-echo "DETAILS:HIDE"
+echo &quot;DETAILS:HIDE&quot;
 sleep 1
-echo "Doing something else"
-echo "PROGRESS:40"
+echo &quot;Doing something else&quot;
+echo &quot;PROGRESS:40&quot;
 sleep 1
-echo "PROGRESS:50"
+echo &quot;PROGRESS:50&quot;
 sleep 1
-echo "PROGRESS:60"
+echo &quot;PROGRESS:60&quot;
 sleep 1
-echo "And now for something completely different"
-echo "PROGRESS:70"
+echo &quot;And now for something completely different&quot;
+echo &quot;PROGRESS:70&quot;
 sleep 1
-echo "Quitting application in 2 seconds"
+echo &quot;Quitting application in 2 seconds&quot;
 sleep 2
-echo "QUITAPP"
-echo "PROGRESS:80"
+echo &quot;QUITAPP&quot;
+echo &quot;PROGRESS:80&quot;
 sleep 1
-echo "PROGRESS:90"
+echo &quot;PROGRESS:90&quot;
 sleep 1
-echo "PROGRESS:100"
-echo "Done"</string>
+echo &quot;PROGRESS:100&quot;
+echo &quot;Done&quot;</string>
 	<key>Droppable</key>
 	<false/>
 	<key>ExecutablePath</key>
@@ -66,7 +64,7 @@ echo "Done"</string>
 	<key>FileTypes</key>
 	<array>
 		<string>****</string>
-        <string>fold</string>
+		<string>fold</string>
 	</array>
 	<key>IconPath</key>
 	<string></string>

@@ -10,28 +10,26 @@
 	<array/>
 	<key>Creator</key>
 	<string>Platypus-5.0</string>
-	<key>Destination</key>
-	<string>/Users/sveinbjorn/Desktop/MyApp.app</string>
 	<key>DestinationOverride</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
-    <key>Example</key>
-    <true/>
-    <key>ScriptName</key>
-    <string>TarGzipper.pl</string>
-    <key>Script</key>
-    <string>#!/usr/bin/perl 
+	<key>Example</key>
+	<true/>
+	<key>ScriptName</key>
+	<string>TarGzipper.pl</string>
+	<key>Script</key>
+	<string>#!/usr/bin/perl 
 use strict;
 use File::Basename;
 
 if (!scalar(@ARGV) or ! -e $ARGV[0]) 
 {
-        print "Drop some files to create a tgz archive\n";
+        print &quot;Drop some files to create a tgz archive\n&quot;;
         exit;
 }
         
-my $cmd = "/usr/bin/tar cvfz ";
+my $cmd = &quot;/usr/bin/tar cvfz &quot;;
 
 # Get enclosing folder of first file
 my($fn, $directory) = fileparse($ARGV[0]);
@@ -40,18 +38,18 @@ my($fn, $directory) = fileparse($ARGV[0]);
 chdir($directory);
 
 # Archive is created there
-my $dest_path = "Archive.tgz";
+my $dest_path = &quot;Archive.tgz&quot;;
         
 my $files;
 foreach(@ARGV)
 {
         if (!$_ or ! -e $_) { next; }
         my($filename, $directory) = fileparse($_);
-        $files .= "'$filename' ";
+        $files .= &quot;&apos;$filename&apos; &quot;;
 }
 
-print $cmd . "\n";
-system("$cmd $dest_path $files");
+print $cmd . &quot;\n&quot;;
+system(&quot;$cmd $dest_path $files&quot;);
 </string>
 	<key>Droppable</key>
 	<true/>
@@ -60,7 +58,7 @@ system("$cmd $dest_path $files");
 	<key>FileTypes</key>
 	<array>
 		<string>****</string>
-        <string>fold</string>
+		<string>fold</string>
 	</array>
 	<key>IconPath</key>
 	<string></string>
@@ -89,8 +87,7 @@ system("$cmd $dest_path $files");
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
-	<data>
-	</data>
+	<data></data>
 	<key>StatusItemTitle</key>
 	<string>MyApp</string>
 	<key>Suffixes</key>
