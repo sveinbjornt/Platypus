@@ -1,5 +1,5 @@
 #!/bin/sh
-echo $@
+#echo $@
 #if [ ! -e "$1" ]
 #then
 #sleep 1

@@ -31,18 +31,134 @@
 /* This is the source code to the main controller for the binary
  bundled into Platypus-generated applications */
 
+#import <Security/Authorization.h>
+#import <WebKit/WebKit.h>
+
+#import "Common.h"
+#import "NSColor+HexTools.h"
+#import "STPrivilegedTask.h"
+#import "STDragWebView.h"
+#import "NSWorkspace+Additions.h"
 #import "ScriptExecController.h"
 #import "Alerts.h"
 #import "ScriptExecJob.h"
-#import "NSTask+Description.h"
+
+@interface ScriptExecController()
+{
+    // progress bar
+    IBOutlet id progressBarCancelButton;
+    IBOutlet id progressBarMessageTextField;
+    IBOutlet id progressBarIndicator;
+    IBOutlet id progressBarWindow;
+    IBOutlet id progressBarTextView;
+    IBOutlet id progressBarDetailsTriangle;
+    IBOutlet id progressBarDetailsLabel;
+    
+    // text window
+    IBOutlet id textOutputWindow;
+    IBOutlet id textOutputCancelButton;
+    IBOutlet id textOutputTextView;
+    IBOutlet id textOutputProgressIndicator;
+    IBOutlet id textOutputMessageTextField;
+    
+    // web view
+    IBOutlet id webOutputWindow;
+    IBOutlet id webOutputCancelButton;
+    IBOutlet id webOutputWebView;
+    IBOutlet id webOutputProgressIndicator;
+    IBOutlet id webOutputMessageTextField;
+    
+    // status item menu
+    NSStatusItem *statusItem;
+    NSMenu *statusItemMenu;
+    
+    // droplet
+    IBOutlet id dropletWindow;
+    IBOutlet id dropletBox;
+    IBOutlet id dropletProgressIndicator;
+    IBOutlet id dropletMessageTextField;
+    IBOutlet id dropletDropFilesLabel;
+    IBOutlet id dropletShader;
+    
+    //menu items
+    IBOutlet id hideMenuItem;
+    IBOutlet id quitMenuItem;
+    IBOutlet id aboutMenuItem;
+    
+    IBOutlet id windowMenu;
+    
+    NSTextView *outputTextView;
+    
+    NSTask *task;
+    STPrivilegedTask *privilegedTask;
+    
+    NSTimer *checkStatusTimer;
+    
+    NSPipe *inputPipe;
+    NSFileHandle *inputWriteFileHandle;
+    NSPipe *outputPipe;
+    NSFileHandle *outputReadFileHandle;
+    
+    NSMutableArray *arguments;
+    NSMutableArray *commandLineArguments;
+    NSArray *interpreterArgs;
+    NSArray *scriptArgs;
+    NSString *stdinString;
+    
+    NSString *interpreter;
+    NSString *scriptPath;
+    NSString *appName;
+    
+    NSFont *textFont;
+    NSColor *textForegroundColor;
+    NSColor *textBackgroundColor;
+    NSStringEncoding textEncoding;
+    
+    PlatypusExecStyle execStyle;
+    PlatypusOutputType outputType;
+    BOOL isDroppable;
+    BOOL remainRunning;
+    BOOL secureScript;
+    BOOL acceptsFiles;
+    BOOL acceptsText;
+    BOOL promptForFileOnLaunch;
+    BOOL statusItemUsesSystemFont;
+    BOOL runInBackground;
+    
+    NSArray *droppableSuffixes;
+    NSArray *droppableUniformTypes;
+    BOOL acceptAnyDroppedItem;
+    BOOL acceptDroppedFolders;
+    
+    NSString *statusItemTitle;
+    NSImage *statusItemIcon;
+    
+    BOOL isTaskRunning;
+    BOOL outputEmpty;
+    BOOL hasTaskRun;
+    
+    NSString *scriptText;
+    NSString *remnants;
+    
+    NSMutableArray *jobQueue;
+}
+
+- (IBAction)openFiles:(id)sender;
+- (IBAction)saveToFile:(id)sender;
+- (IBAction)cancel:(id)sender;
+- (IBAction)toggleDetails:(id)sender;
+- (IBAction)showDetails;
+- (IBAction)hideDetails;
+- (IBAction)makeTextBigger:(id)sender;
+- (IBAction)makeTextSmaller:(id)sender;
+
+@end
 
 @implementation ScriptExecController
 
 - (instancetype)init {
     if ((self = [super init])) {
         arguments = [[NSMutableArray alloc] init];
-        textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
-        isTaskRunning = NO;
         outputEmpty = YES;
         jobQueue = [[NSMutableArray alloc] init];
     }
@@ -886,7 +1002,6 @@
 }
 
 - (void)cleanup {
-    // we never do cleanup if the task is running
     if (isTaskRunning) {
         return;
     }
