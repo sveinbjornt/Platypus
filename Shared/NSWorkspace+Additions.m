@@ -260,12 +260,12 @@
 - (BOOL)openPathInDefaultBrowser:(NSString *)path {
     NSURL *url = [NSURL URLWithString:@"http://"];
     CFURLRef fromPathURL = NULL;
-    OSStatus err = LSGetApplicationForURL((CFURLRef)url, kLSRolesAll, NULL, &fromPathURL);
+    OSStatus err = LSGetApplicationForURL((__bridge CFURLRef)url, kLSRolesAll, NULL, &fromPathURL);
     NSString *app = nil;
     
     if (fromPathURL) {
         if (err == noErr) {
-            app = [(NSURL *)fromPathURL path];
+            app = [(__bridge NSURL *)fromPathURL path];
         }
         CFRelease(fromPathURL);
     }

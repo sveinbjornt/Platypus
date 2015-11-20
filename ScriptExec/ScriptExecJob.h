@@ -13,7 +13,7 @@
 @property (nonatomic, copy) NSArray *arguments;
 @property (nonatomic, copy) NSString *standardInputString;
 
-- (instancetype)initWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr;
 + (instancetype)jobWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr;
 
 @end
