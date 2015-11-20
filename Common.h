@@ -123,7 +123,7 @@ typedef enum PlatypusOutputType {
     PLATYPUS_OUTPUT_STATUSMENU = 4,
     PLATYPUS_OUTPUT_DROPLET = 5
 } PlatypusOutputType;
-
+ 
 // array of output types, used for validation
 #define PLATYPUS_OUTPUT_TYPES   [NSArray arrayWithObjects:\
 @ "None", \

@@ -33,6 +33,7 @@
 
 #import <Security/Authorization.h>
 #import <WebKit/WebKit.h>
+#import <sys/stat.h>
 
 #import "Common.h"
 #import "NSColor+HexTools.h"
@@ -40,6 +41,7 @@
 #import "STDragWebView.h"
 #import "NSWorkspace+Additions.h"
 #import "ScriptExecController.h"
+#import "NSTask+Description.h"
 #import "Alerts.h"
 #import "ScriptExecJob.h"
 

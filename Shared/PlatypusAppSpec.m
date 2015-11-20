@@ -68,7 +68,7 @@
 }
 
 - (instancetype)initWithContentsOfFile:(NSString *)path {
-    if (self = [self init]) {
+    if (self = [super init]) {
         properties = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     }
     return self;

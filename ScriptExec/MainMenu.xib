@@ -21,7 +21,6 @@
         <customObject id="207" userLabel="ScriptExecController" customClass="ScriptExecController">
             <connections>
                 <outlet property="aboutMenuItem" destination="232" id="238"/>
-                <outlet property="applicationMenu" destination="57" id="229"/>
                 <outlet property="dropletBox" destination="494" id="502"/>
                 <outlet property="dropletDropFilesLabel" destination="499" id="507"/>
                 <outlet property="dropletMessageTextField" destination="505" id="508"/>
