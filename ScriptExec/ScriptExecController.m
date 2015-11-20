@@ -132,6 +132,8 @@
         appName = [[NSString alloc] initWithString:[[appBundle executablePath] lastPathComponent]];
     }
     
+    runInBackground = [infoPlist[@"LSUIElement"] boolValue];
+    
     //load dictionary containing app settings from property list
     NSDictionary *appSettingsDict = [NSDictionary dictionaryWithContentsOfFile:appSettingsPath];
     if (appSettingsDict == nil) {
@@ -408,7 +410,7 @@
     // clean out the job queue since we're quitting
     [jobQueue removeAllObjects];
     
-    return YES;
+    return NSTerminateNow;
 }
 
 #pragma mark - Interface manipulation
@@ -429,11 +431,13 @@
     // window come to the front.  It is to my knowledge the only way to make an
     // application with LSUIElement set to true come to the front on launch
     // We don't do this for applications with no user interface output
-    if (outputType != PLATYPUS_OUTPUT_NONE) {
+//    if (outputType != PLATYPUS_OUTPUT_NONE) {
 //        ProcessSerialNumber process;
 //        GetCurrentProcess(&process);
 //        SetFrontProcess(&process);
         // Old Carbon SetFrontProcess call replaced with Cocoa
+    
+    if (runInBackground == TRUE) {
         [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
     }
     
@@ -619,6 +623,15 @@
 
 // Adjust controls, windows, etc. once script is done executing
 - (void)cleanupInterface {
+    
+    // if there are any remnants, we append them to output
+    if (remnants != nil) {
+        [self appendString:remnants];
+        [remnants release];
+        remnants = nil;
+    }
+
+    
     switch (outputType) {
             
         case PLATYPUS_OUTPUT_NONE:
@@ -630,12 +643,6 @@
 
         case PLATYPUS_OUTPUT_TEXTWINDOW:
         {
-            // if there are any remnants, we append them to output
-            if (remnants != nil) {
-                [self appendStringToTextView:remnants];
-                [remnants release];
-                remnants = nil;
-            }
             
             //update controls for text output window
             [textOutputCancelButton setTitle:@"Quit"];
@@ -645,14 +652,7 @@
             break;
             
         case PLATYPUS_OUTPUT_PROGRESSBAR:
-        {
-            // if there are any remnants, we append them to output
-            if (remnants != nil) {
-                [self appendStringToTextView:remnants];
-                [remnants release];
-                remnants = nil;
-            }
-            
+        {            
             if (isDroppable) {
                 [progressBarMessageTextField setStringValue:@"Drag files to process"];
                 [progressBarIndicator setIndeterminate:YES];
@@ -751,6 +751,7 @@
 
 - (void)executeScriptIfNothingDropped {
     if (hasTaskRun == FALSE) {
+        PLog(@"Executing script since nothing was dropped");
         [self executeScript];
     }
 }
@@ -762,9 +763,7 @@
     if (isTaskRunning) {
         return;
     }
-    if (outputType != PLATYPUS_OUTPUT_NONE) {
-        outputEmpty = NO;
-    }
+    outputEmpty = NO;
     
     [self prepareForExecution];
     [self prepareInterfaceForExecution];
@@ -793,7 +792,7 @@
     [task setStandardOutput:outputPipe];
     [task setStandardError:outputPipe];
     outputReadFileHandle = [outputPipe fileHandleForReading];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
     [outputReadFileHandle readInBackgroundAndNotify];
     
     // set up stdin for writing
@@ -842,12 +841,10 @@
         }
     }
     
-    if (outputType != PLATYPUS_OUTPUT_NONE) {
-        // Success!  Now, start monitoring output file handle for data
-        outputReadFileHandle = [privilegedTask outputFileHandle];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
-        [outputReadFileHandle readInBackgroundAndNotify];
-    }
+    // Success!  Now, start monitoring output file handle for data
+    outputReadFileHandle = [privilegedTask outputFileHandle];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
+    [outputReadFileHandle readInBackgroundAndNotify];
 }
 
 #pragma mark - Task completion
@@ -911,7 +908,7 @@
 #pragma mark - Output
 
 // read from the file handle and append it to the text window
-- (void)getOutputData:(NSNotification *)aNotification {
+- (void)gotOutputData:(NSNotification *)aNotification {
     // get the data from notification
     NSData *data = [aNotification userInfo][NSFileHandleNotificationDataItem];
     
@@ -933,7 +930,6 @@
     }
 }
 
-// this function receives script output text and appends it to text view
 - (void)appendOutput:(NSData *)data {
 
     NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:textEncoding];
@@ -947,15 +943,13 @@
         [outputString insertString:remnants atIndex:0];
     }
     
-   // PLog(@"Appending text output: \"%@\"", outputString);
-    
     // parse line by line
     NSMutableArray<NSString*> *lines = [[outputString componentsSeparatedByString:@"\n"] mutableCopy];
     [outputString release];
     
-    // if the line did not end with a newline, it wasn't a complete line of output
-    // Thus, we store the last line and then delete it from the outputstring
-    // It'll be appended next time we get output
+    // if the string did not end with a newline, it wasn't a complete line of output
+    // Thus, we store this last non-newline-terminated string
+    // It'll be prepended next time we get output
     if ([[lines lastObject] length] > 0) {
         if (remnants != nil) {
             [remnants release];
@@ -1036,7 +1030,7 @@
             }
         }
         
-        [self appendStringToTextView:theLine];
+        [self appendString:theLine];
         
         // ok, line wasn't a command understood by the wrapper
         // show it in GUI text field if appropriate
@@ -1067,7 +1061,7 @@
     }
 }
 
-- (void)appendStringToTextView:(NSString *)string {
+- (void)appendString:(NSString *)string {
     PLog(@"Appending output: \"%@\"", string);
 //    if (outputType == PLATYPUS_OUTPUT_NONE) {
 ////        fprintf(stdout, "%s", [string cStringUsingEncoding:textEncoding]);

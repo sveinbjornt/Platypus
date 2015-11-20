@@ -129,6 +129,7 @@
     BOOL acceptsText;
     BOOL promptForFileOnLaunch;
     BOOL statusItemUsesSystemFont;
+    BOOL runInBackground;
     
     NSArray *droppableSuffixes;
     NSArray *droppableUniformTypes;
