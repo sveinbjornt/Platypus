@@ -23,7 +23,7 @@
 		<true/>
 	</dict>
 	<key>OutputType</key>
-	<string>None</string>
+	<string>Text Window</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunningAfterCompletion</key>
@@ -33,7 +33,7 @@
 	<key>ScriptArgs</key>
 	<array/>
 	<key>ScriptInterpreter</key>
-	<string>/usr/bin/perl</string>
+	<string>/bin/sh</string>
 	<key>Secure</key>
 	<false/>
 	<key>StatusItemUseSystemFont</key>
