@@ -21,6 +21,7 @@
                     <li>Added MENUITEMICON: syntax, which sets menu item icon in status item menus</li>
                     <li>Dropped text input (NSPboardText) is now passed to script via STDIN, not as an argument. This allows differentiation between dropped text snippets and dropped files in applications that are made to handle both.</li>
                     <li>The built-in editor has been much enhanced, with line numbering, configurable text size, word wrap and other improvements</li>
+                    <li>Parsed commands are now removed from script text output</li>
                     <li>Documentation completely overhauled and expanded</li>
                     <li>New "Use System Font" option for status menu items</li>
                     <li>Symlinks now resolved when adding files to Bundled Files list</li>

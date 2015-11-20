@@ -36,7 +36,6 @@
 		F471ED1E122DF096001F4761 /* PlatypusAppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */; };
 		F471ED22122DF2D6001F4761 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F471ED21122DF2D6001F4761 /* Credits.html */; };
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
-		F48269691BC9934800169D8B /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269681BC9934800169D8B /* NSTask+Description.m */; };
 		F48269711BC9A03F00169D8B /* Droplet.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696D1BC9A03F00169D8B /* Droplet.png */; };
 		F48269721BC9A03F00169D8B /* Progress-Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696E1BC9A03F00169D8B /* Progress-Bar.png */; };
 		F48269731BC9A03F00169D8B /* Text-Window.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696F1BC9A03F00169D8B /* Text-Window.png */; };
@@ -1019,7 +1018,6 @@
 				F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */,
 				F4975DAD1B2E71EE0099D16E /* EditorController.m in Sources */,
 				F4975D711B2E09280099D16E /* NSWorkspace+Additions.m in Sources */,
-				F48269691BC9934800169D8B /* NSTask+Description.m in Sources */,
 				F4F2F3BA1BF96C5C00FE463C /* VDKQueue.m in Sources */,
 				F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */,
 				F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */,

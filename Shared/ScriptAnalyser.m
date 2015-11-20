@@ -279,7 +279,7 @@
     
     //if the syntax report string is empty --> no complaints, so we report syntax as OK
     outputStr = [outputStr length] ? outputStr : @"Syntax OK";
-    outputStr = [NSString stringWithFormat:@"%@", outputStr];
+    outputStr = [NSString stringWithFormat:@"%@", /*[task humanDescription],*/ outputStr];
     
     [task release];
 
