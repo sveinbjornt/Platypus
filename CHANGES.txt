@@ -11,15 +11,14 @@ For 5.1
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: Add URI handling https://github.com/barryk/DropScript/commit/3fa2d00177cc22680c54edeb6f433a658f6b07e8
     TODO: Asynchronous app creation in background thread
+    TODO: Move documentation to Markdown format instead of raw HTML
 
 For 5.0
     TODO: Fix Provide as Mac OS X service
     TODO: File watching still broken for script path
     TODO: Fix "Create app on script file change" feature
-    TODO: Hide PROGRESS:XX and other bidirectional communications syntax from output text field
     TODO: ALERT: syntax doesn't work in Output Type None
     TODO: Create ALERT: example
-    TODO: Optimize Location: parsing for Web Output
     TODO: Overhaul very old and out of date documentation
         TODO: Add documentation for ALERT:Title|Info syntax
         TODO: Add documentation about Uniform Type Identifiers
@@ -27,8 +26,9 @@ For 5.0
     TODO: Resizable Progress Bar window
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Test UTI stuff
-    TODO: Font styling changes in DataURLifier.  Why?
 
+    * Optimize Location: parsing for Web Output
+    * Parsed commands are now removed from script text output
     * Fixed bug where Status Item menu intermittently showed empty output
     * New high res images for documentation
     * Added example showing STATUSMENUICON: syntax in action
