@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DFF60879964B6407261D876EC5EE798A07462776",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DFF60879964B6407261D876EC5EE798A07462776" : 0,
+    "8B7BBC7E8C08E9979746DA3727AF4EC6BE3FCA90" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AC64BBA1-1BC0-499E-AB8D-FA1BCA2E0E28",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DFF60879964B6407261D876EC5EE798A07462776" : "platypus\/",
+    "8B7BBC7E8C08E9979746DA3727AF4EC6BE3FCA90" : "platypus\/Shared\/Others\/IconFamily\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Platypus",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Platypus.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/sveinbjornt\/IconFamily",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8B7BBC7E8C08E9979746DA3727AF4EC6BE3FCA90"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/sveinbjornt\/Platypus.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DFF60879964B6407261D876EC5EE798A07462776"
+    }
+  ]
+}
