@@ -162,13 +162,15 @@
     
     // app support folder
     if (![FILEMGR fileExistsAtPath:APP_SUPPORT_FOLDER isDirectory:&isDir] && ![FILEMGR createDirectoryAtPath:APP_SUPPORT_FOLDER withIntermediateDirectories:NO attributes:nil error:nil]) {
-            [Alerts alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]]];
+            [Alerts alert:@"Error"
+            subTextFormat:@"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath], nil];
     }
     
     // profiles folder
     if (![FILEMGR fileExistsAtPath:PROFILES_FOLDER isDirectory:&isDir]) {
         if (![FILEMGR createDirectoryAtPath:PROFILES_FOLDER withIntermediateDirectories:NO attributes:nil error:nil]) {
-            [Alerts alert:@"Error" subText:[NSString stringWithFormat:@"Could not create directory '%@'", PROFILES_FOLDER]];
+            [Alerts alert:@"Error"
+            subTextFormat:@"Could not create directory '%@'", PROFILES_FOLDER, nil];
         }
     }
     
@@ -305,7 +307,8 @@
             [WORKSPACE openFile:[scriptPathTextField stringValue] withApplication:defaultEditor];
         } else {
             // Complain if editor is not found, set it to the built-in editor
-            [Alerts alert:@"Application not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
+            [Alerts alert:@"Application not found"
+            subTextFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor, nil];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
             [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
         }
@@ -838,7 +841,7 @@
 - (IBAction)showCommandLineString:(id)sender {
     if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
         [Alerts alert:@"Missing script"
-              subText:[NSString stringWithFormat:@"No file exists at path '%@'", [scriptPathTextField stringValue]]];
+        subTextFormat:@"No file exists at path '%@'", [scriptPathTextField stringValue], nil];
         return;
     }
     

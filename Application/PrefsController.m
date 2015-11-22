@@ -254,7 +254,8 @@
     [installCLTProgressIndicator setUsesThreadedAnimation:YES];
     [installCLTProgressIndicator startAnimation:self];
     if ([self executeScriptTemplateWithPrivileges:scriptName usingDictionary:placeholderDict] == NO) {
-        [Alerts alert:@"Error running script" subText:[NSString stringWithFormat:@"Could not run script '%@'", scriptName]];
+        [Alerts alert:@"Error running script"
+        subTextFormat:@"Could not run script '%@'", scriptName, nil];
     }
     [self updateCLTStatus:CLTStatusTextField];
     [installCLTProgressIndicator stopAnimation:self];

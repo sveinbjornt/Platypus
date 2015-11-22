@@ -231,7 +231,7 @@
             [WORKSPACE openFile:path withApplication:defaultEditor];
             return;
         } else {
-            [Alerts alert:@"Editor not found" subText:[NSString stringWithFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor]];
+            [Alerts alert:@"Editor not found" subTextFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor, nil];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
         }
     }
