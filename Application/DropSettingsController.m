@@ -139,8 +139,8 @@
 
 - (IBAction)closeDropSettingsSheet:(id)sender {
     //make sure suffix list contains valid values
-    if (![suffixListController numItems] && [self acceptsFiles]) {
-        [errorTextField setStringValue:@"The suffix list must contain at least one entry."];
+    if ([suffixListController numItems] == 0 && [uniformTypeListController numItems] == 0 && [self acceptsFiles]) {
+        [errorTextField setStringValue:@"Either suffix or UTI list must contain at least one entry."];
         return;
     }
     

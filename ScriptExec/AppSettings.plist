@@ -5,16 +5,19 @@
 	<key>AcceptsFiles</key>
 	<true/>
 	<key>AcceptsText</key>
-	<true/>
+	<false/>
 	<key>Creator</key>
 	<string>Platypus-5.0</string>
 	<key>DropSuffixes</key>
 	<array>
 		<string>txt</string>
-		<string>*</string>
 	</array>
 	<key>Droppable</key>
 	<true/>
+	<key>DropUniformTypes</key>
+	<array>
+		<string>public.shell-script</string>
+	</array>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>NSAppTransportSecurity</key>

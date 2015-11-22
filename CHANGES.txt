@@ -17,8 +17,6 @@ For 5.0
     TODO: Fix Provide as Mac OS X service
     TODO: File watching still broken for script path
     TODO: Fix "Create app on script file change" feature
-    TODO: ALERT: syntax doesn't work in Output Type None
-    TODO: Create ALERT: example
     TODO: Overhaul very old and out of date documentation
         TODO: Add documentation for ALERT:Title|Info syntax
         TODO: Add documentation about Uniform Type Identifiers
@@ -28,6 +26,7 @@ For 5.0
     TODO: Test UTI stuff
     TODO: Fix issue with icon path file watching
 
+    * Added ALERT: example
     * Added authenticated execution example
     * Optimize Location: parsing for Web Output
     * Parsed commands are now removed from script text output

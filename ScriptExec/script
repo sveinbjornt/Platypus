@@ -3,9 +3,10 @@
 #if [ ! -e "$1" ]
 #then
 #sleep 1
-printf "Drop a file to see its Data URL\n"
+echo $@
+#printf "Drop a file to see its Data URL\n"
 #printf "ALERT:Hey!|What's up?\n"
-printf "NOTIFICATION:Hello, dude\n"
+#printf "NOTIFICATION:Hello, dude\n"
 #echo "ALERT:YO!"
 #fi
 # Data urls have the form data:MIME_TYPE;base64,DATA
