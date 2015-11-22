@@ -19,8 +19,7 @@ very easy using Platypus.
 
 ### Some notes on the code
 
-The Platypus source code is in a somewhat sorry state. 
-It's very old software, dating back to the early days 
+Platypus is very old software, dating back to the early days 
 of Mac OS X.  It was originally written in C using the 
 Carbon APIs, but later transitioned to Cocoa during the 
 time I was learning to use Objective-C and the Cocoa 
@@ -28,14 +27,11 @@ APIs. I made many beginner mistakes, some of which
 remain in the code.  The software has gone through over 
 three dozen significant versions. It has been patched,
 bugfixed, streamlined to include new features and 
-partially refactored.  Much crust remains.  I once tried 
-to create a new version which was supposed to leave
-much of the old codebase behind it, but the task grew 
-daunting in size and I was unable to find the time.
+transitioned over to modern Objective C.
 
 With these caveats in mind, here is the BSD-licensed 
-source code to Platypus. At least it's meticulously 
-commented, albeit naively and annoyingly so.
+source code to Platypus.
+
 
 ### License 
 
