@@ -106,7 +106,6 @@
 
 // path to temp script file
 #define TMP_STDIN_PATH              @ "/tmp/.plstdin.XXXXXX"
-#define TMP_ICON_PATH               [NSString stringWithFormat:@"%@/TmpIcon%d.icns", APP_SUPPORT_FOLDER, arc4random()]
 
 // execution style
 typedef enum PlatypusExecStyle {
@@ -136,7 +135,7 @@ nil]
 
 #pragma mark -
 
-// code abbreviations, Obj-C is a tediously verbose language
+// abbreviations, Obj-C is sometimes tediously verbose
 #define FILEMGR     [NSFileManager defaultManager]
 #define DEFAULTS    [NSUserDefaults standardUserDefaults]
 #define WORKSPACE   [NSWorkspace sharedWorkspace]
