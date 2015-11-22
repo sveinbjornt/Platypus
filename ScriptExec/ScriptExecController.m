@@ -214,8 +214,7 @@
     // prepare UI
     [self initialiseInterface];
     
-    // we listen to different kind of notification depending on whether we're running
-    // an NSTask or an STPrivilegedTask
+    // listen for terminate notification
     NSString *notificationName = NSTaskDidTerminateNotification;
     if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
         notificationName = STPrivilegedTaskDidTerminateNotification;
@@ -234,7 +233,7 @@
     NSBundle *appBundle = [NSBundle mainBundle];
     NSString *appSettingsPath = [appBundle pathForResource:@"AppSettings.plist" ofType:nil];
     
-    //make sure all the config files are present -- if not, we quit
+    // make sure all the config files are present -- if not, we quit
     if ([FILEMGR fileExistsAtPath:appSettingsPath] == FALSE) {
         [Alerts fatalAlert:@"Corrupt app bundle" subText:@"AppSettings.plist not found in application bundle."];
     }
@@ -251,23 +250,19 @@
     
     runInBackground = [infoPlist[@"LSUIElement"] boolValue];
     
-    //load dictionary containing app settings from property list
+    // load dictionary containing app settings from property list
     NSDictionary *appSettingsDict = [NSDictionary dictionaryWithContentsOfFile:appSettingsPath];
     if (appSettingsDict == nil) {
         [Alerts fatalAlert:@"Corrupt app settings" subText:@"Unable to read AppSettings.plist"];
     }
     
-    //determine output type
+    // determine output type
     NSString *outputTypeStr = appSettingsDict[@"OutputType"];
     if ([PLATYPUS_OUTPUT_TYPES containsObject:outputTypeStr] == FALSE) {
         [Alerts fatalAlert:@"Corrupt app settings"
                    subText:[NSString stringWithFormat:@"Invalid Output Mode: '%@'.", outputTypeStr]];
     }
     outputType = [PLATYPUS_OUTPUT_TYPES indexOfObject:outputTypeStr];
-    
-    // we need some additional info from AppSettings.plist if we are presenting textual output
-    
-    //make sure all this data is sane, revert to defaults if not
     
     // font and size
     NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
@@ -307,7 +302,7 @@
     [textForegroundColor retain];
     [textBackgroundColor retain];
     
-    // likewise, status menu output has some additional parameters
+    // status menu output has some additional parameters
     if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
         NSString *statusItemDisplayType = appSettingsDict[@"StatusItemDisplayType"];
         
@@ -382,8 +377,8 @@
         isDroppable = NO;
     }
     
-    // load settings for drop acceptance, default is to accept files and not text snippets
-    acceptsFiles = (appSettingsDict[@"AcceptsFiles"] != nil) ? [appSettingsDict[@"AcceptsFiles"] boolValue] : YES;
+    // load settings for drop acceptance, default is to accept nothing
+    acceptsFiles = (appSettingsDict[@"AcceptsFiles"] != nil) ? [appSettingsDict[@"AcceptsFiles"] boolValue] : NO;
     acceptsText = (appSettingsDict[@"AcceptsText"] != nil) ? [appSettingsDict[@"AcceptsText"] boolValue] : NO;
     
     // equivalent to not being droppable
@@ -418,20 +413,20 @@
         }
     }
     
-    //get interpreter
+    // get interpreter
     NSString *scriptInterpreter = appSettingsDict[@"ScriptInterpreter"];
-    if (scriptInterpreter == nil || ![FILEMGR fileExistsAtPath:scriptInterpreter]) {
+    if (scriptInterpreter == nil || [FILEMGR fileExistsAtPath:scriptInterpreter] == NO) {
         [Alerts fatalAlert:@"Missing interpreter" subText:[NSString stringWithFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreter]];
     }
     interpreter = [[NSString alloc] initWithString:scriptInterpreter];
 
-    //if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
+    // if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
     if ((!secureScript && ![FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]]) ||
         (secureScript && appSettingsDict[@"TextSettings"] == nil)) {
         [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
     }
     
-    //get path to script within app bundle
+    // get path to script within app bundle
     if (!secureScript) {
         scriptPath = [[NSString alloc] initWithString:[appBundle pathForResource:@"script" ofType:nil]];
         
@@ -444,7 +439,7 @@
             [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is unreadable."];
         }
     }
-    //if we have a "secure" script, there is no path to get. We write script to temp location on execution
+    // if we have a "secure" script, there is no path to get. We write script to temp location on execution
     else {
         NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData:appSettingsDict[@"TextSettings"]];
         if (b_str == nil) {
@@ -503,7 +498,7 @@
         [FILEMGR removeItemAtPath:scriptPath error:nil];
     }
     
-    //terminate task
+    // terminate task
     if (task != nil) {
         if ([task isRunning]) {
             [task terminate];
@@ -511,7 +506,7 @@
         [task release];
     }
     
-    //terminate privileged task
+    // terminate privileged task
     if (privilegedTask != nil) {
         if ([privilegedTask isRunning]) {
             [privilegedTask terminate];
@@ -535,7 +530,7 @@
 // Set up any menu items, windows, controls at application launch
 - (void)initialiseInterface {
     
-    //put application name into the relevant menu items
+    // put application name into the relevant menu items
     [quitMenuItem setTitle:[NSString stringWithFormat:@"Quit %@", appName]];
     [aboutMenuItem setTitle:[NSString stringWithFormat:@"About %@", appName]];
     [hideMenuItem setTitle:[NSString stringWithFormat:@"Hide %@", appName]];
@@ -558,7 +553,7 @@
         [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
     }
     
-    //prepare controls etc. for different output types
+    // prepare controls etc. for different output types
     switch (outputType) {
         case PLATYPUS_OUTPUT_NONE:
         {
@@ -584,7 +579,7 @@
             [progressBarMessageTextField setStringValue:progBarMsg];
             [progressBarIndicator setUsesThreadedAnimation:YES];
             
-            //preare window
+            // prepare window
             [progressBarWindow setTitle:appName];
             
             //center it if first time running the application
@@ -760,8 +755,7 @@
 
         case PLATYPUS_OUTPUT_TEXTWINDOW:
         {
-            
-            //update controls for text output window
+            // update controls for text output window
             [textOutputCancelButton setTitle:@"Quit"];
             [textOutputCancelButton setEnabled:YES];
             [textOutputProgressIndicator stopAnimation:self];
@@ -783,7 +777,7 @@
                 [progressBarIndicator setDoubleValue:100];
             }
             
-            //update controls for progress bar output
+            // update controls for progress bar output
             [progressBarIndicator stopAnimation:self];
             
             // change button
@@ -794,7 +788,7 @@
             
         case PLATYPUS_OUTPUT_WEBVIEW:
         {
-            //update controls for web output window
+            // update controls for web output window
             [webOutputCancelButton setTitle:@"Quit"];
             [webOutputCancelButton setEnabled:YES];
             [webOutputProgressIndicator stopAnimation:self];
@@ -898,7 +892,7 @@
 //launch regular user-privileged process using NSTask
 - (void)executeScriptWithoutPrivileges {
 
-    //create task and apply settings
+    // create task and apply settings
     task = [[NSTask alloc] init];
     [task setLaunchPath:interpreter];
     [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
@@ -917,7 +911,7 @@
     [task setStandardInput:inputPipe];
     inputWriteFileHandle = [[task standardInput] fileHandleForWriting];
     
-    //set it off
+    // set it off
     PLog(@"Running task\n%@", [task humanDescription]);
     [task launch];
     
@@ -936,15 +930,14 @@
 
 //launch task with admin privileges using Authentication Manager
 - (void)executeScriptWithPrivileges {
-    //initalize task
     privilegedTask = [[STPrivilegedTask alloc] init];
     
-    //apply settings for task
+    // apply settings for task
     [privilegedTask setLaunchPath:interpreter];
     [privilegedTask setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
     [privilegedTask setArguments:arguments];
     
-    //set it off
+    // set it off
     PLog(@"Running task\n%@", [privilegedTask description]);
     OSStatus err = [privilegedTask launch];
     if (err != errAuthorizationSuccess) {
@@ -1202,7 +1195,7 @@
 //run open panel, made available to apps that are droppable
 - (IBAction)openFiles:(id)sender {
     
-    //create open panel
+    // create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setPrompt:@"Open"];
     [oPanel setAllowsMultipleSelection:YES];
@@ -1294,12 +1287,12 @@
         return YES;
     }
     
-    //save to file item
+    // save to file item
     if ([[anItem title] isEqualToString:@"Save to File…"] &&
         (outputType != PLATYPUS_OUTPUT_TEXTWINDOW && outputType != PLATYPUS_OUTPUT_WEBVIEW  && outputType != PLATYPUS_OUTPUT_PROGRESSBAR)) {
         return NO;
     }
-    //open should only work if it's a droppable app
+    // open should only work if it's a droppable app
     if ([[anItem title] isEqualToString:@"Open…"] &&
         (!isDroppable || !acceptsFiles)) {
         return NO;
