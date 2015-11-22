@@ -494,6 +494,7 @@
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+    
     // again, make absolutely sure we don't leave the clear-text script in temp directory
     if (secureScript && [FILEMGR fileExistsAtPath:scriptPath]) {
         [FILEMGR removeItemAtPath:scriptPath error:nil];
@@ -1533,7 +1534,7 @@
     }
     // fire off the job queue if nothing is running
     if (!isTaskRunning && [jobQueue count] > 0) {
-        [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(executeScript) userInfo:nil repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:0.0f target:self selector:@selector(executeScript) userInfo:nil repeats:NO];
     }
 }
 

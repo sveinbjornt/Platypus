@@ -37,21 +37,13 @@ typedef NS_ENUM(unsigned int, STPathTextFieldAutocompleteStyle) {
 };
 
 @interface STPathTextField : NSTextField <NSTextViewDelegate>
-{
-    STPathTextFieldAutocompleteStyle autocompleteStyle;
-    BOOL colorInvalidPath;
-    BOOL foldersAreValid;
-    BOOL expandTildeInPath;
-}
-- (void)updateTextColoring;
-- (BOOL)autoComplete:(id)sender;
+
 @property (nonatomic, readonly) BOOL hasValidPath;
-
 @property (nonatomic) STPathTextFieldAutocompleteStyle autocompleteStyle;
-
 @property (nonatomic) BOOL colorInvalidPath;
-
 @property (nonatomic) BOOL foldersAreValid;
-
 @property (nonatomic) BOOL expandTildeInPath;
+
+- (void)updateTextColoring;
+
 @end

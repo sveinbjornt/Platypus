@@ -63,17 +63,12 @@
 
 @implementation STPathTextField
 
-/*******************************************
- Set all field settings to their default value
- ********************************************/
-
 - (void)awakeFromNib {
-    // default settings for the text field
-    autocompleteStyle = STShellAutocomplete;
-    colorInvalidPath = YES;
-    foldersAreValid = NO;
-    expandTildeInPath = YES;
-    
+    // default settings
+    self.autocompleteStyle = STShellAutocomplete;
+    self.colorInvalidPath = YES;
+    self.foldersAreValid = NO;
+    self.expandTildeInPath = YES;
     [self registerForDraggedTypes:@[NSFilenamesPboardType]];
 }
 
@@ -86,8 +81,9 @@
  ********************************************/
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
-    if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType])
+    if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
         return NSDragOperationLink;
+    }
     
     return NSDragOperationNone;
 }
@@ -108,8 +104,8 @@
 
 - (BOOL)hasValidPath {
     BOOL isDir;
-    NSString *path = expandTildeInPath ? [[self stringValue] stringByExpandingTildeInPath] : [self stringValue];
-    return ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && (!(isDir && !foldersAreValid)));
+    NSString *path = self.expandTildeInPath ? [[self stringValue] stringByExpandingTildeInPath] : [self stringValue];
+    return [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && ((isDir && !self.foldersAreValid) == NO);
 }
 
 /*******************************************
@@ -121,7 +117,7 @@
 - (void)keyUp:(NSEvent *)event {
     int keyCode = [[event characters] characterAtIndex:0];
     
-    if (autocompleteStyle == STBrowserAutocomplete) {
+    if (self.autocompleteStyle == STBrowserAutocomplete) {
         if (keyCode != 13 && keyCode != 9 && keyCode != 127 && keyCode != NSLeftArrowFunctionKey && keyCode != NSRightArrowFunctionKey)
             [self autoComplete:self];
     }
@@ -143,7 +139,7 @@
  to red if invalid path, black if valid
  ********************************************/
 - (void)updateTextColoring {
-    if (!colorInvalidPath) {
+    if (!self.colorInvalidPath) {
         return;
     }
     NSColor *textColor = [self hasValidPath] ? [NSColor blackColor] : [NSColor redColor];
@@ -173,7 +169,7 @@
     }
     
     // expand tilde to home dir
-    if (firstchar == '~' && expandTildeInPath) {
+    if (firstchar == '~' && self.expandTildeInPath) {
         path = [[self stringValue] stringByExpandingTildeInPath];
         len = [path length];
     }
@@ -189,7 +185,7 @@
     // stop if suggestion is current value and current value is a valid path
     if ([autocompletedPath isEqualToString:[self stringValue]] &&
         [[NSFileManager defaultManager] fileExistsAtPath:autocompletedPath isDirectory:&isDir] &&
-        !(isDir && !foldersAreValid)) {
+        !(isDir && !self.foldersAreValid)) {
         return NO;
     }
     
@@ -198,7 +194,7 @@
     
     // if browser style autocompletion is enabled
     // we select the autocomplete extension to the previous string
-    if (autocompleteStyle == STBrowserAutocomplete) {
+    if (self.autocompleteStyle == STBrowserAutocomplete) {
         dlen = [autocompletedPath length];
         [[self currentEditor] setSelectedRange:NSMakeRange(len, dlen)];
     }
@@ -208,11 +204,12 @@
 
 // we make sure coloring is correct whenever text changes
 - (void)textDidChange:(NSNotification *)aNotification {
-    if (colorInvalidPath)
+    if (self.colorInvalidPath) {
         [self updateTextColoring];
-    
-    if ([self delegate] && [[self delegate] respondsToSelector:@selector(controlTextDidChange:)])
+    }
+    if ([self delegate] && [[self delegate] respondsToSelector:@selector(controlTextDidChange:)]) {
         [[self delegate] performSelector:@selector(controlTextDidChange:) withObject:nil];
+    }
 }
 
 /*******************************************
@@ -221,7 +218,7 @@
 
 - (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector {
     // intercept tab
-    if (aSelector == @selector(insertTab:) && autocompleteStyle == STShellAutocomplete) {
+    if (aSelector == @selector(insertTab:) && self.autocompleteStyle == STShellAutocomplete) {
         NSString *string = [self stringValue];
         BOOL result = NO;
         NSRange selectedRange = [aTextView selectedRange];
@@ -239,42 +236,6 @@
     }
     return false;
     //    return [super textView: aTextView doCommandBySelector: aSelector];
-}
-
-/*******************************************
- Accessor functions for settings
- ********************************************/
-
-- (void)setAutocompleteStyle:(STPathTextFieldAutocompleteStyle)style {
-    autocompleteStyle = style;
-}
-
-- (STPathTextFieldAutocompleteStyle)autocompleteStyle {
-    return autocompleteStyle;
-}
-
-- (void)setColorInvalidPath:(BOOL)val {
-    colorInvalidPath = val;
-}
-
-- (BOOL)colorInvalidPath {
-    return colorInvalidPath;
-}
-
-- (void)setFoldersAreValid:(BOOL)val {
-    foldersAreValid = val;
-}
-
-- (BOOL)foldersAreValid {
-    return foldersAreValid;
-}
-
-- (void)setExpandTildeInPath:(BOOL)val {
-    expandTildeInPath = val;
-}
-
-- (BOOL)expandTildeInPath {
-    return expandTildeInPath;
 }
 
 @end
