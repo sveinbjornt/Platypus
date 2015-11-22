@@ -256,7 +256,7 @@
         if ([filename hasSuffix:PROFILES_SUFFIX]) {
             NSString *path = [NSString stringWithFormat:@"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], filename];
             if (![manager isDeletableFileAtPath:path]) {
-                [Alerts alert:@"Error" subText:[NSString stringWithFormat:@"Cannot delete file %@.", path]];
+                [Alerts alert:@"Error" subTextFormat:@"Cannot delete file %@.", path, nil];
             } else {
                 [manager removeItemAtPath:path error:nil];
             }

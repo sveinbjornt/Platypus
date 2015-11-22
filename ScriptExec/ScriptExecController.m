@@ -260,7 +260,7 @@
     NSString *outputTypeStr = appSettingsDict[@"OutputType"];
     if ([PLATYPUS_OUTPUT_TYPES containsObject:outputTypeStr] == FALSE) {
         [Alerts fatalAlert:@"Corrupt app settings"
-                   subText:[NSString stringWithFormat:@"Invalid Output Mode: '%@'.", outputTypeStr]];
+             subTextFormat:@"Invalid Output Mode: '%@'.", outputTypeStr];
     }
     outputType = [PLATYPUS_OUTPUT_TYPES indexOfObject:outputTypeStr];
     
@@ -416,7 +416,8 @@
     // get interpreter
     NSString *scriptInterpreter = appSettingsDict[@"ScriptInterpreter"];
     if (scriptInterpreter == nil || [FILEMGR fileExistsAtPath:scriptInterpreter] == NO) {
-        [Alerts fatalAlert:@"Missing interpreter" subText:[NSString stringWithFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreter]];
+        [Alerts fatalAlert:@"Missing interpreter"
+             subTextFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreter, nil];
     }
     interpreter = [[NSString alloc] initWithString:scriptInterpreter];
 
@@ -814,7 +815,8 @@
         
         NSString *tempScriptPath = [WORKSPACE createTempFileWithContents:scriptText usingTextEncoding:textEncoding];
         if (!tempScriptPath) {
-            [Alerts fatalAlert:@"Failed to write script file" subText:[NSString stringWithFormat:@"Could not create the temp file '%@'", tempScriptPath]];
+            [Alerts fatalAlert:@"Failed to write script file"
+                 subTextFormat:@"Could not create the temp file '%@'", tempScriptPath, nil];
         }
         // chmod 774 - make file executable
         chmod([tempScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
@@ -947,7 +949,8 @@
             return;
         }  else {
             // something went wrong
-            [Alerts fatalAlert:@"Failed to execute script" subText:[NSString stringWithFormat:@"Error %d occurred while executing script with privileges.", (int)err]];
+            [Alerts fatalAlert:@"Failed to execute script"
+                 subTextFormat:@"Error %d occurred while executing script with privileges.", (int)err, nil];
         }
     }
     
@@ -1204,7 +1207,6 @@
     
     // set acceptable file types - default allows all
     if (!acceptAnyDroppedItem) {
-        // TODO: FIX THIS TO USE UTIs
         NSMutableArray *allowedFileTypes = [NSMutableArray array];
         [allowedFileTypes addObjectsFromArray:droppableSuffixes];
         [allowedFileTypes addObjectsFromArray:droppableUniformTypes];
@@ -1422,9 +1424,7 @@
         return NO;
     }
     
-    // we create a processing job and add the files as arguments
-//    NSMutableArray *args = [NSMutableArray array];
-//    [args addObjectsFromArray:acceptedFiles];
+    // we create a job and add the files as arguments
     ScriptExecJob *job = [ScriptExecJob jobWithArguments:acceptedFiles andStandardInput:nil];
     [jobQueue addObject:job];
     
@@ -1432,15 +1432,15 @@
     return YES;
 }
 
-/*****************************************************************
- Returns whether a given file is accepted by the suffix/types
- criterion specified in AppSettings.plist
- *****************************************************************/
+/*********************************************
+ Returns whether a given file matches the file
+ suffixes/UTIs specified in AppSettings.plist
+ *********************************************/
 
 - (BOOL)isAcceptableFileType:(NSString *)file {
-    BOOL isDir;
     
     // Check if it's a folder. If so, we only accept it if folders are accepted
+    BOOL isDir;
     if ([FILEMGR fileExistsAtPath:file isDirectory:&isDir] && isDir && acceptDroppedFolders) {
         return YES;
     }

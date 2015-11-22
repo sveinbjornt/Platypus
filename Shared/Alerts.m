@@ -20,12 +20,30 @@
     [alert release];
 }
 
++ (void)alert:(NSString *)message subTextFormat:(NSString *)formatString, ...
+{
+    va_list args;
+    va_start(args, formatString);
+    NSString *formattedString = [[[NSString alloc] initWithFormat:formatString arguments:args] autorelease];
+    va_end(args);
+    [self alert:message subText:formattedString];
+}
+
 + (void)alert:(NSString *)message subText:(NSString *)subtext {
     [self alert:message subText:subtext style:NSWarningAlertStyle];
 }
 
 + (void)fatalAlert:(NSString *)message subText:(NSString *)subtext {
     [self alert:message subText:subtext style:NSCriticalAlertStyle];
+    [[NSApplication sharedApplication] terminate:self];
+}
+
++ (void)fatalAlert:(NSString *)message subTextFormat:(NSString *)formatString, ... {
+    va_list args;
+    va_start(args, formatString);
+    NSString *formattedString = [[[NSString alloc] initWithFormat:formatString arguments:args] autorelease];
+    va_end(args);
+    [self alert:message subText:formattedString style:NSCriticalAlertStyle];
     [[NSApplication sharedApplication] terminate:self];
 }
 
