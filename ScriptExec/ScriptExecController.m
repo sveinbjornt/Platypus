@@ -484,10 +484,10 @@
     }
     
     // add the dropped files as a job for processing
-    NSInteger ret = [self addDroppedFilesJob:filenames];
+    BOOL success = [self addDroppedFilesJob:filenames];
     
     // if no other job is running, we execute
-    if (!isTaskRunning && ret) {
+    if (!isTaskRunning && success) {
         [self executeScript];
     }
 }
@@ -1214,12 +1214,12 @@
     if ([oPanel runModal] == NSFileHandlingPanelOKButton) {
         // Convert URLs to paths
         NSMutableArray *files = [NSMutableArray arrayWithArray:[oPanel URLs]];
-        for (NSInteger i = 0; i < [files count]; i++) {
+        for (int i = 0; i < [files count]; i++) {
             files[i] = [(NSURL *)files[i] path];
         }
         
-        NSInteger ret = [self addDroppedFilesJob:files];
-        if (!isTaskRunning && ret) {
+        BOOL success = [self addDroppedFilesJob:files];
+        if (!isTaskRunning && success) {
             [self executeScript];
         }
     }
@@ -1377,9 +1377,9 @@
         return;
     }
     NSString *pboardString = [pboard stringForType:NSStringPboardType];
-    NSInteger ret = [self addDroppedTextJob:pboardString];
+    BOOL success = [self addDroppedTextJob:pboardString];
     
-    if (!isTaskRunning && ret) {
+    if (!isTaskRunning && success) {
         [self executeScript];
     }
 }
@@ -1423,9 +1423,9 @@
     }
     
     // we create a processing job and add the files as arguments
-    NSMutableArray *args = [NSMutableArray array];
-    [args addObjectsFromArray:acceptedFiles];
-    ScriptExecJob *job = [ScriptExecJob jobWithArguments:args andStandardInput:nil];
+//    NSMutableArray *args = [NSMutableArray array];
+//    [args addObjectsFromArray:acceptedFiles];
+    ScriptExecJob *job = [ScriptExecJob jobWithArguments:acceptedFiles andStandardInput:nil];
     [jobQueue addObject:job];
     
     // accept drop
