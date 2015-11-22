@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AcceptsFiles</key>
+	<false/>
+	<key>AcceptsText</key>
+	<false/>
+	<key>Authentication</key>
+	<true/>
+	<key>Author</key>
+	<string>Sveinbjorn Thordarson</string>
+	<key>BundledFiles</key>
+	<array/>
+	<key>Creator</key>
+	<string>Platypus-5.0</string>
+	<key>DeclareService</key>
+	<false/>
+	<key>DestinationOverride</key>
+	<false/>
+	<key>DevelopmentVersion</key>
+	<false/>
+	<key>Example</key>
+	<true/>
+	<key>ScriptName</key>
+	<string>AdminPrivilegesDemo.sh</string>
+	<key>Script</key>
+	<string>#!/bin/sh
+echo "This demo shows execution using admin privileges by creating a file in /etc/"
+echo "Running command /usr/bin/touch /etc/admin_priv_demo_testfile"
+/usr/bin/touch /etc/admin_priv_demo_testfile
+echo "Return code: $?"
+echo "Running command /bin/test -e touch /etc/admin_priv_demo_testfile"
+/bin/test -e /etc/admin_priv_demo_testfile
+echo "Return code: $?"
+    </string>
+	<key>DocIcon</key>
+	<string></string>
+	<key>Droppable</key>
+	<false/>
+	<key>ExecutablePath</key>
+	<string>/usr/local/share/platypus/ScriptExec</string>
+	<key>IconPath</key>
+	<string></string>
+	<key>Identifier</key>
+	<string>org.sveinbjorn.AdminPrivilegesDemo</string>
+	<key>Interpreter</key>
+	<string>/bin/sh</string>
+	<key>InterpreterArgs</key>
+	<array/>
+	<key>Name</key>
+	<string>AdminPrivilegesDemo</string>
+	<key>NibPath</key>
+	<string>/usr/local/share/platypus/MainMenu.nib</string>
+	<key>OptimizeApplication</key>
+	<true/>
+	<key>Output</key>
+	<string>Text Window</string>
+	<key>PromptForFileOnLaunch</key>
+	<false/>
+	<key>RemainRunning</key>
+	<true/>
+	<key>Role</key>
+	<string>Viewer</string>
+	<key>ScriptArgs</key>
+	<array/>
+	<key>Secure</key>
+	<false/>
+	<key>ShowInDock</key>
+	<false/>
+	<key>StatusItemDisplayType</key>
+	<string>Text</string>
+	<key>StatusItemIcon</key>
+	<data></data>
+	<key>StatusItemTitle</key>
+	<string>MyPlatypusApp</string>
+	<key>StatusItemUseSystemFont</key>
+	<true/>
+	<key>Suffixes</key>
+	<array>
+		<string>*</string>
+	</array>
+	<key>TextBackground</key>
+	<string>#ffffff</string>
+	<key>TextEncoding</key>
+	<integer>4</integer>
+	<key>TextFont</key>
+	<string>Monaco</string>
+	<key>TextForeground</key>
+	<string>#000000</string>
+	<key>TextSize</key>
+	<real>13</real>
+	<key>UniformTypes</key>
+	<array/>
+	<key>UseXMLPlistFormat</key>
+	<false/>
+	<key>Version</key>
+	<string>1.0</string>
+</dict>
+</plist>
