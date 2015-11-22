@@ -117,8 +117,8 @@
 }
 
 + (NSString *)interpreterForDisplayName:(NSString *)name {
-    NSArray *interpreterDisplayNames = [ScriptAnalyser interpreterDisplayNames];
-    NSArray *interpreters = [ScriptAnalyser interpreters];
+    NSArray<NSString*> *interpreterDisplayNames = [ScriptAnalyser interpreterDisplayNames];
+    NSArray<NSString*> *interpreters = [ScriptAnalyser interpreters];
 
     NSUInteger index = [interpreterDisplayNames indexOfObject:name];
     if (index != NSNotFound) {
@@ -129,38 +129,51 @@
 
 #pragma mark -
 
-+ (NSString *)interpreterForFileSuffix:(NSString *)fileName {
-    NSArray *interpreters = [ScriptAnalyser interpreters];
++ (NSArray<NSArray*> *)interpreterSuffixes {
     
-    if ([fileName hasSuffix:@".sh"] || [fileName hasSuffix:@".command"]) {
-        return interpreters[0];
-    } else if ([fileName hasSuffix:@".bash"]) {
-        return interpreters[1];
-    } else if ([fileName hasSuffix:@".csh"]) {
-        return interpreters[2];
-    } else if ([fileName hasSuffix:@".tcsh"]) {
-        return interpreters[3];
-    } else if ([fileName hasSuffix:@".ksh"]) {
-        return interpreters[4];
-    } else if ([fileName hasSuffix:@".zsh"]) {
-        return interpreters[5];
-    } else if ([fileName hasSuffix:@".pl"] || [fileName hasSuffix:@".perl"] || [fileName hasSuffix:@".pm"]) {
-        return interpreters[6];
-    } else if ([fileName hasSuffix:@".py"] || [fileName hasSuffix:@".python"] || [fileName hasSuffix:@".objpy"]) {
-        return interpreters[7];
-    } else if ([fileName hasSuffix:@".rb"] || [fileName hasSuffix:@".rbx"] || [fileName hasSuffix:@".ruby"] | [fileName hasSuffix:@".rbw"]) {
-        return interpreters[8];
-    } else if ([fileName hasSuffix:@".scpt"] || [fileName hasSuffix:@".applescript"] || [fileName hasSuffix:@".osascript"]) {
-        return interpreters[9];
-    } else if ([fileName hasSuffix:@".tcl"] || [fileName hasSuffix:@".tcsh"]) {
-        return interpreters[10];
-    } else if ([fileName hasSuffix:@".exp"] || [fileName hasSuffix:@".expect"]) {
-        return interpreters[11];
-    } else if ([fileName hasSuffix:@".php"] || [fileName hasSuffix:@".php4"] || [fileName hasSuffix:@".php5"] ||
-             [fileName hasSuffix:@".php3"] || [fileName hasSuffix:@".hp3"] || [fileName hasSuffix:@".ph4"] || [fileName hasSuffix:@".phtml"]) {
-        return interpreters[12];
+    NSArray<NSArray*> *interpreterSuffixes = @[
+                                        @[@".sh", @".command"],
+                                        @[@".bash"],
+                                        @[@".csh"],
+                                        @[@".tcsh"],
+                                        @[@".ksh"],
+                                        @[@".zsh"],
+                                        @[@".sh"],
+                                        @[@".pl", @".perl", @".pm"],
+                                        @[@".py", @".python", @".objpy"],
+                                        @[@".rb", @".rbx", @".ruby", @".rbw"],
+                                        @[@".scpt", @".applescript", @".osascript"],
+                                        @[@".tcl"],
+                                        @[@".exp", @".expect"],
+                                        @[@".php", @".php3", @".php4", @".php5", @".phtml"]
+                                    ];
+    return interpreterSuffixes;
+}
+
++ (NSString *)interpreterForFilenameSuffix:(NSString *)fileName {
+    
+    NSArray<NSString*> *interpreters = [ScriptAnalyser interpreters];
+    NSArray<NSArray*> *interpreterSuffixes = [ScriptAnalyser interpreterSuffixes];
+    
+    for (int i = 0; i < [interpreterSuffixes count]; i++) {
+        NSArray *suffixes = interpreterSuffixes[i];
+        for (NSString *suffix in suffixes) {
+            if ([fileName hasSuffix:suffix]) {
+                return interpreters[i];
+            }
+        }
     }
     return nil;
+}
+
++ (NSString *)filenameSuffixForInterpreter:(NSString *)interpreter {
+    NSArray<NSString*> *interpreters = [ScriptAnalyser interpreters];
+    NSArray<NSArray*> *interpreterSuffixes = [ScriptAnalyser interpreterSuffixes];
+    NSInteger index = [interpreters indexOfObject:interpreter];
+    if (index != NSNotFound) {
+        return interpreterSuffixes[index][0];
+    }
+    return @"";
 }
 
 + (NSArray *)parseInterpreterFromShebang:(NSString *)path {
@@ -222,7 +235,7 @@
     if (interpreter != nil && ![interpreter isEqualToString:@""]) {
         return interpreter;
     }
-    return [ScriptAnalyser interpreterForFileSuffix:path];
+    return [ScriptAnalyser interpreterForFilenameSuffix:path];
 }
 
 + (NSString *)checkSyntaxOfFile:(NSString *)scriptPath withInterpreter:(NSString *)suggestedInterpreter {

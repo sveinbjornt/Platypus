@@ -252,14 +252,22 @@
 }
 
 - (NSString *)createNewScript:(NSString *)scriptText {
-    NSString *tempScript, *defaultScript;
     NSString *interpreter = [interpreterTextField stringValue];
+    NSString *suffix = [ScriptAnalyser filenameSuffixForInterpreter:interpreter];
     
-    // get a random number to append to script name in temp dir
-    do {
-        int randnum =  random() / 1000000;
-        tempScript = [NSString stringWithFormat:@"%@/%@.%d", [TEMP_FOLDER stringByExpandingTildeInPath], NEW_SCRIPT_FILENAME, randnum];
-    } while ([FILEMGR fileExistsAtPath:tempScript]);
+    NSString *appName = [appNameTextField stringValue];
+    if ([appName isEqualToString:@""]) {
+        appName = NEW_SCRIPT_FILENAME;
+    }
+
+    NSString *tmpScriptPath = [NSString stringWithFormat:@"%@/%@%@", [TEMP_FOLDER stringByExpandingTildeInPath], appName, suffix];
+    
+    // increment digit appended to script name until no script exists
+    int incr = 1;
+    while ([FILEMGR fileExistsAtPath:tmpScriptPath]) {
+        tmpScriptPath = [NSString stringWithFormat:@"%@/%@-%d%@", [TEMP_FOLDER stringByExpandingTildeInPath], appName, incr, suffix];
+        incr++;
+    }
     
     //put shebang line in the new script text file
     NSString *contentString = [NSString stringWithFormat:@"#!%@\n\n", interpreter];
@@ -267,21 +275,24 @@
     if (scriptText != nil) {
         contentString = [contentString stringByAppendingString:scriptText];
     } else {
-        defaultScript = [ScriptAnalyser helloWorldProgramForDisplayName:[scriptTypePopupButton titleOfSelectedItem]];
-        if (defaultScript != nil) {
-            contentString = [contentString stringByAppendingString:defaultScript];
+        NSString *defaultScriptText = [ScriptAnalyser helloWorldProgramForDisplayName:[scriptTypePopupButton titleOfSelectedItem]];
+        if (defaultScriptText != nil) {
+            contentString = [contentString stringByAppendingString:defaultScriptText];
         }
     }
     
     //write the default content to the new script
     NSError *err;
-    BOOL success = [contentString writeToFile:tempScript atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:&err];
+    BOOL success = [contentString writeToFile:tmpScriptPath
+                                   atomically:YES
+                                     encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]
+                                        error:&err];
     if (!success) {
         [Alerts alert:@"Error creating file" subText:[err localizedDescription]];
         return nil;
     }
     
-    return tempScript;
+    return tmpScriptPath;
 }
 
 - (IBAction)revealScript:(id)sender {

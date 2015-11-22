@@ -43,8 +43,7 @@
     va_start(args, formatString);
     NSString *formattedString = [[[NSString alloc] initWithFormat:formatString arguments:args] autorelease];
     va_end(args);
-    [self alert:message subText:formattedString style:NSCriticalAlertStyle];
-    [[NSApplication sharedApplication] terminate:self];
+    [self fatalAlert:message subText:formattedString];
 }
 
 #pragma mark -
