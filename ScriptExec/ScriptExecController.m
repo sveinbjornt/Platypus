@@ -1650,9 +1650,9 @@
 
 - (void)showNotification:(NSString *)notificationText {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = appName;
-    notification.informativeText = notificationText;
-    notification.soundName = NSUserNotificationDefaultSoundName;
+    [notification setTitle:appName];
+    [notification setInformativeText:notificationText];
+    [notification setSoundName:NSUserNotificationDefaultSoundName];
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     [notification release];
 }
