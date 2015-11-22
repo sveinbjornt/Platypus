@@ -1,23 +1,12 @@
-*.xcuserstate
-UserInterfaceState.xcuserstate
-*dsa_priv.pem
-Platypus.build
-BuildData
-.DS_Store
-*.swp
-*~.nib 
-*.pbxuser
-*.perspective
-*.perspectivev3
-*.mode1v3
-*.mode2v3
-*.xcodeproj/xcuserdata/*.xcuserdatad
-*.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad
-xcuserdata/
-platypus.man.html
-*UserInterfaceState.xcuserstate
-.DS_Store
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
 build/
+DerivedData
+
+## Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -26,11 +15,9 @@ build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-!default.xcworkspace
 xcuserdata
-profile
-*.moved-aside
-DerivedData
-.idea/
-Pods
 
+## Other
+*.xccheckout
+*.moved-aside
+*.xcuserstate
