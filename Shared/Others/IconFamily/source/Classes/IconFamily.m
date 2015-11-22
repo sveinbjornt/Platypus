@@ -769,12 +769,12 @@
 
 - (BOOL) setAsCustomIconForFile:(NSString*)path
 {
-    return [self setAsCustomIconForFile:path withCompatibility:NO error:NULL];
+    return( [self setAsCustomIconForFile:path withCompatibility:NO error:NULL] );
 }
 
 - (BOOL) setAsCustomIconForFile:(NSString*)path withCompatibility:(BOOL)compat
 {
-    return [self setAsCustomIconForFile:path withCompatibility:NO error:NULL];
+    return( [self setAsCustomIconForFile:path withCompatibility:NO error:NULL] );
 }
 
 - (BOOL) setAsCustomIconForFile:(NSString*)path withCompatibility:(BOOL)compat error:(NSError **)error
@@ -1155,7 +1155,7 @@
 
 + (BOOL) removeCustomIconFromDirectory:(NSString*)path
 {
-    return [self removeCustomIconFromDirectory:path error:NULL];
+    return( [self removeCustomIconFromDirectory:path error:NULL] );
 }
 
 + (BOOL) removeCustomIconFromDirectory:(NSString*)path error:(NSError **)error
@@ -1252,9 +1252,9 @@
     NSSize size, pixelSize, newSize;
     NSRect iconRect;
     NSRect targetRect;
-
-    iconWidth = iconWidth / [[NSScreen mainScreen] backingScaleFactor];
     
+    iconWidth = iconWidth / [[NSScreen mainScreen] backingScaleFactor];
+
     // Create a working copy of the image and scale its size down to fit in
     // the square area of the icon.
     //
@@ -1264,6 +1264,7 @@
     // of the original image, but we shouldn't change the original, so a copy
     // is necessary.
     workingImage = [image copyWithZone:[image zone]];
+//    [workingImage setScalesWhenResized:YES];
     size = [workingImage size];
     workingImageRep = [workingImage bestRepresentationForRect:NSZeroRect context:nil hints:nil];
     if ([workingImageRep isKindOfClass:[NSBitmapImageRep class]]) {
