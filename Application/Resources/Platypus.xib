@@ -561,7 +561,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="6DA6BFF3-CAFD-4E52-BED3-BC99CF487C05" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="03EA3B75-DACD-49A0-907E-E3FED7613B21" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -1375,7 +1375,7 @@ DQ
                         <animations/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="11001">
                             <font key="font" metaFont="smallSystem"/>
-                            <string key="title">Here you can set the drop settings for your application. This lets you to control what kinds of messages from the operating system it responds to, e.g. opening files or processing text snippets. These messages are passed as arguments to your script.</string>
+                            <string key="title">Here you can set the drop settings for your application. This lets you to control what kinds of messages from the operating system it responds to, e.g. opening files or processing text snippets. These messages are then on to your script either as arguments or via STDIN.</string>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -1728,8 +1728,9 @@ DQ
                         <rect key="frame" x="218" y="101" width="301" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Check here if you want your script to accept dropped text snippets or text fed in through the Mac OS X Services API.  " id="11531">
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="11531">
                             <font key="font" metaFont="smallSystem"/>
+                            <string key="title">Check here if you want your script to accept dropped text snippets or text fed in through the Mac OS X Services API.  Script can access text by reading STDIN.</string>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -2138,7 +2139,7 @@ DQ
                         </connections>
                     </colorWell>
                     <colorWell toolTip="Text field foreground color settings" id="2080">
-                        <rect key="frame" x="173" y="128" width="44" height="23"/>
+                        <rect key="frame" x="173" y="126" width="44" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
                         <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -2147,27 +2148,27 @@ DQ
                         </connections>
                     </colorWell>
                     <textField verticalHuggingPriority="750" id="2081">
-                        <rect key="frame" x="83" y="162" width="83" height="17"/>
+                        <rect key="frame" x="82" y="162" width="83" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Background:" id="11043">
+                        <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Background" id="11043">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="2083">
-                        <rect key="frame" x="83" y="131" width="83" height="17"/>
+                        <rect key="frame" x="82" y="129" width="83" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Foreground:" id="11044">
+                        <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Foreground" id="11044">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button toolTip="Select the font for text output mode" verticalHuggingPriority="750" id="2085">
-                        <rect key="frame" x="149" y="93" width="73" height="28"/>
+                        <rect key="frame" x="149" y="91" width="73" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <animations/>
                         <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="11045">
@@ -2179,10 +2180,10 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="2097">
-                        <rect key="frame" x="18" y="69" width="89" height="14"/>
+                        <rect key="frame" x="18" y="69" width="82" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
-                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Text Encoding:" id="11046">
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Text Encoding" id="11046">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2211,17 +2212,17 @@ DQ
                         </popUpButtonCell>
                     </popUpButton>
                     <textField verticalHuggingPriority="750" id="2106">
-                        <rect key="frame" x="239" y="185" width="45" height="14"/>
+                        <rect key="frame" x="239" y="185" width="101" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
-                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Preview" id="11048">
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Text Style Preview" id="11048">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="2108">
-                        <rect key="frame" x="25" y="102" width="119" height="14"/>
+                        <rect key="frame" x="25" y="100" width="119" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
                         <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Helvetica 10.0" id="11049">
@@ -2947,7 +2948,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="6DA6BFF3-CAFD-4E52-BED3-BC99CF487C05" width="16" height="16">
+        <image name="03EA3B75-DACD-49A0-907E-E3FED7613B21" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

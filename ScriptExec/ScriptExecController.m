@@ -48,46 +48,45 @@
 @interface ScriptExecController()
 {
     // progress bar
-    IBOutlet id progressBarCancelButton;
-    IBOutlet id progressBarMessageTextField;
-    IBOutlet id progressBarIndicator;
-    IBOutlet id progressBarWindow;
-    IBOutlet id progressBarTextView;
-    IBOutlet id progressBarDetailsTriangle;
-    IBOutlet id progressBarDetailsLabel;
+    IBOutlet NSButton *progressBarCancelButton;
+    IBOutlet NSTextField *progressBarMessageTextField;
+    IBOutlet NSProgressIndicator *progressBarIndicator;
+    IBOutlet NSWindow *progressBarWindow;
+    IBOutlet NSTextView *progressBarTextView;
+    IBOutlet NSButton *progressBarDetailsTriangle;
+    IBOutlet NSTextField *progressBarDetailsLabel;
     
     // text window
-    IBOutlet id textOutputWindow;
-    IBOutlet id textOutputCancelButton;
-    IBOutlet id textOutputTextView;
-    IBOutlet id textOutputProgressIndicator;
-    IBOutlet id textOutputMessageTextField;
+    IBOutlet NSWindow *textOutputWindow;
+    IBOutlet NSButton *textOutputCancelButton;
+    IBOutlet NSTextView *textOutputTextView;
+    IBOutlet NSProgressIndicator *textOutputProgressIndicator;
+    IBOutlet NSTextField *textOutputMessageTextField;
     
     // web view
-    IBOutlet id webOutputWindow;
-    IBOutlet id webOutputCancelButton;
-    IBOutlet id webOutputWebView;
-    IBOutlet id webOutputProgressIndicator;
-    IBOutlet id webOutputMessageTextField;
+    IBOutlet NSWindow *webOutputWindow;
+    IBOutlet NSButton *webOutputCancelButton;
+    IBOutlet WebView *webOutputWebView;
+    IBOutlet NSProgressIndicator *webOutputProgressIndicator;
+    IBOutlet NSTextField *webOutputMessageTextField;
     
     // status item menu
     NSStatusItem *statusItem;
     NSMenu *statusItemMenu;
     
     // droplet
-    IBOutlet id dropletWindow;
-    IBOutlet id dropletBox;
-    IBOutlet id dropletProgressIndicator;
-    IBOutlet id dropletMessageTextField;
-    IBOutlet id dropletDropFilesLabel;
-    IBOutlet id dropletShader;
+    IBOutlet NSWindow *dropletWindow;
+    IBOutlet NSBox *dropletBox;
+    IBOutlet NSProgressIndicator *dropletProgressIndicator;
+    IBOutlet NSTextField *dropletMessageTextField;
+    IBOutlet NSTextField *dropletDropFilesLabel;
+    IBOutlet NSView *dropletShaderView;
     
     //menu items
-    IBOutlet id hideMenuItem;
-    IBOutlet id quitMenuItem;
-    IBOutlet id aboutMenuItem;
-    
-    IBOutlet id windowMenu;
+    IBOutlet NSMenuItem *hideMenuItem;
+    IBOutlet NSMenuItem *quitMenuItem;
+    IBOutlet NSMenuItem *aboutMenuItem;
+    IBOutlet NSMenu *windowMenu;
     
     NSTextView *outputTextView;
     
@@ -1503,8 +1502,8 @@
     if (acceptDrag) {
         // we shade the window if output is droplet mode
         if (outputType == PLATYPUS_OUTPUT_DROPLET) {
-            [dropletShader setAlphaValue:0.3];
-            [dropletShader setHidden:NO];
+            [dropletShaderView setAlphaValue:0.3];
+            [dropletShaderView setHidden:NO];
         }
         return NSDragOperationLink;
     }
@@ -1516,7 +1515,7 @@
 {
     // remove the droplet shading on drag exit
     if (outputType == PLATYPUS_OUTPUT_DROPLET) {
-        [dropletShader setHidden:YES];
+        [dropletShaderView setHidden:YES];
     }
 }
 
@@ -1537,7 +1536,7 @@
     
     // shade droplet
     if (outputType == PLATYPUS_OUTPUT_DROPLET) {
-        [dropletShader setHidden:YES];
+        [dropletShaderView setHidden:YES];
     }
     // fire off the job queue if nothing is running
     if (!isTaskRunning && [jobQueue count] > 0) {

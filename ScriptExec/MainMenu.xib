@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="macosx"/>
         <development version="6000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
         <plugIn identifier="com.apple.WebKitIBPlugin" version="9059"/>
@@ -25,7 +24,7 @@
                 <outlet property="dropletDropFilesLabel" destination="499" id="507"/>
                 <outlet property="dropletMessageTextField" destination="505" id="508"/>
                 <outlet property="dropletProgressIndicator" destination="496" id="504"/>
-                <outlet property="dropletShader" destination="519" id="521"/>
+                <outlet property="dropletShaderView" destination="519" id="w2q-dA-smc"/>
                 <outlet property="dropletWindow" destination="490" id="512"/>
                 <outlet property="hideMenuItem" destination="134" id="239"/>
                 <outlet property="progressBarCancelButton" destination="206" id="299"/>
