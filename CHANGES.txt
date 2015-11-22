@@ -23,8 +23,6 @@ For 5.0
         TODO: Add documentation on reading dropped text from STDIN
     TODO: Resizable Progress Bar window
     TODO: Long GNU named params for command line tool, e.g. --some-option
-    TODO: Test UTI stuff
-    TODO: Fix issue with icon path file watching
 
     * Added ALERT: example
     * Added authenticated execution example
