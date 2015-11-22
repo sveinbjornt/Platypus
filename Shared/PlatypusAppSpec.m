@@ -133,6 +133,8 @@
     return [self initWithDictionary:[NSMutableDictionary dictionaryWithContentsOfFile:profilePath]];
 }
 
+#if !__has_feature(objc_arc)
+
 + (instancetype)specWithDefaults {
     return [[[self alloc] initWithDefaults] autorelease];
 }
@@ -148,6 +150,8 @@
 + (instancetype)specWithDefaultsFromScript:(NSString *)scriptPath {
     return [[[self alloc] initWithDefaultsForScript:scriptPath] autorelease];
 }
+
+#endif
 
 #pragma mark - Set default values
 

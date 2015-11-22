@@ -411,7 +411,7 @@
             droppableUniformTypes = [[NSArray alloc] init];
         }
         
-        if ([droppableSuffixes containsObject:@"*"] || [droppableUniformTypes containsObject:@"public.data"]) {
+        if (([droppableSuffixes containsObject:@"*"] && [droppableUniformTypes count] == 0) || [droppableUniformTypes containsObject:@"public.data"]) {
             acceptAnyDroppedItem = YES;
         }
         if ([droppableSuffixes containsObject:@"fold"] || [droppableUniformTypes containsObject:(NSString *)kUTTypeFolder]) {
@@ -1213,7 +1213,10 @@
     // set acceptable file types - default allows all
     if (!acceptAnyDroppedItem) {
         // TODO: FIX THIS TO USE UTIs
-        [oPanel setAllowedFileTypes:droppableSuffixes];
+        NSMutableArray *allowedFileTypes = [NSMutableArray array];
+        [allowedFileTypes addObjectsFromArray:droppableSuffixes];
+        [allowedFileTypes addObjectsFromArray:droppableUniformTypes];
+        [oPanel setAllowedFileTypes:allowedFileTypes];
     }
     
     if ([oPanel runModal] == NSFileHandlingPanelOKButton) {
@@ -1454,9 +1457,19 @@
         return YES;
     }
     
-    // see if file has accepted suffix
-    for (NSString *suffix in droppableSuffixes) {
-        if ([file hasSuffix:suffix]) {
+    // We only look at suffixes if
+//    if ([droppableUniformTypes count] == 0) {
+        for (NSString *suffix in droppableSuffixes) {
+            if ([file hasSuffix:suffix]) {
+                return YES;
+            }
+        }
+//    }
+
+    // see if file
+    for (NSString *uti in droppableUniformTypes) {
+        NSString *fileType = [WORKSPACE typeOfFile:file error:nil];
+        if ([WORKSPACE type:fileType conformsToType:uti]) {
             return YES;
         }
     }
