@@ -27,7 +27,7 @@ APIs. I made many beginner mistakes, some of which
 remain in the code.  The software has gone through over 
 three dozen significant versions. It has been patched,
 bugfixed, streamlined to include new features and 
-transitioned over to modern Objective C.
+partially transitioned over to modern Objective C.
 
 With these caveats in mind, here is the BSD-licensed 
 source code to Platypus.

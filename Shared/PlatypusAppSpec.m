@@ -422,19 +422,23 @@
     
     //copy bundled files to Resources folder
     //.app/Contents/Resources/*
-    [self report:@"Copying bundled files"];
     
+    int numBundledFiles = [self[@"BundledFiles"] count];
+    if (numBundledFiles) {
+        [self report:[NSString stringWithFormat:@"Copying %d bundled files", numBundledFiles]];
+    }
     for (NSString *bundledFilePath in self[@"BundledFiles"]) {
         NSString *fileName = [bundledFilePath lastPathComponent];
         NSString *bundledFileDestPath = [resourcesPath stringByAppendingString:@"/"];
         bundledFileDestPath = [bundledFileDestPath stringByAppendingString:fileName];
         
-        [self report:[NSString stringWithFormat:@"Copying \"%@\" to bundle", fileName]];
-        
         // if it's a development version, we just symlink it
         if ([self[@"DevelopmentVersion"] boolValue] == YES) {
+            [self report:[NSString stringWithFormat:@"Symlinking to \"%@\" in bundle", fileName]];
             [FILEMGR createSymbolicLinkAtPath:bundledFileDestPath withDestinationPath:bundledFilePath error:nil];
         } else {
+            [self report:[NSString stringWithFormat:@"Copying \"%@\" to bundle", fileName]];
+            
             // otherwise we copy it
             // first remove any file in destination path
             // NB: This means any previously copied files are overwritten
