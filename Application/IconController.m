@@ -195,8 +195,15 @@
 
 - (void)updateIcnsStatus {
     if ([self hasIconFile] && [FILEMGR fileExistsAtPath:icnsFilePath] == FALSE) {
+        IconFamily *iconFam = [[[IconFamily alloc] initWithSystemIcon:kQuestionMarkIcon] autorelease];
+        [iconImageView setImage:[iconFam imageWithAllReps]];
         [iconNameTextField setTextColor:[NSColor redColor]];
     } else {
+        NSImage *img = [[[NSImage alloc] initByReferencingFile:icnsFilePath] autorelease];
+        if (img == nil) {
+            img = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
+        }
+        [iconImageView setImage:img];
         [iconNameTextField setTextColor:[NSColor blackColor]];
     }
 }
@@ -205,7 +212,7 @@
 - (void)updateForCustomIcon {
     NSString *tmpIconPath;
     do {
-        tmpIconPath = TMP_ICON_PATH;
+        tmpIconPath = [NSString stringWithFormat:@"%@/PlatypusIcon-%d.icns", APP_SUPPORT_FOLDER, arc4random()];
     } while ([FILEMGR fileExistsAtPath:tmpIconPath]);
     
     if ([self writeIconToPath:tmpIconPath]) {

@@ -832,7 +832,7 @@
     //update button status
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
     
-    [appSizeTextField setStringValue:@""];
+    [self updateEstimatedAppSize];
 }
 
 - (IBAction)showCommandLineString:(id)sender {
@@ -870,7 +870,7 @@
     // nib size is much smaller if compiled with ibtool
     UInt64 nibSize = [WORKSPACE fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil]];
     if ([FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
-        nibSize = 0.60 * nibSize; // compiled nib is approximtely 65% of original
+        nibSize = 0.60 * nibSize; // compiled nib is approximtely 60% the size of original
     }
     estimatedAppSize += nibSize;
     
