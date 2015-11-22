@@ -441,7 +441,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     int selectedRow = [tableView selectedRow];
     
-    if ([[anItem title] isEqualToString:@"Add New File"] || [[anItem title] isEqualToString:@"Add File To Bundle"]) {
+    if ([[anItem title] isEqualToString:@"Add File"] || [[anItem title] isEqualToString:@"Add File To Bundle"]) {
         return YES;
     }
     if ([[anItem title] isEqualToString:@"Clear File List"] && [files count] >= 1) {

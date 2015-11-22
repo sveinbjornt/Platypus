@@ -561,7 +561,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="2F7F98EE-9692-4079-8CAF-3105272CFB93" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="6DA6BFF3-CAFD-4E52-BED3-BC99CF487C05" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -1275,13 +1275,7 @@ CA
                         <action selector="revealFileInFileList:" target="1234" id="1296"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Add New File" id="9750">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="addFileToFileList:" target="1234" id="y36-xi-bir"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="ehY-VZ-9co">
+                <menuItem isSeparatorItem="YES" id="fBO-G2-70j">
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>
                 <menuItem title="Copy File Names" id="Xe7-Kg-aaN">
@@ -1295,6 +1289,16 @@ CA
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="1275">
+                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                </menuItem>
+                <menuItem title="Add File" id="9750">
+                    <attributedString key="attributedTitle"/>
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="addFileToFileList:" target="1234" id="y36-xi-bir"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="ehY-VZ-9co">
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>
                 <menuItem title="Remove File" id="1282">
@@ -2943,7 +2947,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="2F7F98EE-9692-4079-8CAF-3105272CFB93" width="16" height="16">
+        <image name="6DA6BFF3-CAFD-4E52-BED3-BC99CF487C05" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
