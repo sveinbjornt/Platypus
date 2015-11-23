@@ -32,7 +32,7 @@
 	<key>RemainRunningAfterCompletion</key>
 	<true/>
 	<key>RequiresAdminPrivileges</key>
-	<false/>
+	<true/>
 	<key>ScriptArgs</key>
 	<array/>
 	<key>ScriptInterpreter</key>
