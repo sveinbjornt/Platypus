@@ -35,42 +35,42 @@
 #pragma mark Accepting Drags
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
-    if (delegate && [delegate respondsToSelector:@selector(draggingEntered:)]) {
-        return [delegate draggingEntered:sender];
+    if (self.dragDelegate && [self.dragDelegate respondsToSelector:@selector(draggingEntered:)]) {
+        return [self.dragDelegate draggingEntered:sender];
     }
     return NSDragOperationNone;
 }
 
 - (void)draggingExited:(id <NSDraggingInfo> )sender {
-    if (delegate && [delegate respondsToSelector:@selector(draggingExited:)]) {
-        [delegate draggingExited:sender];
+    if (self.dragDelegate && [self.dragDelegate respondsToSelector:@selector(draggingExited:)]) {
+        [self.dragDelegate draggingExited:sender];
     }
 }
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo> )sender {
-    if (delegate && [delegate respondsToSelector:@selector(draggingUpdated:)]) {
-        return [delegate draggingUpdated:sender];
+    if (self.dragDelegate && [self.dragDelegate respondsToSelector:@selector(draggingUpdated:)]) {
+        return [self.dragDelegate draggingUpdated:sender];
     }
     return NSDragOperationNone;
 }
 
 - (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
-    if (delegate && [delegate respondsToSelector:@selector(prepareForDragOperation:)]) {
-        return [delegate prepareForDragOperation:sender];
+    if (self.dragDelegate && [self.dragDelegate respondsToSelector:@selector(prepareForDragOperation:)]) {
+        return [self.dragDelegate prepareForDragOperation:sender];
     }
     return NO;
 }
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
-    if (delegate && [delegate respondsToSelector:@selector(performDragOperation:)]) {
-        return [delegate performDragOperation:sender];
+    if (self.dragDelegate && [self.dragDelegate respondsToSelector:@selector(performDragOperation:)]) {
+        return [self.dragDelegate performDragOperation:sender];
     }
     return NO;
 }
 
 - (void)concludeDragOperation:(id <NSDraggingInfo> )sender {
-    if (delegate && [delegate respondsToSelector:@selector(concludeDragOperation:)]) {
-        [delegate concludeDragOperation:sender];
+    if (self.dragDelegate && [self.dragDelegate respondsToSelector:@selector(concludeDragOperation:)]) {
+        [self.dragDelegate concludeDragOperation:sender];
     }
 }
 
