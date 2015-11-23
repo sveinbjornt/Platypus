@@ -805,6 +805,7 @@
 				F445EA7814FAB63A00DCCDB3 /* Copy Bundled Frameworks */,
 				F40B227B1B28EFBE003C05ED /* Copy ScriptExec and Command Line Tool */,
 				F40B227E1B28F331003C05ED /* Run Script To Extract ScriptExec binary from ScriptExec Application Bundle */,
+				F42622251C03B0DD0052BA33 /* Run Script To Set CFBundleVersion to Build Number */,
 			);
 			buildRules = (
 			);
@@ -969,6 +970,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from\n# within application bundles in the Copy Files\n# phase, we instead copy the ScriptExec.app bundle over\n# in its entirety and then copy the binary within into\n# Resources ... and subsequently delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp \"${SCRIPT_EXEC_BIN_PATH}\" \"${RESOURCES_DIR}/ScriptExec\"\nrm -r \"${SCRIPT_EXEC_APP_PATH}\"\n";
+		};
+		F42622251C03B0DD0052BA33 /* Run Script To Set CFBundleVersion to Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script To Set CFBundleVersion to Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\nBUILD_NUMBER=`git rev-list HEAD | wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ \"$?\" -ne 0 ] ; then\necho \"warning:Error incrementing CFBundleVersion\"\nfi";
 		};
 		F4FB337514FBDAD500BAECEB /* Run Script to Create Man Page HTML document */ = {
 			isa = PBXShellScriptBuildPhase;
