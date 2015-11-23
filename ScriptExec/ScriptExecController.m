@@ -417,7 +417,7 @@
     NSString *scriptInterpreter = appSettingsDict[@"ScriptInterpreter"];
     if (scriptInterpreter == nil || [FILEMGR fileExistsAtPath:scriptInterpreter] == NO) {
         [Alerts fatalAlert:@"Missing interpreter"
-             subTextFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreter, nil];
+             subTextFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreter];
     }
     interpreter = [[NSString alloc] initWithString:scriptInterpreter];
 
@@ -817,7 +817,7 @@
         NSString *tempScriptPath = [WORKSPACE createTempFileWithContents:scriptText usingTextEncoding:textEncoding];
         if (!tempScriptPath) {
             [Alerts fatalAlert:@"Failed to write script file"
-                 subTextFormat:@"Could not create the temp file '%@'", tempScriptPath, nil];
+                 subTextFormat:@"Could not create the temp file '%@'", tempScriptPath];
         }
         // chmod 774 - make file executable
         chmod([tempScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
@@ -951,7 +951,7 @@
         }  else {
             // something went wrong
             [Alerts fatalAlert:@"Failed to execute script"
-                 subTextFormat:@"Error %d occurred while executing script with privileges.", (int)err, nil];
+                 subTextFormat:@"Error %d occurred while executing script with privileges.", (int)err];
         }
     }
     

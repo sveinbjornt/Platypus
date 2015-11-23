@@ -101,17 +101,17 @@ int main(int argc, const char *argv[]) {
                 
                 // error if profile doesn't exists, warn if w/o profile suffix
                 if (![fm fileExistsAtPath:profilePath]) {
-                    NSPrintErr(@"Error: Profile '%@' is invalid.  No file at path.", profilePath, PROGRAM_NAME);
+                    NSPrintErr(@"Error: No profile found at path '%@'.", profilePath);
                     exit(1);
                 }
                 if (![profilePath hasSuffix:PROFILES_SUFFIX]) {
-                    NSPrintErr(@"Warning: Profile '%@' does not have profile suffix.  Trying anyway...");
+                    NSPrintErr(@"Warning: Profile '%@' does not have profile suffix.  Trying anyway...", profilePath);
                 }
                 
                 // read profile dictionary from file
                 NSDictionary *profileDict = [NSDictionary dictionaryWithContentsOfFile:profilePath];
                 if (profileDict == nil) {
-                    NSPrintErr(@"Error loading %@ profile '%@'.", PROGRAM_NAME, profilePath);
+                    NSPrintErr(@"Error loading profile '%@'.", profilePath);
                     exit(1);
                 }
                 
@@ -156,9 +156,8 @@ int main(int argc, const char *argv[]) {
             case 'o':
             {
                 NSString *outputType = @(optarg);
-                if (![PLATYPUS_OUTPUT_TYPES containsObject:outputType]) {
-                    NSPrintErr(@"Error: Invalid output type '%@'.  Valid types are:", outputType);
-                    NSPrintErr([PLATYPUS_OUTPUT_TYPES description]);
+                if ([PLATYPUS_OUTPUT_TYPES containsObject:outputType] == NO) {
+                    NSPrintErr(@"Error: Invalid output type '%@'.  Valid types are: %@", outputType, [PLATYPUS_OUTPUT_TYPES description]);
                     exit(1);
                 }
                 properties[@"Output"] = @(optarg);
@@ -170,7 +169,7 @@ int main(int argc, const char *argv[]) {
             {
                 NSString *hexColorStr = @(optarg);
                 if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex:0] != '#') {
-                    NSPrintErr(@"Error: '%@' is not a valid color spec.  Must be 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
+                    NSPrintErr(@"Error: '%@' is not a valid color hex value.  Must be 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
                     exit(1);
                 }
                 properties[@"TextBackground"] = @(optarg);
@@ -182,7 +181,7 @@ int main(int argc, const char *argv[]) {
             {
                 NSString *hexColorStr = @(optarg);
                 if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex:0] != '#') {
-                    NSPrintErr(@"Error: '%@' is not a valid color spec.  Must be 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
+                    NSPrintErr(@"Error: '%@' is not a valid color hex value.  Must be 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
                     exit(1);
                 }
                 properties[@"TextForeground"] = @(optarg);
@@ -231,10 +230,10 @@ int main(int argc, const char *argv[]) {
                 NSString *iconPath = @(optarg);
                 
                 // empty icon path means just default app icon, otherwise a path to an icns file
-                if (![iconPath isEqualTo:@""]) {
+                if ([iconPath isEqualTo:@""] == NO) {
                     iconPath = MakeAbsolutePath(iconPath);
                     // if we have proper arg, make sure file exists
-                    if (![fm fileExistsAtPath:iconPath]) {
+                    if ([fm fileExistsAtPath:iconPath] == NO) {
                         NSPrintErr(@"Error: No icon file exists at path '%@'", iconPath);
                         exit(1);
                     }
@@ -242,7 +241,7 @@ int main(int argc, const char *argv[]) {
                     // warn if file doesn't seem to be icns
                     NSString *fileType = [WORKSPACE typeOfFile:iconPath error:nil];
                     if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == FALSE) {
-                        NSPrintErr(@"Warning: '%@' not identified as an Apple .icns file", iconPath);
+                        NSPrintErr(@"Warning: '%@' does not appear to be an Apple .icns file", iconPath);
                     }
                 }
                 properties[@"IconPath"] = iconPath;
@@ -529,14 +528,14 @@ int main(int argc, const char *argv[]) {
         if ([scriptPath isEqualToString:@"-"]) {
             // read data
             NSData *inData = [[NSFileHandle fileHandleWithStandardInput] readDataToEndOfFile];
-            if (!inData) {
+            if (inData == nil) {
                 NSPrintErr(@"Empty buffer, aborting.");
                 exit(1);
             }
             
             // convert to string
             NSString *inStr = [[NSString alloc] initWithData:inData encoding:NSUTF8StringEncoding];
-            if (!inStr) {
+            if (inStr == nil) {
                 NSPrintErr(@"Cannot handle non-text data.");
                 exit(1);
             }
@@ -545,7 +544,7 @@ int main(int argc, const char *argv[]) {
             NSError *err;
             BOOL success = [inStr writeToFile:TMP_STDIN_PATH atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:&err];
             [inStr release];
-            if (!success) {
+            if (success == NO) {
                 NSPrintErr(@"Error writing script to path %: %@", TMP_STDIN_PATH, [err localizedDescription]);
                 exit(1);
             }
@@ -592,7 +591,7 @@ int main(int argc, const char *argv[]) {
     }
     
     // create the app from spec
-    if (![appSpec verify] || ![appSpec create]) {
+    if ([appSpec verify] == NO || [appSpec create] == NO) {
         NSPrintErr(@"Error: %@", [appSpec error]);
         exit(1);
     }
