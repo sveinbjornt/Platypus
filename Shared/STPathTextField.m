@@ -219,23 +219,25 @@
 - (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector {
     // intercept tab
     if (aSelector == @selector(insertTab:) && self.autocompleteStyle == STShellAutocomplete) {
+        
         NSString *string = [self stringValue];
         BOOL result = NO;
         NSRange selectedRange = [aTextView selectedRange];
         
         // we only do tab autocomplete if the insertion point is at the end of the field
         // and if selection in the field is empty
-        if (selectedRange.length == 0 && selectedRange.location == [[self stringValue] length])
+        if (selectedRange.length == 0 && selectedRange.location == [[self stringValue] length]) {
             result = [self autoComplete:self];
+        }
         
         // we only let the user tab out of the field if it's empty or has valid path
-        if ([[self stringValue] length] == 0 || ([self hasValidPath] && [string isEqualToString:[self stringValue]]))
+        if ([[self stringValue] length] == 0 || ([self hasValidPath] && [string isEqualToString:[self stringValue]])) {
             return NO;
+        }
         
         return result;
     }
-    return false;
-    //    return [super textView: aTextView doCommandBySelector: aSelector];
+    return NO;
 }
 
 @end
