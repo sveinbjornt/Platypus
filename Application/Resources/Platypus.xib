@@ -561,7 +561,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="03EA3B75-DACD-49A0-907E-E3FED7613B21" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="9BCEE905-385B-48BE-81E1-3DEF24A2C729" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -753,7 +753,6 @@ DQ
         <customObject id="11195" userLabel="PrefsController" customClass="PrefsController">
             <connections>
                 <outlet property="CLTStatusTextField" destination="11384" id="11445"/>
-                <outlet property="createOnScriptChangeCheckbox" destination="11379" id="11444"/>
                 <outlet property="defaultAuthorTextField" destination="11393" id="11450"/>
                 <outlet property="defaultBundleIdentifierTextField" destination="11392" id="11451"/>
                 <outlet property="defaultEditorPopupButton" destination="11386" id="LqD-1V-hBd"/>
@@ -2659,11 +2658,11 @@ DQ
         <window title="Platypus Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="Platypus Preferences" animationBehavior="default" id="11370" userLabel="Preferences">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="546" y="264" width="333" height="472"/>
+            <rect key="contentRect" x="546" y="264" width="333" height="450"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="11371">
-                <rect key="frame" x="0.0" y="0.0" width="333" height="472"/>
+                <rect key="frame" x="0.0" y="0.0" width="333" height="450"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button toolTip="Apply these settings" verticalHuggingPriority="750" id="11374">
@@ -2681,30 +2680,15 @@ DQ
                             <action selector="applyPrefs:" target="11195" id="11438"/>
                         </connections>
                     </button>
-                    <button toolTip="Restore default settings" verticalHuggingPriority="750" id="11375">
-                        <rect key="frame" x="14" y="13" width="150" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                        <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="11376">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="restoreDefaultPrefs:" target="11195" id="11436"/>
-                        </connections>
-                    </button>
                     <box titlePosition="noTitle" id="11372">
-                        <rect key="frame" x="17" y="47" width="299" height="407"/>
+                        <rect key="frame" x="17" y="57" width="299" height="375"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <view key="contentView">
-                            <rect key="frame" x="2" y="2" width="295" height="403"/>
+                            <rect key="frame" x="2" y="2" width="295" height="371"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <button toolTip="Reveal Platypus-generated applications in the Finder once they've been created" id="11382">
-                                    <rect key="frame" x="113" y="126" width="131" height="21"/>
+                                    <rect key="frame" x="113" y="94" width="131" height="21"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <buttonCell key="cell" type="check" title="Reveal in Finder" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11432">
@@ -2715,20 +2699,8 @@ Gw
                                         <binding destination="yij-LO-LNq" name="value" keyPath="values.RevealApplicationWhenCreated" id="4Jn-j4-6NW"/>
                                     </connections>
                                 </button>
-                                <button toolTip="Auto-create app from script every time it is saved" id="11379">
-                                    <rect key="frame" x="28" y="98" width="223" height="21"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
-                                    <buttonCell key="cell" type="check" title="Create app on script file change" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11435">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <binding destination="yij-LO-LNq" name="value" keyPath="values.CreateOnScriptChange" id="elt-kP-t93"/>
-                                    </connections>
-                                </button>
                                 <button toolTip="Open Platypus-generated applications once they've been created" id="11381">
-                                    <rect key="frame" x="113" y="147" width="137" height="21"/>
+                                    <rect key="frame" x="113" y="115" width="137" height="21"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <buttonCell key="cell" type="check" title="Open application" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11433">
@@ -2740,7 +2712,7 @@ Gw
                                     </connections>
                                 </button>
                                 <popUpButton toolTip="Select your default text editor" verticalHuggingPriority="750" id="11386">
-                                    <rect key="frame" x="43" y="343" width="208" height="26"/>
+                                    <rect key="frame" x="43" y="311" width="208" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="11412">
@@ -2787,7 +2759,7 @@ Gw
                                     </connections>
                                 </popUpButton>
                                 <textField verticalHuggingPriority="750" id="11385">
-                                    <rect key="frame" x="27" y="372" width="109" height="17"/>
+                                    <rect key="frame" x="27" y="340" width="109" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Editor" id="11430">
@@ -2797,7 +2769,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <popUpButton toolTip="Select your default text editor" verticalHuggingPriority="750" id="11390">
-                                    <rect key="frame" x="43" y="289" width="208" height="26"/>
+                                    <rect key="frame" x="43" y="257" width="208" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <popUpButtonCell key="cell" type="push" title="UTF-8" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" tag="4" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="11404" id="11399">
@@ -2822,7 +2794,7 @@ Gw
                                     </connections>
                                 </popUpButton>
                                 <textField verticalHuggingPriority="750" id="11387">
-                                    <rect key="frame" x="27" y="318" width="237" height="17"/>
+                                    <rect key="frame" x="27" y="286" width="237" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Text Encoding" id="11411">
@@ -2832,7 +2804,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" id="11391">
-                                    <rect key="frame" x="27" y="259" width="204" height="18"/>
+                                    <rect key="frame" x="27" y="227" width="204" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Bundle Identifier Prefix" id="11398">
@@ -2842,7 +2814,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField toolTip="This sets the prefix to the bundle identifier that is used by Mac OS X to uniquely identify applications." verticalHuggingPriority="750" id="11392">
-                                    <rect key="frame" x="52" y="232" width="196" height="22"/>
+                                    <rect key="frame" x="52" y="200" width="196" height="22"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="11397">
@@ -2859,7 +2831,7 @@ Gw
                                     </connections>
                                 </textField>
                                 <textField toolTip="Set the default author name for Platypus-generated applications" verticalHuggingPriority="750" id="11393">
-                                    <rect key="frame" x="52" y="178" width="196" height="22"/>
+                                    <rect key="frame" x="52" y="146" width="196" height="22"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="11396">
@@ -2876,7 +2848,7 @@ Gw
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" id="11394">
-                                    <rect key="frame" x="27" y="205" width="204" height="18"/>
+                                    <rect key="frame" x="27" y="173" width="204" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Author Name:" id="11395">
@@ -2886,7 +2858,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <button toolTip="Install/Uninstall Platypus Command Line Tool" verticalHuggingPriority="750" id="11389">
-                                    <rect key="frame" x="100" y="16" width="95" height="32"/>
+                                    <rect key="frame" x="100" y="17" width="95" height="32"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                     <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="11410">
@@ -2901,7 +2873,7 @@ Gw
                                     </connections>
                                 </button>
                                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="11383">
-                                    <rect key="frame" x="22" y="81" width="251" height="5"/>
+                                    <rect key="frame" x="22" y="82" width="251" height="5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <animations/>
                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -2909,7 +2881,7 @@ Gw
                                     <font key="titleFont" metaFont="system"/>
                                 </box>
                                 <textField toolTip="Command line tool status" verticalHuggingPriority="750" id="11384">
-                                    <rect key="frame" x="19" y="52" width="257" height="17"/>
+                                    <rect key="frame" x="19" y="53" width="257" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <animations/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Command line tool is not installed" id="11431">
@@ -2919,7 +2891,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField toolTip="Command line tool status" verticalHuggingPriority="750" id="11380">
-                                    <rect key="frame" x="21" y="150" width="94" height="17"/>
+                                    <rect key="frame" x="21" y="118" width="94" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <animations/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="On creation:" id="11434">
@@ -2929,7 +2901,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" minValue="16" maxValue="100" doubleValue="16" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="11388">
-                                    <rect key="frame" x="197" y="26" width="16" height="16"/>
+                                    <rect key="frame" x="197" y="27" width="16" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <animations/>
                                 </progressIndicator>
@@ -2940,15 +2912,30 @@ Gw
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
+                    <button toolTip="Restore default settings" verticalHuggingPriority="750" id="11375">
+                        <rect key="frame" x="14" y="13" width="150" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="11376">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="restoreDefaultPrefs:" target="11195" id="11436"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <animations/>
             </view>
-            <point key="canvasLocation" x="88.5" y="334"/>
+            <point key="canvasLocation" x="88.5" y="323"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="03EA3B75-DACD-49A0-907E-E3FED7613B21" width="16" height="16">
+        <image name="9BCEE905-385B-48BE-81E1-3DEF24A2C729" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

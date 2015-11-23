@@ -181,7 +181,6 @@
     // we list ourself as an observer of changes to file system, for script
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueRenameNotification object:nil];
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueDeleteNotification object:nil];
-    [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileChanged:) name:VDKQueueWriteNotification object:nil];
     
     // listen for app size change notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -351,16 +350,6 @@
 
 - (void)scriptFileSystemChange {
     [scriptPathTextField updateTextColoring];
-}
-
-- (void)scriptFileChanged:(NSNotification *)aNotification {
-    if (![DEFAULTS boolForKey:@"CreateOnScriptChange"]) {
-        return;
-    }
-    
-    NSString *appBundleName = [NSString stringWithFormat:@"%@.app", [appNameTextField stringValue]];
-    NSString *destPath = [[[scriptPathTextField stringValue] stringByDeletingLastPathComponent] stringByAppendingPathComponent:appBundleName];
-    [self createApplication:destPath];
 }
 
 #pragma mark - Create

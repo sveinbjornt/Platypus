@@ -41,7 +41,6 @@
 {
     IBOutlet NSButton *revealAppCheckbox;
     IBOutlet NSButton *openAppCheckbox;
-    IBOutlet NSButton *createOnScriptChangeCheckbox;
     IBOutlet NSPopUpButton *defaultEditorPopupButton;
     IBOutlet NSPopUpButton *defaultTextEncodingPopupButton;
     IBOutlet NSTextField *defaultBundleIdentifierTextField;
@@ -105,7 +104,6 @@
     defaultPrefs[@"Profiles"] = @[];
     defaultPrefs[@"RevealApplicationWhenCreated"] = @NO;
     defaultPrefs[@"OpenApplicationWhenCreated"] = @NO;
-    defaultPrefs[@"CreateOnScriptChange"] = @NO;
     defaultPrefs[@"DefaultTextEncoding"] = @(DEFAULT_OUTPUT_TXT_ENCODING);
     defaultPrefs[@"DefaultAuthor"] = NSFullUserName();
     defaultPrefs[@"OnCreateDevVersion"] = @NO;
