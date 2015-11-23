@@ -239,10 +239,10 @@
     }
     
     // get app name
-    // first, try to get CFBundleDisplayName from Info.plist
+    // first, try to get name from Info.plist
     NSDictionary *infoPlist = [appBundle infoDictionary];
-    if (infoPlist[@"CFBundleDisplayName"] != nil) {
-        appName = [[NSString alloc] initWithString:infoPlist[@"CFBundleDisplayName"]];
+    if (infoPlist[@"CFBundleName"] != nil) {
+        appName = [[NSString alloc] initWithString:infoPlist[@"CFBundleName"]];
     } else {
         // if that doesn't work, use name of executable file
         appName = [[NSString alloc] initWithString:[[appBundle executablePath] lastPathComponent]];
