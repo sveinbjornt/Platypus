@@ -15,6 +15,8 @@
 		F42622241C0222A50052BA33 /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = F42622221C0222A50052BA33 /* NSString+CarbonFSRefCreation.m */; };
 		F426222B1C03B4B00052BA33 /* ApplicationImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426222A1C03B4B00052BA33 /* ApplicationImages.xcassets */; };
 		F43142AF1C03C17D004EEF8C /* ApplicationImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426222A1C03B4B00052BA33 /* ApplicationImages.xcassets */; };
+		F43142B01C03C742004EEF8C /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */; };
+		F43142B11C03C749004EEF8C /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F43E1D671BC8014E00622B5F /* Sparkle.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = F43E1D651BC8003600622B5F /* Sparkle.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F43E1D691BC801E600622B5F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43E1D651BC8003600622B5F /* Sparkle.framework */; };
 		F43E1D781BC8048400622B5F /* AppleScript.png in Resources */ = {isa = PBXBuildFile; fileRef = F43E1D6A1BC8048400622B5F /* AppleScript.png */; };
@@ -37,7 +39,6 @@
 		F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F46EF85113C3F36900E4C0E4 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = F46EF84E13C3F36900E4C0E4 /* Examples */; };
-		F471ED1E122DF096001F4761 /* PlatypusAppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */; };
 		F471ED22122DF2D6001F4761 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F471ED21122DF2D6001F4761 /* Credits.html */; };
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
 		F48269711BC9A03F00169D8B /* Droplet.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696D1BC9A03F00169D8B /* Droplet.png */; };
@@ -50,7 +51,6 @@
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
 		F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
-		F48B1EDF17935BBC007DA173 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */; };
 		F48B1EE017935BBC007DA173 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */; };
 		F48B7B8111F7666600351575 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -87,7 +87,6 @@
 		F4AB186F1BE1908100B83A95 /* NSBundle+Templates.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186E1BE1908100B83A95 /* NSBundle+Templates.m */; };
 		F4AB18721BE19CAC00B83A95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AB18711BE19CAC00B83A95 /* Foundation.framework */; };
 		F4AB18741BE19CD100B83A95 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AB18731BE19CD100B83A95 /* AppKit.framework */; };
-		F4AB18971BEAA88800B83A95 /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F4AB189A1BED3A0B00B83A95 /* ScriptExecJob.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */; };
 		F4AB189D1BEFAF1900B83A95 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
@@ -96,7 +95,6 @@
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A841BD1BFAB00F411BD /* STDragImageView.m */; };
 		F4C19A881BD4275300F411BD /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C19A871BD4275300F411BD /* image.png */; };
-		F4C19A8B1BD42E4200F411BD /* appIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4C19A8A1BD42E4200F411BD /* appIcon.icns */; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
 		F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074711F629930043764E /* InstallCommandLineTool.sh */; };
 		F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074911F629930043764E /* UninstallCommandLineTool.sh */; };
@@ -284,9 +282,7 @@
 		F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F4C19A831BD1BFAB00F411BD /* STDragImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragImageView.h; path = Shared/STDragImageView.h; sourceTree = "<group>"; };
 		F4C19A841BD1BFAB00F411BD /* STDragImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragImageView.m; path = Shared/STDragImageView.m; sourceTree = "<group>"; };
-		F4C19A861BD1D02700F411BD /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = update_docs.sh; path = Documentation/update_docs.sh; sourceTree = "<group>"; };
 		F4C19A871BD4275300F411BD /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = ScriptExec/image.png; sourceTree = "<group>"; };
-		F4C19A8A1BD42E4200F411BD /* appIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = appIcon.icns; path = Icons/appIcon.icns; sourceTree = "<group>"; };
 		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074911F629930043764E /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
@@ -605,7 +601,6 @@
 				F48B7C7B11F7691600351575 /* ScriptExec-Info.plist */,
 				F4876F45141D4A3900A428CC /* MainMenu.xib */,
 				F48B7B9F11F7672700351575 /* AppSettings.plist */,
-				F4C19A8A1BD42E4200F411BD /* appIcon.icns */,
 				F48B7BA111F7672700351575 /* script */,
 				F4C19A871BD4275300F411BD /* image.png */,
 			);
@@ -685,7 +680,6 @@
 				F4B87C581B403A6E00F4B8BE /* build_release.sh */,
 				F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */,
 				F4B87C5A1B403A6E00F4B8BE /* uncrustify.cfg */,
-				F4C19A861BD1D02700F411BD /* update_docs.sh */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -901,7 +895,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F43E1D7D1BC8048400622B5F /* Ksh.png in Resources */,
-				F471ED1E122DF096001F4761 /* PlatypusAppIcon.icns in Resources */,
 				F48269721BC9A03F00169D8B /* Progress-Bar.png in Resources */,
 				F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */,
 				F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */,
@@ -955,7 +948,6 @@
 				F48B7BA411F7672700351575 /* script in Resources */,
 				F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */,
 				F4C19A881BD4275300F411BD /* image.png in Resources */,
-				F4C19A8B1BD42E4200F411BD /* appIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1067,10 +1059,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4AB18971BEAA88800B83A95 /* NSWorkspace+Additions.m in Sources */,
+				F43142B11C03C749004EEF8C /* NSWorkspace+Additions.m in Sources */,
+				F43142B01C03C742004EEF8C /* ScriptAnalyser.m in Sources */,
 				F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
 				F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */,
-				F48B1EDF17935BBC007DA173 /* ScriptAnalyser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,8 +9,8 @@ sips -z 256 256   PlatypusAppIcon1024.png --out PlatypusAppIcon.iconset/icon_256
 sips -z 512 512   PlatypusAppIcon1024.png --out PlatypusAppIcon.iconset/icon_256x256@2x.png
 sips -z 512 512   PlatypusAppIcon1024.png --out PlatypusAppIcon.iconset/icon_512x512.png
 cp PlatypusAppIcon1024.png PlatypusAppIcon.iconset/icon_512x512@2x.png
-iconutil -c icns PlatypusAppIcon.iconset
-rm -R PlatypusAppIcon.iconset
+#iconutil -c icns PlatypusAppIcon.iconset
+#rm -R PlatypusAppIcon.iconset
 
 
 mkdir PlatypusDefault.iconset
@@ -24,5 +24,5 @@ sips -z 256 256   PlatypusDefault1024.png --out PlatypusDefault.iconset/icon_256
 sips -z 512 512   PlatypusDefault1024.png --out PlatypusDefault.iconset/icon_256x256@2x.png
 sips -z 512 512   PlatypusDefault1024.png --out PlatypusDefault.iconset/icon_512x512.png
 cp PlatypusDefault1024.png PlatypusDefault.iconset/icon_512x512@2x.png
-iconutil -c icns PlatypusDefault.iconset
-rm -R PlatypusDefault.iconset
+#iconutil -c icns PlatypusDefault.iconset
+#rm -R PlatypusDefault.iconset
