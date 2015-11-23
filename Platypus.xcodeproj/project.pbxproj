@@ -13,6 +13,8 @@
 		F40F33B31BFE82510052A68F /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269681BC9934800169D8B /* NSTask+Description.m */; };
 		F42622231C0222A50052BA33 /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = F42622201C0222A50052BA33 /* IconFamily.m */; };
 		F42622241C0222A50052BA33 /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = F42622221C0222A50052BA33 /* NSString+CarbonFSRefCreation.m */; };
+		F426222B1C03B4B00052BA33 /* ApplicationImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426222A1C03B4B00052BA33 /* ApplicationImages.xcassets */; };
+		F43142AF1C03C17D004EEF8C /* ApplicationImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426222A1C03B4B00052BA33 /* ApplicationImages.xcassets */; };
 		F43E1D671BC8014E00622B5F /* Sparkle.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = F43E1D651BC8003600622B5F /* Sparkle.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F43E1D691BC801E600622B5F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43E1D651BC8003600622B5F /* Sparkle.framework */; };
 		F43E1D781BC8048400622B5F /* AppleScript.png in Resources */ = {isa = PBXBuildFile; fileRef = F43E1D6A1BC8048400622B5F /* AppleScript.png */; };
@@ -162,6 +164,7 @@
 		F42622201C0222A50052BA33 /* IconFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconFamily.m; path = Shared/Others/IconFamily/source/Classes/IconFamily.m; sourceTree = SOURCE_ROOT; };
 		F42622211C0222A50052BA33 /* NSString+CarbonFSRefCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+CarbonFSRefCreation.h"; path = "Shared/Others/IconFamily/source/Classes/NSString+CarbonFSRefCreation.h"; sourceTree = SOURCE_ROOT; };
 		F42622221C0222A50052BA33 /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+CarbonFSRefCreation.m"; path = "Shared/Others/IconFamily/source/Classes/NSString+CarbonFSRefCreation.m"; sourceTree = SOURCE_ROOT; };
+		F426222A1C03B4B00052BA33 /* ApplicationImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ApplicationImages.xcassets; path = Application/ApplicationImages.xcassets; sourceTree = "<group>"; };
 		F43E1D651BC8003600622B5F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		F43E1D6A1BC8048400622B5F /* AppleScript.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppleScript.png; path = Icons/Interpreters/AppleScript.png; sourceTree = SOURCE_ROOT; };
 		F43E1D6B1BC8048400622B5F /* Bash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Bash.png; path = Icons/Interpreters/Bash.png; sourceTree = SOURCE_ROOT; };
@@ -394,6 +397,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F426222A1C03B4B00052BA33 /* ApplicationImages.xcassets */,
 				F4975DBA1B2E71FC0099D16E /* Platypus-Info.plist */,
 				F4975DB91B2E71FC0099D16E /* Editor.xib */,
 				F4975DBB1B2E71FC0099D16E /* Platypus.xib */,
@@ -920,6 +924,7 @@
 				F43E1D781BC8048400622B5F /* AppleScript.png in Resources */,
 				F471ED22122DF2D6001F4761 /* Credits.html in Resources */,
 				F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */,
+				F426222B1C03B4B00052BA33 /* ApplicationImages.xcassets in Resources */,
 				F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */,
 				F48269711BC9A03F00169D8B /* Droplet.png in Resources */,
 				F43E1D821BC8048400622B5F /* Shell.png in Resources */,
@@ -945,6 +950,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F43142AF1C03C17D004EEF8C /* ApplicationImages.xcassets in Resources */,
 				F48B7BA211F7672700351575 /* AppSettings.plist in Resources */,
 				F48B7BA411F7672700351575 /* script in Resources */,
 				F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */,
@@ -1087,6 +1093,7 @@
 		F41B217E085CD8FF00B63B0D /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = PlatypusAppIcon;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
@@ -1114,6 +1121,7 @@
 				GENERATE_PROFILING_CODE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1134,6 +1142,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = PlatypusAppIcon;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
@@ -1163,6 +1172,7 @@
 				GENERATE_PKGINFO_FILE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CFLAGS = "";
@@ -1182,6 +1192,7 @@
 		F41B2180085CD8FF00B63B0D /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = PlatypusAppIcon;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
@@ -1206,6 +1217,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = "";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
@@ -1250,9 +1262,9 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBC_FLATTEN_NIBS = NO;
-				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
-				INFOPLIST_OUTPUT_FORMAT = xml;
-				INFOPLIST_PREPROCESS = NO;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
+				INFOPLIST_OUTPUT_FORMAT = binary;
+				INFOPLIST_PREPROCESS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PLIST_FILE_OUTPUT_FORMAT = XML;
@@ -1297,9 +1309,9 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBC_FLATTEN_NIBS = YES;
-				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
 				INFOPLIST_OUTPUT_FORMAT = binary;
-				INFOPLIST_PREPROCESS = NO;
+				INFOPLIST_PREPROCESS = YES;
 				LINKER_DISPLAYS_MANGLED_NAMES = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
@@ -1344,9 +1356,9 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IBC_FLATTEN_NIBS = YES;
-				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
-				INFOPLIST_OUTPUT_FORMAT = "same-as-input";
-				INFOPLIST_PREPROCESS = NO;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
+				INFOPLIST_OUTPUT_FORMAT = binary;
+				INFOPLIST_PREPROCESS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
 				PLIST_FILE_OUTPUT_FORMAT = binary;
@@ -1362,6 +1374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = PlatypusDefaultIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1374,9 +1387,12 @@
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = NO;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "ScriptExec/ScriptExec-Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_OUTPUT_FORMAT = xml;
 				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PLIST_FILE_OUTPUT_FORMAT = xml;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
@@ -1388,6 +1404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = PlatypusDefaultIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1399,9 +1416,12 @@
 				GCC_UNROLL_LOOPS = NO;
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = YES;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "ScriptExec/ScriptExec-Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PLIST_FILE_OUTPUT_FORMAT = binary;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
 				PRODUCT_NAME = ScriptExec;
@@ -1413,6 +1433,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = PlatypusDefaultIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_CW_ASM_SYNTAX = NO;
@@ -1421,8 +1442,11 @@
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = YES;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "ScriptExec/ScriptExec-Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
 				PRODUCT_NAME = ScriptExec;
 			};

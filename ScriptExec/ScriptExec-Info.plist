@@ -28,12 +28,8 @@
 			</array>
 		</dict>
 	</array>
-	<key>LSUIElement</key>
-	<false/>
 	<key>CFBundleExecutable</key>
 	<string>ScriptExec</string>
-	<key>CFBundleIconFile</key>
-	<string>appIcon.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.sveinbjorn.ScriptExec</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -42,17 +38,23 @@
 	<string>ScriptExec</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.developer-tools</string>
+	<key>LSUIElement</key>
+	<false/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSServices</key>
