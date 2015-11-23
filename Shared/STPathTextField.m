@@ -52,9 +52,9 @@
  
  enum
  {
- STNoAutocomplete = 0,
- STShellAutocomplete = 1,
- STBrowserAutocomplete = 2
+    STNoAutocomplete = 0,
+    STShellAutocomplete = 1,
+    STBrowserAutocomplete = 2
  };
 
 */
@@ -72,7 +72,7 @@
     [self registerForDraggedTypes:@[NSFilenamesPboardType]];
 }
 
-/*******************************************
+/*********************************************
  This will set the value of the text field
  to the file path of the dragged file
  This will NOT work if the field is being edited,
@@ -97,9 +97,8 @@
     return NO;
 }
 
-/*******************************************
- Tell us whether the path in the path text
- field is valid
+/*********************************************
+ Tell us whether path in text field is valid
  *********************************************/
 
 - (BOOL)hasValidPath {
@@ -108,7 +107,7 @@
     return [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && ((isDir && !self.foldersAreValid) == NO);
 }
 
-/*******************************************
+/*********************************************
  If we're autocompleting browser-style, we
  perform the expansion and selection every time
  a key is released, unless it's navigation or deletion
@@ -125,7 +124,7 @@
     [self updateTextColoring];
 }
 
-/*******************************************
+/*********************************************
  Changed string value means we update coloring
  ********************************************/
 
@@ -134,7 +133,7 @@
     [self performSelector:@selector(textDidChange:) withObject:nil];
 }
 
-/*******************************************
+/*********************************************
  If coloring is enabled, we set text color
  to red if invalid path, black if valid
  ********************************************/
@@ -212,9 +211,9 @@
     }
 }
 
-/*******************************************
+/*************************************************
  We intercept tab inserts and try to autocomplete
- ********************************************/
+ ************************************************/
 
 - (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector {
     // intercept tab
