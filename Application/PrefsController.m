@@ -253,7 +253,7 @@
     [installCLTProgressIndicator startAnimation:self];
     if ([self executeScriptTemplateWithPrivileges:scriptName usingDictionary:placeholderDict] == NO) {
         [Alerts alert:@"Error running script"
-        subTextFormat:@"Could not run script '%@'", scriptName, nil];
+        subTextFormat:@"Could not run script '%@'", scriptName];
     }
     [self updateCLTStatus:CLTStatusTextField];
     [installCLTProgressIndicator stopAnimation:self];
