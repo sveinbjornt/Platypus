@@ -550,7 +550,6 @@
                                       @"en",                                    @"CFBundleDevelopmentRegion",
                                       self[@"Name"],                            @"CFBundleExecutable",
                                       self[@"Name"],                            @"CFBundleName",
-                                      self[@"Name"],                            @"CFBundleDisplayName",
                                       copyrightString,                          @"NSHumanReadableCopyright",
                                       self[@"Version"],                         @"CFBundleVersion",
                                       self[@"Version"],                         @"CFBundleShortVersionString",
@@ -558,6 +557,7 @@
                                       self[@"ShowInDock"],                      @"LSUIElement",
                                       @"6.0",                                   @"CFBundleInfoDictionaryVersion",
                                       @"APPL",                                  @"CFBundlePackageType",
+                                      @"????",                                  @"CFBundleSignature",
                                       @"MainMenu",                              @"NSMainNibFile",
                                       PROGRAM_MIN_SYS_VERSION,                  @"LSMinimumSystemVersion",
                                       @"NSApplication",                         @"NSPrincipalClass",
@@ -605,7 +605,12 @@
             serviceDict[@"NSMenuItem"] = menuItemDict;
             serviceDict[@"NSMessage"] = @"dropService";
             serviceDict[@"NSPortName"] = self[@"Name"];
-            serviceDict[@"NSSendTypes"] = sendTypes;
+            
+            // TODO: !!!!
+            //serviceDict[@"NSSendTypes"] = sendTypes;
+//            serviceDict[@"NSSendFileTypes"] = @[];
+//            serviceDict[@"NSServiceDescription"]
+            
             infoPlist[@"NSServices"] = @[serviceDict];
         }
     }
