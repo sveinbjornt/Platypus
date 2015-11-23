@@ -41,6 +41,7 @@
 {
     NSMutableDictionary *properties;
 }
+- (void)report:(NSString *)format, ...;
 @end
 
 @implementation PlatypusAppSpec
@@ -288,21 +289,21 @@
             _error = [NSString stringWithFormat:@"App already exists at path %@. Use -y flag to overwrite.", self[@"Destination"]];
             return FALSE;
         } else {
-            [self report:[NSString stringWithFormat:@"Overwriting app at path %@", self[@"Destination"]]];
+            [self report:@"Overwriting app at path %@", self[@"Destination"]];
         }
     }
     
     // check if executable exists
     execPath = self[@"ExecutablePath"];
     if (![FILEMGR fileExistsAtPath:execPath] || ![FILEMGR isReadableFileAtPath:execPath]) {
-        [self report:[NSString stringWithFormat:@"Executable %@ does not exist. Aborting.", execPath, nil]];
+        [self report:@"Executable %@ does not exist. Aborting.", execPath];
         return NO;
     }
     
     // check if source nib exists
     nibPath = self[@"NibPath"];
     if (![FILEMGR fileExistsAtPath:nibPath] || ![FILEMGR isReadableFileAtPath:nibPath]) {
-        [self report:[NSString stringWithFormat:@"Nib file %@ does not exist. Aborting.", nibPath, nil]];
+        [self report:@"Nib file %@ does not exist. Aborting.", nibPath];
         return NO;
     }
     
@@ -425,7 +426,7 @@
     
     int numBundledFiles = [self[@"BundledFiles"] count];
     if (numBundledFiles) {
-        [self report:[NSString stringWithFormat:@"Copying %d bundled files", numBundledFiles]];
+        [self report:@"Copying %d bundled files", numBundledFiles];
     }
     for (NSString *bundledFilePath in self[@"BundledFiles"]) {
         NSString *fileName = [bundledFilePath lastPathComponent];
@@ -434,10 +435,10 @@
         
         // if it's a development version, we just symlink it
         if ([self[@"DevelopmentVersion"] boolValue] == YES) {
-            [self report:[NSString stringWithFormat:@"Symlinking to \"%@\" in bundle", fileName]];
+            [self report:@"Symlinking to \"%@\" in bundle", fileName];
             [FILEMGR createSymbolicLinkAtPath:bundledFileDestPath withDestinationPath:bundledFilePath error:nil];
         } else {
-            [self report:[NSString stringWithFormat:@"Copying \"%@\" to bundle", fileName]];
+            [self report:@"Copying \"%@\" to bundle", fileName];
             
             // otherwise we copy it
             // first remove any file in destination path
@@ -612,9 +613,16 @@
     return infoPlist;
 }
 
-- (void)report:(NSString *)str {
-    fprintf(stderr, "%s\n", [str UTF8String]);
-    [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SPEC_CREATION_NOTIFICATION object:str];
+- (void)report:(NSString *)format, ... {
+    va_list args;
+    
+    va_start(args, format);
+    NSString *string  = [[[NSString alloc] initWithFormat:format arguments:args] autorelease];
+    va_end(args);
+    
+    fprintf(stderr, "%s\n", [string UTF8String]);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SPEC_CREATION_NOTIFICATION object:string];
 }
 
 /****************************************
