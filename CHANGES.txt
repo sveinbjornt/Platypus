@@ -16,7 +16,6 @@ For 5.1
 For 5.0
     TODO: Fix Provide as Mac OS X service
     TODO: File watching still broken for script path
-    TODO: Fix "Create app on script file change" feature
     TODO: Overhaul very old and out of date documentation
         TODO: Add documentation for ALERT:Title|Info syntax
         TODO: Add documentation about Uniform Type Identifiers
