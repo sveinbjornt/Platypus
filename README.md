@@ -11,7 +11,7 @@ along with an executable binary that runs the script.
 
 Platypus makes it easy for you to share your scripts and programs 
 with those unfamiliar with the command line interface, without any 
-knowledge of the native Mac OS X APIs -- a few clicks and you will have 
+knowledge of the native Mac OS X APIs -- a few clicks and you can have 
 your own Mac OS X graphical program. Creating installers, maintenance 
 applications, login items, launchers, automations and droplets is 
 very easy using Platypus.

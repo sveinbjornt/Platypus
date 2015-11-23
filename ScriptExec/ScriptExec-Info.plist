@@ -40,6 +40,10 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>ScriptExec</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>NSMainNibFile</key>

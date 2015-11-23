@@ -23,6 +23,7 @@ For 5.0
     TODO: Resizable or at least larger Progress Bar window
     TODO: Long GNU named params for command line tool, e.g. --some-option
 
+    * Updated keys in information property lists
     * Added ALERT: example
     * Added authenticated execution example
     * Optimize Location: parsing for Web Output
