@@ -45,7 +45,6 @@
 		F48269721BC9A03F00169D8B /* Progress-Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696E1BC9A03F00169D8B /* Progress-Bar.png */; };
 		F48269731BC9A03F00169D8B /* Text-Window.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696F1BC9A03F00169D8B /* Text-Window.png */; };
 		F48269741BC9A03F00169D8B /* Web-View.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269701BC9A03F00169D8B /* Web-View.png */; };
-		F48269771BC9A1DC00169D8B /* None.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269751BC9A1DC00169D8B /* None.png */; };
 		F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269761BC9A1DC00169D8B /* Status-Menu.png */; };
 		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; };
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
@@ -419,11 +418,9 @@
 		F4050E3305DAF44F00BE4CA5 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				F48269791BCA9E5100169D8B /* GenericDocumentIcon.icns */,
-				F482696C1BC9A03F00169D8B /* OutputTypeIcons */,
+				F482696C1BC9A03F00169D8B /* Output Type */,
 				F44E007212298B7A00CAC9C2 /* Application */,
 				F4D6569814C4BFD6003552F9 /* Interpreters */,
-				F44E006712298B7200CAC9C2 /* Presets */,
 				F44E007312298B8C00CAC9C2 /* Status Menu */,
 			);
 			path = Icons;
@@ -460,21 +457,14 @@
 			path = Sparkle;
 			sourceTree = "<group>";
 		};
-		F44E006712298B7200CAC9C2 /* Presets */ = {
-			isa = PBXGroup;
-			children = (
-				F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */,
-			);
-			name = Presets;
-			path = IconPresets;
-			sourceTree = "<group>";
-		};
 		F44E007212298B7A00CAC9C2 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				F48269791BCA9E5100169D8B /* GenericDocumentIcon.icns */,
 				F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */,
 				F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */,
 				F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */,
+				F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -536,7 +526,7 @@
 			path = Shared/IconFamily;
 			sourceTree = "<group>";
 		};
-		F482696C1BC9A03F00169D8B /* OutputTypeIcons */ = {
+		F482696C1BC9A03F00169D8B /* Output Type */ = {
 			isa = PBXGroup;
 			children = (
 				F48269751BC9A1DC00169D8B /* None.png */,
@@ -546,6 +536,7 @@
 				F48269761BC9A1DC00169D8B /* Status-Menu.png */,
 				F482696D1BC9A03F00169D8B /* Droplet.png */,
 			);
+			name = "Output Type";
 			path = OutputTypeIcons;
 			sourceTree = "<group>";
 		};
@@ -905,7 +896,6 @@
 				F4DC075211F629A40043764E /* Documentation.html in Resources */,
 				F43E1D7E1BC8048400622B5F /* Perl.png in Resources */,
 				F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */,
-				F48269771BC9A1DC00169D8B /* None.png in Resources */,
 				F4DC075311F629A40043764E /* Readme.html in Resources */,
 				F43E1D7C1BC8048400622B5F /* Expect.png in Resources */,
 				F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */,
