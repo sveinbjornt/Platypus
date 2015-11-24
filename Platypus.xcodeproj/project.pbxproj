@@ -420,6 +420,7 @@
 			children = (
 				F482696C1BC9A03F00169D8B /* Output Type */,
 				F44E007212298B7A00CAC9C2 /* Application */,
+				F43142B21C03F9E2004EEF8C /* Documents */,
 				F4D6569814C4BFD6003552F9 /* Interpreters */,
 				F44E007312298B8C00CAC9C2 /* Status Menu */,
 			);
@@ -433,6 +434,16 @@
 				F4975D771B2E09450099D16E /* STPathTextField.m */,
 			);
 			name = STPathTextField;
+			sourceTree = "<group>";
+		};
+		F43142B21C03F9E2004EEF8C /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				F48269791BCA9E5100169D8B /* GenericDocumentIcon.icns */,
+				F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */,
+				F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */,
+			);
+			name = Documents;
 			sourceTree = "<group>";
 		};
 		F44587170FC386B500CD0C02 /* STPrivilegedTask */ = {
@@ -460,10 +471,7 @@
 		F44E007212298B7A00CAC9C2 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				F48269791BCA9E5100169D8B /* GenericDocumentIcon.icns */,
 				F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */,
-				F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */,
-				F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */,
 				F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */,
 			);
 			name = Application;
