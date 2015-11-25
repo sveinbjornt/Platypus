@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AcceptsFiles</key>
+	<true/>
+	<key>AcceptsText</key>
+	<false/>
+	<key>Authentication</key>
+	<false/>
+	<key>Author</key>
+	<string>Sveinbjorn Thordarson</string>
+	<key>BundledFiles</key>
+	<array/>
+	<key>Creator</key>
+	<string>Platypus-5.0</string>
+	<key>DeclareService</key>
+	<false/>
+	<key>DestinationOverride</key>
+	<false/>
+	<key>DevelopmentVersion</key>
+	<false/>
+	<key>Example</key>
+	<true/>
+	<key>ScriptName</key>
+	<string>ImageResizer.sh</string>
+	<key>Script</key>
+	<string>#!/bin/sh
+# Use Apple's Scriptable Image Processing System (sips)
+# to resize dropped images to dimensions 512x512
+for var in "$@"
+do
+    echo "Resizing $var"
+    basename=$(echo "$var" | cut -f 1 -d '.')
+    sips -z 512 512 "$var" --out "$basename-512x512.png" &amp;> /dev/null
+done
+
+if [ ! $# -eq "0" ]; then
+    echo "Done processing $# images"
+else
+    echo "Drop images on this window to resize them to 512x512"
+fi
+    </string>
+	<key>DocIcon</key>
+	<string></string>
+	<key>Droppable</key>
+	<true/>
+	<key>ExecutablePath</key>
+	<string>/usr/local/share/platypus/ScriptExec</string>
+	<key>IconPath</key>
+	<string></string>
+	<key>Identifier</key>
+	<string>org.sveinbjorn.ImageResizer</string>
+	<key>Interpreter</key>
+	<string>/bin/sh</string>
+	<key>InterpreterArgs</key>
+	<array/>
+	<key>Name</key>
+	<string>ImageResizer</string>
+	<key>NibPath</key>
+	<string>/usr/local/share/platypus/MainMenu.nib</string>
+	<key>OptimizeApplication</key>
+	<true/>
+	<key>Output</key>
+	<string>Text Window</string>
+	<key>PromptForFileOnLaunch</key>
+	<false/>
+	<key>RemainRunning</key>
+	<true/>
+	<key>Role</key>
+	<string>Viewer</string>
+	<key>ScriptArgs</key>
+	<array/>
+	<key>Secure</key>
+	<false/>
+	<key>ShowInDock</key>
+	<false/>
+	<key>StatusItemDisplayType</key>
+	<string>Text</string>
+	<key>StatusItemIcon</key>
+	<data></data>
+	<key>StatusItemTitle</key>
+	<string>MyPlatypusApp</string>
+	<key>StatusItemUseSystemFont</key>
+	<true/>
+	<key>Suffixes</key>
+	<array/>
+	<key>TextBackground</key>
+	<string>#ffffff</string>
+	<key>TextEncoding</key>
+	<integer>4</integer>
+	<key>TextFont</key>
+	<string>San Francisco</string>
+	<key>TextForeground</key>
+	<string>#000000</string>
+	<key>TextSize</key>
+	<real>13</real>
+	<key>UniformTypes</key>
+	<array>
+		<string>public.image</string>
+	</array>
+	<key>UseXMLPlistFormat</key>
+	<false/>
+	<key>Version</key>
+	<string>1.0</string>
+</dict>
+</plist>
