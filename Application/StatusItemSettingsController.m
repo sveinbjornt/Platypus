@@ -167,9 +167,15 @@
     }
     if (dType == 1 || dType == 2) {
         NSImage *img = [iconImageView image];
-        [img setSize:NSMakeSize(18, 18)];
+        NSSize imgSize = [img size];
+        CGFloat rel = 18/imgSize.height;
+        NSSize finalSize = NSMakeSize(imgSize.width * rel, imgSize.height * rel);
+        [img setSize:finalSize];
+        //[img setSize:NSMakeSize(18, 18)];
         [pStatusItem setImage:img];
     }
+    
+    //[[pStatusItem image] setTemplate:YES];
     
     // create menu
     pStatusItemMenu = [[NSMenu alloc] initWithTitle:@""];
@@ -279,23 +285,23 @@
 }
 
 - (void)setIcon:(NSImage *)img {
-    NSSize originalSize = [img size];
+//    NSSize originalSize = [img size];
     
     // http://alastairs-place.net/blog/2013/07/23/nsstatusitem-what-size-should-your-icon-be/
     
-    if ((originalSize.width == 18 && originalSize.height == 18) || (originalSize.width == 36 && originalSize.height == 36)) {
+//    if ((originalSize.width == 18 && originalSize.height == 18) || (originalSize.width == 36 && originalSize.height == 36)) {
         [iconImageView setImage:img];
-    } else {
-        
-        // if the selected image isn't in dimensions 18x18, we scale it to that size
-        // and draw the image we're handed into a 18x18 bitmap
-        NSImage *resizedImage = [[[NSImage alloc] initWithSize:NSMakeSize(36, 36)] autorelease];
-        [resizedImage lockFocus];
-        [img drawInRect:NSMakeRect(0, 0, 36, 36) fromRect:NSMakeRect(0, 0, originalSize.width, originalSize.height) operation:NSCompositeSourceOver fraction:1.0];
-        [resizedImage unlockFocus];
-        
-        [iconImageView setImage:resizedImage];
-    }
+//    } else {
+//        
+//        // if the selected image isn't in dimensions 18x18, we scale it to that size
+//        // and draw the image we're handed into a 18x18 bitmap
+//        NSImage *resizedImage = [[[NSImage alloc] initWithSize:NSMakeSize(36, 36)] autorelease];
+//        [resizedImage lockFocus];
+//        [img drawInRect:NSMakeRect(0, 0, 36, 36) fromRect:NSMakeRect(0, 0, originalSize.width, originalSize.height) operation:NSCompositeSourceOver fraction:1.0];
+//        [resizedImage unlockFocus];
+//        
+//        [iconImageView setImage:resizedImage];
+//    }
 }
 
 #pragma mark -

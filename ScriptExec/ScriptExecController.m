@@ -638,9 +638,12 @@
             
             // set status item title and icon
             [statusItem setTitle:statusItemTitle];
-            NSImage *icon = statusItemIcon;
-            [icon setSize:NSMakeSize(18, 18)];
-            [statusItem setImage:icon];
+            
+            NSSize statusItemSize = [statusItemIcon size];
+            CGFloat rel = 18/statusItemSize.height;
+            NSSize finalSize = NSMakeSize(statusItemSize.width * rel, statusItemSize.height * rel);
+            [statusItemIcon setSize:finalSize];
+            [statusItem setImage:statusItemIcon];
             
             // create menu for our status item
             statusItemMenu = [[NSMenu alloc] initWithTitle:@""];
