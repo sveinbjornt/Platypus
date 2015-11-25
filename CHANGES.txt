@@ -23,7 +23,9 @@ For 5.0
         TODO: Finish updating text and formatting in Readme file
     TODO: Resizable or at least larger Progress Bar window
     TODO: Long GNU named params for command line tool, e.g. --some-option
-
+    TODO: Add new examples, e.g. Icns2Iconset, ImageResizer, example reading from STDIN (word count?)
+    TODO: Make sure "Prompt for file at launch" doesn't interfere with new ScriptExec drop-launch handling
+    
     * Integrated CFBundleVersion increment script into build process
     * Updated keys in information property lists
     * Added ALERT: example
