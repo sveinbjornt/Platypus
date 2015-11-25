@@ -14,7 +14,6 @@ For 5.1
     TODO: Move documentation to Markdown format instead of raw HTML
 
 For 5.0
-    TODO: Fix Provide as Mac OS X service
     TODO: File watching still broken for script path
     TODO: Overhaul very old and out of date documentation
         TODO: Add documentation for ALERT:Title|Info syntax
@@ -23,9 +22,11 @@ For 5.0
         TODO: Finish updating text and formatting in Readme file
     TODO: Resizable or at least larger Progress Bar window
     TODO: Long GNU named params for command line tool, e.g. --some-option
-    TODO: Add new examples, e.g. Icns2Iconset, ImageResizer, example reading from STDIN (word count?)
+    TODO: Create example reading from STDIN (word count?)
     TODO: Make sure "Prompt for file at launch" doesn't interfere with new ScriptExec drop-launch handling
-    
+
+    * Fixed issue where ScriptExec quit before alert was displayed
+    * Add new examples Icns2Iconset, ImageResizer
     * Integrated CFBundleVersion increment script into build process
     * Updated keys in information property lists
     * Added ALERT: example

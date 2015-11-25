@@ -26,13 +26,13 @@
 		<true/>
 	</dict>
 	<key>OutputType</key>
-	<string>Web View</string>
+	<string>None</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunningAfterCompletion</key>
-	<true/>
+	<false/>
 	<key>RequiresAdminPrivileges</key>
-	<true/>
+	<false/>
 	<key>ScriptArgs</key>
 	<array/>
 	<key>ScriptInterpreter</key>

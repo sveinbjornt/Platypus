@@ -208,6 +208,7 @@
 }
 
 - (void)awakeFromNib {
+    
     // load settings from AppSettings.plist in app bundle
     [self loadAppSettings];
     
@@ -976,29 +977,21 @@
     isTaskRunning = NO;
     PLog(@"Task finished");
     
-    // make sure task is dead.  Ideally we'd like to do the same for privileged tasks, but that's just not possible w/o process id
-    if (execStyle == PLATYPUS_EXECSTYLE_NORMAL && task != nil && [task isRunning]) {
+    // make sure task is dead.  Ideally we'd like to do the same for
+    // privileged tasks, but that's just not possible w/o process id
+    if (execStyle == PLATYPUS_EXECSTYLE_NORMAL && task != nil) {
         [task terminate];
     }
     
     // did we receive all the data?
-    if (outputEmpty) { // if no data left we do the clean up
+    // if no data left we do the clean up
+    if (outputEmpty) {
         [self cleanup];
     }
     
-    // if we're using the "secure" script, we must remove the temporary clear-text one in temp directory if there is one
-    if (secureScript && [FILEMGR fileExistsAtPath:scriptPath]) {
-        [FILEMGR removeItemAtPath:scriptPath error:nil];
-    }
-    
     // if there are more jobs waiting for us, execute
-    if ([jobQueue count] > 0) {
+    if ([jobQueue count] > 0 && remainRunning) {
         [self executeScript];
-    }
-    
-    // we quit now if the app isn't set to continue running
-    if (!remainRunning) {
-        [[NSApplication sharedApplication] terminate:self];
     }
 }
 
@@ -1015,6 +1008,11 @@
         while ((data = [outputReadFileHandle availableData]) && [data length]) {
             [self appendOutput:data];
         }
+    }
+    
+    // if we're using the "secure" script, we must remove the temporary clear-text one in temp directory if there is one
+    if (secureScript) {
+        [FILEMGR removeItemAtPath:scriptPath error:nil];
     }
     
     // now, reset all controls etc., general cleanup since task is done
@@ -1042,6 +1040,9 @@
         outputEmpty = YES;
         if (!isTaskRunning) {
             [self cleanup];
+        }
+        if (!remainRunning) {
+            [[NSApplication sharedApplication] terminate:self];
         }
     }
 }
@@ -1104,6 +1105,7 @@
             NSArray *components = [alertString componentsSeparatedByString:@"|"];
             [Alerts alert:components[0]
                   subText:[components count] > 1 ? components[1] : components[0]];
+                
             continue;
         }
         

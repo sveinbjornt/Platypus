@@ -1,12 +1,15 @@
 #!/bin/sh
+
 #echo $@
 #if [ ! -e "$1" ]
 #then
 #sleep 1
-echo "<h1>"
-echo "Yo dawg"
-echo $@
-echo "</h1>"
+echo "Yo"
+#sleep 1
+echo "ALERT:Hey!"
+echo "Yo"
+
+
 #printf "Drop a file to see its Data URL\n"
 #printf "ALERT:Hey!|What's up?\n"
 #printf "NOTIFICATION:Hello, dude\n"
