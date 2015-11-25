@@ -16,6 +16,7 @@
     [alert setMessageText:message];
     [alert setInformativeText:subtext];
     [alert setAlertStyle:style];
+    [[alert window] setPreventsApplicationTerminationWhenModal:YES];
     [alert runModal];
     [alert release];
 }
