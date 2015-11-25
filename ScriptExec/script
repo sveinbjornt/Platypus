@@ -6,8 +6,12 @@
 #sleep 1
 echo "Yo"
 #sleep 1
-echo "ALERT:Hey!"
+#echo "ALERT:Hey $1!"
 echo "Yo"
+while read LINE; do
+echo "ALERT:${LINE}"
+done
+
 
 
 #printf "Drop a file to see its Data URL\n"

@@ -137,6 +137,7 @@
     BOOL isTaskRunning;
     BOOL outputEmpty;
     BOOL hasTaskRun;
+    BOOL hasFinishedLaunching;
     
     NSString *scriptText;
     NSString *remnants;
@@ -455,6 +456,9 @@
 #pragma mark - App Delegate handlers
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    PLog(@"Application did finish launching");
+    hasFinishedLaunching = YES;
+    
     [NSApp setServicesProvider:self]; // register as text handling service
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
@@ -464,10 +468,10 @@
         return;
     }
     
-    if (promptForFileOnLaunch && isDroppable && ![jobQueue count]) {
+    if (promptForFileOnLaunch && isDroppable && [jobQueue count] == 0) {
         [self openFiles:self];
     } else {
-        [self performSelector:@selector(executeScriptIfNothingDropped) withObject:nil afterDelay:0.1];
+        [self executeScript];
     }
 }
 
@@ -476,7 +480,8 @@
 }
 
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames {
-
+    PLog(@"Received openFiles for files: %@", [filenames description]);
+    
     if (hasTaskRun == FALSE && commandLineArguments != nil) {
         for (NSString *filePath in filenames) {
             if ([commandLineArguments containsObject:filePath]) {
@@ -489,7 +494,7 @@
     BOOL success = [self addDroppedFilesJob:filenames];
     
     // if no other job is running, we execute
-    if (!isTaskRunning && success) {
+    if (!isTaskRunning && success && hasFinishedLaunching) {
         [self executeScript];
     }
 }
@@ -867,13 +872,6 @@
     }
 }
 
-- (void)executeScriptIfNothingDropped {
-    if (hasTaskRun == FALSE) {
-        PLog(@"Executing script since nothing was dropped");
-        [self executeScript];
-    }
-}
-
 - (void)executeScript {
     hasTaskRun = YES;
     
@@ -1230,6 +1228,10 @@
         if (!isTaskRunning && success) {
             [self executeScript];
         }
+    } else {
+        if (!remainRunning) {
+            [[NSApplication sharedApplication] terminate:self];
+        }
     }
 }
 
@@ -1301,13 +1303,15 @@
         return NO;
     }
     // open should only work if it's a droppable app
-    if ([[anItem title] isEqualToString:@"Open…"] &&
-        (!isDroppable || !acceptsFiles)) {
+    if ([[anItem title] isEqualToString:@"Open…"] && (!isDroppable || !acceptsFiles)) {
         return NO;
     }
     // Make text bigger stuff
-    if (outputType != PLATYPUS_OUTPUT_TEXTWINDOW && outputType != PLATYPUS_OUTPUT_PROGRESSBAR &&outputType != PLATYPUS_OUTPUT_WEBVIEW) {
-        return NO;
+    if (outputType != PLATYPUS_OUTPUT_TEXTWINDOW && outputType != PLATYPUS_OUTPUT_PROGRESSBAR
+        && outputType != PLATYPUS_OUTPUT_WEBVIEW) {
+        if ([[anItem title] isEqualToString:@"Make Text Bigger"] || [[anItem title] isEqualToString:@"Make Text Smaller"]) {
+            return NO;
+        }
     }
     
     return YES;
@@ -1373,7 +1377,7 @@
         return;
     }
     
-    if (!isTaskRunning && ret) {
+    if (isTaskRunning == NO && ret) {
         [self executeScript];
     }
 }
@@ -1381,9 +1385,10 @@
 #pragma mark - Text snippet drag handling
 
 - (void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
-    if (!isDroppable || !acceptsText) {
+    if (isDroppable == NO || acceptsText == NO) {
         return;
     }
+    
     NSString *pboardString = [pboard stringForType:NSStringPboardType];
     BOOL success = [self addDroppedTextJob:pboardString];
     

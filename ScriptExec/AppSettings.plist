@@ -5,19 +5,17 @@
 	<key>AcceptsFiles</key>
 	<true/>
 	<key>AcceptsText</key>
-	<false/>
+	<true/>
 	<key>Creator</key>
 	<string>Platypus-5.0</string>
 	<key>DropSuffixes</key>
 	<array>
-		<string>txt</string>
+		<string>*</string>
 	</array>
 	<key>Droppable</key>
 	<true/>
 	<key>DropUniformTypes</key>
-	<array>
-		<string>public.shell-script</string>
-	</array>
+	<array/>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>NSAppTransportSecurity</key>
@@ -28,9 +26,9 @@
 	<key>OutputType</key>
 	<string>None</string>
 	<key>PromptForFileOnLaunch</key>
-	<false/>
+	<true/>
 	<key>RemainRunningAfterCompletion</key>
-	<false/>
+	<true/>
 	<key>RequiresAdminPrivileges</key>
 	<false/>
 	<key>ScriptArgs</key>
