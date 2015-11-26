@@ -61,7 +61,7 @@
     [oPanel setTitle:[NSString stringWithFormat:@"Select %@ Profile", PROGRAM_NAME]];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:@[PROFILES_SUFFIX]];
+    [oPanel setAllowedFileTypes:@[PROGRAM_PROFILE_SUFFIX, PROGRAM_PROFILE_UTI]];
     [oPanel setDirectoryURL:[NSURL fileURLWithPath:[PROFILES_FOLDER stringByExpandingTildeInPath]]];
     
     if ([oPanel runModal] == NSOKButton) {
@@ -124,7 +124,7 @@
     NSString *profileDestPath = [NSString stringWithFormat:@"%@/%@.%@",
                                  [PROFILES_FOLDER stringByExpandingTildeInPath],
                                  spec[@"Name"],
-                                 PROFILES_SUFFIX];
+                                 PROGRAM_PROFILE_SUFFIX];
     [spec writeToFile:profileDestPath];
 }
 
@@ -135,7 +135,7 @@
     
     // get profile from platypus controls
     PlatypusAppSpec *spec = [platypusController appSpecFromControls];
-    NSString *defaultName = [NSString stringWithFormat:@"%@.%@", spec[@"Name"], PROFILES_SUFFIX];
+    NSString *defaultName = [NSString stringWithFormat:@"%@.%@", spec[@"Name"], PROGRAM_PROFILE_SUFFIX];
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setTitle:[NSString stringWithFormat:@"Save %@ Profile", PROGRAM_NAME]];
@@ -145,8 +145,8 @@
     
     if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
         NSString *filePath = [[sPanel URL] path];
-        if ([filePath hasSuffix:PROFILES_SUFFIX] == NO) {
-            filePath = [NSString stringWithFormat:@"%@.%@", filePath, PROFILES_SUFFIX];
+        if ([filePath hasSuffix:PROGRAM_PROFILE_SUFFIX] == NO) {
+            filePath = [NSString stringWithFormat:@"%@.%@", filePath, PROGRAM_PROFILE_SUFFIX];
         }
         [spec writeToFile:filePath];
         [self constructMenus:self];
@@ -253,7 +253,7 @@
     NSString *filename;
     
     while ((filename = [dirEnumerator nextObject]) != nil) {
-        if ([filename hasSuffix:PROFILES_SUFFIX]) {
+        if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX]) {
             NSString *path = [NSString stringWithFormat:@"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], filename];
             if (![manager isDeletableFileAtPath:path]) {
                 [Alerts alert:@"Error" subTextFormat:@"Cannot delete file %@.", path];
@@ -281,7 +281,7 @@
     NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
     NSString *filename;
     while ((filename = [dirEnumerator nextObject]) != nil) {
-        if ([filename hasSuffix:PROFILES_SUFFIX]) {
+        if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX]) {
             [profilesArray addObject:filename];
         }
     }
@@ -293,7 +293,7 @@
     NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], PROGRAM_EXAMPLES_FOLDER]];
     NSString *filename;
     while ((filename = [dirEnumerator nextObject]) != nil) {
-        if ([filename hasSuffix:PROFILES_SUFFIX]) {
+        if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX]) {
             [examplesArray addObject:filename];
         }
     }

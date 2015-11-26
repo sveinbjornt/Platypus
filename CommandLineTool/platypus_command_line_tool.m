@@ -104,7 +104,7 @@ int main(int argc, const char *argv[]) {
                     NSPrintErr(@"Error: No profile found at path '%@'.", profilePath);
                     exit(1);
                 }
-                if (![profilePath hasSuffix:PROFILES_SUFFIX]) {
+                if (![profilePath hasSuffix:PROGRAM_PROFILE_SUFFIX]) {
                     NSPrintErr(@"Warning: Profile '%@' does not have profile suffix.  Trying anyway...", profilePath);
                 }
                 
@@ -156,8 +156,9 @@ int main(int argc, const char *argv[]) {
             case 'o':
             {
                 NSString *outputType = @(optarg);
-                if ([PLATYPUS_OUTPUT_TYPES containsObject:outputType] == NO) {
-                    NSPrintErr(@"Error: Invalid output type '%@'.  Valid types are: %@", outputType, [PLATYPUS_OUTPUT_TYPES description]);
+                if ([PLATYPUS_OUTPUT_TYPE_NAMES containsObject:outputType] == NO) {
+                    NSPrintErr(@"Error: Invalid output type '%@'.  Valid types are: %@",
+                               outputType, [PLATYPUS_OUTPUT_TYPE_NAMES description]);
                     exit(1);
                 }
                 properties[@"Output"] = @(optarg);

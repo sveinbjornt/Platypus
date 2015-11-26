@@ -260,11 +260,11 @@
     
     // determine output type
     NSString *outputTypeStr = appSettingsDict[@"OutputType"];
-    if ([PLATYPUS_OUTPUT_TYPES containsObject:outputTypeStr] == FALSE) {
+    if ([PLATYPUS_OUTPUT_TYPE_NAMES containsObject:outputTypeStr] == FALSE) {
         [Alerts fatalAlert:@"Corrupt app settings"
              subTextFormat:@"Invalid Output Mode: '%@'.", outputTypeStr];
     }
-    outputType = [PLATYPUS_OUTPUT_TYPES indexOfObject:outputTypeStr];
+    outputType = [PLATYPUS_OUTPUT_TYPE_NAMES indexOfObject:outputTypeStr];
     
     // font and size
     NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
