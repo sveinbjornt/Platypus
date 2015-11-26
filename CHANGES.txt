@@ -23,7 +23,6 @@ For 5.0
     TODO: Resizable or at least larger Progress Bar window
     TODO: Long GNU named params for command line tool, e.g. --some-option
     TODO: Create example reading from STDIN (word count?)
-    TODO: Make sure "Prompt for file at launch" doesn't interfere with new ScriptExec drop-launch handling
 
     * Fixed issue where ScriptExec quit before alert was displayed
     * Add new examples Icns2Iconset, ImageResizer

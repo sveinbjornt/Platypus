@@ -841,7 +841,7 @@
     
     // add script as argument to interpreter, if it exists
     if (![FILEMGR fileExistsAtPath:scriptPath]) {
-        [Alerts fatalAlert:@"Missing script" subText:@"Script missing at execution path"];
+        [Alerts fatalAlert:@"Missing script" subTextFormat:@"Script missing at execution path %@", scriptPath];
     }
     [arguments addObject:scriptPath];
     
