@@ -43,10 +43,11 @@
 #define PROGRAM_DOCUMENTATION_URL   @"http://sveinbjorn.org/files/manpages/PlatypusDocumentation.html"
 #define PROGRAM_MANPAGE_URL         @"http://sveinbjorn.org/files/manpages/platypus.man.html"
 #define PROGRAM_PROFILE_UTI         @"org.sveinbjorn.platypus-profile"
+#define PROGRAM_PROFILE_SUFFIX      @"platypus"
+
+
 #define PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL [NSString stringWithFormat:@"%@#41",PROGRAM_DOCUMENTATION_URL]
 #define PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL [NSString stringWithFormat:@"%@#22",PROGRAM_DOCUMENTATION_URL]
-
-
 
 // documentation
 #define PROGRAM_README_FILE         @"Readme.html"
@@ -59,7 +60,6 @@
 #define APP_SUPPORT_FOLDER          [@ "~/Library/Application Support/Platypus/" stringByExpandingTildeInPath]
 #define TEMP_FOLDER                 [NSString stringWithFormat:@"%@/", APP_SUPPORT_FOLDER]
 #define PROFILES_FOLDER             [NSString stringWithFormat:@"%@/Profiles", APP_SUPPORT_FOLDER]
-#define PROFILES_SUFFIX             @"platypus"
 #define NEW_SCRIPT_FILENAME         @"Script"
 
 // default output text settings
@@ -126,14 +126,14 @@ typedef enum PlatypusOutputType {
 } PlatypusOutputType;
  
 // array of output types, used for validation
-#define PLATYPUS_OUTPUT_TYPES   [NSArray arrayWithObjects:\
-@"None", \
-@"Progress Bar", \
-@"Text Window", \
-@"Web View", \
-@"Status Menu", \
-@"Droplet", \
-nil]
+#define PLATYPUS_OUTPUT_TYPE_NAMES   @[\
+    @"None", \
+    @"Progress Bar", \
+    @"Text Window", \
+    @"Web View", \
+    @"Status Menu", \
+    @"Droplet", \
+]
 
 #pragma mark -
 

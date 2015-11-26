@@ -220,7 +220,7 @@
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
     NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
-    if ([filename hasSuffix:PROFILES_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
+    if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
         [profilesController loadProfileAtPath:filename];
     } else {
         [self loadScript:filename];
@@ -925,7 +925,7 @@
         }
 
         // profile
-        if ([filename hasSuffix:PROFILES_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
+        if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
             [profilesController loadProfileAtPath:filename];
         }
         // image
