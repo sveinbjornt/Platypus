@@ -9,7 +9,7 @@ echo "Yo"
 #echo "ALERT:Hey $1!"
 echo "Yo"
 while read LINE; do
-echo "ALERT:${LINE}"
+echo "ALERT:YOdude,${LINE}"
 done
 
 

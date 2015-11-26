@@ -591,24 +591,25 @@
         
         // add service settings to Info.plist
         if ([self[@"DeclareService"] boolValue] == YES) {
+            
+            NSMutableDictionary *serviceDict = [NSMutableDictionary dictionary];
+            
+            serviceDict[@"NSMenuItem"] = @{@"default": [NSString stringWithFormat:@"Process with %@", self[@"Name"]]};
+            serviceDict[@"NSMessage"] = @"dropService";
+            serviceDict[@"NSPortName"] = self[@"Name"];
+            serviceDict[@"NSTimeout"] = [NSNumber numberWithInt:3000];
+            
             // service data type handling
             NSMutableArray *sendTypes = [NSMutableArray array];
             if ([self[@"AcceptsFiles"] boolValue]) {
                 [sendTypes addObject:@"NSFilenamesPboardType"];
+                serviceDict[@"NSSendFileTypes"] = @[@"public.item"];
             }
             if ([self[@"AcceptsText"] boolValue]) {
                 [sendTypes addObject:@"NSStringPboardType"];
             }
+            serviceDict[@"NSSendTypes"] = sendTypes;
             
-            NSMutableDictionary *serviceDict = [NSMutableDictionary dictionaryWithCapacity:10];
-            NSDictionary *menuItemDict = @{@"default": [NSString stringWithFormat:@"Process with %@", self[@"Name"]]};
-            
-            serviceDict[@"NSMenuItem"] = menuItemDict;
-            serviceDict[@"NSMessage"] = @"dropService";
-            serviceDict[@"NSPortName"] = self[@"Name"];
-            
-            // TODO: !!!!
-            //serviceDict[@"NSSendTypes"] = sendTypes;
 //            serviceDict[@"NSSendFileTypes"] = @[];
 //            serviceDict[@"NSServiceDescription"]
             

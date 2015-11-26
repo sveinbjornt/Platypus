@@ -60,19 +60,25 @@
 	<key>NSServices</key>
 	<array>
 		<dict>
+			<key>NSMessage</key>
+			<string>dropService</string>
+			<key>NSPortName</key>
+			<string>ScriptExec</string>
+			<key>NSTimeout</key>
+			<integer>3000</integer>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSFilenamesPboardType</string>
+				<string>NSStringPboardType</string>
+			</array>
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
 				<string>ScriptExec</string>
 			</dict>
-			<key>NSMessage</key>
-			<string>dropService</string>
-			<key>NSPortName</key>
-			<string>ScriptExec</string>
-			<key>NSSendTypes</key>
+			<key>NSSendFileTypes</key>
 			<array>
-				<string>NSFilenamesPboardType</string>
-				<string>NSStringPboardType</string>
+				<string>public.item</string>
 			</array>
 		</dict>
 	</array>
