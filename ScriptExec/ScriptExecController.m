@@ -125,6 +125,7 @@
     BOOL promptForFileOnLaunch;
     BOOL statusItemUsesSystemFont;
     BOOL runInBackground;
+    BOOL isService;
     
     NSArray *droppableSuffixes;
     NSArray *droppableUniformTypes;
@@ -251,6 +252,7 @@
     }
     
     runInBackground = [infoPlist[@"LSUIElement"] boolValue];
+    isService = (infoPlist[@"NSServices"] != nil);
     
     // load dictionary containing app settings from property list
     NSDictionary *appSettingsDict = [NSDictionary dictionaryWithContentsOfFile:appSettingsPath];
@@ -339,6 +341,7 @@
     secureScript = [appSettingsDict[@"Secure"] boolValue];
     isDroppable = [appSettingsDict[@"Droppable"] boolValue];
     promptForFileOnLaunch = [appSettingsDict[@"PromptForFileOnLaunch"] boolValue];
+    
     
     // read and store command line arguments to the application
     NSMutableArray *processArgs = [NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]];
@@ -459,7 +462,19 @@
     PLog(@"Application did finish launching");
     hasFinishedLaunching = YES;
     
-    [NSApp setServicesProvider:self]; // register as text handling service
+    if (isService) {
+        [NSApp setServicesProvider:self]; // register as text handling service
+//        NSMutableArray *sendTypes = [NSMutableArray array];
+//        if (acceptsFiles) {
+//            [sendTypes addObject:NSFilenamesPboardType];
+//        }
+//        if (acceptsText) {
+//            [sendTypes addObject:NSStringPboardType];
+//        }
+//        [NSApp registerServicesMenuSendTypes:sendTypes returnTypes:@[]];
+        NSUpdateDynamicServices();
+    }
+    
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
     // status menu apps just run when item is clicked
@@ -1046,11 +1061,11 @@
 }
 
 - (void)appendOutput:(NSData *)data {
-
+    // create string from raw output data
     NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:textEncoding];
     
-    if (!outputString) {
-        PLog(@"Output string is nil");
+    if (outputString == nil) {
+        PLog(@"Warning: Output string is nil");
         return;
     }
     
@@ -1179,12 +1194,12 @@
 
 - (void)appendString:(NSString *)string {
     PLog(@"Appending output: \"%@\"", string);
-//    if (outputType == PLATYPUS_OUTPUT_NONE) {
-////        fprintf(stdout, "%s", [string cStringUsingEncoding:textEncoding]);
-//        NSData *strData = [string dataUsingEncoding:textEncoding];
-//        [[NSFileHandle fileHandleWithStandardError] writeData:strData];
-//        return;
-//    }
+    if (outputType == PLATYPUS_OUTPUT_NONE) {
+        //fprintf(stdout, "%s", [string cStringUsingEncoding:textEncoding]);
+        NSData *strData = [[NSString stringWithFormat:@"%@\n", string] dataUsingEncoding:textEncoding];
+        [[NSFileHandle fileHandleWithStandardError] writeData:strData];
+        return;
+    }
     
     NSTextStorage *textStorage = [outputTextView textStorage];
     NSRange appendRange = NSMakeRange([textStorage length], 0);
@@ -1208,6 +1223,13 @@
     [oPanel setAllowsMultipleSelection:YES];
     [oPanel setCanChooseFiles:YES];
     [oPanel setCanChooseDirectories:acceptDroppedFolders];
+//    NSArray *fileTypes = [droppableUniformTypes count] > 0 ? droppableUniformTypes : droppableSuffixes;
+//    if (acceptAnyDroppedItem) {
+//        [oPanel setAllowedFileTypes:nil];
+//    } else {
+//        [oPanel setAllowedFileTypes:fileTypes];
+//    }
+//    NSLog([fileTypes description]);
     
     // set acceptable file types - default allows all
     if (!acceptAnyDroppedItem) {
@@ -1218,17 +1240,20 @@
     }
     
     if ([oPanel runModal] == NSFileHandlingPanelOKButton) {
-        // Convert URLs to paths
-        NSMutableArray *files = [NSMutableArray arrayWithArray:[oPanel URLs]];
-        for (int i = 0; i < [files count]; i++) {
-            files[i] = [(NSURL *)files[i] path];
+        // convert URLs to paths
+        NSMutableArray *filePaths = [NSMutableArray array];        
+        for (NSURL *url in [oPanel URLs]) {
+            [filePaths addObject:[url path]];
         }
         
-        BOOL success = [self addDroppedFilesJob:files];
+        BOOL success = [self addDroppedFilesJob:filePaths];
+        
         if (!isTaskRunning && success) {
             [self executeScript];
         }
+        
     } else {
+        // canceled in open file dialog
         if (!remainRunning) {
             [[NSApplication sharedApplication] terminate:self];
         }

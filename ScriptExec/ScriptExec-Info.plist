@@ -9,7 +9,7 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>*</string>
+				<string>txt</string>
 			</array>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
