@@ -164,6 +164,7 @@
         arguments = [[NSMutableArray alloc] init];
         outputEmpty = YES;
         jobQueue = [[NSMutableArray alloc] init];
+        textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
     }
     return self;
 }
@@ -268,43 +269,47 @@
     }
     outputType = [PLATYPUS_OUTPUT_TYPE_NAMES indexOfObject:outputTypeStr];
     
-    // font and size
-    NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
-    CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[@"TextSize"] floatValue];
-    fontSize = fontSize ? fontSize : DEFAULT_OUTPUT_FONTSIZE;
+    // text styling and encoding info
+    if (IsTextStyledOutputType(outputType)) {
     
-    if (appSettingsDict[@"TextFont"] != nil) {
-        textFont = [NSFont fontWithName:appSettingsDict[@"TextFont"] size:fontSize];
+        // font and size
+        NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
+        CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[@"TextSize"] floatValue];
+        fontSize = fontSize ? fontSize : DEFAULT_OUTPUT_FONTSIZE;
+        
+        if (appSettingsDict[@"TextFont"] != nil) {
+            textFont = [NSFont fontWithName:appSettingsDict[@"TextFont"] size:fontSize];
+        }
+        if (textFont == nil) {
+            textFont = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE];
+        }
+        
+        // foreground color
+        if (appSettingsDict[@"TextForeground"] != nil) {
+            textForegroundColor = [NSColor colorFromHex:appSettingsDict[@"TextForeground"]];
+        }
+        if (textForegroundColor == nil) {
+            textForegroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_FG_COLOR];
+        }
+        
+        // background color
+        if (appSettingsDict[@"TextBackground"] != nil) {
+            textBackgroundColor = [NSColor colorFromHex:appSettingsDict[@"TextBackground"]];
+        }
+        if (textBackgroundColor == nil) {
+            textBackgroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_BG_COLOR];
+        }
+        
+        // encoding
+        textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
+        if (appSettingsDict[@"TextEncoding"] != nil) {
+            textEncoding = (int)[appSettingsDict[@"TextEncoding"] intValue];
+        }
+        
+        [textFont retain];
+        [textForegroundColor retain];
+        [textBackgroundColor retain];
     }
-    if (textFont == nil) {
-        textFont = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE];
-    }
-    
-    // foreground color
-    if (appSettingsDict[@"TextForeground"] != nil) {
-        textForegroundColor = [NSColor colorFromHex:appSettingsDict[@"TextForeground"]];
-    }
-    if (textForegroundColor == nil) {
-        textForegroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_FG_COLOR];
-    }
-    
-    // background color
-    if (appSettingsDict[@"TextBackground"] != nil) {
-        textBackgroundColor = [NSColor colorFromHex:appSettingsDict[@"TextBackground"]];
-    }
-    if (textBackgroundColor == nil) {
-        textBackgroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_BG_COLOR];
-    }
-    
-    // encoding
-    textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
-    if (appSettingsDict[@"TextEncoding"] != nil) {
-        textEncoding = (int)[appSettingsDict[@"TextEncoding"] intValue];
-    }
-    
-    [textFont retain];
-    [textForegroundColor retain];
-    [textBackgroundColor retain];
     
     // status menu output has some additional parameters
     if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
