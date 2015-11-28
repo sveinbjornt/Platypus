@@ -1139,6 +1139,9 @@
             // lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar
             if ([theLine hasPrefix:@"PROGRESS:"]) {
                 NSString *progressPercentString = [theLine substringFromIndex:9];
+                if ([progressPercentString hasSuffix:@"%"]) {
+                    progressPercentString = [progressPercentString substringToIndex:[progressPercentString length]-1];
+                }
                 
                 // Parse percentage using number formatter
                 NSNumberFormatter *numFormatter = [[NSNumberFormatter alloc] init];
