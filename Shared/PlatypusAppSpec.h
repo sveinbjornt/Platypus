@@ -36,6 +36,7 @@
 @interface PlatypusAppSpec : NSMutableDictionary
 
 @property (nonatomic, readonly, strong) NSString *error;
+@property (nonatomic) BOOL silentMode;
 
 - (PlatypusAppSpec *)initWithDefaults;
 - (PlatypusAppSpec *)initWithDefaultsForScript:(NSString *)scriptPath;
