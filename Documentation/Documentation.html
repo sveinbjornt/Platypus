@@ -121,6 +121,7 @@
             <li><a href="#43">Built-In Editor</a></li>
             <li><a href="#44">Syntax Checking</a></li>
             <li><a href="#45">Show Shell Command</a></li>
+            <li><a href="#46">Showing an Alert</a></li>
         </ul>
     </li>
     <li class="heading">
@@ -509,6 +510,23 @@
 
 <p>The command line tool does not in any way depend on the Platypus application once it has been installed.</p>
 
+<br><br>
+
+<a name="46"></a>
+<h3>Showing an Alert</h3>
+
+<p>Platypus application wrappers can be made to show an alert if your script prints out a line using the following syntax:</p>
+
+<div class="codeblock"><pre>
+ALERT:Title|Text\n
+</pre></div>
+
+<p>Thus, to show an alert with the title "Hello" and the informative text "World", you would do as follows:</p>
+
+<div class="codeblock"><pre>
+ALERT:Hello|World\n
+</pre></div>
+
 <br>
 <br>
 <hr>
@@ -563,7 +581,7 @@
 
 <h3>Platypus Profile Format</h3>
 
-<p>The Platypus Profile file format is a Mac OS X <a href="http://en.wikipedia.org/wiki/Property_list">property list</a> in XML format.  It can be edited using with a plain text editor or XCode.</p>
+<p>The Platypus Profile file format is a Mac OS X <a href="http://en.wikipedia.org/wiki/Property_list">property list</a> in XML format.  It can be edited using a plain text editor or XCode.</p>
 
 <br>
 <br>

@@ -15,11 +15,9 @@ For 5.1
 
 For 5.0
     TODO: Overhaul very old and out of date documentation
-        TODO: Add documentation for ALERT:Title|Info syntax
         TODO: Add documentation about Uniform Type Identifiers
         TODO: Add documentation on reading dropped text from STDIN
         TODO: Finish updating text and formatting in Readme file
-        TODO: Add documentation that output mode None sends script output to stderr
         TODO: Document the Services feature and provide instructions on how to enable in the Services preferences in Mac OS X.
 
     TODO: Long GNU named params for command line tool, e.g. --some-option
