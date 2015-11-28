@@ -204,7 +204,6 @@
     // file/drag acceptance properties
     self[@"Suffixes"] = [NSMutableArray arrayWithObject:@"*"];
     self[@"UniformTypes"] = [NSMutableArray array];
-    self[@"Role"] = DEFAULT_ROLE;
     self[@"AcceptsText"] = @NO;
     self[@"AcceptsFiles"] = @YES;
     self[@"DeclareService"] = @NO;
