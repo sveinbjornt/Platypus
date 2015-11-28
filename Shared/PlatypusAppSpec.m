@@ -131,7 +131,11 @@
 }
 
 - (instancetype)initWithProfile:(NSString *)profilePath {
-    return [self initWithDictionary:[NSMutableDictionary dictionaryWithContentsOfFile:profilePath]];
+    NSDictionary *profileDict = [NSDictionary dictionaryWithContentsOfFile:profilePath];
+    if (profileDict == nil) {
+        return nil;
+    }
+    return [self initWithDictionary:profileDict];
 }
 
 #if !__has_feature(objc_arc)

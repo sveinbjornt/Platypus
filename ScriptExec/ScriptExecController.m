@@ -1003,7 +1003,7 @@
     }
     
     // if there are more jobs waiting for us, execute
-    if ([jobQueue count] > 0 && remainRunning) {
+    if ([jobQueue count] > 0 /*&& remainRunning*/) {
         [self executeScript];
     }
 }
@@ -1050,6 +1050,7 @@
         [[aNotification object] readInBackgroundAndNotify];
     }
     else {
+        PLog(@"Output empty");
         outputEmpty = YES;
         if (!isTaskRunning) {
             [self cleanup];

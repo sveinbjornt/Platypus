@@ -69,16 +69,17 @@
 }
 
 - (void)loadProfileAtPath:(NSString *)file {
-    // note it as a recently opened file
-    [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:file]];
     
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithProfile:file];
     
     // make sure we got a spec from the file
     if (spec == nil) {
-        [Alerts alert:@"Error" subText:@"Unable to create Platypus spec from profile"];
+        [Alerts alert:@"Error" subText:@"Unable to load Platypus profile."];
         return;
     }
+    
+    // note it as a recently opened file
+    [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:file]];
     
     // check if it's an example
     if (spec[@"Example"] != nil) {
@@ -111,7 +112,7 @@
 
 - (IBAction)saveProfile:(id)sender;
 {
-    if (![platypusController verifyFieldContents]) {
+    if ([platypusController verifyFieldContents] == NO) {
         return;
     }
     
@@ -120,7 +121,7 @@
 
     // create path for profile file and write to it
     NSString *profileDestPath = [NSString stringWithFormat:@"%@/%@.%@",
-                                 [PROFILES_FOLDER stringByExpandingTildeInPath],
+                                 PROFILES_FOLDER,
                                  spec[@"Name"],
                                  PROGRAM_PROFILE_SUFFIX];
     [spec writeToFile:profileDestPath];
