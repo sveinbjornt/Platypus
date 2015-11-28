@@ -155,10 +155,8 @@
 
 - (IBAction)selectDocIcon:(id)sender {
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-    [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setTitle:@"Select an icns file"];
     [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeAppleICNS]];
         
     if ([oPanel runModal] == NSOKButton) {

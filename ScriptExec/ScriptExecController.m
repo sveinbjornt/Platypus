@@ -1219,7 +1219,6 @@
     
     // create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-    [oPanel setPrompt:@"Open"];
     [oPanel setAllowsMultipleSelection:YES];
     [oPanel setCanChooseFiles:YES];
     [oPanel setCanChooseDirectories:acceptDroppedFolders];

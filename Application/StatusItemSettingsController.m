@@ -132,8 +132,6 @@
 
 - (IBAction)selectStatusItemIcon:(id)sender {
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-    [oPanel setPrompt:@"Select"];
-    [oPanel setTitle:[NSString stringWithFormat:@"%@ - Select Image", PROGRAM_NAME]];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:[NSImage imageTypes]];

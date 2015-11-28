@@ -137,7 +137,6 @@
 - (IBAction)selectScriptEditor:(id)sender {
     //create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-    [oPanel setTitle:@"Select Editor"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeApplicationBundle]];
