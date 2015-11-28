@@ -596,6 +596,8 @@
             
             // style the text field
             outputTextView = progressBarTextView;
+            [outputTextView setBackgroundColor:textBackgroundColor];
+            [outputTextView setTextColor:textForegroundColor];
             
             // add drag instructions message if droplet
             NSString *progBarMsg = isDroppable ? @"Drag files to process" : @"Running...";
@@ -621,6 +623,8 @@
             }
             
             [textOutputProgressIndicator setUsesThreadedAnimation:YES];
+            [outputTextView setBackgroundColor:textBackgroundColor];
+            [outputTextView setTextColor:textForegroundColor];
             
             // prepare window
             [textOutputWindow setTitle:appName];
@@ -1188,7 +1192,7 @@
         }
     }
     
-    if (outputType == PLATYPUS_OUTPUT_TEXTWINDOW || outputType == PLATYPUS_OUTPUT_PROGRESSBAR) {
+    if (IsTextViewScrollableOutputType(outputType)) {
         [outputTextView scrollRangeToVisible:NSMakeRange([[outputTextView textStorage] length], 0)];
     }
 }
@@ -1284,9 +1288,7 @@
 
 // save output in text field to file when Save to File menu item is invoked
 - (IBAction)saveToFile:(id)sender {
-    if (outputType != PLATYPUS_OUTPUT_TEXTWINDOW &&
-        outputType != PLATYPUS_OUTPUT_WEBVIEW &&
-        outputType != PLATYPUS_OUTPUT_PROGRESSBAR) {
+    if (!IsTextStyledOutputType(outputType)) {
         return;
     }
     NSString *outSuffix = (outputType == PLATYPUS_OUTPUT_WEBVIEW) ? @"html" : @"txt";
@@ -1308,25 +1310,22 @@
 // save only works for text window, web view output types
 // and open only works for droppable apps that accept files as script args
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
+    
+    // status item menus are always enabled
     if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
         return YES;
     }
-    
     // save to file item
-    if ([[anItem title] isEqualToString:@"Save to File…"] &&
-        (outputType != PLATYPUS_OUTPUT_TEXTWINDOW && outputType != PLATYPUS_OUTPUT_WEBVIEW  && outputType != PLATYPUS_OUTPUT_PROGRESSBAR)) {
+    if (!IsTextStyledOutputType(outputType) && [[anItem title] isEqualToString:@"Save to File…"]) {
         return NO;
     }
-    // open should only work if it's a droppable app
-    if ([[anItem title] isEqualToString:@"Open…"] && (!isDroppable || !acceptsFiles)) {
+    // open should only work if it's a droppable app that accepts files
+    if ((!isDroppable || !acceptsFiles) && [[anItem title] isEqualToString:@"Open…"]) {
         return NO;
     }
-    // Make text bigger stuff
-    if (outputType != PLATYPUS_OUTPUT_TEXTWINDOW && outputType != PLATYPUS_OUTPUT_PROGRESSBAR
-        && outputType != PLATYPUS_OUTPUT_WEBVIEW) {
-        if ([[anItem title] isEqualToString:@"Make Text Bigger"] || [[anItem title] isEqualToString:@"Make Text Smaller"]) {
-            return NO;
-        }
+    // change text size
+    if (IsTextSizableOutputType(outputType) && [[anItem title] hasPrefix:@"Make Text"]) {
+        return NO;
     }
     
     return YES;
