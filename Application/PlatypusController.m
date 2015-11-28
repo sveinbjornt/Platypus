@@ -58,7 +58,7 @@
     IBOutlet STPathTextField *scriptPathTextField;
     IBOutlet NSButton *editScriptButton;
     IBOutlet NSButton *revealScriptButton;
-    IBOutlet NSPopUpButton *outputTypePopupMenu;
+    IBOutlet NSPopUpButton *outputTypePopupButton;
     IBOutlet NSButton *createAppButton;
     IBOutlet NSButton *textOutputSettingsButton;
     IBOutlet NSButton *statusItemSettingsButton;
@@ -542,7 +542,7 @@
     
     spec[@"Name"] = [appNameTextField stringValue];
     spec[@"ScriptPath"] = [scriptPathTextField stringValue];
-    spec[@"Output"] = [outputTypePopupMenu titleOfSelectedItem];
+    spec[@"Output"] = [outputTypePopupButton titleOfSelectedItem];
     spec[@"IconPath"] = [iconController hasIconFile] ? [iconController icnsFilePath] : @"";
     
     spec[@"Interpreter"] = [interpreterTextField stringValue];
@@ -575,7 +575,7 @@
     spec[@"TextBackground"] = [[textSettingsController textBackgroundColor] hexString];
     
     // status menu settings
-    if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
+    if ([[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
         spec[@"StatusItemDisplayType"] = [statusItemSettingsController displayType];
         spec[@"StatusItemTitle"] = [statusItemSettingsController title];
         spec[@"StatusItemIcon"] = [[statusItemSettingsController icon] TIFFRepresentation];
@@ -592,8 +592,10 @@
     [versionTextField setStringValue:spec[@"Version"]];
     [authorTextField setStringValue:spec[@"Author"]];
     
-    [outputTypePopupMenu selectItemWithTitle:spec[@"Output"]];
+    int idx = [PLATYPUS_OUTPUT_TYPE_NAMES indexOfObject:spec[@"Output"]];
+    [outputTypePopupButton selectItemAtIndex:idx];
     [self outputTypeWasChanged:nil];
+    
     [interpreterTextField setStringValue:spec[@"Interpreter"]];
     
     //icon
@@ -750,9 +752,9 @@
 
 - (IBAction)outputTypeWasChanged:(id)sender {
     // we don't show text output settings for output modes None and Web View
-    if (![[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"None"] &&
-        ![[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Web View"] &&
-        ![[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Droplet"]) {
+    if (![[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"None"] &&
+        ![[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"Web View"] &&
+        ![[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"Droplet"]) {
         [textOutputSettingsButton setHidden:NO];
         [textOutputSettingsButton setEnabled:YES];
     } else {
@@ -761,7 +763,7 @@
     }
     
     // disable options that don't make sense for status menu output mode
-    if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
+    if ([[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
         // disable droppable & admin privileges
         [isDroppableCheckbox setIntValue:0];
         [isDroppableCheckbox setEnabled:NO];
@@ -780,7 +782,7 @@
         [statusItemSettingsButton setEnabled:YES];
         [statusItemSettingsButton setHidden:NO];
     } else {
-        if ([[outputTypePopupMenu titleOfSelectedItem] isEqualToString:@"Droplet"]) {
+        if ([[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"Droplet"]) {
             [isDroppableCheckbox setIntValue:1];
             [self isDroppableWasClicked:self];
         }
@@ -829,8 +831,8 @@
     [self setScriptType:DEFAULT_SCRIPT_TYPE];
     
     //set output type
-    [outputTypePopupMenu selectItemWithTitle:DEFAULT_OUTPUT_TYPE];
-    [self outputTypeWasChanged:outputTypePopupMenu];
+    [outputTypePopupButton selectItemWithTitle:DEFAULT_OUTPUT_TYPE];
+    [self outputTypeWasChanged:outputTypePopupButton];
     
     //update button status
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
@@ -1000,27 +1002,32 @@
 }
 
 - (void)updateOutputTypeMenu:(NSSize)iconSize {
-    NSArray *items = [outputTypePopupMenu itemArray];
-    NSImage *img = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
+    NSArray *items = [outputTypePopupButton itemArray];
+    
     for (NSMenuItem *menuItem in items) {
-        if ([outputTypePopupMenu itemAtIndex:0] != menuItem) {
-            NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
-            img = [NSImage imageNamed:imageName];
+        NSImage *img = [menuItem image];
+        if (img == nil) {
+            if ([outputTypePopupButton itemAtIndex:0] == menuItem) {
+                img = [[[NSImage imageNamed:@"NSDefaultApplicationIcon"] copy] autorelease];
+            } else {
+                NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+                img = [NSImage imageNamed:imageName];
+            }
         }
-        img.size = iconSize;
+        [img setSize:iconSize];
         [menuItem setImage:nil];
         [menuItem setImage:img];
     }
 }
 
 - (void)menuWillOpen:(NSMenu *)menu {
-    if (menu == [outputTypePopupMenu menu]) {
+    if (menu == [outputTypePopupButton menu]) {
         [self updateOutputTypeMenu:NSMakeSize(32, 32)];
     }
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
-    if (menu == [outputTypePopupMenu menu]) {
+    if (menu == [outputTypePopupButton menu]) {
         [self updateOutputTypeMenu:NSMakeSize(16, 16)];
     }
 }
