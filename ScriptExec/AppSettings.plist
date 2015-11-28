@@ -36,7 +36,7 @@
 	<key>ScriptArgs</key>
 	<array/>
 	<key>ScriptInterpreter</key>
-	<string>/usr/bin/perl</string>
+	<string>/bin/sh</string>
 	<key>Secure</key>
 	<false/>
 	<key>StatusItemUseSystemFont</key>

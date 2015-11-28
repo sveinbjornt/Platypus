@@ -121,7 +121,6 @@
             <li><a href="#43">Built-In Editor</a></li>
             <li><a href="#44">Syntax Checking</a></li>
             <li><a href="#45">Show Shell Command</a></li>
-            <li><a href="#46">Showing an Alert</a></li>
         </ul>
     </li>
     <li class="heading">
@@ -136,6 +135,16 @@
             <li><a href="#61">Saving and Loading</a></li>
             <li><a href="#62">Using Profiles with Command Line Tool</a></li>
             <li><a href="#63">Platypus Profile Format</a></li>
+        </ul>
+    </li>
+    <li class="heading">
+        <strong>Controlling GUI with script output</strong>
+        <ul>
+            <li><a href="#10-1">Showing an Alert</a></li>
+            <li><a href="#10-2">Showing a Notification</a></li>
+            <li><a href="#10-3">Controlling the Progress Bar</a></li>
+            <li><a href="#10-4">Terminating Application</a></li>
+            <li><a href="#10-5">Loading a Website into Web View</a></li>
         </ul>
     </li>
     <li class="heading">
@@ -170,7 +179,6 @@
             <li><a href="#812">Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?</a></li>
             <li><a href="#813">Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?</a></li>
             <li><a href="#814">Can I pass arguments to a Platypus-generated app via the command line?</a></li>
-            <li><a href="#815">Can my script control when the wrapper application quits?</a></li>
             <li><a href="#816">Where is the command line tool installed?</a></li>
             <li><a href="#817">Can I customize the About window of a Platypus-generated app?</a></li>
         </ul>
@@ -329,8 +337,6 @@
 <h4>Progress Bar</h4>
 <p>A small window with an indeterminate progress bar and a "Cancel" button appears during the execution of the script. Script output is fed line by line into the text field above the progress bar. "Show details" triangle reveals a small text view containing full script output.</p>
 
-<p>The script can communicate with the progress bar by notifying it of script progress.  All lines of script output in the format "PROGRESS:\d+\n" (e.g. PROGRESS:75) are parsed and used to set the completion percentage of the progress bar. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
-
 <img src="images/output_progressbar.png" style="width:524px; height:194px;" class="centered-image">
 <br>
 <br>
@@ -351,8 +357,6 @@
 <p>Output from the script will be rendered as HTML in a WebView window.  This allows you to use HTML formatting and web technologies to provide feedback on script execution.</p>
 
 <p>The base directory for the browser instance is the application bundle's Resources directory, so you can bundle images and other support files by adding them to the <strong>Bundled Files</strong> list and referencing them relative to that directory.</p>
-
-<p>If your script prints "Location:http://some.url.com\n", the Web View will load the URL in question.</p>
 
 <img src="images/output_webview.jpg" style="width:620px; height:525px;" class="centered-image">
 <br>
@@ -456,7 +460,7 @@
 
 <p>The default behaviour is to accept all files. You can edit those two lists to suit your needs. You can also select a document icon (.icns file) for the files "owned" by your app.</p>
 
-<p>You can also set your application accept dragged snippets of text, in which case strings will be passed to the script via STDIN.</p>
+<p>You can also set your application accept dragged snippets of text, in which case the text string will be passed to the script via STDIN.</p>
 
 <br><br>
 
@@ -509,23 +513,6 @@
 <p>Please note that Platypus.app is not a GUI frontend for the command line tool and, depending on the current state of development, the command line tool may or may not have feature parity with the Mac OS X application.</p>
 
 <p>The command line tool does not in any way depend on the Platypus application once it has been installed.</p>
-
-<br><br>
-
-<a name="46"></a>
-<h3>Showing an Alert</h3>
-
-<p>Platypus application wrappers can be made to show an alert if your script prints out a line using the following syntax:</p>
-
-<div class="codeblock"><pre>
-ALERT:Title|Text\n
-</pre></div>
-
-<p>Thus, to show an alert with the title "Hello" and the informative text "World", you would do as follows:</p>
-
-<div class="codeblock"><pre>
-ALERT:Hello|World\n
-</pre></div>
 
 <br>
 <br>
@@ -582,6 +569,63 @@ ALERT:Hello|World\n
 <h3>Platypus Profile Format</h3>
 
 <p>The Platypus Profile file format is a Mac OS X <a href="http://en.wikipedia.org/wiki/Property_list">property list</a> in XML format.  It can be edited using a plain text editor or XCode.</p>
+
+<br>
+<br>
+<hr>
+<br>
+<br>
+
+<h2>Controlling GUI with script output</h2>
+
+<br>
+
+<a name="10-1"></a>
+<h3>Showing an Alert</h3>
+
+<p>Platypus application wrappers can be made to show an alert if your script prints out a line using the following syntax:</p>
+
+<div class="codeblock"><pre>
+    ALERT:Title|Text\n
+</pre></div>
+
+<p>Thus, to show an alert with the title "Hello" and the informative text "World", you would do as follows:</p>
+
+<div class="codeblock"><pre>
+    ALERT:Hello|World\n
+</pre></div>
+
+<br><br>
+
+<a name="10-2"></a>
+<h3>Showing a Notification</h3>
+
+<p>Platypus application wrappers can be made to show a notification in the User Notification Center if your script prints out a line using the following syntax:</p>
+
+<div class="codeblock"><pre>
+NOTIFICATION:My notification text\n
+</pre></div>
+
+<br><br>
+
+<a name="10-3"></a>
+<h3>Controlling the Progress Bar</h3>
+
+<p>Apps with output mode <strong>Progress Bar</strong> can communicate with the progress bar by notifying it of script progress.  All lines of script output in the format "PROGRESS:\d+\n" (e.g. PROGRESS:75) are parsed and used to set the completion percentage of the progress bar. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
+
+<br><br>
+
+<a name="10-4"></a>
+<h3>Terminating Application</h3>
+
+<p>If your script prints the string "QUITAPP\n" to STDOUT, the application wrapper will quit.</p>
+
+<br><br>
+
+<a name="10-5"></a>
+<h3>Loading a Website into a Web View</h3>
+
+<p>If output mode was set to <strong>Web View</strong> and your script prints "Location:http://some.url.com\n", the Web View will load the URL in question.</p>
 
 <br>
 <br>
@@ -743,16 +787,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre></div>
 <br>
 <br>
 <br>    
-    <h2>Platypus Script Communication Syntax</h2>
-    
-    <p>Lorem ipsum.</p>
-    
-    <ul>
-        <li></li>
-    </ul>
-<br>
-<br>
-<br>
+
 
 <h2>Frequently Asked Questions</h2>
 
@@ -927,15 +962,6 @@ Contents/Resources/MainMenu.nib
 </pre></div>
 
 <p>In this case, both <code>-arg1</code> and <code>-arg2</code> will be passed on as arguments to your script. This feature makes it possible to create protocol handlers for Firefox and other programs that invoke Mac OS X applications from the shell.</p>
-
-<br>
-<br>
-<br>
-
-
-<h3 id="815">Can my script control when the wrapper application quits?</h3>
-
-<p>If your script prints the string "QUITAPP\n" to STDOUT, the application will quit.</p>
 
 <br>
 <br>
