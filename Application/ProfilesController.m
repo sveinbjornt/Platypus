@@ -57,8 +57,6 @@
 
 - (IBAction)loadProfile:(id)sender {
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-    [oPanel setPrompt:@"Open"];
-    [oPanel setTitle:[NSString stringWithFormat:@"Select %@ Profile", PROGRAM_NAME]];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:@[PROGRAM_PROFILE_SUFFIX, PROGRAM_PROFILE_UTI]];
