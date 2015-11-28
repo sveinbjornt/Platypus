@@ -754,7 +754,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre></div>
     $| = 1;
 </pre></div>
 
-<p>In Python, you can pass the -H parameter to the interpreter, or alternately do the following in your script:</p>
+<p>In Python, you can pass the <code>-u</code> parameter to the interpreter to get unbuffered output, or alternately flush the output buffer in code:</p>
 
 <div class="codeblock"><pre>
     import sys<br>
@@ -770,7 +770,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre></div>
 
 <p>No. But if you don't select "Optimize nib file" in the save dialog when creating an app, the resulting nib in the application bundle can be edited using XCode.  You can thus localize your app manually if you want to.  Localization support is <em>very low</em> on the feature roadmap, since it can be adequately addressed using the aforementioned method.</p>
 
-<p>Please do not send me any localizations you make for the Platypus application itself, since I will not include them in the official distribution.  Localizations use up disk space and bandwidth, inhibit the speed and freedom of development and are generally tedious to maintain. To my mind, it just isn't worth the hassle for a specialized developer tool.</p>
+<p>Please do not send me any localizations you make for the Platypus application itself, since I will not include them in the official distribution. Localizations use up disk space and bandwidth, inhibit the speed and freedom of development and are tedious to maintain. To my mind, it just isn't worth the hassle for a specialized developer tool.</p>
     
 <br>
 <br>
@@ -882,7 +882,7 @@ Contents/Resources/MainMenu.nib
 
 <h3 id="812">Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?</h3>
 
-<p>No.  Platypus applications do not present the user with an interactive shell, and therefore no bidirectional communication can take place using standard input.  Platypus apps can only show the text output of your script to the user.  It cannot prompt for input, and will not be able to do so in the foreseeable future.  This means that any commands that require user input via STDIN, such as <code>sudo</code>, will not work from within a Platypus application.</p>
+<p>No. Platypus applications do not present the user with an interactive shell, and therefore no bidirectional communication can take place using standard input.  Platypus apps can only capture, parse and display the text output of your script.  They cannot prompt for input via STDIN, and will not be able to do so in the foreseeable future.  This means that any commands that require input via STDIN, such as <code>sudo</code>, will not work from within a Platypus application.</p>
 
 <br>
 <br>
@@ -890,9 +890,9 @@ Contents/Resources/MainMenu.nib
 
 <h3 id="813">Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?</h3>
 
-<p>Neither Platypus nor Platypus-generated apps are signed. Due to GateKeeper, this means they will not run on Mac OS X without prompting the user for approval. There are no plans to change this in the future. Apple developer accounts cost money and I have no intention of paying for the privilege of maintaining and developing free software for Mac OS X.</p>
+<p>Neither Platypus nor Platypus-generated apps are signed. Due to GateKeeper, this means they will not run on Mac OS X without prompting the user for approval. There are no plans to change this in the future. Apple developer accounts cost money and I have no intention of paying Apple for the privilege of maintaining and developing free software for Mac OS X.</p>
 
-<p>You can always sign the Platypus binaries yourself, but it's a laborious task. First, you need a paid <a href="https://developer.apple.com/">ADC account</a> for Mac development.  Secondly, you need to download the <a href="http://sveinbjorn.org/files/software/platypus/">Platypus source code</a>.  After that, you need to build and sign your own version of the ScriptExec binary in the project using Apple's XCode.  Your can then manually replace the the binary in the Platypus-generated application bundle with your signed version.</p>
+<p>You can always sign the Platypus binaries yourself, but it's a laborious task. First, you need a paid <a href="https://developer.apple.com/">ADC account</a> for Mac development.  Secondly, you need to download the <a href="http://sveinbjorn.org/files/software/platypus/">Platypus source code</a>.  After that, you need to build and sign your own version of the ScriptExec binary using Apple's XCode.  Your can then manually replace the the binary in the Platypus-generated application bundle with your signed version.</p>
 
 <p>Detailed instructions on how to do this are beyond the scope of this document. There be dragons.</p>
 
@@ -935,7 +935,7 @@ Contents/Resources/MainMenu.nib
     /usr/local/share/man/man1/platypus.1            Man page
 </pre></div>
 
-<p>These files are all removed by the Platypus uninstall script available in the Platypus application menu.</p>
+<p>These files are all removed by <strong>Uninstall Platypus</strong> in Platypus application menu.</p>
 
 <br>
 <br>

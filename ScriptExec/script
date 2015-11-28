@@ -1,16 +1,23 @@
-#!/bin/sh
+$|=1;
+while ($i < 100000) {
+    print " $i\n";
+sleep(0.01);
+$i+=1;
+}
 
+
+#!/bin/sh
 #echo $@
 #if [ ! -e "$1" ]
 #then
 #sleep 1
-echo "Yo"
+#echo "Yo"
 #sleep 1
 #echo "ALERT:Hey $1!"
-echo "Yo"
-while read LINE; do
-echo "ALERT:YOdude,${LINE}"
-done
+#echo "Yo"
+#while read LINE; do
+#echo "ALERT:YOdude,${LINE}"
+#done
 
 
 

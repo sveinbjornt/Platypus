@@ -116,7 +116,7 @@
 - (IBAction)scriptTypeSelected:(id)sender;
 - (IBAction)selectScript:(id)sender;
 - (IBAction)isDroppableWasClicked:(id)sender;
-- (IBAction)outputTypeWasChanged:(id)sender;
+- (IBAction)outputTypeDidChange:(id)sender;
 - (IBAction)clearAllFields:(id)sender;
 - (IBAction)showCommandLineString:(id)sender;
 - (IBAction)showHelp:(id)sender;
@@ -189,17 +189,19 @@
                                                object:nil];
 
     
-    //populate script type menu
+    // populate script type menu
     [scriptTypePopupButton addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
-    for (int i = 0; i < [[scriptTypePopupButton itemArray] count]; i++) {
-        NSImage *icon = [NSImage imageNamed:[[scriptTypePopupButton itemAtIndex:i] title]];
+    NSArray<NSMenuItem*> *menuItems = [scriptTypePopupButton itemArray];
+    for (NSMenuItem *item in menuItems) {
+        NSImage *icon = [NSImage imageNamed:[item title]];
         [icon setSize:NSMakeSize(16, 16)];
-        [[scriptTypePopupButton itemAtIndex:i] setImage:icon];
+        [item setImage:icon];
     }
     
-    //populate output type menu
+    // populate output type menu
     [self updateOutputTypeMenu:NSMakeSize(16, 16)];
     
+    // main window accepts dragged text and dragged files
     [window registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
     [window makeFirstResponder:appNameTextField];
     
@@ -594,7 +596,7 @@
     
     int idx = [PLATYPUS_OUTPUT_TYPE_NAMES indexOfObject:spec[@"Output"]];
     [outputTypePopupButton selectItemAtIndex:idx];
-    [self outputTypeWasChanged:nil];
+    [self outputTypeDidChange:nil];
     
     [interpreterTextField setStringValue:spec[@"Interpreter"]];
     
@@ -750,20 +752,17 @@
     [dropSettingsButton setEnabled:[isDroppableCheckbox state]];
 }
 
-- (IBAction)outputTypeWasChanged:(id)sender {
+- (IBAction)outputTypeDidChange:(id)sender {
+    NSString *outType = [outputTypePopupButton titleOfSelectedItem];
+    
     // we don't show text output settings for output modes None and Web View
-    if (![[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"None"] &&
-        ![[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"Web View"] &&
-        ![[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"Droplet"]) {
-        [textOutputSettingsButton setHidden:NO];
-        [textOutputSettingsButton setEnabled:YES];
-    } else {
-        [textOutputSettingsButton setHidden:YES];
-        [textOutputSettingsButton setEnabled:NO];
-    }
+    BOOL hasTextSettings = (![outType isEqualToString:@"None"] && ![outType isEqualToString:@"Web View"] && ![outType isEqualToString:@"Droplet"]);
+    [textOutputSettingsButton setHidden:!hasTextSettings];
+    [textOutputSettingsButton setEnabled:hasTextSettings];
     
     // disable options that don't make sense for status menu output mode
-    if ([[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
+    if ([outType isEqualToString:@"Status Menu"]) {
+        
         // disable droppable & admin privileges
         [isDroppableCheckbox setIntValue:0];
         [isDroppableCheckbox setEnabled:NO];
@@ -781,8 +780,10 @@
         // show button for special status item settings
         [statusItemSettingsButton setEnabled:YES];
         [statusItemSettingsButton setHidden:NO];
+        
     } else {
-        if ([[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"Droplet"]) {
+        
+        if ([outType isEqualToString:@"Droplet"]) {
             [isDroppableCheckbox setIntValue:1];
             [self isDroppableWasClicked:self];
         }
@@ -832,7 +833,7 @@
     
     //set output type
     [outputTypePopupButton selectItemWithTitle:DEFAULT_OUTPUT_TYPE];
-    [self outputTypeWasChanged:outputTypePopupButton];
+    [self outputTypeDidChange:outputTypePopupButton];
     
     //update button status
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
