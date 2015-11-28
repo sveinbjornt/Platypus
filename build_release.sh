@@ -33,7 +33,7 @@ APP_SRC_ZIP_NAME="${APP_NAME_LC}${VERSION}.src.zip"
 echo "Building ${APP_NAME} version ${VERSION}"
 
 xcodebuild  -parallelizeTargets\
-            -scheme "Application" \
+            -scheme "Platypus" \
             -configuration Deployment \
             CONFIGURATION_BUILD_DIR="${BUILD_DIR}" \
             clean \
