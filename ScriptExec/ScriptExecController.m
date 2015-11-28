@@ -1262,19 +1262,18 @@
 // show / hide the details text field in progress bar output
 - (IBAction)toggleDetails:(id)sender {
     NSRect winRect = [progressBarWindow frame];
+    static const int detailsHeight = 224;
     
     if ([sender state] == NSOffState) {
-        [progressBarWindow setShowsResizeIndicator:NO];
-        winRect.origin.y += 224;
-        winRect.size.height -= 224;
-        [progressBarWindow setFrame:winRect display:TRUE animate:TRUE];
+        winRect.origin.y += detailsHeight;
+        winRect.size.height -= detailsHeight;
     }
     else {
-        [progressBarWindow setShowsResizeIndicator:YES];
-        winRect.origin.y -= 224;
-        winRect.size.height += 224;
-        [progressBarWindow setFrame:winRect display:TRUE animate:TRUE];
+        winRect.origin.y -= detailsHeight;
+        winRect.size.height += detailsHeight;
     }
+    [progressBarWindow setShowsResizeIndicator:([sender state] == NSOnState)];
+    [progressBarWindow setFrame:winRect display:TRUE animate:TRUE];
 }
 
 // show the details text field in progress bar output
