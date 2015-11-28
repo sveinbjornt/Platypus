@@ -145,15 +145,14 @@
             <li><a href="#10-3">Controlling the Progress Bar</a></li>
             <li><a href="#10-4">Terminating Application</a></li>
             <li><a href="#10-5">Loading a Website into Web View</a></li>
+            <li><a href="#10-6">User interaction with CocoaDialog/Pashua</a></li>
+            <li><a href="#10-7">Creating an interactive Status Menu app</a></li>
         </ul>
     </li>
     <li class="heading">
         <strong>Examples</strong>
         <ul>
             <li><a href="#71">Built-In Examples</a></li>
-            <li><a href="#72">Creating an installer</a></li>
-            <li><a href="#73">User interaction with CocoaDialog/Pashua</a></li>
-            <li><a href="#74">Creating an interactive Status Menu app</a></li>
         </ul>
     </li>
     <li class="heading">
@@ -174,7 +173,6 @@
             <li><a href="#87">How do I get the source code to Platypus and Platypus-generated app binaries?</a></li>
             <li><a href="#88">How do I get the path to my application / bundled files within the script?</a></li>
             <li><a href="#89">How do Platypus-generated applications work?</a></li>
-            <li><a href="#810">Does Platypus support processor-specific binaries only?</a></li>
             <li><a href="#811">Can I change the dimensions of the Platypus output window?</a></li>
             <li><a href="#812">Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?</a></li>
             <li><a href="#813">Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?</a></li>
@@ -419,15 +417,15 @@
     
 <p><strong>Requires Administrator privileges:</strong>  Checking "Requires Administrator privileges" will cause your application to prompt for an Administrator password and then execute your script with administrative privileges via Apple's Security Framework.  This is not strictly equivalent to running the script as the root user.  For details, see the <a href="http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges">documentation for Apple's Security Framework.</a></p>
 
-<p><i>Platypus scripts must not use the 'sudo' command</i>. This will cause the script to prompt for input, and since none will be forthcoming, your application will hang indefinitely. If you wish to execute a command with privileges, you must execute the script in its entirety with those privileges by checking "Requires Administrator Privileges".</p>
+<p><i>Platypus scripts must not use the 'sudo' command</i>. This causes the script to prompt for input via STDIN, and since none is forthcoming, the application will hang indefinitely. To execute a command with privileges, the script in its entirety must be executed with those privileges.</p>
 
 <p>Please note that if this option is selected, the script will not print <code>STDERR</code> output due to limitations in the Security APIs.  This can be circumvented by using a shell script to execute another script while piping <code>STDERR</code> into <code>STDOUT</code> (e.g. <code>perl myScript.pl 2>&amp;1</code>).</p>
 
-<p><strong>Secure bundled script:</strong> Checking this option will bundle your script into the generated application in an obfuscated format instead. Please note that <em>this will not seriously prevent anyone from getting a clear-text version of the script</em>.  In order for the script to be executed, it must be presented in clear text to the interpreter, and is thus never safe from prying eyes.</p>
+<p><strong>Secure bundled script:</strong> Checking this option will bundle the script into the generated application in an obfuscated format. Please note that <em>this will not seriously prevent anyone from getting a clear-text version of the script</em>.  In order for the script to be executed, it must be presented in clear text to the interpreter, and is thus never safe from prying eyes.</p>
 
-<p><strong>Runs in background:</strong> If you select this, your application will register itself as a User Interface Element. When the app is launched, it will not show up in the Dock.</p>
+<p><strong>Runs in background:</strong> If selected, the application registers itself as a User Interface Element and will not show up in the Dock when launched.</p>
 
-<p><strong>Remain running after completion</strong>: This option will cause your application to stay open once the script has been executed.</p>
+<p><strong>Remain running after completion</strong>: This option tells the application to stay open once the script has been executed.</p>
 
 
 
@@ -454,13 +452,19 @@
 <a name="41"></a>
 <h3>Accepting files and dragged items</h3>
 
-<p>Selecting <strong>Accept dropped items</strong> makes the application bundle accept drag and dropped files, or dragged text snippets. The paths of dropped or opened files are passed on to the script as arguments.  If this option is selected, a small button called "Settings" appears next to the checkbox. Pressing it opens a sheet where it is possible to specify which file types and draggable data the application accepts.</p>
+<p>Selecting <strong>Accept dropped items</strong> makes the application bundle accept drag and dropped files, or dragged text snippets.  If this option is selected, a small button called "Settings" appears next to the checkbox. Pressing it opens the <strong>Drop Settings</strong> window, where it is possible to specify which file types and draggable data the application accepts.</p>
 
 <img src="images/edittypes.png" style="width: 537px; height: 555px;" class="centered-image">
 
-<p>The default behaviour is to accept all files. You can edit those two lists to suit your needs. You can also select a document icon (.icns file) for the files "owned" by your app.</p>
+<p>Selecting <strong>Accept Dropped Files</strong> results in the paths of dropped or opened files being passed on to the script as arguments.  The default behaviour for applications is to accept all file suffixes, but it is also possible to specify a limited set of suffixes or <a href="https://en.wikipedia.org/wiki/Uniform_Type_Identifier">Uniform Type Identifiers</a> (NB: If you provide UTIs, the suffixes are ignored by Mac OS X launch services).</p>
 
-<p>You can also set your application accept dragged snippets of text, in which case the text string will be passed to the script via STDIN.</p>
+<p>To accept dragged folders, add the UTI <code>public.folder</code>. HINT: You can drag files from the Finder into the suffix or UTI list to add their respective suffix/UTI.</p>
+
+<p>Optionally, select a document icon (.icns file) for the files "owned" by your app.</p>
+
+<p>Selecting <strong>Accept Dropped Text</strong> makes the app accept dragged snippets of text, in which case the dragged text string will be passed to the script via STDIN.</p>
+
+<p><strong>Provide as a Mac OS X Service</strong> makes the app register as a <a href="http://www.computerworld.com/article/2476298/mac-os-x/os-x-a-quick-guide-to-services-on-your-mac.html">Dynamic Service</a>, accessible from the <strong>Services</strong> submenu of application menus.</p>
 
 <br><br>
 
@@ -495,7 +499,7 @@
 
 <p>The <strong>Check Script Syntax</strong> menu item lets you verify the syntax of your script.  This runs the currently specified script through the interpreter's syntax checker and report the results.</p>
 
-<p>This feature is only supported for scripts with an interpreter that supports syntax checking, for example Bash, Perl, Ruby and PHP scripts.
+<p>This feature is only supported for scripts with an interpreter that supports syntax checking (Bash, Perl, Ruby and PHP).</p>
 
 <img src="images/syntax_checker.png" style="width:473px; 247px;" class="centered-image">
 
@@ -627,6 +631,57 @@ NOTIFICATION:My notification text\n
 
 <p>If output mode was set to <strong>Web View</strong> and your script prints "Location:http://some.url.com\n", the Web View will load the URL in question.</p>
 
+<br><br>
+
+<h3 id="10-6">User interaction with CocoaDialog</h3>
+
+<p>Platypus can be used with CocoaDialog to construct scripts that prompt for user input with dialogs and returns user choices. CocoaDialog is <a href="http://mstratman.github.com/cocoadialog/">documented adequately here</a>.</p>
+
+<p>To use it with Platypus, download CocoaDialog.app, and add it to the list of Bundled Files.</p>
+
+<p>The following script shows of how to query for input using the bundled copy of CocoaDialog:</p>
+
+<div class="codeblock"><pre>
+    #!/bin/bash
+    
+    CD="CocoaDialog.app/Contents/MacOS/CocoaDialog"
+    
+    rv=`$CD yesno-msgbox --string-output`
+    $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre></div>
+
+<p>This Platypus application will present the user with an alert and several buttons. When the user presses one of the buttons, a feedback dialog is generated notifying the user which button he pressed. While this particular script accomplishes nothing, it serves as an example of how to add interactive elements to a script.</p>
+
+<br>
+<br>
+<br>
+
+<h3 id="10-7">Creating an interactive Status Menu app</h3>
+
+<img src="images/output_statusmenu.png" style="width:315px; height:144px; float: right;">
+    
+    <p>As of Platypus 4.9, it is now possible to build relatively sophisticated interactive Status Menu apps. Platypus-generated apps with Output Mode set to Status Menu show a Status Item in the menu bar when launched. When the item is pressed, a menu is opened, the script is executed and each line of output is shown as a menu item in the menu.
+    
+    <p>When the user selects a menu item, the script is executed again, but this time it receives the menu title as an argument. Based on whether it receives an argument, the script can thus determine whether it is being invoked to list the menu items or perform some action for a selected menu item.</p>
+    
+    <p>If this seems unclear, check out the following script, which is part of the MacbethMenu Example:</p>
+    
+    <div class="codeblock"><pre>
+#!/usr/bin/perl
+
+# If 0 arguments, we show menu
+if (!scalar(@ARGV)) {
+    print "Life's but a walking shadow, a poor player\n";
+    print "That struts and frets his hour upon the stage\n";
+    print "And then is heard no more.\n";
+} else {
+    # We get the menu title as an argument
+    system("/usr/bin/say \"$ARGV[0]\"");
+}</pre></div>
+    
+    <p>This script creates a Status Menu app which shows a few lines of Shakespeare's Macbeth as menu items. When selected, the line in question is fed into the Mac OS X speech synthesizer via <code>/usr/bin/say</code>.</p>
+    
+    <br>
+
 <br>
 <br>
 <hr>
@@ -645,7 +700,18 @@ NOTIFICATION:My notification text\n
 
 <br>
 <blockquote>
+    
+<p><strong>AdminPrivilegesDemo</strong>: Demonstrates running script with Administrator privileges by creating a file in /etc/ and testing for its existence.</p>
+
+<p><strong>AlertMe</strong>: Demonstrates ALERT: and PROGRESS: syntax in action by showing alerts while manipulating the progress bar.</p>
+
+<p><strong>DataURLifier</strong>: Drop a file on window to get its <a href="http://dataurl.net/">Data URL</a>.</p>
+
 <p><strong>FastDMGMounter</strong>: Creates a replacement for Mac OS X's DiskImageMounter, uses the command line tool to mount <code>.dmg</code> disk images much faster, skipping verification and auto-accepting any EULAs. See <a href="http://sveinbjorn.org/macosx_hack_faster_dmg_image_mounting">this page</a> for details.</p>
+
+<p><strong>IcnsToIconset</strong>: Converts Apple .icns icon files to iconset folders with PNGs for the various representations.</p>
+
+<p><strong>ImageResizer</strong>: Shows how to use the built-in Mac OS X Scriptable Image Processing System (see <code>man sips</code>) to resize dropped images to 512x512 dimensions.</p>
 
 <p><strong>MacbethMenu</strong>: Simple interactive status menu app which displays lines by Shakespeare and feeds them to the speech synthesizer when selected.</p>
 
@@ -667,108 +733,14 @@ NOTIFICATION:My notification text\n
 
 <p><strong>TarGzipper</strong>: Creates a gzipped tar archive of any dropped files.</p>
 
+<p><strong>WordCountService</strong>: Dynamic Service app which does a word count of received text and shows in an alert.</p>
+
 </blockquote>
 <br>
 
 <p>If you come up with a particularly nifty use of Platypus, it might make a suitable addition to this list. If you think this is the case, then by all means send it to me at <a href="mailto:sveinbjornt@gmail.com">sveinbjornt@gmail.com</a>.</p>
 
 <br><br>
-
-<h3>Creating an installer</h3>
-<a name="72"></a>
-
-<p>This short tutorial will outline the process of creating an installer application using a shell script and Platypus.</p>
-
-<blockquote>
-<strong>Step 1: Set Output Type and Args</strong>
-
-<p>Set Output as "Progress Bar" to indicate to the end user that some activity is taking place. Alternately, you choose "Text Window", in which case you should set your script to print out status messages on how the installation is doing into a text window while it is running.</p>
-
-<strong>Step 2: Set Installer Icon</strong>
-
-<p>Since you are making an installer, you may want to set the icon of the application to "Platypus Installer", or alternately, set your own custom icon by choosing "Select Custom Icon" from the "Advanced" menu.</p>
-
-<strong>Step 3: Set Advanced Options / Admin Privileges</strong>
-
-<p>If your installer needs to install files in protected locations on the file system (i.e. in places where your end user will typically not have write-privileges), you should check the "Requires Adminstrator privileges" checkbox. This will make the app execute your script with administrator privileges after prompting the user for the administrator password.</p>
-
-<strong>Step 4: Select the files to be installed</strong>
-
-<p>We now want to add the files that our installer will actually install. Press the "+" button on the bottom right and choose the files to be installed.  These files will be copied into the Resources folder of the application we are about to create.</p>
-
-<strong>Step 5: Create the script</strong>
-
-<p>Now it's time to create the script that will actually do the installing. Let us imagine that we've added two files: MyApp.app and MyFramework.framework to the bundled files list. To install these two, we would use the following script:</p>
-
-<div class="codeblock">
-<pre>#!/bin/sh
-
-echo "Installing MyApp.app in /Applications"
-cp -R "MyApp.app" "/Applications/"
-echo "Installing MyFramework.framework in /Library/Frameworks"
-cp -R "MyFramework.framework" "/Library/Frameworks/"</pre>
-</div>
-
-<p>The echo messages are optional, but may be helpful if you have set your output type to "Text Window": then your user will see these messages.  You may want to modify permissions using <code>chmod</code> or do extra things like open the application (a simple <code>open /Applications/MyApp.app</code>.</p>
-
-</blockquote>
-
-<p>Press the Create button and you'll have a fully-functioning installer.</p>
-
-
-<br><br>
-
-<h3 id="73">User interaction with CocoaDialog</h3>
-
-<p>It is possible to use Platypus with the open-source application CocoaDialog to construct scripts that prompt for user input with dialogs and returns user choices. CocoaDialog is <a href="http://mstratman.github.com/cocoadialog/">documented adequately here</a>. I will briefly outline how to combine it with Platypus to create a Mac OS X application with a  primitive user interface.</p>
-
-<p>First you need to download CocoaDialog. You can then open Platypus and add it to the list of bundled files at the bottom.</p>
-
-<p>Below you can see a shell script that gives an example of how to query for input with a bundled copy of CocoaDialog:</p>
-
-<div class="codeblock"><pre>
-#!/bin/bash
-
-CD="CocoaDialog.app/Contents/MacOS/CocoaDialog"
-
-rv=`$CD yesno-msgbox --string-output` 
-$CD ok-msgbox --no-cancel --text "You pressed $rv"</pre></div>
-
-<p>This Platypus application will present the user with an alert and several buttons. When the user presses one of the buttons, a feedback dialog is generated notifying the user which button he pressed. While this particular script accomplishes nothing, it serves as an example of how easy it can be to add interactive elements to your script by combining Platypus with CocoaDialog.</p>
-
-<br>
-<br>
-<br>
-
-<h3 id="74">Creating an interactive Status Menu app</h3>
-
-
-<img src="images/output_statusmenu.jpg" style="float: right;">
-
-<p>As of Platypus 4.9, it is now possible to build relatively sophisticated interactive Status Menu apps. Platypus-generated apps with the Output Mode set to Status Menu display an item in the menu bar when launched. When this item is pressed, a menu is opened, the script is executed and each line of output shown as a menu item in the menu.
-    
-<p>When the user selects a menu item, the script is executed again, but this time it receives the menu title as an argument. Based on whether it receives an argument, the script can thus determine whether it is being invoked to list the menu items or perform some action for a selected menu item.</p>
-
-<p>If this seems unclear, check out the following script, which is part of the MacbethMenu Example:</p>
-
-<div class="codeblock"><pre>
-    #!/usr/bin/perl
-    
-    # If 0 arguments, we show menu
-    if (!scalar(@ARGV)) {
-        print "Life's but a walking shadow, a poor player\n";
-        print "That struts and frets his hour upon the stage\n";
-        print "And then is heard no more.\n";
-    } else {
-        # We get the menu title as an argument
-        system("/usr/bin/say \"$ARGV[0]\"");
-    }</pre></div>
-
-<p>This script would create a Status Menu app which shows a few lines of Shakespeare's Macbeth. When selected, the lines are fed into the Mac OS X speech synthesizer.</p>
-
-<br>
-<br>
-<br>
 
 
 <h2>Updates</h2>
@@ -823,7 +795,7 @@ $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre></div>
 
 <p>No. But if you don't select "Optimize nib file" in the save dialog when creating an app, the resulting nib in the application bundle can be edited using XCode.  You can thus localize your app manually if you want to.  Localization support is <em>very low</em> on the feature roadmap, since it can be adequately addressed using the aforementioned method.</p>
 
-<p>Please do not send me any localizations you make for the Platypus application itself, since I will not include them in the official distribution. Localizations use up disk space and bandwidth, inhibit the speed and freedom of development and are tedious to maintain. To my mind, it just isn't worth the hassle for a specialized developer tool.</p>
+<p>Please do not send me localizations for the Platypus application itself, since I will not include them in the official distribution. Localizations use up disk space and bandwidth, inhibit the speed and freedom of development and are tedious to maintain. To my mind, it just isn't worth the hassle for a specialized developer tool.</p>
     
 <br>
 <br>
@@ -907,15 +879,6 @@ MyApp.app/Contents/Resources/script             - Script executed by application
 <br>
 <br>
 
-
-<h3 id="810">Does Platypus support processor-specific binaries only?</h3>
-
-<p>No. As of version 5.0, Platypus generates 64-bit Intel binaries that require Mac OS X 10.7 "Lion" or later to run, so this question has become less relevant. Version 4.9 has support for 10.6 and and creates "fat" 32-bit/6-bit binaries while  <a href="http://sveinbjorn.org/files/software/platypus">Platypus 4.4 and earlier</a> support the old PowerPC architecture.</p>
-
-    <br>
-    <br>
-    <br>
-    
     
 <h3 id="811">Can I change the dimensions of the Platypus output window?</h3>
 
