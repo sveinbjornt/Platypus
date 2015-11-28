@@ -255,6 +255,18 @@
     [appleScript release];
 }
 
+#pragma mark - Services
+
+- (void)flushServices {
+    // This call used to refresh Services without user having to log out/in
+    // but may not do anything any more. Anyway, we'll keep invoking it for now
+    NSUpdateDynamicServices();
+
+    // This does the real deal
+    [NSTask launchedTaskWithLaunchPath:@"/System/Library/CoreServices/pbs"
+                             arguments:@[@"-flush"]];
+}
+
 #pragma mark - Misc
 
 - (BOOL)openPathInDefaultBrowser:(NSString *)path {
