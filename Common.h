@@ -134,6 +134,21 @@ typedef enum PlatypusOutputType {
     @"Droplet", \
 ]
 
+#define IsTextStyledOutputType(X) ( X == PLATYPUS_OUTPUT_PROGRESSBAR || \
+                                    X == PLATYPUS_OUTPUT_TEXTWINDOW || \
+                                    X == PLATYPUS_OUTPUT_STATUSMENU  )
+
+#define IsTextStyledOutputTypeString(X)  (  [X isEqualToString:@"Progress Bar"] || \
+                                            [X isEqualToString:@"Text Window"] || \
+                                            [X isEqualToString:@"Status Menu"]  )
+
+#define IsTextSizableOutputType(X) (X == PLATYPUS_OUTPUT_PROGRESSBAR || \
+                                    X == PLATYPUS_OUTPUT_TEXTWINDOW || \
+                                    X == PLATYPUS_OUTPUT_WEBVIEW  )
+
+#define IsTextViewScrollableOutputType(X) ( X == PLATYPUS_OUTPUT_PROGRESSBAR || \
+                                            X == PLATYPUS_OUTPUT_TEXTWINDOW )
+
 #pragma mark -
 
 // abbreviations, Obj-C is sometimes tediously verbose

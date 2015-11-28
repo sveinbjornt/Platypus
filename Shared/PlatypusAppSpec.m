@@ -521,9 +521,7 @@
     appSettingsPlist[@"PromptForFileOnLaunch"] = self[@"PromptForFileOnLaunch"];
     
     // we need only set text settings for the output types that use this information
-    if ([self[@"Output"] isEqualToString:@"Progress Bar"] ||
-        [self[@"Output"] isEqualToString:@"Text Window"] ||
-        [self[@"Output"] isEqualToString:@"Status Menu"]) {
+    if (IsTextStyledOutputTypeString(self[@"Output"])) {
         appSettingsPlist[@"TextFont"] = self[@"TextFont"];
         appSettingsPlist[@"TextSize"] = self[@"TextSize"];
         appSettingsPlist[@"TextForeground"] = self[@"TextForeground"];
@@ -816,10 +814,8 @@
         parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, arg]];
     }
     
-    //  create args for text settings if progress bar/text window or status menu
-    if (([self[@"Output"] isEqualToString:@"Text Window"] ||
-         [self[@"Output"] isEqualToString:@"Progress Bar"] ||
-         [self[@"Output"] isEqualToString:@"Status Menu"])) {
+    //  create args for text settings
+    if (IsTextStyledOutputTypeString(self[@"Output"])) {
         
         NSString *textFgString = @"", *textBgString = @"", *textFontString = @"";
         if (![self[@"TextForeground"] isEqualToString:DEFAULT_OUTPUT_FG_COLOR]) {
