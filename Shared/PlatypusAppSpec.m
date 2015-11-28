@@ -225,7 +225,7 @@
 }
 
 /********************************************************
- inits with default values and then analyse script,
+ Init with default values and then analyse script, then
  load default values based on analysed script properties
  ********************************************************/
 
@@ -263,7 +263,7 @@
 #pragma mark -
 
 /****************************************
- This function creates the Platypus app
+ This function creates the app bundle
  based on the data contained in the spec.
  ****************************************/
 
@@ -413,15 +413,25 @@
     [self report:@"Writing Info.plist"];
     NSDictionary *infoPlist = [self infoPlist];
     infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
-    if (![self[@"UseXMLPlistFormat"] boolValue]) { // if binary
+    BOOL success = NO;
+    // if binary
+    if ([self[@"UseXMLPlistFormat"] boolValue] == NO) {
         NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:infoPlist
                                                                        format:NSPropertyListBinaryFormat_v1_0
                                                                       options:0
                                                                         error:nil];
-        [plistData writeToFile:infoPlistPath atomically:YES];
+        if (!plistData || ![plistData writeToFile:infoPlistPath atomically:YES]) {
+            success = NO;
+        }
     }
+    // if XML
     else {
         [infoPlist writeToFile:infoPlistPath atomically:YES];
+    }
+    // raise error on failure
+    if (success == NO) {
+        _error = @"Error writing Info.plist";
+        return FALSE;
     }
     
     //copy bundled files to Resources folder
