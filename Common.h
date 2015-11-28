@@ -92,10 +92,9 @@
 #define DEFAULT_EDITOR              @"Built-In"
 #define DEFAULT_INTERPRETER         @"/bin/sh"
 #define DEFAULT_VERSION             @"1.0"
-#define DEFAULT_ROLE                @"Viewer"
 #define DEFAULT_STATUSITEM_DTYPE    @"Text"
 #define DEFAULT_APP_NAME            @"MyPlatypusApp"
-#define DEFAULT_DESTINATION_PATH    [[NSString stringWithFormat : @ "~/Desktop/%@.app", DEFAULT_APP_NAME] stringByExpandingTildeInPath]
+#define DEFAULT_DESTINATION_PATH    [[NSString stringWithFormat:@"~/Desktop/%@.app", DEFAULT_APP_NAME] stringByExpandingTildeInPath]
 #define DEFAULT_OUTPUT_TYPE         @"Progress Bar"
 #define DEFAULT_SCRIPT_TYPE         @"Shell"
 
