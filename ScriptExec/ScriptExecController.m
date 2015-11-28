@@ -1223,19 +1223,11 @@
     [oPanel setAllowsMultipleSelection:YES];
     [oPanel setCanChooseFiles:YES];
     [oPanel setCanChooseDirectories:acceptDroppedFolders];
-    NSArray *fileTypes = [droppableUniformTypes count] > 0 ? droppableUniformTypes : droppableSuffixes;
-    if (acceptAnyDroppedItem) {
-        [oPanel setAllowedFileTypes:nil];
-    } else {
-        [oPanel setAllowedFileTypes:fileTypes];
-    }
     
     // set acceptable file types - default allows all
     if (!acceptAnyDroppedItem) {
-        NSMutableArray *allowedFileTypes = [NSMutableArray array];
-        [allowedFileTypes addObjectsFromArray:droppableSuffixes];
-        [allowedFileTypes addObjectsFromArray:droppableUniformTypes];
-        [oPanel setAllowedFileTypes:allowedFileTypes];
+        NSArray *fileTypes = [droppableUniformTypes count] > 0 ? droppableUniformTypes : droppableSuffixes;
+        [oPanel setAllowedFileTypes:fileTypes];
     }
     
     if ([oPanel runModal] == NSFileHandlingPanelOKButton) {
