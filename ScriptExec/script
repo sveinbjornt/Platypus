@@ -1,13 +1,9 @@
-$|=1;
-while ($i < 100000) {
-    print " $i\n";
-sleep(0.01);
-$i+=1;
-}
-
-
 #!/bin/sh
-#echo $@
+echo Arguments:
+echo $@
+sleep 2
+echo Done
+sleep 1
 #if [ ! -e "$1" ]
 #then
 #sleep 1
