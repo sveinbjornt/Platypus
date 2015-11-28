@@ -20,9 +20,11 @@ For 5.0
         TODO: Add documentation about Uniform Type Identifiers
         TODO: Add documentation on reading dropped text from STDIN
         TODO: Finish updating text and formatting in Readme file
+        TODO: Add documentation that output mode None sends script output to stderr
+        TODO: Document the Services feature and provide instructions on how to enable in the Services preferences in Mac OS X.
+
     TODO: Resizable or at least larger Progress Bar window
     TODO: Long GNU named params for command line tool, e.g. --some-option
-    TODO: Create example reading from STDIN (word count?)
 
     * Fixed issue where ScriptExec quit before alert was displayed
     * Add new examples Icns2Iconset, ImageResizer
