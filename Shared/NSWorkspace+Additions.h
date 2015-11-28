@@ -42,6 +42,7 @@
 - (NSString *)createTempFileWithContents:(NSString *)contentStr;
 - (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
 - (void)notifyFinderFileChangedAtPath:(NSString *)path;
+- (void)flushServices;
 - (BOOL)openPathInDefaultBrowser:(NSString *)path;
 - (BOOL)runCommandInTerminal:(NSString *)cmd;
 

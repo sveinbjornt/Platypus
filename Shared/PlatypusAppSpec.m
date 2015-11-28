@@ -483,8 +483,7 @@
     // Update Services
     if ([self[@"DeclareService"] boolValue]) {
         [self report:@"Updating Dynamic Services"];
-        // This call will refresh Services without user having to log out/in
-        NSUpdateDynamicServices();
+        [WORKSPACE flushServices];
     }
     
     [self report:@"Done"];
