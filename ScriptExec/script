@@ -1,5 +1,6 @@
 #!/bin/sh
 echo Arguments:
+echo "PROGRESS:50%"
 echo $@
 sleep 2
 echo Done
