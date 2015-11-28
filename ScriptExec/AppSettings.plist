@@ -26,7 +26,7 @@
 	<key>OutputType</key>
 	<string>None</string>
 	<key>PromptForFileOnLaunch</key>
-	<true/>
+	<false/>
 	<key>RemainRunningAfterCompletion</key>
 	<true/>
 	<key>RequiresAdminPrivileges</key>
