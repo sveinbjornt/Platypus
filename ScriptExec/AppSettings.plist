@@ -10,12 +10,14 @@
 	<string>Platypus-5.0</string>
 	<key>DropSuffixes</key>
 	<array>
-		<string>*</string>
+		<string>txt</string>
 	</array>
 	<key>Droppable</key>
 	<true/>
 	<key>DropUniformTypes</key>
-	<array/>
+	<array>
+		<string>public.image</string>
+	</array>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>NSAppTransportSecurity</key>
