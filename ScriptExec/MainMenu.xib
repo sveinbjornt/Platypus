@@ -52,21 +52,21 @@
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="21" userLabel="ProgressWindow">
             <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="472" y="537" width="438" height="84"/>
+            <rect key="contentRect" x="472" y="537" width="438" height="83"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <value key="minSize" type="size" width="438" height="84"/>
-            <value key="maxSize" type="size" width="800" height="800"/>
+            <value key="maxSize" type="size" width="500" height="84"/>
             <view key="contentView" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="438" height="84"/>
+                <rect key="frame" x="0.0" y="0.0" width="438" height="83"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <progressIndicator wantsLayer="YES" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="bar" id="204">
-                        <rect key="frame" x="18" y="28" width="310" height="20"/>
+                        <rect key="frame" x="18" y="27" width="310" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <animations/>
                     </progressIndicator>
                     <textField verticalHuggingPriority="750" id="205">
-                        <rect key="frame" x="18" y="56" width="403" height="17"/>
+                        <rect key="frame" x="18" y="55" width="403" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <animations/>
                         <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="left" id="472">
@@ -76,7 +76,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" id="206">
-                        <rect key="frame" x="338" y="21" width="86" height="32"/>
+                        <rect key="frame" x="338" y="20" width="86" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <animations/>
                         <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="473">
@@ -91,7 +91,7 @@ Gw
                         </connections>
                     </button>
                     <button toolTip="Show details" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="288">
-                        <rect key="frame" x="20" y="11" width="13" height="13"/>
+                        <rect key="frame" x="20" y="10" width="13" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
                         <buttonCell key="cell" type="disclosureTriangle" bezelStyle="disclosure" imagePosition="above" alignment="left" controlSize="small" borderStyle="border" inset="2" id="474">
@@ -103,7 +103,7 @@ Gw
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="290">
-                        <rect key="frame" x="33" y="8" width="41" height="17"/>
+                        <rect key="frame" x="33" y="7" width="41" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Details" id="475">
@@ -113,8 +113,8 @@ Gw
                         </textFieldCell>
                     </textField>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="304">
-                        <rect key="frame" x="20" y="-202" width="393" height="202"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="20" y="-203" width="393" height="202"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" copiesOnScroll="NO" id="2mm-QF-kpX">
                             <rect key="frame" x="1" y="1" width="391" height="200"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,7 +155,7 @@ Gw
             <connections>
                 <outlet property="delegate" destination="207" id="377"/>
             </connections>
-            <point key="canvasLocation" x="192" y="318"/>
+            <point key="canvasLocation" x="67" y="301.5"/>
         </window>
         <menu title="MainMenu" systemMenu="main" id="29" userLabel="MainMenu">
             <items>
