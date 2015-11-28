@@ -413,20 +413,20 @@
     [self report:@"Writing Info.plist"];
     NSDictionary *infoPlist = [self infoPlist];
     infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
-    BOOL success = NO;
+    BOOL success = YES;
     // if binary
     if ([self[@"UseXMLPlistFormat"] boolValue] == NO) {
         NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:infoPlist
                                                                        format:NSPropertyListBinaryFormat_v1_0
                                                                       options:0
                                                                         error:nil];
-        if (!plistData || ![plistData writeToFile:infoPlistPath atomically:YES]) {
+        if (plistData == nil || ![plistData writeToFile:infoPlistPath atomically:YES]) {
             success = NO;
         }
     }
     // if XML
     else {
-        [infoPlist writeToFile:infoPlistPath atomically:YES];
+        success = [infoPlist writeToFile:infoPlistPath atomically:YES];
     }
     // raise error on failure
     if (success == NO) {
@@ -484,7 +484,7 @@
     }
     
     // now, move the newly created app to the destination
-    [FILEMGR moveItemAtPath:tmpPath toPath:destPath error:nil];    //move
+    [FILEMGR moveItemAtPath:tmpPath toPath:destPath error:nil];
     if (![FILEMGR fileExistsAtPath:destPath]) {
         //if move wasn't a success, clean up app in tmp dir
         [FILEMGR removeItemAtPath:tmpPath error:nil];
@@ -553,11 +553,13 @@
 // Generate Info.plist dictionary
 - (NSDictionary *)infoPlist {
     
+    // create copyright string with current year
     NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
     [formatter setDateFormat:@"yyyy"];
     NSString *yearString = [formatter stringFromDate:[NSDate date]];
     NSString *copyrightString = [NSString stringWithFormat:@"© %@ %@", yearString, self[@"Author"]];
     
+    // create dict
     NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       
                                       @"en",                                    @"CFBundleDevelopmentRegion",
@@ -632,6 +634,10 @@
 }
 
 - (void)report:(NSString *)format, ... {
+    if ([self silentMode] == YES) {
+        return;
+    }
+    
     va_list args;
     
     va_start(args, format);
@@ -657,7 +663,7 @@
     
     // warn if font can't be instantiated
     if ([NSFont fontWithName:self[@"TextFont"] size:13] == nil) {
-        NSLog(@"Warning: Font \"%@\" cannot be instantiated.", self[@"TextFont"]);
+        [self report:@"Warning: Font \"%@\" cannot be instantiated.", self[@"TextFont"]];
     }
     
     if ([self[@"Name"] isEqualToString:@""]) {
