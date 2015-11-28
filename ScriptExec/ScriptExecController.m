@@ -472,7 +472,7 @@
 //            [sendTypes addObject:NSStringPboardType];
 //        }
 //        [NSApp registerServicesMenuSendTypes:sendTypes returnTypes:@[]];
-        NSUpdateDynamicServices();
+//        NSUpdateDynamicServices();
     }
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
@@ -983,8 +983,8 @@
 // OK, called when we receive notification that task is finished
 // Some cleaning up to do, controls need to be adjusted, etc.
 - (void)taskFinished:(NSNotification *)aNotification {
-    // if task already quit, we return
-    if (!isTaskRunning) {
+    // ignore if not current script task
+    if (([aNotification object] != task && [aNotification object] != privilegedTask) || !isTaskRunning) {
         return;
     }
     isTaskRunning = NO;
