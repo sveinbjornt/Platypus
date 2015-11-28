@@ -112,10 +112,12 @@
 }
 
 - (void)setCurrentFont:(NSFont *)font {
-    NSFont *newFont = [font retain];
-    [currentFont release];
-    currentFont = newFont;
-    [self updateFontField];
+    if (font != nil) {
+        NSFont *newFont = [font retain];
+        [currentFont release];
+        currentFont = newFont;
+        [self updateFontField];
+    }
 }
 
 // called by the shared NSFontManager when user chooses a new font or size in the Font Panel
