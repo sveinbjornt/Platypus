@@ -322,13 +322,13 @@
 
 <a name="231"></a>
 <h4>None</h4>
-<p>Windowless application that provides no graphical feedback. All script output goes to <code>STDOUT</code> and <code>STDERR</code>, viewable in Console.app.</p>
+<p>Windowless application that provides no graphical feedback. All script output is redirected to <code>STDERR</code>.</p>
 
 <a name="232"></a>
 <h4>Progress Bar</h4>
-<p>A small window with an indeterminate progress bar and a "Cancel" button appears during the execution of the script. Script output is fed line by line into the text field above the progress bar. "Show details" triangle reveals a small text view containing script output.</p>
+<p>A small window with an indeterminate progress bar and a "Cancel" button appears during the execution of the script. Script output is fed line by line into the text field above the progress bar. "Show details" triangle reveals a small text view containing full script output.</p>
 
-<p>The script can communicate with the progress bar by notifying it of script progress.  All lines of script output in the format 'PROGRESS:\d+' (e.g. PROGRESS:75) are parsed and used to set the completion percentage of the progress bar. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
+<p>The script can communicate with the progress bar by notifying it of script progress.  All lines of script output in the format "PROGRESS:\d+\n" (e.g. PROGRESS:75) are parsed and used to set the completion percentage of the progress bar. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
 
 <img src="images/output_progressbar.png" style="width:524px; height:194px;" class="centered-image">
 <br>
@@ -336,9 +336,9 @@
 
 <a name="233"></a>
 <h4>Text Window</h4>
-<p>Shows a window with a text field. This text field displays all script output. Please note that the text field is <em>not</em> an interactive terminal session, and cannot prompt for input from the user via STDIN.  It does not support any terminal commands and cannot be used to display ncurses-based interfaces.  It only displays the actual text output of the script.
+<p>Shows a window with a text field which displays script output. Please note that the text field is <em>not</em> a full, interactive terminal session, and cannot prompt for input from the user via STDIN. It does not support any of the standard terminal commands and cannot be used to display ncurses-based interfaces.</p>
 
-<p>The styling and properties of the text field can be set by pressing the <strong>Text Settings</strong> button.  This will present a dialog where text encoding, font, color and size can be configured.</p>
+<p>The styling and properties of the text field can be set by pressing the <strong>Text Settings</strong> button.  This shows a window where text encoding, font, color and size can be configured.</p>
 
 <img src="images/output_textwindow.png" style="width:594px; height:502px;" class="centered-image">
 <br>
@@ -347,11 +347,11 @@
 
 <a name="234"></a>
 <h4>Web View</h4>
-<p>Output from the script will be interpreted as HTML and rendered in a WebView in the output window -- an instance of the WebKit rendering engine used in Safari.  This allows you to use HTML formatting and web technologies/markup to provide feedback on script execution.</p>
+<p>Output from the script will be rendered as HTML in a WebView window.  This allows you to use HTML formatting and web technologies to provide feedback on script execution.</p>
 
-<p>The base directory for the browser instance is the application bundle's Resources directory, so you can bundle images and other support files by adding them to the <strong>Bundled Files</strong> list and referencing them relative to the directory.</p>
+<p>The base directory for the browser instance is the application bundle's Resources directory, so you can bundle images and other support files by adding them to the <strong>Bundled Files</strong> list and referencing them relative to that directory.</p>
 
-<p>If your script prints "Location:http://some.url.com\n", the Web View will load the URL.</p>
+<p>If your script prints "Location:http://some.url.com\n", the Web View will load the URL in question.</p>
 
 <img src="images/output_webview.jpg" style="width:620px; height:525px;" class="centered-image">
 <br>
@@ -361,7 +361,7 @@
 <h4>Status Menu</h4>
 <p>Aplication creates a Status Item in the menu bar when launched.  Every time the status item is clicked, the script is executed and its text output displayed line for line in a menu.</p>
 
-<p>The properties of the Status Item can be configured by pressing the <strong>Status Item Settings</strong> button.</p>
+<p>The properties of the Status Item (icon, title, etc.) can be configured by pressing the <strong>Status Item Settings</strong> button.</p>
 
 
 <img src="images/output_statusmenu.png" style="width:315px; height:144px;" class="centered-image">
@@ -453,9 +453,9 @@
 
 <img src="images/edittypes.png" style="width: 537px; height: 555px;" class="centered-image">
 
-<p>The default behaviour is to accept all files. You can edit those two lists to suit your needs.You can select a document icon (.icns file) for the files "owned" by your app.</p>
+<p>The default behaviour is to accept all files. You can edit those two lists to suit your needs. You can also select a document icon (.icns file) for the files "owned" by your app.</p>
 
-<p>You can also set your application accept dragged snippets of text, in which case each string will be passed as an argument to the script.</p>
+<p>You can also set your application accept dragged snippets of text, in which case strings will be passed to the script via STDIN.</p>
 
 <br><br>
 
