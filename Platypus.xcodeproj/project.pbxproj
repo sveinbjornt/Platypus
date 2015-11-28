@@ -1209,6 +1209,7 @@
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.Platypus;
@@ -1454,6 +1455,7 @@
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;
@@ -1472,6 +1474,7 @@
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -1487,6 +1490,7 @@
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;
 				VALID_ARCHS = x86_64;
