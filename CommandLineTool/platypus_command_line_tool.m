@@ -47,13 +47,13 @@
 #import <errno.h>
 #import <getopt.h>
 
-#define OPT_STRING "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:G:C:b:g:n:E:K:Y:L:H:U:"
-
 static NSString *MakeAbsolutePath(NSString *path);
 static void PrintVersion(void);
 static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
+
+static const char optstring[] = "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:G:C:b:g:n:E:K:Y:L:H:U:";
 
 static struct option long_options[] = {
 
@@ -106,7 +106,6 @@ static struct option long_options[] = {
     {0,                           0,                  0,  0 }
 };
 
-
 #ifdef DEBUG
 void exceptionHandler(NSException *exception);
 void exceptionHandler(NSException *exception) {
@@ -124,21 +123,20 @@ int main(int argc, const char *argv[]) {
 #endif
     
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; //set up autorelease pool
-    NSApplication *app = [NSApplication sharedApplication];
-    app = app; //establish connection to Window Server
     NSFileManager *fm = FILEMGR;
     NSMutableDictionary *properties = [NSMutableDictionary dictionary];
+    
     BOOL createProfile = FALSE;
     BOOL loadedProfile = FALSE;
     BOOL deleteScript = FALSE;
-    int optch;
-    static char optstring[] = OPT_STRING;
     
+    int optch;
     int long_index = 0;
     while ((optch = getopt_long(argc, (char *const *)argv, optstring, long_options, &long_index)) != -1) {
+        
         switch (optch) {
 
-            //  create a profile instead of an app
+            // create a profile instead of an app
             case 'O':
             {
                 createProfile = TRUE;
@@ -473,9 +471,7 @@ int main(int argc, const char *argv[]) {
                 
             // set if Status Menu uses system font
             case 'c':
-            {
                 properties[@"StatusItemUseSystemFont"] = @YES;
-            }
                 break;
                 
             // set icon image of status item for Status Menu output
@@ -510,7 +506,7 @@ int main(int argc, const char *argv[]) {
             default:
             {
                 PrintHelp();
-                return 0;
+                exit(0);
             }
                 break;
         }
