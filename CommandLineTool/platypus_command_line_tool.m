@@ -53,7 +53,7 @@ static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
 
-static const char optstring[] = "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:G:C:b:g:n:E:K:Y:L:U:";
+static const char optstring[] = "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:T:G:C:b:g:n:E:K:Y:L:cU:";
 
 static struct option long_options[] = {
 
@@ -660,7 +660,7 @@ static void PrintHelp(void) {
             Options:\n\
             -O --generate-profile                Generate a profile instead of an app\n\
             \n\
-            -P --load-profile [profilePath]      Load settings from profile file\n\
+            -P --load-profile [profilePath]      Load settings from profile document\n\
             -a --name [name]                     Set name of application bundle\n\
             -o --output-type [type]              Set output type.  See man page for accepted types\n\
             -p --interpreter [interpreterPath]   Set interpreter for script\n\
