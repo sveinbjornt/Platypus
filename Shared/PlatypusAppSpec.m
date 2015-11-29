@@ -784,8 +784,9 @@
         }
         // uniform type identifier params
         if ([self[@"UniformTypes"] count]) {
+            NSString *str = longOpts ? @"-T" : @"--uniform-type-identifiers";
             uniformTypesString = [self[@"UniformTypes"] componentsJoinedByString:@"|"];
-            uniformTypesString = [NSString stringWithFormat:@"-T '%@' ", uniformTypesString];
+            uniformTypesString = [NSString stringWithFormat:@"%@ '%@' ", str, uniformTypesString];
         }
         // file prompt
         if ([self[@"PromptForFileOnLaunch"] boolValue]) {

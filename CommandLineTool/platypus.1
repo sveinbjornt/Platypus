@@ -22,11 +22,11 @@ The following flags are supported (and are parsed in the order in which they are
 .Pp
 .Bl -tag -width -Fl
 .It Fl O -generate-profile
-Create profile file as output instead of creating an application bundle.  When you 
-select this option, the "destinationPath" paramater (i.e. the final parameter to the program) should 
+Create profile document instead of creating an application bundle.  When this option is
+selected, the "destinationPath" paramater (i.e. the final parameter to the program) should 
 have a .platypus suffix.  Please note that in order to create reusable profiles, this option 
-requires that all paths to bundled files, icons etc. be absolute.  If you provide '-' as the output
-file, the profile property list will be dumped to STDOUT.
+requires that all paths to bundled files, icons etc. be absolute.  If the string '-' is provided
+as destinationPath, the profile property list will be dumped to STDOUT.
 .It Fl P -load-profile Ar [profilePath]
 Loads all settings from a Platypus profile document.  It is still necessary to specify a destination path 
 for the application.  Subsequent parameters can override profile settings.
@@ -66,7 +66,7 @@ icon will be set for the app.
 Specifies a file to use as icon for the application's documents. Must be a Mac OS X .icns file.
 .Pp
 .It Fl p -interpreter Ar [interpreter]
-Sets the interpreter for your script (e.g. /usr/bin/perl).  If the interpreter is not specified, the command line tool
+Sets the interpreter for the script (e.g. /usr/bin/perl).  If the interpreter is not specified, the command line tool
 will try to guess the correct interpreter.  If this fails, the standard shell interpreter /bin/sh is used.
 .Pp
 .It Fl V -app-version Ar [version]
@@ -79,12 +79,12 @@ it defaults to the current user's full user name.
 .Pp
 .It Fl f -bundled-file Ar [filePath]
 Specifies a file to be bundled with the application.  The file will be copied over the Resources
-folder of the application bundle, which is the same folder in which the script runs. You can specify any number of files to be bundled, but you must use the -f flag each time, since it only 
-accepts a single file path parameter.
+folder of the application bundle, which is the same folder in which the script runs. Any number of files 
+can be bundled in this way, but the -f flag must be used each time, since it only accepts a single file path parameter.
 .Pp
 .It Fl I -bundle-identifier Ar [identifier]
 Sets the application's bundle identifier.  An application identifier is a reverse DNS name
-(e.g. com.apple.iTunes) that uniquely identifies your application.  If this option is left empty, 
+(e.g. com.apple.iTunes) that uniquely identifies the application.  If this option is left empty, 
 it will default to an identifier of the format "org.username.appname" (e.g. org.sveinbjorn.Platypus).
 .Pp
 .It Fl A -admin-privileges
@@ -98,12 +98,13 @@ Secure bundled script.  This encrypts the bundled script, to fend off prying eye
 nothing will make the script 'secure' from anyone knowledgable enough to get a clear text version.
 .Pp
 .It Fl D -droppable
-Makes your script application droppable, i.e. capable of receiving drag and dropped files as arguments
+Makes the application droppable, i.e. capable of receiving dragged and dropped items as arguments
 to the script. The application bundle's property list is modified so that it can receive dropped files 
 in the Dock and Finder. These files are then passed on to the script as arguments via @ARGV.
 .Pp
 .It Fl F -text-droppable
-Makes your script application text droppable, i.e. accepts dragged text snippets, which are then passed to script. 
+Makes the script application text droppable, i.e. makes accepts dragged text snippets, which are then 
+passed to script via STDIN. 
 .Pp
 .It Fl N -service
 Makes the app register as a Dynamic Service accessible from the Services application submenu.
@@ -116,14 +117,14 @@ the Dock.  This is done by registering the application with the Finder as a user
 This option makes the application quit after the script has been executed.  
 .Pp
 .It Fl X -suffixes Ar [suffixes]
-Only appropriate if you are using the -D option. This flag allows you to specify the file suffixes
-(e.g. .txt, .wav) your application can open.  This should be a |-separated string (e.g. "txt|wav|jpg").
+Only appropriate if the application accepts dropped files. This flag specifies the file suffixes
+(e.g. .txt, .wav) that the application can open.  This should be a |-separated string (e.g. "txt|wav|jpg").
 .Pp
 .It Fl T -uniform-type-identifiers Ar [utis]
-Only appropriate if you are using the -D option. This flag allows you to specify the 
-uniform type identifier types your application can open.  This should be a |-separated string (e.g. "public.item|public.folder").
+Only appropriate if the application accepts dropped files. This flag specifies the 
+uniform type identifier types that the application can open.  This should be a |-separated string (e.g. "public.item|public.folder").
 .It Fl Z -file-prompt
-Show an Open File dialog as soon as the application launches.
+Show an Open File dialog when the application launches.
 .It Fl G -interpreter-args Ar [arguments]
 Arguments for the script interpreter.  These should be specified as a |-separated string (e.g. '-w|-s|-l').
 .Pp
@@ -154,6 +155,9 @@ For Status Menu output mode only.  Set the display title for the status item in 
 For Status Menu output mode only.  Set the icon image for the status item in Status Menu output mode.  
 Must be an image file in one of the formats supported by the Cocoa APIs (e.g. PNG, JPEG, TIFF etc.)
 .Pp
+.It Fl c -status-item-sysfont
+For Status Menu output mode only. Makes menu use system font instead of user-defined styling.
+.Pp
 .It Fl x -xml-property-lists x
 Create XML format property lists instead of binary ones.
 .Pp
@@ -162,8 +166,8 @@ Development version.  A symlink to the original script is created inside the app
 of a copy.  Symlinks are also created to any bundled files.  This option is incompatible with the -S option.
 .Pp
 .It Fl l -optimize-nib
-Strip the bundled application nib file to reduce its size. Makes the nib uneditable.  Only works if you 
-have Apple's XCode installed.
+Strip the bundled application nib file to reduce its size. Makes the nib uneditable.  Only works if 
+Apple's XCode is installed.
 .Pp
 .It Fl y -force
 Force mode.  With this flag set, the program will overwrite any previous files and folders in destination path.  Use with caution.

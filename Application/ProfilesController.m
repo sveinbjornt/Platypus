@@ -119,7 +119,7 @@
     // get profile from platypus controls
     PlatypusAppSpec *spec = [platypusController appSpecFromControls];
 
-    // create path for profile file and write to it
+    // create path for profile document and write to it
     NSString *profileDestPath = [NSString stringWithFormat:@"%@/%@.%@",
                                  PROFILES_FOLDER,
                                  spec[@"Name"],
