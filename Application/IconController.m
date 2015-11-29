@@ -209,7 +209,7 @@
 - (void)updateForCustomIcon {
     NSString *tmpIconPath;
     do {
-        tmpIconPath = [NSString stringWithFormat:@"%@/PlatypusIcon-%d.icns", APP_SUPPORT_FOLDER, arc4random()];
+        tmpIconPath = [NSString stringWithFormat:@"%@/PlatypusIcon-%d.icns", APP_SUPPORT_FOLDER, arc4random() % 9999999];
     } while ([FILEMGR fileExistsAtPath:tmpIconPath]);
     
     dispatch_async(iconWritingDispatchQueue, ^{
