@@ -87,14 +87,14 @@ int main(int argc, const char *argv[]) {
     while ((optch = getopt(argc, (char *const *)argv, optstring)) != -1) {
         switch (optch) {
 
-            // tells the command line app to create a profile from its data rather than an app
+            //  create a profile instead of an app
             case 'O':
             {
                 createProfile = TRUE;
             }
                 break;
 
-            // Load Profile
+            // load profile
             case 'P':
             {
                 NSString *profilePath = MakeAbsolutePath(@(optarg));
@@ -126,12 +126,12 @@ int main(int argc, const char *argv[]) {
             }
                 break;
 
-                // App Name
+            // app name
             case 'a':
                 properties[@"Name"] = @(optarg);
                 break;
 
-                // A bundled file.  This flag can be passed multiple times to include more than one bundled file
+            // bundled file -- flag can be passed multiple times to include more than one bundled file
             case 'f':
             {
                 NSString *filePath = MakeAbsolutePath(@(optarg));
@@ -152,7 +152,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // Output Type
+            // output type
             case 'o':
             {
                 NSString *outputType = @(optarg);
@@ -165,7 +165,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
 
-                // background color of text output
+            // background color of text output
             case 'b':
             {
                 NSString *hexColorStr = @(optarg);
@@ -177,7 +177,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // foreground color of text output
+            // foreground color of text output
             case 'g':
             {
                 NSString *hexColorStr = @(optarg);
@@ -189,7 +189,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // font and size of text output
+            // font and size of text output
             case 'n':
             {
                 NSString *fontStr = @(optarg);
@@ -207,7 +207,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // text encoding to use
+            // text encoding to use
             case 'E':
             {
                 NSString *encNumStr = @(optarg);
@@ -220,12 +220,12 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // Author
+            // author
             case 'u':
                 properties[@"Author"] = @(optarg);
                 break;
                 
-                // Icon
+            // icon
             case 'i':
             {
                 NSString *iconPath = @(optarg);
@@ -249,7 +249,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // Document icon
+            // document icon
             case 'Q':
             {
                 NSString *iconPath = @(optarg);
@@ -273,7 +273,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // Interpreter
+            // interpreter
             case 'p':
             {
                 NSString *interpreterPath = MakeAbsolutePath(@(optarg));
@@ -285,17 +285,17 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // Version
+            // version
             case 'V':
                 properties[@"Version"] = @(optarg);
                 break;
                 
-                // Identifier
+            // identifier
             case 'I':
                 properties[@"Identifier"] = @(optarg);
                 break;
                 
-                // The checkbox options
+            // checkbox options
             case 'A':
                 properties[@"Authentication"] = @YES;
                 break;
@@ -330,7 +330,7 @@ int main(int argc, const char *argv[]) {
                 properties[@"UseXMLPlistFormat"] = @YES;
                 break;
                 
-                // Suffixes
+            // suffixes
             case 'X':
             {
                 NSString *suffixesStr = @(optarg);
@@ -339,7 +339,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // Uniform Type Identifiers
+            // uniform type identifiers
             case 'T':
             {
                 NSString *utiStr = @(optarg);
@@ -348,12 +348,12 @@ int main(int argc, const char *argv[]) {
             }
                 break;
             
-                // Prompt for file on startup
+            // prompt for file on startup
             case 'Z':
                 properties[@"PromptForFileOnLaunch"] = @YES;
                 break;
                 
-                // Arguments for interpreter
+            // arguments for interpreter
             case 'G':
             {
                 NSString *parametersString = @(optarg);
@@ -362,7 +362,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // Arguments for script
+            // arguments for script
             case 'C':
             {
                 NSString *parametersString = @(optarg);
@@ -371,22 +371,22 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-                // force overwrite mode
+            // force overwrite mode
             case 'y':
                 properties[@"DestinationOverride"] = @YES;
                 break;
                 
-                // development version, symlink to script
+            // development version, symlink to script
             case 'd':
                 properties[@"DevelopmentVersion"] = @YES;
                 break;
                 
-                // don't optimize application by stripping/compiling nib files
+            // don't optimize application by stripping/compiling nib files
             case 'l':
                 properties[@"OptimizeApplication"] = @NO;
                 break;
                 
-                // custom nib path
+            // custom nib path
             case 'H':
             {
                 NSString *nibPath = MakeAbsolutePath(@(optarg));
@@ -397,9 +397,9 @@ int main(int argc, const char *argv[]) {
                 }
                 properties[@"NibPath"] = nibPath;
             }
-            break;
+                break;
                 
-                // set display kind for Status Menu output
+            // set display kind for Status Menu output
             case 'K':
             {
                 NSString *kind = @(optarg);
@@ -409,9 +409,9 @@ int main(int argc, const char *argv[]) {
                 }
                 properties[@"StatusItemDisplayType"] = kind;
             }
-            break;
+                break;
                 
-                // set title of status item for Status Menu output
+            // set title of status item for Status Menu output
             case 'Y':
             {
                 NSString *title = @(optarg);
@@ -421,9 +421,16 @@ int main(int argc, const char *argv[]) {
                 }
                 properties[@"StatusItemTitle"] = title;
             }
-            break;
+                break;
                 
-                // set icon image of status item for Status Menu output
+            // set if Status Menu uses system font
+            case 'c':
+            {
+                properties[@"StatusItemUseSystemFont"] = @YES;
+            }
+                break;
+                
+            // set icon image of status item for Status Menu output
             case 'L':
             {
                 NSString *iconPath = MakeAbsolutePath(@(optarg));
@@ -440,31 +447,31 @@ int main(int argc, const char *argv[]) {
                 }
                 properties[@"StatusItemIcon"] = [iconImage TIFFRepresentation];
             }
-            break;
+                break;
                 
-                // print version
+            // print version
             case 'v':
             {
                 PrintVersion();
                 exit(0);
             }
-            break;
+                break;
                 
-                // print help with list of options
+            // print help with list of options
             case 'h':
             {
                 PrintHelp();
                 return 0;
             }
-            break;
+                break;
                 
-                // default to printing usage string
+            // default to printing usage string
             default:
             {
                 PrintUsage();
                 return 0;
             }
-            break;
+                break;
         }
     }
     
@@ -495,7 +502,7 @@ int main(int argc, const char *argv[]) {
         destPath = remainingArgs[0];
         
         // append .platypus suffix to destination file if not user-specified
-        if ([destPath hasSuffix:@"-"]) {
+        if ([destPath isEqualToString:@"-"] ) {
             printStdout = TRUE;
         } else if (![destPath hasSuffix:@".platypus"]) {
             NSPrintErr(@"Warning: Appending .platypus extension");
@@ -525,7 +532,7 @@ int main(int argc, const char *argv[]) {
         // get script path, generate default app name
         scriptPath = remainingArgs[0];
         
-        // A script path of - means read from STDIN
+        // a script path of "-" means read from STDIN
         if ([scriptPath isEqualToString:@"-"]) {
             // read data
             NSData *inData = [[NSFileHandle fileHandleWithStandardInput] readDataToEndOfFile];
