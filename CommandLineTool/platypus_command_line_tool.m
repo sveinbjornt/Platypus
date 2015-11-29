@@ -702,7 +702,7 @@ static void PrintHelp(void) {
             -l --optimize-nib                    Optimize application.  Strip and compile bundled nib file\n\
             -h --help                            Prints help\n\
             -v --version                         Prints program name, version and author\n\n\
-See %@ for further details.", PROGRAM_MANPAGE_URL);
+See 'man platypus' or %@ for further details.", PROGRAM_MANPAGE_URL);
 }
 
 #pragma mark -

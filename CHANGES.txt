@@ -20,8 +20,7 @@ For 5.1
 
 For 5.0
     TODO: Create archive and get hash, update Sparkle, update docs
-    TODO: Overhaul very old and out of date documentation
-    TODO: Finish updating text and formatting in Readme file
+    TODO: Final overhaul of documentation and readme files
 
     * Long GNU named params for command line tool, e.g. --some-option
     * Fixed issue where ScriptExec quit before script output was parsed
