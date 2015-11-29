@@ -19,6 +19,8 @@ For 5.1
     TODO: Make UTIs default in Drop Settings (public.item and public.folder)
 
 For 5.0
+    TODO: Create archive and get hash, update Sparkle, update docs
+
     TODO: Overhaul very old and out of date documentation
     TODO: Finish updating text and formatting in Readme file
     TODO: Verify that long options in CLT work

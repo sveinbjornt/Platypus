@@ -53,7 +53,7 @@ static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
 
-static const char optstring[] = "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:G:C:b:g:n:E:K:Y:L:H:U:";
+static const char optstring[] = "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:G:C:b:g:n:E:K:Y:L:U:";
 
 static struct option long_options[] = {
 
@@ -98,8 +98,7 @@ static struct option long_options[] = {
     {"xml-property-lists",        no_argument,        0, 'x'},
     {"force",                     no_argument,        0, 'y'},
     {"development-version",       no_argument,        0, 'd'},
-    {"optimize-xib",              no_argument,        0, 'l'},
-    {"alternate-xib",             required_argument,  0, 'H'},
+    {"optimize-nib",              no_argument,        0, 'l'},
     {"help",                      no_argument,        0, 'h'},
     {"version",                   no_argument,        0, 'v'},
     
@@ -163,7 +162,7 @@ int main(int argc, const char *argv[]) {
                 
                 // warn if created by different version
                 if (![profileDict[@"Creator"] isEqualToString:PROGRAM_STAMP]) {
-                    NSPrint(@"Warning: Profile created with different version of %@.", PROGRAM_NAME);
+                    NSPrintErr(@"Warning: Profile created with different version of %@.", PROGRAM_NAME);
                 }
                 
                 // add entries in profile to app properties, overwriting any former values
@@ -430,19 +429,6 @@ int main(int argc, const char *argv[]) {
             // don't optimize application by stripping/compiling nib files
             case 'l':
                 properties[@"OptimizeApplication"] = @NO;
-                break;
-                
-            // custom nib path
-            case 'H':
-            {
-                NSString *nibPath = MakeAbsolutePath(@(optarg));
-                // make sure we have a nib file that exists at this path
-                if (![fm fileExistsAtPath:nibPath] || ![nibPath hasSuffix:@"nib"]) {
-                    NSPrintErr(@"Error: No nib file exists at path '%@'", nibPath);
-                    exit(1);
-                }
-                properties[@"NibPath"] = nibPath;
-            }
                 break;
                 
             // set display kind for Status Menu output
@@ -713,8 +699,7 @@ static void PrintHelp(void) {
             -x --xml-property-lists              Create XML property lists instead of binary\n\
             -y --force                           Force mode.  Overwrite any files/folders in path\n\
             -d --development-version             Development version.  Symlink to script instead of copying\n\
-            -l --optimize-xib                    Optimize application.  Strip and compile bundled nib file\n\
-            -H --alternate-xib [xibPath]         Specify alternate xib file to bundle with app\n\n\
+            -l --optimize-nib                    Optimize application.  Strip and compile bundled nib file\n\
             -h --help                            Prints help\n\
             -v --version                         Prints program name, version and author\n\n\
 See %@ for further details.", PROGRAM_MANPAGE_URL);
