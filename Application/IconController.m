@@ -85,10 +85,8 @@
 
 - (void)awakeFromNib {
     // we list ourself as an observer of changes to file system, in case of icns file moving
-    [[WORKSPACE notificationCenter]
-     addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueRenameNotification object:nil];
-    [[WORKSPACE notificationCenter]
-     addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueDeleteNotification object:nil];
+    [[WORKSPACE notificationCenter] addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueRenameNotification object:nil];
+    [[WORKSPACE notificationCenter] addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueDeleteNotification object:nil];
 }
 
 #pragma mark - Interface actions
@@ -420,7 +418,7 @@
         }
     }
     if ([[anItem title] isEqualToString:@"Copy Icon Path"] || [[anItem title] isEqualToString:@"Show in Finder"]) {
-        if ([self icnsFilePath] == nil || [[self icnsFilePath] isEqualToString:@""] || ![FILEMGR fileExistsAtPath:[self icnsFilePath]]) {
+        if ([FILEMGR fileExistsAtPath:[self icnsFilePath]] == NO) {
             return NO;
         }
     }
