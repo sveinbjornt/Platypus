@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
+        <deployment identifier="macosx"/>
         <development version="6000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
@@ -52,9 +53,8 @@
                         <rect key="frame" x="20" y="369" width="149" height="148"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
-                        <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" image="PlatypusDefault" id="10943"/>
+                        <imageCell key="cell" selectable="YES" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" image="PlatypusDefault" id="10943"/>
                         <connections>
-                            <action selector="contentsWereAltered:" target="1215" id="11167"/>
                             <outlet property="delegate" destination="1215" id="11161"/>
                             <outlet property="menu" destination="830" id="845"/>
                         </connections>
@@ -134,18 +134,6 @@ DQ
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
-                    <button toolTip="Select a script to load" verticalHuggingPriority="750" id="316">
-                        <rect key="frame" x="571" y="397" width="72" height="28"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <animations/>
-                        <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10951">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="selectScript:" target="335" id="351"/>
-                        </connections>
-                    </button>
                     <textField verticalHuggingPriority="750" id="318">
                         <rect key="frame" x="189" y="462" width="79" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
@@ -202,7 +190,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Create and load a new script" verticalHuggingPriority="750" id="427">
-                        <rect key="frame" x="453" y="397" width="60" height="28"/>
+                        <rect key="frame" x="404" y="397" width="60" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <animations/>
                         <buttonCell key="cell" type="push" title="+ New" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10959">
@@ -214,7 +202,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Reveal script in Finder" verticalHuggingPriority="750" id="429">
-                        <rect key="frame" x="376" y="397" width="79" height="28"/>
+                        <rect key="frame" x="327" y="397" width="79" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <animations/>
                         <buttonCell key="cell" type="push" title="🔍 Reveal" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10960">
@@ -528,7 +516,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Open script with default editor" verticalHuggingPriority="750" id="324">
-                        <rect key="frame" x="511" y="397" width="62" height="28"/>
+                        <rect key="frame" x="462" y="397" width="62" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <animations/>
                         <buttonCell key="cell" type="push" title="✎ Edit" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10953">
@@ -560,7 +548,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="ADD01C44-15F9-4CF0-B80A-07E707E0460C" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="B9862D1B-3115-4FA1-8F0F-B11B60DC0641" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -603,6 +591,18 @@ DQ
                             <animations/>
                         </tableHeaderView>
                     </scrollView>
+                    <button toolTip="Select a script to load" verticalHuggingPriority="750" id="316">
+                        <rect key="frame" x="521" y="394" width="123" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Select Script..." bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="10951">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="selectScript:" target="335" id="351"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <animations/>
             </view>
@@ -1562,7 +1562,7 @@ DQ
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk">
-                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="161.5" height="18"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <animations/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -2396,7 +2396,7 @@ DQ
             <connections>
                 <outlet property="delegate" destination="2364" id="4669"/>
             </connections>
-            <point key="canvasLocation" x="437" y="399.5"/>
+            <point key="canvasLocation" x="309" y="380.5"/>
         </window>
         <customView id="7866" userLabel="Save Option View">
             <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
@@ -2934,7 +2934,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="ADD01C44-15F9-4CF0-B80A-07E707E0460C" width="16" height="16">
+        <image name="B9862D1B-3115-4FA1-8F0F-B11B60DC0641" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

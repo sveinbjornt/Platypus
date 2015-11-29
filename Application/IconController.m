@@ -45,6 +45,7 @@
     IBOutlet NSButton *iconActionButton;
     NSString *icnsFilePath;
     VDKQueue *fileWatcherQueue;
+    dispatch_queue_t iconWritingDispatchQueue;
 }
 
 - (IBAction)iconActionButtonPressed:(id)sender;
@@ -52,7 +53,6 @@
 - (IBAction)copyIcon:(id)sender;
 - (IBAction)pasteIcon:(id)sender;
 - (IBAction)revealIconInFinder:(id)sender;
-- (IBAction)contentsWereAltered:(id)sender;
 - (IBAction)nextIcon:(id)sender;
 - (IBAction)previousIcon:(id)sender;
 - (IBAction)switchIcons:(id)sender;
@@ -67,6 +67,7 @@
 - (instancetype)init {
     if ((self = [super init])) {
         fileWatcherQueue = [[VDKQueue alloc] init];
+        iconWritingDispatchQueue = dispatch_queue_create("My Queue",NULL);
     }
     return self;
 }
@@ -78,6 +79,7 @@
         [icnsFilePath release];
     }
     [fileWatcherQueue release];
+    dispatch_release(iconWritingDispatchQueue);
     [super dealloc];
 }
 
@@ -159,11 +161,6 @@
     }];
 }
 
-// called when user pastes or cuts in field
-- (IBAction)contentsWereAltered:(id)sender {
-    [self updateForCustomIcon];
-}
-
 - (IBAction)iconActionButtonPressed:(id)sender {
     NSRect screenRect = [window convertRectToScreen:[(NSButton *)sender frame]];
     [iconContextualMenu popUpMenuPositioningItem:nil atLocation:screenRect.origin inView:nil ];
@@ -215,12 +212,20 @@
         tmpIconPath = [NSString stringWithFormat:@"%@/PlatypusIcon-%d.icns", APP_SUPPORT_FOLDER, arc4random()];
     } while ([FILEMGR fileExistsAtPath:tmpIconPath]);
     
-    if ([self writeIconToPath:tmpIconPath]) {
-        [iconNameTextField setStringValue:@"Custom Icon"];
-        [self setIcnsFilePath:tmpIconPath];
-    } else {
-        [self setToDefaults:self];
-    }
+    dispatch_async(iconWritingDispatchQueue, ^{
+        PLog(@"Writing icon to %@", tmpIconPath);
+        BOOL success = [self writeIconToPath:tmpIconPath];
+        
+        // UI updates on main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                [iconNameTextField setStringValue:@"Custom Icon"];
+                [self setIcnsFilePath:tmpIconPath];
+            } else {
+                [self setToDefaults:self];
+            }
+        });
+    });
 }
 
 - (void)setAppIconForType:(PlatypusIconPreset)type {
@@ -277,16 +282,17 @@
 #pragma mark -
 
 - (BOOL)writeIconToPath:(NSString *)path {
-    if ([iconImageView image] == nil) {
+    NSImage *iconImage = [iconImageView image];
+    if (iconImage == nil) {
         return NO;
     }
-    IconFamily *iconFam = [[IconFamily alloc] initWithThumbnailsOfImage:[iconImageView image]];
-    if (!iconFam) {
+    IconFamily *iconFamily = [[IconFamily alloc] initWithThumbnailsOfImage:iconImage];
+    if (iconFamily == nil) {
         NSLog(@"Failed to create IconFamily from image");
         return NO;
     }
-    [iconFam writeToFile:path];
-    [iconFam release];
+    [iconFamily writeToFile:path];
+    [iconFamily release];
     return YES;
 }
 
@@ -414,7 +420,7 @@
         }
     }
     if ([[anItem title] isEqualToString:@"Copy Icon Path"] || [[anItem title] isEqualToString:@"Show in Finder"]) {
-        if ([self icnsFilePath] == nil || [[self icnsFilePath] isEqualToString:@""]) {
+        if ([self icnsFilePath] == nil || [[self icnsFilePath] isEqualToString:@""] || ![FILEMGR fileExistsAtPath:[self icnsFilePath]]) {
             return NO;
         }
     }
