@@ -16,6 +16,7 @@ For 5.1
     TODO: Document the Services feature and provide instructions on how to enable in the Services preferences in Mac OS X.
     TODO: File watching still broken for script path
     TODO: Refactor ScriptExec for clean view controller/task controller decoupling
+    TODO: Make UTIs default in Drop Settings (public.item and public.folder)
 
 For 5.0
     TODO: Overhaul very old and out of date documentation
