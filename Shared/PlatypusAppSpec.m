@@ -138,7 +138,7 @@
     return [self initWithDictionary:profileDict];
 }
 
-#if !__has_feature(objc_arc)
+//#if !__has_feature(objc_arc)
 
 + (instancetype)specWithDefaults {
     return [[[self alloc] initWithDefaults] autorelease];
@@ -156,7 +156,7 @@
     return [[[self alloc] initWithDefaultsForScript:scriptPath] autorelease];
 }
 
-#endif
+//#endif
 
 #pragma mark - Set default values
 
