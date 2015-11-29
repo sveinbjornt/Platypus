@@ -426,9 +426,9 @@ int main(int argc, const char *argv[]) {
                 properties[@"DevelopmentVersion"] = @YES;
                 break;
                 
-            // don't optimize application by stripping/compiling nib files
+            // optimize application by stripping/compiling nib files
             case 'l':
-                properties[@"OptimizeApplication"] = @NO;
+                properties[@"OptimizeApplication"] = @YES;
                 break;
                 
             // set display kind for Status Menu output
