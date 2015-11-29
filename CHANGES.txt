@@ -15,13 +15,12 @@ For 5.1
     TODO: Add documentation on reading dropped text from STDIN
     TODO: Document the Services feature and provide instructions on how to enable in the Services preferences in Mac OS X.
     TODO: File watching still broken for script path
+    TODO: Refactor ScriptExec for clean view controller/task controller decoupling
 
 For 5.0
     TODO: Overhaul very old and out of date documentation
     TODO: Finish updating text and formatting in Readme file
     TODO: Long GNU named params for command line tool, e.g. --some-option
-
-    TODO: Refactor ScriptExec 
 
     * Fixed issue where ScriptExec quit before script output was parsed
     * Add new examples Icns2Iconset, ImageResizer

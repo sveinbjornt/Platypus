@@ -26,7 +26,7 @@
 		<true/>
 	</dict>
 	<key>OutputType</key>
-	<string>Progress Bar</string>
+	<string>Status Menu</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunningAfterCompletion</key>
@@ -36,7 +36,7 @@
 	<key>ScriptArgs</key>
 	<array/>
 	<key>ScriptInterpreter</key>
-	<string>/bin/sh</string>
+	<string>/usr/bin/perl</string>
 	<key>Secure</key>
 	<false/>
 	<key>StatusItemUseSystemFont</key>
