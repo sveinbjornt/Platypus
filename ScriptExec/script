@@ -1,10 +1,18 @@
-#!/bin/sh
-echo Arguments:
-echo "PROGRESS:50%"
-echo $@
-sleep 2
-echo Done
-sleep 1
+#!/usr/bin/perl
+
+# If 0 arguments, we show menu
+if (!scalar(@ARGV)) {
+print "Life's but a walking shadow, a poor player\n";
+print "That struts and frets his hour upon the stage\n";
+print "And then is heard no more.\n";
+} else {
+# We get the menu title as an argument
+# and feed it to the Mac OS X voice synthesizer
+system("/usr/bin/say \"$ARGV[0]\"");
+}
+
+
+
 #if [ ! -e "$1" ]
 #then
 #sleep 1

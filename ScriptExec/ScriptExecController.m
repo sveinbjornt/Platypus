@@ -1421,12 +1421,13 @@
 
 #pragma mark - Create drop job
 
+- (BOOL)addMenuItemSelectedJob:(NSString *)menuItemTitle {
+    ScriptExecJob *job = [ScriptExecJob jobWithArguments:@[menuItemTitle] andStandardInput:nil];
+    [jobQueue addObject:job];
+    return YES;
+}
+
 - (BOOL)addTextJob:(NSString *)text {
-    if ([text length] <= 0) { // ignore empty strings
-        return NO;
-    }
-    
-    // add job with text as argument for script
     ScriptExecJob *job = [ScriptExecJob jobWithArguments:nil andStandardInput:text];
     [jobQueue addObject:job];
     return YES;
@@ -1673,9 +1674,9 @@
 }
 
 - (IBAction)menuItemSelected:(id)sender {
-    [self addTextJob:[sender title]];
+    [self addMenuItemSelectedJob:[sender title]];
     if (!isTaskRunning && [jobQueue count] > 0) {
-        [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(executeScript) userInfo:nil repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(executeScript) userInfo:nil repeats:NO];
     }
 }
 
