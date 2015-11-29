@@ -875,7 +875,7 @@
         }
         
         // -c
-        if (![self[@"StatusItemUseSystemFont"] boolValue]) {
+        if ([self[@"StatusItemUseSystemFont"] boolValue]) {
             str = longOpts ? @"-c" : @"--status-item-sysfont";
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ ", str];
         }
