@@ -51,10 +51,61 @@
 
 static NSString *MakeAbsolutePath(NSString *path);
 static void PrintVersion(void);
-static void PrintUsage(void);
 static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
+
+static struct option long_options[] = {
+
+    {"generate-profile",          no_argument,        0, 'O'},
+
+    {"load-profile",              required_argument,  0, 'P'},
+    {"name",                      required_argument,  0, 'a'},
+    {"output-type",               required_argument,  0, 'o'},
+    {"interpreter",               required_argument,  0, 'p'},
+
+    {"app-icon",                  required_argument,  0, 'i'},
+    {"author",                    required_argument,  0, 'u'},
+    {"document-icon",             required_argument,  0, 'Q'},
+    {"app-version",               required_argument,  0, 'V'},
+    {"bundle-identifier",         required_argument,  0, 'I'},
+
+    {"admin-privileges",          no_argument,        0, 'A'},
+    {"secure-script",             no_argument,        0, 'S'},
+    {"droppable",                 no_argument,        0, 'D'},
+    {"text-droppable",            no_argument,        0, 'F'},
+    {"file-prompt",               no_argument,        0, 'Z'},
+    {"service",                   no_argument,        0, 'N'},
+    {"background",                no_argument,        0, 'B'},
+    {"quit-after-execution",      no_argument,        0, 'R'},
+
+    {"text-background-color",     required_argument,  0, 'b'},
+    {"text-foreground-color",     required_argument,  0, 'g'},
+    {"text-font",                 required_argument,  0, 'n'},
+    {"text-encoding",             required_argument,  0, 'E'},
+    {"suffixes",                  required_argument,  0, 'X'},
+    {"uniform-type-identifiers",  required_argument,  0, 'T'},
+    {"interpreter-args",          required_argument,  0, 'G'},
+    {"script-args",               required_argument,  0, 'C'},
+
+    {"status-item-kind",          required_argument,  0, 'K'},
+    {"status-item-title",         required_argument,  0, 'Y'},
+    {"status-item-icon",          required_argument,  0, 'L'},
+    {"status-item-sysfont",       no_argument,        0, 'c'},
+
+    {"bundled-file",              required_argument,  0, 'f'},
+
+    {"xml-property-lists",        no_argument,        0, 'x'},
+    {"force",                     no_argument,        0, 'y'},
+    {"development-version",       no_argument,        0, 'd'},
+    {"optimize-xib",              no_argument,        0, 'l'},
+    {"alternate-xib",             required_argument,  0, 'H'},
+    {"help",                      no_argument,        0, 'h'},
+    {"version",                   no_argument,        0, 'v'},
+    
+    {0,                           0,                  0,  0 }
+};
+
 
 #ifdef DEBUG
 void exceptionHandler(NSException *exception);
@@ -66,14 +117,13 @@ void exceptionHandler(NSException *exception) {
 }
 #endif
 
-
 int main(int argc, const char *argv[]) {
     
 #ifdef DEBUG
     NSSetUncaughtExceptionHandler(&exceptionHandler);
 #endif
     
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];  //set up autorelease pool
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; //set up autorelease pool
     NSApplication *app = [NSApplication sharedApplication];
     app = app; //establish connection to Window Server
     NSFileManager *fm = FILEMGR;
@@ -84,7 +134,8 @@ int main(int argc, const char *argv[]) {
     int optch;
     static char optstring[] = OPT_STRING;
     
-    while ((optch = getopt(argc, (char *const *)argv, optstring)) != -1) {
+    int long_index = 0;
+    while ((optch = getopt_long(argc, (char *const *)argv, optstring, long_options, &long_index)) != -1) {
         switch (optch) {
 
             //  create a profile instead of an app
@@ -103,9 +154,6 @@ int main(int argc, const char *argv[]) {
                 if (![fm fileExistsAtPath:profilePath]) {
                     NSPrintErr(@"Error: No profile found at path '%@'.", profilePath);
                     exit(1);
-                }
-                if (![profilePath hasSuffix:PROGRAM_PROFILE_SUFFIX]) {
-                    NSPrintErr(@"Warning: Profile '%@' does not have profile suffix.  Trying anyway...", profilePath);
                 }
                 
                 // read profile dictionary from file
@@ -459,16 +507,9 @@ int main(int argc, const char *argv[]) {
                 
             // print help with list of options
             case 'h':
-            {
-                PrintHelp();
-                return 0;
-            }
-                break;
-                
-            // default to printing usage string
             default:
             {
-                PrintUsage();
+                PrintHelp();
                 return 0;
             }
                 break;
@@ -478,7 +519,7 @@ int main(int argc, const char *argv[]) {
     // we always need one more argument, either script file path or app name
     if (argc - optind < 1) {
         NSPrintErr(@"Error: Missing argument");
-        PrintUsage();
+        PrintHelp();
         exit(1);
     }    
     
@@ -630,48 +671,8 @@ static void PrintVersion(void) {
     NSPrint(@"%@ version %@ by %@", CMDLINE_PROGNAME, PROGRAM_VERSION, PROGRAM_AUTHOR);
 }
 
-static void PrintUsage(void) {
-    NSPrint(@"usage: %@ [-vh] [-O profile] [-FASDNBRZ] [-ydlHx] [-KYL] [-P profile] [-a appName] [-o outputType] [-i icon] [-Q docIcon] [-p interpreter] [-V version] [-u author] [-I identifier] [-f bundledFile] [-X suffixes] [-C scriptArgs] [-G interpreterArgs] scriptFile [appPath]", CMDLINE_PROGNAME);
-}
-
-//static struct option long_options[] = {
-//    {"generate-profile",     required_argument, 0,  0 },
-//    {"load-profile",  no_argument,       0,  0 },
-//    {"name",  required_argument, 0,  0 },
-//    {"output-type", required_argument,       0,  0 },
-//    {"interpreter",  required_argument, 0, 'c'},
-//    {"app-icon",    required_argument, 0,  0 },
-//    {"author",    required_argument, 0,  0 },
-//    {"document-icon",    required_argument, 0,  0 },
-//    {"app-version",    required_argument, 0,  0 },
-//    {"bundle-identifier",    required_argument, 0,  0 },
-//    {"admin-privileges",    required_argument, 0,  0 },
-//    {"secure-script",    required_argument, 0,  0 },
-//    {"droppable",    required_argument, 0,  0 },
-//    {"text-droppable",    required_argument, 0,  0 },
-//    {"file-prompt",    required_argument, 0,  0 },
-//    {"service",    required_argument, 0,  0 },
-//    {"background",    required_argument, 0,  0 },
-//    {"text-droppable",    required_argument, 0,  0 },
-//    {"quit-after-execution",    required_argument, 0,  0 },
-//
-//    {"quit-after-execution",    required_argument, 0,  0 },
-//    {"quit-after-execution",    required_argument, 0,  0 },
-//    {"quit-after-execution",    required_argument, 0,  0 },
-//    {"quit-after-execution",    required_argument, 0,  0 },
-//    {"quit-after-execution",    required_argument, 0,  0 },
-//    {"quit-after-execution",    required_argument, 0,  0 },
-//    {"quit-after-execution",    required_argument, 0,  0 },
-//
-//    
-//    {0,         0,                 0,  0 }
-//};
-
-
 static void PrintHelp(void) {
-    NSPrint(@"%@ - command line application wrapper generator for scripts", CMDLINE_PROGNAME);
     PrintVersion();
-    PrintUsage();
     
     NSPrint(@"\n\
             Options:\n\
