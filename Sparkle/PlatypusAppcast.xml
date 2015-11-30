@@ -7,8 +7,8 @@
         <language>en</language>
         <item>
             <title>Version 5.0</title>
-            <pubDate>Wed, 2 Apr 2015 15:28:00 +0000</pubDate>
-            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus5.0.zip" sparkle:version="5.0" sparkle:shortVersionString="5.0" length="" type="application/octet-stream" sparkle:dsaSignature=""/>
+            <pubDate>Wed, 30 Nov 2015 00:28:00 +0000</pubDate>
+            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus5.0.zip" sparkle:version="5.0" sparkle:shortVersionString="5.0" length="3640511" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCxJgz5q7W4x5GuUTW9drKORIk6egIUcgQ+Au+eb6r7HwsDTUf79b8JQoI="/>
             <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
                 <h2>Version 5.0 Changes</h2>
@@ -47,7 +47,7 @@
                     <li>Fixed issue with Open... menu item and file types in ScriptExec</li>
                     <li>Fixed issue where process number arguments in the format -psn_0_* were passed to script</li>
                     <li>Fixed issue where command line arguments for ScriptExec were being passed incorrectly to script</li>
-                    <li>Many, many minor bugfixes, tweaks and improvements
+                    <li>Many, many minor bugfixes, tweaks and improvements</li>
                     <li>Codebase migrated to modern Objective-C syntax. Built with XCode 7 and now requires Mac OS X 10.7 or later and a 64-bit Intel system. Older versions continue to work just fine on 32-bit 10.6 systems, and version 4.4 still works on PowerPC. But it's time to leave the past behind. It's been 9 years since the last 32-bit Mac was released.</li>
                 </ul>
             ]]></description>
