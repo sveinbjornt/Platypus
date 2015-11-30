@@ -74,7 +74,7 @@
 
 <p>For <strong>version 5.0</strong>.  The latest version of this document can be found <a href="http://sveinbjorn.org/platypus_documentation">here</a>.</p>
 
-<p>Last updated on November 15th 2015, by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
+<p>Last updated on November 29th 2015, by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
 
 <br>
 <hr>
@@ -250,7 +250,7 @@
 
 <p>Platypus is not a set of bindings between the native Mac OS X APIs and scripting languages.  It is not a full GUI development environment for Mac OS X and is not intended for creating substantial applications with complex and dynamic user interaction.  If you want to create advanced Mac OS X applications, you should learn to program using the Cocoa APIs.  Platypus is not and never will be a substitute for learning to use the excellent native application programming interfaces.</p>
 
-<p>That being said, you may be able to add some interactive GUI elements using <a href="#73">CocoaDialog or Pashua.</a></p>
+<p>That being said, you may be able to add some interactive GUI elements using <a href="#10-6">CocoaDialog or Pashua.</a></p>
 
 
 
@@ -282,19 +282,19 @@
 
 <img src="images/basic_interface.png" style="width: 657px; height: 551px;" class="centered-image">
 
-<p>Open your favorite text editor, write the script you want to create an application from and save it. Then find your script in the Finder and drag it on the Platypus window, or, alternately, press the "Select.." button and locate it via navigation dialog. Now it's time to configure the application.  The basic interface lets you set the following:</p>
+<p>Press the <strong>Select Script.."</strong> button and select your script. Then configure the following:</p>
 
 <strong>App Name</strong>
 
-<p>Here you type in the name of your application. Once you press the "Create" button, you will be prompted again for a name for your app. However, that will only be the name of the actual application bundle directory, so make sure you put in the proper application name here.</p>
+<p>The name of your application. Once you press the "Create" button, you will be prompted again for a name for your app. However, that will only be the name of the actual application bundle directory on the file system, so make sure you put in the proper application name here.</p>
 
 <strong>Script Path</strong>
 
-<p>This field contains the path to the script you create the app from. You either define this manually by typing the path into the text field (which supports shell-style autocomplete), or by pressing the <strong>Select</strong> button and selecting it in a navigation dialog or by dragging your script on to the Platypus window.</p>
+<p>This field contains the path to the script you create the app from. You either define this manually by typing the path into the text field (which supports shell-style autocomplete), or by pressing the <strong>Select</strong> button and selecting it in a navigation dialog (or by dragging your script on to the Platypus window).</p>
 
 <img src="images/script_path.png" style="width: 492px; height: 66px;" class="centered-image">
     
-<p>Once you have selected a valid script, you can press the <strong>Edit</strong> button to open it in your default text editor. Platypus includes a very basic built-in text editor. You can change this in the <strong>Preferences</strong> to use any external editor you want.</p>
+<p>Once you have selected a valid script, you can press the <strong>Edit</strong> button to open it in your default text editor. Platypus includes a very basic built-in text editor. You can change this in the <strong>Preferences</strong> if you want to use a more capable external text editor.</p>
 
 <p>The <strong>New</strong> button creates a text file for you in Platypus' Application Support folder and opens it in your default editor. The <strong>Reveal</strong> button reveals the script file in the Finder.</p>
 
@@ -307,11 +307,11 @@
 
 <img src="images/script_type.png" style="float: right; width:169px; height:340px;" class="centered-image">
 
-<p>Here you can specify the scripting language you are using.  You can either select one of the predefined scripting languages from the the pop-up menu or type in the path to an interpreter of choice.</p>
+<p>Here you can specify the scripting language you are using.  You can either select one of the predefined scripting languages from the the pop-up menu or type in the path to an interpreter binary of choice.</p>
     
 <p>Most of the time, you do not need to specify this manually.  Whenever you select a script file, Platypus automatically tries to determine what kind of script it is by looking at the file suffix and shebang (#!) line.  If you have specified this meta-data in the script file itself, Platypus is usually smart enough to figure it out.</p>
 
-<p>Please note that the interpreter you selected must exist on the Mac OS X system on which your script application will run.  All the preset scripting language interpreters (e.g. shell, Perl, Python, PHP, Tcl, Expect etc.) are a standard part of all Mac OS X installations.  Using <code>/usr/bin/env</code> is also an option.</p>
+<p>Please note that the interpreter you selected must exist on the Mac OS X system where the application runs.  All the preset scripting language interpreters (e.g. shell, Perl, Python, PHP, Tcl, Expect etc.) are a standard part of all Mac OS X installations.</p>
 
 <p><strong>Args</strong> let you specify arguments to the script and/or its interpreter.</p>
 
@@ -362,7 +362,7 @@
 
 <a name="235"></a>
 <h4>Status Menu</h4>
-<p>Aplication creates a Status Item in the menu bar when launched.  Every time the status item is clicked, the script is executed and its text output displayed line for line in a menu.</p>
+<p>In Status Menu output mode, the application creates a Status Item in the menu bar when launched.  Every time the status item is clicked, the script is executed and its text output is shown line for line in a menu.</p>
 
 <p>The properties of the Status Item (icon, title, etc.) can be configured by pressing the <strong>Status Item Settings</strong> button.</p>
 
@@ -390,7 +390,7 @@
 
 <p>Platypus lets you set an icon for your application.  You can pick from the icon presets, paste your own image or select an image or icon file.</p>
 
-<p>Please note that having Platypus create the icon from an image file will typically not result in an icon that looks good in smaller sizes.  For best results, use professional Mac OS X icon-editing software and specify a carefully crafted .icns file using the "Select .icns file" option.</p>
+<p>Please note that having Platypus create the icon from an image file will typically not result in an icon that looks good in smaller sizes.  For best results, use professional Mac OS X icon-editing software and specify a carefully crafted .icns file using the <strong>Select .icns file</strong> option.</p>
 
 <br>
 <br>
@@ -399,9 +399,9 @@
 
 <h3>Identifier, Author and Version</h3>
 
-<p>The <strong>Identifier</strong> text field allows you to set the unique identifier for your application.  If you have provided a name for your application, this will default to something in the form of "org.username.YourAppName".</p>
+<p>The <strong>Identifier</strong> text field sets the unique identifier for the application.  If you have already provided an application name, this will default to something in the form of "org.username.YourAppName".</p>
 
-<p>Every Mac OS X application has a unique string called a bundle identifier, in the form of a reverse DNS name (e.g. "com.apple.iTunes" or "org.sveinbjorn.Platypus"). Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to something else if you want to. The default bundle identifier prefix used to autogenerate the identifier can be configured in the <strong>Preferences</strong>.</p>
+<p>Every Mac OS X application has a unique string called a bundle identifier, which takes the form of a reverse DNS name (e.g. "com.apple.iTunes" or "org.sveinbjorn.Platypus"). Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to something else if you want to. The default bundle identifier prefix used to autogenerate the identifier can be configured in the <strong>Preferences</strong>.</p>
 
 <img src="images/author_identifier.png" style="width: 427px; height: 113px;" class="centered-image">
 
@@ -415,15 +415,15 @@
 
 <img src="images/special_options.png" style="float: right; width: 260px; height: 112px;">
     
-<p><strong>Requires Administrator privileges:</strong>  Checking "Requires Administrator privileges" will cause your application to prompt for an Administrator password and then execute your script with administrative privileges via Apple's Security Framework.  This is not strictly equivalent to running the script as the root user.  For details, see the <a href="http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges">documentation for Apple's Security Framework.</a></p>
+<p><strong>Requires Administrator privileges:</strong>  If selected, the application prompts for an Administrator password and executes the script with escalated privileges via Apple's Security Framework.  This is not strictly equivalent to running the script as the root user.  For details, see the <a href="http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges">documentation for Apple's Security Framework.</a></p>
 
-<p><i>Platypus scripts must not use the 'sudo' command</i>. This causes the script to prompt for input via STDIN, and since none is forthcoming, the application will hang indefinitely. To execute a command with privileges, the script in its entirety must be executed with those privileges.</p>
+<p><i>Platypus scripts must not use the 'sudo' command</i>. This causes the script to prompt for input via STDIN, and since none is forthcoming, the application will hang indefinitely.</p>
 
 <p>Please note that if this option is selected, the script will not print <code>STDERR</code> output due to limitations in the Security APIs.  This can be circumvented by using a shell script to execute another script while piping <code>STDERR</code> into <code>STDOUT</code> (e.g. <code>perl myScript.pl 2>&amp;1</code>).</p>
 
-<p><strong>Secure bundled script:</strong> Checking this option will bundle the script into the generated application in an obfuscated format. Please note that <em>this will not seriously prevent anyone from getting a clear-text version of the script</em>.  In order for the script to be executed, it must be presented in clear text to the interpreter, and is thus never safe from prying eyes.</p>
+<p><strong>Secure bundled script:</strong> Script is bundled into the generated application in an obfuscated format. Please note that <em>this will not prevent anyone remotely serious from getting a clear-text version of the script</em>.  In order for the script to be executed, it must be presented in clear text to the interpreter. It is therefore never safe from prying eyes.</p>
 
-<p><strong>Runs in background:</strong> If selected, the application registers itself as a User Interface Element and will not show up in the Dock when launched.</p>
+<p><strong>Runs in background:</strong> If selected, the application registers itself as a User Interface Element. This means the application icon will not show up in the Dock while the app is running.</p>
 
 <p><strong>Remain running after completion</strong>: This option tells the application to stay open once the script has been executed.</p>
 
@@ -434,7 +434,7 @@
 
 <h3>Bundled Files</h3>
 
-<p>The Bundled Files list shows files that should be copied into the Resources folder of the application bundle. These files can then be used by your script, which is  run from the Resources directory.</p>
+<p>The Bundled Files list shows files that should be copied into the Resources folder of the resulting application bundle. These files can then be used by your script, which is run from the Resources directory.</p>
 
 <img src="images/bundled_files.png" style="width: 658px; height: 214px;" class="centered-image">
 
@@ -452,7 +452,7 @@
 <a name="41"></a>
 <h3>Accepting files and dragged items</h3>
 
-<p>Selecting <strong>Accept dropped items</strong> makes the application bundle accept drag and dropped files, or dragged text snippets.  If this option is selected, a small button called "Settings" appears next to the checkbox. Pressing it opens the <strong>Drop Settings</strong> window, where it is possible to specify which file types and draggable data the application accepts.</p>
+<p>Selecting <strong>Accept dropped items</strong> makes the application bundle accept drag and dropped files, or dragged text snippets.  If this option is selected, a small button called <strong>Settings</strong> appears next to the checkbox. Pressing it opens the <strong>Drop Settings</strong> window, where it is possible to specify which file types and draggable data the application accepts.</p>
 
 <img src="images/edittypes.png" style="width: 537px; height: 555px;" class="centered-image">
 
@@ -471,11 +471,11 @@
 <a name="42"></a>
 <h3>Build-Time Options</h3>
 
-<p>Platypus allows you to <strong>create development versions</strong> of your script application.  Ordinarily, Platypus will copy your script and any bundled files into the application it creates.  If this option is selected in the "Create app" dialog, a symlink to the original script and bundled files is created instead.  This allows you to work on your script while testing it as a Platypus-app.  For obvious reasons, this option is not compatible with the "Secure bundled script" option.</p>
+<p>Platypus allows you to <strong>create development versions</strong> of your script application.  Ordinarily, Platypus will copy your script and any bundled files into the application it creates.  If <strong>Development Version</strong> is selected in the <strong>Create app</strong> dialog, a symlink to the original script and bundled files is created instead.  This allows you to work on your script while testing it as a Platypus app.  For obvious reasons, this option is not compatible with the "Secure bundled script" option.</p>
 
 <img src="images/create_options.png" style="width: 424px; height: 282px;" class="centered-image">
 
-<p><strong>Optimize Application</strong>: Strip and compile the nib file in the generated application in order to reduce its size. This makes the nib uneditable. Only works if XCode is installed.</p>
+<p><strong>Optimize Application</strong>: Strip and compile the nib file in the application in order to reduce its size. This makes the nib uneditable. Only works if XCode is installed.</p>
 
 <p><strong>Use XML property lists instead of binary</strong>: Create human-readable and human-editable plain text XML property lists in the application bundle.  XML property lists are slower to parse and use up more space, but can be edited with a plain text editor, whereas binary property lists can only be edited using XCode or third-party Apple Property List editors.</p>
     
@@ -508,9 +508,9 @@
 <a name="45"></a>
 <h3>Show Shell Command</h3>
 
-<p>Platypus includes a <strong>command line tool</strong> equivalent to the Platypus.app application, which can be installed into <code>/usr/local/bin/platypus</code> via Platypus Preferences.  The man page for this tool is available from the Help menu and via the command <code>man platypus</code>.  There is also an online <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">HTML version of the man page</a>.</p>
+<p>Platypus includes a <strong>command line tool</strong> equivalent to the Platypus.app application, which can be installed into <code>/usr/local/bin/platypus</code> via <strong>Preferences</strong>.  The man page for this tool is available from the Help menu, and via the command line.  There is also an online <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">version of the man page</a>.</p>
 
-<p>Under the <strong>Advanced</strong> menu there is a menu item called <strong>Show Shell Command</strong>. Selecting this item will bring down a sheet with a text field containing a command line command for executing the platypus command line with the options you selected in the graphical interface. This can be helpful if you have the command line tool installed and wish to automate the creation of script apps.</p>
+<p>Under the <strong>Advanced</strong> menu there is a menu item called <strong>Show Shell Command</strong>. Selecting this item will bring down a sheet with a text field containing a command line command for executing the platypus command line with the options you selected in the graphical interface. This can be helpful if you have the command line tool installed and wish to automate the creation of script apps within a larger build process.</p>
 
 <img src="images/shell_command.png" style="width:472px; height: 375px;" class="centered-image">
 
@@ -533,11 +533,6 @@
 
 <br>
 <br>
-
-<p>You can set Platypus to reveal the app in the Finder once it has been created, or set it to launch the app immediately. The <strong>Create app on script file change</strong> option makes Platypus automatically create an app from the script whenever the selected script file changes.  This makes for a pretty efficient development process.</p>
-
-<br>
-<br>
 <hr>
 <br>
 <br>
@@ -548,9 +543,9 @@
 <a name="61"></a>
 <h3>Saving and Loading</h3>
 
-<p>Profiles allow you to save Platypus application configuration settings.  These can be loaded by the Platypus application or the <code>platypus</code> command line tool.  The Profiles menu is used to save and access profiles.  Profiles are stored as files, typically in the Profiles folder of the Platypus Application Support folder.</p>
+<p>Profiles let you save Platypus application configuration settings.  These can then be loaded by Platypus or the <code>platypus</code> command line tool.  The Profiles menu is used to save and access profiles.  Profiles are stored as files, typically in the <strong>Profiles</strong> folder of the Platypus Application Support folder.</p>
 
-<p>You can load a profile by selecting it from the menu, which lists all profiles in the Profiles folder.  To reveal a profile in the Finder, hold down the Command key and select the profile.  Profiles have a <code>.platypus</code> filename suffix.  Please note that profiles may or may not work between different versions of Platypus, depending on the extent of changes between versions.</p>
+<p>You can load a profile by selecting it from the menu, which lists all profiles in the Profiles folder.  To reveal a profile in the Finder, hold down the Command key and select the profile.  Profiles have a <code>.platypus</code> filename suffix.</p>
 
 <img src="images/profiles.png" style="width: 212px; height: 203px;" class="centered-image">
 <br><br>
@@ -559,7 +554,7 @@
 
 <h3>Using Profiles with the Command Line Tool</h3>
 
-<p>Profiles can be used with the <code>platypus</code> command line tool.  This allows you to set all the settings for your application within the graphical user interface, save them as a profile and load them with the command line app.  This makes automation more convenient.  The following command would load a profile with the command line tool and create an app from it named MyApp.app:</p>
+<p>Profiles can be used with the <code>platypus</code> command line tool.  This allows you to set all the settings for your application within the graphical user interface, save them as a profile and then load the settings with the command line app.  This makes automation more convenient.  The following command would load a profile with the command line tool and create an app from it named MyApp.app:</p>
 
 <div class="codeblock">
 <pre>/usr/local/bin/platypus -P myProfile.platypus MyApp.app</pre>
@@ -622,7 +617,7 @@ NOTIFICATION:My notification text\n
 <a name="10-4"></a>
 <h3>Terminating Application</h3>
 
-<p>If your script prints the string "QUITAPP\n" to STDOUT, the application wrapper will quit.</p>
+<p>If your script prints the string "QUITAPP\n" to STDOUT, the application will quit.</p>
 
 <br><br>
 
@@ -647,7 +642,8 @@ NOTIFICATION:My notification text\n
     CD="CocoaDialog.app/Contents/MacOS/CocoaDialog"
     
     rv=`$CD yesno-msgbox --string-output`
-    $CD ok-msgbox --no-cancel --text "You pressed $rv"</pre></div>
+    $CD ok-msgbox --no-cancel --text "You pressed $rv"
+</pre></div>
 
 <p>This Platypus application will present the user with an alert and several buttons. When the user presses one of the buttons, a feedback dialog is generated notifying the user which button he pressed. While this particular script accomplishes nothing, it serves as an example of how to add interactive elements to a script.</p>
 
@@ -816,17 +812,7 @@ if (!scalar(@ARGV)) {
     
 <h3 id="86">How do I uninstall Platypus?</h3>
 
-<p>Platypus only uses about 5MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select <strong>Uninstall Platypus</strong> from the Platypus application menu.  This will uninstall the command line tool (if you have previously installed it), and move the Platypus.app and all its supporting files -- <em>including Profiles</em> -- to the Trash.</p>
-
-<p>If you are using a version of Platypus prior to 4.7, you can remove Platypus manually by doing the following:</p>
-<ul>
-    <li>If you have installed the command line tool, go into Preferences, and press "Uninstall Command Line Tool".</li>
-    <li>Move Platypus.app to the Trash</li>
-    <li>Move <code>~/Library/Application Support/Platypus</code> to the Trash</li>
-    <li>Finally, the Platypus prefs file is in <code>~/Preferences/org.sveinbjorn.Platypus</code> if you want to delete it.</li>
-</ul>
-
-<p>These are <em>all</em> the files Platypus creates on your system.</p>
+<p>Platypus parsimoniously uses only about 5MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select <strong>Uninstall Platypus</strong> from the Platypus application menu.  This will uninstall the command line tool (if you have previously installed it), and move the Platypus.app and all its supporting files -- <em>including Profiles</em> -- to the Trash.</p>
 
 <br>
 <br>
