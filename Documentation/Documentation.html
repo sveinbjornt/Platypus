@@ -147,6 +147,7 @@
             <li><a href="#10-5">Loading a Website into Web View</a></li>
             <li><a href="#10-6">User interaction with CocoaDialog/Pashua</a></li>
             <li><a href="#10-7">Creating an interactive Status Menu app</a></li>
+            <li><a href="#10-8">Prompting for input via osascript/AppleScript</a></li>
         </ul>
     </li>
     <li class="heading">
@@ -676,7 +677,34 @@ if (!scalar(@ARGV)) {
     
     <p>This script creates a Status Menu app which shows a few lines of Shakespeare's Macbeth as menu items. When selected, the line in question is fed into the Mac OS X speech synthesizer via <code>/usr/bin/say</code>.</p>
     
-    <br>
+<br>
+<br>
+<br>
+
+<h3 id="10-8">Prompting for input via osascript/AppleScript</h3>
+
+<p>Scripts can also prompt for input by passing some AppleScript code to the <code>osascript</code> program. See example below:</p>
+
+<div class="codeblock"><pre>
+#!/usr/bin/perl
+
+use strict;
+
+sub osascript($) { system 'osascript', map { ('-e', $_) } split(/\n/, $_[0]); }
+
+sub dialog {
+    my ($text, $default) = @_;
+    osascript(qq{
+    tell app "System Events"
+    text returned of (display dialog "$text" default answer "$default" buttons {"OK"} default button 1 with title "Riddle")
+    end tell
+    });
+}
+
+my $result = dialog("Answer to life, the universe and everything?", "42");
+</div></pre>
+
+<p><a href="http://stackoverflow.com/questions/33601580/using-platypus-to-create-mac-os-x-applications-from-a-perl-script/33603239#33603239">Source</a>.</p>
 
 <br>
 <br>

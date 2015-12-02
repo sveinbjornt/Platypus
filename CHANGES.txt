@@ -15,13 +15,14 @@ For 5.1
     TODO: Add documentation on reading dropped text from STDIN
     TODO: Document the Services feature and provide instructions on how to enable in the Services preferences in Mac OS X.
     TODO: File watching still broken for script path
+    TODO: [img setTemplate] option for Status Item icon
     TODO: Refactor ScriptExec for clean view controller/task controller decoupling
     TODO: Make UTIs default in Drop Settings (public.item and public.folder)
+    TODO: Look at FTaskStream.h
+    TODO: Use pseudo-pttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
+
 
 For 5.0
-    TODO: Create archive and get hash, update Sparkle, update docs
-    TODO: Final overhaul of documentation and readme files
-
     * Long GNU named params for command line tool, e.g. --some-option
     * Fixed issue where ScriptExec quit before script output was parsed
     * Add new examples Icns2Iconset, ImageResizer
