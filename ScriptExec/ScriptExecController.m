@@ -1078,6 +1078,7 @@
         PLog(@"Warning: Output string is nil");
         return;
     }
+    PLog(@"Output:%@", outputString);
     
     if (remnants != nil && [remnants length] > 0) {
         [outputString insertString:remnants atIndex:0];

@@ -1,15 +1,15 @@
 #!/usr/bin/perl
 
 # If 0 arguments, we show menu
-if (!scalar(@ARGV)) {
-print "Life's but a walking shadow, a poor player\n";
-print "That struts and frets his hour upon the stage\n";
-print "And then is heard no more.\n";
-} else {
-# We get the menu title as an argument
-# and feed it to the Mac OS X voice synthesizer
-system("/usr/bin/say \"$ARGV[0]\"");
-}
+#if (!scalar(@ARGV)) {
+#print "Life's but a walking shadow, a poor player\n";
+#print "That struts and frets his hour upon the stage\n";
+#print "And then is heard no more.\n";
+#} else {
+## We get the menu title as an argument
+## and feed it to the Mac OS X voice synthesizer
+#system("/usr/bin/say \"$ARGV[0]\"");
+#}
 
 
 
@@ -43,10 +43,12 @@ system("/usr/bin/say \"$ARGV[0]\"");
 #
 
 #sleep 3;
-#for ($i = 0; $i < 100; $i++)
-#{#
-#print "$i" . "\n";
-#}
+#$|=1;
+for ($i = 0; $i < 5; $i++)
+{
+print "$i" . "\n";
+    sleep 1;
+}
 #$i = 0;
 #foreach (@ARGV)
 #{
