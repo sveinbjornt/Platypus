@@ -16,7 +16,7 @@ your own Mac OS X graphical program. Creating installers, maintenance
 applications, login items, launchers, automations and droplets is 
 very easy using Platypus.
 
-[Documentation](https://github.com/sveinbjornt/Platypus/blob/master/Documentation/Documentation.html)
+[Documentation](http://sveinbjorn.org/platypus_documentation)
 
 
 ### Some notes on the code
