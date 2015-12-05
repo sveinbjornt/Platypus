@@ -49,8 +49,10 @@
 #pragma mark - NSMutableDictionary subclass using proxy
 
 - (void)dealloc {
+#if !__has_feature(objc_arc)
     [properties release];
     [super dealloc];
+#endif
 }
 
 - (instancetype)init {
@@ -141,19 +143,35 @@
 //#if !__has_feature(objc_arc)
 
 + (instancetype)specWithDefaults {
-    return [[[self alloc] initWithDefaults] autorelease];
+    id spec = [[self alloc] initWithDefaults];
+#if !__has_feature(objc_arc)
+    [spec autorelease];
+#endif
+    return spec;
 }
 
 + (instancetype)specWithDictionary:(NSDictionary *)dict {
-    return [[[self alloc] initWithDictionary:dict] autorelease];
+    id spec = [[self alloc] initWithDictionary:dict];
+#if !__has_feature(objc_arc)
+    [spec autorelease];
+#endif
+    return spec;
 }
 
 + (instancetype)specWithProfile:(NSString *)profilePath {
-    return [[[self alloc] initWithProfile:profilePath] autorelease];
+    id spec = [[self alloc] initWithProfile:profilePath];
+#if !__has_feature(objc_arc)
+    [spec autorelease];
+#endif
+    return spec;
 }
 
 + (instancetype)specWithDefaultsFromScript:(NSString *)scriptPath {
-    return [[[self alloc] initWithDefaultsForScript:scriptPath] autorelease];
+    id spec = [[self alloc] initWithDefaultsForScript:scriptPath];
+#if !__has_feature(objc_arc)
+    [spec autorelease];
+#endif
+    return spec;
 }
 
 //#endif
@@ -552,7 +570,10 @@
 - (NSDictionary *)infoPlist {
     
     // create copyright string with current year
-    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+#if !__has_feature(objc_arc)
+    [formatter autorelease];
+#endif
     [formatter setDateFormat:@"yyyy"];
     NSString *yearString = [formatter stringFromDate:[NSDate date]];
     NSString *copyrightString = [NSString stringWithFormat:@"© %@ %@", yearString, self[@"Author"]];
@@ -639,10 +660,14 @@
     va_list args;
     
     va_start(args, format);
-    NSString *string  = [[[NSString alloc] initWithFormat:format arguments:args] autorelease];
+    NSString *string  = [[NSString alloc] initWithFormat:format arguments:args];
     va_end(args);
     
     fprintf(stderr, "%s\n", [string UTF8String]);
+    
+#if !__has_feature(objc_arc)
+    [string autorelease];
+#endif
     
     [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SPEC_CREATION_NOTIFICATION object:string];
 }
@@ -955,7 +980,9 @@
     [ibToolTask setArguments:@[@"--strip", nibPath, nibPath]];
     [ibToolTask launch];
     [ibToolTask waitUntilExit];
+#if !__has_feature(objc_arc)
     [ibToolTask release];
+#endif
 }
 
 @end
