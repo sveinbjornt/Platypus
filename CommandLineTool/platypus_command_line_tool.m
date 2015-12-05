@@ -121,7 +121,6 @@ int main(int argc, const char *argv[]) {
     NSSetUncaughtExceptionHandler(&exceptionHandler);
 #endif
     
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; //set up autorelease pool
     NSFileManager *fm = FILEMGR;
     NSMutableDictionary *properties = [NSMutableDictionary dictionary];
     
@@ -470,7 +469,7 @@ int main(int argc, const char *argv[]) {
                 }
                 
                 // read image from file
-                NSImage *iconImage = [[[NSImage alloc] initWithContentsOfFile:iconPath] autorelease];
+                NSImage *iconImage = [[NSImage alloc] initWithContentsOfFile:iconPath];
                 if (iconImage == nil) {
                     NSPrintErr(@"Error: Unable to get image from file '%@'", iconPath);
                     exit(1);
@@ -574,7 +573,7 @@ int main(int argc, const char *argv[]) {
             // write to temp file
             NSError *err;
             BOOL success = [inStr writeToFile:TMP_STDIN_PATH atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:&err];
-            [inStr release];
+
             if (success == NO) {
                 NSPrintErr(@"Error writing script to path %: %@", TMP_STDIN_PATH, [err localizedDescription]);
                 exit(1);
@@ -632,8 +631,6 @@ int main(int argc, const char *argv[]) {
         [FILEMGR removeItemAtPath:scriptPath error:nil];
     }
     
-    [pool drain];
-    
     return 0;
 }
 
@@ -669,7 +666,7 @@ static void PrintHelp(void) {
             -u --author [author]                 Set name of application author\n\
             -Q --document-icon [iconPath]        Set icon for documents\n\
             -V --app-version [version]           Set version of application\n\
-            -I --bundle-identifier [identifier]  Set bundle identifier (i.e. org.yourname.appname)\n\
+            -I --bundle-identifier [identifier]  Set bundle identifier (e.g. org.yourname.appname)\n\
             \n\
             -A --admin-privileges                App runs with Administrator privileges\n\
             -S --secure-script                   Secure bundled script\n\
@@ -717,7 +714,9 @@ static void NSPrint(NSString *format, ...) {
     
     fprintf(stdout, "%s\n", [string UTF8String]);
     
+#if !__has_feature(objc_arc)
     [string release];
+#endif
 }
 
 // print to stderr
@@ -729,6 +728,8 @@ static void NSPrintErr(NSString *format, ...) {
     va_end(args);
     
     fprintf(stderr, "%s\n", [string UTF8String]);
-    
+
+#if !__has_feature(objc_arc)
     [string release];
+#endif
 }

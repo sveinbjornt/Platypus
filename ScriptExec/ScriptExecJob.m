@@ -22,7 +22,11 @@
 }
 
 + (instancetype)jobWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr {
-    return [[[self alloc] initWithArguments:args andStandardInput:stdinStr] autorelease];
+    id job = [[self alloc] initWithArguments:args andStandardInput:stdinStr];
+#if !__has_feature(objc_arc)
+    [job autorelease];
+#endif
+    return job;
 }
 
 @end

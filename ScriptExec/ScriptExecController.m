@@ -171,43 +171,6 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    if (arguments != nil) {
-        [arguments release];
-    }
-    if (droppableSuffixes != nil) {
-        [droppableSuffixes release];
-    }
-    if (droppableUniformTypes != nil) {
-        [droppableUniformTypes release];
-    }
-    if (interpreterArgs != nil) {
-        [interpreterArgs release];
-    }
-    if (scriptArgs != nil) {
-        [scriptArgs release];
-    }
-    if (commandLineArguments != nil) {
-        [commandLineArguments release];
-    }
-    if (statusItemIcon != nil) {
-        [statusItemIcon release];
-    }
-    if (scriptText != nil) {
-        [scriptText release];
-    }
-    if (statusItem != nil) {
-        [statusItem release];
-    }
-    if (statusItemMenu != nil) {
-        [statusItemMenu release];
-    }
-    if (appName != nil) {
-        [appName release];
-    }
-    
-    [jobQueue release];
-    [super dealloc];
 }
 
 - (void)awakeFromNib {
@@ -305,10 +268,6 @@
         if (appSettingsDict[@"TextEncoding"] != nil) {
             textEncoding = (int)[appSettingsDict[@"TextEncoding"] intValue];
         }
-        
-        [textFont retain];
-        [textForegroundColor retain];
-        [textBackgroundColor retain];
     }
     
     // status menu output has some additional parameters
@@ -317,7 +276,7 @@
         
         // we load text label if status menu is not only an icon
         if ([statusItemDisplayType isEqualToString:@"Text"] || [statusItemDisplayType isEqualToString:@"Icon and Text"]) {
-            statusItemTitle = [appSettingsDict[@"StatusItemTitle"] retain];
+            statusItemTitle = [appSettingsDict[@"StatusItemTitle"] copy];
             if (statusItemTitle == nil) {
                 [Alerts fatalAlert:@"Error getting title" subText:@"Failed to get Status Item title."];
             }
@@ -339,8 +298,8 @@
         statusItemUsesSystemFont = [appSettingsDict[@"StatusItemUseSystemFont"] boolValue];
     }
     
-    interpreterArgs = [appSettingsDict[@"InterpreterArgs"] retain];
-    scriptArgs = [appSettingsDict[@"ScriptArgs"] retain];
+    interpreterArgs = [appSettingsDict[@"InterpreterArgs"] copy];
+    scriptArgs = [appSettingsDict[@"ScriptArgs"] copy];
     execStyle = [appSettingsDict[@"RequiresAdminPrivileges"] boolValue];
     remainRunning = [appSettingsDict[@"RemainRunningAfterCompletion"] boolValue];
     secureScript = [appSettingsDict[@"Secure"] boolValue];
@@ -531,7 +490,7 @@
         if ([task isRunning]) {
             [task terminate];
         }
-        [task release];
+        task = nil;
     }
     
     // terminate privileged task
@@ -539,7 +498,7 @@
         if ([privilegedTask isRunning]) {
             [privilegedTask terminate];
         }
-        [privilegedTask release];
+        privilegedTask = nil;
     }
     
     // hide status item
@@ -663,7 +622,7 @@
         case PLATYPUS_OUTPUT_STATUSMENU:
         {
             // create and activate status item
-            statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+            statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
             [statusItem setHighlightMode:YES];
             
             // set status item title and icon
@@ -681,7 +640,7 @@
             [statusItem setMenu:statusItemMenu];
             
             //create Quit menu item
-            NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Quit %@", appName] action:@selector(terminate:) keyEquivalent:@""] autorelease];
+            NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Quit %@", appName] action:@selector(terminate:) keyEquivalent:@""];
             [statusItemMenu insertItem:menuItem atIndex:0];
             [statusItemMenu insertItem:[NSMenuItem separatorItem] atIndex:0];
             [statusItem setEnabled:YES];
@@ -774,7 +733,6 @@
     // if there are any remnants, we append them to output
     if (remnants != nil) {
         [self appendString:remnants];
-        [remnants release];
         remnants = nil;
     }
 
@@ -877,7 +835,6 @@
     // but apparently helpful for certain use cases such as Firefox protocol handlers etc.
     if (commandLineArguments && [commandLineArguments count]) {
         [arguments addObjectsFromArray:commandLineArguments];
-        [commandLineArguments release];
         commandLineArguments = nil;
     }
     
@@ -1086,14 +1043,12 @@
     
     // parse line by line
     NSMutableArray<NSString*> *lines = [[outputString componentsSeparatedByString:@"\n"] mutableCopy];
-    [outputString release];
     
     // if the string did not end with a newline, it wasn't a complete line of output
     // Thus, we store this last non-newline-terminated string
     // It'll be prepended next time we get output
     if ([[lines lastObject] length] > 0) {
         if (remnants != nil) {
-            [remnants release];
             remnants = nil;
         }
         remnants = [[NSString alloc] initWithString:[lines lastObject]];
@@ -1153,7 +1108,6 @@
                     [progressBarIndicator setIndeterminate:NO];
                     [progressBarIndicator setDoubleValue:[percentageNumber doubleValue]];
                 }
-                [numFormatter release];
                 continue;
             }
             // set visibility of details text field
@@ -1186,8 +1140,6 @@
             [progressBarMessageTextField setStringValue:theLine];
         }
     }
-    
-    [lines release];
     
     // if web output, we continually re-render to accomodate incoming data
     if (outputType == PLATYPUS_OUTPUT_WEBVIEW) {
@@ -1638,11 +1590,11 @@
                 // or a file system path
                 BOOL isDir;
                 if ([FILEMGR fileExistsAtPath:imageToken isDirectory:&isDir] && !isDir) {
-                    icon = [[[NSImage alloc] initByReferencingFile:imageToken] autorelease];
+                    icon = [[NSImage alloc] initByReferencingFile:imageToken];
                 } else {
                     NSURL *url = [NSURL URLWithString:imageToken];
                     if (url != nil) {
-                        icon = [[[NSImage alloc] initWithContentsOfURL:url] autorelease];
+                        icon = [[NSImage alloc] initWithContentsOfURL:url];
                     }
                 }
             }
@@ -1652,7 +1604,7 @@
         }
         
         // create the menu item
-        NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:line action:@selector(menuItemSelected:) keyEquivalent:@""] autorelease];
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(menuItemSelected:) keyEquivalent:@""];
         
         // set the formatted menu item string
         if (statusItemUsesSystemFont) {
@@ -1662,7 +1614,7 @@
             NSDictionary *textAttributes = @{NSForegroundColorAttributeName: textForegroundColor,
                                             NSFontAttributeName: textFont};
             
-            NSAttributedString *attStr = [[[NSAttributedString alloc] initWithString:line attributes:textAttributes] autorelease];
+            NSAttributedString *attStr = [[NSAttributedString alloc] initWithString:line attributes:textAttributes];
             [menuItem setAttributedTitle:attStr];
         }
         
@@ -1689,7 +1641,6 @@
     [notification setInformativeText:notificationText];
     [notification setSoundName:NSUserNotificationDefaultSoundName];
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    [notification release];
 }
 
 @end
