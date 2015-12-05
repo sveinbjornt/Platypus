@@ -131,7 +131,6 @@
                                   window:[self window]];
     
     [FILEMGR removeItemAtPath:tmpPath error:nil];
-    [controller release];
 }
 
 - (IBAction)revealInFinder:(id)sender {

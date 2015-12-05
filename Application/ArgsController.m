@@ -95,12 +95,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [interpreterArgs release];
-    [scriptArgs release];
-    [super dealloc];
-}
-
 #pragma mark - Getters/setters
 
 - (void)setInterpreterArgs:(NSArray *)array {
@@ -170,13 +164,13 @@
     for (int i = 0; i < [interpreterArgs count]; i++)
     {
         NSString *a = [NSString stringWithFormat:@" %@", interpreterArgs[i]];
-        NSMutableDictionary *attrs = [[defaultAttrs mutableCopy] autorelease];
+        NSMutableDictionary *attrs = [defaultAttrs mutableCopy];
         
         if ([interpreterArgsTableView selectedRow] == i && interpreterArgsTableView == [argsWindow firstResponder]) {
             attrs[NSBackgroundColorAttributeName] = [NSColor selectedControlColor];
         }
         
-        NSMutableAttributedString *attrStr = [[[NSMutableAttributedString alloc] initWithString:a attributes:attrs] autorelease];
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:a attributes:attrs];
         if (interpreterArgsTableView == [argsWindow firstResponder]) {
             [attrStr beginEditing];
             [attrStr addAttribute:NSFontAttributeName
@@ -188,20 +182,20 @@
     }
     
     // yourScript
-    NSAttributedString *scriptString = [[[NSAttributedString alloc] initWithString:@" yourScript " attributes:nil] autorelease];
+    NSAttributedString *scriptString = [[NSAttributedString alloc] initWithString:@" yourScript " attributes:nil];
     [cmdString appendAttributedString:scriptString];
     
     // script args
     for (int i = 0; i < [scriptArgs count]; i++)
     {
         NSString *a = [NSString stringWithFormat:@"%@ ", scriptArgs[i]];
-        NSMutableDictionary *attrs = [[defaultAttrs mutableCopy] autorelease];
+        NSMutableDictionary *attrs = [defaultAttrs mutableCopy];
         
         if ([scriptArgsTableView selectedRow] == i && scriptArgsTableView == [argsWindow firstResponder]) {
             attrs[NSBackgroundColorAttributeName] = [NSColor selectedControlColor];
         }
         
-        NSMutableAttributedString *attrStr = [[[NSMutableAttributedString alloc] initWithString:a attributes:attrs] autorelease];
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:a attributes:attrs];
         if (scriptArgsTableView == [argsWindow firstResponder]) {
             [attrStr beginEditing];
             [attrStr addAttribute:NSFontAttributeName
@@ -214,11 +208,11 @@
     
     // file args
     if ([isDroppableCheckbox state] == NSOnState) {
-        NSAttributedString *attrStr = [[[NSAttributedString alloc] initWithString:@" [files ...]" attributes:defaultAttrs] autorelease];
+        NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:@" [files ...]" attributes:defaultAttrs];
         [cmdString appendAttributedString:attrStr];
     }
     
-    [commandTextField setAttributedStringValue:[cmdString autorelease]];
+    [commandTextField setAttributedStringValue:cmdString];
 }
 
 - (void)updateGUIStatus {

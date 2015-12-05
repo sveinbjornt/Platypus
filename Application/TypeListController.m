@@ -45,11 +45,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [items release];
-    [super dealloc];
-}
-
 - (void)addItem:(NSString *)item {
     if ([self hasItem:item]) {
         return;
@@ -117,7 +112,7 @@
     } else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
         if (rowIndex == 0) {
             NSImageCell *iconCell;
-            iconCell = [[[NSImageCell alloc] init] autorelease];
+            iconCell = [[NSImageCell alloc] init];
             [aTableColumn setDataCell:iconCell];
         }
         

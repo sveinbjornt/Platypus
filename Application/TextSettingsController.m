@@ -59,13 +59,6 @@
     [self setCurrentFont:[NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE]];
 }
 
-- (void)dealloc {
-    if (currentFont != nil) {
-        [currentFont release];
-    }
-    [super dealloc];
-}
-
 - (IBAction)show:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Edit Text Settings", PROGRAM_NAME]];
     
@@ -112,12 +105,8 @@
 }
 
 - (void)setCurrentFont:(NSFont *)font {
-    if (font != nil) {
-        NSFont *newFont = [font retain];
-        [currentFont release];
-        currentFont = newFont;
-        [self updateFontField];
-    }
+    currentFont = [font copy];
+    [self updateFontField];
 }
 
 // called by the shared NSFontManager when user chooses a new font or size in the Font Panel

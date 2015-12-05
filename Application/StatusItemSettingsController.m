@@ -61,13 +61,6 @@
 
 @implementation StatusItemSettingsController
 
-- (void)dealloc {
-    if (pStatusItemMenu) {
-        [pStatusItemMenu release];
-    }
-    [super dealloc];
-}
-
 - (IBAction)show:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Status Item Settings", PROGRAM_NAME]];
     
@@ -141,7 +134,6 @@
         NSImage *img = [[NSImage alloc] initWithContentsOfFile:filePath];
         if (img != nil) {
             [self setIcon:img];
-            [img release];
         } else {
             [Alerts alert:@"Corrupt Image File" subText:@"The image file you selected appears to be damaged or corrupt."];
         }
@@ -154,7 +146,7 @@
     [self killStatusItem];
     
     // create status item
-    pStatusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+    pStatusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [pStatusItem setHighlightMode:YES];
     [pStatusItem setMenu:pStatusItemMenu];
     
@@ -188,7 +180,6 @@
 - (void)killStatusItem {
     if (pStatusItem != nil) {
         [[NSStatusBar systemStatusBar] removeStatusItem:pStatusItem]; // remove cleanly from status bar
-        [pStatusItem release];
         pStatusItem = nil;
     }
 }
@@ -207,7 +198,7 @@
     
     NSTask *task = [platypusController taskForCurrentScript];
     if (task == nil) {
-        NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:@"Your script output here" action:nil keyEquivalent:@""] autorelease];
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Your script output here" action:nil keyEquivalent:@""];
         [pStatusItemMenu insertItem:menuItem atIndex:0];
         return;
     }
@@ -224,7 +215,7 @@
     
     // get output as string
     NSData *outputData = [readHandle readDataToEndOfFile];
-    NSString *outputString = [[[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding] autorelease];
+    NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
     
     // create one menu item per line of output
     NSArray *lines = [outputString componentsSeparatedByString:@"\n"];
@@ -237,13 +228,11 @@
         [menuItem setTarget:self];
         [menuItem setEnabled:YES];
         [pStatusItemMenu addItem:menuItem];
-        [menuItem release];
     }
     if ([pStatusItemMenu numberOfItems] == 0) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"No output" action:nil keyEquivalent:@""];
         [menuItem setEnabled:NO];
         [pStatusItemMenu addItem:menuItem];
-        [menuItem release];
     }
 }
 

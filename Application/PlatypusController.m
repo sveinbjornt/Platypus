@@ -142,8 +142,6 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [fileWatcherQueue release];
-    [super dealloc];
 }
 
 + (void)initialize {
@@ -338,7 +336,6 @@
     [controller showSyntaxCheckerForFile:[scriptPathTextField stringValue]
                          withInterpreter:[interpreterTextField stringValue]
                                   window:window];
-    [controller release];
     [window setTitle:PROGRAM_NAME];
 }
 
@@ -346,7 +343,6 @@
     [window setTitle:[NSString stringWithFormat:@"%@ - Script Editor", PROGRAM_NAME]];
     EditorController *controller = [[EditorController alloc] init];
     [controller showEditorForFile:[scriptPathTextField stringValue] window:window];
-    [controller release];
     [window setTitle:PROGRAM_NAME];
 }
 
@@ -540,7 +536,7 @@
 #pragma mark - Generate/read AppSpec
 
 - (id)appSpecFromControls {
-    PlatypusAppSpec *spec = [[[PlatypusAppSpec alloc] initWithDefaults] autorelease];
+    PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaults];
     
     spec[@"Name"] = [appNameTextField stringValue];
     spec[@"ScriptPath"] = [scriptPathTextField stringValue];
@@ -636,7 +632,7 @@
     // status menu settings
     if ([spec[@"Output"] isEqualToString:@"Status Menu"]) {
         if (![spec[@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
-            NSImage *icon = [[[NSImage alloc] initWithData:spec[@"StatusItemIcon"]] autorelease];
+            NSImage *icon = [[NSImage alloc] initWithData:spec[@"StatusItemIcon"]];
             if (icon != nil) {
                 [statusItemSettingsController setIcon:icon];
             }
@@ -701,7 +697,6 @@
     
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsForScript:filename];
     [self controlsFromAppSpec:spec];
-    [spec release];
     
     [iconController setToDefaults:self];
     
@@ -851,7 +846,6 @@
     [window setTitle:[NSString stringWithFormat:@"%@ - Shell Command String", PROGRAM_NAME]];
     ShellCommandController *shellCommandController = [[ShellCommandController alloc] init];
     [shellCommandController showShellCommandForSpec:[self appSpecFromControls] window:window];
-    [shellCommandController release];
     [window setTitle:PROGRAM_NAME];
 }
 
@@ -906,7 +900,7 @@
     [args addObjectsFromArray:[argsController scriptArgs]];
     [task setArguments:args];
 
-    return [task autorelease];
+    return task;
 }
 
 #pragma mark - Drag and drop
@@ -1009,7 +1003,7 @@
         NSImage *img = [menuItem image];
         if (img == nil) {
             if ([outputTypePopupButton itemAtIndex:0] == menuItem) {
-                img = [[[NSImage imageNamed:@"NSDefaultApplicationIcon"] copy] autorelease];
+                img = [[NSImage imageNamed:@"NSDefaultApplicationIcon"] copy];
             } else {
                 NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
                 img = [NSImage imageNamed:imageName];

@@ -110,7 +110,6 @@
     
     //create a new NSDraggingItem with our pasteboard item.
     NSDraggingItem *dragItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pbItem];
-    [pbItem release];
     
     /* The coordinates of the dragging frame are relative to our view.  Setting them to our view's bounds will cause the drag image
      * to be the same size as our view.  Alternatively, you can set the draggingFrame to an NSRect that is the size of the image in
@@ -125,7 +124,7 @@
     [dragItem setDraggingFrame:draggingRect contents:[self image]];
     
     //create a dragging session with our drag item and ourself as the source.
-    NSDraggingSession *draggingSession = [self beginDraggingSessionWithItems:@[[dragItem autorelease]] event:event source:self];
+    NSDraggingSession *draggingSession = [self beginDraggingSessionWithItems:@[dragItem] event:event source:self];
     //causes the dragging item to slide back to the source if the drag fails.
     draggingSession.animatesToStartingPositionsOnCancelOrFail = YES;
     

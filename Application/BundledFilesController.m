@@ -72,12 +72,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [files release];
-    [fileWatcherQueue release];
-    [super dealloc];
-}
-
 - (void)awakeFromNib {
     totalFileSize = 0;
     [tableView registerForDraggedTypes:@[NSFilenamesPboardType]];
@@ -240,7 +234,6 @@
     [window setTitle:[NSString stringWithFormat:@"%@ - Editing %@", PROGRAM_NAME, [path lastPathComponent]]];
     EditorController *editorController = [[EditorController alloc] init];
     [editorController showEditorForFile:path window:window];
-    [editorController release];
     [window setTitle:PROGRAM_NAME];
 }
 
@@ -369,7 +362,7 @@
         } else {
             // if not, we hilight red
             NSDictionary *attr = @{NSForegroundColorAttributeName: [NSColor redColor]};
-            return [[[NSAttributedString alloc] initWithString:filePath attributes:attr] autorelease];
+            return [[NSAttributedString alloc] initWithString:filePath attributes:attr];
         }
     } else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
         return files[rowIndex][@"Icon"];

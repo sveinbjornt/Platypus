@@ -88,7 +88,6 @@
         NSString *scriptName = spec[@"ScriptName"];
         if (scriptStr == nil || scriptName == nil) {
             [Alerts alert:@"Error loading example" subText:@"Nil script value(s) in this example's profile dictionary."];
-            [spec release];
             return;
         }
         
@@ -105,7 +104,6 @@
     //		[PlatypusUtility alert:@"Version clash" subText: @"The profile you selected was created with a different version of Platypus and may not load correctly."];
     
     [platypusController controlsFromAppSpec:spec];
-    [spec release];
 }
 
 #pragma mark - Saving
@@ -176,7 +174,7 @@
     [icon setSize:NSMakeSize(16, 16)];
     
     // Create Examples menu
-    NSMenu *examplesMenu = [[[NSMenu alloc] init] autorelease];
+    NSMenu *examplesMenu = [[NSMenu alloc] init];
     
     for (NSString *exampleName in examples) {
         NSMenuItem *menuItem = [examplesMenu addItemWithTitle:exampleName

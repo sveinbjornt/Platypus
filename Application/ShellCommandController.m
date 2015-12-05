@@ -54,11 +54,6 @@
     return [super initWithWindowNibName:@"ShellCommandWindow"];
 }
 
-- (void)dealloc {
-    [appSpec release];
-    [super dealloc];
-}
-
 - (void)awakeFromNib {
     [textView setFont:SHELL_COMMAND_STRING_FONT];
 }
@@ -67,7 +62,7 @@
 
 - (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow {
     [self loadWindow];
-    appSpec = [spec retain];
+    appSpec = [spec copy];
     [textView setString:[appSpec commandString:![useShortOptsCheckbox intValue]]];
     [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
     

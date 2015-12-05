@@ -74,13 +74,7 @@
 
 - (void)dealloc {
     [[WORKSPACE notificationCenter] removeObserver:self];
-    
-    if (icnsFilePath != nil) {
-        [icnsFilePath release];
-    }
-    [fileWatcherQueue release];
     dispatch_release(iconWritingDispatchQueue);
-    [super dealloc];
 }
 
 - (void)awakeFromNib {
@@ -190,11 +184,11 @@
 
 - (void)updateIcnsStatus {
     if ([self hasIconFile] && [FILEMGR fileExistsAtPath:icnsFilePath] == FALSE) {
-        IconFamily *iconFam = [[[IconFamily alloc] initWithSystemIcon:kQuestionMarkIcon] autorelease];
+        IconFamily *iconFam = [[IconFamily alloc] initWithSystemIcon:kQuestionMarkIcon];
         [iconImageView setImage:[iconFam imageWithAllReps]];
         [iconNameTextField setTextColor:[NSColor redColor]];
     } else {
-        NSImage *img = [[[NSImage alloc] initByReferencingFile:icnsFilePath] autorelease];
+        NSImage *img = [[NSImage alloc] initByReferencingFile:icnsFilePath];
         if (img == nil) {
             img = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
         }
@@ -249,7 +243,7 @@
         case PlatypusPresetIconInstaller:
         {
             NSString *installerIconPath = @"/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns";
-            iconImage = [[[NSImage alloc] initByReferencingFile:installerIconPath] autorelease];
+            iconImage = [[NSImage alloc] initByReferencingFile:installerIconPath];
             [iconImage setSize:NSMakeSize(512, 512)];
             iconName = @"Installer";
             iconPath = installerIconPath;
@@ -290,7 +284,6 @@
         return NO;
     }
     [iconFamily writeToFile:path];
-    [iconFamily release];
     return YES;
 }
 
@@ -302,7 +295,6 @@
     
     if (icnsFilePath != nil) {
         [fileWatcherQueue removePath:icnsFilePath];
-        [icnsFilePath release];
         icnsFilePath = nil;
     }
     
@@ -341,10 +333,10 @@
     
     [iconNameTextField setStringValue:[filePath lastPathComponent]];
     
-    NSImage *img = [[[NSImage alloc] initByReferencingFile:filePath] autorelease];
+    NSImage *img = [[NSImage alloc] initByReferencingFile:filePath];
     
     if (img == nil) {
-        IconFamily *iconFam = [[[IconFamily alloc] initWithSystemIcon:kQuestionMarkIcon] autorelease];
+        IconFamily *iconFam = [[IconFamily alloc] initWithSystemIcon:kQuestionMarkIcon];
         [iconImageView setImage:[iconFam imageWithAllReps]];
         return NO;
     }
@@ -356,7 +348,7 @@
 }
 
 - (BOOL)loadImageFile:(NSString *)filePath {
-    NSImage *img = [[[NSImage alloc] initByReferencingFile:filePath] autorelease];
+    NSImage *img = [[NSImage alloc] initByReferencingFile:filePath];
     if (img == nil) {
         return NO;
     }
@@ -367,7 +359,7 @@
 }
 
 - (BOOL)loadImageWithData:(NSData *)imgData {
-    NSImage *img = [[[NSImage alloc] initWithData:imgData] autorelease];
+    NSImage *img = [[NSImage alloc] initWithData:imgData];
     if (img == nil) {
         return NO;
     }
@@ -378,7 +370,7 @@
 }
 
 - (BOOL)loadImageFromPasteboard {
-    NSImage *img = [[[NSImage alloc] initWithPasteboard:[NSPasteboard generalPasteboard]] autorelease];
+    NSImage *img = [[NSImage alloc] initWithPasteboard:[NSPasteboard generalPasteboard]];
     if (img == nil) {
         return NO;
     }

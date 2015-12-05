@@ -89,12 +89,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [suffixListController release];
-    [uniformTypeListController release];
-    [super dealloc];
-}
-
 #pragma mark -
 
 - (void)awakeFromNib {
@@ -419,16 +413,13 @@
 }
 
 - (void)setDocIconPath:(NSString *)path {
-    if (docIconPath) {
-        [docIconPath release];
-    }
     docIconPath = [path copy];
     
     NSImage *icon;
     if (path == nil || [path isEqualToString:@""]) {
         icon = [WORKSPACE iconForFileType:NSFileTypeForHFSTypeCode(kGenericDocumentIcon)];
     } else {
-        icon = [[[NSImage alloc] initWithContentsOfFile:docIconPath] autorelease];
+        icon = [[NSImage alloc] initWithContentsOfFile:docIconPath];
     }
     
     [docIconImageView setImage:icon];
