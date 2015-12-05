@@ -51,37 +51,58 @@
 
 + (IconFamily*) iconFamily
 {
-    return [[[IconFamily alloc] init] autorelease];
+#if !__has_feature(objc_arc)
+    return [[IconFamily alloc] init] autorelease];
+#endif
+    return [[IconFamily alloc] init];
 }
 
 + (IconFamily*) iconFamilyWithContentsOfFile:(NSString*)path
 {
+#if !__has_feature(objc_arc)
     return [[[IconFamily alloc] initWithContentsOfFile:path] autorelease];
+#endif
+    return [[IconFamily alloc] initWithContentsOfFile:path];
 }
 
 + (IconFamily*) iconFamilyWithIconOfFile:(NSString*)path
 {
+#if !__has_feature(objc_arc)
     return [[[IconFamily alloc] initWithIconOfFile:path] autorelease];
+#endif 
+    return [[IconFamily alloc] initWithIconOfFile:path];
 }
 
 + (IconFamily*) iconFamilyWithIconFamilyHandle:(IconFamilyHandle)hNewIconFamily
 {
+#if !__has_feature(objc_arc)
     return [[[IconFamily alloc] initWithIconFamilyHandle:hNewIconFamily] autorelease];
+#endif
+    return [[IconFamily alloc] initWithIconFamilyHandle:hNewIconFamily];
 }
 
 + (IconFamily*) iconFamilyWithSystemIcon:(int)fourByteCode
 {
+#if !__has_feature(objc_arc)
     return [[[IconFamily alloc] initWithSystemIcon:fourByteCode] autorelease];
+#endif
+    return [[IconFamily alloc] initWithSystemIcon:fourByteCode];
 }
 
 + (IconFamily*) iconFamilyWithThumbnailsOfImage:(NSImage*)image
 {
+#if !__has_feature(objc_arc)
     return [[[IconFamily alloc] initWithThumbnailsOfImage:image] autorelease];
+#endif
+    return [[IconFamily alloc] initWithThumbnailsOfImage:image];
 }
 
 + (IconFamily*) iconFamilyWithThumbnailsOfImage:(NSImage*)image usingImageInterpolation:(NSImageInterpolation)imageInterpolation
 {
+#if !__has_feature(objc_arc)
     return [[[IconFamily alloc] initWithThumbnailsOfImage:image usingImageInterpolation:imageInterpolation] autorelease];
+#endif
+    return [[IconFamily alloc] initWithThumbnailsOfImage:image usingImageInterpolation:imageInterpolation];
 }
 
 // This is IconFamily's designated initializer.  It creates a new IconFamily that initially has no elements.
@@ -93,7 +114,9 @@
     if (self) {
         hIconFamily = (IconFamilyHandle) NewHandle( 0 );
         if (hIconFamily == NULL) {
+#if !__has_feature(objc_arc)
             [self autorelease];
+#endif
             return nil;
         }
     }
@@ -109,7 +132,9 @@
         OSStatus err = PtrToHand([data bytes], &storageMem, (long)[data length]);
         if( err != noErr )
         {
+#if !__has_feature(objc_arc)
             [self release];
+#endif
             return nil;
         }
 
@@ -130,12 +155,16 @@
             hIconFamily = NULL;
         }
 		if (![path getFSRef:&ref createFileIfNecessary:NO]) {
-			[self autorelease];
+#if !__has_feature(objc_arc)
+            [self autorelease];
+#endif
 			return nil;
 		}
 		result = ReadIconFromFSRef( &ref, &hIconFamily );
 		if (result != noErr) {
+#if !__has_feature(objc_arc)
 			[self autorelease];
+#endif
 			return nil;
 		}
     }
@@ -173,7 +202,9 @@
 
         if( ![path getFSRef:&ref createFileIfNecessary:NO] )
         {
+#if !__has_feature(objc_arc)
             [self autorelease];
+#endif
             return nil;
         }
 
@@ -189,7 +220,9 @@
 
         if (result != noErr)
         {
+#if !__has_feature(objc_arc)
             [self autorelease];
+#endif
             return nil;
         }
 
@@ -202,7 +235,9 @@
 
         if (result != noErr || !hIconFamily)
         {
+#if !__has_feature(objc_arc)
             [self autorelease];
+#endif
             return nil;
         }
     }
@@ -227,7 +262,9 @@
 
         if (result != noErr)
         {
+#if !__has_feature(objc_arc)
             [self autorelease];
+#endif
             return nil;
         }
 
@@ -238,7 +275,9 @@
 
         if (result != noErr || !hIconFamily)
         {
+#if !__has_feature(objc_arc)
             [self autorelease];
+#endif
             return nil;
         }
 
@@ -286,15 +325,24 @@
 	
     iconImage1024x1024 = [IconFamily resampleImage:image toIconWidth:1024 usingImageInterpolation:imageInterpolation];
     if (!iconImage1024x1024) {
+#if !__has_feature(objc_arc)
       [self autorelease];
+#endif
       return nil;
     }
     
     [iconImage1024x1024 lockFocus];
-    iconBitmap1024x1024 = [[[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 1024, 1024)] autorelease];
+    iconBitmap1024x1024 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 1024, 1024)];
+#if !__has_feature(objc_arc)
+    [iconBitmap1024x1024 autorelease];
+#endif
+    
     [iconImage1024x1024 unlockFocus];
+    
     if (!iconBitmap1024x1024) {
+#if !__has_feature(objc_arc)
       [self release];
+#endif
       return nil;
     }
     // Create an NSImage with the iconBitmap1024x1024 NSBitmapImageRep, that we
@@ -307,7 +355,9 @@
     [bitmappedIconImage1024x1024 addRepresentation:iconBitmap1024x1024];
     
     if (!bitmappedIconImage1024x1024) {
+#if !__has_feature(objc_arc)
       [self autorelease];
+#endif
       return nil;
     }
     
@@ -320,7 +370,9 @@
 		[iconImage512x512 unlockFocus];
 		if (iconImage512x512) {
 			[self setIconFamilyElement:kIconServices512PixelDataARGB fromBitmapImageRep:iconBitmap512x512];
+#if !__has_feature(objc_arc)
 			[iconBitmap512x512 release];
+#endif
 		}
     }
 	
@@ -331,7 +383,9 @@
       [iconImage256x256 unlockFocus];
       if (iconBitmap256x256) {
         [self setIconFamilyElement:kIconServices256PixelDataARGB fromBitmapImageRep:iconBitmap256x256];
+#if !__has_feature(objc_arc)
         [iconBitmap256x256 release];
+#endif
       }
     }
     
@@ -343,7 +397,9 @@
       
       if (iconBitmap128x128) {
 		  [self setIconFamilyElement:kIconServices128PixelDataARGB fromBitmapImageRep:iconBitmap128x128];
+#if !__has_feature(objc_arc)
         [iconBitmap128x128 release];
+#endif
       }
     }
     
@@ -356,7 +412,9 @@
 		[iconImage48x48 unlockFocus];
 		if (iconBitmap48x48) {
 			[self setIconFamilyElement:kIconServices48PixelDataARGB fromBitmapImageRep:iconBitmap48x48];
+#if !__has_feature(objc_arc)
 			[iconBitmap48x48 release];
+#endif
 		}
     }
 	
@@ -369,7 +427,9 @@
       [iconImage32x32 unlockFocus];
       if (iconBitmap32x32) {
         [self setIconFamilyElement:kIconServices32PixelDataARGB fromBitmapImageRep:iconBitmap32x32];
+#if !__has_feature(objc_arc)
         [iconBitmap32x32 release];
+#endif
       }
     }
     
@@ -382,13 +442,17 @@
       [iconImage16x16 unlockFocus];
       if (iconBitmap16x16) {
         [self setIconFamilyElement:kIconServices16PixelDataARGB fromBitmapImageRep:iconBitmap16x16];
+#if !__has_feature(objc_arc)
         [iconBitmap16x16 release];
+#endif
       }
     }
-    
+
+#if !__has_feature(objc_arc)
     // Release the icon.
     [bitmappedIconImage1024x1024 release];
-        
+#endif
+    
     // Return the new icon family!
     return self;
 }
@@ -396,7 +460,6 @@
 - (void) dealloc
 {
     DisposeHandle( (Handle)hIconFamily );
-    [super dealloc];
 }
 
 - (void) finalize
@@ -569,7 +632,7 @@
     //
     // Once we have the new NSBitmapImageRep, we get a pointer to its
     // bitmapData and copy our bitmap data in.
-    bitmapImageRep = [[[NSBitmapImageRep alloc]
+    bitmapImageRep = [[NSBitmapImageRep alloc]
         initWithBitmapDataPlanes:NULL
                       pixelsWide:pixelsWide
                       pixelsHigh:pixelsWide
@@ -580,7 +643,12 @@
                   colorSpaceName:NSDeviceRGBColorSpace // NOTE: is this right?
                     bitmapFormat:bitmapFormat
                      bytesPerRow:0
-                    bitsPerPixel:0] autorelease];
+                    bitsPerPixel:0];
+
+#if !__has_feature(objc_arc)
+    [bitmapImageRep autorelease];
+#endif
+    
     pBitmapImageRepBitmapData = [bitmapImageRep bitmapData];
     if (pBitmapImageRepBitmapData) {
         memcpy( pBitmapImageRepBitmapData, *hRawBitmapData,
@@ -604,7 +672,10 @@
 - (NSImage*) imageWithAllReps
 {
     NSImage* image = NULL;
-    image = [[[NSImage alloc] initWithData:[NSData dataWithBytes:*hIconFamily length:GetHandleSize((Handle)hIconFamily)]] autorelease];
+    image = [[NSImage alloc] initWithData:[NSData dataWithBytes:*hIconFamily length:GetHandleSize((Handle)hIconFamily)]];
+#if !__has_feature(objc_arc)
+    [image autorelease];
+#endif
     return image;
 }
 
@@ -1263,7 +1334,7 @@
     // is.  We need to change some properties ("size" and "scalesWhenResized")
     // of the original image, but we shouldn't change the original, so a copy
     // is necessary.
-    workingImage = [image copyWithZone:[image zone]];
+    workingImage = [image copy];
 //    [workingImage setScalesWhenResized:YES];
     size = [workingImage size];
     workingImageRep = [workingImage bestRepresentationForRect:NSZeroRect context:nil hints:nil];
@@ -1314,10 +1385,12 @@
 
     [newImage unlockFocus];
 	
+#if !__has_feature(objc_arc)
     [workingImage release];
-
+    [newImage autorelease];
+#endif
     // Return the new image!
-    return [newImage autorelease];
+    return newImage;
 }
 
 + (Handle) get32BitDataFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize
