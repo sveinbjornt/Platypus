@@ -203,7 +203,7 @@
     NSString *interpreterCmd = [firstLine substringFromIndex:2];
     NSArray *words = [interpreterCmd componentsSeparatedByString:@" "];
 #if !__has_feature(objc_arc)
-    [[words retain] autorelease]
+    [[words retain] autorelease];
 #endif
     
     return words; // return array w. interpreter + arguments for it
@@ -218,20 +218,20 @@
     
     // iterate over each word, capitalize and append to app name
     NSArray *words = [name componentsSeparatedByString:@" "];
-    NSString *appName = @"";
-    for (int i = 0; i < [words count]; i++) {
-        if (i != 0) {
-            appName = [appName stringByAppendingString:@" "];
-        }
-        NSString *word = words[i];
-        NSString *firstCharacter = [word substringWithRange:NSMakeRange(0,1)];
-        if ([firstCharacter isEqualToString:[firstCharacter uppercaseString]] == FALSE) {
-            word = [word capitalizedString];
-        }
-        appName = [appName stringByAppendingString:word];
-    }
+    NSMutableString *appName = [[NSMutableString alloc] initWithString:@""];
     
-    return appName;
+    for (NSString *word in words) {
+        NSString *capitalizedWord = [word capitalizedString];
+        if ([word isEqualTo:words[0]] == FALSE) {
+            [appName appendString:@" "];
+        }
+        [appName appendString:capitalizedWord];
+    }
+#if !__has_feature(objc_arc)
+    [appName autorelease];
+#endif
+    
+    return [NSString stringWithString:appName];
 }
 
 + (NSString *)determineInterpreterForScriptFile:(NSString *)path {

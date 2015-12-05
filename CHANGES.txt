@@ -20,7 +20,9 @@ For 5.1
     TODO: Make UTIs default in Drop Settings (public.item and public.folder)
     TODO: Look at FTaskStream.h
     TODO: Use pseudo-pttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
+
     TODO: Move project over to ARC
+    TODO: Treat drop into STPathTextField like any other drop, don't let editor swallow it
 
 For 5.0
     * Long GNU named params for command line tool, e.g. --some-option
