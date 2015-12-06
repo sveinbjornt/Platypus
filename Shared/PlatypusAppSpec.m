@@ -555,13 +555,14 @@
         appSettingsPlist[@"StatusItemUseSystemFont"] = self[@"StatusItemUseSystemFont"];
     }
     
-    // we  set the suffixes/file types in the AppSettings.plist if app is droppable
-    if ([self[@"Droppable"] boolValue] == YES) {
+    // we set the suffixes/file types in the AppSettings.plist if app is droppable
+    appSettingsPlist[@"AcceptsFiles"] = self[@"AcceptsFiles"];
+    appSettingsPlist[@"AcceptsText"] = self[@"AcceptsText"];
+
+    if ([self[@"Droppable"] boolValue] && [self[@"AcceptsFiles"] boolValue]) {
         appSettingsPlist[@"DropSuffixes"] = self[@"Suffixes"];
         appSettingsPlist[@"DropUniformTypes"] = self[@"UniformTypes"];
     }
-    appSettingsPlist[@"AcceptsFiles"] = self[@"AcceptsFiles"];
-    appSettingsPlist[@"AcceptsText"] = self[@"AcceptsText"];
     
     return appSettingsPlist;
 }
@@ -821,19 +822,19 @@
     
     //create bundled files string
     NSString *bundledFilesCmdString = @"";
-    NSArray *bundledFiles = (NSArray *)self[@"BundledFiles"];
+    NSArray *bundledFiles = self[@"BundledFiles"];
     for (int i = 0; i < [bundledFiles count]; i++) {
         NSString *str = shortOpts ? @"-f" : @"--bundled-file";
         bundledFilesCmdString = [bundledFilesCmdString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, bundledFiles[i]]];
     }
     
     // create interpreter and script args flags
-    if ([(NSArray *)self[@"InterpreterArgs"] count]) {
+    if ([self[@"InterpreterArgs"] count]) {
         NSString *str = shortOpts ? @"-G" : @"--interpreter-args";
         NSString *arg = [self[@"InterpreterArgs"] componentsJoinedByString:@"|"];
         parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, arg]];
     }
-    if ([(NSArray *)self[@"ScriptArgs"] count]) {
+    if ([self[@"ScriptArgs"] count]) {
         NSString *str = shortOpts ? @"-C" : @"--script-args";
         NSString *arg = [self[@"ScriptArgs"] componentsJoinedByString:@"|"];
         parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, arg]];

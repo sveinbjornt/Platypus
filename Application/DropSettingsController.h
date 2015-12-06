@@ -33,8 +33,8 @@
 @class SuffixTypeListController, UniformTypeListController;
 @interface DropSettingsController : NSObject <NSTableViewDelegate>
 
-@property (nonatomic, assign) NSArray *suffixList;
-@property (nonatomic, assign) NSArray *uniformTypesList;
+@property (nonatomic, assign) NSArray<NSString*> *suffixList;
+@property (nonatomic, assign) NSArray<NSString*> *uniformTypesList;
 @property (nonatomic, copy) NSString *docIconPath;
 @property (nonatomic) BOOL acceptsText;
 @property (nonatomic) BOOL acceptsFiles;

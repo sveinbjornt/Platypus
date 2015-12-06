@@ -155,15 +155,15 @@
     return NO;
 }
 
-- (NSArray *)filePaths {
-    NSMutableArray *filePaths = [NSMutableArray array];
+- (NSArray<NSString*> *)filePaths {
+    NSMutableArray<NSString*> *filePaths = [NSMutableArray array];
     for (NSDictionary *fileItem in files) {
         [filePaths addObject:fileItem[@"Path"]];
     }
     return [filePaths copy];
 }
 
-- (void)setFilePaths:(NSArray *)filePaths {
+- (void)setFilePaths:(NSArray<NSString*> *)filePaths {
     [files removeAllObjects];
     [self addFiles:filePaths];
 }

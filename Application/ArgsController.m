@@ -38,7 +38,7 @@
 
 @implementation NSResponderNotifyingTableView
 
--(BOOL)becomeFirstResponder {
+- (BOOL)becomeFirstResponder {
     BOOL becoming = [super becomeFirstResponder];
     if (becoming && [self delegate] && [[self delegate] respondsToSelector:@selector(tableViewDidBecomeFirstResponder:)]) {
         [[self delegate] performSelector:@selector(tableViewDidBecomeFirstResponder:) withObject:self];
@@ -73,8 +73,8 @@
     IBOutlet NSMenu *scriptArgsContextualMenu;
     IBOutlet NSMenu *interpreterArgsContextualMenu;
     
-    NSMutableArray *interpreterArgs;
-    NSMutableArray *scriptArgs;
+    NSMutableArray<NSString*> *interpreterArgs;
+    NSMutableArray<NSString*> *scriptArgs;
 }
 
 - (IBAction)addInterpreterArg:(id)sender;
@@ -270,7 +270,7 @@
 
 - (IBAction)removeListItem:(id)sender
 {
-    NSMutableArray *args;
+    NSMutableArray<NSString*> *args;
     sender = [argsWindow firstResponder];
     
     if (sender == scriptArgsTableView) {
@@ -317,7 +317,7 @@
 }
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
-    NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
+    NSMutableArray<NSString*> *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
     args[rowIndex] = anObject;
     [self constructCommandString];
 }

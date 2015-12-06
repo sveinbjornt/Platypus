@@ -535,7 +535,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="3890DBF5-FCE9-47ED-B27E-C4CA6E05D83C" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="111BFF3A-C6E5-4073-8A83-BF5EE14338DA" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -2942,7 +2942,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="3890DBF5-FCE9-47ED-B27E-C4CA6E05D83C" width="16" height="16">
+        <image name="111BFF3A-C6E5-4073-8A83-BF5EE14338DA" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

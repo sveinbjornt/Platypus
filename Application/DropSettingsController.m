@@ -325,20 +325,20 @@
 
 #pragma mark -
 
-- (NSArray *)suffixList {
+- (NSArray<NSString*> *)suffixList {
     return [suffixListController itemsArray];
 }
 
-- (void)setSuffixList:(NSArray *)suffixList {
+- (void)setSuffixList:(NSArray<NSString*> *)suffixList {
     [suffixListController removeAllItems];
     [suffixListController addItems:suffixList];
 }
 
-- (NSArray *)uniformTypesList {
+- (NSArray<NSString*> *)uniformTypesList {
     return [uniformTypeListController itemsArray];
 }
 
-- (void)setUniformTypesList:(NSArray *)uniformTypesList {
+- (void)setUniformTypesList:(NSArray<NSString*> *)uniformTypesList {
     [uniformTypeListController removeAllItems];
     [uniformTypeListController addItems:uniformTypesList];
 }
