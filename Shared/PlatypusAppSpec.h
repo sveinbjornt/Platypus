@@ -53,7 +53,7 @@
 - (void)dump;
 - (void)writeToFile:(NSString *)filePath;
 
-- (NSString *)commandString:(BOOL)longOpts;
+- (NSString *)commandStringUsingShortOpts:(BOOL)shortOpts;
 
 + (NSString *)bundleIdentifierForAppName:(NSString *)name
                               authorName:(NSString *)authorName

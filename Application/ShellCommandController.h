@@ -33,6 +33,7 @@
 @class PlatypusAppSpec;
 @interface ShellCommandController : NSWindowController
 
-- (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow;
+- (void)showModalShellCommandSheetForSpec:(PlatypusAppSpec *)spec
+                                   window:(NSWindow *)window;
 
 @end

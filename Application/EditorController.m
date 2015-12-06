@@ -44,7 +44,7 @@
 }
 
 - (IBAction)save:(id)sender;
-- (IBAction)cancel:(id)sender;
+- (IBAction)endModal:(id)sender;
 - (IBAction)checkSyntax:(id)sender;
 - (IBAction)revealInFinder:(id)sender;
 - (IBAction)makeTextBigger:(id)sender;
@@ -56,7 +56,10 @@
 @implementation EditorController
 
 - (instancetype)init {
-    return [super initWithWindowNibName:@"Editor"];
+    if ((self = [super initWithWindowNibName:@"Editor"])) {
+
+    }
+    return self;
 }
 
 - (void)awakeFromNib {
@@ -65,17 +68,19 @@
     CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : DEFAULT_OUTPUT_FONTSIZE;
     NSFont *font = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:fontSize];
     [textView setFont:font];
-
     [textView setAutomaticQuoteSubstitutionEnabled:NO];
     [textView setAutomaticLinkDetectionEnabled:NO];
     [textView setShowsLineNumbers:YES];
 }
 
-- (void)showEditorForFile:(NSString *)path window:(NSWindow *)theWindow {
-    NSError *err;
-    NSString *str = [NSString stringWithContentsOfFile:path encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:&err];
+- (void)showModalEditorSheetForFile:(NSString *)path window:(NSWindow *)theWindow {
+    NSStringEncoding encoding = [[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue];
+    NSString *str = [NSString stringWithContentsOfFile:path
+                                              encoding:encoding
+                                                 error:nil];
     if (str == nil) {
-        [Alerts alert:@"Error reading document" subText:@"This document could not be opened with the text editor."];
+        [Alerts alert:@"Error reading document"
+              subText:@"This document could not be opened with the text editor."];
         return;
     }
     
@@ -104,16 +109,18 @@
 
 - (IBAction)save:(id)sender {
     NSError *err;
-    if ([[textView string] writeToFile:[scriptPathTextField stringValue] atomically:YES encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue] error:&err] == FALSE) {
-        [Alerts alert:@"Error saving document" subText:[err localizedDescription]];
+    BOOL success = [[textView string] writeToFile:[scriptPathTextField stringValue]
+                                       atomically:YES
+                                         encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]
+                                            error:&err];
+    if (success == NO) {
+        [Alerts alert:@"Error saving document"
+              subText:[err localizedDescription]];
     }
-    
-    [NSApp endSheet:[self window]];
-    [NSApp stopModal];
-    [[self window] close];
+    [self endModal:sender];
 }
 
-- (IBAction)cancel:(id)sender {
+- (IBAction)endModal:(id)sender {
     [NSApp endSheet:[self window]];
     [NSApp stopModal];
     [[self window] close];
@@ -126,9 +133,9 @@
     NSString *tmpPath = [WORKSPACE createTempFileWithContents:currentScriptText];
     
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
-    [controller showSyntaxCheckerForFile:tmpPath
-                         withInterpreter:nil
-                                  window:[self window]];
+    [controller showModalSyntaxCheckerSheetForFile:tmpPath
+                                  usingInterpreter:nil
+                                            window:[self window]];
     
     [FILEMGR removeItemAtPath:tmpPath error:nil];
 }

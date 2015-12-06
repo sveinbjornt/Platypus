@@ -60,19 +60,15 @@
 }
 
 - (IBAction)show:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Edit Text Settings", PROGRAM_NAME]];
+    [window setTitle:[NSString stringWithFormat:@"%@ - Text Settings", PROGRAM_NAME]];
     
-    [NSApp  beginSheet:textSettingsWindow
-        modalForWindow:window
-         modalDelegate:nil
-        didEndSelector:nil
-           contextInfo:nil];
+    [NSApp beginSheet:textSettingsWindow
+       modalForWindow:window
+        modalDelegate:nil
+       didEndSelector:nil
+          contextInfo:nil];
     
-    [textSettingsWindow makeFirstResponder:textSettingsWindow];
     [NSApp runModalForWindow:textSettingsWindow];
-    
-    [NSApp endSheet:textSettingsWindow];
-    [textSettingsWindow orderOut:self];
 }
 
 - (IBAction)apply:(id)sender {
@@ -80,6 +76,8 @@
     [[NSColorPanel sharedColorPanel] orderOut:self];
     [window setTitle:PROGRAM_NAME];
     [NSApp stopModal];
+    [NSApp endSheet:textSettingsWindow];
+    [textSettingsWindow orderOut:self];
 }
 
 - (IBAction)setToDefaults:(id)sender {
@@ -98,7 +96,6 @@
 #pragma mark - Font Manager
 
 - (IBAction)chooseFont:(id)sender {
-    //[textSettingsWindow makeFirstResponder: textEncodingPopupButton];
     NSFontManager *fontManager = [NSFontManager sharedFontManager];
     [fontManager setSelectedFont:currentFont isMultiple:NO];
     [fontManager orderFrontFontPanel:nil];

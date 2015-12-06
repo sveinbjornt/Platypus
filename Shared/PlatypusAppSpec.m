@@ -740,8 +740,7 @@
 
 #pragma mark - Command string generation
 
-- (NSString *)commandString:(BOOL)shortOpts {
-    BOOL longOpts = !shortOpts;
+- (NSString *)commandStringUsingShortOpts:(BOOL)shortOpts {
     NSString *checkboxParamStr = @"";
     NSString *iconParamStr = @"";
     NSString *versionString = @"";
@@ -755,47 +754,47 @@
     
     // checkbox parameters
     if ([self[@"Authentication"] boolValue]) {
-        NSString *str = longOpts ? @"-A " : @"--admin-privileges ";
+        NSString *str = shortOpts ? @"-A " : @"--admin-privileges ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
     if ([self[@"Secure"] boolValue]) {
-        NSString *str = longOpts ? @"-S " : @"--secure-script ";
+        NSString *str = shortOpts ? @"-S " : @"--secure-script ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
     if ([self[@"AcceptsFiles"] boolValue] && [self[@"Droppable"] boolValue]) {
-        NSString *str = longOpts ? @"-D " : @"--droppable ";
+        NSString *str = shortOpts ? @"-D " : @"--droppable ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
     if ([self[@"AcceptsText"] boolValue] && [self[@"Droppable"] boolValue]) {
-        NSString *str = longOpts ? @"-F " : @"--text-droppable ";
+        NSString *str = shortOpts ? @"-F " : @"--text-droppable ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
     if ([self[@"DeclareService"] boolValue] && [self[@"Droppable"] boolValue]) {
-        NSString *str = longOpts ? @"-N " : @"--service ";
+        NSString *str = shortOpts ? @"-N " : @"--service ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
     if ([self[@"ShowInDock"] boolValue]) {
-        NSString *str = longOpts ? @"-B " : @"--background ";
+        NSString *str = shortOpts ? @"-B " : @"--background ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
     if ([self[@"RemainRunning"] boolValue] == FALSE) {
-        NSString *str = longOpts ? @"-R " : @"--quit-after-execution ";
+        NSString *str = shortOpts ? @"-R " : @"--quit-after-execution ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
     if ([self[@"Version"] isEqualToString:@"1.0"] == FALSE) {
-        NSString *str = longOpts ? @"-V" : @"--app-version";
+        NSString *str = shortOpts ? @"-V" : @"--app-version";
         versionString = [NSString stringWithFormat:@" %@ '%@' ", str, self[@"Version"]];
     }
     
     if (![self[@"Author"] isEqualToString:NSFullUserName()]) {
-        NSString *str = longOpts ? @"-u" : @"--author";
+        NSString *str = shortOpts ? @"-u" : @"--author";
         authorString = [NSString stringWithFormat:@" %@ '%@' ", str, self[@"Author"]];
     }
     
@@ -803,19 +802,19 @@
     if ([self[@"Droppable"] boolValue]) {
         //  suffixes param
         if ([self[@"Suffixes"] count]) {
-            NSString *str = longOpts ? @"-X" : @"--suffixes";
+            NSString *str = shortOpts ? @"-X" : @"--suffixes";
             suffixesString = [self[@"Suffixes"] componentsJoinedByString:@"|"];
             suffixesString = [NSString stringWithFormat:@"%@ '%@' ", str, suffixesString];
         }
         // uniform type identifier params
         if ([self[@"UniformTypes"] count]) {
-            NSString *str = longOpts ? @"-T" : @"--uniform-type-identifiers";
+            NSString *str = shortOpts ? @"-T" : @"--uniform-type-identifiers";
             uniformTypesString = [self[@"UniformTypes"] componentsJoinedByString:@"|"];
             uniformTypesString = [NSString stringWithFormat:@"%@ '%@' ", str, uniformTypesString];
         }
         // file prompt
         if ([self[@"PromptForFileOnLaunch"] boolValue]) {
-            NSString *str = longOpts ? @"-Z" : @"--file-prompt";
+            NSString *str = shortOpts ? @"-Z" : @"--file-prompt";
             promptForFileString = [NSString stringWithFormat:@"%@ ", str];
         }
     }
@@ -824,18 +823,18 @@
     NSString *bundledFilesCmdString = @"";
     NSArray *bundledFiles = (NSArray *)self[@"BundledFiles"];
     for (int i = 0; i < [bundledFiles count]; i++) {
-        NSString *str = longOpts ? @"-f" : @"--bundled-file";
+        NSString *str = shortOpts ? @"-f" : @"--bundled-file";
         bundledFilesCmdString = [bundledFilesCmdString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, bundledFiles[i]]];
     }
     
     // create interpreter and script args flags
     if ([(NSArray *)self[@"InterpreterArgs"] count]) {
-        NSString *str = longOpts ? @"-G" : @"--interpreter-args";
+        NSString *str = shortOpts ? @"-G" : @"--interpreter-args";
         NSString *arg = [self[@"InterpreterArgs"] componentsJoinedByString:@"|"];
         parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, arg]];
     }
     if ([(NSArray *)self[@"ScriptArgs"] count]) {
-        NSString *str = longOpts ? @"-C" : @"--script-args";
+        NSString *str = shortOpts ? @"-C" : @"--script-args";
         NSString *arg = [self[@"ScriptArgs"] componentsJoinedByString:@"|"];
         parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, arg]];
     }
@@ -845,18 +844,18 @@
         
         NSString *textFgString = @"", *textBgString = @"", *textFontString = @"";
         if (![self[@"TextForeground"] isEqualToString:DEFAULT_OUTPUT_FG_COLOR]) {
-            NSString *str = longOpts ? @"-g" : @"--text-foreground-color";
+            NSString *str = shortOpts ? @"-g" : @"--text-foreground-color";
             textFgString = [NSString stringWithFormat:@" %@ '%@' ", str, self[@"TextForeground"]];
         }
         
         if (![self[@"TextBackground"] isEqualToString:DEFAULT_OUTPUT_BG_COLOR]) {
-            NSString *str = longOpts ? @"-b" : @"--text-background-color";
+            NSString *str = shortOpts ? @"-b" : @"--text-background-color";
             textBgString = [NSString stringWithFormat:@" %@ '%@' ", str, self[@"TextForeground"]];
         }
         
         if ([self[@"TextSize"] floatValue] != DEFAULT_OUTPUT_FONTSIZE ||
             ![self[@"TextFont"] isEqualToString:DEFAULT_OUTPUT_FONT]) {
-            NSString *str = longOpts ? @"-n" : @"--text-font";
+            NSString *str = shortOpts ? @"-n" : @"--text-font";
             textFontString = [NSString stringWithFormat:@" %@ '%@ %2.f' ", str, self[@"TextFont"], [self[@"TextSize"] floatValue]];
         }
         
@@ -865,43 +864,43 @@
     
     //text encoding
     if ([self[@"TextEncoding"] intValue] != DEFAULT_OUTPUT_TXT_ENCODING) {
-        NSString *str = longOpts ? @"-E" : @"--text-encoding";
+        NSString *str = shortOpts ? @"-E" : @"--text-encoding";
         textEncodingString = [NSString stringWithFormat:@" %@ %d ", str, [self[@"TextEncoding"] intValue]];
     }
     
     //create custom icon string
     if (![self[@"IconPath"] isEqualToString:CMDLINE_ICON_PATH] && ![self[@"IconPath"] isEqualToString:@""]) {
-        NSString *str = longOpts ? @"-i" : @"--app-icon";
+        NSString *str = shortOpts ? @"-i" : @"--app-icon";
         iconParamStr = [NSString stringWithFormat:@"%@ '%@' ", str, self[@"IconPath"]];
     }
     
     //create custom icon string
     if (self[@"DocIcon"] && ![self[@"DocIcon"] isEqualToString:@""]) {
-        NSString *str = longOpts ? @"-Q" : @"--document-icon";
+        NSString *str = shortOpts ? @"-Q" : @"--document-icon";
         iconParamStr = [iconParamStr stringByAppendingFormat:@" %@ '%@' ", str, self[@"DocIcon"]];
     }
     
     //status menu settings, if output mode is status menu
     if ([self[@"Output"] isEqualToString:@"Status Menu"]) {
         // -K kind
-        NSString *str = longOpts ? @"-K" : @"--status-item-kind";
+        NSString *str = shortOpts ? @"-K" : @"--status-item-kind";
         statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, self[@"StatusItemDisplayType"]];
         
         // -L /path/to/image
         if (![self[@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
-            str = longOpts ? @"-L" : @"--status-item-icon";
+            str = shortOpts ? @"-L" : @"--status-item-icon";
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '/path/to/image' ", str];
         }
         
         // -Y 'Title'
         if (![self[@"StatusItemDisplayType"] isEqualToString:@"Icon"]) {
-            str = longOpts ? @"-Y" : @"--status-item-title";
+            str = shortOpts ? @"-Y" : @"--status-item-title";
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, self[@"StatusItemTitle"]];
         }
         
         // -c
         if ([self[@"StatusItemUseSystemFont"] boolValue]) {
-            str = longOpts ? @"-c" : @"--status-item-sysfont";
+            str = shortOpts ? @"-c" : @"--status-item-sysfont";
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ ", str];
         }
     }
@@ -909,7 +908,7 @@
     // only set app name arg if we have a proper value
     NSString *appNameArg = @"";
     if ([self[@"Name"] isEqualToString:@""] == FALSE) {
-        NSString *str = longOpts ? @"-a" : @"--name";
+        NSString *str = shortOpts ? @"-a" : @"--name";
         appNameArg = [NSString stringWithFormat: @" %@ '%@' ", str,  self[@"Name"]];
     }
     
@@ -917,16 +916,16 @@
     NSString *identifierArg = @"";
     NSString *standardIdentifier = [PlatypusAppSpec bundleIdentifierForAppName:self[@"Name"] authorName:nil usingDefaults: NO];
     if ([self[@"Identifier"] isEqualToString:standardIdentifier] == FALSE) {
-        NSString *str = longOpts ? @"-I" : @"--bundle-identifier";
+        NSString *str = shortOpts ? @"-I" : @"--bundle-identifier";
         identifierArg = [NSString stringWithFormat: @" %@ %@ ", str, self[@"Identifier"]];
     }
     
     // output type
-    NSString *str = longOpts ? @"-o" : @"--output-type";
+    NSString *str = shortOpts ? @"-o" : @"--output-type";
     NSString *outputArg = [NSString stringWithFormat:@" %@ '%@' ", str, self[@"Output"]];
     
     // interpreter
-    str = longOpts ? @"-p" : @"--interpreter";
+    str = shortOpts ? @"-p" : @"--interpreter";
     NSString *interpreterArg = [NSString stringWithFormat:@" %@ '%@' ", str, self[@"Interpreter"]];
     
     
@@ -968,10 +967,13 @@
     NSString *defaults = def ? [DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"] : nil;
     NSString *author = authorName ? [authorName stringByReplacingOccurrencesOfString:@" " withString:@""] : NSUserName();
     NSString *pre = defaults == nil ? [NSString stringWithFormat:@"org.%@.", author] : defaults;
-    NSString *bundleId = [NSString stringWithFormat:@"%@%@", pre, appName];
-    bundleId = [bundleId stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *identifierString = [NSString stringWithFormat:@"%@%@", pre, appName];
+    identifierString = [identifierString stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    return bundleId;
+//    NSData *asciiData = [identifierString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+//    identifierString = [[NSString alloc] initWithData:asciiData encoding:NSASCIIStringEncoding];
+
+    return identifierString;
 }
 
 + (void)optimizeNibFile:(NSString *)nibPath {

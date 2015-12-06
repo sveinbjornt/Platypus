@@ -36,6 +36,7 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSImage *icon;
 @property (nonatomic) BOOL usesSystemFont;
+@property (nonatomic) BOOL usesTemplateIcon;
 
 - (IBAction)setToDefaults:(id)sender;
 

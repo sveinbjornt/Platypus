@@ -123,6 +123,12 @@ typedef enum PlatypusOutputType {
     PLATYPUS_OUTPUT_STATUSMENU = 4,
     PLATYPUS_OUTPUT_DROPLET = 5
 } PlatypusOutputType;
+
+// execution style
+typedef enum PlatypusStatusItemStyle {
+    PLATYPUS_STATUS_ITEM_STYLE_TITLE = 0,
+    PLATYPUS_STATUS_ITEM_STYLE_ICON = 1
+} PlatypusStatusItemStyle;
  
 // array of output types, used for validation
 #define PLATYPUS_OUTPUT_TYPE_NAMES   @[\
@@ -148,6 +154,8 @@ typedef enum PlatypusOutputType {
 
 #define IsTextViewScrollableOutputType(X) ( X == PLATYPUS_OUTPUT_PROGRESSBAR || \
                                             X == PLATYPUS_OUTPUT_TEXTWINDOW )
+
+
 
 #pragma mark -
 

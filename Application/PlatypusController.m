@@ -333,16 +333,16 @@
 - (IBAction)checkSyntaxOfScript:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Syntax Checker", PROGRAM_NAME]];
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] init];
-    [controller showSyntaxCheckerForFile:[scriptPathTextField stringValue]
-                         withInterpreter:[interpreterTextField stringValue]
-                                  window:window];
+    [controller showModalSyntaxCheckerSheetForFile:[scriptPathTextField stringValue]
+                                  usingInterpreter:[interpreterTextField stringValue]
+                                            window:window];
     [window setTitle:PROGRAM_NAME];
 }
 
 - (void)openScriptInBuiltInEditor:(NSString *)path {
     [window setTitle:[NSString stringWithFormat:@"%@ - Script Editor", PROGRAM_NAME]];
     EditorController *controller = [[EditorController alloc] init];
-    [controller showEditorForFile:[scriptPathTextField stringValue] window:window];
+    [controller showModalEditorSheetForFile:[scriptPathTextField stringValue] window:window];
     [window setTitle:PROGRAM_NAME];
 }
 
@@ -510,19 +510,7 @@
         [Alerts sheetAlert:@"Invalid Script Path" subText:@"No file exists at the script path you have specified" forWindow:window];
         return NO;
     }
-    
-    //make sure we have an icon
-    if (([iconController hasIconFile] && ![[iconController icnsFilePath] isEqualToString:@""] && ![FILEMGR fileExistsAtPath:[iconController icnsFilePath]])) {
-        [Alerts sheetAlert:@"Missing Icon" subText:@"You must set an icon for your application." forWindow:window];
-        return NO;
-    }
-    
-    //let's be certain that the bundled files list doesn't contain entries that have been moved
-    if ([bundledFilesController allPathsAreValid] == NO) {
-        [Alerts sheetAlert:@"Bundled files missing" subText:@"One or more of the files that are to be bundled with the application could not be found. Please rectify this and try again." forWindow:window];
-        return NO;
-    }
-    
+        
     //interpreter
     if ([FILEMGR fileExistsAtPath:[interpreterTextField stringValue]] == NO) {
         if ([Alerts proceedAlert:@"Invalid Interpreter" subText:[NSString stringWithFormat:@"The interpreter '%@' does not exist on this system.  Do you wish to proceed anyway?", [interpreterTextField stringValue]] withAction:@"Proceed"] == NO) {
@@ -535,13 +523,13 @@
 
 #pragma mark - Generate/read AppSpec
 
-- (id)appSpecFromControls {
+- (PlatypusAppSpec *)appSpecFromControls {
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaults];
     
     spec[@"Name"] = [appNameTextField stringValue];
     spec[@"ScriptPath"] = [scriptPathTextField stringValue];
     spec[@"Output"] = [outputTypePopupButton titleOfSelectedItem];
-    spec[@"IconPath"] = [iconController hasIconFile] ? [iconController icnsFilePath] : @"";
+    spec[@"IconPath"] = [iconController icnsFilePath];
     
     spec[@"Interpreter"] = [interpreterTextField stringValue];
     spec[@"InterpreterArgs"] = [argsController interpreterArgs];
@@ -698,7 +686,7 @@
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsForScript:filename];
     [self controlsFromAppSpec:spec];
     
-    [iconController setToDefaults:self];
+    [iconController setToDefaults];
     
     // add to recent items menu
     [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
@@ -821,7 +809,7 @@
     [argsController setToDefaults:self];
     [textSettingsController setToDefaults:self];
     [statusItemSettingsController setToDefaults:self];
-    [iconController setToDefaults:self];
+    [iconController setToDefaults];
 
     //set script type
     [self setScriptType:DEFAULT_SCRIPT_TYPE];
@@ -845,7 +833,7 @@
     
     [window setTitle:[NSString stringWithFormat:@"%@ - Shell Command String", PROGRAM_NAME]];
     ShellCommandController *shellCommandController = [[ShellCommandController alloc] init];
-    [shellCommandController showShellCommandForSpec:[self appSpecFromControls] window:window];
+    [shellCommandController showModalShellCommandSheetForSpec:[self appSpecFromControls] window:window];
     [window setTitle:PROGRAM_NAME];
 }
 
@@ -862,8 +850,8 @@
     UInt64 estimatedAppSize = 0;
     estimatedAppSize += 4096; // Info.plist
     estimatedAppSize += 4096; // AppSettings.plist
-    estimatedAppSize += [iconController iconFileSize];
-    estimatedAppSize += [dropSettingsController docIconSize];
+    estimatedAppSize += [WORKSPACE fileOrFolderSize:[iconController icnsFilePath]];
+    estimatedAppSize += [WORKSPACE fileOrFolderSize:[dropSettingsController docIconPath]];
     estimatedAppSize += [WORKSPACE fileOrFolderSize:[scriptPathTextField stringValue]];
     estimatedAppSize += [WORKSPACE fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil]];
     
@@ -875,7 +863,7 @@
     estimatedAppSize += nibSize;
     
     // bundled files altogether
-    estimatedAppSize += [bundledFilesController totalFileSize];
+    estimatedAppSize += [bundledFilesController totalSizeOfFiles];
     
     return [WORKSPACE fileSizeAsHumanReadableString:estimatedAppSize];
 }

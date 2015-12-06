@@ -31,19 +31,12 @@
 #import <Cocoa/Cocoa.h>
 #import "STDragImageView.h"
 
-typedef NS_ENUM(unsigned int, PlatypusIconPreset) {
-    PlatypusPresetIconDefault = 0,
-    PlatypusPresetIconInstaller = 1,
-    PlatypusPresetIconGenericApplication = 2
-};
-
 @interface IconController : NSObject <STDragImageViewDragDelegate>
 
 @property (nonatomic, readonly) BOOL hasIconFile;
 @property (nonatomic, readonly, copy) NSString *icnsFilePath;
-@property (nonatomic, readonly) UInt64 iconFileSize;
 
-- (IBAction)setToDefaults:(id)sender;
+- (void)setToDefaults;
 - (BOOL)loadIcnsFile:(NSString *)filePath;
 
 @end

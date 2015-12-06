@@ -39,6 +39,7 @@
     IBOutlet NSTextView *textView;
     IBOutlet NSTextField *CLTStatusTextField;
     IBOutlet NSButton *useShortOptsCheckbox;
+    
     PlatypusAppSpec *appSpec;
 }
 
@@ -51,7 +52,10 @@
 @implementation ShellCommandController
 
 - (instancetype)init {
-    return [super initWithWindowNibName:@"ShellCommandWindow"];
+    if ((self = [super initWithWindowNibName:@"ShellCommandWindow"])) {
+        
+    }
+    return self;
 }
 
 - (void)awakeFromNib {
@@ -60,10 +64,10 @@
 
 #pragma mark -
 
-- (void)showShellCommandForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow {
+- (void)showModalShellCommandSheetForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow {
     [self loadWindow];
-    appSpec = [spec copy];
-    [textView setString:[appSpec commandString:![useShortOptsCheckbox intValue]]];
+    appSpec = spec;
+    [textView setString:[appSpec commandStringUsingShortOpts:[useShortOptsCheckbox intValue]]];
     [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
     
     [NSApp beginSheet:[self window]
@@ -72,6 +76,7 @@
        didEndSelector:nil
           contextInfo:nil];
     
+    [[self window] makeFirstResponder:[self window]]; // so Enter works to close window
     [NSApp runModalForWindow:[self window]];
 }
 
@@ -84,7 +89,7 @@
 }
 
 - (IBAction)useShortOptsCheckboxClicked:(id)sender {
-    [textView setString:[appSpec commandString:![sender intValue]]];
+    [textView setString:[appSpec commandStringUsingShortOpts:[sender intValue]]];
 }
 
 - (IBAction)runInTerminal:(id)sender {

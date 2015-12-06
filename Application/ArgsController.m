@@ -56,11 +56,9 @@
     IBOutlet NSTextField *commandTextField;
     IBOutlet NSTextField *interpreterTextField;
     
-    IBOutlet NSButton *interpreterArgsAddButton;
     IBOutlet NSButton *interpreterArgsRemoveButton;
     IBOutlet NSResponderNotifyingTableView *interpreterArgsTableView;
     
-    IBOutlet NSButton *scriptArgsAddButton;
     IBOutlet NSButton *scriptArgsRemoveButton;
     IBOutlet NSResponderNotifyingTableView *scriptArgsTableView;
     
@@ -136,16 +134,16 @@
 }
 
 - (IBAction)show:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Edit Arguments", PROGRAM_NAME]];
+    [window setTitle:[NSString stringWithFormat:@"%@ - Arguments", PROGRAM_NAME]];
     
     [self constructCommandString];
     
     //open window
-    [NSApp  beginSheet:argsWindow
-        modalForWindow:window
-         modalDelegate:nil
-        didEndSelector:nil
-           contextInfo:nil];
+    [NSApp beginSheet:argsWindow
+       modalForWindow:window
+        modalDelegate:nil
+       didEndSelector:nil
+          contextInfo:nil];
     
     [NSApp runModalForWindow:argsWindow];
     
@@ -217,10 +215,7 @@
 
 - (void)updateGUIStatus {
     [interpreterArgsRemoveButton setEnabled:([interpreterArgsTableView selectedRow] != -1)];
-    [interpreterArgsAddButton setEnabled:YES];
-    
     [scriptArgsRemoveButton setEnabled:([scriptArgsTableView selectedRow] != -1)];
-    [scriptArgsAddButton setEnabled:YES];
     
     [self constructCommandString];
 }
@@ -304,21 +299,13 @@
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
     NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
-    
-    if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
-        return args[rowIndex];
-    }
-    return @"";
+    return args[rowIndex];
 }
 
-- (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
-{
+- (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
     NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
-    
-    if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
-        args[rowIndex] = anObject;
-        [self constructCommandString];
-    }
+    args[rowIndex] = anObject;
+    [self constructCommandString];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
@@ -342,7 +329,6 @@
     if ([anItem menu] == interpreterArgsContextualMenu && [[anItem title] isEqualToString:@"Remove Entry"] && [interpreterArgsTableView selectedRow] == -1) {
         return NO;
     }
-    
     return YES;
 }
 

@@ -37,28 +37,25 @@
 
 @interface BundledFilesController()
 {
-    UInt64 totalFileSize;
-    NSMutableArray *files;
-    VDKQueue *fileWatcherQueue;
-    
     IBOutlet NSWindow *window;
-    IBOutlet NSButton *addFileButton;
     IBOutlet NSButton *removeFileButton;
     IBOutlet NSButton *editFileButton;
     IBOutlet NSButton *revealFileButton;
     IBOutlet NSButton *clearFileListButton;
     IBOutlet NSTableView *tableView;
     IBOutlet NSTextField *bundleSizeTextField;
-    IBOutlet NSMenu *contextualMenu;
+
+    NSMutableArray<NSDictionary*> *files;
+    VDKQueue *fileWatcherQueue;
 }
 
 - (IBAction)copyFilenames:(id)sender;
 - (IBAction)copyPaths:(id)sender;
-- (IBAction)editFileInFileList:(id)sender;
-- (IBAction)addFileToFileList:(id)sender;
-- (IBAction)revealFileInFileList:(id)sender;
-- (IBAction)openFileInFileList:(id)sender;
-- (IBAction)removeFileFromFileList:(id)sender;
+- (IBAction)editSelectedFile:(id)sender;
+- (IBAction)addFilesToList:(id)sender;
+- (IBAction)revealSelectedFilesInFinder:(id)sender;
+- (IBAction)openSelectedFiles:(id)sender;
+- (IBAction)removeSelectedFiles:(id)sender;
 
 @end
 
@@ -73,13 +70,12 @@
 }
 
 - (void)awakeFromNib {
-    totalFileSize = 0;
     [tableView registerForDraggedTypes:@[NSFilenamesPboardType]];
     [tableView setTarget:self];
     [tableView setDoubleAction:@selector(itemDoubleClicked:)];
     [tableView setDraggingSourceOperationMask:NSDragOperationCopy | NSDragOperationMove forLocal:NO];
     
-    // we list ourself as an observer of changes to file system
+    // we list ourself as an observer of file system changes for items in file watcher queue
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(trackedFileDidChange) name:VDKQueueRenameNotification object:nil];
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(trackedFileDidChange) name:VDKQueueDeleteNotification object:nil];
 }
@@ -92,16 +88,13 @@
 
 - (void)addFiles:(NSArray *)filePaths {
     for (NSString *filePath in filePaths) {
-        if ([self hasFile:filePath] == NO) {
-            NSMutableDictionary *fileInfoDict = [NSMutableDictionary dictionary];
-            
-            NSImage *icon = [WORKSPACE iconForFile:filePath];
-            [icon setSize:NSMakeSize(16, 16)];
-            fileInfoDict[@"Icon"] = icon;
-            fileInfoDict[@"Path"] = filePath;
-
-            [files addObject:fileInfoDict];
+        if ([self hasFilePath:filePath]) {
+            continue;
         }
+        NSImage *icon = [WORKSPACE iconForFile:filePath];
+        [icon setSize:NSMakeSize(16, 16)];
+        NSDictionary *fileInfoDict = @{ @"Icon":icon, @"Path":filePath };
+        [files addObject:fileInfoDict];
     }
     
     [tableView reloadData];
@@ -121,7 +114,7 @@
     
     //if there are no items
     if ([files count] == 0) {
-        totalFileSize = 0;
+        _totalSizeOfFiles = 0;
         [bundleSizeTextField setStringValue:@""];
         [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
         return;
@@ -141,7 +134,7 @@
         NSString *pluralS = ([files count] > 1) ? @"s" : @"";
         NSString *itemsSizeString = [NSString stringWithFormat:@"%lu item%@, %@", (unsigned long)[files count], pluralS, totalSizeString];
         NSString *tooltipString = [NSString stringWithFormat:@"%lu item%@ (%llu bytes)", (unsigned long)[files count], pluralS, size];
-        totalFileSize = size;
+        _totalSizeOfFiles = size;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
         
@@ -153,7 +146,7 @@
     });
 }
 
-- (BOOL)hasFile:(NSString *)filePath {
+- (BOOL)hasFilePath:(NSString *)filePath {
     for (NSDictionary *fileInfoDict in files) {
         if ([fileInfoDict[@"Path"] isEqualToString:filePath]) {
             return YES;
@@ -162,22 +155,16 @@
     return NO;
 }
 
-- (void)removeFileAtIndex:(int)index {
-    [files removeObjectAtIndex:index];
-    [self updateQueueWatch];
-    [tableView reloadData];
-}
-
 - (NSArray *)filePaths {
     NSMutableArray *filePaths = [NSMutableArray array];
     for (NSDictionary *fileItem in files) {
         [filePaths addObject:fileItem[@"Path"]];
     }
-    return filePaths;
+    return [filePaths copy];
 }
 
 - (void)setFilePaths:(NSArray *)filePaths {
-    [self clearFileList:self];
+    [files removeAllObjects];
     [self addFiles:filePaths];
 }
 
@@ -193,7 +180,6 @@
     }
     
     BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
-    
     if (commandKeyDown) {
         [self revealInFinder:[tableView clickedRow]];
     } else {
@@ -215,7 +201,6 @@
 }
 
 - (void)openInEditor:(int)index {
-
     NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
     NSString *path = files[index][@"Path"];
     
@@ -225,7 +210,7 @@
             [WORKSPACE openFile:path withApplication:defaultEditor];
             return;
         } else {
-            [Alerts alert:@"Editor not found" subTextFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor];
+            [Alerts alert:@"Editor not found" subTextFormat:@"The application '%@' could not be found.  Reverting to the built-in editor.", defaultEditor];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
         }
     }
@@ -233,38 +218,35 @@
     // Open in built-in editor
     [window setTitle:[NSString stringWithFormat:@"%@ - Editing %@", PROGRAM_NAME, [path lastPathComponent]]];
     EditorController *editorController = [[EditorController alloc] init];
-    [editorController showEditorForFile:path window:window];
+    [editorController showModalEditorSheetForFile:path window:window];
     [window setTitle:PROGRAM_NAME];
 }
 
 - (IBAction)copyFilenames:(id)sender {
-    
-    NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    NSString *copyStr = @"";
-    for (int i = 0; i < [files count]; i++) {
-        if ([selectedItems containsIndex:i]) {
-            NSString *filename = [files[i][@"Path"] lastPathComponent];
-            copyStr = [copyStr stringByAppendingString:[NSString stringWithFormat:@"%@ ", filename]];
-        }
-    }
-    [[NSPasteboard generalPasteboard] declareTypes:@[NSStringPboardType] owner:self];
-    [[NSPasteboard generalPasteboard] setString:copyStr forType:NSStringPboardType];
+    [self copyFilenamesToPasteboard:YES];
 }
 
 - (IBAction)copyPaths:(id)sender {
+    [self copyFilenamesToPasteboard:NO];
+}
+
+- (void)copyFilenamesToPasteboard:(BOOL)basenameOnly {
+    NSMutableString *copyStr = [[NSMutableString alloc] initWithString:@""];
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    NSString *copyStr = @"";
+    
     for (int i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
-            NSString *filename = files[i][@"Path"];
-            copyStr = [copyStr stringByAppendingString:[NSString stringWithFormat:@"%@ ", filename]];
+            NSDictionary *fileInfoDict = files[i];
+            NSString *name = basenameOnly ? fileInfoDict[@"Path"] : [fileInfoDict[@"Path"] lastPathComponent];
+            [copyStr appendString:[NSString stringWithFormat:@"%@ ", name]];
         }
     }
+
     [[NSPasteboard generalPasteboard] declareTypes:@[NSStringPboardType] owner:self];
     [[NSPasteboard generalPasteboard] setString:copyStr forType:NSStringPboardType];
 }
 
-- (IBAction)addFileToFileList:(id)sender {
+- (IBAction)addFilesToList:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Select files or folders to add", PROGRAM_NAME]];
     
     // create open panel
@@ -300,7 +282,7 @@
     [self updateButtonStatus];
 }
 
-- (IBAction)revealFileInFileList:(id)sender {
+- (IBAction)revealSelectedFilesInFinder:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     for (int i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
@@ -309,7 +291,7 @@
     }
 }
 
-- (IBAction)openFileInFileList:(id)sender {
+- (IBAction)openSelectedFiles:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     for (int i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
@@ -318,32 +300,32 @@
     }
 }
 
-- (IBAction)editFileInFileList:(id)sender {
+- (IBAction)editSelectedFile:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     for (int i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
             [self openInEditor:i];
+            return;
         }
     }
 }
 
-- (IBAction)removeFileFromFileList:(id)sender {
-    int rowToSelect;
-    NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    int selectedRow = [selectedItems firstIndex];
+- (IBAction)removeSelectedFiles:(id)sender {
     
+    NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     for (int i = [files count]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
-            [self removeFileAtIndex:i];
+            [files removeObjectAtIndex:i];
         }
     }
     if ([tableView numberOfRows]) {
-        rowToSelect = selectedRow - 1;
+        NSUInteger rowToSelect = [selectedItems firstIndex] - 1;
         [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
     }
     
     [tableView reloadData];
     [self updateButtonStatus];
+    [self updateQueueWatch];
     [self updateFileSizeField];
 }
 
@@ -354,8 +336,11 @@
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
-    if ([[aTableColumn identifier] caseInsensitiveCompare:@"2"] == NSOrderedSame) { //path
-        // check if bundled file still exists at path
+    
+    //path
+    if ([[aTableColumn identifier] isEqualToString:@"2"]) {
+        
+        // check if bundled file exists at path
         NSString *filePath = files[rowIndex][@"Path"];
         if ([FILEMGR fileExistsAtPath:filePath]) {
             return files[rowIndex][@"Path"];
@@ -364,7 +349,9 @@
             NSDictionary *attr = @{NSForegroundColorAttributeName: [NSColor redColor]};
             return [[NSAttributedString alloc] initWithString:filePath attributes:attr];
         }
-    } else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
+    }
+    // icon
+    else if ([[aTableColumn identifier] isEqualToString:@"1"]) {
         return files[rowIndex][@"Icon"];
     }
     
@@ -372,26 +359,10 @@
 }
 
 - (void)updateButtonStatus {
-    //selection changed in File List
-    int selected = 0;
-    NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    for (int i = 0; i < [files count]; i++) {
-        if ([selectedItems containsIndex:i]) {
-            selected++;
-        }
-    }
-    
-    //update button status
-    if (selected == 0) {
-        [removeFileButton setEnabled:NO];
-        [revealFileButton setEnabled:NO];
-        [editFileButton setEnabled:NO];
-    } else {
-        [removeFileButton setEnabled:YES];
-        [revealFileButton setEnabled:YES];
-        [editFileButton setEnabled:YES];
-    }
-    
+    BOOL hasSelection = [[tableView selectedRowIndexes] count];
+    [removeFileButton setEnabled:hasSelection];
+    [revealFileButton setEnabled:hasSelection];
+    [editFileButton setEnabled:hasSelection];
     [clearFileListButton setEnabled:([files count] != 0)];
 }
 
@@ -458,21 +429,6 @@
     }
     
     return YES;
-}
-
-#pragma mark -
-
-- (BOOL)allPathsAreValid {
-    for (NSDictionary *fileInfoDict in files) {
-        if ([FILEMGR fileExistsAtPath:fileInfoDict[@"Path"]] == NO) {
-            return NO;
-        }
-    }
-    return YES;
-}
-
-- (UInt64)totalFileSize {
-    return totalFileSize;
 }
 
 @end

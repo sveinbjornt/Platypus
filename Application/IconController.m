@@ -35,6 +35,12 @@
 #import "Common.h"
 #import "VDKQueue.h"
 
+typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
+    PlatypusPresetIconDefault = 0,
+    PlatypusPresetIconInstaller = 1,
+    PlatypusPresetIconGenericApplication = 2
+};
+
 @interface IconController()
 {
     IBOutlet STDragImageView *iconImageView;
@@ -164,7 +170,7 @@
     } else {
         [iconToggleButton setIntValue:[iconToggleButton intValue] + 1];
     }
-    [self setAppIconForType:[iconToggleButton intValue]];
+    [self setAppIconForType:(PlatypusIconPreset)[iconToggleButton intValue]];
 }
 
 - (IBAction)previousIcon:(id)sender {
@@ -173,11 +179,11 @@
     } else {
         [iconToggleButton setIntValue:[iconToggleButton intValue] - 1];
     }
-    [self setAppIconForType:[iconToggleButton intValue]];
+    [self setAppIconForType:(PlatypusIconPreset)[iconToggleButton intValue]];
 }
 
 - (IBAction)switchIcons:(id)sender {
-    [self setAppIconForType:[sender intValue]];
+    [self setAppIconForType:(PlatypusIconPreset)[sender intValue]];
 }
 
 #pragma mark -
@@ -214,7 +220,7 @@
                 [iconNameTextField setStringValue:@"Custom Icon"];
                 [self setIcnsFilePath:tmpIconPath];
             } else {
-                [self setToDefaults:self];
+                [self setToDefaults];
             }
         });
     });
@@ -224,7 +230,7 @@
     [self loadPresetIcon:[self getIconInfoForType:type]];
 }
 
-- (NSDictionary *)getIconInfoForType:(int)type {
+- (NSDictionary *)getIconInfoForType:(PlatypusIconPreset)type {
     NSImage *iconImage;
     NSString *iconName;
     NSString *iconPath;
@@ -267,8 +273,8 @@
     return @{@"Image": iconImage, @"Name": iconName, @"Path": iconPath};
 }
 
-- (IBAction)setToDefaults:(id)sender {
-    [self setAppIconForType:0];
+- (IBAction)setToDefaults {
+    [self setAppIconForType:PlatypusPresetIconDefault];
 }
 
 #pragma mark -
@@ -307,18 +313,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
 }
 
-- (UInt64)iconFileSize {
-    if (icnsFilePath == nil) {
-        return 0;
-    }
-    
-    if (![FILEMGR fileExistsAtPath:icnsFilePath]) {
-        return 500000; // just guess the icon will be 400k in size
-    }
-    // else, just size of icns file
-    return [WORKSPACE fileOrFolderSize:[self icnsFilePath]];
-}
-
 - (BOOL)isPresetIcon:(NSString *)str {
     return [str hasPrefix:[[NSBundle mainBundle] resourcePath]];
 }
@@ -349,17 +343,6 @@
 
 - (BOOL)loadImageFile:(NSString *)filePath {
     NSImage *img = [[NSImage alloc] initByReferencingFile:filePath];
-    if (img == nil) {
-        return NO;
-    }
-    
-    [iconImageView setImage:img];
-    [self updateForCustomIcon];
-    return YES;
-}
-
-- (BOOL)loadImageWithData:(NSData *)imgData {
-    NSImage *img = [[NSImage alloc] initWithData:imgData];
     if (img == nil) {
         return NO;
     }
@@ -404,7 +387,7 @@
     if ([[anItem title] isEqualToString:@"Paste Icon"]) {
         NSArray *pbTypes = @[NSTIFFPboardType, NSPDFPboardType, NSPostScriptPboardType];
         NSString *type = [[NSPasteboard generalPasteboard] availableTypeFromArray:pbTypes];
-        
+
         if (type == nil) {
             return NO;
         }

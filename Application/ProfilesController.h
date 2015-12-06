@@ -32,6 +32,6 @@
 
 @interface ProfilesController : NSObject
 
-- (void)loadProfileAtPath:(NSString *)file;
+- (void)loadProfileAtPath:(NSString *)filePath;
 
 @end

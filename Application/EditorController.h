@@ -32,6 +32,7 @@
 
 @interface EditorController : NSWindowController
 
-- (void)showEditorForFile:(NSString *)path window:(NSWindow *)window;
+- (void)showModalEditorSheetForFile:(NSString *)filePath
+                             window:(NSWindow *)window;
 
 @end

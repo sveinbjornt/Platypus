@@ -36,12 +36,19 @@
 
 @interface DropSettingsController()
 {
+    IBOutlet NSWindow *dropSettingsWindow;
+    IBOutlet NSWindow *window;
+    
+    IBOutlet NSButton *acceptDroppedFilesCheckbox;
+    IBOutlet NSBox *droppedFilesSettingsBox;
+
     IBOutlet NSBox *suffixListBox;
     IBOutlet NSButton *addSuffixButton;
     IBOutlet NSButton *removeSuffixButton;
     IBOutlet NSTableView *suffixListTableView;
     IBOutlet NSTextField *suffixTextField;
     
+    IBOutlet NSBox *utiListBox;
     IBOutlet NSButton *addUTIButton;
     IBOutlet NSButton *removeUTIButton;
     IBOutlet NSTableView *uniformTypeListTableView;
@@ -49,20 +56,18 @@
     
     IBOutlet NSButton *promptForFileOnLaunchCheckbox;
     
-    IBOutlet NSWindow *dropSettingsWindow;
-    IBOutlet NSWindow *window;
-    IBOutlet NSTextField *errorTextField;
-    IBOutlet NSButton *droppableEnabledCheckbox;
-    
-    IBOutlet NSButton *acceptDroppedTextCheckbox;
-    IBOutlet NSButton *acceptDroppedFilesCheckbox;
-    IBOutlet NSButton *declareServiceCheckbox;
     IBOutlet NSImageView *docIconImageView;
-    
-    IBOutlet NSBox *droppedFilesSettingsBox;
     IBOutlet NSButton *selectDocumentIconButton;
+
+    IBOutlet NSButton *acceptDroppedTextCheckbox;
+    IBOutlet NSButton *declareServiceCheckbox;
     
+    IBOutlet NSTextField *errorTextField;
+    
+    IBOutlet NSButton *droppableEnabledCheckbox;
+
     NSString *docIconPath;
+    
     SuffixTypeListController *suffixListController;
     UniformTypeListController *uniformTypeListController;
 }
@@ -113,10 +118,10 @@
     [uniformTypeListTableView setTarget:self];
     
     [errorTextField setStringValue:@""];
-    [self controlTextDidChange];
+    [self textInInputTextFieldDidChange];
     [self updateButtonStatus];
     
-    [self setSuffixListEnabled:([uniformTypeListController numItems] == 0)];
+    [self setSuffixListEnabled:([uniformTypeListController itemCount] == 0)];
     
     //open window
     [NSApp beginSheet:dropSettingsWindow
@@ -133,7 +138,7 @@
 
 - (IBAction)closeDropSettingsSheet:(id)sender {
     //make sure suffix list contains valid values
-    if ([suffixListController numItems] == 0 && [uniformTypeListController numItems] == 0 && [self acceptsFiles]) {
+    if ([suffixListController itemCount] == 0 && [uniformTypeListController itemCount] == 0 && [self acceptsFiles]) {
         [errorTextField setStringValue:@"Either suffix or UTI list must contain at least one entry."];
         return;
     }
@@ -162,10 +167,10 @@
 #pragma mark -
 
 - (IBAction)addSuffix:(id)sender {
-    
     NSString *theSuffix = [suffixTextField stringValue];
-    if ([suffixListController hasItem:theSuffix] || [theSuffix length] == 0) {
-        [suffixTextField setStringValue:@""];
+    [suffixTextField setStringValue:@""];
+    
+    if ([theSuffix length] == 0) {
         return;
     }
     
@@ -175,23 +180,20 @@
     }
     
     [suffixListController addItem:theSuffix];
-    [suffixTextField setStringValue:@""];
-    [self controlTextDidChange];
+    [self textInInputTextFieldDidChange];
     [suffixListTableView reloadData];
 }
 
 - (IBAction)addUTI:(id)sender {
-    
     NSString *theUTI = [uniformTypeTextField stringValue];
-    
-    if ([uniformTypeListController hasItem:theUTI] || [theUTI length] == 0) {
-        [uniformTypeTextField setStringValue:@""];
+    [uniformTypeTextField setStringValue:@""];
+
+    if ([theUTI length] == 0) {
         return;
     }
     
     [uniformTypeListController addItem:theUTI];
-    [uniformTypeTextField setStringValue:@""];
-    [self controlTextDidChange];
+    [self textInInputTextFieldDidChange];
     [uniformTypeListTableView reloadData];
     [self setSuffixListEnabled:NO];
 }
@@ -214,7 +216,7 @@
     }
     
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    for (int i = [typeListController numItems]; i >= 0; i--) {
+    for (int i = [typeListController itemCount]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
             [typeListController removeItemAtIndex:i];
             break;
@@ -222,7 +224,7 @@
     }
     
     [tableView reloadData];
-    [self setSuffixListEnabled:([uniformTypeListController numItems] == 0)];
+    [self setSuffixListEnabled:([uniformTypeListController itemCount] == 0)];
 }
 
 #pragma mark -
@@ -240,7 +242,7 @@
     [self setAcceptsFiles:YES];
     [self setDeclareService:NO];
     [self setPromptsForFileOnLaunch:NO];
-    [self setSuffixListEnabled:([uniformTypeListController numItems] == 0)];
+    [self setSuffixListEnabled:([uniformTypeListController itemCount] == 0)];
 }
 
 - (void)setSuffixListEnabled:(BOOL)enabled {
@@ -260,38 +262,17 @@
 }
 
 - (void)updateButtonStatus {
-    // suffix delete button
-    int selected = 0;
-    NSIndexSet *selectedItems = [suffixListTableView selectedRowIndexes];
-    
-    for (int i = 0; i < [suffixListController numItems]; i++) {
-        if ([selectedItems containsIndex:i]) {
-            selected++;
-        }
-    }
-    [removeSuffixButton setEnabled:(selected != 0)];
-    
-    // UTI delete button
-    selected = 0;
-    selectedItems = [uniformTypeListTableView selectedRowIndexes];
-    
-    for (int i = 0; i < [uniformTypeListController numItems]; i++) {
-        if ([selectedItems containsIndex:i]) {
-            selected++;
-        }
-    }
-    [removeUTIButton setEnabled:(selected != 0)];
+    [removeSuffixButton setEnabled:[[suffixListTableView selectedRowIndexes] count]];
+    [removeUTIButton setEnabled:[[uniformTypeListTableView selectedRowIndexes] count]];
 }
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
-    [self controlTextDidChange];
+    [self textInInputTextFieldDidChange];
 }
 
-- (void)controlTextDidChange {
-    //enable/disable buttons for Edit Types window
+- (void)textInInputTextFieldDidChange {
     [addSuffixButton setEnabled:([[suffixTextField stringValue] length] > 0)];
     [addUTIButton setEnabled:([[uniformTypeTextField stringValue] length] > 0)];
-
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)item {
@@ -360,16 +341,6 @@
 - (void)setUniformTypesList:(NSArray *)uniformTypesList {
     [uniformTypeListController removeAllItems];
     [uniformTypeListController addItems:uniformTypesList];
-}
-
-#pragma mark -
-
-- (UInt64)docIconSize;
-{
-    if ([FILEMGR fileExistsAtPath:docIconPath]) {
-        return [WORKSPACE fileOrFolderSize:docIconPath];
-    }
-    return 0;
 }
 
 #pragma mark -

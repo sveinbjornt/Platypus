@@ -35,7 +35,6 @@
 
 @property (nonatomic, assign) NSArray *suffixList;
 @property (nonatomic, assign) NSArray *uniformTypesList;
-@property (nonatomic) UInt64 docIconSize;
 @property (nonatomic, copy) NSString *docIconPath;
 @property (nonatomic) BOOL acceptsText;
 @property (nonatomic) BOOL acceptsFiles;

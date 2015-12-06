@@ -81,7 +81,7 @@
     [items removeAllObjects];
 }
 
-- (int)numItems {
+- (int)itemCount {
     return [items count];
 }
 
@@ -107,9 +107,10 @@
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
     
-    if ([[aTableColumn identifier] caseInsensitiveCompare:@"2"] == NSOrderedSame) {
+    if ([[aTableColumn identifier] isEqualToString:@"2"]) {
         return items[rowIndex][@"name"];
-    } else if ([[aTableColumn identifier] caseInsensitiveCompare:@"1"] == NSOrderedSame) {
+    } else if ([[aTableColumn identifier] isEqualToString:@"1"]) {
+        // set cell type for column, only needed once
         if (rowIndex == 0) {
             NSImageCell *iconCell;
             iconCell = [[NSImageCell alloc] init];

@@ -37,22 +37,22 @@
 {
     IBOutlet NSWindow *window;
     IBOutlet NSWindow *statusItemSettingsWindow;
-    IBOutlet NSPopUpButton *displayTypePopup;
+    IBOutlet NSPopUpButton *statusItemStylePopup;
     IBOutlet NSImageView *iconImageView;
     IBOutlet NSButton *selectIconButton;
     IBOutlet NSTextField *titleTextField;
     IBOutlet NSTextField *titleLabelTextField;
     IBOutlet NSTextField *iconLabelTextField;
     IBOutlet NSButton *useSystemFontCheckbox;
-    
+    IBOutlet NSButton *isTemplateCheckbox;
     IBOutlet PlatypusController *platypusController;
     
-    NSStatusItem *pStatusItem;
-    NSMenu *pStatusItemMenu;
+    NSStatusItem *previewStatusItem;
+    NSMenu *previewStatusItemMenu;
 }
 
 - (IBAction)show:(id)sender;
-- (IBAction)close:(id)sender;
+- (IBAction)apply:(id)sender;
 - (IBAction)statusItemDisplayTypeChanged:(id)sender;
 - (IBAction)selectStatusItemIcon:(id)sender;
 - (IBAction)previewStatusItem:(id)sender;
@@ -64,21 +64,16 @@
 - (IBAction)show:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Status Item Settings", PROGRAM_NAME]];
     
-    //open window
     [NSApp beginSheet:statusItemSettingsWindow
        modalForWindow:window
         modalDelegate:nil
        didEndSelector:nil
           contextInfo:nil];
     
-    [statusItemSettingsWindow makeFirstResponder:statusItemSettingsWindow];
     [NSApp runModalForWindow:statusItemSettingsWindow];
-    
-    [NSApp endSheet:statusItemSettingsWindow];
-    [statusItemSettingsWindow orderOut:self];
 }
 
-- (IBAction)close:(id)sender {
+- (IBAction)apply:(id)sender {
     [self killStatusItem];
     [window setTitle:PROGRAM_NAME];
     [NSApp stopModal];
@@ -93,32 +88,19 @@
     [self setDisplayType:@"Text"];
     [iconImageView setImage:[NSImage imageNamed:@"DefaultStatusMenuIcon"]];
     [useSystemFontCheckbox setIntValue:TRUE];
+    [isTemplateCheckbox setIntValue:TRUE];
 }
 
 - (IBAction)statusItemDisplayTypeChanged:(id)sender {
-    if ([sender indexOfSelectedItem] == 0) {
-        [iconLabelTextField setHidden:YES];
-        [iconImageView setHidden:YES];
-        [selectIconButton setHidden:YES];
-        [titleLabelTextField setHidden:NO];
-        [titleTextField setHidden:NO];
-    }
-    else if ([sender indexOfSelectedItem] == 1) {
-        [iconLabelTextField setHidden:NO];
-        [iconImageView setHidden:NO];
-        [selectIconButton setHidden:NO];
-        [titleLabelTextField setHidden:YES];
-        [titleTextField setHidden:YES];
-    }
-    else if ([sender indexOfSelectedItem] == 2) {
-        [iconLabelTextField setHidden:NO];
-        [iconImageView setHidden:NO];
-        [selectIconButton setHidden:NO];
-        [titleLabelTextField setHidden:NO];
-        [titleTextField setHidden:NO];
-    }
+    BOOL isTitle = ([sender indexOfSelectedItem] == PLATYPUS_STATUS_ITEM_STYLE_TITLE);
+    [iconLabelTextField setHidden:isTitle];
+    [iconImageView setHidden:isTitle];
+    [selectIconButton setHidden:isTitle];
+    [isTemplateCheckbox setHidden:isTitle];
+    [titleLabelTextField setHidden:!isTitle];
+    [titleTextField setHidden:!isTitle];
     
-    if (pStatusItem != nil) {
+    if (previewStatusItem != nil) {
         [self previewStatusItem:self];
     }
 }
@@ -128,15 +110,17 @@
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:[NSImage imageTypes]];
+    if ([oPanel runModal] != NSOKButton) {
+        return;
+    }
     
-    if ([oPanel runModal] == NSOKButton) {
-        NSString *filePath = [[oPanel URLs][0] path];
-        NSImage *img = [[NSImage alloc] initWithContentsOfFile:filePath];
-        if (img != nil) {
-            [self setIcon:img];
-        } else {
-            [Alerts alert:@"Corrupt Image File" subText:@"The image file you selected appears to be damaged or corrupt."];
-        }
+    NSString *filePath = [[oPanel URLs][0] path];
+    NSImage *img = [[NSImage alloc] initWithContentsOfFile:filePath];
+    if (img != nil) {
+        [self setIcon:img];
+    } else {
+        [Alerts alert:@"Corrupt Image File"
+              subText:@"The image file you selected appears to be damaged or corrupt."];
     }
 }
 
@@ -146,46 +130,44 @@
     [self killStatusItem];
     
     // create status item
-    pStatusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    [pStatusItem setHighlightMode:YES];
-    [pStatusItem setMenu:pStatusItemMenu];
+    previewStatusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    [previewStatusItem setHighlightMode:YES];
+    [previewStatusItem setMenu:previewStatusItemMenu];
     
     // set icon / title depending on settings
-    int dType = [displayTypePopup indexOfSelectedItem];
-    if (dType == 0 || dType == 2) {
-        [pStatusItem setTitle:[titleTextField stringValue]];
+    PlatypusStatusItemStyle displayStyle = [statusItemStylePopup indexOfSelectedItem];
+    if (displayStyle == PLATYPUS_STATUS_ITEM_STYLE_TITLE) {
+        [previewStatusItem setTitle:[titleTextField stringValue]];
     }
-    if (dType == 1 || dType == 2) {
+    else if (displayStyle == PLATYPUS_STATUS_ITEM_STYLE_ICON) {
         NSImage *img = [iconImageView image];
         NSSize imgSize = [img size];
         CGFloat rel = 18/imgSize.height;
         NSSize finalSize = NSMakeSize(imgSize.width * rel, imgSize.height * rel);
         [img setSize:finalSize];
-        //[img setSize:NSMakeSize(18, 18)];
-        [pStatusItem setImage:img];
+        [previewStatusItem setImage:img];
+    }
+    else {
+        PLog(@"Unknown status item style: %d", displayStyle);
     }
     
-    //[[pStatusItem image] setTemplate:YES];
+    [[previewStatusItem image] setTemplate:[isTemplateCheckbox intValue]];
     
     // create menu
-    pStatusItemMenu = [[NSMenu alloc] initWithTitle:@""];
-    [pStatusItemMenu setDelegate:self];
-    [pStatusItemMenu setAutoenablesItems:NO];
-    
-    // get this thing rolling
-    [pStatusItem setEnabled:YES];
-    [pStatusItem setMenu:pStatusItemMenu];
+    previewStatusItemMenu = [[NSMenu alloc] initWithTitle:@""];
+    [previewStatusItemMenu setDelegate:self];
+    [previewStatusItemMenu setAutoenablesItems:NO];
+    [previewStatusItem setEnabled:YES];
+    [previewStatusItem setMenu:previewStatusItemMenu];
 }
 
 - (void)killStatusItem {
-    if (pStatusItem != nil) {
-        [[NSStatusBar systemStatusBar] removeStatusItem:pStatusItem]; // remove cleanly from status bar
-        pStatusItem = nil;
-    }
+    [[NSStatusBar systemStatusBar] removeStatusItem:previewStatusItem];
+    previewStatusItem = nil;
 }
 
 - (BOOL)showingStatusItem {
-    return (pStatusItem != nil);
+    return (previewStatusItem != nil);
 }
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
@@ -193,13 +175,12 @@
 }
 
 - (void)createMenuForScriptOutput {
-    
-    [pStatusItemMenu removeAllItems];
+    [previewStatusItemMenu removeAllItems];
     
     NSTask *task = [platypusController taskForCurrentScript];
     if (task == nil) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Your script output here" action:nil keyEquivalent:@""];
-        [pStatusItemMenu insertItem:menuItem atIndex:0];
+        [previewStatusItemMenu insertItem:menuItem atIndex:0];
         return;
     }
     
@@ -227,12 +208,12 @@
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(statusMenuItemSelected) keyEquivalent:@""];
         [menuItem setTarget:self];
         [menuItem setEnabled:YES];
-        [pStatusItemMenu addItem:menuItem];
+        [previewStatusItemMenu addItem:menuItem];
     }
-    if ([pStatusItemMenu numberOfItems] == 0) {
+    if ([previewStatusItemMenu numberOfItems] == 0) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"No output" action:nil keyEquivalent:@""];
         [menuItem setEnabled:NO];
-        [pStatusItemMenu addItem:menuItem];
+        [previewStatusItemMenu addItem:menuItem];
     }
 }
 
@@ -254,44 +235,22 @@
     [titleTextField setStringValue:title];
 }
 
-#pragma mark -
-
 - (void)setDisplayType:(NSString *)name {
-    [displayTypePopup selectItemWithTitle:name];
-    [self statusItemDisplayTypeChanged:displayTypePopup];
+    [statusItemStylePopup selectItemWithTitle:name];
+    [self statusItemDisplayTypeChanged:statusItemStylePopup];
 }
 
 - (NSString *)displayType {
-    return [displayTypePopup titleOfSelectedItem];
+    return [statusItemStylePopup titleOfSelectedItem];
 }
-
-#pragma mark -
 
 - (NSImage *)icon {
     return [iconImageView image];
 }
 
 - (void)setIcon:(NSImage *)img {
-//    NSSize originalSize = [img size];
-    
-    // http://alastairs-place.net/blog/2013/07/23/nsstatusitem-what-size-should-your-icon-be/
-    
-//    if ((originalSize.width == 18 && originalSize.height == 18) || (originalSize.width == 36 && originalSize.height == 36)) {
-        [iconImageView setImage:img];
-//    } else {
-//        
-//        // if the selected image isn't in dimensions 18x18, we scale it to that size
-//        // and draw the image we're handed into a 18x18 bitmap
-//        NSImage *resizedImage = [[[NSImage alloc] initWithSize:NSMakeSize(36, 36)] autorelease];
-//        [resizedImage lockFocus];
-//        [img drawInRect:NSMakeRect(0, 0, 36, 36) fromRect:NSMakeRect(0, 0, originalSize.width, originalSize.height) operation:NSCompositeSourceOver fraction:1.0];
-//        [resizedImage unlockFocus];
-//        
-//        [iconImageView setImage:resizedImage];
-//    }
+    [iconImageView setImage:img];
 }
-
-#pragma mark -
 
 - (void)setUsesSystemFont:(BOOL)useSysFont {
     [useSystemFontCheckbox setIntValue:useSysFont];
@@ -299,6 +258,14 @@
 
 - (BOOL)usesSystemFont {
     return [useSystemFontCheckbox intValue];
+}
+
+- (void)setUsesTemplateIcon:(BOOL)useTemplate {
+    [isTemplateCheckbox setIntValue:useTemplate];
+}
+
+- (BOOL)usesTemplateIcon {
+    return [isTemplateCheckbox intValue];
 }
 
 @end

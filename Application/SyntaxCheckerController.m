@@ -43,16 +43,19 @@
 @implementation SyntaxCheckerController
 
 - (instancetype)init {
-    return [super initWithWindowNibName:@"SyntaxChecker"];
+    if ((self = [super initWithWindowNibName:@"SyntaxChecker"])) {
+        
+    }
+    return self;
 }
 
 - (void)awakeFromNib {
     [textView setFont:[NSFont userFixedPitchFontOfSize:11.0]];
 }
 
-- (void)showSyntaxCheckerForFile:(NSString *)path withInterpreter:(NSString *)interpreter window:(NSWindow *)theWindow {
-    
+- (void)showModalSyntaxCheckerSheetForFile:(NSString *)path usingInterpreter:(NSString *)interpreter window:(NSWindow *)theWindow {
     [self loadWindow];
+    
     NSString *reportText = [ScriptAnalyser checkSyntaxOfFile:path withInterpreter:interpreter];
     [textView setString:reportText];
     
@@ -62,12 +65,13 @@
        didEndSelector:nil
           contextInfo:nil];
     
+    [[self window] makeFirstResponder:[self window]];
     [NSApp runModalForWindow:[self window]];
 }
 
 - (IBAction)close:(id)sender {
-    [NSApp endSheet:[self window]];
     [NSApp stopModal];
+    [NSApp endSheet:[self window]];
     [[self window] close];
 }
 

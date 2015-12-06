@@ -2,7 +2,7 @@
 #
 # Print total lines of code for project
 #
-
+echo "Lines of code in Platypus codebase"
 echo "LOC Total:"
 find . -name \*.\[m\|h\] -exec cat {} \; | wc -l
 echo "LOC Total implementation files"

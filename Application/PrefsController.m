@@ -39,10 +39,7 @@
 
 @interface PrefsController()
 {
-    IBOutlet NSButton *revealAppCheckbox;
-    IBOutlet NSButton *openAppCheckbox;
     IBOutlet NSPopUpButton *defaultEditorPopupButton;
-    IBOutlet NSPopUpButton *defaultTextEncodingPopupButton;
     IBOutlet NSTextField *defaultBundleIdentifierTextField;
     IBOutlet NSTextField *defaultAuthorTextField;
     IBOutlet NSTextField *CLTStatusTextField;
@@ -96,12 +93,11 @@
     
     // create default bundle identifier string from usename
     NSString *bundleId = [PlatypusAppSpec bundleIdentifierForAppName:@""
-                                                          authorName:nil
+                                                          authorName:NSFullUserName()
                                                        usingDefaults:NO];
     
     defaultPrefs[@"DefaultBundleIdentifierPrefix"] = bundleId;
     defaultPrefs[@"DefaultEditor"] = DEFAULT_EDITOR;
-    defaultPrefs[@"Profiles"] = @[];
     defaultPrefs[@"RevealApplicationWhenCreated"] = @NO;
     defaultPrefs[@"OpenApplicationWhenCreated"] = @NO;
     defaultPrefs[@"DefaultTextEncoding"] = @(DEFAULT_OUTPUT_TXT_ENCODING);
