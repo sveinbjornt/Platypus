@@ -56,6 +56,7 @@
 - (IBAction)statusItemDisplayTypeChanged:(id)sender;
 - (IBAction)selectStatusItemIcon:(id)sender;
 - (IBAction)previewStatusItem:(id)sender;
+- (IBAction)useAsTemplateChanged:(id)sender;
 
 @end
 
@@ -120,9 +121,19 @@
     NSImage *img = [[NSImage alloc] initWithContentsOfFile:filePath];
     if (img != nil) {
         [self setIcon:img];
+        if (previewStatusItem != nil) {
+            [self previewStatusItem:self];
+        }
     } else {
         [Alerts alert:@"Corrupt Image File"
               subText:@"The image file you selected appears to be damaged or corrupt."];
+        [self killStatusItem];
+    }
+}
+
+- (IBAction)useAsTemplateChanged:(id)sender {
+    if (previewStatusItem != nil) {
+        [self previewStatusItem:self];
     }
 }
 
@@ -147,7 +158,7 @@
         CGFloat rel = 18/imgSize.height;
         NSSize finalSize = NSMakeSize(imgSize.width * rel, imgSize.height * rel);
         [img setSize:finalSize];
-        [previewStatusItem setImage:img];
+        [previewStatusItem setImage:[img copy]];
     }
     else {
         PLog(@"Unknown status item style: %d", displayStyle);
