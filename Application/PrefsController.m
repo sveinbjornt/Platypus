@@ -156,11 +156,7 @@
 #pragma mark - Install/Uninstall
 
 + (BOOL)isCommandLineToolInstalled {
-    return ([FILEMGR fileExistsAtPath:CMDLINE_VERSION_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_MANPAGE_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_EXEC_PATH] &&
-            [FILEMGR fileExistsAtPath:CMDLINE_ICON_PATH]);
+    return [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH];
 }
 
 + (BOOL)putCommandLineToolInstallStatusInTextField:(NSTextField *)textField {
@@ -209,7 +205,7 @@
 - (IBAction)uninstallPlatypus:(id)sender {
     if ([Alerts proceedAlert:@"Are you sure you want to uninstall Platypus?"
                      subText:@"This will move the Platypus application and all related files to the Trash. The application will then quit."
-                  withAction:@"Uninstall"] == YES) {
+             withActionNamed:@"Uninstall"] == YES) {
         [self runCLTTemplateScript:@"UninstallPlatypus.sh" usingDictionary:[self commandEnvironmentDictionary]];
         [[NSApplication sharedApplication] terminate:self];
     }
@@ -264,6 +260,7 @@
     NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script];
     chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // 744
     
+    // observe when task finishes to do cleanup
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(scriptTaskFinished:)
                                                  name:STPrivilegedTaskDidTerminateNotification
@@ -281,7 +278,7 @@
     STPrivilegedTask *task = (STPrivilegedTask *)[sender object];
     NSString *tmpScriptPath = [task launchPath];
     [FILEMGR removeItemAtPath:tmpScriptPath error:nil];
-//    NSLog(@"Removed: %@", tmpScriptPath);
+    PLog(@"Removed: %@", tmpScriptPath);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

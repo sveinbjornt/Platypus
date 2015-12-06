@@ -161,7 +161,7 @@
     // app support folder
     if (![FILEMGR fileExistsAtPath:APP_SUPPORT_FOLDER isDirectory:&isDir] && ![FILEMGR createDirectoryAtPath:APP_SUPPORT_FOLDER withIntermediateDirectories:NO attributes:nil error:nil]) {
             [Alerts alert:@"Error"
-            subTextFormat:@"Could not create directory '%@'", [APP_SUPPORT_FOLDER stringByExpandingTildeInPath]];
+            subTextFormat:@"Could not create directory '%@'", APP_SUPPORT_FOLDER];
     }
     
     // profiles folder
@@ -259,12 +259,12 @@
         appName = NEW_SCRIPT_FILENAME;
     }
 
-    NSString *tmpScriptPath = [NSString stringWithFormat:@"%@/%@%@", [TEMP_FOLDER stringByExpandingTildeInPath], appName, suffix];
+    NSString *tmpScriptPath = [NSString stringWithFormat:@"%@/%@%@", TEMP_FOLDER, appName, suffix];
     
     // increment digit appended to script name until no script exists
     int incr = 1;
     while ([FILEMGR fileExistsAtPath:tmpScriptPath]) {
-        tmpScriptPath = [NSString stringWithFormat:@"%@/%@-%d%@", [TEMP_FOLDER stringByExpandingTildeInPath], appName, incr, suffix];
+        tmpScriptPath = [NSString stringWithFormat:@"%@/%@-%d%@", TEMP_FOLDER, appName, incr, suffix];
         incr++;
     }
     
@@ -500,20 +500,27 @@
     
     //make sure a name has been assigned
     if ([[appNameTextField stringValue] length] == 0) {
-        [Alerts sheetAlert:@"Invalid Application Name" subText:@"You must specify a name for your application" forWindow:window];
+        [Alerts sheetAlert:@"Missing Application Name"
+                   subText:@"You must provide a name for your application."
+                 forWindow:window];
         return NO;
     }
     
     //verify that script exists at path and isn't a directory
     BOOL isDir;
     if ([FILEMGR fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] == NO || isDir) {
-        [Alerts sheetAlert:@"Invalid Script Path" subText:@"No file exists at the script path you have specified" forWindow:window];
+        [Alerts sheetAlert:@"Invalid Script Path"
+                   subText:@"Script file does not exist at the path you specified"
+                 forWindow:window];
         return NO;
     }
         
     //interpreter
     if ([FILEMGR fileExistsAtPath:[interpreterTextField stringValue]] == NO) {
-        if ([Alerts proceedAlert:@"Invalid Interpreter" subText:[NSString stringWithFormat:@"The interpreter '%@' does not exist on this system.  Do you wish to proceed anyway?", [interpreterTextField stringValue]] withAction:@"Proceed"] == NO) {
+        NSString *promptString = [NSString stringWithFormat:@"The interpreter '%@' does not exist on this system.  Do you wish to proceed anyway?", [interpreterTextField stringValue]];
+        if ([Alerts proceedAlert:@"Interpreter does not exist"
+                         subText:promptString
+                 withActionNamed:@"Proceed"] == NO) {
             return NO;
         }
     }

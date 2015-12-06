@@ -60,7 +60,7 @@
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:@[PROGRAM_PROFILE_SUFFIX, PROGRAM_PROFILE_UTI]];
-    [oPanel setDirectoryURL:[NSURL fileURLWithPath:[PROFILES_FOLDER stringByExpandingTildeInPath]]];
+    [oPanel setDirectoryURL:[NSURL fileURLWithPath:PROFILES_FOLDER]];
     
     if ([oPanel runModal] == NSOKButton) {
         NSString *filePath = [[oPanel URLs][0] path];
@@ -94,7 +94,7 @@
         scriptStr = [scriptStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
         // write script contained in the example profile dictionary to file and set as script path
-        NSString *scriptPath = [[NSString stringWithFormat:@"%@%@", TEMP_FOLDER, scriptName] stringByExpandingTildeInPath];
+        NSString *scriptPath = [NSString stringWithFormat:@"%@%@", TEMP_FOLDER, scriptName];
         [scriptStr writeToFile:scriptPath atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:nil];
         spec[@"ScriptPath"] = scriptPath;
     }
@@ -137,7 +137,7 @@
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setTitle:[NSString stringWithFormat:@"Save %@ Profile", PROGRAM_NAME]];
     [sPanel setPrompt:@"Save"];
-    [sPanel setDirectoryURL:[NSURL fileURLWithPath:[PROFILES_FOLDER stringByExpandingTildeInPath]]];
+    [sPanel setDirectoryURL:[NSURL fileURLWithPath:PROFILES_FOLDER]];
     [sPanel setNameFieldStringValue:defaultName];
     
     if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
@@ -187,7 +187,9 @@
     }
     [examplesMenu addItem:[NSMenuItem separatorItem]];
     
-    NSMenuItem *examplesFolderItem = [examplesMenu addItemWithTitle:@"Open Examples Folder" action:@selector(openExamplesFolder) keyEquivalent:@""];
+    NSMenuItem *examplesFolderItem = [examplesMenu addItemWithTitle:@"Open Examples Folder"
+                                                             action:@selector(openExamplesFolder)
+                                                      keyEquivalent:@""];
     [examplesFolderItem setTarget:self];
     [examplesFolderItem setEnabled:YES];
     
@@ -210,7 +212,9 @@
         
         [profilesMenu addItem:[NSMenuItem separatorItem]];
         
-        NSMenuItem *menuItem = [profilesMenu addItemWithTitle:@"Open Profiles Folder" action:@selector(openProfilesFolder) keyEquivalent:@""];
+        NSMenuItem *menuItem = [profilesMenu addItemWithTitle:@"Open Profiles Folder"
+                                                       action:@selector(openProfilesFolder)
+                                                keyEquivalent:@""];
         [menuItem setTarget:self];
         [menuItem setEnabled:YES];
         
@@ -228,7 +232,7 @@
         folder = [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
     }
     
-    NSString *profilePath = [NSString stringWithFormat:@"%@/%@", [folder stringByExpandingTildeInPath], [sender title]];
+    NSString *profilePath = [NSString stringWithFormat:@"%@/%@", folder, [sender title]];
     
     // if command key is down, we reveal in finder
     BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
@@ -240,18 +244,20 @@
 }
 
 - (IBAction)clearAllProfiles:(id)sender {
-    if ([Alerts proceedAlert:@"Delete all profiles?" subText:@"This will permanently delete all profiles in your Profiles folder." withAction:@"Delete"] == NO) {
+    if ([Alerts proceedAlert:@"Delete all profiles?"
+                     subText:@"This will permanently delete all profiles in your Profiles folder."
+             withActionNamed:@"Delete"] == NO) {
         return;
     }
     
     //delete all .platypus files in PROFILES_FOLDER
     NSFileManager *manager = FILEMGR;
-    NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
+    NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:PROFILES_FOLDER];
     NSString *filename;
     
     while ((filename = [dirEnumerator nextObject]) != nil) {
         if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX]) {
-            NSString *path = [NSString stringWithFormat:@"%@/%@", [PROFILES_FOLDER stringByExpandingTildeInPath], filename];
+            NSString *path = [NSString stringWithFormat:@"%@/%@", PROFILES_FOLDER, filename];
             if (![manager isDeletableFileAtPath:path]) {
                 [Alerts alert:@"Error" subTextFormat:@"Cannot delete file %@.", path];
             } else {
@@ -264,37 +270,33 @@
 }
 
 - (void)openProfilesFolder {
-    [WORKSPACE selectFile:nil inFileViewerRootedAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
+    [WORKSPACE selectFile:nil inFileViewerRootedAtPath:PROFILES_FOLDER];
 }
 
 - (void)openExamplesFolder {
-    [WORKSPACE selectFile:nil inFileViewerRootedAtPath:[[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], PROGRAM_EXAMPLES_FOLDER] stringByExpandingTildeInPath]];
+    [WORKSPACE selectFile:nil inFileViewerRootedAtPath:EXAMPLES_FOLDER];
 }
 
 #pragma mark -
 
 - (NSArray *)readProfilesList {
-    NSMutableArray *profilesArray = [NSMutableArray array];
-    NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[PROFILES_FOLDER stringByExpandingTildeInPath]];
-    NSString *filename;
-    while ((filename = [dirEnumerator nextObject]) != nil) {
-        if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX]) {
-            [profilesArray addObject:filename];
-        }
-    }
-    return profilesArray;
+    return [self profilesInFolder:PROFILES_FOLDER];
 }
 
 - (NSArray *)readExamplesList {
-    NSMutableArray *examplesArray = [NSMutableArray array];
-    NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], PROGRAM_EXAMPLES_FOLDER]];
+    return [self profilesInFolder:EXAMPLES_FOLDER];
+}
+
+- (NSArray *)profilesInFolder:(NSString *)folderPath {
+    NSMutableArray *arr = [NSMutableArray array];
+    NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:folderPath];
     NSString *filename;
     while ((filename = [dirEnumerator nextObject]) != nil) {
         if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX]) {
-            [examplesArray addObject:filename];
+            [arr addObject:filename];
         }
     }
-    return examplesArray;
+    return arr;
 }
 
 @end

@@ -54,12 +54,12 @@
 #define PROGRAM_MANPAGE             @"platypus.man.html"
 #define PROGRAM_DOCUMENTATION       @"Documentation.html"
 #define PROGRAM_LICENSE_FILE        @"License.html"
-#define PROGRAM_EXAMPLES_FOLDER     @"/Examples/"
 
 // Application support folder info
 #define APP_SUPPORT_FOLDER          [@ "~/Library/Application Support/Platypus/" stringByExpandingTildeInPath]
 #define TEMP_FOLDER                 [NSString stringWithFormat:@"%@/", APP_SUPPORT_FOLDER]
 #define PROFILES_FOLDER             [NSString stringWithFormat:@"%@/Profiles", APP_SUPPORT_FOLDER]
+#define EXAMPLES_FOLDER             [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]]
 #define NEW_SCRIPT_FILENAME         @"Script"
 
 // default output text settings

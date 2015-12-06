@@ -79,6 +79,17 @@
 
 #pragma mark -
 
++ (void)sheetAlert:(NSString *)message forWindow:(NSWindow *)window subTextFormat:(NSString *)formatString, ... {
+    va_list args;
+    va_start(args, formatString);
+    NSString *formattedString = [[NSString alloc] initWithFormat:formatString arguments:args];
+    va_end(args);
+#if !__has_feature(objc_arc)
+    [formattedString autorelease];
+#endif
+    [self sheetAlert:message subText:formattedString forWindow:window];
+}
+
 + (void)sheetAlert:(NSString *)message subText:(NSString *)subtext forWindow:(NSWindow *)window {
     [self sheetAlert:message subText:subtext style:NSCriticalAlertStyle forWindow:window];
 }
@@ -97,9 +108,9 @@
 
 #pragma mark -
 
-+ (BOOL)proceedAlert:(NSString *)message subText:(NSString *)subtext withAction:(NSString *)action {
++ (BOOL)proceedAlert:(NSString *)message subText:(NSString *)subtext withActionNamed:(NSString *)actionName {
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:action];
+    [alert addButtonWithTitle:actionName ? actionName : @"Proceed"];
     [alert addButtonWithTitle:@"Cancel"];
     [alert setMessageText:message];
     [alert setInformativeText:subtext];
