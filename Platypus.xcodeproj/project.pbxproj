@@ -11,8 +11,6 @@
 		F40B227C1B28EFC7003C05ED /* platypus_clt in Copy ScriptExec and Command Line Tool */ = {isa = PBXBuildFile; fileRef = F4E1F6FC11F758FB007EE2E3 /* platypus_clt */; };
 		F40B227F1B28F37A003C05ED /* ScriptExec.app in Copy ScriptExec and Command Line Tool */ = {isa = PBXBuildFile; fileRef = F48B774111F7661C00351575 /* ScriptExec.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F40F33B31BFE82510052A68F /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269681BC9934800169D8B /* NSTask+Description.m */; };
-		F42622231C0222A50052BA33 /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = F42622201C0222A50052BA33 /* IconFamily.m */; };
-		F42622241C0222A50052BA33 /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = F42622221C0222A50052BA33 /* NSString+CarbonFSRefCreation.m */; };
 		F426222B1C03B4B00052BA33 /* ApplicationImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426222A1C03B4B00052BA33 /* ApplicationImages.xcassets */; };
 		F43142AF1C03C17D004EEF8C /* ApplicationImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426222A1C03B4B00052BA33 /* ApplicationImages.xcassets */; };
 		F43142B01C03C742004EEF8C /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */; };
@@ -51,6 +49,8 @@
 		F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F48B1EE017935BBC007DA173 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */; };
+		F48B68581C14CF200098815B /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B68551C14CF200098815B /* IconFamily.m */; };
+		F48B68591C14CF200098815B /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B68571C14CF200098815B /* NSString+CarbonFSRefCreation.m */; };
 		F48B7B8111F7666600351575 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
@@ -156,10 +156,6 @@
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Platypus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platypus.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F426221F1C0222A50052BA33 /* IconFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconFamily.h; path = Shared/Others/IconFamily/source/Classes/IconFamily.h; sourceTree = SOURCE_ROOT; };
-		F42622201C0222A50052BA33 /* IconFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconFamily.m; path = Shared/Others/IconFamily/source/Classes/IconFamily.m; sourceTree = SOURCE_ROOT; };
-		F42622211C0222A50052BA33 /* NSString+CarbonFSRefCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+CarbonFSRefCreation.h"; path = "Shared/Others/IconFamily/source/Classes/NSString+CarbonFSRefCreation.h"; sourceTree = SOURCE_ROOT; };
-		F42622221C0222A50052BA33 /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+CarbonFSRefCreation.m"; path = "Shared/Others/IconFamily/source/Classes/NSString+CarbonFSRefCreation.m"; sourceTree = SOURCE_ROOT; };
 		F426222A1C03B4B00052BA33 /* ApplicationImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ApplicationImages.xcassets; path = Application/ApplicationImages.xcassets; sourceTree = "<group>"; };
 		F43E1D651BC8003600622B5F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		F43E1D6A1BC8048400622B5F /* AppleScript.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppleScript.png; path = Icons/Interpreters/AppleScript.png; sourceTree = SOURCE_ROOT; };
@@ -211,6 +207,10 @@
 		F4876F45141D4A3900A428CC /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ScriptExec/MainMenu.xib; sourceTree = "<group>"; };
 		F48B1EDD17935BBC007DA173 /* ScriptAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptAnalyser.h; path = Shared/ScriptAnalyser.h; sourceTree = "<group>"; };
 		F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptAnalyser.m; path = Shared/ScriptAnalyser.m; sourceTree = "<group>"; };
+		F48B68541C14CF200098815B /* IconFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconFamily.h; path = Shared/Others/IconFamily/IconFamily.h; sourceTree = SOURCE_ROOT; };
+		F48B68551C14CF200098815B /* IconFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconFamily.m; path = Shared/Others/IconFamily/IconFamily.m; sourceTree = SOURCE_ROOT; };
+		F48B68561C14CF200098815B /* NSString+CarbonFSRefCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+CarbonFSRefCreation.h"; path = "Shared/Others/IconFamily/NSString+CarbonFSRefCreation.h"; sourceTree = SOURCE_ROOT; };
+		F48B68571C14CF200098815B /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+CarbonFSRefCreation.m"; path = "Shared/Others/IconFamily/NSString+CarbonFSRefCreation.m"; sourceTree = SOURCE_ROOT; };
 		F48B774111F7661C00351575 /* ScriptExec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptExec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48B7B9011F766E600351575 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = ScriptExec/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F48B7B9111F766E600351575 /* ScriptExecController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecController.h; path = ScriptExec/ScriptExecController.h; sourceTree = "<group>"; };
@@ -779,10 +779,10 @@
 		F4FE738B11F792C3005FC23A /* IconFamily */ = {
 			isa = PBXGroup;
 			children = (
-				F426221F1C0222A50052BA33 /* IconFamily.h */,
-				F42622201C0222A50052BA33 /* IconFamily.m */,
-				F42622211C0222A50052BA33 /* NSString+CarbonFSRefCreation.h */,
-				F42622221C0222A50052BA33 /* NSString+CarbonFSRefCreation.m */,
+				F48B68541C14CF200098815B /* IconFamily.h */,
+				F48B68551C14CF200098815B /* IconFamily.m */,
+				F48B68561C14CF200098815B /* NSString+CarbonFSRefCreation.h */,
+				F48B68571C14CF200098815B /* NSString+CarbonFSRefCreation.m */,
 			);
 			name = IconFamily;
 			path = Shared/IconFamily;
@@ -1017,13 +1017,13 @@
 				F4F2F3B51BF96C4400FE463C /* NoodleLineNumberMarker.m in Sources */,
 				F4975DAE1B2E71EE0099D16E /* IconController.m in Sources */,
 				F4AB186C1BE182FA00B83A95 /* Alerts.m in Sources */,
-				F42622231C0222A50052BA33 /* IconFamily.m in Sources */,
 				F4975DB81B2E71EE0099D16E /* TextSettingsController.m in Sources */,
+				F48B68581C14CF200098815B /* IconFamily.m in Sources */,
 				F4975DB71B2E71EE0099D16E /* SyntaxCheckerController.m in Sources */,
 				F4975D791B2E09450099D16E /* STPathTextField.m in Sources */,
 				F4975DAC1B2E71EE0099D16E /* DropSettingsController.m in Sources */,
 				F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
-				F42622241C0222A50052BA33 /* NSString+CarbonFSRefCreation.m in Sources */,
+				F48B68591C14CF200098815B /* NSString+CarbonFSRefCreation.m in Sources */,
 				F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */,
 				F4975DAD1B2E71EE0099D16E /* EditorController.m in Sources */,
 				F4975D711B2E09280099D16E /* NSWorkspace+Additions.m in Sources */,
