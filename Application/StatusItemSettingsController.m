@@ -37,7 +37,7 @@
 {
     IBOutlet NSWindow *window;
     IBOutlet NSWindow *statusItemSettingsWindow;
-    IBOutlet NSPopUpButton *statusItemStylePopup;
+    IBOutlet NSPopUpButton *statusItemStylePopupButton;
     IBOutlet NSImageView *iconImageView;
     IBOutlet NSButton *selectIconButton;
     IBOutlet NSTextField *titleTextField;
@@ -92,13 +92,15 @@
 }
 
 - (IBAction)statusItemDisplayTypeChanged:(id)sender {
-    BOOL isTitle = ([sender indexOfSelectedItem] == PLATYPUS_STATUS_ITEM_STYLE_TITLE);
-    [iconLabelTextField setHidden:isTitle];
-    [iconImageView setHidden:isTitle];
-    [selectIconButton setHidden:isTitle];
-    [isTemplateCheckbox setHidden:isTitle];
-    [titleLabelTextField setHidden:!isTitle];
-    [titleTextField setHidden:!isTitle];
+    BOOL isTitleStyle = ([sender indexOfSelectedItem] == PLATYPUS_STATUS_ITEM_STYLE_TITLE);
+    
+    [iconLabelTextField setHidden:isTitleStyle];
+    [iconImageView setHidden:isTitleStyle];
+    [selectIconButton setHidden:isTitleStyle];
+    [isTemplateCheckbox setHidden:isTitleStyle];
+    
+    [titleLabelTextField setHidden:!isTitleStyle];
+    [titleTextField setHidden:!isTitleStyle];
     
     if (previewStatusItem != nil) {
         [self previewStatusItem:self];
@@ -135,7 +137,7 @@
     [previewStatusItem setMenu:previewStatusItemMenu];
     
     // set icon / title depending on settings
-    PlatypusStatusItemStyle displayStyle = [statusItemStylePopup indexOfSelectedItem];
+    PlatypusStatusItemStyle displayStyle = [statusItemStylePopupButton indexOfSelectedItem];
     if (displayStyle == PLATYPUS_STATUS_ITEM_STYLE_TITLE) {
         [previewStatusItem setTitle:[titleTextField stringValue]];
     }
@@ -236,12 +238,12 @@
 }
 
 - (void)setDisplayType:(NSString *)name {
-    [statusItemStylePopup selectItemWithTitle:name];
-    [self statusItemDisplayTypeChanged:statusItemStylePopup];
+    [statusItemStylePopupButton selectItemWithTitle:name];
+    [self statusItemDisplayTypeChanged:statusItemStylePopupButton];
 }
 
 - (NSString *)displayType {
-    return [statusItemStylePopup titleOfSelectedItem];
+    return [statusItemStylePopupButton titleOfSelectedItem];
 }
 
 - (NSImage *)icon {

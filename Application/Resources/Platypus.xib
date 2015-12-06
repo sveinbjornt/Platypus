@@ -548,7 +548,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="9B61842D-F8BF-4F37-B04E-D862B779D760" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="9479973A-74E5-4601-BCDA-E2266E4B8758" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -740,7 +740,7 @@ DQ
                 <outlet property="platypusController" destination="335" id="A6E-z6-4qu"/>
                 <outlet property="selectIconButton" destination="10194" id="10507"/>
                 <outlet property="statusItemSettingsWindow" destination="10161" id="10214"/>
-                <outlet property="statusItemStylePopup" destination="10800" id="ABb-BB-a3B"/>
+                <outlet property="statusItemStylePopupButton" destination="10800" id="6ds-U5-4SJ"/>
                 <outlet property="titleLabelTextField" destination="10198" id="VHt-8F-TSX"/>
                 <outlet property="titleTextField" destination="10199" id="10508"/>
                 <outlet property="useSystemFontCheckbox" destination="RGs-kk-3Zk" id="uMU-RD-Jgv"/>
@@ -2460,7 +2460,7 @@ DQ
                 <rect key="frame" x="0.0" y="0.0" width="493" height="168"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button toolTip="Apply these settings" verticalHuggingPriority="750" id="10175">
+                    <button toolTip="Apply settings" verticalHuggingPriority="750" id="10175">
                         <rect key="frame" x="389" y="12" width="90" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <animations/>
@@ -2487,7 +2487,7 @@ DQ
                             <action selector="setToDefaults:" target="10213" id="lnR-iz-LHq"/>
                         </connections>
                     </button>
-                    <button toolTip="Preview how your status item will appear in the menu bar" verticalHuggingPriority="750" id="10513">
+                    <button toolTip="Preview how your status item looks in the menu bar" verticalHuggingPriority="750" id="10513">
                         <rect key="frame" x="104" y="12" width="90" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <animations/>
@@ -2516,7 +2516,7 @@ DQ
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField toolTip="The string to display as the status item title" verticalHuggingPriority="750" id="10199">
+                                <textField toolTip="Status Item title" verticalHuggingPriority="750" id="10199">
                                     <rect key="frame" x="295" y="57" width="141" height="22"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
@@ -2572,7 +2572,7 @@ DQ
                                         <action selector="selectStatusItemIcon:" target="10213" id="10504"/>
                                     </connections>
                                 </button>
-                                <popUpButton toolTip="Select status item display mode" verticalHuggingPriority="750" id="10800">
+                                <popUpButton toolTip="Set status item display style" verticalHuggingPriority="750" id="10800">
                                     <rect key="frame" x="94" y="54" width="124" height="26"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <animations/>
@@ -2590,7 +2590,7 @@ DQ
                                         <action selector="statusItemDisplayTypeChanged:" target="10213" id="10807"/>
                                     </connections>
                                 </popUpButton>
-                                <button id="RGs-kk-3Zk">
+                                <button toolTip="Check here if you want menu items displayed in the system font rather than the font specified in Text Settings" id="RGs-kk-3Zk">
                                     <rect key="frame" x="22" y="18" width="189" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <animations/>
@@ -2599,7 +2599,7 @@ DQ
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                 </button>
-                                <button id="QPU-w3-kS4">
+                                <button toolTip="Check here if your status item icon is a black and white image that can be used as an invertable template" id="QPU-w3-kS4">
                                     <rect key="frame" x="288" y="24" width="120" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <animations/>
@@ -2938,7 +2938,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="9B61842D-F8BF-4F37-B04E-D862B779D760" width="16" height="16">
+        <image name="9479973A-74E5-4601-BCDA-E2266E4B8758" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
