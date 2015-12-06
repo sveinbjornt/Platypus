@@ -21,11 +21,11 @@ For 5.1
     TODO: Treat drop into STPathTextField like any other drop, don't let editor swallow it
     TODO: File watching still broken for script path
     TODO: Make the type lists in drop settings editable like those in Args controller
-    TODO: Make UTIs default in Drop Settings (public.item and public.folder)
     TODO: Args button title should reflect an altered state (i.e. if there are custom arguments)
 
     TODO: [img setTemplate] option for Status Item icon
 
+    * UTIs are now the default in Drop Settings (public.item and public.folder)
     * Move project over to ARC
 
 For 5.0

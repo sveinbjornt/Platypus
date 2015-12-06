@@ -231,10 +231,10 @@
 
 - (IBAction)setToDefaults:(id)sender {
     [suffixListController removeAllItems];
-    [suffixListController addItem:@"*"];
     [suffixListTableView reloadData];
     
     [uniformTypeListController removeAllItems];
+    [uniformTypeListController addItems:@[@"public.item", @"public.folder"]];
     [uniformTypeListTableView reloadData];
     
     [self setDocIconPath:@""];
