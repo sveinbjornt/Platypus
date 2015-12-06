@@ -69,19 +69,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField toolTip="Path to script interpreter" verticalHuggingPriority="750" id="305" customClass="STPathTextField">
-                        <rect key="frame" x="411" y="459" width="178" height="22"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <animations/>
-                        <textFieldCell key="cell" lineBreakMode="truncatingHead" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="left" title="/bin/sh" drawsBackground="YES" id="10945">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <outlet property="delegate" destination="335" id="1159"/>
-                        </connections>
-                    </textField>
                     <textField verticalHuggingPriority="750" id="307">
                         <rect key="frame" x="21" y="187" width="589" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -391,7 +378,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button toolTip="Edit arguments passed to interpreter and script" verticalHuggingPriority="750" id="1390">
-                        <rect key="frame" x="592" y="455" width="51" height="28"/>
+                        <rect key="frame" x="572" y="455" width="72" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <animations/>
                         <buttonCell key="cell" type="push" title="Args" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10979">
@@ -548,7 +535,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="9479973A-74E5-4601-BCDA-E2266E4B8758" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="4C79B9EE-17F0-4FB5-B6A4-BAD84E918642" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -603,6 +590,19 @@ DQ
                             <action selector="selectScript:" target="335" id="351"/>
                         </connections>
                     </button>
+                    <textField toolTip="Path to script interpreter" verticalHuggingPriority="750" id="305" customClass="STPathTextField">
+                        <rect key="frame" x="411" y="460" width="158" height="22"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <animations/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingHead" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="left" title="/bin/sh" drawsBackground="YES" id="10945">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="335" id="1159"/>
+                        </connections>
+                    </textField>
                 </subviews>
                 <animations/>
             </view>
@@ -700,6 +700,7 @@ DQ
         </customObject>
         <customObject id="1418" userLabel="ArgsController" customClass="ArgsController">
             <connections>
+                <outlet property="argsButton" destination="1390" id="QrV-uI-vQi"/>
                 <outlet property="argsWindow" destination="1394" id="acr-jx-xzg"/>
                 <outlet property="commandTextField" destination="1417" id="11341"/>
                 <outlet property="interpreterArgsContextualMenu" destination="1810" id="11330"/>
@@ -2938,7 +2939,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="9479973A-74E5-4601-BCDA-E2266E4B8758" width="16" height="16">
+        <image name="4C79B9EE-17F0-4FB5-B6A4-BAD84E918642" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

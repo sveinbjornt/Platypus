@@ -52,9 +52,15 @@
 
 @interface ArgsController()
 {
-    IBOutlet NSWindow *argsWindow;
-    IBOutlet NSTextField *commandTextField;
+    // main window outlets
+    IBOutlet NSButton *argsButton;
     IBOutlet NSTextField *interpreterTextField;
+    
+    IBOutlet NSWindow *window;
+    IBOutlet NSWindow *argsWindow;
+    
+    // args window outlets
+    IBOutlet NSTextField *commandTextField;
     
     IBOutlet NSButton *interpreterArgsRemoveButton;
     IBOutlet NSResponderNotifyingTableView *interpreterArgsTableView;
@@ -63,7 +69,6 @@
     IBOutlet NSResponderNotifyingTableView *scriptArgsTableView;
     
     IBOutlet NSButton *isDroppableCheckbox;
-    IBOutlet NSWindow *window;
     
     IBOutlet NSMenu *scriptArgsContextualMenu;
     IBOutlet NSMenu *interpreterArgsContextualMenu;
@@ -216,8 +221,17 @@
 - (void)updateGUIStatus {
     [interpreterArgsRemoveButton setEnabled:([interpreterArgsTableView selectedRow] != -1)];
     [scriptArgsRemoveButton setEnabled:([scriptArgsTableView selectedRow] != -1)];
-    
+    [self updateArgsButtonTitle];
     [self constructCommandString];
+}
+
+- (void)updateArgsButtonTitle {
+    int numArgs = [interpreterArgs count] + [scriptArgs count];
+    if (numArgs) {
+        [argsButton setTitle:[NSString stringWithFormat:@"Args (%d)", numArgs]];
+    } else {
+        [argsButton setTitle:@"Args"];
+    }
 }
 
 #pragma mark - Manipulating list contents
