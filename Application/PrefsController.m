@@ -62,51 +62,70 @@
 - (IBAction)showWindow:(id)sender {
     [self window];
     [self updateCLTStatus:CLTStatusTextField];
-    [self setIconsForEditorMenu];
+    
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        [self setIconForEditorAtIndex:[defaultEditorPopupButton indexOfSelectedItem]];
+    });
+    
     [super showWindow:sender];
 }
 
 - (void)setIconsForEditorMenu {
     for (int i = 0; i < [defaultEditorPopupButton numberOfItems]; i++) {
-        
-        NSMenuItem *menuItem = [defaultEditorPopupButton itemAtIndex:i];
-        NSSize smallIconSize = { 16, 16 };
-        
-        if ([[menuItem title] isEqualToString:DEFAULT_EDITOR]) {
-            NSImage *icon = [NSImage imageNamed:@"PlatypusAppIcon"];
-            [icon setSize:smallIconSize];
-            [menuItem setImage:icon];
-        } else if ([[menuItem title] isEqualToString:@"Select..."] == FALSE) {
-            NSImage *icon = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
-            NSString *appPath = [WORKSPACE fullPathForApplication:[menuItem title]];
-            if (appPath != nil) {
-                icon = [WORKSPACE iconForFile:appPath];
-            }
-            [icon setSize:smallIconSize];
-            [menuItem setImage:icon];
+        [self setIconForEditorAtIndex:i];
+    }
+}
+
+- (void)setIconForEditorAtIndex:(int)index {
+    NSMenuItem *menuItem = [defaultEditorPopupButton itemAtIndex:index];
+    NSSize smallIconSize = { 16, 16 };
+    
+    if ([[menuItem title] isEqualToString:DEFAULT_EDITOR]) {
+        NSImage *icon = [NSApp applicationIconImage];
+        [icon setSize:smallIconSize];
+        [menuItem setImage:icon];
+    } else if ([[menuItem title] isEqualToString:@"Select..."] == FALSE) {
+        NSImage *icon;
+        NSString *appPath = [WORKSPACE fullPathForApplication:[menuItem title]];
+        if (appPath != nil) {
+            icon = [WORKSPACE iconForFile:appPath];
+        } else {
+            icon = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
         }
+        [icon setSize:smallIconSize];
+        [menuItem setImage:icon];
     }
 }
 
 + (NSDictionary *)defaultsDictionary {
-    NSMutableDictionary *defaultPrefs = [NSMutableDictionary dictionary];
+    NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
     
     // create default bundle identifier string from usename
     NSString *bundleId = [PlatypusAppSpec bundleIdentifierForAppName:@""
-                                                          authorName:NSFullUserName()
+                                                          authorName:nil
                                                        usingDefaults:NO];
     
-    defaultPrefs[@"DefaultBundleIdentifierPrefix"] = bundleId;
-    defaultPrefs[@"DefaultEditor"] = DEFAULT_EDITOR;
-    defaultPrefs[@"RevealApplicationWhenCreated"] = @NO;
-    defaultPrefs[@"OpenApplicationWhenCreated"] = @NO;
-    defaultPrefs[@"DefaultTextEncoding"] = @(DEFAULT_OUTPUT_TXT_ENCODING);
-    defaultPrefs[@"DefaultAuthor"] = NSFullUserName();
-    defaultPrefs[@"OnCreateDevVersion"] = @NO;
-    defaultPrefs[@"OnCreateOptimizeNib"] = @YES;
-    defaultPrefs[@"OnCreateUseXMLPlist"] = @NO;
+    defaults[@"DefaultBundleIdentifierPrefix"] = bundleId;
+    defaults[@"DefaultEditor"] = DEFAULT_EDITOR;
+    defaults[@"RevealApplicationWhenCreated"] = @NO;
+    defaults[@"OpenApplicationWhenCreated"] = @NO;
+    defaults[@"DefaultTextEncoding"] = @((NSStringEncoding)DEFAULT_OUTPUT_TXT_ENCODING);
+    defaults[@"DefaultAuthor"] = NSFullUserName();
+    defaults[@"OnCreateDevVersion"] = @NO;
+    defaults[@"OnCreateOptimizeNib"] = @YES;
+    defaults[@"OnCreateUseXMLPlist"] = @NO;
     
-    return defaultPrefs;
+    return defaults;
+}
+
+- (void)menuWillOpen:(NSMenu *)menu {
+    if (menu == [defaultEditorPopupButton menu]) {
+        static dispatch_once_t predicate;
+        dispatch_once(&predicate, ^{
+            [self setIconsForEditorMenu];
+        });
+    }
 }
 
 #pragma mark - Interface actions
@@ -160,32 +179,69 @@
 }
 
 + (BOOL)putCommandLineToolInstallStatusInTextField:(NSTextField *)textField {
-    BOOL isInstalled = [PrefsController isCommandLineToolInstalled];
-    if (isInstalled) {
-        NSString *versionString = [NSString stringWithContentsOfFile:CMDLINE_VERSION_PATH encoding:NSUTF8StringEncoding error:nil];
-        versionString = [versionString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        
-        // it's installed and current
-        if (versionString && [versionString isEqualToString:PROGRAM_VERSION]) {
-            [textField setTextColor:[NSColor colorWithCalibratedRed:0.0 green:0.6 blue:0.0 alpha:1.0]];
-            [textField setStringValue:@"Command line tool is installed"];
-        }
-        // installed but not this version
-        else if (versionString) {
-            
-            [textField setTextColor:[NSColor orangeColor]];
-            if ([versionString floatValue] < [PROGRAM_VERSION floatValue]) {
-                [textField setStringValue:@"Old version of command line"];  //older
-            } else {
-                [textField setStringValue:@"Newer version of command line"];  //newer
-            }
-        }
-        
-    } else {
-        [textField setStringValue:@"Command line tool is not installed"];
-        [textField setTextColor:[NSColor redColor]];
+    
+    static dispatch_queue_t cltStatusDispatchQueue;
+
+    // create queue lazily
+    if (cltStatusDispatchQueue == NULL) {
+        cltStatusDispatchQueue = dispatch_queue_create("org.sveinbjorn.platypus.cltStatusDispatchQueue", NULL);
     }
-    return isInstalled;
+
+    dispatch_async(cltStatusDispatchQueue, ^{
+
+        BOOL isInstalled = [PrefsController isCommandLineToolInstalled];
+        NSString *versionString;
+        
+        if (isInstalled) {
+            // determine command line tool version by running it
+            NSTask *task = [[NSTask alloc] init];
+            [task setLaunchPath:CMDLINE_TOOL_PATH];
+            [task setArguments:@[@"--"CMDLINE_VERSION_ARG_FLAG]];
+            
+            NSPipe *outputPipe = [NSPipe pipe];
+            [task setStandardOutput:outputPipe];
+            [task setStandardError:outputPipe];
+            NSFileHandle *readHandle = [outputPipe fileHandleForReading];
+            
+            [task launch];
+            [task waitUntilExit];
+            
+            // get output string and parse for version number
+            NSData *outputData = [readHandle readDataToEndOfFile];
+            NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+            
+            NSArray *words = [outputString componentsSeparatedByString:@" "];
+            versionString = [words[2] stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+            PLog(@"Command line tool is installed (version %@)", versionString);
+        } else {
+            PLog(@"Command line tool is not installed");
+        }
+    
+        // Update UI on main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // not installed
+            if (isInstalled == NO) {
+                [textField setStringValue:@"Command line tool is not installed"];
+                [textField setTextColor:[NSColor redColor]];
+            }
+            // it's installed and current
+            else if (versionString && [versionString isEqualToString:PROGRAM_VERSION]) {
+                [textField setTextColor:[NSColor colorWithCalibratedRed:0.0 green:0.6 blue:0.0 alpha:1.0]];
+                [textField setStringValue:@"Command line tool is installed"];
+            }
+            // installed but not this version
+            else {
+                [textField setTextColor:[NSColor orangeColor]];
+                if ([versionString floatValue] < [PROGRAM_VERSION floatValue]) {
+                    [textField setStringValue:@"Old version of command line"];  //older
+                } else {
+                    [textField setStringValue:@"Newer version of command line"];  //newer
+                }
+            }
+        });
+    });
+    
+    return YES;
 }
 
 - (void)updateCLTStatus:(NSTextField *)textField {
@@ -228,7 +284,6 @@
             @"CMDLINE_BIN_PATH": CMDLINE_BIN_PATH,
             @"CMDLINE_TOOL_PATH": CMDLINE_TOOL_PATH,
             @"CMDLINE_SHARE_PATH": CMDLINE_SHARE_PATH,
-            @"CMDLINE_VERSION_PATH": CMDLINE_VERSION_PATH,
             @"CMDLINE_MANDIR_PATH": CMDLINE_MANDIR_PATH,
             @"CMDLINE_MANPAGE_PATH": CMDLINE_MANPAGE_PATH,
             @"CMDLINE_EXEC_PATH": CMDLINE_EXEC_PATH,
@@ -246,12 +301,11 @@
         [Alerts alert:@"Error running script"
         subTextFormat:@"Could not run script '%@'", scriptName];
     }
-    [self updateCLTStatus:CLTStatusTextField];
     [installCLTProgressIndicator stopAnimation:self];
 }
 
 - (BOOL)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
-    
+    PLog(@"Running task with script %@", scriptName);
     NSString *script = [[NSBundle mainBundle] loadTemplate:scriptName usingDictionary:placeholderDict];
     if (script == nil) {
         return NO;
@@ -278,8 +332,9 @@
     STPrivilegedTask *task = (STPrivilegedTask *)[sender object];
     NSString *tmpScriptPath = [task launchPath];
     [FILEMGR removeItemAtPath:tmpScriptPath error:nil];
-    PLog(@"Removed: %@", tmpScriptPath);
+    PLog(@"Removed tmp script: %@", tmpScriptPath);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self updateCLTStatus:CLTStatusTextField];
 }
 
 @end
