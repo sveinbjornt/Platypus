@@ -133,6 +133,7 @@
     
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
     [controller showModalSyntaxCheckerSheetForFile:tmpPath
+                                        scriptName:[[scriptPathTextField stringValue] lastPathComponent]
                                   usingInterpreter:nil
                                             window:[self window]];
     

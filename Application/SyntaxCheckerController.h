@@ -33,6 +33,7 @@
 @interface SyntaxCheckerController : NSWindowController
 
 - (void)showModalSyntaxCheckerSheetForFile:(NSString *)path
+                                scriptName:(NSString *)scriptName
                           usingInterpreter:(NSString *)interpreter
                                     window:(NSWindow *)window;
 

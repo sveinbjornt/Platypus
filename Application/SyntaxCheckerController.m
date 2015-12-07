@@ -34,6 +34,7 @@
 @interface SyntaxCheckerController()
 {
     IBOutlet NSTextView *textView;
+    IBOutlet NSTextField *scriptNameTextField;
 }
 
 - (IBAction)close:(id)sender;
@@ -53,8 +54,13 @@
     [textView setFont:[NSFont userFixedPitchFontOfSize:11.0]];
 }
 
-- (void)showModalSyntaxCheckerSheetForFile:(NSString *)path usingInterpreter:(NSString *)interpreter window:(NSWindow *)theWindow {
+- (void)showModalSyntaxCheckerSheetForFile:(NSString *)path
+                                scriptName:(NSString *)scriptName
+                          usingInterpreter:(NSString *)interpreter
+                                    window:(NSWindow *)theWindow {
     [self loadWindow];
+    
+    [scriptNameTextField setStringValue:scriptName];
     
     NSString *reportText = [ScriptAnalyser checkSyntaxOfFile:path withInterpreter:interpreter];
     [textView setString:reportText];
