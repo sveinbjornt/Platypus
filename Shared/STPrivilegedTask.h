@@ -1,7 +1,8 @@
 /*
- #
  # STPrivilegedTask - NSTask-like wrapper around AuthorizationExecuteWithPrivileges
- # Copyright (C) 2009-2015 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+ # Copyright (C) 2008-2015 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+ #
+ # See https://developer.apple.com/library/mac/documentation/Security/Reference/authorization_ref/index.html
  #
  # BSD License
  # Redistribution and use in source and binary forms, with or without
@@ -11,7 +12,7 @@
  #     * Redistributions in binary form must reproduce the above copyright
  #       notice, this list of conditions and the following disclaimer in the
  #       documentation and/or other materials provided with the distribution.
- #     * Neither the name of Sveinbjorn Thordarson nor that of any other
+ #     * Neither the name of the copyright holder nor that of any other
  #       contributors may be used to endorse or promote products
  #       derived from this software without specific prior written permission.
  # 
@@ -50,31 +51,25 @@ extern const OSStatus errAuthorizationFnNoLongerExists;
     NSFileHandle    *outputFileHandle;
     NSTimer         *checkStatusTimer;
 }
--(id)initWithLaunchPath:(NSString *)path;
--(id)initWithLaunchPath:(NSString *)path arguments:  (NSArray *)args;
-+(STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path;
-+(STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)arguments;
--(NSArray *)arguments;
--(NSString *)currentDirectoryPath;
--(BOOL)isRunning;
--(int)launch;
--(NSString *)launchPath;
--(int)processIdentifier;
--(void)setArguments:(NSArray *)arguments;
--(void)setCurrentDirectoryPath:(NSString *)path;
--(void)setLaunchPath:(NSString *)path;
--(NSFileHandle *)outputFileHandle;
--(void)terminate;  // doesn't work
--(int)terminationStatus;
--(void)_checkTaskStatus;
--(void)waitUntilExit;
+- (id)initWithLaunchPath:(NSString *)path;
+- (id)initWithLaunchPath:(NSString *)path arguments:(NSArray *)args;
+- (id)initWithLaunchPath:(NSString *)path arguments:(NSArray *)args currentWorkingDirectory:(NSString *)directory;
++ (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path;
++ (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)arguments;
++ (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)args currentWorkingDirectory:(NSString *)directory;
+- (NSArray *)arguments;
+- (NSString *)currentDirectoryPath;
+- (BOOL)isRunning;
+- (int)launch;
+- (NSString *)launchPath;
+- (int)processIdentifier;
+- (void)setArguments:(NSArray *)arguments;
+- (void)setCurrentDirectoryPath:(NSString *)path;
+- (void)setLaunchPath:(NSString *)path;
+- (NSFileHandle *)outputFileHandle;
+- (void)terminate;  // doesn't work
+- (int)terminationStatus;
+- (void)_checkTaskStatus;
+- (void)waitUntilExit;
+
 @end
-/*static OSStatus AuthorizationExecuteWithPrivilegesStdErrAndPid (
-                                                                AuthorizationRef authorization,
-                                                                const char *pathToTool,
-                                                                AuthorizationFlags options,
-                                                                char * const *arguments,
-                                                                FILE **communicationsPipe,
-                                                                FILE **errPipe,
-                                                                pid_t* processid
-                                                                );*/

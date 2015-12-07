@@ -1,7 +1,8 @@
 /*
- #
  # STPrivilegedTask - NSTask-like wrapper around AuthorizationExecuteWithPrivileges
- # Copyright (C) 2009-2015 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+ # Copyright (C) 2008-2015 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+ #
+ # See https://developer.apple.com/library/mac/documentation/Security/Reference/authorization_ref/index.html
  #
  # BSD License
  # Redistribution and use in source and binary forms, with or without
@@ -11,7 +12,7 @@
  #     * Redistributions in binary form must reproduce the above copyright
  #       notice, this list of conditions and the following disclaimer in the
  #       documentation and/or other materials provided with the distribution.
- #     * Neither the name of Sveinbjorn Thordarson nor that of any other
+ #     * Neither the name of the copyright holder nor that of any other
  #       contributors may be used to endorse or promote products
  #       derived from this software without specific prior written permission.
  # 
@@ -49,7 +50,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     return self;
 }
 
--(void)dealloc
+- (void)dealloc
 {
 #if !__has_feature(objc_arc)
     [launchPath release];
@@ -63,7 +64,15 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
 #endif
 }
 
--(id)initWithLaunchPath:(NSString *)path arguments:(NSArray *)args
+- (id)initWithLaunchPath:(NSString *)path arguments:(NSArray *)args currentWorkingDirectory:(NSString *)directory
+{
+    if ((self = [self initWithLaunchPath:path arguments:args]))  {
+        [self setCurrentDirectoryPath:directory];
+    }
+    return self;
+}
+
+- (id)initWithLaunchPath:(NSString *)path arguments:(NSArray *)args
 {
     if ((self = [self initWithLaunchPath:path]))  {
         [self setArguments:args];
@@ -71,7 +80,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     return self;
 }
 
--(id)initWithLaunchPath:(NSString *)path
+- (id)initWithLaunchPath:(NSString *)path
 {
     if ((self = [self init])) {
         [self setLaunchPath:path];
@@ -81,7 +90,18 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
 
 #pragma mark -
 
-+(STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)args
++ (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)args currentWorkingDirectory:(NSString *)directory
+{
+    STPrivilegedTask *task = [[STPrivilegedTask alloc] initWithLaunchPath:path arguments:args currentWorkingDirectory:directory];
+#if !__has_feature(objc_arc)
+    [task autorelease];
+#endif
+    [task launch];
+    [task waitUntilExit];
+    return task;
+}
+
++ (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)args
 {
     STPrivilegedTask *task = [[STPrivilegedTask alloc] initWithLaunchPath:path arguments:args];
 #if !__has_feature(objc_arc)
@@ -93,7 +113,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     return task;
 }
 
-+(STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path
++ (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path
 {
     STPrivilegedTask *task = [[STPrivilegedTask alloc] initWithLaunchPath:path];
 #if !__has_feature(objc_arc)
@@ -143,7 +163,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
 
 #pragma mark -
 
--(void)setArguments:(NSArray *)args
+- (void)setArguments:(NSArray *)args
 {
 #if !__has_feature(objc_arc)
     [arguments release];
@@ -152,7 +172,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     arguments = args;
 }
 
--(void)setCurrentDirectoryPath:(NSString *)path
+- (void)setCurrentDirectoryPath:(NSString *)path
 {
 #if !__has_feature(objc_arc)
     [cwd release];
@@ -161,7 +181,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     cwd = path;
 }
 
--(void)setLaunchPath:(NSString *)path
+- (void)setLaunchPath:(NSString *)path
 {
 #if !__has_feature(objc_arc)
     [launchPath release];
@@ -173,7 +193,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
 # pragma mark -
 
 // return 0 for success
--(int)launch
+- (int)launch
 {
     OSStatus err = noErr;
     const char *toolPath = [launchPath fileSystemRepresentation];
@@ -319,143 +339,3 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
 }
 
 @end
-
-/*
- *
- * Add the Standard err Pipe and Pid support to AuthorizationExecuteWithPrivileges()
- * method
- *
- * @Author: Miklós Fazekas
- * Modified Aug 10 2010 by Sveinbjorn Thordarson
- *
- */
-
-
-/*static OSStatus AuthorizationExecuteWithPrivilegesStdErrAndPid (
-                                                                AuthorizationRef authorization,
-                                                                const char *pathToTool,
-                                                                AuthorizationFlags options,
-                                                                char * const *arguments,
-                                                                FILE **communicationsPipe,
-                                                                FILE **errPipe,
-                                                                pid_t* processid
-                                                                )
-{
-    // get the Apple-approved secure temp directory
-    NSString *tempFileTemplate = [NSTemporaryDirectory() stringByAppendingPathComponent: TMP_STDERR_TEMPLATE];
-    
-    // copy it into a C string
-    const char *tempFileTemplateCString = [tempFileTemplate fileSystemRepresentation];
-    char *stderrpath = (char *)malloc(strlen(tempFileTemplateCString) + 1);
-    strcpy(stderrpath, tempFileTemplateCString);
-    
-    printf("%s\n", stderrpath);
-    
-    // this is the command, it echoes pid and directs stderr output to pipe before running the tool w. args
-    const char *commandtemplate = "echo $$; \"$@\" 2>%s";
-    
-    if (communicationsPipe == errPipe)
-        commandtemplate = "echo $$; \"$@\" 2>1";
-    else if (errPipe == 0)
-        commandtemplate = "echo $$; \"$@\"";
-    
-    char        command[1024];
-    char        **args;
-    OSStatus    result;
-    int            argcount = 0;
-    int            i;
-    int            stderrfd = 0;
-    FILE        *commPipe = 0;
-    
-    // First, create temporary file for stderr
-    if (errPipe) 
-    {
-        // create temp file
-        stderrfd = mkstemp(stderrpath);
-        
-        // close and remove it
-        close(stderrfd); 
-        unlink(stderrpath);
-                
-        // create a pipe on the path of the temp file
-        if (mkfifo(stderrpath,S_IRWXU | S_IRWXG) != 0)
-        {
-            fprintf(stderr,"Error mkfifo:%d\n", errno);
-            return errAuthorizationInternal;
-        }
-        
-        if (stderrfd < 0)
-            return errAuthorizationInternal;
-    }
-    
-    // Create command to be executed
-    for (argcount = 0; arguments[argcount] != 0; ++argcount) {}
-    args = (char**)malloc (sizeof(char*)*(argcount + 5));
-    args[0] = "-c";
-    snprintf (command, sizeof (command), commandtemplate, stderrpath);
-    args[1] = command;
-    args[2] = "";
-    args[3] = (char*)pathToTool;
-    for (i = 0; i < argcount; ++i) {
-        args[i+4] = arguments[i];
-    }
-    args[argcount+4] = 0;
-    
-    // for debugging: log the executed command
-    printf ("Exec:\n%s", "/bin/sh"); for (i = 0; args[i] != 0; ++i) { printf (" \"%s\"", args[i]); } printf ("\n");
-    
-    // Execute command
-    result = AuthorizationExecuteWithPrivileges(authorization, "/bin/sh",  options, args, &commPipe );
-    if (result != noErr) 
-    {
-        unlink (stderrpath);
-        return result;
-    }
-    
-    // Read the first line of stdout => it's the pid
-    {
-        int stdoutfd = fileno (commPipe);
-        char pidnum[1024];
-        pid_t pid = 0;
-        int i = 0;
-        char ch = 0;
-        
-        while ((read(stdoutfd, &ch, sizeof(ch)) == 1) && (ch != '\n') && (i < sizeof(pidnum))) 
-        {
-            pidnum[i++] = ch;
-        }
-        pidnum[i] = 0;
-        
-        if (ch != '\n') 
-        {
-            // we shouldn't get there
-            unlink (stderrpath);
-            return errAuthorizationInternal;
-        }
-        sscanf(pidnum, "%d", &pid);
-        if (processid) 
-        {
-            *processid = pid;
-        }
-        NSLog(@"Have PID %d", pid);
-    }
-    
-    // 
-    if (errPipe) {
-        stderrfd = open(stderrpath, O_RDONLY, 0);
-        // *errPipe = fdopen(stderrfd, "r");
-         //Now it's safe to unlink the stderr file, as the opened handle will be still valid
-        unlink (stderrpath);
-    } else {
-        unlink(stderrpath);
-    }
-    
-    if (communicationsPipe) 
-        *communicationsPipe = commPipe;
-    else
-        fclose (commPipe);
-    
-    NSLog(@"AuthExecNew function over");
-    
-    return noErr;
-}*/
