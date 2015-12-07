@@ -49,6 +49,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     IBOutlet NSTextField *iconNameTextField;
     IBOutlet NSMenu *iconContextualMenu;
     IBOutlet NSButton *iconActionButton;
+    
     NSString *icnsFilePath;
     VDKQueue *fileWatcherQueue;
     dispatch_queue_t iconWritingDispatchQueue;
@@ -62,7 +63,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 - (IBAction)nextIcon:(id)sender;
 - (IBAction)previousIcon:(id)sender;
 - (IBAction)switchIcons:(id)sender;
-- (IBAction)selectIcon:(id)sender;
+- (IBAction)selectImageFile:(id)sender;
 - (IBAction)selectIcnsFile:(id)sender;
 
 @end
@@ -73,7 +74,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 - (instancetype)init {
     if ((self = [super init])) {
         fileWatcherQueue = [[VDKQueue alloc] init];
-        iconWritingDispatchQueue = dispatch_queue_create("My Queue",NULL);
+        iconWritingDispatchQueue = dispatch_queue_create("org.sveinbjorn.platypus.iconDispatchQueue", NULL);
     }
     return self;
 }
@@ -84,7 +85,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 }
 
 - (void)awakeFromNib {
-    // we list ourself as an observer of changes to file system, in case of icns file moving
+    // we list ourself as an observer of changes to watched file paths, in case icns file is deleted or moved
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueRenameNotification object:nil];
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueDeleteNotification object:nil];
 }
@@ -110,7 +111,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     [WORKSPACE selectFile:[self icnsFilePath] inFileViewerRootedAtPath:[self icnsFilePath]];
 }
 
-- (IBAction)selectIcon:(id)sender {
+- (IBAction)selectImageFile:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Select an image file", PROGRAM_NAME]];
     
     // create open panel
@@ -135,7 +136,6 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         } else {
             [self loadImageFile:filename];
         }
-        
     }];
 }
 
@@ -161,7 +161,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 
 - (IBAction)iconActionButtonPressed:(id)sender {
     NSRect screenRect = [window convertRectToScreen:[(NSButton *)sender frame]];
-    [iconContextualMenu popUpMenuPositioningItem:nil atLocation:screenRect.origin inView:nil ];
+    [iconContextualMenu popUpMenuPositioningItem:nil atLocation:screenRect.origin inView:nil];
 }
 
 - (IBAction)nextIcon:(id)sender {
@@ -189,11 +189,13 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 #pragma mark -
 
 - (void)updateIcnsStatus {
+    // show question mark if icon file is missing
     if ([self hasIconFile] && [FILEMGR fileExistsAtPath:icnsFilePath] == FALSE) {
         IconFamily *iconFam = [[IconFamily alloc] initWithSystemIcon:kQuestionMarkIcon];
         [iconImageView setImage:[iconFam imageWithAllReps]];
         [iconNameTextField setTextColor:[NSColor redColor]];
     } else {
+        // otherwise, read icns image from path and put it in image view
         NSImage *img = [[NSImage alloc] initByReferencingFile:icnsFilePath];
         if (img == nil) {
             img = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
@@ -203,16 +205,14 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     }
 }
 
-// sets text to custom icon
-- (void)updateForCustomIcon {
+- (void)createAndLoadCustomImageAsIcon:(NSImage *)image {
     NSString *tmpIconPath;
     do {
-        tmpIconPath = [NSString stringWithFormat:@"%@/PlatypusIcon-%d.icns", APP_SUPPORT_FOLDER, arc4random() % 9999999];
+        tmpIconPath = [NSString stringWithFormat:@"%@/PlatypusIcon-%d.icns", APP_SUPPORT_FOLDER, arc4random() % 99999];
     } while ([FILEMGR fileExistsAtPath:tmpIconPath]);
     
     dispatch_async(iconWritingDispatchQueue, ^{
-        PLog(@"Writing icon to %@", tmpIconPath);
-        BOOL success = [self writeIconToPath:tmpIconPath];
+        BOOL success = [self writeImageAsIcon:image toPath:tmpIconPath];
         
         // UI updates on main thread
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -244,7 +244,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
             [iconImage setSize:NSMakeSize(512, 512)];
             iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusDefault" ofType:@"icns"];
         }
-        break;
+            break;
             
         case PlatypusPresetIconInstaller:
         {
@@ -254,7 +254,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
             iconName = @"Installer";
             iconPath = installerIconPath;
         }
-        break;
+            break;
         
         default:
         case PlatypusPresetIconGenericApplication:
@@ -266,7 +266,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
             
             return @{@"Image": iconImage, @"Name": iconName};
         }
-        break;
+            break;
         
     }
     
@@ -279,8 +279,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 
 #pragma mark -
 
-- (BOOL)writeIconToPath:(NSString *)path {
-    NSImage *iconImage = [iconImageView image];
+- (BOOL)writeImageAsIcon:(NSImage *)iconImage toPath:(NSString *)path {
     if (iconImage == nil) {
         return NO;
     }
@@ -335,7 +334,6 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         return NO;
     }
     
-    [iconImageView setImage:img];
     [self setIcnsFilePath:filePath];
     
     return YES;
@@ -347,8 +345,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         return NO;
     }
     
-    [iconImageView setImage:img];
-    [self updateForCustomIcon];
+    [self createAndLoadCustomImageAsIcon:img];
     return YES;
 }
 
@@ -358,8 +355,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         return NO;
     }
     
-    [iconImageView setImage:img];
-    [self updateForCustomIcon];
+    [self createAndLoadCustomImageAsIcon:img];
     return YES;
 }
 
@@ -374,7 +370,6 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     if (img == nil) {
         return NO;
     }
-    [iconImageView setImage:img];
     
     [self setIcnsFilePath:iconInfo[@"Path"]];
     
@@ -399,7 +394,6 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     }
     return YES;
 }
-
 
 #pragma mark - STDragImageViewDelegate
 
@@ -460,6 +454,10 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     }
     
     return NSDragOperationNone;
+}
+
+- (void)concludeDragOperation:(id <NSDraggingInfo>)sender {
+    // this is here to prevent superclass method from being invoked
 }
 
 @end
