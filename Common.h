@@ -28,11 +28,9 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-// General definitions file with various application-wide settings/information
-
 // General program information
 #define PROGRAM_NAME                @"Platypus"
-#define PROGRAM_VERSION             @"5.0"
+#define PROGRAM_VERSION             @"5.1"
 #define PROGRAM_STAMP               [NSString stringWithFormat:@"%@-%@", PROGRAM_NAME, PROGRAM_VERSION]
 #define PROGRAM_MIN_SYS_VERSION     @"10.7.0"
 #define PROGRAM_BUNDLE_IDENTIFIER   [NSString stringWithFormat:@"org.sveinbjorn.%@", PROGRAM_NAME]
@@ -40,46 +38,45 @@
 #define PROGRAM_WEBSITE             @"http://sveinbjorn.org/platypus"
 #define PROGRAM_GITHUB_WEBSITE      @"http://github.com/sveinbjornt/Platypus"
 #define PROGRAM_DONATIONS           @"http://sveinbjorn.org/donations"
-#define PROGRAM_DOCUMENTATION_URL   @"http://sveinbjorn.org/files/manpages/PlatypusDocumentation.html"
 #define PROGRAM_MANPAGE_URL         @"http://sveinbjorn.org/files/manpages/platypus.man.html"
 #define PROGRAM_PROFILE_UTI         @"org.sveinbjorn.platypus-profile"
 #define PROGRAM_PROFILE_SUFFIX      @"platypus"
-
-
+#define PROGRAM_DOCUMENTATION_URL   @"http://sveinbjorn.org/files/manpages/PlatypusDocumentation.html"
 #define PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL [NSString stringWithFormat:@"%@#41",PROGRAM_DOCUMENTATION_URL]
 #define PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL [NSString stringWithFormat:@"%@#22",PROGRAM_DOCUMENTATION_URL]
 
-// documentation
+// Documentation
 #define PROGRAM_README_FILE         @"Readme.html"
 #define PROGRAM_MANPAGE             @"platypus.man.html"
 #define PROGRAM_DOCUMENTATION       @"Documentation.html"
 #define PROGRAM_LICENSE_FILE        @"License.html"
 
-// Application support folder info
-#define APP_SUPPORT_FOLDER          [@ "~/Library/Application Support/Platypus/" stringByExpandingTildeInPath]
+// Folders
+#define APP_SUPPORT_FOLDER          [@"~/Library/Application Support/Platypus/" stringByExpandingTildeInPath]
 #define TEMP_FOLDER                 [NSString stringWithFormat:@"%@/", APP_SUPPORT_FOLDER]
 #define PROFILES_FOLDER             [NSString stringWithFormat:@"%@/Profiles", APP_SUPPORT_FOLDER]
 #define EXAMPLES_FOLDER             [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]]
+
 #define NEW_SCRIPT_FILENAME         @"Script"
 
-// default output text settings
+// Default text settings
 #define DEFAULT_OUTPUT_FONT         @"Monaco"
 #define DEFAULT_OUTPUT_FONTSIZE     13.0
 #define DEFAULT_OUTPUT_FG_COLOR     @"#000000"
 #define DEFAULT_OUTPUT_BG_COLOR     @"#ffffff"
 #define DEFAULT_OUTPUT_TXT_ENCODING NSUTF8StringEncoding
 
-// command line tool seetings
+// Command line tool seetings
 #define CMDLINE_PROGNAME_IN_BUNDLE  @"platypus_clt"
 #define CMDLINE_PROGNAME            @"platypus"
 #define CMDLINE_SCRIPTEXEC_BIN_NAME @"ScriptExec"
 #define CMDLINE_DEFAULT_ICON_NAME   @"PlatypusDefault.icns"
 #define CMDLINE_NIB_NAME            @"MainMenu.nib"
+#define CMDLINE_VERSION_ARG_FLAG    "version"
 #define CMDLINE_BASE_INSTALL_PATH   @"/usr/local"
 #define CMDLINE_BIN_PATH            [NSString stringWithFormat:@"%@/bin", CMDLINE_BASE_INSTALL_PATH]
 #define CMDLINE_TOOL_PATH           [NSString stringWithFormat:@"%@/%@", CMDLINE_BIN_PATH, CMDLINE_PROGNAME]
 #define CMDLINE_SHARE_PATH          [NSString stringWithFormat:@"%@/share/%@", CMDLINE_BASE_INSTALL_PATH, CMDLINE_PROGNAME]
-#define CMDLINE_VERSION_PATH        [NSString stringWithFormat:@"%@/Version", CMDLINE_SHARE_PATH]
 #define CMDLINE_MANDIR_PATH         [NSString stringWithFormat:@"%@/share/man/man1", CMDLINE_BASE_INSTALL_PATH]
 #define CMDLINE_MANPAGE_PATH        [NSString stringWithFormat:@"%@/%@.1", CMDLINE_MANDIR_PATH, CMDLINE_PROGNAME]
 #define CMDLINE_EXEC_PATH           [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_SCRIPTEXEC_BIN_NAME]
@@ -93,7 +90,7 @@
 #define DEFAULT_INTERPRETER         @"/bin/sh"
 #define DEFAULT_VERSION             @"1.0"
 #define DEFAULT_STATUSITEM_DTYPE    @"Text"
-#define DEFAULT_APP_NAME            @"MyPlatypusApp"
+#define DEFAULT_APP_NAME            @"PlatypusApp"
 #define DEFAULT_DESTINATION_PATH    [[NSString stringWithFormat:@"~/Desktop/%@.app", DEFAULT_APP_NAME] stringByExpandingTildeInPath]
 #define DEFAULT_OUTPUT_TYPE         @"Progress Bar"
 #define DEFAULT_SCRIPT_TYPE         @"Shell"
@@ -102,11 +99,11 @@
 #define SHELL_COMMAND_STRING_FONT   [NSFont userFixedPitchFontOfSize:11.0]
 
 // notifications
-#define PLATYPUS_APP_SPEC_CREATION_NOTIFICATION @"PlatypusAppSpecCreationNotification"
-#define PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION  @"PlatypusAppSizeChangedNotification"
+#define PLATYPUS_APP_SPEC_CREATION_NOTIFICATION     @"PlatypusAppSpecCreationNotification"
+#define PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION      @"PlatypusAppSizeChangedNotification"
 
 // path to temp script file
-#define TMP_STDIN_PATH              @"/tmp/.plstdin.XXXXXX"
+#define TMP_STDIN_PATH              @"/tmp/.platypus_stdin.XXXXXX"
 
 // execution style
 typedef enum PlatypusExecStyle {
@@ -140,6 +137,8 @@ typedef enum PlatypusStatusItemStyle {
     @"Droplet", \
 ]
 
+#pragma mark - Output type macros
+
 #define IsTextStyledOutputType(X) ( X == PLATYPUS_OUTPUT_PROGRESSBAR || \
                                     X == PLATYPUS_OUTPUT_TEXTWINDOW || \
                                     X == PLATYPUS_OUTPUT_STATUSMENU  )
@@ -155,18 +154,17 @@ typedef enum PlatypusStatusItemStyle {
 #define IsTextViewScrollableOutputType(X) ( X == PLATYPUS_OUTPUT_PROGRESSBAR || \
                                             X == PLATYPUS_OUTPUT_TEXTWINDOW )
 
-
-
-#pragma mark -
+#pragma mark - Abbreviations
 
 // abbreviations, Obj-C is sometimes tediously verbose
 #define FILEMGR     [NSFileManager defaultManager]
 #define DEFAULTS    [NSUserDefaults standardUserDefaults]
 #define WORKSPACE   [NSWorkspace sharedWorkspace]
 
+#pragma mark - Logging
+
 #ifdef DEBUG
     #define PLog(...) NSLog(__VA_ARGS__)
 #else
     #define PLog(...)
 #endif
-

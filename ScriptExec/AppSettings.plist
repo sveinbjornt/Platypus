@@ -7,7 +7,7 @@
 	<key>AcceptsText</key>
 	<true/>
 	<key>Creator</key>
-	<string>Platypus-5.0</string>
+	<string>Platypus-5.1</string>
 	<key>DropSuffixes</key>
 	<array>
 		<string>txt</string>

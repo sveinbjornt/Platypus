@@ -100,7 +100,7 @@ static struct option long_options[] = {
     {"development-version",       no_argument,        0, 'd'},
     {"optimize-nib",              no_argument,        0, 'l'},
     {"help",                      no_argument,        0, 'h'},
-    {"version",                   no_argument,        0, 'v'},
+    {CMDLINE_VERSION_ARG_FLAG,    no_argument,        0, 'v'},
     
     {0,                           0,                  0,  0 }
 };
