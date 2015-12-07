@@ -38,18 +38,16 @@
 #define PROGRAM_WEBSITE             @"http://sveinbjorn.org/platypus"
 #define PROGRAM_GITHUB_WEBSITE      @"http://github.com/sveinbjornt/Platypus"
 #define PROGRAM_DONATIONS           @"http://sveinbjorn.org/donations"
-#define PROGRAM_MANPAGE_URL         @"http://sveinbjorn.org/files/manpages/platypus.man.html"
 #define PROGRAM_PROFILE_UTI         @"org.sveinbjorn.platypus-profile"
 #define PROGRAM_PROFILE_SUFFIX      @"platypus"
+#define PROGRAM_README_FILE         @"Readme.html"
+#define PROGRAM_MANPAGE             @"platypus.man.html"
+#define PROGRAM_LICENSE_FILE        @"License.html"
+#define PROGRAM_DOCUMENTATION       @"Documentation.html"
+#define PROGRAM_MANPAGE_URL         @"http://sveinbjorn.org/files/manpages/platypus.man.html"
 #define PROGRAM_DOCUMENTATION_URL   @"http://sveinbjorn.org/files/manpages/PlatypusDocumentation.html"
 #define PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL [NSString stringWithFormat:@"%@#41",PROGRAM_DOCUMENTATION_URL]
 #define PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL [NSString stringWithFormat:@"%@#22",PROGRAM_DOCUMENTATION_URL]
-
-// Documentation
-#define PROGRAM_README_FILE         @"Readme.html"
-#define PROGRAM_MANPAGE             @"platypus.man.html"
-#define PROGRAM_DOCUMENTATION       @"Documentation.html"
-#define PROGRAM_LICENSE_FILE        @"License.html"
 
 // Folders
 #define APP_SUPPORT_FOLDER          [@"~/Library/Application Support/Platypus/" stringByExpandingTildeInPath]

@@ -87,6 +87,7 @@
 }
 
 - (void)addFiles:(NSArray *)filePaths {
+    BOOL addedFile = NO;
     for (NSString *filePath in filePaths) {
         if ([self hasFilePath:filePath]) {
             continue;
@@ -95,12 +96,15 @@
         [icon setSize:NSMakeSize(16, 16)];
         NSDictionary *fileInfoDict = @{ @"Icon":icon, @"Path":filePath };
         [files addObject:fileInfoDict];
+        addedFile = YES;
     }
     
-    [tableView reloadData];
-    [self updateButtonStatus];
-    [self updateQueueWatch];
-    [self updateFileSizeField];
+    if (addedFile) {
+        [tableView reloadData];
+        [self updateButtonStatus];
+        [self updateQueueWatch];
+        [self updateFileSizeField];
+    }
 }
 
 - (void)updateQueueWatch {
@@ -169,7 +173,7 @@
 }
 
 - (IBAction)setToDefaults:(id)sender {
-    [self setFilePaths:@[]];
+    [self clearFileList:self];
 }
 
 #pragma mark - Interface actions
@@ -276,9 +280,9 @@
 
 - (IBAction)clearFileList:(id)sender {
     [files removeAllObjects];
+    [tableView reloadData];
     [self updateQueueWatch];
     [self updateFileSizeField];
-    [tableView reloadData];
     [self updateButtonStatus];
 }
 

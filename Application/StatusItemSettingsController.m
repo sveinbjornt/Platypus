@@ -86,7 +86,7 @@
 
 - (IBAction)setToDefaults:(id)sender {
     [titleTextField setStringValue:@"Title"];
-    [self setDisplayType:@"Text"];
+    [self setDisplayType:DEFAULT_STATUSITEM_DTYPE];
     [iconImageView setImage:[NSImage imageNamed:@"DefaultStatusMenuIcon"]];
     [useSystemFontCheckbox setIntValue:TRUE];
     [isTemplateCheckbox setIntValue:TRUE];
