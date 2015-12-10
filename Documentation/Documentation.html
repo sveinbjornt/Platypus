@@ -920,7 +920,7 @@ Contents/Resources/MainMenu.nib
 
 <h3 id="813">Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?</h3>
 
-<p>Neither Platypus nor Platypus-generated apps are signed. Due to GateKeeper, this means they will not run on Mac OS X without prompting the user for approval. There are no plans to change this in the future. Apple developer accounts cost money and I have no intention of paying Apple for the privilege of maintaining and developing free software for Mac OS X.</p>
+<p>Neither Platypus nor Platypus-generated apps are signed. Due to GateKeeper, this means they will not run on Mac OS X without prompting the user for approval. There are no plans to change this in the future. Apple developer accounts cost money and I have no intention of paying Apple for the privilege of maintaining and developing free software for Mac OS X. In any case, having people use binaries signed by me to run their scripts out in the wild sounds like a pretty bad idea.</p>
 
 <p>You can always sign the Platypus binaries yourself, but it's a laborious task. First, you need a paid <a href="https://developer.apple.com/">ADC account</a> for Mac development.  Secondly, you need to download the <a href="http://sveinbjorn.org/files/software/platypus/">Platypus source code</a>.  After that, you need to build and sign your own version of the ScriptExec binary using Apple's XCode.  Your can then manually replace the the binary in the Platypus-generated application bundle with your signed version.</p>
 

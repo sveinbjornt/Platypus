@@ -35,7 +35,7 @@
 	<false/>
 	<key>ScriptArgs</key>
 	<array/>
-	<key>ScriptInterpreter</key>
+	<key>Interpreter</key>
 	<string>/usr/bin/perl</string>
 	<key>Secure</key>
 	<false/>
