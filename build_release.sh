@@ -49,6 +49,12 @@ else
     exit
 fi
 
+# Strip executables
+echo "Stripping binaries"
+strip -x "${BUILD_DIR}/${APP_BUNDLE_NAME}/Contents/MacOS/Platypus"
+strip -x "${BUILD_DIR}/${APP_BUNDLE_NAME}/Contents/Resources/ScriptExec"
+strip -x "${BUILD_DIR}/${APP_BUNDLE_NAME}/Contents/Resources/platypus_clt"
+
 # Remove previous app folder
 rm -r "${BUILD_DIR}/${APP_FOLDER_NAME}" &> /dev/null
 
@@ -56,6 +62,8 @@ rm -r "${BUILD_DIR}/${APP_FOLDER_NAME}" &> /dev/null
 echo "Creating app folder ${BUILD_DIR}/${APP_FOLDER_NAME}"
 mkdir "${BUILD_DIR}/${APP_FOLDER_NAME}"
 mv "${BUILD_DIR}/${APP_BUNDLE_NAME}" "${BUILD_DIR}${APP_FOLDER_NAME}/"
+
+
 
 # Create symlink to Readme file
 echo "Creating symlink to Readme file"
