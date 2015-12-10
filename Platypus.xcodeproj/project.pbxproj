@@ -32,7 +32,14 @@
 		F43E1D841BC8048400622B5F /* Tcsh.png in Resources */ = {isa = PBXBuildFile; fileRef = F43E1D761BC8048400622B5F /* Tcsh.png */; };
 		F43E1D851BC8048400622B5F /* Zsh.png in Resources */ = {isa = PBXBuildFile; fileRef = F43E1D771BC8048400622B5F /* Zsh.png */; };
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
-		F445EA9814FAEEBF00DCCDB3 /* UninstallPlatypus.sh in Resources */ = {isa = PBXBuildFile; fileRef = F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */; };
+		F44A77431C1882DA003CCA7A /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F44A77401C1882DA003CCA7A /* InstallCommandLineTool.sh */; };
+		F44A77441C1882DA003CCA7A /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F44A77411C1882DA003CCA7A /* UninstallCommandLineTool.sh */; };
+		F44A77451C1882DA003CCA7A /* UninstallPlatypus.sh in Resources */ = {isa = PBXBuildFile; fileRef = F44A77421C1882DA003CCA7A /* UninstallPlatypus.sh */; };
+		F44A774D1C1887CC003CCA7A /* AppSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = F44A77481C1887CC003CCA7A /* AppSettings.plist */; };
+		F44A774E1C1887CC003CCA7A /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = F44A77491C1887CC003CCA7A /* image.png */; };
+		F44A774F1C1887CC003CCA7A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F44A774A1C1887CC003CCA7A /* MainMenu.xib */; };
+		F44A77501C1887CC003CCA7A /* script in Resources */ = {isa = PBXBuildFile; fileRef = F44A774B1C1887CC003CCA7A /* script */; };
+		F44A77511C1887CC003CCA7A /* ScriptExec-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F44A774C1C1887CC003CCA7A /* ScriptExec-Info.plist */; };
 		F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* DefaultStatusMenuIcon.png */; };
 		F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
@@ -46,8 +53,6 @@
 		F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269761BC9A1DC00169D8B /* Status-Menu.png */; };
 		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; };
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
-		F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
-		F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4876F45141D4A3900A428CC /* MainMenu.xib */; };
 		F48B1EE017935BBC007DA173 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */; };
 		F48B68581C14CF200098815B /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B68551C14CF200098815B /* IconFamily.m */; };
 		F48B68591C14CF200098815B /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B68571C14CF200098815B /* NSString+CarbonFSRefCreation.m */; };
@@ -55,8 +60,6 @@
 		F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
 		F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* ScriptExecController.m */; };
-		F48B7BA211F7672700351575 /* AppSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = F48B7B9F11F7672700351575 /* AppSettings.plist */; };
-		F48B7BA411F7672700351575 /* script in Resources */ = {isa = PBXBuildFile; fileRef = F48B7BA111F7672700351575 /* script */; };
 		F48B7BAB11F7675900351575 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48B7BAA11F7675900351575 /* WebKit.framework */; };
 		F4975D701B2E09280099D16E /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F4975D711B2E09280099D16E /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
@@ -94,8 +97,6 @@
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A841BD1BFAB00F411BD /* STDragImageView.m */; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
-		F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074711F629930043764E /* InstallCommandLineTool.sh */; };
-		F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074911F629930043764E /* UninstallCommandLineTool.sh */; };
 		F4DC075211F629A40043764E /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074F11F629A40043764E /* Documentation.html */; };
 		F4DC075311F629A40043764E /* Readme.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC075011F629A40043764E /* Readme.html */; };
 		F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
@@ -179,10 +180,17 @@
 		F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlatypusAppcast.xml; sourceTree = "<group>"; };
 		F445EA8214FABE6500DCCDB3 /* sign_update.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = sign_update.rb; sourceTree = "<group>"; };
 		F445EA8314FABE6500DCCDB3 /* update_appcast.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_appcast.sh; sourceTree = "<group>"; };
-		F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallPlatypus.sh; sourceTree = "<group>"; };
 		F4462E3C14FBDA4200E13563 /* cat2html */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = cat2html; path = CommandLineTool/cat2html; sourceTree = "<group>"; };
 		F4462E3E14FBDA4D00E13563 /* make_man_html.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = make_man_html.sh; path = CommandLineTool/make_man_html.sh; sourceTree = "<group>"; };
 		F4462E3F14FBDA4D00E13563 /* make_man_pdf.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = make_man_pdf.sh; path = CommandLineTool/make_man_pdf.sh; sourceTree = "<group>"; };
+		F44A77401C1882DA003CCA7A /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = InstallCommandLineTool.sh; path = Application/Resources/InstallCommandLineTool.sh; sourceTree = "<group>"; };
+		F44A77411C1882DA003CCA7A /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = UninstallCommandLineTool.sh; path = Application/Resources/UninstallCommandLineTool.sh; sourceTree = "<group>"; };
+		F44A77421C1882DA003CCA7A /* UninstallPlatypus.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = UninstallPlatypus.sh; path = Application/Resources/UninstallPlatypus.sh; sourceTree = "<group>"; };
+		F44A77481C1887CC003CCA7A /* AppSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppSettings.plist; sourceTree = "<group>"; };
+		F44A77491C1887CC003CCA7A /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		F44A774A1C1887CC003CCA7A /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		F44A774B1C1887CC003CCA7A /* script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = script; sourceTree = "<group>"; };
+		F44A774C1C1887CC003CCA7A /* ScriptExec-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ScriptExec-Info.plist"; sourceTree = "<group>"; };
 		F44E001C1229868100CAC9C2 /* DefaultStatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultStatusMenuIcon.png; sourceTree = "<group>"; };
 		F44EFF0412296F3700CAC9C2 /* NSColor+HexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+HexTools.h"; path = "Shared/NSColor+HexTools.h"; sourceTree = "<group>"; };
 		F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+HexTools.m"; path = "Shared/NSColor+HexTools.m"; sourceTree = "<group>"; };
@@ -204,7 +212,6 @@
 		F48269811BCAF1D800169D8B /* UniformTypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniformTypeListController.h; path = Application/UniformTypeListController.h; sourceTree = "<group>"; };
 		F48269821BCAF1D800169D8B /* UniformTypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniformTypeListController.m; path = Application/UniformTypeListController.m; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
-		F4876F45141D4A3900A428CC /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ScriptExec/MainMenu.xib; sourceTree = "<group>"; };
 		F48B1EDD17935BBC007DA173 /* ScriptAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptAnalyser.h; path = Shared/ScriptAnalyser.h; sourceTree = "<group>"; };
 		F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptAnalyser.m; path = Shared/ScriptAnalyser.m; sourceTree = "<group>"; };
 		F48B68541C14CF200098815B /* IconFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconFamily.h; path = Shared/Others/IconFamily/IconFamily.h; sourceTree = SOURCE_ROOT; };
@@ -215,10 +222,7 @@
 		F48B7B9011F766E600351575 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = ScriptExec/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F48B7B9111F766E600351575 /* ScriptExecController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecController.h; path = ScriptExec/ScriptExecController.h; sourceTree = "<group>"; };
 		F48B7B9211F766E600351575 /* ScriptExecController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptExecController.m; path = ScriptExec/ScriptExecController.m; sourceTree = "<group>"; };
-		F48B7B9F11F7672700351575 /* AppSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppSettings.plist; path = ScriptExec/AppSettings.plist; sourceTree = "<group>"; };
-		F48B7BA111F7672700351575 /* script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; name = script; path = ScriptExec/script; sourceTree = "<group>"; };
 		F48B7BAA11F7675900351575 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
-		F48B7C7B11F7691600351575 /* ScriptExec-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ScriptExec-Info.plist"; path = "ScriptExec/ScriptExec-Info.plist"; sourceTree = "<group>"; };
 		F4975D6E1B2E09280099D16E /* NSWorkspace+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWorkspace+Additions.h"; path = "Shared/NSWorkspace+Additions.h"; sourceTree = "<group>"; };
 		F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWorkspace+Additions.m"; path = "Shared/NSWorkspace+Additions.m"; sourceTree = "<group>"; };
 		F4975D721B2E09310099D16E /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Shared/STPrivilegedTask.h; sourceTree = "<group>"; };
@@ -280,9 +284,6 @@
 		F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F4C19A831BD1BFAB00F411BD /* STDragImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragImageView.h; path = Shared/STDragImageView.h; sourceTree = "<group>"; };
 		F4C19A841BD1BFAB00F411BD /* STDragImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragImageView.m; path = Shared/STDragImageView.m; sourceTree = "<group>"; };
-		F4C19A871BD4275300F411BD /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = ScriptExec/image.png; sourceTree = "<group>"; };
-		F4DC074711F629930043764E /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = InstallCommandLineTool.sh; sourceTree = "<group>"; };
-		F4DC074911F629930043764E /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = UninstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
@@ -373,7 +374,11 @@
 		29B97314FDCFA39411CA2CEA /* Platypus */ = {
 			isa = PBXGroup;
 			children = (
-				F4B87C571B403A1E00F4B8BE /* Scripts */,
+				F4975D7A1B2E462A0099D16E /* README.md */,
+				F4B87C581B403A6E00F4B8BE /* build_release.sh */,
+				F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */,
+				F4ECE1A011F7746A000DB012 /* CHANGES.txt */,
+				F4B87C5A1B403A6E00F4B8BE /* uncrustify.cfg */,
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4A4338B0E04C962000523E7 /* Common.h */,
 				F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */,
@@ -399,7 +404,7 @@
 				F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */,
 				F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */,
 				F46EF84E13C3F36900E4C0E4 /* Examples */,
-				F4DC074611F629930043764E /* Scripts */,
+				F44A77461C1882E0003CCA7A /* Scripts */,
 				F4050E3305DAF44F00BE4CA5 /* Icons */,
 			);
 			name = Resources;
@@ -465,6 +470,29 @@
 				F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */,
 			);
 			path = Sparkle;
+			sourceTree = "<group>";
+		};
+		F44A77461C1882E0003CCA7A /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				F44A77401C1882DA003CCA7A /* InstallCommandLineTool.sh */,
+				F44A77411C1882DA003CCA7A /* UninstallCommandLineTool.sh */,
+				F44A77421C1882DA003CCA7A /* UninstallPlatypus.sh */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
+		F44A77471C1887CC003CCA7A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F44A774C1C1887CC003CCA7A /* ScriptExec-Info.plist */,
+				F44A77481C1887CC003CCA7A /* AppSettings.plist */,
+				F44A774B1C1887CC003CCA7A /* script */,
+				F44A774A1C1887CC003CCA7A /* MainMenu.xib */,
+				F44A77491C1887CC003CCA7A /* image.png */,
+			);
+			name = Resources;
+			path = ScriptExec/Resources;
 			sourceTree = "<group>";
 		};
 		F44E007212298B7A00CAC9C2 /* Application */ = {
@@ -588,21 +616,9 @@
 				F48B7B9211F766E600351575 /* ScriptExecController.m */,
 				F4AB18981BED3A0B00B83A95 /* ScriptExecJob.h */,
 				F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */,
-				F48B7C6711F768A000351575 /* Resources */,
+				F44A77471C1887CC003CCA7A /* Resources */,
 			);
 			name = "ScriptExec Binary";
-			sourceTree = "<group>";
-		};
-		F48B7C6711F768A000351575 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F48B7C7B11F7691600351575 /* ScriptExec-Info.plist */,
-				F4876F45141D4A3900A428CC /* MainMenu.xib */,
-				F48B7B9F11F7672700351575 /* AppSettings.plist */,
-				F48B7BA111F7672700351575 /* script */,
-				F4C19A871BD4275300F411BD /* image.png */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		F48B7CB611F76B0C00351575 /* Application */ = {
@@ -672,16 +688,6 @@
 			name = Alerts;
 			sourceTree = "<group>";
 		};
-		F4B87C571B403A1E00F4B8BE /* Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				F4B87C581B403A6E00F4B8BE /* build_release.sh */,
-				F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */,
-				F4B87C5A1B403A6E00F4B8BE /* uncrustify.cfg */,
-			);
-			name = Scripts;
-			sourceTree = "<group>";
-		};
 		F4C19A751BD1B7C100F411BD /* NSTextView+JSDExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -727,16 +733,6 @@
 			path = ../Images/InterpreterIcons;
 			sourceTree = "<group>";
 		};
-		F4DC074611F629930043764E /* Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				F4DC074711F629930043764E /* InstallCommandLineTool.sh */,
-				F4DC074911F629930043764E /* UninstallCommandLineTool.sh */,
-				F445EA9714FAEEBF00DCCDB3 /* UninstallPlatypus.sh */,
-			);
-			path = Scripts;
-			sourceTree = "<group>";
-		};
 		F4DC074D11F629A40043764E /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -745,8 +741,6 @@
 				F48002BA121AF042003FB5B3 /* images */,
 				F4DC075011F629A40043764E /* Readme.html */,
 				F4FB338014FBFC7C00BAECEB /* License.html */,
-				F4ECE1A011F7746A000DB012 /* CHANGES.txt */,
-				F4975D7A1B2E462A0099D16E /* README.md */,
 				F4871B32178A117600DE54F3 /* update_docs.sh */,
 			);
 			path = Documentation;
@@ -898,13 +892,13 @@
 				F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */,
 				F4AB189D1BEFAF1900B83A95 /* PlatypusDefault.icns in Resources */,
 				F48269731BC9A03F00169D8B /* Text-Window.png in Resources */,
-				F4DC074A11F629930043764E /* InstallCommandLineTool.sh in Resources */,
-				F4DC074C11F629930043764E /* UninstallCommandLineTool.sh in Resources */,
 				F4DC075211F629A40043764E /* Documentation.html in Resources */,
 				F43E1D7E1BC8048400622B5F /* Perl.png in Resources */,
 				F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */,
+				F44A77451C1882DA003CCA7A /* UninstallPlatypus.sh in Resources */,
 				F4DC075311F629A40043764E /* Readme.html in Resources */,
 				F43E1D7C1BC8048400622B5F /* Expect.png in Resources */,
+				F44A77431C1882DA003CCA7A /* InstallCommandLineTool.sh in Resources */,
 				F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */,
 				F48002CB121AF042003FB5B3 /* images in Resources */,
 				F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */,
@@ -912,6 +906,7 @@
 				F43E1D831BC8048400622B5F /* Tcl.png in Resources */,
 				F43E1D851BC8048400622B5F /* Zsh.png in Resources */,
 				F43E1D781BC8048400622B5F /* AppleScript.png in Resources */,
+				F44A77441C1882DA003CCA7A /* UninstallCommandLineTool.sh in Resources */,
 				F471ED22122DF2D6001F4761 /* Credits.html in Resources */,
 				F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */,
 				F426222B1C03B4B00052BA33 /* ApplicationImages.xcassets in Resources */,
@@ -920,7 +915,6 @@
 				F43E1D821BC8048400622B5F /* Shell.png in Resources */,
 				F46EF85113C3F36900E4C0E4 /* Examples in Resources */,
 				F43E1D791BC8048400622B5F /* Bash.png in Resources */,
-				F4876F47141D4A3900A428CC /* MainMenu.xib in Resources */,
 				F43E1D801BC8048400622B5F /* Python.png in Resources */,
 				F43E1D841BC8048400622B5F /* Tcsh.png in Resources */,
 				F43E1D7B1BC8048400622B5F /* Env.png in Resources */,
@@ -930,7 +924,6 @@
 				F4975DBE1B2E71FC0099D16E /* Editor.xib in Resources */,
 				F43E1D811BC8048400622B5F /* Ruby.png in Resources */,
 				F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */,
-				F445EA9814FAEEBF00DCCDB3 /* UninstallPlatypus.sh in Resources */,
 				F4FB337714FBDE2200BAECEB /* platypus.man.html in Resources */,
 				F4FB338114FBFC7C00BAECEB /* License.html in Resources */,
 			);
@@ -941,9 +934,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F43142AF1C03C17D004EEF8C /* ApplicationImages.xcassets in Resources */,
-				F48B7BA211F7672700351575 /* AppSettings.plist in Resources */,
-				F48B7BA411F7672700351575 /* script in Resources */,
-				F4876F46141D4A3900A428CC /* MainMenu.xib in Resources */,
+				F44A77501C1887CC003CCA7A /* script in Resources */,
+				F44A77511C1887CC003CCA7A /* ScriptExec-Info.plist in Resources */,
+				F44A774D1C1887CC003CCA7A /* AppSettings.plist in Resources */,
+				F44A774F1C1887CC003CCA7A /* MainMenu.xib in Resources */,
+				F44A774E1C1887CC003CCA7A /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1381,7 +1376,7 @@
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
-				INFOPLIST_FILE = "ScriptExec/ScriptExec-Info.plist";
+				INFOPLIST_FILE = "ScriptExec/Resources/ScriptExec-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_OUTPUT_FORMAT = xml;
 				INSTALL_PATH = "";
@@ -1411,7 +1406,7 @@
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
-				INFOPLIST_FILE = "ScriptExec/ScriptExec-Info.plist";
+				INFOPLIST_FILE = "ScriptExec/Resources/ScriptExec-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INSTALL_PATH = "";
@@ -1438,7 +1433,7 @@
 				GENERATE_PKGINFO_FILE = NO;
 				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
-				INFOPLIST_FILE = "ScriptExec/ScriptExec-Info.plist";
+				INFOPLIST_FILE = "ScriptExec/Resources/ScriptExec-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;

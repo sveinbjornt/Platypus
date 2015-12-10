@@ -37,7 +37,7 @@ xcodebuild  -parallelizeTargets\
             -configuration Deployment \
             CONFIGURATION_BUILD_DIR="${BUILD_DIR}" \
             clean \
-build 
+            build
 #1> /dev/null
 
 # Check if build succeeded
