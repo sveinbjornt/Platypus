@@ -32,12 +32,13 @@ APP_SRC_ZIP_NAME="${APP_NAME_LC}${VERSION}.src.zip"
 
 echo "Building ${APP_NAME} version ${VERSION}"
 
-xcodebuild  -parallelizeTargets\
-            -scheme "Platypus" \
-            -configuration Deployment \
+xcodebuild  -parallelizeTargets \
+            -project "Platypus.xcodeproj" \
+            -target "Platypus" \
+            -configuration "Deployment" \
             CONFIGURATION_BUILD_DIR="${BUILD_DIR}" \
             clean \
-build 
+            build
 #1> /dev/null
 
 # Check if build succeeded
