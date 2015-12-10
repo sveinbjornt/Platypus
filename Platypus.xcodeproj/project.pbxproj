@@ -39,7 +39,6 @@
 		F44A774E1C1887CC003CCA7A /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = F44A77491C1887CC003CCA7A /* image.png */; };
 		F44A774F1C1887CC003CCA7A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F44A774A1C1887CC003CCA7A /* MainMenu.xib */; };
 		F44A77501C1887CC003CCA7A /* script in Resources */ = {isa = PBXBuildFile; fileRef = F44A774B1C1887CC003CCA7A /* script */; };
-		F44A77511C1887CC003CCA7A /* ScriptExec-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F44A774C1C1887CC003CCA7A /* ScriptExec-Info.plist */; };
 		F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* DefaultStatusMenuIcon.png */; };
 		F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
@@ -935,7 +934,6 @@
 			files = (
 				F43142AF1C03C17D004EEF8C /* ApplicationImages.xcassets in Resources */,
 				F44A77501C1887CC003CCA7A /* script in Resources */,
-				F44A77511C1887CC003CCA7A /* ScriptExec-Info.plist in Resources */,
 				F44A774D1C1887CC003CCA7A /* AppSettings.plist in Resources */,
 				F44A774F1C1887CC003CCA7A /* MainMenu.xib in Resources */,
 				F44A774E1C1887CC003CCA7A /* image.png in Resources */,

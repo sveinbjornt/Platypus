@@ -27,19 +27,8 @@ For 5.1
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
 
-xcodebuild -configuration $BUILD_TYPE -target AirServer clean build OTHER_CFLAGS='-DRELEASE_BUILD=1 -DGTL_BUILT_AS_FRAMEWORK=1 -DNS_BLOCK_ASSERTIONS=1 -DNDEBUG=1' 2>&1 | grep -iEw '(warning|error)' || exit 1
-
-find build/Release/AirServer.app/ -name ".DS_Store" -exec rm -f "{}" \;
-find build/Release/AirServer.app/ -name ".svn" -exec rm -f "{}" \;
-
-if [ "$BUILD_TYPE" == "Release" ]; then
-  strip -x build/Release/AirServer.app/Contents/MacOS/AirServer
-  strip -x build/Release/AirServer.app/Contents/MacOS/AirServer
-  strip -x build/Release/AirServer.app/Contents/MacOS/AirServer
-fi
-
-	
-    TODO: Strip binary in build script + dump out Sparkle signature thingie as part of build script
+    TODO: Dump out Sparkle hash as part of build script
+    TODO: Fix broken CLT install script
 
     * More robust command line tool version checking
     * Fixed issue where showing the Preferences window lagged due to icon fetching on main thread

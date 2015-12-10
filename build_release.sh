@@ -64,7 +64,8 @@ echo "Creating app folder ${BUILD_DIR}/${APP_FOLDER_NAME}"
 mkdir "${BUILD_DIR}/${APP_FOLDER_NAME}"
 mv "${BUILD_DIR}/${APP_BUNDLE_NAME}" "${BUILD_DIR}${APP_FOLDER_NAME}/"
 
-
+# Remove DS_Store junk
+find "${BUILD_DIR}${APP_FOLDER_NAME}/" -name ".DS_Store" -exec rm -f "{}" \;
 
 # Create symlink to Readme file
 echo "Creating symlink to Readme file"
@@ -88,7 +89,7 @@ mv "${APP_ZIP_NAME}" ~/Desktop/
 # Create source archive
 echo "Creating source archive ${APP_SRC_ZIP_NAME}..."
 cd "${SRC_DIR}"
-zip -q --symlinks -r "${APP_SRC_ZIP_NAME}" "." -x *.git* -x *.zip* -x *.tgz* -x *.gz* -x *.DS_Store* -x *dsa_priv.pem* -x *Sparkle/dsa_priv.pem*
+zip -q --symlinks -r "${APP_SRC_ZIP_NAME}" "." -x *.git* -x *.zip* -x *.tgz* -x *.gz* -x *.DS_Store* -x *dsa_priv.pem* -x *Sparkle/dsa_priv.pem* -x \*build/\* -x \*Releases\*
 
 if [ $1 ]
 then
