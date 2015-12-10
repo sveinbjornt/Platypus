@@ -70,9 +70,9 @@
     IBOutlet NSTextField *authorTextField;
     
     IBOutlet NSButton *rootPrivilegesCheckbox;
-    IBOutlet NSButton *encryptCheckbox;
+    IBOutlet NSButton *secureBundledScriptCheckbox;
     IBOutlet NSButton *isDroppableCheckbox;
-    IBOutlet NSButton *showInDockCheckbox;
+    IBOutlet NSButton *runInBackgroundCheckbox;
     IBOutlet NSButton *remainRunningCheckbox;
     
     IBOutlet NSButton *dropSettingsButton;
@@ -82,7 +82,7 @@
     // create app dialog view extension
     IBOutlet NSView *debugSaveOptionView;
     IBOutlet NSButton *developmentVersionCheckbox;
-    IBOutlet NSButton *optimizeApplicationCheckbox;
+    IBOutlet NSButton *stripNibFileCheckbox;
     IBOutlet NSButton *xmlPlistFormatCheckbox;
     
     //windows
@@ -377,8 +377,8 @@
     // Configure the controls in the accessory view
     
     // development version checkbox: always disable this option if secure script is checked
-    [developmentVersionCheckbox setEnabled:![encryptCheckbox intValue]];
-    if ([encryptCheckbox intValue]) {
+    [developmentVersionCheckbox setEnabled:![secureBundledScriptCheckbox intValue]];
+    if ([secureBundledScriptCheckbox intValue]) {
         [DEFAULTS setObject:@NO forKey:@"OnCreateDevVersion"];
     }
     
@@ -387,7 +387,7 @@
     if ([[DEFAULTS objectForKey:@"OnCreateOptimizeNib"] boolValue] == YES && ibtoolInstalled == NO) {
         [DEFAULTS setObject:@NO forKey:@"OnCreateOptimizeNib"];
     }
-    [optimizeApplicationCheckbox setEnabled:ibtoolInstalled];
+    [stripNibFileCheckbox setEnabled:ibtoolInstalled];
     
     //run save panel
     [sPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
@@ -443,13 +443,13 @@
     PlatypusAppSpec *spec = [self appSpecFromControls];
     
     // we set this specifically
-    spec[@"Destination"] = appPath;
-    spec[@"ExecutablePath"] = [[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil];
-    spec[@"NibPath"] = [[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil];
-    spec[@"DevelopmentVersion"] = @((BOOL)[developmentVersionCheckbox intValue]);
-    spec[@"OptimizeApplication"] = @((BOOL)[optimizeApplicationCheckbox intValue]);
-    spec[@"UseXMLPlistFormat"] = @((BOOL)[xmlPlistFormatCheckbox intValue]);
-    spec[@"DestinationOverride"] = @YES;
+    spec[APPSPEC_KEY_DESTINATION_PATH] = appPath;
+    spec[APPSPEC_KEY_EXECUTABLE_PATH] = [[NSBundle mainBundle] pathForResource:CMDLINE_SCRIPTEXEC_BIN_NAME ofType:nil];
+    spec[APPSPEC_KEY_NIB_PATH] = [[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil];
+    spec[APPSPEC_KEY_SYMLINK_FILES] = @((BOOL)[developmentVersionCheckbox intValue]);
+    spec[APPSPEC_KEY_STRIP_NIB] = @((BOOL)[stripNibFileCheckbox intValue]);
+    spec[APPSPEC_KEY_XML_PLIST_FORMAT] = @((BOOL)[xmlPlistFormatCheckbox intValue]);
+    spec[APPSPEC_KEY_OVERWRITE] = @YES;
     
     // verify that the values in the spec are OK
     if (![spec verify]) {
@@ -460,7 +460,7 @@
     // ok, now we try to create the app
     
     // first, show progress dialog
-    [progressDialogMessageLabel setStringValue:[NSString stringWithFormat:@"Creating application %@", spec[@"Name"]]];
+    [progressDialogMessageLabel setStringValue:[NSString stringWithFormat:@"Creating application %@", spec[APPSPEC_KEY_NAME]]];
     [progressBar setUsesThreadedAnimation:YES];
     [progressBar startAnimation:self];
 
@@ -534,108 +534,106 @@
 - (PlatypusAppSpec *)appSpecFromControls {
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaults];
     
-    spec[@"Name"] = [appNameTextField stringValue];
-    spec[@"ScriptPath"] = [scriptPathTextField stringValue];
-    spec[@"Output"] = [outputTypePopupButton titleOfSelectedItem];
-    spec[@"IconPath"] = [iconController icnsFilePath];
+    spec[APPSPEC_KEY_NAME] = [appNameTextField stringValue];
+    spec[APPSPEC_KEY_SCRIPT_PATH] = [scriptPathTextField stringValue];
+    spec[APPSPEC_KEY_INTERFACE_TYPE] = [outputTypePopupButton titleOfSelectedItem];
+    spec[APPSPEC_KEY_ICON_PATH] = [iconController icnsFilePath];
     
-    spec[@"Interpreter"] = [interpreterTextField stringValue];
-    spec[@"InterpreterArgs"] = [argsController interpreterArgs];
-    spec[@"ScriptArgs"] = [argsController scriptArgs];
-    spec[@"Version"] = [versionTextField stringValue];
-    spec[@"Identifier"] = [bundleIdentifierTextField stringValue];
-    spec[@"Author"] = [authorTextField stringValue];
+    spec[APPSPEC_KEY_INTERPRETER] = [interpreterTextField stringValue];
+    spec[APPSPEC_KEY_INTERPRETER_ARGS] = [argsController interpreterArgs];
+    spec[APPSPEC_KEY_SCRIPT_ARGS] = [argsController scriptArgs];
+    spec[APPSPEC_KEY_VERSION] = [versionTextField stringValue];
+    spec[APPSPEC_KEY_IDENTIFIER] = [bundleIdentifierTextField stringValue];
+    spec[APPSPEC_KEY_AUTHOR] = [authorTextField stringValue];
     
-    spec[@"Droppable"] = @((BOOL)[isDroppableCheckbox state]);
-    spec[@"Secure"] = @((BOOL)[encryptCheckbox state]);
-    spec[@"Authentication"] = @((BOOL)[rootPrivilegesCheckbox state]);
-    spec[@"RemainRunning"] = @((BOOL)[remainRunningCheckbox state]);
-    spec[@"ShowInDock"] = @((BOOL)[showInDockCheckbox state]);
+    spec[APPSPEC_KEY_DROPPABLE] = @([isDroppableCheckbox state]);
+    spec[APPSPEC_KEY_SECURE] = @([secureBundledScriptCheckbox state]);
+    spec[APPSPEC_KEY_AUTHENTICATE] = @([rootPrivilegesCheckbox state]);
+    spec[APPSPEC_KEY_REMAIN_RUNNING] = @([remainRunningCheckbox state]);
+    spec[APPSPEC_KEY_RUN_IN_BACKGROUND] = @([runInBackgroundCheckbox state]);
     
-    spec[@"BundledFiles"] = [bundledFilesController filePaths];
+    spec[APPSPEC_KEY_BUNDLED_FILES] = [bundledFilesController filePaths];
     
-    spec[@"Suffixes"] = [dropSettingsController suffixList];
-    spec[@"UniformTypes"] = [dropSettingsController uniformTypesList];
-    spec[@"DocIcon"] = [dropSettingsController docIconPath];
-    spec[@"AcceptsText"] = @((BOOL)[dropSettingsController acceptsText]);
-    spec[@"AcceptsFiles"] = @((BOOL)[dropSettingsController acceptsFiles]);
-    spec[@"DeclareService"] = @((BOOL)[dropSettingsController declareService]);
-    spec[@"PromptForFileOnLaunch"] = @((BOOL)[dropSettingsController promptsForFileOnLaunch]);
+    spec[APPSPEC_KEY_SUFFIXES] = [dropSettingsController suffixList];
+    spec[APPSPEC_KEY_UTIS] = [dropSettingsController uniformTypesList];
+    spec[APPSPEC_KEY_DOC_ICON_PATH] = [dropSettingsController docIconPath];
+    spec[APPSPEC_KEY_ACCEPT_TEXT] = @([dropSettingsController acceptsText]);
+    spec[APPSPEC_KEY_ACCEPT_FILES] = @([dropSettingsController acceptsFiles]);
+    spec[APPSPEC_KEY_SERVICE] = @([dropSettingsController declareService]);
+    spec[APPSPEC_KEY_PROMPT_FOR_FILE] = @([dropSettingsController promptsForFileOnLaunch]);
     
-    spec[@"TextEncoding"] = @((int)[textSettingsController textEncoding]);
-    spec[@"TextFont"] = [[textSettingsController textFont] fontName];
-    spec[@"TextSize"] = @((float)[[textSettingsController textFont] pointSize]);
-    spec[@"TextForeground"] = [[textSettingsController textForegroundColor] hexString];
-    spec[@"TextBackground"] = [[textSettingsController textBackgroundColor] hexString];
+    spec[APPSPEC_KEY_TEXT_ENCODING] = @((int)[textSettingsController textEncoding]);
+    spec[APPSPEC_KEY_TEXT_FONT] = [[textSettingsController textFont] fontName];
+    spec[APPSPEC_KEY_TEXT_SIZE] = @((float)[[textSettingsController textFont] pointSize]);
+    spec[APPSPEC_KEY_TEXT_COLOR] = [[textSettingsController textForegroundColor] hexString];
+    spec[APPSPEC_KEY_TEXT_BGCOLOR] = [[textSettingsController textBackgroundColor] hexString];
     
-    // status menu settings
-    if ([[outputTypePopupButton titleOfSelectedItem] isEqualToString:@"Status Menu"]) {
-        spec[@"StatusItemDisplayType"] = [statusItemSettingsController displayType];
-        spec[@"StatusItemTitle"] = [statusItemSettingsController title];
-        spec[@"StatusItemIcon"] = [[statusItemSettingsController icon] TIFFRepresentation];
-        spec[@"StatusItemUseSystemFont"] = @((BOOL)[statusItemSettingsController usesSystemFont]);
-    }
+    spec[APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE] = [statusItemSettingsController displayType];
+    spec[APPSPEC_KEY_STATUSITEM_TITLE] = [statusItemSettingsController title];
+    spec[APPSPEC_KEY_STATUSITEM_ICON] = [[statusItemSettingsController icon] TIFFRepresentation];
+    spec[APPSPEC_KEY_STATUSITEM_USE_SYSFONT] = @([statusItemSettingsController usesSystemFont]);
     
     return spec;
 }
 
 - (void)controlsFromAppSpec:(id)spec {
-    [appNameTextField setStringValue:spec[@"Name"]];
-    [scriptPathTextField setStringValue:spec[@"ScriptPath"]];
+    [appNameTextField setStringValue:spec[APPSPEC_KEY_NAME]];
+    [scriptPathTextField setStringValue:spec[APPSPEC_KEY_SCRIPT_PATH]];
     
-    [versionTextField setStringValue:spec[@"Version"]];
-    [authorTextField setStringValue:spec[@"Author"]];
+    [versionTextField setStringValue:spec[APPSPEC_KEY_VERSION]];
+    [authorTextField setStringValue:spec[APPSPEC_KEY_AUTHOR]];
     
-    int idx = [PLATYPUS_OUTPUT_TYPE_NAMES indexOfObject:spec[@"Output"]];
+    int idx = [PLATYPUS_OUTPUT_TYPE_NAMES indexOfObject:spec[APPSPEC_KEY_INTERFACE_TYPE]];
     [outputTypePopupButton selectItemAtIndex:idx];
     [self outputTypeDidChange:nil];
     
-    [interpreterTextField setStringValue:spec[@"Interpreter"]];
+    [interpreterTextField setStringValue:spec[APPSPEC_KEY_INTERPRETER]];
     
     //icon
-    [iconController loadIcnsFile:spec[@"IconPath"]];
+    [iconController loadIcnsFile:spec[APPSPEC_KEY_ICON_PATH]];
     
     //checkboxes
-    [rootPrivilegesCheckbox setState:[spec[@"Authentication"] boolValue]];
-    [isDroppableCheckbox setState:[spec[@"Droppable"] boolValue]];
+    [rootPrivilegesCheckbox setState:[spec[APPSPEC_KEY_AUTHENTICATE] boolValue]];
+    [isDroppableCheckbox setState:[spec[APPSPEC_KEY_DROPPABLE] boolValue]];
     [self isDroppableWasClicked:isDroppableCheckbox];
-    [encryptCheckbox setState:[spec[@"Secure"] boolValue]];
-    [showInDockCheckbox setState:[spec[@"ShowInDock"] boolValue]];
-    [remainRunningCheckbox setState:[spec[@"RemainRunning"] boolValue]];
+    [secureBundledScriptCheckbox setState:[spec[APPSPEC_KEY_SECURE] boolValue]];
+    [runInBackgroundCheckbox setState:[spec[APPSPEC_KEY_RUN_IN_BACKGROUND] boolValue]];
+    [remainRunningCheckbox setState:[spec[APPSPEC_KEY_REMAIN_RUNNING] boolValue]];
     
     //file list
-    [bundledFilesController setFilePaths:spec[@"BundledFiles"]];
+    [bundledFilesController setFilePaths:spec[APPSPEC_KEY_BUNDLED_FILES]];
     
     //drop settings
-    [dropSettingsController setSuffixList:spec[@"Suffixes"]];
-    [dropSettingsController setUniformTypesList:spec[@"UniformTypes"]];
-    [dropSettingsController setDocIconPath:spec[@"DocIcon"]];
-    [dropSettingsController setAcceptsText:[spec[@"AcceptsText"] boolValue]];
-    [dropSettingsController setAcceptsFiles:[spec[@"AcceptsFiles"] boolValue]];
-    [dropSettingsController setDeclareService:[spec[@"DeclareService"] boolValue]];
-    [dropSettingsController setPromptsForFileOnLaunch:[spec[@"PromptForFileOnLaunch"] boolValue]];
+    [dropSettingsController setSuffixList:spec[APPSPEC_KEY_SUFFIXES]];
+    [dropSettingsController setUniformTypesList:spec[APPSPEC_KEY_UTIS]];
+    [dropSettingsController setDocIconPath:spec[APPSPEC_KEY_DOC_ICON_PATH]];
+    [dropSettingsController setAcceptsText:[spec[APPSPEC_KEY_ACCEPT_TEXT] boolValue]];
+    [dropSettingsController setAcceptsFiles:[spec[APPSPEC_KEY_ACCEPT_FILES] boolValue]];
+    [dropSettingsController setDeclareService:[spec[APPSPEC_KEY_SERVICE] boolValue]];
+    [dropSettingsController setPromptsForFileOnLaunch:[spec[APPSPEC_KEY_PROMPT_FOR_FILE] boolValue]];
     
     // args
-    [argsController setInterpreterArgs:spec[@"InterpreterArgs"]];
-    [argsController setScriptArgs:spec[@"ScriptArgs"]];
+    [argsController setInterpreterArgs:spec[APPSPEC_KEY_INTERPRETER_ARGS]];
+    [argsController setScriptArgs:spec[APPSPEC_KEY_SCRIPT_ARGS]];
     
     // text output settings
-    [textSettingsController setTextEncoding:[spec[@"TextEncoding"] intValue]];
-    [textSettingsController setTextFont:[NSFont fontWithName:spec[@"TextFont"] size:[spec[@"TextSize"] intValue]]];
-    [textSettingsController setTextForegroundColor:[NSColor colorFromHex:spec[@"TextForeground"]]];
-    [textSettingsController setTextBackgroundColor:[NSColor colorFromHex:spec[@"TextBackground"]]];
+    [textSettingsController setTextEncoding:[spec[APPSPEC_KEY_TEXT_ENCODING] intValue]];
+    [textSettingsController setTextFont:[NSFont fontWithName:spec[APPSPEC_KEY_TEXT_FONT] size:[spec[APPSPEC_KEY_TEXT_SIZE] intValue]]];
+    [textSettingsController setTextForegroundColor:[NSColor colorFromHex:spec[APPSPEC_KEY_TEXT_COLOR]]];
+    [textSettingsController setTextBackgroundColor:[NSColor colorFromHex:spec[APPSPEC_KEY_TEXT_BGCOLOR]]];
     
     // status menu settings
-    if ([spec[@"Output"] isEqualToString:@"Status Menu"]) {
-        if (![spec[@"StatusItemDisplayType"] isEqualToString:@"Text"]) {
-            NSImage *icon = [[NSImage alloc] initWithData:spec[@"StatusItemIcon"]];
+    if ([spec[APPSPEC_KEY_INTERFACE_TYPE] isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]) {
+        if ([spec[APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE] isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
+            NSImage *icon = [[NSImage alloc] initWithData:spec[APPSPEC_KEY_STATUSITEM_ICON]];
             if (icon != nil) {
                 [statusItemSettingsController setIcon:icon];
             }
+        } else {
+            [statusItemSettingsController setTitle:spec[APPSPEC_KEY_STATUSITEM_TITLE]];
         }
-        [statusItemSettingsController setTitle:spec[@"StatusItemTitle"]];
-        [statusItemSettingsController setDisplayType:spec[@"StatusItemDisplayType"]];
-        [statusItemSettingsController setUsesSystemFont:spec[@"StatusItemUseSystemFont"]];
+        [statusItemSettingsController setDisplayType:spec[APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE]];
+        [statusItemSettingsController setUsesSystemFont:spec[APPSPEC_KEY_STATUSITEM_USE_SYSFONT]];
     }
     
     //update buttons
@@ -643,7 +641,7 @@
     
     [self updateEstimatedAppSize];
     
-    [bundleIdentifierTextField setStringValue:spec[@"Identifier"]];
+    [bundleIdentifierTextField setStringValue:spec[APPSPEC_KEY_IDENTIFIER]];
 }
 
 #pragma mark - Load/Select script
@@ -752,7 +750,7 @@
     [textOutputSettingsButton setEnabled:hasTextSettings];
     
     // disable options that don't make sense for status menu output mode
-    if ([outType isEqualToString:@"Status Menu"]) {
+    if ([outType isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]) {
         
         // disable droppable & admin privileges
         [isDroppableCheckbox setIntValue:0];
@@ -766,7 +764,7 @@
         [remainRunningCheckbox setEnabled:NO];
         
         // check Runs in Background as default for Status Menu output
-        [showInDockCheckbox setIntValue:1];
+        [runInBackgroundCheckbox setIntValue:1];
         
         // show button for special status item settings
         [statusItemSettingsButton setEnabled:YES];
@@ -786,7 +784,7 @@
         // re-enable remain running
         [remainRunningCheckbox setEnabled:YES];
         
-        [showInDockCheckbox setIntValue:0];
+        [runInBackgroundCheckbox setIntValue:0];
         
         // hide special status item settings
         [statusItemSettingsButton setEnabled:NO];
@@ -807,10 +805,10 @@
     //uncheck all options
     [isDroppableCheckbox setIntValue:0];
     [self isDroppableWasClicked:isDroppableCheckbox];
-    [encryptCheckbox setIntValue:0];
+    [secureBundledScriptCheckbox setIntValue:0];
     [rootPrivilegesCheckbox setIntValue:0];
     [remainRunningCheckbox setIntValue:1];
-    [showInDockCheckbox setIntValue:0];
+    [runInBackgroundCheckbox setIntValue:0];
     
     [bundledFilesController setToDefaults:self];
     [dropSettingsController setToDefaults:self];
@@ -861,7 +859,7 @@
     estimatedAppSize += [WORKSPACE fileOrFolderSize:[iconController icnsFilePath]];
     estimatedAppSize += [WORKSPACE fileOrFolderSize:[dropSettingsController docIconPath]];
     estimatedAppSize += [WORKSPACE fileOrFolderSize:[scriptPathTextField stringValue]];
-    estimatedAppSize += [WORKSPACE fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"ScriptExec" ofType:nil]];
+    estimatedAppSize += [WORKSPACE fileOrFolderSize:[[NSBundle mainBundle] pathForResource:CMDLINE_SCRIPTEXEC_BIN_NAME ofType:nil]];
     
     // nib size is much smaller if compiled with ibtool
     UInt64 nibSize = [WORKSPACE fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil]];

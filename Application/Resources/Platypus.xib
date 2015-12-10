@@ -534,7 +534,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="4D6D2EB5-9298-4CB1-906A-C60435A1CA6C" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="22C11FED-44A6-486B-89C5-9BCD3019DA00" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -624,11 +624,9 @@ DQ
                 <outlet property="dropSettingsButton" destination="372" id="QPm-Zy-YHL"/>
                 <outlet property="dropSettingsController" destination="1364" id="SvR-r8-57E"/>
                 <outlet property="editScriptButton" destination="324" id="491"/>
-                <outlet property="encryptCheckbox" destination="951" id="954"/>
                 <outlet property="iconController" destination="1215" id="eHO-cn-oEo"/>
                 <outlet property="interpreterTextField" destination="305" id="337"/>
                 <outlet property="isDroppableCheckbox" destination="299" id="340"/>
-                <outlet property="optimizeApplicationCheckbox" destination="11109" id="11113"/>
                 <outlet property="outputTypePopupButton" destination="4148" id="uxL-Am-1K6"/>
                 <outlet property="prefsController" destination="11195" id="apI-W1-dIt"/>
                 <outlet property="profilesController" destination="2872" id="Eil-aK-aFN"/>
@@ -639,11 +637,13 @@ DQ
                 <outlet property="remainRunningCheckbox" destination="697" id="700"/>
                 <outlet property="revealScriptButton" destination="429" id="493"/>
                 <outlet property="rootPrivilegesCheckbox" destination="293" id="4162"/>
+                <outlet property="runInBackgroundCheckbox" destination="523" id="RnR-82-CHd"/>
                 <outlet property="scriptPathTextField" destination="334" id="344"/>
                 <outlet property="scriptTypePopupButton" destination="3890" id="kJF-9o-bsM"/>
-                <outlet property="showInDockCheckbox" destination="523" id="524"/>
+                <outlet property="secureBundledScriptCheckbox" destination="951" id="PKW-9o-Uix"/>
                 <outlet property="statusItemSettingsButton" destination="10159" id="10216"/>
                 <outlet property="statusItemSettingsController" destination="10213" id="AFv-S5-sWQ"/>
+                <outlet property="stripNibFileCheckbox" destination="11109" id="6Nk-RM-que"/>
                 <outlet property="textOutputSettingsButton" destination="2061" id="3145"/>
                 <outlet property="textSettingsController" destination="2364" id="aSO-P4-da9"/>
                 <outlet property="versionTextField" destination="769" id="774"/>
@@ -2944,7 +2944,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="4D6D2EB5-9298-4CB1-906A-C60435A1CA6C" width="16" height="16">
+        <image name="22C11FED-44A6-486B-89C5-9BCD3019DA00" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

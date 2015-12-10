@@ -87,6 +87,9 @@
 }
 
 - (void)addFiles:(NSArray *)filePaths {
+    if (filePaths == nil) {
+        return;
+    }
     BOOL addedFile = NO;
     for (NSString *filePath in filePaths) {
         if ([self hasFilePath:filePath]) {

@@ -121,6 +121,7 @@
 
 - (void)menuWillOpen:(NSMenu *)menu {
     if (menu == [defaultEditorPopupButton menu]) {
+        // this only needs to happen once
         static dispatch_once_t predicate;
         dispatch_once(&predicate, ^{
             [self setIconsForEditorMenu];
@@ -271,7 +272,7 @@
 {
     return @{@"PROGRAM_NAME": PROGRAM_NAME,
             @"PROGRAM_VERSION": PROGRAM_VERSION,
-            @"PROGRAM_STAMP": PROGRAM_STAMP,
+            @"PROGRAM_CREATOR_STAMP": PROGRAM_CREATOR_STAMP,
             @"PROGRAM_MIN_SYS_VERSION": PROGRAM_MIN_SYS_VERSION,
             @"PROGRAM_BUNDLE_IDENTIFIER": PROGRAM_BUNDLE_IDENTIFIER,
             @"PROGRAM_AUTHOR": PROGRAM_AUTHOR,

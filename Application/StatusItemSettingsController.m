@@ -85,8 +85,8 @@
 #pragma mark -
 
 - (IBAction)setToDefaults:(id)sender {
-    [titleTextField setStringValue:@"Title"];
-    [self setDisplayType:DEFAULT_STATUSITEM_DTYPE];
+    [titleTextField setStringValue:DEFAULT_STATUS_ITEM_TITLE];
+    [self setDisplayType:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT];
     [iconImageView setImage:[NSImage imageNamed:@"DefaultStatusMenuIcon"]];
     [useSystemFontCheckbox setIntValue:TRUE];
     [isTemplateCheckbox setIntValue:TRUE];

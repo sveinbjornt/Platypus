@@ -133,7 +133,7 @@
     BOOL acceptDroppedFolders;
     
     NSString *statusItemTitle;
-    NSImage *statusItemIcon;
+    NSImage *statusItemImage;
     
     BOOL isTaskRunning;
     BOOL outputEmpty;
@@ -225,7 +225,7 @@
     }
     
     // determine output type
-    NSString *outputTypeStr = appSettingsDict[@"OutputType"];
+    NSString *outputTypeStr = appSettingsDict[APPSPEC_KEY_INTERFACE_TYPE];
     if ([PLATYPUS_OUTPUT_TYPE_NAMES containsObject:outputTypeStr] == FALSE) {
         [Alerts fatalAlert:@"Corrupt app settings"
              subTextFormat:@"Invalid Output Mode: '%@'.", outputTypeStr];
@@ -237,74 +237,70 @@
     
         // font and size
         NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
-        CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[@"TextSize"] floatValue];
+        CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[APPSPEC_KEY_TEXT_SIZE] floatValue];
         fontSize = fontSize ? fontSize : DEFAULT_OUTPUT_FONTSIZE;
         
-        if (appSettingsDict[@"TextFont"] != nil) {
-            textFont = [NSFont fontWithName:appSettingsDict[@"TextFont"] size:fontSize];
+        if (appSettingsDict[APPSPEC_KEY_TEXT_FONT] != nil) {
+            textFont = [NSFont fontWithName:appSettingsDict[APPSPEC_KEY_TEXT_FONT] size:fontSize];
         }
         if (textFont == nil) {
             textFont = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE];
         }
         
         // foreground color
-        if (appSettingsDict[@"TextForeground"] != nil) {
-            textForegroundColor = [NSColor colorFromHex:appSettingsDict[@"TextForeground"]];
+        if (appSettingsDict[APPSPEC_KEY_TEXT_COLOR] != nil) {
+            textForegroundColor = [NSColor colorFromHex:appSettingsDict[APPSPEC_KEY_TEXT_COLOR]];
         }
         if (textForegroundColor == nil) {
             textForegroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_FG_COLOR];
         }
         
         // background color
-        if (appSettingsDict[@"TextBackground"] != nil) {
-            textBackgroundColor = [NSColor colorFromHex:appSettingsDict[@"TextBackground"]];
+        if (appSettingsDict[APPSPEC_KEY_TEXT_BGCOLOR] != nil) {
+            textBackgroundColor = [NSColor colorFromHex:appSettingsDict[APPSPEC_KEY_TEXT_BGCOLOR]];
         }
         if (textBackgroundColor == nil) {
             textBackgroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_BG_COLOR];
         }
         
         // encoding
-        textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
-        if (appSettingsDict[@"TextEncoding"] != nil) {
-            textEncoding = (int)[appSettingsDict[@"TextEncoding"] intValue];
+        if (appSettingsDict[APPSPEC_KEY_TEXT_ENCODING] != nil) {
+            textEncoding = (int)[appSettingsDict[APPSPEC_KEY_TEXT_ENCODING] intValue];
         }
     }
     
     // status menu output has some additional parameters
     if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
-        NSString *statusItemDisplayType = appSettingsDict[@"StatusItemDisplayType"];
-        
-        // we load text label if status menu is not only an icon
-        if ([statusItemDisplayType isEqualToString:@"Text"] || [statusItemDisplayType isEqualToString:@"Icon and Text"]) {
-            statusItemTitle = [appSettingsDict[@"StatusItemTitle"] copy];
+        NSString *statusItemDisplayType = appSettingsDict[APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE];
+
+        if ([statusItemDisplayType isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT]) {
+            statusItemTitle = [appSettingsDict[APPSPEC_KEY_STATUSITEM_TITLE] copy];
             if (statusItemTitle == nil) {
                 [Alerts fatalAlert:@"Error getting title" subText:@"Failed to get Status Item title."];
             }
         }
-        
-        // we load icon if status menu is not only a text label
-        if ([statusItemDisplayType isEqualToString:@"Icon"] || [statusItemDisplayType isEqualToString:@"Icon and Text"]) {
-            statusItemIcon = [[NSImage alloc] initWithData:appSettingsDict[@"StatusItemIcon"]];
-            if (statusItemIcon == nil) {
+        else if ([statusItemDisplayType isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
+            statusItemImage = [[NSImage alloc] initWithData:appSettingsDict[APPSPEC_KEY_STATUSITEM_ICON]];
+            if (statusItemImage == nil) {
                 [Alerts fatalAlert:@"Error loading icon" subText:@"Failed to load Status Item icon."];
             }
         }
         
         // Fallback if no title or icon is specified
-        if (statusItemIcon == nil && statusItemTitle == nil) {
-            statusItemTitle = @"Title";
+        if (statusItemImage == nil && statusItemTitle == nil) {
+            statusItemTitle = DEFAULT_STATUS_ITEM_TITLE;
         }
         
-        statusItemUsesSystemFont = [appSettingsDict[@"StatusItemUseSystemFont"] boolValue];
+        statusItemUsesSystemFont = [appSettingsDict[APPSPEC_KEY_STATUSITEM_ICON] boolValue];
     }
     
-    interpreterArgs = [appSettingsDict[@"InterpreterArgs"] copy];
-    scriptArgs = [appSettingsDict[@"ScriptArgs"] copy];
-    execStyle = [appSettingsDict[@"RequiresAdminPrivileges"] boolValue];
-    remainRunning = [appSettingsDict[@"RemainRunningAfterCompletion"] boolValue];
-    secureScript = [appSettingsDict[@"Secure"] boolValue];
-    isDroppable = [appSettingsDict[@"Droppable"] boolValue];
-    promptForFileOnLaunch = [appSettingsDict[@"PromptForFileOnLaunch"] boolValue];
+    interpreterArgs = [appSettingsDict[APPSPEC_KEY_INTERPRETER_ARGS] copy];
+    scriptArgs = [appSettingsDict[APPSPEC_KEY_SCRIPT_ARGS] copy];
+    execStyle = [appSettingsDict[APPSPEC_KEY_AUTHENTICATE] boolValue];
+    remainRunning = [appSettingsDict[APPSPEC_KEY_REMAIN_RUNNING] boolValue];
+    secureScript = [appSettingsDict[APPSPEC_KEY_SECURE] boolValue];
+    isDroppable = [appSettingsDict[APPSPEC_KEY_DROPPABLE] boolValue];
+    promptForFileOnLaunch = [appSettingsDict[APPSPEC_KEY_PROMPT_FOR_FILE] boolValue];
     
     
     // read and store command line arguments to the application
@@ -347,8 +343,8 @@
     }
     
     // load settings for drop acceptance, default is to accept nothing
-    acceptsFiles = (appSettingsDict[@"AcceptsFiles"] != nil) ? [appSettingsDict[@"AcceptsFiles"] boolValue] : NO;
-    acceptsText = (appSettingsDict[@"AcceptsText"] != nil) ? [appSettingsDict[@"AcceptsText"] boolValue] : NO;
+    acceptsFiles = (appSettingsDict[APPSPEC_KEY_ACCEPT_FILES] != nil) ? [appSettingsDict[APPSPEC_KEY_ACCEPT_FILES] boolValue] : NO;
+    acceptsText = (appSettingsDict[APPSPEC_KEY_ACCEPT_TEXT] != nil) ? [appSettingsDict[APPSPEC_KEY_ACCEPT_TEXT] boolValue] : NO;
     
     // equivalent to not being droppable
     if (!acceptsFiles && !acceptsText) {
@@ -362,14 +358,14 @@
     // we use them later as a criterion for in-code drop acceptance
     if (isDroppable && acceptsFiles) {
         // get list of accepted suffixes
-        if (appSettingsDict[@"DropSuffixes"] != nil) {
-            droppableSuffixes = [[NSArray alloc] initWithArray:appSettingsDict[@"DropSuffixes"]];
+        if (appSettingsDict[APPSPEC_KEY_SUFFIXES] != nil) {
+            droppableSuffixes = [[NSArray alloc] initWithArray:appSettingsDict[APPSPEC_KEY_SUFFIXES]];
         } else {
             droppableSuffixes = [[NSArray alloc] init];
         }
         
-        if (appSettingsDict[@"DropUniformTypes"] != nil) {
-            droppableUniformTypes = [[NSArray alloc] initWithArray:appSettingsDict[@"DropUniformTypes"]];
+        if (appSettingsDict[APPSPEC_KEY_UTIS] != nil) {
+            droppableUniformTypes = [[NSArray alloc] initWithArray:appSettingsDict[APPSPEC_KEY_UTIS]];
         } else {
             droppableUniformTypes = [[NSArray alloc] init];
         }
@@ -383,7 +379,7 @@
     }
     
     // get interpreter
-    NSString *scriptInterpreter = appSettingsDict[@"ScriptInterpreter"];
+    NSString *scriptInterpreter = appSettingsDict[APPSPEC_KEY_INTERPRETER];
     if (scriptInterpreter == nil || [FILEMGR fileExistsAtPath:scriptInterpreter] == NO) {
         [Alerts fatalAlert:@"Missing interpreter"
              subTextFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreter];
@@ -628,11 +624,11 @@
             // set status item title and icon
             [statusItem setTitle:statusItemTitle];
             
-            NSSize statusItemSize = [statusItemIcon size];
+            NSSize statusItemSize = [statusItemImage size];
             CGFloat rel = 18/statusItemSize.height;
             NSSize finalSize = NSMakeSize(statusItemSize.width * rel, statusItemSize.height * rel);
-            [statusItemIcon setSize:finalSize];
-            [statusItem setImage:statusItemIcon];
+            [statusItemImage setSize:finalSize];
+            [statusItem setImage:statusItemImage];
             
             // create menu for our status item
             statusItemMenu = [[NSMenu alloc] initWithTitle:@""];
@@ -1081,7 +1077,7 @@
         
         if ([theLine hasPrefix:@"ALERT:"]) {
             NSString *alertString = [theLine substringFromIndex:6];
-            NSArray *components = [alertString componentsSeparatedByString:@"|"];
+            NSArray *components = [alertString componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
             [Alerts alert:components[0]
                   subText:[components count] > 1 ? components[1] : components[0]];
                 
@@ -1577,7 +1573,7 @@
         NSImage *icon = nil;
         
         if ([line hasPrefix:@"MENUITEMICON|"]) {
-            NSArray *tokens = [line componentsSeparatedByString:@"|"];
+            NSArray *tokens = [line componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
             if ([tokens count] < 3) {
                 continue;
             }
