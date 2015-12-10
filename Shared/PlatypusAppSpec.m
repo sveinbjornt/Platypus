@@ -31,7 +31,6 @@
 // PlatypusAppSpec is a data wrapper class around an NSDictionary containing
 // all the information / specifications for creating a Platypus application.
 
-
 #import "PlatypusAppSpec.h"
 #import "Common.h"
 #import "ScriptAnalyser.h"
@@ -48,12 +47,12 @@
 
 #pragma mark - NSMutableDictionary subclass using proxy
 
-- (void)dealloc {
 #if !__has_feature(objc_arc)
+- (void)dealloc {
     [properties release];
     [super dealloc];
-#endif
 }
+#endif
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -125,8 +124,7 @@
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
-    if (self = [self init]) {
-        [self setDefaults];
+    if (self = [self initWithDefaults]) {
         [properties addEntriesFromDictionary:dict];
     }
     return self;
@@ -139,8 +137,6 @@
     }
     return [self initWithDictionary:profileDict];
 }
-
-//#if !__has_feature(objc_arc)
 
 + (instancetype)specWithDefaults {
     id spec = [[self alloc] initWithDefaults];
@@ -281,23 +277,6 @@
  ****************************************/
 
 - (BOOL)create {
-    NSString *contentsPath, *macosPath, *resourcesPath;
-    NSString *execDestinationPath, *infoPlistPath, *iconPath, *docIconPath, *nibDestPath;
-    NSString *execPath, *nibPath;
-    NSData *b_enc_script = [NSData data];
-    
-    // get temporary directory, make sure it's kosher.  Apparently NSTemporaryDirectory() can return nil
-    // see http://www.cocoadev.com/index.pl?NSTemporaryDirectory
-    NSString *tmpPath = NSTemporaryDirectory();
-    if (tmpPath == nil) {
-        tmpPath = @"/tmp/";
-    }
-    
-    // make sure we can write to temp path
-    if ([FILEMGR isWritableFileAtPath:tmpPath] == NO) {
-        _error = [NSString stringWithFormat:@"Could not write to the temp directory '%@'.", tmpPath];
-        return FALSE;
-    }
     
     //check if app already exists
     if ([FILEMGR fileExistsAtPath:self[APPSPEC_KEY_DESTINATION_PATH]]) {
@@ -310,14 +289,14 @@
     }
     
     // check if executable exists
-    execPath = self[APPSPEC_KEY_EXECUTABLE_PATH];
+    NSString *execPath = self[APPSPEC_KEY_EXECUTABLE_PATH];
     if (![FILEMGR fileExistsAtPath:execPath] || ![FILEMGR isReadableFileAtPath:execPath]) {
         [self report:@"Executable %@ does not exist. Aborting.", execPath];
         return NO;
     }
     
     // check if source nib exists
-    nibPath = self[APPSPEC_KEY_NIB_PATH];
+    NSString *nibPath = self[APPSPEC_KEY_NIB_PATH];
     if (![FILEMGR fileExistsAtPath:nibPath] || ![FILEMGR isReadableFileAtPath:nibPath]) {
         [self report:@"Nib file %@ does not exist. Aborting.", nibPath];
         return NO;
@@ -329,19 +308,31 @@
     [self report:@"Creating application bundle folder hierarchy"];
     
     // .app bundle
+    // get temporary directory, make sure it's kosher.  Apparently NSTemporaryDirectory() can return nil
+    // see http://www.cocoadev.com/index.pl?NSTemporaryDirectory
+    NSString *tmpPath = NSTemporaryDirectory();
+    if (tmpPath == nil) {
+        tmpPath = @"/tmp/";
+    }
+    // make sure we can write to temp path
+    if ([FILEMGR isWritableFileAtPath:tmpPath] == NO) {
+        _error = [NSString stringWithFormat:@"Could not write to the temp directory '%@'.", tmpPath];
+        return FALSE;
+    }
+    // create bundle directory
     tmpPath = [tmpPath stringByAppendingString:[self[APPSPEC_KEY_DESTINATION_PATH] lastPathComponent]];
     [FILEMGR createDirectoryAtPath:tmpPath withIntermediateDirectories:NO attributes:nil error:nil];
     
     // .app/Contents
-    contentsPath = [tmpPath stringByAppendingString:@"/Contents"];
+    NSString *contentsPath = [tmpPath stringByAppendingString:@"/Contents"];
     [FILEMGR createDirectoryAtPath:contentsPath withIntermediateDirectories:NO attributes:nil error:nil];
     
     // .app/Contents/MacOS
-    macosPath = [contentsPath stringByAppendingString:@"/MacOS"];
+    NSString *macosPath = [contentsPath stringByAppendingString:@"/MacOS"];
     [FILEMGR createDirectoryAtPath:macosPath withIntermediateDirectories:NO attributes:nil error:nil];
     
     // .app/Contents/Resources
-    resourcesPath = [contentsPath stringByAppendingString:@"/Resources"];
+    NSString *resourcesPath = [contentsPath stringByAppendingString:@"/Resources"];
     [FILEMGR createDirectoryAtPath:resourcesPath withIntermediateDirectories:NO attributes:nil error:nil];
     
     ////////////////////////// COPY FILES TO THE APP BUNDLE //////////////////////////////////
@@ -350,7 +341,7 @@
     
     // copy exec file
     // .app/Contents/Resources/MacOS/ScriptExec
-    execDestinationPath = [macosPath stringByAppendingString:@"/"];
+    NSString *execDestinationPath = [macosPath stringByAppendingString:@"/"];
     execDestinationPath = [execDestinationPath stringByAppendingString:self[APPSPEC_KEY_NAME]];
     [FILEMGR copyItemAtPath:execPath toPath:execDestinationPath error:nil];
     NSDictionary *execAttrDict = @{NSFilePosixPermissions: @0755UL};
@@ -359,21 +350,22 @@
     // copy nib file to app bundle
     // .app/Contents/Resources/MainMenu.nib
     [self report:@"Copying nib file to bundle"];
-    nibDestPath = [resourcesPath stringByAppendingString:@"/MainMenu.nib"];
-    [FILEMGR copyItemAtPath:nibPath toPath:nibDestPath error:nil];
+    NSString *nibDestinationPath = [resourcesPath stringByAppendingString:@"/MainMenu.nib"];
+    [FILEMGR copyItemAtPath:nibPath toPath:nibDestinationPath error:nil];
     
     if ([self[APPSPEC_KEY_STRIP_NIB] boolValue] == YES && [FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
         [self report:@"Optimizing nib file"];
-        [PlatypusAppSpec optimizeNibFile:nibDestPath];
+        [PlatypusAppSpec optimizeNibFile:nibDestinationPath];
     }
     
     // create script file in app bundle
     // .app/Contents/Resources/script
     [self report:@"Copying script"];
     
+    NSData *scriptData = [NSData data];
     if ([self[APPSPEC_KEY_SECURE] boolValue]) {
         NSString *path = self[APPSPEC_KEY_SCRIPT_PATH];
-        b_enc_script = [NSData dataWithContentsOfFile:path];
+        scriptData = [NSData dataWithContentsOfFile:path];
     } else {
         NSString *scriptFilePath = [resourcesPath stringByAppendingString:@"/script"];
         
@@ -396,7 +388,7 @@
     NSMutableDictionary *appSettingsPlist = [self appSettingsPlist];
     if ([self[APPSPEC_KEY_SECURE] boolValue]) {
         // if script is "secured" we encode it into AppSettings property list
-        appSettingsPlist[@"TextSettings"] = [NSKeyedArchiver archivedDataWithRootObject:b_enc_script];
+        appSettingsPlist[@"TextSettings"] = [NSKeyedArchiver archivedDataWithRootObject:scriptData];
     }
     NSString *appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
     if ([self[APPSPEC_KEY_XML_PLIST_FORMAT] boolValue] == FALSE) {
@@ -413,7 +405,7 @@
     // .app/Contents/Resources/appIcon.icns
     if (self[APPSPEC_KEY_ICON_PATH] && ![self[APPSPEC_KEY_ICON_PATH] isEqualToString:@""]) {
         [self report:@"Writing application icon"];
-        iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
+        NSString *iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
         [FILEMGR copyItemAtPath:self[APPSPEC_KEY_ICON_PATH] toPath:iconPath error:nil];
     }
     
@@ -421,7 +413,7 @@
     // .app/Contents/Resources/docIcon.icns
     if (self[APPSPEC_KEY_DOC_ICON_PATH] && ![self[APPSPEC_KEY_DOC_ICON_PATH] isEqualToString:@""]) {
         [self report:@"Writing document icon"];
-        docIconPath = [resourcesPath stringByAppendingString:@"/docIcon.icns"];
+        NSString *docIconPath = [resourcesPath stringByAppendingString:@"/docIcon.icns"];
         [FILEMGR copyItemAtPath:self[APPSPEC_KEY_DOC_ICON_PATH] toPath:docIconPath error:nil];
     }
     
@@ -429,7 +421,7 @@
     // .app/Contents/Info.plist
     [self report:@"Writing Info.plist"];
     NSDictionary *infoPlist = [self infoPlist];
-    infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
+    NSString *infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
     BOOL success = YES;
     // if binary
     if ([self[APPSPEC_KEY_XML_PLIST_FORMAT] boolValue] == NO) {
