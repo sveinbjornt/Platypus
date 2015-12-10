@@ -515,6 +515,10 @@
     // make sure app represenation in Finder is updated
     [WORKSPACE notifyFinderFileChangedAtPath:destPath];
     
+    // register/update in the launch services database
+    [self report:@"Registering with Launch Services"];
+    LSRegisterURL((__bridge CFURLRef)([NSURL fileURLWithPath:destPath]), YES);
+    
     // update Services
     if ([self[APPSPEC_KEY_SERVICE] boolValue]) {
         [self report:@"Updating Dynamic Services"];
