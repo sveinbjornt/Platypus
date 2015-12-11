@@ -82,10 +82,10 @@
     [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:file]];
     
     // check if it's an example
-    if (spec[APPSPEC_KEY_IS_EXAMPLE] != nil) {
+    if (spec[AppSpecKey_IsExample] != nil) {
         // make sure of the example profile's integrity
-        NSString *scriptStr = spec[APPSPEC_KEY_SCRIPT_TEXT];
-        NSString *scriptName = spec[APPSPEC_KEY_SCRIPT_NAME];
+        NSString *scriptStr = spec[AppSpecKey_ScriptText];
+        NSString *scriptName = spec[AppSpecKey_ScriptName];
         if (scriptStr == nil || scriptName == nil) {
             [Alerts alert:@"Error loading example" subText:@"Nil script value(s) in this example's profile dictionary."];
             return;
@@ -96,12 +96,12 @@
         // write script contained in the example profile dictionary to file and set as script path
         NSString *scriptPath = [NSString stringWithFormat:@"%@%@", TEMP_FOLDER, scriptName];
         [scriptStr writeToFile:scriptPath atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:nil];
-        spec[APPSPEC_KEY_SCRIPT_PATH] = scriptPath;
+        spec[AppSpecKey_ScriptPath] = scriptPath;
     }
     
     // let's keep this around if we ever want to use it
     // warn if created with a different version of Platypus
-    //	if ([[spec propertyForKey:APPSPEC_KEY_CREATOR] isEqualToString:PROGRAM_CREATOR_STAMP] == NO)
+    //	if ([[spec propertyForKey:AppSpecKey_Creator] isEqualToString:PROGRAM_CREATOR_STAMP] == NO)
     //		[PlatypusUtility alert:@"Version clash" subText: @"The profile you selected was created with a different version of Platypus and may not load correctly."];
     
     [platypusController controlsFromAppSpec:spec];
@@ -121,7 +121,7 @@
     // create path for profile document and write to it
     NSString *profileDestPath = [NSString stringWithFormat:@"%@/%@.%@",
                                  PROFILES_FOLDER,
-                                 spec[APPSPEC_KEY_NAME],
+                                 spec[AppSpecKey_Name],
                                  PROGRAM_PROFILE_SUFFIX];
     [spec writeToFile:profileDestPath];
 }
@@ -133,7 +133,7 @@
     
     // get profile from platypus controls
     PlatypusAppSpec *spec = [platypusController appSpecFromControls];
-    NSString *defaultName = [NSString stringWithFormat:@"%@.%@", spec[APPSPEC_KEY_NAME], PROGRAM_PROFILE_SUFFIX];
+    NSString *defaultName = [NSString stringWithFormat:@"%@.%@", spec[AppSpecKey_Name], PROGRAM_PROFILE_SUFFIX];
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setTitle:[NSString stringWithFormat:@"Save %@ Profile", PROGRAM_NAME]];

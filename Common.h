@@ -118,20 +118,20 @@ typedef enum PlatypusExecStyle {
 
 // output modes
 typedef enum PlatypusOutputType {
-    PLATYPUS_OUTPUT_NONE = 0,
-    PLATYPUS_OUTPUT_PROGRESSBAR = 1,
-    PLATYPUS_OUTPUT_TEXTWINDOW = 2,
-    PLATYPUS_OUTPUT_WEBVIEW = 3,
-    PLATYPUS_OUTPUT_STATUSMENU = 4,
-    PLATYPUS_OUTPUT_DROPLET = 5
+    PlatypusOutputType_None = 0,
+    PlatypusOutputType_ProgressBar = 1,
+    PlatypusOutputType_TextWindow = 2,
+    PlatypusOutputType_WebView = 3,
+    PlatypusOutputType_StatusMenu = 4,
+    PlatypusOutputType_Droplet = 5
 } PlatypusOutputType;
 
-#define DEFAULT_OUTPUT_TYPE                     PLATYPUS_OUTPUT_TEXTWINDOW
+#define DEFAULT_OUTPUT_TYPE                     PlatypusOutputType_TextWindow
 
 // execution style
 typedef enum PlatypusStatusItemStyle {
-    PLATYPUS_STATUS_ITEM_STYLE_TITLE = 0,
-    PLATYPUS_STATUS_ITEM_STYLE_ICON = 1
+    PlatypusStatusItemStyle_Title = 0,
+    PlatypusStatusItemStyle_Icon = 1
 } PlatypusStatusItemStyle;
 
 #define PLATYPUS_OUTPUT_STRING_NONE             @"None"
@@ -141,7 +141,7 @@ typedef enum PlatypusStatusItemStyle {
 #define PLATYPUS_OUTPUT_STRING_STATUS_MENU      @"Status Menu"
 #define PLATYPUS_OUTPUT_STRING_DROPLET          @"Droplet"
 
-#define DEFAULT_OUTPUT_TYPE_STRING              [PLATYPUS_OUTPUT_TYPE_NAMES objectAtIndex:PLATYPUS_OUTPUT_TEXTWINDOW]
+#define DEFAULT_OUTPUT_TYPE_STRING              [PLATYPUS_OUTPUT_TYPE_NAMES objectAtIndex:DEFAULT_OUTPUT_TYPE]
 
 // array of output types, used for validation
 #define PLATYPUS_OUTPUT_TYPE_NAMES   @[\
@@ -161,73 +161,73 @@ typedef enum PlatypusStatusItemStyle {
 
 #define OutputTypeForString(X)      [PLATYPUS_OUTPUT_TYPE_NAMES indexOfObject:(X)]
 
-#define IsTextStyledOutputType(X)   (   (X) == PLATYPUS_OUTPUT_PROGRESSBAR || \
-                                        (X) == PLATYPUS_OUTPUT_TEXTWINDOW || \
-                                        (X) == PLATYPUS_OUTPUT_STATUSMENU  )
+#define IsTextStyledOutputType(X)   (   (X) == PlatypusOutputType_ProgressBar || \
+                                        (X) == PlatypusOutputType_TextWindow || \
+                                        (X) == PlatypusOutputType_StatusMenu  )
 
 #define IsTextStyledOutputTypeString(X)  (  [(X) isEqualToString:PLATYPUS_OUTPUT_STRING_PROGRESS_BAR] || \
                                             [(X) isEqualToString:PLATYPUS_OUTPUT_STRING_TEXT_WINDOW] || \
                                             [(X) isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]  )
 
-#define IsTextSizableOutputType(X) (    (X) == PLATYPUS_OUTPUT_PROGRESSBAR || \
-                                        (X) == PLATYPUS_OUTPUT_TEXTWINDOW || \
-                                        (X) == PLATYPUS_OUTPUT_WEBVIEW  )
+#define IsTextSizableOutputType(X) (    (X) == PlatypusOutputType_ProgressBar || \
+                                        (X) == PlatypusOutputType_TextWindow || \
+                                        (X) == PlatypusOutputType_WebView  )
 
-#define IsTextViewScrollableOutputType(X) ( (X) == PLATYPUS_OUTPUT_PROGRESSBAR || \
-                                            (X) == PLATYPUS_OUTPUT_TEXTWINDOW )
+#define IsTextViewScrollableOutputType(X) ( (X) == PlatypusOutputType_ProgressBar || \
+                                            (X) == PlatypusOutputType_TextWindow )
 
 #pragma mark - App Spec keys
 
-#define APPSPEC_KEY_CREATOR                 @"Creator"
-#define APPSPEC_KEY_EXECUTABLE_PATH         @"ExecutablePath"
-#define APPSPEC_KEY_NIB_PATH                @"NibPath"
-#define APPSPEC_KEY_DESTINATION_PATH        @"Destination"
-#define APPSPEC_KEY_OVERWRITE               @"DestinationOverride"
-#define APPSPEC_KEY_SYMLINK_FILES           @"DevelopmentVersion"
-#define APPSPEC_KEY_STRIP_NIB               @"OptimizeApplication"
-#define APPSPEC_KEY_XML_PLIST_FORMAT        @"UseXMLPlistFormat"
-#define APPSPEC_KEY_NAME                    @"Name"
-#define APPSPEC_KEY_SCRIPT_PATH             @"ScriptPath"
-#define APPSPEC_KEY_INTERFACE_TYPE          @"Output"
-#define APPSPEC_KEY_ICON_PATH               @"IconPath"
-#define APPSPEC_KEY_INTERPRETER             @"Interpreter"
-#define APPSPEC_KEY_INTERPRETER_ARGS        @"InterpreterArgs"
-#define APPSPEC_KEY_SCRIPT_ARGS             @"ScriptArgs"
-#define APPSPEC_KEY_VERSION                 @"Version"
-#define APPSPEC_KEY_IDENTIFIER              @"Identifier"
-#define APPSPEC_KEY_AUTHOR                  @"Author"
+extern NSString * const AppSpecKey_Creator;
+extern NSString * const AppSpecKey_ExecutablePath;
+extern NSString * const AppSpecKey_NibPath;
+extern NSString * const AppSpecKey_DestinationPath;
+extern NSString * const AppSpecKey_Overwrite;
+extern NSString * const AppSpecKey_SymlinkFiles;
+extern NSString * const AppSpecKey_StripNib;
+extern NSString * const AppSpecKey_XMLPlistFormat;
+extern NSString * const AppSpecKey_Name;
+extern NSString * const AppSpecKey_ScriptPath;
+extern NSString * const AppSpecKey_InterfaceType;
+extern NSString * const AppSpecKey_IconPath;
+extern NSString * const AppSpecKey_Interpreter;
+extern NSString * const AppSpecKey_InterpreterArgs;
+extern NSString * const AppSpecKey_ScriptArgs;
+extern NSString * const AppSpecKey_Version;
+extern NSString * const AppSpecKey_Identifier;
+extern NSString * const AppSpecKey_Author;
 
-#define APPSPEC_KEY_DROPPABLE               @"Droppable"
-#define APPSPEC_KEY_SECURE                  @"Secure"
-#define APPSPEC_KEY_AUTHENTICATE            @"Authentication"
-#define APPSPEC_KEY_REMAIN_RUNNING          @"RemainRunning"  // ATH
-#define APPSPEC_KEY_RUN_IN_BACKGROUND       @"ShowInDock"
+extern NSString * const AppSpecKey_Droppable;
+extern NSString * const AppSpecKey_Secure;
+extern NSString * const AppSpecKey_Authenticate;
+extern NSString * const AppSpecKey_RemainRunning;
+extern NSString * const AppSpecKey_RunInBackground;
 
-#define APPSPEC_KEY_BUNDLED_FILES           @"BundledFiles"
+extern NSString * const AppSpecKey_BundledFiles;
 
-#define APPSPEC_KEY_SUFFIXES                @"Suffixes"
-#define APPSPEC_KEY_UTIS                    @"UniformTypes"
-#define APPSPEC_KEY_ACCEPT_TEXT             @"AcceptsText"
-#define APPSPEC_KEY_ACCEPT_FILES            @"AcceptsFiles"
-#define APPSPEC_KEY_SERVICE                 @"DeclareService"
-#define APPSPEC_KEY_PROMPT_FOR_FILE         @"PromptForFileOnLaunch"
-#define APPSPEC_KEY_DOC_ICON_PATH           @"DocIcon"
+extern NSString * const AppSpecKey_Suffixes;
+extern NSString * const AppSpecKey_Utis;
+extern NSString * const AppSpecKey_AcceptText;
+extern NSString * const AppSpecKey_AcceptFiles;
+extern NSString * const AppSpecKey_Service;
+extern NSString * const AppSpecKey_PromptForFile;
+extern NSString * const AppSpecKey_DocIconPath;
 
-#define APPSPEC_KEY_TEXT_ENCODING           @"TextEncoding"
-#define APPSPEC_KEY_TEXT_FONT               @"TextFont"
-#define APPSPEC_KEY_TEXT_SIZE               @"TextSize"
-#define APPSPEC_KEY_TEXT_COLOR              @"TextForeground"
-#define APPSPEC_KEY_TEXT_BGCOLOR            @"TextBackground"
+extern NSString * const AppSpecKey_TextEncoding;
+extern NSString * const AppSpecKey_TextFont;
+extern NSString * const AppSpecKey_TextSize;
+extern NSString * const AppSpecKey_TextColor;
+extern NSString * const AppSpecKey_TextBackgroundColor;
 
-#define APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE @"StatusItemDisplayType"
-#define APPSPEC_KEY_STATUSITEM_TITLE        @"StatusItemTitle"
-#define APPSPEC_KEY_STATUSITEM_ICON         @"StatusItemIcon"
-#define APPSPEC_KEY_STATUSITEM_USE_SYSFONT  @"StatusItemUseSystemFont" // ATH
+extern NSString * const AppSpecKey_StatusItemDisplayType;
+extern NSString * const AppSpecKey_StatusItemTitle;
+extern NSString * const AppSpecKey_StatusItemIcon;
+extern NSString * const AppSpecKey_StatusItemUseSysfont;
 
 // examples only
-#define APPSPEC_KEY_IS_EXAMPLE              @"Example"
-#define APPSPEC_KEY_SCRIPT_TEXT             @"Script"
-#define APPSPEC_KEY_SCRIPT_NAME             @"ScriptName"
+extern NSString * const AppSpecKey_IsExample;
+extern NSString * const AppSpecKey_ScriptText;
+extern NSString * const AppSpecKey_ScriptName;
 
 #pragma mark - Abbreviations
 
@@ -243,3 +243,4 @@ typedef enum PlatypusStatusItemStyle {
 #else
     #define PLog(...)
 #endif
+

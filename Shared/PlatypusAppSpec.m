@@ -178,59 +178,59 @@
 
 - (void)setDefaults {
     // stamp the spec with the creator
-    self[APPSPEC_KEY_CREATOR] = PROGRAM_CREATOR_STAMP;
+    self[AppSpecKey_Creator] = PROGRAM_CREATOR_STAMP;
     
     //prior properties
-    self[APPSPEC_KEY_EXECUTABLE_PATH] = CMDLINE_EXEC_PATH;
-    self[APPSPEC_KEY_NIB_PATH] = CMDLINE_NIB_PATH;
-    self[APPSPEC_KEY_DESTINATION_PATH] = DEFAULT_DESTINATION_PATH;
-    self[APPSPEC_KEY_OVERWRITE] = @NO;
-    self[APPSPEC_KEY_SYMLINK_FILES] = @NO;
-    self[APPSPEC_KEY_STRIP_NIB] = @YES;
-    self[APPSPEC_KEY_XML_PLIST_FORMAT] = @NO;
+    self[AppSpecKey_ExecutablePath] = CMDLINE_EXEC_PATH;
+    self[AppSpecKey_NibPath] = CMDLINE_NIB_PATH;
+    self[AppSpecKey_DestinationPath] = DEFAULT_DESTINATION_PATH;
+    self[AppSpecKey_Overwrite] = @NO;
+    self[AppSpecKey_SymlinkFiles] = @NO;
+    self[AppSpecKey_StripNib] = @YES;
+    self[AppSpecKey_XMLPlistFormat] = @NO;
     
-    self[APPSPEC_KEY_NAME] = DEFAULT_APP_NAME;
-    self[APPSPEC_KEY_SCRIPT_PATH] = @"";
-    self[APPSPEC_KEY_INTERFACE_TYPE] = DEFAULT_OUTPUT_TYPE_STRING;
-    self[APPSPEC_KEY_ICON_PATH] = CMDLINE_ICON_PATH;
+    self[AppSpecKey_Name] = DEFAULT_APP_NAME;
+    self[AppSpecKey_ScriptPath] = @"";
+    self[AppSpecKey_InterfaceType] = DEFAULT_OUTPUT_TYPE_STRING;
+    self[AppSpecKey_IconPath] = CMDLINE_ICON_PATH;
     
-    self[APPSPEC_KEY_INTERPRETER] = DEFAULT_INTERPRETER;
-    self[APPSPEC_KEY_INTERPRETER_ARGS] = [NSArray array];
-    self[APPSPEC_KEY_SCRIPT_ARGS] = [NSArray array];
-    self[APPSPEC_KEY_VERSION] = DEFAULT_VERSION;
-    self[APPSPEC_KEY_IDENTIFIER] = [PlatypusAppSpec bundleIdentifierForAppName:DEFAULT_APP_NAME authorName:nil usingDefaults:YES];
-    self[APPSPEC_KEY_AUTHOR] = NSFullUserName();
+    self[AppSpecKey_Interpreter] = DEFAULT_INTERPRETER;
+    self[AppSpecKey_InterpreterArgs] = [NSArray array];
+    self[AppSpecKey_ScriptArgs] = [NSArray array];
+    self[AppSpecKey_Version] = DEFAULT_VERSION;
+    self[AppSpecKey_Identifier] = [PlatypusAppSpec bundleIdentifierForAppName:DEFAULT_APP_NAME authorName:nil usingDefaults:YES];
+    self[AppSpecKey_Author] = NSFullUserName();
     
-    self[APPSPEC_KEY_DROPPABLE] = @NO;
-    self[APPSPEC_KEY_SECURE] = @NO;
-    self[APPSPEC_KEY_AUTHENTICATE] = @NO;
-    self[APPSPEC_KEY_REMAIN_RUNNING] = @YES;
-    self[APPSPEC_KEY_RUN_IN_BACKGROUND] = @NO;
+    self[AppSpecKey_Droppable] = @NO;
+    self[AppSpecKey_Secure] = @NO;
+    self[AppSpecKey_Authenticate] = @NO;
+    self[AppSpecKey_RemainRunning] = @YES;
+    self[AppSpecKey_RunInBackground] = @NO;
     
     // bundled files
-    self[APPSPEC_KEY_BUNDLED_FILES] = [NSMutableArray array];
+    self[AppSpecKey_BundledFiles] = [NSMutableArray array];
     
     // file/drag acceptance properties
-    self[APPSPEC_KEY_SUFFIXES] = DEFAULT_SUFFIXES;
-    self[APPSPEC_KEY_UTIS] = DEFAULT_UTIS;
-    self[APPSPEC_KEY_ACCEPT_TEXT] = @NO;
-    self[APPSPEC_KEY_ACCEPT_FILES] = @YES;
-    self[APPSPEC_KEY_SERVICE] = @NO;
-    self[APPSPEC_KEY_PROMPT_FOR_FILE] = @NO;
-    self[APPSPEC_KEY_DOC_ICON_PATH] = @"";
+    self[AppSpecKey_Suffixes] = DEFAULT_SUFFIXES;
+    self[AppSpecKey_Utis] = DEFAULT_UTIS;
+    self[AppSpecKey_AcceptText] = @NO;
+    self[AppSpecKey_AcceptFiles] = @YES;
+    self[AppSpecKey_Service] = @NO;
+    self[AppSpecKey_PromptForFile] = @NO;
+    self[AppSpecKey_DocIconPath] = @"";
     
     // text output settings
-    self[APPSPEC_KEY_TEXT_ENCODING] = @(DEFAULT_OUTPUT_TXT_ENCODING);
-    self[APPSPEC_KEY_TEXT_FONT] = DEFAULT_OUTPUT_FONT;
-    self[APPSPEC_KEY_TEXT_SIZE] = @(DEFAULT_OUTPUT_FONTSIZE);
-    self[APPSPEC_KEY_TEXT_COLOR] = DEFAULT_OUTPUT_FG_COLOR;
-    self[APPSPEC_KEY_TEXT_BGCOLOR] = DEFAULT_OUTPUT_BG_COLOR;
+    self[AppSpecKey_TextEncoding] = @(DEFAULT_OUTPUT_TXT_ENCODING);
+    self[AppSpecKey_TextFont] = DEFAULT_OUTPUT_FONT;
+    self[AppSpecKey_TextSize] = @(DEFAULT_OUTPUT_FONTSIZE);
+    self[AppSpecKey_TextColor] = DEFAULT_OUTPUT_FG_COLOR;
+    self[AppSpecKey_TextBackgroundColor] = DEFAULT_OUTPUT_BG_COLOR;
     
     // status item settings
-    self[APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE] = PLATYPUS_STATUSITEM_DISPLAY_TYPE_DEFAULT;
-    self[APPSPEC_KEY_STATUSITEM_TITLE] = DEFAULT_APP_NAME;
-    self[APPSPEC_KEY_STATUSITEM_ICON] = [NSData data];
-    self[APPSPEC_KEY_STATUSITEM_USE_SYSFONT] = @YES;
+    self[AppSpecKey_StatusItemDisplayType] = PLATYPUS_STATUSITEM_DISPLAY_TYPE_DEFAULT;
+    self[AppSpecKey_StatusItemTitle] = DEFAULT_APP_NAME;
+    self[AppSpecKey_StatusItemIcon] = [NSData data];
+    self[AppSpecKey_StatusItemUseSysfont] = @YES;
 }
 
 /********************************************************
@@ -243,10 +243,10 @@
     [self setDefaults];
     
     // set script path
-    self[APPSPEC_KEY_SCRIPT_PATH] = scriptPath;
+    self[AppSpecKey_ScriptPath] = scriptPath;
     
     //determine app name based on script filename
-    self[APPSPEC_KEY_NAME] = [ScriptAnalyser appNameFromScriptFilePath:scriptPath];
+    self[AppSpecKey_Name] = [ScriptAnalyser appNameFromScriptFilePath:scriptPath];
     
     //find an interpreter for it
     NSString *interpreter = [ScriptAnalyser determineInterpreterForScriptFile:scriptPath];
@@ -256,15 +256,15 @@
         // get parameters to interpreter
         NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[ScriptAnalyser parseInterpreterFromShebang:scriptPath]];
         [shebangCmdComponents removeObjectAtIndex:0];
-        self[APPSPEC_KEY_INTERPRETER_ARGS] = shebangCmdComponents;
+        self[AppSpecKey_InterpreterArgs] = shebangCmdComponents;
     }
-    self[APPSPEC_KEY_INTERPRETER] = interpreter;
+    self[AppSpecKey_Interpreter] = interpreter;
     
     // find parent folder wherefrom we create destination path of app bundle
     NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];
-    NSString *destPath = [NSString stringWithFormat:@"%@/%@.app", parentFolder, self[APPSPEC_KEY_NAME]];
-    self[APPSPEC_KEY_DESTINATION_PATH] = destPath;
-    self[APPSPEC_KEY_IDENTIFIER] = [PlatypusAppSpec bundleIdentifierForAppName:self[APPSPEC_KEY_NAME]
+    NSString *destPath = [NSString stringWithFormat:@"%@/%@.app", parentFolder, self[AppSpecKey_Name]];
+    self[AppSpecKey_DestinationPath] = destPath;
+    self[AppSpecKey_Identifier] = [PlatypusAppSpec bundleIdentifierForAppName:self[AppSpecKey_Name]
                                                            authorName:nil
                                                         usingDefaults:YES];
 }
@@ -279,24 +279,24 @@
 - (BOOL)create {
     
     //check if app already exists
-    if ([FILEMGR fileExistsAtPath:self[APPSPEC_KEY_DESTINATION_PATH]]) {
-        if ([self[APPSPEC_KEY_OVERWRITE] boolValue] == FALSE) {
-            _error = [NSString stringWithFormat:@"App already exists at path %@. Use -y flag to overwrite.", self[APPSPEC_KEY_DESTINATION_PATH]];
+    if ([FILEMGR fileExistsAtPath:self[AppSpecKey_DestinationPath]]) {
+        if ([self[AppSpecKey_Overwrite] boolValue] == FALSE) {
+            _error = [NSString stringWithFormat:@"App already exists at path %@. Use -y flag to overwrite.", self[AppSpecKey_DestinationPath]];
             return FALSE;
         } else {
-            [self report:@"Overwriting app at path %@", self[APPSPEC_KEY_DESTINATION_PATH]];
+            [self report:@"Overwriting app at path %@", self[AppSpecKey_DestinationPath]];
         }
     }
     
     // check if executable exists
-    NSString *execPath = self[APPSPEC_KEY_EXECUTABLE_PATH];
+    NSString *execPath = self[AppSpecKey_ExecutablePath];
     if (![FILEMGR fileExistsAtPath:execPath] || ![FILEMGR isReadableFileAtPath:execPath]) {
         [self report:@"Executable %@ does not exist. Aborting.", execPath];
         return NO;
     }
     
     // check if source nib exists
-    NSString *nibPath = self[APPSPEC_KEY_NIB_PATH];
+    NSString *nibPath = self[AppSpecKey_NibPath];
     if (![FILEMGR fileExistsAtPath:nibPath] || ![FILEMGR isReadableFileAtPath:nibPath]) {
         [self report:@"Nib file %@ does not exist. Aborting.", nibPath];
         return NO;
@@ -320,7 +320,7 @@
         return FALSE;
     }
     // create bundle directory
-    tmpPath = [tmpPath stringByAppendingString:[self[APPSPEC_KEY_DESTINATION_PATH] lastPathComponent]];
+    tmpPath = [tmpPath stringByAppendingString:[self[AppSpecKey_DestinationPath] lastPathComponent]];
     [FILEMGR createDirectoryAtPath:tmpPath withIntermediateDirectories:NO attributes:nil error:nil];
     
     // .app/Contents
@@ -342,7 +342,7 @@
     // copy exec file
     // .app/Contents/Resources/MacOS/ScriptExec
     NSString *execDestinationPath = [macosPath stringByAppendingString:@"/"];
-    execDestinationPath = [execDestinationPath stringByAppendingString:self[APPSPEC_KEY_NAME]];
+    execDestinationPath = [execDestinationPath stringByAppendingString:self[AppSpecKey_Name]];
     [FILEMGR copyItemAtPath:execPath toPath:execDestinationPath error:nil];
     NSDictionary *execAttrDict = @{NSFilePosixPermissions: @0755UL};
     [FILEMGR setAttributes:execAttrDict ofItemAtPath:execDestinationPath error:nil];
@@ -353,7 +353,7 @@
     NSString *nibDestinationPath = [resourcesPath stringByAppendingString:@"/MainMenu.nib"];
     [FILEMGR copyItemAtPath:nibPath toPath:nibDestinationPath error:nil];
     
-    if ([self[APPSPEC_KEY_STRIP_NIB] boolValue] == YES && [FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
+    if ([self[AppSpecKey_StripNib] boolValue] == YES && [FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
         [self report:@"Optimizing nib file"];
         [PlatypusAppSpec optimizeNibFile:nibDestinationPath];
     }
@@ -363,19 +363,19 @@
     [self report:@"Copying script"];
     
     NSData *scriptData = [NSData data];
-    if ([self[APPSPEC_KEY_SECURE] boolValue]) {
-        NSString *path = self[APPSPEC_KEY_SCRIPT_PATH];
+    if ([self[AppSpecKey_Secure] boolValue]) {
+        NSString *path = self[AppSpecKey_ScriptPath];
         scriptData = [NSData dataWithContentsOfFile:path];
     } else {
         NSString *scriptFilePath = [resourcesPath stringByAppendingString:@"/script"];
         
-        if ([self[APPSPEC_KEY_SYMLINK_FILES] boolValue] == YES) {
+        if ([self[AppSpecKey_SymlinkFiles] boolValue] == YES) {
             [FILEMGR createSymbolicLinkAtPath:scriptFilePath
-                          withDestinationPath:self[APPSPEC_KEY_SCRIPT_PATH]
+                          withDestinationPath:self[AppSpecKey_ScriptPath]
                                         error:nil];
         } else {
             // copy script over
-            [FILEMGR copyItemAtPath:self[APPSPEC_KEY_SCRIPT_PATH] toPath:scriptFilePath error:nil];
+            [FILEMGR copyItemAtPath:self[AppSpecKey_ScriptPath] toPath:scriptFilePath error:nil];
         }
         
         NSDictionary *fileAttrDict = @{NSFilePosixPermissions: @0755UL};
@@ -386,12 +386,12 @@
     // .app/Contents/Resources/AppSettings.plist
     [self report:@"Creating AppSettings property list"];
     NSMutableDictionary *appSettingsPlist = [self appSettingsPlist];
-    if ([self[APPSPEC_KEY_SECURE] boolValue]) {
+    if ([self[AppSpecKey_Secure] boolValue]) {
         // if script is "secured" we encode it into AppSettings property list
         appSettingsPlist[@"TextSettings"] = [NSKeyedArchiver archivedDataWithRootObject:scriptData];
     }
     NSString *appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
-    if ([self[APPSPEC_KEY_XML_PLIST_FORMAT] boolValue] == FALSE) {
+    if ([self[AppSpecKey_XMLPlistFormat] boolValue] == FALSE) {
         NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:appSettingsPlist
                                                                        format:NSPropertyListBinaryFormat_v1_0
                                                                       options:0
@@ -403,18 +403,18 @@
     
     // create icon
     // .app/Contents/Resources/appIcon.icns
-    if (self[APPSPEC_KEY_ICON_PATH] && ![self[APPSPEC_KEY_ICON_PATH] isEqualToString:@""]) {
+    if (self[AppSpecKey_IconPath] && ![self[AppSpecKey_IconPath] isEqualToString:@""]) {
         [self report:@"Writing application icon"];
         NSString *iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
-        [FILEMGR copyItemAtPath:self[APPSPEC_KEY_ICON_PATH] toPath:iconPath error:nil];
+        [FILEMGR copyItemAtPath:self[AppSpecKey_IconPath] toPath:iconPath error:nil];
     }
     
     // document icon
     // .app/Contents/Resources/docIcon.icns
-    if (self[APPSPEC_KEY_DOC_ICON_PATH] && ![self[APPSPEC_KEY_DOC_ICON_PATH] isEqualToString:@""]) {
+    if (self[AppSpecKey_DocIconPath] && ![self[AppSpecKey_DocIconPath] isEqualToString:@""]) {
         [self report:@"Writing document icon"];
         NSString *docIconPath = [resourcesPath stringByAppendingString:@"/docIcon.icns"];
-        [FILEMGR copyItemAtPath:self[APPSPEC_KEY_DOC_ICON_PATH] toPath:docIconPath error:nil];
+        [FILEMGR copyItemAtPath:self[AppSpecKey_DocIconPath] toPath:docIconPath error:nil];
     }
     
     // create Info.plist file
@@ -424,7 +424,7 @@
     NSString *infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
     BOOL success = YES;
     // if binary
-    if ([self[APPSPEC_KEY_XML_PLIST_FORMAT] boolValue] == NO) {
+    if ([self[AppSpecKey_XMLPlistFormat] boolValue] == NO) {
         NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:infoPlist
                                                                        format:NSPropertyListBinaryFormat_v1_0
                                                                       options:0
@@ -446,17 +446,17 @@
     // copy bundled files to Resources folder
     // .app/Contents/Resources/*
     
-    int numBundledFiles = [self[APPSPEC_KEY_BUNDLED_FILES] count];
+    int numBundledFiles = [self[AppSpecKey_BundledFiles] count];
     if (numBundledFiles) {
         [self report:@"Copying %d bundled files", numBundledFiles];
     }
-    for (NSString *bundledFilePath in self[APPSPEC_KEY_BUNDLED_FILES]) {
+    for (NSString *bundledFilePath in self[AppSpecKey_BundledFiles]) {
         NSString *fileName = [bundledFilePath lastPathComponent];
         NSString *bundledFileDestPath = [resourcesPath stringByAppendingString:@"/"];
         bundledFileDestPath = [bundledFileDestPath stringByAppendingString:fileName];
         
         // if it's a development version, we just symlink it
-        if ([self[APPSPEC_KEY_SYMLINK_FILES] boolValue]) {
+        if ([self[AppSpecKey_SymlinkFiles] boolValue]) {
             [self report:@"Symlinking to \"%@\" in bundle", fileName];
             [FILEMGR createSymbolicLinkAtPath:bundledFileDestPath withDestinationPath:bundledFilePath error:nil];
         } else {
@@ -476,13 +476,13 @@
     // COPY APP OVER TO FINAL DESTINATION
     // we've created the application bundle in the temporary directory
     // now it's time to move it to the destination specified by the user
-    [self report:@"Moving app to destination directory '%@'", self[APPSPEC_KEY_DESTINATION_PATH]];
+    [self report:@"Moving app to destination directory '%@'", self[AppSpecKey_DestinationPath]];
     
-    NSString *destPath = self[APPSPEC_KEY_DESTINATION_PATH];
+    NSString *destPath = self[AppSpecKey_DestinationPath];
     
     // first, let's see if there's anything there.  If we have overwrite set, we just delete that stuff
     if ([FILEMGR fileExistsAtPath:destPath]) {
-        if ([self[APPSPEC_KEY_OVERWRITE] boolValue]) {
+        if ([self[AppSpecKey_Overwrite] boolValue]) {
             BOOL removed = [FILEMGR removeItemAtPath:destPath error:nil];
             if (!removed) {
                 _error = [NSString stringWithFormat:@"Could not remove pre-existing item at path '%@'", destPath];
@@ -512,7 +512,7 @@
     LSRegisterURL((__bridge CFURLRef)([NSURL fileURLWithPath:destPath]), YES);
     
     // update Services
-    if ([self[APPSPEC_KEY_SERVICE] boolValue]) {
+    if ([self[AppSpecKey_Service] boolValue]) {
         [self report:@"Updating Dynamic Services"];
         [WORKSPACE flushServices];
     }
@@ -527,32 +527,32 @@
     
     NSMutableDictionary *appSettingsPlist = [NSMutableDictionary dictionary];
     
-    appSettingsPlist[APPSPEC_KEY_AUTHENTICATE] = self[APPSPEC_KEY_AUTHENTICATE];
-    appSettingsPlist[APPSPEC_KEY_DROPPABLE] = self[APPSPEC_KEY_DROPPABLE];
-    appSettingsPlist[APPSPEC_KEY_REMAIN_RUNNING] = self[APPSPEC_KEY_REMAIN_RUNNING];
-    appSettingsPlist[APPSPEC_KEY_SECURE] = self[APPSPEC_KEY_SECURE];
-    appSettingsPlist[APPSPEC_KEY_INTERFACE_TYPE] = self[APPSPEC_KEY_INTERFACE_TYPE];
-    appSettingsPlist[APPSPEC_KEY_INTERPRETER] = self[APPSPEC_KEY_INTERPRETER];
-    appSettingsPlist[APPSPEC_KEY_CREATOR] = PROGRAM_CREATOR_STAMP;
-    appSettingsPlist[APPSPEC_KEY_INTERPRETER_ARGS] = self[APPSPEC_KEY_INTERPRETER_ARGS];
-    appSettingsPlist[APPSPEC_KEY_SCRIPT_ARGS] = self[APPSPEC_KEY_SCRIPT_ARGS];
-    appSettingsPlist[APPSPEC_KEY_PROMPT_FOR_FILE] = self[APPSPEC_KEY_PROMPT_FOR_FILE];
+    appSettingsPlist[AppSpecKey_Authenticate] = self[AppSpecKey_Authenticate];
+    appSettingsPlist[AppSpecKey_Droppable] = self[AppSpecKey_Droppable];
+    appSettingsPlist[AppSpecKey_RemainRunning] = self[AppSpecKey_RemainRunning];
+    appSettingsPlist[AppSpecKey_Secure] = self[AppSpecKey_Secure];
+    appSettingsPlist[AppSpecKey_InterfaceType] = self[AppSpecKey_InterfaceType];
+    appSettingsPlist[AppSpecKey_Interpreter] = self[AppSpecKey_Interpreter];
+    appSettingsPlist[AppSpecKey_Creator] = PROGRAM_CREATOR_STAMP;
+    appSettingsPlist[AppSpecKey_InterpreterArgs] = self[AppSpecKey_InterpreterArgs];
+    appSettingsPlist[AppSpecKey_ScriptArgs] = self[AppSpecKey_ScriptArgs];
+    appSettingsPlist[AppSpecKey_PromptForFile] = self[AppSpecKey_PromptForFile];
     
-    appSettingsPlist[APPSPEC_KEY_TEXT_FONT] = self[APPSPEC_KEY_TEXT_FONT];
-    appSettingsPlist[APPSPEC_KEY_TEXT_SIZE] = self[APPSPEC_KEY_TEXT_SIZE];
-    appSettingsPlist[APPSPEC_KEY_TEXT_COLOR] = self[APPSPEC_KEY_TEXT_COLOR];
-    appSettingsPlist[APPSPEC_KEY_TEXT_BGCOLOR] = self[APPSPEC_KEY_TEXT_BGCOLOR];
-    appSettingsPlist[APPSPEC_KEY_TEXT_ENCODING] = self[APPSPEC_KEY_TEXT_ENCODING];
+    appSettingsPlist[AppSpecKey_TextFont] = self[AppSpecKey_TextFont];
+    appSettingsPlist[AppSpecKey_TextSize] = self[AppSpecKey_TextSize];
+    appSettingsPlist[AppSpecKey_TextColor] = self[AppSpecKey_TextColor];
+    appSettingsPlist[AppSpecKey_TextBackgroundColor] = self[AppSpecKey_TextBackgroundColor];
+    appSettingsPlist[AppSpecKey_TextEncoding] = self[AppSpecKey_TextEncoding];
 
-    appSettingsPlist[APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE] = self[APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE];
-    appSettingsPlist[APPSPEC_KEY_STATUSITEM_TITLE] = self[APPSPEC_KEY_STATUSITEM_TITLE];
-    appSettingsPlist[APPSPEC_KEY_STATUSITEM_ICON] = self[APPSPEC_KEY_STATUSITEM_ICON];
-    appSettingsPlist[APPSPEC_KEY_STATUSITEM_USE_SYSFONT] = self[APPSPEC_KEY_STATUSITEM_USE_SYSFONT];
+    appSettingsPlist[AppSpecKey_StatusItemDisplayType] = self[AppSpecKey_StatusItemDisplayType];
+    appSettingsPlist[AppSpecKey_StatusItemTitle] = self[AppSpecKey_StatusItemTitle];
+    appSettingsPlist[AppSpecKey_StatusItemIcon] = self[AppSpecKey_StatusItemIcon];
+    appSettingsPlist[AppSpecKey_StatusItemUseSysfont] = self[AppSpecKey_StatusItemUseSysfont];
     
-    appSettingsPlist[APPSPEC_KEY_ACCEPT_FILES] = self[APPSPEC_KEY_ACCEPT_FILES];
-    appSettingsPlist[APPSPEC_KEY_ACCEPT_TEXT] = self[APPSPEC_KEY_ACCEPT_TEXT];
-    appSettingsPlist[APPSPEC_KEY_SUFFIXES] = self[APPSPEC_KEY_SUFFIXES];
-    appSettingsPlist[APPSPEC_KEY_UTIS] = self[APPSPEC_KEY_UTIS];
+    appSettingsPlist[AppSpecKey_AcceptFiles] = self[AppSpecKey_AcceptFiles];
+    appSettingsPlist[AppSpecKey_AcceptText] = self[AppSpecKey_AcceptText];
+    appSettingsPlist[AppSpecKey_Suffixes] = self[AppSpecKey_Suffixes];
+    appSettingsPlist[AppSpecKey_Utis] = self[AppSpecKey_Utis];
     
     return appSettingsPlist;
 }
@@ -567,19 +567,19 @@
 #endif
     [formatter setDateFormat:@"yyyy"];
     NSString *yearString = [formatter stringFromDate:[NSDate date]];
-    NSString *copyrightString = [NSString stringWithFormat:@"© %@ %@", yearString, self[APPSPEC_KEY_AUTHOR]];
+    NSString *copyrightString = [NSString stringWithFormat:@"© %@ %@", yearString, self[AppSpecKey_Author]];
     
     // create dict
     NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       
                                       @"en",                                    @"CFBundleDevelopmentRegion",
-                                      self[APPSPEC_KEY_NAME],                            @"CFBundleExecutable",
-                                      self[APPSPEC_KEY_NAME],                            @"CFBundleName",
+                                      self[AppSpecKey_Name],                            @"CFBundleExecutable",
+                                      self[AppSpecKey_Name],                            @"CFBundleName",
                                       copyrightString,                          @"NSHumanReadableCopyright",
-                                      self[APPSPEC_KEY_VERSION],                         @"CFBundleVersion",
-                                      self[APPSPEC_KEY_VERSION],                         @"CFBundleShortVersionString",
-                                      self[APPSPEC_KEY_IDENTIFIER],                      @"CFBundleIdentifier",
-                                      self[APPSPEC_KEY_RUN_IN_BACKGROUND],                      @"LSUIElement",
+                                      self[AppSpecKey_Version],                         @"CFBundleVersion",
+                                      self[AppSpecKey_Version],                         @"CFBundleShortVersionString",
+                                      self[AppSpecKey_Identifier],                      @"CFBundleIdentifier",
+                                      self[AppSpecKey_RunInBackground],                      @"LSUIElement",
                                       @"6.0",                                   @"CFBundleInfoDictionaryVersion",
                                       @"APPL",                                  @"CFBundlePackageType",
                                       @"????",                                  @"CFBundleSignature",
@@ -591,23 +591,23 @@
                                       nil];
     
     // add icon name if icon is set
-    if (self[APPSPEC_KEY_ICON_PATH] != nil && [self[APPSPEC_KEY_ICON_PATH] isEqualToString:@""] == NO) {
+    if (self[AppSpecKey_IconPath] != nil && [self[AppSpecKey_IconPath] isEqualToString:@""] == NO) {
         infoPlist[@"CFBundleIconFile"] = @"appIcon.icns";
     }
     
     // if droppable, we declare the accepted file types
-    if ([self[APPSPEC_KEY_DROPPABLE] boolValue] == YES) {
+    if ([self[AppSpecKey_Droppable] boolValue] == YES) {
         
         NSMutableDictionary *typesAndSuffixesDict = [NSMutableDictionary dictionary];
         
-        typesAndSuffixesDict[@"CFBundleTypeExtensions"] = self[APPSPEC_KEY_SUFFIXES];
+        typesAndSuffixesDict[@"CFBundleTypeExtensions"] = self[AppSpecKey_Suffixes];
         
-        if (self[APPSPEC_KEY_UTIS] != nil && [self[APPSPEC_KEY_UTIS] count] > 0) {
-            typesAndSuffixesDict[@"LSItemContentTypes"] = self[APPSPEC_KEY_UTIS];
+        if (self[AppSpecKey_Utis] != nil && [self[AppSpecKey_Utis] count] > 0) {
+            typesAndSuffixesDict[@"LSItemContentTypes"] = self[AppSpecKey_Utis];
         }
         
         // document icon
-        if (self[APPSPEC_KEY_DOC_ICON_PATH] && [FILEMGR fileExistsAtPath:self[APPSPEC_KEY_DOC_ICON_PATH]]) {
+        if (self[AppSpecKey_DocIconPath] && [FILEMGR fileExistsAtPath:self[AppSpecKey_DocIconPath]]) {
             typesAndSuffixesDict[@"CFBundleTypeIconFile"] = @"docIcon.icns";
         }
         
@@ -615,22 +615,22 @@
         infoPlist[@"CFBundleDocumentTypes"] = @[typesAndSuffixesDict];
         
         // add service settings to Info.plist
-        if ([self[APPSPEC_KEY_SERVICE] boolValue] == YES) {
+        if ([self[AppSpecKey_Service] boolValue] == YES) {
             
             NSMutableDictionary *serviceDict = [NSMutableDictionary dictionary];
             
-            serviceDict[@"NSMenuItem"] = @{@"default": [NSString stringWithFormat:@"Process with %@", self[APPSPEC_KEY_NAME]]};
+            serviceDict[@"NSMenuItem"] = @{@"default": [NSString stringWithFormat:@"Process with %@", self[AppSpecKey_Name]]};
             serviceDict[@"NSMessage"] = @"dropService";
-            serviceDict[@"NSPortName"] = self[APPSPEC_KEY_NAME];
+            serviceDict[@"NSPortName"] = self[AppSpecKey_Name];
             serviceDict[@"NSTimeout"] = [NSNumber numberWithInt:3000];
             
             // service data type handling
             NSMutableArray *sendTypes = [NSMutableArray array];
-            if ([self[APPSPEC_KEY_ACCEPT_FILES] boolValue]) {
+            if ([self[AppSpecKey_AcceptFiles] boolValue]) {
                 [sendTypes addObject:@"NSFilenamesPboardType"];
                 serviceDict[@"NSSendFileTypes"] = @[(NSString *)kUTTypeItem];
             }
-            if ([self[APPSPEC_KEY_ACCEPT_TEXT] boolValue]) {
+            if ([self[AppSpecKey_AcceptText] boolValue]) {
                 [sendTypes addObject:@"NSStringPboardType"];
             }
             serviceDict[@"NSSendTypes"] = sendTypes;
@@ -671,45 +671,45 @@
 - (BOOL)verify {
     BOOL isDir;
     
-    if ([self[APPSPEC_KEY_DESTINATION_PATH] hasSuffix:@"app"] == FALSE) {
+    if ([self[AppSpecKey_DestinationPath] hasSuffix:@"app"] == FALSE) {
         _error = @"Destination must end with .app";
         return NO;
     }
     
     // warn if font can't be instantiated
-    if ([NSFont fontWithName:self[APPSPEC_KEY_TEXT_FONT] size:13] == nil) {
-        [self report:@"Warning: Font \"%@\" cannot be instantiated.", self[APPSPEC_KEY_TEXT_FONT]];
+    if ([NSFont fontWithName:self[AppSpecKey_TextFont] size:13] == nil) {
+        [self report:@"Warning: Font \"%@\" cannot be instantiated.", self[AppSpecKey_TextFont]];
     }
     
-    if ([self[APPSPEC_KEY_NAME] isEqualToString:@""]) {
+    if ([self[AppSpecKey_Name] isEqualToString:@""]) {
         _error = @"Empty app name";
         return NO;
     }
     
-    if (![FILEMGR fileExistsAtPath:self[APPSPEC_KEY_SCRIPT_PATH] isDirectory:&isDir] || isDir) {
-        _error = [NSString stringWithFormat:@"Script not found at path '%@'", self[APPSPEC_KEY_SCRIPT_PATH], nil];
+    if (![FILEMGR fileExistsAtPath:self[AppSpecKey_ScriptPath] isDirectory:&isDir] || isDir) {
+        _error = [NSString stringWithFormat:@"Script not found at path '%@'", self[AppSpecKey_ScriptPath], nil];
         return NO;
     }
     
-    if (![FILEMGR fileExistsAtPath:self[APPSPEC_KEY_NIB_PATH] isDirectory:&isDir] || isDir) {
-        _error = [NSString stringWithFormat:@"Nib not found at path '%@'", self[APPSPEC_KEY_NIB_PATH], nil];
+    if (![FILEMGR fileExistsAtPath:self[AppSpecKey_NibPath] isDirectory:&isDir] || isDir) {
+        _error = [NSString stringWithFormat:@"Nib not found at path '%@'", self[AppSpecKey_NibPath], nil];
         return NO;
     }
     
-    if (![FILEMGR fileExistsAtPath:self[APPSPEC_KEY_EXECUTABLE_PATH] isDirectory:&isDir] || isDir) {
-        _error = [NSString stringWithFormat:@"Executable not found at path '%@'", self[APPSPEC_KEY_EXECUTABLE_PATH], nil];
+    if (![FILEMGR fileExistsAtPath:self[AppSpecKey_ExecutablePath] isDirectory:&isDir] || isDir) {
+        _error = [NSString stringWithFormat:@"Executable not found at path '%@'", self[AppSpecKey_ExecutablePath], nil];
         return NO;
     }
     
     //make sure destination directory exists
-    if (![FILEMGR fileExistsAtPath:[self[APPSPEC_KEY_DESTINATION_PATH] stringByDeletingLastPathComponent] isDirectory:&isDir] || !isDir) {
-        _error = [NSString stringWithFormat:@"Destination directory '%@' does not exist.", [self[APPSPEC_KEY_DESTINATION_PATH] stringByDeletingLastPathComponent], nil];
+    if (![FILEMGR fileExistsAtPath:[self[AppSpecKey_DestinationPath] stringByDeletingLastPathComponent] isDirectory:&isDir] || !isDir) {
+        _error = [NSString stringWithFormat:@"Destination directory '%@' does not exist.", [self[AppSpecKey_DestinationPath] stringByDeletingLastPathComponent], nil];
         return NO;
     }
     
     //make sure we have write privileges for the destination directory
-    if (![FILEMGR isWritableFileAtPath:[self[APPSPEC_KEY_DESTINATION_PATH] stringByDeletingLastPathComponent]]) {
-        _error = [NSString stringWithFormat:@"Don't have permission to write to the destination directory '%@'", self[APPSPEC_KEY_DESTINATION_PATH]];
+    if (![FILEMGR isWritableFileAtPath:[self[AppSpecKey_DestinationPath] stringByDeletingLastPathComponent]]) {
+        _error = [NSString stringWithFormat:@"Don't have permission to write to the destination directory '%@'", self[AppSpecKey_DestinationPath]];
         return NO;
     }
     
@@ -741,67 +741,67 @@
     NSString *statusMenuOptionsString = @"";
     
     // checkbox parameters
-    if ([self[APPSPEC_KEY_AUTHENTICATE] boolValue]) {
+    if ([self[AppSpecKey_Authenticate] boolValue]) {
         NSString *str = shortOpts ? @"-A " : @"--admin-privileges ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([self[APPSPEC_KEY_SECURE] boolValue]) {
+    if ([self[AppSpecKey_Secure] boolValue]) {
         NSString *str = shortOpts ? @"-S " : @"--secure-script ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([self[APPSPEC_KEY_ACCEPT_FILES] boolValue] && [self[APPSPEC_KEY_DROPPABLE] boolValue]) {
+    if ([self[AppSpecKey_AcceptFiles] boolValue] && [self[AppSpecKey_Droppable] boolValue]) {
         NSString *str = shortOpts ? @"-D " : @"--droppable ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([self[APPSPEC_KEY_ACCEPT_TEXT] boolValue] && [self[APPSPEC_KEY_DROPPABLE] boolValue]) {
+    if ([self[AppSpecKey_AcceptText] boolValue] && [self[AppSpecKey_Droppable] boolValue]) {
         NSString *str = shortOpts ? @"-F " : @"--text-droppable ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([self[APPSPEC_KEY_SERVICE] boolValue] && [self[APPSPEC_KEY_DROPPABLE] boolValue]) {
+    if ([self[AppSpecKey_Service] boolValue] && [self[AppSpecKey_Droppable] boolValue]) {
         NSString *str = shortOpts ? @"-N " : @"--service ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([self[APPSPEC_KEY_RUN_IN_BACKGROUND] boolValue]) {
+    if ([self[AppSpecKey_RunInBackground] boolValue]) {
         NSString *str = shortOpts ? @"-B " : @"--background ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([self[APPSPEC_KEY_REMAIN_RUNNING] boolValue] == FALSE) {
+    if ([self[AppSpecKey_RemainRunning] boolValue] == FALSE) {
         NSString *str = shortOpts ? @"-R " : @"--quit-after-execution ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([self[APPSPEC_KEY_VERSION] isEqualToString:@"1.0"] == FALSE) {
+    if ([self[AppSpecKey_Version] isEqualToString:@"1.0"] == FALSE) {
         NSString *str = shortOpts ? @"-V" : @"--app-version";
-        versionString = [NSString stringWithFormat:@" %@ '%@' ", str, self[APPSPEC_KEY_VERSION]];
+        versionString = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_Version]];
     }
     
-    if (![self[APPSPEC_KEY_AUTHOR] isEqualToString:NSFullUserName()]) {
+    if (![self[AppSpecKey_Author] isEqualToString:NSFullUserName()]) {
         NSString *str = shortOpts ? @"-u" : @"--author";
-        authorString = [NSString stringWithFormat:@" %@ '%@' ", str, self[APPSPEC_KEY_AUTHOR]];
+        authorString = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_Author]];
     }
     
     NSString *promptForFileString = @"";
-    if ([self[APPSPEC_KEY_DROPPABLE] boolValue]) {
+    if ([self[AppSpecKey_Droppable] boolValue]) {
         //  suffixes param
-        if ([self[APPSPEC_KEY_SUFFIXES] count]) {
+        if ([self[AppSpecKey_Suffixes] count]) {
             NSString *str = shortOpts ? @"-X" : @"--suffixes";
-            suffixesString = [self[APPSPEC_KEY_SUFFIXES] componentsJoinedByString:CMDLINE_ARG_SEPARATOR];
+            suffixesString = [self[AppSpecKey_Suffixes] componentsJoinedByString:CMDLINE_ARG_SEPARATOR];
             suffixesString = [NSString stringWithFormat:@"%@ '%@' ", str, suffixesString];
         }
         // uniform type identifier params
-        if ([self[APPSPEC_KEY_UTIS] count]) {
+        if ([self[AppSpecKey_Utis] count]) {
             NSString *str = shortOpts ? @"-T" : @"--uniform-type-identifiers";
-            uniformTypesString = [self[APPSPEC_KEY_UTIS] componentsJoinedByString:CMDLINE_ARG_SEPARATOR];
+            uniformTypesString = [self[AppSpecKey_Utis] componentsJoinedByString:CMDLINE_ARG_SEPARATOR];
             uniformTypesString = [NSString stringWithFormat:@"%@ '%@' ", str, uniformTypesString];
         }
         // file prompt
-        if ([self[APPSPEC_KEY_PROMPT_FOR_FILE] boolValue]) {
+        if ([self[AppSpecKey_PromptForFile] boolValue]) {
             NSString *str = shortOpts ? @"-Z" : @"--file-prompt";
             promptForFileString = [NSString stringWithFormat:@"%@ ", str];
         }
@@ -809,84 +809,84 @@
     
     //create bundled files string
     NSString *bundledFilesCmdString = @"";
-    NSArray *bundledFiles = self[APPSPEC_KEY_BUNDLED_FILES];
+    NSArray *bundledFiles = self[AppSpecKey_BundledFiles];
     for (int i = 0; i < [bundledFiles count]; i++) {
         NSString *str = shortOpts ? @"-f" : @"--bundled-file";
         bundledFilesCmdString = [bundledFilesCmdString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, bundledFiles[i]]];
     }
     
     // create interpreter and script args flags
-    if ([self[APPSPEC_KEY_INTERPRETER_ARGS] count]) {
+    if ([self[AppSpecKey_InterpreterArgs] count]) {
         NSString *str = shortOpts ? @"-G" : @"--interpreter-args";
-        NSString *arg = [self[APPSPEC_KEY_INTERPRETER_ARGS] componentsJoinedByString:CMDLINE_ARG_SEPARATOR];
+        NSString *arg = [self[AppSpecKey_InterpreterArgs] componentsJoinedByString:CMDLINE_ARG_SEPARATOR];
         parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, arg]];
     }
-    if ([self[APPSPEC_KEY_SCRIPT_ARGS] count]) {
+    if ([self[AppSpecKey_ScriptArgs] count]) {
         NSString *str = shortOpts ? @"-C" : @"--script-args";
-        NSString *arg = [self[APPSPEC_KEY_SCRIPT_ARGS] componentsJoinedByString:CMDLINE_ARG_SEPARATOR];
+        NSString *arg = [self[AppSpecKey_ScriptArgs] componentsJoinedByString:CMDLINE_ARG_SEPARATOR];
         parametersString = [parametersString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, arg]];
     }
     
     //  create args for text settings
-    if (IsTextStyledOutputTypeString(self[APPSPEC_KEY_INTERFACE_TYPE])) {
+    if (IsTextStyledOutputTypeString(self[AppSpecKey_InterfaceType])) {
         
         NSString *textFgString = @"", *textBgString = @"", *textFontString = @"";
-        if (![self[APPSPEC_KEY_TEXT_COLOR] isEqualToString:DEFAULT_OUTPUT_FG_COLOR]) {
+        if (![self[AppSpecKey_TextColor] isEqualToString:DEFAULT_OUTPUT_FG_COLOR]) {
             NSString *str = shortOpts ? @"-g" : @"--text-foreground-color";
-            textFgString = [NSString stringWithFormat:@" %@ '%@' ", str, self[APPSPEC_KEY_TEXT_COLOR]];
+            textFgString = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_TextColor]];
         }
         
-        if (![self[APPSPEC_KEY_TEXT_BGCOLOR] isEqualToString:DEFAULT_OUTPUT_BG_COLOR]) {
+        if (![self[AppSpecKey_TextBackgroundColor] isEqualToString:DEFAULT_OUTPUT_BG_COLOR]) {
             NSString *str = shortOpts ? @"-b" : @"--text-background-color";
-            textBgString = [NSString stringWithFormat:@" %@ '%@' ", str, self[APPSPEC_KEY_TEXT_COLOR]];
+            textBgString = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_TextColor]];
         }
         
-        if ([self[APPSPEC_KEY_TEXT_SIZE] floatValue] != DEFAULT_OUTPUT_FONTSIZE ||
-            ![self[APPSPEC_KEY_TEXT_FONT] isEqualToString:DEFAULT_OUTPUT_FONT]) {
+        if ([self[AppSpecKey_TextSize] floatValue] != DEFAULT_OUTPUT_FONTSIZE ||
+            ![self[AppSpecKey_TextFont] isEqualToString:DEFAULT_OUTPUT_FONT]) {
             NSString *str = shortOpts ? @"-n" : @"--text-font";
-            textFontString = [NSString stringWithFormat:@" %@ '%@ %2.f' ", str, self[APPSPEC_KEY_TEXT_FONT], [self[APPSPEC_KEY_TEXT_SIZE] floatValue]];
+            textFontString = [NSString stringWithFormat:@" %@ '%@ %2.f' ", str, self[AppSpecKey_TextFont], [self[AppSpecKey_TextSize] floatValue]];
         }
         
         textOutputString = [NSString stringWithFormat:@"%@%@%@", textFgString, textBgString, textFontString];
     }
     
     //text encoding
-    if ([self[APPSPEC_KEY_TEXT_ENCODING] intValue] != DEFAULT_OUTPUT_TXT_ENCODING) {
+    if ([self[AppSpecKey_TextEncoding] intValue] != DEFAULT_OUTPUT_TXT_ENCODING) {
         NSString *str = shortOpts ? @"-E" : @"--text-encoding";
-        textEncodingString = [NSString stringWithFormat:@" %@ %d ", str, [self[APPSPEC_KEY_TEXT_ENCODING] intValue]];
+        textEncodingString = [NSString stringWithFormat:@" %@ %d ", str, [self[AppSpecKey_TextEncoding] intValue]];
     }
     
     //create custom icon string
-    if (![self[APPSPEC_KEY_ICON_PATH] isEqualToString:CMDLINE_ICON_PATH] && ![self[APPSPEC_KEY_ICON_PATH] isEqualToString:@""]) {
+    if (![self[AppSpecKey_IconPath] isEqualToString:CMDLINE_ICON_PATH] && ![self[AppSpecKey_IconPath] isEqualToString:@""]) {
         NSString *str = shortOpts ? @"-i" : @"--app-icon";
-        iconParamStr = [NSString stringWithFormat:@"%@ '%@' ", str, self[APPSPEC_KEY_ICON_PATH]];
+        iconParamStr = [NSString stringWithFormat:@"%@ '%@' ", str, self[AppSpecKey_IconPath]];
     }
     
     //create custom icon string
-    if (self[APPSPEC_KEY_DOC_ICON_PATH] && ![self[APPSPEC_KEY_DOC_ICON_PATH] isEqualToString:@""]) {
+    if (self[AppSpecKey_DocIconPath] && ![self[AppSpecKey_DocIconPath] isEqualToString:@""]) {
         NSString *str = shortOpts ? @"-Q" : @"--document-icon";
-        iconParamStr = [iconParamStr stringByAppendingFormat:@" %@ '%@' ", str, self[APPSPEC_KEY_DOC_ICON_PATH]];
+        iconParamStr = [iconParamStr stringByAppendingFormat:@" %@ '%@' ", str, self[AppSpecKey_DocIconPath]];
     }
     
     //status menu settings, if output mode is status menu
-    if ([self[APPSPEC_KEY_INTERFACE_TYPE] isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]) {
+    if ([self[AppSpecKey_InterfaceType] isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]) {
         // -K kind
         NSString *str = shortOpts ? @"-K" : @"--status-item-kind";
-        statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, self[APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE]];
+        statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, self[AppSpecKey_StatusItemDisplayType]];
         
         // -L /path/to/image
-        if ([self[APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE] isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
+        if ([self[AppSpecKey_StatusItemDisplayType] isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
             str = shortOpts ? @"-L" : @"--status-item-icon";
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '/path/to/image' ", str];
         }
         // -Y 'Title'
-        else if ([self[APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE] isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT]) {
+        else if ([self[AppSpecKey_StatusItemDisplayType] isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT]) {
             str = shortOpts ? @"-Y" : @"--status-item-title";
-            statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, self[APPSPEC_KEY_STATUSITEM_TITLE]];
+            statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, self[AppSpecKey_StatusItemTitle]];
         }
         
         // -c
-        if ([self[APPSPEC_KEY_STATUSITEM_USE_SYSFONT] boolValue]) {
+        if ([self[AppSpecKey_StatusItemUseSysfont] boolValue]) {
             str = shortOpts ? @"-c" : @"--status-item-sysfont";
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ ", str];
         }
@@ -894,26 +894,26 @@
     
     // only set app name arg if we have a proper value
     NSString *appNameArg = @"";
-    if ([self[APPSPEC_KEY_NAME] isEqualToString:@""] == FALSE) {
+    if ([self[AppSpecKey_Name] isEqualToString:@""] == FALSE) {
         NSString *str = shortOpts ? @"-a" : @"--name";
-        appNameArg = [NSString stringWithFormat: @" %@ '%@' ", str,  self[APPSPEC_KEY_NAME]];
+        appNameArg = [NSString stringWithFormat: @" %@ '%@' ", str,  self[AppSpecKey_Name]];
     }
     
     // only add identifier argument if it varies from default
     NSString *identifierArg = @"";
-    NSString *standardIdentifier = [PlatypusAppSpec bundleIdentifierForAppName:self[APPSPEC_KEY_NAME] authorName:nil usingDefaults: NO];
-    if ([self[APPSPEC_KEY_IDENTIFIER] isEqualToString:standardIdentifier] == FALSE) {
+    NSString *standardIdentifier = [PlatypusAppSpec bundleIdentifierForAppName:self[AppSpecKey_Name] authorName:nil usingDefaults: NO];
+    if ([self[AppSpecKey_Identifier] isEqualToString:standardIdentifier] == FALSE) {
         NSString *str = shortOpts ? @"-I" : @"--bundle-identifier";
-        identifierArg = [NSString stringWithFormat: @" %@ %@ ", str, self[APPSPEC_KEY_IDENTIFIER]];
+        identifierArg = [NSString stringWithFormat: @" %@ %@ ", str, self[AppSpecKey_Identifier]];
     }
     
     // output type
     NSString *str = shortOpts ? @"-o" : @"--output-type";
-    NSString *outputArg = [NSString stringWithFormat:@" %@ '%@' ", str, self[APPSPEC_KEY_INTERFACE_TYPE]];
+    NSString *outputArg = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_InterfaceType]];
     
     // interpreter
     str = shortOpts ? @"-p" : @"--interpreter";
-    NSString *interpreterArg = [NSString stringWithFormat:@" %@ '%@' ", str, self[APPSPEC_KEY_INTERPRETER]];
+    NSString *interpreterArg = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_Interpreter]];
     
     
     // finally, generate the command
@@ -936,7 +936,7 @@
                             textEncodingString,
                             textOutputString,
                             statusMenuOptionsString,
-                            self[APPSPEC_KEY_SCRIPT_PATH],
+                            self[AppSpecKey_ScriptPath],
                             nil];
     
     return commandStr;

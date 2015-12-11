@@ -225,7 +225,7 @@
     }
     
     // determine output type
-    NSString *outputTypeStr = appSettingsDict[APPSPEC_KEY_INTERFACE_TYPE];
+    NSString *outputTypeStr = appSettingsDict[AppSpecKey_InterfaceType];
     if (IsValidOutputTypeString(outputTypeStr) == NO) {
         [Alerts fatalAlert:@"Corrupt app settings"
              subTextFormat:@"Invalid Output Mode: '%@'.", outputTypeStr];
@@ -237,50 +237,50 @@
     
         // font and size
         NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
-        CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[APPSPEC_KEY_TEXT_SIZE] floatValue];
+        CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[AppSpecKey_TextSize] floatValue];
         fontSize = fontSize ? fontSize : DEFAULT_OUTPUT_FONTSIZE;
         
-        if (appSettingsDict[APPSPEC_KEY_TEXT_FONT] != nil) {
-            textFont = [NSFont fontWithName:appSettingsDict[APPSPEC_KEY_TEXT_FONT] size:fontSize];
+        if (appSettingsDict[AppSpecKey_TextFont] != nil) {
+            textFont = [NSFont fontWithName:appSettingsDict[AppSpecKey_TextFont] size:fontSize];
         }
         if (textFont == nil) {
             textFont = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE];
         }
         
         // foreground color
-        if (appSettingsDict[APPSPEC_KEY_TEXT_COLOR] != nil) {
-            textForegroundColor = [NSColor colorFromHex:appSettingsDict[APPSPEC_KEY_TEXT_COLOR]];
+        if (appSettingsDict[AppSpecKey_TextColor] != nil) {
+            textForegroundColor = [NSColor colorFromHex:appSettingsDict[AppSpecKey_TextColor]];
         }
         if (textForegroundColor == nil) {
             textForegroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_FG_COLOR];
         }
         
         // background color
-        if (appSettingsDict[APPSPEC_KEY_TEXT_BGCOLOR] != nil) {
-            textBackgroundColor = [NSColor colorFromHex:appSettingsDict[APPSPEC_KEY_TEXT_BGCOLOR]];
+        if (appSettingsDict[AppSpecKey_TextBackgroundColor] != nil) {
+            textBackgroundColor = [NSColor colorFromHex:appSettingsDict[AppSpecKey_TextBackgroundColor]];
         }
         if (textBackgroundColor == nil) {
             textBackgroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_BG_COLOR];
         }
         
         // encoding
-        if (appSettingsDict[APPSPEC_KEY_TEXT_ENCODING] != nil) {
-            textEncoding = (int)[appSettingsDict[APPSPEC_KEY_TEXT_ENCODING] intValue];
+        if (appSettingsDict[AppSpecKey_TextEncoding] != nil) {
+            textEncoding = (int)[appSettingsDict[AppSpecKey_TextEncoding] intValue];
         }
     }
     
     // status menu output has some additional parameters
-    if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
-        NSString *statusItemDisplayType = appSettingsDict[APPSPEC_KEY_STATUSITEM_DISPLAY_TYPE];
+    if (outputType == PlatypusOutputType_StatusMenu) {
+        NSString *statusItemDisplayType = appSettingsDict[AppSpecKey_StatusItemDisplayType];
 
         if ([statusItemDisplayType isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT]) {
-            statusItemTitle = [appSettingsDict[APPSPEC_KEY_STATUSITEM_TITLE] copy];
+            statusItemTitle = [appSettingsDict[AppSpecKey_StatusItemTitle] copy];
             if (statusItemTitle == nil) {
                 [Alerts fatalAlert:@"Error getting title" subText:@"Failed to get Status Item title."];
             }
         }
         else if ([statusItemDisplayType isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
-            statusItemImage = [[NSImage alloc] initWithData:appSettingsDict[APPSPEC_KEY_STATUSITEM_ICON]];
+            statusItemImage = [[NSImage alloc] initWithData:appSettingsDict[AppSpecKey_StatusItemIcon]];
             if (statusItemImage == nil) {
                 [Alerts fatalAlert:@"Error loading icon" subText:@"Failed to load Status Item icon."];
             }
@@ -291,16 +291,16 @@
             statusItemTitle = DEFAULT_STATUS_ITEM_TITLE;
         }
         
-        statusItemUsesSystemFont = [appSettingsDict[APPSPEC_KEY_STATUSITEM_ICON] boolValue];
+        statusItemUsesSystemFont = [appSettingsDict[AppSpecKey_StatusItemIcon] boolValue];
     }
     
-    interpreterArgs = [appSettingsDict[APPSPEC_KEY_INTERPRETER_ARGS] copy];
-    scriptArgs = [appSettingsDict[APPSPEC_KEY_SCRIPT_ARGS] copy];
-    execStyle = [appSettingsDict[APPSPEC_KEY_AUTHENTICATE] boolValue];
-    remainRunning = [appSettingsDict[APPSPEC_KEY_REMAIN_RUNNING] boolValue];
-    secureScript = [appSettingsDict[APPSPEC_KEY_SECURE] boolValue];
-    isDroppable = [appSettingsDict[APPSPEC_KEY_DROPPABLE] boolValue];
-    promptForFileOnLaunch = [appSettingsDict[APPSPEC_KEY_PROMPT_FOR_FILE] boolValue];
+    interpreterArgs = [appSettingsDict[AppSpecKey_InterpreterArgs] copy];
+    scriptArgs = [appSettingsDict[AppSpecKey_ScriptArgs] copy];
+    execStyle = [appSettingsDict[AppSpecKey_Authenticate] boolValue];
+    remainRunning = [appSettingsDict[AppSpecKey_RemainRunning] boolValue];
+    secureScript = [appSettingsDict[AppSpecKey_Secure] boolValue];
+    isDroppable = [appSettingsDict[AppSpecKey_Droppable] boolValue];
+    promptForFileOnLaunch = [appSettingsDict[AppSpecKey_PromptForFile] boolValue];
     
     
     // read and store command line arguments to the application
@@ -336,15 +336,15 @@
     }
 
     // we never have privileged execution or droppable with status menu apps
-    if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
+    if (outputType == PlatypusOutputType_StatusMenu) {
         remainRunning = YES;
         execStyle = PLATYPUS_EXECSTYLE_NORMAL;
         isDroppable = NO;
     }
     
     // load settings for drop acceptance, default is to accept nothing
-    acceptsFiles = (appSettingsDict[APPSPEC_KEY_ACCEPT_FILES] != nil) ? [appSettingsDict[APPSPEC_KEY_ACCEPT_FILES] boolValue] : NO;
-    acceptsText = (appSettingsDict[APPSPEC_KEY_ACCEPT_TEXT] != nil) ? [appSettingsDict[APPSPEC_KEY_ACCEPT_TEXT] boolValue] : NO;
+    acceptsFiles = (appSettingsDict[AppSpecKey_AcceptFiles] != nil) ? [appSettingsDict[AppSpecKey_AcceptFiles] boolValue] : NO;
+    acceptsText = (appSettingsDict[AppSpecKey_AcceptText] != nil) ? [appSettingsDict[AppSpecKey_AcceptText] boolValue] : NO;
     
     // equivalent to not being droppable
     if (!acceptsFiles && !acceptsText) {
@@ -358,14 +358,14 @@
     // we use them later as a criterion for in-code drop acceptance
     if (isDroppable && acceptsFiles) {
         // get list of accepted suffixes
-        if (appSettingsDict[APPSPEC_KEY_SUFFIXES] != nil) {
-            droppableSuffixes = [[NSArray alloc] initWithArray:appSettingsDict[APPSPEC_KEY_SUFFIXES]];
+        if (appSettingsDict[AppSpecKey_Suffixes] != nil) {
+            droppableSuffixes = [[NSArray alloc] initWithArray:appSettingsDict[AppSpecKey_Suffixes]];
         } else {
             droppableSuffixes = [[NSArray alloc] init];
         }
         
-        if (appSettingsDict[APPSPEC_KEY_UTIS] != nil) {
-            droppableUniformTypes = [[NSArray alloc] initWithArray:appSettingsDict[APPSPEC_KEY_UTIS]];
+        if (appSettingsDict[AppSpecKey_Utis] != nil) {
+            droppableUniformTypes = [[NSArray alloc] initWithArray:appSettingsDict[AppSpecKey_Utis]];
         } else {
             droppableUniformTypes = [[NSArray alloc] init];
         }
@@ -379,7 +379,7 @@
     }
     
     // get interpreter
-    NSString *scriptInterpreter = appSettingsDict[APPSPEC_KEY_INTERPRETER];
+    NSString *scriptInterpreter = appSettingsDict[AppSpecKey_Interpreter];
     if (scriptInterpreter == nil || [FILEMGR fileExistsAtPath:scriptInterpreter] == NO) {
         [Alerts fatalAlert:@"Missing interpreter"
              subTextFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreter];
@@ -439,7 +439,7 @@
     
     // status menu apps just run when item is clicked
     // for all others, we run the script once app has been launched
-    if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
+    if (outputType == PlatypusOutputType_StatusMenu) {
         return;
     }
     
@@ -538,13 +538,13 @@
     
     // prepare controls etc. for different output types
     switch (outputType) {
-        case PLATYPUS_OUTPUT_NONE:
+        case PlatypusOutputType_None:
         {
             // nothing to do
         }
             break;
             
-        case PLATYPUS_OUTPUT_PROGRESSBAR:
+        case PlatypusOutputType_ProgressBar:
         {
             if (isDroppable) {
                 [progressBarWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
@@ -575,7 +575,7 @@
         }
             break;
             
-        case PLATYPUS_OUTPUT_TEXTWINDOW:
+        case PlatypusOutputType_TextWindow:
         {
             if (isDroppable) {
                 [textOutputWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
@@ -595,7 +595,7 @@
         }
             break;
             
-        case PLATYPUS_OUTPUT_WEBVIEW:
+        case PlatypusOutputType_WebView:
         {
             if (isDroppable) {
                 [webOutputWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
@@ -615,7 +615,7 @@
         }
             break;
             
-        case PLATYPUS_OUTPUT_STATUSMENU:
+        case PlatypusOutputType_StatusMenu:
         {
             // create and activate status item
             statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
@@ -643,7 +643,7 @@
         }
             break;
             
-        case PLATYPUS_OUTPUT_DROPLET:
+        case PlatypusOutputType_Droplet:
         {
             if (isDroppable) {
                 [dropletWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
@@ -666,13 +666,13 @@
     [outputTextView setString:@""];
     
     switch (outputType) {
-        case PLATYPUS_OUTPUT_NONE:
+        case PlatypusOutputType_None:
         {
             
         }
             break;
             
-        case PLATYPUS_OUTPUT_PROGRESSBAR:
+        case PlatypusOutputType_ProgressBar:
         {
             [progressBarIndicator setIndeterminate:YES];
             [progressBarIndicator startAnimation:self];
@@ -684,7 +684,7 @@
         }
             break;
             
-        case PLATYPUS_OUTPUT_TEXTWINDOW:
+        case PlatypusOutputType_TextWindow:
         {
             [textOutputCancelButton setTitle:@"Cancel"];
             if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
@@ -694,7 +694,7 @@
         }
             break;
             
-        case PLATYPUS_OUTPUT_WEBVIEW:
+        case PlatypusOutputType_WebView:
         {
             [webOutputCancelButton setTitle:@"Cancel"];
             if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
@@ -704,13 +704,13 @@
         }
             break;
             
-        case PLATYPUS_OUTPUT_STATUSMENU:
+        case PlatypusOutputType_StatusMenu:
         {
 
         }
             break;
             
-        case PLATYPUS_OUTPUT_DROPLET:
+        case PlatypusOutputType_Droplet:
         {
             [dropletProgressIndicator setIndeterminate:YES];
             [dropletProgressIndicator startAnimation:self];
@@ -735,14 +735,14 @@
     
     switch (outputType) {
             
-        case PLATYPUS_OUTPUT_NONE:
-        case PLATYPUS_OUTPUT_STATUSMENU:
+        case PlatypusOutputType_None:
+        case PlatypusOutputType_StatusMenu:
         {
             
         }
             break;
 
-        case PLATYPUS_OUTPUT_TEXTWINDOW:
+        case PlatypusOutputType_TextWindow:
         {
             // update controls for text output window
             [textOutputCancelButton setTitle:@"Quit"];
@@ -751,7 +751,7 @@
         }
             break;
             
-        case PLATYPUS_OUTPUT_PROGRESSBAR:
+        case PlatypusOutputType_ProgressBar:
         {            
             if (isDroppable) {
                 [progressBarMessageTextField setStringValue:@"Drag files to process"];
@@ -775,7 +775,7 @@
         }
             break;
             
-        case PLATYPUS_OUTPUT_WEBVIEW:
+        case PlatypusOutputType_WebView:
         {
             // update controls for web output window
             [webOutputCancelButton setTitle:@"Quit"];
@@ -784,7 +784,7 @@
         }
             break;
             
-        case PLATYPUS_OUTPUT_DROPLET:
+        case PlatypusOutputType_Droplet:
         {
             [dropletProgressIndicator stopAnimation:self];
             [dropletDropFilesLabel setHidden:NO];
@@ -905,7 +905,7 @@
     stdinString = nil;
     
     // we wait until task exits if this is triggered by a status item menu
-    if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
+    if (outputType == PlatypusOutputType_StatusMenu) {
         [task waitUntilExit];
     }
 }
@@ -1085,7 +1085,7 @@
         }
         
         // special commands to control progress bar output window
-        if (outputType == PLATYPUS_OUTPUT_PROGRESSBAR) {
+        if (outputType == PlatypusOutputType_ProgressBar) {
             
             // set progress bar status
             // lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar
@@ -1117,7 +1117,7 @@
             }
         }
         
-        if (outputType == PLATYPUS_OUTPUT_WEBVIEW) {
+        if (outputType == PlatypusOutputType_WebView) {
             if ([[outputTextView textStorage] length] == 0 && [theLine hasPrefix:@"Location:"]) {
                 NSString *urlString = [theLine substringFromIndex:9];
                 urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -1129,16 +1129,16 @@
         
         // ok, line wasn't a command understood by the wrapper
         // show it in GUI text field if appropriate
-        if (outputType == PLATYPUS_OUTPUT_DROPLET) {
+        if (outputType == PlatypusOutputType_Droplet) {
             [dropletMessageTextField setStringValue:theLine];
         }
-        if (outputType == PLATYPUS_OUTPUT_PROGRESSBAR) {
+        if (outputType == PlatypusOutputType_ProgressBar) {
             [progressBarMessageTextField setStringValue:theLine];
         }
     }
     
     // if web output, we continually re-render to accomodate incoming data
-    if (outputType == PLATYPUS_OUTPUT_WEBVIEW) {
+    if (outputType == PlatypusOutputType_WebView) {
         if (locationURL) {
             // If Location, we load the provided URL
             [[webOutputWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:locationURL]];
@@ -1156,7 +1156,7 @@
 
 - (void)appendString:(NSString *)string {
     PLog(@"Appending output: \"%@\"", string);
-    if (outputType == PLATYPUS_OUTPUT_NONE) {
+    if (outputType == PlatypusOutputType_None) {
         //fprintf(stdout, "%s", [string cStringUsingEncoding:textEncoding]);
         NSData *strData = [[NSString stringWithFormat:@"%@\n", string] dataUsingEncoding:textEncoding];
         [[NSFileHandle fileHandleWithStandardError] writeData:strData];
@@ -1248,7 +1248,7 @@
     if (!IsTextStyledOutputType(outputType)) {
         return;
     }
-    NSString *outSuffix = (outputType == PLATYPUS_OUTPUT_WEBVIEW) ? @"html" : @"txt";
+    NSString *outSuffix = (outputType == PlatypusOutputType_WebView) ? @"html" : @"txt";
     NSString *fileName = [NSString stringWithFormat:@"%@-Output.%@", appName, outSuffix];
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
@@ -1269,7 +1269,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     
     // status item menus are always enabled
-    if (outputType == PLATYPUS_OUTPUT_STATUSMENU) {
+    if (outputType == PlatypusOutputType_StatusMenu) {
         return YES;
     }
     // save to file item
@@ -1303,7 +1303,7 @@
 
 - (void)changeFontSize:(CGFloat)delta {
     
-    if (outputType == PLATYPUS_OUTPUT_WEBVIEW) {
+    if (outputType == PlatypusOutputType_WebView) {
         // web view
         if (delta > 0) {
             [webOutputWebView makeTextLarger:self];
@@ -1477,7 +1477,7 @@
     
     if (acceptDrag) {
         // we shade the window if output is droplet mode
-        if (outputType == PLATYPUS_OUTPUT_DROPLET) {
+        if (outputType == PlatypusOutputType_Droplet) {
             [dropletShaderView setAlphaValue:0.3];
             [dropletShaderView setHidden:NO];
         }
@@ -1490,7 +1490,7 @@
 - (void)draggingExited:(id <NSDraggingInfo> )sender;
 {
     // remove the droplet shading on drag exit
-    if (outputType == PLATYPUS_OUTPUT_DROPLET) {
+    if (outputType == PlatypusOutputType_Droplet) {
         [dropletShaderView setHidden:YES];
     }
 }
@@ -1511,7 +1511,7 @@
 - (void)concludeDragOperation:(id <NSDraggingInfo> )sender {
     
     // shade droplet
-    if (outputType == PLATYPUS_OUTPUT_DROPLET) {
+    if (outputType == PlatypusOutputType_Droplet) {
         [dropletShaderView setHidden:YES];
     }
     // fire off the job queue if nothing is running

@@ -93,7 +93,7 @@
 }
 
 - (IBAction)statusItemDisplayTypeChanged:(id)sender {
-    BOOL isTitleStyle = ([sender indexOfSelectedItem] == PLATYPUS_STATUS_ITEM_STYLE_TITLE);
+    BOOL isTitleStyle = ([sender indexOfSelectedItem] == PlatypusStatusItemStyle_Title);
     
     [iconLabelTextField setHidden:isTitleStyle];
     [iconImageView setHidden:isTitleStyle];
@@ -149,10 +149,10 @@
     
     // set icon / title depending on settings
     PlatypusStatusItemStyle displayStyle = [statusItemStylePopupButton indexOfSelectedItem];
-    if (displayStyle == PLATYPUS_STATUS_ITEM_STYLE_TITLE) {
+    if (displayStyle == PlatypusStatusItemStyle_Title) {
         [previewStatusItem setTitle:[titleTextField stringValue]];
     }
-    else if (displayStyle == PLATYPUS_STATUS_ITEM_STYLE_ICON) {
+    else if (displayStyle == PlatypusStatusItemStyle_Icon) {
         NSImage *img = [iconImageView image];
         NSSize imgSize = [img size];
         CGFloat rel = 18/imgSize.height;
