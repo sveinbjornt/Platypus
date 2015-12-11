@@ -106,7 +106,8 @@ fi
 echo "Moving source archive to Desktop"
 mv "${APP_SRC_ZIP_NAME}" ~/Desktop/
 
-
+echo "Generating Sparkle signature"
+ruby "Sparkle/sign_update.rb" ~/Desktop/${APP_ZIP_NAME} "Sparkle/dsa_priv.pem"
 
 
 
