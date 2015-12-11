@@ -583,10 +583,16 @@
     [versionTextField setStringValue:spec[APPSPEC_KEY_VERSION]];
     [authorTextField setStringValue:spec[APPSPEC_KEY_AUTHOR]];
     
-    int idx = [PLATYPUS_OUTPUT_TYPE_NAMES indexOfObject:spec[APPSPEC_KEY_INTERFACE_TYPE]];
-    [outputTypePopupButton selectItemAtIndex:idx];
-    [self outputTypeDidChange:nil];
-    
+    if (IsValidOutputTypeString(spec[APPSPEC_KEY_INTERFACE_TYPE])) {
+        int idx = OutputTypeForString(spec[APPSPEC_KEY_INTERFACE_TYPE]);
+        [outputTypePopupButton selectItemAtIndex:idx];
+        [self outputTypeDidChange:nil];
+    } else {
+        [Alerts alert:@"Invalid output type"
+        subTextFormat:@"App spec contains invalid output type '%@'. Falling back to default."];
+        [outputTypePopupButton selectItemWithTitle:DEFAULT_OUTPUT_TYPE_STRING];
+    }
+        
     [interpreterTextField setStringValue:spec[APPSPEC_KEY_INTERPRETER]];
     
     //icon
@@ -821,7 +827,7 @@
     [self setScriptType:DEFAULT_SCRIPT_TYPE];
     
     //set output type
-    [outputTypePopupButton selectItemWithTitle:DEFAULT_OUTPUT_TYPE];
+    [outputTypePopupButton selectItemWithTitle:DEFAULT_OUTPUT_TYPE_STRING];
     [self outputTypeDidChange:outputTypePopupButton];
     
     //update button status

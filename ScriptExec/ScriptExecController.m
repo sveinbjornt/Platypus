@@ -226,11 +226,11 @@
     
     // determine output type
     NSString *outputTypeStr = appSettingsDict[APPSPEC_KEY_INTERFACE_TYPE];
-    if ([PLATYPUS_OUTPUT_TYPE_NAMES containsObject:outputTypeStr] == FALSE) {
+    if (IsValidOutputTypeString(outputTypeStr) == NO) {
         [Alerts fatalAlert:@"Corrupt app settings"
              subTextFormat:@"Invalid Output Mode: '%@'.", outputTypeStr];
     }
-    outputType = [PLATYPUS_OUTPUT_TYPE_NAMES indexOfObject:outputTypeStr];
+    outputType = OutputTypeForString(outputTypeStr);
     
     // text styling and encoding info
     if (IsTextStyledOutputType(outputType)) {

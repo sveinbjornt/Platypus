@@ -126,6 +126,8 @@ typedef enum PlatypusOutputType {
     PLATYPUS_OUTPUT_DROPLET = 5
 } PlatypusOutputType;
 
+#define DEFAULT_OUTPUT_TYPE                     PLATYPUS_OUTPUT_TEXTWINDOW
+
 // execution style
 typedef enum PlatypusStatusItemStyle {
     PLATYPUS_STATUS_ITEM_STYLE_TITLE = 0,
@@ -139,7 +141,7 @@ typedef enum PlatypusStatusItemStyle {
 #define PLATYPUS_OUTPUT_STRING_STATUS_MENU      @"Status Menu"
 #define PLATYPUS_OUTPUT_STRING_DROPLET          @"Droplet"
 
-#define DEFAULT_OUTPUT_TYPE                     PLATYPUS_OUTPUT_STRING_TEXT_WINDOW
+#define DEFAULT_OUTPUT_TYPE_STRING              [PLATYPUS_OUTPUT_TYPE_NAMES objectAtIndex:PLATYPUS_OUTPUT_TEXTWINDOW]
 
 // array of output types, used for validation
 #define PLATYPUS_OUTPUT_TYPE_NAMES   @[\
@@ -153,20 +155,26 @@ typedef enum PlatypusStatusItemStyle {
 
 #pragma mark - Output type macros
 
-#define IsTextStyledOutputType(X) ( X == PLATYPUS_OUTPUT_PROGRESSBAR || \
-                                    X == PLATYPUS_OUTPUT_TEXTWINDOW || \
-                                    X == PLATYPUS_OUTPUT_STATUSMENU  )
+#define IsValidOutputType(X)        ( (X) > 0 && (X) < [PLATYPUS_OUTPUT_TYPE_NAMES count] )
 
-#define IsTextStyledOutputTypeString(X)  (  [X isEqualToString:PLATYPUS_OUTPUT_STRING_PROGRESS_BAR] || \
-                                            [X isEqualToString:PLATYPUS_OUTPUT_STRING_TEXT_WINDOW] || \
-                                            [X isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]  )
+#define IsValidOutputTypeString(X)  [PLATYPUS_OUTPUT_TYPE_NAMES containsObject:(X)]
 
-#define IsTextSizableOutputType(X) (X == PLATYPUS_OUTPUT_PROGRESSBAR || \
-                                    X == PLATYPUS_OUTPUT_TEXTWINDOW || \
-                                    X == PLATYPUS_OUTPUT_WEBVIEW  )
+#define OutputTypeForString(X)      [PLATYPUS_OUTPUT_TYPE_NAMES indexOfObject:(X)]
 
-#define IsTextViewScrollableOutputType(X) ( X == PLATYPUS_OUTPUT_PROGRESSBAR || \
-                                            X == PLATYPUS_OUTPUT_TEXTWINDOW )
+#define IsTextStyledOutputType(X)   (   (X) == PLATYPUS_OUTPUT_PROGRESSBAR || \
+                                        (X) == PLATYPUS_OUTPUT_TEXTWINDOW || \
+                                        (X) == PLATYPUS_OUTPUT_STATUSMENU  )
+
+#define IsTextStyledOutputTypeString(X)  (  [(X) isEqualToString:PLATYPUS_OUTPUT_STRING_PROGRESS_BAR] || \
+                                            [(X) isEqualToString:PLATYPUS_OUTPUT_STRING_TEXT_WINDOW] || \
+                                            [(X) isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]  )
+
+#define IsTextSizableOutputType(X) (    (X) == PLATYPUS_OUTPUT_PROGRESSBAR || \
+                                        (X) == PLATYPUS_OUTPUT_TEXTWINDOW || \
+                                        (X) == PLATYPUS_OUTPUT_WEBVIEW  )
+
+#define IsTextViewScrollableOutputType(X) ( (X) == PLATYPUS_OUTPUT_PROGRESSBAR || \
+                                            (X) == PLATYPUS_OUTPUT_TEXTWINDOW )
 
 #pragma mark - App Spec keys
 
@@ -182,7 +190,7 @@ typedef enum PlatypusStatusItemStyle {
 #define APPSPEC_KEY_SCRIPT_PATH             @"ScriptPath"
 #define APPSPEC_KEY_INTERFACE_TYPE          @"Output"
 #define APPSPEC_KEY_ICON_PATH               @"IconPath"
-#define APPSPEC_KEY_INTERPRETER             @"Interpreter" // ATH
+#define APPSPEC_KEY_INTERPRETER             @"Interpreter"
 #define APPSPEC_KEY_INTERPRETER_ARGS        @"InterpreterArgs"
 #define APPSPEC_KEY_SCRIPT_ARGS             @"ScriptArgs"
 #define APPSPEC_KEY_VERSION                 @"Version"

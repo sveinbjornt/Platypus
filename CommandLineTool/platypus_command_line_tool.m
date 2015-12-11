@@ -200,7 +200,7 @@ int main(int argc, const char *argv[]) {
             case 'o':
             {
                 NSString *outputType = @(optarg);
-                if ([PLATYPUS_OUTPUT_TYPE_NAMES containsObject:outputType] == NO) {
+                if (IsValidOutputTypeString(outputType) == NO) {
                     NSPrintErr(@"Error: Invalid output type '%@'.  Valid types are: %@",
                                outputType, [PLATYPUS_OUTPUT_TYPE_NAMES description]);
                     exit(1);
