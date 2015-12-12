@@ -27,8 +27,6 @@ For 5.1
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
 
-    TODO: Fix broken CLT install script
-
     * Build script now generates sparkle hash
     * More robust command line tool version checking
     * Fixed issue where showing the Preferences window lagged due to icon fetching on main thread
