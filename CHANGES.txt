@@ -18,7 +18,7 @@ For 5.1
     TODO: Use pseudo-pttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
     TODO: Use NSDictionaryController and bindings for all controls in main window and sub-controllers
 
-    TODO: Validate UTIs and app bundle identifiers properly
+
     TODO: Treat drop into STPathTextField like any other drop, don't let editor swallow it
     TODO: File watching still broken for script path
 
@@ -28,6 +28,7 @@ For 5.1
 
     TODO: Make the type lists in drop settings editable like those in Args controller
 
+    * Uniform Type Identifiers and Application Bundle Identifiers are now validated
     * New template processing option for Status Item icon
     * Build script now generates sparkle hash
     * More robust command line tool version checking

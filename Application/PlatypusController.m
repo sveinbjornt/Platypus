@@ -40,6 +40,7 @@
 #import "EditorController.h"
 #import "ShellCommandController.h"
 #import "STPathTextField.h"
+#import "STReverseDNSTextField.h"
 #import "DropSettingsController.h"
 #import "SuffixTypeListController.h"
 #import "SyntaxCheckerController.h"
@@ -66,7 +67,7 @@
     //advanced options controls
     IBOutlet NSTextField *interpreterTextField;
     IBOutlet NSTextField *versionTextField;
-    IBOutlet NSTextField *bundleIdentifierTextField;
+    IBOutlet STReverseDNSTextField *bundleIdentifierTextField;
     IBOutlet NSTextField *authorTextField;
     
     IBOutlet NSButton *rootPrivilegesCheckbox;
@@ -461,7 +462,8 @@
     // ok, now we try to create the app
     
     // first, show progress dialog
-    [progressDialogMessageLabel setStringValue:[NSString stringWithFormat:@"Creating application %@", spec[AppSpecKey_Name]]];
+    NSString *progressStr = [NSString stringWithFormat:@"Creating application %@", spec[AppSpecKey_Name]];
+    [progressDialogMessageLabel setStringValue:progressStr];
     [progressBar setUsesThreadedAnimation:YES];
     [progressBar startAnimation:self];
 
@@ -491,7 +493,7 @@
         [WORKSPACE launchApplication:appPath];
     }
     
-    // Dialog ends here
+    // dialog ends here
     [NSApp endSheet:progressDialogWindow];
     [progressDialogWindow orderOut:self];
     
@@ -500,7 +502,7 @@
 
 - (BOOL)verifyFieldContents {
     
-    //make sure a name has been assigned
+    // make sure a name has been assigned
     if ([[appNameTextField stringValue] length] == 0) {
         [Alerts sheetAlert:@"Missing Application Name"
                    subText:@"You must provide a name for your application."
@@ -508,7 +510,7 @@
         return NO;
     }
     
-    //verify that script exists at path and isn't a directory
+    // verify that script exists at path and isn't a directory
     BOOL isDir;
     if ([FILEMGR fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] == NO || isDir) {
         [Alerts sheetAlert:@"Invalid Script Path"
@@ -516,8 +518,16 @@
                  forWindow:window];
         return NO;
     }
-        
-    //interpreter
+    
+    // validate bundle identifier
+    if ([bundleIdentifierTextField isValid] == NO) {
+        [Alerts sheetAlert:@"Invalid Bundle Identifier"
+                 forWindow:window
+             subTextFormat:@"The string '%@' is not a valid application bundle identifier.", [bundleIdentifierTextField stringValue]];
+        return NO;
+    }
+    
+    // warn if interpreter doesn't exist
     if ([FILEMGR fileExistsAtPath:[interpreterTextField stringValue]] == NO) {
         NSString *promptString = [NSString stringWithFormat:@"The interpreter '%@' does not exist on this system.  Do you wish to proceed anyway?", [interpreterTextField stringValue]];
         if ([Alerts proceedAlert:@"Interpreter does not exist"

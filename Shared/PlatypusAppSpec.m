@@ -198,7 +198,9 @@
     self[AppSpecKey_InterpreterArgs] = [NSArray array];
     self[AppSpecKey_ScriptArgs] = [NSArray array];
     self[AppSpecKey_Version] = DEFAULT_VERSION;
-    self[AppSpecKey_Identifier] = [PlatypusAppSpec bundleIdentifierForAppName:DEFAULT_APP_NAME authorName:nil usingDefaults:YES];
+    self[AppSpecKey_Identifier] = [PlatypusAppSpec bundleIdentifierForAppName:nil
+                                                                   authorName:nil
+                                                                usingDefaults:YES];
     self[AppSpecKey_Author] = NSFullUserName();
     
     self[AppSpecKey_Droppable] = @NO;
@@ -228,7 +230,7 @@
     
     // status item settings
     self[AppSpecKey_StatusItemDisplayType] = PLATYPUS_STATUSITEM_DISPLAY_TYPE_DEFAULT;
-    self[AppSpecKey_StatusItemTitle] = DEFAULT_APP_NAME;
+    self[AppSpecKey_StatusItemTitle] = DEFAULT_STATUS_ITEM_TITLE;
     self[AppSpecKey_StatusItemIcon] = [NSData data];
     self[AppSpecKey_StatusItemUseSysfont] = @YES;
     self[AppSpecKey_StatusItemIconIsTemplate] = @NO;
@@ -959,15 +961,17 @@
  ******************************************************************/
 
 + (NSString *)bundleIdentifierForAppName:(NSString *)appName authorName:(NSString *)authorName usingDefaults:(BOOL)def {
-    
+    if (appName == nil || [appName isEqualToString:@""]) {
+        appName = DEFAULT_APP_NAME;
+    }
     NSString *defaults = def ? [DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"] : nil;
     NSString *author = authorName ? [authorName stringByReplacingOccurrencesOfString:@" " withString:@""] : NSUserName();
     NSString *pre = defaults == nil ? [NSString stringWithFormat:@"org.%@.", author] : defaults;
     NSString *identifierString = [NSString stringWithFormat:@"%@%@", pre, appName];
     identifierString = [identifierString stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-//    NSData *asciiData = [identifierString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-//    identifierString = [[NSString alloc] initWithData:asciiData encoding:NSASCIIStringEncoding];
+    NSData *asciiData = [identifierString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    identifierString = [[NSString alloc] initWithData:asciiData encoding:NSASCIIStringEncoding];
 
     return identifierString;
 }

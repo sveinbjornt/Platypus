@@ -28,39 +28,23 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "UniformTypeListController.h"
+#import "STReverseDNSTextField.h"
+#import "Common.h"
 
-@implementation UniformTypeListController
+@implementation STReverseDNSTextField
 
-- (TypeListItemStringValidity)validateItemString:(NSString *)itemString {
-    if (UTTypeIsValid(itemString) == NO) {
-        return TypeListItemStringInvalid;
-    } else if (UTTypeIsDeclared((__bridge CFStringRef)(itemString)) == NO) {
-        return TypeListItemStringQuestionable;
-    }
-    return TypeListItemStringValid;
+- (void)setStringValue:(NSString *)aString {
+    [super setStringValue:aString];
+    [self performSelector:@selector(textDidChange:) withObject:nil];
 }
 
-- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
-    
-    NSPasteboard *pboard = [info draggingPasteboard];
-    NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
-    
-    for (NSString *filePath in draggedFiles) {
-        BOOL isDir;
-        [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDir];
-        if (isDir && ([WORKSPACE isFilePackageAtPath:filePath] == FALSE)) {
-            [self addItem:(NSString *)kUTTypeFolder];
-        } else {
-            NSString *uti = [WORKSPACE typeOfFile:filePath error:nil];
-            if (uti) {
-                [self addItem:uti];
-            }
-        }
-    }
-    
-    [tv reloadData];
-    return YES;
+- (void)textDidChange:(NSNotification *)aNotification {
+    NSColor *color = [self isValid] ? [NSColor blackColor] : [NSColor redColor];
+    [self setTextColor:color];
+}
+
+- (BOOL)isValid {
+    return BundleIdentifierIsValid([self stringValue]);
 }
 
 @end

@@ -32,7 +32,7 @@
 
 @implementation SuffixTypeListController
 
-- (BOOL)validateItemString:(NSString *)itemString {
+- (TypeListItemStringValidity)validateItemString:(NSString *)itemString {
     return TypeListItemStringValid;
 }
 

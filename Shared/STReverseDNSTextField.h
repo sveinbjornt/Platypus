@@ -28,39 +28,10 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "UniformTypeListController.h"
+#import <Cocoa/Cocoa.h>
 
-@implementation UniformTypeListController
+@interface STReverseDNSTextField : NSTextField
 
-- (TypeListItemStringValidity)validateItemString:(NSString *)itemString {
-    if (UTTypeIsValid(itemString) == NO) {
-        return TypeListItemStringInvalid;
-    } else if (UTTypeIsDeclared((__bridge CFStringRef)(itemString)) == NO) {
-        return TypeListItemStringQuestionable;
-    }
-    return TypeListItemStringValid;
-}
-
-- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
-    
-    NSPasteboard *pboard = [info draggingPasteboard];
-    NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
-    
-    for (NSString *filePath in draggedFiles) {
-        BOOL isDir;
-        [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDir];
-        if (isDir && ([WORKSPACE isFilePackageAtPath:filePath] == FALSE)) {
-            [self addItem:(NSString *)kUTTypeFolder];
-        } else {
-            NSString *uti = [WORKSPACE typeOfFile:filePath error:nil];
-            if (uti) {
-                [self addItem:uti];
-            }
-        }
-    }
-    
-    [tv reloadData];
-    return YES;
-}
+- (BOOL)isValid;
 
 @end

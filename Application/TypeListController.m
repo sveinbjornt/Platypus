@@ -99,8 +99,8 @@
     return [NSArray arrayWithArray:array];
 }
 
-- (BOOL)validateItemString:(NSString *)itemString {
-    return YES;
+- (TypeListItemStringValidity)validateItemString:(NSString *)itemString {
+    return TypeListItemStringValid;
 }
 
 #pragma mark - NSTableViewDelegate / DataSource / Drag

@@ -88,7 +88,7 @@
 #define DEFAULT_EDITOR              @"Built-In"
 #define DEFAULT_INTERPRETER         @"/bin/sh"
 #define DEFAULT_VERSION             @"1.0"
-#define DEFAULT_APP_NAME            @"PlatypusApp"
+#define DEFAULT_APP_NAME            @"Application"
 #define DEFAULT_DESTINATION_PATH    [[NSString stringWithFormat:@"~/Desktop/%@.app", DEFAULT_APP_NAME] stringByExpandingTildeInPath]
 #define DEFAULT_SCRIPT_TYPE         @"Shell"
 #define DEFAULT_SUFFIXES            @[]
@@ -245,4 +245,5 @@ extern NSString * const AppSpecKey_ScriptName; // examples only
 // prototypes
 
 extern BOOL UTTypeIsValid(NSString *inUTI);
+extern BOOL BundleIdentifierIsValid(NSString *bundleIdentifier);
 

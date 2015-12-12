@@ -270,7 +270,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField toolTip="Reverse URL Bundle Identifier for your application (e.g. com.apple.MyApp)" verticalHuggingPriority="750" id="861">
+                    <textField toolTip="Reverse URL Bundle Identifier for your application (e.g. com.apple.MyApp)" verticalHuggingPriority="750" id="861" customClass="STReverseDNSTextField">
                         <rect key="frame" x="88" y="291" width="301" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <animations/>
@@ -527,7 +527,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="9498296A-7D5F-4DE9-A983-FA589F616660" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="E24270DE-84CC-4BD2-B63D-21F490FAC947" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -2937,7 +2937,8 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="9498296A-7D5F-4DE9-A983-FA589F616660" width="16" height="16">
+        <image name="DefaultStatusMenuIcon" width="36" height="36"/>
+        <image name="E24270DE-84CC-4BD2-B63D-21F490FAC947" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -3017,7 +3018,6 @@ EKAQrRCyELQQthC7EMMQxhDLENMQ1hDoEOsQ8AAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAABDy
 A
 </mutableData>
         </image>
-        <image name="DefaultStatusMenuIcon" width="36" height="36"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
