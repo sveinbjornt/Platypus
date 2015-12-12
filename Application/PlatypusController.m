@@ -918,7 +918,7 @@
     NSPasteboard *pboard = [sender draggingPasteboard];
     
     // File
-    if ([[pboard types] containsObject:NSFilenamesPboardType]) {        
+    if ([[pboard types] containsObject:NSFilenamesPboardType]) {
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         
         if ([files count] == 1) {

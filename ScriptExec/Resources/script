@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 
+print "Hello\n";
+print "----\n";
+print "World\n";
 # If 0 arguments, we show menu
 #if (!scalar(@ARGV)) {
 #print "Life's but a walking shadow, a poor player\n";

@@ -1570,6 +1570,12 @@
         NSString *line = lines[i];
         NSImage *icon = nil;
         
+        // ---- creates a separator item
+        if ([line hasPrefix:@"----"]) {
+            [menu insertItem:[NSMenuItem separatorItem] atIndex:0];
+            continue;
+        }
+        
         if ([line hasPrefix:@"MENUITEMICON|"]) {
             NSArray *tokens = [line componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
             if ([tokens count] < 3) {

@@ -25,6 +25,7 @@ For 5.1
     TODO: Treat drop into STPathTextField like any other drop, don't let editor swallow it
     TODO: Make the type lists in drop settings editable like those in Args controller
 
+    * "----" output in Status Menu mode now creates menu separator item
     * Uniform Type Identifiers and Application Bundle Identifiers are now validated
     * New template processing option for Status Item icon
     * Build script now generates sparkle hash
