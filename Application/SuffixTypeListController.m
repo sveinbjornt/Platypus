@@ -36,6 +36,10 @@
     return TypeListItemStringValid;
 }
 
+- (NSString *)defaultItemString {
+    return @"suffix";
+}
+
 - (NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo> )info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation {
     
     NSPasteboard *pboard = [info draggingPasteboard];

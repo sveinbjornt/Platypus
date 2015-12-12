@@ -41,6 +41,10 @@
     return TypeListItemStringValid;
 }
 
+- (NSString *)defaultItemString {
+    return @"public.item";
+}
+
 - (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
     
     NSPasteboard *pboard = [info draggingPasteboard];

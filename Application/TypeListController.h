@@ -41,9 +41,11 @@ typedef enum {
 @property (nonatomic, readonly) int itemCount;
 @property (nonatomic, readonly, copy) NSArray *itemsArray;
 
+- (void)addNewItem;
 - (void)addItem:(NSString *)item;
 - (void)addItems:(NSArray *)items;
 - (void)removeAllItems;
 - (void)removeItemAtIndex:(int)index;
+- (NSString *)defaultItemString;
 
 @end

@@ -46,13 +46,11 @@
     IBOutlet NSButton *addSuffixButton;
     IBOutlet NSButton *removeSuffixButton;
     IBOutlet NSTableView *suffixListTableView;
-    IBOutlet NSTextField *suffixTextField;
     
     IBOutlet NSBox *utiListBox;
     IBOutlet NSButton *addUTIButton;
     IBOutlet NSButton *removeUTIButton;
     IBOutlet NSTableView *uniformTypeListTableView;
-    IBOutlet NSTextField *uniformTypeTextField;
     
     IBOutlet NSButton *promptForFileOnLaunchCheckbox;
     
@@ -105,20 +103,17 @@
     [window setTitle:[NSString stringWithFormat:@"%@ - Drop settings", PROGRAM_NAME]];
     
     //do setup
-    [suffixTextField setStringValue:@""];
     [suffixListTableView setDataSource:suffixListController];
     [suffixListTableView reloadData];
     [suffixListTableView setDelegate:self];
     [suffixListTableView setTarget:self];
     
-    [uniformTypeTextField setStringValue:@""];
     [uniformTypeListTableView setDataSource:uniformTypeListController];
     [uniformTypeListTableView reloadData];
     [uniformTypeListTableView setDelegate:self];
     [uniformTypeListTableView setTarget:self];
     
     [errorTextField setStringValue:@""];
-    [self textInInputTextFieldDidChange];
     [self updateButtonStatus];
     
     [self setSuffixListEnabled:([uniformTypeListController itemCount] == 0)];
@@ -167,39 +162,17 @@
 #pragma mark -
 
 - (IBAction)addSuffix:(id)sender {
-    NSString *theSuffix = [suffixTextField stringValue];
-    [suffixTextField setStringValue:@""];
-    
-    if ([theSuffix length] == 0) {
-        return;
-    }
-    
-    //if the user put in a suffix beginning with a '.', we trim the string to start from index 1
-    if ([theSuffix characterAtIndex:0] == '.') {
-        theSuffix = [theSuffix substringFromIndex:1];
-    }
-    
-    [suffixListController addItem:theSuffix];
-    [self textInInputTextFieldDidChange];
+    [suffixListController addNewItem];
     [suffixListTableView reloadData];
 }
 
 - (IBAction)addUTI:(id)sender {
-    NSString *theUTI = [uniformTypeTextField stringValue];
-    [uniformTypeTextField setStringValue:@""];
-
-    if ([theUTI length] == 0) {
-        return;
-    }
-        
-    [uniformTypeListController addItem:theUTI];
-    [self textInInputTextFieldDidChange];
+    [uniformTypeListController addNewItem];
     [uniformTypeListTableView reloadData];
     [self setSuffixListEnabled:NO];
 }
 
-- (IBAction)removeListItem:(id)sender
-{
+- (IBAction)removeListItem:(id)sender {
     NSTableView *tableView;
     TypeListController *typeListController;
     
@@ -215,16 +188,16 @@
         return;
     }
     
-    NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    for (int i = [typeListController itemCount]; i >= 0; i--) {
-        if ([selectedItems containsIndex:i]) {
-            [typeListController removeItemAtIndex:i];
-            break;
-        }
+    NSInteger selectedIndex = [tableView selectedRow];
+    if (selectedIndex >= 0) {
+        [typeListController removeItemAtIndex:selectedIndex];
+
+        NSInteger rowToSelect = selectedIndex - 1;
+        [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
+        
+        [tableView reloadData];
+        [self setSuffixListEnabled:([uniformTypeListController itemCount] == 0)];
     }
-    
-    [tableView reloadData];
-    [self setSuffixListEnabled:([uniformTypeListController itemCount] == 0)];
 }
 
 #pragma mark -
@@ -249,9 +222,8 @@
 - (void)setSuffixListEnabled:(BOOL)enabled {
     [suffixListTableView setEnabled:enabled];
     [addSuffixButton setEnabled:enabled];
-    [removeSuffixButton setEnabled:enabled];
-    [suffixTextField setEnabled:enabled];
     [suffixListBox setAlphaValue:0.5 + (enabled * 0.5)];
+    [self updateButtonStatus];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
@@ -263,17 +235,12 @@
 }
 
 - (void)updateButtonStatus {
-    [removeSuffixButton setEnabled:[[suffixListTableView selectedRowIndexes] count]];
-    [removeUTIButton setEnabled:[[uniformTypeListTableView selectedRowIndexes] count]];
-}
-
-- (void)controlTextDidChange:(NSNotification *)aNotification {
-    [self textInInputTextFieldDidChange];
-}
-
-- (void)textInInputTextFieldDidChange {
-    [addSuffixButton setEnabled:([[suffixTextField stringValue] length] > 0)];
-    [addUTIButton setEnabled:([[uniformTypeTextField stringValue] length] > 0)];
+    [removeSuffixButton setEnabled:
+         ([[suffixListTableView selectedRowIndexes] count] && [suffixListTableView selectedRow] >= 0)
+    ];
+    [removeUTIButton setEnabled:
+        ([[uniformTypeListTableView selectedRowIndexes] count] && [uniformTypeListTableView selectedRow] >= 0)
+     ];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)item {
@@ -301,12 +268,12 @@
     [addSuffixButton setEnabled:enabled];
     [removeSuffixButton setEnabled:enabled];
     [suffixListTableView setEnabled:enabled];
-    [suffixTextField setEnabled:enabled];
     
     [addUTIButton setEnabled:enabled];
     [removeUTIButton setEnabled:enabled];
     [uniformTypeListTableView setEnabled:enabled];
-    [uniformTypeTextField setEnabled:enabled];
+    
+    [self updateButtonStatus];
     
     [promptForFileOnLaunchCheckbox setEnabled:enabled];
     [selectDocumentIconButton setEnabled:enabled];

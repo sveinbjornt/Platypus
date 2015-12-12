@@ -46,12 +46,13 @@
 }
 
 - (void)addItem:(NSString *)item {
-    if ([self hasItem:item]) {
-        return;
-    }
     NSImage *icon = [self iconForItem:item];
     NSDictionary *infoDict = @{@"name": item, @"icon": icon};
     [items addObject:infoDict];
+}
+
+- (void)addNewItem {
+    [self addItem:[self defaultItemString]];
 }
 
 - (NSImage *)iconForItem:(NSString *)item {
@@ -103,6 +104,10 @@
     return TypeListItemStringValid;
 }
 
+- (NSString *)defaultItemString {
+    return @"item";
+}
+
 #pragma mark - NSTableViewDelegate / DataSource / Drag
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
@@ -112,24 +117,30 @@
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
     
     if ([[aTableColumn identifier] isEqualToString:@"2"]) {
+        
         NSString *itemString = items[rowIndex][@"name"];
         NSColor *stringColor;
-        TypeListItemStringValidity validity = [self validateItemString:itemString];
-        switch (validity) {
-            case TypeListItemStringInvalid:
-                stringColor = [NSColor redColor];
-                break;
-                
-            case TypeListItemStringQuestionable:
-                stringColor = [NSColor orangeColor];
-                break;
-            
-            case TypeListItemStringValid:
-            default:
-                stringColor = [NSColor blackColor];
-                break;
-        }
         
+        if ([aTableView isEnabled] == NO) {
+            stringColor = [NSColor grayColor];
+        } else {
+        
+            TypeListItemStringValidity validity = [self validateItemString:itemString];
+            switch (validity) {
+                case TypeListItemStringInvalid:
+                    stringColor = [NSColor redColor];
+                    break;
+                    
+                case TypeListItemStringQuestionable:
+                    stringColor = [NSColor orangeColor];
+                    break;
+                
+                case TypeListItemStringValid:
+                default:
+                    stringColor = [NSColor blackColor];
+                    break;
+            }
+        }
         NSDictionary *attrs = @{ NSForegroundColorAttributeName: stringColor };
         NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:itemString
                                                                       attributes:attrs];
@@ -145,6 +156,17 @@
         return items[rowIndex][@"icon"];
     }
     return @"";
+}
+
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
+    NSString *item = (NSString *)anObject;
+    if ([item isEqualToString:@""]) {
+        NSBeep();
+        return;
+    }
+    NSImage *icon = [self iconForItem:item];
+    NSDictionary *infoDict = @{@"name": item, @"icon": icon};
+    items[rowIndex] = infoDict;
 }
 
 - (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
