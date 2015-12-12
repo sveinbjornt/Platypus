@@ -234,9 +234,9 @@
             else {
                 [textField setTextColor:[NSColor orangeColor]];
                 if ([versionString floatValue] < [PROGRAM_VERSION floatValue]) {
-                    [textField setStringValue:@"Old version of command line"];  //older
+                    [textField setStringValue:[NSString stringWithFormat:@"Old version of command line tool (%@)", versionString]];
                 } else {
-                    [textField setStringValue:@"Newer version of command line"];  //newer
+                    [textField setStringValue:[NSString stringWithFormat:@"Newer version of command line tool (%@)", versionString]];
                 }
             }
         });

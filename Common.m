@@ -28,8 +28,7 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#pragma mark - App Spec keys
-
+// App Spec keys
 NSString * const AppSpecKey_Creator = @"Creator";
 NSString * const AppSpecKey_ExecutablePath = @"ExecutablePath";
 NSString * const AppSpecKey_NibPath = @"NibPath";

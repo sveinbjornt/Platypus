@@ -112,8 +112,8 @@
 
 // execution style
 typedef enum PlatypusExecStyle {
-    PLATYPUS_EXECSTYLE_NORMAL = 0,
-    PLATYPUS_EXECSTYLE_PRIVILEGED = 1
+    PlatypusExecStyle_Normal = 0,
+    PlatypusExecStyle_Authenticated = 1
 } PlatypusExecStyle;
 
 // output modes
@@ -153,7 +153,7 @@ typedef enum PlatypusStatusItemStyle {
     PLATYPUS_OUTPUT_STRING_DROPLET, \
 ]
 
-#pragma mark - Output type macros
+// output type macros
 
 #define IsValidOutputType(X)        ( (X) > 0 && (X) < [PLATYPUS_OUTPUT_TYPE_NAMES count] )
 
@@ -176,7 +176,7 @@ typedef enum PlatypusStatusItemStyle {
 #define IsTextViewScrollableOutputType(X) ( (X) == PlatypusOutputType_ProgressBar || \
                                             (X) == PlatypusOutputType_TextWindow )
 
-#pragma mark - App Spec keys
+// App Spec keys
 
 extern NSString * const AppSpecKey_Creator;
 extern NSString * const AppSpecKey_ExecutablePath;
@@ -224,19 +224,16 @@ extern NSString * const AppSpecKey_StatusItemTitle;
 extern NSString * const AppSpecKey_StatusItemIcon;
 extern NSString * const AppSpecKey_StatusItemUseSysfont;
 
-// examples only
-extern NSString * const AppSpecKey_IsExample;
-extern NSString * const AppSpecKey_ScriptText;
-extern NSString * const AppSpecKey_ScriptName;
-
-#pragma mark - Abbreviations
+extern NSString * const AppSpecKey_IsExample; // examples only
+extern NSString * const AppSpecKey_ScriptText; // examples only
+extern NSString * const AppSpecKey_ScriptName; // examples only
 
 // abbreviations, Obj-C is sometimes tediously verbose
 #define FILEMGR     [NSFileManager defaultManager]
 #define DEFAULTS    [NSUserDefaults standardUserDefaults]
 #define WORKSPACE   [NSWorkspace sharedWorkspace]
 
-#pragma mark - Logging
+// logging
 
 #ifdef DEBUG
     #define PLog(...) NSLog(__VA_ARGS__)

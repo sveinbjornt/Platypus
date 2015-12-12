@@ -183,7 +183,7 @@
     
     // listen for terminate notification
     NSString *notificationName = NSTaskDidTerminateNotification;
-    if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
+    if (execStyle == PlatypusExecStyle_Authenticated) {
         notificationName = STPrivilegedTaskDidTerminateNotification;
     }
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -338,7 +338,7 @@
     // we never have privileged execution or droppable with status menu apps
     if (outputType == PlatypusOutputType_StatusMenu) {
         remainRunning = YES;
-        execStyle = PLATYPUS_EXECSTYLE_NORMAL;
+        execStyle = PlatypusExecStyle_Normal;
         isDroppable = NO;
     }
     
@@ -678,7 +678,7 @@
             [progressBarIndicator startAnimation:self];
             [progressBarMessageTextField setStringValue:@"Running..."];
             [progressBarCancelButton setTitle:@"Cancel"];
-            if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
+            if (execStyle == PlatypusExecStyle_Authenticated) {
                 [progressBarCancelButton setEnabled:NO];
             }
         }
@@ -687,7 +687,7 @@
         case PlatypusOutputType_TextWindow:
         {
             [textOutputCancelButton setTitle:@"Cancel"];
-            if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
+            if (execStyle == PlatypusExecStyle_Authenticated) {
                 [textOutputCancelButton setEnabled:NO];
             }
             [textOutputProgressIndicator startAnimation:self];
@@ -697,7 +697,7 @@
         case PlatypusOutputType_WebView:
         {
             [webOutputCancelButton setTitle:@"Cancel"];
-            if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
+            if (execStyle == PlatypusExecStyle_Authenticated) {
                 [webOutputCancelButton setEnabled:NO];
             }
             [webOutputProgressIndicator startAnimation:self];
@@ -864,7 +864,7 @@
     isTaskRunning = YES;
     
     // run the task
-    if (execStyle == PLATYPUS_EXECSTYLE_PRIVILEGED) {
+    if (execStyle == PlatypusExecStyle_Authenticated) {
         [self executeScriptWithPrivileges];
     } else {
         [self executeScriptWithoutPrivileges];
@@ -951,13 +951,7 @@
     }
     isTaskRunning = NO;
     PLog(@"Task finished");
-    
-    // make sure task is dead.  Ideally we'd like to do the same for
-    // privileged tasks, but that's just not possible w/o process id
-    if (execStyle == PLATYPUS_EXECSTYLE_NORMAL && task != nil) {
-        [task terminate];
-    }
-    
+        
     // did we receive all the data?
     // if no data left we do the clean up
     if (outputEmpty) {
