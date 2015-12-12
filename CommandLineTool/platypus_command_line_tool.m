@@ -53,7 +53,7 @@ static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
 
-static const char optstring[] = "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:T:G:C:b:g:n:E:K:Y:L:cU:";
+static const char optstring[] = "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:T:G:C:b:g:n:E:K:Y:L:cqU:";
 
 static struct option long_options[] = {
 
@@ -92,7 +92,8 @@ static struct option long_options[] = {
     {"status-item-title",         required_argument,  0, 'Y'},
     {"status-item-icon",          required_argument,  0, 'L'},
     {"status-item-sysfont",       no_argument,        0, 'c'},
-
+    {"status-item-template-icon", no_argument,        0, 'q'},
+    
     {"bundled-file",              required_argument,  0, 'f'},
 
     {"xml-property-lists",        no_argument,        0, 'x'},
@@ -463,6 +464,11 @@ int main(int argc, const char *argv[]) {
             case 'c':
                 properties[AppSpecKey_StatusItemUseSysfont] = @YES;
                 break;
+            
+            // icon is template: process status item icon with AppKit
+            case 'q':
+                properties[AppSpecKey_StatusItemIconIsTemplate] = @YES;
+                break;
                 
             // set icon image of status item for Status Menu output
             case 'L':
@@ -696,6 +702,7 @@ Options:\n\
     -Y --status-item-title [title]       Set title of Status Item\n\
     -L --status-item-icon [imagePath]    Set icon of Status Item\n\
     -c --status-item-sysfont             Make Status Item use system font for menu\n\
+    -q --status-item-template-icon       Icon is template and can be processed by AppKit\n\
     \n\
     -f --bundled-file [filePath]         Add a bundled file\n\
     \n\

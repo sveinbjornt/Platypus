@@ -11,6 +11,7 @@
 		F4051D9F1C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
 		F4051DA01C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
 		F4051DA11C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
+		F4051DA61C1C57AF00587F1F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F44A774A1C1887CC003CCA7A /* MainMenu.xib */; };
 		F40B227C1B28EFC7003C05ED /* platypus_clt in Copy ScriptExec and Command Line Tool */ = {isa = PBXBuildFile; fileRef = F4E1F6FC11F758FB007EE2E3 /* platypus_clt */; };
 		F40B227F1B28F37A003C05ED /* ScriptExec.app in Copy ScriptExec and Command Line Tool */ = {isa = PBXBuildFile; fileRef = F48B774111F7661C00351575 /* ScriptExec.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F40F33B31BFE82510052A68F /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269681BC9934800169D8B /* NSTask+Description.m */; };
@@ -898,6 +899,7 @@
 				F48269731BC9A03F00169D8B /* Text-Window.png in Resources */,
 				F4DC075211F629A40043764E /* Documentation.html in Resources */,
 				F43E1D7E1BC8048400622B5F /* Perl.png in Resources */,
+				F4051DA61C1C57AF00587F1F /* MainMenu.xib in Resources */,
 				F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */,
 				F44A77451C1882DA003CCA7A /* UninstallPlatypus.sh in Resources */,
 				F4DC075311F629A40043764E /* Readme.html in Resources */,

@@ -223,6 +223,7 @@ extern NSString * const AppSpecKey_StatusItemDisplayType;
 extern NSString * const AppSpecKey_StatusItemTitle;
 extern NSString * const AppSpecKey_StatusItemIcon;
 extern NSString * const AppSpecKey_StatusItemUseSysfont;
+extern NSString * const AppSpecKey_StatusItemIconIsTemplate;
 
 extern NSString * const AppSpecKey_IsExample; // examples only
 extern NSString * const AppSpecKey_ScriptText; // examples only

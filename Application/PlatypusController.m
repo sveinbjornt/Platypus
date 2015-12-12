@@ -573,6 +573,7 @@
     spec[AppSpecKey_StatusItemTitle] = [statusItemSettingsController title];
     spec[AppSpecKey_StatusItemIcon] = [[statusItemSettingsController icon] TIFFRepresentation];
     spec[AppSpecKey_StatusItemUseSysfont] = @([statusItemSettingsController usesSystemFont]);
+    spec[AppSpecKey_StatusItemIconIsTemplate] = @([statusItemSettingsController usesTemplateIcon]);
     
     return spec;
 }

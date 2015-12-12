@@ -74,10 +74,11 @@ NSString * const AppSpecKey_StatusItemDisplayType = @"StatusItemDisplayType";
 NSString * const AppSpecKey_StatusItemTitle = @"StatusItemTitle";
 NSString * const AppSpecKey_StatusItemIcon = @"StatusItemIcon";
 NSString * const AppSpecKey_StatusItemUseSysfont = @"StatusItemUseSystemFont";
+NSString * const AppSpecKey_StatusItemIconIsTemplate = @"StatusItemIconIsTemplate";
 
-NSString * const AppSpecKey_IsExample = @"Example";
-NSString * const AppSpecKey_ScriptText = @"Script";
-NSString * const AppSpecKey_ScriptName = @"ScriptName";
+NSString * const AppSpecKey_IsExample = @"Example"; // examples only
+NSString * const AppSpecKey_ScriptText = @"Script"; // examples only
+NSString * const AppSpecKey_ScriptName = @"ScriptName"; // examples only
 
 
 

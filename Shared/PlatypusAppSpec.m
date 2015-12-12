@@ -231,6 +231,7 @@
     self[AppSpecKey_StatusItemTitle] = DEFAULT_APP_NAME;
     self[AppSpecKey_StatusItemIcon] = [NSData data];
     self[AppSpecKey_StatusItemUseSysfont] = @YES;
+    self[AppSpecKey_StatusItemIconIsTemplate] = @NO;
 }
 
 /********************************************************
@@ -548,6 +549,7 @@
     appSettingsPlist[AppSpecKey_StatusItemTitle] = self[AppSpecKey_StatusItemTitle];
     appSettingsPlist[AppSpecKey_StatusItemIcon] = self[AppSpecKey_StatusItemIcon];
     appSettingsPlist[AppSpecKey_StatusItemUseSysfont] = self[AppSpecKey_StatusItemUseSysfont];
+    appSettingsPlist[AppSpecKey_StatusItemIconIsTemplate] = self[AppSpecKey_StatusItemIconIsTemplate];
     
     appSettingsPlist[AppSpecKey_AcceptFiles] = self[AppSpecKey_AcceptFiles];
     appSettingsPlist[AppSpecKey_AcceptText] = self[AppSpecKey_AcceptText];
@@ -691,7 +693,7 @@
         return NO;
     }
     
-    if (![FILEMGR fileExistsAtPath:self[AppSpecKey_NibPath] isDirectory:&isDir] || isDir) {
+    if (![FILEMGR fileExistsAtPath:self[AppSpecKey_NibPath]]) {
         _error = [NSString stringWithFormat:@"Nib not found at path '%@'", self[AppSpecKey_NibPath], nil];
         return NO;
     }
@@ -879,6 +881,7 @@
             str = shortOpts ? @"-L" : @"--status-item-icon";
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '/path/to/image' ", str];
         }
+        
         // -Y 'Title'
         else if ([self[AppSpecKey_StatusItemDisplayType] isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT]) {
             str = shortOpts ? @"-Y" : @"--status-item-title";
@@ -888,6 +891,12 @@
         // -c
         if ([self[AppSpecKey_StatusItemUseSysfont] boolValue]) {
             str = shortOpts ? @"-c" : @"--status-item-sysfont";
+            statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ ", str];
+        }
+        
+        // -q
+        if ([self[AppSpecKey_StatusItemIconIsTemplate] boolValue]) {
+            str = shortOpts ? @"-q" : @"--status-item-template-icon";
             statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ ", str];
         }
     }

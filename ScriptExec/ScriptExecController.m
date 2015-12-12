@@ -124,6 +124,7 @@
     BOOL acceptsText;
     BOOL promptForFileOnLaunch;
     BOOL statusItemUsesSystemFont;
+    BOOL statusItemIconIsTemplate;
     BOOL runInBackground;
     BOOL isService;
     
@@ -291,7 +292,9 @@
             statusItemTitle = DEFAULT_STATUS_ITEM_TITLE;
         }
         
-        statusItemUsesSystemFont = [appSettingsDict[AppSpecKey_StatusItemIcon] boolValue];
+        statusItemUsesSystemFont = [appSettingsDict[AppSpecKey_StatusItemUseSysfont] boolValue];
+        
+        statusItemIconIsTemplate = [appSettingsDict[AppSpecKey_StatusItemIconIsTemplate] boolValue];
     }
     
     interpreterArgs = [appSettingsDict[AppSpecKey_InterpreterArgs] copy];
@@ -628,6 +631,7 @@
             CGFloat rel = 18/statusItemSize.height;
             NSSize finalSize = NSMakeSize(statusItemSize.width * rel, statusItemSize.height * rel);
             [statusItemImage setSize:finalSize];
+            [statusItemImage setTemplate:statusItemIconIsTemplate];
             [statusItem setImage:statusItemImage];
             
             // create menu for our status item
