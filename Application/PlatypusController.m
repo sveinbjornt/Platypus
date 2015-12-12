@@ -157,7 +157,6 @@
     
     // make sure application support folder and subfolders exist
     BOOL isDir;
-    
     // app support folder
     if (![FILEMGR fileExistsAtPath:APP_SUPPORT_FOLDER isDirectory:&isDir] && ![FILEMGR createDirectoryAtPath:APP_SUPPORT_FOLDER withIntermediateDirectories:NO attributes:nil error:nil]) {
             [Alerts alert:@"Error"
@@ -173,10 +172,10 @@
     }
     
     if ([DEFAULTS objectForKey:@"FirstLaunch"] == nil) {
-        // TODO: Create sample profile in Profiles folder
+        // TODO: Create sample profile in Profiles folder?
     }
     
-    // we list ourself as an observer of changes to file system, for script
+    // we list ourself as an observer of changes to file system for script path being watched
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueRenameNotification object:nil];
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueDeleteNotification object:nil];
     
@@ -197,6 +196,8 @@
     }
     
     // populate output type menu
+    [outputTypePopupButton removeAllItems];
+    [outputTypePopupButton addItemsWithTitles:PLATYPUS_OUTPUT_TYPE_NAMES];
     [self updateOutputTypeMenu:NSMakeSize(16, 16)];
     
     // main window accepts dragged text and dragged files
