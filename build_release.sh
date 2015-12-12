@@ -83,8 +83,10 @@ then
     scp "${APP_ZIP_NAME}" "${REMOTE_DIR}"
 fi
 
+FINAL_APP_ARCHIVE_PATH=~/Desktop/${APP_ZIP_NAME}
+
 echo "Moving application archive to Desktop"
-mv "${APP_ZIP_NAME}" ~/Desktop/
+mv "${APP_ZIP_NAME}" ${FINAL_APP_ARCHIVE_PATH}
 
 # Create source archive
 echo "Creating source archive ${APP_SRC_ZIP_NAME}..."
@@ -97,6 +99,8 @@ then
     scp "${APP_SRC_ZIP_NAME}" "${REMOTE_DIR}"
 fi
 
+FINAL_SRC_ARCHIVE_PATH=~/Desktop/${APP_SRC_ZIP_NAME}
+
 if [ $1 ]
 then
     echo "Updating documentation on server ..."
@@ -104,14 +108,14 @@ then
 fi
 
 echo "Moving source archive to Desktop"
-mv "${APP_SRC_ZIP_NAME}" ~/Desktop/
+mv "${APP_SRC_ZIP_NAME}" ${FINAL_SRC_ARCHIVE_PATH}
 
 echo "Generating Sparkle signature"
 ruby "Sparkle/sign_update.rb" ~/Desktop/${APP_ZIP_NAME} "Sparkle/dsa_priv.pem"
 
-
-
-
+echo "Archive Sizes:"
+du -hs ${FINAL_APP_ARCHIVE_PATH}
+du -hs ${FINAL_SRC_ARCHIVE_PATH}
 
 
 
