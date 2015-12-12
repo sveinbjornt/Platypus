@@ -60,34 +60,30 @@
     IBOutlet NSButton *editScriptButton;
     IBOutlet NSButton *revealScriptButton;
     IBOutlet NSPopUpButton *outputTypePopupButton;
-    IBOutlet NSButton *createAppButton;
     IBOutlet NSButton *textOutputSettingsButton;
     IBOutlet NSButton *statusItemSettingsButton;
-    
+    IBOutlet NSButton *createAppButton;
+    IBOutlet NSTextField *appSizeTextField;
+
     //advanced options controls
     IBOutlet NSTextField *interpreterTextField;
     IBOutlet NSTextField *versionTextField;
     IBOutlet STReverseDNSTextField *bundleIdentifierTextField;
     IBOutlet NSTextField *authorTextField;
+    IBOutlet NSButton *acceptsDroppedItemsCheckbox;
+    IBOutlet NSButton *dropSettingsButton;
     
     IBOutlet NSButton *rootPrivilegesCheckbox;
     IBOutlet NSButton *secureBundledScriptCheckbox;
-    IBOutlet NSButton *isDroppableCheckbox;
     IBOutlet NSButton *runInBackgroundCheckbox;
     IBOutlet NSButton *remainRunningCheckbox;
     
-    IBOutlet NSButton *dropSettingsButton;
-    
-    IBOutlet NSTextField *appSizeTextField;
     
     // create app dialog view extension
     IBOutlet NSView *debugSaveOptionView;
     IBOutlet NSButton *developmentVersionCheckbox;
     IBOutlet NSButton *stripNibFileCheckbox;
     IBOutlet NSButton *xmlPlistFormatCheckbox;
-    
-    //windows
-    IBOutlet NSWindow *window;
     
     //progress sheet when creating
     IBOutlet NSWindow *progressDialogWindow;
@@ -116,7 +112,7 @@
 - (IBAction)createButtonPressed:(id)sender;
 - (IBAction)scriptTypeSelected:(id)sender;
 - (IBAction)selectScript:(id)sender;
-- (IBAction)isDroppableWasClicked:(id)sender;
+- (IBAction)acceptsDroppedItemsClicked:(id)sender;
 - (IBAction)outputTypeDidChange:(id)sender;
 - (IBAction)clearAllFields:(id)sender;
 - (IBAction)showCommandLineString:(id)sender;
@@ -131,6 +127,7 @@
 @end
 
 @implementation PlatypusController
+@synthesize window = window;
 
 #pragma mark - Application
 
@@ -203,7 +200,6 @@
     
     // main window accepts dragged text and dragged files
     [window registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
-    [window makeFirstResponder:appNameTextField];
     
     // if we haven't already loaded a profile via openfile delegate method
     // we set all fields to their defaults.  Any profile must contain a name
@@ -211,10 +207,12 @@
     if ([[appNameTextField stringValue] isEqualToString:@""]) {
         [self clearAllFields:self];
     }
+    
+    [window makeFirstResponder:appNameTextField];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [DEFAULTS setObject:@NO forKey:@"FirstLaunch"];
+    [DEFAULTS setObject:@YES forKey:@"Launched"];
     [window center];
     [window makeKeyAndOrderFront:self];
     [appNameTextField becomeFirstResponder];
@@ -557,7 +555,7 @@
     spec[AppSpecKey_Identifier] = [bundleIdentifierTextField stringValue];
     spec[AppSpecKey_Author] = [authorTextField stringValue];
     
-    spec[AppSpecKey_Droppable] = @([isDroppableCheckbox state]);
+    spec[AppSpecKey_Droppable] = @([acceptsDroppedItemsCheckbox state]);
     spec[AppSpecKey_Secure] = @([secureBundledScriptCheckbox state]);
     spec[AppSpecKey_Authenticate] = @([rootPrivilegesCheckbox state]);
     spec[AppSpecKey_RemainRunning] = @([remainRunningCheckbox state]);
@@ -588,13 +586,14 @@
     return spec;
 }
 
-- (void)controlsFromAppSpec:(id)spec {
+- (void)controlsFromAppSpec:(PlatypusAppSpec *)spec {
     [appNameTextField setStringValue:spec[AppSpecKey_Name]];
     [scriptPathTextField setStringValue:spec[AppSpecKey_ScriptPath]];
     
     [versionTextField setStringValue:spec[AppSpecKey_Version]];
     [authorTextField setStringValue:spec[AppSpecKey_Author]];
-    
+    [bundleIdentifierTextField setStringValue:spec[AppSpecKey_Identifier]];
+
     if (IsValidOutputTypeString(spec[AppSpecKey_InterfaceType])) {
         int idx = OutputTypeForString(spec[AppSpecKey_InterfaceType]);
         [outputTypePopupButton selectItemAtIndex:idx];
@@ -606,20 +605,21 @@
     }
         
     [interpreterTextField setStringValue:spec[AppSpecKey_Interpreter]];
-    
+
     //icon
     [iconController loadIcnsFile:spec[AppSpecKey_IconPath]];
     
     //checkboxes
     [rootPrivilegesCheckbox setState:[spec[AppSpecKey_Authenticate] boolValue]];
-    [isDroppableCheckbox setState:[spec[AppSpecKey_Droppable] boolValue]];
-    [self isDroppableWasClicked:isDroppableCheckbox];
+    [acceptsDroppedItemsCheckbox setState:[spec[AppSpecKey_Droppable] boolValue]];
+    [self acceptsDroppedItemsClicked:acceptsDroppedItemsCheckbox];
     [secureBundledScriptCheckbox setState:[spec[AppSpecKey_Secure] boolValue]];
     [runInBackgroundCheckbox setState:[spec[AppSpecKey_RunInBackground] boolValue]];
     [remainRunningCheckbox setState:[spec[AppSpecKey_RemainRunning] boolValue]];
     
     //file list
-    [bundledFilesController setFilePaths:spec[AppSpecKey_BundledFiles]];
+    [bundledFilesController setToDefaults:self];
+    [bundledFilesController addFiles:spec[AppSpecKey_BundledFiles]];
     
     //drop settings
     [dropSettingsController setSuffixList:spec[AppSpecKey_Suffixes]];
@@ -658,8 +658,6 @@
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
     
     [self updateEstimatedAppSize];
-    
-    [bundleIdentifierTextField setStringValue:spec[AppSpecKey_Identifier]];
 }
 
 #pragma mark - Load/Select script
@@ -708,14 +706,13 @@
     }
     
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsForScript:filename];
+    spec[AppSpecKey_BundledFiles] = [bundledFilesController filePaths];
     [self controlsFromAppSpec:spec];
     
     [iconController setToDefaults];
     
     // add to recent items menu
     [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
-    
-    [self updateEstimatedAppSize];
 }
 
 #pragma mark - Interface actions
@@ -754,9 +751,9 @@
     }
 }
 
-- (IBAction)isDroppableWasClicked:(id)sender {
-    [dropSettingsButton setHidden:![isDroppableCheckbox state]];
-    [dropSettingsButton setEnabled:[isDroppableCheckbox state]];
+- (IBAction)acceptsDroppedItemsClicked:(id)sender {
+    [dropSettingsButton setHidden:![acceptsDroppedItemsCheckbox state]];
+    [dropSettingsButton setEnabled:[acceptsDroppedItemsCheckbox state]];
 }
 
 - (IBAction)outputTypeDidChange:(id)sender {
@@ -771,9 +768,9 @@
     if ([outType isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]) {
         
         // disable droppable & admin privileges
-        [isDroppableCheckbox setIntValue:0];
-        [isDroppableCheckbox setEnabled:NO];
-        [self isDroppableWasClicked:self];
+        [acceptsDroppedItemsCheckbox setIntValue:0];
+        [acceptsDroppedItemsCheckbox setEnabled:NO];
+        [self acceptsDroppedItemsClicked:self];
         [rootPrivilegesCheckbox setIntValue:0];
         [rootPrivilegesCheckbox setEnabled:NO];
         
@@ -791,12 +788,12 @@
     } else {
         
         if ([outType isEqualToString:@"Droplet"]) {
-            [isDroppableCheckbox setIntValue:1];
-            [self isDroppableWasClicked:self];
+            [acceptsDroppedItemsCheckbox setIntValue:1];
+            [self acceptsDroppedItemsClicked:self];
         }
         
         // re-enable droppable
-        [isDroppableCheckbox setEnabled:YES];
+        [acceptsDroppedItemsCheckbox setEnabled:YES];
         [rootPrivilegesCheckbox setEnabled:YES];
         
         // re-enable remain running
@@ -821,8 +818,8 @@
     [authorTextField setStringValue:[DEFAULTS objectForKey:@"DefaultAuthor"]];
     
     //uncheck all options
-    [isDroppableCheckbox setIntValue:0];
-    [self isDroppableWasClicked:isDroppableCheckbox];
+    [acceptsDroppedItemsCheckbox setIntValue:0];
+    [self acceptsDroppedItemsClicked:acceptsDroppedItemsCheckbox];
     [secureBundledScriptCheckbox setIntValue:0];
     [rootPrivilegesCheckbox setIntValue:0];
     [remainRunningCheckbox setIntValue:1];
@@ -921,31 +918,26 @@
     NSPasteboard *pboard = [sender draggingPasteboard];
     
     // File
-    if ([[pboard types] containsObject:NSFilenamesPboardType]) {
-        
+    if ([[pboard types] containsObject:NSFilenamesPboardType]) {        
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
-        NSString *filename = files[0]; // only load the first dragged item
-        NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
-
-        // We don't accept folders
-        BOOL isDir;
-        if ([FILEMGR fileExistsAtPath:filename isDirectory:&isDir] == NO || isDir) {
-            return NO;
-        }
-
-        // profile
-        if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
-            [profilesController loadProfileAtPath:filename];
-        }
-        // image
-        else if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeImage]) {
-            [iconController performDragOperation:sender];
-        }
-        // something else
-        else {
-            [self loadScript:filename];
+        
+        if ([files count] == 1) {
+            NSString *filename = files[0]; // only load the first dragged item
+            NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
+            
+            // profile
+            if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
+                [profilesController loadProfileAtPath:filename];
+                return YES;
+            }
+            // plain text -- potentially script
+            else if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypePlainText]) {
+                [self loadScript:filename];
+                return YES;
+            }
         }
         
+        [bundledFilesController addFiles:files];
         return YES;
     }
     // String

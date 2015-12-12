@@ -30,11 +30,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PlatypusController : NSObject <NSApplicationDelegate, NSMenuDelegate, NSWindowDelegate>
+@class PlatypusAppSpec;
+@interface PlatypusController : NSWindowController <NSApplicationDelegate, NSMenuDelegate, NSWindowDelegate>
 
 - (BOOL)verifyFieldContents;
-- (id)appSpecFromControls;
-- (void)controlsFromAppSpec:(id)spec;
+- (PlatypusAppSpec *)appSpecFromControls;
+- (void)controlsFromAppSpec:(PlatypusAppSpec *)spec;
 - (NSTask *)taskForCurrentScript;
 
 @end

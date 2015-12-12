@@ -39,5 +39,6 @@
 @property (nonatomic, copy) NSArray<NSString*> *filePaths;
 
 - (IBAction)setToDefaults:(id)sender;
+- (void)addFiles:(NSArray *)filePaths;
 
 @end

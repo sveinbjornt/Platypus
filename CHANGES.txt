@@ -1,13 +1,11 @@
 For 5.1
-    TODO: Implement automated testing!
+    TODO: Implement automated testing
     TODO: Get STDERR output and pid for STPrivilegedTask
     TODO: Create Platypus tutorial videos, make them available online
     TODO: AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
     TODO: New button-based output mode
     TODO: New OnChange Text Filter output mode
     TODO: Save authentication password and reuse for subsequent execution
-    TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
-    TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: Add URI handling https://github.com/barryk/DropScript/commit/3fa2d00177cc22680c54edeb6f433a658f6b07e8
     TODO: Asynchronous app creation in background thread?
     TODO: Move documentation to Markdown format instead of raw HTML
@@ -17,15 +15,14 @@ For 5.1
     TODO: Look at FTaskStream.h
     TODO: Use pseudo-pttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
     TODO: Use NSDictionaryController and bindings for all controls in main window and sub-controllers
-
-
-    TODO: Treat drop into STPathTextField like any other drop, don't let editor swallow it
     TODO: File watching still broken for script path
-
 
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
 
+    TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
+    TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
+    TODO: Treat drop into STPathTextField like any other drop, don't let editor swallow it
     TODO: Make the type lists in drop settings editable like those in Args controller
 
     * Uniform Type Identifiers and Application Bundle Identifiers are now validated

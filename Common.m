@@ -80,6 +80,7 @@ NSString * const AppSpecKey_IsExample = @"Example"; // examples only
 NSString * const AppSpecKey_ScriptText = @"Script"; // examples only
 NSString * const AppSpecKey_ScriptName = @"ScriptName"; // examples only
 
+// functions
 
 BOOL UTTypeIsValid(NSString *inUTI) {
     NSString *reverseDNSRegEx = @"^[A-Za-z]{2,6}((?!-)\\.[A-Za-z0-9-]{1,63}(?<!-))+$";
@@ -89,12 +90,10 @@ BOOL UTTypeIsValid(NSString *inUTI) {
 
 BOOL BundleIdentifierIsValid(NSString *bundleIdentifier) {
     // identical to UTType for now, but should really
-    // check if the reverse DNS has three components
+    // check if the reverse DNS has all three required components
     NSString *reverseDNSRegEx = @"^[A-Za-z]{2,6}((?!-)\\.[A-Za-z0-9-]{1,63}(?<!-))+$";
     NSPredicate *test = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", reverseDNSRegEx];
     return [test evaluateWithObject:bundleIdentifier];
 }
-
-
 
 

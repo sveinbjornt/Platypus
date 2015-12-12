@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="macosx"/>
         <development version="6000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
@@ -46,7 +45,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="isDroppableWasClicked:" target="335" id="552"/>
+                            <action selector="acceptsDroppedItemsClicked:" target="335" id="wSr-9S-phB"/>
                         </connections>
                     </button>
                     <imageView toolTip="Application Icon" id="300" customClass="STDragImageView">
@@ -527,7 +526,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="E24270DE-84CC-4BD2-B63D-21F490FAC947" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="79C6E6CF-7B22-4D18-BA34-A285C2BDC2F5" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -605,6 +604,7 @@ DQ
         </window>
         <customObject id="335" userLabel="PlatypusController" customClass="PlatypusController">
             <connections>
+                <outlet property="acceptsDroppedItemsCheckbox" destination="299" id="11W-bc-hxb"/>
                 <outlet property="appNameTextField" destination="11541" id="11543"/>
                 <outlet property="appSizeTextField" destination="4168" id="4172"/>
                 <outlet property="argsController" destination="1418" id="C4L-bW-IsM"/>
@@ -619,7 +619,6 @@ DQ
                 <outlet property="editScriptButton" destination="324" id="491"/>
                 <outlet property="iconController" destination="1215" id="eHO-cn-oEo"/>
                 <outlet property="interpreterTextField" destination="305" id="337"/>
-                <outlet property="isDroppableCheckbox" destination="299" id="340"/>
                 <outlet property="outputTypePopupButton" destination="4148" id="uxL-Am-1K6"/>
                 <outlet property="prefsController" destination="11195" id="apI-W1-dIt"/>
                 <outlet property="profilesController" destination="2872" id="Eil-aK-aFN"/>
@@ -1550,7 +1549,7 @@ DQ
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk">
-                                                            <rect key="frame" x="0.0" y="0.0" width="161.5" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="18"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <animations/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -2937,8 +2936,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="DefaultStatusMenuIcon" width="36" height="36"/>
-        <image name="E24270DE-84CC-4BD2-B63D-21F490FAC947" width="16" height="16">
+        <image name="79C6E6CF-7B22-4D18-BA34-A285C2BDC2F5" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -3018,6 +3016,7 @@ EKAQrRCyELQQthC7EMMQxhDLENMQ1hDoEOsQ8AAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAABDy
 A
 </mutableData>
         </image>
+        <image name="DefaultStatusMenuIcon" width="36" height="36"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
