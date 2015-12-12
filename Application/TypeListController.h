@@ -30,6 +30,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef enum {
+    TypeListItemStringInvalid = 0,
+    TypeListItemStringValid = 1,
+    TypeListItemStringQuestionable = 2
+} TypeListItemStringValidity;
+
 @interface TypeListController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (nonatomic, readonly) int itemCount;

@@ -99,6 +99,10 @@
     return [NSArray arrayWithArray:array];
 }
 
+- (BOOL)validateItemString:(NSString *)itemString {
+    return YES;
+}
+
 #pragma mark - NSTableViewDelegate / DataSource / Drag
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
@@ -108,7 +112,28 @@
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
     
     if ([[aTableColumn identifier] isEqualToString:@"2"]) {
-        return items[rowIndex][@"name"];
+        NSString *itemString = items[rowIndex][@"name"];
+        NSColor *stringColor;
+        TypeListItemStringValidity validity = [self validateItemString:itemString];
+        switch (validity) {
+            case TypeListItemStringInvalid:
+                stringColor = [NSColor redColor];
+                break;
+                
+            case TypeListItemStringQuestionable:
+                stringColor = [NSColor orangeColor];
+                break;
+            
+            case TypeListItemStringValid:
+            default:
+                stringColor = [NSColor blackColor];
+                break;
+        }
+        
+        NSDictionary *attrs = @{ NSForegroundColorAttributeName: stringColor };
+        NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:itemString
+                                                                      attributes:attrs];
+        return attrStr;
     } else if ([[aTableColumn identifier] isEqualToString:@"1"]) {
         // set cell type for column, only needed once
         if (rowIndex == 0) {

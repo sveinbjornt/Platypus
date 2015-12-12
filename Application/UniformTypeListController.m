@@ -32,6 +32,15 @@
 
 @implementation UniformTypeListController
 
+- (BOOL)validateItemString:(NSString *)itemString {
+    if (UTTypeIsValid(itemString) == NO) {
+        return TypeListItemStringInvalid;
+    } else if (UTTypeIsDeclared((__bridge CFStringRef)(itemString)) == NO) {
+        return TypeListItemStringQuestionable;
+    }
+    return TypeListItemStringValid;
+}
+
 - (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
     
     NSPasteboard *pboard = [info draggingPasteboard];
@@ -40,7 +49,7 @@
     for (NSString *filePath in draggedFiles) {
         BOOL isDir;
         [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDir];
-        if (isDir && [WORKSPACE isFilePackageAtPath:filePath] == FALSE) {
+        if (isDir && ([WORKSPACE isFilePackageAtPath:filePath] == FALSE)) {
             [self addItem:(NSString *)kUTTypeFolder];
         } else {
             NSString *uti = [WORKSPACE typeOfFile:filePath error:nil];
@@ -48,7 +57,6 @@
                 [self addItem:uti];
             }
         }
-
     }
     
     [tv reloadData];

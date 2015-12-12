@@ -191,7 +191,7 @@
     if ([theUTI length] == 0) {
         return;
     }
-    
+        
     [uniformTypeListController addItem:theUTI];
     [self textInInputTextFieldDidChange];
     [uniformTypeListTableView reloadData];

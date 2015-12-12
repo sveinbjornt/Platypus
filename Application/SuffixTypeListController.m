@@ -32,6 +32,10 @@
 
 @implementation SuffixTypeListController
 
+- (BOOL)validateItemString:(NSString *)itemString {
+    return TypeListItemStringValid;
+}
+
 - (NSDragOperation)tableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo> )info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation {
     
     NSPasteboard *pboard = [info draggingPasteboard];
