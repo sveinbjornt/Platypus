@@ -39,60 +39,66 @@
 @implementation ScriptAnalyser
 
 + (NSArray *)interpreters {
-    return @[@"/bin/sh",
-            @"/bin/bash",
-            @"/bin/csh",
-            @"/bin/tcsh",
-            @"/bin/ksh",
-            @"/bin/zsh",
-            @"/usr/bin/env",
-            @"/usr/bin/perl",
-            @"/usr/bin/python",
-            @"/usr/bin/ruby",
-            @"/usr/bin/osascript",
-            @"/usr/bin/tclsh",
-            @"/usr/bin/expect",
-            @"/usr/bin/php",
-            @""];
+    return @[
+        @"/bin/sh",
+        @"/bin/bash",
+        @"/bin/csh",
+        @"/bin/tcsh",
+        @"/bin/ksh",
+        @"/bin/zsh",
+        @"/usr/bin/env",
+        @"/usr/bin/perl",
+        @"/usr/bin/python",
+        @"/usr/bin/ruby",
+        @"/usr/bin/osascript",
+        @"/usr/bin/tclsh",
+        @"/usr/bin/expect",
+        @"/usr/bin/php",
+        @""
+    ];
 }
 
 + (NSArray *)interpreterDisplayNames {
-    return @[@"Shell",
-            @"Bash",
-            @"Csh",
-            @"Tcsh",
-            @"Ksh",
-            @"Zsh",
-            @"Env",
-            @"Perl",
-            @"Python",
-            @"Ruby",
-            @"AppleScript",
-            @"Tcl",
-            @"Expect",
-            @"PHP",
-            @"Other..."];
+    return @[
+        @"Shell",
+        @"Bash",
+        @"Csh",
+        @"Tcsh",
+        @"Ksh",
+        @"Zsh",
+        @"Env",
+        @"Perl",
+        @"Python",
+        @"Ruby",
+        @"AppleScript",
+        @"Tcl",
+        @"Expect",
+        @"PHP",
+        @"Other..."
+    ];
 }
 
 // a mapping between scripting languages and a simple hello world
 // program implemented in said language
 
 + (NSDictionary *)interpreterHelloWorlds {
-    return @{@"Shell": @"echo 'Hello, World'",
-                                                @"Bash": @"echo 'Hello, World'",
-                                                @"Csh": @"echo 'Hello, World'",
-                                                @"Tcsh": @"echo 'Hello, World'",
-                                                @"Ksh": @"echo 'Hello, World'",
-                                                @"Zsh": @"echo 'Hello, World'",
-                                                @"Env": @"",
-                                                @"Perl": @"print \"Hello, World\\n\";",
-                                                @"Python": @"print \"Hello, World\"",
-                                                @"Ruby": @"puts \"Hello, World\";",
-                                                @"AppleScript": @"",
-                                                @"Tcl": @"puts \"Hello, World\";",
-                                                @"Expect": @"send \"Hello, world\\n\"",
-                                                @"PHP": @"<?php\necho \"Hello, World\";\n?>",
-                                                @"Other...": @""};
+    return @{
+        @"Shell":           @"echo 'Hello, World'",
+        @"Bash":            @"echo 'Hello, World'",
+        @"Csh":             @"echo 'Hello, World'",
+        @"Tcsh":            @"echo 'Hello, World'",
+        @"Ksh":             @"echo 'Hello, World'",
+        @"Zsh":             @"echo 'Hello, World'",
+        @"Env":             @"",
+        @"Perl":            @"print \"Hello, World\\n\";",
+        @"Python":          @"print \"Hello, World\"",
+        @"Ruby":            @"puts \"Hello, World\";",
+        @"AppleScript":     @"",
+        @"Tcl":             @"puts \"Hello, World\";",
+        @"Expect":          @"send \"Hello, world\\n\"",
+        @"PHP":             @"<?php\necho \"Hello, World\";\n?>",
+        @"Other...":        @""
+    };
 }
 
 + (NSString *)helloWorldProgramForDisplayName:(NSString *)name {
@@ -141,7 +147,8 @@
         @[@".scpt", @".applescript", @".osascript"],
         @[@".tcl"],
         @[@".exp", @".expect"],
-        @[@".php", @".php3", @".php4", @".php5", @".phtml"]
+        @[@".php", @".php3", @".php4", @".php5", @".phtml"],
+        @[]
     ];
 }
 
