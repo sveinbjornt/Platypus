@@ -1035,7 +1035,7 @@
     [WORKSPACE openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_DOCUMENTATION ofType:nil]];
 }
 
-// Open html version of 'platypus' command line tool's man page
+// Open HTML version of platypus command line tool's man page
 - (IBAction)showManPage:(id)sender {
     [WORKSPACE openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
 }
@@ -1055,7 +1055,7 @@
     [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_GITHUB_WEBSITE]];
 }
 
-// Open License html file
+// Open License HTML file
 - (IBAction)openLicense:(id)sender {
     [WORKSPACE openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_LICENSE_FILE ofType:nil]];
 }

@@ -98,8 +98,10 @@ static struct option long_options[] = {
     {"bundled-file",              required_argument,  0, 'f'},
 
     {"xml-property-lists",        no_argument,        0, 'x'},
-    {"force",                     no_argument,        0, 'y'},
-    {"development-version",       no_argument,        0, 'd'},
+    {"overwrite",                 no_argument,        0, 'y'},
+    {"force",                     no_argument,        0, 'y'}, // backwards comptability!
+    {"symlink",                   no_argument,        0, 'd'},
+    {"development-version",       no_argument,        0, 'd'}, // backwards compatibility!
     {"optimize-nib",              no_argument,        0, 'l'},
     {"help",                      no_argument,        0, 'h'},
     {CMDLINE_VERSION_ARG_FLAG,    no_argument,        0, 'v'},
@@ -432,7 +434,7 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_SymlinkFiles] = @YES;
                 break;
                 
-            // optimize application by stripping/compiling nib files
+            // optimize nib files by stripping/compiling
             case 'l':
                 properties[AppSpecKey_StripNib] = @YES;
                 break;
@@ -441,6 +443,7 @@ int main(int argc, const char *argv[]) {
             case 'K':
             {
                 NSString *kind = @(optarg);
+                // validate -- refactor!
                 if (![kind isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT] && ![kind isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
                     NSPrintErr(@"Error: Invalid status item kind '%@'", kind);
                     exit(1);
@@ -669,27 +672,27 @@ platypus [OPTIONS] scriptPath [destinationPath]\n\
 Options:\n\
 \n\
     -O --generate-profile                Generate a profile instead of an app\n\
-    \n\
+\n\
     -P --load-profile [profilePath]      Load settings from profile document\n\
     -a --name [name]                     Set name of application bundle\n\
     -o --interface-type [type]           Set interface type.  See man page for accepted types\n\
     -p --interpreter [interpreterPath]   Set interpreter for script\n\
-    \n\
+\n\
     -i --app-icon [iconPath]             Set icon for application\n\
     -u --author [author]                 Set name of application author\n\
     -Q --document-icon [iconPath]        Set icon for documents\n\
     -V --app-version [version]           Set version of application\n\
     -I --bundle-identifier [identifier]  Set bundle identifier (e.g. org.yourname.appname)\n\
-    \n\
+\n\
     -A --admin-privileges                App runs with Administrator privileges\n\
     -S --secure-script                   Secure bundled script\n\
-    -D --droppable                       App accepts dropped files as argument to script\n\
-    -F --text-droppable                  App accepts dropped text as argument to script\n\
-    -Z --file-prompt                     App presents Open file dialog once launched\n\
+    -D --droppable                       App accepts dropped files as arguments to script\n\
+    -F --text-droppable                  App accepts dropped text passed to script via STDIN\n\
+    -Z --file-prompt                     App presents an open file dialog when launched\n\
     -N --service                         App registers as a Mac OS X Service\n\
     -B --background                      App runs in background (LSUIElement)\n\
     -R --quit-after-execution            App quits after executing script\n\
-    \n\
+\n\
     -b --text-background-color [color]   Set background color of text view (e.g. '#ffffff')\n\
     -g --text-foreground-color [color]   Set foreground color of text view (e.g. '#000000')\n\
     -n --text-font [fontName]            Set font for text view (e.g. 'Monaco 10')\n\
@@ -698,21 +701,21 @@ Options:\n\
     -T --uniform-type-identifiers        Set uniform type identifiers handled by application, separated by |\n\
     -G --interpreter-args [arguments]    Set arguments for script interpreter, separated by |\n\
     -C --script-args [arguments]         Set arguments for script, separated by |\n\
-    \n\
-    -K --status-item-kind [kind]         Set Status Item kind ('Icon','Text', 'Icon and Text')\n\
+\n\
+    -K --status-item-kind [kind]         Set Status Item kind ('Icon' or 'Text')\n\
     -Y --status-item-title [title]       Set title of Status Item\n\
     -L --status-item-icon [imagePath]    Set icon of Status Item\n\
-    -c --status-item-sysfont             Make Status Item use system font for menu\n\
-    -q --status-item-template-icon       Icon is template and can be processed by AppKit\n\
-    \n\
+    -c --status-item-sysfont             Make Status Item use system font for menu item text\n\
+    -q --status-item-template-icon       Status Item icon is a template and should be processed by AppKit\n\
+\n\
     -f --bundled-file [filePath]         Add a bundled file\n\
     \n\
-    -x --xml-property-lists              Create XML property lists instead of binary\n\
-    -y --force                           Force mode.  Overwrite any files/folders in path\n\
-    -d --development-version             Development version.  Symlink to script instead of copying\n\
+    -x --xml-property-lists              Create property lists in XML format instead of binary\n\
+    -y --overwrite                       Overwrite any file/folder at destination path\n\
+    -d --symlink                         Symlink to script and bundled files instead of copying\n\
     -l --optimize-nib                    Optimize application.  Strip and compile bundled nib file\n\
     -h --help                            Prints help\n\
-    -v --version                         Prints program name, version and author\n\
+    -v --version                         Prints program name and version\n\
 \n\
 See 'man platypus' or %@ for further details.", PROGRAM_MANPAGE_URL);
 }
