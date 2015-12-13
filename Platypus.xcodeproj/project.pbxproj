@@ -587,12 +587,12 @@
 		F482696C1BC9A03F00169D8B /* Interface Type */ = {
 			isa = PBXGroup;
 			children = (
-				F4D0F2401C1E1B020065AD25 /* Droplet.png */,
 				F4D0F2411C1E1B020065AD25 /* None.png */,
 				F4D0F2421C1E1B020065AD25 /* Progress-Bar.png */,
-				F4D0F2431C1E1B020065AD25 /* Status-Menu.png */,
 				F4D0F2441C1E1B020065AD25 /* Text-Window.png */,
 				F4D0F2451C1E1B020065AD25 /* Web-View.png */,
+				F4D0F2431C1E1B020065AD25 /* Status-Menu.png */,
+				F4D0F2401C1E1B020065AD25 /* Droplet.png */,
 			);
 			name = "Interface Type";
 			path = OutputTypeIcons;
