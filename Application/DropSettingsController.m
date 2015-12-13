@@ -241,10 +241,12 @@
 
 - (void)updateButtonStatus {
     [removeSuffixButton setEnabled:
-         ([[suffixListTableView selectedRowIndexes] count] && [suffixListTableView selectedRow] >= 0)
-    ];
+        ([[suffixListTableView selectedRowIndexes] count] && [suffixListTableView selectedRow] >= 0) &&
+        [[self window] firstResponder] == suffixListTableView
+     ];
     [removeUTIButton setEnabled:
-        ([[uniformTypeListTableView selectedRowIndexes] count] && [uniformTypeListTableView selectedRow] >= 0)
+        ([[uniformTypeListTableView selectedRowIndexes] count] && [uniformTypeListTableView selectedRow] >= 0) &&
+        [[self window] firstResponder] == uniformTypeListTableView
      ];
 }
 

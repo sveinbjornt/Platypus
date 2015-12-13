@@ -217,8 +217,14 @@
 }
 
 - (void)updateGUIStatus {
-    [interpreterArgsRemoveButton setEnabled:([interpreterArgsTableView selectedRow] != -1)];
-    [scriptArgsRemoveButton setEnabled:([scriptArgsTableView selectedRow] != -1)];
+    [interpreterArgsRemoveButton setEnabled:
+        ([interpreterArgsTableView selectedRow] != -1) &&
+        [[self window] firstResponder] == interpreterArgsTableView
+    ];
+    [scriptArgsRemoveButton setEnabled:
+        ([scriptArgsTableView selectedRow] != -1) &&
+        [[self window] firstResponder] == scriptArgsTableView
+     ];
     [self updateArgsButtonTitle];
     [self constructCommandString];
 }
@@ -238,32 +244,28 @@
     [interpreterArgs addObject:DEFAULT_ARG_VALUE];
     [interpreterArgsTableView reloadData];
     [interpreterArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[interpreterArgs count] - 1] byExtendingSelection:NO];
-    [self updateGUIStatus];
-    [self constructCommandString];
     [[self window] makeFirstResponder:interpreterArgsTableView];
+    [self updateGUIStatus];
 }
 
 - (IBAction)addScriptArg:(id)sender {
     [scriptArgs addObject:DEFAULT_ARG_VALUE];
     [scriptArgsTableView reloadData];
     [scriptArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[scriptArgs count] - 1] byExtendingSelection:NO];
-    [self updateGUIStatus];
-    [self constructCommandString];
     [[self window] makeFirstResponder:scriptArgsTableView];
+    [self updateGUIStatus];
 }
 
 - (IBAction)clearInterpreterArgs:(id)sender {
     [interpreterArgs removeAllObjects];
     [interpreterArgsTableView reloadData];
     [self updateGUIStatus];
-    [self constructCommandString];
 }
 
 - (IBAction)clearScriptArgs:(id)sender {
     [scriptArgs removeAllObjects];
     [scriptArgsTableView reloadData];
     [self updateGUIStatus];
-    [self constructCommandString];
 }
 
 - (IBAction)removeListItem:(id)sender
@@ -298,8 +300,8 @@
     
     [tableView reloadData];
     [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
-    [self updateGUIStatus];
     [[self window] makeFirstResponder:tableView];
+    [self updateGUIStatus];
 }
 
 #pragma mark - NSTableViewDelegate
@@ -329,7 +331,7 @@
 }
 
 - (void)tableViewDidBecomeFirstResponder:(id)sender {
-    [self constructCommandString];
+    [self updateGUIStatus];
 }
 
 #pragma mark -
