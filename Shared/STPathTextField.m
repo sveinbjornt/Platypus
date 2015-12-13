@@ -69,7 +69,7 @@
     self.colorInvalidPath = YES;
     self.foldersAreValid = NO;
     self.expandTildeInPath = YES;
-    [self registerForDraggedTypes:@[NSFilenamesPboardType]];
+//    [self registerForDraggedTypes:@[NSFilenamesPboardType]];
 }
 
 /*********************************************
@@ -80,22 +80,22 @@
  See http://developer.apple.com/documentation/Cocoa/Conceptual/TextEditing/Tasks/HandlingDrops.html
  ********************************************/
 
-- (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
-    if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
-        return NSDragOperationLink;
-    }
-    
-    return NSDragOperationNone;
-}
-
-- (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
-    if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
-        NSArray *files = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-        [self setStringValue:files[0]];
-        return YES;
-    }
-    return NO;
-}
+//- (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
+//    if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
+//        return NSDragOperationLink;
+//    }
+//    
+//    return NSDragOperationNone;
+//}
+//
+//- (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
+//    if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
+//        NSArray *files = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+//        [self setStringValue:files[0]];
+//        return YES;
+//    }
+//    return NO;
+//}
 
 /*********************************************
  Tell us whether path in text field is valid
