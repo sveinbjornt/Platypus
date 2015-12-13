@@ -228,10 +228,6 @@
     return YES;
 }
 
-- (NSWindow *)window {
-    return window;
-}
-
 - (BOOL)window:(NSWindow *)window shouldPopUpDocumentPathMenu:(NSMenu *)menu {
     // prevent popup menu when window icon/title is cmd-clicked
     return NO;
