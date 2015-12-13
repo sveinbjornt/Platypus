@@ -101,6 +101,7 @@
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A841BD1BFAB00F411BD /* STDragImageView.m */; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
+		F4D0F2311C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */; };
 		F4DC075211F629A40043764E /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074F11F629A40043764E /* Documentation.html */; };
 		F4DC075311F629A40043764E /* Readme.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC075011F629A40043764E /* Readme.html */; };
 		F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
@@ -291,6 +292,8 @@
 		F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F4C19A831BD1BFAB00F411BD /* STDragImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragImageView.h; path = Shared/STDragImageView.h; sourceTree = "<group>"; };
 		F4C19A841BD1BFAB00F411BD /* STDragImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragImageView.m; path = Shared/STDragImageView.m; sourceTree = "<group>"; };
+		F4D0F22F1C1DCEEE0065AD25 /* NSResponderNotifyingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSResponderNotifyingTableView.h; path = Shared/NSResponderNotifyingTableView.h; sourceTree = "<group>"; };
+		F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSResponderNotifyingTableView.m; path = Shared/NSResponderNotifyingTableView.m; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
@@ -350,6 +353,7 @@
 		080E96DDFE201D6D7F000001 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				F4D0F2321C1DCF790065AD25 /* NSResponderNotifyingTableView */,
 				F4051DAA1C1C816100587F1F /* STReverseDNSTextField */,
 				F4AB18701BE1911500B83A95 /* NSBundle+Templates */,
 				F4C19A821BD1BF7400F411BD /* STDragImageView */,
@@ -729,6 +733,15 @@
 			name = STDragImageView;
 			sourceTree = "<group>";
 		};
+		F4D0F2321C1DCF790065AD25 /* NSResponderNotifyingTableView */ = {
+			isa = PBXGroup;
+			children = (
+				F4D0F22F1C1DCEEE0065AD25 /* NSResponderNotifyingTableView.h */,
+				F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */,
+			);
+			name = NSResponderNotifyingTableView;
+			sourceTree = "<group>";
+		};
 		F4D6569814C4BFD6003552F9 /* Interpreters */ = {
 			isa = PBXGroup;
 			children = (
@@ -1021,6 +1034,7 @@
 				F4975DB41B2E71EE0099D16E /* ShellCommandController.m in Sources */,
 				F4F2F3B61BF96C4400FE463C /* NoodleLineNumberView.m in Sources */,
 				F4975DAB1B2E71EE0099D16E /* BundledFilesController.m in Sources */,
+				F4D0F2311C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m in Sources */,
 				F4975DAA1B2E71EE0099D16E /* ArgsController.m in Sources */,
 				F4975D8B1B2E71B80099D16E /* main.m in Sources */,
 				F4975DB51B2E71EE0099D16E /* StatusItemSettingsController.m in Sources */,

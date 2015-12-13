@@ -29,19 +29,12 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "NSResponderNotifyingTableView.h"
 
-@class SuffixTypeListController, UniformTypeListController;
-@interface DropSettingsController : NSWindowController <NSTableViewDelegate, NSTableViewFirstResponderDelegate>
+@protocol NSTableViewFirstResponderDelegate <NSObject>
+@required
+- (void)tableViewDidBecomeFirstResponder:(id)sender;
+@end
 
-@property (nonatomic, assign) NSArray OF_NSSTRING *suffixList;
-@property (nonatomic, assign) NSArray OF_NSSTRING *uniformTypesList;
-@property (nonatomic, copy) NSString *docIconPath;
-@property (nonatomic) BOOL acceptsText;
-@property (nonatomic) BOOL acceptsFiles;
-@property (nonatomic) BOOL declareService;
-@property (nonatomic) BOOL promptsForFileOnLaunch;
-
-- (IBAction)setToDefaults:(id)sender;
+@interface NSResponderNotifyingTableView : NSTableView
 
 @end

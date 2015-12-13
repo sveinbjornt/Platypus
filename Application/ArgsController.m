@@ -31,23 +31,6 @@
 #import "ArgsController.h"
 #import "Common.h"
 
-// Table view extension notifies delegate when it becomes first responder
-@interface NSResponderNotifyingTableView : NSTableView
-
-@end
-
-@implementation NSResponderNotifyingTableView
-
-- (BOOL)becomeFirstResponder {
-    BOOL becoming = [super becomeFirstResponder];
-    if (becoming && [self delegate] && [[self delegate] respondsToSelector:@selector(tableViewDidBecomeFirstResponder:)]) {
-        [[self delegate] performSelector:@selector(tableViewDidBecomeFirstResponder:) withObject:self];
-    }
-    return becoming;
-}
-
-@end
-
 #define DEFAULT_ARG_VALUE @"-arg"
 
 @interface ArgsController()

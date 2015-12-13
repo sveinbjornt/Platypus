@@ -23,6 +23,7 @@ For 5.1
     TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
 
+    * Various minor UI improvements (button status in args & drop settings window)
     * Now treating drop into STPathTextField like any other drop on window
     * Editable type lists in drop settings are now click-editable like those in Args controller
     * Output line string "----" in Status Menu mode now creates menu separator item

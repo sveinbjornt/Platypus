@@ -29,8 +29,9 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "NSResponderNotifyingTableView.h"
 
-@interface ArgsController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
+@interface ArgsController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSTableViewFirstResponderDelegate>
 
 @property (nonatomic, copy) NSArray OF_NSSTRING *interpreterArgs;
 @property (nonatomic, copy) NSArray OF_NSSTRING *scriptArgs;

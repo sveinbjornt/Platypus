@@ -28,20 +28,18 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Cocoa/Cocoa.h>
 #import "NSResponderNotifyingTableView.h"
 
-@class SuffixTypeListController, UniformTypeListController;
-@interface DropSettingsController : NSWindowController <NSTableViewDelegate, NSTableViewFirstResponderDelegate>
+// Table view extension notifies delegate when it becomes first responder
 
-@property (nonatomic, assign) NSArray OF_NSSTRING *suffixList;
-@property (nonatomic, assign) NSArray OF_NSSTRING *uniformTypesList;
-@property (nonatomic, copy) NSString *docIconPath;
-@property (nonatomic) BOOL acceptsText;
-@property (nonatomic) BOOL acceptsFiles;
-@property (nonatomic) BOOL declareService;
-@property (nonatomic) BOOL promptsForFileOnLaunch;
+@implementation NSResponderNotifyingTableView
 
-- (IBAction)setToDefaults:(id)sender;
+- (BOOL)becomeFirstResponder {
+    BOOL becoming = [super becomeFirstResponder];
+    if (becoming && [self delegate] && [[self delegate] respondsToSelector:@selector(tableViewDidBecomeFirstResponder:)]) {
+        [[self delegate] performSelector:@selector(tableViewDidBecomeFirstResponder:) withObject:self];
+    }
+    return becoming;
+}
 
 @end

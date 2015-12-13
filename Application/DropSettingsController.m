@@ -42,12 +42,12 @@
     IBOutlet NSBox *suffixListBox;
     IBOutlet NSButton *addSuffixButton;
     IBOutlet NSButton *removeSuffixButton;
-    IBOutlet NSTableView *suffixListTableView;
+    IBOutlet NSResponderNotifyingTableView *suffixListTableView;
     
     IBOutlet NSBox *utiListBox;
     IBOutlet NSButton *addUTIButton;
     IBOutlet NSButton *removeUTIButton;
-    IBOutlet NSTableView *uniformTypeListTableView;
+    IBOutlet NSResponderNotifyingTableView *uniformTypeListTableView;
     
     IBOutlet NSButton *promptForFileOnLaunchCheckbox;
     
@@ -232,6 +232,10 @@
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
+    [self updateButtonStatus];
+}
+
+- (void)tableViewDidBecomeFirstResponder:(id)sender {
     [self updateButtonStatus];
 }
 
