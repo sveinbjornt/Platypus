@@ -44,7 +44,7 @@
     IBOutlet NSTableView *tableView;
     IBOutlet NSTextField *bundleSizeTextField;
 
-    NSMutableArray<NSDictionary*> *files;
+    NSMutableArray OF_NSDICTIONARY *files;
     VDKQueue *fileWatcherQueue;
     
     NSWindow *window;
@@ -165,15 +165,15 @@
     return NO;
 }
 
-- (NSArray<NSString*> *)filePaths {
-    NSMutableArray<NSString*> *filePaths = [NSMutableArray array];
+- (NSArray OF_NSSTRING *)filePaths {
+    NSMutableArray OF_NSSTRING *filePaths = [NSMutableArray array];
     for (NSDictionary *fileItem in files) {
         [filePaths addObject:fileItem[@"Path"]];
     }
     return [filePaths copy];
 }
 
-- (void)setFilePaths:(NSArray<NSString*> *)filePaths {
+- (void)setFilePaths:(NSArray OF_NSSTRING *)filePaths {
     [files removeAllObjects];
     [self addFiles:filePaths];
 }

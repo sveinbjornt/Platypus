@@ -36,7 +36,7 @@
 @interface BundledFilesController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (nonatomic, readonly) UInt64 totalSizeOfFiles;
-@property (nonatomic, copy) NSArray<NSString*> *filePaths;
+@property (nonatomic, copy) NSArray OF_NSSTRING *filePaths;
 
 - (IBAction)setToDefaults:(id)sender;
 - (void)addFiles:(NSArray *)filePaths;

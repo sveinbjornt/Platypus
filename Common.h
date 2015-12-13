@@ -234,6 +234,17 @@ extern NSString * const AppSpecKey_ScriptName; // examples only
 #define DEFAULTS    [NSUserDefaults standardUserDefaults]
 #define WORKSPACE   [NSWorkspace sharedWorkspace]
 
+// compatibility with earlier versions of Xcode
+#if __has_feature(objc_generics)
+    #define OF_NSSTRING <NSString *>
+    #define OF_NSARRAY <NSArray *>
+    #define OF_NSDICTIONARY <NSDictionary *>
+#else
+    #define OF_NSSTRING
+    #define OF_NSARRAY
+    #define OF_NSDICTIONARY
+#endif
+
 // logging
 
 #ifdef DEBUG

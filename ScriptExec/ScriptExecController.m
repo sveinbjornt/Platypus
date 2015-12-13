@@ -1036,7 +1036,7 @@
     }
     
     // parse line by line
-    NSMutableArray<NSString*> *lines = [[outputString componentsSeparatedByString:@"\n"] mutableCopy];
+    NSMutableArray OF_NSSTRING *lines = [[outputString componentsSeparatedByString:@"\n"] mutableCopy];
     
     // if the string did not end with a newline, it wasn't a complete line of output
     // Thus, we store this last non-newline-terminated string

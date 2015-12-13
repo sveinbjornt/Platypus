@@ -186,7 +186,7 @@
     
     // populate script type menu
     [scriptTypePopupButton addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
-    NSArray<NSMenuItem*> *menuItems = [scriptTypePopupButton itemArray];
+    NSArray *menuItems = [scriptTypePopupButton itemArray];
     for (NSMenuItem *item in menuItems) {
         NSImage *icon = [NSImage imageNamed:[item title]];
         [icon setSize:NSMakeSize(16, 16)];

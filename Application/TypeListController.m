@@ -32,7 +32,7 @@
 
 @interface TypeListController()
 {
-    NSMutableArray<NSDictionary*> *items;
+    NSMutableArray OF_NSDICTIONARY *items;
 }
 @end
 

@@ -70,8 +70,8 @@
     IBOutlet NSMenu *scriptArgsContextualMenu;
     IBOutlet NSMenu *interpreterArgsContextualMenu;
     
-    NSMutableArray<NSString*> *interpreterArgs;
-    NSMutableArray<NSString*> *scriptArgs;
+    NSMutableArray OF_NSSTRING *interpreterArgs;
+    NSMutableArray OF_NSSTRING *scriptArgs;
 }
 
 - (IBAction)addInterpreterArg:(id)sender;
@@ -268,7 +268,7 @@
 
 - (IBAction)removeListItem:(id)sender
 {
-    NSMutableArray<NSString*> *args;
+    NSMutableArray OF_NSSTRING *args;
     sender = [[self window] firstResponder];
     
     if (sender == scriptArgsTableView) {
@@ -315,7 +315,7 @@
 }
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
-    NSMutableArray<NSString*> *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
+    NSMutableArray OF_NSSTRING *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
     args[rowIndex] = anObject;
     [self constructCommandString];
 }
