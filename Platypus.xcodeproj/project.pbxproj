@@ -50,11 +50,6 @@
 		F46EF85113C3F36900E4C0E4 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = F46EF84E13C3F36900E4C0E4 /* Examples */; };
 		F471ED22122DF2D6001F4761 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F471ED21122DF2D6001F4761 /* Credits.html */; };
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
-		F48269711BC9A03F00169D8B /* Droplet.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696D1BC9A03F00169D8B /* Droplet.png */; };
-		F48269721BC9A03F00169D8B /* Progress-Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696E1BC9A03F00169D8B /* Progress-Bar.png */; };
-		F48269731BC9A03F00169D8B /* Text-Window.png in Resources */ = {isa = PBXBuildFile; fileRef = F482696F1BC9A03F00169D8B /* Text-Window.png */; };
-		F48269741BC9A03F00169D8B /* Web-View.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269701BC9A03F00169D8B /* Web-View.png */; };
-		F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F48269761BC9A1DC00169D8B /* Status-Menu.png */; };
 		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; };
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
 		F48B1EE017935BBC007DA173 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */; };
@@ -102,6 +97,12 @@
 		F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A841BD1BFAB00F411BD /* STDragImageView.m */; };
 		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
 		F4D0F2311C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */; };
+		F4D0F2461C1E1B020065AD25 /* Droplet.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D0F2401C1E1B020065AD25 /* Droplet.png */; };
+		F4D0F2471C1E1B020065AD25 /* None.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D0F2411C1E1B020065AD25 /* None.png */; };
+		F4D0F2481C1E1B020065AD25 /* Progress-Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D0F2421C1E1B020065AD25 /* Progress-Bar.png */; };
+		F4D0F2491C1E1B020065AD25 /* Status-Menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D0F2431C1E1B020065AD25 /* Status-Menu.png */; };
+		F4D0F24A1C1E1B020065AD25 /* Text-Window.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D0F2441C1E1B020065AD25 /* Text-Window.png */; };
+		F4D0F24B1C1E1B020065AD25 /* Web-View.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D0F2451C1E1B020065AD25 /* Web-View.png */; };
 		F4DC075211F629A40043764E /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074F11F629A40043764E /* Documentation.html */; };
 		F4DC075311F629A40043764E /* Readme.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC075011F629A40043764E /* Readme.html */; };
 		F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
@@ -208,12 +209,6 @@
 		F48002BA121AF042003FB5B3 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		F48269671BC9934800169D8B /* NSTask+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTask+Description.h"; path = "Shared/NSTask+Description.h"; sourceTree = SOURCE_ROOT; };
 		F48269681BC9934800169D8B /* NSTask+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTask+Description.m"; path = "Shared/NSTask+Description.m"; sourceTree = SOURCE_ROOT; };
-		F482696D1BC9A03F00169D8B /* Droplet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Droplet.png; sourceTree = "<group>"; };
-		F482696E1BC9A03F00169D8B /* Progress-Bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Progress-Bar.png"; sourceTree = "<group>"; };
-		F482696F1BC9A03F00169D8B /* Text-Window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Text-Window.png"; sourceTree = "<group>"; };
-		F48269701BC9A03F00169D8B /* Web-View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Web-View.png"; sourceTree = "<group>"; };
-		F48269751BC9A1DC00169D8B /* None.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = None.png; sourceTree = "<group>"; };
-		F48269761BC9A1DC00169D8B /* Status-Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Status-Menu.png"; sourceTree = "<group>"; };
 		F48269791BCA9E5100169D8B /* GenericDocumentIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GenericDocumentIcon.icns; sourceTree = "<group>"; };
 		F482697D1BCAE1EE00169D8B /* TypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypeListController.h; path = Application/TypeListController.h; sourceTree = "<group>"; };
 		F482697E1BCAE1EE00169D8B /* TypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeListController.m; path = Application/TypeListController.m; sourceTree = "<group>"; };
@@ -294,6 +289,12 @@
 		F4C19A841BD1BFAB00F411BD /* STDragImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragImageView.m; path = Shared/STDragImageView.m; sourceTree = "<group>"; };
 		F4D0F22F1C1DCEEE0065AD25 /* NSResponderNotifyingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSResponderNotifyingTableView.h; path = Shared/NSResponderNotifyingTableView.h; sourceTree = "<group>"; };
 		F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSResponderNotifyingTableView.m; path = Shared/NSResponderNotifyingTableView.m; sourceTree = "<group>"; };
+		F4D0F2401C1E1B020065AD25 /* Droplet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Droplet.png; path = Icons/InterfaceTypeIcons/Droplet.png; sourceTree = SOURCE_ROOT; };
+		F4D0F2411C1E1B020065AD25 /* None.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = None.png; path = Icons/InterfaceTypeIcons/None.png; sourceTree = SOURCE_ROOT; };
+		F4D0F2421C1E1B020065AD25 /* Progress-Bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Progress-Bar.png"; path = "Icons/InterfaceTypeIcons/Progress-Bar.png"; sourceTree = SOURCE_ROOT; };
+		F4D0F2431C1E1B020065AD25 /* Status-Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Status-Menu.png"; path = "Icons/InterfaceTypeIcons/Status-Menu.png"; sourceTree = SOURCE_ROOT; };
+		F4D0F2441C1E1B020065AD25 /* Text-Window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Text-Window.png"; path = "Icons/InterfaceTypeIcons/Text-Window.png"; sourceTree = SOURCE_ROOT; };
+		F4D0F2451C1E1B020065AD25 /* Web-View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-View.png"; path = "Icons/InterfaceTypeIcons/Web-View.png"; sourceTree = SOURCE_ROOT; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
@@ -435,7 +436,7 @@
 		F4050E3305DAF44F00BE4CA5 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				F482696C1BC9A03F00169D8B /* Output Type */,
+				F482696C1BC9A03F00169D8B /* Interface Type */,
 				F44E007212298B7A00CAC9C2 /* Application */,
 				F43142B21C03F9E2004EEF8C /* Documents */,
 				F4D6569814C4BFD6003552F9 /* Interpreters */,
@@ -583,17 +584,17 @@
 			path = Shared/IconFamily;
 			sourceTree = "<group>";
 		};
-		F482696C1BC9A03F00169D8B /* Output Type */ = {
+		F482696C1BC9A03F00169D8B /* Interface Type */ = {
 			isa = PBXGroup;
 			children = (
-				F48269751BC9A1DC00169D8B /* None.png */,
-				F482696E1BC9A03F00169D8B /* Progress-Bar.png */,
-				F482696F1BC9A03F00169D8B /* Text-Window.png */,
-				F48269701BC9A03F00169D8B /* Web-View.png */,
-				F48269761BC9A1DC00169D8B /* Status-Menu.png */,
-				F482696D1BC9A03F00169D8B /* Droplet.png */,
+				F4D0F2401C1E1B020065AD25 /* Droplet.png */,
+				F4D0F2411C1E1B020065AD25 /* None.png */,
+				F4D0F2421C1E1B020065AD25 /* Progress-Bar.png */,
+				F4D0F2431C1E1B020065AD25 /* Status-Menu.png */,
+				F4D0F2441C1E1B020065AD25 /* Text-Window.png */,
+				F4D0F2451C1E1B020065AD25 /* Web-View.png */,
 			);
-			name = "Output Type";
+			name = "Interface Type";
 			path = OutputTypeIcons;
 			sourceTree = "<group>";
 		};
@@ -918,41 +919,42 @@
 			buildActionMask = 2147483647;
 			files = (
 				F43E1D7D1BC8048400622B5F /* Ksh.png in Resources */,
-				F48269721BC9A03F00169D8B /* Progress-Bar.png in Resources */,
 				F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */,
 				F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */,
 				F4AB189D1BEFAF1900B83A95 /* PlatypusDefault.icns in Resources */,
-				F48269731BC9A03F00169D8B /* Text-Window.png in Resources */,
+				F4D0F2461C1E1B020065AD25 /* Droplet.png in Resources */,
 				F4DC075211F629A40043764E /* Documentation.html in Resources */,
+				F4D0F2471C1E1B020065AD25 /* None.png in Resources */,
 				F43E1D7E1BC8048400622B5F /* Perl.png in Resources */,
 				F4051DA61C1C57AF00587F1F /* MainMenu.xib in Resources */,
-				F48269781BC9A1DC00169D8B /* Status-Menu.png in Resources */,
 				F44A77451C1882DA003CCA7A /* UninstallPlatypus.sh in Resources */,
 				F4DC075311F629A40043764E /* Readme.html in Resources */,
 				F43E1D7C1BC8048400622B5F /* Expect.png in Resources */,
 				F44A77431C1882DA003CCA7A /* InstallCommandLineTool.sh in Resources */,
 				F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */,
+				F4D0F24B1C1E1B020065AD25 /* Web-View.png in Resources */,
 				F48002CB121AF042003FB5B3 /* images in Resources */,
 				F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */,
 				F4975DC01B2E71FC0099D16E /* Platypus.xib in Resources */,
 				F43E1D831BC8048400622B5F /* Tcl.png in Resources */,
 				F43E1D851BC8048400622B5F /* Zsh.png in Resources */,
+				F4D0F2481C1E1B020065AD25 /* Progress-Bar.png in Resources */,
+				F4D0F2491C1E1B020065AD25 /* Status-Menu.png in Resources */,
 				F43E1D781BC8048400622B5F /* AppleScript.png in Resources */,
 				F44A77441C1882DA003CCA7A /* UninstallCommandLineTool.sh in Resources */,
 				F471ED22122DF2D6001F4761 /* Credits.html in Resources */,
 				F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */,
 				F426222B1C03B4B00052BA33 /* ApplicationImages.xcassets in Resources */,
 				F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */,
-				F48269711BC9A03F00169D8B /* Droplet.png in Resources */,
 				F43E1D821BC8048400622B5F /* Shell.png in Resources */,
 				F46EF85113C3F36900E4C0E4 /* Examples in Resources */,
 				F43E1D791BC8048400622B5F /* Bash.png in Resources */,
+				F4D0F24A1C1E1B020065AD25 /* Text-Window.png in Resources */,
 				F43E1D801BC8048400622B5F /* Python.png in Resources */,
 				F43E1D841BC8048400622B5F /* Tcsh.png in Resources */,
 				F43E1D7B1BC8048400622B5F /* Env.png in Resources */,
 				F43E1D7F1BC8048400622B5F /* PHP.png in Resources */,
 				F43E1D7A1BC8048400622B5F /* Csh.png in Resources */,
-				F48269741BC9A03F00169D8B /* Web-View.png in Resources */,
 				F4975DBE1B2E71FC0099D16E /* Editor.xib in Resources */,
 				F43E1D811BC8048400622B5F /* Ruby.png in Resources */,
 				F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */,

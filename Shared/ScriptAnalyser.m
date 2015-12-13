@@ -79,7 +79,7 @@
 }
 
 // a mapping between scripting languages and a simple hello world
-// program implemented in said language
+// program implemented in the scripting language in question
 
 + (NSDictionary *)interpreterHelloWorlds {
     return @{
