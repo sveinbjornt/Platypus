@@ -45,9 +45,6 @@
 
 + (instancetype)jobWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr {
     ScriptExecJob *job = [[self alloc] initWithArguments:args andStandardInput:stdinStr];
-#if !__has_feature(objc_arc)
-    [job autorelease];
-#endif
     return job;
 }
 

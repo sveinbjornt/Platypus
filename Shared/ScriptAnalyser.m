@@ -197,9 +197,6 @@
     // seperate it by whitespaces, in order not to get also the params to the interpreter
     NSString *interpreterCmd = [firstLine substringFromIndex:2];
     NSArray *words = [interpreterCmd componentsSeparatedByString:@" "];
-#if !__has_feature(objc_arc)
-    [[words retain] autorelease];
-#endif
     
     return words; // return array w. interpreter + arguments for it
 }
@@ -222,9 +219,6 @@
         }
         [appName appendString:capitalizedWord];
     }
-#if !__has_feature(objc_arc)
-    [appName autorelease];
-#endif
     
     return [NSString stringWithString:appName];
 }
@@ -289,17 +283,9 @@
     //get output in string
     NSString *outputStr = [[NSString alloc] initWithData:[readHandle readDataToEndOfFile] encoding:DEFAULT_OUTPUT_TXT_ENCODING];
 
-#if !__has_feature(objc_arc)
-    [outputStr autorelease];
-#endif
-    
     //if the syntax report string is empty --> no complaints, so we report syntax as OK
     outputStr = [outputStr length] ? outputStr : @"Syntax OK";
     outputStr = [NSString stringWithFormat:@"%@", /*[task humanDescription],*/ outputStr];
-
-#if !__has_feature(objc_arc)
-    [task release];
-#endif
 
     return outputStr;
 }

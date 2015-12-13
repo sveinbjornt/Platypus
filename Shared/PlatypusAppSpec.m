@@ -40,19 +40,14 @@
 {
     NSMutableDictionary *properties;
 }
+
 - (void)report:(NSString *)format, ...;
+
 @end
 
 @implementation PlatypusAppSpec
 
 #pragma mark - NSMutableDictionary subclass using proxy
-
-#if !__has_feature(objc_arc)
-- (void)dealloc {
-    [properties release];
-    [super dealloc];
-}
-#endif
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -139,35 +134,19 @@
 }
 
 + (instancetype)specWithDefaults {
-    id spec = [[self alloc] initWithDefaults];
-#if !__has_feature(objc_arc)
-    [spec autorelease];
-#endif
-    return spec;
+    return [[self alloc] initWithDefaults];
 }
 
 + (instancetype)specWithDictionary:(NSDictionary *)dict {
-    id spec = [[self alloc] initWithDictionary:dict];
-#if !__has_feature(objc_arc)
-    [spec autorelease];
-#endif
-    return spec;
+    return [[self alloc] initWithDictionary:dict];
 }
 
 + (instancetype)specWithProfile:(NSString *)profilePath {
-    id spec = [[self alloc] initWithProfile:profilePath];
-#if !__has_feature(objc_arc)
-    [spec autorelease];
-#endif
-    return spec;
+    return [[self alloc] initWithProfile:profilePath];
 }
 
 + (instancetype)specWithDefaultsFromScript:(NSString *)scriptPath {
-    id spec = [[self alloc] initWithDefaultsForScript:scriptPath];
-#if !__has_feature(objc_arc)
-    [spec autorelease];
-#endif
-    return spec;
+    return [[self alloc] initWithDefaultsForScript:scriptPath];
 }
 
 #pragma mark - Set default values
@@ -566,9 +545,6 @@
     
     // create copyright string with current year
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-#if !__has_feature(objc_arc)
-    [formatter autorelease];
-#endif
     [formatter setDateFormat:@"yyyy"];
     NSString *yearString = [formatter stringFromDate:[NSDate date]];
     NSString *copyrightString = [NSString stringWithFormat:@"© %@ %@", yearString, self[AppSpecKey_Author]];
@@ -660,10 +636,6 @@
     va_end(args);
     
     fprintf(stderr, "%s\n", [string UTF8String]);
-    
-#if !__has_feature(objc_arc)
-    [string autorelease];
-#endif
     
     [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SPEC_CREATION_NOTIFICATION object:string];
 }
@@ -982,9 +954,6 @@
     [ibToolTask setArguments:@[@"--strip", nibPath, nibPath]];
     [ibToolTask launch];
     [ibToolTask waitUntilExit];
-#if !__has_feature(objc_arc)
-    [ibToolTask release];
-#endif
 }
 
 @end
