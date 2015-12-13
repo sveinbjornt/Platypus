@@ -47,6 +47,7 @@
 #import <errno.h>
 #import <getopt.h>
 
+static NSString *ReadStandardInputToFile(void);
 static NSString *MakeAbsolutePath(NSString *path);
 static void PrintVersion(void);
 static void PrintHelp(void);
@@ -182,21 +183,27 @@ int main(int argc, const char *argv[]) {
             // bundled file -- flag can be passed multiple times to include more than one bundled file
             case 'f':
             {
-                NSString *filePath = MakeAbsolutePath(@(optarg));
-                
-                // make sure file exists
-                if (![fm fileExistsAtPath:filePath]) {
-                    NSPrintErr(@"Error: No file exists at path '%@'", filePath);
-                    exit(1);
-                }
+                NSString *argStr = @(optarg);
+//                NSString *filePath = MakeAbsolutePath(argStr);
+                NSArray OF_NSSTRING *paths = [argStr componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
                 
                 // create bundled files array entry in properties if it doesn't already exist
                 if (properties[AppSpecKey_BundledFiles] == nil) {
                     properties[AppSpecKey_BundledFiles] = [NSMutableArray array];
                 }
                 
-                // add file argument to it
-                [properties[AppSpecKey_BundledFiles] addObject:filePath];
+                for (NSString *filePath in paths) {
+                    NSString *fp = MakeAbsolutePath(filePath);
+                    
+                    // make sure file exists
+                    if (![fm fileExistsAtPath:fp]) {
+                        NSPrintErr(@"Error: No file exists at path '%@'", fp);
+                        exit(1);
+                    }
+
+                    // add file argument to it
+                    [properties[AppSpecKey_BundledFiles] addObject:fp];
+                }
             }
                 break;
                 
@@ -571,32 +578,9 @@ int main(int argc, const char *argv[]) {
         
         // a script path of "-" means read from STDIN
         if ([scriptPath isEqualToString:@"-"]) {
-            // read data
-            NSData *inData = [[NSFileHandle fileHandleWithStandardInput] readDataToEndOfFile];
-            if (inData == nil) {
-                NSPrintErr(@"Empty buffer, aborting.");
-                exit(1);
-            }
-            
-            // convert to string
-            NSString *inStr = [[NSString alloc] initWithData:inData encoding:NSUTF8StringEncoding];
-            if (inStr == nil) {
-                NSPrintErr(@"Cannot handle non-text data.");
-                exit(1);
-            }
-            
-            // write to temp file
-            NSError *err;
-            BOOL success = [inStr writeToFile:TMP_STDIN_PATH atomically:YES encoding:DEFAULT_TEXT_ENCODING error:&err];
-
-            if (success == NO) {
-                NSPrintErr(@"Error writing script to path %: %@", TMP_STDIN_PATH, [err localizedDescription]);
-                exit(1);
-            }
-            
-            // set temp file as script path
-            scriptPath = TMP_STDIN_PATH;
-            deleteScript = YES;
+            // read stdin, dump to temp file, set it as script path
+            scriptPath = ReadStandardInputToFile();
+            deleteScript = YES; // we get rid of it once the app has been created
         }
         else if ([fm fileExistsAtPath:scriptPath] == NO) {
             NSPrintErr(@"Error: No script file exists at path '%@'", scriptPath);
@@ -648,6 +632,32 @@ int main(int argc, const char *argv[]) {
 }
 
 #pragma mark -
+
+static NSString *ReadStandardInputToFile(void) {
+    // read data
+    NSData *inData = [[NSFileHandle fileHandleWithStandardInput] readDataToEndOfFile];
+    if (inData == nil) {
+        NSPrintErr(@"Empty buffer, aborting.");
+        exit(1);
+    }
+    
+    // convert to string
+    NSString *inStr = [[NSString alloc] initWithData:inData encoding:NSUTF8StringEncoding];
+    if (inStr == nil) {
+        NSPrintErr(@"Cannot handle non-text data.");
+        exit(1);
+    }
+    
+    // write to temp file
+    NSError *err;
+    BOOL success = [inStr writeToFile:TMP_STDIN_PATH atomically:YES encoding:DEFAULT_TEXT_ENCODING error:&err];
+    
+    if (success == NO) {
+        NSPrintErr(@"Error writing script to path %: %@", TMP_STDIN_PATH, [err localizedDescription]);
+        exit(1);
+    }
+    return TMP_STDIN_PATH;
+}
 
 static NSString *MakeAbsolutePath(NSString *path) {
     path = [path stringByExpandingTildeInPath];
@@ -708,7 +718,7 @@ Options:\n\
     -c --status-item-sysfont             Make Status Item use system font for menu item text\n\
     -q --status-item-template-icon       Status Item icon is a template and should be processed by AppKit\n\
 \n\
-    -f --bundled-file [filePath]         Add a bundled file\n\
+    -f --bundled-file [filePath]         Add a bundled file or files (paths separated by \"|\")\n\
     \n\
     -x --xml-property-lists              Create property lists in XML format instead of binary\n\
     -y --overwrite                       Overwrite any file/folder at destination path\n\

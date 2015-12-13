@@ -26,6 +26,7 @@ For 5.1
     TODO: Add WebView example listing dropped files
     TODO: Make clearAllFields stuff use default spec
 
+    * Added support for multiple arguments to --bundled-file in command line tool via "|" separator
     * Various minor UI improvements (button status in args & drop settings window)
     * Now treating drop into STPathTextField like any other drop on window
     * Editable type lists in drop settings are now click-editable like those in Args controller
