@@ -178,7 +178,7 @@
     NSMenu *examplesMenu = [[NSMenu alloc] init];
     
     for (NSString *exampleName in examples) {
-        NSMenuItem *menuItem = [examplesMenu addItemWithTitle:exampleName
+        NSMenuItem *menuItem = [examplesMenu addItemWithTitle:[exampleName stringByDeletingPathExtension]
                                                        action:@selector(profileMenuItemSelected:)
                                                 keyEquivalent:@""];
         [menuItem setTarget:self];
@@ -203,7 +203,7 @@
     
     if ([profiles count] > 0) {
         for (NSString *profileName in profiles) {
-            NSMenuItem *menuItem = [profilesMenu addItemWithTitle:profileName
+            NSMenuItem *menuItem = [profilesMenu addItemWithTitle:[profileName stringByDeletingPathExtension]
                                                            action:@selector(profileMenuItemSelected:)
                                                     keyEquivalent:@""];
             [menuItem setTarget:self];
