@@ -42,6 +42,7 @@
 + (NSArray *)parseInterpreterFromShebang:(NSString *)path;
 + (NSString *)appNameFromScriptFilePath:(NSString *)path;
 + (NSString *)determineInterpreterForScriptFile:(NSString *)path;
-+ (NSString *)checkSyntaxOfFile:(NSString *)scriptPath withInterpreter:(NSString *)suggestedInterpreter;
++ (NSString *)checkSyntaxOfFile:(NSString *)scriptPath
+         usingInterpreterAtPath:(NSString *)suggestedInterpreter;
 
 @end

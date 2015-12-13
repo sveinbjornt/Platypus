@@ -331,7 +331,7 @@
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] init];
     [controller showModalSyntaxCheckerSheetForFile:[scriptPathTextField stringValue]
                                         scriptName:[[scriptPathTextField stringValue] lastPathComponent]
-                                  usingInterpreter:[interpreterTextField stringValue]
+                            usingInterpreterAtPath:[interpreterTextField stringValue]
                                             window:window];
     [window setTitle:PROGRAM_NAME];
 }

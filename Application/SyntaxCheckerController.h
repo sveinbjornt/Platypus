@@ -32,9 +32,9 @@
 
 @interface SyntaxCheckerController : NSWindowController
 
-- (void)showModalSyntaxCheckerSheetForFile:(NSString *)path
+- (void)showModalSyntaxCheckerSheetForFile:(NSString *)filePath
                                 scriptName:(NSString *)scriptName
-                          usingInterpreter:(NSString *)interpreter
+                    usingInterpreterAtPath:(NSString *)interpreterPath
                                     window:(NSWindow *)window;
 
 @end

@@ -56,10 +56,7 @@
 @implementation EditorController
 
 - (instancetype)init {
-    if ((self = [super initWithWindowNibName:@"Editor"])) {
-
-    }
-    return self;
+    return [super initWithWindowNibName:@"Editor"];
 }
 
 - (void)awakeFromNib {
@@ -132,7 +129,7 @@
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
     [controller showModalSyntaxCheckerSheetForFile:tmpPath
                                         scriptName:[[scriptPathTextField stringValue] lastPathComponent]
-                                  usingInterpreter:nil
+                            usingInterpreterAtPath:nil
                                             window:[self window]];
     
     [FILEMGR removeItemAtPath:tmpPath error:nil];

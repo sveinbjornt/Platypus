@@ -44,18 +44,15 @@
 }
 
 - (IBAction)close:(id)sender;
-- (IBAction)runInTerminal:(id)sender;
 - (IBAction)useShortOptsCheckboxClicked:(id)sender;
+- (IBAction)runInTerminal:(id)sender;
 
 @end
 
 @implementation ShellCommandController
 
 - (instancetype)init {
-    if ((self = [super initWithWindowNibName:@"ShellCommandWindow"])) {
-        
-    }
-    return self;
+    return [super initWithWindowNibName:@"ShellCommandWindow"];
 }
 
 - (void)awakeFromNib {
@@ -68,7 +65,7 @@
     [self loadWindow];
     appSpec = spec;
     [textView setString:[appSpec commandStringUsingShortOpts:[useShortOptsCheckbox intValue]]];
-    [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
+    [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField]; // ugly connection to PrefsController :/
     
     [NSApp beginSheet:[self window]
        modalForWindow:theWindow
@@ -76,7 +73,7 @@
        didEndSelector:nil
           contextInfo:nil];
     
-    [[self window] makeFirstResponder:[self window]]; // so Enter works to close window
+    [[self window] makeFirstResponder:[self window]]; // so enter key closes window
     [NSApp runModalForWindow:[self window]];
 }
 

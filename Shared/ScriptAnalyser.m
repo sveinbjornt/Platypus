@@ -238,7 +238,7 @@
     return [ScriptAnalyser interpreterForFilenameSuffix:path];
 }
 
-+ (NSString *)checkSyntaxOfFile:(NSString *)scriptPath withInterpreter:(NSString *)suggestedInterpreter {
++ (NSString *)checkSyntaxOfFile:(NSString *)scriptPath usingInterpreterAtPath:(NSString *)suggestedInterpreter {
     NSTask *task;
     NSString *interpreter = suggestedInterpreter;
     NSPipe *outputPipe = [NSPipe pipe];
