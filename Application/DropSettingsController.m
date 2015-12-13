@@ -162,13 +162,17 @@
 #pragma mark -
 
 - (IBAction)addSuffix:(id)sender {
+    [dropSettingsWindow makeFirstResponder:suffixListTableView];
     [suffixListController addNewItem];
     [suffixListTableView reloadData];
+    [suffixListTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[suffixListController itemCount] - 1] byExtendingSelection:NO];
 }
 
 - (IBAction)addUTI:(id)sender {
+    [dropSettingsWindow makeFirstResponder:uniformTypeListTableView];
     [uniformTypeListController addNewItem];
     [uniformTypeListTableView reloadData];
+    [uniformTypeListTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[uniformTypeListController itemCount] - 1] byExtendingSelection:NO];
     [self setSuffixListEnabled:NO];
 }
 
@@ -224,6 +228,9 @@
     [addSuffixButton setEnabled:enabled];
     [suffixListBox setAlphaValue:0.5 + (enabled * 0.5)];
     [self updateButtonStatus];
+    if (enabled == NO) {
+        [suffixListTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
+    }
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
