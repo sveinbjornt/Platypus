@@ -45,7 +45,6 @@
     IBOutlet NSTextField *CLTStatusTextField;
     IBOutlet NSButton *installCLTButton;
     IBOutlet NSProgressIndicator *installCLTProgressIndicator;
-    IBOutlet NSWindow *prefsWindow;
 }
 
 - (IBAction)showWindow:(id)sender;
@@ -62,7 +61,7 @@
 - (IBAction)showWindow:(id)sender {
     [self window];
     [self updateCLTStatus:CLTStatusTextField];
-    
+
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         [self setIconForEditorAtIndex:[defaultEditorPopupButton indexOfSelectedItem]];
@@ -79,6 +78,9 @@
 
 - (void)setIconForEditorAtIndex:(int)index {
     NSMenuItem *menuItem = [defaultEditorPopupButton itemAtIndex:index];
+    if ([menuItem image] != nil) {
+        return; // already has an icon
+    }
     NSSize smallIconSize = { 16, 16 };
     
     if ([[menuItem title] isEqualToString:DEFAULT_EDITOR]) {
@@ -137,7 +139,7 @@
     if ([identifier characterAtIndex:[identifier length] - 1] != '.') {
         [DEFAULTS setObject:[identifier stringByAppendingString:@"."]  forKey:@"DefaultBundleIdentifierPrefix"];
     }
-    [prefsWindow makeFirstResponder:nil];
+    [[self window] makeFirstResponder:nil];
     [DEFAULTS synchronize];
     [[self window] close];
 }

@@ -108,7 +108,7 @@
     return @"item";
 }
 
-#pragma mark - NSTableViewDelegate / DataSource / Drag
+#pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
     return [items count];

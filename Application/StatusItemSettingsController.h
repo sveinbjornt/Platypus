@@ -30,7 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface StatusItemSettingsController : NSObject <NSMenuDelegate>
+@interface StatusItemSettingsController : NSWindowController <NSMenuDelegate>
 
 @property (nonatomic, copy) NSString *displayType;
 @property (nonatomic, copy) NSString *title;

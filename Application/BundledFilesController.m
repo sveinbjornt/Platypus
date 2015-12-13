@@ -37,7 +37,6 @@
 
 @interface BundledFilesController()
 {
-    IBOutlet NSWindow *window;
     IBOutlet NSButton *removeFileButton;
     IBOutlet NSButton *editFileButton;
     IBOutlet NSButton *revealFileButton;
@@ -47,6 +46,8 @@
 
     NSMutableArray<NSDictionary*> *files;
     VDKQueue *fileWatcherQueue;
+    
+    NSWindow *window;
 }
 
 - (IBAction)copyFilenames:(id)sender;
@@ -70,6 +71,8 @@
 }
 
 - (void)awakeFromNib {
+    window = [tableView window];
+    
     [tableView registerForDraggedTypes:@[NSFilenamesPboardType]];
     [tableView setTarget:self];
     [tableView setDoubleAction:@selector(itemDoubleClicked:)];

@@ -31,7 +31,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class SuffixTypeListController, UniformTypeListController;
-@interface DropSettingsController : NSObject <NSTableViewDelegate>
+@interface DropSettingsController : NSWindowController <NSTableViewDelegate>
 
 @property (nonatomic, assign) NSArray<NSString*> *suffixList;
 @property (nonatomic, assign) NSArray<NSString*> *uniformTypesList;

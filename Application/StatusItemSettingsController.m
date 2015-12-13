@@ -35,8 +35,6 @@
 
 @interface StatusItemSettingsController()
 {
-    IBOutlet NSWindow *window;
-    IBOutlet NSWindow *statusItemSettingsWindow;
     IBOutlet NSPopUpButton *statusItemStylePopupButton;
     IBOutlet NSImageView *iconImageView;
     IBOutlet NSButton *selectIconButton;
@@ -63,23 +61,24 @@
 @implementation StatusItemSettingsController
 
 - (IBAction)show:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Status Item Settings", PROGRAM_NAME]];
+    NSWindow *parentWindow = [platypusController window];
+    [parentWindow setTitle:[NSString stringWithFormat:@"%@ - Status Item Settings", PROGRAM_NAME]];
     
-    [NSApp beginSheet:statusItemSettingsWindow
-       modalForWindow:window
+    [NSApp beginSheet:[self window]
+       modalForWindow:parentWindow
         modalDelegate:nil
        didEndSelector:nil
           contextInfo:nil];
     
-    [NSApp runModalForWindow:statusItemSettingsWindow];
+    [NSApp runModalForWindow:[self window]];
 }
 
 - (IBAction)apply:(id)sender {
     [self killStatusItem];
-    [window setTitle:PROGRAM_NAME];
+    [[platypusController window] setTitle:PROGRAM_NAME];
     [NSApp stopModal];
-    [NSApp endSheet:statusItemSettingsWindow];
-    [statusItemSettingsWindow orderOut:self];
+    [NSApp endSheet:[self window]];
+    [[self window] orderOut:self];
 }
 
 #pragma mark -

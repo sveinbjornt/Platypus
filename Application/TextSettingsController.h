@@ -30,7 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface TextSettingsController : NSObject
+@interface TextSettingsController : NSWindowController
 
 @property (nonatomic) NSStringEncoding textEncoding;
 @property (nonatomic, copy) NSFont *textFont;

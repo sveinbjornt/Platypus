@@ -56,9 +56,6 @@
     IBOutlet NSButton *argsButton;
     IBOutlet NSTextField *interpreterTextField;
     
-    IBOutlet NSWindow *window;
-    IBOutlet NSWindow *argsWindow;
-    
     // args window outlets
     IBOutlet NSTextField *commandTextField;
     
@@ -125,7 +122,7 @@
 #pragma mark -
 
 - (IBAction)apply:(id)sender {
-    [window setTitle:PROGRAM_NAME];
+    [[argsButton window] setTitle:PROGRAM_NAME];
     [NSApp stopModal];
 }
 
@@ -139,21 +136,22 @@
 }
 
 - (IBAction)show:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Arguments", PROGRAM_NAME]];
+    NSWindow *parentWindow = [argsButton window];
+    [parentWindow setTitle:[NSString stringWithFormat:@"%@ - Arguments", PROGRAM_NAME]];
     
     [self constructCommandString];
     
     //open window
-    [NSApp beginSheet:argsWindow
-       modalForWindow:window
+    [NSApp beginSheet:[self window]
+       modalForWindow:parentWindow
         modalDelegate:nil
        didEndSelector:nil
           contextInfo:nil];
     
-    [NSApp runModalForWindow:argsWindow];
+    [NSApp runModalForWindow:[self window]];
     
-    [NSApp endSheet:argsWindow];
-    [argsWindow orderOut:self];
+    [NSApp endSheet:[self window]];
+    [[self window] orderOut:self];
 }
 
 - (void)constructCommandString {
@@ -169,12 +167,12 @@
         NSString *a = [NSString stringWithFormat:@" %@", interpreterArgs[i]];
         NSMutableDictionary *attrs = [defaultAttrs mutableCopy];
         
-        if ([interpreterArgsTableView selectedRow] == i && interpreterArgsTableView == [argsWindow firstResponder]) {
+        if ([interpreterArgsTableView selectedRow] == i && interpreterArgsTableView == [[self window] firstResponder]) {
             attrs[NSBackgroundColorAttributeName] = [NSColor selectedControlColor];
         }
         
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:a attributes:attrs];
-        if (interpreterArgsTableView == [argsWindow firstResponder]) {
+        if (interpreterArgsTableView == [[self window] firstResponder]) {
             [attrStr beginEditing];
             [attrStr addAttribute:NSFontAttributeName
                             value:[NSFont boldSystemFontOfSize:11]
@@ -194,12 +192,12 @@
         NSString *a = [NSString stringWithFormat:@"%@ ", scriptArgs[i]];
         NSMutableDictionary *attrs = [defaultAttrs mutableCopy];
         
-        if ([scriptArgsTableView selectedRow] == i && scriptArgsTableView == [argsWindow firstResponder]) {
+        if ([scriptArgsTableView selectedRow] == i && scriptArgsTableView == [[self window] firstResponder]) {
             attrs[NSBackgroundColorAttributeName] = [NSColor selectedControlColor];
         }
         
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:a attributes:attrs];
-        if (scriptArgsTableView == [argsWindow firstResponder]) {
+        if (scriptArgsTableView == [[self window] firstResponder]) {
             [attrStr beginEditing];
             [attrStr addAttribute:NSFontAttributeName
                             value:[NSFont boldSystemFontOfSize:11]
@@ -242,7 +240,7 @@
     [interpreterArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[interpreterArgs count] - 1] byExtendingSelection:NO];
     [self updateGUIStatus];
     [self constructCommandString];
-    [argsWindow makeFirstResponder:interpreterArgsTableView];
+    [[self window] makeFirstResponder:interpreterArgsTableView];
 }
 
 - (IBAction)addScriptArg:(id)sender {
@@ -251,7 +249,7 @@
     [scriptArgsTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[scriptArgs count] - 1] byExtendingSelection:NO];
     [self updateGUIStatus];
     [self constructCommandString];
-    [argsWindow makeFirstResponder:scriptArgsTableView];
+    [[self window] makeFirstResponder:scriptArgsTableView];
 }
 
 - (IBAction)clearInterpreterArgs:(id)sender {
@@ -271,7 +269,7 @@
 - (IBAction)removeListItem:(id)sender
 {
     NSMutableArray<NSString*> *args;
-    sender = [argsWindow firstResponder];
+    sender = [[self window] firstResponder];
     
     if (sender == scriptArgsTableView) {
         args = scriptArgs;
@@ -301,7 +299,7 @@
     [tableView reloadData];
     [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
     [self updateGUIStatus];
-    [argsWindow makeFirstResponder:tableView];
+    [[self window] makeFirstResponder:tableView];
 }
 
 #pragma mark - NSTableViewDelegate

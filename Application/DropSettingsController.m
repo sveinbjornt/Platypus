@@ -36,9 +36,6 @@
 
 @interface DropSettingsController()
 {
-    IBOutlet NSWindow *dropSettingsWindow;
-    IBOutlet NSWindow *window;
-    
     IBOutlet NSButton *acceptDroppedFilesCheckbox;
     IBOutlet NSBox *droppedFilesSettingsBox;
 
@@ -100,7 +97,8 @@
 }
 
 - (IBAction)openDropSettingsSheet:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Drop settings", PROGRAM_NAME]];
+    NSWindow *parentWindow = [droppableEnabledCheckbox window];
+    [parentWindow setTitle:[NSString stringWithFormat:@"%@ - Drop settings", PROGRAM_NAME]];
     
     //do setup
     [suffixListTableView setDataSource:suffixListController];
@@ -119,16 +117,16 @@
     [self setSuffixListEnabled:([uniformTypeListController itemCount] == 0)];
     
     //open window
-    [NSApp beginSheet:dropSettingsWindow
-       modalForWindow:window
+    [NSApp beginSheet:[self window]
+       modalForWindow:parentWindow
         modalDelegate:nil
        didEndSelector:nil
           contextInfo:nil];
     
-    [NSApp runModalForWindow:dropSettingsWindow];
+    [NSApp runModalForWindow:[self window]];
     
-    [NSApp endSheet:dropSettingsWindow];
-    [dropSettingsWindow orderOut:self];
+    [NSApp endSheet:[self window]];
+    [[self window] orderOut:self];
 }
 
 - (IBAction)closeDropSettingsSheet:(id)sender {
@@ -139,10 +137,10 @@
     }
     
     // end drop settings sheet
-    [window setTitle:PROGRAM_NAME];
+    [[droppableEnabledCheckbox window] setTitle:PROGRAM_NAME];
     [NSApp stopModal];
-    [NSApp endSheet:dropSettingsWindow];
-    [dropSettingsWindow orderOut:self];
+    [NSApp endSheet:[self window]];
+    [[self window] orderOut:self];
 }
 
 #pragma mark -
@@ -162,14 +160,14 @@
 #pragma mark -
 
 - (IBAction)addSuffix:(id)sender {
-    [dropSettingsWindow makeFirstResponder:suffixListTableView];
+    [[self window] makeFirstResponder:suffixListTableView];
     [suffixListController addNewItem];
     [suffixListTableView reloadData];
     [suffixListTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[suffixListController itemCount] - 1] byExtendingSelection:NO];
 }
 
 - (IBAction)addUTI:(id)sender {
-    [dropSettingsWindow makeFirstResponder:uniformTypeListTableView];
+    [[self window] makeFirstResponder:uniformTypeListTableView];
     [uniformTypeListController addNewItem];
     [uniformTypeListTableView reloadData];
     [uniformTypeListTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[uniformTypeListController itemCount] - 1] byExtendingSelection:NO];
@@ -180,7 +178,7 @@
     NSTableView *tableView;
     TypeListController *typeListController;
     
-    sender = [dropSettingsWindow firstResponder];
+    sender = [[self window] firstResponder];
 
     if (sender == suffixListTableView) {
         tableView = suffixListTableView;

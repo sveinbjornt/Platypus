@@ -33,8 +33,6 @@
 
 @interface TextSettingsController()
 {
-    IBOutlet NSWindow *window;
-    IBOutlet NSWindow *textSettingsWindow;
     IBOutlet NSColorWell *backgroundColorWell;
     IBOutlet NSColorWell *foregroundColorWell;
     IBOutlet NSTextField *fontFaceTextField;
@@ -60,24 +58,26 @@
 }
 
 - (IBAction)show:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Text Settings", PROGRAM_NAME]];
+    NSWindow *parentWindow = [[[NSApplication sharedApplication] delegate] window];
+    [parentWindow setTitle:[NSString stringWithFormat:@"%@ - Text Settings", PROGRAM_NAME]];
     
-    [NSApp beginSheet:textSettingsWindow
-       modalForWindow:window
+    [NSApp beginSheet:[self window]
+       modalForWindow:parentWindow
         modalDelegate:nil
        didEndSelector:nil
           contextInfo:nil];
     
-    [NSApp runModalForWindow:textSettingsWindow];
+    [NSApp runModalForWindow:[self window]];
 }
 
 - (IBAction)apply:(id)sender {
     [[[NSFontManager sharedFontManager] fontPanel:NO] orderOut:self];
     [[NSColorPanel sharedColorPanel] orderOut:self];
+    NSWindow *window = [[[NSApplication sharedApplication] delegate] window];
     [window setTitle:PROGRAM_NAME];
     [NSApp stopModal];
-    [NSApp endSheet:textSettingsWindow];
-    [textSettingsWindow orderOut:self];
+    [NSApp endSheet:[self window]];
+    [[self window] orderOut:self];
 }
 
 - (IBAction)setToDefaults:(id)sender {

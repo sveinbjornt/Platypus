@@ -36,7 +36,7 @@ typedef enum {
     TypeListItemStringQuestionable = 2
 } TypeListItemStringValidity;
 
-@interface TypeListController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
+@interface TypeListController : NSObject <NSTableViewDataSource>
 
 @property (nonatomic, readonly) int itemCount;
 @property (nonatomic, readonly, copy) NSArray *itemsArray;

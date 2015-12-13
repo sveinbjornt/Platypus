@@ -30,7 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ArgsController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
+@interface ArgsController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (nonatomic, copy) NSArray<NSString*> *interpreterArgs;
 @property (nonatomic, copy) NSArray<NSString*> *scriptArgs;
