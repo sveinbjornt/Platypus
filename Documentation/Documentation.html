@@ -656,9 +656,9 @@ NOTIFICATION:My notification text\n
 
 <img src="images/interface_statusmenu.png" style="width:315px; height:144px; float: right;">
     
-    <p>As of Platypus 4.9, it is now possible to build relatively sophisticated interactive Status Menu apps. Platypus-generated apps with Interface set to Status Menu show a Status Item in the menu bar when launched. When the item is pressed, a menu is opened, the script is executed and each line of output is shown as a menu item in the menu.
+    <p>As of Platypus 4.9, it is now possible to build relatively sophisticated interactive Status Menu apps. Platypus-generated apps with <strong>Interface</strong> set to <strong>Status Menu</strong> show a Status Item in the menu bar when launched. When the item is pressed, a menu is opened, the script is executed and each line of output is shown as a menu item in the menu.
     
-    <p>When the user selects a menu item, the script is executed again, but this time it receives the menu title as an argument. Based on whether it receives an argument, the script can thus determine whether it is being invoked to list the menu items or perform some action for a selected menu item.</p>
+    <p>When the user selects a menu item, the script is executed again, but this time it receives the menu title as an argument. Based on whether it receives an argument, the script can thus determine whether it is being invoked to list the menu items or in order to perform some action for a selected menu item.</p>
     
     <p>If this seems unclear, check out the following script, which is part of the MacbethMenu Example:</p>
     
@@ -675,7 +675,7 @@ if (!scalar(@ARGV)) {
     system("/usr/bin/say \"$ARGV[0]\"");
 }</pre></div>
     
-    <p>This script creates a Status Menu app which shows a few lines of Shakespeare's Macbeth as menu items. When selected, the line in question is fed into the Mac OS X speech synthesizer via <code>/usr/bin/say</code>.</p>
+    <p>This script creates a Status Menu app which shows a few lines of Shakespeare's Macbeth as menu items. When selected, the title of the menu item in question is fed into the Mac OS X speech synthesizer via <code>/usr/bin/say</code>.</p>
     
 <br>
 <br>
