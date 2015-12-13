@@ -68,18 +68,18 @@
     }
 }
 
-- (void)loadProfileAtPath:(NSString *)file {
-    
-    PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithProfile:file];
+- (void)loadProfileAtPath:(NSString *)filePath {
+    PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithProfile:filePath];
     
     // make sure we got a spec from the file
     if (spec == nil) {
-        [Alerts alert:@"Error" subText:@"Unable to load Platypus profile."];
+        [Alerts alert:@"Error loading profile"
+        subTextFormat:@"Unable to load %@ profile at path '%@'.", PROGRAM_NAME, filePath];
         return;
     }
     
     // note it as a recently opened file
-    [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:file]];
+    [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filePath]];
     
     // check if it's an example
     if (spec[AppSpecKey_IsExample] != nil) {
@@ -87,7 +87,8 @@
         NSString *scriptStr = spec[AppSpecKey_ScriptText];
         NSString *scriptName = spec[AppSpecKey_ScriptName];
         if (scriptStr == nil || scriptName == nil) {
-            [Alerts alert:@"Error loading example" subText:@"Nil script value(s) in this example's profile dictionary."];
+            [Alerts alert:@"Error loading example"
+            subTextFormat:@"Nil %@ or %@ in profile dictionary.", AppSpecKey_ScriptText, AppSpecKey_ScriptName];
             return;
         }
         
@@ -109,8 +110,7 @@
 
 #pragma mark - Saving
 
-- (IBAction)saveProfile:(id)sender;
-{
+- (IBAction)saveProfile:(id)sender; {
     if ([platypusController verifyFieldContents] == NO) {
         return;
     }
@@ -131,7 +131,7 @@
         return;
     }
     
-    // get profile from platypus controls
+    // get spec from platypus controls
     PlatypusAppSpec *spec = [platypusController appSpecFromControls];
     NSString *defaultName = [NSString stringWithFormat:@"%@.%@", spec[AppSpecKey_Name], PROGRAM_PROFILE_SUFFIX];
     
@@ -233,7 +233,7 @@
         folder = [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
     }
     
-    NSString *profilePath = [NSString stringWithFormat:@"%@/%@", folder, [sender title]];
+    NSString *profilePath = [NSString stringWithFormat:@"%@/%@.%@", folder, [sender title], PROGRAM_PROFILE_SUFFIX];
     
     // if command key is down, we reveal in finder
     BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
@@ -259,8 +259,8 @@
     while ((filename = [dirEnumerator nextObject]) != nil) {
         if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX]) {
             NSString *path = [NSString stringWithFormat:@"%@/%@", PROFILES_FOLDER, filename];
-            if (![manager isDeletableFileAtPath:path]) {
-                [Alerts alert:@"Error" subTextFormat:@"Cannot delete file %@.", path];
+            if ([manager isDeletableFileAtPath:path] == NO) {
+                [Alerts alert:@"Error" subTextFormat:@"Unable to delete file '%@'.", path];
             } else {
                 [manager removeItemAtPath:path error:nil];
             }
