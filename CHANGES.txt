@@ -17,7 +17,7 @@ For 5.1
     TODO: Use NSDictionaryController and bindings for all controls in main window and sub-controllers
     TODO: File watching still broken for script path
     TODO: Documentation should be updated about what Use Icon as Template does
-
+    TODO: Add build script for cat2html
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
 

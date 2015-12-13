@@ -181,27 +181,22 @@ int main(int argc, const char *argv[]) {
                 break;
 
             // bundled file -- flag can be passed multiple times to include more than one bundled file
+            // or alternately, multiple |-separated paths can be passed in a single argument
             case 'f':
             {
                 NSString *argStr = @(optarg);
-//                NSString *filePath = MakeAbsolutePath(argStr);
                 NSArray OF_NSSTRING *paths = [argStr componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
-                
-                // create bundled files array entry in properties if it doesn't already exist
-                if (properties[AppSpecKey_BundledFiles] == nil) {
-                    properties[AppSpecKey_BundledFiles] = [NSMutableArray array];
-                }
                 
                 for (NSString *filePath in paths) {
                     NSString *fp = MakeAbsolutePath(filePath);
                     
                     // make sure file exists
-                    if (![fm fileExistsAtPath:fp]) {
+                    if ([fm fileExistsAtPath:fp] == NO) {
                         NSPrintErr(@"Error: No file exists at path '%@'", fp);
                         exit(1);
                     }
 
-                    // add file argument to it
+                    // add to bundled files array in spec
                     [properties[AppSpecKey_BundledFiles] addObject:fp];
                 }
             }
@@ -225,7 +220,7 @@ int main(int argc, const char *argv[]) {
             {
                 NSString *hexColorStr = @(optarg);
                 if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex:0] != '#') {
-                    NSPrintErr(@"Error: '%@' is not a valid color hex value.  Must be 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
+                    NSPrintErr(@"Error: '%@' is not a valid color hex value.  Must be hash-prefixed 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
                     exit(1);
                 }
                 properties[AppSpecKey_TextBackgroundColor] = @(optarg);
@@ -237,7 +232,7 @@ int main(int argc, const char *argv[]) {
             {
                 NSString *hexColorStr = @(optarg);
                 if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex:0] != '#') {
-                    NSPrintErr(@"Error: '%@' is not a valid color hex value.  Must be 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
+                    NSPrintErr(@"Error: '%@' is not a valid color hex value.  Must be hash-prefixed 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
                     exit(1);
                 }
                 properties[AppSpecKey_TextColor] = @(optarg);
@@ -250,7 +245,7 @@ int main(int argc, const char *argv[]) {
                 NSString *fontStr = @(optarg);
                 NSMutableArray *words = [NSMutableArray arrayWithArray:[fontStr componentsSeparatedByString:@" "]];
                 if ([words count] < 2) {
-                    NSPrintErr(@"Error: '%@' is not a valid font.  Must be fontname followed by size, e.g. 'Monaco 10'", fontStr);
+                    NSPrintErr(@"Error: '%@' is not a valid font.  Must be font name followed by size, e.g. 'Monaco 10'", fontStr);
                     exit(1);
                 }
                 // parse string for font name and size, and set it in properties
@@ -607,6 +602,10 @@ int main(int argc, const char *argv[]) {
         // if there's another argument after the script path, it means a destination path has been specified
         if ([remainingArgs count] > 1) {
             destPath = remainingArgs[1];
+            // insist on .app suffix
+            if ([destPath hasSuffix:@".app"] == NO) {
+                destPath = [destPath stringByAppendingString:@".app"];
+            }
             appSpec[AppSpecKey_DestinationPath] = destPath;
         }
     }

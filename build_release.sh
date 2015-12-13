@@ -3,8 +3,13 @@
 # Release build script for Platypus
 # Must be run from src root
 #
-# Created by Sveinbjorn Thordarson 28/06/2015
-#
+
+XCODE_PROJ="Platypus.xcodeproj"
+
+if [ ! -e "${XCODE_PROJ}" ]; then
+    echo "Build script must be run from src root"
+    exit 1
+fi
 
 SRC_DIR=$PWD
 BUILD_DIR="/tmp/"
@@ -33,8 +38,8 @@ APP_SRC_ZIP_NAME="${APP_NAME_LC}${VERSION}.src.zip"
 echo "Building ${APP_NAME} version ${VERSION}"
 
 xcodebuild  -parallelizeTargets \
-            -project "Platypus.xcodeproj" \
-            -target "Platypus" \
+            -project "${XCODE_PROJ}" \
+            -target "${APP_NAME}" \
             -configuration "Deployment" \
             CONFIGURATION_BUILD_DIR="${BUILD_DIR}" \
             clean \

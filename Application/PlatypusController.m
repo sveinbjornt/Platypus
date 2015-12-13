@@ -660,6 +660,7 @@
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
+    [oPanel setAllowedFileTypes:@[(NSString *)kUTTypePlainText]];
     
     //run open panel sheet
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
