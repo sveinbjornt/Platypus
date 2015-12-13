@@ -324,7 +324,7 @@
 
 <h3>Interface</h3>
 
-<img src="images/output_type.png" style="float: right; width:193px; height:258px;" class="centered-image">
+<img src="images/interface_type.png" style="float: right; width:193px; height:258px;" class="centered-image">
 
 <p><strong>Interface</strong> sets the user interface for the application. Platypus provides six interface types:</p>
 
@@ -336,7 +336,7 @@
 <h4>Progress Bar</h4>
 <p>A small window with an indeterminate progress bar and a "Cancel" button appears during the execution of the script. Script output is fed line by line into the text field above the progress bar. "Show details" triangle reveals a small text view containing full script output.</p>
 
-<img src="images/output_progressbar.png" style="width:524px; height:194px;" class="centered-image">
+<img src="images/interface_progressbar.png" style="width:524px; height:194px;" class="centered-image">
 <br>
 <br>
 
@@ -346,7 +346,7 @@
 
 <p>The styling and properties of the text view can be set by pressing the <strong>Text Settings</strong> button.  This shows a window where text encoding, font, color and size can be configured.</p>
 
-<img src="images/output_textwindow.png" style="width:594px; height:502px;" class="centered-image">
+<img src="images/interface_textwindow.png" style="width:594px; height:502px;" class="centered-image">
 <br>
 <br>
 <br>
@@ -357,7 +357,7 @@
 
 <p>The base directory for the browser instance is the application bundle's Resources directory, so you can bundle images and other support files by adding them to the <strong>Bundled Files</strong> list and referencing them relative to that directory.</p>
 
-<img src="images/output_webview.jpg" style="width:620px; height:525px;" class="centered-image">
+<img src="images/interface_webview.jpg" style="width:620px; height:525px;" class="centered-image">
 <br>
 <br>
 
@@ -368,7 +368,7 @@
 <p>The properties of the Status Item (icon, title, etc.) can be configured by pressing the <strong>Status Item Settings</strong> button.</p>
 
 
-<img src="images/output_statusmenu.png" style="width:315px; height:144px;" class="centered-image">
+<img src="images/interface_statusmenu.png" style="width:315px; height:144px;" class="centered-image">
 <br>
 <br>
 
@@ -376,7 +376,7 @@
 <h4>Droplet</h4>
 <p>Creates a square window instructing the user to drop files on it for processing.  While processing, script output will be displayed line for line within the box along with an indeterminate circular progress indicator.</p>
 
-<img src="images/output_droplet.jpg" style="width:300px; height:322px;" class="centered-image">
+<img src="images/interface_droplet.jpg" style="width:300px; height:322px;" class="centered-image">
 <br>
 <br>
 
@@ -500,7 +500,7 @@
 
 <p>The <strong>Check Script Syntax</strong> menu item lets you verify the syntax of your script.  This runs the currently specified script through the interpreter's syntax checker and report the results.</p>
 
-<p>This feature is only supported for scripts with an interpreter that supports syntax checking (Bash, Perl, Ruby and PHP).</p>
+<p>This feature is only supported for scripts with an interpreter that supports syntax checking (Bash, Perl, Python, Ruby and PHP).</p>
 
 <img src="images/syntax_checker.png" style="width:473px; 247px;" class="centered-image">
 
@@ -654,7 +654,7 @@ NOTIFICATION:My notification text\n
 
 <h3 id="10-7">Creating an interactive Status Menu app</h3>
 
-<img src="images/output_statusmenu.png" style="width:315px; height:144px; float: right;">
+<img src="images/interface_statusmenu.png" style="width:315px; height:144px; float: right;">
     
     <p>As of Platypus 4.9, it is now possible to build relatively sophisticated interactive Status Menu apps. Platypus-generated apps with Interface set to Status Menu show a Status Item in the menu bar when launched. When the item is pressed, a menu is opened, the script is executed and each line of output is shown as a menu item in the menu.
     
