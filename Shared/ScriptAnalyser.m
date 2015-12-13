@@ -93,7 +93,7 @@
         @"Perl":            @"print \"Hello, World\\n\";",
         @"Python":          @"print \"Hello, World\"",
         @"Ruby":            @"puts \"Hello, World\";",
-        @"AppleScript":     @"",
+        @"AppleScript":     @"display dialog \"Hello, World\" buttons {\"OK\"}",
         @"Tcl":             @"puts \"Hello, World\";",
         @"Expect":          @"send \"Hello, world\\n\"",
         @"PHP":             @"<?php\necho \"Hello, World\";\n?>",

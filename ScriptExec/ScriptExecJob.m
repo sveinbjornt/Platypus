@@ -44,8 +44,7 @@
 }
 
 + (instancetype)jobWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr {
-    ScriptExecJob *job = [[self alloc] initWithArguments:args andStandardInput:stdinStr];
-    return job;
+    return [[self alloc] initWithArguments:args andStandardInput:stdinStr];
 }
 
 @end

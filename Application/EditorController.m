@@ -74,9 +74,7 @@
 
 - (void)showModalEditorSheetForFile:(NSString *)path window:(NSWindow *)theWindow {
     NSStringEncoding encoding = [[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue];
-    NSString *str = [NSString stringWithContentsOfFile:path
-                                              encoding:encoding
-                                                 error:nil];
+    NSString *str = [NSString stringWithContentsOfFile:path encoding:encoding error:nil];
     if (str == nil) {
         [Alerts alert:@"Error reading document"
               subText:@"This document could not be opened with the text editor."];
