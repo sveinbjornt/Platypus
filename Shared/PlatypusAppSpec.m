@@ -845,7 +845,7 @@
     }
     
     //status menu settings, if output mode is status menu
-    if ([self[AppSpecKey_InterfaceType] isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]) {
+    if (OutputTypeForString(self[AppSpecKey_InterfaceType]) == PlatypusOutputType_StatusMenu) {
         // -K kind
         NSString *str = shortOpts ? @"-K" : @"--status-item-kind";
         statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, self[AppSpecKey_StatusItemDisplayType]];

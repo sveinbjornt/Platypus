@@ -126,7 +126,7 @@ typedef enum PlatypusOutputType {
     PlatypusOutputType_Droplet = 5
 } PlatypusOutputType;
 
-#define DEFAULT_OUTPUT_TYPE                     PlatypusOutputType_TextWindow
+#define DEFAULT_OUTPUT_TYPE             PlatypusOutputType_TextWindow
 
 // execution style
 typedef enum PlatypusStatusItemStyle {
@@ -134,24 +134,17 @@ typedef enum PlatypusStatusItemStyle {
     PlatypusStatusItemStyle_Icon = 1
 } PlatypusStatusItemStyle;
 
-#define PLATYPUS_OUTPUT_STRING_NONE             @"None"
-#define PLATYPUS_OUTPUT_STRING_PROGRESS_BAR     @"Progress Bar"
-#define PLATYPUS_OUTPUT_STRING_TEXT_WINDOW      @"Text Window"
-#define PLATYPUS_OUTPUT_STRING_WEB_VIEW         @"Web View"
-#define PLATYPUS_OUTPUT_STRING_STATUS_MENU      @"Status Menu"
-#define PLATYPUS_OUTPUT_STRING_DROPLET          @"Droplet"
-
-#define DEFAULT_OUTPUT_TYPE_STRING              [PLATYPUS_OUTPUT_TYPE_NAMES objectAtIndex:DEFAULT_OUTPUT_TYPE]
-
 // array of output types, used for validation
 #define PLATYPUS_OUTPUT_TYPE_NAMES   @[\
-    PLATYPUS_OUTPUT_STRING_NONE, \
-    PLATYPUS_OUTPUT_STRING_PROGRESS_BAR, \
-    PLATYPUS_OUTPUT_STRING_TEXT_WINDOW, \
-    PLATYPUS_OUTPUT_STRING_WEB_VIEW, \
-    PLATYPUS_OUTPUT_STRING_STATUS_MENU, \
-    PLATYPUS_OUTPUT_STRING_DROPLET, \
+    @"None", \
+    @"Progress Bar", \
+    @"Text Window", \
+    @"Web View", \
+    @"Status Menu", \
+    @"Droplet" \
 ]
+
+#define DEFAULT_OUTPUT_TYPE_STRING      [PLATYPUS_OUTPUT_TYPE_NAMES objectAtIndex:DEFAULT_OUTPUT_TYPE]
 
 // output type macros
 
@@ -165,9 +158,9 @@ typedef enum PlatypusStatusItemStyle {
                                         (X) == PlatypusOutputType_TextWindow || \
                                         (X) == PlatypusOutputType_StatusMenu  )
 
-#define IsTextStyledOutputTypeString(X)  (  [(X) isEqualToString:PLATYPUS_OUTPUT_STRING_PROGRESS_BAR] || \
-                                            [(X) isEqualToString:PLATYPUS_OUTPUT_STRING_TEXT_WINDOW] || \
-                                            [(X) isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]  )
+#define IsTextStyledOutputTypeString(X)  (  OutputTypeForString(X) == PlatypusOutputType_ProgressBar || \
+                                            OutputTypeForString(X) == PlatypusOutputType_TextWindow || \
+                                            OutputTypeForString(X) == PlatypusOutputType_StatusMenu  )
 
 #define IsTextSizableOutputType(X) (    (X) == PlatypusOutputType_ProgressBar || \
                                         (X) == PlatypusOutputType_TextWindow || \

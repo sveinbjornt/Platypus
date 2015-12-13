@@ -641,7 +641,7 @@
     [textSettingsController setTextBackgroundColor:[NSColor colorFromHex:spec[AppSpecKey_TextBackgroundColor]]];
     
     // status menu settings
-    if ([spec[AppSpecKey_InterfaceType] isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]) {
+    if (OutputTypeForString(spec[AppSpecKey_InterfaceType]) == PlatypusOutputType_StatusMenu) {
         if ([spec[AppSpecKey_StatusItemDisplayType] isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
             NSImage *icon = [[NSImage alloc] initWithData:spec[AppSpecKey_StatusItemIcon]];
             if (icon != nil) {
@@ -765,8 +765,8 @@
     [textOutputSettingsButton setEnabled:hasTextSettings];
     
     // disable options that don't make sense for status menu output mode
-    if ([outType isEqualToString:PLATYPUS_OUTPUT_STRING_STATUS_MENU]) {
-        
+    if (OutputTypeForString(outType) == PlatypusOutputType_StatusMenu) {
+
         // disable droppable & admin privileges
         [acceptsDroppedItemsCheckbox setIntValue:0];
         [acceptsDroppedItemsCheckbox setEnabled:NO];
