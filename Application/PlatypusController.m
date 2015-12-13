@@ -72,12 +72,10 @@
     IBOutlet NSTextField *authorTextField;
     IBOutlet NSButton *acceptsDroppedItemsCheckbox;
     IBOutlet NSButton *dropSettingsButton;
-    
     IBOutlet NSButton *rootPrivilegesCheckbox;
     IBOutlet NSButton *secureBundledScriptCheckbox;
     IBOutlet NSButton *runInBackgroundCheckbox;
     IBOutlet NSButton *remainRunningCheckbox;
-    
     
     // create app dialog view extension
     IBOutlet NSView *debugSaveOptionView;
@@ -138,10 +136,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 + (void)initialize {
     // register the dictionary of defaults
     [DEFAULTS registerDefaults:[PrefsController defaultsDictionary]];
@@ -169,7 +163,7 @@
         }
     }
     
-    if ([DEFAULTS objectForKey:@"FirstLaunch"] == nil) {
+    if ([DEFAULTS objectForKey:@"Launched"] == nil) {
         // TODO: Create sample profile in Profiles folder?
     }
     

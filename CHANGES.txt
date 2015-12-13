@@ -25,6 +25,7 @@ For 5.1
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: Add WebView example listing dropped files
     TODO: Make clearAllFields stuff use default spec
+    TODO: Use NSString constants for NSUserDefault string keys
 
     * Added support for multiple arguments to --bundled-file in command line tool via "|" separator
     * Various minor UI improvements (button status in args & drop settings window)
