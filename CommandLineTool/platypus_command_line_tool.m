@@ -61,7 +61,8 @@ static struct option long_options[] = {
 
     {"load-profile",              required_argument,  0, 'P'},
     {"name",                      required_argument,  0, 'a'},
-    {"output-type",               required_argument,  0, 'o'},
+    {"output-type",               required_argument,  0, 'o'}, // backwards compatibility!
+    {"interface-type",            required_argument,  0, 'o'},
     {"interpreter",               required_argument,  0, 'p'},
 
     {"app-icon",                  required_argument,  0, 'i'},
@@ -197,20 +198,20 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-            // output type
+            // interface type
             case 'o':
             {
-                NSString *outputType = @(optarg);
-                if (IsValidOutputTypeString(outputType) == NO) {
-                    NSPrintErr(@"Error: Invalid output type '%@'.  Valid types are: %@",
-                               outputType, [PLATYPUS_OUTPUT_TYPE_NAMES description]);
+                NSString *interfaceType = @(optarg);
+                if (IsValidInterfaceTypeString(interfaceType) == NO) {
+                    NSPrintErr(@"Error: Invalid interface type '%@'.  Valid types are: %@",
+                               interfaceType, [PLATYPUS_INTERFACE_TYPE_NAMES description]);
                     exit(1);
                 }
                 properties[AppSpecKey_InterfaceType] = @(optarg);
             }
                 break;
 
-            // background color of text output
+            // background color of text
             case 'b':
             {
                 NSString *hexColorStr = @(optarg);
@@ -222,7 +223,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-            // foreground color of text output
+            // foreground color of text
             case 'g':
             {
                 NSString *hexColorStr = @(optarg);
@@ -234,7 +235,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-            // font and size of text output
+            // font and size of text
             case 'n':
             {
                 NSString *fontStr = @(optarg);
@@ -421,7 +422,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-            // force overwrite mode
+            // overwrite mode
             case 'y':
                 properties[AppSpecKey_Overwrite] = @YES;
                 break;
@@ -436,7 +437,7 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_StripNib] = @YES;
                 break;
                 
-            // set display kind for Status Menu output
+            // set display kind for Status Menu interface
             case 'K':
             {
                 NSString *kind = @(optarg);
@@ -448,7 +449,7 @@ int main(int argc, const char *argv[]) {
             }
                 break;
                 
-            // set title of status item for Status Menu output
+            // set title of status item for Status Menu interface
             case 'Y':
             {
                 NSString *title = @(optarg);
@@ -465,12 +466,12 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_StatusItemUseSysfont] = @YES;
                 break;
             
-            // icon is template: process status item icon with AppKit
+            // icon is template: process Status Menu item icon with AppKit
             case 'q':
                 properties[AppSpecKey_StatusItemIconIsTemplate] = @YES;
                 break;
                 
-            // set icon image of status item for Status Menu output
+            // set icon image of status item for Status Menu interface
             case 'L':
             {
                 NSString *iconPath = MakeAbsolutePath(@(optarg));
@@ -583,7 +584,7 @@ int main(int argc, const char *argv[]) {
             
             // write to temp file
             NSError *err;
-            BOOL success = [inStr writeToFile:TMP_STDIN_PATH atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:&err];
+            BOOL success = [inStr writeToFile:TMP_STDIN_PATH atomically:YES encoding:DEFAULT_TEXT_ENCODING error:&err];
 
             if (success == NO) {
                 NSPrintErr(@"Error writing script to path %: %@", TMP_STDIN_PATH, [err localizedDescription]);
@@ -671,7 +672,7 @@ Options:\n\
     \n\
     -P --load-profile [profilePath]      Load settings from profile document\n\
     -a --name [name]                     Set name of application bundle\n\
-    -o --output-type [type]              Set output type.  See man page for accepted types\n\
+    -o --interface-type [type]           Set interface type.  See man page for accepted types\n\
     -p --interpreter [interpreterPath]   Set interpreter for script\n\
     \n\
     -i --app-icon [iconPath]             Set icon for application\n\
@@ -689,9 +690,9 @@ Options:\n\
     -B --background                      App runs in background (LSUIElement)\n\
     -R --quit-after-execution            App quits after executing script\n\
     \n\
-    -b --text-background-color [color]   Set background color of text output (e.g. '#ffffff')\n\
-    -g --text-foreground-color [color]   Set foreground color of text output (e.g. '#000000')\n\
-    -n --text-font [fontName]            Set font for text output field (e.g. 'Monaco 10')\n\
+    -b --text-background-color [color]   Set background color of text view (e.g. '#ffffff')\n\
+    -g --text-foreground-color [color]   Set foreground color of text view (e.g. '#000000')\n\
+    -n --text-font [fontName]            Set font for text view (e.g. 'Monaco 10')\n\
     -E --text-encoding [encoding]        Set text encoding for script output (see man page)\n\
     -X --suffixes [suffixes]             Set suffixes handled by application, separated by |\n\
     -T --uniform-type-identifiers        Set uniform type identifiers handled by application, separated by |\n\

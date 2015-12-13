@@ -64,8 +64,8 @@
 
 - (void)awakeFromNib {
     NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"EditorFontSize"];
-    CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : DEFAULT_OUTPUT_FONTSIZE;
-    NSFont *font = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:fontSize];
+    CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : DEFAULT_TEXT_FONT_SIZE;
+    NSFont *font = [NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:fontSize];
     [textView setFont:font];
     [textView setAutomaticQuoteSubstitutionEnabled:NO];
     [textView setAutomaticLinkDetectionEnabled:NO];

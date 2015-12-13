@@ -57,13 +57,6 @@
 
 #define NEW_SCRIPT_FILENAME         @"Script"
 
-// Default text settings
-#define DEFAULT_OUTPUT_FONT         @"Monaco"
-#define DEFAULT_OUTPUT_FONTSIZE     13.0
-#define DEFAULT_OUTPUT_FG_COLOR     @"#000000"
-#define DEFAULT_OUTPUT_BG_COLOR     @"#ffffff"
-#define DEFAULT_OUTPUT_TXT_ENCODING NSUTF8StringEncoding
-
 // Command line tool seetings
 #define CMDLINE_PROGNAME_IN_BUNDLE  @"platypus_clt"
 #define CMDLINE_PROGNAME            @"platypus"
@@ -85,6 +78,12 @@
 
 #define IBTOOL_PATH                 @"/Applications/Xcode.app/Contents/Developer/usr/bin/ibtool"
 
+#define DEFAULT_TEXT_FONT_NAME      @"Monaco"
+#define DEFAULT_TEXT_FONT_SIZE      13.0
+#define DEFAULT_TEXT_FG_COLOR       @"#000000"
+#define DEFAULT_TEXT_BG_COLOR       @"#ffffff"
+#define DEFAULT_TEXT_ENCODING       NSUTF8StringEncoding
+
 #define DEFAULT_EDITOR              @"Built-In"
 #define DEFAULT_INTERPRETER         @"/bin/sh"
 #define DEFAULT_VERSION             @"1.0"
@@ -95,7 +94,6 @@
 #define DEFAULT_UTIS                @[(NSString *)kUTTypeItem, (NSString *)kUTTypeFolder]
 #define DEFAULT_STATUS_ITEM_TITLE   @"Title"
 
-#define EDITOR_FONT                 [NSFont userFixedPitchFontOfSize:13.0]
 #define SHELL_COMMAND_STRING_FONT   [NSFont userFixedPitchFontOfSize:11.0]
 
 // notifications
@@ -116,17 +114,17 @@ typedef enum PlatypusExecStyle {
     PlatypusExecStyle_Authenticated = 1
 } PlatypusExecStyle;
 
-// output modes
-typedef enum PlatypusOutputType {
-    PlatypusOutputType_None = 0,
-    PlatypusOutputType_ProgressBar = 1,
-    PlatypusOutputType_TextWindow = 2,
-    PlatypusOutputType_WebView = 3,
-    PlatypusOutputType_StatusMenu = 4,
-    PlatypusOutputType_Droplet = 5
-} PlatypusOutputType;
+// interface type
+typedef enum PlatypusInterfaceType {
+    PlatypusInterfaceType_None = 0,
+    PlatypusInterfaceType_ProgressBar = 1,
+    PlatypusInterfaceType_TextWindow = 2,
+    PlatypusInterfaceType_WebView = 3,
+    PlatypusInterfaceType_StatusMenu = 4,
+    PlatypusInterfaceType_Droplet = 5
+} PlatypusInterfaceType;
 
-#define DEFAULT_OUTPUT_TYPE             PlatypusOutputType_TextWindow
+#define DEFAULT_INTERFACE_TYPE             PlatypusInterfaceType_TextWindow
 
 // execution style
 typedef enum PlatypusStatusItemStyle {
@@ -134,8 +132,9 @@ typedef enum PlatypusStatusItemStyle {
     PlatypusStatusItemStyle_Icon = 1
 } PlatypusStatusItemStyle;
 
-// array of output types, used for validation
-#define PLATYPUS_OUTPUT_TYPE_NAMES   @[\
+// array of interface type name strings
+// mapped to PlatypusInterfaceType enum
+#define PLATYPUS_INTERFACE_TYPE_NAMES   @[\
     @"None", \
     @"Progress Bar", \
     @"Text Window", \
@@ -144,33 +143,32 @@ typedef enum PlatypusStatusItemStyle {
     @"Droplet" \
 ]
 
-#define DEFAULT_OUTPUT_TYPE_STRING      [PLATYPUS_OUTPUT_TYPE_NAMES objectAtIndex:DEFAULT_OUTPUT_TYPE]
+#define DEFAULT_INTERFACE_TYPE_STRING      [PLATYPUS_INTERFACE_TYPE_NAMES objectAtIndex:DEFAULT_INTERFACE_TYPE]
 
-// output type macros
+// interface type macros
 
-#define IsValidOutputType(X)        ( (X) > 0 && (X) < [PLATYPUS_OUTPUT_TYPE_NAMES count] )
+#define IsValidInterfaceType(X)         ( (X) > 0 && (X) < [PLATYPUS_INTERFACE_TYPE_NAMES count] )
 
-#define IsValidOutputTypeString(X)  [PLATYPUS_OUTPUT_TYPE_NAMES containsObject:(X)]
+#define IsValidInterfaceTypeString(X)   [PLATYPUS_INTERFACE_TYPE_NAMES containsObject:(X)]
 
-#define OutputTypeForString(X)      [PLATYPUS_OUTPUT_TYPE_NAMES indexOfObject:(X)]
+#define InterfaceTypeForString(X)       [PLATYPUS_INTERFACE_TYPE_NAMES indexOfObject:(X)]
 
-#define IsTextStyledOutputType(X)   (   (X) == PlatypusOutputType_ProgressBar || \
-                                        (X) == PlatypusOutputType_TextWindow || \
-                                        (X) == PlatypusOutputType_StatusMenu  )
+#define IsTextStyledInterfaceType(X)    (   (X) == PlatypusInterfaceType_ProgressBar || \
+                                            (X) == PlatypusInterfaceType_TextWindow || \
+                                            (X) == PlatypusInterfaceType_StatusMenu  )
 
-#define IsTextStyledOutputTypeString(X)  (  OutputTypeForString(X) == PlatypusOutputType_ProgressBar || \
-                                            OutputTypeForString(X) == PlatypusOutputType_TextWindow || \
-                                            OutputTypeForString(X) == PlatypusOutputType_StatusMenu  )
+#define IsTextStyledInterfaceTypeString(X)  (   InterfaceTypeForString(X) == PlatypusInterfaceType_ProgressBar || \
+                                                InterfaceTypeForString(X) == PlatypusInterfaceType_TextWindow || \
+                                                InterfaceTypeForString(X) == PlatypusInterfaceType_StatusMenu  )
 
-#define IsTextSizableOutputType(X) (    (X) == PlatypusOutputType_ProgressBar || \
-                                        (X) == PlatypusOutputType_TextWindow || \
-                                        (X) == PlatypusOutputType_WebView  )
+#define IsTextSizableInterfaceType(X)   (   (X) == PlatypusInterfaceType_ProgressBar || \
+                                            (X) == PlatypusInterfaceType_TextWindow || \
+                                            (X) == PlatypusInterfaceType_WebView  )
 
-#define IsTextViewScrollableOutputType(X) ( (X) == PlatypusOutputType_ProgressBar || \
-                                            (X) == PlatypusOutputType_TextWindow )
+#define IsTextViewScrollableInterfaceType(X) (  (X) == PlatypusInterfaceType_ProgressBar || \
+                                                (X) == PlatypusInterfaceType_TextWindow )
 
 // App Spec keys
-
 extern NSString * const AppSpecKey_Creator;
 extern NSString * const AppSpecKey_ExecutablePath;
 extern NSString * const AppSpecKey_NibPath;
@@ -239,7 +237,6 @@ extern NSString * const AppSpecKey_ScriptName; // examples only
 #endif
 
 // logging
-
 #ifdef DEBUG
     #define PLog(...) NSLog(__VA_ARGS__)
 #else
@@ -247,7 +244,6 @@ extern NSString * const AppSpecKey_ScriptName; // examples only
 #endif
 
 // prototypes
-
 extern BOOL UTTypeIsValid(NSString *inUTI);
 extern BOOL BundleIdentifierIsValid(NSString *bundleIdentifier);
 

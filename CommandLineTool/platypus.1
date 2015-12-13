@@ -33,11 +33,11 @@ for the application.  Subsequent parameters can override profile settings.
 .It Fl a -name Ar [appName]
 Specifies the name of the application.  This is can be different from the name of the .app
 bundle itself, and is displayed in the application's menus, "About" window and Info.plist property list.
-.It Fl o -output-type Ar [outputType]
-Specifies the script application's output type, which can be one of the following:
+.It Fl o -interface-type Ar [interfaceType]
+Specifies the script application's interface type, which can be one of the following:
 .Pp
 .Ar 'None'
-The application does not display any output.
+The application does not display any user interface except for Dock icon & menu.
 .Pp
 .Ar 'Progress Bar'
 The application displays a progress bar while running.
@@ -50,12 +50,12 @@ The application displays a window with a web view which renders script output as
 .Pp
 .Ar 'Status Menu'
 The application displays a status menu item in the menubar which runs the script and displays its output when 
-selected.
+clicked.
 .Pp
 .Ar 'Droplet'
 The application displays a droplet window for dropping files on for processing by the script.
 .Pp
-The default output type is "Progress Bar".
+The default interface type is "Progress Bar".
 .Pp
 .It Fl i -app-icon Ar [iconPath]
 Specifies a file to use as the icon for the application bundle. The file must be a Mac OS X .icns file.
@@ -132,31 +132,31 @@ Arguments for the script interpreter.  These should be specified as a |-separate
 Arguments to the script.  These should be specified as a |-separated string (e.g. '-w|-s|-l').
 .Pp
 .It Fl b -text-background-color Ar [hexColor]
-For Text Window output mode only. Set background color of text output (e.g. #ffffff).
+For Text Window interface type only. Set background color of text (e.g. #ffffff).
 .Pp
 .It Fl g -text-foreground-color Ar [hexColor]
-For Text Window output mode only. Set foreground color of text output (e.g. #000000).
+For Text Window interface type only. Set foreground color of text (e.g. #000000).
 .Pp
 .It Fl n -text-font Ar [fontName]
-For Text Window output mode only. Set font and fontsize for text output field (e.g. 'Monaco 10').
+For Text Window interface type only. Set font and fontsize for text view (e.g. 'Monaco 10').
 .Pp
 .It Fl E -text-encoding Ar [encodingNumber]
-For Text Window output mode only. Set text encoding for script output.  Must be one of the numbers 
+For Text Window interface type only. Set text encoding for script output.  Must be one of the numbers
 defined in the NSString class reference (e.g. 4=UTF8, 1=ASCII, etc.).  Default is UTF8.
 .Pp
 .It Fl K -status-item-kind Ar [kind]
-For Status Menu output mode only.  Set display kind for Status Menu output mode.  This can be 
+For Status Menu interface type only.  Set display kind for Status Menu interface type.  This can be
 "Text", "Icon and text" or "Icon".
 .Pp
 .It Fl Y -status-item-title Ar [title]
-For Status Menu output mode only.  Set the display title for the status item in Status Menu output mode.
+For Status Menu interface type only.  Set the display title for the status item in Status Menu interface type.
 .Pp
 .It Fl L -status-item-icon Ar [imagePath]
-For Status Menu output mode only.  Set the icon image for the status item in Status Menu output mode.  
+For Status Menu interface type only.  Set the icon image for the status item in Status Menu interface type.
 Must be an image file in one of the formats supported by the Cocoa APIs (e.g. PNG, JPEG, TIFF etc.)
 .Pp
 .It Fl c -status-item-sysfont
-For Status Menu output mode only. Makes menu use system font instead of user-defined styling.
+For Status Menu interface type only. Makes menu use system font instead of user-defined styling.
 .Pp
 .It Fl x -xml-property-lists x
 Create XML format property lists instead of binary ones.

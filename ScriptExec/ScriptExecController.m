@@ -57,18 +57,18 @@
     IBOutlet NSTextField *progressBarDetailsLabel;
     
     // text window
-    IBOutlet NSWindow *textOutputWindow;
-    IBOutlet NSButton *textOutputCancelButton;
-    IBOutlet NSTextView *textOutputTextView;
-    IBOutlet NSProgressIndicator *textOutputProgressIndicator;
-    IBOutlet NSTextField *textOutputMessageTextField;
+    IBOutlet NSWindow *textWindow;
+    IBOutlet NSButton *textWindowCancelButton;
+    IBOutlet NSTextView *textWindowTextView;
+    IBOutlet NSProgressIndicator *textWindowProgressIndicator;
+    IBOutlet NSTextField *textWindowMessageTextField;
     
     // web view
-    IBOutlet NSWindow *webOutputWindow;
-    IBOutlet NSButton *webOutputCancelButton;
-    IBOutlet WebView *webOutputWebView;
-    IBOutlet NSProgressIndicator *webOutputProgressIndicator;
-    IBOutlet NSTextField *webOutputMessageTextField;
+    IBOutlet NSWindow *webViewWindow;
+    IBOutlet NSButton *webViewCancelButton;
+    IBOutlet WebView *webView;
+    IBOutlet NSProgressIndicator *webViewProgressIndicator;
+    IBOutlet NSTextField *webViewMessageTextField;
     
     // status item menu
     NSStatusItem *statusItem;
@@ -116,7 +116,7 @@
     NSStringEncoding textEncoding;
     
     PlatypusExecStyle execStyle;
-    PlatypusOutputType outputType;
+    PlatypusInterfaceType interfaceType;
     BOOL isDroppable;
     BOOL remainRunning;
     BOOL secureScript;
@@ -165,7 +165,7 @@
         arguments = [[NSMutableArray alloc] init];
         outputEmpty = YES;
         jobQueue = [[NSMutableArray alloc] init];
-        textEncoding = DEFAULT_OUTPUT_TXT_ENCODING;
+        textEncoding = DEFAULT_TEXT_ENCODING;
     }
     return self;
 }
@@ -225,27 +225,27 @@
         [Alerts fatalAlert:@"Corrupt app settings" subText:@"Unable to read AppSettings.plist"];
     }
     
-    // determine output type
-    NSString *outputTypeStr = appSettingsDict[AppSpecKey_InterfaceType];
-    if (IsValidOutputTypeString(outputTypeStr) == NO) {
+    // determine interface type
+    NSString *interfaceTypeStr = appSettingsDict[AppSpecKey_InterfaceType];
+    if (IsValidInterfaceTypeString(interfaceTypeStr) == NO) {
         [Alerts fatalAlert:@"Corrupt app settings"
-             subTextFormat:@"Invalid Output Mode: '%@'.", outputTypeStr];
+             subTextFormat:@"Invalid Interface Type: '%@'.", interfaceTypeStr];
     }
-    outputType = OutputTypeForString(outputTypeStr);
+    interfaceType = InterfaceTypeForString(interfaceTypeStr);
     
     // text styling and encoding info
-    if (IsTextStyledOutputType(outputType)) {
+    if (IsTextStyledInterfaceType(interfaceType)) {
     
         // font and size
         NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
         CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[AppSpecKey_TextSize] floatValue];
-        fontSize = fontSize ? fontSize : DEFAULT_OUTPUT_FONTSIZE;
+        fontSize = fontSize ? fontSize : DEFAULT_TEXT_FONT_SIZE;
         
         if (appSettingsDict[AppSpecKey_TextFont] != nil) {
             textFont = [NSFont fontWithName:appSettingsDict[AppSpecKey_TextFont] size:fontSize];
         }
         if (textFont == nil) {
-            textFont = [NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE];
+            textFont = [NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:DEFAULT_TEXT_FONT_SIZE];
         }
         
         // foreground color
@@ -253,7 +253,7 @@
             textForegroundColor = [NSColor colorFromHex:appSettingsDict[AppSpecKey_TextColor]];
         }
         if (textForegroundColor == nil) {
-            textForegroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_FG_COLOR];
+            textForegroundColor = [NSColor colorFromHex:DEFAULT_TEXT_FG_COLOR];
         }
         
         // background color
@@ -261,7 +261,7 @@
             textBackgroundColor = [NSColor colorFromHex:appSettingsDict[AppSpecKey_TextBackgroundColor]];
         }
         if (textBackgroundColor == nil) {
-            textBackgroundColor = [NSColor colorFromHex:DEFAULT_OUTPUT_BG_COLOR];
+            textBackgroundColor = [NSColor colorFromHex:DEFAULT_TEXT_BG_COLOR];
         }
         
         // encoding
@@ -270,8 +270,8 @@
         }
     }
     
-    // status menu output has some additional parameters
-    if (outputType == PlatypusOutputType_StatusMenu) {
+    // status menu interface has some additional parameters
+    if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         NSString *statusItemDisplayType = appSettingsDict[AppSpecKey_StatusItemDisplayType];
 
         if ([statusItemDisplayType isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT]) {
@@ -339,7 +339,7 @@
     }
 
     // we never have privileged execution or droppable with status menu apps
-    if (outputType == PlatypusOutputType_StatusMenu) {
+    if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         remainRunning = YES;
         execStyle = PlatypusExecStyle_Normal;
         isDroppable = NO;
@@ -442,7 +442,7 @@
     
     // status menu apps just run when item is clicked
     // for all others, we run the script once app has been launched
-    if (outputType == PlatypusOutputType_StatusMenu) {
+    if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         return;
     }
     
@@ -522,32 +522,25 @@
     [hideMenuItem setTitle:[NSString stringWithFormat:@"Hide %@", appName]];
     
     // script output will be dumped in outputTextView, by default this is the Text Window text view
-    outputTextView = textOutputTextView;
-    
-    // force us to be front process if we run in background
-    // This is so that apps that are set to run in the background will still have their
-    // window come to the front.  It is to my knowledge the only way to make an
-    // application with LSUIElement set to true come to the front on launch
-    // We don't do this for applications with no user interface output
-//    if (outputType != PLATYPUS_OUTPUT_NONE) {
+    outputTextView = textWindowTextView;
+
+    if (runInBackground == TRUE) {
+        // old Carbon
 //        ProcessSerialNumber process;
 //        GetCurrentProcess(&process);
 //        SetFrontProcess(&process);
-        // Old Carbon SetFrontProcess call replaced with Cocoa
-    
-    if (runInBackground == TRUE) {
         [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
     }
     
-    // prepare controls etc. for different output types
-    switch (outputType) {
-        case PlatypusOutputType_None:
+    // prepare controls etc. for different interface types
+    switch (interfaceType) {
+        case PlatypusInterfaceType_None:
         {
             // nothing to do
         }
             break;
             
-        case PlatypusOutputType_ProgressBar:
+        case PlatypusInterfaceType_ProgressBar:
         {
             if (isDroppable) {
                 [progressBarWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
@@ -578,47 +571,47 @@
         }
             break;
             
-        case PlatypusOutputType_TextWindow:
+        case PlatypusInterfaceType_TextWindow:
         {
             if (isDroppable) {
-                [textOutputWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
-                [textOutputMessageTextField setStringValue:@"Drag files on window to process them"];
+                [textWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
+                [textWindowMessageTextField setStringValue:@"Drag files on window to process them"];
             }
             
-            [textOutputProgressIndicator setUsesThreadedAnimation:YES];
+            [textWindowProgressIndicator setUsesThreadedAnimation:YES];
             [outputTextView setBackgroundColor:textBackgroundColor];
             [outputTextView setTextColor:textForegroundColor];
             
             // prepare window
-            [textOutputWindow setTitle:appName];
-            if ([[textOutputWindow frameAutosaveName] isEqualToString:@""]) {
-                [textOutputWindow center];
+            [textWindow setTitle:appName];
+            if ([[textWindow frameAutosaveName] isEqualToString:@""]) {
+                [textWindow center];
             }
-            [textOutputWindow makeKeyAndOrderFront:self];
+            [textWindow makeKeyAndOrderFront:self];
         }
             break;
             
-        case PlatypusOutputType_WebView:
+        case PlatypusInterfaceType_WebView:
         {
             if (isDroppable) {
-                [webOutputWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
-                [webOutputWebView registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
-                [webOutputMessageTextField setStringValue:@"Drag files on window to process them"];
+                [webViewWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
+                [webView registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
+                [webViewMessageTextField setStringValue:@"Drag files on window to process them"];
             }
             
-            [webOutputProgressIndicator setUsesThreadedAnimation:YES];
+            [webViewProgressIndicator setUsesThreadedAnimation:YES];
             
             // prepare window
-            [webOutputWindow setTitle:appName];
-            [webOutputWindow center];
-            if ([[webOutputWindow frameAutosaveName] isEqualToString:@""]) {
-                [webOutputWindow center];
+            [webViewWindow setTitle:appName];
+            [webViewWindow center];
+            if ([[webViewWindow frameAutosaveName] isEqualToString:@""]) {
+                [webViewWindow center];
             }
-            [webOutputWindow makeKeyAndOrderFront:self];
+            [webViewWindow makeKeyAndOrderFront:self];
         }
             break;
             
-        case PlatypusOutputType_StatusMenu:
+        case PlatypusInterfaceType_StatusMenu:
         {
             // create and activate status item
             statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
@@ -647,7 +640,7 @@
         }
             break;
             
-        case PlatypusOutputType_Droplet:
+        case PlatypusInterfaceType_Droplet:
         {
             if (isDroppable) {
                 [dropletWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
@@ -669,14 +662,14 @@
 - (void)prepareInterfaceForExecution {
     [outputTextView setString:@""];
     
-    switch (outputType) {
-        case PlatypusOutputType_None:
+    switch (interfaceType) {
+        case PlatypusInterfaceType_None:
         {
             
         }
             break;
             
-        case PlatypusOutputType_ProgressBar:
+        case PlatypusInterfaceType_ProgressBar:
         {
             [progressBarIndicator setIndeterminate:YES];
             [progressBarIndicator startAnimation:self];
@@ -688,33 +681,33 @@
         }
             break;
             
-        case PlatypusOutputType_TextWindow:
+        case PlatypusInterfaceType_TextWindow:
         {
-            [textOutputCancelButton setTitle:@"Cancel"];
+            [textWindowCancelButton setTitle:@"Cancel"];
             if (execStyle == PlatypusExecStyle_Authenticated) {
-                [textOutputCancelButton setEnabled:NO];
+                [textWindowCancelButton setEnabled:NO];
             }
-            [textOutputProgressIndicator startAnimation:self];
+            [textWindowProgressIndicator startAnimation:self];
         }
             break;
             
-        case PlatypusOutputType_WebView:
+        case PlatypusInterfaceType_WebView:
         {
-            [webOutputCancelButton setTitle:@"Cancel"];
+            [webViewCancelButton setTitle:@"Cancel"];
             if (execStyle == PlatypusExecStyle_Authenticated) {
-                [webOutputCancelButton setEnabled:NO];
+                [webViewCancelButton setEnabled:NO];
             }
-            [webOutputProgressIndicator startAnimation:self];
+            [webViewProgressIndicator startAnimation:self];
         }
             break;
             
-        case PlatypusOutputType_StatusMenu:
+        case PlatypusInterfaceType_StatusMenu:
         {
 
         }
             break;
             
-        case PlatypusOutputType_Droplet:
+        case PlatypusInterfaceType_Droplet:
         {
             [dropletProgressIndicator setIndeterminate:YES];
             [dropletProgressIndicator startAnimation:self];
@@ -737,25 +730,25 @@
     }
 
     
-    switch (outputType) {
+    switch (interfaceType) {
             
-        case PlatypusOutputType_None:
-        case PlatypusOutputType_StatusMenu:
+        case PlatypusInterfaceType_None:
+        case PlatypusInterfaceType_StatusMenu:
         {
             
         }
             break;
 
-        case PlatypusOutputType_TextWindow:
+        case PlatypusInterfaceType_TextWindow:
         {
-            // update controls for text output window
-            [textOutputCancelButton setTitle:@"Quit"];
-            [textOutputCancelButton setEnabled:YES];
-            [textOutputProgressIndicator stopAnimation:self];
+            // update controls for text window
+            [textWindowCancelButton setTitle:@"Quit"];
+            [textWindowCancelButton setEnabled:YES];
+            [textWindowProgressIndicator stopAnimation:self];
         }
             break;
             
-        case PlatypusOutputType_ProgressBar:
+        case PlatypusInterfaceType_ProgressBar:
         {            
             if (isDroppable) {
                 [progressBarMessageTextField setStringValue:@"Drag files to process"];
@@ -770,7 +763,6 @@
                 [progressBarIndicator setDoubleValue:100];
             }
             
-            // update controls for progress bar output
             [progressBarIndicator stopAnimation:self];
             
             // change button
@@ -779,16 +771,15 @@
         }
             break;
             
-        case PlatypusOutputType_WebView:
+        case PlatypusInterfaceType_WebView:
         {
-            // update controls for web output window
-            [webOutputCancelButton setTitle:@"Quit"];
-            [webOutputCancelButton setEnabled:YES];
-            [webOutputProgressIndicator stopAnimation:self];
+            [webViewCancelButton setTitle:@"Quit"];
+            [webViewCancelButton setEnabled:YES];
+            [webViewProgressIndicator stopAnimation:self];
         }
             break;
             
-        case PlatypusOutputType_Droplet:
+        case PlatypusInterfaceType_Droplet:
         {
             [dropletProgressIndicator stopAnimation:self];
             [dropletDropFilesLabel setHidden:NO];
@@ -909,7 +900,7 @@
     stdinString = nil;
     
     // we wait until task exits if this is triggered by a status item menu
-    if (outputType == PlatypusOutputType_StatusMenu) {
+    if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         [task waitUntilExit];
     }
 }
@@ -1082,8 +1073,8 @@
             continue;
         }
         
-        // special commands to control progress bar output window
-        if (outputType == PlatypusOutputType_ProgressBar) {
+        // special commands to control progress bar interface
+        if (interfaceType == PlatypusInterfaceType_ProgressBar) {
             
             // set progress bar status
             // lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar
@@ -1115,7 +1106,7 @@
             }
         }
         
-        if (outputType == PlatypusOutputType_WebView) {
+        if (interfaceType == PlatypusInterfaceType_WebView) {
             if ([[outputTextView textStorage] length] == 0 && [theLine hasPrefix:@"Location:"]) {
                 NSString *urlString = [theLine substringFromIndex:9];
                 urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -1127,34 +1118,34 @@
         
         // ok, line wasn't a command understood by the wrapper
         // show it in GUI text field if appropriate
-        if (outputType == PlatypusOutputType_Droplet) {
+        if (interfaceType == PlatypusInterfaceType_Droplet) {
             [dropletMessageTextField setStringValue:theLine];
         }
-        if (outputType == PlatypusOutputType_ProgressBar) {
+        if (interfaceType == PlatypusInterfaceType_ProgressBar) {
             [progressBarMessageTextField setStringValue:theLine];
         }
     }
     
     // if web output, we continually re-render to accomodate incoming data
-    if (outputType == PlatypusOutputType_WebView) {
+    if (interfaceType == PlatypusInterfaceType_WebView) {
         if (locationURL) {
             // If Location, we load the provided URL
-            [[webOutputWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:locationURL]];
+            [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:locationURL]];
         } else {
             // otherwise, just load script output as HTML string
             NSURL *resourcePathURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]];
-            [[webOutputWebView mainFrame] loadHTMLString:[outputTextView string] baseURL:resourcePathURL];
+            [[webView mainFrame] loadHTMLString:[outputTextView string] baseURL:resourcePathURL];
         }
     }
     
-    if (IsTextViewScrollableOutputType(outputType)) {
+    if (IsTextViewScrollableInterfaceType(interfaceType)) {
         [outputTextView scrollRangeToVisible:NSMakeRange([[outputTextView textStorage] length], 0)];
     }
 }
 
 - (void)appendString:(NSString *)string {
     PLog(@"Appending output: \"%@\"", string);
-    if (outputType == PlatypusOutputType_None) {
+    if (interfaceType == PlatypusInterfaceType_None) {
         //fprintf(stdout, "%s", [string cStringUsingEncoding:textEncoding]);
         NSData *strData = [[NSString stringWithFormat:@"%@\n", string] dataUsingEncoding:textEncoding];
         [[NSFileHandle fileHandleWithStandardError] writeData:strData];
@@ -1210,7 +1201,7 @@
     }
 }
 
-// show / hide the details text field in progress bar output
+// show / hide the details text field in progress bar interface
 - (IBAction)toggleDetails:(id)sender {
     NSRect winRect = [progressBarWindow frame];
     static const int detailsHeight = 224;
@@ -1227,14 +1218,14 @@
     [progressBarWindow setFrame:winRect display:TRUE animate:TRUE];
 }
 
-// show the details text field in progress bar output
+// show the details text field in progress bar interface
 - (IBAction)showDetails {
     if ([progressBarDetailsTriangle state] == NSOffState) {
         [progressBarDetailsTriangle performClick:progressBarDetailsTriangle];
     }
 }
 
-// hide the details text field in progress bar output
+// hide the details text field in progress bar interface
 - (IBAction)hideDetails {
     if ([progressBarDetailsTriangle state] != NSOffState) {
         [progressBarDetailsTriangle performClick:progressBarDetailsTriangle];
@@ -1243,10 +1234,10 @@
 
 // save output in text field to file when Save to File menu item is invoked
 - (IBAction)saveToFile:(id)sender {
-    if (!IsTextStyledOutputType(outputType)) {
+    if (!IsTextStyledInterfaceType(interfaceType)) {
         return;
     }
-    NSString *outSuffix = (outputType == PlatypusOutputType_WebView) ? @"html" : @"txt";
+    NSString *outSuffix = (interfaceType == PlatypusInterfaceType_WebView) ? @"html" : @"txt";
     NSString *fileName = [NSString stringWithFormat:@"%@-Output.%@", appName, outSuffix];
     
     NSSavePanel *sPanel = [NSSavePanel savePanel];
@@ -1262,16 +1253,16 @@
     }
 }
 
-// save only works for text window, web view output types
+// save only works for text window and web view interface types
 // and open only works for droppable apps that accept files as script args
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     
     // status item menus are always enabled
-    if (outputType == PlatypusOutputType_StatusMenu) {
+    if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         return YES;
     }
     // save to file item
-    if (!IsTextStyledOutputType(outputType) && [[anItem title] isEqualToString:@"Save to File…"]) {
+    if (!IsTextStyledInterfaceType(interfaceType) && [[anItem title] isEqualToString:@"Save to File…"]) {
         return NO;
     }
     // open should only work if it's a droppable app that accepts files
@@ -1279,7 +1270,7 @@
         return NO;
     }
     // change text size
-    if (IsTextSizableOutputType(outputType) && [[anItem title] hasPrefix:@"Make Text"]) {
+    if (IsTextSizableInterfaceType(interfaceType) && [[anItem title] hasPrefix:@"Make Text"]) {
         return NO;
     }
     
@@ -1301,12 +1292,12 @@
 
 - (void)changeFontSize:(CGFloat)delta {
     
-    if (outputType == PlatypusOutputType_WebView) {
+    if (interfaceType == PlatypusInterfaceType_WebView) {
         // web view
         if (delta > 0) {
-            [webOutputWebView makeTextLarger:self];
+            [webView makeTextLarger:self];
         } else {
-            [webOutputWebView makeTextSmaller:self];
+            [webView makeTextSmaller:self];
         }
     } else {
         // text field
@@ -1474,8 +1465,8 @@
     }
     
     if (acceptDrag) {
-        // we shade the window if output is droplet mode
-        if (outputType == PlatypusOutputType_Droplet) {
+        // we shade the window if interface type is droplet
+        if (interfaceType == PlatypusInterfaceType_Droplet) {
             [dropletShaderView setAlphaValue:0.3];
             [dropletShaderView setHidden:NO];
         }
@@ -1488,7 +1479,7 @@
 - (void)draggingExited:(id <NSDraggingInfo> )sender;
 {
     // remove the droplet shading on drag exit
-    if (outputType == PlatypusOutputType_Droplet) {
+    if (interfaceType == PlatypusInterfaceType_Droplet) {
         [dropletShaderView setHidden:YES];
     }
 }
@@ -1509,7 +1500,7 @@
 - (void)concludeDragOperation:(id <NSDraggingInfo> )sender {
     
     // shade droplet
-    if (outputType == PlatypusOutputType_Droplet) {
+    if (interfaceType == PlatypusInterfaceType_Droplet) {
         [dropletShaderView setHidden:YES];
     }
     // fire off the job queue if nothing is running
@@ -1524,7 +1515,7 @@
     return [self draggingEntered:sender];
 }
 
-#pragma mark - Web View Output updating
+#pragma mark - Web View
 
 /**************************************************
  Called whenever web view re-renders.  We scroll to
@@ -1532,8 +1523,8 @@
  **************************************************/
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
-    NSScrollView *scrollView = [[[[webOutputWebView mainFrame] frameView] documentView] enclosingScrollView];
-    NSRect bounds = [[[[webOutputWebView mainFrame] frameView] documentView] bounds];
+    NSScrollView *scrollView = [[[[webView mainFrame] frameView] documentView] enclosingScrollView];
+    NSRect bounds = [[[[webView mainFrame] frameView] documentView] bounds];
     [[scrollView documentView] scrollPoint:NSMakePoint(0, bounds.size.height)];
 }
 

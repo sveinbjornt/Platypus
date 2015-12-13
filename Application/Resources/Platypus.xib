@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="macosx"/>
         <development version="6000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
@@ -60,10 +59,10 @@
                         </connections>
                     </imageView>
                     <textField verticalHuggingPriority="750" id="301">
-                        <rect key="frame" x="215" y="373" width="53" height="18"/>
+                        <rect key="frame" x="194" y="371" width="74" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <animations/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Output" id="10944">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Interface" id="10944">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -389,7 +388,7 @@ DQ
                             <action selector="show:" target="1418" id="1433"/>
                         </connections>
                     </button>
-                    <button hidden="YES" toolTip="Edit text settings output mode" verticalHuggingPriority="750" id="2061">
+                    <button hidden="YES" toolTip="Edit text settings" verticalHuggingPriority="750" id="2061">
                         <rect key="frame" x="301" y="340" width="97" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
@@ -401,7 +400,7 @@ DQ
                             <action selector="show:" target="2364" id="2374"/>
                         </connections>
                     </button>
-                    <button hidden="YES" toolTip="Edit settings for Status Menu output mode" verticalHuggingPriority="750" id="10159">
+                    <button hidden="YES" toolTip="Edit settings for Status Item" verticalHuggingPriority="750" id="10159">
                         <rect key="frame" x="396" y="340" width="132" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
@@ -414,7 +413,7 @@ DQ
                         </connections>
                     </button>
                     <popUpButton toolTip="Select script type" verticalHuggingPriority="750" id="3890">
-                        <rect key="frame" x="271" y="457" width="135" height="26"/>
+                        <rect key="frame" x="272" y="457" width="135" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" id="10981">
@@ -430,8 +429,8 @@ DQ
                             <action selector="scriptTypeSelected:" target="335" id="4145"/>
                         </connections>
                     </popUpButton>
-                    <popUpButton toolTip="Select output type" verticalHuggingPriority="750" id="4148">
-                        <rect key="frame" x="271" y="368" width="159" height="26"/>
+                    <popUpButton toolTip="Select Interface Type" verticalHuggingPriority="750" id="4148">
+                        <rect key="frame" x="272" y="368" width="159" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" id="10982">
@@ -444,7 +443,7 @@ DQ
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <action selector="outputTypeDidChange:" target="335" id="jjw-Fp-i43"/>
+                            <action selector="interfaceTypeDidChange:" target="335" id="cSZ-s2-rYZ"/>
                         </connections>
                     </popUpButton>
                     <textField verticalHuggingPriority="750" id="4168">
@@ -527,7 +526,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="6D40F25A-BD6F-4C4D-8D1A-1B2485325A73" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="72A67047-F32E-437D-902E-914C4E92438F" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -583,7 +582,7 @@ DQ
                         </connections>
                     </button>
                     <textField toolTip="Path to script interpreter" verticalHuggingPriority="750" id="305" customClass="STPathTextField">
-                        <rect key="frame" x="411" y="460" width="158" height="22"/>
+                        <rect key="frame" x="410" y="460" width="159" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <animations/>
                         <textFieldCell key="cell" lineBreakMode="truncatingHead" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="left" title="/bin/sh" drawsBackground="YES" id="10945">
@@ -619,8 +618,8 @@ DQ
                 <outlet property="dropSettingsController" destination="1364" id="SvR-r8-57E"/>
                 <outlet property="editScriptButton" destination="324" id="491"/>
                 <outlet property="iconController" destination="1215" id="eHO-cn-oEo"/>
+                <outlet property="interfaceTypePopupButton" destination="4148" id="bD3-ya-OY8"/>
                 <outlet property="interpreterTextField" destination="305" id="337"/>
-                <outlet property="outputTypePopupButton" destination="4148" id="uxL-Am-1K6"/>
                 <outlet property="prefsController" destination="11195" id="apI-W1-dIt"/>
                 <outlet property="profilesController" destination="2872" id="Eil-aK-aFN"/>
                 <outlet property="progressBar" destination="11189" id="11191"/>
@@ -637,7 +636,7 @@ DQ
                 <outlet property="statusItemSettingsButton" destination="10159" id="10216"/>
                 <outlet property="statusItemSettingsController" destination="10213" id="AFv-S5-sWQ"/>
                 <outlet property="stripNibFileCheckbox" destination="11109" id="6Nk-RM-que"/>
-                <outlet property="textOutputSettingsButton" destination="2061" id="3145"/>
+                <outlet property="textSettingsButton" destination="2061" id="USO-Ht-gFN"/>
                 <outlet property="textSettingsController" destination="2364" id="aSO-P4-da9"/>
                 <outlet property="versionTextField" destination="769" id="774"/>
                 <outlet property="window" destination="21" id="1581"/>
@@ -1519,7 +1518,7 @@ DQ
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk" customClass="NSResponderNotifyingTableView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="161.5" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="18"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <animations/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -2099,7 +2098,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button toolTip="Select the font for text output mode" verticalHuggingPriority="750" id="2085">
+                    <button toolTip="Select Font" verticalHuggingPriority="750" id="2085">
                         <rect key="frame" x="149" y="91" width="73" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
@@ -2886,7 +2885,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="6D40F25A-BD6F-4C4D-8D1A-1B2485325A73" width="16" height="16">
+        <image name="72A67047-F32E-437D-902E-914C4E92438F" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

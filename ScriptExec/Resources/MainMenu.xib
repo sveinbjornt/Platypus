@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="macosx"/>
         <development version="6000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
         <plugIn identifier="com.apple.WebKitIBPlugin" version="9059"/>
@@ -36,16 +35,16 @@
                 <outlet property="progressBarTextView" destination="307" id="516"/>
                 <outlet property="progressBarWindow" destination="21" id="296"/>
                 <outlet property="quitMenuItem" destination="136" id="240"/>
-                <outlet property="textOutputCancelButton" destination="220" id="222"/>
-                <outlet property="textOutputMessageTextField" destination="366" id="373"/>
-                <outlet property="textOutputProgressIndicator" destination="230" id="231"/>
-                <outlet property="textOutputTextView" destination="225" id="515"/>
-                <outlet property="textOutputWindow" destination="216" id="224"/>
-                <outlet property="webOutputCancelButton" destination="251" id="266"/>
-                <outlet property="webOutputMessageTextField" destination="509" id="511"/>
-                <outlet property="webOutputProgressIndicator" destination="277" id="278"/>
-                <outlet property="webOutputWebView" destination="258" id="264"/>
-                <outlet property="webOutputWindow" destination="247" id="374"/>
+                <outlet property="textWindow" destination="216" id="dD5-aT-ujC"/>
+                <outlet property="textWindowCancelButton" destination="220" id="uuU-Xb-xDZ"/>
+                <outlet property="textWindowMessageTextField" destination="366" id="bT3-oV-9zc"/>
+                <outlet property="textWindowProgressIndicator" destination="230" id="AXd-F1-wQr"/>
+                <outlet property="textWindowTextView" destination="225" id="FZy-wJ-th1"/>
+                <outlet property="webView" destination="258" id="GEt-Hd-OFL"/>
+                <outlet property="webViewCancelButton" destination="251" id="i5n-LY-nJs"/>
+                <outlet property="webViewMessageTextField" destination="509" id="Unv-5h-E6P"/>
+                <outlet property="webViewProgressIndicator" destination="277" id="Hun-a2-4wC"/>
+                <outlet property="webViewWindow" destination="247" id="9lw-Pg-xRw"/>
                 <outlet property="windowMenu" destination="24" id="328"/>
             </connections>
         </customObject>

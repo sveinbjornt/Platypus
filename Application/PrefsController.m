@@ -112,7 +112,7 @@
     defaults[@"DefaultEditor"] = DEFAULT_EDITOR;
     defaults[@"RevealApplicationWhenCreated"] = @NO;
     defaults[@"OpenApplicationWhenCreated"] = @NO;
-    defaults[@"DefaultTextEncoding"] = @((NSStringEncoding)DEFAULT_OUTPUT_TXT_ENCODING);
+    defaults[@"DefaultTextEncoding"] = @((NSStringEncoding)DEFAULT_TEXT_ENCODING);
     defaults[@"DefaultAuthor"] = NSFullUserName();
     defaults[@"OnCreateDevVersion"] = @NO;
     defaults[@"OnCreateOptimizeNib"] = @YES;

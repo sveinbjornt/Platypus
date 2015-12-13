@@ -174,7 +174,7 @@
 + (NSArray *)parseInterpreterFromShebang:(NSString *)path {
     
     // get the first line of the script
-    NSString *script = [NSString stringWithContentsOfFile:path encoding:DEFAULT_OUTPUT_TXT_ENCODING error:nil];
+    NSString *script = [NSString stringWithContentsOfFile:path encoding:DEFAULT_TEXT_ENCODING error:nil];
     NSArray *lines = [script componentsSeparatedByString:@"\n"];
     if ([lines count] == 0) {
         // empty file
@@ -281,7 +281,7 @@
     [task waitUntilExit];
     
     //get output in string
-    NSString *outputStr = [[NSString alloc] initWithData:[readHandle readDataToEndOfFile] encoding:DEFAULT_OUTPUT_TXT_ENCODING];
+    NSString *outputStr = [[NSString alloc] initWithData:[readHandle readDataToEndOfFile] encoding:DEFAULT_TEXT_ENCODING];
 
     //if the syntax report string is empty --> no complaints, so we report syntax as OK
     outputStr = [outputStr length] ? outputStr : @"Syntax OK";

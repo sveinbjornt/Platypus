@@ -78,7 +78,7 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
     
 <h3>How does Platypus work?</h3>
 
-<p>Platypus creates a Mac OS X application bundle (.app) which contains an executable file and your script.  When the application is launched, the executable file gets the script interpreter and other settings (authentication requirements, output type etc.) from configuration files within the bundle. The script is then executed according to those parameters.  Script output can subsequently be presented to the end-user in a variety of ways, ranging from progress bars and menus to windows with text output.</p>
+<p>Platypus creates a Mac OS X application bundle (.app) which contains an executable file and your script.  When the application is launched, the executable file gets the script interpreter and other settings (authentication requirements, interface type etc.) from configuration files within the bundle. The script is then executed according to those parameters.  Script output can subsequently be presented to the end-user in a variety of ways, ranging from progress bars and menus to windows showing text output.</p>
 
 <p>The Platypus application and any applications it generates require <strong>Mac OS X 10.7</strong> or later and are 64-bit Intel binaries.  If you want to target 10.6 and/or 32-bit systems, <a href="http://sveinbjorn.org/files/software/platypus/platypus4.9.zip">version 4.9</a> continues to work just fine. If you want to target 10.4 and PowerPC users, you can use version <a href="http://sveinbjorn.org/files/software/platypus/platypus4.4.zip">4.4</a>.</p>
 
@@ -123,7 +123,7 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
     <li>Show Shell Command window now shows install status of command line tool</li>
     <li>Syntax checker window now shows the command invoked when checking script syntax</li>
     <li>App size estimation is now more accurate</li>
-    <li>Font size in web output view can now also be increased/reduced</li>
+    <li>Font size in "Web View" interface" can now also be increased/reduced</li>
     <li>New contexual menu button for icon view</li>
     <li>New "Copy icon path" option in icon contextual menu</li>
     <li>Platypus-generated apps now remember font size set by user</li>
@@ -144,7 +144,7 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
     <li>Users can now manually increase/decrease the font size in Platypus-generated apps</li>
     <li>Status menu items can now be selected. This will run the script again with the menu title as an argument.</li>
     <li>Arguments can now be passed to Platypus-generated apps via the command line</li>
-    <li>In Progress Bar output, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility</li>
+    <li>In Progress Bar interface, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility</li>
     <li>New feature: If script prints "QUITAPP" to STDOUT, the wrapper application will quit.</li>
     <li>Platypus now remembers app creation dialog settings such as "Optimize Nib"</li>
     <li>Platypus now remembers opened Profiles in the Open Recent menu</li>
@@ -154,7 +154,7 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
     <li>Fixed a bug where "Provide as a Service" failed to be read from saved profiles</li>
     <li>Fixed bug where a custom bundle identifier in a saved Profile would not be loaded</li>
     <li>Fixed bug where the Create button would remain greyed out even though all requirements were satisfied</li>
-    <li>Fixed bug where progress indicator would keep animating after execution in Progress Bar output mode</li>
+    <li>Fixed bug where progress indicator would keep animating after execution in Progress Bar interface type</li>
     <li>Fixed bug where command line tool complained about valid .icns filenames</li>
     <li>Fixed bug where command line tool would always create XML property lists instead of binary ones</li>
     <li>Refactored all deprecated method calls</li>
@@ -216,7 +216,7 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
     <li>Fixed bug with contextual menus in Arguments window</li>
     <li>Fixed bug where custom image data application icons failed to be created</li>
     <li>Fixed bug where "Icon" display mode status item would erroneously display a default title</li>
-    <li>"Run in background" applications no longer set themselves as front process with output mode "None"</li>
+    <li>"Run in background" applications no longer set themselves as front process with interface type "None"</li>
 </ul>
 
 <h4>11/12/2011 - Version 4.5</h4>
@@ -264,34 +264,34 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
 
 <h4>17/08/2010 - Version 4.4</h4>
 <ul>
-    <li>New output mode: Droplet</li>
+    <li>New interface type: Droplet</li>
     <li>Development mode now also creates symlinks to bundled files, not just the script</li>
     <li>New high-resolution 512x512 icon presets</li>
     <li>New "Default Text Encoding" option in Preferences</li>
-    <li>STDOUT and STDERR are no longer captured in output mode "None"</li>
+    <li>STDOUT and STDERR are no longer captured in interface type "None"</li>
     <li>Platypus apps now use the Apple-recommended, more secure temporary location for secure scripts</li>
     <li>More text encoding options</li>
     <li>Show Shell Command option is now more intelligent about creating a terse, efficient shell command without superfluous parameters</li>
     <li>Various small bug fixes and optimizations in Platypus app binaries</li>
     <li>Updated and improved code for executing script with privileges</li>
-    <li>Updated and improved output parsing in Progress Bar output mode</li>
+    <li>Updated and improved output parsing in Progress Bar interface type</li>
     <li>Fixed documentation so that it uses external images instead of data URLs</li>
     <li>Fixed bug where Platypus would incorrectly claim to be unable to create Platypus application support folder</li>
-    <li>Fixed bug where background color from text settings would not be applied to the text view in Progress Bar output mode</li>
+    <li>Fixed bug where background color from text settings would not be applied to the text view in Progress Bar interface type</li>
     <li>Fixed bug where syntax checking would work incorrectly with Perl scripts</li>
     <li>Fixed bug when interface in a Platypus app would lock up when dropping files in authenticated execution mode</li>
-    <li>Fixed various bugs in Progress Bar output mode</li>
-    <li>Fixed bug in output mode "None" where app would fail to quit on script termination</li>
+    <li>Fixed various bugs in Progress Bar interface type</li>
+    <li>Fixed bug in interface type "None" where app would fail to quit on script termination</li>
     <li>Fixed small memory leak when applications were created</li>
 </ul>
 
 <h4>25/07/2010 - Version 4.3</h4>
 <ul>
-    <li>New output mode: Status Menu</li>
+    <li>New interface type: Status Menu</li>
     <li>Generated apps now have editable nib files</li>
     <li>New "Optimize Application" option which strips/compiles nibs and removes unnecessary files from generated application bundle</li>
     <li>Current working directory is now set to .app/Contents/Resources in scripts running with Admin privileges</li>
-    <li>Auto-scrolling of output in Web View mode</li>
+    <li>Auto-scrolling of output in Web View interface</li>
     <li>Drag and drop now works properly in Web View windows</li>
     <li>Various interface refinements</li>
     <li>Updated sample scripts</li>
@@ -299,12 +299,12 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
     <li>New high resolution app icon, icon presets and improved document icons</li>
     <li>Platypus text output now defaults to UTF8 instead of ASCII</li>
     <li>Command line tool has a plethora of new options</li>
-    <li>Fixed bug where command-line generated apps would have black background and foreground in text output</li>
+    <li>Fixed bug where command-line generated apps would have black background and foreground in text interface</li>
     <li>Fixed bug where apps would fail to register dropped files on launch</li>
     <li>Fixed bug in command line tool install script</li>
     <li>Fixed bug with suffix and file type validation</li>
     <li>Fixed text-encoding bug with secure bundled scripts</li>
-    <li>Fixed bug where apps would default to output mode "None" on invalid output settings</li>
+    <li>Fixed bug where apps would default to interface type "None" on invalid interface settings</li>
     <li>Fixed bug in secure bundled script w. droppable option</li>
     <li>Now warns when attempting to load a profile generated by an older version of Platypus</li>
 </ul>
@@ -312,8 +312,8 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
 <h4>18/05/2009 - Version 4.2</h4>
 <ul>
     <li>Droppable Platypus apps can now execute script again when new files are dropped</li>
-    <li>Text settings now available for Progress Bar output mode</li>
-    <li>Command line tool now supports setting text output properties such as font, color and encoding</li>
+    <li>Text settings now available for Progress Bar interface type</li>
+    <li>Command line tool now supports setting text view properties such as font, color and encoding</li>
     <li>Command line tool has achieved feature parity with GUI application</li>
     <li>Command line tool now correctly handles relative paths</li>
     <li>Change in profile format to make it more transparent and human-readable/editable</li>
@@ -334,8 +334,8 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
     <li>Profiles menu now updates profile list when displayed</li>
     <li>Path autocomplete feature in script path text field</li>
     <li>Now parses entire shebang line for arguments to interpreter</li>
-    <li>Script text output is now directed line by line to the status text field in Progress Bar output mode</li>
-    <li>Progress Bar output mode now has a little arrow that shows details (i.e. script output) in a text field</li>
+    <li>Script text output is now directed line by line to the status text field in Progress Bar interface type</li>
+    <li>Progress Bar interface type now has a little arrow that shows details (i.e. script output) in a text field</li>
     <li>Tooltips for many more controls</li>
     <li>Additional default external editor presets</li>
     <li>Minor user interface tweaks and fixes</li>
@@ -343,7 +343,7 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
     <li>Command line program can now create profiles</li>
     <li>Command line program can now operate in "Force" mode, overwriting files</li>
     <li>Fixed bug where secure bundled scripts failed to work on PowerPC-based machines</li>
-    <li>Fixed memory leak in text output</li>
+    <li>Fixed memory leak in text window interface</li>
     <li>Fixed bug where command line program failed to create icons from images</li>
     <li>Fixed bug where command line program failed to parse arguments correctly</li>
     <li>Fixed bug where script type was not identified when a script was dropped on Platypus to launch the program</li>
@@ -359,8 +359,8 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
     <li>Optimized binaries of Platypus and Platypus-generated apps.  Both are now leaner, meaner and slimmer than before.</li>
     <li>New file-based Profiles feature</li>
     <li>New application icon and new icon presets for generated apps</li>
-    <li>New Web Output mode.  Scripts can generate HTML which is rendered in a WebKit view in the Platypus-generated application</li>
-    <li>New option to configure text size, font and color for Text Output mode</li>
+    <li>New "Web View" "interface type.  Scripts can generate HTML which is rendered in a WebKit view in the Platypus-generated application</li>
+    <li>New option to configure text size, font and color for Text Window interface type</li>
     <li>New option to send arguments to script interpreter</li>
     <li>New option to disable passing path to app as first argument to script</li>
     <li>New "Secure script" encryption method</li>
@@ -456,7 +456,7 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
 
 <h4>16/11/2004 - Version 2.7</h4>
 <ul>
-    <li>Now possible to create applications that run with privileges *and* have Text Output</li>
+    <li>Now possible to create applications that run with privileges *and* have text output</li>
     <li>Profiles now store custom application icons</li>
     <li>Fixed bug where buttons would not be enabled after a valid profile was loaded</li>
     <li>Custom application icons are now correctly labeled</li>
@@ -485,7 +485,7 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
 <h4>23/08/2004 - Version 2.5</h4>
 <ul>
     <li>This is a major update with many important bug fixes and some powerful new features</li>
-    <li>New output type: "Text Window", making it *very* easy to create tool wrappers</li>
+    <li>New interface type: "Text Window", making it *very* easy to create tool wrappers</li>
     <li>New application option: "Remain running after completion"</li>
     <li>New "Open Recent" menu</li>
     <li>New text fields that display the application bundle identifier and total number and size of bundled files</li>

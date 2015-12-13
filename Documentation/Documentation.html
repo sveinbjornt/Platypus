@@ -97,7 +97,7 @@
         <ul>
             <li><a href="#21">Basic Interface</a></li>
             <li><a href="#22">Interpreter</a></li>
-            <li><a href="#23">Output Type</a>
+            <li><a href="#23">Interface</a>
                 <ul>
                     <li><a href="#231">None</a></li>
                     <li><a href="#232">Progress Bar</a></li>
@@ -174,7 +174,7 @@
             <li><a href="#87">How do I get the source code to Platypus and Platypus-generated app binaries?</a></li>
             <li><a href="#88">How do I get the path to my application / bundled files within the script?</a></li>
             <li><a href="#89">How do Platypus-generated applications work?</a></li>
-            <li><a href="#811">Can I change the dimensions of the Platypus output window?</a></li>
+            <li><a href="#811">Can I change the dimensions of my app's window?</a></li>
             <li><a href="#812">Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?</a></li>
             <li><a href="#813">Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?</a></li>
             <li><a href="#814">Can I pass arguments to a Platypus-generated app via the command line?</a></li>
@@ -322,11 +322,11 @@
 <br><br>
 <a name="23"></a>
 
-<h3>Output Types</h3>
+<h3>Interface</h3>
 
 <img src="images/output_type.png" style="float: right; width:193px; height:258px;" class="centered-image">
 
-<p><strong>Output</strong> sets the user interface for the application. There are six output modes available:</p>
+<p><strong>Interface</strong> sets the user interface for the application. Platypus provides six interface types:</p>
 
 <a name="231"></a>
 <h4>None</h4>
@@ -342,9 +342,9 @@
 
 <a name="233"></a>
 <h4>Text Window</h4>
-<p>Shows a window with a text field which displays script output. Please note that the text field is <em>not</em> a full, interactive terminal session, and cannot prompt for input from the user via STDIN. It does not support any of the standard terminal commands and cannot be used to display ncurses-based interfaces.</p>
+<p>Shows a window with a text view which displays script output. Please note that the text view is <em>not</em> a full, interactive terminal session, and cannot prompt for input from the user via STDIN. It does not support any of the standard terminal commands and cannot be used to display ncurses-based interfaces.</p>
 
-<p>The styling and properties of the text field can be set by pressing the <strong>Text Settings</strong> button.  This shows a window where text encoding, font, color and size can be configured.</p>
+<p>The styling and properties of the text view can be set by pressing the <strong>Text Settings</strong> button.  This shows a window where text encoding, font, color and size can be configured.</p>
 
 <img src="images/output_textwindow.png" style="width:594px; height:502px;" class="centered-image">
 <br>
@@ -363,7 +363,7 @@
 
 <a name="235"></a>
 <h4>Status Menu</h4>
-<p>In Status Menu output mode, the application creates a Status Item in the menu bar when launched.  Every time the status item is clicked, the script is executed and its text output is shown line for line in a menu.</p>
+<p>Application creates a Status Item in the menu bar when launched.  Every time the status item is clicked, the script is executed and its text output is shown line for line in a menu.</p>
 
 <p>The properties of the Status Item (icon, title, etc.) can be configured by pressing the <strong>Status Item Settings</strong> button.</p>
 
@@ -611,7 +611,7 @@ NOTIFICATION:My notification text\n
 <a name="10-3"></a>
 <h3>Controlling the Progress Bar</h3>
 
-<p>Apps with output mode <strong>Progress Bar</strong> can communicate with the progress bar by notifying it of script progress.  All lines of script output in the format "PROGRESS:\d+\n" (e.g. PROGRESS:75) are parsed and used to set the completion percentage of the progress bar. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
+<p>Script apps with the interface type <strong>Progress Bar</strong> can communicate with the progress bar by notifying it of script progress.  All lines of script output in the format "PROGRESS:\d+\n" (e.g. PROGRESS:75) are parsed and used to set the completion percentage of the progress bar. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
 
 <br><br>
 
@@ -625,7 +625,7 @@ NOTIFICATION:My notification text\n
 <a name="10-5"></a>
 <h3>Loading a Website into a Web View</h3>
 
-<p>If output mode was set to <strong>Web View</strong> and your script prints "Location:http://some.url.com\n", the Web View will load the URL in question.</p>
+<p>If interface type was set to <strong>Web View</strong> and your script prints "Location:http://some.url.com\n", the Web View will load the URL in question.</p>
 
 <br><br>
 
@@ -656,7 +656,7 @@ NOTIFICATION:My notification text\n
 
 <img src="images/output_statusmenu.png" style="width:315px; height:144px; float: right;">
     
-    <p>As of Platypus 4.9, it is now possible to build relatively sophisticated interactive Status Menu apps. Platypus-generated apps with Output Mode set to Status Menu show a Status Item in the menu bar when launched. When the item is pressed, a menu is opened, the script is executed and each line of output is shown as a menu item in the menu.
+    <p>As of Platypus 4.9, it is now possible to build relatively sophisticated interactive Status Menu apps. Platypus-generated apps with Interface set to Status Menu show a Status Item in the menu bar when launched. When the item is pressed, a menu is opened, the script is executed and each line of output is shown as a menu item in the menu.
     
     <p>When the user selects a menu item, the script is executed again, but this time it receives the menu title as an argument. Based on whether it receives an argument, the script can thus determine whether it is being invoked to list the menu items or perform some action for a selected menu item.</p>
     
@@ -749,7 +749,7 @@ my $result = dialog("Answer to life, the universe and everything?", "42");
 
 <p><strong>SpotlightInfo</strong>: Drag a file on window to see its Spotlight metadata.</p>
 
-<p><strong>StatusMenuIconDemo</strong>: Shows how to set menu item icons in Status Menu output mode.</p>
+<p><strong>StatusMenuIconDemo</strong>: Shows how to set menu item icons in with the Status Menu interface.</p>
 
 <p><strong>SysLoadMenu</strong>: Status menu app which displays the output of <code>w</code>.</p>  
 
@@ -833,7 +833,7 @@ my $result = dialog("Answer to life, the universe and everything?", "42");
     
 <h3 id="85">How can I pass specific arguments to my script?</h3>
 
-<p>You can edit arguments to both the script interpreter and the script itself by pressing the <strong>Args</strong> button next to Output Type, and manipulating the lists in the dialog.</p>
+<p>You can edit arguments to both the script interpreter and the script itself by pressing the <strong>Args</strong> button next to the <strong>Interpreter</string> controls.</p>
     
 <br>
 <br>
@@ -894,7 +894,7 @@ MyApp.app/Contents/Resources/script             - Script executed by application
 <br>
 
     
-<h3 id="811">Can I change the dimensions of the Platypus output window?</h3>
+<h3 id="811">Can I change the dimensions of my app's window?</h3>
 
 <p>Yes, but only by altering the application manually after it has been created.  When you press Create, you need to uncheck the "Optimize Application (strip nib file)" option in the dialog.  You can then edit the user interface assets in the nib file using Apple's XCode.  The nib file is stored at the following path within your application bundle.</p>
 

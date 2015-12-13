@@ -54,7 +54,7 @@
 
 - (void)awakeFromNib {
     [[NSFontManager sharedFontManager] setDelegate:self];
-    [self setCurrentFont:[NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE]];
+    [self setCurrentFont:[NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:DEFAULT_TEXT_FONT_SIZE]];
 }
 
 - (IBAction)show:(id)sender {
@@ -83,7 +83,7 @@
 - (IBAction)setToDefaults:(id)sender {
     [foregroundColorWell setColor:[NSColor blackColor]];
     [backgroundColorWell setColor:[NSColor whiteColor]];
-    [self setCurrentFont:[NSFont fontWithName:DEFAULT_OUTPUT_FONT size:DEFAULT_OUTPUT_FONTSIZE]];
+    [self setCurrentFont:[NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:DEFAULT_TEXT_FONT_SIZE]];
     [textEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]];
     [self updateTextViewColor:self];
 }

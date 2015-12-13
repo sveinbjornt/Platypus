@@ -36,7 +36,7 @@
                     <li>Show Shell Command window now shows install status of command line tool</li>
                     <li>Syntax checker window now shows the command invoked when checking script syntax</li>
                     <li>App size estimation is now more accurate</li>
-                    <li>Font size in web output view can now also be increased/reduced</li>
+                    <li>Font size in "Web View" interface can now also be increased/reduced</li>
                     <li>New contexual menu button for icon view</li>
                     <li>New "Copy icon path" option in icon contextual menu</li>
                     <li>Platypus-generated apps now remember font size set by user</li>
@@ -63,7 +63,7 @@
                 <li>Users can now manually increase/decrease the font size in Platypus-generated apps</li>
                 <li>Status menu items can now be selected. This will run the script again with the menu title as an argument.</li>
                 <li>Arguments can now be passed to Platypus-generated apps via the command line</li>
-                <li>In Progress Bar output, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility</li>
+                <li>In the Progress Bar interface, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility</li>
                 <li>New feature: If script prints "QUITAPP" to STDOUT, the wrapper application will quit.</li>
                 <li>Platypus now remembers app creation dialog settings such as "Optimize Nib"</li>
                 <li>Platypus now remembers opened Profiles in the Open Recent menu</li>
@@ -73,7 +73,7 @@
                 <li>Fixed a bug where "Provide as a Service" failed to be read from saved profiles</li>
                 <li>Fixed bug where a custom bundle identifier in a saved Profile would not be loaded</li>
                 <li>Fixed bug where the Create button would remain greyed out even though all requirements were satisfied</li>
-                <li>Fixed bug where progress indicator would keep animating after execution in Progress Bar output mode</li>
+                <li>Fixed bug where progress indicator would keep animating after execution in Progress Bar interface</li>
                 <li>Fixed bug where command line tool complained about valid .icns filenames</li>
                 <li>Fixed bug where command line tool would always create XML property lists instead of binary ones</li>
                 <li>Refactored all deprecated method calls</li>
@@ -156,7 +156,7 @@
                     <li>Fixed bug with contextual menus in Arguments window</li>
                     <li>Fixed bug where custom image data application icons failed to be created</li>
                     <li>Fixed bug where "Icon" display mode status item would erroneously display a default title</li>
-                    <li>"Run in background" applications no longer set themselves as front process with output mode "None"</li>
+                    <li>"Run in background" applications no longer set themselves as front process with interface type "None"</li>
                 </ul>
             ]]></description>
         </item>

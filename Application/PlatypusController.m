@@ -59,8 +59,8 @@
     IBOutlet STPathTextField *scriptPathTextField;
     IBOutlet NSButton *editScriptButton;
     IBOutlet NSButton *revealScriptButton;
-    IBOutlet NSPopUpButton *outputTypePopupButton;
-    IBOutlet NSButton *textOutputSettingsButton;
+    IBOutlet NSPopUpButton *interfaceTypePopupButton;
+    IBOutlet NSButton *textSettingsButton;
     IBOutlet NSButton *statusItemSettingsButton;
     IBOutlet NSButton *createAppButton;
     IBOutlet NSTextField *appSizeTextField;
@@ -113,7 +113,7 @@
 - (IBAction)scriptTypeSelected:(id)sender;
 - (IBAction)selectScript:(id)sender;
 - (IBAction)acceptsDroppedItemsClicked:(id)sender;
-- (IBAction)outputTypeDidChange:(id)sender;
+- (IBAction)interfaceTypeDidChange:(id)sender;
 - (IBAction)clearAllFields:(id)sender;
 - (IBAction)showCommandLineString:(id)sender;
 - (IBAction)showHelp:(id)sender;
@@ -193,10 +193,10 @@
         [item setImage:icon];
     }
     
-    // populate output type menu
-    [outputTypePopupButton removeAllItems];
-    [outputTypePopupButton addItemsWithTitles:PLATYPUS_OUTPUT_TYPE_NAMES];
-    [self updateOutputTypeMenu:NSMakeSize(16, 16)];
+    // populate interface type menu
+    [interfaceTypePopupButton removeAllItems];
+    [interfaceTypePopupButton addItemsWithTitles:PLATYPUS_INTERFACE_TYPE_NAMES];
+    [self updateInterfaceTypeMenu:NSMakeSize(16, 16)];
     
     // main window accepts dragged text and dragged files
     [window registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
@@ -545,7 +545,7 @@
     
     spec[AppSpecKey_Name] = [appNameTextField stringValue];
     spec[AppSpecKey_ScriptPath] = [scriptPathTextField stringValue];
-    spec[AppSpecKey_InterfaceType] = [outputTypePopupButton titleOfSelectedItem];
+    spec[AppSpecKey_InterfaceType] = [interfaceTypePopupButton titleOfSelectedItem];
     spec[AppSpecKey_IconPath] = [iconController icnsFilePath];
     
     spec[AppSpecKey_Interpreter] = [interpreterTextField stringValue];
@@ -594,14 +594,14 @@
     [authorTextField setStringValue:spec[AppSpecKey_Author]];
     [bundleIdentifierTextField setStringValue:spec[AppSpecKey_Identifier]];
 
-    if (IsValidOutputTypeString(spec[AppSpecKey_InterfaceType])) {
-        int idx = OutputTypeForString(spec[AppSpecKey_InterfaceType]);
-        [outputTypePopupButton selectItemAtIndex:idx];
-        [self outputTypeDidChange:nil];
+    if (IsValidInterfaceTypeString(spec[AppSpecKey_InterfaceType])) {
+        int index = InterfaceTypeForString(spec[AppSpecKey_InterfaceType]);
+        [interfaceTypePopupButton selectItemAtIndex:index];
+        [self interfaceTypeDidChange:nil];
     } else {
-        [Alerts alert:@"Invalid output type"
-        subTextFormat:@"App spec contains invalid output type '%@'. Falling back to default."];
-        [outputTypePopupButton selectItemWithTitle:DEFAULT_OUTPUT_TYPE_STRING];
+        [Alerts alert:@"Invalid interface type"
+        subTextFormat:@"App spec contains invalid interface type '%@'. Falling back to default."];
+        [interfaceTypePopupButton selectItemWithTitle:DEFAULT_INTERFACE_TYPE_STRING];
     }
         
     [interpreterTextField setStringValue:spec[AppSpecKey_Interpreter]];
@@ -634,14 +634,14 @@
     [argsController setInterpreterArgs:spec[AppSpecKey_InterpreterArgs]];
     [argsController setScriptArgs:spec[AppSpecKey_ScriptArgs]];
     
-    // text output settings
+    // text settings
     [textSettingsController setTextEncoding:[spec[AppSpecKey_TextEncoding] intValue]];
     [textSettingsController setTextFont:[NSFont fontWithName:spec[AppSpecKey_TextFont] size:[spec[AppSpecKey_TextSize] intValue]]];
     [textSettingsController setTextForegroundColor:[NSColor colorFromHex:spec[AppSpecKey_TextColor]]];
     [textSettingsController setTextBackgroundColor:[NSColor colorFromHex:spec[AppSpecKey_TextBackgroundColor]]];
     
     // status menu settings
-    if (OutputTypeForString(spec[AppSpecKey_InterfaceType]) == PlatypusOutputType_StatusMenu) {
+    if (InterfaceTypeForString(spec[AppSpecKey_InterfaceType]) == PlatypusInterfaceType_StatusMenu) {
         if ([spec[AppSpecKey_StatusItemDisplayType] isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
             NSImage *icon = [[NSImage alloc] initWithData:spec[AppSpecKey_StatusItemIcon]];
             if (icon != nil) {
@@ -756,16 +756,16 @@
     [dropSettingsButton setEnabled:[acceptsDroppedItemsCheckbox state]];
 }
 
-- (IBAction)outputTypeDidChange:(id)sender {
-    NSString *outType = [outputTypePopupButton titleOfSelectedItem];
+- (IBAction)interfaceTypeDidChange:(id)sender {
+    NSString *interfaceTypeString = [interfaceTypePopupButton titleOfSelectedItem];
     
-    // we don't show text output settings for output modes None and Web View
-    BOOL hasTextSettings = (![outType isEqualToString:@"None"] && ![outType isEqualToString:@"Web View"] && ![outType isEqualToString:@"Droplet"]);
-    [textOutputSettingsButton setHidden:!hasTextSettings];
-    [textOutputSettingsButton setEnabled:hasTextSettings];
+    // we don't show text settings for interface types None and Web View
+    BOOL hasTextSettings = IsTextStyledInterfaceTypeString(interfaceTypeString);
+    [textSettingsButton setHidden:!hasTextSettings];
+    [textSettingsButton setEnabled:hasTextSettings];
     
-    // disable options that don't make sense for status menu output mode
-    if (OutputTypeForString(outType) == PlatypusOutputType_StatusMenu) {
+    // disable options that don't make sense for status menu interface type
+    if (InterfaceTypeForString(interfaceTypeString) == PlatypusInterfaceType_StatusMenu) {
 
         // disable droppable & admin privileges
         [acceptsDroppedItemsCheckbox setIntValue:0];
@@ -778,16 +778,16 @@
         [remainRunningCheckbox setIntValue:1];
         [remainRunningCheckbox setEnabled:NO];
         
-        // check Runs in Background as default for Status Menu output
+        // Status Menu apps run in background by default
         [runInBackgroundCheckbox setIntValue:1];
         
-        // show button for special status item settings
+        // show status item settings button
         [statusItemSettingsButton setEnabled:YES];
         [statusItemSettingsButton setHidden:NO];
         
     } else {
         
-        if ([outType isEqualToString:@"Droplet"]) {
+        if (InterfaceTypeForString(interfaceTypeString) == PlatypusInterfaceType_Droplet) {
             [acceptsDroppedItemsCheckbox setIntValue:1];
             [self acceptsDroppedItemsClicked:self];
         }
@@ -807,8 +807,9 @@
     }
 }
 
+//clear all controls to their default value
 - (IBAction)clearAllFields:(id)sender {
-    //clear all text field to start value
+    
     [appNameTextField setStringValue:@""];
     [scriptPathTextField setStringValue:@""];
     [versionTextField setStringValue:DEFAULT_VERSION];
@@ -817,7 +818,6 @@
     [bundleIdentifierTextField setStringValue:bundleId];
     [authorTextField setStringValue:[DEFAULTS objectForKey:@"DefaultAuthor"]];
     
-    //uncheck all options
     [acceptsDroppedItemsCheckbox setIntValue:0];
     [self acceptsDroppedItemsClicked:acceptsDroppedItemsCheckbox];
     [secureBundledScriptCheckbox setIntValue:0];
@@ -832,14 +832,11 @@
     [statusItemSettingsController setToDefaults:self];
     [iconController setToDefaults];
 
-    //set script type
     [self setScriptType:DEFAULT_SCRIPT_TYPE];
     
-    //set output type
-    [outputTypePopupButton selectItemWithTitle:DEFAULT_OUTPUT_TYPE_STRING];
-    [self outputTypeDidChange:outputTypePopupButton];
+    [interfaceTypePopupButton selectItemWithTitle:DEFAULT_INTERFACE_TYPE_STRING];
+    [self interfaceTypeDidChange:interfaceTypePopupButton];
     
-    //update button status
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
     
     [self updateEstimatedAppSize];
@@ -1000,13 +997,13 @@
     return YES;
 }
 
-- (void)updateOutputTypeMenu:(NSSize)iconSize {
-    NSArray *items = [outputTypePopupButton itemArray];
+- (void)updateInterfaceTypeMenu:(NSSize)iconSize {
+    NSArray *items = [interfaceTypePopupButton itemArray];
     
     for (NSMenuItem *menuItem in items) {
         NSImage *img = [menuItem image];
         if (img == nil) {
-            if ([outputTypePopupButton itemAtIndex:0] == menuItem) {
+            if ([interfaceTypePopupButton itemAtIndex:0] == menuItem) {
                 img = [[NSImage imageNamed:@"NSDefaultApplicationIcon"] copy];
             } else {
                 NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
@@ -1020,14 +1017,14 @@
 }
 
 - (void)menuWillOpen:(NSMenu *)menu {
-    if (menu == [outputTypePopupButton menu]) {
-        [self updateOutputTypeMenu:NSMakeSize(32, 32)];
+    if (menu == [interfaceTypePopupButton menu]) {
+        [self updateInterfaceTypeMenu:NSMakeSize(32, 32)];
     }
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
-    if (menu == [outputTypePopupButton menu]) {
-        [self updateOutputTypeMenu:NSMakeSize(16, 16)];
+    if (menu == [interfaceTypePopupButton menu]) {
+        [self updateInterfaceTypeMenu:NSMakeSize(16, 16)];
     }
 }
 

@@ -3,8 +3,8 @@ For 5.1
     TODO: Get STDERR output and pid for STPrivilegedTask
     TODO: Create Platypus tutorial videos, make them available online
     TODO: AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
-    TODO: New button-based output mode
-    TODO: New OnChange Text Filter output mode
+    TODO: New button-based interface type
+    TODO: New OnChange Text Filter interface type
     TODO: Save authentication password and reuse for subsequent execution
     TODO: Add URI handling https://github.com/barryk/DropScript/commit/3fa2d00177cc22680c54edeb6f433a658f6b07e8
     TODO: Asynchronous app creation in background thread?
@@ -20,13 +20,15 @@ For 5.1
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
 
-    TODO: Refactor status menu item output menu generation to share code between ScriptExec and Platypus.app
+    TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
+    TODO: Add WebView example listing dropped files
+    TODO: Make clearAllFields stuff use default spec
 
     * Various minor UI improvements (button status in args & drop settings window)
     * Now treating drop into STPathTextField like any other drop on window
     * Editable type lists in drop settings are now click-editable like those in Args controller
-    * Output line string "----" in Status Menu mode now creates menu separator item
+    * Output string "----\n" in Status Menu mode now creates menu separator item
     * Uniform Type Identifiers and Application Bundle Identifiers are now validated
     * New template processing option for Status Item icon
     * Build script now generates sparkle hash
@@ -44,7 +46,7 @@ For 5.0
     * Updated keys in information property lists
     * Added ALERT: example
     * Added authenticated execution example
-    * Optimize Location: parsing for Web Output
+    * Optimize Location: parsing for Web Interface
     * Parsed commands are now removed from script text output
     * Fixed bug where Status Item menu intermittently showed empty output
     * New high res images for documentation
@@ -69,8 +71,8 @@ For 5.0
     * New retina icons in script type popup button
     * No longer linking to Carbon framework
     * CFBundleDevelopmentRegion in generated apps now declared using ISO code
-    * New default "Use system font" option for status menu item output
-    * New MENUITEMICON: syntax to set menu item icon in status menu output mode
+    * New default "Use system font" option for Status Menu interface
+    * New MENUITEMICON: syntax to set menu item icon in Status Menu interface type
     * The built-in editor has been much enhanced, with line numbering, configurable text size, word wrap and other improvements
     * Migrated from UKKqueue to VDKQueue and got all file system watching working properly again
     * Uniform Type Identifiers (UTIs) are now supported in Drop Settings
@@ -91,7 +93,7 @@ For 5.0
     * Proper icon temp file handling
     * New retina-quality default status menu icon
     * Fixed issue with Open... menu item and file types in ScriptExec
-    * Font size in web output view can now also be increased/reduced
+    * Font size in web views can now also be increased/reduced
     * Revised and updated documentation
     * Dynamic (in code) install path for command line tool scripts
     * Platypus-generated apps now remember font size set by user
@@ -102,7 +104,7 @@ For 4.9
     * Users can now manually increase/decrease the font size in Platypus-generated apps
     * Status menu items can now be selected. This will run the script again with the menu title as an argument.
     * Arguments can now be passed to Platypus-generated apps via the command line
-    * In Progress Bar output, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility
+    * In Progress Bar interface, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility
     * New feature: If script prints "QUITAPP" to STDOUT, the wrapper application will quit.
     * Platypus now remembers app creation dialog settings such as "Optimize Nib"
     * Platypus now remembers opened Profiles in the Open Recent menu
@@ -112,7 +114,7 @@ For 4.9
     * Fixed a bug where "Provide as a Service" failed to be read from saved profiles
     * Fixed bug where a custom bundle identifier in a saved Profile would not be loaded
     * Fixed bug where the Create button would remain greyed out even though all requirements were satisfied
-    * Fixed bug where progress indicator would keep animating after execution in Progress Bar output mode
+    * Fixed bug where progress indicator would keep animating after execution in Progress Bar interface type
     * Fixed bug where command line tool complained about valid .icns filenames
     * Fixed bug where command line tool would always created XML property lists instead of binary ones
     * Refactored all deprecated method calls
@@ -170,7 +172,7 @@ For 4.6
     * Fixed bug with contextual menus in Arguments window
     * Fixed bug where custom image data application icons failed to be created
     * Fixed bug where "Icon" display mode status item would erroneously display a default title
-    * "Run in background" applications no longer set themselves as front process with output mode "None"
+    * "Run in background" applications no longer set themselves as front process with interface type "None"
 
 For 4.5
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
@@ -214,24 +216,24 @@ For 4.5
     * More intelligent automatic app name generation based on script filename  
 
 For 4.4
-	* New output mode: "Droplet"
+	* New interface type: "Droplet"
 	* Development mode now also creates symlinks to bundled files, not just the script
 	* New high-resolution 512x512 icon presets
 	* New "Default Text Encoding" option in Preferences
-	* STDOUT and STDERR are no longer captured in output mode "None"
+	* STDOUT and STDERR are no longer captured in interface type "None"
 	* Platypus apps now use the Apple-recommended, more secure temporary location for secure scripts
 	* More text encoding options
 	* Show Shell Command option is now more intelligent about creating a terse, efficient shell command without superfluous parameters
 	* Various small bug fixes and optimizations in Platypus app binaries
 	* Updated and improved code for executing script with privileges
-	* Updated and improved output parsing in Progress Bar output mode
+	* Updated and improved output parsing in Progress Bar interface type
 	* Fixed documentation so that it uses external images instead of data URLs
 	* Fixed bug where Platypus would incorrectly claim to be unable to create Platypus application support folder
-	* Fixed bug where background color from text settings would not be applied to the text view in Progress Bar output mode
+	* Fixed bug where background color from text settings would not be applied to the text view in Progress Bar interface type
 	* Fixed bug where syntax checking would work incorrectly with Perl scripts
 	* Fixed bug when interface in a Platypus app would lock up when dropping files in authenticated execution mode
-	* Fixed various bugs in Progress Bar output mode
-	* Fixed bug in output mode "None" where app would fail to quit on script termination
+	* Fixed various bugs in Progress Bar interface type
+	* Fixed bug in interface type "None" where app would fail to quit on script termination
 	* Fixed small memory leak when applications were created
 	
 For 4.3
@@ -242,11 +244,11 @@ For 4.3
 	* Some changes to the interface of Platypus apps
 	* Current working directory is now set to .app/Contents/Resources in scripts running with Admin privileges
 	* Drag and drop now works properly in Web View windows
-	* Auto-scrolling of output in Web View mode
+	* Auto-scrolling with output in Web View interface type
 	* Fixed bug where apps would fail to register dropped files on launch
 	* Fixed bug in command line tool install script
 	* Fixed bug with suffix and file type validation
-	* Fixed bug where command-line generated apps would have black background and foreground in text output
+	* Fixed bug where command-line generated apps would have black background and foreground in text window interface
 	* Generated apps now have editable nib files
 	* Updated to latest IconFamily code (0.9.3)
 	* Drag and drop works in more places in the Platypus application
@@ -255,9 +257,9 @@ For 4.3
 	* Better icon handling when creating applications
 	* New icon presets
 	* New high resolution app icon and improved document icons
-´	* New output mode:  Status Menu
-	* Fixed bug where command-line tool generated apps would default to black background in text output mode
-	* Fixed bug where apps would default to output mode "None" on invalid output settings
+´	* New interface type:  Status Menu
+	* Fixed bug where command-line tool generated apps would default to black background in text interface types
+	* Fixed bug where apps would default to interface type "None" on invalid interface settings
 	* Now warns when attempting to load a profile generated by an older version of Platypus
 	* New "Optimize Application" mode which strips/compiles nibs and removes unnecessary files from generated application bundle
 	* Command line tool has new option to specify alternate nib file
@@ -265,8 +267,8 @@ For 4.3
 
 For 4.2
 	* Droppable Platypus apps can now execute script repeatedly when new files are dropped
-	* Text settings now available for Progress Bar output mode
-'	* Command line tool now supports setting text output properties such as font, color and encoding
+	* Text settings now available for Progress Bar interface type
+'	* Command line tool now supports setting text properties such as font, color and encoding
 	* Command line tool has achieved feature parity with GUI application
 	* Command line tool now correctly handles relative paths
 	* Change in profile format to make it more transparent and human-readable/editable
@@ -284,8 +286,8 @@ For 4.1
 	* Profiles menu now updates profile list when displayed
 	* Path autocomplete feature in script path text field
 	* Now parses entire shebang line for arguments to interpreter
-	* Script text output is now directed line by line to the status text field in Progress Bar output mode
-	* Progress Bar output mode now has a little arrow that shows details (i.e. script output) in a text field
+	* Script text output is now directed line by line to the status text field in Progress Bar interface type
+	* Progress Bar interface type now has a little arrow that shows details (i.e. script output) in a text field
 	* Tooltips for many more controls
 	* Additional default external editor presets
 	* Minor user interface tweaks and fixes
@@ -293,7 +295,7 @@ For 4.1
 	* Command line program can now create profiles
 	* Command line program can now operate in "Force" mode, overwriting files
 	* Fixed bug where secure bundled scripts failed to work on PowerPC-based machines
-	* Fixed memory leak in text output
+	* Fixed memory leak in text interface type
 	* Fixed bug where command line program failed to create icons from images
 	* Fixed bug where command line program failed to parse arguments correctly
 	* Fixed bug where script type was not identified when a script was dropped on Platypus to launch the program
@@ -308,8 +310,8 @@ For 4.0
     * Optimized binaries of Platypus and Platypus-generated apps.  Both are now leaner, meaner and slimmer than ever before.
     * New file-based Profiles feature
     * New application icon and new icon presets for generated apps
-    * New Web Output mode.  Scripts can generate HTML which is rendered in a WebKit view in the Platypus-generated application
-    * New option to configure text size, font and color for Text Output mode
+    * New "Web View" interface type.  Scripts can generate HTML which is rendered in a WebKit view in the Platypus-generated application
+    * New option to configure text size, font and color for Text Window interface type
     * New option to send arguments to script interpreter
     * New option to disable passing path to app as first argument to script
     * New "Secure script" encryption method
@@ -385,7 +387,7 @@ For 2.8
 
 For 2.7
 
-    * Now possible to create applications that run with privileges *and have Text Output
+    * Now possible to create applications that run with privileges *and* have a text output interface
     * Profiles now store custom application icons
     * Fixed bug where buttons would not be enabled after a valid profile was loaded
     * Custom application icons are now correctly labeled
@@ -412,7 +414,7 @@ For 2.6
 For 2.5
 
     * This is a major update with many important bug fixes and some powerful new features
-    * New output type: "Text Window", making it *veryeasy to create tool wrappers
+    * New interface type: "Text Window", making it very easy to create tool wrappers
     * New application option: "Remain running after completion"
     * New "Open Recent" menu
     * New text fields that display the application bundle identifier and total number and size of bundled files

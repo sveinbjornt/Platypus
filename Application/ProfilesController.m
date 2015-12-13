@@ -96,7 +96,7 @@
         
         // write script contained in the example profile dictionary to file and set as script path
         NSString *scriptPath = [NSString stringWithFormat:@"%@%@", TEMP_FOLDER, scriptName];
-        [scriptStr writeToFile:scriptPath atomically:YES encoding:DEFAULT_OUTPUT_TXT_ENCODING error:nil];
+        [scriptStr writeToFile:scriptPath atomically:YES encoding:DEFAULT_TEXT_ENCODING error:nil];
         spec[AppSpecKey_ScriptPath] = scriptPath;
     }
     

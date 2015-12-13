@@ -170,7 +170,7 @@
     
     self[AppSpecKey_Name] = DEFAULT_APP_NAME;
     self[AppSpecKey_ScriptPath] = @"";
-    self[AppSpecKey_InterfaceType] = DEFAULT_OUTPUT_TYPE_STRING;
+    self[AppSpecKey_InterfaceType] = DEFAULT_INTERFACE_TYPE_STRING;
     self[AppSpecKey_IconPath] = CMDLINE_ICON_PATH;
     
     self[AppSpecKey_Interpreter] = DEFAULT_INTERPRETER;
@@ -200,12 +200,12 @@
     self[AppSpecKey_PromptForFile] = @NO;
     self[AppSpecKey_DocIconPath] = @"";
     
-    // text output settings
-    self[AppSpecKey_TextEncoding] = @(DEFAULT_OUTPUT_TXT_ENCODING);
-    self[AppSpecKey_TextFont] = DEFAULT_OUTPUT_FONT;
-    self[AppSpecKey_TextSize] = @(DEFAULT_OUTPUT_FONTSIZE);
-    self[AppSpecKey_TextColor] = DEFAULT_OUTPUT_FG_COLOR;
-    self[AppSpecKey_TextBackgroundColor] = DEFAULT_OUTPUT_BG_COLOR;
+    // text window settings
+    self[AppSpecKey_TextEncoding] = @(DEFAULT_TEXT_ENCODING);
+    self[AppSpecKey_TextFont] = DEFAULT_TEXT_FONT_NAME;
+    self[AppSpecKey_TextSize] = @(DEFAULT_TEXT_FONT_SIZE);
+    self[AppSpecKey_TextColor] = DEFAULT_TEXT_FG_COLOR;
+    self[AppSpecKey_TextBackgroundColor] = DEFAULT_TEXT_BG_COLOR;
     
     // status item settings
     self[AppSpecKey_StatusItemDisplayType] = PLATYPUS_STATUSITEM_DISPLAY_TYPE_DEFAULT;
@@ -713,7 +713,7 @@
     NSString *uniformTypesString = @"";
     NSString *parametersString = @"";
     NSString *textEncodingString = @"";
-    NSString *textOutputString = @"";
+    NSString *textSettingsString = @"";
     NSString *statusMenuOptionsString = @"";
     
     // checkbox parameters
@@ -804,30 +804,30 @@
     }
     
     //  create args for text settings
-    if (IsTextStyledOutputTypeString(self[AppSpecKey_InterfaceType])) {
+    if (IsTextStyledInterfaceTypeString(self[AppSpecKey_InterfaceType])) {
         
         NSString *textFgString = @"", *textBgString = @"", *textFontString = @"";
-        if (![self[AppSpecKey_TextColor] isEqualToString:DEFAULT_OUTPUT_FG_COLOR]) {
+        if (![self[AppSpecKey_TextColor] isEqualToString:DEFAULT_TEXT_FG_COLOR]) {
             NSString *str = shortOpts ? @"-g" : @"--text-foreground-color";
             textFgString = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_TextColor]];
         }
         
-        if (![self[AppSpecKey_TextBackgroundColor] isEqualToString:DEFAULT_OUTPUT_BG_COLOR]) {
+        if (![self[AppSpecKey_TextBackgroundColor] isEqualToString:DEFAULT_TEXT_BG_COLOR]) {
             NSString *str = shortOpts ? @"-b" : @"--text-background-color";
             textBgString = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_TextColor]];
         }
         
-        if ([self[AppSpecKey_TextSize] floatValue] != DEFAULT_OUTPUT_FONTSIZE ||
-            ![self[AppSpecKey_TextFont] isEqualToString:DEFAULT_OUTPUT_FONT]) {
+        if ([self[AppSpecKey_TextSize] floatValue] != DEFAULT_TEXT_FONT_SIZE ||
+            ![self[AppSpecKey_TextFont] isEqualToString:DEFAULT_TEXT_FONT_NAME]) {
             NSString *str = shortOpts ? @"-n" : @"--text-font";
             textFontString = [NSString stringWithFormat:@" %@ '%@ %2.f' ", str, self[AppSpecKey_TextFont], [self[AppSpecKey_TextSize] floatValue]];
         }
         
-        textOutputString = [NSString stringWithFormat:@"%@%@%@", textFgString, textBgString, textFontString];
+        textSettingsString = [NSString stringWithFormat:@"%@%@%@", textFgString, textBgString, textFontString];
     }
     
     //text encoding
-    if ([self[AppSpecKey_TextEncoding] intValue] != DEFAULT_OUTPUT_TXT_ENCODING) {
+    if ([self[AppSpecKey_TextEncoding] intValue] != DEFAULT_TEXT_ENCODING) {
         NSString *str = shortOpts ? @"-E" : @"--text-encoding";
         textEncodingString = [NSString stringWithFormat:@" %@ %d ", str, [self[AppSpecKey_TextEncoding] intValue]];
     }
@@ -844,8 +844,8 @@
         iconParamStr = [iconParamStr stringByAppendingFormat:@" %@ '%@' ", str, self[AppSpecKey_DocIconPath]];
     }
     
-    //status menu settings, if output mode is status menu
-    if (OutputTypeForString(self[AppSpecKey_InterfaceType]) == PlatypusOutputType_StatusMenu) {
+    //status menu settings, if interface type is status menu
+    if (InterfaceTypeForString(self[AppSpecKey_InterfaceType]) == PlatypusInterfaceType_StatusMenu) {
         // -K kind
         NSString *str = shortOpts ? @"-K" : @"--status-item-kind";
         statusMenuOptionsString = [statusMenuOptionsString stringByAppendingFormat:@"%@ '%@' ", str, self[AppSpecKey_StatusItemDisplayType]];
@@ -890,9 +890,9 @@
         identifierArg = [NSString stringWithFormat: @" %@ %@ ", str, self[AppSpecKey_Identifier]];
     }
     
-    // output type
-    NSString *str = shortOpts ? @"-o" : @"--output-type";
-    NSString *outputArg = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_InterfaceType]];
+    // interface type
+    NSString *str = shortOpts ? @"-o" : @"--interface-type";
+    NSString *interfaceArg = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_InterfaceType]];
     
     // interpreter
     str = shortOpts ? @"-p" : @"--interpreter";
@@ -906,7 +906,7 @@
                             checkboxParamStr,
                             iconParamStr,
                             appNameArg,
-                            outputArg,
+                            interfaceArg,
                             interpreterArg,
                             authorString,
                             versionString,
@@ -917,7 +917,7 @@
                             bundledFilesCmdString,
                             parametersString,
                             textEncodingString,
-                            textOutputString,
+                            textSettingsString,
                             statusMenuOptionsString,
                             self[AppSpecKey_ScriptPath],
                             nil];
@@ -933,7 +933,7 @@
  ******************************************************************/
 
 + (NSString *)bundleIdentifierForAppName:(NSString *)appName authorName:(NSString *)authorName usingDefaults:(BOOL)def {
-    if (appName == nil || [appName isEqualToString:@""]) {
+    if (appName == nil) {
         appName = DEFAULT_APP_NAME;
     }
     NSString *defaults = def ? [DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"] : nil;
