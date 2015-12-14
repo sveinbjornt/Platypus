@@ -295,6 +295,7 @@
 		F4D0F2431C1E1B020065AD25 /* Status-Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Status-Menu.png"; path = "Icons/InterfaceTypeIcons/Status-Menu.png"; sourceTree = SOURCE_ROOT; };
 		F4D0F2441C1E1B020065AD25 /* Text-Window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Text-Window.png"; path = "Icons/InterfaceTypeIcons/Text-Window.png"; sourceTree = SOURCE_ROOT; };
 		F4D0F2451C1E1B020065AD25 /* Web-View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-View.png"; path = "Icons/InterfaceTypeIcons/Web-View.png"; sourceTree = SOURCE_ROOT; };
+		F4D0F24E1C1E45C00065AD25 /* build_cat2html.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = build_cat2html.sh; path = CommandLineTool/build_cat2html.sh; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
@@ -743,6 +744,16 @@
 			name = NSResponderNotifyingTableView;
 			sourceTree = "<group>";
 		};
+		F4D0F24D1C1E443E0065AD25 /* cat2html */ = {
+			isa = PBXGroup;
+			children = (
+				F4D0F24E1C1E45C00065AD25 /* build_cat2html.sh */,
+				F4462E3C14FBDA4200E13563 /* cat2html */,
+				F4B87C501B3F04F400F4B8BE /* cat2html.l */,
+			);
+			name = cat2html;
+			sourceTree = "<group>";
+		};
 		F4D6569814C4BFD6003552F9 /* Interpreters */ = {
 			isa = PBXGroup;
 			children = (
@@ -783,12 +794,11 @@
 			children = (
 				F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */,
 				F4FE747E11F793BA005FC23A /* platypus.1 */,
+				F4FB337614FBDE2200BAECEB /* platypus.man.html */,
 				F4462E3E14FBDA4D00E13563 /* make_man_html.sh */,
 				F4462E3F14FBDA4D00E13563 /* make_man_pdf.sh */,
 				F4FB337814FBE04500BAECEB /* update_website_docs.sh */,
-				F4462E3C14FBDA4200E13563 /* cat2html */,
-				F4B87C501B3F04F400F4B8BE /* cat2html.l */,
-				F4FB337614FBDE2200BAECEB /* platypus.man.html */,
+				F4D0F24D1C1E443E0065AD25 /* cat2html */,
 			);
 			name = "Command Line Tool";
 			sourceTree = "<group>";
