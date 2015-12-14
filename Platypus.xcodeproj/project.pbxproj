@@ -95,7 +95,6 @@
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A841BD1BFAB00F411BD /* STDragImageView.m */; };
-		F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4FE747E11F793BA005FC23A /* platypus.1 */; };
 		F4D0F2311C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */; };
 		F4D0F2461C1E1B020065AD25 /* Droplet.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D0F2401C1E1B020065AD25 /* Droplet.png */; };
 		F4D0F2471C1E1B020065AD25 /* None.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D0F2411C1E1B020065AD25 /* None.png */; };
@@ -110,7 +109,6 @@
 		F4F2F3B61BF96C4400FE463C /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B21BF96C4400FE463C /* NoodleLineNumberView.m */; };
 		F4F2F3B71BF96C4400FE463C /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B41BF96C4400FE463C /* NSTextView+JSDExtensions.m */; };
 		F4F2F3BA1BF96C5C00FE463C /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B91BF96C5C00FE463C /* VDKQueue.m */; };
-		F4FB337714FBDE2200BAECEB /* platypus.man.html in Resources */ = {isa = PBXBuildFile; fileRef = F4FB337614FBDE2200BAECEB /* platypus.man.html */; };
 		F4FB338114FBFC7C00BAECEB /* License.html in Resources */ = {isa = PBXBuildFile; fileRef = F4FB338014FBFC7C00BAECEB /* License.html */; };
 		F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
 		F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
@@ -189,9 +187,6 @@
 		F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlatypusAppcast.xml; sourceTree = "<group>"; };
 		F445EA8214FABE6500DCCDB3 /* sign_update.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = sign_update.rb; sourceTree = "<group>"; };
 		F445EA8314FABE6500DCCDB3 /* update_appcast.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_appcast.sh; sourceTree = "<group>"; };
-		F4462E3C14FBDA4200E13563 /* cat2html */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = cat2html; path = CommandLineTool/cat2html; sourceTree = "<group>"; };
-		F4462E3E14FBDA4D00E13563 /* make_man_html.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = make_man_html.sh; path = CommandLineTool/make_man_html.sh; sourceTree = "<group>"; };
-		F4462E3F14FBDA4D00E13563 /* make_man_pdf.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = make_man_pdf.sh; path = CommandLineTool/make_man_pdf.sh; sourceTree = "<group>"; };
 		F44A77401C1882DA003CCA7A /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = InstallCommandLineTool.sh; path = Application/Resources/InstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F44A77411C1882DA003CCA7A /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = UninstallCommandLineTool.sh; path = Application/Resources/UninstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F44A77421C1882DA003CCA7A /* UninstallPlatypus.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = UninstallPlatypus.sh; path = Application/Resources/UninstallPlatypus.sh; sourceTree = "<group>"; };
@@ -277,8 +272,15 @@
 		F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PlatypusDefault.icns; path = Icons/PlatypusDefault.icns; sourceTree = SOURCE_ROOT; };
 		F4AF785B14D1E5F200544C1B /* STDragWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragWebView.h; path = Shared/STDragWebView.h; sourceTree = "<group>"; };
 		F4AF785C14D1E5F200544C1B /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = Shared/STDragWebView.m; sourceTree = "<group>"; };
+		F4B155F11C1EF77D00E6E941 /* build_cat2html.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_cat2html.sh; sourceTree = "<group>"; };
+		F4B155F21C1EF77D00E6E941 /* cat2html */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cat2html; sourceTree = "<group>"; };
+		F4B155F31C1EF77D00E6E941 /* cat2html.l */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.lex; path = cat2html.l; sourceTree = "<group>"; };
+		F4B155F41C1EF77D00E6E941 /* make_man_html.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = make_man_html.sh; sourceTree = "<group>"; };
+		F4B155F51C1EF77D00E6E941 /* make_man_pdf.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = make_man_pdf.sh; sourceTree = "<group>"; };
+		F4B155F61C1EF77D00E6E941 /* platypus.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = platypus.1; sourceTree = "<group>"; };
+		F4B155F71C1EF77D00E6E941 /* platypus.man.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = platypus.man.html; sourceTree = "<group>"; };
+		F4B155F81C1EF77D00E6E941 /* update_website_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_website_docs.sh; sourceTree = "<group>"; };
 		F4B87C191B3C997300F4B8BE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
-		F4B87C501B3F04F400F4B8BE /* cat2html.l */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.lex; name = cat2html.l; path = CommandLineTool/cat2html.l; sourceTree = "<group>"; };
 		F4B87C581B403A6E00F4B8BE /* build_release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_release.sh; sourceTree = "<group>"; };
 		F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = src_loc_stats.sh; sourceTree = "<group>"; };
 		F4B87C5A1B403A6E00F4B8BE /* uncrustify.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
@@ -295,7 +297,6 @@
 		F4D0F2431C1E1B020065AD25 /* Status-Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Status-Menu.png"; path = "Icons/InterfaceTypeIcons/Status-Menu.png"; sourceTree = SOURCE_ROOT; };
 		F4D0F2441C1E1B020065AD25 /* Text-Window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Text-Window.png"; path = "Icons/InterfaceTypeIcons/Text-Window.png"; sourceTree = SOURCE_ROOT; };
 		F4D0F2451C1E1B020065AD25 /* Web-View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Web-View.png"; path = "Icons/InterfaceTypeIcons/Web-View.png"; sourceTree = SOURCE_ROOT; };
-		F4D0F24E1C1E45C00065AD25 /* build_cat2html.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = build_cat2html.sh; path = CommandLineTool/build_cat2html.sh; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
@@ -309,13 +310,10 @@
 		F4F2F3B41BF96C4400FE463C /* NSTextView+JSDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTextView+JSDExtensions.m"; path = "Shared/Others/NSTextView+JSDExtensions/NSTextView+JSDExtensions.m"; sourceTree = SOURCE_ROOT; };
 		F4F2F3B81BF96C5C00FE463C /* VDKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VDKQueue.h; path = Shared/Others/VDKQueue/VDKQueue.h; sourceTree = "<group>"; };
 		F4F2F3B91BF96C5C00FE463C /* VDKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VDKQueue.m; path = Shared/Others/VDKQueue/VDKQueue.m; sourceTree = "<group>"; };
-		F4FB337614FBDE2200BAECEB /* platypus.man.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = platypus.man.html; path = CommandLineTool/platypus.man.html; sourceTree = "<group>"; };
-		F4FB337814FBE04500BAECEB /* update_website_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = update_website_docs.sh; path = CommandLineTool/update_website_docs.sh; sourceTree = "<group>"; };
 		F4FB338014FBFC7C00BAECEB /* License.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = License.html; sourceTree = "<group>"; };
 		F4FE739611F792D5005FC23A /* PlatypusAppSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusAppSpec.h; path = Shared/PlatypusAppSpec.h; sourceTree = "<group>"; };
 		F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusAppSpec.m; path = Shared/PlatypusAppSpec.m; sourceTree = "<group>"; };
 		F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = platypus_command_line_tool.m; path = CommandLineTool/platypus_command_line_tool.m; sourceTree = "<group>"; };
-		F4FE747E11F793BA005FC23A /* platypus.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; name = platypus.1; path = CommandLineTool/platypus.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -703,6 +701,30 @@
 			name = STDragWebView;
 			sourceTree = "<group>";
 		};
+		F4B155EE1C1EF77D00E6E941 /* man */ = {
+			isa = PBXGroup;
+			children = (
+				F4B155F01C1EF77D00E6E941 /* cat2html */,
+				F4B155F41C1EF77D00E6E941 /* make_man_html.sh */,
+				F4B155F51C1EF77D00E6E941 /* make_man_pdf.sh */,
+				F4B155F61C1EF77D00E6E941 /* platypus.1 */,
+				F4B155F71C1EF77D00E6E941 /* platypus.man.html */,
+				F4B155F81C1EF77D00E6E941 /* update_website_docs.sh */,
+			);
+			name = man;
+			path = CommandLineTool/man;
+			sourceTree = "<group>";
+		};
+		F4B155F01C1EF77D00E6E941 /* cat2html */ = {
+			isa = PBXGroup;
+			children = (
+				F4B155F11C1EF77D00E6E941 /* build_cat2html.sh */,
+				F4B155F21C1EF77D00E6E941 /* cat2html */,
+				F4B155F31C1EF77D00E6E941 /* cat2html.l */,
+			);
+			path = cat2html;
+			sourceTree = "<group>";
+		};
 		F4B5DE431491A00900C43901 /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,16 +766,6 @@
 			name = NSResponderNotifyingTableView;
 			sourceTree = "<group>";
 		};
-		F4D0F24D1C1E443E0065AD25 /* cat2html */ = {
-			isa = PBXGroup;
-			children = (
-				F4D0F24E1C1E45C00065AD25 /* build_cat2html.sh */,
-				F4462E3C14FBDA4200E13563 /* cat2html */,
-				F4B87C501B3F04F400F4B8BE /* cat2html.l */,
-			);
-			name = cat2html;
-			sourceTree = "<group>";
-		};
 		F4D6569814C4BFD6003552F9 /* Interpreters */ = {
 			isa = PBXGroup;
 			children = (
@@ -793,12 +805,7 @@
 			isa = PBXGroup;
 			children = (
 				F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */,
-				F4FE747E11F793BA005FC23A /* platypus.1 */,
-				F4FB337614FBDE2200BAECEB /* platypus.man.html */,
-				F4462E3E14FBDA4D00E13563 /* make_man_html.sh */,
-				F4462E3F14FBDA4D00E13563 /* make_man_pdf.sh */,
-				F4FB337814FBE04500BAECEB /* update_website_docs.sh */,
-				F4D0F24D1C1E443E0065AD25 /* cat2html */,
+				F4B155EE1C1EF77D00E6E941 /* man */,
 			);
 			name = "Command Line Tool";
 			sourceTree = "<group>";
@@ -941,7 +948,6 @@
 				F4DC075311F629A40043764E /* Readme.html in Resources */,
 				F43E1D7C1BC8048400622B5F /* Expect.png in Resources */,
 				F44A77431C1882DA003CCA7A /* InstallCommandLineTool.sh in Resources */,
-				F4C755C611F9AF8F006FB713 /* platypus.1 in Resources */,
 				F4D0F24B1C1E1B020065AD25 /* Web-View.png in Resources */,
 				F48002CB121AF042003FB5B3 /* images in Resources */,
 				F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */,
@@ -968,7 +974,6 @@
 				F4975DBE1B2E71FC0099D16E /* Editor.xib in Resources */,
 				F43E1D811BC8048400622B5F /* Ruby.png in Resources */,
 				F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */,
-				F4FB337714FBDE2200BAECEB /* platypus.man.html in Resources */,
 				F4FB338114FBFC7C00BAECEB /* License.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1030,7 +1035,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Create HTML document from man page\n/usr/bin/man CommandLineTool/platypus.1 | CommandLineTool/cat2html > CommandLineTool/platypus.man.html\n";
+			shellScript = "# Create HTML document from man page\n/usr/bin/man CommandLineTool/man/platypus.1 | CommandLineTool/man/cat2html/cat2html > CommandLineTool/man/platypus.man.html\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
