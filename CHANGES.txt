@@ -26,8 +26,8 @@ For 5.1
     TODO: Add WebView example listing dropped files
     TODO: Make clearAllFields stuff use default spec
     TODO: Use NSString constants for NSUserDefault string keys
-    TODO: Give image names for interface type and interpreter a filename prefix indicating family
 
+    * Give image names for interface type and interpreter a filename prefix indicating family
     * Added build script for cat2html
     * Added support for multiple arguments to --bundled-file in command line tool via "|" separator
     * Various minor UI improvements (button status in args & drop settings window)
