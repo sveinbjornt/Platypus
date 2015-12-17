@@ -92,7 +92,7 @@
 }
 
 - (IBAction)statusItemDisplayTypeChanged:(id)sender {
-    BOOL isTitleStyle = ([sender indexOfSelectedItem] == PlatypusStatusItemStyle_Title);
+    BOOL isTitleStyle = ((PlatypusStatusItemStyle)[sender indexOfSelectedItem] == PlatypusStatusItemStyle_Title);
     
     [iconLabelTextField setHidden:isTitleStyle];
     [iconImageView setHidden:isTitleStyle];
@@ -147,7 +147,7 @@
     [previewStatusItem setMenu:previewStatusItemMenu];
     
     // set icon / title depending on settings
-    PlatypusStatusItemStyle displayStyle = [statusItemStylePopupButton indexOfSelectedItem];
+    PlatypusStatusItemStyle displayStyle = (PlatypusStatusItemStyle)[statusItemStylePopupButton indexOfSelectedItem];
     if (displayStyle == PlatypusStatusItemStyle_Title) {
         [previewStatusItem setTitle:[titleTextField stringValue]];
     }
@@ -176,10 +176,6 @@
 - (void)killStatusItem {
     [[NSStatusBar systemStatusBar] removeStatusItem:previewStatusItem];
     previewStatusItem = nil;
-}
-
-- (BOOL)showingStatusItem {
-    return (previewStatusItem != nil);
 }
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {

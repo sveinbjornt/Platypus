@@ -52,7 +52,7 @@
 @implementation ShellCommandController
 
 - (instancetype)init {
-    return [super initWithWindowNibName:@"ShellCommandWindow"];
+    return [self initWithWindowNibName:@"ShellCommandWindow"];
 }
 
 - (void)awakeFromNib {

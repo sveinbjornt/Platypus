@@ -299,14 +299,15 @@
     // if the default editor is the built-in editor, we pop down the editor sheet
     if ([[DEFAULTS stringForKey:@"DefaultEditor"] isEqualToString:DEFAULT_EDITOR]) {
         [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
-    } else { // open it in the external application
+    } else {
+        // open it in the external application
         NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
         if ([WORKSPACE fullPathForApplication:defaultEditor] != nil) {
             [WORKSPACE openFile:[scriptPathTextField stringValue] withApplication:defaultEditor];
         } else {
             // Complain if editor is not found, set it to the built-in editor
             [Alerts alert:@"Application not found"
-            subTextFormat:@"The application '%@' could not be found on your system.  Reverting to the built-in editor.", defaultEditor];
+            subTextFormat:@"The application '%@' could not be found on your system. Reverting to the built-in editor.", defaultEditor];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
             [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
         }
@@ -328,10 +329,10 @@
     [[self window] setTitle:PROGRAM_NAME];
 }
 
-- (void)openScriptInBuiltInEditor:(NSString *)path {
+- (void)openScriptInBuiltInEditor:(NSString *)scriptPath {
     [[self window] setTitle:[NSString stringWithFormat:@"%@ - Script Editor", PROGRAM_NAME]];
     EditorController *controller = [[EditorController alloc] init];
-    [controller showModalEditorSheetForFile:[scriptPathTextField stringValue] window:[self window]];
+    [controller showModalEditorSheetForFile:scriptPath window:[self window]];
     [[self window] setTitle:PROGRAM_NAME];
 }
 
@@ -583,7 +584,7 @@
     [bundleIdentifierTextField setStringValue:spec[AppSpecKey_Identifier]];
 
     if (IsValidInterfaceTypeString(spec[AppSpecKey_InterfaceType])) {
-        int index = InterfaceTypeForString(spec[AppSpecKey_InterfaceType]);
+        PlatypusInterfaceType index = InterfaceTypeForString(spec[AppSpecKey_InterfaceType]);
         [interfaceTypePopupButton selectItemAtIndex:index];
         [self interfaceTypeDidChange:nil];
     } else {
@@ -639,7 +640,8 @@
             [statusItemSettingsController setTitle:spec[AppSpecKey_StatusItemTitle]];
         }
         [statusItemSettingsController setDisplayType:spec[AppSpecKey_StatusItemDisplayType]];
-        [statusItemSettingsController setUsesSystemFont:spec[AppSpecKey_StatusItemUseSysfont]];
+        [statusItemSettingsController setUsesSystemFont:[spec[AppSpecKey_StatusItemUseSysfont] boolValue]];
+        [statusItemSettingsController setUsesTemplateIcon:[spec[AppSpecKey_StatusItemIconIsTemplate] boolValue]];
     }
     
     //update buttons

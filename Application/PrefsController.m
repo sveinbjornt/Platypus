@@ -60,11 +60,11 @@
 
 - (IBAction)showWindow:(id)sender {
     [self window];
-    [self updateCLTStatus:CLTStatusTextField];
+    [self updateCLTStatus];
 
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
-        [self setIconForEditorAtIndex:[defaultEditorPopupButton indexOfSelectedItem]];
+        [self setIconForEditorMenuItemAtIndex:[defaultEditorPopupButton indexOfSelectedItem]];
     });
     
     [super showWindow:sender];
@@ -72,11 +72,11 @@
 
 - (void)setIconsForEditorMenu {
     for (int i = 0; i < [defaultEditorPopupButton numberOfItems]; i++) {
-        [self setIconForEditorAtIndex:i];
+        [self setIconForEditorMenuItemAtIndex:i];
     }
 }
 
-- (void)setIconForEditorAtIndex:(int)index {
+- (void)setIconForEditorMenuItemAtIndex:(int)index {
     NSMenuItem *menuItem = [defaultEditorPopupButton itemAtIndex:index];
     if ([menuItem image] != nil) {
         return; // already has an icon
@@ -247,7 +247,7 @@
     return YES;
 }
 
-- (void)updateCLTStatus:(NSTextField *)textField {
+- (void)updateCLTStatus {
     NSString *buttonTitle = [PrefsController isCommandLineToolInstalled] ? @"Uninstall" : @"Install";
     [installCLTButton setTitle:buttonTitle];
     [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
@@ -337,7 +337,7 @@
     [FILEMGR removeItemAtPath:tmpScriptPath error:nil];
     PLog(@"Removed tmp script: %@", tmpScriptPath);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self updateCLTStatus:CLTStatusTextField];
+    [self updateCLTStatus];
 }
 
 @end

@@ -71,13 +71,6 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super init]) {
-        properties = [[NSMutableDictionary alloc] initWithCoder:aDecoder];
-    }
-    return self;
-}
-
 - (void)removeObjectForKey:(id)aKey {
     [properties removeObjectForKey:aKey];
 }
@@ -428,7 +421,7 @@
     // copy bundled files to Resources folder
     // .app/Contents/Resources/*
     
-    int numBundledFiles = [self[AppSpecKey_BundledFiles] count];
+    NSInteger numBundledFiles = [self[AppSpecKey_BundledFiles] count];
     if (numBundledFiles) {
         [self report:@"Copying %d bundled files", numBundledFiles];
     }

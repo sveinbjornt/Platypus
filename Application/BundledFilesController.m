@@ -406,23 +406,22 @@
     return NSDragOperationLink;
 }
 
-- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+- (CGFloat)tableView:(NSTableView *)theTableView heightOfRow:(NSInteger)row {
     return 20;
 }
 
 #pragma mark - Menu delegate
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-    int selectedRow = [tableView selectedRow];
+    if ([tableView selectedRow] == -1) {
+        return NO;
+    }
     
     if ([[anItem title] isEqualToString:@"Add File"] || [[anItem title] isEqualToString:@"Add File To Bundle"]) {
         return YES;
     }
     if ([[anItem title] isEqualToString:@"Clear File List"] && [files count] >= 1) {
         return YES;
-    }
-    if (selectedRow == -1) {
-        return NO;
     }
     
     // Folders are never editable

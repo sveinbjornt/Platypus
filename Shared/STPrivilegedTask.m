@@ -260,7 +260,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     args[numberOfArguments] = NULL;
     
     // change to the current dir specified
-    char *prevCwd = (char *)getcwd(nil, 0);
+    char *prevCwd = getcwd(nil, 0);
     chdir([cwd fileSystemRepresentation]);
     
     //use Authorization Reference to execute script with privileges

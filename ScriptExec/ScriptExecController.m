@@ -264,7 +264,7 @@
         
         // encoding
         if (appSettingsDict[AppSpecKey_TextEncoding] != nil) {
-            textEncoding = (int)[appSettingsDict[AppSpecKey_TextEncoding] intValue];
+            textEncoding = (NSStringEncoding)[appSettingsDict[AppSpecKey_TextEncoding] intValue];
         }
     }
     
@@ -297,7 +297,7 @@
     
     interpreterArgs = [appSettingsDict[AppSpecKey_InterpreterArgs] copy];
     scriptArgs = [appSettingsDict[AppSpecKey_ScriptArgs] copy];
-    execStyle = [appSettingsDict[AppSpecKey_Authenticate] boolValue];
+    execStyle = (PlatypusExecStyle)[appSettingsDict[AppSpecKey_Authenticate] intValue];
     remainRunning = [appSettingsDict[AppSpecKey_RemainRunning] boolValue];
     secureScript = [appSettingsDict[AppSpecKey_Secure] boolValue];
     isDroppable = [appSettingsDict[AppSpecKey_Droppable] boolValue];
@@ -1202,7 +1202,7 @@
 // show / hide the details text field in progress bar interface
 - (IBAction)toggleDetails:(id)sender {
     NSRect winRect = [progressBarWindow frame];
-    static const int detailsHeight = 224;
+    static const NSInteger detailsHeight = 224;
     
     if ([sender state] == NSOffState) {
         winRect.origin.y += detailsHeight;

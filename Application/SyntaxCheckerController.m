@@ -44,7 +44,7 @@
 @implementation SyntaxCheckerController
 
 - (instancetype)init {
-    return [super initWithWindowNibName:@"SyntaxChecker"];
+    return [self initWithWindowNibName:@"SyntaxChecker"];
 }
 
 - (void)awakeFromNib {

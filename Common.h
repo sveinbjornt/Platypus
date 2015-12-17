@@ -151,7 +151,7 @@ typedef enum PlatypusStatusItemStyle {
 
 #define IsValidInterfaceTypeString(X)   [PLATYPUS_INTERFACE_TYPE_NAMES containsObject:(X)]
 
-#define InterfaceTypeForString(X)       [PLATYPUS_INTERFACE_TYPE_NAMES indexOfObject:(X)]
+#define InterfaceTypeForString(X)       (PlatypusInterfaceType)[PLATYPUS_INTERFACE_TYPE_NAMES indexOfObject:(X)]
 
 #define IsTextStyledInterfaceType(X)    (   (X) == PlatypusInterfaceType_ProgressBar || \
                                             (X) == PlatypusInterfaceType_TextWindow || \

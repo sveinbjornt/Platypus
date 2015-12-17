@@ -273,7 +273,7 @@
     
     //let's see if the script type is supported for syntax checking
     //if so, we set up the task's launch path as the script interpreter and set the relevant flags and arguments
-    NSArray *args = @[];
+    NSArray *args;
     if ([interpreterPath isEqualToString:@"/bin/sh"]) {
         args = @[@"-n", scriptPath];
     } else if ([interpreterPath isEqualToString:@"/bin/bash"]) {

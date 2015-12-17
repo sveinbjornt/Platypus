@@ -69,20 +69,11 @@
     }
 }
 
-- (BOOL)hasItem:(NSString *)item {
-    for (NSDictionary *i in items) {
-        if ([i[@"name"] isEqualToString:item]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
 - (void)removeAllItems {
     [items removeAllObjects];
 }
 
-- (int)itemCount {
+- (NSUInteger)itemCount {
     return [items count];
 }
 

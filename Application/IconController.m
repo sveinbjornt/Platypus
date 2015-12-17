@@ -259,15 +259,12 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
             iconImage = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
             [iconImage setSize:NSMakeSize(512, 512)];
             iconName = @"Generic Application";
-            iconPath = nil;
             
-            return @{@"Image": iconImage, @"Name": iconName};
+            return @{@"Name": iconName, @"Image": iconImage};
         }
-            break;
-        
     }
     
-    return @{@"Image": iconImage, @"Name": iconName, @"Path": iconPath};
+    return @{@"Name": iconName, @"Path": iconPath, @"Image": iconImage};
 }
 
 - (IBAction)setToDefaults {

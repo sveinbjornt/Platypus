@@ -265,11 +265,9 @@
     }
     
     NSTableView *tableView = sender;
-
-    int selectedRow = [tableView selectedRow];
-    int rowToSelect;
+    NSInteger selectedRow = [tableView selectedRow];
     
-    if (selectedRow == -1 || ![args count]) {
+    if (selectedRow == -1 || [args count] == 0) {
         return;
     }
     
@@ -279,7 +277,7 @@
         return;
     }
     
-    rowToSelect = selectedRow - 1;
+    NSInteger rowToSelect = selectedRow - 1;
     
     [tableView reloadData];
     [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];

@@ -38,7 +38,7 @@ typedef enum {
 
 @interface TypeListController : NSObject <NSTableViewDataSource>
 
-@property (nonatomic, readonly) int itemCount;
+@property (nonatomic, readonly) NSUInteger itemCount;
 @property (nonatomic, readonly, copy) NSArray *itemsArray;
 
 - (void)addNewItem;

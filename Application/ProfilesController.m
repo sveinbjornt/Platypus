@@ -45,7 +45,6 @@
 
 - (IBAction)loadProfile:(id)sender;
 - (IBAction)saveProfile:(id)sender;
-- (IBAction)saveProfileToLocation:(id)sender;
 - (IBAction)clearAllProfiles:(id)sender;
 - (IBAction)constructMenus:(id)sender;
 
@@ -110,23 +109,7 @@
 
 #pragma mark - Saving
 
-- (IBAction)saveProfile:(id)sender; {
-    if ([platypusController verifyFieldContents] == NO) {
-        return;
-    }
-    
-    // get profile from platypus controls
-    PlatypusAppSpec *spec = [platypusController appSpecFromControls];
-
-    // create path for profile document and write to it
-    NSString *profileDestPath = [NSString stringWithFormat:@"%@/%@.%@",
-                                 PROFILES_FOLDER,
-                                 spec[AppSpecKey_Name],
-                                 PROGRAM_PROFILE_SUFFIX];
-    [spec writeToFile:profileDestPath];
-}
-
-- (IBAction)saveProfileToLocation:(id)sender {
+- (IBAction)saveProfile:(id)sender {
     if ([platypusController verifyFieldContents] == NO) {
         return;
     }
@@ -194,7 +177,7 @@
     [examplesFolderItem setTarget:self];
     [examplesFolderItem setEnabled:YES];
     
-    [(NSMenuItem *)examplesMenuItem setSubmenu:examplesMenu];
+    [examplesMenuItem setSubmenu:examplesMenu];
     
     //clear out all menu items
     while ([profilesMenu numberOfItems] > 6) {

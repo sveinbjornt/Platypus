@@ -56,7 +56,7 @@
 @implementation EditorController
 
 - (instancetype)init {
-    return [super initWithWindowNibName:@"Editor"];
+    return [self initWithWindowNibName:@"Editor"];
 }
 
 - (void)awakeFromNib {
