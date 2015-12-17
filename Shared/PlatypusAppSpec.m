@@ -173,7 +173,7 @@
     self[AppSpecKey_InterfaceType] = DEFAULT_INTERFACE_TYPE_STRING;
     self[AppSpecKey_IconPath] = CMDLINE_ICON_PATH;
     
-    self[AppSpecKey_Interpreter] = DEFAULT_INTERPRETER;
+    self[AppSpecKey_Interpreter] = DEFAULT_INTERPRETER_PATH;
     self[AppSpecKey_InterpreterArgs] = [NSArray array];
     self[AppSpecKey_ScriptArgs] = [NSArray array];
     self[AppSpecKey_Version] = DEFAULT_VERSION;
@@ -228,19 +228,19 @@
     self[AppSpecKey_ScriptPath] = scriptPath;
     
     //determine app name based on script filename
-    self[AppSpecKey_Name] = [ScriptAnalyser appNameFromScriptFilePath:scriptPath];
+    self[AppSpecKey_Name] = [ScriptAnalyser appNameFromScriptFile:scriptPath];
     
     //find an interpreter for it
-    NSString *interpreter = [ScriptAnalyser determineInterpreterForScriptFile:scriptPath];
-    if (interpreter == nil) {
-        interpreter = DEFAULT_INTERPRETER;
+    NSString *interpreterPath = [ScriptAnalyser determineInterpreterPathForScriptFile:scriptPath];
+    if (interpreterPath == nil || [interpreterPath isEqualToString:@""]) {
+        interpreterPath = DEFAULT_INTERPRETER_PATH;
     } else {
         // get parameters to interpreter
-        NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[ScriptAnalyser parseInterpreterFromShebang:scriptPath]];
+        NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[ScriptAnalyser parseInterpreterInScriptFile:scriptPath]];
         [shebangCmdComponents removeObjectAtIndex:0];
         self[AppSpecKey_InterpreterArgs] = shebangCmdComponents;
     }
-    self[AppSpecKey_Interpreter] = interpreter;
+    self[AppSpecKey_Interpreter] = interpreterPath;
     
     // find parent folder wherefrom we create destination path of app bundle
     NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];

@@ -526,7 +526,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="72A67047-F32E-437D-902E-914C4E92438F" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="1969D7F0-4776-4E73-A1D5-9A970E48F55E" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -619,7 +619,7 @@ DQ
                 <outlet property="editScriptButton" destination="324" id="491"/>
                 <outlet property="iconController" destination="1215" id="eHO-cn-oEo"/>
                 <outlet property="interfaceTypePopupButton" destination="4148" id="bD3-ya-OY8"/>
-                <outlet property="interpreterTextField" destination="305" id="337"/>
+                <outlet property="interpreterPathTextField" destination="305" id="Yau-Zl-tD3"/>
                 <outlet property="prefsController" destination="11195" id="apI-W1-dIt"/>
                 <outlet property="profilesController" destination="2872" id="Eil-aK-aFN"/>
                 <outlet property="progressBar" destination="11189" id="11191"/>
@@ -2885,7 +2885,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="72A67047-F32E-437D-902E-914C4E92438F" width="16" height="16">
+        <image name="1969D7F0-4776-4E73-A1D5-9A970E48F55E" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

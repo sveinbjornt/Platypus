@@ -47,6 +47,7 @@
 		F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* DefaultStatusMenuIcon.png */; };
 		F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
+		F46DD4631C221FC10019C832 /* Interpreter_Swift.png in Resources */ = {isa = PBXBuildFile; fileRef = F46DD4621C221FC10019C832 /* Interpreter_Swift.png */; };
 		F46EF85113C3F36900E4C0E4 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = F46EF84E13C3F36900E4C0E4 /* Examples */; };
 		F471ED22122DF2D6001F4761 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F471ED21122DF2D6001F4761 /* Credits.html */; };
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
@@ -198,6 +199,7 @@
 		F44E001C1229868100CAC9C2 /* DefaultStatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultStatusMenuIcon.png; sourceTree = "<group>"; };
 		F44EFF0412296F3700CAC9C2 /* NSColor+HexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+HexTools.h"; path = "Shared/NSColor+HexTools.h"; sourceTree = "<group>"; };
 		F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+HexTools.m"; path = "Shared/NSColor+HexTools.m"; sourceTree = "<group>"; };
+		F46DD4621C221FC10019C832 /* Interpreter_Swift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Interpreter_Swift.png; path = Icons/Interpreters/Interpreter_Swift.png; sourceTree = SOURCE_ROOT; };
 		F46EF84E13C3F36900E4C0E4 /* Examples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Examples; sourceTree = "<group>"; };
 		F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusAppIcon.icns; sourceTree = "<group>"; };
 		F471ED21122DF2D6001F4761 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = Credits.html; sourceTree = "<group>"; };
@@ -783,6 +785,7 @@
 				F43E1D751BC8048400622B5F /* Interpreter_Tcl.png */,
 				F43E1D6E1BC8048400622B5F /* Interpreter_Expect.png */,
 				F43E1D711BC8048400622B5F /* Interpreter_PHP.png */,
+				F46DD4621C221FC10019C832 /* Interpreter_Swift.png */,
 			);
 			name = Interpreters;
 			path = ../Images/InterpreterIcons;
@@ -958,6 +961,7 @@
 				F4D0F2491C1E1B020065AD25 /* InterfaceType_Status-Menu.png in Resources */,
 				F43E1D781BC8048400622B5F /* Interpreter_AppleScript.png in Resources */,
 				F44A77441C1882DA003CCA7A /* UninstallCommandLineTool.sh in Resources */,
+				F46DD4631C221FC10019C832 /* Interpreter_Swift.png in Resources */,
 				F471ED22122DF2D6001F4761 /* Credits.html in Resources */,
 				F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */,
 				F426222B1C03B4B00052BA33 /* ApplicationImages.xcassets in Resources */,

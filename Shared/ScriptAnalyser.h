@@ -32,16 +32,16 @@
 
 @interface ScriptAnalyser : NSObject
 
-+ (NSArray *)interpreters;
-+ (NSArray *)interpreterDisplayNames;
-+ (NSString *)helloWorldProgramForDisplayName:(NSString *)name;
-+ (NSString *)displayNameForInterpreter:(NSString *)theInterpreter;
-+ (NSString *)interpreterForDisplayName:(NSString *)name;
-+ (NSString *)interpreterForFilenameSuffix:(NSString *)fileName;
-+ (NSString *)filenameSuffixForInterpreter:(NSString *)interpreter;
-+ (NSArray *)parseInterpreterFromShebang:(NSString *)path;
-+ (NSString *)appNameFromScriptFilePath:(NSString *)path;
-+ (NSString *)determineInterpreterForScriptFile:(NSString *)path;
++ (NSArray OF_NSDICTIONARY *)interpreters;
++ (NSArray OF_NSSTRING *)interpreterDisplayNames;
++ (NSString *)helloWorldProgramForDisplayName:(NSString *)displayName;
++ (NSString *)displayNameForInterpreterPath:(NSString *)interpreterPath;
++ (NSString *)interpreterPathForDisplayName:(NSString *)displayName;
++ (NSString *)interpreterPathForFilenameSuffix:(NSString *)fileName;
++ (NSString *)filenameSuffixForInterpreterPath:(NSString *)interpreter;
++ (NSArray OF_NSSTRING *)parseInterpreterInScriptFile:(NSString *)scriptPath;
++ (NSString *)appNameFromScriptFile:(NSString *)scriptPath;
++ (NSString *)determineInterpreterPathForScriptFile:(NSString *)scriptPath;
 + (NSString *)checkSyntaxOfFile:(NSString *)scriptPath
          usingInterpreterAtPath:(NSString *)suggestedInterpreter;
 

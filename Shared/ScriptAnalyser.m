@@ -28,157 +28,173 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
 //  This is a class with convenience and analysis methods for the
 //  script file types handled by Platypus.
-//
 
 #import "ScriptAnalyser.h"
 //#import "NSTask+Description.h"
 
 @implementation ScriptAnalyser
 
-+ (NSArray *)interpreters {
++ (NSArray OF_NSDICTIONARY *)interpreters {
     return @[
-        @"/bin/sh",
-        @"/bin/bash",
-        @"/bin/csh",
-        @"/bin/tcsh",
-        @"/bin/ksh",
-        @"/bin/zsh",
-        @"/usr/bin/env",
-        @"/usr/bin/perl",
-        @"/usr/bin/python",
-        @"/usr/bin/ruby",
-        @"/usr/bin/osascript",
-        @"/usr/bin/tclsh",
-        @"/usr/bin/expect",
-        @"/usr/bin/php",
-        @""
+             @{ @"Name":        @"Shell",
+                @"Path":        @"/bin/sh",
+                @"Hello":       @"echo 'Hello, World'",
+                @"Suffixes":    @[@".sh", @".command"] },
+             
+             @{ @"Name":        @"Bash",
+                @"Path":        @"/bin/bash",
+                @"Hello":       @"echo 'Hello, World'",
+                @"Suffixes":    @[@".bash"] },
+
+             @{ @"Name":        @"Csh",
+                @"Path":        @"/bin/csh",
+                @"Hello":       @"echo 'Hello, World'",
+                @"Suffixes":    @[@".csh"] },
+
+             @{ @"Name":        @"Tcsh",
+                @"Path":        @"/bin/tcsh",
+                @"Hello":       @"echo 'Hello, World'",
+                @"Suffixes":    @[@".tcsh"] },
+
+             @{ @"Name":        @"Ksh",
+                @"Path":        @"/bin/ksh",
+                @"Hello":       @"echo 'Hello, World'",
+                @"Suffixes":    @[@".ksh"] },
+
+             @{ @"Name":        @"Zsh",
+                @"Path":        @"/bin/zsh",
+                @"Hello":       @"echo 'Hello, World'",
+                @"Suffixes":    @[@".zsh"] },
+
+             @{ @"Name":        @"Env",
+                @"Path":        @"/usr/bin/env",
+                @"Hello":       @"",
+                @"Suffixes":    @[] },
+
+             @{ @"Name":        @"Perl",
+                @"Path":        @"/usr/bin/perl",
+                @"Hello":       @"print \"Hello, World\\n\";",
+                @"Suffixes":    @[@".pl", @".pm"] },
+             
+             @{ @"Name":        @"Python",
+                @"Path":        @"/usr/bin/python",
+                @"Hello":       @"print \"Hello, World\"",
+                @"Suffixes":    @[@".py", @".python", @".objpy"] },
+             
+             @{ @"Name":        @"Ruby",
+                @"Path":        @"/usr/bin/ruby",
+                @"Hello":       @"puts \"Hello, World\";",
+                @"Suffixes":    @[@".rb", @".rbx", @".ruby", @".rbw"] },
+             
+             @{ @"Name":        @"AppleScript",
+                @"Path":        @"/usr/bin/osascript",
+                @"Hello":       @"display dialog \"Hello, World\" buttons {\"OK\"}",
+                @"Suffixes":    @[@".scpt", @".applescript", @".osascript"] },
+             
+             @{ @"Name":        @"Tcl",
+                @"Path":        @"/usr/bin/tclsh",
+                @"Hello":       @"puts \"Hello, World\";",
+                @"Suffixes":    @[@".tcl"] },
+             
+             @{ @"Name":        @"Expect",
+                @"Path":        @"/usr/bin/expect",
+                @"Hello":       @"send \"Hello, world\\n\"",
+                @"Suffixes":    @[@".exp", @".expect"] },
+             
+             @{ @"Name":        @"PHP",
+                @"Path":        @"/usr/bin/php",
+                @"Hello":       @"<?php\necho \"Hello, World\";\n?>",
+                @"Suffixes":    @[@".php", @".php3", @".php4", @".php5", @".php6", @".phtml"] },
+             
+             @{ @"Name":        @"Swift",
+                @"Path":        @"/usr/bin/swift",
+                @"Hello":       @"print(\"Hello, World\")",
+                @"Suffixes":    @[@".swift"] },
+             
+             @{ @"Name":        @"Other...",
+                @"Path":        @"",
+                @"Hello":       @"",
+                @"Suffixes":    @[] }
     ];
-}
-
-+ (NSArray *)interpreterDisplayNames {
-    return @[
-        @"Shell",
-        @"Bash",
-        @"Csh",
-        @"Tcsh",
-        @"Ksh",
-        @"Zsh",
-        @"Env",
-        @"Perl",
-        @"Python",
-        @"Ruby",
-        @"AppleScript",
-        @"Tcl",
-        @"Expect",
-        @"PHP",
-        @"Other..."
-    ];
-}
-
-// a mapping between scripting languages and a simple hello world
-// program implemented in the scripting language in question
-
-+ (NSDictionary *)interpreterHelloWorlds {
-    return @{
-        @"Shell":           @"echo 'Hello, World'",
-        @"Bash":            @"echo 'Hello, World'",
-        @"Csh":             @"echo 'Hello, World'",
-        @"Tcsh":            @"echo 'Hello, World'",
-        @"Ksh":             @"echo 'Hello, World'",
-        @"Zsh":             @"echo 'Hello, World'",
-        @"Env":             @"",
-        @"Perl":            @"print \"Hello, World\\n\";",
-        @"Python":          @"print \"Hello, World\"",
-        @"Ruby":            @"puts \"Hello, World\";",
-        @"AppleScript":     @"display dialog \"Hello, World\" buttons {\"OK\"}",
-        @"Tcl":             @"puts \"Hello, World\";",
-        @"Expect":          @"send \"Hello, world\\n\"",
-        @"PHP":             @"<?php\necho \"Hello, World\";\n?>",
-        @"Other...":        @""
-    };
-}
-
-+ (NSString *)helloWorldProgramForDisplayName:(NSString *)name {
-    NSArray *displayNames = [ScriptAnalyser interpreterDisplayNames];
-    int index = [displayNames indexOfObject:name];
-    if (index == NSNotFound) {
-        return @"";
-    }
-    NSDictionary *helloWorldDict = [ScriptAnalyser interpreterHelloWorlds];
-    return helloWorldDict[name];
-}
-
-+ (NSString *)displayNameForInterpreter:(NSString *)theInterpreter {
-    NSArray *interpreters = [ScriptAnalyser interpreters];
-    NSArray *displayNames = [ScriptAnalyser interpreterDisplayNames];
-    
-    NSUInteger index = [interpreters indexOfObject:theInterpreter];
-    if (index != NSNotFound) {
-        return displayNames[index];
-    }
-    return @"Other...";
-}
-
-+ (NSString *)interpreterForDisplayName:(NSString *)name {
-    NSArray OF_NSSTRING *interpreterDisplayNames = [ScriptAnalyser interpreterDisplayNames];
-    NSArray OF_NSSTRING *interpreters = [ScriptAnalyser interpreters];
-
-    NSUInteger index = [interpreterDisplayNames indexOfObject:name];
-    return (index == NSNotFound) ? @"" : interpreters[index];
 }
 
 #pragma mark -
 
-+ (NSArray OF_NSARRAY *)interpreterSuffixes {
-    return @[
-        @[@".sh", @".command"],
-        @[@".bash"],
-        @[@".csh"],
-        @[@".tcsh"],
-        @[@".ksh"],
-        @[@".zsh"],
-        @[@".sh"],
-        @[@".pl", @".perl", @".pm"],
-        @[@".py", @".python", @".objpy"],
-        @[@".rb", @".rbx", @".ruby", @".rbw"],
-        @[@".scpt", @".applescript", @".osascript"],
-        @[@".tcl"],
-        @[@".exp", @".expect"],
-        @[@".php", @".php3", @".php4", @".php5", @".phtml"],
-        @[]
-    ];
++ (NSArray OF_NSSTRING *)arrayOfInterpreterValuesForKey:(NSString *)key {
+    NSArray *interpreters = [ScriptAnalyser interpreters];
+    NSMutableArray *arr = [NSMutableArray array];
+    for (NSDictionary *dict in interpreters) {
+        [arr addObject:dict[key]];
+    }
+    return [arr copy];
 }
 
-+ (NSString *)interpreterForFilenameSuffix:(NSString *)fileName {
-    
-    NSArray OF_NSSTRING *interpreters = [ScriptAnalyser interpreters];
-    NSArray OF_NSARRAY *interpreterSuffixes = [ScriptAnalyser interpreterSuffixes];
-    
-    for (int i = 0; i < [interpreterSuffixes count]; i++) {
-        NSArray *suffixes = interpreterSuffixes[i];
++ (NSArray OF_NSSTRING *)interpreterDisplayNames {
+    return [ScriptAnalyser arrayOfInterpreterValuesForKey:@"Name"];
+}
+
+#pragma mark - Mapping
+
++ (NSString *)interpreterPathForDisplayName:(NSString *)displayName {
+    NSArray OF_NSDICTIONARY *interpreters = [ScriptAnalyser interpreters];
+    for (NSDictionary *infoDict in interpreters) {
+        if ([infoDict[@"Name"] isEqualToString:displayName]) {
+            return infoDict[@"Path"];
+        }
+    }
+    return @"";
+}
+
++ (NSString *)displayNameForInterpreterPath:(NSString *)interpreterPath {
+    NSArray OF_NSDICTIONARY *interpreters = [ScriptAnalyser interpreters];
+    for (NSDictionary *infoDict in interpreters) {
+        if ([infoDict[@"Path"] isEqualToString:interpreterPath]) {
+            return infoDict[@"Name"];
+        }
+    }
+    return @"";
+}
+
++ (NSString *)helloWorldProgramForDisplayName:(NSString *)displayName {
+    NSArray OF_NSDICTIONARY *interpreters = [ScriptAnalyser interpreters];
+    for (NSDictionary *infoDict in interpreters) {
+        if ([infoDict[@"Name"] isEqualToString:displayName]) {
+            return infoDict[@"Hello"];
+        }
+    }
+    return @"";
+}
+
+#pragma mark - File suffixes
+
++ (NSString *)interpreterPathForFilenameSuffix:(NSString *)fileName {
+    NSArray OF_NSDICTIONARY *interpreters = [ScriptAnalyser interpreters];
+    for (NSDictionary *infoDict in interpreters) {
+        NSArray *suffixes = infoDict[@"Suffixes"];
         for (NSString *suffix in suffixes) {
             if ([fileName hasSuffix:suffix]) {
-                return interpreters[i];
+                return infoDict[@"Path"];
             }
         }
     }
     return nil;
 }
 
-+ (NSString *)filenameSuffixForInterpreter:(NSString *)interpreter {
-    NSArray OF_NSSTRING *interpreters = [ScriptAnalyser interpreters];
-    NSArray OF_NSARRAY *interpreterSuffixes = [ScriptAnalyser interpreterSuffixes];
-    NSInteger index = [interpreters indexOfObject:interpreter];
-    if (index != NSNotFound) {
-        return interpreterSuffixes[index][0];
++ (NSString *)filenameSuffixForInterpreterPath:(NSString *)interpreterPath {
+    NSArray OF_NSDICTIONARY *interpreters = [ScriptAnalyser interpreters];
+    for (NSDictionary *infoDict in interpreters) {
+        if ([infoDict[@"Path"] isEqualToString:interpreterPath]) {
+            return infoDict[@"Suffixes"];
+        }
     }
-    return @"";
+    return nil;
 }
 
-+ (NSArray *)parseInterpreterFromShebang:(NSString *)path {
+#pragma mark - Script file convenience methods
+
++ (NSArray OF_NSSTRING *)parseInterpreterInScriptFile:(NSString *)path {
     
     // get the first line of the script
     NSString *script = [NSString stringWithContentsOfFile:path encoding:DEFAULT_TEXT_ENCODING error:nil];
@@ -190,25 +206,25 @@
     NSString *firstLine = lines[0];
 
     // if shorter than 2 chars, it can't possibly be a shebang line
-    if ([firstLine length] <= 2) {
+    if ([firstLine length] <= 2 || ([[firstLine substringToIndex:2] isEqualToString:@"#!"] == NO)) {
         return @[@""];
     }
-    
-    // get first two characters of first line
-    NSString *shebang = [firstLine substringToIndex:2];  // first two characters should be #!
-    if (![shebang isEqualToString:@"#!"]) {
-        return @[@""];
-    }
+// TODO: This could be smarter, detect env if not full path following shebang
     
     // get everything that follows after the #!
     // seperate it by whitespaces, in order not to get also the params to the interpreter
     NSString *interpreterCmd = [firstLine substringFromIndex:2];
-    NSArray *words = [interpreterCmd componentsSeparatedByString:@" "];
-    
-    return words; // return array w. interpreter + arguments for it
+    NSMutableArray *interpreterAndArgs = [[interpreterCmd componentsSeparatedByString:@" "] mutableCopy];
+    // remove all empty strings in array
+    for (int i = [interpreterAndArgs count]-1; i > 0; i--) {
+        if ([interpreterAndArgs[i] isEqualToString:@""]) {
+            [interpreterAndArgs removeObjectAtIndex:i];
+        }
+    }
+    return interpreterAndArgs; // return array w. interpreter path + arguments
 }
 
-+ (NSString *)appNameFromScriptFilePath:(NSString *)path {
++ (NSString *)appNameFromScriptFile:(NSString *)path {
     NSString *name = [[path lastPathComponent] stringByDeletingPathExtension];
     
     // replace these common filename word separators w. spaces
@@ -230,59 +246,59 @@
     return [NSString stringWithString:appName];
 }
 
-+ (NSString *)determineInterpreterForScriptFile:(NSString *)path {
-    NSString *interpreter = [ScriptAnalyser parseInterpreterFromShebang:path][0];
-    if (interpreter != nil && ![interpreter isEqualToString:@""]) {
-        return interpreter;
++ (NSString *)determineInterpreterPathForScriptFile:(NSString *)filePath {
+    NSString *interpreterPath = [ScriptAnalyser parseInterpreterInScriptFile:filePath][0];
+    if (interpreterPath != nil && [interpreterPath isEqualToString:@""] == NO) {
+        return interpreterPath;
     }
-    return [ScriptAnalyser interpreterForFilenameSuffix:path];
+    return [ScriptAnalyser interpreterPathForFilenameSuffix:filePath];
 }
 
+#pragma mark - Syntax checking
+
 + (NSString *)checkSyntaxOfFile:(NSString *)scriptPath usingInterpreterAtPath:(NSString *)suggestedInterpreter {
-    NSTask *task;
-    NSString *interpreter = suggestedInterpreter;
-    NSPipe *outputPipe = [NSPipe pipe];
-    NSFileHandle *readHandle;
-    
-    if (![FILEMGR fileExistsAtPath:scriptPath]) { //make sure it exists
-        return @"File does not exist";
+    if ([FILEMGR fileExistsAtPath:scriptPath] == NO) {
+        return [NSString stringWithFormat:@"File does not exist"];
     }
     
-    if (interpreter == nil || [interpreter isEqualToString:@""]) {
-        interpreter = [ScriptAnalyser determineInterpreterForScriptFile:scriptPath];
-    }
+    NSString *interpreterPath = suggestedInterpreter;
     
-    if (interpreter == nil || [interpreter isEqualToString:@""]) {
-        return @"Unable to determine script interpreter";
+    if (interpreterPath == nil || [interpreterPath isEqualToString:@""]) {
+        interpreterPath = [ScriptAnalyser determineInterpreterPathForScriptFile:scriptPath];
+        
+        if (interpreterPath == nil || [interpreterPath isEqualToString:@""]) {
+            return @"Unable to determine script interpreter";
+        }
     }
     
     //let's see if the script type is supported for syntax checking
     //if so, we set up the task's launch path as the script interpreter and set the relevant flags and arguments
     NSArray *args = @[];
-    if ([interpreter isEqualToString:@"/bin/sh"]) {
+    if ([interpreterPath isEqualToString:@"/bin/sh"]) {
         args = @[@"-n", scriptPath];
-    } else if ([interpreter isEqualToString:@"/bin/bash"]) {
+    } else if ([interpreterPath isEqualToString:@"/bin/bash"]) {
         args = @[@"-n", scriptPath];
-    } else if ([interpreter isEqualToString:@"/bin/zsh"]) {
+    } else if ([interpreterPath isEqualToString:@"/bin/zsh"]) {
         args = @[@"-n", scriptPath];
-    } else if ([interpreter isEqualToString:@"/usr/bin/perl"]) {
+    } else if ([interpreterPath isEqualToString:@"/usr/bin/perl"]) {
         args = @[@"-c", scriptPath];
-    } else if ([interpreter isEqualToString:@"/usr/bin/ruby"]) {
+    } else if ([interpreterPath isEqualToString:@"/usr/bin/ruby"]) {
         args = @[@"-c", scriptPath];
-    } else if ([interpreter isEqualToString:@"/usr/bin/php"]) {
+    } else if ([interpreterPath isEqualToString:@"/usr/bin/php"]) {
         args = @[@"-l", scriptPath];
-    } else if ([interpreter isEqualToString:@"/usr/bin/python"]) {
+    } else if ([interpreterPath isEqualToString:@"/usr/bin/python"]) {
         args = @[@"-m", @"py_compile", scriptPath];
     } else {
-        return [NSString stringWithFormat:@"Syntax Checking is not supported by interpreter %@", interpreter];
+        return [NSString stringWithFormat:@"Syntax Checking is not supported for interpreter %@", interpreterPath];
     }
-    
-    task = [[NSTask alloc] init];
-    [task setLaunchPath:interpreter];
+
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath:interpreterPath];
     [task setArguments:args];
+    NSPipe *outputPipe = [NSPipe pipe];
     [task setStandardOutput:outputPipe];
     [task setStandardError:outputPipe];
-    readHandle = [outputPipe fileHandleForReading];
+    NSFileHandle *readHandle = [outputPipe fileHandleForReading];
     
     //launch task
     [task launch];

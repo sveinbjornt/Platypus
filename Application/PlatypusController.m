@@ -66,7 +66,7 @@
     IBOutlet NSTextField *appSizeTextField;
 
     //advanced options controls
-    IBOutlet NSTextField *interpreterTextField;
+    IBOutlet NSTextField *interpreterPathTextField;
     IBOutlet NSTextField *versionTextField;
     IBOutlet STReverseDNSTextField *bundleIdentifierTextField;
     IBOutlet NSTextField *authorTextField;
@@ -182,7 +182,7 @@
     [scriptTypePopupButton addItemsWithTitles:[ScriptAnalyser interpreterDisplayNames]];
     NSArray *menuItems = [scriptTypePopupButton itemArray];
     for (NSMenuItem *item in menuItems) {
-        NSImage *icon = [NSImage imageNamed:[item title]];
+        NSImage *icon = [NSImage imageNamed:[NSString stringWithFormat:@"Interpreter_%@", [item title]]];
         [icon setSize:NSMakeSize(16, 16)];
         [item setImage:icon];
     }
@@ -241,8 +241,8 @@
 }
 
 - (NSString *)createNewScript:(NSString *)scriptText {
-    NSString *interpreter = [interpreterTextField stringValue];
-    NSString *suffix = [ScriptAnalyser filenameSuffixForInterpreter:interpreter];
+    NSString *interpreterPath = [interpreterPathTextField stringValue];
+    NSString *suffix = [ScriptAnalyser filenameSuffixForInterpreterPath:interpreterPath];
     
     NSString *appName = [appNameTextField stringValue];
     if ([appName isEqualToString:@""]) {
@@ -259,7 +259,7 @@
     }
     
     //put shebang line in the new script text file
-    NSString *contentString = [NSString stringWithFormat:@"#!%@\n\n", interpreter];
+    NSString *contentString = [NSString stringWithFormat:@"#!%@\n\n", interpreterPath];
     
     if (scriptText != nil) {
         contentString = [contentString stringByAppendingString:scriptText];
@@ -316,7 +316,7 @@
 }
 
 - (IBAction)runScriptInTerminal:(id)sender {
-    NSString *cmd = [NSString stringWithFormat:@"%@ '%@'", [interpreterTextField stringValue], [scriptPathTextField stringValue]];
+    NSString *cmd = [NSString stringWithFormat:@"%@ '%@'", [interpreterPathTextField stringValue], [scriptPathTextField stringValue]];
     [WORKSPACE runCommandInTerminal:cmd];
 }
 
@@ -325,7 +325,7 @@
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] init];
     [controller showModalSyntaxCheckerSheetForFile:[scriptPathTextField stringValue]
                                         scriptName:[[scriptPathTextField stringValue] lastPathComponent]
-                            usingInterpreterAtPath:[interpreterTextField stringValue]
+                            usingInterpreterAtPath:[interpreterPathTextField stringValue]
                                             window:window];
     [window setTitle:PROGRAM_NAME];
 }
@@ -516,8 +516,8 @@
     }
     
     // warn if interpreter doesn't exist
-    if ([FILEMGR fileExistsAtPath:[interpreterTextField stringValue]] == NO) {
-        NSString *promptString = [NSString stringWithFormat:@"The interpreter '%@' does not exist on this system.  Do you wish to proceed anyway?", [interpreterTextField stringValue]];
+    if ([FILEMGR fileExistsAtPath:[interpreterPathTextField stringValue]] == NO) {
+        NSString *promptString = [NSString stringWithFormat:@"The interpreter '%@' does not exist on this system.  Do you wish to proceed anyway?", [interpreterPathTextField stringValue]];
         if ([Alerts proceedAlert:@"Interpreter does not exist"
                          subText:promptString
                  withActionNamed:@"Proceed"] == NO) {
@@ -538,7 +538,7 @@
     spec[AppSpecKey_InterfaceType] = [interfaceTypePopupButton titleOfSelectedItem];
     spec[AppSpecKey_IconPath] = [iconController icnsFilePath];
     
-    spec[AppSpecKey_Interpreter] = [interpreterTextField stringValue];
+    spec[AppSpecKey_Interpreter] = [interpreterPathTextField stringValue];
     spec[AppSpecKey_InterpreterArgs] = [argsController interpreterArgs];
     spec[AppSpecKey_ScriptArgs] = [argsController scriptArgs];
     spec[AppSpecKey_Version] = [versionTextField stringValue];
@@ -594,7 +594,7 @@
         [interfaceTypePopupButton selectItemWithTitle:DEFAULT_INTERFACE_TYPE_STRING];
     }
         
-    [interpreterTextField setStringValue:spec[AppSpecKey_Interpreter]];
+    [interpreterPathTextField setStringValue:spec[AppSpecKey_Interpreter]];
 
     //icon
     [iconController loadIcnsFile:spec[AppSpecKey_IconPath]];
@@ -677,14 +677,14 @@
 }
 
 - (void)selectScriptTypeBasedOnInterpreter {
-    NSString *type = [ScriptAnalyser displayNameForInterpreter:[interpreterTextField stringValue]];
+    NSString *type = [ScriptAnalyser displayNameForInterpreterPath:[interpreterPathTextField stringValue]];
     [scriptTypePopupButton selectItemWithTitle:type];
 }
 
 - (void)setScriptType:(NSString *)type {
     // set the script type based on the number which identifies each type
-    NSString *interpreter = [ScriptAnalyser interpreterForDisplayName:type];
-    [interpreterTextField setStringValue:interpreter];
+    NSString *interpreterPath = [ScriptAnalyser interpreterPathForDisplayName:type];
+    [interpreterPathTextField setStringValue:interpreterPath];
     [scriptTypePopupButton selectItemWithTitle:type];
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
 }
@@ -735,10 +735,10 @@
     }
     
     //interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
-    if (aNotification == nil || [aNotification object] == interpreterTextField || [aNotification object] == nil) {
+    if (aNotification == nil || [aNotification object] == interpreterPathTextField || [aNotification object] == nil) {
         [self selectScriptTypeBasedOnInterpreter];
-        NSColor *textColor = ([FILEMGR fileExistsAtPath:[interpreterTextField stringValue] isDirectory:&isDir] && !isDir) ? [NSColor blackColor] : [NSColor redColor];
-        [interpreterTextField setTextColor:textColor];
+        NSColor *textColor = ([FILEMGR fileExistsAtPath:[interpreterPathTextField stringValue] isDirectory:&isDir] && !isDir) ? [NSColor blackColor] : [NSColor redColor];
+        [interpreterPathTextField setTextColor:textColor];
     }
 }
 
@@ -887,7 +887,7 @@
     
     //create task
     NSTask *task = [[NSTask alloc] init];
-    [task setLaunchPath:[interpreterTextField stringValue]];
+    [task setLaunchPath:[interpreterPathTextField stringValue]];
     [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
     
     // add arguments
@@ -998,6 +998,7 @@
                 img = [[NSImage imageNamed:@"NSDefaultApplicationIcon"] copy];
             } else {
                 NSString *imageName = [[menuItem title] stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+                imageName = [NSString stringWithFormat:@"InterfaceType_%@", imageName];
                 img = [NSImage imageNamed:imageName];
             }
         }

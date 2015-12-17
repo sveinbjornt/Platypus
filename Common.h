@@ -85,7 +85,7 @@
 #define DEFAULT_TEXT_ENCODING       NSUTF8StringEncoding
 
 #define DEFAULT_EDITOR              @"Built-In"
-#define DEFAULT_INTERPRETER         @"/bin/sh"
+#define DEFAULT_INTERPRETER_PATH    @"/bin/sh"
 #define DEFAULT_VERSION             @"1.0"
 #define DEFAULT_APP_NAME            @"Application"
 #define DEFAULT_DESTINATION_PATH    [[NSString stringWithFormat:@"~/Desktop/%@.app", DEFAULT_APP_NAME] stringByExpandingTildeInPath]
