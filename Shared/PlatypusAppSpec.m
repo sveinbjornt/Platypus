@@ -240,8 +240,8 @@
     NSString *destPath = [NSString stringWithFormat:@"%@/%@.app", parentFolder, self[AppSpecKey_Name]];
     self[AppSpecKey_DestinationPath] = destPath;
     self[AppSpecKey_Identifier] = [PlatypusAppSpec bundleIdentifierForAppName:self[AppSpecKey_Name]
-                                                           authorName:nil
-                                                        usingDefaults:YES];
+                                                                   authorName:nil
+                                                                usingDefaults:YES];
 }
 
 #pragma mark -

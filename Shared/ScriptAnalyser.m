@@ -48,31 +48,31 @@
                 @"Path":        @"/bin/bash",
                 @"Hello":       @"echo 'Hello, World'",
                 @"Suffixes":    @[@".bash"],
-                @"SyntaxCheck": @[@"-n"]  },
+                @"SyntaxCheck": @[@"-n"] },
 
              @{ @"Name":        @"Csh",
                 @"Path":        @"/bin/csh",
                 @"Hello":       @"echo 'Hello, World'",
                 @"Suffixes":    @[@".csh"],
-                @"SyntaxCheck": @[@"-n"]  },
+                @"SyntaxCheck": @[@"-n"] },
 
              @{ @"Name":        @"Tcsh",
                 @"Path":        @"/bin/tcsh",
                 @"Hello":       @"echo 'Hello, World'",
                 @"Suffixes":    @[@".tcsh"],
-                @"SyntaxCheck": @[@"-n"]  },
+                @"SyntaxCheck": @[@"-n"] },
 
              @{ @"Name":        @"Ksh",
                 @"Path":        @"/bin/ksh",
                 @"Hello":       @"echo 'Hello, World'",
                 @"Suffixes":    @[@".ksh"],
-                @"SyntaxCheck": @[@"-n"]  },
+                @"SyntaxCheck": @[@"-n"] },
 
              @{ @"Name":        @"Zsh",
                 @"Path":        @"/bin/zsh",
                 @"Hello":       @"echo 'Hello, World'",
                 @"Suffixes":    @[@".zsh"],
-                @"SyntaxCheck": @[@"-n"]  },
+                @"SyntaxCheck": @[@"-n"] },
 
              @{ @"Name":        @"Env",
                 @"Path":        @"/usr/bin/env",
@@ -83,7 +83,7 @@
                 @"Path":        @"/usr/bin/perl",
                 @"Hello":       @"print \"Hello, World\\n\";",
                 @"Suffixes":    @[@".pl", @".pm"],
-                @"SyntaxCheck": @[@"-c"]  },
+                @"SyntaxCheck": @[@"-c"] },
              
              @{ @"Name":        @"Python",
                 @"Path":        @"/usr/bin/python",
@@ -95,7 +95,7 @@
                 @"Path":        @"/usr/bin/ruby",
                 @"Hello":       @"puts \"Hello, World\";",
                 @"Suffixes":    @[@".rb", @".rbx", @".ruby", @".rbw"],
-                @"SyntaxCheck": @[@"-c"]  },
+                @"SyntaxCheck": @[@"-c"] },
              
              @{ @"Name":        @"AppleScript",
                 @"Path":        @"/usr/bin/osascript",
@@ -135,7 +135,7 @@
 #pragma mark -
 
 + (NSArray OF_NSSTRING *)arrayOfInterpreterValuesForKey:(NSString *)key {
-    NSArray *interpreters = [ScriptAnalyser interpreters];
+    NSArray *interpreters = [self interpreters];
     NSMutableArray *arr = [NSMutableArray array];
     for (NSDictionary *dict in interpreters) {
         [arr addObject:dict[key]];
@@ -144,17 +144,17 @@
 }
 
 + (NSArray OF_NSSTRING *)interpreterDisplayNames {
-    return [ScriptAnalyser arrayOfInterpreterValuesForKey:@"Name"];
+    return [self arrayOfInterpreterValuesForKey:@"Name"];
 }
 
 + (NSArray OF_NSSTRING *)interpreterPaths {
-    return [ScriptAnalyser arrayOfInterpreterValuesForKey:@"Path"];
+    return [self arrayOfInterpreterValuesForKey:@"Path"];
 }
 
 #pragma mark - Mapping
 
 + (NSString *)interpreterPathForDisplayName:(NSString *)displayName {
-    NSArray OF_NSDICTIONARY *interpreters = [ScriptAnalyser interpreters];
+    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         if ([infoDict[@"Name"] isEqualToString:displayName]) {
             return infoDict[@"Path"];
@@ -164,7 +164,7 @@
 }
 
 + (NSString *)displayNameForInterpreterPath:(NSString *)interpreterPath {
-    NSArray OF_NSDICTIONARY *interpreters = [ScriptAnalyser interpreters];
+    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         if ([infoDict[@"Path"] isEqualToString:interpreterPath]) {
             return infoDict[@"Name"];
@@ -174,7 +174,7 @@
 }
 
 + (NSString *)helloWorldProgramForDisplayName:(NSString *)displayName {
-    NSArray OF_NSDICTIONARY *interpreters = [ScriptAnalyser interpreters];
+    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         if ([infoDict[@"Name"] isEqualToString:displayName]) {
             return infoDict[@"Hello"];
@@ -186,7 +186,7 @@
 #pragma mark - File suffixes
 
 + (NSString *)interpreterPathForFilenameSuffix:(NSString *)fileName {
-    NSArray OF_NSDICTIONARY *interpreters = [ScriptAnalyser interpreters];
+    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         NSArray *suffixes = infoDict[@"Suffixes"];
         for (NSString *suffix in suffixes) {
@@ -199,7 +199,7 @@
 }
 
 + (NSString *)filenameSuffixForInterpreterPath:(NSString *)interpreterPath {
-    NSArray OF_NSDICTIONARY *interpreters = [ScriptAnalyser interpreters];
+    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         if ([infoDict[@"Path"] isEqualToString:interpreterPath]) {
             return infoDict[@"Suffixes"];
@@ -236,7 +236,7 @@
     // check if the binary name is the same as one of our preset interpreters
     NSString *parsedPath = interpreterAndArgs[0];
     if ([parsedPath hasPrefix:@"/"] == NO || [FILEMGR fileExistsAtPath:parsedPath] == NO) {
-        NSArray *paths = [ScriptAnalyser interpreterPaths];
+        NSArray *paths = [self interpreterPaths];
         for (NSString *p in paths) {
             if ([[p lastPathComponent] isEqualToString:[parsedPath lastPathComponent]]) {
                 interpreterAndArgs[0] = p;
@@ -281,11 +281,11 @@
 }
 
 + (NSString *)determineInterpreterPathForScriptFile:(NSString *)filePath {
-    NSString *interpreterPath = [ScriptAnalyser parseInterpreterInScriptFile:filePath][0];
+    NSString *interpreterPath = [self parseInterpreterInScriptFile:filePath][0];
     if (interpreterPath != nil && [interpreterPath isEqualToString:@""] == NO) {
         return interpreterPath;
     }
-    return [ScriptAnalyser interpreterPathForFilenameSuffix:filePath];
+    return [self interpreterPathForFilenameSuffix:filePath];
 }
 
 #pragma mark - Syntax checking
@@ -298,7 +298,7 @@
     NSString *interpreterPath = suggestedInterpreter;
     
     if (interpreterPath == nil || [interpreterPath isEqualToString:@""]) {
-        interpreterPath = [ScriptAnalyser determineInterpreterPathForScriptFile:scriptPath];
+        interpreterPath = [self determineInterpreterPathForScriptFile:scriptPath];
         
         if (interpreterPath == nil || [interpreterPath isEqualToString:@""]) {
             return @"Unable to determine script interpreter";
@@ -308,7 +308,7 @@
     //let's see if the script type is supported for syntax checking
     //if so, we set up the task's launch path as the script interpreter and set the relevant flags and arguments
     NSMutableArray *args = nil;
-    NSArray *interpreters = [ScriptAnalyser interpreters];
+    NSArray *interpreters = [self interpreters];
     for (NSDictionary *dict in interpreters) {
         if ([dict[@"Path"] isEqualToString:interpreterPath] && dict[@"SyntaxCheck"]) {
             args = [NSMutableArray arrayWithArray:dict[@"SyntaxCheck"]];
