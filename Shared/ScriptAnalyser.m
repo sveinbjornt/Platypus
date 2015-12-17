@@ -135,6 +135,10 @@
     return [ScriptAnalyser arrayOfInterpreterValuesForKey:@"Name"];
 }
 
++ (NSArray OF_NSSTRING *)interpreterPaths {
+    return [ScriptAnalyser arrayOfInterpreterValuesForKey:@"Path"];
+}
+
 #pragma mark - Mapping
 
 + (NSString *)interpreterPathForDisplayName:(NSString *)displayName {
@@ -209,16 +213,34 @@
     if ([firstLine length] <= 2 || ([[firstLine substringToIndex:2] isEqualToString:@"#!"] == NO)) {
         return @[@""];
     }
-// TODO: This could be smarter, detect env if not full path following shebang
+    
+    NSString *interpreterCmd = [firstLine substringFromIndex:2];
     
     // get everything that follows after the #!
     // seperate it by whitespaces, in order not to get also the params to the interpreter
-    NSString *interpreterCmd = [firstLine substringFromIndex:2];
     NSMutableArray *interpreterAndArgs = [[interpreterCmd componentsSeparatedByString:@" "] mutableCopy];
+    
+    // if shebang interpreter is not an absolute path or doestn't exist, we
+    // check if the binary name is the same as one of our preset interpreters
+    NSString *parsedPath = interpreterAndArgs[0];
+    if ([parsedPath hasPrefix:@"/"] == NO || [FILEMGR fileExistsAtPath:parsedPath] == NO) {
+        NSArray *paths = [ScriptAnalyser interpreterPaths];
+        for (NSString *p in paths) {
+            if ([[p lastPathComponent] isEqualToString:[parsedPath lastPathComponent]]) {
+                interpreterAndArgs[0] = p;
+            }
+        }
+    }
+    
     // remove all empty strings in array
     for (int i = [interpreterAndArgs count]-1; i > 0; i--) {
-        if ([interpreterAndArgs[i] isEqualToString:@""]) {
+        NSCharacterSet *set = [NSCharacterSet whitespaceCharacterSet];
+        NSString *trimmedStr = [interpreterAndArgs[i] stringByTrimmingCharactersInSet:set];
+        
+        if ([trimmedStr isEqualToString:@""]) {
             [interpreterAndArgs removeObjectAtIndex:i];
+        } else {
+            interpreterAndArgs[i] = trimmedStr;
         }
     }
     return interpreterAndArgs; // return array w. interpreter path + arguments

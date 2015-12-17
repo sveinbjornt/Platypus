@@ -34,6 +34,7 @@
 
 + (NSArray OF_NSDICTIONARY *)interpreters;
 + (NSArray OF_NSSTRING *)interpreterDisplayNames;
++ (NSArray OF_NSSTRING *)interpreterPaths;
 + (NSString *)helloWorldProgramForDisplayName:(NSString *)displayName;
 + (NSString *)displayNameForInterpreterPath:(NSString *)interpreterPath;
 + (NSString *)interpreterPathForDisplayName:(NSString *)displayName;
