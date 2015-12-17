@@ -41,32 +41,38 @@
              @{ @"Name":        @"Shell",
                 @"Path":        @"/bin/sh",
                 @"Hello":       @"echo 'Hello, World'",
-                @"Suffixes":    @[@".sh", @".command"] },
+                @"Suffixes":    @[@".sh", @".command"],
+                @"SyntaxCheck": @[@"-n"] },
              
              @{ @"Name":        @"Bash",
                 @"Path":        @"/bin/bash",
                 @"Hello":       @"echo 'Hello, World'",
-                @"Suffixes":    @[@".bash"] },
+                @"Suffixes":    @[@".bash"],
+                @"SyntaxCheck": @[@"-n"]  },
 
              @{ @"Name":        @"Csh",
                 @"Path":        @"/bin/csh",
                 @"Hello":       @"echo 'Hello, World'",
-                @"Suffixes":    @[@".csh"] },
+                @"Suffixes":    @[@".csh"],
+                @"SyntaxCheck": @[@"-n"]  },
 
              @{ @"Name":        @"Tcsh",
                 @"Path":        @"/bin/tcsh",
                 @"Hello":       @"echo 'Hello, World'",
-                @"Suffixes":    @[@".tcsh"] },
+                @"Suffixes":    @[@".tcsh"],
+                @"SyntaxCheck": @[@"-n"]  },
 
              @{ @"Name":        @"Ksh",
                 @"Path":        @"/bin/ksh",
                 @"Hello":       @"echo 'Hello, World'",
-                @"Suffixes":    @[@".ksh"] },
+                @"Suffixes":    @[@".ksh"],
+                @"SyntaxCheck": @[@"-n"]  },
 
              @{ @"Name":        @"Zsh",
                 @"Path":        @"/bin/zsh",
                 @"Hello":       @"echo 'Hello, World'",
-                @"Suffixes":    @[@".zsh"] },
+                @"Suffixes":    @[@".zsh"],
+                @"SyntaxCheck": @[@"-n"]  },
 
              @{ @"Name":        @"Env",
                 @"Path":        @"/usr/bin/env",
@@ -76,17 +82,20 @@
              @{ @"Name":        @"Perl",
                 @"Path":        @"/usr/bin/perl",
                 @"Hello":       @"print \"Hello, World\\n\";",
-                @"Suffixes":    @[@".pl", @".pm"] },
+                @"Suffixes":    @[@".pl", @".pm"],
+                @"SyntaxCheck": @[@"-c"]  },
              
              @{ @"Name":        @"Python",
                 @"Path":        @"/usr/bin/python",
                 @"Hello":       @"print \"Hello, World\"",
-                @"Suffixes":    @[@".py", @".python", @".objpy"] },
+                @"Suffixes":    @[@".py", @".python", @".objpy"],
+                @"SyntaxCheck": @[@"-m", @"py_compile"] },
              
              @{ @"Name":        @"Ruby",
                 @"Path":        @"/usr/bin/ruby",
                 @"Hello":       @"puts \"Hello, World\";",
-                @"Suffixes":    @[@".rb", @".rbx", @".ruby", @".rbw"] },
+                @"Suffixes":    @[@".rb", @".rbx", @".ruby", @".rbw"],
+                @"SyntaxCheck": @[@"-c"]  },
              
              @{ @"Name":        @"AppleScript",
                 @"Path":        @"/usr/bin/osascript",
@@ -106,12 +115,15 @@
              @{ @"Name":        @"PHP",
                 @"Path":        @"/usr/bin/php",
                 @"Hello":       @"<?php\necho \"Hello, World\";\n?>",
-                @"Suffixes":    @[@".php", @".php3", @".php4", @".php5", @".php6", @".phtml"] },
+                @"Suffixes":    @[@".php", @".php3", @".php4", @".php5", @".php6", @".phtml"],
+                @"SyntaxCheck": @[@"-l"] },
              
              @{ @"Name":        @"Swift",
                 @"Path":        @"/usr/bin/swift",
                 @"Hello":       @"print(\"Hello, World\")",
-                @"Suffixes":    @[@".swift"] },
+                @"Suffixes":    @[@".swift"],
+                @"SyntaxCheck": @[@"-parse"],
+                @"SyntaxCheckBinary": @"/usr/bin/swiftc" },
              
              @{ @"Name":        @"Other...",
                 @"Path":        @"",
@@ -295,25 +307,19 @@
     
     //let's see if the script type is supported for syntax checking
     //if so, we set up the task's launch path as the script interpreter and set the relevant flags and arguments
-    NSArray *args;
-    if ([interpreterPath isEqualToString:@"/bin/sh"]) {
-        args = @[@"-n", scriptPath];
-    } else if ([interpreterPath isEqualToString:@"/bin/bash"]) {
-        args = @[@"-n", scriptPath];
-    } else if ([interpreterPath isEqualToString:@"/bin/zsh"]) {
-        args = @[@"-n", scriptPath];
-    } else if ([interpreterPath isEqualToString:@"/usr/bin/perl"]) {
-        args = @[@"-c", scriptPath];
-    } else if ([interpreterPath isEqualToString:@"/usr/bin/ruby"]) {
-        args = @[@"-c", scriptPath];
-    } else if ([interpreterPath isEqualToString:@"/usr/bin/php"]) {
-        args = @[@"-l", scriptPath];
-    } else if ([interpreterPath isEqualToString:@"/usr/bin/python"]) {
-        args = @[@"-m", @"py_compile", scriptPath];
-    } else {
+    NSMutableArray *args = nil;
+    NSArray *interpreters = [ScriptAnalyser interpreters];
+    for (NSDictionary *dict in interpreters) {
+        if ([dict[@"Path"] isEqualToString:interpreterPath] && dict[@"SyntaxCheck"]) {
+            args = [NSMutableArray arrayWithArray:dict[@"SyntaxCheck"]];
+            interpreterPath = dict[@"SyntaxCheckBinary"] ? dict[@"SyntaxCheckBinary"] : interpreterPath;
+        }
+    }
+    if (args == nil) {
         return [NSString stringWithFormat:@"Syntax Checking is not supported for interpreter %@", interpreterPath];
     }
-
+    [args addObject:scriptPath];
+    
     NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath:interpreterPath];
     [task setArguments:args];

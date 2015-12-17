@@ -124,7 +124,9 @@
 
 - (IBAction)checkSyntax:(id)sender {
     NSString *currentScriptText = [textView string];
-    NSString *tmpPath = [WORKSPACE createTempFileWithContents:currentScriptText];
+    NSString *scriptSuffix = [[scriptPathTextField stringValue] lastPathComponent];
+    NSString *tmpPath = [WORKSPACE createTempFileNamed:[NSString stringWithFormat:@"PlatypusSyntaxCheckerTempScript.%@", scriptSuffix]
+                                          withContents:currentScriptText];
     
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
     [controller showModalSyntaxCheckerSheetForFile:tmpPath
