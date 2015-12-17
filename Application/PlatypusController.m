@@ -805,6 +805,7 @@
     spec[AppSpecKey_Name] = @"";
     [self controlsFromAppSpec:spec];
     
+    [iconController setToDefaults];
     [self setScriptType:DEFAULT_SCRIPT_TYPE];
     [self interfaceTypeDidChange:interfaceTypePopupButton];
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];

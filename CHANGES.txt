@@ -535,7 +535,7 @@ For 1.2
 
 For 1.1
 
-    * Platypus no longer uses huge amounts of CPU power for window redraws
+    * Fixed issue with window redraws
     * Text fields are now Unicode and displayed in correct font
     * Support for Perl and Python scripts
     * Drag'n drop support for script path
