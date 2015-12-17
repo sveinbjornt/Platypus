@@ -272,7 +272,7 @@
     NSError *err;
     BOOL success = [contentString writeToFile:tmpScriptPath
                                    atomically:YES
-                                     encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]
+                                     encoding:[[DEFAULTS objectForKey:DefaultsKey_DefaultTextEncoding] intValue]
                                         error:&err];
     if (!success) {
         [Alerts alert:@"Error creating file" subText:[err localizedDescription]];
@@ -297,18 +297,18 @@
     }
     
     // if the default editor is the built-in editor, we pop down the editor sheet
-    if ([[DEFAULTS stringForKey:@"DefaultEditor"] isEqualToString:DEFAULT_EDITOR]) {
+    if ([[DEFAULTS stringForKey:DefaultsKey_DefaultEditor] isEqualToString:DEFAULT_EDITOR]) {
         [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
     } else {
         // open it in the external application
-        NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
+        NSString *defaultEditor = [DEFAULTS stringForKey:DefaultsKey_DefaultEditor];
         if ([WORKSPACE fullPathForApplication:defaultEditor] != nil) {
             [WORKSPACE openFile:[scriptPathTextField stringValue] withApplication:defaultEditor];
         } else {
             // Complain if editor is not found, set it to the built-in editor
             [Alerts alert:@"Application not found"
             subTextFormat:@"The application '%@' could not be found on your system. Reverting to the built-in editor.", defaultEditor];
-            [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
+            [DEFAULTS setObject:DEFAULT_EDITOR forKey:DefaultsKey_DefaultEditor];
             [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
         }
     }
@@ -368,13 +368,13 @@
     // development version checkbox: always disable this option if secure script is checked
     [developmentVersionCheckbox setEnabled:![secureBundledScriptCheckbox intValue]];
     if ([secureBundledScriptCheckbox intValue]) {
-        [DEFAULTS setObject:@NO forKey:@"OnCreateDevVersion"];
+        [DEFAULTS setObject:@NO forKey:DefaultsKey_SymlinkFiles];
     }
     
     // optimize nib is enabled and on by default if ibtool is present
     BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:IBTOOL_PATH];
-    if ([[DEFAULTS objectForKey:@"OnCreateOptimizeNib"] boolValue] == YES && ibtoolInstalled == NO) {
-        [DEFAULTS setObject:@NO forKey:@"OnCreateOptimizeNib"];
+    if ([[DEFAULTS objectForKey:DefaultsKey_StripNib] boolValue] == YES && ibtoolInstalled == NO) {
+        [DEFAULTS setObject:@NO forKey:DefaultsKey_StripNib];
     }
     [stripNibFileCheckbox setEnabled:ibtoolInstalled];
     
@@ -471,12 +471,12 @@
     }
 
     // reveal newly created app in Finder
-    if ([DEFAULTS boolForKey:@"RevealApplicationWhenCreated"]) {
+    if ([DEFAULTS boolForKey:DefaultsKey_RevealApplicationWhenCreated]) {
         [WORKSPACE selectFile:appPath inFileViewerRootedAtPath:appPath];
     }
     
     // open newly created app
-    if ([DEFAULTS boolForKey:@"OpenApplicationWhenCreated"]) {
+    if ([DEFAULTS boolForKey:DefaultsKey_OpenApplicationWhenCreated]) {
         [WORKSPACE launchApplication:appPath];
     }
     
@@ -801,36 +801,13 @@
 
 //clear all controls to their default value
 - (IBAction)clearAllFields:(id)sender {
+    PlatypusAppSpec *spec = [PlatypusAppSpec specWithDefaults];
+    spec[AppSpecKey_Name] = @"";
+    [self controlsFromAppSpec:spec];
     
-    [appNameTextField setStringValue:@""];
-    [scriptPathTextField setStringValue:@""];
-    [versionTextField setStringValue:DEFAULT_VERSION];
-    
-    NSString *bundleId = [PlatypusAppSpec bundleIdentifierForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES];
-    [bundleIdentifierTextField setStringValue:bundleId];
-    [authorTextField setStringValue:[DEFAULTS objectForKey:@"DefaultAuthor"]];
-    
-    [acceptsDroppedItemsCheckbox setIntValue:0];
-    [self acceptsDroppedItemsClicked:acceptsDroppedItemsCheckbox];
-    [secureBundledScriptCheckbox setIntValue:0];
-    [rootPrivilegesCheckbox setIntValue:0];
-    [remainRunningCheckbox setIntValue:1];
-    [runInBackgroundCheckbox setIntValue:0];
-    
-    [bundledFilesController setToDefaults:self];
-    [dropSettingsController setToDefaults:self];
-    [argsController setToDefaults:self];
-    [textSettingsController setToDefaults:self];
-    [statusItemSettingsController setToDefaults:self];
-    [iconController setToDefaults];
-
     [self setScriptType:DEFAULT_SCRIPT_TYPE];
-    
-    [interfaceTypePopupButton selectItemWithTitle:DEFAULT_INTERFACE_TYPE_STRING];
     [self interfaceTypeDidChange:interfaceTypePopupButton];
-    
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
-    
     [self updateEstimatedAppSize];
 }
 

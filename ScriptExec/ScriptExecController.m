@@ -235,7 +235,7 @@
     if (IsTextStyledInterfaceType(interfaceType)) {
     
         // font and size
-        NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"UserFontSize"];
+        NSNumber *userFontSizeNum = [DEFAULTS objectForKey:ScriptExecDefaultsKey_UserFontSize];
         CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[AppSpecKey_TextSize] floatValue];
         fontSize = fontSize ? fontSize : DEFAULT_TEXT_FONT_SIZE;
         
@@ -1305,7 +1305,7 @@
 //        }
         textFont = [[NSFontManager sharedFontManager] convertFont:textFont toSize:newFontSize];
         [outputTextView setFont:textFont];
-        [DEFAULTS setObject:@((float)newFontSize) forKey:@"UserFontSize"];
+        [DEFAULTS setObject:@((float)newFontSize) forKey:ScriptExecDefaultsKey_UserFontSize];
         [outputTextView didChangeText];
     }
 }

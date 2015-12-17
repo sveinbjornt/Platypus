@@ -211,7 +211,7 @@
 }
 
 - (void)openInEditor:(int)index {
-    NSString *defaultEditor = [DEFAULTS stringForKey:@"DefaultEditor"];
+    NSString *defaultEditor = [DEFAULTS stringForKey:DefaultsKey_DefaultEditor];
     NSString *path = files[index][@"Path"];
     
     if ([defaultEditor isEqualToString:DEFAULT_EDITOR] == NO) {
@@ -221,7 +221,7 @@
             return;
         } else {
             [Alerts alert:@"Editor not found" subTextFormat:@"The application '%@' could not be found.  Reverting to the built-in editor.", defaultEditor];
-            [DEFAULTS setObject:DEFAULT_EDITOR forKey:@"DefaultEditor"];
+            [DEFAULTS setObject:DEFAULT_EDITOR forKey:DefaultsKey_DefaultEditor];
         }
     }
     

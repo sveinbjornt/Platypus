@@ -220,6 +220,23 @@ extern NSString * const AppSpecKey_IsExample; // examples only
 extern NSString * const AppSpecKey_ScriptText; // examples only
 extern NSString * const AppSpecKey_ScriptName; // examples only
 
+// NSUserDefaults keys for Platypus app
+extern NSString * const DefaultsKey_BundleIdentifierPrefix;
+extern NSString * const DefaultsKey_DefaultEditor;
+extern NSString * const DefaultsKey_RevealApplicationWhenCreated;
+extern NSString * const DefaultsKey_OpenApplicationWhenCreated;
+extern NSString * const DefaultsKey_DefaultTextEncoding;
+extern NSString * const DefaultsKey_DefaultAuthor;
+extern NSString * const DefaultsKey_SymlinkFiles;
+extern NSString * const DefaultsKey_StripNib;
+extern NSString * const DefaultsKey_UseXMLPlistFormat;
+extern NSString * const DefaultsKey_EditorFontSize;
+extern NSString * const DefaultsKey_EditorWordWrap;
+extern NSString * const DefaultsKey_Launched;
+
+// NSUserDefaults keys for ScriptExec app
+NSString * const ScriptExecDefaultsKey_UserFontSize;
+
 // abbreviations, Obj-C is sometimes tediously verbose
 #define FILEMGR     [NSFileManager defaultManager]
 #define DEFAULTS    [NSUserDefaults standardUserDefaults]

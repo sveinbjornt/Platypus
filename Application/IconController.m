@@ -71,7 +71,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 - (instancetype)init {
     if ((self = [super init])) {
         fileWatcherQueue = [[VDKQueue alloc] init];
-        iconWritingDispatchQueue = dispatch_queue_create("org.sveinbjorn.platypus.iconDispatchQueue", NULL);
+        iconWritingDispatchQueue = dispatch_queue_create("platypus.iconDispatchQueue", NULL);
     }
     return self;
 }

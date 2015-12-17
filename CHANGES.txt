@@ -24,9 +24,9 @@ For 5.1
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: Add WebView example listing dropped files
-    TODO: Make clearAllFields stuff use default spec
-    TODO: Use NSString constants for NSUserDefault string keys
 
+    * Using NSString constants for NSUserDefault string keys
+    * clearAllFields method uses default spec to set controls
     * Give image names for interface type and interpreter a filename prefix indicating family
     * Added build script for cat2html
     * Added support for multiple arguments to --bundled-file in command line tool via "|" separator

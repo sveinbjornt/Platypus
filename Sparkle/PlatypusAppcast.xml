@@ -3,7 +3,7 @@
     <channel>
         <title>Platypus Version Release Appcast</title>
         <link>http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</link>
-        <description>Most recent release list for Platypus, with links to signed updates.</description>
+        <description>Most recent release list for Platypus, with links to updates.</description>
         <language>en</language>
         <item>
             <title>Version 5.0</title>

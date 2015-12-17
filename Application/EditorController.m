@@ -70,7 +70,7 @@
 }
 
 - (void)showModalEditorSheetForFile:(NSString *)path window:(NSWindow *)theWindow {
-    NSStringEncoding encoding = [[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue];
+    NSStringEncoding encoding = [[DEFAULTS objectForKey:DefaultsKey_DefaultTextEncoding] intValue];
     NSString *str = [NSString stringWithContentsOfFile:path encoding:encoding error:nil];
     if (str == nil) {
         [Alerts alert:@"Error reading document"
@@ -105,7 +105,7 @@
     NSError *err;
     BOOL success = [[textView string] writeToFile:[scriptPathTextField stringValue]
                                        atomically:YES
-                                         encoding:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]
+                                         encoding:[[DEFAULTS objectForKey:DefaultsKey_DefaultTextEncoding] intValue]
                                             error:&err];
     if (success == NO) {
         [Alerts alert:@"Error saving document"

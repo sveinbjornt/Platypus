@@ -108,15 +108,15 @@
                                                           authorName:nil
                                                        usingDefaults:NO];
     
-    defaults[@"DefaultBundleIdentifierPrefix"] = bundleId;
-    defaults[@"DefaultEditor"] = DEFAULT_EDITOR;
-    defaults[@"RevealApplicationWhenCreated"] = @NO;
-    defaults[@"OpenApplicationWhenCreated"] = @NO;
-    defaults[@"DefaultTextEncoding"] = @((NSStringEncoding)DEFAULT_TEXT_ENCODING);
-    defaults[@"DefaultAuthor"] = NSFullUserName();
-    defaults[@"OnCreateDevVersion"] = @NO;
-    defaults[@"OnCreateOptimizeNib"] = @YES;
-    defaults[@"OnCreateUseXMLPlist"] = @NO;
+    defaults[DefaultsKey_BundleIdentifierPrefix] = bundleId;
+    defaults[DefaultsKey_DefaultEditor] = DEFAULT_EDITOR;
+    defaults[DefaultsKey_RevealApplicationWhenCreated] = @NO;
+    defaults[DefaultsKey_OpenApplicationWhenCreated] = @NO;
+    defaults[DefaultsKey_DefaultTextEncoding] = @((NSStringEncoding)DEFAULT_TEXT_ENCODING);
+    defaults[DefaultsKey_DefaultAuthor] = NSFullUserName();
+    defaults[DefaultsKey_SymlinkFiles] = @NO;
+    defaults[DefaultsKey_StripNib] = @YES;
+    defaults[DefaultsKey_UseXMLPlistFormat] = @NO;
     
     return defaults;
 }
@@ -137,7 +137,7 @@
     //make sure bundle identifier ends with a '.'
     NSString *identifier = [defaultBundleIdentifierTextField stringValue];
     if ([identifier characterAtIndex:[identifier length] - 1] != '.') {
-        [DEFAULTS setObject:[identifier stringByAppendingString:@"."]  forKey:@"DefaultBundleIdentifierPrefix"];
+        [DEFAULTS setObject:[identifier stringByAppendingString:@"."]  forKey:DefaultsKey_BundleIdentifierPrefix];
     }
     [[self window] makeFirstResponder:nil];
     [DEFAULTS synchronize];
@@ -167,7 +167,7 @@
         [defaultEditorPopupButton setTitle:editorName];
         [self setIconsForEditorMenu];
     } else {
-        [defaultEditorPopupButton setTitle:[DEFAULTS stringForKey:@"DefaultEditor"]];
+        [defaultEditorPopupButton setTitle:[DEFAULTS stringForKey:DefaultsKey_DefaultEditor]];
     }
 }
 
@@ -187,7 +187,7 @@
 
     // create queue lazily
     if (cltStatusDispatchQueue == NULL) {
-        cltStatusDispatchQueue = dispatch_queue_create("org.sveinbjorn.platypus.cltStatusDispatchQueue", NULL);
+        cltStatusDispatchQueue = dispatch_queue_create("platypus.cltStatusDispatchQueue", NULL);
     }
 
     dispatch_async(cltStatusDispatchQueue, ^{

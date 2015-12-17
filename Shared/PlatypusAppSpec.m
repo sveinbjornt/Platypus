@@ -929,7 +929,7 @@
     if (appName == nil) {
         appName = DEFAULT_APP_NAME;
     }
-    NSString *defaults = def ? [DEFAULTS stringForKey:@"DefaultBundleIdentifierPrefix"] : nil;
+    NSString *defaults = def ? [DEFAULTS stringForKey:DefaultsKey_BundleIdentifierPrefix] : nil;
     NSString *author = authorName ? [authorName stringByReplacingOccurrencesOfString:@" " withString:@""] : NSUserName();
     NSString *pre = defaults == nil ? [NSString stringWithFormat:@"org.%@.", author] : defaults;
     NSString *identifierString = [NSString stringWithFormat:@"%@%@", pre, appName];

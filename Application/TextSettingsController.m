@@ -84,7 +84,7 @@
     [foregroundColorWell setColor:[NSColor blackColor]];
     [backgroundColorWell setColor:[NSColor whiteColor]];
     [self setCurrentFont:[NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:DEFAULT_TEXT_FONT_SIZE]];
-    [textEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:@"DefaultTextEncoding"] intValue]];
+    [textEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:DefaultsKey_DefaultTextEncoding] intValue]];
     [self updateTextViewColor:self];
 }
 

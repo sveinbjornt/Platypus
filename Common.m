@@ -80,6 +80,20 @@ NSString * const AppSpecKey_IsExample = @"Example"; // examples only
 NSString * const AppSpecKey_ScriptText = @"Script"; // examples only
 NSString * const AppSpecKey_ScriptName = @"ScriptName"; // examples only
 
+// NSUserDefaults keys for Platypus app
+NSString * const DefaultsKey_BundleIdentifierPrefix = @"DefaultBundleIdentifierPrefix";
+NSString * const DefaultsKey_DefaultEditor = @"DefaultEditor";
+NSString * const DefaultsKey_RevealApplicationWhenCreated = @"RevealApplicationWhenCreated";
+NSString * const DefaultsKey_OpenApplicationWhenCreated = @"OpenApplicationWhenCreated";
+NSString * const DefaultsKey_DefaultTextEncoding = @"DefaultTextEncoding";
+NSString * const DefaultsKey_DefaultAuthor = @"DefaultAuthor";
+NSString * const DefaultsKey_SymlinkFiles = @"OnCreateDevVersion";
+NSString * const DefaultsKey_StripNib = @"OnCreateOptimizeNib";
+NSString * const DefaultsKey_UseXMLPlistFormat = @"OnCreateUseXMLPlist";
+
+// NSUserDefaults keys for ScriptExec app
+NSString * const ScriptExecDefaultsKey_UserFontSize = @"UserFontSize";
+
 // functions
 
 BOOL UTTypeIsValid(NSString *inUTI) {
