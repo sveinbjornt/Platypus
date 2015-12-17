@@ -42,7 +42,6 @@
 #import "STPathTextField.h"
 #import "STReverseDNSTextField.h"
 #import "DropSettingsController.h"
-#import "SuffixTypeListController.h"
 #import "SyntaxCheckerController.h"
 #import "BundledFilesController.h"
 #import "PrefsController.h"
@@ -125,7 +124,6 @@
 @end
 
 @implementation PlatypusController
-@synthesize window = window;
 
 #pragma mark - Application
 
@@ -143,8 +141,8 @@
 
 - (void)awakeFromNib {
     // put application icon in window title bar
-    [window setRepresentedURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
-    NSButton *button = [window standardWindowButton:NSWindowDocumentIconButton];
+    [[self window] setRepresentedURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
+    NSButton *button = [[self window] standardWindowButton:NSWindowDocumentIconButton];
     [button setImage:[NSApp applicationIconImage]];
     
     // make sure application support folder and subfolders exist
@@ -193,7 +191,7 @@
     [self updateInterfaceTypeMenu:NSMakeSize(16, 16)];
     
     // main window accepts dragged text and dragged files
-    [window registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
+    [[self window] registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
     
     // if we haven't already loaded a profile via openfile delegate method
     // we set all fields to their defaults.  Any profile must contain a name
@@ -202,13 +200,13 @@
         [self clearAllFields:self];
     }
     
-    [window makeFirstResponder:appNameTextField];
+    [[self window] makeFirstResponder:appNameTextField];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [DEFAULTS setObject:@YES forKey:@"Launched"];
-    [window center];
-    [window makeKeyAndOrderFront:self];
+    [[self window] center];
+    [[self window] makeKeyAndOrderFront:self];
     [appNameTextField becomeFirstResponder];
 }
 
@@ -321,20 +319,20 @@
 }
 
 - (IBAction)checkSyntaxOfScript:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Syntax Checker", PROGRAM_NAME]];
+    [[self window] setTitle:[NSString stringWithFormat:@"%@ - Syntax Checker", PROGRAM_NAME]];
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] init];
     [controller showModalSyntaxCheckerSheetForFile:[scriptPathTextField stringValue]
                                         scriptName:[[scriptPathTextField stringValue] lastPathComponent]
                             usingInterpreterAtPath:[interpreterPathTextField stringValue]
-                                            window:window];
-    [window setTitle:PROGRAM_NAME];
+                                            window:[self window]];
+    [[self window] setTitle:PROGRAM_NAME];
 }
 
 - (void)openScriptInBuiltInEditor:(NSString *)path {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Script Editor", PROGRAM_NAME]];
+    [[self window] setTitle:[NSString stringWithFormat:@"%@ - Script Editor", PROGRAM_NAME]];
     EditorController *controller = [[EditorController alloc] init];
-    [controller showModalEditorSheetForFile:[scriptPathTextField stringValue] window:window];
-    [window setTitle:PROGRAM_NAME];
+    [controller showModalEditorSheetForFile:[scriptPathTextField stringValue] window:[self window]];
+    [[self window] setTitle:PROGRAM_NAME];
 }
 
 - (void)scriptFileSystemChange {
@@ -350,7 +348,7 @@
         return;
     }
     
-    [window setTitle:[NSString stringWithFormat:@"%@ - Select destination", PROGRAM_NAME]];
+    [[self window] setTitle:[NSString stringWithFormat:@"%@ - Select destination", PROGRAM_NAME]];
     
     // get default app bundle name
     NSString *defaultAppBundleName = [appNameTextField stringValue];
@@ -380,7 +378,7 @@
     [stripNibFileCheckbox setEnabled:ibtoolInstalled];
     
     //run save panel
-    [sPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+    [sPanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         if (result == NSOKButton) {
             [self createConfirmed:sPanel returnCode:result];
         }
@@ -389,9 +387,9 @@
 
 - (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result {
     // restore window title
-    [window setTitle:PROGRAM_NAME];
+    [[self window] setTitle:PROGRAM_NAME];
     
-    [NSApp endSheet:window];
+    [NSApp endSheet:[self window]];
     [NSApp stopModal];
         
     // if user pressed cancel, we do nothing
@@ -456,7 +454,7 @@
     [progressBar startAnimation:self];
 
     [NSApp beginSheet:progressDialogWindow
-       modalForWindow:window
+       modalForWindow:[self window]
         modalDelegate:nil
        didEndSelector:nil
           contextInfo:nil];
@@ -494,7 +492,7 @@
     if ([[appNameTextField stringValue] length] == 0) {
         [Alerts sheetAlert:@"Missing Application Name"
                    subText:@"You must provide a name for your application."
-                 forWindow:window];
+                 forWindow:[self window]];
         return NO;
     }
     
@@ -503,14 +501,14 @@
     if ([FILEMGR fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] == NO || isDir) {
         [Alerts sheetAlert:@"Invalid Script Path"
                    subText:@"Script file does not exist at the path you specified"
-                 forWindow:window];
+                 forWindow:[self window]];
         return NO;
     }
     
     // validate bundle identifier
     if ([bundleIdentifierTextField isValid] == NO) {
         [Alerts sheetAlert:@"Invalid Bundle Identifier"
-                 forWindow:window
+                 forWindow:[self window]
              subTextFormat:@"The string '%@' is not a valid application bundle identifier.", [bundleIdentifierTextField stringValue]];
         return NO;
     }
@@ -653,7 +651,7 @@
 #pragma mark - Load/Select script
 
 - (IBAction)selectScript:(id)sender {
-    [window setTitle:[NSString stringWithFormat:@"%@ - Select script", PROGRAM_NAME]];
+    [[self window] setTitle:[NSString stringWithFormat:@"%@ - Select script", PROGRAM_NAME]];
     
     //create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
@@ -663,7 +661,8 @@
     [oPanel setAllowedFileTypes:@[(NSString *)kUTTypePlainText]];
     
     //run open panel sheet
-    [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+    NSWindow *window = [self window];
+    [oPanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         if (result == NSOKButton) {
             NSString *filePath = [[oPanel URLs][0] path];
             [self loadScript:filePath];
@@ -840,10 +839,10 @@
         return;
     }
     
-    [window setTitle:[NSString stringWithFormat:@"%@ - Shell Command String", PROGRAM_NAME]];
+    [[self window] setTitle:[NSString stringWithFormat:@"%@ - Shell Command String", PROGRAM_NAME]];
     ShellCommandController *shellCommandController = [[ShellCommandController alloc] init];
-    [shellCommandController showModalShellCommandSheetForSpec:[self appSpecFromControls] window:window];
-    [window setTitle:PROGRAM_NAME];
+    [shellCommandController showModalShellCommandSheetForSpec:[self appSpecFromControls] window:[self window]];
+    [[self window] setTitle:PROGRAM_NAME];
 }
 
 #pragma mark - App Size estimation

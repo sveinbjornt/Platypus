@@ -147,7 +147,7 @@ typedef enum PlatypusStatusItemStyle {
 
 // interface type macros
 
-#define IsValidInterfaceType(X)         ( (X) > 0 && (X) < [PLATYPUS_INTERFACE_TYPE_NAMES count] )
+#define IsValidInterfaceType(X)         ( (X) >= 0 && (X) < [PLATYPUS_INTERFACE_TYPE_NAMES count] )
 
 #define IsValidInterfaceTypeString(X)   [PLATYPUS_INTERFACE_TYPE_NAMES containsObject:(X)]
 

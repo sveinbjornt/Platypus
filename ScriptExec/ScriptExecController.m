@@ -92,9 +92,7 @@
     
     NSTask *task;
     STPrivilegedTask *privilegedTask;
-    
-    NSTimer *checkStatusTimer;
-    
+        
     NSPipe *inputPipe;
     NSFileHandle *inputWriteFileHandle;
     NSPipe *outputPipe;

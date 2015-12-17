@@ -31,7 +31,6 @@
 #import "IconController.h"
 #import "IconFamily.h"
 #import "NSWorkspace+Additions.h"
-#import "Alerts.h"
 #import "Common.h"
 #import "VDKQueue.h"
 
@@ -50,7 +49,6 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     IBOutlet NSMenu *iconContextualMenu;
     IBOutlet NSButton *iconActionButton;
     
-    NSString *icnsFilePath;
     VDKQueue *fileWatcherQueue;
     dispatch_queue_t iconWritingDispatchQueue;
 }
@@ -69,7 +67,6 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 @end
 
 @implementation IconController
-@synthesize icnsFilePath = icnsFilePath;
 
 - (instancetype)init {
     if ((self = [super init])) {
@@ -190,13 +187,13 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 
 - (void)updateIcnsStatus {
     // show question mark if icon file is missing
-    if ([self hasIconFile] && [FILEMGR fileExistsAtPath:icnsFilePath] == FALSE) {
+    if ([self hasIconFile] && [FILEMGR fileExistsAtPath:_icnsFilePath] == FALSE) {
         IconFamily *iconFam = [[IconFamily alloc] initWithSystemIcon:kQuestionMarkIcon];
         [iconImageView setImage:[iconFam imageWithAllReps]];
         [iconNameTextField setTextColor:[NSColor redColor]];
     } else {
         // otherwise, read icns image from path and put it in image view
-        NSImage *img = [[NSImage alloc] initByReferencingFile:icnsFilePath];
+        NSImage *img = [[NSImage alloc] initByReferencingFile:_icnsFilePath];
         if (img == nil) {
             img = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
         }
@@ -293,19 +290,19 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 }
 
 - (BOOL)hasIconFile {
-    return (icnsFilePath != nil);
+    return (_icnsFilePath != nil);
 }
 
 - (void)setIcnsFilePath:(NSString *)path {
     
-    if (icnsFilePath != nil) {
-        [fileWatcherQueue removePath:icnsFilePath];
-        icnsFilePath = nil;
+    if (_icnsFilePath != nil) {
+        [fileWatcherQueue removePath:_icnsFilePath];
+        _icnsFilePath = nil;
     }
     
-    if (path != nil && [icnsFilePath isEqualToString:@""] == NO) {
-        icnsFilePath = [[NSString alloc] initWithString:path];
-        [fileWatcherQueue addPath:icnsFilePath];
+    if (path != nil && [_icnsFilePath isEqualToString:@""] == NO) {
+        _icnsFilePath = [[NSString alloc] initWithString:path];
+        [fileWatcherQueue addPath:_icnsFilePath];
     }
     
     [self updateIcnsStatus];
