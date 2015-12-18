@@ -56,6 +56,7 @@ else
 fi
 
 # Strip executables
+# XCode is not to be trusted in such matters
 echo "Stripping binaries"
 strip -x "${BUILD_DIR}/${APP_BUNDLE_NAME}/Contents/MacOS/Platypus"
 strip -x "${BUILD_DIR}/${APP_BUNDLE_NAME}/Contents/Resources/ScriptExec"
