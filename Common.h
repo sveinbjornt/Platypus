@@ -50,10 +50,10 @@
 #define PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL [NSString stringWithFormat:@"%@#22",PROGRAM_DOCUMENTATION_URL]
 
 // Folders
-#define APP_SUPPORT_FOLDER          [@"~/Library/Application Support/Platypus/" stringByExpandingTildeInPath]
-#define TEMP_FOLDER                 [NSString stringWithFormat:@"%@/", APP_SUPPORT_FOLDER]
-#define PROFILES_FOLDER             [NSString stringWithFormat:@"%@/Profiles", APP_SUPPORT_FOLDER]
-#define EXAMPLES_FOLDER             [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]]
+#define PROGRAM_APP_SUPPORT_PATH    [[NSString stringWithFormat:@"~/Library/Application Support/%@/", PROGRAM_NAME] stringByExpandingTildeInPath]
+#define PROGRAM_TEMPDIR_PATH        [NSString stringWithFormat:@"%@/", PROGRAM_APP_SUPPORT_PATH]
+#define PROGRAM_PROFILES_PATH       [NSString stringWithFormat:@"%@/Profiles", PROGRAM_APP_SUPPORT_PATH]
+#define PROGRAM_EXAMPLES_PATH       [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]]
 
 #define NEW_SCRIPT_FILENAME         @"Script"
 

@@ -148,16 +148,17 @@
     // make sure application support folder and subfolders exist
     BOOL isDir;
     // app support folder
-    if (![FILEMGR fileExistsAtPath:APP_SUPPORT_FOLDER isDirectory:&isDir] && ![FILEMGR createDirectoryAtPath:APP_SUPPORT_FOLDER withIntermediateDirectories:NO attributes:nil error:nil]) {
+    if (![FILEMGR fileExistsAtPath:PROGRAM_APP_SUPPORT_PATH isDirectory:&isDir] &&
+        ![FILEMGR createDirectoryAtPath:PROGRAM_APP_SUPPORT_PATH withIntermediateDirectories:NO attributes:nil error:nil]) {
             [Alerts alert:@"Error"
-            subTextFormat:@"Could not create directory '%@'", APP_SUPPORT_FOLDER];
+            subTextFormat:@"Could not create directory '%@'", PROGRAM_APP_SUPPORT_PATH];
     }
     
     // profiles folder
-    if (![FILEMGR fileExistsAtPath:PROFILES_FOLDER isDirectory:&isDir]) {
-        if (![FILEMGR createDirectoryAtPath:PROFILES_FOLDER withIntermediateDirectories:NO attributes:nil error:nil]) {
+    if (![FILEMGR fileExistsAtPath:PROGRAM_PROFILES_PATH isDirectory:&isDir]) {
+        if (![FILEMGR createDirectoryAtPath:PROGRAM_PROFILES_PATH withIntermediateDirectories:NO attributes:nil error:nil]) {
             [Alerts alert:@"Error"
-            subTextFormat:@"Could not create directory '%@'", PROFILES_FOLDER];
+            subTextFormat:@"Could not create directory '%@'", PROGRAM_PROFILES_PATH];
         }
     }
     
@@ -247,12 +248,12 @@
         appName = NEW_SCRIPT_FILENAME;
     }
 
-    NSString *tmpScriptPath = [NSString stringWithFormat:@"%@/%@%@", TEMP_FOLDER, appName, suffix];
+    NSString *tmpScriptPath = [NSString stringWithFormat:@"%@/%@%@", PROGRAM_TEMPDIR_PATH, appName, suffix];
     
-    // increment digit appended to script name until no script exists
+    // increment digit appended to script name until no script with that name exists at path
     int incr = 1;
     while ([FILEMGR fileExistsAtPath:tmpScriptPath]) {
-        tmpScriptPath = [NSString stringWithFormat:@"%@/%@-%d%@", TEMP_FOLDER, appName, incr, suffix];
+        tmpScriptPath = [NSString stringWithFormat:@"%@/%@-%d%@", PROGRAM_TEMPDIR_PATH, appName, incr, suffix];
         incr++;
     }
     

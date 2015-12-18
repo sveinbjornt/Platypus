@@ -59,7 +59,7 @@
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:@[PROGRAM_PROFILE_SUFFIX, PROGRAM_PROFILE_UTI]];
-    [oPanel setDirectoryURL:[NSURL fileURLWithPath:PROFILES_FOLDER]];
+    [oPanel setDirectoryURL:[NSURL fileURLWithPath:PROGRAM_PROFILES_PATH]];
     
     if ([oPanel runModal] == NSOKButton) {
         NSString *filePath = [[oPanel URLs][0] path];
@@ -82,6 +82,7 @@
     
     // check if it's an example
     if (spec[AppSpecKey_IsExample] != nil) {
+        
         // make sure of the example profile's integrity
         NSString *scriptStr = spec[AppSpecKey_ScriptText];
         NSString *scriptName = spec[AppSpecKey_ScriptName];
@@ -94,16 +95,23 @@
         scriptStr = [scriptStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
         // write script contained in the example profile dictionary to file and set as script path
-        NSString *scriptPath = [NSString stringWithFormat:@"%@%@", TEMP_FOLDER, scriptName];
-        [scriptStr writeToFile:scriptPath atomically:YES encoding:DEFAULT_TEXT_ENCODING error:nil];
+        NSString *scriptPath = [NSString stringWithFormat:@"%@%@", PROGRAM_TEMPDIR_PATH, scriptName];
+        NSError *err;
+        BOOL succ = [scriptStr writeToFile:scriptPath atomically:YES encoding:DEFAULT_TEXT_ENCODING error:&err];
+        if (succ == NO) {
+            [Alerts alert:@"Error writing script to file" subTextFormat:@"%@", [err localizedDescription]];
+            return;
+        }
+
         spec[AppSpecKey_ScriptPath] = scriptPath;
     }
     
     // let's keep this around if we ever want to use it
     // warn if created with a different version of Platypus
-    //	if ([[spec propertyForKey:AppSpecKey_Creator] isEqualToString:PROGRAM_CREATOR_STAMP] == NO)
-    //		[PlatypusUtility alert:@"Version clash" subText: @"The profile you selected was created with a different version of Platypus and may not load correctly."];
-    
+//    	if ([spec[AppSpecKey_Creator] isEqualToString:PROGRAM_CREATOR_STAMP] == NO) {
+//    		[Alerts alert:@"Version clash"
+//                  subText: @"Profile was created with a different version of Platypus and may not load correctly."];
+//        }
     [platypusController controlsFromAppSpec:spec];
 }
 
@@ -121,7 +129,7 @@
     NSSavePanel *sPanel = [NSSavePanel savePanel];
     [sPanel setTitle:[NSString stringWithFormat:@"Save %@ Profile", PROGRAM_NAME]];
     [sPanel setPrompt:@"Save"];
-    [sPanel setDirectoryURL:[NSURL fileURLWithPath:PROFILES_FOLDER]];
+    [sPanel setDirectoryURL:[NSURL fileURLWithPath:PROGRAM_PROFILES_PATH]];
     [sPanel setNameFieldStringValue:defaultName];
     
     if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
@@ -211,11 +219,7 @@
 
 - (void)profileMenuItemSelected:(id)sender {
     BOOL isExample = ([sender tag]  == EXAMPLES_TAG);
-    NSString *folder = PROFILES_FOLDER;
-    if (isExample) {
-        folder = [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]];
-    }
-    
+    NSString *folder = isExample ? PROGRAM_EXAMPLES_PATH : PROGRAM_PROFILES_PATH;
     NSString *profilePath = [NSString stringWithFormat:@"%@/%@.%@", folder, [sender title], PROGRAM_PROFILE_SUFFIX];
     
     // if command key is down, we reveal in finder
@@ -235,17 +239,15 @@
     }
     
     //delete all .platypus files in PROFILES_FOLDER
-    NSFileManager *manager = FILEMGR;
-    NSDirectoryEnumerator *dirEnumerator = [manager enumeratorAtPath:PROFILES_FOLDER];
+    NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:PROGRAM_PROFILES_PATH];
     NSString *filename;
-    
     while ((filename = [dirEnumerator nextObject]) != nil) {
         if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX]) {
-            NSString *path = [NSString stringWithFormat:@"%@/%@", PROFILES_FOLDER, filename];
-            if ([manager isDeletableFileAtPath:path] == NO) {
-                [Alerts alert:@"Error" subTextFormat:@"Unable to delete file '%@'.", path];
+            NSString *path = [NSString stringWithFormat:@"%@/%@", PROGRAM_PROFILES_PATH, filename];
+            if ([FILEMGR isDeletableFileAtPath:path] == NO) {
+                [Alerts alert:@"Error deleting profile" subTextFormat:@"Unable to delete file '%@'.", path];
             } else {
-                [manager removeItemAtPath:path error:nil];
+                [FILEMGR removeItemAtPath:path error:nil];
             }
         }
     }
@@ -254,21 +256,21 @@
 }
 
 - (void)openProfilesFolder {
-    [WORKSPACE selectFile:nil inFileViewerRootedAtPath:PROFILES_FOLDER];
+    [WORKSPACE selectFile:nil inFileViewerRootedAtPath:PROGRAM_PROFILES_PATH];
 }
 
 - (void)openExamplesFolder {
-    [WORKSPACE selectFile:nil inFileViewerRootedAtPath:EXAMPLES_FOLDER];
+    [WORKSPACE selectFile:nil inFileViewerRootedAtPath:PROGRAM_EXAMPLES_PATH];
 }
 
 #pragma mark -
 
 - (NSArray *)readProfilesList {
-    return [self profilesInFolder:PROFILES_FOLDER];
+    return [self profilesInFolder:PROGRAM_PROFILES_PATH];
 }
 
 - (NSArray *)readExamplesList {
-    return [self profilesInFolder:EXAMPLES_FOLDER];
+    return [self profilesInFolder:PROGRAM_EXAMPLES_PATH];
 }
 
 - (NSArray *)profilesInFolder:(NSString *)folderPath {

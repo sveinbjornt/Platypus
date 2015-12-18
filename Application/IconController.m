@@ -205,7 +205,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 - (void)createAndLoadCustomImageAsIcon:(NSImage *)image {
     NSString *tmpIconPath;
     do {
-        tmpIconPath = [NSString stringWithFormat:@"%@/PlatypusIcon-%d.icns", APP_SUPPORT_FOLDER, arc4random() % 99999];
+        tmpIconPath = [NSString stringWithFormat:@"%@/PlatypusIcon-%d.icns", PROGRAM_APP_SUPPORT_PATH, arc4random() % 99999];
     } while ([FILEMGR fileExistsAtPath:tmpIconPath]);
     
     dispatch_async(iconWritingDispatchQueue, ^{

@@ -37,5 +37,14 @@ SHARED_HEAD=`find Shared -name \*.\[h\] -exec cat {} \; | wc -l`
 SHARED_IMPL=`find Shared -name \*.\[m\] -exec cat {} \; | wc -l`
 echo "${SHARED_TOTAL} (${SHARED_HEAD}/${SHARED_IMPL})"
 
+echo "LOC Shared (Platypus)"
+SHARED_US_TOTAL=`find Shared -not -path "Shared/Others*" -name \*.\[m\|h\] -exec cat {} \; | wc -l`
+SHARED_US_HEAD=`find Shared -not -path "Shared/Others*" -name \*.\[h\] -exec cat {} \; | wc -l`
+SHARED_US_IMPL=`find Shared -not -path "Shared/Others*" -name \*.\[m\] -exec cat {} \; | wc -l`
+echo "${SHARED_US_TOTAL} (${SHARED_US_HEAD}/${SHARED_US_IMPL})"
+
 echo "LOC Shared (Others)"
-find Shared/Others -name \*.\[m\|h\] -exec cat {} \; | wc -l
+SHAREDOTHERS_TOTAL=`find Shared/Others -name \*.\[m\|h\] -exec cat {} \; | wc -l`
+SHAREDOTHERS_HEAD=`find Shared/Others -name \*.\[h\] -exec cat {} \; | wc -l`
+SHAREDOTHERS_IMPL=`find Shared/Others -name \*.\[m\] -exec cat {} \; | wc -l`
+echo "${SHAREDOTHERS_TOTAL} (${SHAREDOTHERS_HEAD}/${SHAREDOTHERS_IMPL})"
