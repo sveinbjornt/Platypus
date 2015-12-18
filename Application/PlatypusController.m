@@ -241,7 +241,7 @@
 
 - (NSString *)createNewScript:(NSString *)scriptText {
     NSString *interpreterPath = [interpreterPathTextField stringValue];
-    NSString *suffix = [ScriptAnalyser filenameSuffixForInterpreterPath:interpreterPath];
+    NSString *suffix = [ScriptAnalyser standardFilenameSuffixForInterpreterPath:interpreterPath];
     
     NSString *appName = [appNameTextField stringValue];
     if ([appName isEqualToString:@""]) {

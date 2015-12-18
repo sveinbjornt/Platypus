@@ -39,7 +39,7 @@
 + (NSString *)displayNameForInterpreterPath:(NSString *)interpreterPath;
 + (NSString *)interpreterPathForDisplayName:(NSString *)displayName;
 + (NSString *)interpreterPathForFilenameSuffix:(NSString *)fileName;
-+ (NSString *)filenameSuffixForInterpreterPath:(NSString *)interpreter;
++ (NSString *)standardFilenameSuffixForInterpreterPath:(NSString *)interpreter;
 + (NSArray OF_NSSTRING *)parseInterpreterInScriptFile:(NSString *)scriptPath;
 + (NSString *)appNameFromScriptFile:(NSString *)scriptPath;
 + (NSString *)determineInterpreterPathForScriptFile:(NSString *)scriptPath;

@@ -198,11 +198,11 @@
     return nil;
 }
 
-+ (NSString *)filenameSuffixForInterpreterPath:(NSString *)interpreterPath {
++ (NSString *)standardFilenameSuffixForInterpreterPath:(NSString *)interpreterPath {
     NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         if ([infoDict[@"Path"] isEqualToString:interpreterPath]) {
-            return infoDict[@"Suffixes"];
+            return [infoDict[@"Suffixes"] firstObject];
         }
     }
     return nil;
