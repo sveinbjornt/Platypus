@@ -398,7 +398,7 @@
 				F4051D9E1C1B5AF900587F1F /* Common.m */,
 				F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */,
 				F48B7CB611F76B0C00351575 /* Application */,
-				F48B7B8811F766CA00351575 /* ScriptExec Binary */,
+				F48B7B8811F766CA00351575 /* ScriptExec */,
 				F4E1F70711F75A40007EE2E3 /* Command Line Tool */,
 				080E96DDFE201D6D7F000001 /* Shared */,
 				F445EA7C14FABE6500DCCDB3 /* Sparkle */,
@@ -632,7 +632,7 @@
 			name = ScriptAnalyser;
 			sourceTree = "<group>";
 		};
-		F48B7B8811F766CA00351575 /* ScriptExec Binary */ = {
+		F48B7B8811F766CA00351575 /* ScriptExec */ = {
 			isa = PBXGroup;
 			children = (
 				F48B7B9011F766E600351575 /* main.m */,
@@ -642,7 +642,7 @@
 				F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */,
 				F44A77471C1887CC003CCA7A /* Resources */,
 			);
-			name = "ScriptExec Binary";
+			name = ScriptExec;
 			sourceTree = "<group>";
 		};
 		F48B7CB611F76B0C00351575 /* Application */ = {

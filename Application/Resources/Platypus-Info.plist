@@ -313,6 +313,28 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>swift</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>PlatypusScriptFile.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Swift Script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.swift-source</string>
+			</array>
+			<key>NSExportableTypes</key>
+			<array>
+				<string>com.apple.application</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>platypus</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
