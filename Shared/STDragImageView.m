@@ -34,17 +34,14 @@
 
 #pragma mark - Dragging
 
-- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
-{
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(draggingEntered:)]) {
 		return [_delegate draggingEntered:sender];
-    } else {
-		return [super draggingEntered:sender];
     }
+    return [super draggingEntered:sender];
 }
 
-- (void)draggingExited:(id <NSDraggingInfo>)sender
-{
+- (void)draggingExited:(id <NSDraggingInfo>)sender {
 	if (_delegate && [_delegate respondsToSelector:@selector(draggingExited:)]) {
         [_delegate draggingExited:sender];
 	} else {
@@ -52,35 +49,28 @@
     }
 }
 
-- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender
-{
+- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
 	if (_delegate && [_delegate respondsToSelector:@selector(draggingUpdated:)]) {
 		return [_delegate draggingUpdated:sender];
-	} else {
-		return [super draggingUpdated:sender];
-    }
+	}
+    return [super draggingUpdated:sender];
 }
 
-- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender
-{
+- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
 	if (_delegate && [_delegate respondsToSelector:@selector(prepareForDragOperation:)]) {
 		return [_delegate prepareForDragOperation:sender];
-	} else {
-		return [super prepareForDragOperation:sender];
-    }
+	}
+    return [super prepareForDragOperation:sender];
 }
 
-- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender
-{
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
 	if (_delegate && [_delegate respondsToSelector:@selector(performDragOperation:)]) {
 		return [_delegate performDragOperation:sender];
-	} else {
-		return [super performDragOperation:sender];
-    }
+	}
+    return [super performDragOperation:sender];
 }
 
-- (void)concludeDragOperation:(id <NSDraggingInfo>)sender
-{
+- (void)concludeDragOperation:(id <NSDraggingInfo>)sender {
 	if (_delegate && [_delegate respondsToSelector:@selector(concludeDragOperation:)]) {
 		[_delegate concludeDragOperation:sender];
     } else {
@@ -90,8 +80,7 @@
 
 #pragma mark - Drag source
 
-- (void)mouseDown:(NSEvent*)event
-{
+- (void)mouseDown:(NSEvent*)event {
     NSPasteboardItem *pbItem = [NSPasteboardItem new];
     [pbItem setDataProvider:self forTypes:@[NSPasteboardTypeTIFF]];
     
@@ -107,22 +96,15 @@
     draggingSession.draggingFormation = NSDraggingFormationNone;
 }
 
-- (void)pasteboard:(NSPasteboard *)sender item:(NSPasteboardItem *)item provideDataForType:(NSString *)type
-{
-    /*------------------------------------------------------
-     method called by pasteboard to support promised
-     drag types.
-     --------------------------------------------------------*/
+- (void)pasteboard:(NSPasteboard *)sender item:(NSPasteboardItem *)item provideDataForType:(NSString *)type {
     //sender has accepted the drag and now we need to send the data for the type we promised
     if ([type compare: NSPasteboardTypeTIFF] == NSOrderedSame) {
-        
         //set data for TIFF type on the pasteboard as requested
         [sender setData:[[self image] TIFFRepresentation] forType:NSPasteboardTypeTIFF];
     }
 }
 
-- (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context
-{
+- (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
     return (context == NSDraggingContextOutsideApplication) ? NSDragOperationCopy : NSDragOperationNone;
 }
 
