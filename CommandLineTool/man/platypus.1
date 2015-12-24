@@ -13,7 +13,8 @@
 is the command line counterpart to the Platypus Mac OS X application.  It creates a Mac OS X
 application bundle which executes a script. See http://sveinbjorn.org/platypus
 .Pp
-platypus defaults to creating application bundles, but can also create Platypus profiles that 
+.Nm
+defaults to creating application bundles, but can also create Platypus profiles that
 are loadable by both the command line program and the Platypus graphical application.
 .Pp
 If the scriptPath parameter is '-', the script text is read from STDIN.
@@ -22,14 +23,14 @@ The following flags are supported (and are parsed in the order in which they are
 .Pp
 .Bl -tag -width -Fl
 .It Fl O -generate-profile
-Create profile document instead of creating an application bundle.  When this option is
-selected, the "destinationPath" paramater (i.e. the final parameter to the program) should 
-have a .platypus suffix.  Please note that in order to create reusable profiles, this option 
-requires that all paths to bundled files, icons etc. be absolute.  If the string '-' is provided
-as destinationPath, the profile property list will be dumped to STDOUT.
+Create a profile document instead of creating an application bundle.  When this option is
+enabled, the "destinationPath" paramater (i.e. the final argument to the program) should
+have a .platypus suffix. Please note that in order to create reusable profiles, this option
+requires absolute paths to all bundled files, icons etc.  If the string '-' is provided
+as destination path, the profile property list XML will be dumped to STDOUT.
 .It Fl P -load-profile Ar [profilePath]
 Loads all settings from a Platypus profile document.  It is still necessary to specify a destination path 
-for the application.  Subsequent parameters can override profile settings.
+for the application. Subsequent arguments can override profile settings.
 .It Fl a -name Ar [appName]
 Specifies the name of the application.  This is can be different from the name of the .app
 bundle itself, and is displayed in the application's menus, "About" window and Info.plist property list.

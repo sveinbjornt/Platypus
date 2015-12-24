@@ -33,7 +33,7 @@
 @implementation NSBundle (Templates)
 
 - (NSString *)loadTemplate:(NSString *)templateFileName usingDictionary:(NSDictionary *)dict {
-    
+
     NSString *fullPath = [self pathForResource:templateFileName ofType:nil];
     NSError *err;
     NSString *templateStr = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:&err];
@@ -41,7 +41,7 @@
         NSLog(@"Unable to read template '%@': %@", templateFileName, [err localizedDescription]);
         return nil;
     }
-    
+    // replace all %%%%KEY%%%% entries in file with dict value for key
     for (NSString *key in dict) {
         NSString *placeholder = [NSString stringWithFormat:@"%%%%%@%%%%", key];
         templateStr = [templateStr stringByReplacingOccurrencesOfString:placeholder withString:dict[key]];

@@ -76,7 +76,7 @@
 #define CMDLINE_ICON_PATH           [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_DEFAULT_ICON_NAME]
 #define CMDLINE_ARG_SEPARATOR       @"|"
 
-#define IBTOOL_PATH                 @"/Applications/Xcode.app/Contents/Developer/usr/bin/ibtool"
+#define IBTOOL_PATH                 [NSString stringWithFormat:@"%@/Contents/Developer/usr/bin/ibtool", [WORKSPACE fullPathForApplication:@"Xcode"]]
 
 #define DEFAULT_TEXT_FONT_NAME      @"Monaco"
 #define DEFAULT_TEXT_FONT_SIZE      13.0
