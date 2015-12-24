@@ -526,7 +526,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="BF789AFE-CBAF-4407-9569-93B9032296FF" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="ECEB3E4A-EA36-4181-99DF-45EEF9ABD4A5" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -602,7 +602,7 @@ DQ
             </connections>
             <point key="canvasLocation" x="234" y="-259.5"/>
         </window>
-        <customObject id="335" userLabel="PlatypusController" customClass="PlatypusController">
+        <customObject id="335" userLabel="PlatypusController" customClass="PlatypusWindowController">
             <connections>
                 <outlet property="acceptsDroppedItemsCheckbox" destination="299" id="11W-bc-hxb"/>
                 <outlet property="appNameTextField" destination="11541" id="11543"/>
@@ -2885,7 +2885,8 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="BF789AFE-CBAF-4407-9569-93B9032296FF" width="16" height="16">
+        <image name="DefaultStatusMenuIcon" width="36" height="36"/>
+        <image name="ECEB3E4A-EA36-4181-99DF-45EEF9ABD4A5" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -2965,7 +2966,6 @@ EKAQrRCyELQQthC7EMMQxhDLENMQ1hDoEOsQ8AAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAABDy
 A
 </mutableData>
         </image>
-        <image name="DefaultStatusMenuIcon" width="36" height="36"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>

@@ -28,7 +28,7 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "PlatypusController.h"
+#import "PlatypusWindowController.h"
 #import "Common.h"
 #import "PlatypusAppSpec.h"
 #import "ScriptAnalyser.h"
@@ -50,7 +50,7 @@
 #import "NSColor+HexTools.h"
 #import "VDKQueue.h"
 
-@interface PlatypusController()
+@interface PlatypusWindowController()
 {
     //basic controls
     IBOutlet NSTextField *appNameTextField;
@@ -123,7 +123,7 @@
 
 @end
 
-@implementation PlatypusController
+@implementation PlatypusWindowController
 
 #pragma mark - Application
 

@@ -30,7 +30,7 @@
 
 #import "StatusItemSettingsController.h"
 #import "Common.h"
-#import "PlatypusController.h"
+#import "PlatypusWindowController.h"
 #import "Alerts.h"
 
 @interface StatusItemSettingsController()
@@ -43,7 +43,7 @@
     IBOutlet NSTextField *iconLabelTextField;
     IBOutlet NSButton *useSystemFontCheckbox;
     IBOutlet NSButton *isTemplateCheckbox;
-    IBOutlet PlatypusController *platypusController;
+    IBOutlet PlatypusWindowController *platypusController;
     
     NSStatusItem *previewStatusItem;
     NSMenu *previewStatusItemMenu;

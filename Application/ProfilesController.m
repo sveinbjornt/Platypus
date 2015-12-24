@@ -30,7 +30,7 @@
 
 #import "ProfilesController.h"
 #import "PlatypusAppSpec.h"
-#import "PlatypusController.h"
+#import "PlatypusWindowController.h"
 #import "Common.h"
 #import "Alerts.h"
 
@@ -39,7 +39,7 @@
 @interface ProfilesController()
 {
     IBOutlet NSMenu *profilesMenu;
-    IBOutlet PlatypusController *platypusController;
+    IBOutlet PlatypusWindowController *platypusController;
     IBOutlet NSMenuItem *examplesMenuItem;
 }
 
