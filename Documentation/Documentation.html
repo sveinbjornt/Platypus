@@ -833,7 +833,7 @@ my $result = dialog("Answer to life, the universe and everything?", "42");
     
 <h3 id="85">How can I pass specific arguments to my script?</h3>
 
-<p>You can edit arguments to both the script interpreter and the script itself by pressing the <strong>Args</strong> button next to the <strong>Interpreter</string> controls.</p>
+<p>You can edit arguments to both the script interpreter and the script itself by pressing the <strong>Args</strong> button next to the <strong>Interpreter</strong> controls.</p>
     
 <br>
 <br>
@@ -857,9 +857,17 @@ my $result = dialog("Answer to life, the universe and everything?", "42");
 <br>
 <br>
 
-<h3 id="88">How do I get the path to my application and/or bundled files within the script?</h3>
+<h3 id="88">How do I get the path to my application and/or bundled files from within the script?</h3>
 
-<p>The script executed by Platypus-generated applications runs from the Resources directory of the application bundle (e.g. <code>MyApp.app/Contents/Resources</code>).  Any bundled files are thus accessible from the script's current working directory.  To get the path to the application bundle itself, or the directory it is in, you can use <code>../..</code> (application bundle) or <code>../../..</code> (application's containing directory).</p>
+<p>The script executed by Platypus-generated applications runs from the Resources directory of the application bundle (e.g. <code>MyApp.app/Contents/Resources</code>).  Any bundled files are thus accessible from the script's current working directory.</p>
+
+<p>For example, if you have added <code>file.txt</code> as a bundled file and want to copy it over to the user's home directory using a shell script, you would run the following command:</p>
+
+<div class="codeblock"><pre>
+    cp file.txt ~/
+</pre></div>
+
+<p>To get the path to the application bundle itself, or the directory it is in, you can use <code>../..</code> (application bundle) or <code>../../..</code> (application bundle's containing directory).</p>
 
 <br>
 <br>
