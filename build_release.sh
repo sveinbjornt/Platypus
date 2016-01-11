@@ -47,8 +47,7 @@ xcodebuild  -parallelizeTargets \
 #1> /dev/null
 
 # Check if build succeeded
-if test $? -eq 0
-then
+if [ test $? -eq 0 ]; then
     echo "Build successful"
 else
     echo "Build failed"
@@ -101,8 +100,7 @@ echo "Creating application archive ${APP_ZIP_NAME}..."
 cd "${BUILD_DIR}"
 zip -q --symlinks "${APP_ZIP_NAME}" -r "${APP_FOLDER_NAME}"
 
-if [ $1 ]
-then
+if [ $1 ]; then
     echo "Uploading application archive ..."
     scp "${APP_ZIP_NAME}" "${REMOTE_DIR}"
 fi
@@ -117,16 +115,14 @@ echo "Creating source archive ${APP_SRC_ZIP_NAME}..."
 cd "${SRC_DIR}"
 zip -q --symlinks -r "${APP_SRC_ZIP_NAME}" "." -x *.git* -x *.zip* -x *.tgz* -x *.gz* -x *.DS_Store* -x *dsa_priv.pem* -x *Sparkle/dsa_priv.pem* -x \*build/\* -x \*Releases\*
 
-if [ $1 ]
-then
+if [ $1 ]; then
     echo "Uploading source archive ..."
     scp "${APP_SRC_ZIP_NAME}" "${REMOTE_DIR}"
 fi
 
 FINAL_SRC_ARCHIVE_PATH=~/Desktop/${APP_SRC_ZIP_NAME}
 
-if [ $1 ]
-then
+if [ $1 ]; then
     echo "Updating documentation on server ..."
     sh "Documentation/update_docs.sh"
 fi

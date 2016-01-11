@@ -399,6 +399,9 @@ int main(int argc, const char *argv[]) {
             case 'T':
             {
                 NSString *utisStr = @(optarg);
+                if (BundleIdentifierIsValid(utisStr) == NO) {
+                    NSPrintErr(@"Warning: '%@' is not a valid bundle identifier", utisStr);
+                }
                 properties[AppSpecKey_Utis] = [utisStr componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
             }
                 break;
