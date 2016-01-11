@@ -31,7 +31,7 @@
 	<key>CFBundleExecutable</key>
 	<string>ScriptExec</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.sveinbjorn.ScriptExec2</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -60,26 +60,26 @@
 	<key>NSServices</key>
 	<array>
 		<dict>
-			<key>NSMessage</key>
-			<string>dropService</string>
-			<key>NSPortName</key>
-			<string>ScriptExec</string>
-			<key>NSTimeout</key>
-			<integer>3000</integer>
-			<key>NSSendTypes</key>
-			<array>
-				<string>NSFilenamesPboardType</string>
-				<string>NSStringPboardType</string>
-			</array>
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
 				<string>ScriptExec</string>
 			</dict>
+			<key>NSMessage</key>
+			<string>dropService</string>
+			<key>NSPortName</key>
+			<string>ScriptExec</string>
 			<key>NSSendFileTypes</key>
 			<array>
 				<string>public.item</string>
 			</array>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSFilenamesPboardType</string>
+				<string>NSStringPboardType</string>
+			</array>
+			<key>NSTimeout</key>
+			<integer>3000</integer>
 		</dict>
 	</array>
 </dict>
