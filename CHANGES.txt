@@ -8,12 +8,12 @@ For 5.1
     TODO: Save authentication password and reuse for subsequent execution
     TODO: Add URI handling https://github.com/barryk/DropScript/commit/3fa2d00177cc22680c54edeb6f433a658f6b07e8
     TODO: Asynchronous app creation in background thread?
-    TODO: Move documentation to Markdown format instead of raw HTML
+    TODO: Move documentation to Markdown format instead of raw, old-school HTML
     TODO: Add documentation on reading dropped text from STDIN
     TODO: Document the Services feature and provide instructions on how to enable in the Services preferences in Mac OS X.
     TODO: Refactor ScriptExec for clean view controller/task controller decoupling
     TODO: Look at FTaskStream.h
-    TODO: Use pseudo-pttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
+    TODO: Use pseudo-ttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
     TODO: Use NSDictionaryController and bindings for all controls in main window and sub-controllers
     TODO: File watching still broken for script path
     TODO: Documentation should be updated about what Use Icon as Template does
@@ -25,6 +25,7 @@ For 5.1
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: Add WebView example listing dropped files
+    TODO: Fix issue with WebView output
 
     * Automatic app name generation from script name now respects camelCase and strips whitespace
     * Using NSString constants for NSUserDefault string keys
