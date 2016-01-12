@@ -30,7 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ScriptAnalyser : NSObject
+@interface PlatypusScriptAnalyser : NSObject
 
 + (NSArray OF_NSDICTIONARY *)interpreters;
 + (NSArray OF_NSSTRING *)interpreterDisplayNames;

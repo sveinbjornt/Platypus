@@ -18,7 +18,7 @@
 		F40F33B31BFE82510052A68F /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269681BC9934800169D8B /* NSTask+Description.m */; };
 		F426222B1C03B4B00052BA33 /* ApplicationImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426222A1C03B4B00052BA33 /* ApplicationImages.xcassets */; };
 		F43142AF1C03C17D004EEF8C /* ApplicationImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426222A1C03B4B00052BA33 /* ApplicationImages.xcassets */; };
-		F43142B01C03C742004EEF8C /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */; };
+		F43142B01C03C742004EEF8C /* PlatypusScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptAnalyser.m */; };
 		F43142B11C03C749004EEF8C /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F43E1D671BC8014E00622B5F /* Sparkle.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = F43E1D651BC8003600622B5F /* Sparkle.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F43E1D691BC801E600622B5F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43E1D651BC8003600622B5F /* Sparkle.framework */; };
@@ -53,7 +53,7 @@
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
 		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; };
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
-		F48B1EE017935BBC007DA173 /* ScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */; };
+		F48B1EE017935BBC007DA173 /* PlatypusScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptAnalyser.m */; };
 		F48B68581C14CF200098815B /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B68551C14CF200098815B /* IconFamily.m */; };
 		F48B68591C14CF200098815B /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B68571C14CF200098815B /* NSString+CarbonFSRefCreation.m */; };
 		F48B7B8111F7666600351575 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
@@ -213,8 +213,8 @@
 		F48269811BCAF1D800169D8B /* UniformTypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniformTypeListController.h; path = Application/UniformTypeListController.h; sourceTree = "<group>"; };
 		F48269821BCAF1D800169D8B /* UniformTypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniformTypeListController.m; path = Application/UniformTypeListController.m; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
-		F48B1EDD17935BBC007DA173 /* ScriptAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptAnalyser.h; path = Shared/ScriptAnalyser.h; sourceTree = "<group>"; };
-		F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptAnalyser.m; path = Shared/ScriptAnalyser.m; sourceTree = "<group>"; };
+		F48B1EDD17935BBC007DA173 /* PlatypusScriptAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusScriptAnalyser.h; path = Shared/PlatypusScriptAnalyser.h; sourceTree = "<group>"; };
+		F48B1EDE17935BBC007DA173 /* PlatypusScriptAnalyser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusScriptAnalyser.m; path = Shared/PlatypusScriptAnalyser.m; sourceTree = "<group>"; };
 		F48B68541C14CF200098815B /* IconFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconFamily.h; path = Shared/Others/IconFamily/IconFamily.h; sourceTree = SOURCE_ROOT; };
 		F48B68551C14CF200098815B /* IconFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconFamily.m; path = Shared/Others/IconFamily/IconFamily.m; sourceTree = SOURCE_ROOT; };
 		F48B68561C14CF200098815B /* NSString+CarbonFSRefCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+CarbonFSRefCreation.h"; path = "Shared/Others/IconFamily/NSString+CarbonFSRefCreation.h"; sourceTree = SOURCE_ROOT; };
@@ -364,9 +364,9 @@
 				F48269871BCB1EAF00169D8B /* VDKQueue */,
 				F48269661BC9929A00169D8B /* NSTask+Description */,
 				F4ECE17511F76CC2000DB012 /* PlatypusAppSpec */,
+				F48A724D122E23B200964D71 /* PlatypusScriptAnalyser */,
 				F4AF785E14D1E5F600544C1B /* STDragWebView */,
 				F4B5DE431491A00900C43901 /* Alerts */,
-				F48A724D122E23B200964D71 /* ScriptAnalyser */,
 				F41306340FBD809A00A319B7 /* STPathTextField */,
 				F44587170FC386B500CD0C02 /* STPrivilegedTask */,
 				F4975D6D1B2E03250099D16E /* NSWorkspace+Additions */,
@@ -624,13 +624,13 @@
 			name = VDKQueue;
 			sourceTree = "<group>";
 		};
-		F48A724D122E23B200964D71 /* ScriptAnalyser */ = {
+		F48A724D122E23B200964D71 /* PlatypusScriptAnalyser */ = {
 			isa = PBXGroup;
 			children = (
-				F48B1EDD17935BBC007DA173 /* ScriptAnalyser.h */,
-				F48B1EDE17935BBC007DA173 /* ScriptAnalyser.m */,
+				F48B1EDD17935BBC007DA173 /* PlatypusScriptAnalyser.h */,
+				F48B1EDE17935BBC007DA173 /* PlatypusScriptAnalyser.m */,
 			);
-			name = ScriptAnalyser;
+			name = PlatypusScriptAnalyser;
 			sourceTree = "<group>";
 		};
 		F48B7B8811F766CA00351575 /* ScriptExec */ = {
@@ -1083,7 +1083,7 @@
 				F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */,
 				F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */,
 				F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */,
-				F48B1EE017935BBC007DA173 /* ScriptAnalyser.m in Sources */,
+				F48B1EE017935BBC007DA173 /* PlatypusScriptAnalyser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1109,7 +1109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F43142B11C03C749004EEF8C /* NSWorkspace+Additions.m in Sources */,
-				F43142B01C03C742004EEF8C /* ScriptAnalyser.m in Sources */,
+				F43142B01C03C742004EEF8C /* PlatypusScriptAnalyser.m in Sources */,
 				F4051DA01C1B5AF900587F1F /* Common.m in Sources */,
 				F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
 				F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */,

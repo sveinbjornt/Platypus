@@ -29,7 +29,7 @@
  */
 
 #import "SyntaxCheckerController.h"
-#import "ScriptAnalyser.h"
+#import "PlatypusScriptAnalyser.h"
 
 @interface SyntaxCheckerController()
 {
@@ -59,7 +59,7 @@
     
     [scriptNameTextField setStringValue:scriptName];
     
-    NSString *reportText = [ScriptAnalyser checkSyntaxOfFile:filePath
+    NSString *reportText = [PlatypusScriptAnalyser checkSyntaxOfFile:filePath
                                       usingInterpreterAtPath:interpreterPath];
     [textView setString:reportText];
     

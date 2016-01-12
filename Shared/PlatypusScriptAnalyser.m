@@ -31,10 +31,10 @@
 //  This is a class with convenience and analysis methods for the
 //  script file types handled by Platypus.
 
-#import "ScriptAnalyser.h"
+#import "PlatypusScriptAnalyser.h"
 //#import "NSTask+Description.h"
 
-@implementation ScriptAnalyser
+@implementation PlatypusScriptAnalyser
 
 + (NSArray OF_NSDICTIONARY *)interpreters {
     return @[

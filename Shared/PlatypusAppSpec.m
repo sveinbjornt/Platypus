@@ -33,7 +33,7 @@
 
 #import "PlatypusAppSpec.h"
 #import "Common.h"
-#import "ScriptAnalyser.h"
+#import "PlatypusScriptAnalyser.h"
 #import "NSWorkspace+Additions.h"
 
 @interface PlatypusAppSpec()
@@ -221,15 +221,15 @@
     self[AppSpecKey_ScriptPath] = scriptPath;
     
     //determine app name based on script filename
-    self[AppSpecKey_Name] = [ScriptAnalyser appNameFromScriptFile:scriptPath];
+    self[AppSpecKey_Name] = [PlatypusScriptAnalyser appNameFromScriptFile:scriptPath];
     
     //find an interpreter for it
-    NSString *interpreterPath = [ScriptAnalyser determineInterpreterPathForScriptFile:scriptPath];
+    NSString *interpreterPath = [PlatypusScriptAnalyser determineInterpreterPathForScriptFile:scriptPath];
     if (interpreterPath == nil || [interpreterPath isEqualToString:@""]) {
         interpreterPath = DEFAULT_INTERPRETER_PATH;
     } else {
         // get parameters to interpreter
-        NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[ScriptAnalyser parseInterpreterInScriptFile:scriptPath]];
+        NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[PlatypusScriptAnalyser parseInterpreterInScriptFile:scriptPath]];
         [shebangCmdComponents removeObjectAtIndex:0];
         self[AppSpecKey_InterpreterArgs] = shebangCmdComponents;
     }
