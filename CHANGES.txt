@@ -17,6 +17,7 @@ For 5.1
     TODO: Use NSDictionaryController and bindings for all controls in main window and sub-controllers
     TODO: File watching still broken for script path
     TODO: Documentation should be updated about what Use Icon as Template does
+    TODO: Fix line numbering in built-in editor (Improve built-in editor)
 
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
@@ -24,8 +25,8 @@ For 5.1
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: Add WebView example listing dropped files
-    TODO: Fix automatic app name generation from script name to respect camel-case in filename
 
+    * Automatic app name generation from script name now respects camelCase and strips whitespace
     * Using NSString constants for NSUserDefault string keys
     * clearAllFields method uses default spec to set controls
     * Give image names for interface type and interpreter a filename prefix indicating family
