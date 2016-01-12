@@ -74,7 +74,7 @@
     NSString *str = [NSString stringWithContentsOfFile:path encoding:encoding error:nil];
     if (str == nil) {
         [Alerts alert:@"Error reading document"
-              subText:@"This document could not be opened with the text editor."];
+              subText:@"This document could not be opened with the built-in text editor."];
         return;
     }
     
@@ -85,8 +85,6 @@
     [icon setSize:NSMakeSize(16, 16)];
     [scriptIconImageView setImage:icon];
     
-    // configure our custom text view
-    [wordWrapCheckbox setIntValue:[DEFAULTS boolForKey:@"EditorWordWrap"]];
     [textView setWordwrapsText:[DEFAULTS boolForKey:@"EditorWordWrap"]];
     [textView setString:str];
     
@@ -123,10 +121,9 @@
 #pragma mark -
 
 - (IBAction)checkSyntax:(id)sender {
-    NSString *currentScriptText = [textView string];
     NSString *scriptSuffix = [[scriptPathTextField stringValue] lastPathComponent];
-    NSString *tmpPath = [WORKSPACE createTempFileNamed:[NSString stringWithFormat:@"PlatypusSyntaxCheckerTempScript.%@", scriptSuffix]
-                                          withContents:currentScriptText];
+    NSString *scriptFilename = [NSString stringWithFormat:@"PlatypusSyntaxCheckerTempScript.%@", scriptSuffix];
+    NSString *tmpPath = [WORKSPACE createTempFileNamed:scriptFilename withContents:[textView string]];
     
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
     [controller showModalSyntaxCheckerSheetForFile:tmpPath
@@ -158,11 +155,11 @@
 }
 
 - (IBAction)makeTextBigger:(id)sender {
-    [self changeFontSize:1];
+    [self changeFontSize:1.0f];
 }
 
 - (IBAction)makeTextSmaller:(id)sender {
-    [self changeFontSize:-1];
+    [self changeFontSize:-1.0f];
 }
 
 @end

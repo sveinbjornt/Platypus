@@ -181,7 +181,7 @@
     return [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH];
 }
 
-+ (BOOL)putCommandLineToolInstallStatusInTextField:(NSTextField *)textField {
++ (void)putCommandLineToolInstallStatusInTextField:(NSTextField *)textField {
     
     static dispatch_queue_t cltStatusDispatchQueue;
 
@@ -199,18 +199,17 @@
             // determine command line tool version by running it
             NSTask *task = [[NSTask alloc] init];
             [task setLaunchPath:CMDLINE_TOOL_PATH];
-            [task setArguments:@[@"--"CMDLINE_VERSION_ARG_FLAG]];
+            [task setArguments:@[[NSString stringWithFormat:@"--%s", CMDLINE_VERSION_ARG_FLAG]]];
             
             NSPipe *outputPipe = [NSPipe pipe];
             [task setStandardOutput:outputPipe];
             [task setStandardError:outputPipe];
-            NSFileHandle *readHandle = [outputPipe fileHandleForReading];
             
             [task launch];
             [task waitUntilExit];
             
             // get output string and parse for version number
-            NSData *outputData = [readHandle readDataToEndOfFile];
+            NSData *outputData = [[outputPipe fileHandleForReading] readDataToEndOfFile];
             NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
             
             NSArray *words = [outputString componentsSeparatedByString:@" "];
@@ -224,8 +223,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             // not installed
             if (isInstalled == NO) {
-                [textField setStringValue:@"Command line tool is not installed"];
                 [textField setTextColor:[NSColor redColor]];
+                [textField setStringValue:@"Command line tool is not installed"];
             }
             // it's installed and current
             else if (versionString && [versionString isEqualToString:PROGRAM_VERSION]) {
@@ -243,8 +242,6 @@
             }
         });
     });
-    
-    return YES;
 }
 
 - (void)updateCLTStatus {
