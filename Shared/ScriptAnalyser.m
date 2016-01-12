@@ -262,16 +262,23 @@
     NSString *name = [[path lastPathComponent] stringByDeletingPathExtension];
     
     // replace these common filename word separators w. spaces
-    name = [name stringByReplacingOccurrencesOfString:@"-" withString:@" "];
-    name = [name stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+    name = [name stringByReplacingOccurrencesOfString:@"-" withString:@" "]; // hyphen
+    name = [name stringByReplacingOccurrencesOfString:@"_" withString:@" "]; // underscore
     
+    // remove leading and trailing whitespace/newlines
+    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
     // iterate over each word, capitalize and append to app name
     NSArray *words = [name componentsSeparatedByString:@" "];
     NSMutableString *appName = [[NSMutableString alloc] initWithString:@""];
     
     for (NSString *word in words) {
-        NSString *capitalizedWord = [word capitalizedString];
-        if ([word isEqualTo:words[0]] == FALSE) {
+        if ([word length] == 0) {
+            continue;
+        }
+        NSString *capitalizedWord = [word stringByReplacingCharactersInRange:NSMakeRange(0, 1)
+                                                                  withString:[[word substringToIndex:1] capitalizedString]];
+        if (word != words[0]) {
             [appName appendString:@" "];
         }
         [appName appendString:capitalizedWord];

@@ -891,7 +891,6 @@
     str = shortOpts ? @"-p" : @"--interpreter";
     NSString *interpreterArg = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_Interpreter]];
     
-    
     // finally, generate the command
     NSString *commandStr = [NSString stringWithFormat:
                             @"%@ %@%@%@%@%@%@ %@%@%@%@%@%@%@%@%@%@ '%@'",
