@@ -26,7 +26,7 @@
 		<true/>
 	</dict>
 	<key>Output</key>
-	<string>Status Menu</string>
+	<string>Web View</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunningAfterCompletion</key>

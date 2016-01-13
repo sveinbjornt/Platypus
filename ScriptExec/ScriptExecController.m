@@ -1154,11 +1154,14 @@
     NSRange appendRange = NSMakeRange([textStorage length], 0);
     [textStorage replaceCharactersInRange:appendRange withString:string];
     [textStorage replaceCharactersInRange:NSMakeRange([textStorage length], 0) withString:@"\n"];
-    NSDictionary *attributes = @{   NSBackgroundColorAttributeName: textBackgroundColor,
-                                    NSForegroundColorAttributeName: textForegroundColor,
-                                    NSFontAttributeName: textFont
-                                };
-    [textStorage setAttributes:attributes range:NSMakeRange(appendRange.location, [string length])];
+    
+    if (IsTextStyledInterfaceType(interfaceType)) {
+        NSDictionary *attributes = @{   NSBackgroundColorAttributeName: textBackgroundColor,
+                                        NSForegroundColorAttributeName: textForegroundColor,
+                                        NSFontAttributeName: textFont
+                                    };
+        [textStorage setAttributes:attributes range:NSMakeRange(appendRange.location, [string length])];
+    }
 }
 
 #pragma mark - Interface actions

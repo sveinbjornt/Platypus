@@ -25,8 +25,8 @@ For 5.1
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: Add WebView example listing dropped files
-    TODO: Fix issue with WebView output
 
+    * Fixed critical issue with Web View interface type
     * Automatic app name generation from script name now respects camelCase and strips whitespace
     * Using NSString constants for NSUserDefault string keys
     * clearAllFields method uses default spec to set controls
