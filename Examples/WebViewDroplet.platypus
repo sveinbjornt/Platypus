@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AcceptsFiles</key>
+	<true/>
+	<key>AcceptsText</key>
+	<false/>
+	<key>Authentication</key>
+	<false/>
+	<key>Author</key>
+	<string>Sveinbjorn Thordarson</string>
+	<key>BundledFiles</key>
+	<array/>
+	<key>Creator</key>
+	<string>Platypus-5.0</string>
+	<key>DeclareService</key>
+	<false/>
+	<key>DestinationOverride</key>
+	<false/>
+	<key>DevelopmentVersion</key>
+	<false/>
+	<key>Example</key>
+	<true/>
+	<key>ScriptName</key>
+	<string>WebViewDroplet.py</string>
+	<key>Script</key>
+	<string>#!/usr/bin/python
+
+import sys
+import os
+
+header = &quot;&quot;&quot;&lt;html&gt;
+&lt;head&gt;
+    &lt;style type=&apos;text/css&apos;&gt;
+        body { background-color: #eee; padding: 10px; }
+        li { 
+            border: 1px solid black; 
+            background-color: #00e; 
+            padding: 5px; margin: 5px; 
+            list-style-type: none; 
+            width: 70%; 
+            color: white;
+         }
+    &lt;/style&gt;
+&lt;body&gt;
+&quot;&quot;&quot;
+footer = &quot;\n&lt;/body&gt;\n&quot;
+
+print header
+
+numfiles = len(sys.argv[1:]);
+if numfiles &gt; 0:
+    print &quot;&lt;h1&gt;&quot; + str(numfiles) + &quot; files&lt;/h1&gt;&quot;
+    print &quot;&lt;ul&gt;&quot;
+    for arg in sys.argv[1:]:
+        print &quot;&lt;li&gt;&lt;strong&gt;&quot; + os.path.basename(arg) + &quot;&lt;/strong&gt; (&quot; + str(os.path.getsize(arg)) + &quot; bytes)&lt;/li&gt;\n&quot;
+    print &quot;&lt;/ul&gt;&quot;
+else:
+    print &quot;&lt;h4&gt;Go ahead and drop some files on the window&lt;/h4&gt;&quot;
+
+print footer</string>
+	<key>DocIcon</key>
+	<string></string>
+	<key>Droppable</key>
+	<true/>
+	<key>ExecutablePath</key>
+	<string>/usr/local/share/platypus/ScriptExec</string>
+	<key>IconPath</key>
+	<string></string>
+	<key>Identifier</key>
+	<string>org.sveinbjorn.WebViewDroplet</string>
+	<key>Interpreter</key>
+	<string>/usr/bin/python</string>
+	<key>InterpreterArgs</key>
+	<array/>
+	<key>Name</key>
+	<string>WebViewDroplet</string>
+	<key>NibPath</key>
+	<string>/usr/local/share/platypus/MainMenu.nib</string>
+	<key>OptimizeApplication</key>
+	<true/>
+	<key>Output</key>
+	<string>Web View</string>
+	<key>PromptForFileOnLaunch</key>
+	<true/>
+	<key>RemainRunning</key>
+	<true/>
+	<key>Role</key>
+	<string>Viewer</string>
+	<key>ScriptArgs</key>
+	<array/>
+	<key>Secure</key>
+	<false/>
+	<key>ShowInDock</key>
+	<false/>
+	<key>StatusItemDisplayType</key>
+	<string>Text</string>
+	<key>StatusItemIcon</key>
+	<data></data>
+	<key>StatusItemTitle</key>
+	<string>MyPlatypusApp</string>
+	<key>StatusItemUseSystemFont</key>
+	<true/>
+	<key>Suffixes</key>
+	<array>
+		<string>*</string>
+	</array>
+	<key>TextBackground</key>
+	<string>#ffffff</string>
+	<key>TextEncoding</key>
+	<integer>4</integer>
+	<key>TextFont</key>
+	<string>Monaco</string>
+	<key>TextForeground</key>
+	<string>#000000</string>
+	<key>TextSize</key>
+	<real>13</real>
+	<key>UniformTypes</key>
+	<array/>
+	<key>UseXMLPlistFormat</key>
+	<false/>
+	<key>Version</key>
+	<string>1.0</string>
+</dict>
+</plist>
