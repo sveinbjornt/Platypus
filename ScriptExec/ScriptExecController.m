@@ -1464,7 +1464,7 @@
     else if ([[pboard types] containsObject:NSStringPboardType] && acceptsText) {
         acceptDrag = YES;
     }
-    
+        
     if (acceptDrag) {
         // we shade the window if interface type is droplet
         if (interfaceType == PlatypusInterfaceType_Droplet) {
@@ -1475,6 +1475,10 @@
     }
     
     return NSDragOperationNone;
+}
+
+- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
+    return YES;
 }
 
 - (void)draggingExited:(id <NSDraggingInfo> )sender;
