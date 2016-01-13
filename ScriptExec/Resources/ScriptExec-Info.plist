@@ -31,7 +31,7 @@
 	<key>CFBundleExecutable</key>
 	<string>ScriptExec</string>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>org.sveinbjorn.ScriptExec</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

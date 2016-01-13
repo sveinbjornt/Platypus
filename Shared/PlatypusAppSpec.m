@@ -503,7 +503,6 @@
     NSMutableDictionary *appSettingsPlist = [NSMutableDictionary dictionary];
     
     appSettingsPlist[AppSpecKey_Authenticate] = self[AppSpecKey_Authenticate];
-    appSettingsPlist[AppSpecKey_Droppable] = self[AppSpecKey_Droppable];
     appSettingsPlist[AppSpecKey_RemainRunning] = self[AppSpecKey_RemainRunning];
     appSettingsPlist[AppSpecKey_Secure] = self[AppSpecKey_Secure];
     appSettingsPlist[AppSpecKey_InterfaceType] = self[AppSpecKey_InterfaceType];
@@ -511,22 +510,28 @@
     appSettingsPlist[AppSpecKey_Creator] = PROGRAM_CREATOR_STAMP;
     appSettingsPlist[AppSpecKey_InterpreterArgs] = self[AppSpecKey_InterpreterArgs];
     appSettingsPlist[AppSpecKey_ScriptArgs] = self[AppSpecKey_ScriptArgs];
-    appSettingsPlist[AppSpecKey_PromptForFile] = self[AppSpecKey_PromptForFile];
-    
+    appSettingsPlist[AppSpecKey_TextEncoding] = self[AppSpecKey_TextEncoding];
+
+    // text styling info
     appSettingsPlist[AppSpecKey_TextFont] = self[AppSpecKey_TextFont];
     appSettingsPlist[AppSpecKey_TextSize] = self[AppSpecKey_TextSize];
     appSettingsPlist[AppSpecKey_TextColor] = self[AppSpecKey_TextColor];
     appSettingsPlist[AppSpecKey_TextBackgroundColor] = self[AppSpecKey_TextBackgroundColor];
-    appSettingsPlist[AppSpecKey_TextEncoding] = self[AppSpecKey_TextEncoding];
-
-    appSettingsPlist[AppSpecKey_StatusItemDisplayType] = self[AppSpecKey_StatusItemDisplayType];
-    appSettingsPlist[AppSpecKey_StatusItemTitle] = self[AppSpecKey_StatusItemTitle];
-    appSettingsPlist[AppSpecKey_StatusItemIcon] = self[AppSpecKey_StatusItemIcon];
-    appSettingsPlist[AppSpecKey_StatusItemUseSysfont] = self[AppSpecKey_StatusItemUseSysfont];
-    appSettingsPlist[AppSpecKey_StatusItemIconIsTemplate] = self[AppSpecKey_StatusItemIconIsTemplate];
     
+    // status menu info
+    if (InterfaceTypeForString(appSettingsPlist[AppSpecKey_InterfaceType]) == PlatypusInterfaceType_StatusMenu) {
+        appSettingsPlist[AppSpecKey_StatusItemDisplayType] = self[AppSpecKey_StatusItemDisplayType];
+        appSettingsPlist[AppSpecKey_StatusItemTitle] = self[AppSpecKey_StatusItemTitle];
+        appSettingsPlist[AppSpecKey_StatusItemIcon] = self[AppSpecKey_StatusItemIcon];
+        appSettingsPlist[AppSpecKey_StatusItemUseSysfont] = self[AppSpecKey_StatusItemUseSysfont];
+        appSettingsPlist[AppSpecKey_StatusItemIconIsTemplate] = self[AppSpecKey_StatusItemIconIsTemplate];
+    }
+    
+    // droppable
+    appSettingsPlist[AppSpecKey_Droppable] = self[AppSpecKey_Droppable];
     appSettingsPlist[AppSpecKey_AcceptFiles] = self[AppSpecKey_AcceptFiles];
     appSettingsPlist[AppSpecKey_AcceptText] = self[AppSpecKey_AcceptText];
+    appSettingsPlist[AppSpecKey_PromptForFile] = self[AppSpecKey_PromptForFile];
     appSettingsPlist[AppSpecKey_Suffixes] = self[AppSpecKey_Suffixes];
     appSettingsPlist[AppSpecKey_Utis] = self[AppSpecKey_Utis];
     

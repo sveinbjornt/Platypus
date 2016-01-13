@@ -545,21 +545,21 @@
     spec[AppSpecKey_Identifier] = [bundleIdentifierTextField stringValue];
     spec[AppSpecKey_Author] = [authorTextField stringValue];
     
-    spec[AppSpecKey_Droppable] = @([acceptsDroppedItemsCheckbox state]);
-    spec[AppSpecKey_Secure] = @([secureBundledScriptCheckbox state]);
-    spec[AppSpecKey_Authenticate] = @([rootPrivilegesCheckbox state]);
-    spec[AppSpecKey_RemainRunning] = @([remainRunningCheckbox state]);
-    spec[AppSpecKey_RunInBackground] = @([runInBackgroundCheckbox state]);
+    spec[AppSpecKey_Droppable] = @((BOOL)[acceptsDroppedItemsCheckbox state]);
+    spec[AppSpecKey_Secure] = @((BOOL)[secureBundledScriptCheckbox state]);
+    spec[AppSpecKey_Authenticate] = @((BOOL)[rootPrivilegesCheckbox state]);
+    spec[AppSpecKey_RemainRunning] = @((BOOL)[remainRunningCheckbox state]);
+    spec[AppSpecKey_RunInBackground] = @((BOOL)[runInBackgroundCheckbox state]);
     
     spec[AppSpecKey_BundledFiles] = [bundledFilesController filePaths];
     
     spec[AppSpecKey_Suffixes] = [dropSettingsController suffixList];
     spec[AppSpecKey_Utis] = [dropSettingsController uniformTypesList];
     spec[AppSpecKey_DocIconPath] = [dropSettingsController docIconPath];
-    spec[AppSpecKey_AcceptText] = @([dropSettingsController acceptsText]);
-    spec[AppSpecKey_AcceptFiles] = @([dropSettingsController acceptsFiles]);
-    spec[AppSpecKey_Service] = @([dropSettingsController declareService]);
-    spec[AppSpecKey_PromptForFile] = @([dropSettingsController promptsForFileOnLaunch]);
+    spec[AppSpecKey_AcceptText] = @((BOOL)[dropSettingsController acceptsText]);
+    spec[AppSpecKey_AcceptFiles] = @((BOOL)[dropSettingsController acceptsFiles]);
+    spec[AppSpecKey_Service] = @((BOOL)[dropSettingsController declareService]);
+    spec[AppSpecKey_PromptForFile] = @((BOOL)[dropSettingsController promptsForFileOnLaunch]);
     
     spec[AppSpecKey_TextEncoding] = @((int)[textSettingsController textEncoding]);
     spec[AppSpecKey_TextFont] = [[textSettingsController textFont] fontName];
@@ -570,8 +570,8 @@
     spec[AppSpecKey_StatusItemDisplayType] = [statusItemSettingsController displayType];
     spec[AppSpecKey_StatusItemTitle] = [statusItemSettingsController title];
     spec[AppSpecKey_StatusItemIcon] = [[statusItemSettingsController icon] TIFFRepresentation];
-    spec[AppSpecKey_StatusItemUseSysfont] = @([statusItemSettingsController usesSystemFont]);
-    spec[AppSpecKey_StatusItemIconIsTemplate] = @([statusItemSettingsController usesTemplateIcon]);
+    spec[AppSpecKey_StatusItemUseSysfont] = @((BOOL)[statusItemSettingsController usesSystemFont]);
+    spec[AppSpecKey_StatusItemIconIsTemplate] = @((BOOL)[statusItemSettingsController usesTemplateIcon]);
     
     return spec;
 }
