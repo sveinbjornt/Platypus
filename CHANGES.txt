@@ -18,13 +18,13 @@ For 5.1
     TODO: File watching still broken for script path
     TODO: Documentation should be updated about what Use Icon as Template does
     TODO: Fix line numbering in built-in editor (Improve built-in editor)
+    TODO: Support for authenticated task termination
 
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
 
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
-
     TODO: ScriptExec app should remember window size
     TODO: Dropping file without suffix shouldn't add to bundled files (or should it?)
 
