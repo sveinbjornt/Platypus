@@ -25,6 +25,9 @@ For 5.1
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
 
+    TODO: ScriptExec app should remember window size
+    TODO: Dropping file without suffix shouldn't add to bundled files (or should it?)
+
     * Added new WebViewDroplet example which lists dropped files using HTML output
     * Fixed critical issue with Web View interface type
     * Automatic app name generation from script name now respects camelCase and strips whitespace

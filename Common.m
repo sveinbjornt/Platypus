@@ -103,7 +103,7 @@ BOOL UTTypeIsValid(NSString *inUTI) {
 }
 
 BOOL BundleIdentifierIsValid(NSString *bundleIdentifier) {
-    // identical to UTType for now, but should really
-    // check if the reverse DNS has all three required components
-    return UTTypeIsValid(bundleIdentifier);
+    BOOL validUTI = UTTypeIsValid(bundleIdentifier);
+    BOOL hasThreeComponents = ([[bundleIdentifier componentsSeparatedByString:@"."] count] >= 3);
+    return (validUTI && hasThreeComponents);
 }

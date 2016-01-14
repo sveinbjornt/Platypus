@@ -162,19 +162,8 @@ DQ
                             <action selector="openDropSettingsSheet:" target="1364" id="11537"/>
                         </connections>
                     </button>
-                    <button toolTip="Create and load a new script" verticalHuggingPriority="750" id="427">
-                        <rect key="frame" x="404" y="397" width="60" height="28"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="+ New" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10959">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="newScript:" target="335" id="9219"/>
-                        </connections>
-                    </button>
                     <button toolTip="Reveal script in Finder" verticalHuggingPriority="750" id="429">
-                        <rect key="frame" x="327" y="397" width="79" height="28"/>
+                        <rect key="frame" x="385" y="397" width="79" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="🔍 Reveal" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10960">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -472,7 +461,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="FD200E69-0241-4807-9D97-7B6F916B4687" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="E4AF13A5-0AE5-4F2C-9945-81930B69B369" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -542,6 +531,17 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="clearAllFields:" target="335" id="786"/>
+                        </connections>
+                    </button>
+                    <button toolTip="Create and load a new script" verticalHuggingPriority="750" id="427">
+                        <rect key="frame" x="327" y="397" width="60" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="+ New" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10959">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="newScript:" target="335" id="9219"/>
                         </connections>
                     </button>
                 </subviews>
@@ -2712,7 +2712,7 @@ Gw
     </objects>
     <resources>
         <image name="DefaultStatusMenuIcon" width="36" height="36"/>
-        <image name="FD200E69-0241-4807-9D97-7B6F916B4687" width="16" height="16">
+        <image name="E4AF13A5-0AE5-4F2C-9945-81930B69B369" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

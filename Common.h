@@ -114,6 +114,12 @@ typedef enum PlatypusExecStyle {
     PlatypusExecStyle_Authenticated = 1
 } PlatypusExecStyle;
 
+// status item style
+typedef enum PlatypusStatusItemStyle {
+    PlatypusStatusItemStyle_Title = 0,
+    PlatypusStatusItemStyle_Icon = 1
+} PlatypusStatusItemStyle;
+
 // interface type
 typedef enum PlatypusInterfaceType {
     PlatypusInterfaceType_None = 0,
@@ -124,13 +130,6 @@ typedef enum PlatypusInterfaceType {
     PlatypusInterfaceType_Droplet = 5
 } PlatypusInterfaceType;
 
-#define DEFAULT_INTERFACE_TYPE             PlatypusInterfaceType_TextWindow
-
-// execution style
-typedef enum PlatypusStatusItemStyle {
-    PlatypusStatusItemStyle_Title = 0,
-    PlatypusStatusItemStyle_Icon = 1
-} PlatypusStatusItemStyle;
 
 // array of interface type name strings
 // mapped to PlatypusInterfaceType enum
@@ -143,9 +142,9 @@ typedef enum PlatypusStatusItemStyle {
     @"Droplet" \
 ]
 
-#define DEFAULT_INTERFACE_TYPE_STRING      [PLATYPUS_INTERFACE_TYPE_NAMES objectAtIndex:DEFAULT_INTERFACE_TYPE]
+#define DEFAULT_INTERFACE_TYPE          PlatypusInterfaceType_TextWindow
 
-// interface type macros
+#define DEFAULT_INTERFACE_TYPE_STRING   [PLATYPUS_INTERFACE_TYPE_NAMES objectAtIndex:DEFAULT_INTERFACE_TYPE]
 
 #define IsValidInterfaceType(X)         ( (X) >= 0 && (X) < [PLATYPUS_INTERFACE_TYPE_NAMES count] )
 
@@ -157,9 +156,7 @@ typedef enum PlatypusStatusItemStyle {
                                             (X) == PlatypusInterfaceType_TextWindow || \
                                             (X) == PlatypusInterfaceType_StatusMenu  )
 
-#define IsTextStyledInterfaceTypeString(X)  (   InterfaceTypeForString(X) == PlatypusInterfaceType_ProgressBar || \
-                                                InterfaceTypeForString(X) == PlatypusInterfaceType_TextWindow || \
-                                                InterfaceTypeForString(X) == PlatypusInterfaceType_StatusMenu  )
+#define IsTextStyledInterfaceTypeString(X)  IsTextStyledInterfaceType(InterfaceTypeForString(X))
 
 #define IsTextSizableInterfaceType(X)   (   (X) == PlatypusInterfaceType_ProgressBar || \
                                             (X) == PlatypusInterfaceType_TextWindow || \
@@ -235,7 +232,7 @@ extern NSString * const DefaultsKey_EditorWordWrap;
 extern NSString * const DefaultsKey_Launched;
 
 // NSUserDefaults keys for ScriptExec app
-NSString * const ScriptExecDefaultsKey_UserFontSize;
+extern NSString * const ScriptExecDefaultsKey_UserFontSize;
 
 // abbreviations, Objective C is sometimes tediously verbose
 #define FILEMGR     [NSFileManager defaultManager]
