@@ -128,7 +128,7 @@
              @{ @"Name":        @"Other...",
                 @"Path":        @"",
                 @"Hello":       @"",
-                @"Suffixes":    @[] }
+                @"Suffixes":    @[@""] }
     ];
 }
 
@@ -170,7 +170,7 @@
             return infoDict[@"Name"];
         }
     }
-    return @"";
+    return @"Other...";
 }
 
 + (NSString *)helloWorldProgramForDisplayName:(NSString *)displayName {
@@ -195,7 +195,7 @@
             }
         }
     }
-    return nil;
+    return @"";
 }
 
 + (NSString *)standardFilenameSuffixForInterpreterPath:(NSString *)interpreterPath {
@@ -205,7 +205,7 @@
             return [infoDict[@"Suffixes"] firstObject];
         }
     }
-    return nil;
+    return @"";
 }
 
 #pragma mark - Script file convenience methods

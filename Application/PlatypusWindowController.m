@@ -731,13 +731,13 @@
         //enable/disable create app button
         [createAppButton setEnabled:validName && exists];
     }
-    if (aNotification != nil && [aNotification object] == appNameTextField) {
+    if ([aNotification object] == appNameTextField) {
         //update identifier
         [bundleIdentifierTextField setStringValue:[PlatypusAppSpec bundleIdentifierForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES]];
     }
     
     //interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
-    if (aNotification == nil || [aNotification object] == interpreterPathTextField || [aNotification object] == nil) {
+    if (aNotification == nil || [aNotification object] == interpreterPathTextField) {
         [self selectScriptTypeBasedOnInterpreter];
         NSColor *textColor = ([FILEMGR fileExistsAtPath:[interpreterPathTextField stringValue] isDirectory:&isDir] && !isDir) ? [NSColor blackColor] : [NSColor redColor];
         [interpreterPathTextField setTextColor:textColor];
