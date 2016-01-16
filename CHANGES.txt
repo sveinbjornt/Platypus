@@ -27,6 +27,9 @@ For 5.1
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: ScriptExec app should remember window size
     TODO: Dropping file without suffix shouldn't add to bundled files (or should it?)
+    TODO: I created an app on my Macbook pro 7.1 (mid 2010 13') 10.11.2 using Platypus Version 5.0 (766) using the Progress Bar, Item Drop with the selection at prompt, a custom icon and deselected the "Remain running after initial execution" option, the script is a python script, the only interaction between the app and the wrapped script is the url of a jpg selected at prompt. The problem I have is that after I resize the window it automatically closes the details and if I minimize the window it goes on the bottom-left part of the screen, the Icon in the dock says that the app is still running but I can't maximize it anymore.
+
+
 
     * Added new WebViewDroplet example which lists dropped files using HTML output
     * Fixed critical issue with Web View interface type

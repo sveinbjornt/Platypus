@@ -55,7 +55,7 @@
             <rect key="contentRect" x="472" y="537" width="438" height="83"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <value key="minSize" type="size" width="438" height="83"/>
-            <value key="maxSize" type="size" width="500" height="83"/>
+            <value key="maxSize" type="size" width="600" height="83"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="438" height="83"/>
                 <autoresizingMask key="autoresizingMask"/>

@@ -1207,14 +1207,25 @@
     NSRect winRect = [progressBarWindow frame];
     static const NSInteger detailsHeight = 224;
     
+    NSSize minSize = [progressBarWindow minSize];
+    NSSize maxSize = [progressBarWindow maxSize];
+    
     if ([sender state] == NSOffState) {
         winRect.origin.y += detailsHeight;
         winRect.size.height -= detailsHeight;
+        minSize.height -= detailsHeight;
+        maxSize.height -= detailsHeight;
+
     }
     else {
         winRect.origin.y -= detailsHeight;
         winRect.size.height += detailsHeight;
+        minSize.height += detailsHeight;
+        maxSize.height += detailsHeight;
     }
+    
+    [progressBarWindow setMinSize:minSize];
+    [progressBarWindow setMaxSize:maxSize];
     [progressBarWindow setShowsResizeIndicator:([sender state] == NSOnState)];
     [progressBarWindow setFrame:winRect display:TRUE animate:TRUE];
 }

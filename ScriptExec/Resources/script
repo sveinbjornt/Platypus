@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "Hey"
 echo $@
 
 # If 0 arguments, we show menu
