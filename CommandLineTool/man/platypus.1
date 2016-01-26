@@ -1,5 +1,5 @@
-.Dd 10/12/11
-.Dt platypus 1
+.Dd January 26, 2016
+.Dt PLATYPUS 1
 .Os Darwin
 .Sh NAME
 .Nm platypus
@@ -7,35 +7,41 @@
 .Sh SYNOPSIS
 .Nm
 .Op OPTIONS
-.Ar scriptPath [destinationPath]
+.Ar scriptPath
+.Ar [destinationPath]
 .Sh DESCRIPTION
 .Nm
-is the command line counterpart to the Platypus Mac OS X application.  It creates a Mac OS X
-application bundle which executes a script. See http://sveinbjorn.org/platypus
+is the command line counterpart to the Platypus Mac OS X application.
+It creates a Mac OS X application bundle from a script.
+See http://sveinbjorn.org/platypus
 .Pp
 .Nm
-defaults to creating application bundles, but can also create Platypus profiles that
-are loadable by both the command line program and the Platypus graphical application.
+defaults to creating application bundles, but can also create Platypus profiles
+that are loadable by both the command line program and the Platypus application.
 .Pp
-If the scriptPath parameter is '-', the script text is read from STDIN.
+If the scriptPath parameter is '-', script text is read from STDIN.
 .Pp
-The following flags are supported (and are parsed in the order in which they are passed):
-.Pp
+The following option flags are supported (parsed in the order in which they
+are passed):
 .Bl -tag -width -Fl
-.It Fl O -generate-profile
-Create a profile document instead of creating an application bundle.  When this option is
-enabled, the "destinationPath" paramater (i.e. the final argument to the program) should
-have a .platypus suffix. Please note that in order to create reusable profiles, this option
-requires absolute paths to all bundled files, icons etc.  If the string '-' is provided
-as destination path, the profile property list XML will be dumped to STDOUT.
-.It Fl P -load-profile Ar [profilePath]
-Loads all settings from a Platypus profile document.  It is still necessary to specify a destination path 
-for the application. Subsequent arguments can override profile settings.
-.It Fl a -name Ar [appName]
-Specifies the name of the application.  This is can be different from the name of the .app
-bundle itself, and is displayed in the application's menus, "About" window and Info.plist property list.
-.It Fl o -interface-type Ar [interfaceType]
-Specifies the script application's interface type, which can be one of the following:
+.It Fl O, -generate-profile
+Create a profile document instead of creating an application bundle.  When this
+option is enabled, the "destinationPath" paramater (i.e. the final argument to
+the program) should have a .platypus suffix. Please note that in order to create
+reusable profiles, this option requires absolute paths to all bundled files,
+icons etc.  If the string '-' is provided as destination path, the profile
+property list XML will be dumped to STDOUT.
+.It Fl P, -load-profile Ar profilePath
+Loads all settings from a Platypus profile document.  It is still necessary to
+specify a destination path for the application. Subsequent arguments can
+override profile settings.
+.It Fl a, -name Ar appName
+Specifies the name of the application.  This is can be different from the name
+of the .app bundle itself, and is displayed in the application's menus, "About"
+window and Info.plist property list.
+.It Fl o, -interface-type Ar interfaceType
+Specifies the script application's interface type, which should be one of
+the following:
 .Pp
 .Ar 'None'
 The application does not display any user interface except for Dock icon & menu.
@@ -47,151 +53,134 @@ The application displays a progress bar while running.
 The application displays a window with a text field with all script output.
 .Pp
 .Ar 'Web View'
-The application displays a window with a web view which renders script output as HTML.
+The application displays a window with a web view which renders script output
+as HTML.
 .Pp
 .Ar 'Status Menu'
-The application displays a status menu item in the menubar which runs the script and displays its output when 
-clicked.
+The application displays a status menu item in the menubar which runs the
+script and displays its output when clicked.
 .Pp
 .Ar 'Droplet'
-The application displays a droplet window for dropping files on for processing by the script.
+The application displays a droplet window for dropping files on for processing
+by the script.
 .Pp
 The default interface type is "Progress Bar".
-.Pp
-.It Fl i -app-icon Ar [iconPath]
-Specifies a file to use as the icon for the application bundle. The file must be a Mac OS X .icns file.
-If not specified, the default Platypus app icon will be used. If specified, but left empty (''), no application
-icon will be set for the app. 
-.Pp
-.It Fl Q -document-icon Ar [iconPath]
-Specifies a file to use as icon for the application's documents. Must be a Mac OS X .icns file.
-.Pp
-.It Fl p -interpreter Ar [interpreter]
-Sets the interpreter for the script (e.g. /usr/bin/perl).  If the interpreter is not specified, the command line tool
-will try to guess the correct interpreter.  If this fails, the standard shell interpreter /bin/sh is used.
-.Pp
-.It Fl V -app-version Ar [version]
+.It Fl i, -app-icon Ar iconPath
+Specifies a file to use as the icon for the application bundle. The file must
+be a Mac OS X .icns file. If not specified, the default Platypus app icon will
+be used. If specified, but left empty (''), no application icon will be set
+for the app.
+.It Fl Q, -document-icon Ar iconPath
+Specifies a file to use as icon for the application's documents. Must be a
+Mac OS X .icns file.
+.It Fl p, -interpreter Ar interpreterPath
+Sets the interpreter for the script (e.g. /usr/bin/perl).  If the interpreter
+is not specified, the command line tool will try to guess the correct
+interpreter. If this fails, the standard shell interpreter /bin/sh is used.
+.It Fl V, -app-version Ar version
 Sets the application bundle's version.  This is displayed in the Info.plist
 property list and About window.
-.Pp
-.It Fl u -author Ar [author]
-Sets the name of the application author (e.g. "Apple Computer" or "John Smith").  If not specified, 
-it defaults to the current user's full user name.
-.Pp
-.It Fl f -bundled-file Ar [filePath]
-Specifies a file to be bundled with the application.  The file will be copied over the Resources
-folder of the application bundle, which is the same folder in which the script runs. Any number of files 
-can be bundled in this way, but the -f flag must be used each time, since it only accepts a single file path parameter.
-.Pp
-.It Fl I -bundle-identifier Ar [identifier]
-Sets the application's bundle identifier.  An application identifier is a reverse DNS name
-(e.g. com.apple.iTunes) that uniquely identifies the application.  If this option is left empty, 
-it will default to an identifier of the format "org.username.appname" (e.g. org.sveinbjorn.Platypus).
-.Pp
-.It Fl A -admin-privileges
-This flag makes the application request administrator privileges via Apple's Security Framework (i.e.
-prompt for a password) and then executes the script with those privileges. For details on the nature
-of these privileges, see the Apple documentation for the AuthorizationExecuteWithPrivileges() in 
-Security.framework.  This is not quite equivalent to root privileges.
-.Pp
-.It Fl S -secure-script
-Secure bundled script.  This encrypts the bundled script, to fend off prying eyes. Please note that
-nothing will make the script 'secure' from anyone knowledgable enough to get a clear text version.
-.Pp
-.It Fl D -droppable
-Makes the application droppable, i.e. capable of receiving dragged and dropped items as arguments
-to the script. The application bundle's property list is modified so that it can receive dropped files 
-in the Dock and Finder. These files are then passed on to the script as arguments via @ARGV.
-.Pp
-.It Fl F -text-droppable
-Makes the script application text droppable, i.e. makes accepts dragged text snippets, which are then 
-passed to script via STDIN. 
-.Pp
-.It Fl N -service
-Makes the app register as a Dynamic Service accessible from the Services application submenu.
-.Pp
-.It Fl B -background
-This option causes the application to run in the background.  Its icon will not appear in 
-the Dock.  This is done by registering the application with the Finder as a user interface element (LSUIElement).
-.Pp
-.It Fl R -quit-after-execution
-This option makes the application quit after the script has been executed.  
-.Pp
-.It Fl X -suffixes Ar [suffixes]
-Only appropriate if the application accepts dropped files. This flag specifies the file suffixes
-(e.g. .txt, .wav) that the application can open.  This should be a |-separated string (e.g. "txt|wav|jpg").
-.Pp
-.It Fl T -uniform-type-identifiers Ar [utis]
-Only appropriate if the application accepts dropped files. This flag specifies the 
-uniform type identifier types that the application can open.  This should be a |-separated string (e.g. "public.item|public.folder").
-.It Fl Z -file-prompt
+.It Fl u, -author Ar authorName
+Sets the name of the application author (e.g. "Apple Computer" or "John Smith").
+If not specified, it defaults to the current user's full user name.
+.It Fl f, -bundled-file Ar filePath
+Specifies a file to be bundled with the application.  The file will be copied
+over to the Resources folder of the application bundle, which is the same
+folder in which the script runs. Any number of files can be bundled in this
+way, but the -f flag must be used each time, since it only accepts a single
+file path parameter.
+.It Fl I, -bundle-identifier Ar bundleIdentifier
+Sets the application's bundle identifier.  An application identifier is a
+reverse DNS name (e.g. com.apple.iTunes) that uniquely identifies the
+application.  If this option is left empty, it will default to an identifier
+of the format "org.username.appname" (e.g. org.sveinbjorn.Platypus).
+.It Fl A, -admin-privileges
+This flag makes the application request administrator privileges via Apple's
+Security Framework (i.e. prompt for a password) and then executes the script
+with those privileges. For details on the nature of these privileges, see the
+Apple documentation for the AuthorizationExecuteWithPrivileges() in
+Security.framework. This is not strictly equivalent to running as root.
+.It Fl S, -secure-script
+Secure bundled script.  This encrypts the bundled script, to fend off prying
+eyes. Please note that nothing will make the script 'secure' from anyone
+knowledgable enough to get a clear text version.
+.It Fl D, -droppable
+Makes the application droppable, i.e. capable of receiving dragged and dropped
+items as arguments to the script. The application bundle's property list is
+modified so that it can receive dropped files in the Dock and Finder. These
+files are then passed on to the script as arguments via @ARGV.
+.It Fl F, -text-droppable
+Makes the script application text droppable, i.e. makes accepts dragged text
+snippets, which are then passed to script via STDIN.
+.It Fl N, -service
+Makes the app register as a Dynamic Service accessible from the Services
+application submenu.
+.It Fl B, -background
+This option causes the application to run in the background.  Its icon will
+not appear in the Dock.  This is done by registering the application with
+LaunchServices as a user interface element (LSUIElement).
+.It Fl R, -quit-after-execution
+This option makes the application quit after the script has been executed.
+.It Fl X, -suffixes Ar suffixes
+Only appropriate if the application accepts dropped files. This flag specifies
+the file suffixes (e.g. .txt, .wav) that the application can open. This should
+be a |-separated string (e.g. "txt|wav|jpg").
+.It Fl T, -uniform-type-identifiers Ar utis
+Only appropriate if the application accepts dropped files. This flag specifies
+the uniform type identifier types that the application can open.  This should
+be a |-separated string (e.g. "public.item|public.folder").
+.It Fl Z, -file-prompt
 Show an Open File dialog when the application launches.
-.It Fl G -interpreter-args Ar [arguments]
-Arguments for the script interpreter.  These should be specified as a |-separated string (e.g. '-w|-s|-l').
-.Pp
-.It Fl C -script-args Ar [arguments]
-Arguments to the script.  These should be specified as a |-separated string (e.g. '-w|-s|-l').
-.Pp
-.It Fl b -text-background-color Ar [hexColor]
+.It Fl G, -interpreter-args Ar arguments
+Arguments for the script interpreter.  These should be specified as
+a |-separated string (e.g. '-w|-s|-l').
+.It Fl C, -script-args Ar arguments
+Arguments for the script.  These should be specified as
+a |-separated string (e.g. '-w|-s|-l').
+.It Fl b, -text-background-color Ar hexColor
 For Text Window interface type only. Set background color of text (e.g. #ffffff).
-.Pp
-.It Fl g -text-foreground-color Ar [hexColor]
+.It Fl g, -text-foreground-color Ar hexColor
 For Text Window interface type only. Set foreground color of text (e.g. #000000).
-.Pp
-.It Fl n -text-font Ar [fontName]
-For Text Window interface type only. Set font and fontsize for text view (e.g. 'Monaco 10').
-.Pp
-.It Fl E -text-encoding Ar [encodingNumber]
-For Text Window interface type only. Set text encoding for script output.  Must be one of the numbers
-defined in the NSString class reference (e.g. 4=UTF8, 1=ASCII, etc.).  Default is UTF8.
-.Pp
-.It Fl K -status-item-kind Ar [kind]
-For Status Menu interface type only.  Set display kind for Status Menu interface type.  This can be
+.It Fl n, -text-font Ar fontName
+For Text Window interface type only. Set font and fontsize for text view
+(e.g. 'Monaco 10').
+.It Fl E, -text-encoding Ar encodingNumber
+For Text Window interface type only. Set text encoding for script output.  Must
+be one of the numbers defined in the NSString class reference
+(e.g. 4=UTF8, 1=ASCII, etc.).  Default is UTF8.
+.It Fl K, -status-item-kind Ar kind
+For Status Menu interface type only.  Set display kind for Status Menu
+interface type.  This can be
 "Text", "Icon and text" or "Icon".
-.Pp
-.It Fl Y -status-item-title Ar [title]
-For Status Menu interface type only.  Set the display title for the status item in Status Menu interface type.
-.Pp
-.It Fl L -status-item-icon Ar [imagePath]
-For Status Menu interface type only.  Set the icon image for the status item in Status Menu interface type.
-Must be an image file in one of the formats supported by the Cocoa APIs (e.g. PNG, JPEG, TIFF etc.)
-.Pp
-.It Fl c -status-item-sysfont
-For Status Menu interface type only. Makes menu use system font instead of user-defined styling.
-.Pp
-.It Fl x -xml-property-lists x
+.It Fl Y, -status-item-title Ar title
+For Status Menu interface type only.  Set the display title for the status
+item in Status Menu interface type.
+.It Fl L, -status-item-icon Ar imagePath
+For Status Menu interface type only.  Set the icon image for the status item
+in Status Menu interface type. Must be an image file in one of the formats
+supported by the Cocoa APIs (e.g. PNG, JPEG, TIFF etc.)
+.It Fl c, -status-item-sysfont
+For Status Menu interface type only. Makes menu use system font instead of
+user-defined styling.
+.It Fl x, -xml-property-lists x
 Create XML format property lists instead of binary ones.
-.Pp
-.It Fl d -development-version
-Development version.  A symlink to the original script is created inside the application bundle instead 
-of a copy.  Symlinks are also created to any bundled files.  This option is incompatible with the -S option.
-.Pp
-.It Fl l -optimize-nib
-Strip the bundled application nib file to reduce its size. Makes the nib uneditable.  Only works if 
-Apple's XCode is installed.
-.Pp
-.It Fl y -force
-Force mode.  With this flag set, the program will overwrite any previous files and folders in destination path.  Use with caution.
-.Pp
-.It Fl v -version
+.It Fl d, -development-version
+Development version. A symlink to the original script is created inside the
+application bundle instead of a copy.  Symlinks are also created to any
+bundled files. This option is incompatible with the -S option.
+.It Fl l, -optimize-nib
+Strip the bundled application nib file to reduce its size. Makes the nib
+uneditable.  Only works if Apple's XCode is installed.
+.It Fl y, -force
+Force mode.  With this flag set, the program will overwrite any pre-existing
+files or folders in destination path.
+.It Fl v, -version
 Print the version of this program
-.Pp
-.It Fl h -help
+.It Fl h, -help
 Print help and usage string
-.Pp
 .El
+.Pp
 Exits 0 on success, and >0 if an error occurs.
-.Pp
-.Sh EXAMPLES
-.Pp
-platypus -P myProfile.platypus ~/Desktop/MyApplication.app
-.Pp
-platypus -o 'Text Window' script.pl PerlScript.app
-.Pp
-platypus -a 'My App' -p /usr/bin/python myPythonScript.py
-.Pp
-platypus -D -a MyDroplet -o 'Droplet' ~/droplet.sh
-.Pp
 .Sh FILES
 .Bl -tag -width "/usr/local/share/platypus/PlatypusDefault.icns" -compact
 .It Pa /usr/local/bin/platypus
@@ -203,6 +192,13 @@ Nib file for app
 .It Pa /usr/local/share/platypus/PlatypusDefault.icns
 Default icon
 .El
-.Sh AUTHORS 
-This manual page was written by Sveinbjorn Thordarson <sveinbjornt@gmail.com> 
-To support Platypus development, please visit http://sveinbjorn.org/platypus.
+.Sh EXAMPLES
+platypus -P myProfile.platypus ~/Desktop/MyApplication.app
+.Pp
+platypus -o 'Text Window' script.pl PerlScript.app
+.Pp
+platypus -a 'My App' -p /usr/bin/python myPythonScript.py
+.Pp
+platypus -D -a MyDroplet -o 'Droplet' ~/droplet.sh
+.Sh AUTHORS
+.An Sveinbjorn Thordarson <sveinbjornt@gmail.com>
