@@ -279,7 +279,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     }
     IconFamily *iconFamily = [[IconFamily alloc] initWithThumbnailsOfImage:iconImage];
     if (iconFamily == nil) {
-        NSLog(@"Failed to create IconFamily from image");
+        PLog(@"Failed to create IconFamily from image");
         return NO;
     }
     [iconFamily writeToFile:path];

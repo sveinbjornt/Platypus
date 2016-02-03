@@ -1012,7 +1012,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from\n# within application bundles in the Copy Files\n# phase, we instead copy the ScriptExec.app bundle over\n# in its entirety and then copy the binary within into\n# Resources ... and subsequently delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp \"${SCRIPT_EXEC_BIN_PATH}\" \"${RESOURCES_DIR}/ScriptExec\"\nrm -r \"${SCRIPT_EXEC_APP_PATH}\"\n";
+			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from\n# within application bundles in the Copy Files\n# phase, we instead copy the ScriptExec.app bundle over\n# in its entirety and then copy the binary within into\n# Resources ... and subsequently delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp \"${SCRIPT_EXEC_BIN_PATH}\" \"${RESOURCES_DIR}/ScriptExec\"\nrm -r \"${SCRIPT_EXEC_APP_PATH}\"\n\n#gzip ${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources/platypus.1\n";
 		};
 		F42622251C03B0DD0052BA33 /* Run Script To Set CFBundleVersion to Build Number */ = {
 			isa = PBXShellScriptBuildPhase;

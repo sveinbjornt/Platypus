@@ -26,6 +26,12 @@ fi
 if [ -e "%%CMDLINE_MANPAGE_PATH%%" ]
 then
     echo "Deleting %%CMDLINE_PROGNAME%% man page"
-    rm "%%CMDLINE_MANPAGE_PATH%%"
+    rm "%%CMDLINE_MANPAGE_PATH%%" &> /dev/null
+fi
+
+if [ -e "%%CMDLINE_MANPAGE_PATH%%.gz" ]
+then
+echo "Deleting %%CMDLINE_PROGNAME%% man page"
+rm "%%CMDLINE_MANPAGE_PATH%%" &> /dev/null
 fi
 
