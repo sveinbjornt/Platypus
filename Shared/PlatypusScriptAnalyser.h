@@ -40,6 +40,8 @@
 + (NSString *)interpreterPathForDisplayName:(NSString *)displayName;
 + (NSString *)interpreterPathForFilenameSuffix:(NSString *)fileName;
 + (NSString *)standardFilenameSuffixForInterpreterPath:(NSString *)interpreter;
++ (BOOL)isPotentiallyScriptAtPath:(NSString *)path;
++ (BOOL)hasShebangLineAtPath:(NSString *)path;
 + (NSArray OF_NSSTRING *)parseInterpreterInScriptFile:(NSString *)scriptPath;
 + (NSString *)appNameFromScriptFile:(NSString *)scriptPath;
 + (NSString *)determineInterpreterPathForScriptFile:(NSString *)scriptPath;

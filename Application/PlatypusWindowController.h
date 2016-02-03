@@ -31,7 +31,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class PlatypusAppSpec;
-@interface PlatypusWindowController : NSWindowController <NSApplicationDelegate, NSMenuDelegate, NSWindowDelegate>
+@interface PlatypusWindowController : NSWindowController <NSApplicationDelegate, NSMenuDelegate, NSWindowDelegate, NSOpenSavePanelDelegate>
 
 - (BOOL)verifyFieldContents;
 - (PlatypusAppSpec *)appSpecFromControls;

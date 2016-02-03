@@ -210,6 +210,34 @@
 
 #pragma mark - Script file convenience methods
 
++ (BOOL)isPotentiallyScriptAtPath:(NSString *)path {
+    if ([FILEMGR isExecutableFileAtPath:path]) {
+        return YES;
+    }
+    if ([WORKSPACE type:[WORKSPACE typeOfFile:path error:nil] conformsToType:(NSString *)kUTTypePlainText]) {
+        return YES;
+    }
+    if ([PlatypusScriptAnalyser hasShebangLineAtPath:path]) {
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)hasShebangLineAtPath:(NSString *)path {
+    if (![FILEMGR isReadableFileAtPath:path]) {
+        NSLog(@"Unable to read file %@", path);
+        return NO;
+    }
+    
+    FILE *file;
+    unsigned char buf[2];
+    file = fopen([path fileSystemRepresentation], "r");
+    fread(buf, 1, 2, file);
+    fclose(file);
+    
+    return (buf[0] == '#' && buf[1] == '!');
+}
+
 + (NSArray OF_NSSTRING *)parseInterpreterInScriptFile:(NSString *)path {
     
     // get the first line of the script

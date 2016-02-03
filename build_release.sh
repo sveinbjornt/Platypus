@@ -47,7 +47,7 @@ xcodebuild  -parallelizeTargets \
 #1> /dev/null
 
 # Check if build succeeded
-if [ test $? -eq 0 ]; then
+if test $? -eq 0 ; then
     echo "Build successful"
 else
     echo "Build failed"

@@ -661,7 +661,8 @@
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:@[(NSString *)kUTTypePlainText]];
+    [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeItem]];
+    [oPanel setDelegate:self];
     
     //run open panel sheet
     NSWindow *window = [self window];
@@ -672,6 +673,10 @@
         }
         [window setTitle:PROGRAM_NAME];
     }];
+}
+
+- (BOOL)panel:(id)sender shouldEnableURL:(NSURL *)url {
+    return [PlatypusScriptAnalyser isPotentiallyScriptAtPath:[url path]];
 }
 
 - (IBAction)scriptTypeSelected:(id)sender {
@@ -890,17 +895,17 @@
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         
         if ([files count] == 1) {
-            NSString *filename = files[0]; // only load the first dragged item
-            NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
+            NSString *filePath = files[0]; // only load the first dragged item
+            NSString *fileType = [WORKSPACE typeOfFile:filePath error:nil];
             
             // profile
-            if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
-                [profilesController loadProfileAtPath:filename];
+            if ([filePath hasSuffix:PROGRAM_PROFILE_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
+                [profilesController loadProfileAtPath:filePath];
                 return YES;
             }
-            // plain text -- potentially script
-            else if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypePlainText]) {
-                [self loadScript:filename];
+            // might be a script
+            if ([PlatypusScriptAnalyser isPotentiallyScriptAtPath:filePath]) {
+                [self loadScript:filePath];
                 return YES;
             }
         }
