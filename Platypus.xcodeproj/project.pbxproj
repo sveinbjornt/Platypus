@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		F4F14CB51C640B1E002A2402 /* Examples */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F4F14CB61C640B1E002A2402 /* Build configuration list for PBXAggregateTarget "Examples" */;
+			buildPhases = (
+				F4F14CBA1C640B29002A2402 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Examples;
+			productName = Examples;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F4051D9F1C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
@@ -913,6 +927,9 @@
 					F48B774011F7661C00351575 = {
 						DevelopmentTeam = 5WX26Y89JP;
 					};
+					F4F14CB51C640B1E002A2402 = {
+						CreatedOnToolsVersion = 7.2;
+					};
 				};
 			};
 			buildConfigurationList = F41B2181085CD8FF00B63B0D /* Build configuration list for PBXProject "Platypus" */;
@@ -932,6 +949,7 @@
 				F48B774011F7661C00351575 /* ScriptExec */,
 				F4E1F6FB11F758FB007EE2E3 /* platypus */,
 				8D1107260486CEB800E47090 /* Platypus */,
+				F4F14CB51C640B1E002A2402 /* Examples */,
 			);
 		};
 /* End PBXProject section */
@@ -1029,6 +1047,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\nBUILD_NUMBER=`git rev-list HEAD | wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ \"$?\" -ne 0 ] ; then\necho \"warning:Error incrementing CFBundleVersion\"\nfi";
+		};
+		F4F14CBA1C640B29002A2402 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/perl make_examples.pl";
 		};
 		F4FB337514FBDAD500BAECEB /* Run Script to Create Man Page HTML document */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1563,6 +1594,27 @@
 			};
 			name = Default;
 		};
+		F4F14CB71C640B1E002A2402 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Development;
+		};
+		F4F14CB81C640B1E002A2402 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Deployment;
+		};
+		F4F14CB91C640B1E002A2402 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Default;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1605,6 +1657,15 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
+		};
+		F4F14CB61C640B1E002A2402 /* Build configuration list for PBXAggregateTarget "Examples" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F14CB71C640B1E002A2402 /* Development */,
+				F4F14CB81C640B1E002A2402 /* Deployment */,
+				F4F14CB91C640B1E002A2402 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
