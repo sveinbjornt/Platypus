@@ -25,7 +25,6 @@
 		F4051D9F1C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
 		F4051DA01C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
 		F4051DA11C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
-		F4051DA61C1C57AF00587F1F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F44A774A1C1887CC003CCA7A /* MainMenu.xib */; };
 		F4051DA91C1C812600587F1F /* STReverseDNSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051DA81C1C812600587F1F /* STReverseDNSTextField.m */; };
 		F40B227C1B28EFC7003C05ED /* platypus_clt in Copy ScriptExec and Command Line Tool */ = {isa = PBXBuildFile; fileRef = F4E1F6FC11F758FB007EE2E3 /* platypus_clt */; };
 		F40B227F1B28F37A003C05ED /* ScriptExec.app in Copy ScriptExec and Command Line Tool */ = {isa = PBXBuildFile; fileRef = F48B774111F7661C00351575 /* ScriptExec.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -967,7 +966,6 @@
 				F4DC075211F629A40043764E /* Documentation.html in Resources */,
 				F4D0F2471C1E1B020065AD25 /* InterfaceType_None.png in Resources */,
 				F43E1D7E1BC8048400622B5F /* Interpreter_Perl.png in Resources */,
-				F4051DA61C1C57AF00587F1F /* MainMenu.xib in Resources */,
 				F44A77451C1882DA003CCA7A /* UninstallPlatypus.sh in Resources */,
 				F4DC075311F629A40043764E /* Readme.html in Resources */,
 				F43E1D7C1BC8048400622B5F /* Interpreter_Expect.png in Resources */,
@@ -1032,7 +1030,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from\n# within application bundles in the Copy Files\n# phase, we instead copy the ScriptExec.app bundle over\n# in its entirety and then copy the binary within into\n# Resources ... and subsequently delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\ncp \"${SCRIPT_EXEC_BIN_PATH}\" \"${RESOURCES_DIR}/ScriptExec\"\nrm -r \"${SCRIPT_EXEC_APP_PATH}\"\n\n#gzip ${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources/platypus.1\n";
+			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from\n# within application bundles in the Copy Files\n# phase, we instead copy the ScriptExec.app bundle over\n# in its entirety and then copy the binary within into\n# Resources ... and subsequently delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\n\necho \"Moving ScriptExec binary\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\nrm \"${RESOURCES_DIR}/ScriptExec\" &> /dev/null\nmv \"${SCRIPT_EXEC_BIN_PATH}\" \"${RESOURCES_DIR}/ScriptExec\"\n\necho \"Moving ScriptExec nib\"\nSCRIPT_EXEC_NIB_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/Resources/MainMenu.nib\"\nrm -r \"${RESOURCES_DIR}/MainMenu.nib\" &> /dev/null\nmv \"${SCRIPT_EXEC_NIB_PATH}\" \"${RESOURCES_DIR}/MainMenu.nib\"\n\necho \"Removing ScriptExec.app\"\nrm -r \"${SCRIPT_EXEC_APP_PATH}\"\n\n#gzip ${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources/platypus.1\n";
 		};
 		F42622251C03B0DD0052BA33 /* Run Script To Set CFBundleVersion to Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1059,7 +1057,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/perl make_examples.pl";
+			shellScript = "/usr/bin/perl make_examples.pl\nopen ExampleApps    ";
 		};
 		F4FB337514FBDAD500BAECEB /* Run Script to Create Man Page HTML document */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1437,7 +1435,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBC_FLATTEN_NIBS = YES;
+				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INFOPLIST_PREPROCESS = YES;
@@ -1499,7 +1497,7 @@
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_UNROLL_LOOPS = NO;
 				GENERATE_PKGINFO_FILE = NO;
-				IBC_FLATTEN_NIBS = YES;
+				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "ScriptExec/Resources/ScriptExec-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -1526,7 +1524,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GENERATE_PKGINFO_FILE = NO;
-				IBC_FLATTEN_NIBS = YES;
+				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "ScriptExec/Resources/ScriptExec-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";

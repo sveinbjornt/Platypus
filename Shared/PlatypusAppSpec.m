@@ -643,14 +643,12 @@
  ****************************************/
 
 - (BOOL)verify {
-    BOOL isDir;
     
     if ([self[AppSpecKey_DestinationPath] hasSuffix:@"app"] == FALSE) {
         _error = @"Destination must end with .app";
         return NO;
     }
     
-    // warn if font can't be instantiated
     if ([NSFont fontWithName:self[AppSpecKey_TextFont] size:13] == nil) {
         [self report:@"Warning: Font \"%@\" cannot be instantiated.", self[AppSpecKey_TextFont]];
     }
@@ -660,18 +658,19 @@
         return NO;
     }
     
+    BOOL isDir;
     if (![FILEMGR fileExistsAtPath:self[AppSpecKey_ScriptPath] isDirectory:&isDir] || isDir) {
         _error = [NSString stringWithFormat:@"Script not found at path '%@'", self[AppSpecKey_ScriptPath], nil];
         return NO;
     }
     
-    if (![FILEMGR fileExistsAtPath:self[AppSpecKey_NibPath]]) {
-        _error = [NSString stringWithFormat:@"Nib not found at path '%@'", self[AppSpecKey_NibPath], nil];
+    if (![FILEMGR fileExistsAtPath:self[AppSpecKey_ExecutablePath] isDirectory:&isDir] || isDir) {
+        _error = [NSString stringWithFormat:@"Executable not found at path '%@'", self[AppSpecKey_ExecutablePath], nil];
         return NO;
     }
     
-    if (![FILEMGR fileExistsAtPath:self[AppSpecKey_ExecutablePath] isDirectory:&isDir] || isDir) {
-        _error = [NSString stringWithFormat:@"Executable not found at path '%@'", self[AppSpecKey_ExecutablePath], nil];
+    if (![FILEMGR fileExistsAtPath:self[AppSpecKey_NibPath]]) {
+        _error = [NSString stringWithFormat:@"Nib not found at path '%@'", self[AppSpecKey_NibPath], nil];
         return NO;
     }
     

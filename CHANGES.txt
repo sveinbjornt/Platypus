@@ -27,6 +27,7 @@ For 5.1
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: ScriptExec app should remember window size
 
+    * Fixed issue where MainMenu.nib was stripped and thus not editable using XCode
     * Smarter handling of dropped files via more intelligent methods to determine if a file is a script
     * Fixed issue with window behaviour during resizing in Progress Bar interface
     * Added new build script which creates all the provided examples
