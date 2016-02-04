@@ -305,6 +305,7 @@
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		F4E1F6FC11F758FB007EE2E3 /* platypus_clt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4ECE1A011F7746A000DB012 /* CHANGES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES.txt; sourceTree = SOURCE_ROOT; };
+		F4F14CAF1C640857002A2402 /* make_examples.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = make_examples.pl; sourceTree = "<group>"; };
 		F4F2F3AF1BF96C4400FE463C /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoodleLineNumberMarker.h; path = "Shared/Others/NSTextView+JSDExtensions/NoodleLineNumberMarker.h"; sourceTree = SOURCE_ROOT; };
 		F4F2F3B01BF96C4400FE463C /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoodleLineNumberMarker.m; path = "Shared/Others/NSTextView+JSDExtensions/NoodleLineNumberMarker.m"; sourceTree = SOURCE_ROOT; };
 		F4F2F3B11BF96C4400FE463C /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoodleLineNumberView.h; path = "Shared/Others/NSTextView+JSDExtensions/NoodleLineNumberView.h"; sourceTree = SOURCE_ROOT; };
@@ -392,6 +393,7 @@
 				F4975D7A1B2E462A0099D16E /* README.md */,
 				F4B87C581B403A6E00F4B8BE /* build_release.sh */,
 				F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */,
+				F4F14CAF1C640857002A2402 /* make_examples.pl */,
 				F4ECE1A011F7746A000DB012 /* CHANGES.txt */,
 				F4B87C5A1B403A6E00F4B8BE /* uncrustify.cfg */,
 				F4DC074D11F629A40043764E /* Documentation */,
