@@ -1,6 +1,7 @@
 build/
 DerivedData
 Releases/*
+ExampleApps
 ## Various settings
 *.pbxuser
 !default.pbxuser

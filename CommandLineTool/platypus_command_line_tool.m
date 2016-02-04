@@ -36,6 +36,7 @@
 
 #import "Common.h"
 #import "PlatypusAppSpec.h"
+#import "NSWorkspace+Additions.h"
 
 #import <stdio.h>
 #import <unistd.h>
@@ -559,8 +560,9 @@ int main(int argc, const char *argv[]) {
         
         exit(0);
     }
+    
     // if we loaded a profile, the first remaining arg is destination path, others ignored
-    else if (loadedProfile) {
+    if (loadedProfile) {
         destPath = remainingArgs[0];
         if (![destPath hasSuffix:@".app"]) {
             destPath = [destPath stringByAppendingString:@".app"];
@@ -568,6 +570,13 @@ int main(int argc, const char *argv[]) {
         appSpec = [PlatypusAppSpec specWithDefaults];
         [appSpec addEntriesFromDictionary:properties];
         appSpec[AppSpecKey_DestinationPath] = destPath;
+        
+        if (appSpec[AppSpecKey_IsExample]) {
+            NSString *scriptText = appSpec[AppSpecKey_ScriptText];
+            scriptPath = [[NSWorkspace sharedWorkspace] createTempFileWithContents:scriptText];
+            appSpec[AppSpecKey_ScriptPath] = scriptPath;
+            deleteScript = YES;
+        }
     }
     // if we're creating an app, first argument must be script path, second (optional) argument is destination
     else {
@@ -625,7 +634,7 @@ int main(int argc, const char *argv[]) {
         exit(1);
     }
     
-    // if script was temporary file created from stdin, we remove it
+    // if script was a temporary file created from stdin, we remove it
     if (deleteScript) {
         [FILEMGR removeItemAtPath:scriptPath error:nil];
     }
