@@ -156,6 +156,8 @@
 
 @end
 
+static const NSInteger detailsHeight = 224;
+
 @implementation ScriptExecController
 
 - (instancetype)init {
@@ -565,6 +567,14 @@
             if ([[progressBarWindow frameAutosaveName] isEqualToString:@""]) {
                 [progressBarWindow center];
             }
+            
+            if ([DEFAULTS boolForKey:ScriptExecDefaultsKey_ShowDetails]) {
+                NSRect frame = [progressBarWindow frame];
+                frame.origin.y += detailsHeight;
+                [progressBarWindow setFrame:frame display:NO];
+                [self showDetails];
+            }
+            
             [progressBarWindow makeKeyAndOrderFront:self];
         }
             break;
@@ -1205,7 +1215,6 @@
 // show / hide the details text field in progress bar interface
 - (IBAction)toggleDetails:(id)sender {
     NSRect winRect = [progressBarWindow frame];
-    static const NSInteger detailsHeight = 224;
     
     NSSize minSize = [progressBarWindow minSize];
     NSSize maxSize = [progressBarWindow maxSize];
@@ -1224,6 +1233,7 @@
         maxSize.height += detailsHeight;
     }
     
+    [DEFAULTS setBool:([sender state] == NSOnState) forKey:ScriptExecDefaultsKey_ShowDetails];
     [progressBarWindow setMinSize:minSize];
     [progressBarWindow setMaxSize:maxSize];
     [progressBarWindow setShowsResizeIndicator:([sender state] == NSOnState)];

@@ -32,6 +32,8 @@
 
 @implementation Alerts
 
+#pragma mark -
+
 + (void)alert:(NSString *)message subText:(NSString *)subtext style:(NSAlertStyle)style {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
@@ -60,6 +62,8 @@
 + (void)alert:(NSString *)message subText:(NSString *)subtext {
     [self alert:message subText:subtext style:NSWarningAlertStyle];
 }
+
+#pragma mark -
 
 + (void)fatalAlert:(NSString *)message subText:(NSString *)subtext {
     [self alert:message subText:subtext style:NSCriticalAlertStyle];

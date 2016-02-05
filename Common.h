@@ -233,6 +233,7 @@ extern NSString * const DefaultsKey_Launched;
 
 // NSUserDefaults keys for ScriptExec app
 extern NSString * const ScriptExecDefaultsKey_UserFontSize;
+extern NSString * const ScriptExecDefaultsKey_ShowDetails;
 
 // abbreviations, Objective C is sometimes tediously verbose
 #define FILEMGR     [NSFileManager defaultManager]

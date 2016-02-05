@@ -54,7 +54,6 @@
 		F44A77441C1882DA003CCA7A /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F44A77411C1882DA003CCA7A /* UninstallCommandLineTool.sh */; };
 		F44A77451C1882DA003CCA7A /* UninstallPlatypus.sh in Resources */ = {isa = PBXBuildFile; fileRef = F44A77421C1882DA003CCA7A /* UninstallPlatypus.sh */; };
 		F44A774D1C1887CC003CCA7A /* AppSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = F44A77481C1887CC003CCA7A /* AppSettings.plist */; };
-		F44A774E1C1887CC003CCA7A /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = F44A77491C1887CC003CCA7A /* image.png */; };
 		F44A774F1C1887CC003CCA7A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F44A774A1C1887CC003CCA7A /* MainMenu.xib */; };
 		F44A77501C1887CC003CCA7A /* script in Resources */ = {isa = PBXBuildFile; fileRef = F44A774B1C1887CC003CCA7A /* script */; };
 		F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* DefaultStatusMenuIcon.png */; };
@@ -1014,7 +1013,6 @@
 				F44A77501C1887CC003CCA7A /* script in Resources */,
 				F44A774D1C1887CC003CCA7A /* AppSettings.plist in Resources */,
 				F44A774F1C1887CC003CCA7A /* MainMenu.xib in Resources */,
-				F44A774E1C1887CC003CCA7A /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

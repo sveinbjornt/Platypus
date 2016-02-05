@@ -93,6 +93,8 @@ NSString * const DefaultsKey_UseXMLPlistFormat = @"OnCreateUseXMLPlist";
 
 // NSUserDefaults keys for ScriptExec app
 NSString * const ScriptExecDefaultsKey_UserFontSize = @"UserFontSize";
+NSString * const ScriptExecDefaultsKey_ShowDetails = @"UserShowDetails";
+
 
 // functions
 

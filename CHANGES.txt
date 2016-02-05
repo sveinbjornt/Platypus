@@ -25,8 +25,8 @@ For 5.1
 
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
-    TODO: ScriptExec app should remember window size
 
+    * ScriptExec windows now remember window size and position between launches
     * Fixed issue where MainMenu.nib was stripped and thus not editable using XCode
     * Smarter handling of dropped files via more intelligent methods to determine if a file is a script
     * Fixed issue with window behaviour during resizing in Progress Bar interface
