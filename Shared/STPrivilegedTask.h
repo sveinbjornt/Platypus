@@ -1,6 +1,6 @@
 /*
  # STPrivilegedTask - NSTask-like wrapper around AuthorizationExecuteWithPrivileges
- # Copyright (C) 2008-2015 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+ # Copyright (C) 2008-2016 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
  #
  # See https://developer.apple.com/library/mac/documentation/Security/Reference/authorization_ref/index.html
  #
