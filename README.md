@@ -1,6 +1,6 @@
 # Platypus
 
-<img align="right" src="https://raw.githubusercontent.com/sveinbjornt/Platypus/master/Documentation/images/platypus.png" style="float: right; margin-left: 30px;">
+<img align="right" src="Documentation/images/platypus.png" style="float: right; margin-left: 30px;">
 
 Platypus is an OS X developer tool that creates native Mac applications 
 from interpreted scripts such as shell scripts or Perl and Python programs.
@@ -15,8 +15,11 @@ launchers, automations and droplets using Platypus.
 
 [Documentation](http://sveinbjorn.org/platypus_documentation)
 
+## Screenshot
 
-### Some notes on the code
+![Platypus Screenshot](Documentation/images/basic_interface.png)
+
+## Some notes on the code
 
 Platypus is very old software, dating back to the early days 
 of Mac OS X.  It was originally written in C using the 
@@ -32,7 +35,7 @@ With these caveats in mind, here is the BSD-licensed
 source code to Platypus.
 
 
-### License 
+## License 
 
 Copyright (c) Sveinbjorn Thordarson &lt;sveinbjornt@gmail.com&gt;
 All rights reserved.
