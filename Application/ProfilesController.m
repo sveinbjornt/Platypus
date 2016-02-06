@@ -185,6 +185,14 @@
     [examplesFolderItem setTarget:self];
     [examplesFolderItem setEnabled:YES];
     
+    [examplesMenu addItem:[NSMenuItem separatorItem]];
+    
+    NSMenuItem *createExamplesMenu = [examplesMenu addItemWithTitle:@"Build All Examples"
+                                                             action:@selector(buildAllExamples)
+                                                      keyEquivalent:@""];
+    [createExamplesMenu setTarget:self];
+    [createExamplesMenu setEnabled:YES];
+    
     [examplesMenuItem setSubmenu:examplesMenu];
     
     //clear out all menu items
@@ -261,6 +269,31 @@
 
 - (void)openExamplesFolder {
     [WORKSPACE selectFile:nil inFileViewerRootedAtPath:PROGRAM_EXAMPLES_PATH];
+}
+
+- (void)buildAllExamples {
+    NSSavePanel *sPanel = [NSSavePanel savePanel];
+    [sPanel setTitle:[NSString stringWithFormat:@"Create Example Apps", PROGRAM_NAME]];
+    [sPanel setPrompt:@"Create"];
+    [sPanel setNameFieldStringValue:@"App Examples Folder"];
+    
+    if ([sPanel runModal] != NSFileHandlingPanelOKButton) {
+        return;
+    }
+    NSString *outFolderPath = [[sPanel URL] path];
+    NSError *err;
+    if (![FILEMGR createDirectoryAtPath:outFolderPath withIntermediateDirectories:NO attributes:nil error:&err]) {
+        [Alerts alert:@"Unable to create directory" subText:[err localizedDescription]];
+        return;
+    }
+
+    NSString *examplesFolderPath = [[NSBundle mainBundle] pathForResource:@"Examples" ofType:nil];
+    NSString *platypusToolPath = [[NSBundle mainBundle] pathForResource:@"platypus_clt" ofType:nil];
+    
+    NSString *buildScriptPath = [[NSBundle mainBundle] pathForResource:@"make_examples.pl" ofType:nil];
+    
+    NSTask *task = [NSTask launchedTaskWithLaunchPath:buildScriptPath
+                                            arguments:@[examplesFolderPath, outFolderPath, platypusToolPath]];
 }
 
 #pragma mark -

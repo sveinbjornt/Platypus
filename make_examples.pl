@@ -24,6 +24,14 @@ if ($ARGV[1]) {
     $outdir = $ARGV[1];
 }
 
+if ($ARGV[2]) {
+    $platypus = $ARGV[2];
+}
+
+if (! -e $platypus) {
+    die("Platypus command line tool not found at path $platypus");
+}
+
 opendir(DIR, $dirpath) or die("Could not open directory $dirpath. $!");
 my @files = readdir(DIR);
 closedir(DIR);

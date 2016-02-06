@@ -119,6 +119,7 @@
 		F4DC075211F629A40043764E /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074F11F629A40043764E /* Documentation.html */; };
 		F4DC075311F629A40043764E /* Readme.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC075011F629A40043764E /* Readme.html */; };
 		F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
+		F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */ = {isa = PBXBuildFile; fileRef = F4F14CAF1C640857002A2402 /* make_examples.pl */; };
 		F4F2F3B51BF96C4400FE463C /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B01BF96C4400FE463C /* NoodleLineNumberMarker.m */; };
 		F4F2F3B61BF96C4400FE463C /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B21BF96C4400FE463C /* NoodleLineNumberView.m */; };
 		F4F2F3B71BF96C4400FE463C /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B41BF96C4400FE463C /* NSTextView+JSDExtensions.m */; };
@@ -989,6 +990,7 @@
 				F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */,
 				F426222B1C03B4B00052BA33 /* ApplicationImages.xcassets in Resources */,
 				F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */,
+				F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */,
 				F43E1D821BC8048400622B5F /* Interpreter_Shell.png in Resources */,
 				F46EF85113C3F36900E4C0E4 /* Examples in Resources */,
 				F43E1D791BC8048400622B5F /* Interpreter_Bash.png in Resources */,

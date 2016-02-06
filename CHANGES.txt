@@ -26,11 +26,11 @@ For 5.1
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
 
+    * New Build All Examples feature
     * ScriptExec windows now remember window size and position between launches
     * Fixed issue where MainMenu.nib was stripped and thus not editable using XCode
     * Smarter handling of dropped files via more intelligent methods to determine if a file is a script
     * Fixed issue with window behaviour during resizing in Progress Bar interface
-    * Added new build script which creates all the provided examples
     * Added new WebViewDroplet example which lists dropped files using HTML output
     * Fixed critical issue with Web View interface type
     * Automatic app name generation from script name now respects camelCase and strips whitespace
