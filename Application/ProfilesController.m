@@ -273,13 +273,15 @@
 
 - (void)buildAllExamples {
     NSSavePanel *sPanel = [NSSavePanel savePanel];
-    [sPanel setTitle:[NSString stringWithFormat:@"Create Example Apps", PROGRAM_NAME]];
+    [sPanel setTitle:@"Create Example Apps"];
     [sPanel setPrompt:@"Create"];
     [sPanel setNameFieldStringValue:@"App Examples Folder"];
     
     if ([sPanel runModal] != NSFileHandlingPanelOKButton) {
         return;
     }
+    
+    // Create folder
     NSString *outFolderPath = [[sPanel URL] path];
     NSError *err;
     if (![FILEMGR createDirectoryAtPath:outFolderPath withIntermediateDirectories:NO attributes:nil error:&err]) {
@@ -287,13 +289,16 @@
         return;
     }
 
+    // Run make examples script
     NSString *examplesFolderPath = [[NSBundle mainBundle] pathForResource:@"Examples" ofType:nil];
     NSString *platypusToolPath = [[NSBundle mainBundle] pathForResource:@"platypus_clt" ofType:nil];
-    
     NSString *buildScriptPath = [[NSBundle mainBundle] pathForResource:@"make_examples.pl" ofType:nil];
     
-    NSTask *task = [NSTask launchedTaskWithLaunchPath:buildScriptPath
-                                            arguments:@[examplesFolderPath, outFolderPath, platypusToolPath]];
+    [NSTask launchedTaskWithLaunchPath:@"/usr/bin/perl"
+                             arguments:@[buildScriptPath,
+                                         examplesFolderPath,
+                                         outFolderPath,
+                                         platypusToolPath]];
 }
 
 #pragma mark -
