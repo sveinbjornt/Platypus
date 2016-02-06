@@ -8,7 +8,7 @@
         <item>
             <title>Version 5.1</title>
             <pubDate>Sat, 06 Feb 2016 13:37:00 +0000</pubDate>
-            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus5.1.zip" sparkle:version="5.1" sparkle:shortVersionString="5.1" length="3659843" type="application/octet-stream" sparkle:dsaSignature="MCwCFC8etQF7VjZCZ2F3/mYL1zMbMrqsAhRkakdp5CroE+Ql8Wm/UKtV2gKjbw=="/>
+            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus5.1.zip" sparkle:version="887" sparkle:shortVersionString="5.1" length="3659843" type="application/octet-stream" sparkle:dsaSignature="MCwCFC8etQF7VjZCZ2F3/mYL1zMbMrqsAhRkakdp5CroE+Ql8Wm/UKtV2gKjbw=="/>
             <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
                 <h2>Version 5.1 Changes</h2>
