@@ -9,27 +9,27 @@
 	<key>BundledFiles</key>
 	<array/>
 	<key>Creator</key>
-	<string>Platypus-5.0</string>
+	<string>Platypus-5.1</string>
 	<key>DestinationOverride</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
-    <key>Example</key>
-    <true/>
-    <key>ScriptName</key>
-    <string>MacbethMenu.pl</string>
-    <key>Script</key>
-    <string>#!/usr/bin/perl
+	<key>Example</key>
+	<true/>
+	<key>ScriptName</key>
+	<string>MacbethMenu.pl</string>
+	<key>Script</key>
+	<string>#!/usr/bin/perl
 
 # If 0 arguments, we show menu
 if (!scalar(@ARGV)) {
-    print "Life's but a walking shadow, a poor player\n";
-    print "That struts and frets his hour upon the stage\n";
-    print "And then is heard no more.\n";
+    print &quot;Life&apos;s but a walking shadow, a poor player\n&quot;;
+    print &quot;That struts and frets his hour upon the stage\n&quot;;
+    print &quot;And then is heard no more.\n&quot;;
 } else {
     # We get the menu title as an argument
     # and feed it to the Mac OS X voice synthesizer
-    system("/usr/bin/say \"$ARGV[0]\"");
+    system(&quot;/usr/bin/say \&quot;$ARGV[0]\&quot;&quot;);
 }
 </string>
 	<key>Droppable</key>
@@ -65,8 +65,7 @@ if (!scalar(@ARGV)) {
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
-	<data>
-	</data>
+	<data></data>
 	<key>StatusItemTitle</key>
 	<string>Macbeth</string>
 	<key>Suffixes</key>

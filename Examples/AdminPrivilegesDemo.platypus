@@ -13,7 +13,7 @@
 	<key>BundledFiles</key>
 	<array/>
 	<key>Creator</key>
-	<string>Platypus-5.0</string>
+	<string>Platypus-5.1</string>
 	<key>DeclareService</key>
 	<false/>
 	<key>DestinationOverride</key>
@@ -26,13 +26,13 @@
 	<string>AdminPrivilegesDemo.sh</string>
 	<key>Script</key>
 	<string>#!/bin/sh
-echo "This demo shows execution using admin privileges by creating a file in /etc/"
-echo "Running command /usr/bin/touch /etc/admin_priv_demo_testfile"
+echo &quot;This demo shows execution using admin privileges by creating a file in /etc/&quot;
+echo &quot;Running command /usr/bin/touch /etc/admin_priv_demo_testfile&quot;
 /usr/bin/touch /etc/admin_priv_demo_testfile
-echo "Return code: $?"
-echo "Running command /bin/test -e touch /etc/admin_priv_demo_testfile"
+echo &quot;Return code: $?&quot;
+echo &quot;Running command /bin/test -e touch /etc/admin_priv_demo_testfile&quot;
 /bin/test -e /etc/admin_priv_demo_testfile
-echo "Return code: $?"
+echo &quot;Return code: $?&quot;
     </string>
 	<key>DocIcon</key>
 	<string></string>

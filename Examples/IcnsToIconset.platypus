@@ -13,7 +13,7 @@
 	<key>BundledFiles</key>
 	<array/>
 	<key>Creator</key>
-	<string>Platypus-5.0</string>
+	<string>Platypus-5.1</string>
 	<key>DeclareService</key>
 	<false/>
 	<key>DestinationOverride</key>
@@ -28,15 +28,15 @@
 	<string>#!/bin/sh
 # Convert Apple .icns icon files to iconset folder
 # containing PNG images for each representation
-for var in "$@"
+for var in &quot;$@&quot;
 do
-    echo "Converting $var to iconset"
-    iconutil --convert iconset "$var"
+    echo &quot;Converting $var to iconset&quot;
+    iconutil --convert iconset &quot;$var&quot;
 done
 
 # Open containing folder
 DIR=$(dirname $1)
-open "$DIR"
+open &quot;$DIR&quot;
 
 
     </string>

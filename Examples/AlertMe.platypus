@@ -13,7 +13,7 @@
 	<key>BundledFiles</key>
 	<array/>
 	<key>Creator</key>
-	<string>Platypus-5.0</string>
+	<string>Platypus-5.1</string>
 	<key>DeclareService</key>
 	<false/>
 	<key>DestinationOverride</key>
@@ -28,18 +28,18 @@
 	<string>#!/bin/sh
 
 sleep 1
-echo "About to show alert"
-echo "PROGRESS:50%"
+echo &quot;About to show alert&quot;
+echo &quot;PROGRESS:50%&quot;
 sleep 2
-echo "Almost there..."
-echo "ALERT:This is an alert|Here you can put your test"
+echo &quot;Almost there...&quot;
+echo &quot;ALERT:This is an alert|Here you can put your test&quot;
 sleep 1
-echo "PROGRESS:75%"
+echo &quot;PROGRESS:75%&quot;
 sleep 1
-echo "PROGRESS:100%"
+echo &quot;PROGRESS:100%&quot;
 sleep 2
-echo "ALERT:Example Over|We're all done here."
-echo "Task completed"
+echo &quot;ALERT:Example Over|We&apos;re all done here.&quot;
+echo &quot;Task completed&quot;
     </string>
 	<key>DocIcon</key>
 	<string></string>

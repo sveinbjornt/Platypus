@@ -23,9 +23,11 @@ For 5.1
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
 
+5.2
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
 
+5.1
     * New Build All Examples feature
     * ScriptExec windows now remember window size and position between launches
     * Fixed issue where MainMenu.nib was stripped and thus not editable using XCode
@@ -50,7 +52,7 @@ For 5.1
     * Fixed issue where showing the Preferences window lagged due to icon fetching on main thread
     * Args button title now shows the number of custom arguments that have been set
     * UTIs are now used for default file types in Drop Settings (public.item and public.folder)
-    * Move project over to ARC
+    * Moved project over to ARC
 
 For 5.0
     * Long GNU named params for command line tool, e.g. --some-option

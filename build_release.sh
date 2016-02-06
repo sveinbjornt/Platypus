@@ -124,7 +124,9 @@ FINAL_SRC_ARCHIVE_PATH=~/Desktop/${APP_SRC_ZIP_NAME}
 
 if [ $1 ]; then
     echo "Updating documentation on server ..."
-    sh "Documentation/update_docs.sh"
+    cd Documentation
+    sh "update_docs.sh"
+    cd ..
 fi
 
 echo "Moving source archive to Desktop"
