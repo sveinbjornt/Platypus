@@ -381,6 +381,7 @@
     
     //run save panel
     [sPanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        [[self window] setTitle:PROGRAM_NAME];
         if (result == NSOKButton) {
             [self createConfirmed:sPanel returnCode:result];
         }
