@@ -35,9 +35,11 @@
 - (TypeListItemStringValidity)validateItemString:(NSString *)itemString {
     if (UTTypeIsValid(itemString) == NO) {
         return TypeListItemStringInvalid;
-    } else if (UTTypeIsDeclared((__bridge CFStringRef)(itemString)) == NO) {
-        return TypeListItemStringQuestionable;
     }
+    // 10.10 only
+//    if (UTTypeIsDeclared((__bridge CFStringRef)(itemString)) == NO) {
+//        return TypeListItemStringQuestionable;
+//    }
     return TypeListItemStringValid;
 }
 
