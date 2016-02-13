@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="macosx"/>
         <development version="6000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
@@ -461,7 +460,7 @@ DQ
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="B480A071-5DDE-4707-845D-F11F737D2BC4" id="1249"/>
+                                            <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="90A5BA04-BEAA-4D58-9204-B484CB1C9AAA" id="1249"/>
                                         </tableColumn>
                                         <tableColumn identifier="2" editable="NO" width="559" minWidth="33.28857421875" maxWidth="2000" id="503">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Bundled Files">
@@ -561,8 +560,8 @@ DQ
                 <outlet property="bundleIdentifierTextField" destination="861" id="4163"/>
                 <outlet property="bundledFilesController" destination="1234" id="qHF-cj-zJz"/>
                 <outlet property="createAppButton" destination="312" id="496"/>
+                <outlet property="createSymlinksCheckbox" destination="7885" id="CXc-IL-bwb"/>
                 <outlet property="debugSaveOptionView" destination="7866" id="7887"/>
-                <outlet property="developmentVersionCheckbox" destination="7885" id="7888"/>
                 <outlet property="dropSettingsButton" destination="372" id="QPm-Zy-YHL"/>
                 <outlet property="dropSettingsController" destination="1364" id="SvR-r8-57E"/>
                 <outlet property="editScriptButton" destination="324" id="491"/>
@@ -654,6 +653,7 @@ DQ
                 <outlet property="backgroundColorWell" destination="2079" id="2367"/>
                 <outlet property="fontFaceTextField" destination="2108" id="2369"/>
                 <outlet property="foregroundColorWell" destination="2080" id="2368"/>
+                <outlet property="parentWindow" destination="21" id="HET-p1-Rnb"/>
                 <outlet property="textEncodingPopupButton" destination="2099" id="2370"/>
                 <outlet property="textPreviewTextView" destination="2078" id="2625"/>
                 <outlet property="textSettingsButton" destination="2061" id="5395"/>
@@ -1451,7 +1451,7 @@ DQ
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk" customClass="NSResponderNotifyingTableView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="161.5" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="18"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2711,7 +2711,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="B480A071-5DDE-4707-845D-F11F737D2BC4" width="16" height="16">
+        <image name="90A5BA04-BEAA-4D58-9204-B484CB1C9AAA" width="16" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

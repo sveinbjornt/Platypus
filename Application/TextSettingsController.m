@@ -39,6 +39,7 @@
     IBOutlet NSPopUpButton *textEncodingPopupButton;
     IBOutlet NSTextView *textPreviewTextView;
     IBOutlet NSButton *textSettingsButton;
+    IBOutlet NSWindow *parentWindow;
     
     NSFont *currentFont;
 }
@@ -58,7 +59,6 @@
 }
 
 - (IBAction)show:(id)sender {
-    NSWindow *parentWindow = [[[NSApplication sharedApplication] delegate] window];
     [parentWindow setTitle:[NSString stringWithFormat:@"%@ - Text Settings", PROGRAM_NAME]];
     
     [NSApp beginSheet:[self window]
@@ -73,8 +73,7 @@
 - (IBAction)apply:(id)sender {
     [[[NSFontManager sharedFontManager] fontPanel:NO] orderOut:self];
     [[NSColorPanel sharedColorPanel] orderOut:self];
-    NSWindow *window = [[[NSApplication sharedApplication] delegate] window];
-    [window setTitle:PROGRAM_NAME];
+    [parentWindow setTitle:PROGRAM_NAME];
     [NSApp stopModal];
     [NSApp endSheet:[self window]];
     [[self window] orderOut:self];

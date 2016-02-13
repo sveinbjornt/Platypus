@@ -78,7 +78,7 @@
     
     // create app dialog view extension
     IBOutlet NSView *debugSaveOptionView;
-    IBOutlet NSButton *developmentVersionCheckbox;
+    IBOutlet NSButton *createSymlinksCheckbox;
     IBOutlet NSButton *stripNibFileCheckbox;
     IBOutlet NSButton *xmlPlistFormatCheckbox;
     
@@ -205,8 +205,10 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [DEFAULTS setObject:@YES forKey:@"Launched"];
-    [[self window] center];
+    if ([DEFAULTS boolForKey:@"Launched"] == NO) {
+        [[self window] center];
+        [DEFAULTS setBool:YES forKey:@"Launched"];
+    }
     [[self window] makeKeyAndOrderFront:self];
     [appNameTextField becomeFirstResponder];
 }
@@ -367,15 +369,15 @@
     // Configure the controls in the accessory view
     
     // development version checkbox: always disable this option if secure script is checked
-    [developmentVersionCheckbox setEnabled:![secureBundledScriptCheckbox intValue]];
+    [createSymlinksCheckbox setEnabled:![secureBundledScriptCheckbox intValue]];
     if ([secureBundledScriptCheckbox intValue]) {
-        [DEFAULTS setObject:@NO forKey:DefaultsKey_SymlinkFiles];
+        [DEFAULTS setBool:NO forKey:DefaultsKey_SymlinkFiles];
     }
     
     // optimize nib is enabled and on by default if ibtool is present
     BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:IBTOOL_PATH];
     if ([[DEFAULTS objectForKey:DefaultsKey_StripNib] boolValue] == YES && ibtoolInstalled == NO) {
-        [DEFAULTS setObject:@NO forKey:DefaultsKey_StripNib];
+        [DEFAULTS setBool:NO forKey:DefaultsKey_StripNib];
     }
     [stripNibFileCheckbox setEnabled:ibtoolInstalled];
     
@@ -437,7 +439,7 @@
     spec[AppSpecKey_DestinationPath] = appPath;
     spec[AppSpecKey_ExecutablePath] = [[NSBundle mainBundle] pathForResource:CMDLINE_SCRIPTEXEC_BIN_NAME ofType:nil];
     spec[AppSpecKey_NibPath] = [[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil];
-    spec[AppSpecKey_SymlinkFiles] = @((BOOL)[developmentVersionCheckbox intValue]);
+    spec[AppSpecKey_SymlinkFiles] = @((BOOL)[createSymlinksCheckbox intValue]);
     spec[AppSpecKey_StripNib] = @((BOOL)[stripNibFileCheckbox intValue]);
     spec[AppSpecKey_XMLPlistFormat] = @((BOOL)[xmlPlistFormatCheckbox intValue]);
     spec[AppSpecKey_Overwrite] = @YES;
@@ -821,8 +823,7 @@
 
 - (IBAction)showCommandLineString:(id)sender {
     if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
-        [Alerts alert:@"Missing script"
-        subTextFormat:@"No file exists at path '%@'", [scriptPathTextField stringValue]];
+        [Alerts alert:@"Missing script" subTextFormat:@"No file exists at path '%@'", [scriptPathTextField stringValue]];
         return;
     }
     

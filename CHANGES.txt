@@ -24,8 +24,11 @@ For 5.1
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
 
 5.2
+    TODO: Update documentation, do a better job of explaining exactly how the Status Menu interface works
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
+
+    * Fixed issue where main application window would not remember its last position
 
 5.1
     * New Build All Examples feature

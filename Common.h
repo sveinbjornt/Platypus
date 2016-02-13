@@ -241,7 +241,7 @@ extern NSString * const ScriptExecDefaultsKey_ShowDetails;
 #define WORKSPACE   [NSWorkspace sharedWorkspace]
 
 // compatibility with earlier versions of Xcode
-#if __has_feature(objc_generics)
+#if __has_feature(objc_generics) && __MAC_10_10
     #define OF_NSSTRING <NSString *>
     #define OF_NSARRAY <NSArray *>
     #define OF_NSDICTIONARY <NSDictionary *>

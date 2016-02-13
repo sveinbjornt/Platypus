@@ -13,7 +13,7 @@ my $dirpath = "Examples";
 my $outdir = "ExampleApps";
 
 if (! -e $platypus) {
-    die("Command line tool $platypus is not installed");
+    die("error: Command line tool $platypus is not installed");
 }
 
 if ($ARGV[0]) {
@@ -29,10 +29,10 @@ if ($ARGV[2]) {
 }
 
 if (! -e $platypus) {
-    die("Platypus command line tool not found at path $platypus");
+    die("error: Platypus command line tool not found at path $platypus");
 }
 
-opendir(DIR, $dirpath) or die("Could not open directory $dirpath. $!");
+opendir(DIR, $dirpath) or die("error: Could not open directory $dirpath. $!");
 my @files = readdir(DIR);
 closedir(DIR);
 
@@ -45,13 +45,13 @@ foreach my $file(@files) {
 }
 
 if (!scalar(@example_files)) {
-    die("No profiles found in directory $dirpath");
+    die("error: No profiles found in directory $dirpath");
 }
 
 # Create output dir
 if (! -e $outdir) {
     if (!mkdir($outdir)) {
-        die("Could not create output directory $dirpath: $!");
+        die("error: Could not create output directory $outdir: $!");
     }
 }
 
@@ -62,5 +62,5 @@ foreach my $file(@example_files) {
     print "------------------------------\n";
     print "Creating $name.app\n";
     print "------------------------------\n";
-    `$platypus --load-profile "$dirpath/$file" -y "$outdir/$name.app"`    
+    `$platypus --load-profile "$dirpath/$file" --overwrite "$outdir/$name.app"`    
 }

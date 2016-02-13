@@ -101,7 +101,7 @@ static struct option long_options[] = {
 
     {"xml-property-lists",        no_argument,        0, 'x'},
     {"overwrite",                 no_argument,        0, 'y'},
-    {"force",                     no_argument,        0, 'y'}, // backwards comptability!
+    {"force",                     no_argument,        0, 'y'}, // backwards compatibility!
     {"symlink",                   no_argument,        0, 'd'},
     {"development-version",       no_argument,        0, 'd'}, // backwards compatibility!
     {"optimize-nib",              no_argument,        0, 'l'},

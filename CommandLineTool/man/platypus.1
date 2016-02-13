@@ -64,7 +64,7 @@ script and displays its output when clicked.
 The application displays a droplet window for dropping files on for processing
 by the script.
 .Pp
-The default interface type is "Progress Bar".
+The default interface type is "Text Window".
 .It Fl i, -app-icon Ar iconPath
 Specifies a file to use as the icon for the application bundle. The file must
 be a Mac OS X .icns file. If not specified, the default Platypus app icon will
@@ -164,16 +164,15 @@ For Status Menu interface type only. Makes menu use system font instead of
 user-defined styling.
 .It Fl x, -xml-property-lists x
 Create XML format property lists instead of binary ones.
-.It Fl d, -development-version
-Development version. A symlink to the original script is created inside the
-application bundle instead of a copy.  Symlinks are also created to any
-bundled files. This option is incompatible with the -S option.
+.It Fl d, -symlink
+A symlink to the original script is created inside the application bundle
+instead of a copy.  Symlinks are also created to any bundled files. This
+option is incompatible with the --secure-script flag.
 .It Fl l, -optimize-nib
 Strip the bundled application nib file to reduce its size. Makes the nib
 uneditable.  Only works if Apple's XCode is installed.
-.It Fl y, -force
-Force mode.  With this flag set, the program will overwrite any pre-existing
-files or folders in destination path.
+.It Fl y, -overwrite
+Overwrite any pre-existing files or folders in destination path.
 .It Fl v, -version
 Print the version of this program
 .It Fl h, -help
@@ -188,9 +187,9 @@ program binary
 .It Pa /usr/local/share/platypus/ScriptExec
 executable binary
 .It Pa /usr/local/share/platypus/MainMenu.nib
-Nib file for app
+nib file for app
 .It Pa /usr/local/share/platypus/PlatypusDefault.icns
-Default icon
+default icon
 .El
 .Sh EXAMPLES
 platypus -P myProfile.platypus ~/Desktop/MyApplication.app

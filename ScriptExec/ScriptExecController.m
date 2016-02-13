@@ -1041,10 +1041,7 @@ static const NSInteger detailsHeight = 224;
     // Thus, we store this last non-newline-terminated string
     // It'll be prepended next time we get output
     if ([[lines lastObject] length] > 0) {
-        if (remnants != nil) {
-            remnants = nil;
-        }
-        remnants = [[NSString alloc] initWithString:[lines lastObject]];
+        remnants = [[lines lastObject] copy];
     } else {
         remnants = nil;
     }
@@ -1156,7 +1153,8 @@ static const NSInteger detailsHeight = 224;
     if (interfaceType == PlatypusInterfaceType_None) {
         //fprintf(stdout, "%s", [string cStringUsingEncoding:textEncoding]);
         NSData *strData = [[NSString stringWithFormat:@"%@\n", string] dataUsingEncoding:textEncoding];
-        [[NSFileHandle fileHandleWithStandardError] writeData:strData];
+        NSFileHandle *stderrFileHandle = [NSFileHandle fileHandleWithStandardError];
+        [stderrFileHandle writeData:strData];
         return;
     }
     
@@ -1570,7 +1568,7 @@ static const NSInteger detailsHeight = 224;
     }
     
     // create an array of lines by separating output by newline
-    NSMutableArray *lines = [NSMutableArray arrayWithArray:[[outputTextView string] componentsSeparatedByString:@"\n"]];
+    NSMutableArray OF_NSSTRING *lines = [NSMutableArray arrayWithArray:[[outputTextView string] componentsSeparatedByString:@"\n"]];
     
     // clean out any trailing newlines
     while ([[lines lastObject] isEqualToString:@""]) {
