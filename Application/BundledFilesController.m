@@ -106,11 +106,15 @@
     }
     
     if (addedFile) {
-        [tableView reloadData];
-        [self updateButtonStatus];
-        [self updateQueueWatch];
-        [self updateFileSizeField];
+        [self updateUI];
     }
+}
+
+- (void)updateUI {
+    [tableView reloadData];
+    [self updateButtonStatus];
+    [self updateQueueWatch];
+    [self updateFileSizeField];
 }
 
 - (void)updateQueueWatch {
@@ -118,6 +122,14 @@
     for (NSDictionary *fileItem in files) {
         [fileWatcherQueue addPath:fileItem[@"Path"]];
     }
+}
+
+- (void)updateButtonStatus {
+    BOOL hasSelection = [[tableView selectedRowIndexes] count];
+    [removeFileButton setEnabled:hasSelection];
+    [revealFileButton setEnabled:hasSelection];
+    [editFileButton setEnabled:hasSelection];
+    [clearFileListButton setEnabled:([files count] != 0)];
 }
 
 - (void)updateFileSizeField {
@@ -286,10 +298,7 @@
 
 - (IBAction)clearFileList:(id)sender {
     [files removeAllObjects];
-    [tableView reloadData];
-    [self updateQueueWatch];
-    [self updateFileSizeField];
-    [self updateButtonStatus];
+    [self updateUI];
 }
 
 - (IBAction)revealSelectedFilesInFinder:(id)sender {
@@ -321,7 +330,6 @@
 }
 
 - (IBAction)removeSelectedFiles:(id)sender {
-    
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     for (int i = [files count]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
@@ -333,10 +341,7 @@
         [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];
     }
     
-    [tableView reloadData];
-    [self updateButtonStatus];
-    [self updateQueueWatch];
-    [self updateFileSizeField];
+    [self updateUI];
 }
 
 #pragma mark - NSTableViewDelegate/DataSource
@@ -345,35 +350,11 @@
     return [files count];
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
-    
-    //path
-    if ([[aTableColumn identifier] isEqualToString:@"2"]) {
-        
-        // check if bundled file exists at path
-        NSString *filePath = files[rowIndex][@"Path"];
-        if ([FILEMGR fileExistsAtPath:filePath]) {
-            return files[rowIndex][@"Path"];
-        } else {
-            // if not, we hilight red
-            NSDictionary *attr = @{NSForegroundColorAttributeName: [NSColor redColor]};
-            return [[NSAttributedString alloc] initWithString:filePath attributes:attr];
-        }
-    }
-    // icon
-    else if ([[aTableColumn identifier] isEqualToString:@"1"]) {
-        return files[rowIndex][@"Icon"];
-    }
-    
-    return nil;
-}
-
-- (void)updateButtonStatus {
-    BOOL hasSelection = [[tableView selectedRowIndexes] count];
-    [removeFileButton setEnabled:hasSelection];
-    [revealFileButton setEnabled:hasSelection];
-    [editFileButton setEnabled:hasSelection];
-    [clearFileListButton setEnabled:([files count] != 0)];
+- (NSView *)tableView:(NSTableView *)tv viewForTableColumn:(NSTableColumn *)tc row:(NSInteger)row {
+    NSTableCellView *cellView = [tv makeViewWithIdentifier:@"MainCell" owner:self];
+    cellView.textField.stringValue = files[row][@"Path"];
+    cellView.imageView.objectValue = files[row][@"Icon"];
+    return cellView;
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
@@ -407,7 +388,7 @@
 }
 
 - (CGFloat)tableView:(NSTableView *)theTableView heightOfRow:(NSInteger)row {
-    return 20;
+    return 18;
 }
 
 #pragma mark - Menu delegate
