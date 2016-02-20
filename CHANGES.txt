@@ -28,6 +28,8 @@ For 5.1
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
 
+    * Bundled files table view now uses combined image and text cell instead of two columns
+    * Renamed Advanced menu to Action
     * Fixed issue where main application window would not remember its last position
 
 5.1

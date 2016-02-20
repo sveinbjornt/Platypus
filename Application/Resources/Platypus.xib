@@ -449,7 +449,7 @@ DQ
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="hqk-wE-xqo" viewBased="YES" id="310">
-                                    <rect key="frame" x="0.0" y="0.0" width="589" height="108"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="589" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -925,8 +925,8 @@ CA
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Advanced" id="442">
-                    <menu key="submenu" title="Advanced" id="445">
+                <menuItem title="Action" id="442">
+                    <menu key="submenu" title="Action" id="445">
                         <items>
                             <menuItem title="Add File To Bundle" keyEquivalent="+" toolTip="Add a file to your application bundle" id="456">
                                 <connections>
@@ -959,7 +959,7 @@ CA
                             <menuItem isSeparatorItem="YES" id="497">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Edit Text Output Settings..." toolTip="Configure the text settings for your application's output" id="1212">
+                            <menuItem title="Edit Text Settings..." toolTip="Configure the text settings for your application's output" id="1212">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="show:" target="2364" id="5394"/>
