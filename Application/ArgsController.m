@@ -71,7 +71,7 @@
 @implementation ArgsController
 
 - (instancetype)init {
-    if ((self = [super init])) {
+    if (self = [super init]) {
         interpreterArgs = [[NSMutableArray alloc] init];
         scriptArgs = [[NSMutableArray alloc] init];
     }
@@ -251,20 +251,19 @@
     [self updateGUIStatus];
 }
 
-- (IBAction)removeListItem:(id)sender
-{
+- (IBAction)removeListItem:(id)sender {
     NSMutableArray OF_NSSTRING *args;
-    sender = [[self window] firstResponder];
+    id firstResponder = [[self window] firstResponder];
     
-    if (sender == scriptArgsTableView) {
+    if (firstResponder == scriptArgsTableView) {
         args = scriptArgs;
-    } else if (sender == interpreterArgsTableView) {
+    } else if (firstResponder == interpreterArgsTableView) {
         args = interpreterArgs;
     } else {
         return;
     }
     
-    NSTableView *tableView = sender;
+    NSTableView *tableView = firstResponder;
     NSInteger selectedRow = [tableView selectedRow];
     
     if (selectedRow == -1 || [args count] == 0) {

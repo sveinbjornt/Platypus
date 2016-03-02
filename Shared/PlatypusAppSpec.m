@@ -167,8 +167,8 @@
     self[AppSpecKey_IconPath] = CMDLINE_ICON_PATH;
     
     self[AppSpecKey_Interpreter] = DEFAULT_INTERPRETER_PATH;
-    self[AppSpecKey_InterpreterArgs] = [NSArray array];
-    self[AppSpecKey_ScriptArgs] = [NSArray array];
+    self[AppSpecKey_InterpreterArgs] = @[];
+    self[AppSpecKey_ScriptArgs] = @[];
     self[AppSpecKey_Version] = DEFAULT_VERSION;
     self[AppSpecKey_Identifier] = [PlatypusAppSpec bundleIdentifierForAppName:nil
                                                                    authorName:nil
@@ -258,9 +258,8 @@
         if ([self[AppSpecKey_Overwrite] boolValue] == FALSE) {
             _error = [NSString stringWithFormat:@"App already exists at path %@. Use -y flag to overwrite.", self[AppSpecKey_DestinationPath]];
             return FALSE;
-        } else {
-            [self report:@"Overwriting app at path %@", self[AppSpecKey_DestinationPath]];
         }
+        [self report:@"Overwriting app at path %@", self[AppSpecKey_DestinationPath]];
     }
     
     // check if executable exists
@@ -574,7 +573,7 @@
     }
     
     // if droppable, we declare the accepted file types
-    if ([self[AppSpecKey_Droppable] boolValue] == YES) {
+    if ([self[AppSpecKey_Droppable] boolValue]) {
         
         NSMutableDictionary *typesAndSuffixesDict = [NSMutableDictionary dictionary];
         
@@ -593,14 +592,14 @@
         infoPlist[@"CFBundleDocumentTypes"] = @[typesAndSuffixesDict];
         
         // add service settings to Info.plist
-        if ([self[AppSpecKey_Service] boolValue] == YES) {
+        if ([self[AppSpecKey_Service] boolValue]) {
             
             NSMutableDictionary *serviceDict = [NSMutableDictionary dictionary];
             
             serviceDict[@"NSMenuItem"] = @{@"default": [NSString stringWithFormat:@"Process with %@", self[AppSpecKey_Name]]};
             serviceDict[@"NSMessage"] = @"dropService";
             serviceDict[@"NSPortName"] = self[AppSpecKey_Name];
-            serviceDict[@"NSTimeout"] = [NSNumber numberWithInt:3000];
+            serviceDict[@"NSTimeout"] = @(3000);
             
             // service data type handling
             NSMutableArray *sendTypes = [NSMutableArray array];
@@ -928,13 +927,12 @@
  - based on username etc. e.g. org.username.AppName
  ******************************************************************/
 
-+ (NSString *)bundleIdentifierForAppName:(NSString *)appName authorName:(NSString *)authorName usingDefaults:(BOOL)def {
-    if (appName == nil) {
-        appName = DEFAULT_APP_NAME;
-    }
++ (NSString *)bundleIdentifierForAppName:(NSString *)name authorName:(NSString *)authorName usingDefaults:(BOOL)def {
+    NSString *appName = name ? name : DEFAULT_APP_NAME;
     NSString *defaults = def ? [DEFAULTS stringForKey:DefaultsKey_BundleIdentifierPrefix] : nil;
     NSString *author = authorName ? [authorName stringByReplacingOccurrencesOfString:@" " withString:@""] : NSUserName();
-    NSString *pre = defaults == nil ? [NSString stringWithFormat:@"org.%@.", author] : defaults;
+    NSString *pre = (defaults == nil) ? [NSString stringWithFormat:@"org.%@.", author] : defaults;
+    
     NSString *identifierString = [NSString stringWithFormat:@"%@%@", pre, appName];
     identifierString = [identifierString stringByReplacingOccurrencesOfString:@" " withString:@""];
     

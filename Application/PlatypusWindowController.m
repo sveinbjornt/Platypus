@@ -128,7 +128,7 @@
 #pragma mark - Application
 
 - (instancetype)init {
-    if ((self = [super init])) {
+    if (self = [super init]) {
         fileWatcherQueue = [[VDKQueue alloc] init];
     }
     return self;
@@ -162,9 +162,9 @@
         }
     }
     
-    if ([DEFAULTS objectForKey:@"Launched"] == nil) {
-        // TODO: Create sample profile in Profiles folder?
-    }
+//    if ([DEFAULTS objectForKey:@"Launched"] == nil) {
+//         //TODO: Create sample profile in Profiles folder?
+//    }
     
     // we list ourself as an observer of changes to file system for script path being watched
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueRenameNotification object:nil];
@@ -262,11 +262,11 @@
     //put shebang line in the new script text file
     NSString *contentString = [NSString stringWithFormat:@"#!%@\n\n", interpreterPath];
     
-    if (scriptText != nil) {
+    if (scriptText) {
         contentString = [contentString stringByAppendingString:scriptText];
     } else {
         NSString *defaultScriptText = [PlatypusScriptAnalyser helloWorldProgramForDisplayName:[scriptTypePopupButton titleOfSelectedItem]];
-        if (defaultScriptText != nil) {
+        if (defaultScriptText) {
             contentString = [contentString stringByAppendingString:defaultScriptText];
         }
     }
@@ -952,7 +952,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     
     //create app menu item
-    if ([anItem action]  == @selector(createButtonPressed:) && [createAppButton isEnabled] == NO) {
+    if ([anItem action] == @selector(createButtonPressed:) && [createAppButton isEnabled] == NO) {
         return NO;
     }
     

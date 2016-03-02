@@ -63,7 +63,7 @@
 @implementation BundledFilesController
 
 - (instancetype)init {
-    if ((self = [super init])) {
+    if (self = [super init]) {
         files = [[NSMutableArray alloc] init];
         fileWatcherQueue = [[VDKQueue alloc] init];
     }
@@ -228,12 +228,12 @@
     
     if ([defaultEditor isEqualToString:DEFAULT_EDITOR] == NO) {
         // open it in the external application
-        if ([WORKSPACE fullPathForApplication:defaultEditor] != nil) {
-            [WORKSPACE openFile:path withApplication:defaultEditor];
-            return;
-        } else {
+        if ([WORKSPACE fullPathForApplication:defaultEditor] == nil) {
             [Alerts alert:@"Editor not found" subTextFormat:@"The application '%@' could not be found.  Reverting to the built-in editor.", defaultEditor];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:DefaultsKey_DefaultEditor];
+        } else {
+            [WORKSPACE openFile:path withApplication:defaultEditor];
+            return;
         }
     }
     

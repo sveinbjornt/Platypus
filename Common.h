@@ -144,7 +144,7 @@ typedef enum PlatypusInterfaceType {
 
 #define DEFAULT_INTERFACE_TYPE          PlatypusInterfaceType_TextWindow
 
-#define DEFAULT_INTERFACE_TYPE_STRING   [PLATYPUS_INTERFACE_TYPE_NAMES objectAtIndex:DEFAULT_INTERFACE_TYPE]
+#define DEFAULT_INTERFACE_TYPE_STRING   PLATYPUS_INTERFACE_TYPE_NAMES[DEFAULT_INTERFACE_TYPE]
 
 #define IsValidInterfaceType(X)         ( (X) >= 0 && (X) < [PLATYPUS_INTERFACE_TYPE_NAMES count] )
 

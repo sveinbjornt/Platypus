@@ -119,7 +119,7 @@
     
     NSString *filePath = [[oPanel URLs][0] path];
     NSImage *img = [[NSImage alloc] initWithContentsOfFile:filePath];
-    if (img != nil) {
+    if (img) {
         [self setIcon:img];
         if (previewStatusItem != nil) {
             [self previewStatusItem:self];

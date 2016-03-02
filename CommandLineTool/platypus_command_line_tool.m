@@ -671,11 +671,11 @@ static NSString *ReadStandardInputToFile(void) {
 }
 
 static NSString *MakeAbsolutePath(NSString *path) {
-    path = [path stringByExpandingTildeInPath];
-    if ([path isAbsolutePath] == NO) {
-        path = [[FILEMGR currentDirectoryPath] stringByAppendingPathComponent:path];
+    NSString *absPath = [path stringByExpandingTildeInPath];
+    if ([absPath isAbsolutePath] == NO) {
+        absPath = [[FILEMGR currentDirectoryPath] stringByAppendingPathComponent:path];
     }
-    return [path stringByStandardizingPath];
+    return [absPath stringByStandardizingPath];
 }
 
 #pragma mark -

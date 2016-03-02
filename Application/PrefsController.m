@@ -90,7 +90,7 @@
     } else if ([[menuItem title] isEqualToString:@"Select..."] == FALSE) {
         NSImage *icon;
         NSString *appPath = [WORKSPACE fullPathForApplication:[menuItem title]];
-        if (appPath != nil) {
+        if (appPath) {
             icon = [WORKSPACE iconForFile:appPath];
         } else {
             icon = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
@@ -227,7 +227,7 @@
                 [textField setStringValue:@"Command line tool is not installed"];
             }
             // it's installed and current
-            else if (versionString && [versionString isEqualToString:PROGRAM_VERSION]) {
+            else if ([versionString isEqualToString:PROGRAM_VERSION]) {
                 [textField setTextColor:[NSColor colorWithCalibratedRed:0.0 green:0.6 blue:0.0 alpha:1.0]];
                 [textField setStringValue:@"Command line tool is installed"];
             }

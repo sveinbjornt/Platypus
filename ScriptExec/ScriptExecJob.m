@@ -36,7 +36,7 @@
 @implementation ScriptExecJob
 
 - (instancetype)initWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr {
-    if ((self = [super init])) {
+    if (self = [super init]) {
         _arguments = args;
         _standardInputString = stdinStr;
     }

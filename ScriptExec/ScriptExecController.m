@@ -161,7 +161,7 @@ static const NSInteger detailsHeight = 224;
 @implementation ScriptExecController
 
 - (instancetype)init {
-    if ((self = [super init])) {
+    if (self = [super init]) {
         arguments = [[NSMutableArray alloc] init];
         outputEmpty = YES;
         jobQueue = [[NSMutableArray alloc] init];
@@ -396,7 +396,15 @@ static const NSInteger detailsHeight = 224;
     }
     
     // get path to script within app bundle
-    if (!secureScript) {
+    if (secureScript) {
+        NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData:appSettingsDict[@"TextSettings"]];
+        if (b_str == nil) {
+            [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
+        }
+        // we create string with the script based on the decoded data
+        scriptText = [[NSString alloc] initWithData:b_str encoding:textEncoding];
+    } else {
+        // if we have a "secure" script, there is no path to get. We write script to temp location on execution
         scriptPath = [[NSString alloc] initWithString:[appBundle pathForResource:@"script" ofType:nil]];
         
         // make sure we can read the script file
@@ -407,15 +415,7 @@ static const NSInteger detailsHeight = 224;
         if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
             [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is unreadable."];
         }
-    }
-    // if we have a "secure" script, there is no path to get. We write script to temp location on execution
-    else {
-        NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData:appSettingsDict[@"TextSettings"]];
-        if (b_str == nil) {
-            [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
-        }
-        // we create string with the script based on the decoded data
-        scriptText = [[NSString alloc] initWithData:b_str encoding:textEncoding];
+
     }
 }
 
@@ -1111,9 +1111,10 @@ static const NSInteger detailsHeight = 224;
             }
         }
         
-        if (interfaceType == PlatypusInterfaceType_WebView) {
-            if ([[outputTextView textStorage] length] == 0 && [theLine hasPrefix:@"Location:"]) {
+        if (interfaceType == PlatypusInterfaceType_WebView &&
+            ([[outputTextView textStorage] length] == 0 && [theLine hasPrefix:@"Location:"]) {
                 NSString *urlString = [theLine substringFromIndex:9];
+                // TODO: Should be trim
                 urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@""];
                 locationURL = [NSURL URLWithString:urlString];
             }
@@ -1563,9 +1564,10 @@ static const NSInteger detailsHeight = 224;
     
     // run script and wait until we've received all the script output
     [self executeScript];
-    while (isTaskRunning) {
-        usleep(100000); // microseconds
-    }
+    
+//    while (isTaskRunning || !outputEmpty) {
+//        usleep(100000000); // microseconds
+//    }
     
     // create an array of lines by separating output by newline
     NSMutableArray OF_NSSTRING *lines = [NSMutableArray arrayWithArray:[[outputTextView string] componentsSeparatedByString:@"\n"]];

@@ -153,7 +153,6 @@
 }
 
 - (void)menuWillOpen:(NSMenu *)menu {
-    // we do this lazily
     [self constructMenus:self];
 }
 

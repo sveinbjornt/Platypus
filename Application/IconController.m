@@ -69,7 +69,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 @implementation IconController
 
 - (instancetype)init {
-    if ((self = [super init])) {
+    if (self = [super init]) {
         fileWatcherQueue = [[VDKQueue alloc] init];
         iconWritingDispatchQueue = dispatch_queue_create("platypus.iconDispatchQueue", NULL);
     }
@@ -253,7 +253,6 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         }
             break;
         
-        default:
         case PlatypusPresetIconGenericApplication:
         {
             iconImage = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
@@ -382,9 +381,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         }
     }
     if ([[anItem title] isEqualToString:@"Copy Icon Path"] || [[anItem title] isEqualToString:@"Show in Finder"]) {
-        if ([FILEMGR fileExistsAtPath:[self icnsFilePath]] == NO) {
-            return NO;
-        }
+        return [FILEMGR fileExistsAtPath:[self icnsFilePath]];
     }
     return YES;
 }
@@ -421,29 +418,30 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
-    // we accept dragged files
-    if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
+    // we accept dragged files only
+    if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType] == NO) {
+        return NSDragOperationNone;
+    }
 
-        NSArray *files = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
-        
-        // link operation for icns file, but not if it's a preset icon
-        for (NSString *filename in files) {
-            if ([self isPresetIcon:filename]) {
-                return NSDragOperationNone;
-            }
-            NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
-            if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
-                return NSDragOperationLink;
-            }
+    NSArray *files = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+    
+    // link operation for icns file, but not if it's a preset icon
+    for (NSString *filename in files) {
+        if ([self isPresetIcon:filename]) {
+            return NSDragOperationNone;
         }
-        
-        // copy operation icon for image file
-        NSArray *supportedImageTypes = [NSImage imageTypes];
-        for (NSString *filename in files) {
-            NSString *uti = [[NSWorkspace sharedWorkspace] typeOfFile:filename error:nil];
-            if ([supportedImageTypes containsObject:uti]) {
-                return NSDragOperationCopy;
-            }
+        NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
+        if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
+            return NSDragOperationLink;
+        }
+    }
+    
+    // copy operation icon for image file
+    NSArray *supportedImageTypes = [NSImage imageTypes];
+    for (NSString *filename in files) {
+        NSString *uti = [[NSWorkspace sharedWorkspace] typeOfFile:filename error:nil];
+        if ([supportedImageTypes containsObject:uti]) {
+            return NSDragOperationCopy;
         }
     }
     

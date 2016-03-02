@@ -82,7 +82,7 @@
 @implementation DropSettingsController
 
 - (instancetype)init {
-    if ((self = [super init])) {
+    if (self = [super init]) {
         suffixListController = [[SuffixTypeListController alloc] init];
         uniformTypeListController = [[UniformTypeListController alloc] init];
     }
@@ -178,12 +178,12 @@
     NSTableView *tableView;
     TypeListController *typeListController;
     
-    sender = [[self window] firstResponder];
+    id firstResponder = [[self window] firstResponder];
 
-    if (sender == suffixListTableView) {
+    if (firstResponder == suffixListTableView) {
         tableView = suffixListTableView;
         typeListController = suffixListController;
-    } else if (sender == uniformTypeListTableView) {
+    } else if (firstResponder == uniformTypeListTableView) {
         tableView = uniformTypeListTableView;
         typeListController = uniformTypeListController;
     } else {

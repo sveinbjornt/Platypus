@@ -39,7 +39,7 @@
 @implementation TypeListController
 
 - (instancetype)init {
-    if ((self = [super init])) {
+    if (self = [super init]) {
         items = [[NSMutableArray alloc] init];
     }
     return self;
@@ -127,7 +127,6 @@
                     break;
                 
                 case TypeListItemStringValid:
-                default:
                     stringColor = [NSColor blackColor];
                     break;
             }
