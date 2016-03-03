@@ -1111,13 +1111,11 @@ static const NSInteger detailsHeight = 224;
             }
         }
         
-        if (interfaceType == PlatypusInterfaceType_WebView &&
-            ([[outputTextView textStorage] length] == 0 && [theLine hasPrefix:@"Location:"]) {
-                NSString *urlString = [theLine substringFromIndex:9];
-                // TODO: Should be trim
-                urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@""];
-                locationURL = [NSURL URLWithString:urlString];
-            }
+        if (interfaceType == PlatypusInterfaceType_WebView && [[outputTextView textStorage] length] == 0 && [theLine hasPrefix:@"Location:"]) {
+            NSString *urlString = [theLine substringFromIndex:9];
+            // TODO: Should be trim
+            urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@""];
+            locationURL = [NSURL URLWithString:urlString];
         }
         
         [self appendString:theLine];
