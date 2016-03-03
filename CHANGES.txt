@@ -27,6 +27,7 @@ For 5.1
     TODO: Update documentation, do a better job of explaining exactly how the Status Menu interface works
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
+    TODO: Fix status menu output issue
 
     * Bundled files table view now uses combined image and text cell instead of two columns
     * Renamed Advanced menu to Action
