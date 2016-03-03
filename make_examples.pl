@@ -1,32 +1,16 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 #
 # Creates apps from all the Platypus examples
 #
 # Usage: ./make_examples
-#        ./make_examples SOURCE_DIR OUTPUT_DIR
+#        ./make_examples [src_dir] [out_dir] [platypus_bin_path]
 #
 
 use strict;
 
-my $platypus = "/usr/local/bin/platypus";
-my $dirpath = "Examples";
-my $outdir = "ExampleApps";
-
-if (! -e $platypus) {
-    die("error: Command line tool $platypus is not installed");
-}
-
-if ($ARGV[0]) {
-    $dirpath = $ARGV[0];
-}
-
-if ($ARGV[1]) {
-    $outdir = $ARGV[1];
-}
-
-if ($ARGV[2]) {
-    $platypus = $ARGV[2];
-}
+my $dirpath = $ARGV[0] ? $ARGV[0] : "Examples";
+my $outdir = $ARGV[1] ? $ARGV[1] : "ExampleApps";
+my $platypus = $ARGV[2] ? $ARGV[2] : "/usr/local/bin/platypus";
 
 if (! -e $platypus) {
     die("error: Platypus command line tool not found at path $platypus");
