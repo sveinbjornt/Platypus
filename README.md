@@ -70,4 +70,4 @@ POSSIBILITY OF SUCH DAMAGE.
 
 ### Hexley Icon
 
-Hexley DarwinOS Mascot (C) 2000 Jon Hooper. All Rights Reserved.
+Hexley DarwinOS Mascot Copyright (c) 2000 Jon Hooper. All Rights Reserved.

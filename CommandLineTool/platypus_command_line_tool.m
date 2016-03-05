@@ -74,7 +74,6 @@ static struct option long_options[] = {
     {"bundle-identifier",         required_argument,  0, 'I'},
 
     {"admin-privileges",          no_argument,        0, 'A'},
-    {"secure-script",             no_argument,        0, 'S'},
     {"droppable",                 no_argument,        0, 'D'},
     {"text-droppable",            no_argument,        0, 'F'},
     {"file-prompt",               no_argument,        0, 'Z'},
@@ -349,11 +348,6 @@ int main(int argc, const char *argv[]) {
             // run with admin privileges
             case 'A':
                 properties[AppSpecKey_Authenticate] = @YES;
-                break;
-            
-            // secure bundled script
-            case 'S':
-                properties[AppSpecKey_Secure] = @YES;
                 break;
             
             // accept files
@@ -706,7 +700,6 @@ Options:\n\
     -I --bundle-identifier [identifier]  Set bundle identifier (e.g. org.yourname.appname)\n\
 \n\
     -A --admin-privileges                App runs with Administrator privileges\n\
-    -S --secure-script                   Secure bundled script\n\
     -D --droppable                       App accepts dropped files as arguments to script\n\
     -F --text-droppable                  App accepts dropped text passed to script via STDIN\n\
     -Z --file-prompt                     App presents an open file dialog when launched\n\

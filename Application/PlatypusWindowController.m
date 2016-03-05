@@ -549,7 +549,6 @@
     spec[AppSpecKey_Author] = [authorTextField stringValue];
     
     spec[AppSpecKey_Droppable] = @((BOOL)[acceptsDroppedItemsCheckbox state]);
-    spec[AppSpecKey_Secure] = @((BOOL)[secureBundledScriptCheckbox state]);
     spec[AppSpecKey_Authenticate] = @((BOOL)[rootPrivilegesCheckbox state]);
     spec[AppSpecKey_RemainRunning] = @((BOOL)[remainRunningCheckbox state]);
     spec[AppSpecKey_RunInBackground] = @((BOOL)[runInBackgroundCheckbox state]);
@@ -606,7 +605,6 @@
     [rootPrivilegesCheckbox setState:[spec[AppSpecKey_Authenticate] boolValue]];
     [acceptsDroppedItemsCheckbox setState:[spec[AppSpecKey_Droppable] boolValue]];
     [self acceptsDroppedItemsClicked:acceptsDroppedItemsCheckbox];
-    [secureBundledScriptCheckbox setState:[spec[AppSpecKey_Secure] boolValue]];
     [runInBackgroundCheckbox setState:[spec[AppSpecKey_RunInBackground] boolValue]];
     [remainRunningCheckbox setState:[spec[AppSpecKey_RemainRunning] boolValue]];
     

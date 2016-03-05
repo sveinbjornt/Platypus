@@ -117,7 +117,6 @@
     PlatypusInterfaceType interfaceType;
     BOOL isDroppable;
     BOOL remainRunning;
-    BOOL secureScript;
     BOOL acceptsFiles;
     BOOL acceptsText;
     BOOL promptForFileOnLaunch;
@@ -301,7 +300,6 @@ static const NSInteger detailsHeight = 224;
     scriptArgs = [appSettingsDict[AppSpecKey_ScriptArgs] copy];
     execStyle = (PlatypusExecStyle)[appSettingsDict[AppSpecKey_Authenticate] intValue];
     remainRunning = [appSettingsDict[AppSpecKey_RemainRunning] boolValue];
-    secureScript = [appSettingsDict[AppSpecKey_Secure] boolValue];
     isDroppable = [appSettingsDict[AppSpecKey_Droppable] boolValue];
     promptForFileOnLaunch = [appSettingsDict[AppSpecKey_PromptForFile] boolValue];
     
@@ -390,32 +388,20 @@ static const NSInteger detailsHeight = 224;
     interpreter = [[NSString alloc] initWithString:scriptInterpreter];
 
     // if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
-    if ((!secureScript && ![FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]]) ||
-        (secureScript && appSettingsDict[@"TextSettings"] == nil)) {
+    if (![FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]]) {
         [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
     }
     
     // get path to script within app bundle
-    if (secureScript) {
-        NSData *b_str = [NSKeyedUnarchiver unarchiveObjectWithData:appSettingsDict[@"TextSettings"]];
-        if (b_str == nil) {
-            [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
-        }
-        // we create string with the script based on the decoded data
-        scriptText = [[NSString alloc] initWithData:b_str encoding:textEncoding];
-    } else {
-        // if we have a "secure" script, there is no path to get. We write script to temp location on execution
-        scriptPath = [[NSString alloc] initWithString:[appBundle pathForResource:@"script" ofType:nil]];
-        
-        // make sure we can read the script file
-        if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
-            // chmod 774
-            chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
-        }
-        if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
-            [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is unreadable."];
-        }
-
+    scriptPath = [[NSString alloc] initWithString:[appBundle pathForResource:@"script" ofType:nil]];
+    
+    // make sure we can read the script file
+    if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
+        // chmod 774
+        chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
+    }
+    if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
+        [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is unreadable."];
     }
 }
 
@@ -478,11 +464,6 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
-    
-    // again, make absolutely sure we don't leave the clear-text script in temp directory
-    if (secureScript && [FILEMGR fileExistsAtPath:scriptPath]) {
-        [FILEMGR removeItemAtPath:scriptPath error:nil];
-    }
     
     // terminate task
     if (task != nil) {
@@ -801,18 +782,6 @@ static const NSInteger detailsHeight = 224;
 
 // construct arguments list etc. before actually running the script
 - (void)prepareForExecution {
-    // if it is a "secure" script, we decode and write it to a temp directory
-    if (secureScript) {
-        
-        NSString *tempScriptPath = [WORKSPACE createTempFileWithContents:scriptText usingTextEncoding:textEncoding];
-        if (!tempScriptPath) {
-            [Alerts fatalAlert:@"Failed to write script file"
-                 subTextFormat:@"Could not create the temp file '%@'", tempScriptPath];
-        }
-        // chmod 774 - make file executable
-        chmod([tempScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
-        scriptPath = [NSString stringWithString:tempScriptPath];
-    }
     
     //clear arguments list and reconstruct it
     [arguments removeAllObjects];
@@ -980,11 +949,6 @@ static const NSInteger detailsHeight = 224;
         while ((data = [outputReadFileHandle availableData]) && [data length]) {
             [self appendOutput:data];
         }
-    }
-    
-    // if we're using the "secure" script, we must remove the temporary clear-text one in temp directory if there is one
-    if (secureScript) {
-        [FILEMGR removeItemAtPath:scriptPath error:nil];
     }
     
     // now, reset all controls etc., general cleanup since task is done

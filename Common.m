@@ -49,7 +49,6 @@ NSString * const AppSpecKey_Identifier = @"Identifier";
 NSString * const AppSpecKey_Author = @"Author";
 
 NSString * const AppSpecKey_Droppable = @"Droppable";
-NSString * const AppSpecKey_Secure = @"Secure";
 NSString * const AppSpecKey_Authenticate = @"Authentication";
 NSString * const AppSpecKey_RemainRunning = @"RemainRunning";
 NSString * const AppSpecKey_RunInBackground = @"ShowInDock";

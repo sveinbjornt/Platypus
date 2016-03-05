@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <development version="6000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -29,7 +29,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button toolTip="Check this if your script requires Administrator privileges" id="293">
-                        <rect key="frame" x="407" y="296" width="203" height="21"/>
+                        <rect key="frame" x="407" y="295" width="203" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Run with Administrator privileges" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="10940">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -174,7 +174,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Check this if you don't want your app to show up in the Dock" id="523">
-                        <rect key="frame" x="407" y="254" width="133" height="18"/>
+                        <rect key="frame" x="407" y="277" width="133" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Run in background" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="10961">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -190,14 +190,6 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button toolTip="Check this if you want the application to remain running after executing the script" id="697">
-                        <rect key="frame" x="407" y="233" width="230" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Remain running after initial execution" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="10963">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                    </button>
                     <textField toolTip="The application's version number" verticalHuggingPriority="750" id="769">
                         <rect key="frame" x="88" y="231" width="43" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
@@ -241,14 +233,6 @@ DQ
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
-                    <button toolTip="Check this if you want your script to be encrypted and hidden from casual tinkerers" id="951">
-                        <rect key="frame" x="407" y="274" width="211" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Secure bundled script" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="10971">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                    </button>
                     <button toolTip="Add File(s)" verticalHuggingPriority="750" id="959">
                         <rect key="frame" x="615" y="162" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -562,6 +546,14 @@ DQ
                             <action selector="newScript:" target="335" id="9219"/>
                         </connections>
                     </button>
+                    <button toolTip="Check this if you want the application to remain running after executing the script" id="697">
+                        <rect key="frame" x="407" y="259" width="230" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Remain running after initial execution" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="10963">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
             </view>
             <connections>
@@ -599,7 +591,6 @@ DQ
                 <outlet property="runInBackgroundCheckbox" destination="523" id="RnR-82-CHd"/>
                 <outlet property="scriptPathTextField" destination="334" id="344"/>
                 <outlet property="scriptTypePopupButton" destination="3890" id="kJF-9o-bsM"/>
-                <outlet property="secureBundledScriptCheckbox" destination="951" id="PKW-9o-Uix"/>
                 <outlet property="statusItemSettingsButton" destination="10159" id="10216"/>
                 <outlet property="statusItemSettingsController" destination="10213" id="AFv-S5-sWQ"/>
                 <outlet property="stripNibFileCheckbox" destination="11109" id="6Nk-RM-que"/>

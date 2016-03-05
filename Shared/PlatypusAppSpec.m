@@ -176,7 +176,6 @@
     self[AppSpecKey_Author] = NSFullUserName();
     
     self[AppSpecKey_Droppable] = @NO;
-    self[AppSpecKey_Secure] = @NO;
     self[AppSpecKey_Authenticate] = @NO;
     self[AppSpecKey_RemainRunning] = @YES;
     self[AppSpecKey_RunInBackground] = @NO;
@@ -336,34 +335,24 @@
     // .app/Contents/Resources/script
     [self report:@"Copying script"];
     
-    NSData *scriptData = [NSData data];
-    if ([self[AppSpecKey_Secure] boolValue]) {
-        NSString *path = self[AppSpecKey_ScriptPath];
-        scriptData = [NSData dataWithContentsOfFile:path];
+    NSString *scriptFilePath = [resourcesPath stringByAppendingString:@"/script"];
+    
+    if ([self[AppSpecKey_SymlinkFiles] boolValue] == YES) {
+        [FILEMGR createSymbolicLinkAtPath:scriptFilePath
+                      withDestinationPath:self[AppSpecKey_ScriptPath]
+                                    error:nil];
     } else {
-        NSString *scriptFilePath = [resourcesPath stringByAppendingString:@"/script"];
-        
-        if ([self[AppSpecKey_SymlinkFiles] boolValue] == YES) {
-            [FILEMGR createSymbolicLinkAtPath:scriptFilePath
-                          withDestinationPath:self[AppSpecKey_ScriptPath]
-                                        error:nil];
-        } else {
-            // copy script over
-            [FILEMGR copyItemAtPath:self[AppSpecKey_ScriptPath] toPath:scriptFilePath error:nil];
-        }
-        
-        NSDictionary *fileAttrDict = @{NSFilePosixPermissions: @0755UL};
-        [FILEMGR setAttributes:fileAttrDict ofItemAtPath:scriptFilePath error:nil];
+        // copy script over
+        [FILEMGR copyItemAtPath:self[AppSpecKey_ScriptPath] toPath:scriptFilePath error:nil];
     }
+    
+    NSDictionary *fileAttrDict = @{NSFilePosixPermissions: @0755UL};
+    [FILEMGR setAttributes:fileAttrDict ofItemAtPath:scriptFilePath error:nil];
     
     // create AppSettings.plist file
     // .app/Contents/Resources/AppSettings.plist
     [self report:@"Creating AppSettings property list"];
     NSMutableDictionary *appSettingsPlist = [self appSettingsPlist];
-    if ([self[AppSpecKey_Secure] boolValue]) {
-        // if script is "secured" we encode it into AppSettings property list
-        appSettingsPlist[@"TextSettings"] = [NSKeyedArchiver archivedDataWithRootObject:scriptData];
-    }
     NSString *appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
     if ([self[AppSpecKey_XMLPlistFormat] boolValue] == FALSE) {
         NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:appSettingsPlist
@@ -503,7 +492,6 @@
     
     appSettingsPlist[AppSpecKey_Authenticate] = self[AppSpecKey_Authenticate];
     appSettingsPlist[AppSpecKey_RemainRunning] = self[AppSpecKey_RemainRunning];
-    appSettingsPlist[AppSpecKey_Secure] = self[AppSpecKey_Secure];
     appSettingsPlist[AppSpecKey_InterfaceType] = self[AppSpecKey_InterfaceType];
     appSettingsPlist[AppSpecKey_Interpreter] = self[AppSpecKey_Interpreter];
     appSettingsPlist[AppSpecKey_Creator] = PROGRAM_CREATOR_STAMP;
@@ -715,11 +703,6 @@
     // checkbox parameters
     if ([self[AppSpecKey_Authenticate] boolValue]) {
         NSString *str = shortOpts ? @"-A " : @"--admin-privileges ";
-        checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
-    }
-    
-    if ([self[AppSpecKey_Secure] boolValue]) {
-        NSString *str = shortOpts ? @"-S " : @"--secure-script ";
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     

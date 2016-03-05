@@ -186,7 +186,6 @@ extern NSString * const AppSpecKey_Identifier;
 extern NSString * const AppSpecKey_Author;
 
 extern NSString * const AppSpecKey_Droppable;
-extern NSString * const AppSpecKey_Secure;
 extern NSString * const AppSpecKey_Authenticate;
 extern NSString * const AppSpecKey_RemainRunning;
 extern NSString * const AppSpecKey_RunInBackground;
