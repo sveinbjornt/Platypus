@@ -83,7 +83,7 @@
     // check if it's an example
     if (spec[AppSpecKey_IsExample] != nil) {
         
-        // make sure of the example profile's integrity
+        // check the example profile's integrity
         NSString *scriptStr = spec[AppSpecKey_ScriptText];
         NSString *scriptName = spec[AppSpecKey_ScriptName];
         if (scriptStr == nil || scriptName == nil) {

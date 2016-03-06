@@ -193,7 +193,6 @@
     self[AppSpecKey_DocIconPath] = @"";
     
     // text window settings
-    self[AppSpecKey_TextEncoding] = @(DEFAULT_TEXT_ENCODING);
     self[AppSpecKey_TextFont] = DEFAULT_TEXT_FONT_NAME;
     self[AppSpecKey_TextSize] = @(DEFAULT_TEXT_FONT_SIZE);
     self[AppSpecKey_TextColor] = DEFAULT_TEXT_FG_COLOR;
@@ -497,7 +496,6 @@
     appSettingsPlist[AppSpecKey_Creator] = PROGRAM_CREATOR_STAMP;
     appSettingsPlist[AppSpecKey_InterpreterArgs] = self[AppSpecKey_InterpreterArgs];
     appSettingsPlist[AppSpecKey_ScriptArgs] = self[AppSpecKey_ScriptArgs];
-    appSettingsPlist[AppSpecKey_TextEncoding] = self[AppSpecKey_TextEncoding];
 
     // text styling info
     appSettingsPlist[AppSpecKey_TextFont] = self[AppSpecKey_TextFont];
@@ -696,7 +694,6 @@
     NSString *suffixesString = @"";
     NSString *uniformTypesString = @"";
     NSString *parametersString = @"";
-    NSString *textEncodingString = @"";
     NSString *textSettingsString = @"";
     NSString *statusMenuOptionsString = @"";
     
@@ -805,12 +802,6 @@
         textSettingsString = [NSString stringWithFormat:@"%@%@%@", textFgString, textBgString, textFontString];
     }
     
-    //text encoding
-    if ([self[AppSpecKey_TextEncoding] intValue] != DEFAULT_TEXT_ENCODING) {
-        NSString *str = shortOpts ? @"-E" : @"--text-encoding";
-        textEncodingString = [NSString stringWithFormat:@" %@ %d ", str, [self[AppSpecKey_TextEncoding] intValue]];
-    }
-    
     //create custom icon string
     if (![self[AppSpecKey_IconPath] isEqualToString:CMDLINE_ICON_PATH] && ![self[AppSpecKey_IconPath] isEqualToString:@""]) {
         NSString *str = shortOpts ? @"-i" : @"--app-icon";
@@ -879,7 +870,7 @@
     
     // finally, generate the command
     NSString *commandStr = [NSString stringWithFormat:
-                            @"%@ %@%@%@%@%@%@ %@%@%@%@%@%@%@%@%@%@ '%@'",
+                            @"%@ %@%@%@%@%@%@ %@%@%@%@%@%@%@%@%@ '%@'",
                             CMDLINE_TOOL_PATH,
                             checkboxParamStr,
                             iconParamStr,
@@ -894,7 +885,6 @@
                             promptForFileString,
                             bundledFilesCmdString,
                             parametersString,
-                            textEncodingString,
                             textSettingsString,
                             statusMenuOptionsString,
                             self[AppSpecKey_ScriptPath],

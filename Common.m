@@ -63,7 +63,6 @@ NSString * const AppSpecKey_Service = @"DeclareService";
 NSString * const AppSpecKey_PromptForFile = @"PromptForFileOnLaunch";
 NSString * const AppSpecKey_DocIconPath = @"DocIcon";
 
-NSString * const AppSpecKey_TextEncoding = @"TextEncoding";
 NSString * const AppSpecKey_TextFont = @"TextFont";
 NSString * const AppSpecKey_TextSize = @"TextSize";
 NSString * const AppSpecKey_TextColor = @"TextForeground";
@@ -84,7 +83,6 @@ NSString * const DefaultsKey_BundleIdentifierPrefix = @"DefaultBundleIdentifierP
 NSString * const DefaultsKey_DefaultEditor = @"DefaultEditor";
 NSString * const DefaultsKey_RevealApplicationWhenCreated = @"RevealApplicationWhenCreated";
 NSString * const DefaultsKey_OpenApplicationWhenCreated = @"OpenApplicationWhenCreated";
-NSString * const DefaultsKey_DefaultTextEncoding = @"DefaultTextEncoding";
 NSString * const DefaultsKey_DefaultAuthor = @"DefaultAuthor";
 NSString * const DefaultsKey_SymlinkFiles = @"OnCreateDevVersion";
 NSString * const DefaultsKey_StripNib = @"OnCreateOptimizeNib";
@@ -93,7 +91,6 @@ NSString * const DefaultsKey_UseXMLPlistFormat = @"OnCreateUseXMLPlist";
 // NSUserDefaults keys for ScriptExec app
 NSString * const ScriptExecDefaultsKey_UserFontSize = @"UserFontSize";
 NSString * const ScriptExecDefaultsKey_ShowDetails = @"UserShowDetails";
-
 
 // functions
 

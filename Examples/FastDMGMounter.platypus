@@ -13,7 +13,7 @@
 	<key>DocIcon</key>
 	<string>/System/Library/CoreServices/DiskImageMounter.app/Contents/Resources/diskcopy-doc.icns</string>
 	<key>Creator</key>
-	<string>Platypus-5.1</string>
+	<string>Platypus-5.2</string>
 	<key>DestinationOverride</key>
 	<false/>
 	<key>DevelopmentVersion</key>

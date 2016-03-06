@@ -30,7 +30,7 @@
 
 // General program information
 #define PROGRAM_NAME                @"Platypus"
-#define PROGRAM_VERSION             @"5.1"
+#define PROGRAM_VERSION             @"5.2"
 #define PROGRAM_CREATOR_STAMP       [NSString stringWithFormat:@"%@-%@", PROGRAM_NAME, PROGRAM_VERSION]
 #define PROGRAM_MIN_SYS_VERSION     @"10.7.0"
 #define PROGRAM_BUNDLE_IDENTIFIER   [NSString stringWithFormat:@"org.sveinbjorn.%@", PROGRAM_NAME]
@@ -200,7 +200,6 @@ extern NSString * const AppSpecKey_Service;
 extern NSString * const AppSpecKey_PromptForFile;
 extern NSString * const AppSpecKey_DocIconPath;
 
-extern NSString * const AppSpecKey_TextEncoding;
 extern NSString * const AppSpecKey_TextFont;
 extern NSString * const AppSpecKey_TextSize;
 extern NSString * const AppSpecKey_TextColor;
@@ -221,7 +220,6 @@ extern NSString * const DefaultsKey_BundleIdentifierPrefix;
 extern NSString * const DefaultsKey_DefaultEditor;
 extern NSString * const DefaultsKey_RevealApplicationWhenCreated;
 extern NSString * const DefaultsKey_OpenApplicationWhenCreated;
-extern NSString * const DefaultsKey_DefaultTextEncoding;
 extern NSString * const DefaultsKey_DefaultAuthor;
 extern NSString * const DefaultsKey_SymlinkFiles;
 extern NSString * const DefaultsKey_StripNib;

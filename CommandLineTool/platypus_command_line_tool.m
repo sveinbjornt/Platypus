@@ -55,7 +55,7 @@ static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
 
-static const char optstring[] = "P:f:a:o:i:u:p:V:I:Q:ASOZDBRFNydlvhxX:T:G:C:b:g:n:E:K:Y:L:cqU:";
+static const char optstring[] = "P:f:a:o:i:u:p:V:I:Q:AOZDBRFNydlvhxX:T:G:C:b:g:n:K:Y:L:cqU:";
 
 static struct option long_options[] = {
 
@@ -84,7 +84,6 @@ static struct option long_options[] = {
     {"text-background-color",     required_argument,  0, 'b'},
     {"text-foreground-color",     required_argument,  0, 'g'},
     {"text-font",                 required_argument,  0, 'n'},
-    {"text-encoding",             required_argument,  0, 'E'},
     {"suffixes",                  required_argument,  0, 'X'},
     {"uniform-type-identifiers",  required_argument,  0, 'T'},
     {"interpreter-args",          required_argument,  0, 'G'},
@@ -254,19 +253,6 @@ int main(int argc, const char *argv[]) {
                 NSString *fontName = [words componentsJoinedByString:@" "];
                 properties[AppSpecKey_TextFont] = fontName;
                 properties[AppSpecKey_TextSize] = @(fontSize);
-            }
-                break;
-                
-            // text encoding to use
-            case 'E':
-            {
-                NSString *encNumStr = @(optarg);
-                int textEncoding = [encNumStr intValue];
-                if (textEncoding <= 0) {
-                    NSPrintErr(@"Error: Invalid text encoding specified");
-                    exit(1);
-                }
-                properties[AppSpecKey_TextEncoding] = @(textEncoding);
             }
                 break;
                 
@@ -647,7 +633,7 @@ static NSString *ReadStandardInputToFile(void) {
     }
     
     // convert to string
-    NSString *inStr = [[NSString alloc] initWithData:inData encoding:NSUTF8StringEncoding];
+    NSString *inStr = [[NSString alloc] initWithData:inData encoding:DEFAULT_TEXT_ENCODING];
     if (inStr == nil) {
         NSPrintErr(@"Cannot handle non-text data.");
         exit(1);
@@ -710,7 +696,6 @@ Options:\n\
     -b --text-background-color [color]   Set background color of text view (e.g. '#ffffff')\n\
     -g --text-foreground-color [color]   Set foreground color of text view (e.g. '#000000')\n\
     -n --text-font [fontName]            Set font for text view (e.g. 'Monaco 10')\n\
-    -E --text-encoding [encoding]        Set text encoding for script output (see man page)\n\
     -X --suffixes [suffixes]             Set suffixes handled by application, separated by |\n\
     -T --uniform-type-identifiers        Set uniform type identifiers handled by application, separated by |\n\
     -G --interpreter-args [arguments]    Set arguments for script interpreter, separated by |\n\

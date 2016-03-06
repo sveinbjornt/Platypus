@@ -112,7 +112,6 @@
     defaults[DefaultsKey_DefaultEditor] = DEFAULT_EDITOR;
     defaults[DefaultsKey_RevealApplicationWhenCreated] = @NO;
     defaults[DefaultsKey_OpenApplicationWhenCreated] = @NO;
-    defaults[DefaultsKey_DefaultTextEncoding] = @((NSStringEncoding)DEFAULT_TEXT_ENCODING);
     defaults[DefaultsKey_DefaultAuthor] = NSFullUserName();
     defaults[DefaultsKey_SymlinkFiles] = @NO;
     defaults[DefaultsKey_StripNib] = @YES;
@@ -210,7 +209,7 @@
             
             // get output string and parse for version number
             NSData *outputData = [[outputPipe fileHandleForReading] readDataToEndOfFile];
-            NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+            NSString *outputString = [[NSString alloc] initWithData:outputData encoding:DEFAULT_TEXT_ENCODING];
             
             NSArray *words = [outputString componentsSeparatedByString:@" "];
             versionString = [words[2] stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];

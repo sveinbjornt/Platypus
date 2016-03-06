@@ -111,7 +111,6 @@
     NSFont *textFont;
     NSColor *textForegroundColor;
     NSColor *textBackgroundColor;
-    NSStringEncoding textEncoding;
     
     PlatypusExecStyle execStyle;
     PlatypusInterfaceType interfaceType;
@@ -164,7 +163,6 @@ static const NSInteger detailsHeight = 224;
         arguments = [[NSMutableArray alloc] init];
         outputEmpty = YES;
         jobQueue = [[NSMutableArray alloc] init];
-        textEncoding = DEFAULT_TEXT_ENCODING;
     }
     return self;
 }
@@ -261,11 +259,6 @@ static const NSInteger detailsHeight = 224;
         }
         if (textBackgroundColor == nil) {
             textBackgroundColor = [NSColor colorFromHex:DEFAULT_TEXT_BG_COLOR];
-        }
-        
-        // encoding
-        if (appSettingsDict[AppSpecKey_TextEncoding] != nil) {
-            textEncoding = (NSStringEncoding)[appSettingsDict[AppSpecKey_TextEncoding] intValue];
         }
     }
     
@@ -986,7 +979,7 @@ static const NSInteger detailsHeight = 224;
 
 - (void)appendOutput:(NSData *)data {
     // create string from raw output data
-    NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:textEncoding];
+    NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:DEFAULT_TEXT_ENCODING];
     
     if (outputString == nil) {
         PLog(@"Warning: Output string is nil");
@@ -1114,8 +1107,8 @@ static const NSInteger detailsHeight = 224;
 - (void)appendString:(NSString *)string {
     PLog(@"Appending output: \"%@\"", string);
     if (interfaceType == PlatypusInterfaceType_None) {
-        //fprintf(stdout, "%s", [string cStringUsingEncoding:textEncoding]);
-        NSData *strData = [[NSString stringWithFormat:@"%@\n", string] dataUsingEncoding:textEncoding];
+        //fprintf(stdout, "%s", [string cStringUsingEncoding:NSUTF8StringEncoding]);
+        NSData *strData = [[NSString stringWithFormat:@"%@\n", string] dataUsingEncoding:DEFAULT_TEXT_ENCODING];
         NSFileHandle *stderrFileHandle = [NSFileHandle fileHandleWithStandardError];
         [stderrFileHandle writeData:strData];
         return;
@@ -1229,7 +1222,7 @@ static const NSInteger detailsHeight = 224;
     
     if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
         NSError *err;
-        BOOL success = [[outputTextView string] writeToFile:[[sPanel URL] path] atomically:YES encoding:textEncoding error:&err];
+        BOOL success = [[outputTextView string] writeToFile:[[sPanel URL] path] atomically:YES encoding:DEFAULT_TEXT_ENCODING error:&err];
         if (!success) {
             [Alerts alert:@"Error writing file" subText:[err localizedDescription]];
         }

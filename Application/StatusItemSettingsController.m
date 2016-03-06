@@ -205,7 +205,7 @@
     
     // get output as string
     NSData *outputData = [readHandle readDataToEndOfFile];
-    NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+    NSString *outputString = [[NSString alloc] initWithData:outputData encoding:DEFAULT_TEXT_ENCODING];
     
     // create one menu item per line of output
     NSArray *lines = [outputString componentsSeparatedByString:@"\n"];

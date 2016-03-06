@@ -28,9 +28,11 @@ For 5.1
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: Fix status menu output issue
+    TODO: Clicked row contextual menu handling
+    TODO: Refactor TMP_STDIN_PATH
 
-    TODO: Get rid of "Secure bundled script option", which is useless bullshit anyway
-
+    * Got rid of text encoding settings. Platypus now uses UTF8.
+    * Got rid of "Secure bundled script option", which is useless bullshit anyway
     * Bundled files table view now uses combined image and text cell instead of two columns
     * Renamed Advanced menu to Action
     * Fixed issue where main application window would not remember its last position

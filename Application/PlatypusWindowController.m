@@ -275,7 +275,7 @@
     NSError *err;
     BOOL success = [contentString writeToFile:tmpScriptPath
                                    atomically:YES
-                                     encoding:[[DEFAULTS objectForKey:DefaultsKey_DefaultTextEncoding] intValue]
+                                     encoding:DEFAULT_TEXT_ENCODING
                                         error:&err];
     if (!success) {
         [Alerts alert:@"Error creating file" subText:[err localizedDescription]];
@@ -563,7 +563,6 @@
     spec[AppSpecKey_Service] = @((BOOL)[dropSettingsController declareService]);
     spec[AppSpecKey_PromptForFile] = @((BOOL)[dropSettingsController promptsForFileOnLaunch]);
     
-    spec[AppSpecKey_TextEncoding] = @((int)[textSettingsController textEncoding]);
     spec[AppSpecKey_TextFont] = [[textSettingsController textFont] fontName];
     spec[AppSpecKey_TextSize] = @((float)[[textSettingsController textFont] pointSize]);
     spec[AppSpecKey_TextColor] = [[textSettingsController textForegroundColor] hexString];
@@ -626,7 +625,6 @@
     [argsController setScriptArgs:spec[AppSpecKey_ScriptArgs]];
     
     // text settings
-    [textSettingsController setTextEncoding:[spec[AppSpecKey_TextEncoding] intValue]];
     [textSettingsController setTextFont:[NSFont fontWithName:spec[AppSpecKey_TextFont] size:[spec[AppSpecKey_TextSize] intValue]]];
     [textSettingsController setTextForegroundColor:[NSColor colorFromHex:spec[AppSpecKey_TextColor]]];
     [textSettingsController setTextBackgroundColor:[NSColor colorFromHex:spec[AppSpecKey_TextBackgroundColor]]];

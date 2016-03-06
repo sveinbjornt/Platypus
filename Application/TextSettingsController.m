@@ -36,7 +36,6 @@
     IBOutlet NSColorWell *backgroundColorWell;
     IBOutlet NSColorWell *foregroundColorWell;
     IBOutlet NSTextField *fontFaceTextField;
-    IBOutlet NSPopUpButton *textEncodingPopupButton;
     IBOutlet NSTextView *textPreviewTextView;
     IBOutlet NSButton *textSettingsButton;
     IBOutlet NSWindow *parentWindow;
@@ -83,7 +82,6 @@
     [foregroundColorWell setColor:[NSColor blackColor]];
     [backgroundColorWell setColor:[NSColor whiteColor]];
     [self setCurrentFont:[NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:DEFAULT_TEXT_FONT_SIZE]];
-    [textEncodingPopupButton selectItemWithTag:[[DEFAULTS objectForKey:DefaultsKey_DefaultTextEncoding] intValue]];
     [self updateTextViewColor:self];
 }
 
@@ -117,14 +115,6 @@
 }
 
 #pragma mark - Getters/Setters
-
-- (NSStringEncoding)textEncoding {
-    return (NSStringEncoding)[[textEncodingPopupButton selectedItem] tag];
-}
-
-- (void)setTextEncoding:(NSStringEncoding)encoding {
-    [textEncodingPopupButton selectItemWithTag:encoding];
-}
 
 - (NSFont *)textFont {
     return [textPreviewTextView font];
