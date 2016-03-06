@@ -307,11 +307,11 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button toolTip="Edit arguments passed to interpreter and script" verticalHuggingPriority="750" id="1390">
-                        <rect key="frame" x="572" y="455" width="72" height="28"/>
+                        <rect key="frame" x="562" y="453" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Args" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10979">
+                        <buttonCell key="cell" type="push" title="Args" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="10979">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="show:" target="1418" id="1433"/>
@@ -513,7 +513,7 @@ DQ
                         </connections>
                     </button>
                     <textField toolTip="Path to script interpreter" verticalHuggingPriority="750" id="305" customClass="STPathTextField">
-                        <rect key="frame" x="410" y="460" width="159" height="22"/>
+                        <rect key="frame" x="410" y="460" width="150" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingHead" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="left" title="/bin/sh" drawsBackground="YES" id="10945">
                             <font key="font" metaFont="system"/>
@@ -559,7 +559,7 @@ DQ
             <connections>
                 <outlet property="delegate" destination="335" id="371"/>
             </connections>
-            <point key="canvasLocation" x="234" y="-259.5"/>
+            <point key="canvasLocation" x="288" y="-217.5"/>
         </window>
         <customObject id="335" userLabel="PlatypusController" customClass="PlatypusWindowController">
             <connections>
