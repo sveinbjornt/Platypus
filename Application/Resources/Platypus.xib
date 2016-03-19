@@ -28,14 +28,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="658" height="529"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button toolTip="Check this if your script requires Administrator privileges" id="293">
-                        <rect key="frame" x="407" y="295" width="203" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Run with Administrator privileges" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="10940">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
-                        </buttonCell>
-                    </button>
                     <button toolTip="Check this if your script accepts dropped files or text snippets as arguments" id="299">
                         <rect key="frame" x="144" y="233" width="168" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -174,11 +166,11 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Check this if you don't want your app to show up in the Dock" id="523">
-                        <rect key="frame" x="407" y="277" width="133" height="18"/>
+                        <rect key="frame" x="408" y="263" width="198" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Run in background" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="10961">
+                        <buttonCell key="cell" type="check" title="Run in background" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="10961">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <textField verticalHuggingPriority="750" id="664">
@@ -547,11 +539,19 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Check this if you want the application to remain running after executing the script" id="697">
-                        <rect key="frame" x="407" y="259" width="230" height="18"/>
+                        <rect key="frame" x="408" y="233" width="229" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Remain running after initial execution" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="10963">
+                        <buttonCell key="cell" type="check" title="Remain running after execution" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="10963">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="smallSystem"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button toolTip="Check this if your script requires Administrator privileges" id="293">
+                        <rect key="frame" x="408" y="292" width="232" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Run with root privileges" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="10940">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                 </subviews>
