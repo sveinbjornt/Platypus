@@ -163,6 +163,11 @@ static const NSInteger detailsHeight = 224;
         arguments = [[NSMutableArray alloc] init];
         outputEmpty = YES;
         jobQueue = [[NSMutableArray alloc] init];
+        
+        [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
+                                                           andSelector:@selector(getUrl:withReplyEvent:)
+                                                         forEventClass:kInternetEventClass
+                                                            andEventID:kAEGetURL];
     }
     return self;
 }
@@ -236,7 +241,7 @@ static const NSInteger detailsHeight = 224;
         // font and size
         NSNumber *userFontSizeNum = [DEFAULTS objectForKey:ScriptExecDefaultsKey_UserFontSize];
         CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[AppSpecKey_TextSize] floatValue];
-        fontSize = fontSize ? fontSize : DEFAULT_TEXT_FONT_SIZE;
+        fontSize = fontSize != 0 ? fontSize : DEFAULT_TEXT_FONT_SIZE;
         
         if (appSettingsDict[AppSpecKey_TextFont] != nil) {
             textFont = [NSFont fontWithName:appSettingsDict[AppSpecKey_TextFont] size:fontSize];
@@ -403,7 +408,7 @@ static const NSInteger detailsHeight = 224;
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     PLog(@"Application did finish launching");
     hasFinishedLaunching = YES;
-    
+
     if (isService) {
         [NSApp setServicesProvider:self]; // register as text handling service
 //        NSMutableArray *sendTypes = [NSMutableArray array];
@@ -454,6 +459,19 @@ static const NSInteger detailsHeight = 224;
     if (!isTaskRunning && success && hasFinishedLaunching) {
         [self executeScript];
     }
+}
+
+- (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
+    NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
+    
+    // add the dropped files as a job for processing
+    BOOL success = [self addDroppedFilesJob:@[url]];
+    
+    // if no other job is running, we execute
+    if (!isTaskRunning && success && hasFinishedLaunching) {
+        [self executeScript];
+    }
+
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
