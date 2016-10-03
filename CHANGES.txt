@@ -19,6 +19,7 @@ For 5.1
     TODO: Documentation should be updated about what Use Icon as Template does
     TODO: Fix line numbering in built-in editor (Improve built-in editor)
     TODO: Support for authenticated task termination
+    TODO: Add support for feeding script output into status item view like Tapir did (cool feature)
 
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
@@ -31,9 +32,10 @@ For 5.1
     TODO: Clicked row contextual menu handling
     TODO: Refactor TMP_STDIN_PATH
     TODO: Update documentation & man page, remove refs to options that are gone (text encoding, secure script)
+    TODO: Set CFBundleTypeRole to silence errors
 
-    TODO: Add support for feeding script output into status item view like Tapir did (cool feature)
-
+    * Fixed issue where command line tool would erroneously validate whole argument strings instead of individual UTI strings
+    * Fixed issue where suffix editing buttons remained enabled when they shouldn't be
     * Got rid of text encoding settings. Platypus now uses UTF8.
     * Got rid of "Secure bundled script option", which is useless bullshit anyway
     * Bundled files table view now uses combined image and text cell instead of two columns

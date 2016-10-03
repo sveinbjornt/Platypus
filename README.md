@@ -10,7 +10,7 @@ directory structure  along with an application binary that runs the script.
 Platypus makes it easy to share scripts and programs with those 
 unfamiliar with the command line interface. Native user-friendly
 applications can be created with a few clicks. It is very easy to
-create installers, maintenance applications, login items, status menu items, 
+create installers, administrative applications, login items, status menu items, 
 launchers, automations and droplets using Platypus.
 
 ## Documentation
