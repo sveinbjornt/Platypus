@@ -70,6 +70,25 @@
     [super showWindow:sender];
 }
 
+//- (void)populateEditorMenu {
+//    
+//    NSString *filePath = @""; // fix me
+//    
+//    NSURL *url = [NSURL fileURLWithPath:filePath];
+//    NSMutableArray *appPaths = [[NSMutableArray alloc] initWithCapacity:256];
+//    
+//    NSArray *applications = (NSArray *)LSCopyApplicationURLsForURL((CFURLRef)url, kLSRolesAll);
+//    if (applications == NULL) {
+//        return [NSArray array];
+//    }
+//    
+//    NSMutableArray *appPaths = [NSMutableArray array];
+//    for (NSString *app in applications) {
+//        [appPaths addObject: [app path];
+//    }
+//    return appPaths;
+//}
+
 - (void)setIconsForEditorMenu {
     for (int i = 0; i < [defaultEditorPopupButton numberOfItems]; i++) {
         [self setIconForEditorMenuItemAtIndex:i];
