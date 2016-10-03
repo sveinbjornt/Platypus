@@ -380,10 +380,13 @@ int main(int argc, const char *argv[]) {
             case 'T':
             {
                 NSString *utisStr = @(optarg);
-                if (BundleIdentifierIsValid(utisStr) == NO) {
-                    NSPrintErr(@"Warning: '%@' is not a valid bundle identifier", utisStr);
+                NSArray *utis = [utisStr componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
+                for (NSString *u in utis) {
+                    if (BundleIdentifierIsValid(u) == NO) {
+                        NSPrintErr(@"Warning: '%@' is not a valid bundle identifier", u);
+                    }
                 }
-                properties[AppSpecKey_Utis] = [utisStr componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
+                properties[AppSpecKey_Utis] = utis;
             }
                 break;
             
