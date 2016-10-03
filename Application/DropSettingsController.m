@@ -252,6 +252,8 @@
         ([[uniformTypeListTableView selectedRowIndexes] count] && [uniformTypeListTableView selectedRow] >= 0) &&
         [[self window] firstResponder] == uniformTypeListTableView
      ];
+    
+    [addSuffixButton setEnabled:[uniformTypeListController itemCount] == 0];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)item {
@@ -285,6 +287,7 @@
     [uniformTypeListTableView setEnabled:enabled];
     
     [self updateButtonStatus];
+    [self setSuffixListEnabled:([uniformTypeListController itemCount] == 0)];
     
     [promptForFileOnLaunchCheckbox setEnabled:enabled];
     [selectDocumentIconButton setEnabled:enabled];
