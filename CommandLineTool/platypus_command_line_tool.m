@@ -196,6 +196,9 @@ int main(int argc, const char *argv[]) {
                     }
 
                     // add to bundled files array in spec
+                    if (properties[AppSpecKey_BundledFiles] == nil) {
+                        properties[AppSpecKey_BundledFiles] = [NSMutableArray array];
+                    }
                     [properties[AppSpecKey_BundledFiles] addObject:fp];
                 }
             }
