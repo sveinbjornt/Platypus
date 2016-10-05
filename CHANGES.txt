@@ -34,8 +34,10 @@ For 5.1
     TODO: Update documentation & man page, remove refs to options that are gone (text encoding, secure script)
     TODO: Set CFBundleTypeRole to silence errors
 
-    * Fixed issue where command line tool would erroneously validate whole argument strings instead of individual UTI strings
-    * Fixed issue where suffix editing buttons remained enabled when they shouldn't be
+    * Fixed bug where text settings were not properly loaded by the GUI
+    * Fixed bug where bundling files with the -f flag didn't work in the command line tool
+    * Fixed bug where the command line tool would erroneously try to validate whole argument strings instead of individual UTI strings
+    * Fixed bug where suffix editing buttons remained enabled when they shouldn't be
     * Got rid of text encoding settings. Platypus now uses UTF8.
     * Got rid of "Secure bundled script option", which is useless bullshit anyway
     * Bundled files table view now uses combined image and text cell instead of two columns

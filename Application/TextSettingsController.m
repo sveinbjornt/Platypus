@@ -128,7 +128,7 @@
     return [foregroundColorWell color];
 }
 
-- (void)setTextForeground:(NSColor *)color {
+- (void)setTextForegroundColor:(NSColor *)color {
     [foregroundColorWell setColor:color];
     [self updateTextViewColor:self];
 }
@@ -137,7 +137,7 @@
     return [backgroundColorWell color];
 }
 
-- (void)setTextBackground:(NSColor *)color {
+- (void)setTextBackgroundColor:(NSColor *)color {
     [backgroundColorWell setColor:color];
     [self updateTextViewColor:self];
 }
