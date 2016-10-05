@@ -34,6 +34,7 @@ For 5.1
     TODO: Update documentation & man page, remove refs to options that are gone (text encoding, secure script)
     TODO: Set CFBundleTypeRole to silence errors
 
+    * Fixed issue with console spamming due to missing CFBundleTypeRole
     * Fixed bug where text settings were not properly loaded by the GUI
     * Fixed bug where bundling files with the -f flag didn't work in the command line tool
     * Fixed bug where the command line tool would erroneously try to validate whole argument strings instead of individual UTI strings
