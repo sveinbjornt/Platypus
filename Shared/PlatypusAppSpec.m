@@ -536,13 +536,13 @@
     NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       
                                       @"en",                                    @"CFBundleDevelopmentRegion",
-                                      self[AppSpecKey_Name],                            @"CFBundleExecutable",
-                                      self[AppSpecKey_Name],                            @"CFBundleName",
+                                      self[AppSpecKey_Name],                    @"CFBundleExecutable",
+                                      self[AppSpecKey_Name],                    @"CFBundleName",
                                       copyrightString,                          @"NSHumanReadableCopyright",
-                                      self[AppSpecKey_Version],                         @"CFBundleVersion",
-                                      self[AppSpecKey_Version],                         @"CFBundleShortVersionString",
-                                      self[AppSpecKey_Identifier],                      @"CFBundleIdentifier",
-                                      self[AppSpecKey_RunInBackground],                      @"LSUIElement",
+                                      self[AppSpecKey_Version],                 @"CFBundleVersion",
+                                      self[AppSpecKey_Version],                 @"CFBundleShortVersionString",
+                                      self[AppSpecKey_Identifier],              @"CFBundleIdentifier",
+                                      self[AppSpecKey_RunInBackground],         @"LSUIElement",
                                       @"6.0",                                   @"CFBundleInfoDictionaryVersion",
                                       @"APPL",                                  @"CFBundlePackageType",
                                       @"????",                                  @"CFBundleSignature",
@@ -564,6 +564,7 @@
         NSMutableDictionary *typesAndSuffixesDict = [NSMutableDictionary dictionary];
         
         typesAndSuffixesDict[@"CFBundleTypeExtensions"] = self[AppSpecKey_Suffixes];
+        typesAndSuffixesDict[@"CFBundleTypeRole"] = @"Viewer";
         
         if (self[AppSpecKey_Utis] != nil && [self[AppSpecKey_Utis] count] > 0) {
             typesAndSuffixesDict[@"LSItemContentTypes"] = self[AppSpecKey_Utis];
