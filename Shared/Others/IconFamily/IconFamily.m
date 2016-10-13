@@ -462,17 +462,6 @@
     DisposeHandle( (Handle)hIconFamily );
 }
 
-- (void) finalize
-{
-   /*  "Starting with Mac OS X v10.3, Memory Manager is thread safe"
-       -- Memory Manager Reference
-   */
-   DisposeHandle( (Handle)hIconFamily );
-   hIconFamily = NULL;
-
-   [super finalize];
-}
-
 - (NSBitmapImageRep*) bitmapImageRepWithAlphaForIconFamilyElement:(OSType)elementType;
 {
     NSBitmapImageRep* bitmapImageRep;

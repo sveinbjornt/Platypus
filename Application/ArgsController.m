@@ -213,9 +213,9 @@
 }
 
 - (void)updateArgsButtonTitle {
-    int numArgs = [interpreterArgs count] + [scriptArgs count];
+    NSInteger numArgs = [interpreterArgs count] + [scriptArgs count];
     if (numArgs) {
-        [argsButton setTitle:[NSString stringWithFormat:@"Args (%d)", numArgs]];
+        [argsButton setTitle:[NSString stringWithFormat:@"Args (%ld)", (long)numArgs]];
     } else {
         [argsButton setTitle:@"Args"];
     }

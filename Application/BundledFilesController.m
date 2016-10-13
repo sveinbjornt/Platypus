@@ -209,7 +209,7 @@
     }
 }
 
-- (void)revealInFinder:(int)index {
+- (void)revealInFinder:(NSInteger)index {
     BOOL isDir;
     NSString *path = files[index][@"Path"];
     
@@ -218,7 +218,7 @@
     }
 }
 
-- (void)openInFinder:(int)index {
+- (void)openInFinder:(NSInteger)index {
     [WORKSPACE openFile:files[index][@"Path"]];
 }
 
@@ -331,7 +331,7 @@
 
 - (IBAction)removeSelectedFiles:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    for (int i = [files count]; i >= 0; i--) {
+    for (NSInteger i = [files count]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
             [files removeObjectAtIndex:i];
         }

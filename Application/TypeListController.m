@@ -77,7 +77,7 @@
     return [items count];
 }
 
-- (void)removeItemAtIndex:(int)index {
+- (void)removeItemAtIndex:(NSInteger)index {
     if ([items count] > index) {
         [items removeObjectAtIndex:index];
     }

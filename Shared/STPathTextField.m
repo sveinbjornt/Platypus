@@ -154,7 +154,7 @@
     NSString *autocompletedPath = nil;
     NSString *path = [self stringValue];
     unichar firstchar;
-    int dlen, len = [path length];
+    NSInteger dlen, len = [path length];
     BOOL isDir;
     
     // let's not waste time if the string is empty

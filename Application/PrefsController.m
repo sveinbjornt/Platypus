@@ -95,7 +95,7 @@
     }
 }
 
-- (void)setIconForEditorMenuItemAtIndex:(int)index {
+- (void)setIconForEditorMenuItemAtIndex:(NSInteger)index {
     NSMenuItem *menuItem = [defaultEditorPopupButton itemAtIndex:index];
     if ([menuItem image] != nil) {
         return; // already has an icon

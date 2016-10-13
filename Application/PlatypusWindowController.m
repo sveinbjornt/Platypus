@@ -390,7 +390,7 @@
     }];
 }
 
-- (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(int)result {
+- (void)createConfirmed:(NSSavePanel *)sPanel returnCode:(NSInteger)result {
     // restore window title
     [[self window] setTitle:PROGRAM_NAME];
     

@@ -45,7 +45,7 @@ typedef enum {
 - (void)addItem:(NSString *)item;
 - (void)addItems:(NSArray *)items;
 - (void)removeAllItems;
-- (void)removeItemAtIndex:(int)index;
+- (void)removeItemAtIndex:(NSInteger)index;
 - (NSString *)defaultItemString;
 
 @end
