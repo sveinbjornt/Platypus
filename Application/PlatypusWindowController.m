@@ -695,21 +695,21 @@
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
 }
 
-- (void)loadScript:(NSString *)filename {
+- (void)loadScript:(NSString *)scriptPath {
     //make sure file we're loading actually exists
     BOOL isDir;
-    if (![FILEMGR fileExistsAtPath:filename isDirectory:&isDir] || isDir) {
+    if (![FILEMGR fileExistsAtPath:scriptPath isDirectory:&isDir] || isDir) {
         return;
     }
     
-    PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsForScript:filename];
+    PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsForScript:scriptPath];
     spec[AppSpecKey_BundledFiles] = [bundledFilesController filePaths];
     [self controlsFromAppSpec:spec];
     
     [iconController setToDefaults];
     
     // add to recent items menu
-    [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
+    [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:scriptPath]];
 }
 
 #pragma mark - Interface actions
@@ -1003,7 +1003,7 @@
     }
 }
 
-#pragma mark - Help/Documentation
+#pragma mark - Help/Documentation/Website
 
 // Open Documentation.html file within app bundle
 - (IBAction)showHelp:(id)sender {
