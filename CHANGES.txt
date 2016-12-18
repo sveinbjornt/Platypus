@@ -31,9 +31,9 @@ For 5.1
     TODO: Fix status menu output issue
     TODO: Clicked row contextual menu handling
     TODO: Refactor TMP_STDIN_PATH
-    TODO: Update documentation & man page, remove refs to options that are gone (text encoding, secure script)
     TODO: Set CFBundleTypeRole to silence errors
 
+    * Update documentation & man page, remove refs to options that are gone (text encoding, secure script)
     * Fixed issue with console spamming due to missing CFBundleTypeRole
     * Fixed bug where text settings were not properly loaded by the GUI
     * Fixed bug where bundling files with the -f flag didn't work in the command line tool

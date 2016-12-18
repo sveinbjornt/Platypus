@@ -344,7 +344,7 @@
 <h4>Text Window</h4>
 <p>Shows a window with a text view which displays script output. Please note that the text view is <em>not</em> a full, interactive terminal session, and cannot prompt for input from the user via STDIN. It does not support any of the standard terminal commands and cannot be used to display ncurses-based interfaces.</p>
 
-<p>The styling and properties of the text view can be set by pressing the <strong>Text Settings</strong> button.  This shows a window where text encoding, font, color and size can be configured.</p>
+<p>The styling and properties of the text view can be set by pressing the <strong>Text Settings</strong> button.  This shows a window where font, color and size can be configured.</p>
 
 <img src="images/interface_textwindow.png" style="width:594px; height:502px;" class="centered-image">
 <br>
@@ -416,17 +416,15 @@
 
 <img src="images/special_options.png" style="float: right; width: 260px; height: 112px;">
     
-<p><strong>Requires Administrator privileges:</strong>  If selected, the application prompts for an Administrator password and executes the script with escalated privileges via Apple's Security Framework.  This is not strictly equivalent to running the script as the root user.  For details, see the <a href="http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges">documentation for Apple's Security Framework.</a></p>
+<p><strong>Run with root privileges:</strong>  If selected, the application prompts for an Administrator password and executes the script with escalated privileges via Apple's Security Framework.  This is not strictly equivalent to running the script <em>as the root user</em>.  For details, see the <a href="http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges">documentation for Apple's Security Framework.</a></p>
 
-<p><i>Platypus scripts must not use the 'sudo' command</i>. This causes the script to prompt for input via STDIN, and since none is forthcoming, the application will hang indefinitely.</p>
+<p><i>Platypus scripts must not use the 'sudo' command</i>. This causes the script to prompt for input via STDIN, and since no input is forthcoming, the application will hang indefinitely.</p>
 
 <p>Please note that if this option is selected, the script will not print <code>STDERR</code> output due to limitations in the Security APIs.  This can be circumvented by using a shell script to execute another script while piping <code>STDERR</code> into <code>STDOUT</code> (e.g. <code>perl myScript.pl 2>&amp;1</code>).</p>
 
-<p><strong>Secure bundled script:</strong> Script is bundled into the generated application in an obfuscated format. Please note that <em>this will not prevent anyone remotely serious from getting a clear-text version of the script</em>.  In order for the script to be executed, it must be presented in clear text to the interpreter. It is therefore never safe from prying eyes.</p>
+<p><strong>Runs in background:</strong> If selected, the application registers itself as a User Interface Element (LSUIElement). This means the application icon will not show up in the Dock while the app is running.</p>
 
-<p><strong>Runs in background:</strong> If selected, the application registers itself as a User Interface Element. This means the application icon will not show up in the Dock while the app is running.</p>
-
-<p><strong>Remain running after completion</strong>: This option tells the application to stay open once the script has been executed.</p>
+<p><strong>Remain running after completion</strong>: This option tells the application to remain open after the script has executed.</p>
 
 
 
@@ -472,7 +470,7 @@
 <a name="42"></a>
 <h3>Build-Time Options</h3>
 
-<p>Platypus allows you to <strong>create development versions</strong> of your script application.  Ordinarily, Platypus will copy your script and any bundled files into the application it creates.  If <strong>Development Version</strong> is selected in the <strong>Create app</strong> dialog, a symlink to the original script and bundled files is created instead.  This allows you to work on your script while testing it as a Platypus app.  For obvious reasons, this option is not compatible with the "Secure bundled script" option.</p>
+<p>Platypus allows you to <strong>create development versions</strong> of your script application.  Ordinarily, Platypus will copy your script and any bundled files into the application it creates.  If <strong>Development Version</strong> is selected in the <strong>Create app</strong> dialog, a symlink to the original script and bundled files is created instead.  This allows you to work on your script while testing it as a Platypus app.</p>
 
 <img src="images/create_options.png" style="width: 424px; height: 282px;" class="centered-image">
 
@@ -528,7 +526,7 @@
 <a name="51"></a>
 <h2>Preferences</h2>
 
-<p>The Platypus Preferences should be pretty self-explanatory.  You can select an editor of choice, set the default author and bundle identifier settings, set default text encoding, set the behaviour of Platypus on app creation, and install/uninstall the <code>platypus</code> command line tool.</p>
+<p>The Platypus Preferences should be pretty self-explanatory.  You can select an editor of choice, set the default author and bundle identifier settings, set the behaviour of Platypus on app creation, and install/uninstall the <code>platypus</code> command line tool.</p>
 
 <img src="images/preferences.png" style="width: 445px; height: 606px;" class="centered-image">
 
@@ -725,7 +723,7 @@ my $result = dialog("Answer to life, the universe and everything?", "42");
 <br>
 <blockquote>
     
-<p><strong>AdminPrivilegesDemo</strong>: Demonstrates running script with Administrator privileges by creating a file in /etc/ and testing for its existence.</p>
+<p><strong>AdminPrivilegesDemo</strong>: Demonstrates running script with root privileges by creating a file in /etc/ and testing for its existence.</p>
 
 <p><strong>AlertMe</strong>: Demonstrates ALERT: and PROGRESS: syntax in action by showing alerts while manipulating the progress bar.</p>
 

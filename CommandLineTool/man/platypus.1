@@ -100,10 +100,6 @@ Security Framework (i.e. prompt for a password) and then executes the script
 with those privileges. For details on the nature of these privileges, see the
 Apple documentation for the AuthorizationExecuteWithPrivileges() in
 Security.framework. This is not strictly equivalent to running as root.
-.It Fl S, -secure-script
-Secure bundled script.  This encrypts the bundled script, to fend off prying
-eyes. Please note that nothing will make the script 'secure' from anyone
-knowledgable enough to get a clear text version.
 .It Fl D, -droppable
 Makes the application droppable, i.e. capable of receiving dragged and dropped
 items as arguments to the script. The application bundle's property list is
@@ -144,10 +140,6 @@ For Text Window interface type only. Set foreground color of text (e.g. #000000)
 .It Fl n, -text-font Ar fontName
 For Text Window interface type only. Set font and fontsize for text view
 (e.g. 'Monaco 10').
-.It Fl E, -text-encoding Ar encodingNumber
-For Text Window interface type only. Set text encoding for script output.  Must
-be one of the numbers defined in the NSString class reference
-(e.g. 4=UTF8, 1=ASCII, etc.).  Default is UTF8.
 .It Fl K, -status-item-kind Ar kind
 For Status Menu interface type only.  Set display kind for Status Menu
 interface type.  This can be
