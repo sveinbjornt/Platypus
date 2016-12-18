@@ -394,13 +394,11 @@
 #pragma mark - Menu delegate
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-    if ([tableView selectedRow] == -1) {
-        return NO;
-    }
-    
+
     if ([[anItem title] isEqualToString:@"Add File"] || [[anItem title] isEqualToString:@"Add File To Bundle"]) {
         return YES;
     }
+    
     if ([[anItem title] isEqualToString:@"Clear File List"] && [files count] >= 1) {
         return YES;
     }
@@ -416,6 +414,10 @@
                 return !isFolder;
             }
         }
+    }
+    
+    if ([tableView selectedRow] == -1) {
+        return NO;
     }
     
     return YES;

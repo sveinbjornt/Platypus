@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="6000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -97,12 +98,9 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="314">
+                    <box verticalHuggingPriority="750" boxType="separator" id="314">
                         <rect key="frame" x="22" y="327" width="616" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <font key="titleFont" metaFont="system"/>
                     </box>
                     <textField verticalHuggingPriority="750" id="318">
                         <rect key="frame" x="189" y="462" width="79" height="18"/>
@@ -218,12 +216,9 @@ DQ
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="947">
+                    <box verticalHuggingPriority="750" boxType="separator" id="947">
                         <rect key="frame" x="22" y="213" width="616" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <font key="titleFont" metaFont="system"/>
                     </box>
                     <button toolTip="Add File(s)" verticalHuggingPriority="750" id="959">
                         <rect key="frame" x="615" y="162" width="23" height="23"/>
@@ -425,7 +420,7 @@ DQ
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="hqk-wE-xqo" viewBased="YES" id="310">
-                                    <rect key="frame" x="0.0" y="0.0" width="589" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="589" height="108"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -478,7 +473,6 @@ DQ
                                     </connections>
                                 </tableView>
                             </subviews>
-                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="11071">
                             <rect key="frame" x="-100" y="-100" width="581" height="15"/>
@@ -1334,17 +1328,17 @@ DQ
                             <action selector="acceptsTextChanged:" target="1364" id="11534"/>
                         </connections>
                     </button>
-                    <box autoresizesSubviews="NO" title="Box" borderType="none" titlePosition="noTitle" id="11153">
+                    <box autoresizesSubviews="NO" borderType="none" title="Box" titlePosition="noTitle" id="11153">
                         <rect key="frame" x="17" y="159" width="503" height="250"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <view key="contentView">
+                        <view key="contentView" id="dtV-jI-obC">
                             <rect key="frame" x="0.0" y="0.0" width="503" height="250"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <box title="Suffixes" id="701">
                                     <rect key="frame" x="23" y="57" width="218" height="180"/>
                                     <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
-                                    <view key="contentView">
+                                    <view key="contentView" id="1RM-Ny-kxa">
                                         <rect key="frame" x="2" y="2" width="214" height="163"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -1353,10 +1347,10 @@ DQ
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="zU0-Dr-gG8">
                                                     <rect key="frame" x="1" y="1" width="162" height="96"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="708" customClass="NSResponderNotifyingTableView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="154" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="96"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1393,7 +1387,6 @@ DQ
                                                             </connections>
                                                         </tableView>
                                                     </subviews>
-                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </clipView>
                                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="11073">
                                                     <rect key="frame" x="-100" y="-100" width="156" height="15"/>
@@ -1429,8 +1422,6 @@ DQ
                                             </button>
                                         </subviews>
                                     </view>
-                                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </box>
                                 <imageView id="11239">
                                     <rect key="frame" x="52" y="22" width="16" height="16"/>
@@ -1448,7 +1439,7 @@ DQ
                                 <box title="Uniform Type Identifiers" id="e6h-Co-zvh">
                                     <rect key="frame" x="256" y="57" width="218" height="180"/>
                                     <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
-                                    <view key="contentView">
+                                    <view key="contentView" id="E19-CW-1vz">
                                         <rect key="frame" x="2" y="2" width="214" height="163"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -1457,10 +1448,10 @@ DQ
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="xVE-Bl-gWX">
                                                     <rect key="frame" x="1" y="1" width="162" height="96"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk" customClass="NSResponderNotifyingTableView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="161.5" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="96"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1497,7 +1488,6 @@ DQ
                                                             </connections>
                                                         </tableView>
                                                     </subviews>
-                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </clipView>
                                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="0Bf-gb-Fei">
                                                     <rect key="frame" x="-100" y="-100" width="156" height="15"/>
@@ -1533,8 +1523,6 @@ DQ
                                             </button>
                                         </subviews>
                                     </view>
-                                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </box>
                                 <button verticalHuggingPriority="750" id="11241">
                                     <rect key="frame" x="70" y="14" width="147" height="28"/>
@@ -1549,29 +1537,18 @@ DQ
                                 </button>
                             </subviews>
                         </view>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
-                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="11245">
+                    <box verticalHuggingPriority="750" boxType="separator" id="11245">
                         <rect key="frame" x="20" y="152" width="497" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <font key="titleFont" metaFont="system"/>
                     </box>
-                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="11528">
+                    <box verticalHuggingPriority="750" boxType="separator" id="11528">
                         <rect key="frame" x="20" y="453" width="497" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <font key="titleFont" metaFont="system"/>
                     </box>
-                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="11529">
+                    <box verticalHuggingPriority="750" boxType="separator" id="11529">
                         <rect key="frame" x="20" y="58" width="497" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <font key="titleFont" metaFont="system"/>
                     </box>
                     <textField verticalHuggingPriority="750" id="11530">
                         <rect key="frame" x="218" y="97" width="301" height="46"/>
@@ -1639,11 +1616,11 @@ DQ
                         <rect key="frame" x="19" y="95" width="226" height="136"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="JcD-yT-ov7">
-                            <rect key="frame" x="1" y="17" width="209" height="103"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <rect key="frame" x="1" y="0.0" width="209" height="120"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11089" id="1405" customClass="NSResponderNotifyingTableView">
-                                    <rect key="frame" x="0.0" y="0.0" width="209" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="209" height="103"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1670,7 +1647,6 @@ DQ
                                     </connections>
                                 </tableView>
                             </subviews>
-                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="11088">
                             <rect key="frame" x="1" y="120" width="209" height="15"/>
@@ -1692,11 +1668,11 @@ DQ
                         <rect key="frame" x="254" y="95" width="226" height="136"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="AXu-6W-m9d">
-                            <rect key="frame" x="1" y="17" width="209" height="103"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <rect key="frame" x="1" y="0.0" width="209" height="120"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11254" id="11257" customClass="NSResponderNotifyingTableView">
-                                    <rect key="frame" x="0.0" y="0.0" width="209" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="209" height="103"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1723,7 +1699,6 @@ DQ
                                     </connections>
                                 </tableView>
                             </subviews>
-                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="11255">
                             <rect key="frame" x="1" y="120" width="209" height="15"/>
@@ -1783,12 +1758,9 @@ DQ
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textFieldCell>
                     </textField>
-                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="11273">
+                    <box verticalHuggingPriority="750" boxType="separator" id="11273">
                         <rect key="frame" x="19" y="52" width="461" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <font key="titleFont" metaFont="system"/>
                     </box>
                     <button toolTip="Add new interpreter argument" verticalHuggingPriority="750" id="1401">
                         <rect key="frame" x="19" y="64" width="23" height="24"/>
@@ -2021,12 +1993,9 @@ DQ
                             <action selector="setToDefaults:" target="2364" id="1eN-QU-TbB"/>
                         </connections>
                     </button>
-                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="2114">
+                    <box verticalHuggingPriority="750" boxType="separator" id="2114">
                         <rect key="frame" x="20" y="51" width="430" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <font key="titleFont" metaFont="system"/>
                     </box>
                     <scrollView toolTip="Font and text size preview" focusRingType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="2075">
                         <rect key="frame" x="212" y="67" width="238" height="115"/>
@@ -2035,7 +2004,7 @@ DQ
                             <rect key="frame" x="1" y="1" width="221" height="113"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" id="2078">
+                                <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" id="2078">
                                     <rect key="frame" x="0.0" y="0.0" width="221" height="113"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2149,8 +2118,6 @@ DQ
                                         </fragment>
                                     </attributedString>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="221" height="113"/>
-                                    <size key="maxSize" width="454" height="10000000"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2282,7 +2249,7 @@ DQ
                     <box id="10193">
                         <rect key="frame" x="17" y="50" width="460" height="114"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <view key="contentView">
+                        <view key="contentView" id="f0v-RJ-lvM">
                             <rect key="frame" x="2" y="2" width="456" height="97"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -2327,12 +2294,9 @@ DQ
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <box horizontalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="10195">
+                                <box horizontalHuggingPriority="750" boxType="separator" id="10195">
                                     <rect key="frame" x="233" y="13" width="5" height="73"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <font key="titleFont" metaFont="system"/>
                                 </box>
                                 <button hidden="YES" toolTip="Press this button to select an image to use as icon for your status item" verticalHuggingPriority="750" id="10194">
                                     <rect key="frame" x="333" y="54" width="78" height="28"/>
@@ -2383,8 +2347,6 @@ DQ
                                 </button>
                             </subviews>
                         </view>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                 </subviews>
             </view>
@@ -2437,7 +2399,7 @@ DQ
                     <box titlePosition="noTitle" id="11372">
                         <rect key="frame" x="17" y="57" width="299" height="310"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <view key="contentView">
+                        <view key="contentView" id="U5J-zA-DBb">
                             <rect key="frame" x="2" y="2" width="295" height="306"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -2585,12 +2547,9 @@ Gw
                                         <action selector="commandLineInstallButtonClicked:" target="11195" id="6Ky-24-JGm"/>
                                     </connections>
                                 </button>
-                                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="11383">
+                                <box verticalHuggingPriority="750" boxType="separator" id="11383">
                                     <rect key="frame" x="22" y="78" width="251" height="5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <font key="titleFont" metaFont="system"/>
                                 </box>
                                 <textField toolTip="Command line tool status" verticalHuggingPriority="750" id="11384">
                                     <rect key="frame" x="19" y="49" width="257" height="17"/>
@@ -2616,8 +2575,6 @@ Gw
                                 </progressIndicator>
                             </subviews>
                         </view>
-                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <button toolTip="Apply these settings" verticalHuggingPriority="750" id="11374">
                         <rect key="frame" x="231" y="13" width="88" height="32"/>
