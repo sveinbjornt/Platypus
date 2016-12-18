@@ -148,23 +148,20 @@
     // make sure application support folder and subfolders exist
     BOOL isDir;
     // app support folder
+    NSError *err;
     if (![FILEMGR fileExistsAtPath:PROGRAM_APP_SUPPORT_PATH isDirectory:&isDir] &&
-        ![FILEMGR createDirectoryAtPath:PROGRAM_APP_SUPPORT_PATH withIntermediateDirectories:NO attributes:nil error:nil]) {
-            [Alerts alert:@"Error"
-            subTextFormat:@"Could not create directory '%@'", PROGRAM_APP_SUPPORT_PATH];
+        ![FILEMGR createDirectoryAtPath:PROGRAM_APP_SUPPORT_PATH withIntermediateDirectories:NO attributes:nil error:&err]) {
+            [Alerts alert:@"Error" subTextFormat:@"Could not create directory '%@', %@",
+             PROGRAM_APP_SUPPORT_PATH, [err localizedDescription]];
     }
     
     // profiles folder
     if (![FILEMGR fileExistsAtPath:PROGRAM_PROFILES_PATH isDirectory:&isDir]) {
-        if (![FILEMGR createDirectoryAtPath:PROGRAM_PROFILES_PATH withIntermediateDirectories:NO attributes:nil error:nil]) {
-            [Alerts alert:@"Error"
-            subTextFormat:@"Could not create directory '%@'", PROGRAM_PROFILES_PATH];
+        if (![FILEMGR createDirectoryAtPath:PROGRAM_PROFILES_PATH withIntermediateDirectories:NO attributes:nil error:&err]) {
+            [Alerts alert:@"Error" subTextFormat:@"Could not create directory '%@', %@",
+             PROGRAM_PROFILES_PATH, [err localizedDescription]];
         }
     }
-    
-//    if ([DEFAULTS objectForKey:@"Launched"] == nil) {
-//         //TODO: Create sample profile in Profiles folder?
-//    }
     
     // we list ourself as an observer of changes to file system for script path being watched
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueRenameNotification object:nil];
