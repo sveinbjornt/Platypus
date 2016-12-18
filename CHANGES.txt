@@ -32,6 +32,7 @@ For 5.1
     TODO: Clicked row contextual menu handling
     TODO: Refactor TMP_STDIN_PATH
     TODO: Set CFBundleTypeRole to silence errors
+    TODO: Fix issue where "Use as template" is shown even though Status Item mode is "Text"
 
     * Update documentation & man page, remove refs to options that are gone (text encoding, secure script)
     * Fixed issue with console spamming due to missing CFBundleTypeRole

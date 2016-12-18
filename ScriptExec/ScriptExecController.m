@@ -378,7 +378,7 @@ static const NSInteger detailsHeight = 224;
     }
     
     // get interpreter
-    NSString *scriptInterpreter = appSettingsDict[AppSpecKey_Interpreter];
+    NSString *scriptInterpreter = appSettingsDict[AppSpecKey_InterpreterPath];
     if (scriptInterpreter == nil || [FILEMGR fileExistsAtPath:scriptInterpreter] == NO) {
         [Alerts fatalAlert:@"Missing interpreter"
              subTextFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreter];

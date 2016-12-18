@@ -320,7 +320,7 @@ int main(int argc, const char *argv[]) {
                     NSPrintErr(@"Warning: Interpreter path '%@' invalid - no file at path.", interpreterPath);
                 }
                 
-                properties[AppSpecKey_Interpreter] = interpreterPath;
+                properties[AppSpecKey_InterpreterPath] = interpreterPath;
             }
                 break;
                 

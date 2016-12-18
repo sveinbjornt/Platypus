@@ -178,7 +178,7 @@ extern NSString * const AppSpecKey_Name;
 extern NSString * const AppSpecKey_ScriptPath;
 extern NSString * const AppSpecKey_InterfaceType;
 extern NSString * const AppSpecKey_IconPath;
-extern NSString * const AppSpecKey_Interpreter;
+extern NSString * const AppSpecKey_InterpreterPath;
 extern NSString * const AppSpecKey_InterpreterArgs;
 extern NSString * const AppSpecKey_ScriptArgs;
 extern NSString * const AppSpecKey_Version;

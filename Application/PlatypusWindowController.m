@@ -538,7 +538,7 @@
     spec[AppSpecKey_InterfaceType] = [interfaceTypePopupButton titleOfSelectedItem];
     spec[AppSpecKey_IconPath] = [iconController icnsFilePath];
     
-    spec[AppSpecKey_Interpreter] = [interpreterPathTextField stringValue];
+    spec[AppSpecKey_InterpreterPath] = [interpreterPathTextField stringValue];
     spec[AppSpecKey_InterpreterArgs] = [argsController interpreterArgs];
     spec[AppSpecKey_ScriptArgs] = [argsController scriptArgs];
     spec[AppSpecKey_Version] = [versionTextField stringValue];
@@ -592,7 +592,7 @@
         [interfaceTypePopupButton selectItemWithTitle:DEFAULT_INTERFACE_TYPE_STRING];
     }
         
-    [interpreterPathTextField setStringValue:spec[AppSpecKey_Interpreter]];
+    [interpreterPathTextField setStringValue:spec[AppSpecKey_InterpreterPath]];
 
     //icon
     [iconController loadIcnsFile:spec[AppSpecKey_IconPath]];

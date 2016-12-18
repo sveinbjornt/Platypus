@@ -123,6 +123,9 @@
     if (profileDict == nil) {
         return nil;
     }
+    
+    
+    
     return [self initWithDictionary:profileDict];
 }
 
@@ -166,7 +169,7 @@
     self[AppSpecKey_InterfaceType] = DEFAULT_INTERFACE_TYPE_STRING;
     self[AppSpecKey_IconPath] = CMDLINE_ICON_PATH;
     
-    self[AppSpecKey_Interpreter] = DEFAULT_INTERPRETER_PATH;
+    self[AppSpecKey_InterpreterPath] = DEFAULT_INTERPRETER_PATH;
     self[AppSpecKey_InterpreterArgs] = @[];
     self[AppSpecKey_ScriptArgs] = @[];
     self[AppSpecKey_Version] = DEFAULT_VERSION;
@@ -231,7 +234,7 @@
         [shebangCmdComponents removeObjectAtIndex:0];
         self[AppSpecKey_InterpreterArgs] = shebangCmdComponents;
     }
-    self[AppSpecKey_Interpreter] = interpreterPath;
+    self[AppSpecKey_InterpreterPath] = interpreterPath;
     
     // find parent folder wherefrom we create destination path of app bundle
     NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];
@@ -492,7 +495,7 @@
     appSettingsPlist[AppSpecKey_Authenticate] = self[AppSpecKey_Authenticate];
     appSettingsPlist[AppSpecKey_RemainRunning] = self[AppSpecKey_RemainRunning];
     appSettingsPlist[AppSpecKey_InterfaceType] = self[AppSpecKey_InterfaceType];
-    appSettingsPlist[AppSpecKey_Interpreter] = self[AppSpecKey_Interpreter];
+    appSettingsPlist[AppSpecKey_InterpreterPath] = self[AppSpecKey_InterpreterPath];
     appSettingsPlist[AppSpecKey_Creator] = PROGRAM_CREATOR_STAMP;
     appSettingsPlist[AppSpecKey_InterpreterArgs] = self[AppSpecKey_InterpreterArgs];
     appSettingsPlist[AppSpecKey_ScriptArgs] = self[AppSpecKey_ScriptArgs];
@@ -867,7 +870,7 @@
     
     // interpreter
     str = shortOpts ? @"-p" : @"--interpreter";
-    NSString *interpreterArg = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_Interpreter]];
+    NSString *interpreterArg = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_InterpreterPath]];
     
     // finally, generate the command
     NSString *commandStr = [NSString stringWithFormat:

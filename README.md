@@ -4,7 +4,8 @@
 
 Platypus is an OS X developer tool that creates native Mac applications 
 from interpreted scripts such as shell scripts or Perl and Python programs.
-This is done by wrapping the script in an [application bundle](https://en.wikipedia.org/wiki/Bundle_(OS_X)#OS_X_application_bundles)
+This is done by wrapping the script in an 
+[application bundle](https://en.wikipedia.org/wiki/Bundle_(OS_X)#OS_X_application_bundles)
 directory structure  along with an application binary that runs the script.
 
 Platypus makes it easy to share scripts and programs with those 
