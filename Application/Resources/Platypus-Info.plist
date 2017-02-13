@@ -377,11 +377,6 @@
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.7</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2003-2016 Sveinbjorn Thordarson.</string>
 	<key>NSMainNibFile</key>
@@ -393,7 +388,7 @@
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</string>
+	<string>https://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>UTExportedTypeDeclarations</key>
