@@ -358,7 +358,7 @@
 	<key>CFBundleExecutable</key>
 	<string>Platypus</string>
 	<key>CFBundleGetInfoString</key>
-	<string>© 2003-2016 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2017 Sveinbjorn Thordarson.</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.sveinbjorn.Platypus</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -378,7 +378,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.7</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2003-2016 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2017 Sveinbjorn Thordarson.</string>
 	<key>NSMainNibFile</key>
 	<string>Platypus</string>
 	<key>NSPrincipalClass</key>
