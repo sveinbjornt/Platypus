@@ -8,7 +8,7 @@
         <item>
             <title>Version 5.1</title>
             <pubDate>Sat, 06 Feb 2016 13:37:00 +0000</pubDate>
-            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus5.1.zip" sparkle:version="887" sparkle:shortVersionString="5.1" length="3659843" type="application/octet-stream" sparkle:dsaSignature="MCwCFC8etQF7VjZCZ2F3/mYL1zMbMrqsAhRkakdp5CroE+Ql8Wm/UKtV2gKjbw=="/>
+            <enclosure url="https://sveinbjorn.org/files/software/platypus/platypus5.1.zip" sparkle:version="887" sparkle:shortVersionString="5.1" length="3659843" type="application/octet-stream" sparkle:dsaSignature="MCwCFC8etQF7VjZCZ2F3/mYL1zMbMrqsAhRkakdp5CroE+Ql8Wm/UKtV2gKjbw=="/>
             <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
                 <h2>Version 5.1 Changes</h2>
@@ -34,7 +34,7 @@
         <item>
             <title>Version 5.0</title>
             <pubDate>Wed, 30 Nov 2015 00:28:00 +0000</pubDate>
-            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus5.0.zip" sparkle:version="5.0" sparkle:shortVersionString="5.0" length="3640511" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCxJgz5q7W4x5GuUTW9drKORIk6egIUcgQ+Au+eb6r7HwsDTUf79b8JQoI="/>
+            <enclosure url="https://sveinbjorn.org/files/software/platypus/platypus5.0.zip" sparkle:version="5.0" sparkle:shortVersionString="5.0" length="3640511" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCxJgz5q7W4x5GuUTW9drKORIk6egIUcgQ+Au+eb6r7HwsDTUf79b8JQoI="/>
             <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
                 <h2>Version 5.0 Changes</h2>
@@ -75,114 +75,6 @@
                     <li>Fixed issue where command line arguments for ScriptExec were being passed incorrectly to script</li>
                     <li>Many, many minor bugfixes, tweaks and improvements</li>
                     <li>Codebase migrated to modern Objective-C syntax. Built with XCode 7 and now requires Mac OS X 10.7 or later and a 64-bit Intel system. Older versions continue to work just fine on 32-bit 10.6 systems, and version 4.4 still works on PowerPC. But it's time to leave the past behind. It's been 9 years since the last 32-bit Mac was released.</li>
-                </ul>
-            ]]></description>
-        </item>
-        <item>
-            <title>Version 4.9</title>
-            <pubDate>Wed, 2 Apr 2015 15:28:00 +0000</pubDate>
-            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.9.zip" sparkle:version="4.9" sparkle:shortVersionString="4.9" length="1668252" type="application/octet-stream" sparkle:dsaSignature="MC0CFCU9a7YtceYxs/6LIpqykQPKghTyAhUAs3SFJFKOn4fXzEy76S3qXVlwGUk="/>
-            <sparkle:minimumSystemVersion>10.6.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[
-                <h2>Version 4.9 Changes</h2>
-                <ul>
-                <li>Users can now manually increase/decrease the font size in Platypus-generated apps</li>
-                <li>Status menu items can now be selected. This will run the script again with the menu title as an argument.</li>
-                <li>Arguments can now be passed to Platypus-generated apps via the command line</li>
-                <li>In the Progress Bar interface, it is now possible to use DETAILS:SHOW and DETAILS:HIDE to toggle details field visibility</li>
-                <li>New feature: If script prints "QUITAPP" to STDOUT, the wrapper application will quit.</li>
-                <li>Platypus now remembers app creation dialog settings such as "Optimize Nib"</li>
-                <li>Platypus now remembers opened Profiles in the Open Recent menu</li>
-                <li>It is now possible to add a custom MainMenu.nib to bundled files which overwrites default</li>
-                <li>Extended and improved documentation</li>
-                <li>Built with XCode 6, now requires Mac OS X 10.6 or later</li>
-                <li>Fixed a bug where "Provide as a Service" failed to be read from saved profiles</li>
-                <li>Fixed bug where a custom bundle identifier in a saved Profile would not be loaded</li>
-                <li>Fixed bug where the Create button would remain greyed out even though all requirements were satisfied</li>
-                <li>Fixed bug where progress indicator would keep animating after execution in Progress Bar interface</li>
-                <li>Fixed bug where command line tool complained about valid .icns filenames</li>
-                <li>Fixed bug where command line tool would always create XML property lists instead of binary ones</li>
-                <li>Refactored all deprecated method calls</li>
-                <li>Various minor interface refinements</li>
-                <li>Improved documentation</li>
-                </ul>
-            ]]></description>
-        </item>
-        <item>
-            <title>Version 4.8</title>
-            <pubDate>Sun, 7 Jul 2013 19:28:00 +0000</pubDate>
-            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.8.zip" sparkle:version="4.8" sparkle:shortVersionString="4.8" length="1668252" type="application/octet-stream" sparkle:dsaSignature="MC0CFHKG2boDHGhb2WOnsXfPRWdzbKhVAhUAhd6FcLtjnt10DaXYKfzt3dBL86s="/>
-            <sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[
-                <h2>Version 4.8 Changes</h2>
-                <ul>
-                    <li>New "Prompt for file on launch" option</li>
-                    <li>Redesigned Drop Settings sheet</li>
-                    <li>Fixed issue where version would not appear in Get Info in Finder (missing CFBundleShortVersionString)</li>
-                    <li>Generated apps have NSHumanReadableCopyright defined again</li>
-                    <li>Extensive updates to documentation</li>
-                    <li>"Provide as a Mac OS X Service" no longer enabled by default</li>
-                    <li>Removed all support for file types.  They are ancient crust now mostly ignored by Mac OS X and should no longer be used.</li>
-                    <li>Improved uninstall script</li>
-                    <li>Fixed issue where a generated icon file referenced in a Profile could be overwritten</li>
-                    <li>Documentation files now open in default browser, not in default .html handling app</li>
-                    <li>Fixed broken nib optimization. Platypus now correctly detects XCode 4 installs.</li>
-                </ul>
-            ]]></description>
-        </item>
-        <item>
-            <title>Version 4.7</title>
-            <pubDate>Mon, 27 Feb 2012 17:28:00 +0000</pubDate>
-            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.7.zip" sparkle:version="4.7" sparkle:shortVersionString="4.7" length="1838456" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCkcSA24nRCSW47lr6VPXMQfJOQKQIVAJo8YRI7yhKDnOjud056KdD9uNLb"/>
-            <sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[
-                <h2>Version 4.7 Changes</h2>
-                <ul>
-                    <li>New "Uninstall" menu option, which removes all traces of Platypus on a system</li>
-                    <li>New update mechanism using the Sparkle framework and appcasting</li>
-                    <li>Command line tool now supports reading script from STDIN</li>
-                    <li>Command line tool now supports XML plist option </li>
-                    <li>Migrated away from all deprecated Mac OS X API calls</li>
-                    <li>Minor interface tweaks</li>
-                    <li>Fixed bug where script permissions could be erroneously set, resulting in execution failure</li>
-                    <li>Fixed bug which caused Platypus to crash when creating Droplets</li>
-                    <li>Fixed bug with icon missing on "New Script" if CLI tool wasn't installed</li>
-                    <li>Fixed bug with enabled an empty menu item when no profiles were in Profiles list</li>
-                </ul>
-            ]]></description>
-        </item>
-        <item>
-            <title>Version 4.6</title>
-            <pubDate>Thu, 26 Jan 2012 00:00:00 +0000</pubDate>
-            <enclosure url="http://sveinbjorn.org/files/software/platypus/platypus4.6.zip" sparkle:version="4.6" sparkle:shortVersionString="4.6" length="1455877" type="application/octet-stream" sparkle:dsaSignature="MC0CFCXvwsKLXBPBT7G4u4+pCQg1cxcBAhUApHSLzNT6vPAq1zMhxLCVDMQYf68"/>
-            <sparkle:minimumSystemVersion>10.5.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[
-                <h2>Version 4.6 Changes</h2>
-                <ul>
-                    <li>"Open" and "Save" menu item option for Platypus-created apps</li>
-                    <li>Applications can now be set as Services for text or file handling via Services menu</li>
-                    <li>Configurable document icon for Platypus apps</li>
-                    <li>New option to set custom arguments for script, not just interpreter, under "Args" (previously "Params")</li>
-                    <li>Command line tool now supports dumping profile property lists to stdout (see man page)</li>
-                    <li>Additional interpreter presets: zsh and tcsh</li>
-                    <li>Extended documentation and FAQ</li>
-                    <li>New "Edit" button and contextual menu item for Bundled Files List.</li>
-                    <li>New FastDMGMounter example</li>
-                    <li>Platypus now defaults to using binary-format property lists.  This can be set to XML in create panel.</li>
-                    <li>Status Bar apps now gracefully remove their status bar item before exiting</li>
-                    <li>Removed app path as first arg option, it's unnecessary and confusing. App path == $CWD/../..</li>
-                    <li>Various interface refinements</li>
-                    <li>Migrated all images to optimized PNGs for smaller file sizes</li>
-                    <li>Now using LLVM for builds instead of GCC, which makes for smaller code size</li>
-                    <li>Changed "New Script" preset contents to be a "Hello, World" example in the selected language</li>
-                    <li>Fixed bug with script path text field tab autocomplete</li>
-                    <li>Fixed bug in shell command generator which errenously inversed the logic of the -R flag</li>
-                    <li>Fixed bug which caused crash when editing file in Bundled Files list using built-in editor.</li>
-                    <li>Fixed bug where text font settings would not be applied</li>
-                    <li>Fixed bug with contextual menus in Arguments window</li>
-                    <li>Fixed bug where custom image data application icons failed to be created</li>
-                    <li>Fixed bug where "Icon" display mode status item would erroneously display a default title</li>
-                    <li>"Run in background" applications no longer set themselves as front process with interface type "None"</li>
                 </ul>
             ]]></description>
         </item>
