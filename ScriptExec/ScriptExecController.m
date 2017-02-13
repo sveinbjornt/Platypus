@@ -1265,7 +1265,7 @@ static const NSInteger detailsHeight = 224;
     }
     // change text size
     if (IsTextSizableInterfaceType(interfaceType) && [[anItem title] hasPrefix:@"Make Text"]) {
-        return NO;
+        return YES;
     }
     
     return YES;
