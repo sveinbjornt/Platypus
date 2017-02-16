@@ -569,13 +569,6 @@
 			name = "NSColor+HexTools";
 			sourceTree = "<group>";
 		};
-		F46C60141055AEFA00521A94 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
 		F48269661BC9929A00169D8B /* NSTask+Description */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,7 +666,6 @@
 				F4975D9B1B2E71EE0099D16E /* PrefsController.m */,
 				F4975D9C1B2E71EE0099D16E /* ProfilesController.h */,
 				F4975D9D1B2E71EE0099D16E /* ProfilesController.m */,
-				F46C60141055AEFA00521A94 /* Controllers */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 			);
 			name = Application;

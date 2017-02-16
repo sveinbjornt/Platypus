@@ -274,13 +274,13 @@ static const NSInteger detailsHeight = 224;
         if ([statusItemDisplayType isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT]) {
             statusItemTitle = [appSettingsDict[AppSpecKey_StatusItemTitle] copy];
             if (statusItemTitle == nil) {
-                [Alerts fatalAlert:@"Error getting title" subText:@"Failed to get Status Item title."];
+                [Alerts alert:@"Error getting title" subText:@"Failed to get Status Item title."];
             }
         }
         else if ([statusItemDisplayType isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
             statusItemImage = [[NSImage alloc] initWithData:appSettingsDict[AppSpecKey_StatusItemIcon]];
             if (statusItemImage == nil) {
-                [Alerts fatalAlert:@"Error loading icon" subText:@"Failed to load Status Item icon."];
+                [Alerts alert:@"Error loading icon" subText:@"Failed to load Status Item icon."];
             }
         }
         
@@ -385,13 +385,12 @@ static const NSInteger detailsHeight = 224;
     }
     interpreter = [[NSString alloc] initWithString:scriptInterpreter];
 
-    // if the script is not "secure" then we need a script file, otherwise we need data in AppSettings.plist
-    if (![FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]]) {
+    // check the script file
+    NSString *path = [appBundle pathForResource:@"script" ofType:nil];
+    if ([FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]] == NO) {
         [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
     }
-    
-    // get path to script within app bundle
-    scriptPath = [[NSString alloc] initWithString:[appBundle pathForResource:@"script" ofType:nil]];
+    scriptPath = [NSString stringWithString:path];
     
     // make sure we can read the script file
     if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
@@ -399,7 +398,7 @@ static const NSInteger detailsHeight = 224;
         chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
     }
     if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
-        [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is unreadable."];
+        [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is not readable."];
     }
 }
 
