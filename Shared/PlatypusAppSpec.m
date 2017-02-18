@@ -114,6 +114,11 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     if (self = [self initWithDefaults]) {
         [properties addEntriesFromDictionary:dict];
+        
+        // Backwards compatibility mapping old key names to new
+        if (dict[AppSpecKey_InterpreterPath_Legacy] != nil) {
+            properties[AppSpecKey_InterpreterPath] = dict[AppSpecKey_InterpreterPath_Legacy];
+        }
     }
     return self;
 }
@@ -123,9 +128,6 @@
     if (profileDict == nil) {
         return nil;
     }
-    
-    
-    
     return [self initWithDictionary:profileDict];
 }
 

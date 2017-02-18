@@ -78,6 +78,8 @@ NSString * const AppSpecKey_IsExample = @"Example"; // examples only
 NSString * const AppSpecKey_ScriptText = @"Script"; // examples only
 NSString * const AppSpecKey_ScriptName = @"ScriptName"; // examples only
 
+NSString * const AppSpecKey_InterpreterPath_Legacy = @"Interpreter";
+
 // NSUserDefaults keys for Platypus app
 NSString * const DefaultsKey_BundleIdentifierPrefix = @"DefaultBundleIdentifierPrefix";
 NSString * const DefaultsKey_DefaultEditor = @"DefaultEditor";
