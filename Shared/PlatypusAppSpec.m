@@ -122,6 +122,10 @@
         if (dict[AppSpecKey_InterfaceType_Legacy] != nil) {
             properties[AppSpecKey_InterfaceType] = dict[AppSpecKey_InterfaceType_Legacy];
         }
+        if (dict[AppSpecKey_DocIconPath_Legacy] != nil) {
+            properties[AppSpecKey_DocIconPath] = dict[AppSpecKey_DocIconPath_Legacy];
+        }
+        
     }
     return self;
 }
@@ -131,6 +135,9 @@
     if (profileDict == nil) {
         return nil;
     }
+    
+    // TODO: standardize all relative paths here
+    
     return [self initWithDictionary:profileDict];
 }
 

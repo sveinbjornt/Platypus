@@ -61,7 +61,7 @@ NSString * const AppSpecKey_AcceptText = @"AcceptsText";
 NSString * const AppSpecKey_AcceptFiles = @"AcceptsFiles";
 NSString * const AppSpecKey_Service = @"DeclareService";
 NSString * const AppSpecKey_PromptForFile = @"PromptForFileOnLaunch";
-NSString * const AppSpecKey_DocIconPath = @"DocIcon";
+NSString * const AppSpecKey_DocIconPath = @"DocIconPath";
 
 NSString * const AppSpecKey_TextFont = @"TextFont";
 NSString * const AppSpecKey_TextSize = @"TextSize";
@@ -78,6 +78,7 @@ NSString * const AppSpecKey_IsExample = @"Example"; // examples only
 NSString * const AppSpecKey_ScriptText = @"Script"; // examples only
 NSString * const AppSpecKey_ScriptName = @"ScriptName"; // examples only
 
+NSString * const AppSpecKey_DocIconPath_Legacy = @"DocIcon";
 NSString * const AppSpecKey_InterpreterPath_Legacy = @"Interpreter";
 NSString * const AppSpecKey_InterfaceType_Legacy = @"Output";
 
