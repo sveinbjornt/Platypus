@@ -212,6 +212,7 @@ extern NSString * const AppSpecKey_IsExample; // examples only
 extern NSString * const AppSpecKey_ScriptText; // examples only
 extern NSString * const AppSpecKey_ScriptName; // examples only
 
+extern NSString * const AppSpecKey_DocIconPath_Legacy; // legacy
 extern NSString * const AppSpecKey_InterpreterPath_Legacy; // legacy
 extern NSString * const AppSpecKey_InterfaceType_Legacy; // legacy
 

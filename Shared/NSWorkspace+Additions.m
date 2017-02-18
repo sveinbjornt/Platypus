@@ -272,6 +272,9 @@
                              arguments:@[@"-flush"]];
 }
 
+#pragma mark - Paths
+
+
 #pragma mark - Misc
 
 - (BOOL)openPathInDefaultBrowser:(NSString *)path {
