@@ -1002,7 +1002,7 @@ static const NSInteger detailsHeight = 224;
         PLog(@"Warning: Output string is nil");
         return;
     }
-    PLog(@"Output:%@", outputString);
+    //PLog(@"Output:%@", outputString);
     
     if (remnants != nil && [remnants length] > 0) {
         [outputString insertString:remnants atIndex:0];
@@ -1122,9 +1122,10 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (void)appendString:(NSString *)string {
-    PLog(@"Appending output: \"%@\"", string);
+    //PLog(@"Appending output: \"%@\"", string);
     if (interfaceType == PlatypusInterfaceType_None) {
         //fprintf(stdout, "%s", [string cStringUsingEncoding:NSUTF8StringEncoding]);
+        // TODO: Do this using standard C functions
         NSData *strData = [[NSString stringWithFormat:@"%@\n", string] dataUsingEncoding:DEFAULT_TEXT_ENCODING];
         NSFileHandle *stderrFileHandle = [NSFileHandle fileHandleWithStandardError];
         [stderrFileHandle writeData:strData];
@@ -1133,6 +1134,7 @@ static const NSInteger detailsHeight = 224;
     
     NSTextStorage *textStorage = [outputTextView textStorage];
     NSRange appendRange = NSMakeRange([textStorage length], 0);
+    [textStorage beginEditing];
     [textStorage replaceCharactersInRange:appendRange withString:string];
     [textStorage replaceCharactersInRange:NSMakeRange([textStorage length], 0) withString:@"\n"];
     
@@ -1143,6 +1145,8 @@ static const NSInteger detailsHeight = 224;
                                     };
         [textStorage setAttributes:attributes range:NSMakeRange(appendRange.location, [string length])];
     }
+    
+    [textStorage endEditing];
 }
 
 #pragma mark - Interface actions

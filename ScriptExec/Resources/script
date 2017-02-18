@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/usr/bin/perl
 
-echo "Hey"
-echo $@
+my $i = 0;
+for ($i = 0; $i < 100000; $i++){
+    print "Hey\n";
+}
 
 # If 0 arguments, we show menu
 #if (!scalar(@ARGV)) {
