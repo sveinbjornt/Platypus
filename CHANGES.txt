@@ -1,4 +1,4 @@
-For 5.1
+For future versions...
     TODO: Implement automated testing
     TODO: Get STDERR output and pid for STPrivilegedTask
     TODO: Create Platypus tutorial videos, make them available online
@@ -20,6 +20,7 @@ For 5.1
     TODO: Fix line numbering in built-in editor (Improve built-in editor)
     TODO: Support for authenticated task termination
     TODO: Add support for feeding script output into status item view like Tapir did (cool feature)
+    TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
 
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
@@ -27,16 +28,14 @@ For 5.1
 5.2
     TODO: Update documentation, do a better job of explaining exactly how the Status Menu interface works
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
-    TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
     TODO: Fix status menu output issue
     TODO: Clicked row contextual menu handling
-    TODO: Refactor TMP_STDIN_PATH hack
-    TODO: Set CFBundleTypeRole to silence errors
     TODO: Fix issue where "Use as template" is shown even though Status Item mode is "Text"
-    TODO: Fix legacy mapping, i.e. Output --> InterfaceType, Interpreter --> InterpreterPath etc.
 
+    * Got rid of the TMP_STDIN_PATH hack
+    * The Platypus Profile format has changed slightly in this version, but old formats can still be read
     * Fixed issue where valid menu items were disabled in Action menu
-    * Update documentation & man page, remove refs to options that are gone (text encoding, secure script)
+    * Updated documentation & man page, remove refs to options that are gone (text encoding, secure script)
     * Fixed issue with console spamming due to missing CFBundleTypeRole
     * Fixed bug where text settings were not properly loaded by the GUI
     * Fixed bug where bundling files with the -f flag didn't work in the command line tool

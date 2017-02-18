@@ -39,7 +39,7 @@ NSString * const AppSpecKey_StripNib = @"OptimizeApplication";
 NSString * const AppSpecKey_XMLPlistFormat = @"UseXMLPlistFormat";
 NSString * const AppSpecKey_Name = @"Name";
 NSString * const AppSpecKey_ScriptPath = @"ScriptPath";
-NSString * const AppSpecKey_InterfaceType = @"Output";
+NSString * const AppSpecKey_InterfaceType = @"InterfaceType";
 NSString * const AppSpecKey_IconPath = @"IconPath";
 NSString * const AppSpecKey_InterpreterPath = @"InterpreterPath";
 NSString * const AppSpecKey_InterpreterArgs = @"InterpreterArgs";
@@ -79,6 +79,7 @@ NSString * const AppSpecKey_ScriptText = @"Script"; // examples only
 NSString * const AppSpecKey_ScriptName = @"ScriptName"; // examples only
 
 NSString * const AppSpecKey_InterpreterPath_Legacy = @"Interpreter";
+NSString * const AppSpecKey_InterfaceType_Legacy = @"Output";
 
 // NSUserDefaults keys for Platypus app
 NSString * const DefaultsKey_BundleIdentifierPrefix = @"DefaultBundleIdentifierPrefix";

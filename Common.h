@@ -100,9 +100,6 @@
 #define PLATYPUS_APP_SPEC_CREATION_NOTIFICATION     @"PlatypusAppSpecCreationNotification"
 #define PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION      @"PlatypusAppSizeChangedNotification"
 
-// path to temp script file
-#define TMP_STDIN_PATH              @"/tmp/.platypus_stdin.XXXXXX"
-
 // status item display types
 #define PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT       @"Text"
 #define PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON       @"Icon"
@@ -215,7 +212,8 @@ extern NSString * const AppSpecKey_IsExample; // examples only
 extern NSString * const AppSpecKey_ScriptText; // examples only
 extern NSString * const AppSpecKey_ScriptName; // examples only
 
-extern NSString * const AppSpecKey_InterpreterPath_Legacy;
+extern NSString * const AppSpecKey_InterpreterPath_Legacy; // legacy
+extern NSString * const AppSpecKey_InterfaceType_Legacy; // legacy
 
 // NSUserDefaults keys for Platypus app
 extern NSString * const DefaultsKey_BundleIdentifierPrefix;

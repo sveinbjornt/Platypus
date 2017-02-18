@@ -646,14 +646,8 @@ static NSString *ReadStandardInputToFile(void) {
     }
     
     // write to temp file
-    NSError *err;
-    BOOL success = [inStr writeToFile:TMP_STDIN_PATH atomically:YES encoding:DEFAULT_TEXT_ENCODING error:&err];
-    
-    if (success == NO) {
-        NSPrintErr(@"Error writing script to path %: %@", TMP_STDIN_PATH, [err localizedDescription]);
-        exit(1);
-    }
-    return TMP_STDIN_PATH;
+    NSString *tmpFilePath = [WORKSPACE createTempFileWithContents:inStr];;
+    return tmpFilePath;
 }
 
 static NSString *MakeAbsolutePath(NSString *path) {

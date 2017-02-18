@@ -119,6 +119,9 @@
         if (dict[AppSpecKey_InterpreterPath_Legacy] != nil) {
             properties[AppSpecKey_InterpreterPath] = dict[AppSpecKey_InterpreterPath_Legacy];
         }
+        if (dict[AppSpecKey_InterfaceType_Legacy] != nil) {
+            properties[AppSpecKey_InterfaceType] = dict[AppSpecKey_InterfaceType_Legacy];
+        }
     }
     return self;
 }
