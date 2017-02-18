@@ -28,10 +28,12 @@ For future versions...
 5.2
     TODO: Update documentation, do a better job of explaining exactly how the Status Menu interface works
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
-    TODO: Fix status menu output issue
-    TODO: Clicked row contextual menu handling
+    TODO: Fix annoying status menu output issue
     TODO: Fix issue where "Use as template" is shown even though Status Item mode is "Text"
+    TODO: Test stdin stuff in command line tool
+    TODO: Support relative paths in profiles
 
+    * ScriptExec now parses shebang during debug if no interpreter is provided in AppSettings
     * Got rid of the TMP_STDIN_PATH hack
     * The Platypus Profile format has changed slightly in this version, but old formats can still be read
     * Fixed issue where valid menu items were disabled in Action menu

@@ -39,11 +39,14 @@
 #import "NSColor+HexTools.h"
 #import "STPrivilegedTask.h"
 #import "STDragWebView.h"
-#import "NSWorkspace+Additions.h"
 #import "ScriptExecController.h"
 #import "NSTask+Description.h"
 #import "Alerts.h"
 #import "ScriptExecJob.h"
+
+#ifdef DEBUG
+#import "PlatypusScriptAnalyser.h"
+#endif
 
 @interface ScriptExecController()
 {
@@ -377,21 +380,34 @@ static const NSInteger detailsHeight = 224;
         }
     }
     
-    // get interpreter
-    NSString *scriptInterpreter = appSettingsDict[AppSpecKey_InterpreterPath];
-    if (scriptInterpreter == nil || [FILEMGR fileExistsAtPath:scriptInterpreter] == NO) {
-        [Alerts fatalAlert:@"Missing interpreter"
-             subTextFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreter];
-    }
-    interpreter = [[NSString alloc] initWithString:scriptInterpreter];
-
     // check the script file
     NSString *path = [appBundle pathForResource:@"script" ofType:nil];
     if ([FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]] == NO) {
         [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
     }
     scriptPath = [NSString stringWithString:path];
+
     
+    // get interpreter
+    NSString *scriptInterpreterPath = appSettingsDict[AppSpecKey_InterpreterPath];
+#ifdef DEBUG
+    // For debugging purposes, an empty or missing interpreter means we
+    // parse the shebang line for one. Makes it easier to switch scripting
+    // languages in the test script without mucking with AppSettings.plist
+    if (scriptInterpreterPath == nil || [scriptInterpreterPath isEqualToString:@""]) {
+        scriptInterpreterPath = [PlatypusScriptAnalyser determineInterpreterPathForScriptFile:scriptPath];
+        if (scriptInterpreterPath == nil) {
+            scriptInterpreterPath = DEFAULT_INTERPRETER_PATH;
+        }
+    }
+#else
+    if (scriptInterpreterPath == nil || [FILEMGR fileExistsAtPath:scriptInterpreterPath] == NO) {
+        [Alerts fatalAlert:@"Missing interpreter"
+             subTextFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreterPath];
+    }
+#endif
+    interpreter = [[NSString alloc] initWithString:scriptInterpreterPath];
+
     // make sure we can read the script file
     if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
         // chmod 774
@@ -1276,7 +1292,7 @@ static const NSInteger detailsHeight = 224;
 
 - (IBAction)cancel:(id)sender {
     
-    if (task != nil) {
+    if (task != nil && [task isRunning]) {
         [task terminate];
     }
     
