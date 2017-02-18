@@ -31,8 +31,8 @@ For future versions...
     TODO: Fix annoying status menu output issue
     TODO: Fix issue where "Use as template" is shown even though Status Item mode is "Text"
     TODO: Test stdin stuff in command line tool
-    TODO: Support relative paths in profiles
 
+    * Relative paths are now supported in Platypus Profiles (but only through manual editing)
     * ScriptExec now parses shebang during debug if no interpreter is provided in AppSettings
     * Got rid of the TMP_STDIN_PATH hack
     * The Platypus Profile format has changed slightly in this version, but old formats can still be read
