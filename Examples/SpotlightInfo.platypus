@@ -21,7 +21,6 @@
 	<key>Script</key>
 	<string>#!/usr/bin/perl 
 # Uses the mdls command to list meta data info on dropped files
-use Shell;
 
 foreach(@ARGV)
 {

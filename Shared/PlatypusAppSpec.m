@@ -131,24 +131,25 @@
 }
 
 - (instancetype)initWithProfile:(NSString *)profilePath {
-    NSMutableDictionary *profileDict = [NSMutableDictionary dictionaryWithContentsOfFile:profilePath];
+    NSDictionary *profileDict = [NSDictionary dictionaryWithContentsOfFile:profilePath];
     if (profileDict == nil) {
         return nil;
     }
     
-    NSMutableDictionary *updatedDict = [NSMutableDictionary dictionaryWithDictionary:profileDict];
-    NSString *profileFolderPath = [profilePath stringByDeletingLastPathComponent];
+    NSMutableDictionary *updatedDict = [profileDict mutableCopy];
+    NSString *basePath = [profilePath stringByDeletingLastPathComponent];
     
     // Find all non-absolute paths and resolve them
     // relative to the profile's containing folder
     for (NSString *key in profileDict) {
-        if ([key hasSuffix:@"Path"] && [profileDict[key] isAbsolutePath] == NO) {
-            NSString *absPath = [NSString stringWithFormat:@"%@/%@", profileFolderPath, profileDict[key]];
+        if ([key hasSuffix:@"Path"] && ![profileDict[key] isEqualToString:@""]
+            && [profileDict[key] isAbsolutePath] == NO) {
+            NSString *absPath = [NSString stringWithFormat:@"%@/%@", basePath, profileDict[key]];
             updatedDict[key] = [absPath stringByStandardizingPath];
         }
     }
     
-    return [self initWithDictionary:updatedDict];
+    return [self initWithDictionary:[NSDictionary dictionaryWithDictionary:updatedDict]];
 }
 
 + (instancetype)specWithDefaults {

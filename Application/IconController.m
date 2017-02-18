@@ -317,16 +317,14 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         return YES;
     }
     
-    [iconNameTextField setStringValue:[filePath lastPathComponent]];
-    
-    NSImage *img = [[NSImage alloc] initByReferencingFile:filePath];
-    
+    NSImage *img = [[NSImage alloc] initWithContentsOfFile:filePath];
     if (img == nil) {
-        IconFamily *iconFam = [[IconFamily alloc] initWithSystemIcon:kQuestionMarkIcon];
-        [iconImageView setImage:[iconFam imageWithAllReps]];
-        return NO;
+        NSBeep();
+        [self setAppIconForType:PlatypusPresetIconGenericApplication];
+         return NO;
     }
     
+    [iconNameTextField setStringValue:[filePath lastPathComponent]];
     [self setIcnsFilePath:filePath];
     
     return YES;

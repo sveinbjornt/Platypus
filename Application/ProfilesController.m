@@ -81,7 +81,7 @@
     [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filePath]];
     
     // check if it's an example
-    if (spec[AppSpecKey_IsExample] != nil) {
+    if (spec[AppSpecKey_IsExample] != nil && [spec[AppSpecKey_IsExample] boolValue] == YES) {
         
         // check the example profile's integrity
         NSString *scriptStr = spec[AppSpecKey_ScriptText];
