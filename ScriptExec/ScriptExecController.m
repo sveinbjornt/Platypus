@@ -1642,6 +1642,15 @@ static const NSInteger detailsHeight = 224;
     }
 }
 
+#pragma mark - Window delegate methods
+
+- (void)windowWillClose:(NSNotification *)notification {
+    NSWindow *win = [notification object];
+    if (win == dropletWindow) {
+        [[NSApplication sharedApplication] terminate:self];
+    }
+}
+
 #pragma mark - Utility methods
 
 - (void)showNotification:(NSString *)notificationText {
