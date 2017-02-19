@@ -1275,19 +1275,19 @@ static const NSInteger detailsHeight = 224;
         return YES;
     }
     // save to file item
-    if (!IsTextStyledInterfaceType(interfaceType) && [[anItem title] isEqualToString:@"Save to File…"]) {
-        return NO;
+    if (IsTextStyledInterfaceType(interfaceType) && [[anItem title] isEqualToString:@"Save to File…"]) {
+        return YES;
     }
     // open should only work if it's a droppable app that accepts files
-    if ((!isDroppable || !acceptsFiles) && [[anItem title] isEqualToString:@"Open…"]) {
-        return NO;
+    if ((isDroppable && acceptsFiles) && [[anItem title] isEqualToString:@"Open…"]) {
+        return YES;
     }
     // change text size
     if (IsTextSizableInterfaceType(interfaceType) && [[anItem title] hasPrefix:@"Make Text"]) {
         return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 - (IBAction)cancel:(id)sender {

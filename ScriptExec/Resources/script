@@ -1,8 +1,8 @@
 #!/usr/bin/perl
 
 my $i = 0;
-for ($i = 0; $i < 100000; $i++){
-    print "Hey\n";
+for ($i = 0; $i < 100; $i++){
+    print "$i: Hey\n";
 }
 
 # If 0 arguments, we show menu
@@ -15,8 +15,6 @@ for ($i = 0; $i < 100000; $i++){
 ## and feed it to the Mac OS X voice synthesizer
 #system("/usr/bin/say \"$ARGV[0]\"");
 #}
-
-
 
 #if [ ! -e "$1" ]
 #then
