@@ -588,11 +588,16 @@ int main(int argc, const char *argv[]) {
         }
         
         appSpec = [PlatypusAppSpec specWithDefaultsFromScript:scriptPath];
-        NSString *appBundleName = [NSString stringWithFormat:@"%@.app", properties[AppSpecKey_Name]];
+        NSString *appName = properties[AppSpecKey_Name] ? properties[AppSpecKey_Name] : appSpec[AppSpecKey_Name];
+        NSString *appBundleName = [NSString stringWithFormat:@"%@.app", appName];
         NSString *scriptFolder = [scriptPath stringByDeletingLastPathComponent];
         destPath = [scriptFolder stringByAppendingPathComponent:appBundleName];
+        
         appSpec[AppSpecKey_DestinationPath] = destPath;
         [appSpec addEntriesFromDictionary:properties];
+        
+        NSLog(@"%@\n-----------------", [appSpec description]);
+
         
         // if author name is supplied but no identifier, we create a default identifier with author name as clue
         if (properties[AppSpecKey_Author] && properties[AppSpecKey_Identifier] == nil) {
