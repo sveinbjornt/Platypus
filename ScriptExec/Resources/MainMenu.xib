@@ -200,6 +200,16 @@ Gw
                                     <action selector="openFiles:" target="207" id="524"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Open Recent" id="FvD-xH-BRz">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="QHk-NS-To3">
+                                    <items>
+                                        <menuItem title="Clear Menu" id="CWw-N0-5lz">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="79">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
@@ -353,6 +363,7 @@ Gw
             <connections>
                 <outlet property="delegate" destination="207" id="525"/>
             </connections>
+            <point key="canvasLocation" x="-21" y="164"/>
         </menu>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="TextWindow" animationBehavior="default" id="216" userLabel="TextOutputWindow">
             <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>

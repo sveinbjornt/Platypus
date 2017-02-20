@@ -1409,6 +1409,10 @@ static const NSInteger detailsHeight = 224;
         return NO;
     }
     
+    for (NSString *path in acceptedFiles) {
+        [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:path]];
+    }
+    
     // we create a job and add the files as arguments
     ScriptExecJob *job = [ScriptExecJob jobWithArguments:acceptedFiles andStandardInput:nil];
     [jobQueue addObject:job];
