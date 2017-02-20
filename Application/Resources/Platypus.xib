@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -100,7 +100,7 @@ DQ
                     </textField>
                     <box verticalHuggingPriority="750" boxType="separator" id="314">
                         <rect key="frame" x="22" y="327" width="616" height="5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </box>
                     <textField verticalHuggingPriority="750" id="318">
                         <rect key="frame" x="189" y="462" width="79" height="18"/>
@@ -1283,7 +1283,7 @@ DQ
                             <action selector="closeDropSettingsSheet:" target="1364" id="11536"/>
                         </connections>
                     </button>
-                    <button toolTip="Restore all fields to default" verticalHuggingPriority="750" id="557">
+                    <button toolTip="Restore all settings to defaults" verticalHuggingPriority="750" id="557">
                         <rect key="frame" x="14" y="14" width="150" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="10999">
@@ -1347,7 +1347,7 @@ DQ
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="zU0-Dr-gG8">
                                                     <rect key="frame" x="1" y="1" width="162" height="96"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="708" customClass="NSResponderNotifyingTableView">
                                                             <rect key="frame" x="0.0" y="0.0" width="162" height="96"/>
@@ -1423,12 +1423,12 @@ DQ
                                         </subviews>
                                     </view>
                                 </box>
-                                <imageView id="11239">
+                                <imageView toolTip="Document icon for your app" id="11239">
                                     <rect key="frame" x="52" y="22" width="16" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="PlatypusDefault" id="11240"/>
                                 </imageView>
-                                <button id="11460">
+                                <button toolTip="If you select this, your application will prompt the user with an open file dialog as soon as it launches." id="11460">
                                     <rect key="frame" x="275" y="20" width="180" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Prompt for file on launch" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11461">
@@ -1443,12 +1443,12 @@ DQ
                                         <rect key="frame" x="2" y="2" width="214" height="163"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <scrollView toolTip="List of UTIs the application accepts" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="AOR-Jg-jZl">
+                                            <scrollView toolTip="List of Uniform Type Identifiers that the application should open" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="AOR-Jg-jZl">
                                                 <rect key="frame" x="18" y="50" width="179" height="98"/>
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="xVE-Bl-gWX">
                                                     <rect key="frame" x="1" y="1" width="162" height="96"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk" customClass="NSResponderNotifyingTableView">
                                                             <rect key="frame" x="0.0" y="0.0" width="162" height="96"/>
@@ -1524,7 +1524,7 @@ DQ
                                         </subviews>
                                     </view>
                                 </box>
-                                <button verticalHuggingPriority="750" id="11241">
+                                <button toolTip="Click here to select a document icon (.icns file) for documents associated with your app." verticalHuggingPriority="750" id="11241">
                                     <rect key="frame" x="70" y="14" width="147" height="28"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Select document icon" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="11242">
@@ -1563,7 +1563,7 @@ DQ
                     <textField verticalHuggingPriority="750" id="11463">
                         <rect key="frame" x="238" y="407" width="281" height="33"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Check here if you want your script to get opened or dropped files passed as arguments to the script.  " id="11464">
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Check here if you want your script to receive opened or dropped files as arguments.  " id="11464">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1592,6 +1592,7 @@ DQ
                     <button id="11326">
                         <rect key="frame" x="218" y="75" width="208" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <string key="toolTip">Check here for the script to received dropped text snippets or text fed in through the Mac OS X Services API.  Your script can access the text by reading STDIN.</string>
                         <buttonCell key="cell" type="check" title="Provide as a Mac OS X Service" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11327">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
