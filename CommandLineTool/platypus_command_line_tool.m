@@ -596,9 +596,6 @@ int main(int argc, const char *argv[]) {
         appSpec[AppSpecKey_DestinationPath] = destPath;
         [appSpec addEntriesFromDictionary:properties];
         
-        NSLog(@"%@\n-----------------", [appSpec description]);
-
-        
         // if author name is supplied but no identifier, we create a default identifier with author name as clue
         if (properties[AppSpecKey_Author] && properties[AppSpecKey_Identifier] == nil) {
             NSString *identifier = [PlatypusAppSpec bundleIdentifierForAppName:appSpec[AppSpecKey_Name]
