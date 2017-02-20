@@ -32,7 +32,9 @@ For future versions...
     TODO: Fix issue where "Use as template" is shown even though Status Item mode is "Text"
     TODO: Test stdin stuff in command line tool
     TODO: Fix performance issue with printing many lines to text window
+    TODO: Fix issue where command line tool fails to intelligently infer app name from script filename
 
+    * Platypus now warns about about identical file names in for bundled files
     * Fixed bug where files that had been moved were not list in red color in Bundled Files list
     * Droplet apps now quit when their window is closed
     * Relative paths are now supported in Platypus Profiles (but only through manual editing)

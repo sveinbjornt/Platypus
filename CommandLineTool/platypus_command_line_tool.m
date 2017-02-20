@@ -50,6 +50,7 @@
 
 static NSString *ReadStandardInputToFile(void);
 static NSString *MakeAbsolutePath(NSString *path);
+static NSArray *FindDuplicateFileNames(NSArray *paths);
 static void PrintVersion(void);
 static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
@@ -509,7 +510,13 @@ int main(int argc, const char *argv[]) {
         NSPrintErr(@"Error: Missing argument");
         PrintHelp();
         exit(1);
-    }    
+    }
+    
+    // check if there are any duplicate filenames in bundled files
+    NSArray *duplicateFileNames = FindDuplicateFileNames(properties[AppSpecKey_BundledFiles]);
+    if ([duplicateFileNames count]) {
+        NSPrintErr(@"Warning: Duplicate file names in bundled files. These may be overwritten: %@", [duplicateFileNames description]);
+    }
     
     PlatypusAppSpec *appSpec = nil;
     NSString *scriptPath = nil;
@@ -614,6 +621,8 @@ int main(int argc, const char *argv[]) {
         exit(1);
     }
     
+    //NSLog(@"%@", [appSpec description]);
+    
     // create the app from spec
     if ([appSpec verify] == NO || [appSpec create] == NO) {
         NSPrintErr(@"Error: %@", [appSpec error]);
@@ -656,6 +665,20 @@ static NSString *MakeAbsolutePath(NSString *path) {
         absPath = [[FILEMGR currentDirectoryPath] stringByAppendingPathComponent:path];
     }
     return [absPath stringByStandardizingPath];
+}
+
+static NSArray *FindDuplicateFileNames(NSArray *paths) {
+    NSMutableSet *fileNameSet = [NSMutableSet set];
+    NSMutableArray *duplicateFileNames = [NSMutableArray array];
+    for (NSString *p in paths) {
+        NSString *fn = [p lastPathComponent];
+        if ([fileNameSet containsObject:fn]) {
+            [duplicateFileNames addObject:fn];
+        } else {
+            [fileNameSet addObject:fn];
+        }
+    }
+    return [duplicateFileNames copy];
 }
 
 #pragma mark -

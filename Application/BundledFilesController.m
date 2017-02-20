@@ -95,9 +95,17 @@
     }
     BOOL addedFile = NO;
     for (NSString *filePath in filePaths) {
+        
         if ([self hasFilePath:filePath]) {
             continue;
         }
+        
+        if ([self hasFileName:[filePath lastPathComponent]]) {
+            [Alerts alert:@"File name duplicate"
+            subTextFormat:@"You have already added a file or folder named \"%@\". Please rename the file to add it.", [filePath lastPathComponent]];
+            continue;
+        }
+        
         NSImage *icon = [WORKSPACE iconForFile:filePath];
         [icon setSize:NSMakeSize(16, 16)];
         NSDictionary *fileInfoDict = @{ @"Icon":icon, @"Path":filePath };
@@ -171,6 +179,16 @@
 - (BOOL)hasFilePath:(NSString *)filePath {
     for (NSDictionary *fileInfoDict in files) {
         if ([fileInfoDict[@"Path"] isEqualToString:filePath]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)hasFileName:(NSString *)filename {
+    for (NSDictionary *fileInfoDict in files) {
+        NSString *fn = [fileInfoDict[@"Path"] lastPathComponent];
+        if ([fn isEqualToString:filename]) {
             return YES;
         }
     }
