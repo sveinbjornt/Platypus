@@ -96,7 +96,6 @@ NSString * const DefaultsKey_UseXMLPlistFormat = @"OnCreateUseXMLPlist";
 NSString * const ScriptExecDefaultsKey_UserFontSize = @"UserFontSize";
 NSString * const ScriptExecDefaultsKey_ShowDetails = @"UserShowDetails";
 
-// functions
 
 BOOL UTTypeIsValid(NSString *inUTI) {
     NSString *reverseDNSRegEx = @"^[A-Za-z]{2,6}((?!-)\\.[A-Za-z0-9-]{1,63}(?<!-))+$";

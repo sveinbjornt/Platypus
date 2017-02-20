@@ -29,26 +29,26 @@ For future versions...
     TODO: Update documentation, do a better job of explaining exactly how the Status Menu interface works
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Fix annoying status menu output issue
-    TODO: Fix issue where "Use as template" is shown even though Status Item mode is "Text"
     TODO: Test stdin stuff in command line tool
     TODO: Fix performance issue with printing many lines to text window
 
+    * Fixed bug where "Use as template" was shown when Status Item mode is "Text"
     * Fixed bug where command line tool failed to infer app name from script filename, resulting in "(null).app"
     * Platypus now warns about about identical file names in for bundled files
-    * Fixed bug where files that had been moved were not list in red color in Bundled Files list
+    * Fixed bug where files that had been moved were not colored red in Bundled Files list
     * Droplet apps now quit when their window is closed
-    * Relative paths are now supported in Platypus Profiles (but only through manual editing)
+    * Relative paths are now supported in Platypus Profiles, but only through manual editing. Platypus app and CLT still generated Profiles with absolute paths.
     * ScriptExec now parses shebang during debug if no interpreter is provided in AppSettings
     * Got rid of the TMP_STDIN_PATH hack
     * The Platypus Profile format has changed slightly in this version, but old formats can still be read
-    * Fixed issue where valid menu items were disabled in Action menu
+    * Fixed bug where valid menu items were disabled in Action menu
     * Updated documentation & man page, remove refs to options that are gone (text encoding, secure script)
     * Fixed issue with console spamming due to missing CFBundleTypeRole
     * Fixed bug where text settings were not properly loaded by the GUI
     * Fixed bug where bundling files with the -f flag didn't work in the command line tool
     * Fixed bug where the command line tool would erroneously try to validate whole argument strings instead of individual UTI strings
     * Fixed bug where suffix editing buttons remained enabled when they shouldn't be
-    * Got rid of text encoding settings. Platypus now uses UTF8, and you should too.
+    * Got rid of text encoding settings. Platypus now uses UTF8 for everything, and you should too.
     * Got rid of "Secure bundled script" option, which was useless bullshit anyway
     * Bundled files table view now uses combined image and text cell instead of two columns
     * Renamed Advanced menu to Action
@@ -159,7 +159,7 @@ For 4.9
     * Fixed bug where the Create button would remain greyed out even though all requirements were satisfied
     * Fixed bug where progress indicator would keep animating after execution in Progress Bar interface type
     * Fixed bug where command line tool complained about valid .icns filenames
-    * Fixed bug where command line tool would always created XML property lists instead of binary ones
+    * Fixed bug where command line tool would always create XML property lists instead of binary ones
     * Refactored all deprecated method calls
     * Various minor interface refinements
     * Fixed row height in bundled file list
