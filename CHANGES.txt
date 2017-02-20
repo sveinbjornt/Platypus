@@ -31,7 +31,10 @@ For future versions...
     TODO: Fix annoying status menu output issue
     TODO: Fix issue where "Use as template" is shown even though Status Item mode is "Text"
     TODO: Test stdin stuff in command line tool
+    TODO: Fix performance issue with printing many lines to text window
 
+    * Fixed bug where files that had been moved were not list in red color in Bundled Files list
+    * Droplet apps now quit when their window is closed
     * Relative paths are now supported in Platypus Profiles (but only through manual editing)
     * ScriptExec now parses shebang during debug if no interpreter is provided in AppSettings
     * Got rid of the TMP_STDIN_PATH hack

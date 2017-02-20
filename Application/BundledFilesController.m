@@ -121,7 +121,7 @@
     [fileWatcherQueue removeAllPaths];
     for (NSDictionary *fileItem in files) {
         [fileWatcherQueue addPath:fileItem[@"Path"]];
-    }
+    }    
 }
 
 - (void)updateButtonStatus {
@@ -352,7 +352,8 @@
 
 - (NSView *)tableView:(NSTableView *)tv viewForTableColumn:(NSTableColumn *)tc row:(NSInteger)row {
     NSTableCellView *cellView = [tv makeViewWithIdentifier:@"MainCell" owner:self];
-    cellView.textField.stringValue = files[row][@"Path"];
+    cellView.textField.stringValue = [files[row][@"Path"] lastPathComponent];
+    cellView.textField.textColor = [FILEMGR fileExistsAtPath:files[row][@"Path"]] ? [NSColor blackColor] : [NSColor redColor];
     cellView.imageView.objectValue = files[row][@"Icon"];
     return cellView;
 }
