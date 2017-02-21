@@ -1319,6 +1319,9 @@ static const NSInteger detailsHeight = 224;
     } else {
         // text field
         CGFloat newFontSize = [textFont pointSize] + delta;
+        if (newFontSize < 5.0) {
+            newFontSize = 5.0;
+        }
 //        if (textFont != nil) {
 //            [textFont release];
 //        }

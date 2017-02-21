@@ -14,13 +14,14 @@ For future versions...
     TODO: Support for authenticated task termination
     TODO: Add support for feeding script output into status item view like Tapir did (cool feature)
     TODO: Drag and drop from icon view should be file based, not TIFF pasteboard data
+    TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
 
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
 
+
 5.2
     TODO: Update documentation, do a better job of explaining exactly how the Status Menu interface works
-    TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Fix annoying status menu output issue
     TODO: Test stdin stuff in command line tool
     TODO: Fix performance issue with printing many lines to text window
@@ -31,18 +32,19 @@ For future versions...
     TODO: Documentation should be updated about what Use Icon as Template does
     TODO: Fix line numbering in built-in editor (Improve built-in editor)
 
-    * Platypus apps that accept dropped files now have a functioning Open Recent menu
-    * Fixed bug where "Use as template" was shown when Status Item mode is "Text"
+    * Text in apps now has a minimum font size
+    * Platypus apps that accept dropped files now have an Open Recent menu
+    * Fixed bug where "Use as template" was shown when Status Item mode was "Text"
     * Fixed bug where command line tool failed to infer app name from script filename, resulting in "(null).app"
-    * Platypus now warns about about identical file names in for bundled files
+    * Platypus now warns about about identical file names in bundled files
     * Fixed bug where files that had been moved were not colored red in Bundled Files list
     * Droplet apps now quit when their window is closed
-    * Relative paths are now supported in Platypus Profiles, but only through manual editing. Platypus app and CLT still generated Profiles with absolute paths.
+    * Relative paths are now supported in Platypus Profiles, but only through manual editing. Platypus app and CLT still generate Profiles with absolute paths.
     * ScriptExec now parses shebang during debug if no interpreter is provided in AppSettings
     * Got rid of the TMP_STDIN_PATH hack
     * The Platypus Profile format has changed slightly in this version, but old formats can still be read
     * Fixed bug where valid menu items were disabled in Action menu
-    * Updated documentation & man page, remove refs to options that are gone (text encoding, secure script)
+    * Updated documentation & man page, removed refs to options that are gone (text encoding, secure script)
     * Fixed issue with console spamming due to missing CFBundleTypeRole
     * Fixed bug where text settings were not properly loaded by the GUI
     * Fixed bug where bundling files with the -f flag didn't work in the command line tool
