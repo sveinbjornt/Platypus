@@ -89,6 +89,7 @@
     IBOutlet NSMenuItem *hideMenuItem;
     IBOutlet NSMenuItem *quitMenuItem;
     IBOutlet NSMenuItem *aboutMenuItem;
+    IBOutlet NSMenuItem *openRecentMenuItem;
     IBOutlet NSMenu *windowMenu;
     
     NSTextView *outputTextView;
@@ -528,7 +529,10 @@ static const NSInteger detailsHeight = 224;
     [aboutMenuItem setTitle:[NSString stringWithFormat:@"About %@", appName]];
     [hideMenuItem setTitle:[NSString stringWithFormat:@"Hide %@", appName]];
     
-    // script output will be dumped in outputTextView, by default this is the Text Window text view
+    [openRecentMenuItem setEnabled:acceptsFiles];
+    
+    // script output will be dumped in outputTextView
+    // by default this is the Text Window text view
     outputTextView = textWindowTextView;
 
     if (runInBackground == TRUE) {

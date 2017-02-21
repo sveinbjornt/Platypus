@@ -1,7 +1,10 @@
 #!/usr/bin/perl
 
+BEGIN { $| = 1 }
+
 my $i = 0;
-for ($i = 0; $i < 100; $i++){
+for ($i = 0; $i < 4; $i++){
+    sleep 1;
     print "$i: Hey\n";
 }
 

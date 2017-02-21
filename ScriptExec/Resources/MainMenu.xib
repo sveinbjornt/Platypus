@@ -29,6 +29,7 @@
                 <outlet property="dropletShaderView" destination="519" id="w2q-dA-smc"/>
                 <outlet property="dropletWindow" destination="490" id="512"/>
                 <outlet property="hideMenuItem" destination="134" id="239"/>
+                <outlet property="openRecentMenuItem" destination="FvD-xH-BRz" id="V8D-h2-Uw1"/>
                 <outlet property="progressBarCancelButton" destination="206" id="299"/>
                 <outlet property="progressBarDetailsLabel" destination="290" id="300"/>
                 <outlet property="progressBarDetailsTriangle" destination="288" id="301"/>
