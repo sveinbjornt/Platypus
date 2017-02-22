@@ -1322,9 +1322,7 @@ static const NSInteger detailsHeight = 224;
         if (newFontSize < 5.0) {
             newFontSize = 5.0;
         }
-//        if (textFont != nil) {
-//            [textFont release];
-//        }
+
         textFont = [[NSFontManager sharedFontManager] convertFont:textFont toSize:newFontSize];
         [outputTextView setFont:textFont];
         [DEFAULTS setObject:@((float)newFontSize) forKey:ScriptExecDefaultsKey_UserFontSize];
@@ -1445,7 +1443,6 @@ static const NSInteger detailsHeight = 224;
         return YES;
     }
     
-    // We only look at suffixes if
 //    if ([droppableUniformTypes count] == 0) {
         for (NSString *suffix in droppableSuffixes) {
             if ([file hasSuffix:suffix]) {
@@ -1454,7 +1451,6 @@ static const NSInteger detailsHeight = 224;
         }
 //    }
 
-    // see if file
     for (NSString *uti in droppableUniformTypes) {
         NSString *fileType = [WORKSPACE typeOfFile:file error:nil];
         if ([WORKSPACE type:fileType conformsToType:uti]) {
@@ -1657,7 +1653,7 @@ static const NSInteger detailsHeight = 224;
 
 - (void)windowWillClose:(NSNotification *)notification {
     NSWindow *win = [notification object];
-    if (win == dropletWindow) {
+    if (win == dropletWindow && interfaceType == PlatypusInterfaceType_Droplet) {
         [[NSApplication sharedApplication] terminate:self];
     }
 }
