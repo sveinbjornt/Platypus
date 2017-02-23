@@ -1,7 +1,8 @@
 #!/bin/sh
 
-echo "Opening" $1
-
+#echo "Opening" $1
+read var
+echo $var
 #BEGIN { $| = 1 }
 #
 #my $i = 0;

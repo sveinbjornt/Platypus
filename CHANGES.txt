@@ -29,8 +29,10 @@ For future versions...
     TODO: Documentation should be updated about what Use Icon as Template does
     TODO: Test stdin stuff in command line tool
 
+    TODO: Add url protocol handling options to command line tool and command string generation
     TODO: Create URI protocol handling example Profile - say://
 
+    * Platypus apps can now accept dragged URLs
     * Platypus apps can now register as URL scheme handlers and send URLs as arguments to script
     * Text in apps now has a minimum font size
     * Platypus apps that accept dropped files now have an Open Recent menu

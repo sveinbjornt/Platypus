@@ -1344,12 +1344,16 @@ static const NSInteger detailsHeight = 224;
 #pragma mark - Service handling
 
 - (void)dropService:(NSPasteboard *)pb userData:(NSString *)userData error:(NSString **)err {
+    PLog(@"Received drop service data");
     NSArray *types = [pb types];
     BOOL ret = 0;
     id data = nil;
     
     if (acceptsFiles && [types containsObject:NSFilenamesPboardType] && (data = [pb propertyListForType:NSFilenamesPboardType])) {
         ret = [self addDroppedFilesJob:data];  // files
+    } else if (acceptsText && [types containsObject:NSURLPboardType]) {
+        NSURL *fileURL = [NSURL URLFromPasteboard:pb];
+        ret = [self addDroppedTextJob:[fileURL absoluteString]];  // url
     } else if (acceptsText && [types containsObject:NSStringPboardType] && (data = [pb stringForType:NSStringPboardType])) {
         ret = [self addDroppedTextJob:data];  // text
     } else {
