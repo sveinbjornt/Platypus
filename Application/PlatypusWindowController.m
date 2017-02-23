@@ -554,6 +554,7 @@
     
     spec[AppSpecKey_Suffixes] = [dropSettingsController suffixList];
     spec[AppSpecKey_Utis] = [dropSettingsController uniformTypesList];
+    spec[AppSpecKey_URIProtocols] = [dropSettingsController uriProtocolList];
     spec[AppSpecKey_DocIconPath] = [dropSettingsController docIconPath];
     spec[AppSpecKey_AcceptText] = @((BOOL)[dropSettingsController acceptsText]);
     spec[AppSpecKey_AcceptFiles] = @((BOOL)[dropSettingsController acceptsFiles]);
@@ -611,6 +612,7 @@
     //drop settings
     [dropSettingsController setSuffixList:spec[AppSpecKey_Suffixes]];
     [dropSettingsController setUniformTypesList:spec[AppSpecKey_Utis]];
+    [dropSettingsController setUriProtocolList:spec[AppSpecKey_URIProtocols]];
     [dropSettingsController setDocIconPath:spec[AppSpecKey_DocIconPath]];
     [dropSettingsController setAcceptsText:[spec[AppSpecKey_AcceptText] boolValue]];
     [dropSettingsController setAcceptsFiles:[spec[AppSpecKey_AcceptFiles] boolValue]];

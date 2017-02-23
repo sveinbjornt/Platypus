@@ -33,6 +33,7 @@
 #import "SuffixTypeListController.h"
 #import "NSWorkspace+Additions.h"
 #import "UniformTypeListController.h"
+#import "UriProtocolListController.h"
 
 @interface DropSettingsController()
 {
@@ -72,11 +73,15 @@
     
     SuffixTypeListController *suffixListController;
     UniformTypeListController *uniformTypeListController;
+    
+    UriProtocolListController *uriProtocolListController;
 }
 
 - (IBAction)addSuffix:(id)sender;
 - (IBAction)addUTI:(id)sender;
+- (IBAction)addURIProtocol:(id)sender;
 - (IBAction)removeListItem:(id)sender;
+- (IBAction)registerAsURIHandlerClicked:(id)sender;
 - (IBAction)openDropSettingsSheet:(id)sender;
 - (IBAction)closeDropSettingsSheet:(id)sender;
 - (IBAction)selectDocIcon:(id)sender;
@@ -92,6 +97,7 @@
     if (self = [super init]) {
         suffixListController = [[SuffixTypeListController alloc] init];
         uniformTypeListController = [[UniformTypeListController alloc] init];
+        uriProtocolListController = [[UriProtocolListController alloc] init];
     }
     return self;
 }
@@ -117,6 +123,11 @@
     [uniformTypeListTableView reloadData];
     [uniformTypeListTableView setDelegate:self];
     [uniformTypeListTableView setTarget:self];
+    
+    [uriProtocolListTableView setDataSource:uriProtocolListController];
+    [uriProtocolListTableView reloadData];
+    [uriProtocolListTableView setDelegate:self];
+    [uriProtocolListTableView setTarget:self];
     
     [errorTextField setStringValue:@""];
     [self updateButtonStatus];
@@ -181,6 +192,13 @@
     [self setSuffixListEnabled:NO];
 }
 
+- (IBAction)addURIProtocol:(id)sender {
+    [[self window] makeFirstResponder:uriProtocolListTableView];
+    [uriProtocolListController addNewItem];
+    [uriProtocolListTableView reloadData];
+    [uriProtocolListTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[uriProtocolListController itemCount] - 1] byExtendingSelection:NO];
+}
+
 - (IBAction)removeListItem:(id)sender {
     NSTableView *tableView;
     TypeListController *typeListController;
@@ -193,6 +211,9 @@
     } else if (firstResponder == uniformTypeListTableView) {
         tableView = uniformTypeListTableView;
         typeListController = uniformTypeListController;
+    } else if (firstResponder == uriProtocolListTableView) {
+        tableView = uriProtocolListTableView;
+        typeListController = uriProtocolListController;
     } else {
         return;
     }
@@ -219,6 +240,10 @@
     [uniformTypeListController removeAllItems];
     [uniformTypeListController addItems:DEFAULT_UTIS];
     [uniformTypeListTableView reloadData];
+    
+    [uriProtocolListController removeAllItems];
+    [uriProtocolListController addItems:DEFAULT_URI_PROTOCOLS];
+    [uriProtocolListTableView reloadData];
     
     [self setDocIconPath:@""];
     [self setAcceptsText:NO];
@@ -258,6 +283,11 @@
     [removeUTIButton setEnabled:
         ([[uniformTypeListTableView selectedRowIndexes] count] && [uniformTypeListTableView selectedRow] >= 0) &&
         [[self window] firstResponder] == uniformTypeListTableView
+     ];
+    
+    [removeUriProtocolButton setEnabled:
+     ([[uriProtocolListTableView selectedRowIndexes] count] && [uriProtocolListTableView selectedRow] >= 0) &&
+     [[self window] firstResponder] == uriProtocolListTableView
      ];
     
     [addSuffixButton setEnabled:[uniformTypeListController itemCount] == 0];
@@ -312,6 +342,15 @@
     [self setAcceptsTextControlsEnabled:[sender intValue]];
 }
 
+- (IBAction)registerAsURIHandlerClicked:(id)sender {
+    if ([sender intValue] == 0) {
+        [uriProtocolListController removeAllItems];
+        [uriProtocolListTableView reloadData];
+    }
+    [uriProtocolListTableView setEnabled:[sender intValue]];
+    [addUriProtocolButton setEnabled:[sender intValue]];
+}
+
 #pragma mark -
 
 - (NSArray OF_NSSTRING *)suffixList {
@@ -330,6 +369,17 @@
 - (void)setUniformTypesList:(NSArray OF_NSSTRING *)uniformTypesList {
     [uniformTypeListController removeAllItems];
     [uniformTypeListController addItems:uniformTypesList];
+}
+
+- (NSArray OF_NSSTRING *)uriProtocolList {
+    return [uriProtocolListController itemsArray];
+}
+
+- (void)setUriProtocolList:(NSArray OF_NSSTRING *)items {
+    [uriProtocolListController removeAllItems];
+    [uriProtocolListController addItems:items];
+    [uriProtocolCheckbox setState:([items count] > 0)];
+    [self registerAsURIHandlerClicked:uriProtocolCheckbox];
 }
 
 #pragma mark -

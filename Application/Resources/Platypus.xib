@@ -1611,7 +1611,7 @@ DQ
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="addUTI:" target="1364" id="pmD-dc-6P7"/>
+                                        <action selector="addURIProtocol:" target="1364" id="Bt3-Rn-exh"/>
                                     </connections>
                                 </button>
                                 <button toolTip="Remove selected UTI" verticalHuggingPriority="750" misplaced="YES" id="2Hy-Aw-PqR">
@@ -1623,7 +1623,7 @@ DQ
                                         <string key="keyEquivalent"></string>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="removeListItem:" target="1364" id="RNI-pU-fmk"/>
+                                        <action selector="removeListItem:" target="1364" id="Snx-XT-vd3"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -1665,6 +1665,9 @@ DQ
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="registerAsURIHandlerClicked:" target="1364" id="Sfa-PI-hIx"/>
+                        </connections>
                     </button>
                     <textField verticalHuggingPriority="750" misplaced="YES" id="11530">
                         <rect key="frame" x="30" y="190" width="226" height="42"/>
