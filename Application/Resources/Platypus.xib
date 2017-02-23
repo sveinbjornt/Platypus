@@ -621,6 +621,7 @@ DQ
                 <outlet property="acceptDroppedTextCheckbox" destination="11151" id="11156"/>
                 <outlet property="addSuffixButton" destination="984" id="1365"/>
                 <outlet property="addUTIButton" destination="nC2-fm-W7H" id="leP-yf-xzT"/>
+                <outlet property="addUriProtocolButton" destination="czF-wb-cer" id="zN6-2b-0D7"/>
                 <outlet property="declareServiceCheckbox" destination="11326" id="11328"/>
                 <outlet property="docIconImageView" destination="11239" id="11243"/>
                 <outlet property="droppableEnabledCheckbox" destination="299" id="HQA-Ib-ZMr"/>
@@ -629,10 +630,14 @@ DQ
                 <outlet property="promptForFileOnLaunchCheckbox" destination="11460" id="11462"/>
                 <outlet property="removeSuffixButton" destination="992" id="1369"/>
                 <outlet property="removeUTIButton" destination="tqU-IB-IyA" id="5iu-Xf-rvO"/>
+                <outlet property="removeUriProtocolButton" destination="2Hy-Aw-PqR" id="HlO-Zx-fIA"/>
                 <outlet property="selectDocumentIconButton" destination="11241" id="11535"/>
                 <outlet property="suffixListBox" destination="701" id="RXF-L6-xUJ"/>
                 <outlet property="suffixListTableView" destination="708" id="h4Y-1x-x6F"/>
                 <outlet property="uniformTypeListTableView" destination="abJ-y3-Qtk" id="y83-sn-JNr"/>
+                <outlet property="uriProtocolCheckbox" destination="Rqa-SX-VXX" id="HRG-Dv-sYY"/>
+                <outlet property="uriProtocolListBox" destination="qEg-fw-Jf9" id="fOg-kG-hav"/>
+                <outlet property="uriProtocolListTableView" destination="Qc1-zf-c1B" id="s6G-0R-1cw"/>
                 <outlet property="utiListBox" destination="e6h-Co-zvh" id="Ueg-7s-a6L"/>
                 <outlet property="window" destination="395" id="xfT-sQ-8tr"/>
             </connections>
@@ -1262,11 +1267,11 @@ CA
         <window title="Drop Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="395" userLabel="DropSettings Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="457" y="200" width="537" height="534"/>
+            <rect key="contentRect" x="457" y="200" width="537" height="582"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <value key="minSize" type="size" width="502" height="362"/>
-            <view key="contentView" id="396">
-                <rect key="frame" x="0.0" y="0.0" width="537" height="534"/>
+            <view key="contentView" misplaced="YES" id="396">
+                <rect key="frame" x="0.0" y="0.0" width="537" height="582"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button toolTip="Apply Settings and Close Window" verticalHuggingPriority="750" id="540">
@@ -1296,18 +1301,8 @@ DQ
                             <action selector="setToDefaults:" target="1364" id="11540"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" id="703">
-                        <rect key="frame" x="18" y="471" width="501" height="43"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="11001">
-                            <font key="font" metaFont="smallSystem"/>
-                            <string key="title">Here you can set the drop settings for your application. This lets you to control what kinds of messages from the operating system it responds to, e.g. opening files or processing text snippets. These messages are then on to your script either as arguments or via STDIN.</string>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button toolTip="Check here if you want your script to get opened or dropped files passed as arguments to the script.  " id="11149">
-                        <rect key="frame" x="30" y="416" width="176" height="26"/>
+                    <button toolTip="Check here if you want your script to get opened or dropped files passed as arguments to the script.  " misplaced="YES" id="11149">
+                        <rect key="frame" x="30" y="538" width="176" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Accept dropped files" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="11150">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1317,8 +1312,8 @@ DQ
                             <action selector="acceptsFilesChanged:" target="1364" id="11532"/>
                         </connections>
                     </button>
-                    <button toolTip="Check here if you want your script to accept dropped text snippets or text fed in through the Mac OS X Services API.  " id="11151">
-                        <rect key="frame" x="30" y="125" width="152" height="18"/>
+                    <button toolTip="Check here if you want your script to accept dropped text snippets or text fed in through the Mac OS X Services API.  " misplaced="YES" id="11151">
+                        <rect key="frame" x="30" y="244" width="152" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Accept dropped text" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11152">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1328,8 +1323,8 @@ DQ
                             <action selector="acceptsTextChanged:" target="1364" id="11534"/>
                         </connections>
                     </button>
-                    <box autoresizesSubviews="NO" borderType="none" title="Box" titlePosition="noTitle" id="11153">
-                        <rect key="frame" x="17" y="159" width="503" height="250"/>
+                    <box autoresizesSubviews="NO" misplaced="YES" borderType="none" title="Box" titlePosition="noTitle" id="11153">
+                        <rect key="frame" x="17" y="281" width="503" height="250"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="dtV-jI-obC">
                             <rect key="frame" x="0.0" y="0.0" width="503" height="250"/>
@@ -1538,37 +1533,102 @@ DQ
                             </subviews>
                         </view>
                     </box>
-                    <box verticalHuggingPriority="750" boxType="separator" id="11245">
-                        <rect key="frame" x="20" y="152" width="497" height="5"/>
+                    <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="11245">
+                        <rect key="frame" x="20" y="276" width="497" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
-                    <box verticalHuggingPriority="750" boxType="separator" id="11528">
-                        <rect key="frame" x="20" y="453" width="497" height="5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="11529">
+                        <rect key="frame" x="20" y="60" width="497" height="5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     </box>
-                    <box verticalHuggingPriority="750" boxType="separator" id="11529">
-                        <rect key="frame" x="20" y="58" width="497" height="5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <box misplaced="YES" title="URI Protocols" id="qEg-fw-Jf9">
+                        <rect key="frame" x="269" y="81" width="218" height="153"/>
+                        <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                        <view key="contentView" id="PjY-Y9-w6e">
+                            <rect key="frame" x="2" y="2" width="214" height="136"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <scrollView toolTip="List of Uniform Type Identifiers that the application should open" misplaced="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="gQi-A4-rgh">
+                                    <rect key="frame" x="18" y="47" width="179" height="74"/>
+                                    <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                    <clipView key="contentView" id="gjs-Rw-OFH">
+                                        <rect key="frame" x="1" y="1" width="162" height="72"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="Qc1-zf-c1B" customClass="NSResponderNotifyingTableView">
+                                                <rect key="frame" x="0.0" y="0.0" width="162" height="72"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <size key="intercellSpacing" width="3" height="2"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                                <tableColumns>
+                                                    <tableColumn identifier="1" editable="NO" width="20" minWidth="20" maxWidth="20" id="XuW-qc-TjT">
+                                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Icon">
+                                                            <font key="font" metaFont="smallSystem"/>
+                                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </tableHeaderCell>
+                                                        <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="D4D-Wp-48p">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </textFieldCell>
+                                                    </tableColumn>
+                                                    <tableColumn identifier="2" width="135.50100708007812" minWidth="4" maxWidth="1000" id="md6-tY-kH1">
+                                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Suffixes">
+                                                            <font key="font" metaFont="smallSystem"/>
+                                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                        </tableHeaderCell>
+                                                        <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="lYw-st-OgD">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </tableColumn>
+                                                </tableColumns>
+                                                <connections>
+                                                    <outlet property="delegate" destination="1364" id="oUk-Mc-3d5"/>
+                                                    <outlet property="menu" destination="1321" id="QsW-Vb-ukj"/>
+                                                </connections>
+                                            </tableView>
+                                        </subviews>
+                                    </clipView>
+                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="BYd-kg-Ruf">
+                                        <rect key="frame" x="-100" y="-100" width="156" height="15"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </scroller>
+                                    <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="pAF-ef-jzA">
+                                        <rect key="frame" x="163" y="1" width="15" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </scroller>
+                                </scrollView>
+                                <button toolTip="Add UTI to list" verticalHuggingPriority="750" misplaced="YES" id="czF-wb-cer">
+                                    <rect key="frame" x="18" y="16" width="23" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="r7T-e2-Rue">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="addUTI:" target="1364" id="pmD-dc-6P7"/>
+                                    </connections>
+                                </button>
+                                <button toolTip="Remove selected UTI" verticalHuggingPriority="750" misplaced="YES" id="2Hy-Aw-PqR">
+                                    <rect key="frame" x="40" y="16" width="23" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="DCb-41-Zan">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                        <string key="keyEquivalent"></string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="removeListItem:" target="1364" id="RNI-pU-fmk"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </view>
                     </box>
-                    <textField verticalHuggingPriority="750" id="11530">
-                        <rect key="frame" x="218" y="97" width="301" height="46"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="11531">
-                            <font key="font" metaFont="smallSystem"/>
-                            <string key="title">Check here for the script to received dropped text snippets or text fed in through the Mac OS X Services API.  Your script can access the text by reading STDIN.</string>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="11463">
-                        <rect key="frame" x="238" y="407" width="281" height="33"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Check here if you want your script to receive opened or dropped files as arguments.  " id="11464">
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <button toolTip="Show Help for Drop Settings" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="9Zx-mR-czF">
                         <rect key="frame" x="168" y="18" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1589,18 +1649,53 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button id="11326">
-                        <rect key="frame" x="218" y="75" width="208" height="16"/>
+                    <button misplaced="YES" id="11326">
+                        <rect key="frame" x="30" y="152" width="208" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <string key="toolTip">Check here for the script to received dropped text snippets or text fed in through the Mac OS X Services API.  Your script can access the text by reading STDIN.</string>
-                        <buttonCell key="cell" type="check" title="Provide as a Mac OS X Service" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11327">
+                        <buttonCell key="cell" type="check" title="Provide macOS Service" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11327">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
+                    <button misplaced="YES" id="Rqa-SX-VXX">
+                        <rect key="frame" x="270" y="244" width="164" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Register as URI handler" bezelStyle="regularSquare" imagePosition="left" inset="2" id="c4L-RU-wrs">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <textField verticalHuggingPriority="750" misplaced="YES" id="11530">
+                        <rect key="frame" x="30" y="190" width="226" height="42"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Check here for the script to accept dropped text snippets. Your script can access the text by reading STDIN." id="11531">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" misplaced="YES" id="ccv-Az-KcH">
+                        <rect key="frame" x="30" y="100" width="226" height="42"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Check here to make the app register as a macOS Service for text snippets." id="vT3-3g-DIA">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" misplaced="YES" id="11463">
+                        <rect key="frame" x="218" y="530" width="301" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Check here to make the app receive opened or dropped files and pass them to the script as arguments.  " id="11464">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-97.5" y="-221"/>
+            <point key="canvasLocation" x="-97.5" y="-197"/>
         </window>
         <window title="Args Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="ArgsWindow" animationBehavior="default" id="1394" userLabel="Arguments Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>

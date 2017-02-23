@@ -19,7 +19,7 @@
 	<key>InterpreterPath</key>
 	<string></string>
 	<key>PromptForFileOnLaunch</key>
-	<true/>
+	<false/>
 	<key>RemainRunning</key>
 	<integer>1</integer>
 	<key>ScriptArgs</key>
