@@ -102,13 +102,13 @@
     NSPipe *outputPipe;
     NSFileHandle *outputReadFileHandle;
     
-    NSMutableArray *arguments;
-    NSMutableArray *commandLineArguments;
-    NSArray *interpreterArgs;
-    NSArray *scriptArgs;
+    NSMutableArray OF_NSSTRING *arguments;
+    NSMutableArray OF_NSSTRING *commandLineArguments;
+    NSArray OF_NSSTRING *interpreterArgs;
+    NSArray OF_NSSTRING *scriptArgs;
     NSString *stdinString;
     
-    NSString *interpreter;
+    NSString *interpreterPath;
     NSString *scriptPath;
     NSString *appName;
     
@@ -128,8 +128,8 @@
     BOOL runInBackground;
     BOOL isService;
     
-    NSArray *droppableSuffixes;
-    NSArray *droppableUniformTypes;
+    NSArray OF_NSSTRING *droppableSuffixes;
+    NSArray OF_NSSTRING *droppableUniformTypes;
     BOOL acceptAnyDroppedItem;
     BOOL acceptDroppedFolders;
     
@@ -144,7 +144,7 @@
     NSString *scriptText;
     NSString *remnants;
     
-    NSMutableArray *jobQueue;
+    NSMutableArray <ScriptExecJob *> *jobQueue;
 }
 
 - (IBAction)openFiles:(id)sender;
@@ -402,7 +402,7 @@ static const NSInteger detailsHeight = 224;
              subTextFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreterPath];
     }
 #endif
-    interpreter = [[NSString alloc] initWithString:scriptInterpreterPath];
+    interpreterPath = [[NSString alloc] initWithString:scriptInterpreterPath];
 
     // make sure we can read the script file
     if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
@@ -881,7 +881,7 @@ static const NSInteger detailsHeight = 224;
 
     // create task and apply settings
     task = [[NSTask alloc] init];
-    [task setLaunchPath:interpreter];
+    [task setLaunchPath:interpreterPath];
     [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
     [task setArguments:arguments];
     
@@ -920,7 +920,7 @@ static const NSInteger detailsHeight = 224;
     privilegedTask = [[STPrivilegedTask alloc] init];
     
     // apply settings for task
-    [privilegedTask setLaunchPath:interpreter];
+    [privilegedTask setLaunchPath:interpreterPath];
     [privilegedTask setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
     [privilegedTask setArguments:arguments];
     
@@ -1404,7 +1404,7 @@ static const NSInteger detailsHeight = 224;
 }
 
 // processing dropped files
-- (BOOL)addDroppedFilesJob:(NSArray *)files {
+- (BOOL)addDroppedFilesJob:(NSArray OF_NSSTRING *)files {
     if (!isDroppable || !acceptsFiles) {
         return NO;
     }
@@ -1477,7 +1477,7 @@ static const NSInteger detailsHeight = 224;
 #pragma mark - Drag and drop handling
 
 // check file types against acceptable drop types here before accepting them
-- (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
     BOOL acceptDrag = NO;
     NSPasteboard *pboard = [sender draggingPasteboard];
     
@@ -1513,7 +1513,7 @@ static const NSInteger detailsHeight = 224;
     return YES;
 }
 
-- (void)draggingExited:(id <NSDraggingInfo> )sender;
+- (void)draggingExited:(id <NSDraggingInfo>)sender;
 {
     // remove the droplet shading on drag exit
     if (interfaceType == PlatypusInterfaceType_Droplet) {
@@ -1521,7 +1521,7 @@ static const NSInteger detailsHeight = 224;
     }
 }
 
-- (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
     
     // determine drag data type and dispatch to job queue
@@ -1534,7 +1534,7 @@ static const NSInteger detailsHeight = 224;
 }
 
 // once the drag is over, we immediately execute w. files as arguments if not already processing
-- (void)concludeDragOperation:(id <NSDraggingInfo> )sender {
+- (void)concludeDragOperation:(id <NSDraggingInfo>)sender {
     
     // shade droplet
     if (interfaceType == PlatypusInterfaceType_Droplet) {
@@ -1546,7 +1546,7 @@ static const NSInteger detailsHeight = 224;
     }
 }
 
-- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo> )sender {
+- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
     // this is needed to keep link instead of the green plus sign on web view
     // also required to reject non-acceptable dragged items
     return [self draggingEntered:sender];
