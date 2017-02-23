@@ -92,6 +92,7 @@
 #define DEFAULT_SCRIPT_TYPE         @"Shell"
 #define DEFAULT_SUFFIXES            @[]
 #define DEFAULT_UTIS                @[(NSString *)kUTTypeItem, (NSString *)kUTTypeFolder]
+#define DEFAULT_URI_PROTOCOLS       @[]
 #define DEFAULT_STATUS_ITEM_TITLE   @"Title"
 
 #define SHELL_COMMAND_STRING_FONT   [NSFont userFixedPitchFontOfSize:11.0]
@@ -191,6 +192,7 @@ extern NSString * const AppSpecKey_BundledFiles;
 
 extern NSString * const AppSpecKey_Suffixes;
 extern NSString * const AppSpecKey_Utis;
+extern NSString * const AppSpecKey_URIProtocols;
 extern NSString * const AppSpecKey_AcceptText;
 extern NSString * const AppSpecKey_AcceptFiles;
 extern NSString * const AppSpecKey_Service;

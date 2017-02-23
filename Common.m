@@ -57,6 +57,7 @@ NSString * const AppSpecKey_BundledFiles = @"BundledFiles";
 
 NSString * const AppSpecKey_Suffixes = @"Suffixes";
 NSString * const AppSpecKey_Utis = @"UniformTypes";
+NSString * const AppSpecKey_URIProtocols = @"URIProtocols";
 NSString * const AppSpecKey_AcceptText = @"AcceptsText";
 NSString * const AppSpecKey_AcceptFiles = @"AcceptsFiles";
 NSString * const AppSpecKey_Service = @"DeclareService";

@@ -212,6 +212,7 @@
     // file/drag acceptance properties
     self[AppSpecKey_Suffixes] = DEFAULT_SUFFIXES;
     self[AppSpecKey_Utis] = DEFAULT_UTIS;
+    self[AppSpecKey_URIProtocols] = DEFAULT_URI_PROTOCOLS;
     self[AppSpecKey_AcceptText] = @NO;
     self[AppSpecKey_AcceptFiles] = @YES;
     self[AppSpecKey_Service] = @NO;

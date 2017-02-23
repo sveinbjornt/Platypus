@@ -650,7 +650,7 @@
 #pragma mark - Load/Select script
 
 - (IBAction)selectScript:(id)sender {
-    [[self window] setTitle:[NSString stringWithFormat:@"%@ - Select script", PROGRAM_NAME]];
+    [[self window] setTitle:[NSString stringWithFormat:@"%@ - Select Script", PROGRAM_NAME]];
     
     //create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];

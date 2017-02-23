@@ -57,6 +57,13 @@
     IBOutlet NSButton *acceptDroppedTextCheckbox;
     IBOutlet NSButton *declareServiceCheckbox;
     
+    IBOutlet NSButton *uriProtocolCheckbox;
+    
+    IBOutlet NSBox *uriProtocolListBox;
+    IBOutlet NSButton *addUriProtocolButton;
+    IBOutlet NSButton *removeUriProtocolButton;
+    IBOutlet NSResponderNotifyingTableView *uriProtocolListTableView;
+    
     IBOutlet NSTextField *errorTextField;
     
     IBOutlet NSButton *droppableEnabledCheckbox;
@@ -98,7 +105,7 @@
 
 - (IBAction)openDropSettingsSheet:(id)sender {
     NSWindow *parentWindow = [droppableEnabledCheckbox window];
-    [parentWindow setTitle:[NSString stringWithFormat:@"%@ - Drop settings", PROGRAM_NAME]];
+    [parentWindow setTitle:[NSString stringWithFormat:@"%@ - Drop Settings", PROGRAM_NAME]];
     
     //do setup
     [suffixListTableView setDataSource:suffixListController];
@@ -280,8 +287,8 @@
     
     [addSuffixButton setEnabled:enabled];
     [removeSuffixButton setEnabled:enabled];
-    [suffixListTableView setEnabled:enabled];
-    
+    [suffixListTableView setEnabled:enabled]; // INCRIMINATING LINE
+//
     [addUTIButton setEnabled:enabled];
     [removeUTIButton setEnabled:enabled];
     [uniformTypeListTableView setEnabled:enabled];
@@ -312,7 +319,7 @@
 }
 
 - (void)setSuffixList:(NSArray OF_NSSTRING *)suffixList {
-    [suffixListController removeAllItems];
+    [suffixListController removeAllItems]; // BLAME!
     [suffixListController addItems:suffixList];
 }
 
