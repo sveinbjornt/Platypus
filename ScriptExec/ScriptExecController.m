@@ -167,11 +167,6 @@ static const NSInteger detailsHeight = 224;
         arguments = [[NSMutableArray alloc] init];
         outputEmpty = YES;
         jobQueue = [[NSMutableArray alloc] init];
-        
-        [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
-                                                           andSelector:@selector(getUrl:withReplyEvent:)
-                                                         forEventClass:kInternetEventClass
-                                                            andEventID:kAEGetURL];
     }
     return self;
 }
@@ -421,6 +416,14 @@ static const NSInteger detailsHeight = 224;
 
 #pragma mark - App Delegate handlers
 
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
+    // Register ourselves as a URL handler for this URL
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
+                                                       andSelector:@selector(getUrl:withReplyEvent:)
+                                                     forEventClass:kInternetEventClass
+                                                        andEventID:kAEGetURL];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     PLog(@"Application did finish launching");
     hasFinishedLaunching = YES;
@@ -479,15 +482,15 @@ static const NSInteger detailsHeight = 224;
 
 - (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
     NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
+    PLog(@"Received open event for URL %@", url);
     
-    // add the dropped files as a job for processing
+    // add URL as a job for processing
     BOOL success = [self addDroppedFilesJob:@[url]];
     
     // if no other job is running, we execute
     if (!isTaskRunning && success && hasFinishedLaunching) {
         [self executeScript];
     }
-
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
