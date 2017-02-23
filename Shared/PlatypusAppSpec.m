@@ -516,37 +516,39 @@
     
     NSMutableDictionary *appSettingsPlist = [NSMutableDictionary dictionary];
     
-    appSettingsPlist[AppSpecKey_Authenticate] = self[AppSpecKey_Authenticate];
-    appSettingsPlist[AppSpecKey_RemainRunning] = self[AppSpecKey_RemainRunning];
-    appSettingsPlist[AppSpecKey_InterfaceType] = self[AppSpecKey_InterfaceType];
-    appSettingsPlist[AppSpecKey_InterpreterPath] = self[AppSpecKey_InterpreterPath];
-    appSettingsPlist[AppSpecKey_Creator] = PROGRAM_CREATOR_STAMP;
-    appSettingsPlist[AppSpecKey_InterpreterArgs] = self[AppSpecKey_InterpreterArgs];
-    appSettingsPlist[AppSpecKey_ScriptArgs] = self[AppSpecKey_ScriptArgs];
-
-    // text styling info
-    appSettingsPlist[AppSpecKey_TextFont] = self[AppSpecKey_TextFont];
-    appSettingsPlist[AppSpecKey_TextSize] = self[AppSpecKey_TextSize];
-    appSettingsPlist[AppSpecKey_TextColor] = self[AppSpecKey_TextColor];
-    appSettingsPlist[AppSpecKey_TextBackgroundColor] = self[AppSpecKey_TextBackgroundColor];
+    NSMutableArray *keys = [@[AppSpecKey_Authenticate,
+                              AppSpecKey_RemainRunning,
+                              AppSpecKey_InterfaceType,
+                              AppSpecKey_InterpreterPath,
+                              AppSpecKey_InterpreterArgs,
+                              AppSpecKey_ScriptArgs,
+                              AppSpecKey_TextFont,
+                              AppSpecKey_TextSize,
+                              AppSpecKey_TextColor,
+                              AppSpecKey_TextBackgroundColor,
+                              AppSpecKey_Droppable,
+                              AppSpecKey_AcceptFiles,
+                              AppSpecKey_AcceptText,
+                              AppSpecKey_PromptForFile,
+                              AppSpecKey_Suffixes,
+                              AppSpecKey_Utis] mutableCopy];
     
     // status menu info
     if (InterfaceTypeForString(appSettingsPlist[AppSpecKey_InterfaceType]) == PlatypusInterfaceType_StatusMenu) {
-        appSettingsPlist[AppSpecKey_StatusItemDisplayType] = self[AppSpecKey_StatusItemDisplayType];
-        appSettingsPlist[AppSpecKey_StatusItemTitle] = self[AppSpecKey_StatusItemTitle];
-        appSettingsPlist[AppSpecKey_StatusItemIcon] = self[AppSpecKey_StatusItemIcon];
-        appSettingsPlist[AppSpecKey_StatusItemUseSysfont] = self[AppSpecKey_StatusItemUseSysfont];
-        appSettingsPlist[AppSpecKey_StatusItemIconIsTemplate] = self[AppSpecKey_StatusItemIconIsTemplate];
+        NSArray *statusMenuKeys = @[AppSpecKey_StatusItemDisplayType,
+                                    AppSpecKey_StatusItemTitle,
+                                    AppSpecKey_StatusItemIcon,
+                                    AppSpecKey_StatusItemUseSysfont,
+                                    AppSpecKey_StatusItemIconIsTemplate];
+        [keys addObjectsFromArray:statusMenuKeys];
     }
     
-    // droppable
-    appSettingsPlist[AppSpecKey_Droppable] = self[AppSpecKey_Droppable];
-    appSettingsPlist[AppSpecKey_AcceptFiles] = self[AppSpecKey_AcceptFiles];
-    appSettingsPlist[AppSpecKey_AcceptText] = self[AppSpecKey_AcceptText];
-    appSettingsPlist[AppSpecKey_PromptForFile] = self[AppSpecKey_PromptForFile];
-    appSettingsPlist[AppSpecKey_Suffixes] = self[AppSpecKey_Suffixes];
-    appSettingsPlist[AppSpecKey_Utis] = self[AppSpecKey_Utis];
+    for (NSString *k in keys) {
+        appSettingsPlist[k] = self[k];
+    }
     
+    appSettingsPlist[AppSpecKey_Creator] = PROGRAM_CREATOR_STAMP;
+
     return appSettingsPlist;
 }
 
