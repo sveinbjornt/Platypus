@@ -44,4 +44,9 @@
     return NO;
 }
 
+- (NSImage *)iconForItem:(NSString *)item {
+    NSImage *icon = [NSImage imageNamed:@"NSNetwork"];
+    return icon;
+}
+
 @end
