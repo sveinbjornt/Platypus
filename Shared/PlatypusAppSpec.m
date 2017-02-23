@@ -632,6 +632,18 @@
             infoPlist[@"NSServices"] = @[serviceDict];
         }
     }
+    
+    // if any URI protocol handling
+    if (self[AppSpecKey_URIProtocols] && [self[AppSpecKey_URIProtocols] count]) {
+        
+        NSDictionary *dict =
+        @{  @"CFBundleURLName":     self[AppSpecKey_Name],
+            @"CFBundleURLSchemes":  self[AppSpecKey_URIProtocols]
+        };
+        
+        infoPlist[@"CFBundleURLTypes"] = @[dict];
+    }
+    
     return infoPlist;
 }
 
