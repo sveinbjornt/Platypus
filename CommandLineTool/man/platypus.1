@@ -125,6 +125,11 @@ be a |-separated string (e.g. "txt|wav|jpg").
 Only appropriate if the application accepts dropped files. This flag specifies
 the uniform type identifier types that the application can open.  This should
 be a |-separated string (e.g. "public.item|public.folder").
+.It Fl U, -uri-schemes Ar schemes
+Set application as handler for URI schemes. These can be either a standard 
+URI schemes such as http or custom URI schemes of your choice. See
+documentation for details. Multiple itms should be a |-separated string 
+(e.g. "ftp|myscheme|someotherscheme").
 .It Fl Z, -file-prompt
 Show an Open File dialog when the application launches.
 .It Fl G, -interpreter-args Ar arguments
