@@ -247,7 +247,7 @@
     
     [self setDocIconPath:@""];
     [self setAcceptsText:NO];
-    [self setAcceptsFiles:YES];
+    [self setAcceptsFiles:NO];
     [self setDeclareService:NO];
     [self setPromptsForFileOnLaunch:NO];
     [self setSuffixListEnabled:([uniformTypeListController itemCount] == 0)];

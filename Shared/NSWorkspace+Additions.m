@@ -199,6 +199,7 @@
     NSString *tmpFileNameTemplate = fileName ? fileName : @"tmp_file_nsfilemgr_osx.XXXXXX";
     NSString *tmpDir = NSTemporaryDirectory();
     if (!tmpDir) {
+        NSLog(@"NSTemporaryDirectory() returned nil");
         return nil;
     }
     
@@ -211,7 +212,7 @@
     int fileDescriptor = mkstemp(tempFileNameCString);
     if (fileDescriptor == -1) {
         free(tempFileNameCString);
-        NSLog(@"%@", [NSString stringWithFormat:@"Error %d in mkstemp()", errno]);
+        NSLog(@"Error %d in mkstemp()", errno);
         close(fileDescriptor);
         return nil;
     }
@@ -271,9 +272,6 @@
     [NSTask launchedTaskWithLaunchPath:@"/System/Library/CoreServices/pbs"
                              arguments:@[@"-flush"]];
 }
-
-#pragma mark - Paths
-
 
 #pragma mark - Misc
 
