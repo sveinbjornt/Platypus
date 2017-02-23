@@ -28,9 +28,9 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "UriProtocolListController.h"
+#import "UriSchemesListController.h"
 
-@implementation UriProtocolListController
+@implementation UriSchemesListController
 
 - (TypeListItemStringValidity)validateItemString:(NSString *)itemString {
     return TypeListItemStringValid;

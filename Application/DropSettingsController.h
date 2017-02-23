@@ -36,7 +36,7 @@
 
 @property (nonatomic, assign) NSArray OF_NSSTRING *suffixList;
 @property (nonatomic, assign) NSArray OF_NSSTRING *uniformTypesList;
-@property (nonatomic, assign) NSArray OF_NSSTRING *uriProtocolList;
+@property (nonatomic, assign) NSArray OF_NSSTRING *uriSchemesList;
 @property (nonatomic, copy) NSString *docIconPath;
 @property (nonatomic) BOOL acceptsText;
 @property (nonatomic) BOOL acceptsFiles;

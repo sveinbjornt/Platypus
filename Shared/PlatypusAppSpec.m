@@ -543,6 +543,7 @@
         [keys addObjectsFromArray:statusMenuKeys];
     }
     
+    // map keys from self to plist
     for (NSString *k in keys) {
         appSettingsPlist[k] = self[k];
     }

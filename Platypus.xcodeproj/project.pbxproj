@@ -131,7 +131,7 @@
 		F4DC075211F629A40043764E /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074F11F629A40043764E /* Documentation.html */; };
 		F4DC075311F629A40043764E /* Readme.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC075011F629A40043764E /* Readme.html */; };
 		F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
-		F4ECE5891E5F04A4008CC395 /* UriProtocolListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4ECE5881E5F04A4008CC395 /* UriProtocolListController.m */; };
+		F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */; };
 		F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */ = {isa = PBXBuildFile; fileRef = F4F14CAF1C640857002A2402 /* make_examples.pl */; };
 		F4F2F3B51BF96C4400FE463C /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B01BF96C4400FE463C /* NoodleLineNumberMarker.m */; };
 		F4F2F3B61BF96C4400FE463C /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B21BF96C4400FE463C /* NoodleLineNumberView.m */; };
@@ -331,8 +331,8 @@
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		F4E1F6FC11F758FB007EE2E3 /* platypus_clt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4ECE1A011F7746A000DB012 /* CHANGES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES.txt; sourceTree = SOURCE_ROOT; };
-		F4ECE5871E5F04A4008CC395 /* UriProtocolListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UriProtocolListController.h; path = Application/UriProtocolListController.h; sourceTree = "<group>"; };
-		F4ECE5881E5F04A4008CC395 /* UriProtocolListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UriProtocolListController.m; path = Application/UriProtocolListController.m; sourceTree = "<group>"; };
+		F4ECE5871E5F04A4008CC395 /* UriSchemesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UriSchemesListController.h; path = Application/UriSchemesListController.h; sourceTree = "<group>"; };
+		F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UriSchemesListController.m; path = Application/UriSchemesListController.m; sourceTree = "<group>"; };
 		F4F14CAF1C640857002A2402 /* make_examples.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = make_examples.pl; sourceTree = "<group>"; };
 		F4F2F3AF1BF96C4400FE463C /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoodleLineNumberMarker.h; path = "Shared/Others/NSTextView+JSDExtensions/NoodleLineNumberMarker.h"; sourceTree = SOURCE_ROOT; };
 		F4F2F3B01BF96C4400FE463C /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoodleLineNumberMarker.m; path = "Shared/Others/NSTextView+JSDExtensions/NoodleLineNumberMarker.m"; sourceTree = SOURCE_ROOT; };
@@ -608,8 +608,8 @@
 				F4975DA51B2E71EE0099D16E /* SuffixTypeListController.m */,
 				F48269811BCAF1D800169D8B /* UniformTypeListController.h */,
 				F48269821BCAF1D800169D8B /* UniformTypeListController.m */,
-				F4ECE5871E5F04A4008CC395 /* UriProtocolListController.h */,
-				F4ECE5881E5F04A4008CC395 /* UriProtocolListController.m */,
+				F4ECE5871E5F04A4008CC395 /* UriSchemesListController.h */,
+				F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */,
 			);
 			name = "Drop Settings";
 			sourceTree = "<group>";
@@ -1130,7 +1130,7 @@
 				F4975DB11B2E71EE0099D16E /* PrefsController.m in Sources */,
 				F4975DB21B2E71EE0099D16E /* ProfilesController.m in Sources */,
 				F4051DA11C1B5AF900587F1F /* Common.m in Sources */,
-				F4ECE5891E5F04A4008CC395 /* UriProtocolListController.m in Sources */,
+				F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */,
 				F4975DAF1B2E71EE0099D16E /* PlatypusWindowController.m in Sources */,
 				F4F2F3B51BF96C4400FE463C /* NoodleLineNumberMarker.m in Sources */,
 				F4975DAE1B2E71EE0099D16E /* IconController.m in Sources */,

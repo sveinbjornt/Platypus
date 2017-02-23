@@ -33,7 +33,7 @@
 #import "SuffixTypeListController.h"
 #import "NSWorkspace+Additions.h"
 #import "UniformTypeListController.h"
-#import "UriProtocolListController.h"
+#import "UriSchemesListController.h"
 
 @interface DropSettingsController()
 {
@@ -58,12 +58,12 @@
     IBOutlet NSButton *acceptDroppedTextCheckbox;
     IBOutlet NSButton *declareServiceCheckbox;
     
-    IBOutlet NSButton *uriProtocolCheckbox;
+    IBOutlet NSButton *uriSchemesListCheckbox;
     
-    IBOutlet NSBox *uriProtocolListBox;
-    IBOutlet NSButton *addUriProtocolButton;
-    IBOutlet NSButton *removeUriProtocolButton;
-    IBOutlet NSResponderNotifyingTableView *uriProtocolListTableView;
+    IBOutlet NSBox *uriSchemesListBox;
+    IBOutlet NSButton *addUriSchemesButton;
+    IBOutlet NSButton *removeUriSchemesButton;
+    IBOutlet NSResponderNotifyingTableView *uriSchemesListTableView;
     
     IBOutlet NSTextField *errorTextField;
     
@@ -74,7 +74,7 @@
     SuffixTypeListController *suffixListController;
     UniformTypeListController *uniformTypeListController;
     
-    UriProtocolListController *uriProtocolListController;
+    UriSchemesListController *uriSchemesListController;
 }
 
 - (IBAction)addSuffix:(id)sender;
@@ -97,7 +97,7 @@
     if (self = [super init]) {
         suffixListController = [[SuffixTypeListController alloc] init];
         uniformTypeListController = [[UniformTypeListController alloc] init];
-        uriProtocolListController = [[UriProtocolListController alloc] init];
+        uriSchemesListController = [[UriSchemesListController alloc] init];
     }
     return self;
 }
@@ -124,10 +124,10 @@
     [uniformTypeListTableView setDelegate:self];
     [uniformTypeListTableView setTarget:self];
     
-    [uriProtocolListTableView setDataSource:uriProtocolListController];
-    [uriProtocolListTableView reloadData];
-    [uriProtocolListTableView setDelegate:self];
-    [uriProtocolListTableView setTarget:self];
+    [uriSchemesListTableView setDataSource:uriSchemesListController];
+    [uriSchemesListTableView reloadData];
+    [uriSchemesListTableView setDelegate:self];
+    [uriSchemesListTableView setTarget:self];
     
     [errorTextField setStringValue:@""];
     [self updateButtonStatus];
@@ -193,10 +193,10 @@
 }
 
 - (IBAction)addURIProtocol:(id)sender {
-    [[self window] makeFirstResponder:uriProtocolListTableView];
-    [uriProtocolListController addNewItem];
-    [uriProtocolListTableView reloadData];
-    [uriProtocolListTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[uriProtocolListController itemCount] - 1] byExtendingSelection:NO];
+    [[self window] makeFirstResponder:uriSchemesListTableView];
+    [uriSchemesListController addNewItem];
+    [uriSchemesListTableView reloadData];
+    [uriSchemesListTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[uriSchemesListController itemCount] - 1] byExtendingSelection:NO];
 }
 
 - (IBAction)removeListItem:(id)sender {
@@ -211,9 +211,9 @@
     } else if (firstResponder == uniformTypeListTableView) {
         tableView = uniformTypeListTableView;
         typeListController = uniformTypeListController;
-    } else if (firstResponder == uriProtocolListTableView) {
-        tableView = uriProtocolListTableView;
-        typeListController = uriProtocolListController;
+    } else if (firstResponder == uriSchemesListTableView) {
+        tableView = uriSchemesListTableView;
+        typeListController = uriSchemesListController;
     } else {
         return;
     }
@@ -241,9 +241,9 @@
     [uniformTypeListController addItems:DEFAULT_UTIS];
     [uniformTypeListTableView reloadData];
     
-    [uriProtocolListController removeAllItems];
-    [uriProtocolListController addItems:DEFAULT_URI_PROTOCOLS];
-    [uriProtocolListTableView reloadData];
+    [uriSchemesListController removeAllItems];
+    [uriSchemesListController addItems:DEFAULT_URI_PROTOCOLS];
+    [uriSchemesListTableView reloadData];
     
     [self setDocIconPath:@""];
     [self setAcceptsText:NO];
@@ -285,9 +285,9 @@
         [[self window] firstResponder] == uniformTypeListTableView
      ];
     
-    [removeUriProtocolButton setEnabled:
-     ([[uriProtocolListTableView selectedRowIndexes] count] && [uriProtocolListTableView selectedRow] >= 0) &&
-     [[self window] firstResponder] == uriProtocolListTableView
+    [removeUriSchemesButton setEnabled:
+     ([[uriSchemesListTableView selectedRowIndexes] count] && [uriSchemesListTableView selectedRow] >= 0) &&
+     [[self window] firstResponder] == uriSchemesListTableView
      ];
     
     [addSuffixButton setEnabled:[uniformTypeListController itemCount] == 0];
@@ -344,11 +344,11 @@
 
 - (IBAction)registerAsURIHandlerClicked:(id)sender {
     if ([sender intValue] == 0) {
-        [uriProtocolListController removeAllItems];
-        [uriProtocolListTableView reloadData];
+        [uriSchemesListController removeAllItems];
+        [uriSchemesListTableView reloadData];
     }
-    [uriProtocolListTableView setEnabled:[sender intValue]];
-    [addUriProtocolButton setEnabled:[sender intValue]];
+    [uriSchemesListTableView setEnabled:[sender intValue]];
+    [addUriSchemesButton setEnabled:[sender intValue]];
 }
 
 #pragma mark -
@@ -371,15 +371,15 @@
     [uniformTypeListController addItems:uniformTypesList];
 }
 
-- (NSArray OF_NSSTRING *)uriProtocolList {
-    return [uriProtocolListController itemsArray];
+- (NSArray OF_NSSTRING *)uriSchemesList {
+    return [uriSchemesListController itemsArray];
 }
 
-- (void)setUriProtocolList:(NSArray OF_NSSTRING *)items {
-    [uriProtocolListController removeAllItems];
-    [uriProtocolListController addItems:items];
-    [uriProtocolCheckbox setState:([items count] > 0)];
-    [self registerAsURIHandlerClicked:uriProtocolCheckbox];
+- (void)setUriSchemesList:(NSArray OF_NSSTRING *)items {
+    [uriSchemesListController removeAllItems];
+    [uriSchemesListController addItems:items];
+    [uriSchemesListCheckbox setState:([items count] > 0)];
+    [self registerAsURIHandlerClicked:uriSchemesListCheckbox];
 }
 
 #pragma mark -

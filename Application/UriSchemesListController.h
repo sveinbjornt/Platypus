@@ -30,6 +30,6 @@
 
 #import "TypeListController.h"
 
-@interface UriProtocolListController : TypeListController
+@interface UriSchemesListController : TypeListController
 
 @end
