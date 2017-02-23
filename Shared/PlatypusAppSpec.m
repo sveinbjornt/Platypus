@@ -212,7 +212,7 @@
     // file/drag acceptance properties
     self[AppSpecKey_Suffixes] = DEFAULT_SUFFIXES;
     self[AppSpecKey_Utis] = DEFAULT_UTIS;
-    self[AppSpecKey_URIProtocols] = DEFAULT_URI_PROTOCOLS;
+    self[AppSpecKey_URISchemes] = DEFAULT_URI_PROTOCOLS;
     self[AppSpecKey_AcceptText] = @NO;
     self[AppSpecKey_AcceptFiles] = @NO;
     self[AppSpecKey_Service] = @NO;
@@ -634,11 +634,11 @@
     }
     
     // if any URI protocol handling
-    if (self[AppSpecKey_URIProtocols] && [self[AppSpecKey_URIProtocols] count]) {
+    if (self[AppSpecKey_URISchemes] && [self[AppSpecKey_URISchemes] count]) {
         
         NSDictionary *dict =
         @{  @"CFBundleURLName":     self[AppSpecKey_Name],
-            @"CFBundleURLSchemes":  self[AppSpecKey_URIProtocols]
+            @"CFBundleURLSchemes":  self[AppSpecKey_URISchemes]
         };
         
         infoPlist[@"CFBundleURLTypes"] = @[dict];

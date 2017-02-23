@@ -87,6 +87,7 @@ static struct option long_options[] = {
     {"text-font",                 required_argument,  0, 'n'},
     {"suffixes",                  required_argument,  0, 'X'},
     {"uniform-type-identifiers",  required_argument,  0, 'T'},
+    {"uri-schemes",               required_argument,  0, 'U'},
     {"interpreter-args",          required_argument,  0, 'G'},
     {"script-args",               required_argument,  0, 'C'},
 
@@ -394,6 +395,14 @@ int main(int argc, const char *argv[]) {
             }
                 break;
             
+            // URI schemes
+            case 'U':
+            {
+                NSString *uriSchemes = @(optarg);
+                properties[AppSpecKey_URISchemes] = [uriSchemes componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
+            }
+                break;
+                
             // prompt for file on startup
             case 'Z':
                 properties[AppSpecKey_PromptForFile] = @YES;
@@ -723,6 +732,7 @@ Options:\n\
     -n --text-font [fontName]            Set font for text view (e.g. 'Monaco 10')\n\
     -X --suffixes [suffixes]             Set suffixes handled by application, separated by |\n\
     -T --uniform-type-identifiers        Set uniform type identifiers handled by application, separated by |\n\
+    -U --uri-schemes                     Set URI schemes handled by app, separated by |\n\
     -G --interpreter-args [arguments]    Set arguments for script interpreter, separated by |\n\
     -C --script-args [arguments]         Set arguments for script, separated by |\n\
 \n\

@@ -192,7 +192,7 @@ extern NSString * const AppSpecKey_BundledFiles;
 
 extern NSString * const AppSpecKey_Suffixes;
 extern NSString * const AppSpecKey_Utis;
-extern NSString * const AppSpecKey_URIProtocols;
+extern NSString * const AppSpecKey_URISchemes;
 extern NSString * const AppSpecKey_AcceptText;
 extern NSString * const AppSpecKey_AcceptFiles;
 extern NSString * const AppSpecKey_Service;
