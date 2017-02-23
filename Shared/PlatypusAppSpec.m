@@ -733,6 +733,7 @@
     NSString *authorString = @"";
     NSString *suffixesString = @"";
     NSString *uniformTypesString = @"";
+    NSString *uriSchemesString = @"";
     NSString *parametersString = @"";
     NSString *textSettingsString = @"";
     NSString *statusMenuOptionsString = @"";
@@ -768,7 +769,7 @@
         checkboxParamStr = [checkboxParamStr stringByAppendingString:str];
     }
     
-    if ([self[AppSpecKey_Version] isEqualToString:@"1.0"] == FALSE) {
+    if ([self[AppSpecKey_Version] isEqualToString:DEFAULT_VERSION] == FALSE) {
         NSString *str = shortOpts ? @"-V" : @"--app-version";
         versionString = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_Version]];
     }
@@ -797,6 +798,13 @@
             NSString *str = shortOpts ? @"-Z" : @"--file-prompt";
             promptForFileString = [NSString stringWithFormat:@"%@ ", str];
         }
+    }
+    
+    // uniform type identifier params
+    if ([self[AppSpecKey_URISchemes] count]) {
+        NSString *str = shortOpts ? @"-U" : @"--uri-schemes";
+        uriSchemesString = [self[AppSpecKey_URISchemes] componentsJoinedByString:CMDLINE_ARG_SEPARATOR];
+        uriSchemesString = [NSString stringWithFormat:@"%@ '%@' ", str, uriSchemesString];
     }
     
     //create bundled files string
@@ -842,13 +850,13 @@
         textSettingsString = [NSString stringWithFormat:@"%@%@%@", textFgString, textBgString, textFontString];
     }
     
-    //create custom icon string
+    // custom icon arg
     if (![self[AppSpecKey_IconPath] isEqualToString:CMDLINE_ICON_PATH] && ![self[AppSpecKey_IconPath] isEqualToString:@""]) {
         NSString *str = shortOpts ? @"-i" : @"--app-icon";
         iconParamStr = [NSString stringWithFormat:@"%@ '%@' ", str, self[AppSpecKey_IconPath]];
     }
     
-    //create custom icon string
+    // custom document icon arg
     if (self[AppSpecKey_DocIconPath] && ![self[AppSpecKey_DocIconPath] isEqualToString:@""]) {
         NSString *str = shortOpts ? @"-Q" : @"--document-icon";
         iconParamStr = [iconParamStr stringByAppendingFormat:@" %@ '%@' ", str, self[AppSpecKey_DocIconPath]];
@@ -910,7 +918,7 @@
     
     // finally, generate the command
     NSString *commandStr = [NSString stringWithFormat:
-                            @"%@ %@%@%@%@%@%@ %@%@%@%@%@%@%@%@%@ '%@'",
+                            @"%@ %@%@%@%@%@%@ %@%@%@%@%@%@%@%@%@%@ '%@'",
                             CMDLINE_TOOL_PATH,
                             checkboxParamStr,
                             iconParamStr,
@@ -922,6 +930,7 @@
                             identifierArg,
                             suffixesString,
                             uniformTypesString,
+                            uriSchemesString,
                             promptForFileString,
                             bundledFilesCmdString,
                             parametersString,
