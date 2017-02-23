@@ -1351,7 +1351,7 @@ static const NSInteger detailsHeight = 224;
     
     if (acceptsFiles && [types containsObject:NSFilenamesPboardType] && (data = [pb propertyListForType:NSFilenamesPboardType])) {
         ret = [self addDroppedFilesJob:data];  // files
-    } else if (acceptsText && [types containsObject:NSURLPboardType]) {
+    } else if (acceptsText && [types containsObject:NSURLPboardType] && [NSURL URLFromPasteboard:pb] != nil) {
         NSURL *fileURL = [NSURL URLFromPasteboard:pb];
         ret = [self addDroppedTextJob:[fileURL absoluteString]];  // url
     } else if (acceptsText && [types containsObject:NSStringPboardType] && (data = [pb stringForType:NSStringPboardType])) {
