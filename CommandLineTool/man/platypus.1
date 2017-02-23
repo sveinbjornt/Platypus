@@ -3,7 +3,7 @@
 .Os Darwin
 .Sh NAME
 .Nm platypus
-.Nd create Mac OS X application wrapper around a script.
+.Nd create a Mac OS X application wrapper around a script.
 .Sh SYNOPSIS
 .Nm
 .Op OPTIONS
@@ -25,14 +25,12 @@ The following option flags are supported (parsed in the order in which they
 are passed):
 .Bl -tag -width -Fl
 .It Fl O, -generate-profile
-Create a profile document instead of creating an application bundle.  When this
+Create a profile document instead of creating an application bundle. When this
 option is enabled, the "destinationPath" paramater (i.e. the final argument to
-the program) should have a .platypus suffix. Please note that in order to create
-reusable profiles, this option requires absolute paths to all bundled files,
-icons etc.  If the string '-' is provided as destination path, the profile
-property list XML will be dumped to STDOUT.
+the program) should have a .platypus suffix. If the string '-' is provided 
+as destination path, the profile property list XML will be dumped to STDOUT.
 .It Fl P, -load-profile Ar profilePath
-Loads all settings from a Platypus profile document.  It is still necessary to
+Loads all settings from a Platypus profile document. It is still necessary to
 specify a destination path for the application. Subsequent arguments can
 override profile settings.
 .It Fl a, -name Ar appName
@@ -40,7 +38,7 @@ Specifies the name of the application.  This is can be different from the name
 of the .app bundle itself, and is displayed in the application's menus, "About"
 window and Info.plist property list.
 .It Fl o, -interface-type Ar interfaceType
-Specifies the script application's interface type, which should be one of
+Specifies the application's interface type, which should be one of
 the following:
 .Pp
 .Ar 'None'
@@ -74,25 +72,24 @@ for the app.
 Specifies a file to use as icon for the application's documents. Must be a
 Mac OS X .icns file.
 .It Fl p, -interpreter Ar interpreterPath
-Sets the interpreter for the script (e.g. /usr/bin/perl).  If the interpreter
+Sets script interpreter (e.g. /usr/bin/perl or /bin/sh). If the interpreter
 is not specified, the command line tool will try to guess the correct
 interpreter. If this fails, the standard shell interpreter /bin/sh is used.
 .It Fl V, -app-version Ar version
-Sets the application bundle's version.  This is displayed in the Info.plist
+Sets the application bundle's version. This is displayed in the Info.plist
 property list and About window.
 .It Fl u, -author Ar authorName
 Sets the name of the application author (e.g. "Apple Computer" or "John Smith").
-If not specified, it defaults to the current user's full user name.
+If not specified, this defaults to the current user's full user name.
 .It Fl f, -bundled-file Ar filePath
-Specifies a file to be bundled with the application.  The file will be copied
+Specifies a file to be bundled with the application. The file will be copied
 over to the Resources folder of the application bundle, which is the same
 folder in which the script runs. Any number of files can be bundled in this
-way, but the -f flag must be used each time, since it only accepts a single
-file path parameter.
+way.
 .It Fl I, -bundle-identifier Ar bundleIdentifier
-Sets the application's bundle identifier.  An application identifier is a
+Sets the application's bundle identifier. An application identifier is a
 reverse DNS name (e.g. com.apple.iTunes) that uniquely identifies the
-application.  If this option is left empty, it will default to an identifier
+application. If this option is left empty, it will default to an identifier
 of the format "org.username.appname" (e.g. org.sveinbjorn.Platypus).
 .It Fl A, -admin-privileges
 This flag makes the application request administrator privileges via Apple's
@@ -102,31 +99,31 @@ Apple documentation for the AuthorizationExecuteWithPrivileges() in
 Security.framework. This is not strictly equivalent to running as root.
 .It Fl D, -droppable
 Makes the application droppable, i.e. capable of receiving dragged and dropped
-items as arguments to the script. The application bundle's property list is
+files as arguments to the script. The application bundle's property list is
 modified so that it can receive dropped files in the Dock and Finder. These
-files are then passed on to the script as arguments via @ARGV.
+files are then passed on to the script as arguments.
 .It Fl F, -text-droppable
-Makes the script application text droppable, i.e. makes accepts dragged text
+Makes the application text droppable, i.e. makes it accept dragged text
 snippets, which are then passed to script via STDIN.
 .It Fl N, -service
 Makes the app register as a Dynamic Service accessible from the Services
 application submenu.
 .It Fl B, -background
-This option causes the application to run in the background.  Its icon will
+This option causes the application to run in the background so its icon will
 not appear in the Dock.  This is done by registering the application with
 LaunchServices as a user interface element (LSUIElement).
 .It Fl R, -quit-after-execution
-This option makes the application quit after the script has been executed.
+This option makes the application quit once the script has been executed.
 .It Fl X, -suffixes Ar suffixes
-Only appropriate if the application accepts dropped files. This flag specifies
+Only relevant if the application accepts dropped files. This flag specifies
 the file suffixes (e.g. .txt, .wav) that the application can open. This should
 be a |-separated string (e.g. "txt|wav|jpg").
 .It Fl T, -uniform-type-identifiers Ar utis
-Only appropriate if the application accepts dropped files. This flag specifies
+Only relevant if the application accepts dropped files. This flag specifies
 the uniform type identifier types that the application can open.  This should
 be a |-separated string (e.g. "public.item|public.folder").
 .It Fl U, -uri-schemes Ar schemes
-Set application as handler for URI schemes. These can be either a standard 
+Set application as handler for URI schemes. These can be either standard 
 URI schemes such as http or custom URI schemes of your choice. See
 documentation for details. Multiple itms should be a |-separated string 
 (e.g. "ftp|myscheme|someotherscheme").
@@ -139,16 +136,15 @@ a |-separated string (e.g. '-w|-s|-l').
 Arguments for the script.  These should be specified as
 a |-separated string (e.g. '-w|-s|-l').
 .It Fl b, -text-background-color Ar hexColor
-For Text Window interface type only. Set background color of text (e.g. #ffffff).
+Set background color of text (e.g. #ffffff).
 .It Fl g, -text-foreground-color Ar hexColor
-For Text Window interface type only. Set foreground color of text (e.g. #000000).
+Set foreground color of text (e.g. #000000).
 .It Fl n, -text-font Ar fontName
-For Text Window interface type only. Set font and fontsize for text view
+Set font and font size for text view
 (e.g. 'Monaco 10').
 .It Fl K, -status-item-kind Ar kind
 For Status Menu interface type only.  Set display kind for Status Menu
-interface type.  This can be
-"Text", "Icon and text" or "Icon".
+interface type.  This can be "Text" or "Icon".
 .It Fl Y, -status-item-title Ar title
 For Status Menu interface type only.  Set the display title for the status
 item in Status Menu interface type.
@@ -163,11 +159,11 @@ user-defined styling.
 Create XML format property lists instead of binary ones.
 .It Fl d, -symlink
 A symlink to the original script is created inside the application bundle
-instead of a copy.  Symlinks are also created to any bundled files. This
-option is incompatible with the --secure-script flag.
+instead of copying the script over. Symlinks are also created to any 
+bundled files.
 .It Fl l, -optimize-nib
 Strip the bundled application nib file to reduce its size. Makes the nib
-uneditable.  Only works if Apple's XCode is installed.
+uneditable. Only works if Apple's XCode is installed.
 .It Fl y, -overwrite
 Overwrite any pre-existing files or folders in destination path.
 .It Fl v, -version
