@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="6000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="EditorController">
@@ -31,7 +31,6 @@
                     <button toolTip="Save Changes and Close Editor" verticalHuggingPriority="750" id="7">
                         <rect key="frame" x="492" y="12" width="94" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="12">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -45,7 +44,6 @@
                     <button toolTip="Close without saving changes" verticalHuggingPriority="750" id="6">
                         <rect key="frame" x="398" y="12" width="94" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="13">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -56,10 +54,9 @@
                             <action selector="endModal:" target="-2" id="8oW-sY-PmP"/>
                         </connections>
                     </button>
-                    <textField toolTip="Path to the file being edited" verticalHuggingPriority="750" id="41">
-                        <rect key="frame" x="43" y="372" width="508" height="17"/>
+                    <textField toolTip="Path to the file being edited" verticalHuggingPriority="750" misplaced="YES" id="41">
+                        <rect key="frame" x="43" y="372" width="498" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <animations/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" id="42">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -69,10 +66,11 @@
                     <button toolTip="Check syntax of script" verticalHuggingPriority="750" id="4">
                         <rect key="frame" x="14" y="12" width="125" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Check Syntax" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="15">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent">X</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                         </buttonCell>
                         <connections>
                             <action selector="checkSyntax:" target="-2" id="33"/>
@@ -85,38 +83,30 @@
                             <rect key="frame" x="1" y="1" width="543" height="313"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView importsGraphics="NO" richText="NO" selectionGranularity="word" findStyle="panel" allowsUndo="YES" verticallyResizable="YES" id="11">
+                                <textView importsGraphics="NO" richText="NO" selectionGranularity="word" findStyle="panel" allowsUndo="YES" id="11">
                                     <rect key="frame" x="0.0" y="0.0" width="543" height="313"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="543" height="313"/>
                                     <size key="maxSize" width="1103" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="543" height="313"/>
-                                    <size key="maxSize" width="1103" height="10000000"/>
                                 </textView>
                             </subviews>
-                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </clipView>
-                        <animations/>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="9">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="10">
                             <rect key="frame" x="544" y="1" width="15" height="313"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </scroller>
                     </scrollView>
-                    <button toolTip="Show File in Finder" verticalHuggingPriority="750" id="qQb-YV-phA">
-                        <rect key="frame" x="557" y="372" width="23" height="23"/>
+                    <button toolTip="Show File in Finder" verticalHuggingPriority="750" misplaced="YES" id="qQb-YV-phA">
+                        <rect key="frame" x="555" y="372" width="25" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <animations/>
-                        <buttonCell key="cell" type="smallSquare" title="🔎" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="odA-WB-gNz">
+                        <buttonCell key="cell" type="smallSquare" title="🔍" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="odA-WB-gNz">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -127,7 +117,6 @@
                     <button toolTip="Toggle Word Wrap in Editor" id="fhP-jQ-moR">
                         <rect key="frame" x="234" y="21" width="129" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <buttonCell key="cell" type="check" title="Word wrap" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="0Op-C9-3Nv">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -139,8 +128,7 @@
                     <button toolTip="Decrease text size" verticalHuggingPriority="750" id="I0w-JE-z9j">
                         <rect key="frame" x="139" y="12" width="48" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
-                        <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="PDv-Wo-FEX">
+                        <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRemoveTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="PDv-Wo-FEX">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                             <string key="keyEquivalent">-</string>
@@ -153,8 +141,7 @@
                     <button toolTip="Increase text size" verticalHuggingPriority="750" id="t7s-pR-Awv">
                         <rect key="frame" x="178" y="12" width="51" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
-                        <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="ng1-bo-ARP">
+                        <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="ng1-bo-ARP">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                             <string key="keyEquivalent">+</string>
@@ -167,11 +154,9 @@
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="k8s-HM-fuN">
                         <rect key="frame" x="22" y="372" width="21" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <animations/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="CnJ-CU-J3l"/>
                     </imageView>
                 </subviews>
-                <animations/>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="50"/>
@@ -179,4 +164,8 @@
             <point key="canvasLocation" x="68" y="394"/>
         </window>
     </objects>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
+    </resources>
 </document>

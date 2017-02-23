@@ -5,7 +5,6 @@ For future versions...
     TODO: AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
     TODO: New button-based interface type
     TODO: New OnChange Text Filter interface type
-    TODO: Asynchronous app creation in background thread?
     TODO: Document the Services feature and provide instructions on how to enable in the Services preferences in Mac OS X.
     TODO: Refactor ScriptExec for clean view controller/task controller decoupling
     TODO: Look at FTaskStream.h
@@ -23,14 +22,14 @@ For future versions...
 5.2
     TODO: Update documentation, do a better job of explaining exactly how the Status Menu interface works
     TODO: Fix annoying status menu output issue
-    TODO: Test stdin stuff in command line tool
     TODO: Fix performance issue with printing many lines to text window
     TODO: Add documentation on reading dropped text from STDIN
-    TODO: Add URI handling https://github.com/barryk/DropScript/commit/3fa2d00177cc22680c54edeb6f433a658f6b07e8
     TODO: File watching still broken for script path
     TODO: Move documentation to Markdown format instead of raw, old-school HTML
     TODO: Documentation should be updated about what Use Icon as Template does
-    TODO: Fix line numbering in built-in editor (Improve built-in editor)
+
+    TODO: Test stdin stuff in command line tool
+    TODO: Add URI protocol handling
 
     * Text in apps now has a minimum font size
     * Platypus apps that accept dropped files now have an Open Recent menu
