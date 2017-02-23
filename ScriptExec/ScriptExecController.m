@@ -485,7 +485,7 @@ static const NSInteger detailsHeight = 224;
     PLog(@"Received open event for URL %@", url);
     
     // add URL as a job for processing
-    BOOL success = [self addDroppedFilesJob:@[url]];
+    BOOL success = [self addURLJob:url];
     
     // if no other job is running, we execute
     if (!isTaskRunning && success && hasFinishedLaunching) {
@@ -1426,6 +1426,12 @@ static const NSInteger detailsHeight = 224;
     [jobQueue addObject:job];
     
     // accept drop
+    return YES;
+}
+
+- (BOOL)addURLJob:(NSString *)urlStr {
+    ScriptExecJob *job = [ScriptExecJob jobWithArguments:@[urlStr] andStandardInput:nil];
+    [jobQueue addObject:job];
     return YES;
 }
 

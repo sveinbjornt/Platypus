@@ -1,6 +1,6 @@
 #!/bin/sh
 
-say $1
+echo "Opening" $1
 
 #BEGIN { $| = 1 }
 #
