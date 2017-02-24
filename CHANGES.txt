@@ -17,40 +17,37 @@ For future versions...
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
     TODO: Move documentation to Markdown format instead of raw, old-school HTML
-
+    TODO: Submenus for Status Menus
 
 5.2
     TODO: File watching still broken for script path
     TODO: Test stdin stuff in command line tool
     TODO: Create URI protocol handling Example: say://
 
-    * Fixed annoying issue where status menu would render before receiving all script output
-    * Platypus apps can now accept dragged URLs
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
+    * Platypus apps can now accept dragged URLs
     * Platypus apps that accept dropped files now have an Open Recent menu
     * Platypus now warns about about identical file names in bundled files
     * Text in Platypus apps now has a minimum font size
     * The Platypus Profile format has changed slightly in this version, but old formats can still be read
     * Relative paths are now supported in Platypus Profiles, but only through manual editing. Platypus app and CLT still generate Profiles with absolute paths.
+    * Droplet apps now quit when their window is closed
+    * Fixed annoying issue where status menu would render before receiving all script output
     * Fixed performance issue with printing many lines to text window. It is now very fast again.
     * Fixed bug where "Use as template" was shown when Status Item mode was "Text"
     * Fixed bug where command line tool failed to infer app name from script filename, resulting in "(null).app"
     * Fixed bug where files that had been moved were not colored red in Bundled Files list
-    * Droplet apps now quit when their window is closed
-    * ScriptExec now parses shebang during debug if no interpreter is provided in AppSettings
-    * Got rid of the TMP_STDIN_PATH hack
     * Fixed bug where valid menu items were disabled in Action menu
-    * Updated documentation & man page
-    * Fixed issue with console spamming due to missing CFBundleTypeRole
+    * Fixed issue with console spamming due to missing CFBundleTypeRole. Now always "Viewer".
     * Fixed bug where text settings were not properly loaded by the GUI
     * Fixed bug where bundling files with the -f flag didn't work in the command line tool
     * Fixed bug where the command line tool would erroneously try to validate whole argument strings instead of individual UTI strings
     * Fixed bug where suffix editing buttons remained enabled when they shouldn't be
     * Got rid of text encoding settings. Platypus now uses UTF8 for everything, and you should too.
     * Got rid of "Secure bundled script" option, which was useless bullshit anyway
-    * Bundled files table view now uses combined image and text cell instead of two columns
-    * Renamed Advanced menu to Action
     * Fixed issue where main application window would not remember its last position
+    * Updated documentation & man page
+    * Various minor interface refinements
 
 5.1
     * New Build All Examples feature

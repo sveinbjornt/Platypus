@@ -1411,25 +1411,15 @@ static const NSInteger detailsHeight = 224;
     }
 }
 
-#pragma mark - Create drop job
-
-- (BOOL)addMenuItemSelectedJob:(NSString *)menuItemTitle {
-    ScriptExecJob *job = [ScriptExecJob jobWithArguments:@[menuItemTitle] andStandardInput:nil];
-    [jobQueue addObject:job];
-    return YES;
-}
-
-- (BOOL)addTextJob:(NSString *)text {
-    ScriptExecJob *job = [ScriptExecJob jobWithArguments:nil andStandardInput:text];
-    [jobQueue addObject:job];
-    return YES;
-}
+#pragma mark - Add job to queue
 
 - (BOOL)addDroppedTextJob:(NSString *)text {
     if (!isDroppable) {
         return NO;
     }
-    return [self addTextJob:text];
+    ScriptExecJob *job = [ScriptExecJob jobWithArguments:nil andStandardInput:text];
+    [jobQueue addObject:job];
+    return YES;
 }
 
 // processing dropped files
@@ -1464,6 +1454,12 @@ static const NSInteger detailsHeight = 224;
 
 - (BOOL)addURLJob:(NSString *)urlStr {
     ScriptExecJob *job = [ScriptExecJob jobWithArguments:@[urlStr] andStandardInput:nil];
+    [jobQueue addObject:job];
+    return YES;
+}
+
+- (BOOL)addMenuItemSelectedJob:(NSString *)menuItemTitle {
+    ScriptExecJob *job = [ScriptExecJob jobWithArguments:@[menuItemTitle] andStandardInput:nil];
     [jobQueue addObject:job];
     return YES;
 }
@@ -1630,6 +1626,7 @@ static const NSInteger detailsHeight = 224;
             continue;
         }
         
+        // parse syntax setting item icon
         if ([line hasPrefix:@"MENUITEMICON|"]) {
             NSArray *tokens = [line componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
             if ([tokens count] < 3) {
@@ -1658,7 +1655,7 @@ static const NSInteger detailsHeight = 224;
         }
         
         // create the menu item
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(menuItemSelected:) keyEquivalent:@""];
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(statusMenuItemSelected:) keyEquivalent:@""];
         
         // set the formatted menu item string
         if (statusItemUsesSystemFont) {
@@ -1680,7 +1677,7 @@ static const NSInteger detailsHeight = 224;
     }
 }
 
-- (IBAction)menuItemSelected:(id)sender {
+- (IBAction)statusMenuItemSelected:(id)sender {
     [self addMenuItemSelectedJob:[sender title]];
     if (!isTaskRunning && [jobQueue count] > 0) {
         [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(executeScript) userInfo:nil repeats:NO];
