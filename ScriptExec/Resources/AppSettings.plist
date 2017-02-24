@@ -41,13 +41,13 @@
 		<string>*</string>
 	</array>
 	<key>TextBackground</key>
-	<string>#ffffff</string>
+	<string>#ff0000</string>
 	<key>TextEncoding</key>
 	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>
-	<string>#000000</string>
+	<string>#00ff00</string>
 	<key>TextSize</key>
 	<real>13</real>
 	<key>UniformTypes</key>

@@ -22,13 +22,14 @@ For future versions...
 5.2
     TODO: Update documentation, do a better job of explaining exactly how the Status Menu interface works
     TODO: Fix annoying status menu output issue
-    TODO: Fix performance issue with printing many lines to text window
+
     TODO: Add documentation on reading dropped text from STDIN
     TODO: File watching still broken for script path
     TODO: Documentation should be updated about what Use Icon as Template does
     TODO: Test stdin stuff in command line tool
 
     TODO: Create URI protocol handling example Profile - say://
+
 
     * Platypus apps can now accept dragged URLs
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
@@ -37,6 +38,7 @@ For future versions...
     * Text in Platypus apps now has a minimum font size
     * The Platypus Profile format has changed slightly in this version, but old formats can still be read
     * Relative paths are now supported in Platypus Profiles, but only through manual editing. Platypus app and CLT still generate Profiles with absolute paths.
+    * Fixed performance issue with printing many lines to text window. It is now very fast again.
     * Fixed bug where "Use as template" was shown when Status Item mode was "Text"
     * Fixed bug where command line tool failed to infer app name from script filename, resulting in "(null).app"
     * Fixed bug where files that had been moved were not colored red in Bundled Files list

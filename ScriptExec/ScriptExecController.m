@@ -568,6 +568,7 @@ static const NSInteger detailsHeight = 224;
             outputTextView = progressBarTextView;
             [outputTextView setBackgroundColor:textBackgroundColor];
             [outputTextView setTextColor:textForegroundColor];
+            [[outputTextView textStorage] setFont:textFont];
             
             // add drag instructions message if droplet
             NSString *progBarMsg = isDroppable ? @"Drag files to process" : @"Running...";
@@ -601,8 +602,11 @@ static const NSInteger detailsHeight = 224;
             }
             
             [textWindowProgressIndicator setUsesThreadedAnimation:YES];
+            [outputTextView setString:@"\n"];
             [outputTextView setBackgroundColor:textBackgroundColor];
             [outputTextView setTextColor:textForegroundColor];
+            [outputTextView setFont:textFont];
+            [[outputTextView textStorage] setFont:textFont];
             
             // prepare window
             [textWindow setTitle:appName];
@@ -693,6 +697,14 @@ static const NSInteger detailsHeight = 224;
             
         case PlatypusInterfaceType_ProgressBar:
         {
+            // Yes, yes, this is a nasty hack. But styling in NSTextViews
+            // doesn't get applied when appending text unless there is already
+            // some text in the view. The alternative is to make very expensive
+            // calls to [textStorage setAttributes:] for all appended output,
+            // which freezes up the app when lots of text is dumped by the script
+            NSString *zeroWidthSpace = @"\u200B";
+            [outputTextView setString:zeroWidthSpace];
+            
             [progressBarIndicator setIndeterminate:YES];
             [progressBarIndicator startAnimation:self];
             [progressBarMessageTextField setStringValue:@"Running..."];
@@ -705,6 +717,14 @@ static const NSInteger detailsHeight = 224;
             
         case PlatypusInterfaceType_TextWindow:
         {
+            // Yes, yes, this is a nasty hack. But styling in NSTextViews
+            // doesn't get applied when appending text unless there is already
+            // some text in the view. The alternative is to make very expensive
+            // calls to [textStorage setAttributes:] for all appended output,
+            // which freezes up the app when lots of text is dumped by the script
+            NSString *zeroWidthSpace = @"\u200B";
+            [outputTextView setString:zeroWidthSpace];
+            
             [textWindowCancelButton setTitle:@"Cancel"];
             if (execStyle == PlatypusExecStyle_Authenticated) {
                 [textWindowCancelButton setEnabled:NO];
@@ -1161,13 +1181,14 @@ static const NSInteger detailsHeight = 224;
     [textStorage replaceCharactersInRange:appendRange withString:string];
     [textStorage replaceCharactersInRange:NSMakeRange([textStorage length], 0) withString:@"\n"];
     
-    if (IsTextStyledInterfaceType(interfaceType)) {
-        NSDictionary *attributes = @{   NSBackgroundColorAttributeName: textBackgroundColor,
-                                        NSForegroundColorAttributeName: textForegroundColor,
-                                        NSFontAttributeName: textFont
-                                    };
-        [textStorage setAttributes:attributes range:NSMakeRange(appendRange.location, [string length])];
-    }
+    // This was much too expensive to be called every time new output is received
+//    if (IsTextStyledInterfaceType(interfaceType)) {
+//        NSDictionary *attributes = @{   //NSBackgroundColorAttributeName: textBackgroundColor,
+//                                        //NSForegroundColorAttributeName: textForegroundColor,
+//                                        NSFontAttributeName: textFont
+//                                    };
+//        [textStorage setAttributes:attributes range:NSMakeRange(appendRange.location, [string length])];
+//    }
     
     [textStorage endEditing];
 }

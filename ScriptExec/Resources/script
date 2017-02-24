@@ -1,15 +1,15 @@
-#!/bin/sh
+#!/usr/bin/perl
 
 #echo "Opening" $1
-read var
-echo $var
+#read var
+#echo $var
 #BEGIN { $| = 1 }
-#
-#my $i = 0;
-#for ($i = 0; $i < 4; $i++){
-#    sleep 1;
-#    print "$i: Hey\n";
-#}
+
+my $i = 0;
+for ($i = 0; $i < 100000; $i++){
+#sleep 1;
+    print "$i: Hey\n";
+}
 
 # If 0 arguments, we show menu
 #if (!scalar(@ARGV)) {
