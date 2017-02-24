@@ -13,7 +13,7 @@
 	<key>Droppable</key>
 	<true/>
 	<key>InterfaceType</key>
-	<string>None</string>
+	<string>Progress Bar</string>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>InterpreterPath</key>

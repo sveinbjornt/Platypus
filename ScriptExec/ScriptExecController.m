@@ -568,6 +568,7 @@ static const NSInteger detailsHeight = 224;
             outputTextView = progressBarTextView;
             [outputTextView setBackgroundColor:textBackgroundColor];
             [outputTextView setTextColor:textForegroundColor];
+            [outputTextView setFont:textFont];
             [[outputTextView textStorage] setFont:textFont];
             
             // add drag instructions message if droplet
@@ -602,7 +603,6 @@ static const NSInteger detailsHeight = 224;
             }
             
             [textWindowProgressIndicator setUsesThreadedAnimation:YES];
-            [outputTextView setString:@"\n"];
             [outputTextView setBackgroundColor:textBackgroundColor];
             [outputTextView setTextColor:textForegroundColor];
             [outputTextView setFont:textFont];
@@ -1177,22 +1177,12 @@ static const NSInteger detailsHeight = 224;
     [textStorage beginEditing];
     [textStorage replaceCharactersInRange:appendRange withString:string];
     [textStorage replaceCharactersInRange:NSMakeRange([textStorage length], 0) withString:@"\n"];
-    
-    // This was much too expensive to be called every time new output is received
-//    if (IsTextStyledInterfaceType(interfaceType)) {
-//        NSDictionary *attributes = @{   //NSBackgroundColorAttributeName: textBackgroundColor,
-//                                        //NSForegroundColorAttributeName: textForegroundColor,
-//                                        NSFontAttributeName: textFont
-//                                    };
-//        [textStorage setAttributes:attributes range:NSMakeRange(appendRange.location, [string length])];
-//    }
-    
     [textStorage endEditing];
 }
 
 #pragma mark - Interface actions
 
-//run open panel, made available to apps that are droppable
+//run open panel, made available to apps that accept files
 - (IBAction)openFiles:(id)sender {
     
     // create open panel
@@ -1316,8 +1306,8 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (IBAction)cancel:(id)sender {
-    
     if (task != nil && [task isRunning]) {
+        PLog(@"Task cancelled");
         [task terminate];
     }
     
