@@ -1166,12 +1166,9 @@ static const NSInteger detailsHeight = 224;
 
 - (void)appendString:(NSString *)string {
     //PLog(@"Appending output: \"%@\"", string);
+
     if (interfaceType == PlatypusInterfaceType_None) {
-        //fprintf(stdout, "%s", [string cStringUsingEncoding:NSUTF8StringEncoding]);
-        // TODO: Do this using standard C functions
-        NSData *strData = [[NSString stringWithFormat:@"%@\n", string] dataUsingEncoding:DEFAULT_TEXT_ENCODING];
-        NSFileHandle *stderrFileHandle = [NSFileHandle fileHandleWithStandardError];
-        [stderrFileHandle writeData:strData];
+        fprintf(stderr, "%s\n", [string cStringUsingEncoding:DEFAULT_TEXT_ENCODING]);
         return;
     }
     
