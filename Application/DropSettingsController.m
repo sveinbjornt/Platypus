@@ -241,6 +241,8 @@
     [uniformTypeListController addItems:DEFAULT_UTIS];
     [uniformTypeListTableView reloadData];
     
+    [uriSchemesListCheckbox setState:0];
+    
     [uriSchemesListController removeAllItems];
     [uriSchemesListController addItems:DEFAULT_URI_PROTOCOLS];
     [uriSchemesListTableView reloadData];

@@ -622,6 +622,7 @@ DQ
                 <outlet property="addSuffixButton" destination="984" id="1365"/>
                 <outlet property="addUTIButton" destination="nC2-fm-W7H" id="leP-yf-xzT"/>
                 <outlet property="addUriProtocolButton" destination="czF-wb-cer" id="zN6-2b-0D7"/>
+                <outlet property="addUriSchemesButton" destination="czF-wb-cer" id="V1D-BI-WQL"/>
                 <outlet property="declareServiceCheckbox" destination="11326" id="11328"/>
                 <outlet property="docIconImageView" destination="11239" id="11243"/>
                 <outlet property="droppableEnabledCheckbox" destination="299" id="HQA-Ib-ZMr"/>
@@ -631,6 +632,7 @@ DQ
                 <outlet property="removeSuffixButton" destination="992" id="1369"/>
                 <outlet property="removeUTIButton" destination="tqU-IB-IyA" id="5iu-Xf-rvO"/>
                 <outlet property="removeUriProtocolButton" destination="2Hy-Aw-PqR" id="HlO-Zx-fIA"/>
+                <outlet property="removeUriSchemesButton" destination="2Hy-Aw-PqR" id="YXz-Sv-dKw"/>
                 <outlet property="selectDocumentIconButton" destination="11241" id="11535"/>
                 <outlet property="suffixListBox" destination="701" id="RXF-L6-xUJ"/>
                 <outlet property="suffixListTableView" destination="708" id="h4Y-1x-x6F"/>
@@ -638,6 +640,9 @@ DQ
                 <outlet property="uriProtocolCheckbox" destination="Rqa-SX-VXX" id="HRG-Dv-sYY"/>
                 <outlet property="uriProtocolListBox" destination="qEg-fw-Jf9" id="fOg-kG-hav"/>
                 <outlet property="uriProtocolListTableView" destination="Qc1-zf-c1B" id="s6G-0R-1cw"/>
+                <outlet property="uriSchemesListBox" destination="qEg-fw-Jf9" id="Xhj-Ln-6eR"/>
+                <outlet property="uriSchemesListCheckbox" destination="Rqa-SX-VXX" id="tPx-jG-7oQ"/>
+                <outlet property="uriSchemesListTableView" destination="Qc1-zf-c1B" id="ebM-tL-IpA"/>
                 <outlet property="utiListBox" destination="e6h-Co-zvh" id="Ueg-7s-a6L"/>
                 <outlet property="window" destination="395" id="xfT-sQ-8tr"/>
             </connections>
@@ -2102,7 +2107,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" copiesOnScroll="NO" id="9QH-6m-7Zp">
                             <rect key="frame" x="1" y="1" width="221" height="113"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" id="2078">
                                     <rect key="frame" x="0.0" y="0.0" width="221" height="113"/>
