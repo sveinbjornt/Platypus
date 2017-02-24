@@ -70,8 +70,12 @@
 }
 
 - (IBAction)apply:(id)sender {
-    [[[NSFontManager sharedFontManager] fontPanel:NO] orderOut:self];
-    [[NSColorPanel sharedColorPanel] orderOut:self];
+    if ([NSColorPanel sharedColorPanelExists]) {
+        [[NSColorPanel sharedColorPanel] orderOut:self];
+    }
+    if ([NSFontPanel sharedFontPanelExists]) {
+        [[[NSFontManager sharedFontManager] fontPanel:NO] orderOut:self];
+    }
     [parentWindow setTitle:PROGRAM_NAME];
     [NSApp stopModal];
     [NSApp endSheet:[self window]];
