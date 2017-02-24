@@ -13,7 +13,7 @@
 	<key>Droppable</key>
 	<true/>
 	<key>InterfaceType</key>
-	<string>Progress Bar</string>
+	<string>Status Menu</string>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>InterpreterPath</key>

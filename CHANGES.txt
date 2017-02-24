@@ -20,11 +20,11 @@ For future versions...
 
 
 5.2
-    TODO: Fix annoying status menu output issue
     TODO: File watching still broken for script path
     TODO: Test stdin stuff in command line tool
-    TODO: Create URI protocol handling example Profile - say://
+    TODO: Create URI protocol handling Example: say://
 
+    * Fixed annoying issue where status menu would render before receiving all script output
     * Platypus apps can now accept dragged URLs
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
     * Platypus apps that accept dropped files now have an Open Recent menu

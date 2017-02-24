@@ -529,7 +529,7 @@ DQ
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <button toolTip="Check this if your script requires Administrator privileges" id="293">
+                    <button toolTip="Check this if your script requires root privileges" id="293">
                         <rect key="frame" x="414" y="292" width="232" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Run with root privileges" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="10940">
@@ -2450,7 +2450,7 @@ DQ
                     </box>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-521" y="-433"/>
+            <point key="canvasLocation" x="-376" y="-438"/>
         </window>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="11185" userLabel="Progress Dialog">
             <windowStyleMask key="styleMask" titled="YES"/>

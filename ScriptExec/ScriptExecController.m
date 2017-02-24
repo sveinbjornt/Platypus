@@ -896,6 +896,32 @@ static const NSInteger detailsHeight = 224;
     }
 }
 
+- (NSString *)executeScriptForStatusMenu {
+
+    [self prepareForExecution];
+    [self prepareInterfaceForExecution];
+    
+    // create task and apply settings
+    task = [[NSTask alloc] init];
+    [task setLaunchPath:interpreterPath];
+    [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
+    [task setArguments:arguments];
+
+    outputPipe = [NSPipe pipe];
+    [task setStandardOutput:outputPipe];
+    [task setStandardError:outputPipe];
+    outputReadFileHandle = [outputPipe fileHandleForReading];
+    
+    // set it off
+    PLog(@"Running task\n%@", [task humanDescription]);
+    [task launch];
+    // This is blocking, i.e. hangs until task is done
+    [task waitUntilExit];
+    
+    NSData *outData = [outputReadFileHandle readDataToEndOfFile];
+    return [[NSString alloc] initWithData:outData encoding:DEFAULT_TEXT_ENCODING];
+}
+
 //launch regular user-privileged process using NSTask
 - (void)executeScriptWithoutPrivileges {
 
@@ -927,12 +953,7 @@ static const NSInteger detailsHeight = 224;
         [inputWriteFileHandle writeData:[stdinString dataUsingEncoding:NSUTF8StringEncoding]];
     }
     [inputWriteFileHandle closeFile];
-    stdinString = nil;
-    
-    // we wait until task exits if this is triggered by a status item menu
-    if (interfaceType == PlatypusInterfaceType_StatusMenu) {
-        [task waitUntilExit];
-    }
+    stdinString = nil;    
 }
 
 //launch task with admin privileges using Authentication Manager
@@ -1583,14 +1604,10 @@ static const NSInteger detailsHeight = 224;
 - (void)menuNeedsUpdate:(NSMenu *)menu {
     
     // run script and wait until we've received all the script output
-    [self executeScript];
-    
-//    while (isTaskRunning || !outputEmpty) {
-//        usleep(100000000); // microseconds
-//    }
+    NSString *outputStr = [self executeScriptForStatusMenu];
     
     // create an array of lines by separating output by newline
-    NSMutableArray OF_NSSTRING *lines = [NSMutableArray arrayWithArray:[[outputTextView string] componentsSeparatedByString:@"\n"]];
+    NSMutableArray OF_NSSTRING *lines = [NSMutableArray arrayWithArray:[outputStr componentsSeparatedByString:@"\n"]];
     
     // clean out any trailing newlines
     while ([[lines lastObject] isEqualToString:@""]) {
