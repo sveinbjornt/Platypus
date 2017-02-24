@@ -1678,6 +1678,7 @@ static const NSInteger detailsHeight = 224;
         // create the menu item
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(statusMenuItemSelected:) keyEquivalent:@""];
         if (submenu) {
+            [menuItem setAction:nil];
             [menuItem setSubmenu:submenu];
         }
         

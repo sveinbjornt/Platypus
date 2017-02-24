@@ -1,14 +1,6 @@
 #!/bin/bash
 
-echo "ITEM_001"
-echo "SUBMENU|ITEM_002|a|b|c"
-echo "ITEM_003"
-echo "ITEM_004"
-echo "ITEM_005"
-echo "ITEM_006"
-echo "ITEM_007"
-echo "ITEM_008"
-echo "ITEM_009"
+echo "SUBMENU|Title|Item1|Item2|Item3"
 
 #!/usr/bin/perl
 
