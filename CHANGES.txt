@@ -17,7 +17,7 @@ For future versions...
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
     TODO: Move documentation to Markdown format instead of raw, old-school HTML
-    TODO: Submenus for Status Menus
+
 
 5.2
     TODO: File watching still broken for script path
@@ -27,6 +27,7 @@ For future versions...
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
     * Platypus apps can now accept dragged URLs
     * Platypus apps that accept dropped files now have an Open Recent menu
+    * New syntax to create submenus in Status Menu interface type
     * Platypus now warns about about identical file names in bundled files
     * Text in Platypus apps now has a minimum font size
     * The Platypus Profile format has changed slightly in this version, but old formats can still be read

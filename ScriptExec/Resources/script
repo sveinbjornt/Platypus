@@ -1,15 +1,27 @@
+#!/bin/bash
+
+echo "ITEM_001"
+echo "SUBMENU|ITEM_002|a|b|c"
+echo "ITEM_003"
+echo "ITEM_004"
+echo "ITEM_005"
+echo "ITEM_006"
+echo "ITEM_007"
+echo "ITEM_008"
+echo "ITEM_009"
+
 #!/usr/bin/perl
 
 #echo "Opening" $1
 #read var
 #echo $var
-BEGIN { $| = 1 }
-
-my $i = 0;
-for ($i = 0; $i < 100; $i++){
-#sleep 1;
-    print "$i: Hey\n";
-}
+#BEGIN { $| = 1 }
+#
+#my $i = 0;
+#for ($i = 0; $i < 10; $i++){
+##sleep 1;
+#    print "$i: Hey\n";
+#}
 
 # If 0 arguments, we show menu
 #if (!scalar(@ARGV)) {

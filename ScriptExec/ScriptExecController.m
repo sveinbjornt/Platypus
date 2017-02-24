@@ -1654,8 +1654,32 @@ static const NSInteger detailsHeight = 224;
             line = tokens[2];
         }
         
+        // parse syntax to handle submenus
+        NSMenu *submenu = nil;
+        if ([line hasPrefix:@"SUBMENU|"]) {
+            NSMutableArray *tokens = [[line componentsSeparatedByString:CMDLINE_ARG_SEPARATOR] mutableCopy];
+            if ([tokens count] < 3) {
+                continue;
+            }
+            NSString *menuName = tokens[1];
+            [tokens removeObjectAtIndex:0];
+            [tokens removeObjectAtIndex:0];
+            
+            // create submenu
+            submenu = [[NSMenu alloc] initWithTitle:menuName];
+            for (NSString *t in tokens) {
+                NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:t action:@selector(statusMenuItemSelected:) keyEquivalent:@""];
+                [submenu addItem:item];
+            }
+            
+            line = menuName;
+        }
+        
         // create the menu item
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(statusMenuItemSelected:) keyEquivalent:@""];
+        if (submenu) {
+            [menuItem setSubmenu:submenu];
+        }
         
         // set the formatted menu item string
         if (statusItemUsesSystemFont) {
