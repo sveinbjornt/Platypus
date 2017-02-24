@@ -2434,7 +2434,7 @@ DQ
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                 </button>
-                                <button hidden="YES" toolTip="Check here if your status item icon is a black and white image that can be used as an invertable template" id="QPU-w3-kS4">
+                                <button hidden="YES" toolTip="Check here if your status item icon is a black and white image that can be used as an invertable template." id="QPU-w3-kS4">
                                     <rect key="frame" x="288" y="24" width="120" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Use as template" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Um1-cc-r8p">
@@ -2450,7 +2450,7 @@ DQ
                     </box>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-336" y="-410"/>
+            <point key="canvasLocation" x="-521" y="-433"/>
         </window>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="11185" userLabel="Progress Dialog">
             <windowStyleMask key="styleMask" titled="YES"/>

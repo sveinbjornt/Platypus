@@ -20,16 +20,10 @@ For future versions...
 
 
 5.2
-    TODO: Update documentation, do a better job of explaining exactly how the Status Menu interface works
     TODO: Fix annoying status menu output issue
-
-    TODO: Add documentation on reading dropped text from STDIN
     TODO: File watching still broken for script path
-    TODO: Documentation should be updated about what Use Icon as Template does
     TODO: Test stdin stuff in command line tool
-
     TODO: Create URI protocol handling example Profile - say://
-
 
     * Platypus apps can now accept dragged URLs
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script

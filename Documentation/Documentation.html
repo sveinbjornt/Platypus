@@ -74,7 +74,7 @@
 
 <p>For <strong>version 5.2</strong>.  The latest version of this document can be found <a href="http://sveinbjorn.org/platypus_documentation">here</a>.</p>
 
-<p>Last updated on February 13th 2017, by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
+<p>Last updated on February 24th 2017, by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
 
 <br>
 <hr>
@@ -363,7 +363,7 @@
 
 <a name="235"></a>
 <h4>Status Menu</h4>
-<p>Application creates a Status Item in the menu bar when launched.  Every time the status item is clicked, the script is executed and its text output is shown line for line in a menu.</p>
+<p>Application creates a Status Item in the menu bar when launched.  Every time the status item is clicked, the script is executed and its text output is shown line for line in a menu. If a menu item is selected, the script is executed again with the title of the selected menu item passed as an argument to the script.</p>
 
 <p>The properties of the Status Item (icon, title, etc.) can be configured by pressing the <strong>Status Item Settings</strong> button.</p>
 
@@ -461,9 +461,11 @@
 
 <p>Optionally, select a document icon (.icns file) for the files "owned" by your app.</p>
 
-<p>Selecting <strong>Accept Dropped Text</strong> makes the app accept dragged snippets of text, in which case the dragged text string will be passed to the script via STDIN.</p>
+<p>Selecting <strong>Accept Dropped Text</strong> makes the app accept dragged snippets of text, in which case the dragged text string will be passed to the script via <code>stdin</code>.</p>
 
-<p><strong>Provide as a Mac OS X Service</strong> makes the app register as a <a href="http://www.computerworld.com/article/2476298/mac-os-x/os-x-a-quick-guide-to-services-on-your-mac.html">Dynamic Service</a>, accessible from the <strong>Services</strong> submenu of application menus.</p>
+<p><strong>Provide macOS Service</strong> makes the app register as a text-processing <a href="http://www.computerworld.com/article/2476298/mac-os-x/os-x-a-quick-guide-to-services-on-your-mac.html">Dynamic Service</a>, accessible from the <strong>Services</strong> submenu of application menus. You also need to enable this if you want your app to accept text snippets or URLs dropped on its icon.</p>
+
+<p><strong>Register as URI scheme handler</strong> makes the app register as a handler for URI schemes. These can be either standard URI schemes such as http or a custom URI schemes of your choice (e.g. myscheme://). If your app is the default handler for a URI scheme, it will open every time such a URL is opened and run the script with the URL as sole argument.</p>
 
 <br><br>
 
@@ -498,7 +500,7 @@
 
 <p>The <strong>Check Script Syntax</strong> menu item lets you verify the syntax of your script.  This runs the currently specified script through the interpreter's syntax checker and report the results.</p>
 
-<p>This feature is only supported for scripts with an interpreter that supports syntax checking (Bash, Perl, Python, Ruby and PHP).</p>
+<p>This feature is only supported for scripts with an interpreter that supports syntax checking (Bash, Perl, Python, Ruby, PHP and Swift).</p>
 
 <img src="images/syntax_checker.png" style="width:473px; 247px;" class="centered-image">
 
@@ -507,13 +509,13 @@
 <a name="45"></a>
 <h3>Show Shell Command</h3>
 
-<p>Platypus includes a <strong>command line tool</strong> equivalent to the Platypus.app application, which can be installed into <code>/usr/local/bin/platypus</code> via <strong>Preferences</strong>.  The man page for this tool is available from the Help menu, and via the command line.  There is also an online <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">version of the man page</a>.</p>
+<p>Platypus includes a <strong>command line tool</strong> equivalent to the Platypus.app application, which can be installed into <code>/usr/local/bin/platypus</code> via <strong>Preferences</strong>.  The man page for this tool is available from the Help menu, and via the command line.  There is also an <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">online version</a> of the man page</a>.</p>
 
-<p>Under the <strong>Action</strong> menu there is a menu item called <strong>Show Shell Command</strong>. Selecting this item will bring down a sheet with a text field containing a command line command for executing the platypus command line with the options you selected in the graphical interface. This can be helpful if you have the command line tool installed and wish to automate the creation of script apps within a larger build process.</p>
+<p>Under the <strong>Action</strong> menu there is a menu item called <strong>Show Shell Command</strong>. Selecting this item will bring down a sheet with a text field containing a the command for executing the platypus command line tool with all the options selected in the graphical interface. This can be helpful if you have the command line tool installed and wish to automate the creation of script apps within a larger build process.</p>
 
 <img src="images/shell_command.png" style="width:472px; height: 375px;" class="centered-image">
 
-<p>Please note that Platypus.app is not a GUI frontend for the command line tool and, depending on the current state of development, the command line tool may or may not have feature parity with the Mac OS X application.</p>
+<p>Please note that Platypus.app is not merely a GUI frontend for the command line tool and, depending on the current state of development, the command line tool may or may not have feature parity with the application.</p>
 
 <p>The command line tool does not in any way depend on the Platypus application once it has been installed.</p>
 
@@ -542,7 +544,7 @@
 <a name="61"></a>
 <h3>Saving and Loading</h3>
 
-<p>Profiles let you save Platypus application configuration settings.  These can then be loaded by Platypus or the <code>platypus</code> command line tool.  The Profiles menu is used to save and access profiles.  Profiles are stored as files, typically in the <strong>Profiles</strong> folder of the Platypus Application Support folder.</p>
+<p>Profiles let you save Platypus application configuration settings.  These can then be loaded by Platypus or the <code>platypus</code> command line tool.  The Profiles menu is used to save and access profiles.  Profiles are stored as files, typically in the <strong>Profiles</strong> folder of the Platypus Application Support folder (<code>~/Library/Application Support/Platypus/Profiles</code>).</p>
 
 <p>You can load a profile by selecting it from the menu, which lists all profiles in the Profiles folder.  To reveal a profile in the Finder, hold down the Command key and select the profile.  Profiles have a <code>.platypus</code> filename suffix.</p>
 
@@ -867,7 +869,7 @@ my $result = dialog("Answer to life, the universe and everything?", "42");
     cp file.txt ~/
 </pre></div>
 
-<p>To get the path to the application bundle itself, or the directory it is in, you can use <code>../..</code> (application bundle) or <code>../../..</code> (application bundle's containing directory).</p>
+<p>To get the path to the application bundle itself, or its containing directory, you can use <code>../..</code> (application bundle) or <code>../../..</code> (application bundle's containing directory).</p>
 
 <br>
 <br>
