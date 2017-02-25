@@ -679,6 +679,20 @@ if (!scalar(@ARGV)) {
     
     <p>This script creates a Status Menu app which shows a few lines of Shakespeare's Macbeth as menu items. When selected, the title of the menu item in question is fed into the Mac OS X speech synthesizer via <code>/usr/bin/say</code>.</p>
     
+    <p>Status Menu apps can also create submenus and menu separators by printing out lines with the following syntax:</p>
+    
+    <p><strong>Creating a menu separator</strong></p>
+    
+    <div class="codeblock">
+        ----\n
+    </div>
+    
+    <p><strong>Creating a submenu named "Title" with three menu items:</strong></p>
+    
+    <div class="codeblock">
+    SUBMENU|Title|Item1|Item2|Item3\n
+    </div>
+    
 <br>
 <br>
 <br>

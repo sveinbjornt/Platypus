@@ -23,7 +23,6 @@ For future versions...
     TODO: File watching still broken for script path
     TODO: Test stdin stuff in command line tool
     TODO: Create URI protocol handling Example: say://
-    TODO: Document submenu feature
 
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
     * Platypus apps can now accept dragged URLs
