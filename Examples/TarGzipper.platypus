@@ -10,7 +10,7 @@
 	<array/>
 	<key>Creator</key>
 	<string>Platypus-5.2</string>
-	<key>DestinationOverride</key>
+	<key>Overwrite</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
@@ -51,20 +51,17 @@ foreach(@ARGV)
 print $cmd . &quot;\n&quot;;
 system(&quot;$cmd $dest_path $files&quot;);
 </string>
+	<key>DocIconPath</key>
+	<string></string>
 	<key>Droppable</key>
 	<true/>
 	<key>ExecutablePath</key>
 	<string>/usr/local/share/platypus/ScriptExec</string>
-	<key>FileTypes</key>
-	<array>
-		<string>****</string>
-		<string>fold</string>
-	</array>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
 	<string>org.sveinbjorn.TarGzipper</string>
-	<key>Interpreter</key>
+	<key>InterpreterPath</key>
 	<string>/usr/bin/perl</string>
 	<key>Name</key>
 	<string>TarGzipper</string>
@@ -72,16 +69,12 @@ system(&quot;$cmd $dest_path $files&quot;);
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
-	<key>Output</key>
+	<key>InterfaceType</key>
 	<string>Text Window</string>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>Role</key>
-	<string>Viewer</string>
-	<key>Secure</key>
-	<false/>
 	<key>ShowInDock</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
@@ -96,8 +89,6 @@ system(&quot;$cmd $dest_path $files&quot;);
 	</array>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>

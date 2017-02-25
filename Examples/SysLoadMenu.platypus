@@ -10,7 +10,7 @@
 	<array/>
 	<key>Creator</key>
 	<string>Platypus-5.2</string>
-	<key>DestinationOverride</key>
+	<key>Overwrite</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
@@ -22,19 +22,17 @@
 	<string>#!/bin/sh 
 w 
 </string>
+	<key>DocIconPath</key>
+	<string></string>
 	<key>Droppable</key>
 	<false/>
 	<key>ExecutablePath</key>
 	<string>/usr/local/share/platypus/ScriptExec</string>
-	<key>FileTypes</key>
-	<array>
-		<string>****</string>
-	</array>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
 	<string>org.sveinbjorn.SysLoadMenu</string>
-	<key>Interpreter</key>
+	<key>InterpreterPath</key>
 	<string>/bin/sh</string>
 	<key>Name</key>
 	<string>SysLoadMenu</string>
@@ -42,16 +40,12 @@ w
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
-	<key>Output</key>
+	<key>InterfaceType</key>
 	<string>Status Menu</string>
 	<key>InterpretarArgs</key>
 	<array/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>Role</key>
-	<string>Viewer</string>
-	<key>Secure</key>
-	<false/>
 	<key>ShowInDock</key>
 	<true/>
 	<key>StatusItemDisplayType</key>
@@ -66,8 +60,6 @@ w
 	</array>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>

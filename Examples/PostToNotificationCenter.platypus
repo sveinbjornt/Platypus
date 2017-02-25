@@ -10,7 +10,7 @@
 	<array/>
 	<key>Creator</key>
 	<string>Platypus-5.2</string>
-	<key>DestinationOverride</key>
+	<key>Overwrite</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
@@ -30,15 +30,11 @@ sleep 2
 	<false/>
 	<key>ExecutablePath</key>
 	<string>/usr/local/share/platypus/ScriptExec</string>
-	<key>FileTypes</key>
-	<array>
-		<string>****</string>
-	</array>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
 	<string>org.sveinbjorn.PostToNotificationCenter</string>
-	<key>Interpreter</key>
+	<key>InterpreterPath</key>
 	<string>/bin/sh</string>
 	<key>Name</key>
 	<string>PostToNotificationCenter</string>
@@ -46,15 +42,11 @@ sleep 2
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
-	<key>Output</key>
+	<key>InterfaceType</key>
 	<string>None</string>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>RemainRunning</key>
-	<false/>
-	<key>Role</key>
-	<string>Viewer</string>
-	<key>Secure</key>
 	<false/>
 	<key>ShowInDock</key>
 	<false/>
@@ -70,8 +62,6 @@ sleep 2
 	</array>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>
@@ -80,5 +70,7 @@ sleep 2
 	<real>10</real>
 	<key>Version</key>
 	<string>1.0</string>
+	<key>DocIconPath</key>
+	<string></string>
 </dict>
 </plist>

@@ -16,7 +16,7 @@
 	<string>Platypus-5.2</string>
 	<key>DeclareService</key>
 	<false/>
-	<key>DestinationOverride</key>
+	<key>Overwrite</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
@@ -60,7 +60,7 @@ else:
     print &quot;&lt;h4&gt;Go ahead and drop some files on the window&lt;/h4&gt;&quot;
 
 print footer</string>
-	<key>DocIcon</key>
+	<key>DocIconPath</key>
 	<string></string>
 	<key>Droppable</key>
 	<true/>
@@ -70,7 +70,7 @@ print footer</string>
 	<string></string>
 	<key>Identifier</key>
 	<string>org.sveinbjorn.WebViewDroplet</string>
-	<key>Interpreter</key>
+	<key>InterpreterPath</key>
 	<string>/usr/bin/python</string>
 	<key>InterpreterArgs</key>
 	<array/>
@@ -80,18 +80,14 @@ print footer</string>
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<true/>
-	<key>Output</key>
+	<key>InterfaceType</key>
 	<string>Web View</string>
 	<key>PromptForFileOnLaunch</key>
 	<true/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>Role</key>
-	<string>Viewer</string>
 	<key>ScriptArgs</key>
 	<array/>
-	<key>Secure</key>
-	<false/>
 	<key>ShowInDock</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
@@ -108,8 +104,6 @@ print footer</string>
 	</array>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>

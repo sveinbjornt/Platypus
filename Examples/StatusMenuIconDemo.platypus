@@ -10,7 +10,7 @@
 	<array/>
 	<key>Creator</key>
 	<string>Platypus-5.2</string>
-	<key>DestinationOverride</key>
+	<key>Overwrite</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
@@ -24,17 +24,15 @@ print &quot;MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n&qu
 print &quot;MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n&quot;;
 print &quot;MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n&quot;;
 </string>
+	<key>DocIconPath</key>
+	<string></string>
 	<key>Droppable</key>
 	<false/>
-	<key>FileTypes</key>
-	<array>
-		<string>****</string>
-	</array>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
 	<string>org.sveinbjorn.StatusMenuIconDemo</string>
-	<key>Interpreter</key>
+	<key>InterpreterPath</key>
 	<string>/usr/bin/perl</string>
 	<key>Name</key>
 	<string>StatusMenuIconDemo</string>
@@ -42,16 +40,12 @@ print &quot;MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
-	<key>Output</key>
+	<key>InterfaceType</key>
 	<string>Status Menu</string>
 	<key>InterpretarArgs</key>
 	<array/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>Role</key>
-	<string>Viewer</string>
-	<key>Secure</key>
-	<false/>
 	<key>ShowInDock</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
@@ -68,8 +62,6 @@ print &quot;MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\
 	</array>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>

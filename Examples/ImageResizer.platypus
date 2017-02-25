@@ -16,7 +16,7 @@
 	<string>Platypus-5.2</string>
 	<key>DeclareService</key>
 	<false/>
-	<key>DestinationOverride</key>
+	<key>Overwrite</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
@@ -41,7 +41,7 @@ else
     echo &quot;Drop images on this window to resize them to 512x512&quot;
 fi
     </string>
-	<key>DocIcon</key>
+	<key>DocIconPath</key>
 	<string></string>
 	<key>Droppable</key>
 	<true/>
@@ -51,7 +51,7 @@ fi
 	<string></string>
 	<key>Identifier</key>
 	<string>org.sveinbjorn.ImageResizer</string>
-	<key>Interpreter</key>
+	<key>InterpreterPath</key>
 	<string>/bin/sh</string>
 	<key>InterpreterArgs</key>
 	<array/>
@@ -61,18 +61,14 @@ fi
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<true/>
-	<key>Output</key>
+	<key>InterfaceType</key>
 	<string>Text Window</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>Role</key>
-	<string>Viewer</string>
 	<key>ScriptArgs</key>
 	<array/>
-	<key>Secure</key>
-	<false/>
 	<key>ShowInDock</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
@@ -87,8 +83,6 @@ fi
 	<array/>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>San Francisco</string>
 	<key>TextForeground</key>

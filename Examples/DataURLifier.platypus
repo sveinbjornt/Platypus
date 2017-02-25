@@ -16,7 +16,7 @@
 	<string>Platypus-5.2</string>
 	<key>DeclareService</key>
 	<false/>
-	<key>DestinationOverride</key>
+	<key>Overwrite</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
@@ -39,7 +39,7 @@ MIME_TYPE=$( file -b --mime-type &quot;$FILE_PATH&quot; )
 echo &quot;data:$MIME_TYPE;base64,$BASE64_DATA&quot;
     
     </string>
-	<key>DocIcon</key>
+	<key>DocIconPath</key>
 	<string></string>
 	<key>Droppable</key>
 	<true/>
@@ -49,34 +49,32 @@ echo &quot;data:$MIME_TYPE;base64,$BASE64_DATA&quot;
 	<string></string>
 	<key>Identifier</key>
 	<string>org.sveinbjorn.DataURLifier</string>
-	<key>Interpreter</key>
+	<key>InterpreterPath</key>
 	<string>/bin/sh</string>
 	<key>InterpreterArgs</key>
 	<array/>
+	<key>InterfaceType</key>
+	<string>Text Window</string>
 	<key>Name</key>
 	<string>DataURLifier</string>
 	<key>NibPath</key>
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<true/>
-	<key>Output</key>
-	<string>Text Window</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>Role</key>
-	<string>Viewer</string>
 	<key>ScriptArgs</key>
 	<array/>
-	<key>Secure</key>
-	<false/>
 	<key>ShowInDock</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
 	<data></data>
+	<key>StatusItemIconIsTemplate</key>
+	<false/>
 	<key>StatusItemTitle</key>
 	<string>MyPlatypusApp</string>
 	<key>StatusItemUseSystemFont</key>
@@ -87,8 +85,6 @@ echo &quot;data:$MIME_TYPE;base64,$BASE64_DATA&quot;
 	</array>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>

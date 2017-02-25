@@ -10,7 +10,7 @@
 	<array/>
 	<key>Creator</key>
 	<string>Platypus-5.2</string>
-	<key>DestinationOverride</key>
+	<key>Overwrite</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
@@ -57,20 +57,17 @@ echo &quot;PROGRESS:90&quot;
 sleep 1
 echo &quot;PROGRESS:100&quot;
 echo &quot;Done&quot;</string>
+	<key>DocIconPath</key>
+	<string></string>
 	<key>Droppable</key>
 	<false/>
 	<key>ExecutablePath</key>
 	<string>/usr/local/share/platypus/ScriptExec</string>
-	<key>FileTypes</key>
-	<array>
-		<string>****</string>
-		<string>fold</string>
-	</array>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
 	<string>org.sveinbjorn.ProgressBar</string>
-	<key>Interpreter</key>
+	<key>InterpreterPath</key>
 	<string>/bin/sh</string>
 	<key>Name</key>
 	<string>ProgressBar</string>
@@ -78,16 +75,12 @@ echo &quot;Done&quot;</string>
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
-	<key>Output</key>
+	<key>InterfaceType</key>
 	<string>Progress Bar</string>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>Role</key>
-	<string>Viewer</string>
-	<key>Secure</key>
-	<false/>
 	<key>ShowInDock</key>
 	<false/>
 	<key>Suffixes</key>
@@ -96,8 +89,6 @@ echo &quot;Done&quot;</string>
 	</array>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>

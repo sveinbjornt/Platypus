@@ -68,6 +68,8 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>CFBundleIconFile</key>
+	<string>PlatypusDefaultIcon</string>
 	<key>NSServices</key>
 	<array>
 		<dict>

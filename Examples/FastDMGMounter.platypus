@@ -10,11 +10,11 @@
 	<string>Sveinbjorn Thordarson</string>
 	<key>BundledFiles</key>
 	<array/>
-	<key>DocIcon</key>
+	<key>DocIconPath</key>
 	<string>/System/Library/CoreServices/DiskImageMounter.app/Contents/Resources/diskcopy-doc.icns</string>
 	<key>Creator</key>
 	<string>Platypus-5.2</string>
-	<key>DestinationOverride</key>
+	<key>Overwrite</key>
 	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
@@ -38,13 +38,11 @@ echo &quot;Y&quot; | /usr/bin/hdid &quot;$1&quot;
 	<true/>
 	<key>ExecutablePath</key>
 	<string>/usr/local/share/platypus/ScriptExec</string>
-	<key>FileTypes</key>
-	<array/>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
 	<string>org.sveinbjorn.FastDMGMounter</string>
-	<key>Interpreter</key>
+	<key>InterpreterPath</key>
 	<string>/bin/bash</string>
 	<key>Name</key>
 	<string>FastDMGMounter</string>
@@ -52,17 +50,13 @@ echo &quot;Y&quot; | /usr/bin/hdid &quot;$1&quot;
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<true/>
-	<key>Output</key>
+	<key>InterfaceType</key>
 	<string>None</string>
 	<key>InterpreterArgs</key>
 	<array>
 		<string>-f</string>
 	</array>
 	<key>RemainRunning</key>
-	<false/>
-	<key>Role</key>
-	<string>Viewer</string>
-	<key>Secure</key>
 	<false/>
 	<key>ShowInDock</key>
 	<true/>
@@ -78,8 +72,6 @@ echo &quot;Y&quot; | /usr/bin/hdid &quot;$1&quot;
 	</array>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>

@@ -21,8 +21,8 @@ For future versions...
 
 5.2
     TODO: File watching still broken for script path
-    TODO: Test stdin stuff in command line tool
     TODO: Create URI protocol handling Example: say://
+    TODO: Create Status Menu submenu and separator example
 
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
     * Platypus apps can now accept dragged URLs
@@ -35,6 +35,7 @@ For future versions...
     * Droplet apps now quit when their window is closed
     * Fixed annoying issue where status menu would render before receiving all script output
     * Fixed performance issue with printing many lines to text window. It is now very fast again.
+    * Fixed issue where loading certain Example profiles would cause Platypus to crash
     * Fixed bug where "Use as template" was shown when Status Item mode was "Text"
     * Fixed bug where command line tool failed to infer app name from script filename, resulting in "(null).app"
     * Fixed bug where files that had been moved were not colored red in Bundled Files list
