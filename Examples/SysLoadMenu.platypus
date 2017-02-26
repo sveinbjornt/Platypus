@@ -34,8 +34,6 @@ w
 	<string>/bin/sh</string>
 	<key>Name</key>
 	<string>SysLoadMenu</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
 	<key>InterfaceType</key>
@@ -53,9 +51,7 @@ w
 	<key>StatusItemTitle</key>
 	<string>w</string>
 	<key>Suffixes</key>
-	<array>
-		<string>*</string>
-	</array>
+	<array/>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
 	<key>TextFont</key>

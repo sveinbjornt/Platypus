@@ -45,8 +45,6 @@ echo &quot;Task completed&quot;
 	<string></string>
 	<key>Droppable</key>
 	<false/>
-	<key>ExecutablePath</key>
-	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
@@ -59,8 +57,6 @@ echo &quot;Task completed&quot;
 	<string>Progress Bar</string>
 	<key>Name</key>
 	<string>AlertMe</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<true/>
 	<key>PromptForFileOnLaunch</key>
@@ -82,9 +78,7 @@ echo &quot;Task completed&quot;
 	<key>StatusItemUseSystemFont</key>
 	<true/>
 	<key>Suffixes</key>
-	<array>
-		<string>*</string>
-	</array>
+	<array/>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
 	<key>TextFont</key>

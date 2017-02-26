@@ -29,8 +29,6 @@ ps cax
 	<string></string>
 	<key>Droppable</key>
 	<false/>
-	<key>ExecutablePath</key>
-	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
@@ -39,8 +37,6 @@ ps cax
 	<string>/bin/sh</string>
 	<key>Name</key>
 	<string>ProcessMenu</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
 	<key>InterfaceType</key>
@@ -58,9 +54,7 @@ ps cax
 	<key>StatusItemTitle</key>
 	<string>PS</string>
 	<key>Suffixes</key>
-	<array>
-		<string>*</string>
-	</array>
+	<array/>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
 	<key>TextFont</key>

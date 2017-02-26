@@ -45,8 +45,6 @@ fi
 	<string></string>
 	<key>Droppable</key>
 	<true/>
-	<key>ExecutablePath</key>
-	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
@@ -57,8 +55,6 @@ fi
 	<array/>
 	<key>Name</key>
 	<string>ImageResizer</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<true/>
 	<key>InterfaceType</key>

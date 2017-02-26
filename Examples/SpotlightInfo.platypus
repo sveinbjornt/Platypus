@@ -33,8 +33,6 @@ foreach(@ARGV)
 	<string></string>
 	<key>Droppable</key>
 	<true/>
-	<key>ExecutablePath</key>
-	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
@@ -43,8 +41,6 @@ foreach(@ARGV)
 	<string>/usr/bin/perl</string>
 	<key>Name</key>
 	<string>SpotlightInfo</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
 	<key>InterfaceType</key>

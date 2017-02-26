@@ -36,8 +36,6 @@ echo &quot;Y&quot; | /usr/bin/hdid &quot;$1&quot;
     </string>
 	<key>Droppable</key>
 	<true/>
-	<key>ExecutablePath</key>
-	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
@@ -46,8 +44,6 @@ echo &quot;Y&quot; | /usr/bin/hdid &quot;$1&quot;
 	<string>/bin/bash</string>
 	<key>Name</key>
 	<string>FastDMGMounter</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<true/>
 	<key>InterfaceType</key>

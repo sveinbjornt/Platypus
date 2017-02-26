@@ -28,8 +28,6 @@ sleep 2
     </string>
 	<key>Droppable</key>
 	<false/>
-	<key>ExecutablePath</key>
-	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
@@ -38,8 +36,6 @@ sleep 2
 	<string>/bin/sh</string>
 	<key>Name</key>
 	<string>PostToNotificationCenter</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
 	<key>InterfaceType</key>
@@ -57,9 +53,7 @@ sleep 2
 	<key>StatusItemTitle</key>
 	<string>MyApp</string>
 	<key>Suffixes</key>
-	<array>
-		<string>*</string>
-	</array>
+	<array/>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
 	<key>TextFont</key>

@@ -44,8 +44,6 @@ open &quot;$DIR&quot;
 	<string></string>
 	<key>Droppable</key>
 	<true/>
-	<key>ExecutablePath</key>
-	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
@@ -56,8 +54,6 @@ open &quot;$DIR&quot;
 	<array/>
 	<key>Name</key>
 	<string>IcnsToIconset</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<true/>
 	<key>InterfaceType</key>

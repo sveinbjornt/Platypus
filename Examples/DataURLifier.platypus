@@ -43,8 +43,6 @@ echo &quot;data:$MIME_TYPE;base64,$BASE64_DATA&quot;
 	<string></string>
 	<key>Droppable</key>
 	<true/>
-	<key>ExecutablePath</key>
-	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
@@ -57,8 +55,6 @@ echo &quot;data:$MIME_TYPE;base64,$BASE64_DATA&quot;
 	<string>Text Window</string>
 	<key>Name</key>
 	<string>DataURLifier</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<true/>
 	<key>PromptForFileOnLaunch</key>

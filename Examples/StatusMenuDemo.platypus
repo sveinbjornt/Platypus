@@ -37,8 +37,6 @@ print &quot;SUBMENU|Submenu|Item 1|Item 2|Item 3\n&quot;;
 	<string>/usr/bin/perl</string>
 	<key>Name</key>
 	<string>StatusMenuDemo</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
 	<key>InterfaceType</key>
@@ -58,9 +56,7 @@ print &quot;SUBMENU|Submenu|Item 1|Item 2|Item 3\n&quot;;
 	<key>StatusItemTitle</key>
 	<string>IconDemo</string>
 	<key>Suffixes</key>
-	<array>
-		<string>*</string>
-	</array>
+	<array/>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
 	<key>TextFont</key>

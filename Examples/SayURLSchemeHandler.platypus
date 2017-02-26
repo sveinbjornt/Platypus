@@ -5,7 +5,7 @@
 	<key>AcceptsFiles</key>
 	<false/>
 	<key>AcceptsText</key>
-	<false/>
+	<true/>
 	<key>Authentication</key>
 	<false/>
 	<key>Author</key>
@@ -15,19 +15,15 @@
 	<key>Creator</key>
 	<string>Platypus-5.2</string>
 	<key>DeclareService</key>
-	<false/>
-	<key>Destination</key>
-	<string>/Users/sveinbjorn/Desktop/Application.app</string>
+	<true/>
 	<key>DevelopmentVersion</key>
 	<false/>
 	<key>DocIconPath</key>
 	<string></string>
 	<key>Droppable</key>
-	<true/>
+	<false/>
 	<key>Example</key>
 	<true/>
-	<key>ExecutablePath</key>
-	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
@@ -40,8 +36,6 @@
 	<string>/usr/bin/python</string>
 	<key>Name</key>
 	<string>SayURLSchemeHandler</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<true/>
 	<key>Overwrite</key>
@@ -60,9 +54,9 @@ import sys
 
 text = sys.argv[1]
 text = text[6:]
-text = text.replace('-', ' ')
+text = text.replace(&apos;-&apos;, &apos; &apos;)
 if len(text):
-    call(["/usr/bin/say", text])
+    call([&quot;/usr/bin/say&quot;, text])
 	</string>
 	<key>ScriptName</key>
 	<string>SayURLSchemeHandler</string>
@@ -71,8 +65,7 @@ if len(text):
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
-	<data>
-    </data>
+	<data></data>
 	<key>StatusItemIconIsTemplate</key>
 	<false/>
 	<key>StatusItemTitle</key>
@@ -94,10 +87,7 @@ if len(text):
 		<string>say</string>
 	</array>
 	<key>UniformTypes</key>
-	<array>
-		<string>public.item</string>
-		<string>public.folder</string>
-	</array>
+	<array/>
 	<key>UseXMLPlistFormat</key>
 	<false/>
 	<key>Version</key>

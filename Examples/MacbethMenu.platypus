@@ -44,8 +44,6 @@ if (!scalar(@ARGV)) {
 	<string>/usr/bin/perl</string>
 	<key>Name</key>
 	<string>MacbethMenu</string>
-	<key>NibPath</key>
-	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<false/>
 	<key>InterfaceType</key>
@@ -63,9 +61,7 @@ if (!scalar(@ARGV)) {
 	<key>StatusItemTitle</key>
 	<string>Macbeth</string>
 	<key>Suffixes</key>
-	<array>
-		<string>*</string>
-	</array>
+	<array/>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
 	<key>TextFont</key>
