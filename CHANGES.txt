@@ -21,7 +21,8 @@ For future versions...
 
 5.2
     TODO: File watching still broken for script path
-    TODO: Create URI protocol handling Example: say://
+    TODO: Replace old screenshots used in documentation
+
     TODO: Create Status Menu submenu and separator example
 
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
