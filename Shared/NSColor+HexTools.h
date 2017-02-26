@@ -32,7 +32,7 @@
 
 @interface NSColor (HexTools)
 
-+ (NSColor *)colorFromHex:(NSString *)inColorString;
++ (NSColor *)colorFromHexString:(NSString *)inColorString;
 - (NSString *)hexString;
 
 @end

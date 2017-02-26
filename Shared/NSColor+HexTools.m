@@ -32,7 +32,7 @@
 
 @implementation NSColor (HexTools)
 
-+ (NSColor *)colorFromHex:(NSString *)inColorString {
++ (NSColor *)colorFromHexString:(NSString *)inColorString {
     NSString *charStr       = [inColorString substringFromIndex:1];
     NSColor *result         = NULL;
     unsigned int colorCode  = 0;
