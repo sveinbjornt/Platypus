@@ -517,6 +517,7 @@
     NSMutableDictionary *appSettingsPlist = [NSMutableDictionary dictionary];
     
     NSMutableArray *keys = [@[AppSpecKey_Authenticate,
+                              AppSpecKey_Creator,
                               AppSpecKey_RemainRunning,
                               AppSpecKey_InterfaceType,
                               AppSpecKey_InterpreterPath,
@@ -531,10 +532,11 @@
                               AppSpecKey_AcceptText,
                               AppSpecKey_PromptForFile,
                               AppSpecKey_Suffixes,
-                              AppSpecKey_Utis] mutableCopy];
+                              AppSpecKey_Utis,
+                              AppSpecKey_URISchemes] mutableCopy];
     
     // status menu info
-    if (InterfaceTypeForString(appSettingsPlist[AppSpecKey_InterfaceType]) == PlatypusInterfaceType_StatusMenu) {
+    if (InterfaceTypeForString(self[AppSpecKey_InterfaceType]) == PlatypusInterfaceType_StatusMenu) {
         NSArray *statusMenuKeys = @[AppSpecKey_StatusItemDisplayType,
                                     AppSpecKey_StatusItemTitle,
                                     AppSpecKey_StatusItemIcon,
