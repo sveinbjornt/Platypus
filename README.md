@@ -17,7 +17,7 @@ launchers, automations and droplets using Platypus.
 ## Documentation
 
 * [Platypus Documentation](http://sveinbjorn.org/platypus_documentation)
-* [Version History](Documentation/Readme.html#versions)
+* [Version History](http://www.sveinbjorn.org/platypus_version_log)
 
 ## Screenshot
 
@@ -26,14 +26,15 @@ launchers, automations and droplets using Platypus.
 ## Some notes on the code
 
 Platypus is very old software, dating back to the early days 
-of Mac OS X.  It was originally written in C using the 
+of Mac OS X circa 2003.  It was originally written in C using the 
 Carbon APIs, but later transitioned to Cocoa during the 
 time I was learning to use Objective-C and the Cocoa 
 APIs. I made many beginner mistakes, some of which 
-remain in the code.  The software has gone through over 
-three dozen significant versions. It has been patched,
+remain in the code.  This software has  since gone through about
+four dozen significant versions. It has been patched,
 bugfixed, streamlined to include new features and was
-recently transitioned over to modern Objective C.
+recently transitioned over to modern Objective C. It's not
+how I would write it today.
 
 With these caveats in mind, here is the BSD-licensed 
 source code to Platypus.
