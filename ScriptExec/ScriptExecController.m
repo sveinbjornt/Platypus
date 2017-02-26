@@ -251,18 +251,18 @@ static const NSInteger detailsHeight = 224;
         
         // foreground color
         if (appSettingsDict[AppSpecKey_TextColor] != nil) {
-            textForegroundColor = [NSColor colorFromHex:appSettingsDict[AppSpecKey_TextColor]];
+            textForegroundColor = [NSColor colorFromHexString:appSettingsDict[AppSpecKey_TextColor]];
         }
         if (textForegroundColor == nil) {
-            textForegroundColor = [NSColor colorFromHex:DEFAULT_TEXT_FG_COLOR];
+            textForegroundColor = [NSColor colorFromHexString:DEFAULT_TEXT_FG_COLOR];
         }
         
         // background color
         if (appSettingsDict[AppSpecKey_TextBackgroundColor] != nil) {
-            textBackgroundColor = [NSColor colorFromHex:appSettingsDict[AppSpecKey_TextBackgroundColor]];
+            textBackgroundColor = [NSColor colorFromHexString:appSettingsDict[AppSpecKey_TextBackgroundColor]];
         }
         if (textBackgroundColor == nil) {
-            textBackgroundColor = [NSColor colorFromHex:DEFAULT_TEXT_BG_COLOR];
+            textBackgroundColor = [NSColor colorFromHexString:DEFAULT_TEXT_BG_COLOR];
         }
     }
     

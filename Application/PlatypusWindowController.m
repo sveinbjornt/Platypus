@@ -625,8 +625,8 @@
     
     // text settings
     [textSettingsController setTextFont:[NSFont fontWithName:spec[AppSpecKey_TextFont] size:[spec[AppSpecKey_TextSize] intValue]]];
-    [textSettingsController setTextForegroundColor:[NSColor colorFromHex:spec[AppSpecKey_TextColor]]];
-    [textSettingsController setTextBackgroundColor:[NSColor colorFromHex:spec[AppSpecKey_TextBackgroundColor]]];
+    [textSettingsController setTextForegroundColor:[NSColor colorFromHexString:spec[AppSpecKey_TextColor]]];
+    [textSettingsController setTextBackgroundColor:[NSColor colorFromHexString:spec[AppSpecKey_TextBackgroundColor]]];
     
     // status menu settings
     if (InterfaceTypeForString(spec[AppSpecKey_InterfaceType]) == PlatypusInterfaceType_StatusMenu) {
