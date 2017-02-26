@@ -359,7 +359,7 @@
     
     // create script file in app bundle
     // .app/Contents/Resources/script
-    [self report:@"Copying script"];
+    [self report:@"Copying script to bundle"];
     
     NSString *scriptFilePath = [resourcesPath stringByAppendingString:@"/script"];
     
@@ -377,7 +377,7 @@
     
     // create AppSettings.plist file
     // .app/Contents/Resources/AppSettings.plist
-    [self report:@"Creating AppSettings property list"];
+    [self report:@"Writing AppSettings.plist"];
     NSMutableDictionary *appSettingsPlist = [self appSettingsPlist];
     NSString *appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
     if ([self[AppSpecKey_XMLPlistFormat] boolValue] == FALSE) {
@@ -465,7 +465,7 @@
     // COPY APP OVER TO FINAL DESTINATION
     // we've created the application bundle in the temporary directory
     // now it's time to move it to the destination specified by the user
-    [self report:@"Moving app to destination directory '%@'", self[AppSpecKey_DestinationPath]];
+    [self report:@"Moving app to destination '%@'", self[AppSpecKey_DestinationPath]];
     
     NSString *destPath = self[AppSpecKey_DestinationPath];
     
@@ -497,7 +497,7 @@
     [WORKSPACE notifyFinderFileChangedAtPath:destPath];
     
     // register/update in the launch services database
-    [self report:@"Registering with Launch Services"];
+    [self report:@"Registering app with Launch Services"];
     LSRegisterURL((__bridge CFURLRef)([NSURL fileURLWithPath:destPath]), YES);
     
     // update Services

@@ -17,12 +17,13 @@
 	<key>Example</key>
 	<true/>
 	<key>ScriptName</key>
-	<string>StatusMenuIconDemo.pl</string>
+	<string>StatusMenuDemo.pl</string>
 	<key>Script</key>
 	<string>#!/usr/bin/perl
 print &quot;MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n&quot;;
 print &quot;MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n&quot;;
 print &quot;MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n&quot;;
+print &quot;SUBMENU|Submenu|Item 1|Item 2|Item 3\n&quot;;
 </string>
 	<key>DocIconPath</key>
 	<string></string>
@@ -35,7 +36,7 @@ print &quot;MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\
 	<key>InterpreterPath</key>
 	<string>/usr/bin/perl</string>
 	<key>Name</key>
-	<string>StatusMenuIconDemo</string>
+	<string>StatusMenuDemo</string>
 	<key>NibPath</key>
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>

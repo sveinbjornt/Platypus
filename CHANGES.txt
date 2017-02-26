@@ -22,8 +22,7 @@ For future versions...
 5.2
     TODO: File watching still broken for script path
     TODO: Replace old screenshots used in documentation
-
-    TODO: Create Status Menu submenu and separator example
+    TODO: Test all examples and make sure they work correctly
 
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
     * Platypus apps can now accept dragged URLs
@@ -34,6 +33,7 @@ For future versions...
     * The Platypus Profile format has changed slightly in this version, but old formats can still be read
     * Relative paths are now supported in Platypus Profiles, but only through manual editing. Platypus app and CLT still generate Profiles with absolute paths.
     * Droplet apps now quit when their window is closed
+    * Updated and improved example profiles
     * Fixed annoying issue where status menu would render before receiving all script output
     * Fixed performance issue with printing many lines to text window. It is now very fast again.
     * Fixed issue where loading certain Example profiles would cause Platypus to crash
