@@ -13,10 +13,11 @@ For future versions...
     TODO: Support for authenticated task termination
     TODO: Add support for feeding script output into status item view like Tapir did (cool feature)
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
+    TODO: Move documentation to Markdown format instead of raw, old-school HTML
+    TODO: Don't save Status Menu image as base64 in every Profile
 
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
-    TODO: Move documentation to Markdown format instead of raw, old-school HTML
 
 
 5.2
@@ -28,10 +29,10 @@ For future versions...
     * Platypus apps can now accept dragged URLs
     * Platypus apps that accept dropped files now have an Open Recent menu
     * New syntax to create submenus in Status Menu interface type
+    * Relative paths are now supported in Platypus Profiles, but only through manual editing. Platypus app and CLT still generate Profiles with absolute paths.
     * Platypus now warns about about identical file names in bundled files
     * Text in Platypus apps now has a minimum font size
     * The Platypus Profile format has changed slightly in this version, but old formats can still be read
-    * Relative paths are now supported in Platypus Profiles, but only through manual editing. Platypus app and CLT still generate Profiles with absolute paths.
     * Droplet apps now quit when their window is closed
     * Updated and improved example profiles
     * Fixed annoying issue where status menu would render before receiving all script output
