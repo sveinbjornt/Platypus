@@ -32,7 +32,7 @@ print &quot;SUBMENU|Submenu|Item 1|Item 2|Item 3\n&quot;;
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
-	<string>org.sveinbjorn.StatusMenuIconDemo</string>
+	<string>org.sveinbjorn.StatusMenuDemo</string>
 	<key>InterpreterPath</key>
 	<string>/usr/bin/perl</string>
 	<key>Name</key>
