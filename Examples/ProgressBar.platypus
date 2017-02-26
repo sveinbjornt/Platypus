@@ -81,7 +81,7 @@ echo &quot;Done&quot;</string>
 	<array/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>ShowInDock</key>
+	<key>RunInBackground</key>
 	<false/>
 	<key>Suffixes</key>
 	<array>
@@ -89,6 +89,8 @@ echo &quot;Done&quot;</string>
 	</array>
 	<key>TextBackground</key>
 	<string>#ffffff</string>
+	<key>TextEncoding</key>
+	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>

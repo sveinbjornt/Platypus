@@ -49,7 +49,7 @@ ps cax
 	<array/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>ShowInDock</key>
+	<key>RunInBackground</key>
 	<true/>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>

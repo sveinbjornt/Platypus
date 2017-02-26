@@ -68,7 +68,7 @@ say &quot;$WC words&quot;
 	<false/>
 	<key>ScriptArgs</key>
 	<array/>
-	<key>ShowInDock</key>
+	<key>RunInBackground</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>

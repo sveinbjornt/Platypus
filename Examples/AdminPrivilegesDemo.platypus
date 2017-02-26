@@ -62,7 +62,7 @@ echo &quot;Return code: $?&quot;
 	<true/>
 	<key>ScriptArgs</key>
 	<array/>
-	<key>ShowInDock</key>
+	<key>RunInBackground</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>

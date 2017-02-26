@@ -58,7 +58,7 @@ echo &quot;Y&quot; | /usr/bin/hdid &quot;$1&quot;
 	</array>
 	<key>RemainRunning</key>
 	<false/>
-	<key>ShowInDock</key>
+	<key>RunInBackground</key>
 	<true/>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>

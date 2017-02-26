@@ -75,7 +75,7 @@ system(&quot;$cmd $dest_path $files&quot;);
 	<array/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>ShowInDock</key>
+	<key>RunInBackground</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>

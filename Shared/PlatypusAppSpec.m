@@ -125,7 +125,9 @@
         if (dict[AppSpecKey_DocIconPath_Legacy] != nil) {
             properties[AppSpecKey_DocIconPath] = dict[AppSpecKey_DocIconPath_Legacy];
         }
-        
+        if (dict[AppSpecKey_RunInBackground_Legacy] != nil) {
+            properties[AppSpecKey_RunInBackground] = dict[AppSpecKey_RunInBackground_Legacy];
+        }        
     }
     return self;
 }

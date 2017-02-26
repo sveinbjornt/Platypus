@@ -67,7 +67,7 @@ echo &quot;data:$MIME_TYPE;base64,$BASE64_DATA&quot;
 	<true/>
 	<key>ScriptArgs</key>
 	<array/>
-	<key>ShowInDock</key>
+	<key>RunInBackground</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>

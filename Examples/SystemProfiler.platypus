@@ -27,8 +27,6 @@
 	<string></string>
 	<key>Droppable</key>
 	<false/>
-	<key>ExecutablePath</key>
-	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>
@@ -47,7 +45,7 @@
 	<array/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>ShowInDock</key>
+	<key>RunInBackground</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>

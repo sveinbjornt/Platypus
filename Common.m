@@ -51,7 +51,7 @@ NSString * const AppSpecKey_Author = @"Author";
 NSString * const AppSpecKey_Droppable = @"Droppable";
 NSString * const AppSpecKey_Authenticate = @"Authentication";
 NSString * const AppSpecKey_RemainRunning = @"RemainRunning";
-NSString * const AppSpecKey_RunInBackground = @"ShowInDock";
+NSString * const AppSpecKey_RunInBackground = @"RunInBackground";
 
 NSString * const AppSpecKey_BundledFiles = @"BundledFiles";
 
@@ -82,6 +82,7 @@ NSString * const AppSpecKey_ScriptName = @"ScriptName"; // examples only
 NSString * const AppSpecKey_DocIconPath_Legacy = @"DocIcon";
 NSString * const AppSpecKey_InterpreterPath_Legacy = @"Interpreter";
 NSString * const AppSpecKey_InterfaceType_Legacy = @"Output";
+NSString * const AppSpecKey_RunInBackground_Legacy = @"ShowInDock";
 
 // NSUserDefaults keys for Platypus app
 NSString * const DefaultsKey_BundleIdentifierPrefix = @"DefaultBundleIdentifierPrefix";

@@ -47,7 +47,7 @@ print &quot;SUBMENU|Submenu|Item 1|Item 2|Item 3\n&quot;;
 	<array/>
 	<key>RemainRunning</key>
 	<true/>
-	<key>ShowInDock</key>
+	<key>RunInBackground</key>
 	<false/>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
