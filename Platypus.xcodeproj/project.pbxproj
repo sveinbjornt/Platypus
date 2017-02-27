@@ -326,7 +326,7 @@
 		F4D0F2431C1E1B020065AD25 /* InterfaceType_Status-Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "InterfaceType_Status-Menu.png"; path = "Icons/InterfaceTypeIcons/InterfaceType_Status-Menu.png"; sourceTree = SOURCE_ROOT; };
 		F4D0F2441C1E1B020065AD25 /* InterfaceType_Text-Window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "InterfaceType_Text-Window.png"; path = "Icons/InterfaceTypeIcons/InterfaceType_Text-Window.png"; sourceTree = SOURCE_ROOT; };
 		F4D0F2451C1E1B020065AD25 /* InterfaceType_Web-View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "InterfaceType_Web-View.png"; path = "Icons/InterfaceTypeIcons/InterfaceType_Web-View.png"; sourceTree = SOURCE_ROOT; };
-		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
+		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		F4E1F6FC11F758FB007EE2E3 /* platypus_clt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
