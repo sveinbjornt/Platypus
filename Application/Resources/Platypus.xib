@@ -2370,6 +2370,9 @@ DQ
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <outlet property="delegate" destination="10213" id="kDB-iv-YDq"/>
+                                    </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" id="10198">
                                     <rect key="frame" x="253" y="60" width="42" height="17"/>
@@ -2528,7 +2531,7 @@ DQ
                                 <popUpButton toolTip="Select your default text editor" verticalHuggingPriority="750" id="11386">
                                     <rect key="frame" x="43" y="246" width="208" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="11412">
+                                    <popUpButtonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="11426" id="11412">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
                                         <menu key="menu" title="OtherViews" id="11413">
@@ -2546,6 +2549,7 @@ DQ
                                                 <menuItem title="TextMate" id="11417"/>
                                                 <menuItem title="SubEthaEdit" id="11423"/>
                                                 <menuItem title="Smultron" id="11415"/>
+                                                <menuItem title="Textastic" id="9Ek-nA-ZMA"/>
                                                 <menuItem title="Xcode" id="11416"/>
                                                 <menuItem title="BBEdit" id="11425"/>
                                                 <menuItem title="TextWrangler" id="11428"/>

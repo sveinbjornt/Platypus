@@ -429,7 +429,7 @@
         appPath = [appPath stringByAppendingString:@".app"];
     }
     
-    // create spec from controls and verify
+    // create spec from controls
     PlatypusAppSpec *spec = [self appSpecFromControls];
     
     // we set this specifically
@@ -447,9 +447,7 @@
         return NO;
     }
     
-    // ok, now we try to create the app
-    
-    // first, show progress dialog
+    // show progress dialog
     NSString *progressStr = [NSString stringWithFormat:@"Creating application %@", spec[AppSpecKey_Name]];
     [progressDialogMessageLabel setStringValue:progressStr];
     [progressBar setUsesThreadedAnimation:YES];
@@ -463,7 +461,7 @@
     
     // create the app from spec
     if (![spec create]) {
-        // Dialog ends here.
+        // dialog ends here
         [NSApp endSheet:progressDialogWindow];
         [progressDialogWindow orderOut:self];
         
@@ -732,7 +730,7 @@
         [revealScriptButton setEnabled:exists];
         
         //enable/disable create app button
-        [createAppButton setEnabled:validName && exists];
+        [createAppButton setEnabled:(validName && exists)];
     }
     if ([aNotification object] == appNameTextField) {
         //update identifier
@@ -810,6 +808,7 @@
     [self controlsFromAppSpec:spec];
     
     [iconController setToDefaults];
+    [statusItemSettingsController setToDefaults:self];
     [self setScriptType:DEFAULT_SCRIPT_TYPE];
     [self interfaceTypeDidChange:interfaceTypePopupButton];
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
