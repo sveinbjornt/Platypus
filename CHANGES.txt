@@ -45,6 +45,7 @@ For future versions...
     * Fixed issue with console spamming due to missing CFBundleTypeRole. Now always "Viewer".
     * Fixed bug where text settings were not properly loaded by the GUI
     * Fixed bug where bundling files with the -f flag didn't work in the command line tool
+    * Fixed issue where status menu settings would not be restored to defaults on clear
     * Fixed bug where the command line tool would erroneously try to validate whole argument strings instead of individual UTI strings
     * Fixed bug where suffix editing buttons remained enabled when they shouldn't be
     * Got rid of text encoding settings. Platypus now uses UTF8 for everything, and you should too.

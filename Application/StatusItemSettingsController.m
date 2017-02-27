@@ -137,6 +137,14 @@
     }
 }
 
+- (void)controlTextDidChange:(NSNotification *)aNotification {
+    if ([aNotification object] == titleTextField) {
+        if (previewStatusItem != nil) {
+            [self previewStatusItem:self];
+        }
+    }
+}
+
 #pragma mark - Preview Status Item
 
 - (IBAction)previewStatusItem:(id)sender {
