@@ -680,7 +680,8 @@
 }
 
 - (void)selectScriptTypeBasedOnInterpreter {
-    NSString *type = [PlatypusScriptAnalyser displayNameForInterpreterPath:[interpreterPathTextField stringValue]];
+    NSString *interpreterPath = [interpreterPathTextField stringValue];
+    NSString *type = [PlatypusScriptAnalyser displayNameForInterpreterPath:interpreterPath];
     [scriptTypePopupButton selectItemWithTitle:type];
 }
 
@@ -693,20 +694,23 @@
 }
 
 - (void)loadScript:(NSString *)scriptPath {
-    //make sure file we're loading actually exists
+    // make sure the file we're loading actually exists
     BOOL isDir;
-    if (![FILEMGR fileExistsAtPath:scriptPath isDirectory:&isDir] || isDir) {
+    if ([FILEMGR fileExistsAtPath:scriptPath isDirectory:&isDir] == NO || isDir) {
+        NSBeep();
         return;
     }
     
+    // create a default spec and set controls
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithDefaultsForScript:scriptPath];
     spec[AppSpecKey_BundledFiles] = [bundledFilesController filePaths];
     [self controlsFromAppSpec:spec];
     
     [iconController setToDefaults];
     
-    // add to recent items menu
-    [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:scriptPath]];
+    // add to recent documents
+    NSURL *scriptURL = [NSURL fileURLWithPath:scriptPath];
+    [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:scriptURL];
 }
 
 #pragma mark - Interface actions

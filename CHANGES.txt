@@ -1,27 +1,27 @@
 For future versions...
-    TODO: Implement automated testing
-    TODO: Get STDERR output and pid for STPrivilegedTask
-    TODO: Create Platypus tutorial videos, make them available online
-    TODO: AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
-    TODO: New button-based interface type
-    TODO: New OnChange Text Filter interface type
-    TODO: Document the Services feature and provide instructions on how to enable in the Services preferences in Mac OS X.
-    TODO: Refactor ScriptExec for clean view controller/task controller decoupling
     TODO: Look at FTaskStream.h
-    TODO: Use pseudo-ttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
     TODO: Use NSDictionaryController and bindings for all controls in main window and sub-controllers
-    TODO: Support for authenticated task termination
-    TODO: Add support for feeding script output into status item view like Tapir did (cool feature)
-    TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
-    TODO: Move documentation to Markdown format instead of raw, old-school HTML
-    TODO: Don't save Status Menu image as base64 in every Profile
 
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
 
+For 5.3
+    TODO: Don't save Status Menu image as base64 in every Profile
+    TODO: Move documentation to Markdown format instead of raw, old-school HTML
+    TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
+    TODO: Find a way to support authenticated task termination
+    TODO: New button-based interface type
+    TODO: New OnChange Text Filter interface type
+    TODO: Refactor ScriptExec for clean view controller/task controller decoupling
+    TODO: Document the Services feature and provide instructions on how to enable in the Services preferences in Mac OS X.
+    TODO: Implement automated testing
+    TODO: Get STDERR output and pid for STPrivilegedTask
+    TODO: Create Platypus tutorial videos, make them available online
+    TODO: AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
+    TODO: Use pseudo-ttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
+    TODO: Find a way to fix broken file watching of script path eftir pressing "New"
 
 5.2
-    TODO: File watching still broken for script path
     TODO: Test all examples and make sure they work correctly
 
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
