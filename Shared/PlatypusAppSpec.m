@@ -428,7 +428,6 @@
     else {
         success = [infoPlist writeToFile:infoPlistPath atomically:YES];
     }
-    // raise error on failure
     if (success == NO) {
         _error = @"Error writing Info.plist";
         return FALSE;
@@ -441,7 +440,31 @@
     if (numBundledFiles) {
         [self report:@"Copying %d bundled files", numBundledFiles];
     }
-    for (NSString *bundledFilePath in self[AppSpecKey_BundledFiles]) {
+    for (id bundledFile in self[AppSpecKey_BundledFiles]) {
+        
+        // check if it's an embedded file or a path string
+        NSString *bundledFilePath;
+        if ([bundledFile isKindOfClass:[NSDictionary class]]) {
+            
+            // Bundled files can be embedded in Platypus Profiles
+            // If an entry in the array is a dictionary with a "Name"
+            // and "Data" key, we create a file in a tmp directory
+            // and then use its path
+            
+            NSDictionary *bundledFileDict = (NSDictionary *)bundledFile;
+            NSString *name = bundledFileDict[@"Name"];
+            NSData *data = bundledFileDict[@"Data"];
+            if (!name || !data) {
+                continue;
+            }
+            NSString *path = [WORKSPACE createTempFileNamed:name withContents:@""];
+            [data writeToFile:path atomically:NO];
+        } else if ([bundledFile isKindOfClass:[NSString class]]) {
+            bundledFilePath = (NSString *)bundledFile;
+        } else {
+            continue;
+        }
+        
         NSString *fileName = [bundledFilePath lastPathComponent];
         NSString *bundledFileDestPath = [resourcesPath stringByAppendingString:@"/"];
         bundledFileDestPath = [bundledFileDestPath stringByAppendingString:fileName];
