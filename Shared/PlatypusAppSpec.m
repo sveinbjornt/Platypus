@@ -458,7 +458,11 @@
                 continue;
             }
             NSString *path = [WORKSPACE createTempFileNamed:name withContents:@""];
-            [data writeToFile:path atomically:NO];
+            if (path) {
+                [data writeToFile:path atomically:NO];
+            } else {
+                NSLog(@"Warning: Could not create tmp file named '%@'", name);
+            }
         } else if ([bundledFile isKindOfClass:[NSString class]]) {
             bundledFilePath = (NSString *)bundledFile;
         } else {
@@ -518,7 +522,7 @@
         return FALSE;
     }
     
-    // make sure app represenation in Finder is updated
+    // make sure app representation in Finder is updated
     [WORKSPACE notifyFinderFileChangedAtPath:destPath];
     
     // register/update in the launch services database

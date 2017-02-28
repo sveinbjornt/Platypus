@@ -33,28 +33,26 @@
 @implementation NSColor (HexTools)
 
 + (NSColor *)colorFromHexString:(NSString *)inColorString {
-    NSString *charStr       = [inColorString substringFromIndex:1];
-    NSColor *result         = NULL;
-    unsigned int colorCode  = 0;
-    unsigned char redByte   = 0;
+    NSString *charStr = [inColorString substringFromIndex:1];
+    NSColor *result = NULL;
+    unsigned int colorCode = 0;
+    unsigned char redByte = 0;
     unsigned char greenByte = 0;
-    unsigned char blueByte  = 0;
+    unsigned char blueByte = 0;
     
     if (charStr != NULL) {
         NSScanner *scanner = [NSScanner scannerWithString:charStr];
-        (void)[scanner scanHexInt:&colorCode];      // ignore error
+        (void)[scanner scanHexInt:&colorCode]; // ignore error
     }
     
-    redByte     = (unsigned char)(colorCode >> 16);
-    greenByte   = (unsigned char)(colorCode >> 8);
-    blueByte    = (unsigned char)(colorCode);   // masks off high bits
+    redByte = (unsigned char)(colorCode >> 16);
+    greenByte = (unsigned char)(colorCode >> 8);
+    blueByte = (unsigned char)(colorCode); // masks off high bits
     
-    result = [NSColor
-              colorWithCalibratedRed:(float)redByte  / 0xff
-              green:(float)greenByte / 0xff
-              blue:(float)blueByte / 0xff
-              alpha:1.0];
-    
+    result = [NSColor colorWithCalibratedRed:(float)redByte / 0xff
+                                       green:(float)greenByte / 0xff
+                                        blue:(float)blueByte / 0xff
+                                       alpha:1.0];
     return result;
 }
 
@@ -63,9 +61,8 @@
     int redIntValue, greenIntValue, blueIntValue;
     NSString *redHexValue, *greenHexValue, *blueHexValue;
     
-    //Convert the NSColor to the RGB color space before we can access its components
+    // Convert the NSColor to the RGB color space before we can access its components
     NSColor *convertedColor = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-    
     if (!convertedColor) {
         return nil;
     }
