@@ -70,6 +70,7 @@
 		F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F44E001C1229868100CAC9C2 /* DefaultStatusMenuIcon.png */; };
 		F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
 		F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F44EFF0512296F3700CAC9C2 /* NSColor+HexTools.m */; };
+		F45986BB1E68E24300261427 /* platypus.man.html in Resources */ = {isa = PBXBuildFile; fileRef = F4B155F71C1EF77D00E6E941 /* platypus.man.html */; };
 		F46A3C701E65E5A6007BA557 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46A3C6F1E65E5A6007BA557 /* Accelerate.framework */; };
 		F46DD4631C221FC10019C832 /* Interpreter_Swift.png in Resources */ = {isa = PBXBuildFile; fileRef = F46DD4621C221FC10019C832 /* Interpreter_Swift.png */; };
 		F46EF85113C3F36900E4C0E4 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = F46EF84E13C3F36900E4C0E4 /* Examples */; };
@@ -995,6 +996,7 @@
 				F44A77431C1882DA003CCA7A /* InstallCommandLineTool.sh in Resources */,
 				F4D0F24B1C1E1B020065AD25 /* InterfaceType_Web-View.png in Resources */,
 				F48002CB121AF042003FB5B3 /* images in Resources */,
+				F45986BB1E68E24300261427 /* platypus.man.html in Resources */,
 				F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */,
 				F4975DC01B2E71FC0099D16E /* Platypus.xib in Resources */,
 				F43E1D831BC8048400622B5F /* Interpreter_Tcl.png in Resources */,

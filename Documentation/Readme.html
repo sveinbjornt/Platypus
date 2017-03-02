@@ -49,10 +49,8 @@
 <div class="main">
 
 
-<img class="icon" src="images/platypus.png">
-
 <h1 style="margin-top: 0;">Platypus 5.2</h1>
-<p>Last updated <strong>February 13th, 2017<br></strong>
+<p>Last updated <strong>March 3rd, 2017<br></strong>
 by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
 <br>
 <br>
@@ -97,6 +95,39 @@ by <a href="mailto:sveinbjornt@gmail.com">Sveinbjorn Thordarson</a></p>
 
 <a name="versions"></a>
 <h3>Version History</h3>
+
+<h4>03/03/2017 - Version 5.2</h4>
+
+<ul>
+    <li>Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script</li>
+    <li>Platypus apps can now accept dragged URLs</li>
+    <li>Platypus apps that accept dropped files now have an Open Recent menu</li>
+    <li>New syntax to create submenus in Status Menu interface type</li>
+    <li>Relative paths are now supported in Platypus Profiles, but only through manual editing. Platypus app and CLT still generate Profiles with absolute paths.</li>
+    <li>Platypus now warns about about identical file names in bundled files</li>
+    <li>Droplet apps now quit when their window is closed</li>
+    <li>Updated and improved example profiles demonstrating new features</li>
+    <li>Text in Platypus apps now has a minimum font size</li>
+    <li>The Platypus Profile format has changed slightly in this version, but old formats can still be read</li>
+    <li>Fixed annoying issue where status menu would render before receiving all script output</li>
+    <li>Fixed performance issue with printing many lines to text window. It is now very fast again.</li>
+    <li>Fixed issue where loading certain Example profiles would cause Platypus to crash</li>
+    <li>Fixed bug where "Use as template" was shown when Status Item mode was "Text"</li>
+    <li>Fixed bug where command line tool failed to infer app name from script filename, resulting in "(null).app"</li>
+    <li>Fixed bug where files that had been moved were not colored red in Bundled Files list</li>
+    <li>Fixed bug where valid menu items were disabled in Action menu</li>
+    <li>Fixed issue with console spamming due to missing CFBundleTypeRole. Now always "Viewer".</li>
+    <li>Fixed bug where text settings were not properly loaded by the GUI</li>
+    <li>Fixed bug where bundling files with the -f flag didn't work in the command line tool</li>
+    <li>Fixed issue where status menu settings would not be restored to defaults on clear</li>
+    <li>Fixed bug where the command line tool would erroneously try to validate whole argument strings instead of individual UTI strings</li>
+    <li>Fixed bug where suffix editing buttons remained enabled when they shouldn't be</li>
+    <li>Got rid of text encoding settings. Platypus now uses UTF8 for everything, and you should too.</li>
+    <li>Got rid of "Secure bundled script" option, which was useless bullshit anyway</li>
+    <li>Fixed issue where main application window would not remember its last position</li>
+    <li>Updated documentation & man page</li>
+    <li>Various minor interface refinements</li>
+</ul>
 
 <h4>06/02/2016 - Version 5.1</h4>
 <ul>

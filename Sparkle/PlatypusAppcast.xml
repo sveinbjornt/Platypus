@@ -7,74 +7,40 @@
         <language>en</language>
         <item>
             <title>Version 5.1</title>
-            <pubDate>Sat, 06 Feb 2016 13:37:00 +0000</pubDate>
-            <enclosure url="https://sveinbjorn.org/files/software/platypus/platypus5.1.zip" sparkle:version="887" sparkle:shortVersionString="5.1" length="3659843" type="application/octet-stream" sparkle:dsaSignature="MCwCFC8etQF7VjZCZ2F3/mYL1zMbMrqsAhRkakdp5CroE+Ql8Wm/UKtV2gKjbw=="/>
+            <pubDate>Fri, 03 Mar 2017 00:37:00 +0000</pubDate>
+            <enclosure url="https://sveinbjorn.org/files/software/platypus/platypus5.2.zip" sparkle:version="1008" sparkle:shortVersionString="5.2" length="3649512" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCt3MhvLzIQ5lRNu5d28xKXJwN7ygIVAKYgCZzZzqYfnueKlpAGI59H3ZWR"/>
             <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
-                <h2>Version 5.1 Changes</h2>
+                <h2>Version 5.2 Changes</h2>
                 <ul>
-                    <li>New Build All Examples feature</li>
-                    <li>App windows now remember size and position between launches</li>
-                    <li>Various user interface improvements</li>
-                    <li>Smarter handling of dropped files</li>
-                    <li>Smarter automatic app name generation from script name</li>
-                    <li>Output string "----\n" in Status Menu interface now creates menu separator item</li>
-                    <li>Uniform Type Identifiers and Application Bundle Identifiers are now validated</li>
-                    <li>Uniform Type Identifiers are now used for default file types in Drop Settings</li>
-                    <li>New template processing option for Status Item icon</li>
-                    <li>New examples</li>
-                    <li>Added support for multiple file arguments when bundling files using command line tool</li>
-                    <li>Fixed issue where MainMenu.nib was stripped and thus not editable using XCode</li>
-                    <li>Fixed critical issue with Web View and Droplet interface types</li>
-                    <li>Fixed issue where showing the Preferences window lagged due to icon fetching on main thread</li>
-                    <li>Fixed issue with window behaviour during resizing in Progress Bar interface</li>
-                </ul>
-            ]]></description>
-        </item>
-        <item>
-            <title>Version 5.0</title>
-            <pubDate>Wed, 30 Nov 2015 00:28:00 +0000</pubDate>
-            <enclosure url="https://sveinbjorn.org/files/software/platypus/platypus5.0.zip" sparkle:version="5.0" sparkle:shortVersionString="5.0" length="3640511" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCxJgz5q7W4x5GuUTW9drKORIk6egIUcgQ+Au+eb6r7HwsDTUf79b8JQoI="/>
-            <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[
-                <h2>Version 5.0 Changes</h2>
-                <ul>
-                    <li>This is a major update to Platypus with lots of new features</li>
-                    <li>Modernised user interface with high-resolution icons and interface assets</li>
-                    <li>Added support for Uniform Type Identifiers (UTIs) in Drop Settings</li>
-                    <li>Added NOTIFICATION: syntax, which sends a notification to User Notification Center</li>
-                    <li>Added ALERT: syntax, which triggers a modal alert dialog</li>
-                    <li>Added MENUITEMICON: syntax, which sets menu item icon in status item menus</li>
-                    <li>Dropped text input (NSPboardText) is now passed to script via STDIN, not as an argument. This allows differentiation between dropped text snippets and dropped files in applications that are made to handle both.</li>
-                    <li>The built-in editor has been much enhanced, with line numbering, configurable text size, word wrap and other improvements</li>
-                    <li>Parsed commands are now removed from script text output</li>
-                    <li>Documentation completely overhauled and expanded</li>
-                    <li>New "Use System Font" option for status menu items</li>
-                    <li>Symlinks now resolved when adding files to Bundled Files list</li>
-                    <li>Folder sizes are now calculated much faster (and asynchronously) when added to Bundled Files list</li>
-                    <li>Arguments window now highlights arguments and argument groups in command preview field</li>
-                    <li>Previewing status item menu now shows actual script output instead of placeholder text</li>
-                    <li>Many new examples</li>
-                    <li>Command line tool now supports --long-options</li>
-                    <li>Author name argument is now used to generate default bundle identifier in command line tool</li>
-                    <li>Finder now refreshes display of overwritten applications</li>
-                    <li>Status menu items can now only have a title or an icon, not both, due to changes in Mac OS X</li>
-                    <li>Show Shell Command window now shows install status of command line tool</li>
-                    <li>Syntax checker window now shows the command invoked when checking script syntax</li>
-                    <li>App size estimation is now more accurate</li>
-                    <li>Font size in "Web View" interface can now also be increased/reduced</li>
-                    <li>New contexual menu button for icon view</li>
-                    <li>New "Copy icon path" option in icon contextual menu</li>
-                    <li>Platypus-generated apps now remember font size set by user</li>
-                    <li>Fixed issue with generating icon from images on retina macs (IconFamily)</li>
-                    <li>Fixed issue with broken icon image alpha channels (IconFamily)</li>
-                    <li>Fixed issue where a status item menu would display an empty menu if clicked repeatedly</li>
-                    <li>Fixed issue where dropping text on an app wouldn't work with “Remain running after initial execution” off</li>
-                    <li>Fixed issue with Open... menu item and file types in ScriptExec</li>
-                    <li>Fixed issue where process number arguments in the format -psn_0_* were passed to script</li>
-                    <li>Fixed issue where command line arguments for ScriptExec were being passed incorrectly to script</li>
-                    <li>Many, many minor bugfixes, tweaks and improvements</li>
-                    <li>Codebase migrated to modern Objective-C syntax. Built with XCode 7 and now requires Mac OS X 10.7 or later and a 64-bit Intel system. Older versions continue to work just fine on 32-bit 10.6 systems, and version 4.4 still works on PowerPC. But it's time to leave the past behind. It's been 9 years since the last 32-bit Mac was released.</li>
+                <li>Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script</li>
+                <li>Platypus apps can now accept dragged URLs</li>
+                <li>Platypus apps that accept dropped files now have an Open Recent menu</li>
+                <li>New syntax to create submenus in Status Menu interface type</li>
+                <li>Relative paths are now supported in Platypus Profiles, but only through manual editing. Platypus app and CLT still generate Profiles with absolute paths.</li>
+                <li>Platypus now warns about about identical file names in bundled files</li>
+                <li>Droplet apps now quit when their window is closed</li>
+                <li>Updated and improved example profiles demonstrating new features</li>
+                <li>Text in Platypus apps now has a minimum font size</li>
+                <li>The Platypus Profile format has changed slightly in this version, but old formats can still be read</li>
+                <li>Fixed annoying issue where status menu would render before receiving all script output</li>
+                <li>Fixed performance issue with printing many lines to text window. It is now very fast again.</li>
+                <li>Fixed issue where loading certain Example profiles would cause Platypus to crash</li>
+                <li>Fixed bug where "Use as template" was shown when Status Item mode was "Text"</li>
+                <li>Fixed bug where command line tool failed to infer app name from script filename, resulting in "(null).app"</li>
+                <li>Fixed bug where files that had been moved were not colored red in Bundled Files list</li>
+                <li>Fixed bug where valid menu items were disabled in Action menu</li>
+                <li>Fixed issue with console spamming due to missing CFBundleTypeRole. Now always "Viewer".</li>
+                <li>Fixed bug where text settings were not properly loaded by the GUI</li>
+                <li>Fixed bug where bundling files with the -f flag didn't work in the command line tool</li>
+                <li>Fixed issue where status menu settings would not be restored to defaults on clear</li>
+                <li>Fixed bug where the command line tool would erroneously try to validate whole argument strings instead of individual UTI strings</li>
+                <li>Fixed bug where suffix editing buttons remained enabled when they shouldn't be</li>
+                <li>Got rid of text encoding settings. Platypus now uses UTF8 for everything, and you should too.</li>
+                <li>Got rid of "Secure bundled script" option, which was useless bullshit anyway</li>
+                <li>Fixed issue where main application window would not remember its last position</li>
+                <li>Updated documentation & man page</li>
+                <li>Various minor interface refinements</li>
                 </ul>
             ]]></description>
         </item>
