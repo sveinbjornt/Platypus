@@ -6,6 +6,10 @@
 	<false/>
 	<key>Author</key>
 	<string>Sveinbjorn Thordarson</string>
+	<key>AcceptsFiles</key>
+	<true/>
+	<key>AcceptsText</key>
+	<false/>
 	<key>BundledFiles</key>
 	<array/>
 	<key>Creator</key>

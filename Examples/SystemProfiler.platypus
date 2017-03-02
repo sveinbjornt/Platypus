@@ -20,7 +20,7 @@
 	<string>SystemProfiler.sh</string>
 	<key>Script</key>
 	<string>#!/bin/sh 
-# Print out system profiler info using Apple&apos;s tool
+# Print out system profiler info output
 /usr/sbin/system_profiler
     </string>
 	<key>DocIconPath</key>
@@ -40,7 +40,9 @@
 	<key>InterfaceType</key>
 	<string>Text Window</string>
 	<key>InterpreterArgs</key>
-	<array/>
+	<array>
+		<string>SystemProfiler</string>
+	</array>
 	<key>RemainRunning</key>
 	<true/>
 	<key>RunInBackground</key>

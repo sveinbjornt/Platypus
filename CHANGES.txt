@@ -23,8 +23,6 @@ For 5.3
     TODO: Create automated tests for command line tool using PlistBuddy etc.
 
 5.2
-    TODO: Test all examples and make sure they work correctly
-
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
     * Platypus apps can now accept dragged URLs
     * Platypus apps that accept dropped files now have an Open Recent menu

@@ -48,6 +48,10 @@ w
 	<string>Text</string>
 	<key>StatusItemIcon</key>
 	<data></data>
+	<key>StatusItemUseSystemFont</key>
+	<false/>
+	<key>StatusItemIconIsTemplate</key>
+	<false/>
 	<key>StatusItemTitle</key>
 	<string>w</string>
 	<key>Suffixes</key>

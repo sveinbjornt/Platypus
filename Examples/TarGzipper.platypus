@@ -4,6 +4,10 @@
 <dict>
 	<key>Authentication</key>
 	<false/>
+	<key>AcceptsFiles</key>
+	<true/>
+	<key>AcceptsText</key>
+	<false/>
 	<key>Author</key>
 	<string>Sveinbjorn Thordarson</string>
 	<key>BundledFiles</key>

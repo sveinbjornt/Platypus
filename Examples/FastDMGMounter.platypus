@@ -4,6 +4,8 @@
 <dict>
 	<key>AcceptsText</key>
 	<false/>
+	<key>AcceptsFiles</key>
+	<true/>
 	<key>Authentication</key>
 	<false/>
 	<key>Author</key>
