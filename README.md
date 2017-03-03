@@ -14,7 +14,7 @@ applications can be created with a few clicks. It is very easy to
 create installers, administrative applications, login items, status menu items, 
 launchers, automations and droplets using Platypus.
 
-* [Download Platypus 5.2](http://sveinbjorn.org/files/software/platypus/platypus5.2.zip) (Intel 64-bit, 10.7 or later, ~3.5 MB)
+* [Download Platypus 5.2](http://sveinbjorn.org/files/software/platypus.zip) (Intel 64-bit, 10.7 or later, ~3.5 MB)
 
 ## Documentation
 
