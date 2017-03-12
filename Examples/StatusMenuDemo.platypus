@@ -20,7 +20,7 @@
 	<string>StatusMenuDemo.pl</string>
 	<key>Script</key>
 	<string>#!/usr/bin/perl
-print &quot;MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n&quot;;
+print &quot;MENUITEMICON|AppIcon.icns|Menu item icon can be a bundled image\n&quot;;
 print &quot;MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n&quot;;
 print &quot;MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n&quot;;
 print &quot;SUBMENU|Submenu|Item 1|Item 2|Item 3\n&quot;;

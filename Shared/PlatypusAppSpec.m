@@ -396,7 +396,7 @@
     // .app/Contents/Resources/appIcon.icns
     if (self[AppSpecKey_IconPath] && ![self[AppSpecKey_IconPath] isEqualToString:@""]) {
         [self report:@"Writing application icon"];
-        NSString *iconPath = [resourcesPath stringByAppendingString:@"/appIcon.icns"];
+        NSString *iconPath = [resourcesPath stringByAppendingString:@"/AppIcon.icns"];
         [FILEMGR copyItemAtPath:self[AppSpecKey_IconPath] toPath:iconPath error:nil];
     }
     
@@ -616,7 +616,7 @@
     
     // add icon name if icon is set
     if (self[AppSpecKey_IconPath] != nil && [self[AppSpecKey_IconPath] isEqualToString:@""] == NO) {
-        infoPlist[@"CFBundleIconFile"] = @"appIcon.icns";
+        infoPlist[@"CFBundleIconFile"] = @"AppIcon.icns";
     }
     
     // if droppable, we declare the accepted file types

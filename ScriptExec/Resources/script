@@ -115,7 +115,7 @@ echo "SUBMENU|Title|Item1|Item2|Item3"
 #sleep 2;
 #print "Yo!\n";
 #
-#echo "MENUITEMICON|appIcon.icns|Menu item icon can be a bundled image\n";
+#echo "MENUITEMICON|AppIcon.icns|Menu item icon can be a bundled image\n";
 #echo "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
 #echo "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
 
