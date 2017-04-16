@@ -277,23 +277,25 @@
 
 - (BOOL)openPathInDefaultBrowser:(NSString *)path {
     NSURL *url = [NSURL URLWithString:@"http://"];
-    CFURLRef fromPathURL = NULL;
-    OSStatus err = LSGetApplicationForURL((__bridge CFURLRef)url, kLSRolesAll, NULL, &fromPathURL);
-    NSString *app = nil;
+    NSString *appPath = nil;
     
-    if (fromPathURL) {
-        if (err == noErr) {
-            app = [(__bridge NSURL *)fromPathURL path];
+    NSError *err = nil;
+    CFErrorRef errRef = (__bridge CFErrorRef)err;
+    CFURLRef browserPathURL = LSCopyDefaultApplicationURLForURL((__bridge CFURLRef)url, kLSRolesAll, &errRef);
+    
+    if (browserPathURL) {
+        if (err == nil) {
+            appPath = [(__bridge NSURL *)browserPathURL path];
         }
-        CFRelease(fromPathURL);
+        CFRelease(browserPathURL);
     }
     
-    if (!app || err) {
-        NSLog(@"Unable to find default browser");
+    if (!appPath) {
+        NSLog(@"Unable to find default browser: %@", [err localizedDescription]);
         return FALSE;
     }
     
-    [[NSWorkspace sharedWorkspace] openFile:path withApplication:app];
+    [[NSWorkspace sharedWorkspace] openFile:path withApplication:appPath];
     return TRUE;
 }
 
