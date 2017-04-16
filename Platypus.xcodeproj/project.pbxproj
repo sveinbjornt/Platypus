@@ -209,6 +209,7 @@
 		F43E1D751BC8048400622B5F /* Interpreter_Tcl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Interpreter_Tcl.png; path = Icons/Interpreters/Interpreter_Tcl.png; sourceTree = SOURCE_ROOT; };
 		F43E1D761BC8048400622B5F /* Interpreter_Tcsh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Interpreter_Tcsh.png; path = Icons/Interpreters/Interpreter_Tcsh.png; sourceTree = SOURCE_ROOT; };
 		F43E1D771BC8048400622B5F /* Interpreter_Zsh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Interpreter_Zsh.png; path = Icons/Interpreters/Interpreter_Zsh.png; sourceTree = SOURCE_ROOT; };
+		F442E00B1EA38C7100BAD80C /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Sparkle/dsa_pub.pem; sourceTree = "<group>"; };
 		F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_priv.pem; sourceTree = "<group>"; };
 		F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
@@ -422,6 +423,7 @@
 			children = (
 				F4975D7A1B2E462A0099D16E /* README.md */,
 				F4ECE1A011F7746A000DB012 /* CHANGES.txt */,
+				F442E00B1EA38C7100BAD80C /* LICENSE.txt */,
 				F4F14CBB1C64264D002A2402 /* Scripts */,
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */,
