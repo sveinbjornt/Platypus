@@ -7,17 +7,6 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		F49BBF511C863A440077FA15 /* OCLint */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = F49BBF551C863A440077FA15 /* Build configuration list for PBXAggregateTarget "OCLint" */;
-			buildPhases = (
-				F49BBF561C863A470077FA15 /* Run OCLint */,
-			);
-			dependencies = (
-			);
-			name = OCLint;
-			productName = OCTool;
-		};
 		F4F14CB51C640B1E002A2402 /* Examples */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = F4F14CB61C640B1E002A2402 /* Build configuration list for PBXAggregateTarget "Examples" */;
@@ -946,9 +935,6 @@
 					F48B774011F7661C00351575 = {
 						DevelopmentTeam = 5WX26Y89JP;
 					};
-					F49BBF511C863A440077FA15 = {
-						CreatedOnToolsVersion = 7.2.1;
-					};
 					F4F14CB51C640B1E002A2402 = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -968,11 +954,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				8D1107260486CEB800E47090 /* Platypus */,
 				F48B774011F7661C00351575 /* ScriptExec */,
 				F4E1F6FB11F758FB007EE2E3 /* platypus */,
-				8D1107260486CEB800E47090 /* Platypus */,
 				F4F14CB51C640B1E002A2402 /* Examples */,
-				F49BBF511C863A440077FA15 /* OCLint */,
 			);
 		};
 /* End PBXProject section */
@@ -1070,20 +1055,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\nBUILD_NUMBER=`git rev-list HEAD | wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ \"$?\" -ne 0 ] ; then\necho \"warning:Error incrementing CFBundleVersion\"\nfi";
-		};
-		F49BBF561C863A470077FA15 /* Run OCLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run OCLint";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd ${SRCROOT}\n\necho \"Building...\"\n${SRCROOT}/OCLint/xctool/bin/xctool -project Platypus.xcodeproj -scheme Platypus -configuration Deployment -reporter json-compilation-database:compile_commands.json clean build\n\necho \"Linting...\"\n${SRCROOT}/OCLint/oclint/bin/oclint-json-compilation-database \"-disable-rule=LongVariableName -disable-rule=LongLine\" | sed 's/\\(.*\\.\\m\\{1,2\\}:[0-9]*:[0-9]*:\\)/\\1 warning:/'";
 		};
 		F4F14CBA1C640B29002A2402 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1650,27 +1621,6 @@
 			};
 			name = Default;
 		};
-		F49BBF521C863A440077FA15 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Development;
-		};
-		F49BBF531C863A440077FA15 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Deployment;
-		};
-		F49BBF541C863A440077FA15 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Default;
-		};
 		F4E1F6FE11F758FC007EE2E3 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1793,16 +1743,6 @@
 				F48B774411F7661D00351575 /* Development */,
 				F48B774511F7661D00351575 /* Deployment */,
 				F48B774611F7661D00351575 /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Deployment;
-		};
-		F49BBF551C863A440077FA15 /* Build configuration list for PBXAggregateTarget "OCLint" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F49BBF521C863A440077FA15 /* Development */,
-				F49BBF531C863A440077FA15 /* Deployment */,
-				F49BBF541C863A440077FA15 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
