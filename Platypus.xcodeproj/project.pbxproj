@@ -141,7 +141,7 @@
 		F4FB338114FBFC7C00BAECEB /* License.html in Resources */ = {isa = PBXBuildFile; fileRef = F4FB338014FBFC7C00BAECEB /* License.html */; };
 		F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
 		F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
-		F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */; };
+		F4FE747B11F79399005FC23A /* platypus.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE747A11F79399005FC23A /* platypus.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -312,7 +312,6 @@
 		F4B155F61C1EF77D00E6E941 /* platypus.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = platypus.1; sourceTree = "<group>"; };
 		F4B155F71C1EF77D00E6E941 /* platypus.man.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = platypus.man.html; sourceTree = "<group>"; };
 		F4B155F81C1EF77D00E6E941 /* update_website_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_website_docs.sh; sourceTree = "<group>"; };
-		F4B272301C691EF500E04F0F /* strip.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = strip.sh; sourceTree = "<group>"; };
 		F4B87C191B3C997300F4B8BE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
 		F4B87C581B403A6E00F4B8BE /* build_release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_release.sh; sourceTree = "<group>"; };
 		F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = src_loc_stats.sh; sourceTree = "<group>"; };
@@ -348,7 +347,7 @@
 		F4FB338014FBFC7C00BAECEB /* License.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = License.html; sourceTree = "<group>"; };
 		F4FE739611F792D5005FC23A /* PlatypusAppSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusAppSpec.h; path = Shared/PlatypusAppSpec.h; sourceTree = "<group>"; };
 		F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusAppSpec.m; path = Shared/PlatypusAppSpec.m; sourceTree = "<group>"; };
-		F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = platypus_command_line_tool.m; path = CommandLineTool/platypus_command_line_tool.m; sourceTree = "<group>"; };
+		F4FE747A11F79399005FC23A /* platypus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = platypus.m; path = CommandLineTool/platypus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,7 +459,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F46A3C6F1E65E5A6007BA557 /* Accelerate.framework */,
 				F4AB18751BE19DB900B83A95 /* System */,
 				F4AB18761BE19DBF00B83A95 /* Others */,
 			);
@@ -523,7 +521,6 @@
 				F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */,
 				F445EA8214FABE6500DCCDB3 /* sign_update.rb */,
 				F445EA8314FABE6500DCCDB3 /* update_appcast.sh */,
-				F4B272301C691EF500E04F0F /* strip.sh */,
 				F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */,
 			);
 			path = Sparkle;
@@ -703,6 +700,7 @@
 		F4AB18751BE19DB900B83A95 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				F46A3C6F1E65E5A6007BA557 /* Accelerate.framework */,
 				F4AB18731BE19CD100B83A95 /* AppKit.framework */,
 				F4AB18711BE19CAC00B83A95 /* Foundation.framework */,
 				F4B87C191B3C997300F4B8BE /* Accelerate.framework */,
@@ -834,7 +832,7 @@
 		F4E1F70711F75A40007EE2E3 /* Command Line Tool */ = {
 			isa = PBXGroup;
 			children = (
-				F4FE747A11F79399005FC23A /* platypus_command_line_tool.m */,
+				F4FE747A11F79399005FC23A /* platypus.m */,
 				F4B155EE1C1EF77D00E6E941 /* man */,
 			);
 			name = "Command Line Tool";
@@ -1186,7 +1184,7 @@
 				F43142B01C03C742004EEF8C /* PlatypusScriptAnalyser.m in Sources */,
 				F4051DA01C1B5AF900587F1F /* Common.m in Sources */,
 				F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
-				F4FE747B11F79399005FC23A /* platypus_command_line_tool.m in Sources */,
+				F4FE747B11F79399005FC23A /* platypus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
