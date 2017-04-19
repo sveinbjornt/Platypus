@@ -10,7 +10,7 @@
  #     * Redistributions in binary form must reproduce the above copyright
  #       notice, this list of conditions and the following disclaimer in the
  #       documentation and/or other materials provided with the distribution.
- #     * Neither the name of Sveinbjorn Thordarson nor that of any other
+ #     * Neither the name of the copyright holder nor that of any other
  #       contributors may be used to endorse or promote products
  #       derived from this software without specific prior written permission.
  # 
@@ -130,6 +130,11 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
         return 0;
     }
     
+    if ([STPrivilegedTask authorizationFunctionAvailable] == NO) {
+        NSLog(@"AuthorizationExecuteWithPrivileges() function not available on this system");
+        return errAuthorizationFnNoLongerExists;
+    }
+    
     OSStatus err = noErr;
     const char *toolPath = [self.launchPath fileSystemRepresentation];
     
@@ -143,29 +148,15 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     char *args[numberOfArguments + 1];
     FILE *outputFile;
 
-    // Create fn pointer to AuthorizationExecuteWithPrivileges in case it doesn't exist
-    // in this version of MacOS
+    // Create fn pointer to AuthorizationExecuteWithPrivileges in
+    // case it doesn't exist in this version of the OS
     static OSStatus (*_AuthExecuteWithPrivsFn)(
         AuthorizationRef authorization, const char *pathToTool, AuthorizationFlags options,
         char * const *arguments, FILE **communicationsPipe) = NULL;
     
-    // Check to see if we have the correct function in our loaded libraries
-    if (!_AuthExecuteWithPrivsFn) {
-        // On 10.7, AuthorizationExecuteWithPrivileges is deprecated. We want
-        // to still use it since there's no good alternative (without requiring
-        // code signing). We'll look up the function through dyld and fail if
-        // it is no longer accessible. If Apple removes the function entirely
-        // this will fail gracefully. If they keep the function and throw some
-        // sort of exception, this won't fail gracefully, but that's a risk
-        // we'll have to take for now.
-        // Pattern by Andy Kim from Potion Factory LLC
-        _AuthExecuteWithPrivsFn = dlsym(RTLD_DEFAULT, "AuthorizationExecuteWithPrivileges");
-        if (!_AuthExecuteWithPrivsFn) {
-            // This version of OS X has finally removed this function. Return with an error.
-            return errAuthorizationFnNoLongerExists;
-        }
-    }
-
+#pragma GCC diagnostic ignored "-Wpedantic" // stop the pedantry!
+    _AuthExecuteWithPrivsFn = dlsym(RTLD_DEFAULT, "AuthorizationExecuteWithPrivileges");
+    
     // Use Apple's Authentication Manager APIs to get an Authorization Reference
     // These Apple APIs are quite possibly the most horrible of the Mac OS X APIs
     
@@ -187,10 +178,11 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     // first, construct an array of c strings from NSArray w. arguments
     for (int i = 0; i < numberOfArguments; i++) {
         NSString *argString = arguments[i];
-        NSUInteger stringLength = [argString length];
+        const char *fsrep = [argString fileSystemRepresentation];
+        NSUInteger stringLength = strlen(fsrep);
         
         args[i] = malloc((stringLength + 1) * sizeof(char));
-        snprintf(args[i], stringLength + 1, "%s", [argString fileSystemRepresentation]);
+        snprintf(args[i], stringLength + 1, "%s", fsrep);
     }
     args[numberOfArguments] = NULL;
     
@@ -242,7 +234,19 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
 // hang until task is done
 - (void)waitUntilExit
 {
-    waitpid(_processIdentifier, &_terminationStatus, 0);
+    if (!_isRunning) {
+        NSLog(@"Task %@ is not running", [super description]);
+        return;
+    }
+    
+    [_checkStatusTimer invalidate];
+    
+    int status;
+    pid_t pid = 0;
+    while ((pid = waitpid(_processIdentifier, &status, WNOHANG)) == 0) {
+        // do nothing
+    }
+    _terminationStatus = WEXITSTATUS(status);
     _isRunning = NO;
 }
 
@@ -250,7 +254,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
 - (void)checkTaskStatus
 {
     int status;
-    int pid = waitpid(_processIdentifier, &status, WNOHANG);
+    pid_t pid = waitpid(_processIdentifier, &status, WNOHANG);
     if (pid != 0) {
         _isRunning = NO;
         _terminationStatus = WEXITSTATUS(status);
@@ -260,6 +264,36 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
             _terminationHandler(self);
         }
     }
+}
+    
+#pragma mark -
+    
++ (BOOL)authorizationFunctionAvailable
+{
+    // Create fn pointer to AuthorizationExecuteWithPrivileges in case
+    // it doesn't exist in this version of MacOS
+    static OSStatus (*_AuthExecuteWithPrivsFn)(AuthorizationRef authorization, const char *pathToTool, AuthorizationFlags options,
+                                               char * const *arguments, FILE **communicationsPipe) = NULL;
+    
+    // Check to see if we have the correct function in our loaded libraries
+    if (!_AuthExecuteWithPrivsFn) {
+        // On 10.7, AuthorizationExecuteWithPrivileges is deprecated. We want
+        // to still use it since there's no good alternative (without requiring
+        // code signing). We'll look up the function through dyld and fail if
+        // it is no longer accessible. If Apple removes the function entirely
+        // this will fail gracefully. If they keep the function and throw some
+        // sort of exception, this won't fail gracefully, but that's a risk
+        // we'll have to take for now.
+        // Pattern by Andy Kim from Potion Factory LLC
+#pragma GCC diagnostic ignored "-Wpedantic" // stop the pedantry!
+        _AuthExecuteWithPrivsFn = dlsym(RTLD_DEFAULT, "AuthorizationExecuteWithPrivileges");
+        if (!_AuthExecuteWithPrivsFn) {
+            // This version of OS X has finally removed this function. Return with an error.
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 #pragma mark -
@@ -276,5 +310,5 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     
     return [[super description] stringByAppendingFormat:@" %@", commandDescription];
 }
-
+    
 @end

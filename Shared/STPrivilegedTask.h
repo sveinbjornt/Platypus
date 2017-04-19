@@ -10,7 +10,7 @@
  #     * Redistributions in binary form must reproduce the above copyright
  #       notice, this list of conditions and the following disclaimer in the
  #       documentation and/or other materials provided with the distribution.
- #     * Neither the name of Sveinbjorn Thordarson nor that of any other
+ #     * Neither the name of the copyright holder nor that of any other
  #       contributors may be used to endorse or promote products
  #       derived from this software without specific prior written permission.
  # 
@@ -47,6 +47,8 @@ extern const OSStatus errAuthorizationFnNoLongerExists;
 
 @property (copy) void (^terminationHandler)(STPrivilegedTask *);
 
++ (BOOL)authorizationFunctionAvailable;
+    
 - (instancetype)initWithLaunchPath:(NSString *)path;
 - (instancetype)initWithLaunchPath:(NSString *)path arguments:(NSArray *)args;
 - (instancetype)initWithLaunchPath:(NSString *)path arguments:(NSArray *)args currentDirectory:(NSString *)cwd;
