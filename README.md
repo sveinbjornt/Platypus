@@ -20,6 +20,7 @@ launchers, automations and droplets using Platypus.
 
 * [Platypus Documentation](http://sveinbjorn.org/platypus_documentation)
 * [Version History](http://www.sveinbjorn.org/platypus_version_log)
+* [[Man page]](http://sveinbjorn.org/files/manpages/platypus.man.html) for command line tool
 
 ## Screenshot
 
