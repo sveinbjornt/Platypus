@@ -417,7 +417,7 @@
 				F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */,
 				F4A4338B0E04C962000523E7 /* Common.h */,
 				F4051D9E1C1B5AF900587F1F /* Common.m */,
-				F48B7CB611F76B0C00351575 /* Application */,
+				F48B7CB611F76B0C00351575 /* Platypus App */,
 				F48B7B8811F766CA00351575 /* ScriptExec */,
 				F4E1F70711F75A40007EE2E3 /* Command Line Tool */,
 				080E96DDFE201D6D7F000001 /* Shared */,
@@ -636,7 +636,7 @@
 			name = ScriptExec;
 			sourceTree = "<group>";
 		};
-		F48B7CB611F76B0C00351575 /* Application */ = {
+		F48B7CB611F76B0C00351575 /* Platypus App */ = {
 			isa = PBXGroup;
 			children = (
 				F4975D8A1B2E71B80099D16E /* main.m */,
@@ -665,7 +665,7 @@
 				F4975D9D1B2E71EE0099D16E /* ProfilesController.m */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 			);
-			name = Application;
+			name = "Platypus App";
 			sourceTree = "<group>";
 		};
 		F4975D6D1B2E03250099D16E /* NSWorkspace+Additions */ = {

@@ -84,7 +84,7 @@
 //    
 //    NSMutableArray *appPaths = [NSMutableArray array];
 //    for (NSString *app in applications) {
-//        [appPaths addObject: [app path];
+//        [appPaths addObject: [app path]];
 //    }
 //    return appPaths;
 //}

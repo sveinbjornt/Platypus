@@ -41,6 +41,8 @@
     IBOutlet NSMenu *profilesMenu;
     IBOutlet PlatypusWindowController *platypusController;
     IBOutlet NSMenuItem *examplesMenuItem;
+    
+    NSInteger numNonDynamicMenuitems;
 }
 
 - (IBAction)loadProfile:(id)sender;
@@ -51,6 +53,10 @@
 @end
 
 @implementation ProfilesController
+
+- (void)awakeFromNib {
+    numNonDynamicMenuitems = [profilesMenu numberOfItems];
+}
 
 #pragma mark - Loading
 
@@ -195,8 +201,8 @@
     [examplesMenuItem setSubmenu:examplesMenu];
     
     //clear out all menu items
-    while ([profilesMenu numberOfItems] > 6) {
-        [profilesMenu removeItemAtIndex:6];
+    while ([profilesMenu numberOfItems] > numNonDynamicMenuitems) {
+        [profilesMenu removeItemAtIndex:numNonDynamicMenuitems];
     }
     
     if ([profiles count] > 0) {

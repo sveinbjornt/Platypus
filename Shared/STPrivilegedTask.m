@@ -153,10 +153,12 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     static OSStatus (*_AuthExecuteWithPrivsFn)(
         AuthorizationRef authorization, const char *pathToTool, AuthorizationFlags options,
         char * const *arguments, FILE **communicationsPipe) = NULL;
-    
+
+#pragma clang diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic" // stop the pedantry!
     _AuthExecuteWithPrivsFn = dlsym(RTLD_DEFAULT, "AuthorizationExecuteWithPrivileges");
-    
+#pragma clang diagnostic pop
+
     // Use Apple's Authentication Manager APIs to get an Authorization Reference
     // These Apple APIs are quite possibly the most horrible of the Mac OS X APIs
     
@@ -286,7 +288,10 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
         // we'll have to take for now.
         // Pattern by Andy Kim from Potion Factory LLC
 #pragma GCC diagnostic ignored "-Wpedantic" // stop the pedantry!
+#pragma clang diagnostic push
         _AuthExecuteWithPrivsFn = dlsym(RTLD_DEFAULT, "AuthorizationExecuteWithPrivileges");
+#pragma clang diagnostic pop
+
         if (!_AuthExecuteWithPrivsFn) {
             // This version of OS X has finally removed this function. Return with an error.
             return NO;

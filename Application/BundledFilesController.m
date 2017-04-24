@@ -215,10 +215,6 @@
 #pragma mark - Interface actions
 
 - (void)itemDoubleClicked:(id)sender {
-    if ([tableView clickedRow] == -1) {
-        return;
-    }
-    
     BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
     if (commandKeyDown) {
         [self revealInFinder:[tableView clickedRow]];
@@ -228,12 +224,7 @@
 }
 
 - (void)revealInFinder:(NSInteger)index {
-    BOOL isDir;
-    NSString *path = files[index][@"Path"];
-    
-    if ([FILEMGR fileExistsAtPath:path isDirectory:&isDir]) {
-        [WORKSPACE selectFile:path inFileViewerRootedAtPath:@""];
-    }
+    [WORKSPACE selectFile:files[index][@"Path"] inFileViewerRootedAtPath:@""];
 }
 
 - (void)openInFinder:(NSInteger)index {

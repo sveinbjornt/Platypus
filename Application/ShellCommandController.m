@@ -64,8 +64,11 @@
 - (void)showModalShellCommandSheetForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow {
     [self loadWindow];
     appSpec = spec;
-    [textView setString:[appSpec commandStringUsingShortOpts:[useShortOptsCheckbox intValue]]];
-    [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField]; // ugly connection to PrefsController :/
+    NSString *cmdStr = [appSpec commandStringUsingShortOpts:[useShortOptsCheckbox intValue]];
+    [textView setString:cmdStr];
+    
+    // get rid of this ugly connection to PrefsController :/
+    [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
     
     [NSApp beginSheet:[self window]
        modalForWindow:theWindow
