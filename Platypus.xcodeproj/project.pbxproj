@@ -321,6 +321,7 @@
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		F4E1F6FC11F758FB007EE2E3 /* platypus_clt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4E5E4011EE2F22E0072EACE /* Documentation.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Documentation.md; sourceTree = "<group>"; };
 		F4ECE1A011F7746A000DB012 /* CHANGES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES.txt; sourceTree = SOURCE_ROOT; };
 		F4ECE5871E5F04A4008CC395 /* UriSchemesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UriSchemesListController.h; path = Application/UriSchemesListController.h; sourceTree = "<group>"; };
 		F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UriSchemesListController.m; path = Application/UriSchemesListController.m; sourceTree = "<group>"; };
@@ -810,6 +811,7 @@
 			children = (
 				F471ED21122DF2D6001F4761 /* Credits.html */,
 				F4DC074F11F629A40043764E /* Documentation.html */,
+				F4E5E4011EE2F22E0072EACE /* Documentation.md */,
 				F48002BA121AF042003FB5B3 /* images */,
 				F4DC075011F629A40043764E /* Readme.html */,
 				F4FB338014FBFC7C00BAECEB /* License.html */,
