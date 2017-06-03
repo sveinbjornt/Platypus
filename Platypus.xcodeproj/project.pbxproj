@@ -280,7 +280,6 @@
 		F4975DBB1B2E71FC0099D16E /* Platypus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Platypus.xib; path = Application/Resources/Platypus.xib; sourceTree = "<group>"; };
 		F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShellCommandWindow.xib; path = Application/Resources/ShellCommandWindow.xib; sourceTree = "<group>"; };
 		F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SyntaxChecker.xib; path = Application/Resources/SyntaxChecker.xib; sourceTree = "<group>"; };
-		F497D0691C88C5A600462556 /* fetch_lint_tools.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = fetch_lint_tools.sh; path = OCLint/fetch_lint_tools.sh; sourceTree = "<group>"; };
 		F4A4338B0E04C962000523E7 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Common.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F4AB18691BE182FA00B83A95 /* Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alerts.h; path = Shared/Alerts.h; sourceTree = "<group>"; };
 		F4AB186A1BE182FA00B83A95 /* Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Alerts.m; path = Shared/Alerts.m; sourceTree = "<group>"; };
@@ -844,7 +843,6 @@
 				F4B87C581B403A6E00F4B8BE /* build_release.sh */,
 				F4F14CAF1C640857002A2402 /* make_examples.pl */,
 				F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */,
-				F497D0691C88C5A600462556 /* fetch_lint_tools.sh */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
