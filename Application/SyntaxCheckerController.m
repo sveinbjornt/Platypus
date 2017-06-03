@@ -36,9 +36,6 @@
     IBOutlet NSTextView *textView;
     IBOutlet NSTextField *scriptNameTextField;
 }
-
-- (IBAction)close:(id)sender;
-
 @end
 
 @implementation SyntaxCheckerController
@@ -54,22 +51,22 @@
 - (void)showModalSyntaxCheckerSheetForFile:(NSString *)filePath
                                 scriptName:(NSString *)scriptName
                     usingInterpreterAtPath:(NSString *)interpreterPath
-                                    window:(NSWindow *)theWindow {
+                                    window:(NSWindow *)parentWindow {
     [self loadWindow];
     
     [scriptNameTextField setStringValue:scriptName];
     
     NSString *reportText = [PlatypusScriptAnalyser checkSyntaxOfFile:filePath
-                                      usingInterpreterAtPath:interpreterPath];
+                                              usingInterpreterAtPath:interpreterPath];
     [textView setString:reportText];
     
     [NSApp beginSheet:[self window]
-       modalForWindow:theWindow
+       modalForWindow:parentWindow
         modalDelegate:self
        didEndSelector:nil
           contextInfo:nil];
     
-    [[self window] makeFirstResponder:[self window]];
+    [[self window] makeFirstResponder:[self window]]; // so enter key closes window
     [NSApp runModalForWindow:[self window]];
 }
 

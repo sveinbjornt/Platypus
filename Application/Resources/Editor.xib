@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,8 +34,9 @@
                         <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="12">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent">s</string>
-                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                         </buttonCell>
                         <connections>
                             <action selector="save:" target="-2" id="31"/>
@@ -54,8 +55,8 @@
                             <action selector="endModal:" target="-2" id="8oW-sY-PmP"/>
                         </connections>
                     </button>
-                    <textField toolTip="Path to the file being edited" verticalHuggingPriority="750" misplaced="YES" id="41">
-                        <rect key="frame" x="43" y="372" width="498" height="17"/>
+                    <textField toolTip="Path to the file being edited" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="41">
+                        <rect key="frame" x="43" y="372" width="360" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" id="42">
                             <font key="font" metaFont="smallSystem"/>
@@ -156,6 +157,19 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="CnJ-CU-J3l"/>
                     </imageView>
+                    <button toolTip="Save Changes and Close Editor" verticalHuggingPriority="750" misplaced="YES" id="n9n-tW-0Fg" userLabel="Cmd-S Placeholder">
+                        <rect key="frame" x="418" y="415" width="94" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="cmdS Plchldr" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="xAB-xJ-vv5">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent">s</string>
+                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="save:" target="-2" id="chY-3d-mNY"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>

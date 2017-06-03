@@ -69,7 +69,7 @@
     [textView setShowsLineNumbers:YES];
 }
 
-- (void)showModalEditorSheetForFile:(NSString *)path window:(NSWindow *)theWindow {
+- (void)showModalEditorSheetForFile:(NSString *)path window:(NSWindow *)parentWindow {
     NSString *str = [NSString stringWithContentsOfFile:path encoding:DEFAULT_TEXT_ENCODING error:nil];
     if (str == nil) {
         [Alerts alert:@"Error reading document"
@@ -88,11 +88,12 @@
     [textView setString:str];
     
     [NSApp beginSheet:[self window]
-       modalForWindow:theWindow
+       modalForWindow:parentWindow
         modalDelegate:self
        didEndSelector:nil
           contextInfo:nil];
     
+    [[self window] makeFirstResponder:[self window]]; // so enter key closes window
     [NSApp runModalForWindow:[self window]];
 }
 

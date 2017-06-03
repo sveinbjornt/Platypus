@@ -2,7 +2,7 @@
 
 <img align="right" src="Documentation/images/platypus.png" style="float: right; margin-left: 30px;">
 
-Platypus is an OS X developer tool that creates native Mac applications 
+**Platypus** is an OS X developer tool that creates native Mac applications 
 from interpreted scripts such as shell scripts or Perl and Python programs.
 This is done by wrapping the script in an 
 [application bundle](https://en.wikipedia.org/wiki/Bundle_(OS_X)#OS_X_application_bundles)
@@ -14,12 +14,16 @@ applications can be created with a few clicks. It is very easy to
 create installers, administrative applications, login items, status menu items, 
 launchers, automations and droplets using Platypus.
 
-* [Download Platypus 5.2](http://sveinbjorn.org/files/software/platypus.zip) (Intel 64-bit, 10.7 or later, ~3.5 MB)
+* **[Download Platypus 5.2](http://sveinbjorn.org/files/software/platypus.zip)** (Intel 64-bit, 10.7 or later, ~3.5 MB)
 
-## Documentation
+## Documentation & Links
 
 * [Platypus Documentation](http://sveinbjorn.org/platypus_documentation)
+* [Platypus Website](http://www.sveinbjorn.org/platypus)
 * [Version History](http://www.sveinbjorn.org/platypus_version_log)
+* [Platypus Developer Mailing List](http://www.sveinbjorn.org/platypus_mailinglist)
+* [AppCast XML Feed](http://www.sveinbjorn.org/files/appcasts/PlatypusAppcast.xml)
+* [`man platypus`](http://www.sveinbjorn.org/files/manpages/platypus.man.html)
 
 ## Screenshot
 

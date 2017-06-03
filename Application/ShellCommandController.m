@@ -61,7 +61,7 @@
 
 #pragma mark -
 
-- (void)showModalShellCommandSheetForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)theWindow {
+- (void)showModalShellCommandSheetForSpec:(PlatypusAppSpec *)spec window:(NSWindow *)parentWindow {
     [self loadWindow];
     appSpec = spec;
     NSString *cmdStr = [appSpec commandStringUsingShortOpts:[useShortOptsCheckbox intValue]];
@@ -71,7 +71,7 @@
     [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
     
     [NSApp beginSheet:[self window]
-       modalForWindow:theWindow
+       modalForWindow:parentWindow
         modalDelegate:self
        didEndSelector:nil
           contextInfo:nil];
