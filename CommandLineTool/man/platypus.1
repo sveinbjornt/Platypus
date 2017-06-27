@@ -62,7 +62,7 @@ script and displays its output when clicked.
 The application displays a droplet window for dropping files on for processing
 by the script.
 .Pp
-The default interface type is "Text Window".
+The default interface type is 'Text Window'.
 .It Fl i, -app-icon Ar iconPath
 Specifies a file to use as the icon for the application bundle. The file must
 be a Mac OS X .icns file. If not specified, the default Platypus app icon will
@@ -120,8 +120,9 @@ the file suffixes (e.g. .txt, .wav) that the application can open. This should
 be a |-separated string (e.g. "txt|wav|jpg").
 .It Fl T, -uniform-type-identifiers Ar utis
 Only relevant if the application accepts dropped files. This flag specifies
-the uniform type identifier types that the application can open.  This should
-be a |-separated string (e.g. "public.item|public.folder").
+the Uniform Type Identifiers (UTIs) that the application can open.  This should
+be a |-separated string (e.g. "public.item|public.folder"). Suffixes are
+ignored if this flag is used.
 .It Fl U, -uri-schemes Ar schemes
 Set application as handler for URI schemes. These can be either standard 
 URI schemes such as http or custom URI schemes of your choice. See

@@ -299,7 +299,6 @@
 		F4B155F51C1EF77D00E6E941 /* make_man_pdf.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = make_man_pdf.sh; sourceTree = "<group>"; };
 		F4B155F61C1EF77D00E6E941 /* platypus.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = platypus.1; sourceTree = "<group>"; };
 		F4B155F71C1EF77D00E6E941 /* platypus.man.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = platypus.man.html; sourceTree = "<group>"; };
-		F4B155F81C1EF77D00E6E941 /* update_website_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_website_docs.sh; sourceTree = "<group>"; };
 		F4B87C191B3C997300F4B8BE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
 		F4B87C581B403A6E00F4B8BE /* build_release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_release.sh; sourceTree = "<group>"; };
 		F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = src_loc_stats.sh; sourceTree = "<group>"; };
@@ -308,6 +307,7 @@
 		F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F4C19A831BD1BFAB00F411BD /* STDragImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragImageView.h; path = Shared/STDragImageView.h; sourceTree = "<group>"; };
 		F4C19A841BD1BFAB00F411BD /* STDragImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragImageView.m; path = Shared/STDragImageView.m; sourceTree = "<group>"; };
+		F4CDF9CB1F02A22100579F14 /* update_online_manpage.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_online_manpage.sh; sourceTree = "<group>"; };
 		F4D0F22F1C1DCEEE0065AD25 /* NSResponderNotifyingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSResponderNotifyingTableView.h; path = Shared/NSResponderNotifyingTableView.h; sourceTree = "<group>"; };
 		F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSResponderNotifyingTableView.m; path = Shared/NSResponderNotifyingTableView.m; sourceTree = "<group>"; };
 		F4D0F2401C1E1B020065AD25 /* InterfaceType_Droplet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = InterfaceType_Droplet.png; path = Icons/InterfaceTypeIcons/InterfaceType_Droplet.png; sourceTree = SOURCE_ROOT; };
@@ -725,7 +725,7 @@
 				F4B155F51C1EF77D00E6E941 /* make_man_pdf.sh */,
 				F4B155F61C1EF77D00E6E941 /* platypus.1 */,
 				F4B155F71C1EF77D00E6E941 /* platypus.man.html */,
-				F4B155F81C1EF77D00E6E941 /* update_website_docs.sh */,
+				F4CDF9CB1F02A22100579F14 /* update_online_manpage.sh */,
 			);
 			name = man;
 			path = CommandLineTool/man;

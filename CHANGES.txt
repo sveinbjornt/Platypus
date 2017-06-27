@@ -20,6 +20,7 @@ For 5.3
     TODO: Use pseudo-ttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
     TODO: Find a way to fix broken file watching of script path eftir pressing "New"
     TODO: Create automated tests for command line tool using PlistBuddy etc.
+    TODO: Implement a REFRESH command to reset web view HTML
 
     * Moved documentation to Markdown format from raw HTML
 
