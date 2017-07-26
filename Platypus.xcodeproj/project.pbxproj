@@ -224,7 +224,6 @@
 		F48002BA121AF042003FB5B3 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		F48269671BC9934800169D8B /* NSTask+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTask+Description.h"; path = "Shared/NSTask+Description.h"; sourceTree = SOURCE_ROOT; };
 		F48269681BC9934800169D8B /* NSTask+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTask+Description.m"; path = "Shared/NSTask+Description.m"; sourceTree = SOURCE_ROOT; };
-		F48269791BCA9E5100169D8B /* GenericDocumentIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GenericDocumentIcon.icns; sourceTree = "<group>"; };
 		F482697D1BCAE1EE00169D8B /* TypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypeListController.h; path = Application/TypeListController.h; sourceTree = "<group>"; };
 		F482697E1BCAE1EE00169D8B /* TypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeListController.m; path = Application/TypeListController.m; sourceTree = "<group>"; };
 		F48269811BCAF1D800169D8B /* UniformTypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniformTypeListController.h; path = Application/UniformTypeListController.h; sourceTree = "<group>"; };
@@ -457,7 +456,7 @@
 		F4050E3305DAF44F00BE4CA5 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				F482696C1BC9A03F00169D8B /* Interface Type */,
+				F482696C1BC9A03F00169D8B /* Interface Types */,
 				F44E007212298B7A00CAC9C2 /* Application */,
 				F43142B21C03F9E2004EEF8C /* Documents */,
 				F4D6569814C4BFD6003552F9 /* Interpreters */,
@@ -487,7 +486,6 @@
 		F43142B21C03F9E2004EEF8C /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				F48269791BCA9E5100169D8B /* GenericDocumentIcon.icns */,
 				F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */,
 				F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */,
 			);
@@ -574,7 +572,7 @@
 			path = Shared/IconFamily;
 			sourceTree = "<group>";
 		};
-		F482696C1BC9A03F00169D8B /* Interface Type */ = {
+		F482696C1BC9A03F00169D8B /* Interface Types */ = {
 			isa = PBXGroup;
 			children = (
 				F4D0F2411C1E1B020065AD25 /* InterfaceType_None.png */,
@@ -584,7 +582,7 @@
 				F4D0F2431C1E1B020065AD25 /* InterfaceType_Status-Menu.png */,
 				F4D0F2401C1E1B020065AD25 /* InterfaceType_Droplet.png */,
 			);
-			name = "Interface Type";
+			name = "Interface Types";
 			path = OutputTypeIcons;
 			sourceTree = "<group>";
 		};

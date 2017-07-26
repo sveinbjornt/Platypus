@@ -113,7 +113,7 @@ mv "${APP_ZIP_NAME}" ${FINAL_APP_ARCHIVE_PATH}
 # Create source archive
 echo "Creating source archive ${APP_SRC_ZIP_NAME}..."
 cd "${SRC_DIR}"
-zip -q --symlinks -r "${APP_SRC_ZIP_NAME}" "." -x *.git* -x *.zip* -x *.tgz* -x *.gz* -x *.DS_Store* -x *dsa_priv.pem* -x *Sparkle/dsa_priv.pem* -x \*build/\* -x \*Releases\* -x \*OCLint\* -x \*Assets\*
+zip -q --symlinks -r "${APP_SRC_ZIP_NAME}" "." -x *.git* -x *.zip* -x *.tgz* -x *.gz* -x *.DS_Store* -x *dsa_priv.pem* -x *Sparkle/dsa_priv.pem* -x \*build/\* -x \*Releases\* -x \*Assets\*
 
 if [ $1 ]; then
     echo "Uploading source archive ..."
