@@ -26,7 +26,7 @@
  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
- */
+*/
 
 /* This is the source code to the main controller for the binary
  bundled into Platypus-generated applications */
@@ -690,6 +690,7 @@ static const NSInteger detailsHeight = 224;
     
     switch (interfaceType) {
         case PlatypusInterfaceType_None:
+        case PlatypusInterfaceType_StatusMenu:
         {
             
         }
@@ -740,12 +741,6 @@ static const NSInteger detailsHeight = 224;
                 [webViewCancelButton setEnabled:NO];
             }
             [webViewProgressIndicator startAnimation:self];
-        }
-            break;
-            
-        case PlatypusInterfaceType_StatusMenu:
-        {
-
         }
             break;
             

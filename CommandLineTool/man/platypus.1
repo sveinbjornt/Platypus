@@ -27,7 +27,7 @@ are passed):
 .It Fl O, -generate-profile
 Create a profile document instead of creating an application bundle. When this
 option is enabled, the "destinationPath" paramater (i.e. the final argument to
-the program) should have a .platypus suffix. If the string '-' is provided 
+the program) should have a .platypus suffix. If the string '-' is provided
 as destination path, the profile property list XML will be dumped to STDOUT.
 .It Fl P, -load-profile Ar profilePath
 Loads all settings from a Platypus profile document. It is still necessary to
@@ -124,9 +124,9 @@ the Uniform Type Identifiers (UTIs) that the application can open.  This should
 be a |-separated string (e.g. "public.item|public.folder"). Suffixes are
 ignored if this flag is used.
 .It Fl U, -uri-schemes Ar schemes
-Set application as handler for URI schemes. These can be either standard 
+Set application as handler for URI schemes. These can be either standard
 URI schemes such as http or custom URI schemes of your choice. See
-documentation for details. Multiple itms should be a |-separated string 
+documentation for details. Multiple itms should be a |-separated string
 (e.g. "ftp|myscheme|someotherscheme").
 .It Fl Z, -file-prompt
 Show an Open File dialog when the application launches.
@@ -160,7 +160,7 @@ user-defined styling.
 Create XML format property lists instead of binary ones.
 .It Fl d, -symlink
 A symlink to the original script is created inside the application bundle
-instead of copying the script over. Symlinks are also created to any 
+instead of copying the script over. Symlinks are also created to any
 bundled files.
 .It Fl l, -optimize-nib
 Strip the bundled application nib file to reduce its size. Makes the nib
