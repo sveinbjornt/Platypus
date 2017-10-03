@@ -1498,6 +1498,13 @@ static const NSInteger detailsHeight = 224;
 
 // check file types against acceptable drop types here before accepting them
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
+    // Prevent dragging from NSOpenPanels
+    // draggingSource returns nil if the source is not in the same application
+    // as the destination. We decline any drags from within the app.
+    if ([sender draggingSource]) {
+        return NSDragOperationNone;
+    }
+    
     BOOL acceptDrag = NO;
     NSPasteboard *pboard = [sender draggingPasteboard];
     
