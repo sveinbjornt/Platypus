@@ -1297,8 +1297,6 @@ static const NSInteger detailsHeight = 224;
     }
 }
 
-// save only works for text window and web view interface types
-// and open only works for droppable apps that accept files as script args
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     
     // status item menus are always enabled

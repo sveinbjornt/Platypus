@@ -26,7 +26,7 @@
  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
- */
+*/
 
 #import "PlatypusWindowController.h"
 #import "Common.h"
@@ -100,27 +100,6 @@
     
     VDKQueue *fileWatcherQueue;
 }
-
-- (IBAction)newScript:(id)sender;
-- (IBAction)revealScript:(id)sender;
-- (IBAction)editScript:(id)sender;
-- (IBAction)runScriptInTerminal:(id)sender;
-- (IBAction)checkSyntaxOfScript:(id)sender;
-- (IBAction)createButtonPressed:(id)sender;
-- (IBAction)scriptTypeSelected:(id)sender;
-- (IBAction)selectScript:(id)sender;
-- (IBAction)acceptsDroppedItemsClicked:(id)sender;
-- (IBAction)interfaceTypeDidChange:(id)sender;
-- (IBAction)clearAllFields:(id)sender;
-- (IBAction)showCommandLineString:(id)sender;
-- (IBAction)showHelp:(id)sender;
-- (IBAction)showReadme:(id)sender;
-- (IBAction)showManPage:(id)sender;
-- (IBAction)openWebsite:(id)sender;
-- (IBAction)openGitHubWebsite:(id)sender;
-- (IBAction)openLicense:(id)sender;
-- (IBAction)openDonations:(id)sender;
-
 @end
 
 @implementation PlatypusWindowController
@@ -948,8 +927,7 @@
 #pragma mark - Menu delegate
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-    
-    //create app menu item
+    // "create app" menu item
     if ([anItem action] == @selector(createButtonPressed:) && [createAppButton isEnabled] == NO) {
         return NO;
     }
