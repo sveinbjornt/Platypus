@@ -21,9 +21,10 @@ For 5.3
     TODO: Find a way to fix broken file watching of script path eftir pressing "New"
     TODO: Create automated tests for command line tool using PlistBuddy etc.
     TODO: Implement a REFRESH command to reset web view HTML
-
+    TODO: Ability to sign ScriptExec binary with own custom signature
+    * Code signing for Platypus.app and 'platypus' command line tool
     * Moved documentation to Markdown format from raw HTML
-
+    * Fixed issue where command line status in Prefs window failed to update after pressing install or uninstall
 
 5.2
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script

@@ -61,6 +61,7 @@
 #define CMDLINE_PROGNAME_IN_BUNDLE  @"platypus_clt"
 #define CMDLINE_PROGNAME            @"platypus"
 #define CMDLINE_SCRIPTEXEC_BIN_NAME @"ScriptExec"
+#define CMDLINE_SCRIPTEXEC_ZIP_NAME @"ScriptExec.zip"
 #define CMDLINE_DEFAULT_ICON_NAME   @"PlatypusDefault.icns"
 #define CMDLINE_NIB_NAME            @"MainMenu.nib"
 #define CMDLINE_VERSION_ARG_FLAG    "version"

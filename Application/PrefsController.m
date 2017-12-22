@@ -296,6 +296,7 @@
             @"CMDLINE_PROGNAME_IN_BUNDLE": CMDLINE_PROGNAME_IN_BUNDLE,
             @"CMDLINE_PROGNAME": CMDLINE_PROGNAME,
             @"CMDLINE_SCRIPTEXEC_BIN_NAME": CMDLINE_SCRIPTEXEC_BIN_NAME,
+            @"CMDLINE_SCRIPTEXEC_ZIP_NAME": CMDLINE_SCRIPTEXEC_ZIP_NAME,
             @"CMDLINE_DEFAULT_ICON_NAME": CMDLINE_DEFAULT_ICON_NAME,
             @"CMDLINE_NIB_NAME": CMDLINE_NIB_NAME,
             @"CMDLINE_BASE_INSTALL_PATH": CMDLINE_BASE_INSTALL_PATH,
@@ -329,30 +330,34 @@
         return NO;
     }
     
+    // create script at temp path and make it executable
     NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script];
-    chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH); // 744
+    chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU|S_IRWXG|S_IROTH); // 744
     
-    // observe when task finishes to do cleanup
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(scriptTaskFinished:)
-                                                 name:STPrivilegedTaskDidTerminateNotification
-                                               object:nil];
-
-    
-    // execute path, pass Resources directory and version as arguments 1 and 2
+    // create script task with Resources path and program version as arguments 1 and 2
     NSArray *args = @[[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION];
-    [STPrivilegedTask launchedPrivilegedTaskWithLaunchPath:tmpScriptPath arguments:args];
+    
+    STPrivilegedTask *privTask = [[STPrivilegedTask alloc] initWithLaunchPath:tmpScriptPath arguments:args];
+    privTask.terminationHandler = ^(STPrivilegedTask *task) {
+        PLog(@"Terminating task: %@", [task description]);
+        [FILEMGR removeItemAtPath:[task launchPath] error:nil];
+        PLog(@"Removed tmp script: %@", [task launchPath]);
+        [self updateCLTStatus];
+    };
+    
+    // l
+    OSStatus err = [privTask launch];
+    if (err != errAuthorizationSuccess) {
+        if (err == errAuthorizationCanceled) {
+            PLog(@"User cancelled");
+            return YES;
+        }
+        
+        PLog(@"Something went wrong. Auth framework err %d", err);
+        return NO;
+    }
     
     return YES;
-}
-
-- (void)scriptTaskFinished:(id)sender {
-    STPrivilegedTask *task = (STPrivilegedTask *)[sender object];
-    NSString *tmpScriptPath = [task launchPath];
-    [FILEMGR removeItemAtPath:tmpScriptPath error:nil];
-    PLog(@"Removed tmp script: %@", tmpScriptPath);
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self updateCLTStatus];
 }
 
 @end

@@ -28,6 +28,9 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
+#import <Foundation/Foundation.h>
+#import "Common.h"
+
 // App Spec keys
 NSString * const AppSpecKey_Creator = @"Creator";
 NSString * const AppSpecKey_ExecutablePath = @"ExecutablePath";
