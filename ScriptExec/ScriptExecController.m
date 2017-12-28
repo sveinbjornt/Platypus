@@ -1061,7 +1061,7 @@ static const NSInteger detailsHeight = 224;
         PLog(@"Warning: Output string is nil");
         return;
     }
-    //PLog(@"Output:%@", outputString);
+    PLog(@"Output:%@", outputString);
     
     if (remnants != nil && [remnants length] > 0) {
         [outputString insertString:remnants atIndex:0];
@@ -1093,6 +1093,11 @@ static const NSInteger detailsHeight = 224;
         
         if ([theLine isEqualToString:@"QUITAPP"]) {
             [[NSApplication sharedApplication] terminate:self];
+            continue;
+        }
+        
+        if ([theLine isEqualToString:@"REFRESH"]) {
+            [self clearOutputBuffer];
             continue;
         }
         
@@ -1146,7 +1151,6 @@ static const NSInteger detailsHeight = 224;
         
         if (interfaceType == PlatypusInterfaceType_WebView && [[outputTextView textStorage] length] == 0 && [theLine hasPrefix:@"Location:"]) {
             NSString *urlString = [theLine substringFromIndex:9];
-            // TODO: Should be trim
             urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@""];
             locationURL = [NSURL URLWithString:urlString];
         }
@@ -1178,6 +1182,14 @@ static const NSInteger detailsHeight = 224;
     if (IsTextViewScrollableInterfaceType(interfaceType)) {
         [outputTextView scrollRangeToVisible:NSMakeRange([[outputTextView textStorage] length], 0)];
     }
+}
+
+- (void)clearOutputBuffer {
+    NSTextStorage *textStorage = [outputTextView textStorage];
+    NSRange range = NSMakeRange(0, [textStorage length]-1);
+    [textStorage beginEditing];
+    [textStorage replaceCharactersInRange:range withString:@""];
+    [textStorage endEditing];
 }
 
 - (void)appendString:(NSString *)string {

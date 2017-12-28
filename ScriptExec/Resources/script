@@ -1,6 +1,11 @@
 #!/bin/bash
 
-echo "SUBMENU|Title|Item1|Item2|Item3"
+echo "<html><body><h1>Hello dude</h1></body></html>"
+sleep 4
+echo "REFRESH"
+echo "<html><body><h1>What's up?</h1></body></html>"
+
+#echo "SUBMENU|Title|Item1|Item2|Item3"
 
 #!/usr/bin/perl
 

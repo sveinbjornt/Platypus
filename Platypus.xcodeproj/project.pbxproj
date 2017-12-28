@@ -71,6 +71,7 @@
 		F45B1F2F1FF5618000A935D7 /* InterfaceType_Web-View.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F291FF5618000A935D7 /* InterfaceType_Web-View.png */; };
 		F45B1F301FF5618000A935D7 /* InterfaceType_None.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F2A1FF5618000A935D7 /* InterfaceType_None.png */; };
 		F45B1F331FF561E700A935D7 /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1F321FF561E700A935D7 /* NSTask+Description.m */; };
+		F45B1F341FF56AE500A935D7 /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1F321FF561E700A935D7 /* NSTask+Description.m */; };
 		F46A3C701E65E5A6007BA557 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46A3C6F1E65E5A6007BA557 /* Accelerate.framework */; };
 		F46EF85113C3F36900E4C0E4 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = F46EF84E13C3F36900E4C0E4 /* Examples */; };
 		F471ED22122DF2D6001F4761 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F471ED21122DF2D6001F4761 /* Credits.html */; };
@@ -1133,6 +1134,7 @@
 				F4B6802B1E58B63900F788CD /* PlatypusScriptAnalyser.m in Sources */,
 				F4975D741B2E09310099D16E /* STPrivilegedTask.m in Sources */,
 				F4AB186B1BE182FA00B83A95 /* Alerts.m in Sources */,
+				F45B1F341FF56AE500A935D7 /* NSTask+Description.m in Sources */,
 				F4975D701B2E09280099D16E /* NSWorkspace+Additions.m in Sources */,
 				F4AB189A1BED3A0B00B83A95 /* ScriptExecJob.m in Sources */,
 			);
