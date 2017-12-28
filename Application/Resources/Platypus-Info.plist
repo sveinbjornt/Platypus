@@ -391,6 +391,8 @@
 	<string>https://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+	<key>CFBundleIconFile</key>
+	<string>PlatypusAppIcon</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
