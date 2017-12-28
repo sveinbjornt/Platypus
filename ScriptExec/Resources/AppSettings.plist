@@ -13,11 +13,11 @@
 	<key>Droppable</key>
 	<true/>
 	<key>InterfaceType</key>
-	<string>Web View</string>
+	<string>Text Window</string>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>InterpreterPath</key>
-	<string>/bin/sh</string>
+	<string></string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunning</key>

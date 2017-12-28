@@ -51,10 +51,10 @@
 @interface ScriptExecController()
 {
     // progress bar
+    IBOutlet NSWindow *progressBarWindow;
     IBOutlet NSButton *progressBarCancelButton;
     IBOutlet NSTextField *progressBarMessageTextField;
     IBOutlet NSProgressIndicator *progressBarIndicator;
-    IBOutlet NSWindow *progressBarWindow;
     IBOutlet NSTextView *progressBarTextView;
     IBOutlet NSButton *progressBarDetailsTriangle;
     IBOutlet NSTextField *progressBarDetailsLabel;
@@ -1495,8 +1495,11 @@ static const NSInteger detailsHeight = 224;
 //    }
 
     for (NSString *uti in droppableUniformTypes) {
-        NSString *fileType = [WORKSPACE typeOfFile:file error:nil];
-        if ([WORKSPACE type:fileType conformsToType:uti]) {
+        NSError *outErr = nil;
+        NSString *fileType = [WORKSPACE typeOfFile:file error:&outErr];
+        if (fileType == nil) {
+            NSLog(@"Unable to determine file type for %@: %@", file, [outErr localizedDescription]);
+        } else if ([WORKSPACE type:fileType conformsToType:uti]) {
             return YES;
         }
     }
@@ -1550,8 +1553,7 @@ static const NSInteger detailsHeight = 224;
     return YES;
 }
 
-- (void)draggingExited:(id <NSDraggingInfo>)sender;
-{
+- (void)draggingExited:(id <NSDraggingInfo>)sender {
     // remove the droplet shading on drag exit
     if (interfaceType == PlatypusInterfaceType_Droplet) {
         [dropletShaderView setHidden:YES];
@@ -1572,7 +1574,6 @@ static const NSInteger detailsHeight = 224;
 
 // once the drag is over, we immediately execute w. files as arguments if not already processing
 - (void)concludeDragOperation:(id <NSDraggingInfo>)sender {
-    
     // shade droplet
     if (interfaceType == PlatypusInterfaceType_Droplet) {
         [dropletShaderView setHidden:YES];
@@ -1592,8 +1593,8 @@ static const NSInteger detailsHeight = 224;
 #pragma mark - Web View
 
 /**************************************************
- Called whenever web view re-renders.  We scroll to
- the bottom on each re-rendering.
+ Called whenever web view re-renders.
+ Scroll to the bottom on each re-rendering.
  **************************************************/
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
