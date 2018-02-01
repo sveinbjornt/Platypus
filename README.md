@@ -25,26 +25,39 @@ launchers, automations and droplets using Platypus.
 * [AppCast XML Feed](http://www.sveinbjorn.org/files/appcasts/PlatypusAppcast.xml)
 * [`man platypus`](http://www.sveinbjorn.org/files/manpages/platypus.man.html)
 
-## Screenshot
+## Screenshots
 
-![Platypus Screenshot](Documentation/images/basic_interface.png)
+### Platypus main window
+<img src="Documentation/images/basic_interface.png" width="663">
+
+### Interfaces
+
+Platypus lets you select one of several different user interfaces for your script.
+
+#### Progress Bar Interface
+<img src="Documentation/images/interface_screenshot_progress_bar.png" width="550">
+
+#### Text Window Interface
+<img src="Documentation/images/interface_screenshot_text_window.png" width="581">
+
+#### Web View Interface
+<img src="Documentation/images/interface_screenshot_web_view.png" width="620">
+
+#### Status Menu Interface
+<img src="Documentation/images/interface_screenshot_status_menu.png" width="401">
+
+#### Droplet Interface
+<img src="Documentation/images/interface_screenshot_droplet.png" width="374">
 
 ## Some notes on the code
 
-Platypus is very old software, dating back to the early days 
-of Mac OS X circa 2003.  It was originally written in C using the 
-Carbon APIs, but later transitioned to Cocoa during the 
-time I was learning to use Objective-C and the Cocoa 
-APIs. I made many beginner mistakes, some of which 
-remain in the code.  This software has  since gone through about
-four dozen significant versions. It has been patched,
-bugfixed, streamlined to include new features and was
-recently transitioned over to modern Objective C. It's not
-how I would write it today.
+Platypus is very old software, dating back to the early days of Mac OS X circa 2003.  It was originally written in C using the
+Carbon APIs, but later transitioned to Cocoa during the time I was learning to use Objective-C and the Cocoa
+APIs. I made many beginner mistakes, some of which remain in the code.  This software has  since gone through about
+four dozen significant versions. It has been patched, bugfixed, streamlined to include new features and was
+recently transitioned over to modern Objective C. It's not how I would write it today.
 
-With these caveats in mind, here is the BSD-licensed 
-source code to Platypus.
-
+With these caveats in mind, here is the BSD-licensed source code to Platypus.
 
 ## License 
 
@@ -79,3 +92,4 @@ POSSIBILITY OF SUCH DAMAGE.
 ### Hexley Icon
 
 Hexley DarwinOS Mascot Copyright (c) 2000 Jon Hooper. All Rights Reserved.
+
