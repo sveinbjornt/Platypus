@@ -461,7 +461,7 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames {
-    PLog(@"Received openFiles for files: %@", [filenames description]);
+    PLog(@"Received openFiles event for files: %@", [filenames description]);
     
     if (hasTaskRun == FALSE && commandLineArguments != nil) {
         for (NSString *filePath in filenames) {
@@ -483,7 +483,7 @@ static const NSInteger detailsHeight = 224;
 
 - (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
     NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
-    PLog(@"Received open event for URL %@", url);
+    PLog(@"Received open URL event for URL %@", url);
     
     // add URL as a job for processing
     BOOL success = [self addURLJob:url];
@@ -495,7 +495,6 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
-    
     // terminate task
     if (task != nil) {
         if ([task isRunning]) {
@@ -516,9 +515,6 @@ static const NSInteger detailsHeight = 224;
     if (statusItem) {
         [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
     }
-    
-    // clean out the job queue since we're quitting
-    [jobQueue removeAllObjects];
     
     return NSTerminateNow;
 }
@@ -550,9 +546,7 @@ static const NSInteger detailsHeight = 224;
     // prepare controls etc. for different interface types
     switch (interfaceType) {
         case PlatypusInterfaceType_None:
-        {
             // nothing to do
-        }
             break;
             
         case PlatypusInterfaceType_ProgressBar:
@@ -692,9 +686,6 @@ static const NSInteger detailsHeight = 224;
     switch (interfaceType) {
         case PlatypusInterfaceType_None:
         case PlatypusInterfaceType_StatusMenu:
-        {
-            
-        }
             break;
             
         case PlatypusInterfaceType_ProgressBar:
@@ -704,9 +695,8 @@ static const NSInteger detailsHeight = 224;
             // some text in the view. The alternative is to make very expensive
             // calls to [textStorage setAttributes:] for all appended output,
             // which freezes up the app when lots of text is dumped by the script
-            NSString *zeroWidthSpace = @"\u200B";
-            [outputTextView setString:zeroWidthSpace];
-            
+            [outputTextView setString:@"\u200B"]; // zero-width space character
+
             [progressBarIndicator setIndeterminate:YES];
             [progressBarIndicator startAnimation:self];
             [progressBarMessageTextField setStringValue:@"Running..."];
@@ -724,9 +714,8 @@ static const NSInteger detailsHeight = 224;
             // some text in the view. The alternative is to make very expensive
             // calls to [textStorage setAttributes:] for all appended output,
             // which freezes up the app when lots of text is dumped by the script
-            NSString *zeroWidthSpace = @"\u200B";
-            [outputTextView setString:zeroWidthSpace];
-            
+            [outputTextView setString:@"\u200B"]; // zero-width space character
+
             [textWindowCancelButton setTitle:@"Cancel"];
             if (execStyle == PlatypusExecStyle_Authenticated) {
                 [textWindowCancelButton setEnabled:NO];
@@ -766,7 +755,6 @@ static const NSInteger detailsHeight = 224;
         [self appendString:remnants];
         remnants = nil;
     }
-
     
     switch (interfaceType) {
             
@@ -1011,7 +999,9 @@ static const NSInteger detailsHeight = 224;
         return;
     }
     // stop observing the filehandle for data since task is done
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSFileHandleReadCompletionNotification
+                                                  object:outputReadFileHandle];
     
     // we make sure to clear the filehandle of any remaining data
     if (outputReadFileHandle != nil) {
