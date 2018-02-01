@@ -473,9 +473,10 @@ static const NSInteger detailsHeight = 224;
     
     // add the dropped files as a job for processing
     BOOL success = [self addDroppedFilesJob:filenames];
+    [NSApp replyToOpenOrPrint:success ? NSApplicationDelegateReplySuccess : NSApplicationDelegateReplyFailure];
     
     // if no other job is running, we execute
-    if (!isTaskRunning && success && hasFinishedLaunching) {
+    if (success && !isTaskRunning && hasFinishedLaunching) {
         [self executeScript];
     }
 }
@@ -1110,9 +1111,7 @@ static const NSInteger detailsHeight = 224;
         if ([theLine hasPrefix:@"ALERT:"]) {
             NSString *alertString = [theLine substringFromIndex:6];
             NSArray *components = [alertString componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
-            [Alerts alert:components[0]
-                  subText:[components count] > 1 ? components[1] : components[0]];
-                
+            [Alerts alert:components[0] subText:[components count] > 1 ? components[1] : components[0]];
             continue;
         }
         
@@ -1290,7 +1289,7 @@ static const NSInteger detailsHeight = 224;
 
 // save output in text field to file when Save to File menu item is invoked
 - (IBAction)saveToFile:(id)sender {
-    if (!IsTextStyledInterfaceType(interfaceType)) {
+    if (IsTextStyledInterfaceType(interfaceType) == NO) {
         return;
     }
     NSString *outSuffix = (interfaceType == PlatypusInterfaceType_WebView) ? @"html" : @"txt";
@@ -1453,7 +1452,6 @@ static const NSInteger detailsHeight = 224;
     ScriptExecJob *job = [ScriptExecJob jobWithArguments:acceptedFiles andStandardInput:nil];
     [jobQueue addObject:job];
     
-    // accept drop
     return YES;
 }
 
