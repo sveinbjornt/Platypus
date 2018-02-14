@@ -62,6 +62,7 @@
     [self window];
     [self updateCLTStatus];
 
+    // we lazily fetch icons for editor apps in Editors menu
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         [self setIconForEditorMenuItemAtIndex:[defaultEditorPopupButton indexOfSelectedItem]];
@@ -69,25 +70,6 @@
     
     [super showWindow:sender];
 }
-
-//- (void)populateEditorMenu {
-//    
-//    NSString *filePath = @""; // fix me
-//    
-//    NSURL *url = [NSURL fileURLWithPath:filePath];
-//    NSMutableArray *appPaths = [[NSMutableArray alloc] initWithCapacity:256];
-//    
-//    NSArray *applications = (NSArray *)LSCopyApplicationURLsForURL((CFURLRef)url, kLSRolesAll);
-//    if (applications == NULL) {
-//        return [NSArray array];
-//    }
-//    
-//    NSMutableArray *appPaths = [NSMutableArray array];
-//    for (NSString *app in applications) {
-//        [appPaths addObject: [app path]];
-//    }
-//    return appPaths;
-//}
 
 - (void)setIconsForEditorMenu {
     for (int i = 0; i < [defaultEditorPopupButton numberOfItems]; i++) {
@@ -291,8 +273,8 @@
     }
 }
 
-- (NSDictionary *)commandEnvironmentDictionary
-{
+- (NSDictionary *)commandEnvironmentDictionary {
+    // a little more introspection would be nice here but...
     return @{@"PROGRAM_NAME": PROGRAM_NAME,
             @"PROGRAM_VERSION": PROGRAM_VERSION,
             @"PROGRAM_CREATOR_STAMP": PROGRAM_CREATOR_STAMP,
@@ -343,6 +325,7 @@
     // create script task with Resources path and program version as arguments 1 and 2
     NSArray *args = @[[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION];
     
+    // create task
     STPrivilegedTask *privTask = [[STPrivilegedTask alloc] initWithLaunchPath:tmpScriptPath arguments:args];
     privTask.terminationHandler = ^(STPrivilegedTask *task) {
         PLog(@"Terminating task: %@", [task description]);
@@ -351,7 +334,7 @@
         [self updateCLTStatus];
     };
     
-    // l
+    // launch task
     OSStatus err = [privTask launch];
     if (err != errAuthorizationSuccess) {
         if (err == errAuthorizationCanceled) {
@@ -359,7 +342,7 @@
             return YES;
         }
         
-        PLog(@"Something went wrong. Auth framework err %d", err);
+        PLog(@"Something went wrong. Authorization framework error %d", err);
         return NO;
     }
     

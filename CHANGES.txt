@@ -4,8 +4,13 @@ For future versions...
 
     http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
+
     TODO Code signing for Platypus.app and 'platypus' command line tool
     TODO: Ability to sign ScriptExec binary with own custom signature
+    TODO: AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
+    TODO: Use pseudo-ttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
+    TODO: Implement automated testing
+    TODO: Get STDERR output and pid for STPrivilegedTask
 
 For 5.3
     TODO: Don't save Status Menu image as base64 in every Profile
@@ -15,17 +20,15 @@ For 5.3
     TODO: New OnChange Text Filter interface type
     TODO: Refactor ScriptExec for clean view controller/task controller decoupling
     TODO: Document the Services feature and provide instructions on how to enable in the Services preferences in Mac OS X.
-    TODO: Implement automated testing
-    TODO: Get STDERR output and pid for STPrivilegedTask
     TODO: Create Platypus tutorial videos, make them available online
-    TODO: AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
-    TODO: Use pseudo-ttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
     TODO: Find a way to fix broken file watching of script path eftir pressing "New"
     TODO: Create automated tests for command line tool using PlistBuddy etc.
+    TODO: Implement new Table View interface
 
     * Implemented a REFRESH command to clear text output buffer and reset web view HTML
     * Moved documentation to Markdown format from raw HTML
     * Fixed issue where command line status in Prefs window failed to update after pressing install or uninstall
+    * Various minor interface improvements
 
 5.2
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
