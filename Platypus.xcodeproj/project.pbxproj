@@ -96,7 +96,7 @@
 		F4975DAD1B2E71EE0099D16E /* EditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D931B2E71EE0099D16E /* EditorController.m */; };
 		F4975DAE1B2E71EE0099D16E /* IconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D951B2E71EE0099D16E /* IconController.m */; };
 		F4975DAF1B2E71EE0099D16E /* PlatypusWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D971B2E71EE0099D16E /* PlatypusWindowController.m */; };
-		F4975DB11B2E71EE0099D16E /* PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D9B1B2E71EE0099D16E /* PrefsController.m */; };
+		F4975DB11B2E71EE0099D16E /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D9B1B2E71EE0099D16E /* PreferencesController.m */; };
 		F4975DB21B2E71EE0099D16E /* ProfilesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D9D1B2E71EE0099D16E /* ProfilesController.m */; };
 		F4975DB41B2E71EE0099D16E /* ShellCommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DA11B2E71EE0099D16E /* ShellCommandController.m */; };
 		F4975DB51B2E71EE0099D16E /* StatusItemSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975DA31B2E71EE0099D16E /* StatusItemSettingsController.m */; };
@@ -271,8 +271,8 @@
 		F4975D951B2E71EE0099D16E /* IconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconController.m; path = Application/IconController.m; sourceTree = "<group>"; };
 		F4975D961B2E71EE0099D16E /* PlatypusWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusWindowController.h; path = Application/PlatypusWindowController.h; sourceTree = "<group>"; };
 		F4975D971B2E71EE0099D16E /* PlatypusWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusWindowController.m; path = Application/PlatypusWindowController.m; sourceTree = "<group>"; };
-		F4975D9A1B2E71EE0099D16E /* PrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefsController.h; path = Application/PrefsController.h; sourceTree = "<group>"; };
-		F4975D9B1B2E71EE0099D16E /* PrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrefsController.m; path = Application/PrefsController.m; sourceTree = "<group>"; };
+		F4975D9A1B2E71EE0099D16E /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesController.h; path = Application/PreferencesController.h; sourceTree = "<group>"; };
+		F4975D9B1B2E71EE0099D16E /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = Application/PreferencesController.m; sourceTree = "<group>"; };
 		F4975D9C1B2E71EE0099D16E /* ProfilesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfilesController.h; path = Application/ProfilesController.h; sourceTree = "<group>"; };
 		F4975D9D1B2E71EE0099D16E /* ProfilesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfilesController.m; path = Application/ProfilesController.m; sourceTree = "<group>"; };
 		F4975DA01B2E71EE0099D16E /* ShellCommandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShellCommandController.h; path = Application/ShellCommandController.h; sourceTree = "<group>"; };
@@ -701,8 +701,8 @@
 				F4975DA11B2E71EE0099D16E /* ShellCommandController.m */,
 				F4975D921B2E71EE0099D16E /* EditorController.h */,
 				F4975D931B2E71EE0099D16E /* EditorController.m */,
-				F4975D9A1B2E71EE0099D16E /* PrefsController.h */,
-				F4975D9B1B2E71EE0099D16E /* PrefsController.m */,
+				F4975D9A1B2E71EE0099D16E /* PreferencesController.h */,
+				F4975D9B1B2E71EE0099D16E /* PreferencesController.m */,
 				F4975D9C1B2E71EE0099D16E /* ProfilesController.h */,
 				F4975D9D1B2E71EE0099D16E /* ProfilesController.m */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -1093,7 +1093,7 @@
 				F4975DAA1B2E71EE0099D16E /* ArgsController.m in Sources */,
 				F4975D8B1B2E71B80099D16E /* main.m in Sources */,
 				F4975DB51B2E71EE0099D16E /* StatusItemSettingsController.m in Sources */,
-				F4975DB11B2E71EE0099D16E /* PrefsController.m in Sources */,
+				F4975DB11B2E71EE0099D16E /* PreferencesController.m in Sources */,
 				F4975DB21B2E71EE0099D16E /* ProfilesController.m in Sources */,
 				F4051DA11C1B5AF900587F1F /* Common.m in Sources */,
 				F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */,

@@ -44,7 +44,7 @@
 #import "DropSettingsController.h"
 #import "SyntaxCheckerController.h"
 #import "BundledFilesController.h"
-#import "PrefsController.h"
+#import "PreferencesController.h"
 #import "NSWorkspace+Additions.h"
 #import "Alerts.h"
 #import "NSColor+HexTools.h"
@@ -95,7 +95,7 @@
     IBOutlet ProfilesController *profilesController;
     IBOutlet TextSettingsController *textSettingsController;
     IBOutlet StatusItemSettingsController *statusItemSettingsController;
-    IBOutlet PrefsController *prefsController;
+    IBOutlet PreferencesController *prefsController;
     IBOutlet BundledFilesController *bundledFilesController;
     
     VDKQueue *fileWatcherQueue;
@@ -115,7 +115,7 @@
 
 + (void)initialize {
     // register the dictionary of defaults
-    [DEFAULTS registerDefaults:[PrefsController defaultsDictionary]];
+    [DEFAULTS registerDefaults:[PreferencesController defaultsDictionary]];
 }
 
 - (void)awakeFromNib {

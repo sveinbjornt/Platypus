@@ -29,7 +29,7 @@
  */
 
 #import "ShellCommandController.h"
-#import "PrefsController.h"
+#import "PreferencesController.h"
 #import "PlatypusAppSpec.h"
 #import "Common.h"
 #import "NSWorkspace+Additions.h"
@@ -68,7 +68,7 @@
     [textView setString:cmdStr];
     
     // get rid of this ugly connection to PrefsController :/
-    [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
+    [PreferencesController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
     
     [NSApp beginSheet:[self window]
        modalForWindow:parentWindow

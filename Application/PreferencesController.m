@@ -28,7 +28,7 @@
  POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "PrefsController.h"
+#import "PreferencesController.h"
 #import <sys/stat.h>
 #import "Alerts.h"
 #import "STPrivilegedTask.h"
@@ -37,7 +37,7 @@
 #import "NSBundle+Templates.h"
 #import "PlatypusAppSpec.h"
 
-@interface PrefsController()
+@interface PreferencesController()
 {
     IBOutlet NSPopUpButton *defaultEditorPopupButton;
     IBOutlet NSTextField *defaultBundleIdentifierTextField;
@@ -56,7 +56,7 @@
 
 @end
 
-@implementation PrefsController
+@implementation PreferencesController
 
 - (IBAction)showWindow:(id)sender {
     [self window];
@@ -163,7 +163,7 @@
 }
 
 - (IBAction)restoreDefaultPrefs:(id)sender {
-    NSDictionary *dict = [PrefsController defaultsDictionary];
+    NSDictionary *dict = [PreferencesController defaultsDictionary];
     for (NSString *key in dict) {
         [DEFAULTS setObject:dict[key] forKey:key];
     }
@@ -180,7 +180,7 @@
     // set Applications folder as file dialog directory
     NSArray *applicationFolderPaths = [[NSFileManager defaultManager] URLsForDirectory:NSApplicationDirectory inDomains:NSLocalDomainMask];
     if ([applicationFolderPaths count]) {
-        [oPanel setDirectoryURL:[NSURL fileURLWithPath:APPLICATIONS_FOLDER_PATH]];
+        [oPanel setDirectoryURL:[NSURL fileURLWithPath:applicationFolderPaths[0]]];
     }
     
     //run open panel
@@ -196,7 +196,7 @@
 }
 
 - (IBAction)commandLineInstallButtonClicked:(id)sender {
-    [PrefsController isCommandLineToolInstalled] ? [self uninstallCommandLineTool] : [self installCommandLineTool];
+    [PreferencesController isCommandLineToolInstalled] ? [self uninstallCommandLineTool] : [self installCommandLineTool];
 }
 
 #pragma mark - Install/Uninstall
@@ -216,7 +216,7 @@
 
     dispatch_async(cltStatusDispatchQueue, ^{
 
-        BOOL isInstalled = [PrefsController isCommandLineToolInstalled];
+        BOOL isInstalled = [PreferencesController isCommandLineToolInstalled];
         NSString *versionString;
         
         if (isInstalled) {
@@ -269,9 +269,9 @@
 }
 
 - (void)updateCLTStatus {
-    NSString *buttonTitle = [PrefsController isCommandLineToolInstalled] ? @"Uninstall" : @"Install";
+    NSString *buttonTitle = [PreferencesController isCommandLineToolInstalled] ? @"Uninstall" : @"Install";
     [installCLTButton setTitle:buttonTitle];
-    [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
+    [PreferencesController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
 }
 
 - (void)installCommandLineTool {
