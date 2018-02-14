@@ -42,6 +42,6 @@
 - (void)concludeDragOperation:(id <NSDraggingInfo>)sender;
 @end
 
-@interface STDragWebView : WebView
+@interface STDragWebView : WebView<STDragWebViewDelegate> 
 @property (assign) IBOutlet id<STDragWebViewDelegate> dragDelegate;
 @end

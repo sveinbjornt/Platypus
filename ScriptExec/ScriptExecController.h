@@ -33,6 +33,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ScriptExecController : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserNotificationCenterDelegate>
+@interface ScriptExecController : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserNotificationCenterDelegate, STDragWebViewDelegate>
 
 @end

@@ -30,11 +30,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef enum {
+typedef NS_ENUM(unsigned int, TypeListItemStringValidity) {
     TypeListItemStringInvalid = 0,
     TypeListItemStringValid = 1,
     TypeListItemStringQuestionable = 2
-} TypeListItemStringValidity;
+};
 
 @interface TypeListController : NSObject <NSTableViewDataSource>
 

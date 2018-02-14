@@ -32,6 +32,6 @@
 
 @interface STReverseDNSTextField : NSTextField
 
-- (BOOL)isValid;
+@property (nonatomic, getter=isValid, readonly) BOOL valid;
 
 @end
