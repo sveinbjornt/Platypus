@@ -6,7 +6,7 @@
         <description>Most recent release list for Platypus, with links to updates.</description>
         <language>en</language>
         <item>
-            <title>Version 5.1</title>
+            <title>Version 5.2</title>
             <pubDate>Fri, 03 Mar 2017 00:37:00 +0000</pubDate>
             <enclosure url="https://sveinbjorn.org/files/software/platypus/platypus5.2.zip" sparkle:version="1008" sparkle:shortVersionString="5.2" length="3649512" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCt3MhvLzIQ5lRNu5d28xKXJwN7ygIVAKYgCZzZzqYfnueKlpAGI59H3ZWR"/>
             <sparkle:minimumSystemVersion>10.7.0</sparkle:minimumSystemVersion>

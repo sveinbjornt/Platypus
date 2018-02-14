@@ -1,6 +1,6 @@
 /*
  # STPrivilegedTask - NSTask-like wrapper around AuthorizationExecuteWithPrivileges
- # Copyright (C) 2009-2017 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+ # Copyright (C) 2009-2018 Sveinbjorn Thordarson <sveinbjornt@gmail.com>
  #
  # BSD License
  # Redistribution and use in source and binary forms, with or without

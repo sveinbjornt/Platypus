@@ -1,4 +1,4 @@
-# Platypus Documentation v. 5.2
+# Platypus Documentation v. 5.3
 
 Last updated on June 3rd 2017. The latest version of this document can be found [here](http://sveinbjorn.org/platypus_documentation).
 
@@ -734,4 +734,4 @@ If you add a file named **Credits.rtf** or **Credits.html** to the bundled files
 
 ----
 
-Copyright &copy; 2003-2017 [Sveinbjorn Thordarson](mailto:sveinbjornt@gmail.com)
+Copyright &copy; 2003-2018 [Sveinbjorn Thordarson](mailto:sveinbjornt@gmail.com)

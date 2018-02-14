@@ -358,7 +358,7 @@
 	<key>CFBundleExecutable</key>
 	<string>Platypus</string>
 	<key>CFBundleGetInfoString</key>
-	<string>© 2003-2017 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2018 Sveinbjorn Thordarson.</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.sveinbjorn.Platypus</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -368,17 +368,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.2</string>
+	<string>5.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>5.2</string>
+	<string>0</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.7</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2003-2017 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2018 Sveinbjorn Thordarson.</string>
 	<key>NSMainNibFile</key>
 	<string>Platypus</string>
 	<key>NSPrincipalClass</key>

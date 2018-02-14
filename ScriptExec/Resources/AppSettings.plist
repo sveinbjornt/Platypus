@@ -9,7 +9,7 @@
 	<key>Authentication</key>
 	<integer>0</integer>
 	<key>Creator</key>
-	<string>Platypus-5.2</string>
+	<string>Platypus-5.3</string>
 	<key>Droppable</key>
 	<true/>
 	<key>InterfaceType</key>
