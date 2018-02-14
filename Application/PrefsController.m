@@ -174,6 +174,7 @@
     //create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setAllowsMultipleSelection:NO];
+    [oPanel setDirectoryURL:[NSURL fileURLWithPath:APPLICATIONS_FOLDER_PATH]];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeApplicationBundle]];
 
