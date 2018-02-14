@@ -174,10 +174,15 @@
     //create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setAllowsMultipleSelection:NO];
-    [oPanel setDirectoryURL:[NSURL fileURLWithPath:APPLICATIONS_FOLDER_PATH]];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeApplicationBundle]];
 
+    // set Applications folder as file dialog directory
+    NSArray *applicationFolderPaths = [[NSFileManager defaultManager] URLsForDirectory:NSApplicationDirectory inDomains:NSLocalDomainMask];
+    if ([applicationFolderPaths count]) {
+        [oPanel setDirectoryURL:[NSURL fileURLWithPath:APPLICATIONS_FOLDER_PATH]];
+    }
+    
     //run open panel
     if ([oPanel runModal] == NSOKButton) {
         //set app name minus .app suffix
