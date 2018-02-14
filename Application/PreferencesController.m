@@ -180,7 +180,7 @@
     // set Applications folder as file dialog directory
     NSArray *applicationFolderPaths = [[NSFileManager defaultManager] URLsForDirectory:NSApplicationDirectory inDomains:NSLocalDomainMask];
     if ([applicationFolderPaths count]) {
-        [oPanel setDirectoryURL:[NSURL fileURLWithPath:applicationFolderPaths[0]]];
+        [oPanel setDirectoryURL:applicationFolderPaths[0]];
     }
     
     //run open panel
