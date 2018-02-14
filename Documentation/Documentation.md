@@ -1,8 +1,8 @@
 # Platypus Documentation v. 5.2
 
-Last updated on June 3rd 2017, by [Sveinbjorn Thordarson](mailto:sveinbjornt@gmail.com). The latest version of this document can be found [here](http://sveinbjorn.org/platypus_documentation).
+Last updated on June 3rd 2017. The latest version of this document can be found [here](http://sveinbjorn.org/platypus_documentation).
 
-<img style="float: right; margin-left: 30px; width: 94px; height: 128px;" src="images/platypus.png">
+<img style="float: right; margin-left: 30px; width: 94px;" src="images/platypus.png">
 
 
 * [Introduction](#introduction)
@@ -128,7 +128,7 @@ As of version 5.0, both the Platypus application and the applications it generat
 
 The basic Platypus interface is pretty straightforward.  As soon as you launch the Platypus application, you see a window like this:
 
-<img src="images/basic_interface.png" style="width: 657px; height: 551px;">
+<img src="images/basic_interface.png" style="width: 657px;">
 
 Press the **Select Script.."** button and select your script. Then configure the following:
 
@@ -140,7 +140,7 @@ The name of your application. Once you press the "Create" button, you will be pr
 
 This field contains the path to the script you create the app from. You either define this manually by typing the path into the text field (which supports shell-style autocomplete), or by pressing the **Select** button and selecting it in a navigation dialog (or by dragging your script on to the Platypus window).
 
-<img src="images/script_path.png" style="width: 492px; height: 66px;">
+<img src="images/script_path.png" style="width: 492px;">
     
 Once you have selected a valid script, you can press the **Edit** button to open it in your default text editor. Platypus includes a very basic built-in text editor. You can change this in the **Preferences** if you want to use a more capable external text editor.
 
@@ -150,7 +150,7 @@ The **New** button creates a text file for you in Platypus' Application Support 
 
 ### Interpreter
 
-<img src="images/script_type.png" style="float: right; width:169px; height:340px;">
+<img src="images/script_type.png" style="float: right; width:169px;">
 
 You can use **Script Type** to specify the scripting language of your script. Either select one of the predefined scripting languages from the the pop-up menu or type in the path to an interpreter binary of choice.
 
@@ -160,13 +160,13 @@ Please note that the interpreter you selected must exist on the Mac OS X system 
 
 **Args** let you specify arguments to the script and/or its interpreter.
 
-<img src="images/args.png" style="width:500px; height:373px;">
+<img src="images/args.png" style="width:500px;">
 
 
 
 ### Interface
 
-<img src="images/interface_type.png" style="float: right; width:193px; height:258px;">
+<img src="images/interface_type.png" style="float: right; width:193px;">
 
 **Interface** sets the user interface for the application. Platypus provides six interface types:
 
@@ -178,7 +178,7 @@ Windowless application that provides no graphical feedback. All script output is
 
 A small window with an indeterminate progress bar and a "Cancel" button appears during the execution of the script. Script output is fed line by line into the text field above the progress bar. "Show details" triangle reveals a small text view containing full script output.
 
-<img src="images/interface_progressbar.png" style="width:524px; height:194px;">
+<img src="images/interface_progressbar.png" style="width:524px;">
 
 #### Text Window
 
@@ -186,7 +186,7 @@ Shows a window with a text view which displays script output. Please note that t
 
 The styling and properties of the text view can be set by pressing the **Text Settings** button.  This shows a window where font, color and size can be configured.
 
-<img src="images/interface_textwindow.png" style="width:594px; height:502px;">
+<img src="images/interface_textwindow.png" style="width:594px;">
 
 #### Web View
 
@@ -194,7 +194,7 @@ Output from the script will be rendered as HTML in a WebView window.  This allow
 
 The base directory for the browser instance is the application bundle's Resources directory, so you can bundle images and other support files by adding them to the **Bundled Files** list and referencing them relative to that directory.
 
-<img src="images/interface_webview.jpg" style="width:620px; height:525px;">
+<img src="images/interface_webview.jpg" style="width:620px;">
 
 #### Status Menu
 
@@ -202,19 +202,19 @@ Application creates a Status Item in the menu bar when launched.  Every time the
 
 The properties of the Status Item (icon, title, etc.) can be configured by pressing the **Status Item Settings** button.
 
-<img src="images/interface_statusmenu.png" style="width:315px; height:144px;">
+<img src="images/interface_statusmenu.png" style="width:315px;">
 
 #### Droplet
 
 Creates a square window instructing the user to drop files on it for processing.  While processing, script output will be displayed line for line within the box along with an indeterminate circular progress indicator.
 
-<img src="images/interface_droplet.jpg" style="width:300px; height:322px;">
+<img src="images/interface_droplet.jpg" style="width:300px;">
 
 
 
 ### Setting the Icon
 
-<img src="images/setting_icon.png" style="width:207px; height:398px; float: right;">
+<img src="images/setting_icon.png" style="width:207px; float: right;">
 
 Platypus lets you set an icon for your application.  You can pick from the icon presets, paste your own image or select an image or icon file.
 
@@ -228,7 +228,7 @@ The **Identifier** text field sets the unique identifier for the application.  I
 
 Every Mac OS X application has a unique string called a bundle identifier, which takes the form of a reverse DNS name (e.g. "com.apple.iTunes" or "org.sveinbjorn.Platypus"). Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to something else if you want to. The default bundle identifier prefix used to autogenerate the identifier can be configured in the **Preferences**.
 
-<img src="images/author_identifier.png" style="width: 427px; height: 113px;">
+<img src="images/author_identifier.png" style="width: 427px;">
 
 You can also set **Author** and **Version** metadata. This information will appear in the "Get Info" window for your application in the Finder, and also in the About window accessible through the application menu.
 
@@ -236,7 +236,7 @@ You can also set **Author** and **Version** metadata. This information will appe
 
 ### Special Options
 
-<img src="images/special_options.png" style="float: right; width: 260px; height: 112px;">
+<img src="images/special_options.png" style="float: right; width: 260px;">
 
 **Run with root privileges:**  If selected, the application prompts for an Administrator password and executes the script with escalated privileges via Apple's Security Framework.  This is not strictly equivalent to running the script *as the root user*.  For details, see the [documentation for the Mac OS Security Framework](http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges).
 
@@ -255,7 +255,7 @@ Please note that if this option is selected, the script will not print `STDERR` 
 
 The Bundled Files list shows files that should be copied into the Resources folder of the resulting application bundle. These files can then be used by your script, which is run from the Resources directory.
 
-<img src="images/bundled_files.png" style="width: 658px; height: 214px;">
+<img src="images/bundled_files.png" style="width: 658px;">
 
 See also [How do I get the path to my application / bundled files within the script?](#how-do-i-get-the-path-to-my-application-and-or-bundled-files-from-within-the-script-) in the FAQ.
 
@@ -269,7 +269,7 @@ See also [How do I get the path to my application / bundled files within the scr
 
 Selecting **Accept dropped items** makes the application bundle accept drag and dropped files, or dragged text snippets.  If this option is selected, a small button called **Settings** appears next to the checkbox. Pressing it opens the **Drop Settings** window, where it is possible to specify which file types and draggable data the application accepts.
 
-<img src="images/drop_settings.png" style="width: 537px; height: 605px;">
+<img src="images/drop_settings.png" style="width: 537px;">
 
 Selecting **Accept Dropped Files** results in the paths of dropped or opened files being passed on to the script as arguments.  The default behaviour for applications is to accept all file suffixes, but it is also possible to specify a limited set of suffixes or [Uniform Type Identifiers](https://en.wikipedia.org/wiki/Uniform_Type_Identifier) (NB: If you provide UTIs, the suffixes are ignored by Mac OS X launch services).
 
@@ -289,7 +289,7 @@ Selecting **Accept Dropped Text** makes the app accept dragged snippets of text,
 
 Platypus allows you to **create development versions** of your script application.  Ordinarily, Platypus will copy your script and any bundled files into the application it creates.  If **Development Version** is selected in the **Create app** dialog, a symlink to the original script and bundled files is created instead.  This allows you to work on your script while testing it as a Platypus app.
 
-<img src="images/create_options.png" style="width: 424px; height: 282px;">
+<img src="images/create_options.png" style="width: 424px;">
 
 **Optimize Application**: Strip and compile the nib file in the application in order to reduce its size. This makes the nib uneditable. Only works if XCode is installed.
 
@@ -301,7 +301,7 @@ Platypus allows you to **create development versions** of your script applicatio
 
 Platypus includes a very basic built-in text editor for editing scripts within the application. Press the **Edit** button to bring it up.
 
-<img src="images/built-in_editor.png" style="width: 600px; height: 400px;">
+<img src="images/built-in_editor.png" style="width: 600px;">
 
 A more capable external editor can be chosen in **Preferences.**
 
@@ -323,7 +323,7 @@ Platypus includes a **command line tool** equivalent to the Platypus.app applica
 
 Under the **Action** menu there is a menu item called **Show Shell Command**. Selecting this item will bring down a sheet with a text field containing a the command for executing the platypus command line tool with all the options selected in the graphical interface. This can be helpful if you have the command line tool installed and wish to automate the creation of script apps within a larger build process.
 
-<img src="images/shell_command.png" style="width:472px; height: 375px;">
+<img src="images/shell_command.png" style="width:472px;">
 
 Please note that Platypus.app is not merely a GUI frontend for the command line tool and, depending on the current state of development, the command line tool may or may not have feature parity with the application.
 
@@ -335,7 +335,7 @@ The command line tool does not in any way depend on the Platypus application onc
 
 The Platypus Preferences should be pretty self-explanatory.  You can select an editor of choice, set the default author and bundle identifier settings, set the behaviour of Platypus on app creation, and install/uninstall the `platypus` command line tool.
 
-<img src="images/preferences.png" style="width: 445px; height: 606px;">
+<img src="images/preferences.png" style="width: 445px;">
 
 
 
@@ -351,7 +351,7 @@ Profiles let you save Platypus application configuration settings.  These can th
 
 You can load a profile by selecting it from the menu, which lists all profiles in the Profiles folder.  To reveal a profile in the Finder, hold down the Command key and select the profile.  Profiles have a `.platypus` filename suffix.
 
-<img src="images/profiles.png" style="width: 212px; height: 203px;">
+<img src="images/profiles.png" style="width: 212px;">
 
 
 
@@ -450,7 +450,7 @@ This Platypus application will present the user with an alert and several button
 
 ### Creating a Status Menu app
 
-<img src="images/interface_statusmenu.png" style="width:315px; height:144px; float: right;">
+<img src="images/interface_statusmenu.png" style="width:315px;float: right;">
 
 Platypus-generated apps with **Interface** set to **Status Menu** show a Status Item in the menu bar when launched. When the item is pressed, a menu is opened, the script is executed and each line of output is shown as a menu item in the menu.
 
