@@ -18,7 +18,7 @@ launchers, automations and droplets using Platypus.
 
 ## Documentation & Links
 
-* [Platypus Documentation](http://sveinbjorn.org/platypus_documentation)
+* [Platypus Documentation](Documentation/Documentation.md)
 * [Platypus Website](http://www.sveinbjorn.org/platypus)
 * [Version History](http://www.sveinbjorn.org/platypus_version_log)
 * [Platypus Developer Mailing List](http://www.sveinbjorn.org/platypus_mailinglist)

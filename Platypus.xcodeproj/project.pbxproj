@@ -130,7 +130,7 @@
 		F4FB338114FBFC7C00BAECEB /* License.html in Resources */ = {isa = PBXBuildFile; fileRef = F4FB338014FBFC7C00BAECEB /* License.html */; };
 		F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
 		F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
-		F4FE747B11F79399005FC23A /* platypus.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE747A11F79399005FC23A /* platypus.m */; };
+		F4FE747B11F79399005FC23A /* platypus_clt.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE747A11F79399005FC23A /* platypus_clt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -334,7 +334,7 @@
 		F4FB338014FBFC7C00BAECEB /* License.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = License.html; sourceTree = "<group>"; };
 		F4FE739611F792D5005FC23A /* PlatypusAppSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusAppSpec.h; path = Shared/PlatypusAppSpec.h; sourceTree = "<group>"; };
 		F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusAppSpec.m; path = Shared/PlatypusAppSpec.m; sourceTree = "<group>"; };
-		F4FE747A11F79399005FC23A /* platypus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = platypus.m; path = CommandLineTool/platypus.m; sourceTree = "<group>"; };
+		F4FE747A11F79399005FC23A /* platypus_clt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = platypus_clt.m; path = CommandLineTool/platypus_clt.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -827,7 +827,7 @@
 		F4E1F70711F75A40007EE2E3 /* Command Line Tool */ = {
 			isa = PBXGroup;
 			children = (
-				F4FE747A11F79399005FC23A /* platypus.m */,
+				F4FE747A11F79399005FC23A /* platypus_clt.m */,
 				F4B155EE1C1EF77D00E6E941 /* man */,
 			);
 			name = "Command Line Tool";
@@ -1148,7 +1148,7 @@
 				F43142B01C03C742004EEF8C /* PlatypusScriptAnalyser.m in Sources */,
 				F4051DA01C1B5AF900587F1F /* Common.m in Sources */,
 				F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
-				F4FE747B11F79399005FC23A /* platypus.m in Sources */,
+				F4FE747B11F79399005FC23A /* platypus_clt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
