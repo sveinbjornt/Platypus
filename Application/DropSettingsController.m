@@ -88,6 +88,7 @@
 - (IBAction)acceptsFilesChanged:(id)sender;
 - (IBAction)acceptsTextChanged:(id)sender;
 - (IBAction)showHelp:(id)sender;
+- (IBAction)showHelpForUTIs:(id)sender;
 
 @end
 
@@ -442,6 +443,10 @@
 // Open Documentation.html file within app bundle
 - (IBAction)showHelp:(id)sender {
     [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL]];
+}
+
+- (IBAction)showHelpForUTIs:(id)sender {
+    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_UTI_INFORMATION_URL]];
 }
 
 @end

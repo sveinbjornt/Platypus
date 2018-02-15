@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -405,7 +406,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="AwF-Vu-vkI">
                             <rect key="frame" x="1" y="0.0" width="591" height="125"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="hqk-wE-xqo" viewBased="YES" id="310">
                                     <rect key="frame" x="0.0" y="0.0" width="591" height="108"/>
@@ -1516,7 +1517,7 @@ DQ
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="zU0-Dr-gG8">
                                                     <rect key="frame" x="1" y="1" width="162" height="96"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="708" customClass="NSResponderNotifyingTableView">
                                                             <rect key="frame" x="0.0" y="0.0" width="162" height="96"/>
@@ -1605,7 +1606,7 @@ DQ
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                 </button>
-                                <box title="Uniform Type Identifiers" id="e6h-Co-zvh">
+                                <box title="Uniform Type Identifiers (UTIs)" id="e6h-Co-zvh">
                                     <rect key="frame" x="256" y="57" width="218" height="180"/>
                                     <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                     <view key="contentView" id="E19-CW-1vz">
@@ -1617,7 +1618,7 @@ DQ
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="xVE-Bl-gWX">
                                                     <rect key="frame" x="1" y="1" width="162" height="96"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk" customClass="NSResponderNotifyingTableView">
                                                             <rect key="frame" x="0.0" y="0.0" width="162" height="96"/>
@@ -1704,6 +1705,17 @@ DQ
                                         <action selector="selectDocIcon:" target="1364" id="11244"/>
                                     </connections>
                                 </button>
+                                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="miG-6H-wby">
+                                    <rect key="frame" x="449" y="220" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vbq-is-cx6">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="miniSystem"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="showHelpForUTIs:" target="1364" id="LB4-Lz-htz"/>
+                                    </connections>
+                                </button>
                             </subviews>
                         </view>
                     </box>
@@ -1727,7 +1739,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                     <clipView key="contentView" id="gjs-Rw-OFH">
                                         <rect key="frame" x="1" y="1" width="162" height="72"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="Qc1-zf-c1B" customClass="NSResponderNotifyingTableView">
                                                 <rect key="frame" x="0.0" y="0.0" width="162" height="72"/>
@@ -1844,7 +1856,7 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="11530">
-                        <rect key="frame" x="30" y="190" width="226" height="42"/>
+                        <rect key="frame" x="30" y="190" width="208" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Lets the app receive dragged and dropped text snippets which are passed to the script via STDIN." id="11531">
                             <font key="font" metaFont="smallSystem"/>
@@ -1855,14 +1867,14 @@ DQ
                     <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="11463">
                         <rect key="frame" x="218" y="530" width="301" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Lets the app receive opened or dropped files which are passed on to the script as arguments." id="11464">
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Lets the app receive opened or dropped files which are then passed on to the script as path arguments." id="11464">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="ccv-Az-KcH">
-                        <rect key="frame" x="30" y="85" width="226" height="56"/>
+                        <rect key="frame" x="30" y="85" width="208" height="56"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="vT3-3g-DIA">
                             <font key="font" metaFont="smallSystem"/>
@@ -1871,6 +1883,10 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <box horizontalHuggingPriority="750" misplaced="YES" boxType="separator" id="16t-bv-pal">
+                        <rect key="frame" x="242" y="85" width="5" height="175"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </box>
                 </subviews>
             </view>
             <point key="canvasLocation" x="-192.5" y="-303"/>

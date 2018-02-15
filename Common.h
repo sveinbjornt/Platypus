@@ -48,6 +48,7 @@
 #define PROGRAM_DOCUMENTATION_URL   @"http://sveinbjorn.org/files/manpages/PlatypusDocumentation.html"
 #define PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL [NSString stringWithFormat:@"%@#41",PROGRAM_DOCUMENTATION_URL]
 #define PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL [NSString stringWithFormat:@"%@#22",PROGRAM_DOCUMENTATION_URL]
+#define PROGRAM_UTI_INFORMATION_URL @"https://en.wikipedia.org/wiki/Uniform_Type_Identifier"
 
 // Folders
 #define PROGRAM_APP_SUPPORT_PATH    [[NSString stringWithFormat:@"~/Library/Application Support/%@/", PROGRAM_NAME] stringByExpandingTildeInPath]

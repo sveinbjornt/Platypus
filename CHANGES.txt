@@ -24,6 +24,7 @@ For 5.3
     TODO: Find a way to fix broken file watching of script path eftir pressing "New"
     TODO: Create automated tests for command line tool using PlistBuddy etc.
     TODO: Implement new Table View interface
+    TODO: Fix strange bug where suffix items cause clear all fields to crash
 
     * Implemented a REFRESH command to clear text output buffer and reset web view HTML
     * Moved documentation to Markdown format from raw HTML
