@@ -106,26 +106,28 @@
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
+    if (![items count]) {
+        return nil;
+    }
     
     if ([[aTableColumn identifier] isEqualToString:@"2"]) {
-        
         NSString *itemString = items[rowIndex][@"name"];
         NSColor *stringColor;
-        
+
         if ([aTableView isEnabled] == NO) {
             stringColor = [NSColor grayColor];
         } else {
-        
+
             TypeListItemStringValidity validity = [self validateItemString:itemString];
             switch (validity) {
                 case TypeListItemStringInvalid:
                     stringColor = [NSColor redColor];
                     break;
-                    
+
                 case TypeListItemStringQuestionable:
                     stringColor = [NSColor orangeColor];
                     break;
-                
+
                 case TypeListItemStringValid:
                     stringColor = [NSColor blackColor];
                     break;
@@ -145,7 +147,7 @@
         
         return items[rowIndex][@"icon"];
     }
-    return @"";
+    return nil;
 }
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
