@@ -2,7 +2,7 @@
 
 <img align="right" src="Documentation/images/platypus.png" style="float: right; margin-left: 30px;">
 
-**Platypus** is an OS X developer tool that creates native Mac applications 
+**Platypus** is a developer tool that creates native Mac applications
 from interpreted scripts such as shell scripts or Perl and Python programs.
 This is done by wrapping the script in an 
 [application bundle](https://en.wikipedia.org/wiki/Bundle_(OS_X)#OS_X_application_bundles)
@@ -51,7 +51,7 @@ Platypus lets you select one of several different user interfaces for your scrip
 
 ## Some notes on the code
 
-Platypus is very old software, dating back to the early days of Mac OS X circa 2003.  It was originally written in C using the
+Platypus is very old software, dating back to the early days of Mac OS X, circa 2003.  It was originally written in C using the
 Carbon APIs, but later transitioned to Cocoa during the time I was learning to use Objective-C and the Cocoa
 APIs. I made many beginner mistakes, some of which remain in the code.  This software has  since gone through about
 four dozen significant versions. It has been patched, bugfixed, streamlined to include new features and was
