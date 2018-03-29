@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2003-2018, Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+ Copyright (c) 2003-2018, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
@@ -144,7 +144,6 @@
     
     // we list ourself as an observer of changes to file system for script path being watched
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueRenameNotification object:nil];
-    [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueDeleteNotification object:nil];
     
     // listen for app size change notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -173,11 +172,9 @@
     // if we haven't already loaded a profile via openfile delegate method
     // we set all fields to their defaults.  Any profile must contain a name
     // so we can be sure that one hasn't been loaded if the app name field is empty
-    if ([[appNameTextField stringValue] isEqualToString:@""]) {
-        [self clearAllFields:self];
-    }
-    
-    [[self window] makeFirstResponder:appNameTextField];
+//    if ([[appNameTextField stringValue] isEqualToString:@""]) {
+//        [self clearAllFields:self];
+//    }
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {

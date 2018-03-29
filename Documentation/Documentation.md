@@ -92,7 +92,7 @@ While I am happy to respond to feature requests, bug reports and questions conce
 
 ### Credits
 
-Platypus was conceived and created by me, [Sveinbjorn Thordarson](mailto:sveinbjornt@gmail.com).
+Platypus was conceived and created by me, [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org).
 
 The Platypus icon -- [Hexley](http://www.hexley.com/), the Darwin mascot -- was created by Jon Hooper, who was kind enough to grant me permission to use it as the Platypus application icon.
 
@@ -559,7 +559,7 @@ Platypus includes a number of built-in examples.  These can be opened in the **E
     
 * **WordCountService**: Dynamic Service app which does a word count of received text and shows in an alert.
 
-If you come up with a particularly nifty use of Platypus and think it might make a suitable addition to this list, by all means [let me know](mailto:sveinbjornt@gmail.com).
+If you come up with a particularly nifty use of Platypus and think it might make a suitable addition to this list, by all means [let me know](mailto:sveinbjorn@sveinbjorn.org).
 
 
 
@@ -734,4 +734,4 @@ If you add a file named **Credits.rtf** or **Credits.html** to the bundled files
 
 ----
 
-Copyright &copy; 2003-2018 [Sveinbjorn Thordarson](mailto:sveinbjornt@gmail.com)
+Copyright &copy; 2003-2018 [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org)
