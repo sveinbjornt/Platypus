@@ -172,9 +172,9 @@
     // if we haven't already loaded a profile via openfile delegate method
     // we set all fields to their defaults.  Any profile must contain a name
     // so we can be sure that one hasn't been loaded if the app name field is empty
-//    if ([[appNameTextField stringValue] isEqualToString:@""]) {
-//        [self clearAllFields:self];
-//    }
+    if ([[appNameTextField stringValue] isEqualToString:@""]) {
+        [self clearAllFields:self];
+    }
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {

@@ -19,15 +19,16 @@ For 5.3
     TODO: Find a way to support authenticated task termination
     TODO: New button-based interface type
     TODO: New OnChange Text Filter interface type
-    TODO: Document the Services feature and provide instructions on how to enable in the Services preferences in Mac OS X.
+    TODO: Document the Services feature and provide instructions on how to enable in macOS Services preferences.
     TODO: Create Platypus tutorial videos, make them available online
     TODO: Find a way to fix broken file watching of script path eftir pressing "New"
     TODO: Create automated tests for command line tool using PlistBuddy etc.
-    TODO: Implement new Table View interface
+    TODO: Implement new Table View interface (CSV output?)
     TODO: Make Droplet window & others larger
     TODO: Rewrite documentation for clarity
-    TODO: Fix exception when double-clicking bundled files header
+    TODO: Fix bug where custom icns file for icon doesn't work
 
+    * Fixed exception when double-clicking bundled files header
     * Fixed bug where pressing "Clear" could cause program to crash
     * Implemented a REFRESH command to clear text output buffer and reset web view HTML
     * Moved documentation to Markdown format from HTML
