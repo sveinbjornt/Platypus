@@ -26,6 +26,7 @@ For 5.3
     TODO: Implement new Table View interface
     TODO: Make Droplet window & others larger
     TODO: Rewrite documentation for clarity
+    TODO: Fix exception when double-clicking bundled files header
 
     * Fixed bug where pressing "Clear" could cause program to crash
     * Implemented a REFRESH command to clear text output buffer and reset web view HTML
