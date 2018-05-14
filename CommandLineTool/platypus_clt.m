@@ -40,6 +40,7 @@
 
 #import <stdio.h>
 #import <unistd.h>
+#import <stdlib.h>
 #import <errno.h>
 #import <sys/stat.h>
 #import <limits.h>
@@ -155,14 +156,14 @@ int main(int argc, const char *argv[]) {
                 // error if profile doesn't exists, warn if w/o profile suffix
                 if (![fm fileExistsAtPath:profilePath]) {
                     NSPrintErr(@"Error: No profile found at path '%@'.", profilePath);
-                    exit(1);
+                    exit(EXIT_FAILURE);
                 }
                 
                 // read profile dictionary from file
                 NSDictionary *profileDict = [NSDictionary dictionaryWithContentsOfFile:profilePath];
                 if (profileDict == nil) {
                     NSPrintErr(@"Error loading profile '%@'.", profilePath);
-                    exit(1);
+                    exit(EXIT_FAILURE);
                 }
                 
                 // warn if created by different version
@@ -194,7 +195,7 @@ int main(int argc, const char *argv[]) {
                     // make sure file exists
                     if ([fm fileExistsAtPath:fp] == NO) {
                         NSPrintErr(@"Error: No file exists at path '%@'", fp);
-                        exit(1);
+                        exit(EXIT_FAILURE);
                     }
 
                     // add to bundled files array in spec
@@ -213,7 +214,7 @@ int main(int argc, const char *argv[]) {
                 if (IsValidInterfaceTypeString(interfaceType) == NO) {
                     NSPrintErr(@"Error: Invalid interface type '%@'.  Valid types are: %@",
                                interfaceType, [PLATYPUS_INTERFACE_TYPE_NAMES description]);
-                    exit(1);
+                    exit(EXIT_FAILURE);
                 }
                 properties[AppSpecKey_InterfaceType] = @(optarg);
             }
@@ -225,7 +226,7 @@ int main(int argc, const char *argv[]) {
                 NSString *hexColorStr = @(optarg);
                 if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex:0] != '#') {
                     NSPrintErr(@"Error: '%@' is not a valid color hex value.  Must be hash-prefixed 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
-                    exit(1);
+                    exit(EXIT_FAILURE);
                 }
                 properties[AppSpecKey_TextBackgroundColor] = @(optarg);
             }
@@ -237,7 +238,7 @@ int main(int argc, const char *argv[]) {
                 NSString *hexColorStr = @(optarg);
                 if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex:0] != '#') {
                     NSPrintErr(@"Error: '%@' is not a valid color hex value.  Must be hash-prefixed 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
-                    exit(1);
+                    exit(EXIT_FAILURE);
                 }
                 properties[AppSpecKey_TextColor] = @(optarg);
             }
@@ -250,7 +251,7 @@ int main(int argc, const char *argv[]) {
                 NSMutableArray *words = [NSMutableArray arrayWithArray:[fontStr componentsSeparatedByString:@" "]];
                 if ([words count] < 2) {
                     NSPrintErr(@"Error: '%@' is not a valid font.  Must be font name followed by size, e.g. 'Monaco 10'", fontStr);
-                    exit(1);
+                    exit(EXIT_FAILURE);
                 }
                 // parse string for font name and size, and set it in properties
                 float fontSize = [[words lastObject] floatValue];
@@ -277,7 +278,7 @@ int main(int argc, const char *argv[]) {
                     // if we have proper arg, make sure file exists
                     if ([fm fileExistsAtPath:iconPath] == NO) {
                         NSPrintErr(@"Error: No icon file exists at path '%@'", iconPath);
-                        exit(1);
+                        exit(EXIT_FAILURE);
                     }
                     
                     // warn if file doesn't seem to be icns
@@ -301,7 +302,7 @@ int main(int argc, const char *argv[]) {
                     // if we have proper arg, make sure file exists
                     if (![fm fileExistsAtPath:iconPath]) {
                         NSPrintErr(@"Error: No icon file exists at path '%@'", iconPath);
-                        exit(1);
+                        exit(EXIT_FAILURE);
                     }
                     
                     // warn if file doesn't seem to be icns
@@ -448,7 +449,7 @@ int main(int argc, const char *argv[]) {
                 // validate -- refactor!
                 if (![kind isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT] && ![kind isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
                     NSPrintErr(@"Error: Invalid status item kind '%@'", kind);
-                    exit(1);
+                    exit(EXIT_FAILURE);
                 }
                 properties[AppSpecKey_StatusItemDisplayType] = kind;
             }
@@ -460,7 +461,7 @@ int main(int argc, const char *argv[]) {
                 NSString *title = @(optarg);
                 if ([title isEqualToString:@""] || title == nil) {
                     NSPrintErr(@"Error: Empty status item title");
-                    exit(1);
+                    exit(EXIT_FAILURE);
                 }
                 properties[AppSpecKey_StatusItemTitle] = title;
             }
@@ -482,14 +483,14 @@ int main(int argc, const char *argv[]) {
                 NSString *iconPath = MakeAbsolutePath(@(optarg));
                 if (![fm fileExistsAtPath:iconPath]) {
                     NSPrintErr(@"Error: No image file exists at path '%@'", iconPath);
-                    exit(1);
+                    exit(EXIT_FAILURE);
                 }
                 
                 // read image from file
                 NSImage *iconImage = [[NSImage alloc] initWithContentsOfFile:iconPath];
                 if (iconImage == nil) {
                     NSPrintErr(@"Error: Unable to get image from file '%@'", iconPath);
-                    exit(1);
+                    exit(EXIT_FAILURE);
                 }
                 properties[AppSpecKey_StatusItemIcon] = [iconImage TIFFRepresentation];
             }
@@ -499,7 +500,7 @@ int main(int argc, const char *argv[]) {
             case 'v':
             {
                 PrintVersion();
-                exit(0);
+                exit(EXIT_SUCCESS);
             }
                 break;
                 
@@ -508,7 +509,7 @@ int main(int argc, const char *argv[]) {
             default:
             {
                 PrintHelp();
-                exit(0);
+                exit(EXIT_SUCCESS);
             }
                 break;
         }
@@ -518,7 +519,7 @@ int main(int argc, const char *argv[]) {
     if (argc - optind < 1) {
         NSPrintErr(@"Error: Missing argument");
         PrintHelp();
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     
     // check if there are any duplicate filenames in bundled files
@@ -560,7 +561,7 @@ int main(int argc, const char *argv[]) {
         
         printStdout ? [appSpec dump] : [appSpec writeToFile:destPath];
         
-        exit(0);
+        exit(EXIT_SUCCESS);
     }
     
     // if we loaded a profile, the first remaining arg is destination path, others ignored
@@ -593,7 +594,7 @@ int main(int argc, const char *argv[]) {
         }
         else if ([fm fileExistsAtPath:scriptPath] == NO) {
             NSPrintErr(@"Error: No script file exists at path '%@'", scriptPath);
-            exit(1);
+            exit(EXIT_FAILURE);
         }
         
         appSpec = [PlatypusAppSpec specWithDefaultsFromScript:scriptPath];
@@ -629,7 +630,7 @@ int main(int argc, const char *argv[]) {
     NSString *path = appSpec[AppSpecKey_ScriptPath];
     if (path == nil || [path isEqualToString:@""]) {
         NSPrintErr(@"Error: Missing script path.");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     
     //NSLog(@"%@", [appSpec description]);
@@ -637,7 +638,7 @@ int main(int argc, const char *argv[]) {
     // create the app from spec
     if ([appSpec verify] == NO || [appSpec create] == NO) {
         NSPrintErr(@"Error: %@", [appSpec error]);
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     
     // if script was a temporary file created from stdin, we remove it
@@ -645,7 +646,7 @@ int main(int argc, const char *argv[]) {
         [FILEMGR removeItemAtPath:scriptPath error:nil];
     }
     
-    return 0;
+    return EXIT_SUCCESS;
 }
 
 #pragma mark -
@@ -655,14 +656,14 @@ static NSString *ReadStandardInputToFile(void) {
     NSData *inData = [[NSFileHandle fileHandleWithStandardInput] readDataToEndOfFile];
     if (inData == nil) {
         NSPrintErr(@"Empty buffer, aborting.");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     
     // convert to string
     NSString *inStr = [[NSString alloc] initWithData:inData encoding:DEFAULT_TEXT_ENCODING];
     if (inStr == nil) {
         NSPrintErr(@"Cannot handle non-text data.");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     
     // write to temp file
