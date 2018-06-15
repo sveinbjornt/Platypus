@@ -20,10 +20,10 @@ launchers, automations and droplets using Platypus.
 
 * [Platypus Documentation](Documentation/Documentation.md)
 * [Platypus Website](http://www.sveinbjorn.org/platypus)
-* [Version History](http://www.sveinbjorn.org/platypus_version_log)
+* [Platypus Command Line Tool man Page](http://www.sveinbjorn.org/files/manpages/platypus.man.html)
 * [Platypus Developer Mailing List](http://www.sveinbjorn.org/platypus_mailinglist)
 * [AppCast XML Feed](http://www.sveinbjorn.org/files/appcasts/PlatypusAppcast.xml)
-* [`man platypus`](http://www.sveinbjorn.org/files/manpages/platypus.man.html)
+
 
 ## Screenshots
 
@@ -61,7 +61,7 @@ With these caveats in mind, here is the BSD-licensed source code to Platypus.
 
 ## License 
 
-Copyright (c) Sveinbjorn Thordarson &lt;sveinbjorn@sveinbjorn.org&gt;
+Copyright (c) Sveinbjorn Thordarson &lt;<a href="mailto:">sveinbjorn@sveinbjorn.org</a>&gt;
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
