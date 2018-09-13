@@ -340,7 +340,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>PlatypusScriptFile.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>Awk Script</string>
+			<string>AWK Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>

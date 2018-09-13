@@ -125,7 +125,7 @@
                 @"SyntaxCheck": @[@"-parse"],
                 @"SyntaxCheckBinary": @"/usr/bin/swiftc" },
              
-             @{ @"Name":        @"Awk",
+             @{ @"Name":        @"AWK",
                 @"Path":        @"/usr/bin/awk",
                 @"Hello":       @"BEGIN { print \"Hello, World\" }",
                 @"Suffixes":    @[@".awk"],
