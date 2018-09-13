@@ -28,7 +28,9 @@ For 5.3
     TODO: Rewrite documentation for clarity
     TODO: Fix bug where custom icns file for icon doesn't work
     TODO: Async Status Menu script execution to prevent interface locking on main thread
+    TODO: Warn if using /bin/bash and "Run with root privileges"
 
+    * Added Awk as an interpreter option
     * Fixed exception when double-clicking bundled files header
     * Fixed bug where pressing "Clear" could cause program to crash
     * Implemented a REFRESH command to clear text output buffer and reset web view HTML

@@ -371,13 +371,6 @@
     [self updateButtonStatus];
 }
 
-- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
-    NSPasteboard *pboard = [info draggingPasteboard];
-    NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
-    [self addFiles:draggedFiles];
-    return YES;
-}
-
 - (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
     NSMutableArray *filenames = [NSMutableArray arrayWithCapacity:[rowIndexes count]];
     NSInteger index = [rowIndexes firstIndex];
@@ -390,6 +383,13 @@
     [pboard declareTypes:@[NSFilenamesPboardType] owner:nil];
     [pboard setPropertyList:filenames forType:NSFilenamesPboardType];
     
+    return YES;
+}
+
+- (BOOL)tableView:(NSTableView *)tv acceptDrop:(id <NSDraggingInfo> )info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
+    NSPasteboard *pboard = [info draggingPasteboard];
+    NSArray *draggedFiles = [pboard propertyListForType:NSFilenamesPboardType];
+    [self addFiles:draggedFiles];
     return YES;
 }
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -840,12 +840,15 @@ DQ
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Create App" toolTip="Create application" id="412">
+                                <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="createButtonPressed:" target="335" id="11112"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Clear All Fields" toolTip="Reset all fields to default values" id="773">
+                            <menuItem title="Clear" toolTip="Reset all fields to default values" id="773">
                                 <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>
@@ -1513,7 +1516,7 @@ DQ
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="zU0-Dr-gG8">
                                                     <rect key="frame" x="1" y="1" width="162" height="96"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="708" customClass="NSResponderNotifyingTableView">
                                                             <rect key="frame" x="0.0" y="0.0" width="162" height="96"/>
@@ -1614,7 +1617,7 @@ DQ
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="xVE-Bl-gWX">
                                                     <rect key="frame" x="1" y="1" width="162" height="96"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk" customClass="NSResponderNotifyingTableView">
                                                             <rect key="frame" x="0.0" y="0.0" width="162" height="96"/>
@@ -1735,7 +1738,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                     <clipView key="contentView" id="gjs-Rw-OFH">
                                         <rect key="frame" x="1" y="1" width="162" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="Qc1-zf-c1B" customClass="NSResponderNotifyingTableView">
                                                 <rect key="frame" x="0.0" y="0.0" width="162" height="72"/>
@@ -2736,7 +2739,7 @@ DQ
                                                 <menuItem title="SubEthaEdit" id="11423"/>
                                                 <menuItem title="Xcode" id="11416"/>
                                                 <menuItem title="BBEdit" id="11425"/>
-                                                <menuItem title="Sublime Text 2" id="11421"/>
+                                                <menuItem title="Sublime Text" id="11421"/>
                                                 <menuItem title="TextWrangler" id="11428"/>
                                                 <menuItem title="Smultron" id="11415"/>
                                                 <menuItem title="Coda 2" id="xQ9-x3-W8a"/>
@@ -2744,6 +2747,7 @@ DQ
                                                 <menuItem title="TextForge" id="11429"/>
                                                 <menuItem title="UltraEdit" id="yhX-q4-fXn"/>
                                                 <menuItem title="CodeRunner 2" id="GpM-GS-tk4"/>
+                                                <menuItem title="CotEditor" id="odr-CN-MRF"/>
                                                 <menuItem title="Atom" id="pW6-0a-QiL"/>
                                                 <menuItem title="Textastic" id="Tjx-4E-Kz0"/>
                                                 <menuItem title="MacVim" id="11420"/>
@@ -2751,6 +2755,7 @@ DQ
                                                 <menuItem title="Komodo Edit" id="11414"/>
                                                 <menuItem title="BlueFish" id="11418"/>
                                                 <menuItem title="Brackets" id="5DT-3a-Rc5"/>
+                                                <menuItem title="Visual Studio Code" id="Xcc-LV-k0h"/>
                                             </items>
                                             <connections>
                                                 <outlet property="delegate" destination="11195" id="xsX-In-c3s"/>

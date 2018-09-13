@@ -125,6 +125,12 @@
                 @"SyntaxCheck": @[@"-parse"],
                 @"SyntaxCheckBinary": @"/usr/bin/swiftc" },
              
+             @{ @"Name":        @"Awk",
+                @"Path":        @"/usr/bin/awk",
+                @"Hello":       @"print \"Hello, World\"",
+                @"Suffixes":    @[@".awk"],
+                @"Args":        @[@"-f"] },
+             
              @{ @"Name":        @"Other...",
                 @"Path":        @"",
                 @"Hello":       @"",
@@ -161,6 +167,16 @@
         }
     }
     return @"";
+}
+
++ (NSArray *)interpreterArgsForDisplayName:(NSString *)displayName {
+    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
+    for (NSDictionary *infoDict in interpreters) {
+        if ([infoDict[@"Name"] isEqualToString:displayName]) {
+            return infoDict[@"Args"];
+        }
+    }
+    return nil;
 }
 
 + (NSString *)displayNameForInterpreterPath:(NSString *)interpreterPath {

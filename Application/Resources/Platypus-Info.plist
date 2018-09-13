@@ -335,6 +335,28 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>awk</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>PlatypusScriptFile.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Awk Script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.awk-script</string>
+			</array>
+			<key>NSExportableTypes</key>
+			<array>
+				<string>com.apple.application</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>platypus</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>

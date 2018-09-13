@@ -16,7 +16,7 @@ launchers, automations and droplets using Platypus.
 
 * **⇩ [Download Platypus 5.2](http://sveinbjorn.org/files/software/platypus.zip)** (Intel 64-bit, 10.7 or later, ~3.5 MB)
 
-## Documentation & Links
+## Useful Links
 
 * [Platypus Documentation](Documentation/Documentation.md)
 * [Platypus Website](http://www.sveinbjorn.org/platypus)
@@ -54,8 +54,7 @@ Platypus lets you select one of several different user interfaces for your scrip
 Platypus is very old software, dating back to the early days of Mac OS X, circa 2003.  It was originally written in C using the
 Carbon APIs, but later transitioned to Cocoa during the time I was learning to use Objective-C and the Cocoa
 APIs. I made many beginner mistakes, some of which remain in the code.  This software has  since gone through about
-four dozen significant versions. It has been patched, bugfixed, streamlined to include new features and was
-recently transitioned over to modern Objective C. It's not how I would write it today.
+four dozen significant versions. It has been patched, bugfixed, streamlined to include new features and was transitioned over to modern Objective C a few years ago. It's not how I would write it today.
 
 With these caveats in mind, here is the BSD-licensed source code to Platypus.
 
