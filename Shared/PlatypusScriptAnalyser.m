@@ -109,7 +109,7 @@
              
              @{ @"Name":        @"Expect",
                 @"Path":        @"/usr/bin/expect",
-                @"Hello":       @"send \"Hello, world\\n\"",
+                @"Hello":       @"send \"Hello, World\\n\"",
                 @"Suffixes":    @[@".exp", @".expect"] },
              
              @{ @"Name":        @"PHP",
@@ -127,7 +127,7 @@
              
              @{ @"Name":        @"Awk",
                 @"Path":        @"/usr/bin/awk",
-                @"Hello":       @"print \"Hello, World\"",
+                @"Hello":       @"BEGIN { print \"Hello, World\" }",
                 @"Suffixes":    @[@".awk"],
                 @"Args":        @[@"-f"] },
              
@@ -169,10 +169,10 @@
     return @"";
 }
 
-+ (NSArray *)interpreterArgsForDisplayName:(NSString *)displayName {
++ (NSArray *)interpreterArgsForInterpreterPath:(NSString *)path {
     NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
-        if ([infoDict[@"Name"] isEqualToString:displayName]) {
+        if ([infoDict[@"Path"] isEqualToString:path]) {
             return infoDict[@"Args"];
         }
     }

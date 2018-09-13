@@ -276,6 +276,7 @@
         self[AppSpecKey_InterpreterArgs] = shebangCmdComponents;
     }
     self[AppSpecKey_InterpreterPath] = interpreterPath;
+    self[AppSpecKey_InterpreterArgs] = [PlatypusScriptAnalyser interpreterArgsForInterpreterPath:interpreterPath];
     
     // find parent folder wherefrom we create destination path of app bundle
     NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];

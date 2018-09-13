@@ -39,7 +39,7 @@
 + (NSString *)helloWorldProgramForDisplayName:(NSString *)displayName;
 + (NSString *)displayNameForInterpreterPath:(NSString *)interpreterPath;
 + (NSString *)interpreterPathForDisplayName:(NSString *)displayName;
-+ (NSArray *)interpreterArgsForDisplayName:(NSString *)displayName;
++ (NSArray *)interpreterArgsForInterpreterPath:(NSString *)path;
 + (NSString *)interpreterPathForFilenameSuffix:(NSString *)fileName;
 + (NSString *)standardFilenameSuffixForInterpreterPath:(NSString *)interpreter;
 + (BOOL)isPotentiallyScriptAtPath:(NSString *)path;
