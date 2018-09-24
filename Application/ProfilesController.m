@@ -112,8 +112,8 @@
         spec[AppSpecKey_ScriptPath] = scriptPath;
     }
     
-    // let's keep this around if we ever want to use it
-    // warn if created with a different version of Platypus
+    // Let's keep this code around if we ever want to use it:
+    // Warn if created with a different version of Platypus
 //    	if ([spec[AppSpecKey_Creator] isEqualToString:PROGRAM_CREATOR_STAMP] == NO) {
 //    		[Alerts alert:@"Version clash"
 //                  subText: @"Profile was created with a different version of Platypus and may not load correctly."];
@@ -128,7 +128,7 @@
         return;
     }
     
-    // get spec from platypus controls
+    // Get spec from platypus controls
     PlatypusAppSpec *spec = [platypusController appSpecFromControls];
     NSString *defaultName = [NSString stringWithFormat:@"%@.%@", spec[AppSpecKey_Name], PROGRAM_PROFILE_SUFFIX];
     
@@ -200,7 +200,7 @@
     
     [examplesMenuItem setSubmenu:examplesMenu];
     
-    //clear out all menu items
+    // Clear out all menu items
     while ([profilesMenu numberOfItems] > numNonDynamicMenuitems) {
         [profilesMenu removeItemAtIndex:numNonDynamicMenuitems];
     }
@@ -235,7 +235,7 @@
     NSString *folder = isExample ? PROGRAM_EXAMPLES_PATH : PROGRAM_PROFILES_PATH;
     NSString *profilePath = [NSString stringWithFormat:@"%@/%@.%@", folder, [sender title], PROGRAM_PROFILE_SUFFIX];
     
-    // if command key is down, we reveal in finder
+    // If command key is down, we reveal in finder
     BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
     if (commandKeyDown) {
         [WORKSPACE selectFile:profilePath inFileViewerRootedAtPath:profilePath];
@@ -251,7 +251,7 @@
         return;
     }
     
-    //delete all .platypus files in PROFILES_FOLDER
+    // Delete all .platypus files in Profiles folder
     NSDirectoryEnumerator *dirEnumerator = [FILEMGR enumeratorAtPath:PROGRAM_PROFILES_PATH];
     NSString *filename;
     while ((filename = [dirEnumerator nextObject]) != nil) {
