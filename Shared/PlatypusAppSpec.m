@@ -216,7 +216,10 @@
     self[AppSpecKey_Identifier] = [PlatypusAppSpec bundleIdentifierForAppName:nil
                                                                    authorName:nil
                                                                 usingDefaults:YES];
-    self[AppSpecKey_Author] = NSFullUserName();
+    
+    NSString *defaultsAuthor = [DEFAULTS stringForKey:DefaultsKey_DefaultAuthor];
+    NSString *author = defaultsAuthor ? defaultsAuthor : NSFullUserName();
+    self[AppSpecKey_Author] = author;
     
     self[AppSpecKey_Droppable] = @NO;
     self[AppSpecKey_Authenticate] = @NO;
