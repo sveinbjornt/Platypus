@@ -129,7 +129,7 @@
                     break;
 
                 case TypeListItemStringValid:
-                    stringColor = [NSColor blackColor];
+                    stringColor = [NSColor controlTextColor];
                     break;
             }
         }

@@ -140,9 +140,9 @@
 - (void)constructCommandString {
     
     // interpreter
-    NSMutableAttributedString *cmdString = [[NSMutableAttributedString alloc] initWithString:[interpreterTextField stringValue]];
-    NSMutableDictionary *defaultAttrs = [NSMutableDictionary dictionaryWithObject:[NSColor textColor]
-                                                                           forKey:NSForegroundColorAttributeName];
+    NSDictionary *defaultAttrs = @{ NSForegroundColorAttributeName: [NSColor blackColor],
+                                    NSBackgroundColorAttributeName: [NSColor whiteColor] };
+    NSMutableAttributedString *cmdString = [[NSMutableAttributedString alloc] initWithString:[interpreterTextField stringValue] attributes:defaultAttrs];
     
     // interpreter args
     for (int i = 0; i < [interpreterArgs count]; i++)
@@ -151,7 +151,7 @@
         NSMutableDictionary *attrs = [defaultAttrs mutableCopy];
         
         if ([interpreterArgsTableView selectedRow] == i && interpreterArgsTableView == [[self window] firstResponder]) {
-            attrs[NSBackgroundColorAttributeName] = [NSColor selectedControlColor];
+            attrs[NSBackgroundColorAttributeName] = [NSColor lightGrayColor];
         }
         
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:a attributes:attrs];
@@ -166,7 +166,7 @@
     }
     
     // yourScript
-    NSAttributedString *scriptString = [[NSAttributedString alloc] initWithString:@" yourScript " attributes:nil];
+    NSAttributedString *scriptString = [[NSAttributedString alloc] initWithString:@" yourScript " attributes:defaultAttrs];
     [cmdString appendAttributedString:scriptString];
     
     // script args
@@ -176,7 +176,7 @@
         NSMutableDictionary *attrs = [defaultAttrs mutableCopy];
         
         if ([scriptArgsTableView selectedRow] == i && scriptArgsTableView == [[self window] firstResponder]) {
-            attrs[NSBackgroundColorAttributeName] = [NSColor selectedControlColor];
+            attrs[NSBackgroundColorAttributeName] = [NSColor lightGrayColor];
         }
         
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:a attributes:attrs];

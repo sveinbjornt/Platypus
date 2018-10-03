@@ -198,7 +198,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
             img = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
         }
         [iconImageView setImage:img];
-        [iconNameTextField setTextColor:[NSColor blackColor]];
+        [iconNameTextField setTextColor:[NSColor controlTextColor]];
     }
 }
 

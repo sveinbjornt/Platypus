@@ -722,7 +722,7 @@
     //interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
     if (aNotification == nil || [aNotification object] == interpreterPathTextField) {
         [self selectScriptTypeBasedOnInterpreter];
-        NSColor *textColor = ([FILEMGR fileExistsAtPath:[interpreterPathTextField stringValue] isDirectory:&isDir] && !isDir) ? [NSColor blackColor] : [NSColor redColor];
+        NSColor *textColor = ([FILEMGR fileExistsAtPath:[interpreterPathTextField stringValue] isDirectory:&isDir] && !isDir) ? [NSColor controlTextColor] : [NSColor redColor];
         [interpreterPathTextField setTextColor:textColor];
     }
 }

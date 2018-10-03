@@ -362,7 +362,7 @@
 - (NSView *)tableView:(NSTableView *)tv viewForTableColumn:(NSTableColumn *)tc row:(NSInteger)row {
     NSTableCellView *cellView = [tv makeViewWithIdentifier:@"MainCell" owner:self];
     cellView.textField.stringValue = [files[row][@"Path"] lastPathComponent];
-    cellView.textField.textColor = [FILEMGR fileExistsAtPath:files[row][@"Path"]] ? [NSColor blackColor] : [NSColor redColor];
+    cellView.textField.textColor = [FILEMGR fileExistsAtPath:files[row][@"Path"]] ? [NSColor controlTextColor] : [NSColor redColor];
     cellView.imageView.objectValue = files[row][@"Icon"];
     return cellView;
 }

@@ -14,6 +14,7 @@
 				F4DC737D21644E0400D79823 /* ShellScript */,
 			);
 			dependencies = (
+				F4DC73852164EF7900D79823 /* PBXTargetDependency */,
 			);
 			name = "CLT Tests";
 			productName = Examples;
@@ -154,6 +155,13 @@
 			remoteInfo = ScriptExec;
 		};
 		F40B22781B28D763003C05ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4E1F6FB11F758FB007EE2E3;
+			remoteInfo = platypus;
+		};
+		F4DC73842164EF7900D79823 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
@@ -1206,6 +1214,11 @@
 			isa = PBXTargetDependency;
 			target = F4E1F6FB11F758FB007EE2E3 /* platypus */;
 			targetProxy = F40B22781B28D763003C05ED /* PBXContainerItemProxy */;
+		};
+		F4DC73852164EF7900D79823 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4E1F6FB11F758FB007EE2E3 /* platypus */;
+			targetProxy = F4DC73842164EF7900D79823 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

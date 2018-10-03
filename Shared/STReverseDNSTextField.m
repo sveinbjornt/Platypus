@@ -39,7 +39,7 @@
 }
 
 - (void)textDidChange:(NSNotification *)aNotification {
-    NSColor *color = [self isValid] ? [NSColor blackColor] : [NSColor redColor];
+    NSColor *color = [self isValid] ? [NSColor controlTextColor] : [NSColor redColor];
     [self setTextColor:color];
 }
 

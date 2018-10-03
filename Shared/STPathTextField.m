@@ -141,7 +141,7 @@
     if (!self.colorInvalidPath) {
         return;
     }
-    NSColor *textColor = [self hasValidPath] ? [NSColor blackColor] : [NSColor redColor];
+    NSColor *textColor = [self hasValidPath] ? [NSColor controlTextColor] : [NSColor redColor];
     [self setTextColor:textColor];
 }
 
