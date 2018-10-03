@@ -7,11 +7,8 @@ For future versions...
 
     TODO Code signing for Platypus.app and 'platypus' command line tool
     TODO: Ability to sign ScriptExec binary with own custom signature
-    TODO: AuthorizationExecuteWithPrivileges() used by admin privileged exec, is deprecated in 10.8 Mountain Lion. New method involves using a helper tool. Take a look at Apple's horrible security API
     TODO: Use pseudo-ttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
-    TODO: Implement automated testing
-    TODO: Get STDERR output and pid for STPrivilegedTask
-    TODO: Refactor ScriptExec for clean view controller/task controller decoupling
+    TODO: Refactor ScriptExec for clean view controller/task controller decoupling. It's currently a mess.
 
 For 5.3
     TODO: Don't save Status Menu image as base64 in every Profile
@@ -29,8 +26,10 @@ For 5.3
     TODO: Fix bug where custom icns file for icon doesn't work
     TODO: Async Status Menu script execution to prevent interface locking on main thread
     TODO: Warn if using /bin/bash and "Run with root privileges"
+    TODO: Fix for Mojave Dark Mode (incl. identifier and script path fields, which have hardcoded colors)
+    TODO: Before launching task, check if script is executable and make it so if not
+    TODO: Implement automated testing (!), esp. for command line tool
 
-    * Fix for Mojave Dark Mode (incl. identifier and script path fields, which have hardcoded colors)
     * Added Awk as an interpreter option
     * Fixed exception when double-clicking bundled files header
     * Fixed bug where pressing "Clear" could cause program to crash

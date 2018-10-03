@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
+		F4DC737C21644E0400D79823 /* CLT Tests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F4DC737E21644E0400D79823 /* Build configuration list for PBXAggregateTarget "CLT Tests" */;
+			buildPhases = (
+				F4DC737D21644E0400D79823 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "CLT Tests";
+			productName = Examples;
+		};
 		F4F14CB51C640B1E002A2402 /* Examples */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = F4F14CB61C640B1E002A2402 /* Build configuration list for PBXAggregateTarget "Examples" */;
@@ -324,6 +335,7 @@
 		F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSResponderNotifyingTableView.m; path = Shared/NSResponderNotifyingTableView.m; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
+		F4DC738321644F4700D79823 /* clt_tests.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = clt_tests.py; sourceTree = "<group>"; };
 		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		F4E1F6FC11F758FB007EE2E3 /* platypus_clt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E5E4011EE2F22E0072EACE /* Documentation.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Documentation.md; sourceTree = "<group>"; };
@@ -421,6 +433,7 @@
 				F48B7B8811F766CA00351575 /* ScriptExec */,
 				F4E1F70711F75A40007EE2E3 /* Command Line Tool */,
 				080E96DDFE201D6D7F000001 /* Shared */,
+				F4DC738221644F4700D79823 /* Tests */,
 				F445EA7C14FABE6500DCCDB3 /* Sparkle */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -827,6 +840,14 @@
 			path = Documentation;
 			sourceTree = "<group>";
 		};
+		F4DC738221644F4700D79823 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F4DC738321644F4700D79823 /* clt_tests.py */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		F4E1F70711F75A40007EE2E3 /* Command Line Tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -957,6 +978,7 @@
 				F48B774011F7661C00351575 /* ScriptExec */,
 				F4E1F6FB11F758FB007EE2E3 /* platypus */,
 				F4F14CB51C640B1E002A2402 /* Examples */,
+				F4DC737C21644E0400D79823 /* CLT Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -1054,6 +1076,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\nBUILD_NUMBER=`git rev-list HEAD | wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ \"$?\" -ne 0 ] ; then\necho \"warning:Error incrementing CFBundleVersion\"\nfi";
+		};
+		F4DC737D21644E0400D79823 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#/bin/sh\n\n/usr/bin/python Tests/clt_tests.py\n";
 		};
 		F4F14CBA1C640B29002A2402 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1636,6 +1671,30 @@
 			};
 			name = Default;
 		};
+		F4DC737F21644E0400D79823 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Development;
+		};
+		F4DC738021644E0400D79823 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Deployment;
+		};
+		F4DC738121644E0400D79823 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Default;
+		};
 		F4E1F6FE11F758FC007EE2E3 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1767,6 +1826,16 @@
 				F48B774411F7661D00351575 /* Development */,
 				F48B774511F7661D00351575 /* Deployment */,
 				F48B774611F7661D00351575 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Deployment;
+		};
+		F4DC737E21644E0400D79823 /* Build configuration list for PBXAggregateTarget "CLT Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4DC737F21644E0400D79823 /* Development */,
+				F4DC738021644E0400D79823 /* Deployment */,
+				F4DC738121644E0400D79823 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
