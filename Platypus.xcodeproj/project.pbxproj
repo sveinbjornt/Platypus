@@ -33,7 +33,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F4051D9F1C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
 		F4051DA01C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
 		F4051DA11C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
@@ -43,6 +42,16 @@
 		F41305111E521CBC00842EF2 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41305101E521CBC00842EF2 /* Sparkle.framework */; };
 		F41305121E521D0800842EF2 /* Sparkle.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = F41305101E521CBC00842EF2 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4146CCF2149E76000BB36AD /* Interpreter_AWK.png in Resources */ = {isa = PBXBuildFile; fileRef = F4146CCE2149E76000BB36AD /* Interpreter_AWK.png */; };
+		F42A93DA2178392800C40D46 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D82178365C00C40D46 /* Cocoa.framework */; };
+		F42A93DB2178392D00C40D46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D52178365C00C40D46 /* Foundation.framework */; };
+		F42A93DC21783EB900C40D46 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D92178365C00C40D46 /* Accelerate.framework */; };
+		F42A93DD21783EB900C40D46 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D62178365C00C40D46 /* AppKit.framework */; };
+		F42A93DE21783EB900C40D46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D52178365C00C40D46 /* Foundation.framework */; };
+		F42A93E021783EB900C40D46 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D32178365C00C40D46 /* Security.framework */; };
+		F42A93E121783EB900C40D46 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D82178365C00C40D46 /* Cocoa.framework */; };
+		F42A93E221783ECA00C40D46 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D82178365C00C40D46 /* Cocoa.framework */; };
+		F42A93E321783ECC00C40D46 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D32178365C00C40D46 /* Security.framework */; };
+		F42A93E421783ECE00C40D46 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D42178365C00C40D46 /* WebKit.framework */; };
 		F42E2EAB20A9E001003D2E89 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F42E2EAA20A9E001003D2E89 /* Credits.rtf */; };
 		F43142B01C03C742004EEF8C /* PlatypusScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptAnalyser.m */; };
 		F43142B11C03C749004EEF8C /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
@@ -86,17 +95,13 @@
 		F45B1F301FF5618000A935D7 /* InterfaceType_None.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F2A1FF5618000A935D7 /* InterfaceType_None.png */; };
 		F45B1F331FF561E700A935D7 /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1F321FF561E700A935D7 /* NSTask+Description.m */; };
 		F45B1F341FF56AE500A935D7 /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1F321FF561E700A935D7 /* NSTask+Description.m */; };
-		F46A3C701E65E5A6007BA557 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46A3C6F1E65E5A6007BA557 /* Accelerate.framework */; };
 		F46EF85113C3F36900E4C0E4 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = F46EF84E13C3F36900E4C0E4 /* Examples */; };
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
 		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; };
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
 		F48B1EE017935BBC007DA173 /* PlatypusScriptAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptAnalyser.m */; };
-		F48B7B8111F7666600351575 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
-		F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
 		F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* ScriptExecController.m */; };
-		F48B7BAB11F7675900351575 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48B7BAA11F7675900351575 /* WebKit.framework */; };
 		F4975D701B2E09280099D16E /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F4975D711B2E09280099D16E /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F4975D741B2E09310099D16E /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D731B2E09310099D16E /* STPrivilegedTask.m */; };
@@ -123,8 +128,6 @@
 		F4AB186B1BE182FA00B83A95 /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186A1BE182FA00B83A95 /* Alerts.m */; };
 		F4AB186C1BE182FA00B83A95 /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186A1BE182FA00B83A95 /* Alerts.m */; };
 		F4AB186F1BE1908100B83A95 /* NSBundle+Templates.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186E1BE1908100B83A95 /* NSBundle+Templates.m */; };
-		F4AB18721BE19CAC00B83A95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AB18711BE19CAC00B83A95 /* Foundation.framework */; };
-		F4AB18741BE19CD100B83A95 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AB18731BE19CD100B83A95 /* AppKit.framework */; };
 		F4AB189A1BED3A0B00B83A95 /* ScriptExecJob.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */; };
 		F4AB189D1BEFAF1900B83A95 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
@@ -136,7 +139,6 @@
 		F4D581B81C449568005FA6AC /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F4B155F61C1EF77D00E6E941 /* platypus.1 */; };
 		F4DC075211F629A40043764E /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074F11F629A40043764E /* Documentation.html */; };
 		F4DC075311F629A40043764E /* Readme.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC075011F629A40043764E /* Readme.html */; };
-		F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1F47C11F756D9007EE2E3 /* Security.framework */; };
 		F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */; };
 		F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */ = {isa = PBXBuildFile; fileRef = F4F14CAF1C640857002A2402 /* make_examples.pl */; };
 		F4F2F3BA1BF96C5C00FE463C /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B91BF96C5C00FE463C /* VDKQueue.m */; };
@@ -197,13 +199,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Platypus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platypus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4051D9E1C1B5AF900587F1F /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		F4051DA71C1C812600587F1F /* STReverseDNSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STReverseDNSTextField.h; path = Shared/STReverseDNSTextField.h; sourceTree = "<group>"; };
 		F4051DA81C1C812600587F1F /* STReverseDNSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STReverseDNSTextField.m; path = Shared/STReverseDNSTextField.m; sourceTree = "<group>"; };
 		F41305101E521CBC00842EF2 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		F4146CCE2149E76000BB36AD /* Interpreter_AWK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_AWK.png; sourceTree = "<group>"; };
+		F42A93D32178365C00C40D46 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = ../../System/Library/Frameworks/Security.framework; sourceTree = "<group>"; };
+		F42A93D42178365C00C40D46 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = ../../System/Library/Frameworks/WebKit.framework; sourceTree = "<group>"; };
+		F42A93D52178365C00C40D46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F42A93D62178365C00C40D46 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F42A93D82178365C00C40D46 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = ../../System/Library/Frameworks/Cocoa.framework; sourceTree = "<group>"; };
+		F42A93D92178365C00C40D46 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
 		F42E2EAA20A9E001003D2E89 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		F442E00B1EA38C7100BAD80C /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Sparkle/dsa_pub.pem; sourceTree = "<group>"; };
@@ -256,7 +263,6 @@
 		F45B1F2A1FF5618000A935D7 /* InterfaceType_None.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InterfaceType_None.png; sourceTree = "<group>"; };
 		F45B1F311FF561E700A935D7 /* NSTask+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTask+Description.h"; path = "Shared/NSTask+Description.h"; sourceTree = "<group>"; };
 		F45B1F321FF561E700A935D7 /* NSTask+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTask+Description.m"; path = "Shared/NSTask+Description.m"; sourceTree = "<group>"; };
-		F46A3C6F1E65E5A6007BA557 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		F46EF84E13C3F36900E4C0E4 /* Examples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Examples; sourceTree = "<group>"; };
 		F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusAppIcon.icns; sourceTree = "<group>"; };
 		F48002BA121AF042003FB5B3 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
@@ -271,7 +277,6 @@
 		F48B7B9011F766E600351575 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = ScriptExec/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F48B7B9111F766E600351575 /* ScriptExecController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecController.h; path = ScriptExec/ScriptExecController.h; sourceTree = "<group>"; };
 		F48B7B9211F766E600351575 /* ScriptExecController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptExecController.m; path = ScriptExec/ScriptExecController.m; sourceTree = "<group>"; };
-		F48B7BAA11F7675900351575 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		F4975D6E1B2E09280099D16E /* NSWorkspace+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWorkspace+Additions.h"; path = "Shared/NSWorkspace+Additions.h"; sourceTree = "<group>"; };
 		F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWorkspace+Additions.m"; path = "Shared/NSWorkspace+Additions.m"; sourceTree = "<group>"; };
 		F4975D721B2E09310099D16E /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Shared/STPrivilegedTask.h; sourceTree = "<group>"; };
@@ -316,8 +321,6 @@
 		F4AB186A1BE182FA00B83A95 /* Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Alerts.m; path = Shared/Alerts.m; sourceTree = "<group>"; };
 		F4AB186D1BE1908100B83A95 /* NSBundle+Templates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+Templates.h"; path = "Shared/NSBundle+Templates.h"; sourceTree = "<group>"; };
 		F4AB186E1BE1908100B83A95 /* NSBundle+Templates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Templates.m"; path = "Shared/NSBundle+Templates.m"; sourceTree = "<group>"; };
-		F4AB18711BE19CAC00B83A95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F4AB18731BE19CD100B83A95 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F4AB18981BED3A0B00B83A95 /* ScriptExecJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecJob.h; path = ScriptExec/ScriptExecJob.h; sourceTree = "<group>"; };
 		F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptExecJob.m; path = ScriptExec/ScriptExecJob.m; sourceTree = "<group>"; };
 		F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PlatypusDefault.icns; path = Icons/PlatypusDefault.icns; sourceTree = SOURCE_ROOT; };
@@ -330,7 +333,6 @@
 		F4B155F51C1EF77D00E6E941 /* make_man_pdf.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = make_man_pdf.sh; sourceTree = "<group>"; };
 		F4B155F61C1EF77D00E6E941 /* platypus.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = platypus.1; sourceTree = "<group>"; };
 		F4B155F71C1EF77D00E6E941 /* platypus.man.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = platypus.man.html; sourceTree = "<group>"; };
-		F4B87C191B3C997300F4B8BE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
 		F4B87C581B403A6E00F4B8BE /* build_release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_release.sh; sourceTree = "<group>"; };
 		F4B87C591B403A6E00F4B8BE /* src_loc_stats.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = src_loc_stats.sh; sourceTree = "<group>"; };
 		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
@@ -344,7 +346,6 @@
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
 		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4DC738321644F4700D79823 /* clt_tests.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = clt_tests.py; sourceTree = "<group>"; };
-		F4E1F47C11F756D9007EE2E3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		F4E1F6FC11F758FB007EE2E3 /* platypus_clt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E5E4011EE2F22E0072EACE /* Documentation.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Documentation.md; sourceTree = "<group>"; };
 		F4ECE1A011F7746A000DB012 /* CHANGES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES.txt; sourceTree = SOURCE_ROOT; };
@@ -364,10 +365,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F46A3C701E65E5A6007BA557 /* Accelerate.framework in Frameworks */,
-				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				F4E1F47D11F756D9007EE2E3 /* Security.framework in Frameworks */,
 				F41305111E521CBC00842EF2 /* Sparkle.framework in Frameworks */,
+				F42A93DC21783EB900C40D46 /* Accelerate.framework in Frameworks */,
+				F42A93DD21783EB900C40D46 /* AppKit.framework in Frameworks */,
+				F42A93DE21783EB900C40D46 /* Foundation.framework in Frameworks */,
+				F42A93E021783EB900C40D46 /* Security.framework in Frameworks */,
+				F42A93E121783EB900C40D46 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,9 +378,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F48B7B8111F7666600351575 /* Security.framework in Frameworks */,
-				F48B7B8511F7667B00351575 /* Cocoa.framework in Frameworks */,
-				F48B7BAB11F7675900351575 /* WebKit.framework in Frameworks */,
+				F42A93E221783ECA00C40D46 /* Cocoa.framework in Frameworks */,
+				F42A93E321783ECC00C40D46 /* Security.framework in Frameworks */,
+				F42A93E421783ECE00C40D46 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,8 +388,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4AB18741BE19CD100B83A95 /* AppKit.framework in Frameworks */,
-				F4AB18721BE19CAC00B83A95 /* Foundation.framework in Frameworks */,
+				F42A93DA2178392800C40D46 /* Cocoa.framework in Frameworks */,
+				F42A93DB2178392D00C40D46 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,8 +471,13 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F4AB18751BE19DB900B83A95 /* System */,
-				F4AB18761BE19DBF00B83A95 /* Others */,
+				F41305101E521CBC00842EF2 /* Sparkle.framework */,
+				F42A93D92178365C00C40D46 /* Accelerate.framework */,
+				F42A93D62178365C00C40D46 /* AppKit.framework */,
+				F42A93D52178365C00C40D46 /* Foundation.framework */,
+				F42A93D42178365C00C40D46 /* WebKit.framework */,
+				F42A93D32178365C00C40D46 /* Security.framework */,
+				F42A93D82178365C00C40D46 /* Cocoa.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -752,28 +760,6 @@
 			name = "NSBundle+Templates";
 			sourceTree = "<group>";
 		};
-		F4AB18751BE19DB900B83A95 /* System */ = {
-			isa = PBXGroup;
-			children = (
-				F46A3C6F1E65E5A6007BA557 /* Accelerate.framework */,
-				F4AB18731BE19CD100B83A95 /* AppKit.framework */,
-				F4AB18711BE19CAC00B83A95 /* Foundation.framework */,
-				F4B87C191B3C997300F4B8BE /* Accelerate.framework */,
-				F48B7BAA11F7675900351575 /* WebKit.framework */,
-				F4E1F47C11F756D9007EE2E3 /* Security.framework */,
-				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-			);
-			name = System;
-			sourceTree = "<group>";
-		};
-		F4AB18761BE19DBF00B83A95 /* Others */ = {
-			isa = PBXGroup;
-			children = (
-				F41305101E521CBC00842EF2 /* Sparkle.framework */,
-			);
-			name = Others;
-			sourceTree = "<group>";
-		};
 		F4AF785E14D1E5F600544C1B /* STDragWebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -935,6 +921,7 @@
 				F4E1F6F911F758FB007EE2E3 /* Sources */,
 				F4E1F6FA11F758FB007EE2E3 /* Frameworks */,
 				F4FB337514FBDAD500BAECEB /* Run Script to Create Man Page HTML document */,
+				F42A93D221781BCB00C40D46 /* Create symlink in Tests folder */,
 			);
 			buildRules = (
 			);
@@ -1084,6 +1071,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\nBUILD_NUMBER=`git rev-list HEAD | wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ \"$?\" -ne 0 ] ; then\necho \"warning:Error incrementing CFBundleVersion\"\nfi";
+		};
+		F42A93D221781BCB00C40D46 /* Create symlink in Tests folder */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Create symlink in Tests folder";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm \"${PROJECT_DIR}/Tests/platypus\"\nln -s \"${TARGET_BUILD_DIR}/platypus_clt\" \"${PROJECT_DIR}/Tests/platypus\"\n";
 		};
 		F4DC737D21644E0400D79823 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

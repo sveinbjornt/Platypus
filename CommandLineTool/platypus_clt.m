@@ -274,7 +274,7 @@ int main(int argc, const char *argv[]) {
                 
                 // empty icon path means just default app icon, otherwise a path to an icns file
                 if ([iconPath isEqualTo:@""] == NO) {
-                    iconPath = MakeAbsolutePath(iconPath);
+                    iconPath = [MakeAbsolutePath(iconPath) stringByResolvingSymlinksInPath];
                     // if we have proper arg, make sure file exists
                     if ([fm fileExistsAtPath:iconPath] == NO) {
                         NSPrintErr(@"Error: No icon file exists at path '%@'", iconPath);
@@ -298,7 +298,7 @@ int main(int argc, const char *argv[]) {
                 
                 // empty icon path means just default app icon, otherwise a path to an icns file
                 if (![iconPath isEqualTo:@""]) {
-                    iconPath = MakeAbsolutePath(iconPath);
+                    iconPath = [MakeAbsolutePath(iconPath) stringByResolvingSymlinksInPath];
                     // if we have proper arg, make sure file exists
                     if (![fm fileExistsAtPath:iconPath]) {
                         NSPrintErr(@"Error: No icon file exists at path '%@'", iconPath);

@@ -19,7 +19,6 @@ For 5.3
     TODO: Document the Services feature and provide instructions on how to enable in macOS Services preferences.
     TODO: Create Platypus tutorial videos, make them available online
     TODO: Find a way to fix broken file watching of script path eftir pressing "New"
-    TODO: Create automated tests for command line tool using PlistBuddy etc.
     TODO: Implement new Table View interface (CSV output?)
     TODO: Make Droplet window & others larger
     TODO: Rewrite documentation for clarity
@@ -28,6 +27,7 @@ For 5.3
     TODO: Warn if using /bin/bash and "Run with root privileges"
     TODO: Before launching task, check if script is executable and make it so if not
     TODO: Implement automated testing (!), esp. for command line tool
+    TODO: Create more automated tests for command line tool
 
     * Removed incorrect UTI validation
     * Updated to support Mojave Dark Mode

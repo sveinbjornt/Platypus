@@ -24,3 +24,6 @@ dsa_priv.pem
 compile_commands.json
 OCLint/oclint
 OCLint/xctool
+Tests/platypus
+Tests/dummy*
+Tests/*.app
