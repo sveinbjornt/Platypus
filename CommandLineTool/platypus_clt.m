@@ -387,11 +387,6 @@ int main(int argc, const char *argv[]) {
             {
                 NSString *utisStr = @(optarg);
                 NSArray *utis = [utisStr componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
-                for (NSString *u in utis) {
-                    if (BundleIdentifierIsValid(u) == NO) {
-                        NSPrintErr(@"Warning: '%@' is not a valid bundle identifier", u);
-                    }
-                }
                 properties[AppSpecKey_Utis] = utis;
             }
                 break;

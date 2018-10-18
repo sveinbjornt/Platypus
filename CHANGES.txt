@@ -29,7 +29,8 @@ For 5.3
     TODO: Before launching task, check if script is executable and make it so if not
     TODO: Implement automated testing (!), esp. for command line tool
 
-    * Various fixes for Mojave Dark Mode
+    * Removed incorrect UTI validation
+    * Updated to support Mojave Dark Mode
     * Fixed issue with 16x16 document icons on non-retina displays
     * Added Awk as an interpreter option
     * Fixed exception when double-clicking bundled files header
