@@ -10,28 +10,43 @@ import subprocess
 import plistlib
 import shutil
 
+CLT_BINARY = os.path.dirname(os.path.realpath(__file__)) + '/platypus'
+
 def profile_plist_for_args(args):
-    pnargs = ["./platypus"]
+    pnargs = [CLT_BINARY]
     pnargs.extend(args)
     pnargs.extend(['-O', '-'])
     out = subprocess.check_output(pnargs)
     return plistlib.readPlistFromString(out)
 
 def create_app_with_args(args, name='MyApp'):
-    open('dummy_script', 'w').close()
-    pnargs = ["./platypus"]
+    pnargs = [CLT_BINARY]
     pnargs.extend(args)
-    pnargs.extend(['--overwrite', '--name', name, 'dummy_script', name + '.app'])
+    pnargs.extend(['--overwrite', '--name', name, 'args.py', name + '.app'])
     with open(os.devnull, 'w') as devnull:
         out = subprocess.check_output(pnargs, stderr=devnull)
     return 'MyApp.app'
 
+def create_profile_with_args(args, name='dummy.profile'):
+    pass
+
+def run_app(name='MyApp', args=[]):
+    with open(os.devnull, 'w') as devnull:
+        cmd = ['./' + name + '.app/Contents/MacOS/' + name]
+        cmd.extend(args)
+        out = subprocess.check_output(cmd, stderr=devnull)
+    with open('args.txt', 'r') as f:
+        arglist = [l.rstrip('\n') for l in f.readlines()]
+
+    return arglist
+
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-# Dump default profile plist to stdout
-plist = profile_plist_for_args([])
 
 print("Checking basic sanity of default profile")
+
+plist = profile_plist_for_args([])
+
 assert(plist['Version'] == '1.0')
 assert(plist['InterpreterPath'] == '/bin/sh')
 assert(plist['InterfaceType'] == 'Text Window')
@@ -39,6 +54,7 @@ assert(len(plist['BundledFiles']) == 0)
 assert(plist['Authentication'] == False)
 assert(plist['Name'] != '')
 assert(re.match('\w+\.\w+\.\w+', plist['Identifier']))
+
 
 
 print("Profile generation: Testing boolean switches")
@@ -49,7 +65,6 @@ boolean_opts = {
     '-F': 'AcceptsText',
     '-N': 'DeclareService',
     '-B': 'RunInBackground',
-#-R, --quit-after-execution RemainRunning
     '-Z': 'PromptForFileOnLaunch',
     '-c': 'StatusItemUseSystemFont',
     '-x': 'UseXMLPlistFormat',
@@ -66,6 +81,13 @@ for k,v in boolean_opts.iteritems():
         l = [v]
     for m in l:
         assert(plist[m] == True)
+
+inv_boolean_opts = {
+    '-R': 'RemainRunning'
+}
+for k,v in inv_boolean_opts.iteritems():
+    plist = profile_plist_for_args([k])
+    assert(plist[v] == False)
 
 
 print("Profile generation: Testing strings")
@@ -90,7 +112,7 @@ for k,v in string_opts.iteritems():
 
 print("Profile generation: Testing data args")
 
-dummy_icon_path = 'dummy.icns'
+dummy_icon_path = os.path.abspath('dummy.icns')
 data_opts = {
     '-i': ['IconPath', dummy_icon_path],
     '-Q': ['DocIconPath', dummy_icon_path],
@@ -129,9 +151,9 @@ os.remove('dummy1')
 os.remove('dummy2')
 
 
-print("Verifying app directory structure")
+print("Verifying app directory structure and permissions")
 
-app_path = create_app_with_args([])
+app_path = create_app_with_args(['-R'])
 
 files = [
     app_path + '/',
@@ -153,12 +175,20 @@ assert(os.access(files[4], os.X_OK)) # app binary
 assert(os.access(files[9], os.X_OK)) # script
 
 
-
 # Verify keys in AppSettings.plist
 
 # Create new app from python, perl scripts, verify
 # that correct interpreter is automatically selected
 
 
+# Run app
+print("Verifying app argument handling")
+assert(run_app(args=['a', 'b', 'c']) == ['a', 'b', 'c'])
 
-shutil.rmtree('MyApp.app')
+
+
+# Create app with droppable settings, test opening file
+
+
+
+#shutil.rmtree('MyApp.app')
