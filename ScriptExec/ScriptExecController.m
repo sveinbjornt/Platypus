@@ -381,8 +381,12 @@ static const NSInteger detailsHeight = 224;
     if ([FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]] == NO) {
         [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
     }
-    scriptPath = [NSString stringWithString:path];
+    // make sure it's executable
+    NSNumber *permissions = [NSNumber numberWithUnsignedLong:493];
+    NSDictionary *attributes = @{ NSFilePosixPermissions: permissions};
+    [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:path error:nil];
 
+    scriptPath = [NSString stringWithString:path];
     
     // get interpreter
     NSString *scriptInterpreterPath = appSettingsDict[AppSpecKey_InterpreterPath];
@@ -820,7 +824,7 @@ static const NSInteger detailsHeight = 224;
 // construct arguments list etc. before actually running the script
 - (void)prepareForExecution {
     
-    //clear arguments list and reconstruct it
+    // clear arguments list and reconstruct it
     [arguments removeAllObjects];
     
     // first, add all specified arguments for interpreter
@@ -843,7 +847,7 @@ static const NSInteger detailsHeight = 224;
         commandLineArguments = nil;
     }
     
-    //finally, dequeue job and add arguments
+    // finally, dequeue job and add arguments
     if ([jobQueue count] > 0) {
         ScriptExecJob *job = jobQueue[0];
 
