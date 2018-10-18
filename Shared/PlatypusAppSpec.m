@@ -774,7 +774,12 @@
 }
 
 - (void)dump {
-    fprintf(stdout, "%s\n", [[self description] UTF8String]);
+    NSFileHandle *stdout = [NSFileHandle fileHandleWithStandardOutput];
+    NSData *data = [NSPropertyListSerialization dataWithPropertyList:properties
+                                                              format:NSPropertyListXMLFormat_v1_0
+                                                             options:0
+                                                               error:nil];
+    [stdout writeData:data];
 }
 
 #pragma mark - Command string generation
