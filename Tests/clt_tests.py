@@ -22,7 +22,8 @@ def create_app_with_args(args, name='MyApp'):
     pnargs = ["./platypus"]
     pnargs.extend(args)
     pnargs.extend(['--overwrite', '--name', name, 'dummy_script', name + '.app'])
-    out = subprocess.check_output(pnargs)
+    with open(os.devnull, 'w') as devnull:
+        out = subprocess.check_output(pnargs, stderr=devnull)
     return 'MyApp.app'
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -147,6 +148,10 @@ files = [
 
 for p in files:
     assert(os.path.exists(p))
+
+assert(os.access(files[4], os.X_OK)) # app binary
+assert(os.access(files[9], os.X_OK)) # script
+
 
 
 # Verify keys in AppSettings.plist
