@@ -1,18 +1,18 @@
 # Platypus
 
-<img align="right" src="Documentation/images/platypus.png" style="float: right; margin-left: 30px;">
+<img align="right" src="Documentation/images/platypus.png" style="float: right; margin-left: 30px;" width="94" height="127">
 
 **Platypus** is a developer tool that creates native Mac applications
-from interpreted scripts such as shell scripts or Perl and Python programs.
+from command line scripts such as shell scripts or Perl and Python programs.
 This is done by wrapping the script in an 
-[application bundle](https://en.wikipedia.org/wiki/Bundle_(OS_X)#OS_X_application_bundles)
-directory structure  along with an application binary that runs the script.
+[application bundle](https://en.wikipedia.org/wiki/Bundle_(OS_X))
+directory structure  along with an app binary that runs the script.
 
 Platypus makes it easy to share scripts and programs with those 
-unfamiliar with the command line interface. Native user-friendly
+unfamiliar with the command line interface. Native, user-friendly
 applications can be created with a few clicks. It is very easy to
-create installers, administrative applications, login items, status menu items, 
-launchers, automations and droplets using Platypus.
+create installers, droplets, administrative applications, login items, status menu items, 
+launchers and automations using Platypus.
 
 * **⇩ [Download Platypus 5.2](http://sveinbjorn.org/files/software/platypus.zip)** (Intel 64-bit, 10.7 or later, ~3.5 MB)
 
@@ -58,7 +58,7 @@ four dozen significant versions. It has been patched, bugfixed, streamlined to i
 
 With these caveats in mind, here is the BSD-licensed source code to Platypus.
 
-## License 
+## BSD License 
 
 Copyright (c) Sveinbjorn Thordarson &lt;<a href="mailto:">sveinbjorn@sveinbjorn.org</a>&gt;
 All rights reserved.

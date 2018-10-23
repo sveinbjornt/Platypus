@@ -420,7 +420,7 @@ If your script prints the string "QUITAPP\n" to STDOUT, the application will qui
 
 ### Clearing Output
 
-If your script prints the string "REFRESH\n" to STDOUT, the output text buffer will be cleared. This can for example be used to refresh a Web View for new HTML output.
+If your script prints the string "REFRESH\n" to STDOUT, the output text buffer will be cleared. This can for example be used to clear a Web View in preparation for new HTML output.
 
 ### Loading a Website into a Web View
 

@@ -11,7 +11,7 @@ For future versions...
     TODO: Refactor ScriptExec for clean view controller/task controller decoupling. It's currently a mess.
 
 For 5.3
-    TODO: Don't save Status Menu image as base64 in every Profile
+
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Find a way to support authenticated task termination
     TODO: New button-based interface type
@@ -20,19 +20,21 @@ For 5.3
     TODO: Create Platypus tutorial videos, make them available online
     TODO: Find a way to fix broken file watching of script path eftir pressing "New"
     TODO: Implement new Table View interface (CSV output?)
-    TODO: Make Droplet window & others larger
     TODO: Rewrite documentation for clarity
     TODO: Fix bug where custom icns file for icon doesn't work
     TODO: Async Status Menu script execution to prevent interface locking on main thread
     TODO: Fix issue with multiple AEOpen events for many opened files
 
     TODO: Create more automated tests for command line tool
+    TODO: Update Droplet interface screenshot
+    TODO: Make Droplet window & others larger
+    TODO: Don't save Status Menu image as base64 in every Profile
 
-    * ScriptExec makes script executable (+x) on launch
-    * Removed incorrect UTI validation in command line tool
+    * ScriptExec tries to make script executable (+x) on launch
+    * Removed buggy UTI validation in command line tool
     * Updated to support Mojave Dark Mode
     * Fixed issue with 16x16 document icons on non-retina displays
-    * Awk added as an interpreter option
+    * AWK added as an interpreter preset
     * Fixed exception when double-clicking bundled files header
     * Fixed bug where pressing "Clear" could cause program to crash
     * Implemented a REFRESH command to clear text output buffer and reset web view HTML
