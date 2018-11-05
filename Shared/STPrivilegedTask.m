@@ -279,7 +279,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     
     // Check to see if we have the correct function in our loaded libraries
     if (!_AuthExecuteWithPrivsFn) {
-        // On 10.7, AuthorizationExecuteWithPrivileges is deprecated. We want
+        // As of 10.7, AuthorizationExecuteWithPrivileges is deprecated. We want
         // to still use it since there's no good alternative (without requiring
         // code signing). We'll look up the function through dyld and fail if
         // it is no longer accessible. If Apple removes the function entirely

@@ -1265,7 +1265,7 @@
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -1282,7 +1282,10 @@
 				SEPARATE_STRIP = NO;
 				STRIP_INSTALLED_PRODUCT = NO;
 				VALIDATE_PRODUCT = NO;
-				WARNING_CFLAGS = "-Wno-gnu";
+				WARNING_CFLAGS = (
+					"-Wno-gnu",
+					"-Wpartial-availability",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Development;
@@ -1324,7 +1327,7 @@
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-Wl,-rpath,@loader_path/../Frameworks",
@@ -1341,7 +1344,10 @@
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				STRIP_INSTALLED_PRODUCT = YES;
 				VALIDATE_PRODUCT = YES;
-				WARNING_CFLAGS = "-Wno-gnu";
+				WARNING_CFLAGS = (
+					"-Wno-gnu",
+					"-Wpartial-availability",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Deployment;
@@ -1377,7 +1383,7 @@
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-Wl,-rpath,@loader_path/../Frameworks",
@@ -1392,7 +1398,10 @@
 				SECTORDER_FLAGS = "";
 				SEPARATE_STRIP = YES;
 				VALIDATE_PRODUCT = NO;
-				WARNING_CFLAGS = "-Wno-gnu";
+				WARNING_CFLAGS = (
+					"-Wno-gnu",
+					"-Wpartial-availability",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Default;
@@ -1447,7 +1456,7 @@
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INFOPLIST_PREPROCESS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-Xlinker",
@@ -1461,6 +1470,7 @@
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
+				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Development;
 		};
@@ -1518,7 +1528,7 @@
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INFOPLIST_PREPROCESS = YES;
 				LINKER_DISPLAYS_MANGLED_NAMES = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-Xlinker",
@@ -1532,6 +1542,7 @@
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
+				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Deployment;
 		};
@@ -1586,7 +1597,7 @@
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INFOPLIST_PREPROCESS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-Xlinker",
@@ -1600,6 +1611,7 @@
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
+				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Default;
 		};
@@ -1607,7 +1619,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = PlatypusDefaultIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -1627,11 +1638,12 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_OUTPUT_FORMAT = xml;
 				INSTALL_PATH = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PLIST_FILE_OUTPUT_FORMAT = xml;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
 				PRODUCT_NAME = ScriptExec;
+				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Development;
 		};
@@ -1639,7 +1651,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = PlatypusDefaultIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -1658,11 +1669,12 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INSTALL_PATH = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PLIST_FILE_OUTPUT_FORMAT = binary;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
 				PRODUCT_NAME = ScriptExec;
 				STRIP_INSTALLED_PRODUCT = YES;
+				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Deployment;
 		};
@@ -1670,7 +1682,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = PlatypusDefaultIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1685,9 +1696,10 @@
 				INFOPLIST_FILE = "ScriptExec/Resources/ScriptExec-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
 				PRODUCT_NAME = ScriptExec;
+				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Default;
 		};
@@ -1730,7 +1742,7 @@
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-Xlinker",
@@ -1757,7 +1769,7 @@
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-Xlinker",
 					"-U",
@@ -1781,7 +1793,7 @@
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = /;
 				MACH_O_TYPE = mh_execute;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-Xlinker",
 					"-U",

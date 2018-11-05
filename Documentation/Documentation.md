@@ -117,7 +117,7 @@ That being said, you may be able to add some interactive GUI elements using [Coc
 
 ### System Requirements
 
-As of version 5.0, both the Platypus application and the applications it generates require **Mac OS X 10.7** or later and are provided as 64-bit Intel binaries.  If you want to target 10.6 and/or 32-bit systems, [version 4.9](http://sveinbjorn.org/files/software/platypus/platypus4.9.zip) continues to work just fine. If you want to target 10.4 and PowerPC users, you can use version [4.4](http://sveinbjorn.org/files/software/platypus/platypus4.4.zip).
+As of version 5.0, both the Platypus application and the applications it generates require **Mac OS X 10.8** or later and are provided as 64-bit Intel binaries.  If you want to target 10.6 and/or 32-bit systems, [version 4.9](http://sveinbjorn.org/files/software/platypus/platypus4.9.zip) continues to work just fine. If you want to target 10.4 and PowerPC users, you can use version [4.4](http://sveinbjorn.org/files/software/platypus/platypus4.4.zip).
 
 
 
