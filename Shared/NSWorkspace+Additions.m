@@ -128,9 +128,6 @@
 
 - (UInt64)fileOrFolderSize:(NSString *)path {
     NSString *fileOrFolderPath = [path copy];
-#if !__has_feature(objc_arc)
-    [fileOrFolderPath autorelease];
-#endif
     
     BOOL isDir;
     if (path == nil || ![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]) {
@@ -256,9 +253,6 @@
     if (appleScript != nil) {
         [appleScript executeAndReturnError:nil];
     }
-#if !__has_feature(objc_arc)
-    [appleScript release];
-#endif
 }
 
 #pragma mark - Services
@@ -286,11 +280,12 @@
     
     NSString *osaCmd = [NSString stringWithFormat:@"tell application \"Terminal\"\n\tdo script \"%@\"\nactivate\nend tell", cmd];
     NSAppleScript *script = [[NSAppleScript alloc] initWithSource:osaCmd];
-    id ret = [script executeAndReturnError:nil];
-#if !__has_feature(objc_arc)
-    [script release];
-#endif
-    return (ret != nil);
+    NSDictionary *errorInfo;
+    if ([script executeAndReturnError:&errorInfo] == nil){
+        NSLog(@"%@", [errorInfo description]);
+        return NO;
+    }
+    return YES;
 }
 
 @end

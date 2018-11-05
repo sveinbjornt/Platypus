@@ -24,7 +24,7 @@
  # ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ */
 
 #import "STPrivilegedTask.h"
 
@@ -37,9 +37,31 @@
 // New error code denoting that AuthorizationExecuteWithPrivileges no longer exists
 OSStatus const errAuthorizationFnNoLongerExists = -70001;
 
+// Create fn pointer to AuthorizationExecuteWithPrivileges in case
+// it doesn't exist in this version of MacOS
+static OSStatus (*_AuthExecuteWithPrivsFn)(AuthorizationRef authorization, const char *pathToTool, AuthorizationFlags options,
+                                           char * const *arguments, FILE **communicationsPipe) = NULL;
+
+
 @implementation STPrivilegedTask
 {
     NSTimer *_checkStatusTimer;
+}
+
++ (void)initialize;
+{
+    // On 10.7, AuthorizationExecuteWithPrivileges is deprecated. We want
+    // to still use it since there's no good alternative (without requiring
+    // code signing). We'll look up the function through dyld and fail if
+    // it is no longer accessible. If Apple removes the function entirely
+    // this will fail gracefully. If they keep the function and throw some
+    // sort of exception, this won't fail gracefully, but that's a risk
+    // we'll have to take for now.
+    // Pattern by Andy Kim from Potion Factory LLC
+#pragma GCC diagnostic ignored "-Wpedantic" // stop the pedantry!
+#pragma clang diagnostic push
+    _AuthExecuteWithPrivsFn = dlsym(RTLD_DEFAULT, "AuthorizationExecuteWithPrivileges");
+#pragma clang diagnostic pop
 }
 
 - (instancetype)init
@@ -120,6 +142,18 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     return task;
 }
 
++ (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)args currentDirectory:(NSString *)cwd authorization:(AuthorizationRef)authorization
+{
+    STPrivilegedTask *task = [[STPrivilegedTask alloc] initWithLaunchPath:path arguments:args currentDirectory:cwd];
+#if !__has_feature(objc_arc)
+    [task autorelease];
+#endif
+    
+    [task launchWithAuthorization:authorization];
+    [task waitUntilExit];
+    return task;
+}
+
 # pragma mark -
 
 // return 0 for success
@@ -143,22 +177,6 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     AuthorizationRights myRights = { 1, &myItems };
     AuthorizationFlags flags = kAuthorizationFlagDefaults | kAuthorizationFlagInteractionAllowed | kAuthorizationFlagPreAuthorize | kAuthorizationFlagExtendRights;
     
-    NSArray *arguments = self.arguments;
-    NSUInteger numberOfArguments = [arguments count];
-    char *args[numberOfArguments + 1];
-    FILE *outputFile;
-
-    // Create fn pointer to AuthorizationExecuteWithPrivileges in
-    // case it doesn't exist in this version of the OS
-    static OSStatus (*_AuthExecuteWithPrivsFn)(
-        AuthorizationRef authorization, const char *pathToTool, AuthorizationFlags options,
-        char * const *arguments, FILE **communicationsPipe) = NULL;
-
-#pragma clang diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic" // stop the pedantry!
-    _AuthExecuteWithPrivsFn = dlsym(RTLD_DEFAULT, "AuthorizationExecuteWithPrivileges");
-#pragma clang diagnostic pop
-
     // Use Apple's Authentication Manager APIs to get an Authorization Reference
     // These Apple APIs are quite possibly the most horrible of the Mac OS X APIs
     
@@ -175,7 +193,35 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     }
     
     // OK, at this point we have received authorization for the task.
+    err = [self launchWithAuthorization:authorizationRef];
+    
+    // free the auth ref
+    AuthorizationFree(authorizationRef, kAuthorizationFlagDefaults);
+    
+    return err;
+}
+
+- (OSStatus)launchWithAuthorization:(AuthorizationRef)authorization
+{
+    if (_isRunning) {
+        NSLog(@"Task already running: %@", [self description]);
+        return 0;
+    }
+    
+    if ([STPrivilegedTask authorizationFunctionAvailable] == NO) {
+        NSLog(@"AuthorizationExecuteWithPrivileges() function not available on this system");
+        return errAuthorizationFnNoLongerExists;
+    }
+    
+    // Assuming the authorization is valid for the task.
     // Let's prepare to launch it
+    
+    NSArray *arguments = self.arguments;
+    NSUInteger numberOfArguments = [arguments count];
+    char *args[numberOfArguments + 1];
+    FILE *outputFile;
+    
+    const char *toolPath = [self.launchPath fileSystemRepresentation];
     
     // first, construct an array of c strings from NSArray w. arguments
     for (int i = 0; i < numberOfArguments; i++) {
@@ -193,7 +239,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     chdir([self.currentDirectoryPath fileSystemRepresentation]);
     
     //use Authorization Reference to execute script with privileges
-    err = _AuthExecuteWithPrivsFn(authorizationRef, toolPath, kAuthorizationFlagDefaults, args, &outputFile);
+    OSStatus err = _AuthExecuteWithPrivsFn(authorization, toolPath, kAuthorizationFlagDefaults, args, &outputFile);
     
     // OK, now we're done executing, let's change back to old dir
     chdir(prevCwd);
@@ -202,9 +248,6 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     for (int i = 0; i < numberOfArguments; i++) {
         free(args[i]);
     }
-    
-    // free the auth ref
-    AuthorizationFree(authorizationRef, kAuthorizationFlagDefaults);
     
     // we return err if execution failed
     if (err != errAuthorizationSuccess) {
@@ -219,7 +262,7 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     
     // start monitoring task
     _checkStatusTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(checkTaskStatus) userInfo:nil repeats:YES];
-        
+    
     return err;
 }
 
@@ -267,37 +310,16 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
         }
     }
 }
-    
+
 #pragma mark -
-    
+
 + (BOOL)authorizationFunctionAvailable
 {
-    // Create fn pointer to AuthorizationExecuteWithPrivileges in case
-    // it doesn't exist in this version of MacOS
-    static OSStatus (*_AuthExecuteWithPrivsFn)(AuthorizationRef authorization, const char *pathToTool, AuthorizationFlags options,
-                                               char * const *arguments, FILE **communicationsPipe) = NULL;
-    
-    // Check to see if we have the correct function in our loaded libraries
     if (!_AuthExecuteWithPrivsFn) {
-        // As of 10.7, AuthorizationExecuteWithPrivileges is deprecated. We want
-        // to still use it since there's no good alternative (without requiring
-        // code signing). We'll look up the function through dyld and fail if
-        // it is no longer accessible. If Apple removes the function entirely
-        // this will fail gracefully. If they keep the function and throw some
-        // sort of exception, this won't fail gracefully, but that's a risk
-        // we'll have to take for now.
-        // Pattern by Andy Kim from Potion Factory LLC
-#pragma GCC diagnostic ignored "-Wpedantic" // stop the pedantry!
-#pragma clang diagnostic push
-        _AuthExecuteWithPrivsFn = dlsym(RTLD_DEFAULT, "AuthorizationExecuteWithPrivileges");
-#pragma clang diagnostic pop
-
-        if (!_AuthExecuteWithPrivsFn) {
-            // This version of OS X has finally removed this function. Return with an error.
-            return NO;
-        }
+        // This version of OS X has finally removed
+        // this function. Return with an error.
+        return NO;
     }
-    
     return YES;
 }
 
@@ -315,5 +337,5 @@ OSStatus const errAuthorizationFnNoLongerExists = -70001;
     
     return [[super description] stringByAppendingFormat:@" %@", commandDescription];
 }
-    
+
 @end

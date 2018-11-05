@@ -56,8 +56,10 @@ extern const OSStatus errAuthorizationFnNoLongerExists;
 + (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path;
 + (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)args;
 + (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)args currentDirectory:(NSString *)cwd;
++ (STPrivilegedTask *)launchedPrivilegedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)args currentDirectory:(NSString *)cwd authorization:(AuthorizationRef)authorization;
 
 - (OSStatus)launch;
+- (OSStatus)launchWithAuthorization:(AuthorizationRef)authorization;
 - (void)terminate; // doesn't work
 - (void)waitUntilExit;
 

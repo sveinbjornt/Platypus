@@ -761,10 +761,6 @@ static void NSPrint(NSString *format, ...) {
     va_end(args);
     
     fprintf(stdout, "%s\n", [string UTF8String]);
-    
-#if !__has_feature(objc_arc)
-    [string release];
-#endif
 }
 
 // print to stderr
@@ -776,8 +772,4 @@ static void NSPrintErr(NSString *format, ...) {
     va_end(args);
     
     fprintf(stderr, "%s\n", [string UTF8String]);
-
-#if !__has_feature(objc_arc)
-    [string release];
-#endif
 }
