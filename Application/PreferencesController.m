@@ -37,6 +37,28 @@
 #import "NSBundle+Templates.h"
 #import "PlatypusAppSpec.h"
 
+#define EXTERNAL_EDITORS \
+@[@"TextEdit", \
+@"TextMate", \
+@"Sublime Text", \
+@"TextWrangler", \
+@"BBEdit", \
+@"SubEthaEdit", \
+@"Smultron", \
+@"Coda 2", \
+@"Textastic", \
+@"TextForge", \
+@"UltraEdit", \
+@"CodeRunner 2", \
+@"CotEditor", \
+@"Atom", \
+@"MacVim", \
+@"Emacs", \
+@"Komodo Edit", \
+@"BlueFish", \
+@"Brackets", \
+@"Visual Studio Code"]
+
 @interface PreferencesController()
 {
     IBOutlet NSPopUpButton *defaultEditorPopupButton;
@@ -59,9 +81,19 @@
 @implementation PreferencesController
 
 - (IBAction)showWindow:(id)sender {
-    [self window];
+    // put application icon in window title bar
+    [[self window] setRepresentedURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
+    NSButton *button = [[self window] standardWindowButton:NSWindowDocumentIconButton];
+    [button setImage:[NSImage imageNamed:@"Preferences"]];
+    
     [self updateCLTStatus];
 
+    for (NSString *editorName in EXTERNAL_EDITORS) {
+        NSMenuItem *item = [[NSMenuItem alloc] init];
+        [item setTitle:editorName];
+        [[defaultEditorPopupButton menu] addItem:item];
+    }
+    
     // we lazily fetch icons for editor apps in Editors menu
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{

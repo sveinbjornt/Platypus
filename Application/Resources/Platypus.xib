@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,19 +17,19 @@
                 <outlet property="delegate" destination="335" id="5160"/>
             </connections>
         </customObject>
-        <window title="Platypus" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="PlatypusWindow" animationBehavior="default" id="21" userLabel="Platypus Window">
+        <window title="Platypus" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="PlatypusWindow" animationBehavior="default" titlebarAppearsTransparent="YES" id="21" userLabel="Platypus Window">
             <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="369" y="131" width="664" height="529"/>
+            <rect key="contentRect" x="369" y="131" width="664" height="524"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
-            <value key="minSize" type="size" width="664" height="529"/>
+            <value key="minSize" type="size" width="664" height="524"/>
             <value key="maxSize" type="size" width="800" height="880"/>
-            <view key="contentView" misplaced="YES" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="664" height="529"/>
+            <view key="contentView" id="2">
+                <rect key="frame" x="0.0" y="0.0" width="664" height="524"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button toolTip="Check this if your script accepts dropped files or text snippets as arguments" id="299">
-                        <rect key="frame" x="144" y="233" width="168" height="18"/>
+                        <rect key="frame" x="144" y="229" width="168" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Accepts dropped items" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="10942">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -41,7 +40,7 @@
                         </connections>
                     </button>
                     <imageView toolTip="Application Icon" id="300" customClass="STDragImageView">
-                        <rect key="frame" x="20" y="369" width="149" height="148"/>
+                        <rect key="frame" x="20" y="365" width="149" height="148"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" selectable="YES" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" image="PlatypusDefault" id="10943"/>
                         <connections>
@@ -49,8 +48,8 @@
                             <outlet property="menu" destination="830" id="845"/>
                         </connections>
                     </imageView>
-                    <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="301">
-                        <rect key="frame" x="194" y="367" width="74" height="20"/>
+                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="301">
+                        <rect key="frame" x="194" y="363" width="74" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Interface" id="10944">
                             <font key="font" metaFont="system"/>
@@ -59,7 +58,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="307">
-                        <rect key="frame" x="21" y="187" width="595" height="17"/>
+                        <rect key="frame" x="21" y="183" width="595" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Bundled Files (copied into the application's Resources folder)" id="10946">
                             <font key="font" metaFont="smallSystem"/>
@@ -68,7 +67,7 @@
                         </textFieldCell>
                     </textField>
                     <stepper toolTip="Press to browse through default icons" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="308">
-                        <rect key="frame" x="168" y="429" width="19" height="28"/>
+                        <rect key="frame" x="168" y="425" width="19" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <stepperCell key="cell" continuous="YES" alignment="left" maxValue="2" valueWraps="YES" id="10947"/>
                         <connections>
@@ -76,7 +75,7 @@
                         </connections>
                     </stepper>
                     <button toolTip="Create Application" verticalHuggingPriority="750" id="312">
-                        <rect key="frame" x="521" y="13" width="129" height="32"/>
+                        <rect key="frame" x="521" y="14" width="129" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Create App" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="10949">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -90,7 +89,7 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="313">
-                        <rect key="frame" x="193" y="423" width="76" height="21"/>
+                        <rect key="frame" x="193" y="419" width="76" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Script Path" id="10950">
                             <font key="font" metaFont="system"/>
@@ -99,11 +98,11 @@ DQ
                         </textFieldCell>
                     </textField>
                     <box verticalHuggingPriority="750" boxType="separator" id="314">
-                        <rect key="frame" x="22" y="327" width="622" height="5"/>
+                        <rect key="frame" x="22" y="323" width="622" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </box>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="318">
-                        <rect key="frame" x="189" y="462" width="79" height="18"/>
+                        <rect key="frame" x="189" y="458" width="79" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Script Type" id="10952">
                             <font key="font" metaFont="system"/>
@@ -112,7 +111,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="327">
-                        <rect key="frame" x="194" y="493" width="74" height="21"/>
+                        <rect key="frame" x="194" y="489" width="74" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="App Name" id="10954">
                             <font key="font" metaFont="system"/>
@@ -121,11 +120,11 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField toolTip="Path to script" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="334" customClass="STPathTextField">
-                        <rect key="frame" x="274" y="424" width="370" height="22"/>
+                        <rect key="frame" x="274" y="420" width="370" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingHead" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="10956">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
@@ -133,7 +132,7 @@ DQ
                         </connections>
                     </textField>
                     <textField toolTip="Application Icon Name" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="367">
-                        <rect key="frame" x="52" y="346" width="152" height="18"/>
+                        <rect key="frame" x="52" y="342" width="152" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Platypus Default" id="10957">
                             <font key="font" metaFont="smallSystem"/>
@@ -142,7 +141,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button hidden="YES" toolTip="Press this button to configure what kind of dropped items your app should accept" verticalHuggingPriority="750" id="372">
-                        <rect key="frame" x="312" y="226" width="81" height="28"/>
+                        <rect key="frame" x="312" y="222" width="81" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Settings" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10958">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -153,7 +152,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Reveal script in Finder" verticalHuggingPriority="750" id="429">
-                        <rect key="frame" x="391" y="397" width="79" height="28"/>
+                        <rect key="frame" x="391" y="392" width="79" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="🔍 Reveal" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10960">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -164,7 +163,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Check this if you don't want your app to show up in the Dock" id="523">
-                        <rect key="frame" x="414" y="263" width="198" height="18"/>
+                        <rect key="frame" x="414" y="259" width="198" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Run in background" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="10961">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -172,7 +171,7 @@ DQ
                         </buttonCell>
                     </button>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="664">
-                        <rect key="frame" x="23" y="39" width="229" height="16"/>
+                        <rect key="frame" x="22" y="39" width="229" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="0 items" id="10962">
                             <font key="font" metaFont="smallSystem"/>
@@ -181,16 +180,16 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField toolTip="The application's version number" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="769">
-                        <rect key="frame" x="88" y="231" width="43" height="22"/>
+                        <rect key="frame" x="88" y="227" width="43" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="10964">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="770">
-                        <rect key="frame" x="25" y="233" width="58" height="18"/>
+                        <rect key="frame" x="25" y="229" width="58" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Version" id="10965">
                             <font key="font" metaFont="system"/>
@@ -199,7 +198,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="860">
-                        <rect key="frame" x="12" y="292" width="71" height="19"/>
+                        <rect key="frame" x="12" y="288" width="71" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Identifier" id="10969">
                             <font key="font" metaFont="system"/>
@@ -208,20 +207,20 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField toolTip="Reverse URL Bundle Identifier for your application (e.g. com.apple.MyApp)" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="861" customClass="STReverseDNSTextField">
-                        <rect key="frame" x="88" y="291" width="307" height="22"/>
+                        <rect key="frame" x="88" y="287" width="307" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="10970">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <box verticalHuggingPriority="750" boxType="separator" id="947">
-                        <rect key="frame" x="22" y="213" width="622" height="5"/>
+                        <rect key="frame" x="22" y="209" width="622" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </box>
                     <button toolTip="Add File(s)" verticalHuggingPriority="750" id="959">
-                        <rect key="frame" x="621" y="162" width="23" height="23"/>
+                        <rect key="frame" x="621" y="158" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="10972">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -232,7 +231,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Remove Selected Files" verticalHuggingPriority="750" id="961">
-                        <rect key="frame" x="621" y="142" width="23" height="23"/>
+                        <rect key="frame" x="621" y="138" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="10973">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -243,7 +242,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Reveal File in Finder" verticalHuggingPriority="750" id="963">
-                        <rect key="frame" x="621" y="76" width="23" height="28"/>
+                        <rect key="frame" x="621" y="77" width="23" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="smallSquare" title="🔎" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="10974">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -254,7 +253,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Open File in Editor" verticalHuggingPriority="750" id="11248">
-                        <rect key="frame" x="621" y="101" width="23" height="23"/>
+                        <rect key="frame" x="621" y="102" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="smallSquare" title="✎" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="11249">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -265,7 +264,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Clear File List" verticalHuggingPriority="750" id="965">
-                        <rect key="frame" x="621" y="57" width="23" height="23"/>
+                        <rect key="frame" x="621" y="58" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="smallSquare" title="✕" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="10975">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -276,7 +275,7 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="1140">
-                        <rect key="frame" x="27" y="262" width="56" height="19"/>
+                        <rect key="frame" x="27" y="258" width="56" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Author" id="10976">
                             <font key="font" metaFont="system"/>
@@ -285,16 +284,16 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField toolTip="Author name, displayed in copyright notice and About window" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="1141">
-                        <rect key="frame" x="88" y="261" width="307" height="22"/>
+                        <rect key="frame" x="88" y="257" width="307" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="10977">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button toolTip="Edit arguments passed to interpreter and script" verticalHuggingPriority="750" id="1390">
-                        <rect key="frame" x="568" y="453" width="82" height="32"/>
+                        <rect key="frame" x="568" y="449" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Args" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="10979">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -304,8 +303,8 @@ DQ
                             <action selector="show:" target="1418" id="1433"/>
                         </connections>
                     </button>
-                    <button hidden="YES" toolTip="Edit text settings" verticalHuggingPriority="750" misplaced="YES" id="2061">
-                        <rect key="frame" x="427" y="362" width="95" height="28"/>
+                    <button hidden="YES" toolTip="Edit text settings" verticalHuggingPriority="750" id="2061">
+                        <rect key="frame" x="427" y="358" width="95" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Text Settings" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10980">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -316,7 +315,7 @@ DQ
                         </connections>
                     </button>
                     <popUpButton toolTip="Select script type" verticalHuggingPriority="750" id="3890">
-                        <rect key="frame" x="272" y="457" width="135" height="26"/>
+                        <rect key="frame" x="272" y="453" width="135" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" id="10981">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -331,8 +330,8 @@ DQ
                             <action selector="scriptTypeSelected:" target="335" id="4145"/>
                         </connections>
                     </popUpButton>
-                    <popUpButton toolTip="Select Interface Type" verticalHuggingPriority="750" misplaced="YES" id="4148">
-                        <rect key="frame" x="272" y="364" width="159" height="26"/>
+                    <popUpButton toolTip="Select Interface Type" verticalHuggingPriority="750" id="4148">
+                        <rect key="frame" x="272" y="360" width="159" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" id="10982">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -348,7 +347,7 @@ DQ
                         </connections>
                     </popUpButton>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="4168">
-                        <rect key="frame" x="22" y="20" width="229" height="17"/>
+                        <rect key="frame" x="22" y="21" width="229" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Estimated app size:" id="10983">
                             <font key="font" metaFont="smallSystem"/>
@@ -357,11 +356,11 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField toolTip="Name of application" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11541">
-                        <rect key="frame" x="274" y="493" width="370" height="22"/>
+                        <rect key="frame" x="274" y="489" width="370" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="11542">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
@@ -369,7 +368,7 @@ DQ
                         </connections>
                     </textField>
                     <button toolTip="Select Icon Action" verticalHuggingPriority="750" id="0lI-4s-sC8">
-                        <rect key="frame" x="22" y="345" width="24" height="24"/>
+                        <rect key="frame" x="22" y="341" width="24" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSActionTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="n17-i2-xh5">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -379,8 +378,8 @@ DQ
                             <action selector="iconActionButtonPressed:" target="1215" id="MX7-yS-Ch2"/>
                         </connections>
                     </button>
-                    <button toolTip="Show Help for Platypus" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="AEA-iE-Tgw">
-                        <rect key="frame" x="618" y="337" width="25" height="25"/>
+                    <button toolTip="Show Help for Platypus" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="AEA-iE-Tgw">
+                        <rect key="frame" x="618" y="333" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mAK-34-BfX">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -391,7 +390,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Open script with default editor" verticalHuggingPriority="750" id="324">
-                        <rect key="frame" x="468" y="397" width="62" height="28"/>
+                        <rect key="frame" x="468" y="392" width="62" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="✎ Edit" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10953">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -402,14 +401,14 @@ DQ
                         </connections>
                     </button>
                     <scrollView toolTip="The list of files that will be bundled with your application. These files are in the current working directory for your script." autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="319">
-                        <rect key="frame" x="20" y="58" width="593" height="126"/>
+                        <rect key="frame" x="20" y="59" width="593" height="121"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="AwF-Vu-vkI">
-                            <rect key="frame" x="1" y="1" width="591" height="124"/>
+                            <rect key="frame" x="1" y="1" width="591" height="119"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="310">
-                                    <rect key="frame" x="0.0" y="0.0" width="591" height="124"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="591" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -473,7 +472,7 @@ DQ
                         </scroller>
                     </scrollView>
                     <button toolTip="Select a script to load" verticalHuggingPriority="750" id="316">
-                        <rect key="frame" x="527" y="394" width="123" height="32"/>
+                        <rect key="frame" x="527" y="389" width="123" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Select Script..." bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="10951">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -484,11 +483,11 @@ DQ
                         </connections>
                     </button>
                     <textField toolTip="Path to script interpreter" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="305" customClass="STPathTextField">
-                        <rect key="frame" x="410" y="460" width="156" height="22"/>
+                        <rect key="frame" x="410" y="456" width="156" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingHead" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="left" title="/bin/sh" drawsBackground="YES" id="10945">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
@@ -496,7 +495,7 @@ DQ
                         </connections>
                     </textField>
                     <button toolTip="Clear All Fields" verticalHuggingPriority="750" id="784">
-                        <rect key="frame" x="415" y="13" width="106" height="32"/>
+                        <rect key="frame" x="415" y="14" width="106" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="10968">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -507,7 +506,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Create and load a new script" verticalHuggingPriority="750" id="427">
-                        <rect key="frame" x="333" y="397" width="60" height="28"/>
+                        <rect key="frame" x="333" y="392" width="60" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="+ New" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10959">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -518,7 +517,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Check this if you want the application to remain running after executing the script" id="697">
-                        <rect key="frame" x="414" y="233" width="229" height="18"/>
+                        <rect key="frame" x="414" y="229" width="229" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Remain running after execution" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="10963">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -526,15 +525,15 @@ DQ
                         </buttonCell>
                     </button>
                     <button toolTip="Check this if your script requires root privileges" id="293">
-                        <rect key="frame" x="414" y="292" width="232" height="19"/>
+                        <rect key="frame" x="414" y="288" width="232" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Run with root privileges" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="10940">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <button hidden="YES" toolTip="Edit settings for Status Item" verticalHuggingPriority="750" misplaced="YES" id="10159">
-                        <rect key="frame" x="516" y="362" width="133" height="28"/>
+                    <button hidden="YES" toolTip="Edit settings for Status Item" verticalHuggingPriority="750" id="10159">
+                        <rect key="frame" x="516" y="358" width="133" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Status Item Settings" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10984">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1444,7 +1443,7 @@ CA
             <rect key="contentRect" x="457" y="200" width="537" height="582"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <value key="minSize" type="size" width="502" height="362"/>
-            <view key="contentView" misplaced="YES" id="396">
+            <view key="contentView" id="396">
                 <rect key="frame" x="0.0" y="0.0" width="537" height="582"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -1475,7 +1474,7 @@ DQ
                             <action selector="setToDefaults:" target="1364" id="11540"/>
                         </connections>
                     </button>
-                    <button toolTip="Check here if you want your script to get opened or dropped files passed as arguments to the script.  " misplaced="YES" id="11149">
+                    <button toolTip="Check here if you want your script to get opened or dropped files passed as arguments to the script.  " id="11149">
                         <rect key="frame" x="30" y="538" width="176" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Accept dropped files" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="11150">
@@ -1486,7 +1485,7 @@ DQ
                             <action selector="acceptsFilesChanged:" target="1364" id="11532"/>
                         </connections>
                     </button>
-                    <button toolTip="Check here if you want your script to accept dropped text snippets or text fed in through the Mac OS X Services API.  " misplaced="YES" id="11151">
+                    <button toolTip="Check here if you want your script to accept dropped text snippets or text fed in through the Mac OS X Services API.  " id="11151">
                         <rect key="frame" x="30" y="244" width="152" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Accept dropped text" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11152">
@@ -1497,7 +1496,7 @@ DQ
                             <action selector="acceptsTextChanged:" target="1364" id="11534"/>
                         </connections>
                     </button>
-                    <box autoresizesSubviews="NO" misplaced="YES" borderType="none" title="Box" titlePosition="noTitle" id="11153">
+                    <box autoresizesSubviews="NO" borderType="none" title="Box" titlePosition="noTitle" id="11153">
                         <rect key="frame" x="17" y="281" width="503" height="250"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="dtV-jI-obC">
@@ -1508,18 +1507,18 @@ DQ
                                     <rect key="frame" x="23" y="57" width="218" height="180"/>
                                     <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                     <view key="contentView" id="1RM-Ny-kxa">
-                                        <rect key="frame" x="2" y="2" width="214" height="163"/>
+                                        <rect key="frame" x="3" y="3" width="212" height="162"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <scrollView toolTip="List of suffixes the application accepts" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="710">
-                                                <rect key="frame" x="18" y="50" width="179" height="98"/>
+                                                <rect key="frame" x="18" y="50" width="179" height="97"/>
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="zU0-Dr-gG8">
-                                                    <rect key="frame" x="1" y="1" width="162" height="96"/>
+                                                    <rect key="frame" x="1" y="1" width="162" height="95"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="708" customClass="NSResponderNotifyingTableView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="96"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="95"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1562,12 +1561,12 @@ DQ
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="11072">
-                                                    <rect key="frame" x="163" y="1" width="15" height="96"/>
+                                                    <rect key="frame" x="163" y="1" width="15" height="95"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                             </scrollView>
                                             <button toolTip="Add suffix to list" verticalHuggingPriority="750" id="984">
-                                                <rect key="frame" x="18" y="19" width="23" height="24"/>
+                                                <rect key="frame" x="18" y="18" width="23" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="11009">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1578,7 +1577,7 @@ DQ
                                                 </connections>
                                             </button>
                                             <button toolTip="Remove selected suffix" verticalHuggingPriority="750" id="992">
-                                                <rect key="frame" x="40" y="19" width="23" height="24"/>
+                                                <rect key="frame" x="40" y="18" width="23" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="11011">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1609,18 +1608,18 @@ DQ
                                     <rect key="frame" x="256" y="57" width="218" height="180"/>
                                     <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                     <view key="contentView" id="E19-CW-1vz">
-                                        <rect key="frame" x="2" y="2" width="214" height="163"/>
+                                        <rect key="frame" x="3" y="3" width="212" height="162"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <scrollView toolTip="List of Uniform Type Identifiers that the application should open" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="AOR-Jg-jZl">
-                                                <rect key="frame" x="18" y="50" width="179" height="98"/>
+                                                <rect key="frame" x="18" y="50" width="179" height="97"/>
                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                 <clipView key="contentView" id="xVE-Bl-gWX">
-                                                    <rect key="frame" x="1" y="1" width="162" height="96"/>
+                                                    <rect key="frame" x="1" y="1" width="162" height="95"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="abJ-y3-Qtk" customClass="NSResponderNotifyingTableView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="96"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="95"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1663,12 +1662,12 @@ DQ
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="dpD-iL-Gat">
-                                                    <rect key="frame" x="163" y="1" width="15" height="96"/>
+                                                    <rect key="frame" x="163" y="1" width="15" height="95"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                             </scrollView>
                                             <button toolTip="Add UTI to list" verticalHuggingPriority="750" id="nC2-fm-W7H">
-                                                <rect key="frame" x="17" y="19" width="23" height="24"/>
+                                                <rect key="frame" x="17" y="18" width="23" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="W8j-iQ-Swx">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1679,7 +1678,7 @@ DQ
                                                 </connections>
                                             </button>
                                             <button toolTip="Remove selected UTI" verticalHuggingPriority="750" id="tqU-IB-IyA">
-                                                <rect key="frame" x="39" y="19" width="23" height="24"/>
+                                                <rect key="frame" x="39" y="18" width="23" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="o7S-P1-crO">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1704,7 +1703,7 @@ DQ
                                         <action selector="selectDocIcon:" target="1364" id="11244"/>
                                     </connections>
                                 </button>
-                                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" id="miG-6H-wby">
+                                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="miG-6H-wby">
                                     <rect key="frame" x="449" y="220" width="25" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vbq-is-cx6">
@@ -1718,30 +1717,30 @@ DQ
                             </subviews>
                         </view>
                     </box>
-                    <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="11245">
+                    <box verticalHuggingPriority="750" boxType="separator" id="11245">
                         <rect key="frame" x="20" y="276" width="497" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
-                    <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="11529">
+                    <box verticalHuggingPriority="750" boxType="separator" id="11529">
                         <rect key="frame" x="20" y="60" width="497" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     </box>
-                    <box misplaced="YES" title="URI Schemes" id="qEg-fw-Jf9">
+                    <box title="URI Schemes" id="qEg-fw-Jf9">
                         <rect key="frame" x="269" y="81" width="218" height="153"/>
                         <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                         <view key="contentView" id="PjY-Y9-w6e">
-                            <rect key="frame" x="2" y="2" width="214" height="136"/>
+                            <rect key="frame" x="3" y="3" width="212" height="135"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <scrollView toolTip="List of Uniform Type Identifiers that the application should open" misplaced="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="gQi-A4-rgh">
-                                    <rect key="frame" x="18" y="47" width="179" height="74"/>
+                                <scrollView toolTip="List of Uniform Type Identifiers that the application should open" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="gQi-A4-rgh">
+                                    <rect key="frame" x="18" y="47" width="179" height="73"/>
                                     <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                     <clipView key="contentView" id="gjs-Rw-OFH">
-                                        <rect key="frame" x="1" y="1" width="162" height="72"/>
+                                        <rect key="frame" x="1" y="1" width="162" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <tableView toolTip="Suffix Types List" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" id="Qc1-zf-c1B" customClass="NSResponderNotifyingTableView">
-                                                <rect key="frame" x="0.0" y="0.0" width="162" height="72"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="162" height="71"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1784,12 +1783,12 @@ DQ
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="pAF-ef-jzA">
-                                        <rect key="frame" x="163" y="1" width="15" height="72"/>
+                                        <rect key="frame" x="163" y="1" width="15" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>
-                                <button toolTip="Add UTI to list" verticalHuggingPriority="750" misplaced="YES" id="czF-wb-cer">
-                                    <rect key="frame" x="18" y="16" width="23" height="24"/>
+                                <button toolTip="Add UTI to list" verticalHuggingPriority="750" id="czF-wb-cer">
+                                    <rect key="frame" x="18" y="15" width="23" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="r7T-e2-Rue">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1799,8 +1798,8 @@ DQ
                                         <action selector="addURIProtocol:" target="1364" id="Bt3-Rn-exh"/>
                                     </connections>
                                 </button>
-                                <button toolTip="Remove selected UTI" verticalHuggingPriority="750" misplaced="YES" id="2Hy-Aw-PqR">
-                                    <rect key="frame" x="40" y="16" width="23" height="24"/>
+                                <button toolTip="Remove selected UTI" verticalHuggingPriority="750" id="2Hy-Aw-PqR">
+                                    <rect key="frame" x="40" y="15" width="23" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="DCb-41-Zan">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1834,7 +1833,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button misplaced="YES" id="11326">
+                    <button id="11326">
                         <rect key="frame" x="30" y="152" width="208" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <string key="toolTip">Check here for the script to received dropped text snippets or text fed in through the Mac OS X Services API.  Your script can access the text by reading STDIN.</string>
@@ -1843,7 +1842,7 @@ DQ
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <button misplaced="YES" id="Rqa-SX-VXX">
+                    <button id="Rqa-SX-VXX">
                         <rect key="frame" x="270" y="244" width="215" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Register as URI scheme handler" bezelStyle="regularSquare" imagePosition="left" inset="2" id="c4L-RU-wrs">
@@ -1854,7 +1853,7 @@ DQ
                             <action selector="registerAsURIHandlerClicked:" target="1364" id="Sfa-PI-hIx"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="11530">
+                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11530">
                         <rect key="frame" x="30" y="190" width="208" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Lets the app receive dragged and dropped text snippets which are passed to the script via STDIN." id="11531">
@@ -1863,7 +1862,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="11463">
+                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11463">
                         <rect key="frame" x="218" y="530" width="301" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Lets the app receive opened or dropped files which are then passed on to the script as path arguments." id="11464">
@@ -1872,7 +1871,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="ccv-Az-KcH">
+                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="ccv-Az-KcH">
                         <rect key="frame" x="30" y="85" width="208" height="56"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="vT3-3g-DIA">
@@ -1882,7 +1881,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <box horizontalHuggingPriority="750" misplaced="YES" boxType="separator" id="16t-bv-pal">
+                    <box horizontalHuggingPriority="750" boxType="separator" id="16t-bv-pal">
                         <rect key="frame" x="242" y="85" width="5" height="175"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
@@ -2192,7 +2191,7 @@ DQ
                 <outlet property="delegate" destination="1418" id="11320"/>
             </connections>
         </menu>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="2063" userLabel="Text Settings Window">
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="2063" userLabel="Text Settings Window">
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="382" y="365" width="470" height="215"/>
@@ -2289,19 +2288,21 @@ DQ
                     <scrollView toolTip="Font and text size preview" focusRingType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="2075">
                         <rect key="frame" x="212" y="67" width="238" height="115"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" copiesOnScroll="NO" id="9QH-6m-7Zp">
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="9QH-6m-7Zp">
                             <rect key="frame" x="1" y="1" width="221" height="113"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" id="2078">
                                     <rect key="frame" x="0.0" y="0.0" width="221" height="113"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <size key="minSize" width="221" height="113"/>
                                     <size key="maxSize" width="454" height="10000000"/>
                                     <attributedString key="textStorage">
                                         <fragment content="The quick brown fox jumped over the lazy dog.">
                                             <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <font key="NSFont" metaFont="label"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
                                                     <tabStops>
@@ -2406,10 +2407,9 @@ DQ
                                             </attributes>
                                         </fragment>
                                     </attributedString>
-                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="11091">
                             <rect key="frame" x="-100" y="-100" width="227" height="15"/>
@@ -2488,7 +2488,7 @@ DQ
             </subviews>
             <point key="canvasLocation" x="80" y="357"/>
         </customView>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="10161" userLabel="Status Item Settings Window">
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="10161" userLabel="Status Item Settings Window">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="382" y="411" width="493" height="168"/>
@@ -2539,7 +2539,7 @@ DQ
                         <rect key="frame" x="17" y="50" width="460" height="114"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="f0v-RJ-lvM">
-                            <rect key="frame" x="2" y="2" width="456" height="97"/>
+                            <rect key="frame" x="3" y="3" width="454" height="96"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="10200">
@@ -2556,7 +2556,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="Title" drawsBackground="YES" id="11058">
                                         <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
@@ -2602,7 +2602,7 @@ DQ
                                     </connections>
                                 </button>
                                 <popUpButton toolTip="Set status item display style" verticalHuggingPriority="750" id="10800">
-                                    <rect key="frame" x="94" y="54" width="124" height="26"/>
+                                    <rect key="frame" x="94" y="53" width="124" height="26"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="push" title="Text" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" selectedItem="10803" id="11060">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -2619,7 +2619,7 @@ DQ
                                     </connections>
                                 </popUpButton>
                                 <button toolTip="Check here if you want menu items displayed in the system font rather than the font specified in Text Settings" id="RGs-kk-3Zk">
-                                    <rect key="frame" x="22" y="18" width="189" height="30"/>
+                                    <rect key="frame" x="22" y="17" width="189" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Use system font for output" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Bu4-Zq-VsS">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2627,7 +2627,7 @@ DQ
                                     </buttonCell>
                                 </button>
                                 <button hidden="YES" toolTip="Check here if your status item icon is a black and white image that can be used as an invertable template." id="QPU-w3-kS4">
-                                    <rect key="frame" x="288" y="24" width="120" height="18"/>
+                                    <rect key="frame" x="288" y="23" width="120" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Use as template" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Um1-cc-r8p">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2644,7 +2644,7 @@ DQ
             </view>
             <point key="canvasLocation" x="-376" y="-438"/>
         </window>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="11185" userLabel="Progress Dialog">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="11185" userLabel="Progress Dialog">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="157" y="388" width="398" height="93"/>
@@ -2678,25 +2678,24 @@ DQ
                 </subviews>
             </view>
         </window>
-        <window title="Platypus Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="Platypus Preferences" animationBehavior="default" id="11370" userLabel="Preferences Window">
+        <window title="Platypus Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="Platypus Preferences" animationBehavior="default" id="11370" userLabel="Preferences Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="546" y="264" width="333" height="385"/>
+            <rect key="contentRect" x="546" y="264" width="313" height="420"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
-            <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="11371">
-                <rect key="frame" x="0.0" y="0.0" width="333" height="385"/>
+                <rect key="frame" x="0.0" y="0.0" width="313" height="420"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box titlePosition="noTitle" id="11372">
-                        <rect key="frame" x="17" y="57" width="299" height="310"/>
+                        <rect key="frame" x="17" y="56" width="279" height="346"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <view key="contentView" id="U5J-zA-DBb">
-                            <rect key="frame" x="2" y="2" width="295" height="306"/>
+                            <rect key="frame" x="3" y="3" width="273" height="340"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <button toolTip="Reveal Platypus-generated applications in the Finder once they've been created" id="11382">
-                                    <rect key="frame" x="113" y="90" width="131" height="21"/>
+                                    <rect key="frame" x="113" y="102" width="127" height="21"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <buttonCell key="cell" type="check" title="Reveal in Finder" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11432">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2707,7 +2706,7 @@ DQ
                                     </connections>
                                 </button>
                                 <button toolTip="Open Platypus-generated applications once they've been created" id="11381">
-                                    <rect key="frame" x="113" y="111" width="137" height="21"/>
+                                    <rect key="frame" x="113" y="125" width="127" height="21"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <buttonCell key="cell" type="check" title="Open application" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11433">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2718,7 +2717,7 @@ DQ
                                     </connections>
                                 </button>
                                 <popUpButton toolTip="Select your default text editor" verticalHuggingPriority="750" id="11386">
-                                    <rect key="frame" x="43" y="246" width="208" height="26"/>
+                                    <rect key="frame" x="30" y="275" width="211" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <popUpButtonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="11426" id="11412">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -2734,28 +2733,6 @@ DQ
                                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                 </menuItem>
                                                 <menuItem title="Built-In" id="11424"/>
-                                                <menuItem title="TextEdit" id="11422"/>
-                                                <menuItem title="TextMate" id="11417"/>
-                                                <menuItem title="SubEthaEdit" id="11423"/>
-                                                <menuItem title="Xcode" id="11416"/>
-                                                <menuItem title="BBEdit" id="11425"/>
-                                                <menuItem title="Sublime Text" id="11421"/>
-                                                <menuItem title="TextWrangler" id="11428"/>
-                                                <menuItem title="Smultron" id="11415"/>
-                                                <menuItem title="Coda 2" id="xQ9-x3-W8a"/>
-                                                <menuItem title="Textastic" id="9Ek-nA-ZMA"/>
-                                                <menuItem title="TextForge" id="11429"/>
-                                                <menuItem title="UltraEdit" id="yhX-q4-fXn"/>
-                                                <menuItem title="CodeRunner 2" id="GpM-GS-tk4"/>
-                                                <menuItem title="CotEditor" id="odr-CN-MRF"/>
-                                                <menuItem title="Atom" id="pW6-0a-QiL"/>
-                                                <menuItem title="Textastic" id="Tjx-4E-Kz0"/>
-                                                <menuItem title="MacVim" id="11420"/>
-                                                <menuItem title="Emacs" id="11419"/>
-                                                <menuItem title="Komodo Edit" id="11414"/>
-                                                <menuItem title="BlueFish" id="11418"/>
-                                                <menuItem title="Brackets" id="5DT-3a-Rc5"/>
-                                                <menuItem title="Visual Studio Code" id="Xcc-LV-k0h"/>
                                             </items>
                                             <connections>
                                                 <outlet property="delegate" destination="11195" id="xsX-In-c3s"/>
@@ -2771,7 +2748,7 @@ DQ
                                     </connections>
                                 </popUpButton>
                                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11385">
-                                    <rect key="frame" x="27" y="275" width="109" height="17"/>
+                                    <rect key="frame" x="30" y="304" width="109" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Editor" id="11430">
                                         <font key="font" metaFont="system"/>
@@ -2780,7 +2757,7 @@ DQ
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11391">
-                                    <rect key="frame" x="27" y="223" width="204" height="18"/>
+                                    <rect key="frame" x="30" y="246" width="210" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Bundle Identifier Prefix" id="11398">
                                         <font key="font" metaFont="system"/>
@@ -2789,11 +2766,11 @@ DQ
                                     </textFieldCell>
                                 </textField>
                                 <textField toolTip="This sets the prefix to the bundle identifier that is used by Mac OS X to uniquely identify applications." verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11392">
-                                    <rect key="frame" x="52" y="196" width="196" height="22"/>
+                                    <rect key="frame" x="32" y="218" width="206" height="22"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="11397">
                                         <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
@@ -2805,11 +2782,11 @@ DQ
                                     </connections>
                                 </textField>
                                 <textField toolTip="Set the default author name for Platypus-generated applications" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11393">
-                                    <rect key="frame" x="52" y="142" width="196" height="22"/>
+                                    <rect key="frame" x="32" y="161" width="206" height="22"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="11396">
                                         <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
@@ -2821,16 +2798,16 @@ DQ
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11394">
-                                    <rect key="frame" x="27" y="169" width="204" height="18"/>
+                                    <rect key="frame" x="30" y="185" width="210" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Author Name:" id="11395">
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Author" id="11395">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
                                 <button toolTip="Install/Uninstall Platypus Command Line Tool" verticalHuggingPriority="750" id="11389">
-                                    <rect key="frame" x="100" y="13" width="95" height="32"/>
+                                    <rect key="frame" x="78" y="13" width="115" height="32"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="11410">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2844,11 +2821,11 @@ Gw
                                     </connections>
                                 </button>
                                 <box verticalHuggingPriority="750" boxType="separator" id="11383">
-                                    <rect key="frame" x="22" y="78" width="251" height="5"/>
+                                    <rect key="frame" x="32" y="82" width="206" height="5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 </box>
                                 <textField toolTip="Command line tool status" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11384">
-                                    <rect key="frame" x="19" y="49" width="257" height="17"/>
+                                    <rect key="frame" x="30" y="52" width="210" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="11431">
                                         <font key="font" metaFont="system"/>
@@ -2857,23 +2834,23 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField toolTip="Command line tool status" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11380">
-                                    <rect key="frame" x="21" y="114" width="94" height="17"/>
+                                    <rect key="frame" x="30" y="127" width="83" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="On creation:" id="11434">
+                                    <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="On creation:" id="11434">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
                                 <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" minValue="16" maxValue="100" doubleValue="16" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="11388">
-                                    <rect key="frame" x="197" y="23" width="16" height="16"/>
+                                    <rect key="frame" x="194" y="22" width="16" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 </progressIndicator>
                             </subviews>
                         </view>
                     </box>
                     <button toolTip="Apply these settings" verticalHuggingPriority="750" id="11374">
-                        <rect key="frame" x="231" y="13" width="88" height="32"/>
+                        <rect key="frame" x="211" y="13" width="88" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="11377">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2905,7 +2882,7 @@ Gw
             <connections>
                 <outlet property="delegate" destination="11195" id="WfW-85-Fo4"/>
             </connections>
-            <point key="canvasLocation" x="88.5" y="290.5"/>
+            <point key="canvasLocation" x="171.5" y="206"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
