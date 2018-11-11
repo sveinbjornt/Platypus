@@ -166,10 +166,9 @@
         NSString *tooltipString = [NSString stringWithFormat:@"%lu item%@ (%llu bytes)", (unsigned long)[files count], pluralS, size];
         _totalSizeOfFiles = size;
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
-        
         //run UI updates on main thread
         dispatch_async(dispatch_get_main_queue(), ^(void){
+            [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION object:nil];
             [bundleSizeTextField setStringValue:itemsSizeString];
             [bundleSizeTextField setToolTip:tooltipString];
         });
