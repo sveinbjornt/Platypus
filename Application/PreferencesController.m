@@ -37,28 +37,6 @@
 #import "NSBundle+Templates.h"
 #import "PlatypusAppSpec.h"
 
-#define EXTERNAL_EDITORS \
-@[@"TextEdit", \
-@"TextMate", \
-@"Sublime Text", \
-@"TextWrangler", \
-@"BBEdit", \
-@"SubEthaEdit", \
-@"Smultron", \
-@"Coda 2", \
-@"Textastic", \
-@"TextForge", \
-@"UltraEdit", \
-@"CodeRunner 2", \
-@"CotEditor", \
-@"Atom", \
-@"MacVim", \
-@"Emacs", \
-@"Komodo Edit", \
-@"BlueFish", \
-@"Brackets", \
-@"Visual Studio Code"]
-
 @interface PreferencesController()
 {
     IBOutlet NSPopUpButton *defaultEditorPopupButton;
@@ -87,12 +65,6 @@
     [button setImage:[NSImage imageNamed:@"Preferences"]];
     
     [self updateCLTStatus];
-
-    for (NSString *editorName in EXTERNAL_EDITORS) {
-        NSMenuItem *item = [[NSMenuItem alloc] init];
-        [item setTitle:editorName];
-        [[defaultEditorPopupButton menu] addItem:item];
-    }
     
     // we lazily fetch icons for editor apps in Editors menu
     static dispatch_once_t predicate;
@@ -101,6 +73,22 @@
     });
     
     [super showWindow:sender];
+}
+
+- (void)clearNonInstalledEditorItems {
+    NSMutableArray *toDiscard = [[NSMutableArray alloc] init];
+    NSMenu *menu = [defaultEditorPopupButton menu];
+    for (NSMenuItem *item in [menu itemArray]) {
+        if ([menu indexOfItem:item] < 2 || [[item title] isEqualToString:DEFAULT_EDITOR] ||
+            [WORKSPACE fullPathForApplication:[item title]]) {
+            continue;
+        }
+        [toDiscard addObject:item];
+    }
+    
+    for (NSMenuItem *item in toDiscard) {
+        [menu removeItem:item];
+    }
 }
 
 - (void)setIconsForEditorMenu {
@@ -158,12 +146,22 @@
         // this only needs to happen once
         static dispatch_once_t predicate;
         dispatch_once(&predicate, ^{
+            [self clearNonInstalledEditorItems];
             [self setIconsForEditorMenu];
         });
     }
 }
 
 #pragma mark - Interface actions
+
+- (void)controlTextDidChange:(NSNotification *)aNotification {
+    NSString *str = [defaultBundleIdentifierTextField stringValue];
+    NSString *reverseDNSRegEx = @"^[A-Za-z]{2,6}((?!-)\\.[A-Za-z0-9-]{1,63}(?<!-))+\\.$";
+    NSPredicate *test = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", reverseDNSRegEx];
+    BOOL valid = [test evaluateWithObject:str];
+    NSColor *col = valid ? [NSColor controlTextColor] : [NSColor redColor];
+    [defaultBundleIdentifierTextField setTextColor:col];
+}
 
 - (IBAction)applyPrefs:(id)sender {
     //make sure bundle identifier ends with a '.'

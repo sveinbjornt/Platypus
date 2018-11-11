@@ -270,7 +270,7 @@
 #pragma mark - Misc
 
 - (BOOL)openPathInDefaultBrowser:(NSString *)path {
-    NSURL *url = [NSURL URLWithString:@"http://"];
+    NSURL *url = [NSURL URLWithString:@"http://somedomain.com"];
     NSURL *appURL = [[NSWorkspace sharedWorkspace] URLForApplicationToOpenURL:url];
     NSString *appPath = [appURL path];
     return [[NSWorkspace sharedWorkspace] openFile:path withApplication:appPath];

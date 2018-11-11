@@ -401,8 +401,8 @@
     
     // we begin by making sure destination path ends in .app
     NSString *appPath = destination;
-    if (![appPath hasSuffix:@".app"]) {
-        appPath = [appPath stringByAppendingString:@".app"];
+    if (![appPath hasSuffix:APPBUNDLE_SUFFIX]) {
+        appPath = [appPath stringByAppendingString:APPBUNDLE_SUFFIX];
     }
     
     // create spec from controls
@@ -711,15 +711,15 @@
         [editScriptButton setEnabled:exists];
         [revealScriptButton setEnabled:exists];
         
-        //enable/disable create app button
+        // Enable/disable create app button
         [createAppButton setEnabled:(validName && exists)];
     }
     if ([aNotification object] == appNameTextField) {
-        //update identifier
+        // Update identifier
         [bundleIdentifierTextField setStringValue:[PlatypusAppSpec bundleIdentifierForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES]];
     }
     
-    //interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
+    // Interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
     if (aNotification == nil || [aNotification object] == interpreterPathTextField) {
         [self selectScriptTypeBasedOnInterpreter];
         NSColor *textColor = ([FILEMGR fileExistsAtPath:[interpreterPathTextField stringValue] isDirectory:&isDir] && !isDir) ? [NSColor controlTextColor] : [NSColor redColor];

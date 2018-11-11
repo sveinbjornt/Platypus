@@ -152,7 +152,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Reveal script in Finder" verticalHuggingPriority="750" id="429">
-                        <rect key="frame" x="391" y="392" width="79" height="28"/>
+                        <rect key="frame" x="383" y="392" width="79" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="🔍 Reveal" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10960">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -304,7 +304,7 @@ DQ
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Edit text settings" verticalHuggingPriority="750" id="2061">
-                        <rect key="frame" x="427" y="358" width="95" height="28"/>
+                        <rect key="frame" x="427" y="358" width="93" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Text Settings" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10980">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -390,7 +390,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Open script with default editor" verticalHuggingPriority="750" id="324">
-                        <rect key="frame" x="468" y="392" width="62" height="28"/>
+                        <rect key="frame" x="458" y="392" width="62" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="✎ Edit" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10953">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -472,7 +472,7 @@ DQ
                         </scroller>
                     </scrollView>
                     <button toolTip="Select a script to load" verticalHuggingPriority="750" id="316">
-                        <rect key="frame" x="527" y="389" width="123" height="32"/>
+                        <rect key="frame" x="515" y="389" width="135" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Select Script..." bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="10951">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -506,7 +506,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Create and load a new script" verticalHuggingPriority="750" id="427">
-                        <rect key="frame" x="333" y="392" width="60" height="28"/>
+                        <rect key="frame" x="327" y="392" width="60" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="+ New" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="10959">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -684,7 +684,7 @@ DQ
                 <outlet property="window" destination="10161" id="3ei-3Z-Pey"/>
             </connections>
         </customObject>
-        <customObject id="11195" userLabel="PrefsController" customClass="PreferencesController">
+        <customObject id="11195" userLabel="PreferencesController" customClass="PreferencesController">
             <connections>
                 <outlet property="CLTStatusTextField" destination="11384" id="11445"/>
                 <outlet property="defaultAuthorTextField" destination="11393" id="11450"/>
@@ -1905,7 +1905,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="JcD-yT-ov7">
                             <rect key="frame" x="1" y="0.0" width="209" height="120"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11089" id="1405" customClass="NSResponderNotifyingTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="209" height="103"/>
@@ -1957,7 +1957,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="AXu-6W-m9d">
                             <rect key="frame" x="1" y="0.0" width="209" height="120"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11254" id="11257" customClass="NSResponderNotifyingTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="209" height="103"/>
@@ -2733,6 +2733,27 @@ DQ
                                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                 </menuItem>
                                                 <menuItem title="Built-In" id="11424"/>
+                                                <menuItem title="TextEdit" id="86E-wh-Cce"/>
+                                                <menuItem title="TextMate" id="QkE-lK-RT8"/>
+                                                <menuItem title="Sublime Text" id="BTg-sx-ctu"/>
+                                                <menuItem title="TextWrangler" id="Vf3-jx-a1X"/>
+                                                <menuItem title="Atom" id="PNr-Ds-bF3"/>
+                                                <menuItem title="BBEdit" id="Adw-8Y-eiU"/>
+                                                <menuItem title="SubEthaEdit" id="QVL-ry-73C"/>
+                                                <menuItem title="Smultron" id="8EO-xU-roo"/>
+                                                <menuItem title="Coda 2" id="1Ui-tR-orb"/>
+                                                <menuItem title="Textastic" id="4Lh-n2-Cg2"/>
+                                                <menuItem title="TextForge" id="m2e-MS-sxG"/>
+                                                <menuItem title="UltraEdit" id="sD9-1L-tez"/>
+                                                <menuItem title="CodeRunner 2" id="FBd-jV-P25"/>
+                                                <menuItem title="CotEditor" id="Tes-Dv-gLb"/>
+                                                <menuItem title="Xcode" id="8AZ-ja-boi"/>
+                                                <menuItem title="MacVim" id="QEb-Ni-LWo"/>
+                                                <menuItem title="Emacs" id="AhQ-1p-4o7"/>
+                                                <menuItem title="Komodo Edit" id="Mb6-gC-KUM"/>
+                                                <menuItem title="BlueFish" id="vea-0e-FlJ"/>
+                                                <menuItem title="Brackets" id="29A-id-p3F"/>
+                                                <menuItem title="Visual Studio Code" id="FbG-7R-P1N"/>
                                             </items>
                                             <connections>
                                                 <outlet property="delegate" destination="11195" id="xsX-In-c3s"/>
@@ -2779,6 +2800,7 @@ DQ
                                                 <bool key="NSValidatesImmediately" value="YES"/>
                                             </dictionary>
                                         </binding>
+                                        <outlet property="delegate" destination="11195" id="XYf-rp-5xE"/>
                                     </connections>
                                 </textField>
                                 <textField toolTip="Set the default author name for Platypus-generated applications" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11393">

@@ -79,6 +79,7 @@
 #define CMDLINE_ARG_SEPARATOR       @"|"
 
 #define IBTOOL_PATH                 [NSString stringWithFormat:@"%@/Contents/Developer/usr/bin/ibtool", [WORKSPACE fullPathForApplication:@"Xcode"]]
+#define APPBUNDLE_SUFFIX            @".app"
 
 #define DEFAULT_TEXT_FONT_NAME      @"Monaco"
 #define DEFAULT_TEXT_FONT_SIZE      13.0

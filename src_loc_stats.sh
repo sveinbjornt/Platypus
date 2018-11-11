@@ -26,9 +26,9 @@ SCRIPTEXEC_IMPL=`find ScriptExec -name \*.\[m\] -exec cat {} \; | wc -l | sed -e
 echo "${SCRIPTEXEC_TOTAL} (${SCRIPTEXEC_HEAD}/${SCRIPTEXEC_IMPL})"
 
 echo "LOC Command Line Tool"
-CMDLINETOOL_TOTAL=`find CommandLineTool -name \*.\[m\|h\] -exec cat {} \; | wc -l`
-CMDLINETOOL_HEAD=`find CommandLineTool -name \*.\[h\] -exec cat {} \; | wc -l | sed -e 's/^[ \t]*//'`
-CMDLINETOOL_IMPL=`find CommandLineTool -name \*.\[m\] -exec cat {} \; | wc -l | sed -e 's/^[ \t]*//'`
+CMDLINETOOL_TOTAL=`find CLT -name \*.\[m\|h\] -exec cat {} \; | wc -l`
+CMDLINETOOL_HEAD=`find CLT -name \*.\[h\] -exec cat {} \; | wc -l | sed -e 's/^[ \t]*//'`
+CMDLINETOOL_IMPL=`find CLT -name \*.\[m\] -exec cat {} \; | wc -l | sed -e 's/^[ \t]*//'`
 echo "${CMDLINETOOL_TOTAL} (${CMDLINETOOL_HEAD}/${CMDLINETOOL_IMPL})"
 
 echo "LOC Shared"

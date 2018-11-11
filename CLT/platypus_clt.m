@@ -26,18 +26,13 @@
  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
- */
+*/
 
 /*
- Support files required for this program are defined in Common.h
- */
+    Support files required for this program are defined in Common.h
+*/
 
 #import <Cocoa/Cocoa.h>
-
-#import "Common.h"
-#import "PlatypusAppSpec.h"
-#import "NSWorkspace+Additions.h"
-
 #import <stdio.h>
 #import <unistd.h>
 #import <stdlib.h>
@@ -48,6 +43,10 @@
 #import <fcntl.h>
 #import <errno.h>
 #import <getopt.h>
+
+#import "Common.h"
+#import "PlatypusAppSpec.h"
+#import "NSWorkspace+Additions.h"
 
 static NSString *ReadStandardInputToFile(void);
 static NSString *MakeAbsolutePath(NSString *path);
@@ -65,7 +64,7 @@ static struct option long_options[] = {
 
     {"load-profile",              required_argument,  0, 'P'},
     {"name",                      required_argument,  0, 'a'},
-    {"output-type",               required_argument,  0, 'o'}, // backwards compatibility!
+    {"output-type",               required_argument,  0, 'o'}, // Backwards compatibility!
     {"interface-type",            required_argument,  0, 'o'},
     {"interpreter",               required_argument,  0, 'p'},
 
@@ -102,9 +101,9 @@ static struct option long_options[] = {
 
     {"xml-property-lists",        no_argument,        0, 'x'},
     {"overwrite",                 no_argument,        0, 'y'},
-    {"force",                     no_argument,        0, 'y'}, // backwards compatibility!
+    {"force",                     no_argument,        0, 'y'}, // Backwards compatibility!
     {"symlink",                   no_argument,        0, 'd'},
-    {"development-version",       no_argument,        0, 'd'}, // backwards compatibility!
+    {"development-version",       no_argument,        0, 'd'}, // Backwards compatibility!
     {"optimize-nib",              no_argument,        0, 'l'},
     {"help",                      no_argument,        0, 'h'},
     {CMDLINE_VERSION_ARG_FLAG,    no_argument,        0, 'v'},
@@ -141,48 +140,48 @@ int main(int argc, const char *argv[]) {
         
         switch (optch) {
 
-            // create a profile instead of an app
+            // Create a profile instead of an app
             case 'O':
             {
                 createProfile = TRUE;
             }
                 break;
-
-            // load profile
+            
+            // Load profile
             case 'P':
             {
                 NSString *profilePath = MakeAbsolutePath(@(optarg));
                 
-                // error if profile doesn't exists, warn if w/o profile suffix
+                // Error if profile doesn't exists, warn if w/o profile suffix
                 if (![fm fileExistsAtPath:profilePath]) {
                     NSPrintErr(@"Error: No profile found at path '%@'.", profilePath);
                     exit(EXIT_FAILURE);
                 }
                 
-                // read profile dictionary from file
+                // Read profile dictionary from file
                 NSDictionary *profileDict = [NSDictionary dictionaryWithContentsOfFile:profilePath];
                 if (profileDict == nil) {
                     NSPrintErr(@"Error loading profile '%@'.", profilePath);
                     exit(EXIT_FAILURE);
                 }
                 
-                // warn if created by different version
+                // Warn if created by different version
                 if (![profileDict[AppSpecKey_Creator] isEqualToString:PROGRAM_CREATOR_STAMP]) {
                     NSPrintErr(@"Warning: Profile created with different version of %@.", PROGRAM_NAME);
                 }
                 
-                // add entries in profile to app properties, overwriting any former values
+                // Add entries in profile to app properties, overwriting any former values
                 [properties addEntriesFromDictionary:profileDict];
                 loadedProfile = TRUE;
             }
                 break;
-
-            // app name
+            
+            // App name
             case 'a':
                 properties[AppSpecKey_Name] = @(optarg);
                 break;
-
-            // bundled file -- flag can be passed multiple times to include more than one bundled file
+            
+            // Bundled file -- flag can be passed multiple times to include more than one bundled file
             // or alternately, multiple |-separated paths can be passed in a single argument
             case 'f':
             {
@@ -192,13 +191,13 @@ int main(int argc, const char *argv[]) {
                 for (NSString *filePath in paths) {
                     NSString *fp = MakeAbsolutePath(filePath);
                     
-                    // make sure file exists
+                    // Make sure file exists
                     if ([fm fileExistsAtPath:fp] == NO) {
                         NSPrintErr(@"Error: No file exists at path '%@'", fp);
                         exit(EXIT_FAILURE);
                     }
 
-                    // add to bundled files array in spec
+                    // Add to bundled files array in spec
                     if (properties[AppSpecKey_BundledFiles] == nil) {
                         properties[AppSpecKey_BundledFiles] = [NSMutableArray array];
                     }
@@ -206,8 +205,8 @@ int main(int argc, const char *argv[]) {
                 }
             }
                 break;
-                
-            // interface type
+            
+            // Interface type
             case 'o':
             {
                 NSString *interfaceType = @(optarg);
@@ -219,8 +218,8 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_InterfaceType] = @(optarg);
             }
                 break;
-
-            // background color of text
+            
+            // Background color of text
             case 'b':
             {
                 NSString *hexColorStr = @(optarg);
@@ -231,8 +230,8 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_TextBackgroundColor] = @(optarg);
             }
                 break;
-                
-            // foreground color of text
+            
+            // Foreground color of text
             case 'g':
             {
                 NSString *hexColorStr = @(optarg);
@@ -243,8 +242,8 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_TextColor] = @(optarg);
             }
                 break;
-                
-            // font and size of text
+            
+            // Font and size of text
             case 'n':
             {
                 NSString *fontStr = @(optarg);
@@ -253,7 +252,7 @@ int main(int argc, const char *argv[]) {
                     NSPrintErr(@"Error: '%@' is not a valid font.  Must be font name followed by size, e.g. 'Monaco 10'", fontStr);
                     exit(EXIT_FAILURE);
                 }
-                // parse string for font name and size, and set it in properties
+                // Parse string for font name and size, and set it in properties
                 float fontSize = [[words lastObject] floatValue];
                 [words removeLastObject];
                 NSString *fontName = [words componentsJoinedByString:@" "];
@@ -261,13 +260,13 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_TextSize] = @(fontSize);
             }
                 break;
-                
-            // author
+            
+            // Author
             case 'u':
                 properties[AppSpecKey_Author] = @(optarg);
                 break;
-                
-            // icon
+            
+            // Icon
             case 'i':
             {
                 NSString *iconPath = @(optarg);
@@ -290,8 +289,8 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_IconPath] = iconPath;
             }
                 break;
-                
-            // document icon
+            
+            // Document icon
             case 'Q':
             {
                 NSString *iconPath = @(optarg);
@@ -314,8 +313,8 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_DocIconPath] = iconPath;
             }
                 break;
-                
-            // interpreter
+            
+            // Interpreter
             case 'p':
             {
                 NSString *interpreterPath = MakeAbsolutePath(@(optarg));
@@ -326,63 +325,69 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_InterpreterPath] = interpreterPath;
             }
                 break;
-                
-            // version
+            
+            // Version
             case 'V':
                 properties[AppSpecKey_Version] = @(optarg);
                 break;
-                
-            // identifier
+            
+            // Bundle identifier
             case 'I':
+            {
+                NSString *identifier = @(optarg);
+                if (!BundleIdentifierIsValid(identifier)) {
+                    NSPrintErr(@"Warning: '%@' is not a valid bundle identifier.", identifier);
+                }
                 properties[AppSpecKey_Identifier] = @(optarg);
+            }
                 break;
             
-            // run with admin privileges
+            // Run with root privileges
             case 'A':
                 properties[AppSpecKey_Authenticate] = @YES;
                 break;
             
-            // accept files
+            // Accept files
             case 'D':
                 properties[AppSpecKey_Droppable] = @YES;
                 properties[AppSpecKey_AcceptFiles] = @YES;
                 break;
-                
-            // accept text
+            
+            // Accept text
             case 'F':
                 properties[AppSpecKey_Droppable] = @YES;
                 properties[AppSpecKey_AcceptText] = @YES;
                 break;
             
-            // provide service
+            // Provide service
             case 'N':
                 properties[AppSpecKey_Service] = @YES;
                 break;
             
-            // run in background
+            // Run in background
             case 'B':
                 properties[AppSpecKey_RunInBackground] = @YES;
                 break;
             
-            // remain running
+            // Remain running
             case 'R':
                 properties[AppSpecKey_RemainRunning] = @NO;
                 break;
             
-            // write plists in xml format
+            // Write plists in xml format
             case 'x':
                 properties[AppSpecKey_XMLPlistFormat] = @YES;
                 break;
-                
-            // suffixes
+            
+            // Suffixes
             case 'X':
             {
                 NSString *suffixesStr = @(optarg);
                 properties[AppSpecKey_Suffixes] = [suffixesStr componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
             }
                 break;
-                
-            // uniform type identifiers
+            
+            // Uniform Type Identifiers
             case 'T':
             {
                 NSString *utisStr = @(optarg);
@@ -398,13 +403,13 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_URISchemes] = [uriSchemes componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
             }
                 break;
-                
-            // prompt for file on startup
+            
+            // Prompt for file on startup
             case 'Z':
                 properties[AppSpecKey_PromptForFile] = @YES;
                 break;
-                
-            // arguments for interpreter
+            
+            // Arguments for interpreter
             case 'G':
             {
                 NSString *parametersString = @(optarg);
@@ -412,8 +417,8 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_InterpreterArgs] = parametersArray;
             }
                 break;
-                
-            // arguments for script
+            
+            // Arguments for script
             case 'C':
             {
                 NSString *parametersString = @(optarg);
@@ -421,23 +426,23 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_ScriptArgs] = parametersArray;
             }
                 break;
-                
-            // overwrite mode
+            
+            // Overwrite mode
             case 'y':
                 properties[AppSpecKey_Overwrite] = @YES;
                 break;
-                
-            // development version, symlink to script
+            
+            // Development version, symlink to script
             case 'd':
                 properties[AppSpecKey_SymlinkFiles] = @YES;
                 break;
-                
-            // optimize nib files by stripping/compiling
+            
+            // Optimize nib files by stripping/compiling
             case 'l':
                 properties[AppSpecKey_StripNib] = @YES;
                 break;
-                
-            // set display kind for Status Menu interface
+            
+            // Set display kind for Status Menu interface
             case 'K':
             {
                 NSString *kind = @(optarg);
@@ -449,8 +454,8 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_StatusItemDisplayType] = kind;
             }
                 break;
-                
-            // set title of status item for Status Menu interface
+            
+            // Set title of status item for Status Menu interface
             case 'Y':
             {
                 NSString *title = @(optarg);
@@ -461,18 +466,18 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_StatusItemTitle] = title;
             }
                 break;
-                
-            // set if Status Menu uses system font
+            
+            // Set if Status Menu uses system font
             case 'c':
                 properties[AppSpecKey_StatusItemUseSysfont] = @YES;
                 break;
             
-            // icon is template: process Status Menu item icon with AppKit
+            // Icon is template: process Status Menu item icon with AppKit
             case 'q':
                 properties[AppSpecKey_StatusItemIconIsTemplate] = @YES;
                 break;
-                
-            // set icon image of status item for Status Menu interface
+            
+            // Set icon image of status item for Status Menu interface
             case 'L':
             {
                 NSString *iconPath = MakeAbsolutePath(@(optarg));
@@ -481,7 +486,7 @@ int main(int argc, const char *argv[]) {
                     exit(EXIT_FAILURE);
                 }
                 
-                // read image from file
+                // Read image from file
                 NSImage *iconImage = [[NSImage alloc] initWithContentsOfFile:iconPath];
                 if (iconImage == nil) {
                     NSPrintErr(@"Error: Unable to get image from file '%@'", iconPath);
@@ -490,16 +495,16 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_StatusItemIcon] = [iconImage TIFFRepresentation];
             }
                 break;
-                
-            // print version
+            
+            // Print version
             case 'v':
             {
                 PrintVersion();
                 exit(EXIT_SUCCESS);
             }
                 break;
-                
-            // print help with list of options
+            
+            // Print help with list of options
             case 'h':
             default:
             {
@@ -510,14 +515,14 @@ int main(int argc, const char *argv[]) {
         }
     }
     
-    // we always need one more argument, either script file path or app name
+    // We always need one more argument, either script file path or app name
     if (argc - optind < 1) {
         NSPrintErr(@"Error: Missing argument");
         PrintHelp();
         exit(EXIT_FAILURE);
     }
     
-    // check if there are any duplicate filenames in bundled files
+    // Check if there are any duplicate filenames in bundled files
     NSArray *duplicateFileNames = FindDuplicateFileNames(properties[AppSpecKey_BundledFiles]);
     if ([duplicateFileNames count]) {
         NSPrintErr(@"Warning: Duplicate file names in bundled files. These may be overwritten: %@", [duplicateFileNames description]);
@@ -527,7 +532,7 @@ int main(int argc, const char *argv[]) {
     NSString *scriptPath = nil;
     NSString *destPath = nil;
     
-    // read remaining args as paths
+    // Read remaining args as paths
     NSMutableArray *remainingArgs = [NSMutableArray array];
     while (optind < argc) {
         NSString *argStr = @(argv[optind]);
@@ -542,7 +547,7 @@ int main(int argc, const char *argv[]) {
         BOOL printStdout = FALSE;
         destPath = remainingArgs[0];
         
-        // append .platypus suffix to destination file if not user-specified
+        // Append .platypus suffix to destination file if not user-specified
         if ([destPath isEqualToString:@"-"] ) {
             printStdout = TRUE;
         } else if (![destPath hasSuffix:@".platypus"]) {
@@ -550,7 +555,7 @@ int main(int argc, const char *argv[]) {
             destPath = [destPath stringByAppendingString:@".platypus"];
         }
         
-        // we then dump the profile dictionary to path and exit
+        // We then dump the profile dictionary to path and exit
         appSpec = [PlatypusAppSpec specWithDefaults];
         [appSpec addEntriesFromDictionary:properties];
         
@@ -559,11 +564,11 @@ int main(int argc, const char *argv[]) {
         exit(EXIT_SUCCESS);
     }
     
-    // if we loaded a profile, the first remaining arg is destination path, others ignored
+    // If we loaded a profile, the first remaining arg is destination path, others ignored
     if (loadedProfile) {
         destPath = remainingArgs[0];
-        if (![destPath hasSuffix:@".app"]) {
-            destPath = [destPath stringByAppendingString:@".app"];
+        if (![destPath hasSuffix:APPBUNDLE_SUFFIX]) {
+            destPath = [destPath stringByAppendingString:APPBUNDLE_SUFFIX];
         }
         appSpec = [PlatypusAppSpec specWithDefaults];
         [appSpec addEntriesFromDictionary:properties];
@@ -576,14 +581,14 @@ int main(int argc, const char *argv[]) {
             deleteScript = YES;
         }
     }
-    // if we're creating an app, first argument must be script path, second (optional) argument is destination
+    // If we're creating an app, first argument must be script path, second (optional) argument is destination
     else {
-        // get script path, generate default app name
+        // Get script path, generate default app name
         scriptPath = remainingArgs[0];
         
-        // a script path of "-" means read from STDIN
+        // A script path of "-" means read from STDIN
         if ([scriptPath isEqualToString:@"-"]) {
-            // read stdin, dump to temp file, set it as script path
+            // Read stdin, dump to temp file, set it as script path
             scriptPath = ReadStandardInputToFile();
             deleteScript = YES; // we get rid of it once the app has been created
         }
@@ -601,7 +606,7 @@ int main(int argc, const char *argv[]) {
         appSpec[AppSpecKey_DestinationPath] = destPath;
         [appSpec addEntriesFromDictionary:properties];
         
-        // if author name is supplied but no identifier, we create a default identifier with author name as clue
+        // If author name is supplied but no identifier, we create a default identifier with author name as clue
         if (properties[AppSpecKey_Author] && properties[AppSpecKey_Identifier] == nil) {
             NSString *identifier = [PlatypusAppSpec bundleIdentifierForAppName:appSpec[AppSpecKey_Name]
                                                                     authorName:properties[AppSpecKey_Author]
@@ -611,12 +616,12 @@ int main(int argc, const char *argv[]) {
             }
         }
         
-        // if there's another argument after the script path, it means a destination path has been specified
+        // If there's another argument after the script path, it means a destination path has been specified
         if ([remainingArgs count] > 1) {
             destPath = remainingArgs[1];
             // insist on .app suffix
-            if ([destPath hasSuffix:@".app"] == NO) {
-                destPath = [destPath stringByAppendingString:@".app"];
+            if (![destPath hasSuffix:APPBUNDLE_SUFFIX]) {
+                destPath = [destPath stringByAppendingString:APPBUNDLE_SUFFIX];
             }
             appSpec[AppSpecKey_DestinationPath] = destPath;
         }
@@ -628,15 +633,13 @@ int main(int argc, const char *argv[]) {
         exit(EXIT_FAILURE);
     }
     
-    //NSLog(@"%@", [appSpec description]);
-    
-    // create the app from spec
+    // Create the app from spec
     if ([appSpec verify] == NO || [appSpec create] == NO) {
         NSPrintErr(@"Error: %@", [appSpec error]);
         exit(EXIT_FAILURE);
     }
     
-    // if script was a temporary file created from stdin, we remove it
+    // If script was a temporary file created from stdin, we remove it
     if (deleteScript) {
         [FILEMGR removeItemAtPath:scriptPath error:nil];
     }
@@ -647,21 +650,21 @@ int main(int argc, const char *argv[]) {
 #pragma mark -
 
 static NSString *ReadStandardInputToFile(void) {
-    // read data
+    // Read data
     NSData *inData = [[NSFileHandle fileHandleWithStandardInput] readDataToEndOfFile];
     if (inData == nil) {
         NSPrintErr(@"Empty buffer, aborting.");
         exit(EXIT_FAILURE);
     }
     
-    // convert to string
+    // Convert to string
     NSString *inStr = [[NSString alloc] initWithData:inData encoding:DEFAULT_TEXT_ENCODING];
     if (inStr == nil) {
         NSPrintErr(@"Cannot handle non-text data.");
         exit(EXIT_FAILURE);
     }
     
-    // write to temp file
+    // Write to temp file
     NSString *tmpFilePath = [WORKSPACE createTempFileWithContents:inStr];;
     return tmpFilePath;
 }
@@ -752,7 +755,7 @@ See 'man platypus' or %@ for further details.", PROGRAM_MANPAGE_URL);
 
 #pragma mark -
 
-// print to stdout
+// Print to stdout
 static void NSPrint(NSString *format, ...) {
     va_list args;
     
@@ -763,7 +766,7 @@ static void NSPrint(NSString *format, ...) {
     fprintf(stdout, "%s\n", [string UTF8String]);
 }
 
-// print to stderr
+// Print to stderr
 static void NSPrintErr(NSString *format, ...) {
     va_list args;
     

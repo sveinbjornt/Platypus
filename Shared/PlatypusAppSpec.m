@@ -614,24 +614,20 @@
     
     // create dict
     NSMutableDictionary *infoPlist = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                      
-                                      @"en",                                    @"CFBundleDevelopmentRegion",
-                                      self[AppSpecKey_Name],                    @"CFBundleExecutable",
-                                      self[AppSpecKey_Name],                    @"CFBundleName",
-                                      copyrightString,                          @"NSHumanReadableCopyright",
-                                      self[AppSpecKey_Version],                 @"CFBundleVersion",
-                                      self[AppSpecKey_Version],                 @"CFBundleShortVersionString",
-                                      self[AppSpecKey_Identifier],              @"CFBundleIdentifier",
-                                      self[AppSpecKey_RunInBackground],         @"LSUIElement",
-                                      @"6.0",                                   @"CFBundleInfoDictionaryVersion",
-                                      @"APPL",                                  @"CFBundlePackageType",
-                                      @"????",                                  @"CFBundleSignature",
-                                      @"MainMenu",                              @"NSMainNibFile",
-                                      PROGRAM_MIN_SYS_VERSION,                  @"LSMinimumSystemVersion",
-                                      @"NSApplication",                         @"NSPrincipalClass",
-                                      @{@"NSAllowsArbitraryLoads": @YES},       @"NSAppTransportSecurity",
-                                      
-                                      nil];
+        @"en",                                  @"CFBundleDevelopmentRegion",
+        self[AppSpecKey_Name],                  @"CFBundleExecutable",
+        self[AppSpecKey_Name],                  @"CFBundleName",
+        copyrightString,                        @"NSHumanReadableCopyright",
+        @"1",                                   @"CFBundleVersion",
+        self[AppSpecKey_Version],               @"CFBundleShortVersionString",
+        self[AppSpecKey_Identifier],            @"CFBundleIdentifier",
+        self[AppSpecKey_RunInBackground],       @"LSUIElement",
+        @"6.0",                                 @"CFBundleInfoDictionaryVersion",
+        @"MainMenu",                            @"NSMainNibFile",
+        PROGRAM_MIN_SYS_VERSION,                @"LSMinimumSystemVersion",
+        @"NSApplication",                       @"NSPrincipalClass",
+        @{@"NSAllowsArbitraryLoads": @YES},     @"NSAppTransportSecurity",
+    nil];
     
     // add icon name if icon is set
     if (self[AppSpecKey_IconPath] != nil && [self[AppSpecKey_IconPath] isEqualToString:@""] == NO) {
@@ -722,7 +718,7 @@
 
 - (BOOL)verify {
     
-    if ([self[AppSpecKey_DestinationPath] hasSuffix:@"app"] == FALSE) {
+    if ([self[AppSpecKey_DestinationPath] hasSuffix:APPBUNDLE_SUFFIX] == FALSE) {
         _error = @"Destination must end with .app";
         return NO;
     }

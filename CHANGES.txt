@@ -25,12 +25,13 @@ For 5.3
     TODO: Fix issue with multiple AEOpen events for many opened files
 
     TODO: Create more automated tests for command line tool
-    TODO: Update Droplet interface screenshot
     TODO: Don't save Status Menu image as base64 in every Profile
     TODO: Fix bug where custom icns file for icon doesn't work
 
+    TODO: Update Droplet interface screenshot
+TODO: Validate default bundle identifier
     * Make Droplet window & others larger
-    * ScriptExec tries to make script executable (+x) on launch
+    * ScriptExec tries to make script executable (+x) on launch (solves issue with launchings apps from network-mounted volumes)
     * Removed buggy UTI validation in command line tool
     * Updated to support Mojave Dark Mode
     * Fixed issue with 16x16 document icons on non-retina displays
