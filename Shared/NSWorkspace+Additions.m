@@ -56,7 +56,7 @@
     // We'll sum up content size here:
     unsigned long long accumulatedSize = 0;
     
-    // prefetching some properties during traversal will speed up things a bit.
+    // Prefetching some properties during traversal will speed up things a bit.
     NSArray *prefetchedProperties = @[NSURLIsRegularFileKey,
                                       NSURLFileAllocatedSizeKey,
                                       NSURLTotalFileAllocatedSizeKey];
@@ -134,7 +134,7 @@
         return 0;
     }
     
-    // resolve if symlink
+    // Resolve if symlink
     NSDictionary *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:fileOrFolderPath error:nil];
     if (fileAttrs) {
         NSString *fileType = [fileAttrs fileType];
@@ -205,7 +205,7 @@
     char *tempFileNameCString = (char *)malloc(strlen(tempFileTemplateCString) + 1);
     strcpy(tempFileNameCString, tempFileTemplateCString);
     
-    // use mkstemp to expand template
+    // Use mkstemp to expand template
     int fileDescriptor = mkstemp(tempFileNameCString);
     if (fileDescriptor == -1) {
         free(tempFileNameCString);
@@ -215,15 +215,15 @@
     }
     close(fileDescriptor);
     
-    // create nsstring from the c-string temp path
+    // Create nsstring from the c-string temp path
     NSString *tempScriptPath = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:tempFileNameCString length:strlen(tempFileNameCString)];
     free(tempFileNameCString);
     
-    // write script to the temporary path
+    // Write script to the temporary path
     NSError *err;
     BOOL success = [contentStr writeToFile:tempScriptPath atomically:YES encoding:textEncoding error:&err];
     
-    // make sure writing it was successful
+    // Make sure writing it was successful
     if (!success || [[NSFileManager defaultManager] fileExistsAtPath:tempScriptPath] == FALSE) {
         NSLog(@"Erroring creating temp file '%@': %@", tempScriptPath, [err localizedDescription]);
         return nil;

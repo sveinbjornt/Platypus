@@ -186,7 +186,7 @@ int main(int argc, const char *argv[]) {
             case 'f':
             {
                 NSString *argStr = @(optarg);
-                NSArray OF_NSSTRING *paths = [argStr componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
+                NSArray <NSString *> *paths = [argStr componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
                 
                 for (NSString *filePath in paths) {
                     NSString *fp = MakeAbsolutePath(filePath);
@@ -619,7 +619,7 @@ int main(int argc, const char *argv[]) {
         // If there's another argument after the script path, it means a destination path has been specified
         if ([remainingArgs count] > 1) {
             destPath = remainingArgs[1];
-            // insist on .app suffix
+            // Insist on .app suffix
             if (![destPath hasSuffix:APPBUNDLE_SUFFIX]) {
                 destPath = [destPath stringByAppendingString:APPBUNDLE_SUFFIX];
             }

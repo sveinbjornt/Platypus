@@ -29,7 +29,7 @@
  */
 
 // PlatypusAppSpec is a wrapper class around an NSDictionary containing
-// all the information / specifications for creating a Platypus application.
+// all the information required to create a Platypus application.
 
 #import <Cocoa/Cocoa.h>
 

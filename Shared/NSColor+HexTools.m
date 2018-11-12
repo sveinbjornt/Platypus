@@ -42,12 +42,12 @@
     
     if (charStr != NULL) {
         NSScanner *scanner = [NSScanner scannerWithString:charStr];
-        (void)[scanner scanHexInt:&colorCode]; // ignore error
+        (void)[scanner scanHexInt:&colorCode]; // Ignore error
     }
     
     redByte = (unsigned char)(colorCode >> 16);
     greenByte = (unsigned char)(colorCode >> 8);
-    blueByte = (unsigned char)(colorCode); // masks off high bits
+    blueByte = (unsigned char)(colorCode); // Masks off high bits
     
     result = [NSColor colorWithCalibratedRed:(float)redByte / 0xff
                                        green:(float)greenByte / 0xff

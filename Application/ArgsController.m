@@ -35,11 +35,11 @@
 
 @interface ArgsController()
 {
-    // main window outlets
+    // Main window outlets
     IBOutlet NSButton *argsButton;
     IBOutlet NSTextField *interpreterTextField;
     
-    // args window outlets
+    // Args window outlets
     IBOutlet NSTextField *commandTextField;
     
     IBOutlet NSButton *interpreterArgsRemoveButton;
@@ -53,8 +53,8 @@
     IBOutlet NSMenu *scriptArgsContextualMenu;
     IBOutlet NSMenu *interpreterArgsContextualMenu;
     
-    NSMutableArray OF_NSSTRING *interpreterArgs;
-    NSMutableArray OF_NSSTRING *scriptArgs;
+    NSMutableArray <NSString *> *interpreterArgs;
+    NSMutableArray <NSString *> *scriptArgs;
 }
 
 - (IBAction)addInterpreterArg:(id)sender;
@@ -139,12 +139,12 @@
 
 - (void)constructCommandString {
     
-    // interpreter
+    // Interpreter
     NSDictionary *defaultAttrs = @{ NSForegroundColorAttributeName: [NSColor blackColor],
                                     NSBackgroundColorAttributeName: [NSColor whiteColor] };
     NSMutableAttributedString *cmdString = [[NSMutableAttributedString alloc] initWithString:[interpreterTextField stringValue] attributes:defaultAttrs];
     
-    // interpreter args
+    // Interpreter args
     for (int i = 0; i < [interpreterArgs count]; i++)
     {
         NSString *a = [NSString stringWithFormat:@" %@", interpreterArgs[i]];
@@ -169,7 +169,7 @@
     NSAttributedString *scriptString = [[NSAttributedString alloc] initWithString:@" yourScript " attributes:defaultAttrs];
     [cmdString appendAttributedString:scriptString];
     
-    // script args
+    // Script args
     for (int i = 0; i < [scriptArgs count]; i++)
     {
         NSString *a = [NSString stringWithFormat:@"%@ ", scriptArgs[i]];
@@ -190,7 +190,7 @@
         [cmdString appendAttributedString:attrStr];
     }
     
-    // file args
+    // File args
     if ([isDroppableCheckbox state] == NSOnState) {
         NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:@" [files ...]" attributes:defaultAttrs];
         [cmdString appendAttributedString:attrStr];
@@ -252,7 +252,7 @@
 }
 
 - (IBAction)removeListItem:(id)sender {
-    NSMutableArray OF_NSSTRING *args;
+    NSMutableArray <NSString *> *args;
     id firstResponder = [[self window] firstResponder];
     
     if (firstResponder == scriptArgsTableView) {
@@ -297,7 +297,7 @@
 }
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
-    NSMutableArray OF_NSSTRING *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
+    NSMutableArray *args = (aTableView == interpreterArgsTableView) ? interpreterArgs : scriptArgs;
     args[rowIndex] = anObject;
     [self constructCommandString];
 }

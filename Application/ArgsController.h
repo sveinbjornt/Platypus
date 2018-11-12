@@ -33,8 +33,8 @@
 
 @interface ArgsController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSTableViewFirstResponderDelegate>
 
-@property (nonatomic, copy) NSArray OF_NSSTRING *interpreterArgs;
-@property (nonatomic, copy) NSArray OF_NSSTRING *scriptArgs;
+@property (nonatomic, copy) NSArray <NSString *> *interpreterArgs;
+@property (nonatomic, copy) NSArray <NSString *> *scriptArgs;
 
 - (IBAction)setToDefaults:(id)sender;
 

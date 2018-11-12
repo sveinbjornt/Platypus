@@ -157,42 +157,42 @@
     NSInteger dlen, len = [path length];
     BOOL isDir;
     
-    // let's not waste time if the string is empty
+    // Let's not waste time if the string is empty
     if (len == 0) {
         return NO;
     }
-    // we only try to expand if this looks like a real path, i.e. starts with / or ~
+    // We only try to expand if this looks like a real path, i.e. starts with / or ~
     firstchar = [path characterAtIndex:0];
     if (firstchar != '/' && firstchar != '~') {
         return NO;
     }
     
-    // expand tilde to home dir
+    // Expand tilde to home dir
     if (firstchar == '~' && self.expandTildeInPath) {
         path = [[self stringValue] stringByExpandingTildeInPath];
         len = [path length];
     }
     
-    // get suggestion for autocompletion
+    // Get suggestion for autocompletion
     [path completePathIntoString:&autocompletedPath caseSensitive:YES matchesIntoArray:nil filterTypes:nil];
     
-    // stop if no suggestions
+    // Stop if no suggestions
     if (autocompletedPath == nil) {
         return NO;
     }
     
-    // stop if suggestion is current value and current value is a valid path
+    // Stop if suggestion is current value and current value is a valid path
     if ([autocompletedPath isEqualToString:[self stringValue]] &&
         [[NSFileManager defaultManager] fileExistsAtPath:autocompletedPath isDirectory:&isDir] &&
         !(isDir && !self.foldersAreValid)) {
         return NO;
     }
     
-    // replace field string with autocompleted string
+    // Replace field string with autocompleted string
     [self setStringValue:autocompletedPath];
     
-    // if browser style autocompletion is enabled
-    // we select the autocomplete extension to the previous string
+    // If browser style autocompletion is enabled, select
+    // the autocomplete extension to the previous string
     if (self.autocompleteStyle == STBrowserAutocomplete) {
         dlen = [autocompletedPath length];
         [[self currentEditor] setSelectedRange:NSMakeRange(len, dlen)];
@@ -201,7 +201,7 @@
     return YES;
 }
 
-// we make sure coloring is correct whenever text changes
+// We make sure coloring is correct whenever text changes
 - (void)textDidChange:(NSNotification *)aNotification {
     if (self.colorInvalidPath) {
         [self updateTextColoring];
@@ -216,20 +216,20 @@
  ************************************************/
 
 - (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector {
-    // intercept tab
+    // Intercept tab
     if (aSelector == @selector(insertTab:) && self.autocompleteStyle == STShellAutocomplete) {
         
         NSString *string = [self stringValue];
         BOOL result = NO;
         NSRange selectedRange = [aTextView selectedRange];
         
-        // we only do tab autocomplete if the insertion point is at the end of the field
-        // and if selection in the field is empty
+        // Only do tab autocomplete if the insertion point is at the
+        // end of the field and if selection in the field is empty
         if (selectedRange.length == 0 && selectedRange.location == [[self stringValue] length]) {
             result = [self autoComplete:self];
         }
         
-        // we only let the user tab out of the field if it's empty or has valid path
+        // Only let the user tab out of the field if it's empty or has valid path
         if ([[self stringValue] length] == 0 || ([self hasValidPath] && [string isEqualToString:[self stringValue]])) {
             return NO;
         }

@@ -81,7 +81,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 }
 
 - (void)awakeFromNib {
-    // we list ourself as an observer of changes to watched file paths, in case icns file is deleted or moved
+    // We list ourself as an observer of changes to watched file paths, in case icns file is deleted or moved
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueRenameNotification object:nil];
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(updateIcnsStatus) name:VDKQueueDeleteNotification object:nil];
 }
@@ -110,14 +110,14 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 - (IBAction)selectImageFile:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Select an image file", PROGRAM_NAME]];
     
-    // create open panel
+    // Create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:[NSImage imageTypes]];
     
-    // run open panel sheet
+    // Run open panel sheet
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         [window setTitle:PROGRAM_NAME];
         if (result != NSOKButton) {
@@ -138,14 +138,14 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 - (IBAction)selectIcnsFile:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Select an icns file", PROGRAM_NAME]];
     
-    // create open panel
+    // Create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeAppleICNS]];
     
-    //run open panel
+    // Run open panel
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         [window setTitle:PROGRAM_NAME];
         if (result == NSOKButton) {
@@ -185,13 +185,13 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 #pragma mark -
 
 - (void)updateIcnsStatus {
-    // show question mark if icon file is missing
+    // Show question mark if icon file is missing
     if ([self hasIconFile] && [FILEMGR fileExistsAtPath:_icnsFilePath] == FALSE) {
         IconFamily *iconFam = [[IconFamily alloc] initWithSystemIcon:kQuestionMarkIcon];
         [iconImageView setImage:[iconFam imageWithAllReps]];
         [iconNameTextField setTextColor:[NSColor redColor]];
     } else {
-        // otherwise, read icns image from path and put it in image view
+        // Otherwise, read icns image from path and put it in image view
         NSImage *img = [[NSImage alloc] initByReferencingFile:_icnsFilePath];
         if (img == nil) {
             img = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
@@ -394,7 +394,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     
     NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
     
-    // first, we look for an icns file, and load it if there is one
+    // First, we look for an icns file, and load it if there is one
     for (NSString *filename in files) {
         NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
         if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
@@ -402,7 +402,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         }
     }
     
-    // since no icns file, search for an image, load the first one we find
+    // Since no icns file, search for an image, load the first one we find
     NSArray *supportedImageTypes = [NSImage imageTypes];
     for (NSString *filename in files) {
         NSString *uti = [[NSWorkspace sharedWorkspace] typeOfFile:filename error:nil];
@@ -415,14 +415,14 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
-    // we accept dragged files only
+    // We accept dragged files only
     if ([[[sender draggingPasteboard] types] containsObject:NSFilenamesPboardType] == NO) {
         return NSDragOperationNone;
     }
 
     NSArray *files = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
     
-    // link operation for icns file, but not if it's a preset icon
+    // Link operation for icns file, but not if it's a preset icon
     for (NSString *filename in files) {
         if ([self isPresetIcon:filename]) {
             return NSDragOperationNone;
@@ -433,7 +433,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         }
     }
     
-    // copy operation icon for image file
+    // Copy operation icon for image file
     NSArray *supportedImageTypes = [NSImage imageTypes];
     for (NSString *filename in files) {
         NSString *uti = [[NSWorkspace sharedWorkspace] typeOfFile:filename error:nil];
@@ -446,7 +446,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 }
 
 - (void)concludeDragOperation:(id <NSDraggingInfo>)sender {
-    // this is here to prevent superclass method from being invoked
+    // This is here to prevent superclass method from being invoked
 }
 
 @end

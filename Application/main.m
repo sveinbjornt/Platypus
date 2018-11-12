@@ -32,7 +32,6 @@
 
 #ifdef DEBUG
 void exceptionHandler(NSException *exception);
-
 void exceptionHandler(NSException *exception) {
     NSLog(@"%@", [exception reason]);
     NSLog(@"%@", [exception userInfo]);
@@ -45,5 +44,5 @@ int main(int argc, char *argv[]) {
 #ifdef DEBUG
     NSSetUncaughtExceptionHandler(&exceptionHandler);
 #endif
-    return NSApplicationMain(argc,  (const char **)argv);
+    return NSApplicationMain(argc, (const char **)argv);
 }

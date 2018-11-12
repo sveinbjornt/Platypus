@@ -150,12 +150,12 @@
 - (IBAction)previewStatusItem:(id)sender {
     [self killStatusItem];
     
-    // create status item
+    // Create status item
     previewStatusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [previewStatusItem setHighlightMode:YES];
     [previewStatusItem setMenu:previewStatusItemMenu];
     
-    // set icon / title depending on settings
+    // Set icon / title depending on settings
     PlatypusStatusItemStyle displayStyle = (PlatypusStatusItemStyle)[statusItemStylePopupButton indexOfSelectedItem];
     if (displayStyle == PlatypusStatusItemStyle_Title) {
         [previewStatusItem setTitle:[titleTextField stringValue]];
@@ -174,7 +174,7 @@
     
     [[previewStatusItem image] setTemplate:[isTemplateCheckbox intValue]];
     
-    // create menu
+    // Create menu
     previewStatusItemMenu = [[NSMenu alloc] initWithTitle:@""];
     [previewStatusItemMenu setDelegate:self];
     [previewStatusItemMenu setAutoenablesItems:NO];
@@ -201,24 +201,24 @@
         return;
     }
     
-    // direct output to file handle and start monitoring it if script provides feedback
+    // Direct output to file handle and start monitoring it if script provides feedback
     NSPipe *outputPipe = [NSPipe pipe];
     [task setStandardOutput:outputPipe];
     [task setStandardError:outputPipe];
     NSFileHandle *readHandle = [outputPipe fileHandleForReading];
     
-    // set it off
+    // Set it off
     [task launch];
     [task waitUntilExit];
     
-    // get output as string
+    // Get output as string
     NSData *outputData = [readHandle readDataToEndOfFile];
     NSString *outputString = [[NSString alloc] initWithData:outputData encoding:DEFAULT_TEXT_ENCODING];
     
-    // create one menu item per line of output
+    // Create one menu item per line of output
     NSArray *lines = [outputString componentsSeparatedByString:@"\n"];
     for (NSString *line in lines) {
-        // ignore empty lines of output
+        // Ignore empty lines of output
         if ([line isEqualToString:@""]) {
             continue;
         }

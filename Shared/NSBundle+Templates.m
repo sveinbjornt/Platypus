@@ -41,7 +41,7 @@
         NSLog(@"Unable to read template '%@': %@", templateFileName, [err localizedDescription]);
         return nil;
     }
-    // replace all %%%%KEY%%%% entries in file with dict value for key
+    // Replace all %%%%KEY%%%% entries in file with dict value for key
     for (NSString *key in dict) {
         NSString *placeholder = [NSString stringWithFormat:@"%%%%%@%%%%", key];
         templateStr = [templateStr stringByReplacingOccurrencesOfString:placeholder withString:dict[key]];

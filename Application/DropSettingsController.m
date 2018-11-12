@@ -155,7 +155,7 @@
         return;
     }
     
-    // end drop settings sheet
+    // End drop settings sheet
     [[droppableEnabledCheckbox window] setTitle:PROGRAM_NAME];
     [NSApp stopModal];
     [NSApp endSheet:[self window]];
@@ -320,7 +320,7 @@
     
     [addSuffixButton setEnabled:enabled];
     [removeSuffixButton setEnabled:enabled];
-    [suffixListTableView setEnabled:enabled]; // INCRIMINATING LINE
+    [suffixListTableView setEnabled:enabled];
 //
     [addUTIButton setEnabled:enabled];
     [removeUTIButton setEnabled:enabled];
@@ -356,29 +356,29 @@
 
 #pragma mark -
 
-- (NSArray OF_NSSTRING *)suffixList {
+- (NSArray <NSString *> *)suffixList {
     return [suffixListController itemsArray];
 }
 
-- (void)setSuffixList:(NSArray OF_NSSTRING *)suffixList {
-    [suffixListController removeAllItems]; // BLAME!
+- (void)setSuffixList:(NSArray <NSString *> *)suffixList {
+    [suffixListController removeAllItems];
     [suffixListController addItems:suffixList];
 }
 
-- (NSArray OF_NSSTRING *)uniformTypesList {
+- (NSArray <NSString *> *)uniformTypesList {
     return [uniformTypeListController itemsArray];
 }
 
-- (void)setUniformTypesList:(NSArray OF_NSSTRING *)uniformTypesList {
+- (void)setUniformTypesList:(NSArray <NSString *> *)uniformTypesList {
     [uniformTypeListController removeAllItems];
     [uniformTypeListController addItems:uniformTypesList];
 }
 
-- (NSArray OF_NSSTRING *)uriSchemesList {
+- (NSArray <NSString *> *)uriSchemesList {
     return [uriSchemesListController itemsArray];
 }
 
-- (void)setUriSchemesList:(NSArray OF_NSSTRING *)items {
+- (void)setUriSchemesList:(NSArray <NSString *> *)items {
     [uriSchemesListController removeAllItems];
     [uriSchemesListController addItems:items];
     [uriSchemesListCheckbox setState:([items count] > 0)];
@@ -440,7 +440,6 @@
 
 #pragma mark -
 
-// Open Documentation.html file within app bundle
 - (IBAction)showHelp:(id)sender {
     [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL]];
 }

@@ -59,14 +59,14 @@
 @implementation PreferencesController
 
 - (IBAction)showWindow:(id)sender {
-    // put application icon in window title bar
+    // Put application icon in window title bar
     [[self window] setRepresentedURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
     NSButton *button = [[self window] standardWindowButton:NSWindowDocumentIconButton];
     [button setImage:[NSImage imageNamed:@"Preferences"]];
     
     [self updateCLTStatus];
     
-    // we lazily fetch icons for editor apps in Editors menu
+    // We lazily fetch icons for editor apps in Editors menu
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         [self setIconForEditorMenuItemAtIndex:[defaultEditorPopupButton indexOfSelectedItem]];
@@ -100,7 +100,7 @@
 - (void)setIconForEditorMenuItemAtIndex:(NSInteger)index {
     NSMenuItem *menuItem = [defaultEditorPopupButton itemAtIndex:index];
     if ([menuItem image] != nil) {
-        return; // already has an icon
+        return; // Already has an icon
     }
     NSSize smallIconSize = { 16, 16 };
     
@@ -124,7 +124,7 @@
 + (NSDictionary *)defaultsDictionary {
     NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
     
-    // create default bundle identifier string from usename
+    // Create default bundle identifier string from usename
     NSString *bundleId = [PlatypusAppSpec bundleIdentifierForAppName:@""
                                                           authorName:nil
                                                        usingDefaults:NO];
@@ -143,7 +143,7 @@
 
 - (void)menuWillOpen:(NSMenu *)menu {
     if (menu == [defaultEditorPopupButton menu]) {
-        // this only needs to happen once
+        // This only needs to happen once
         static dispatch_once_t predicate;
         dispatch_once(&predicate, ^{
             [self clearNonInstalledEditorItems];
@@ -164,7 +164,7 @@
 }
 
 - (IBAction)applyPrefs:(id)sender {
-    //make sure bundle identifier ends with a '.'
+    // Make sure bundle identifier ends with a '.'
     NSString *identifier = [defaultBundleIdentifierTextField stringValue];
     if ([identifier characterAtIndex:[identifier length] - 1] != '.') {
         [DEFAULTS setObject:[identifier stringByAppendingString:@"."]  forKey:DefaultsKey_BundleIdentifierPrefix];
@@ -183,21 +183,21 @@
 }
 
 - (IBAction)selectScriptEditor:(id)sender {
-    //create open panel
+    // Create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeApplicationBundle]];
 
-    // set Applications folder as file dialog directory
+    // Set Applications folder as initial file dialog directory
     NSArray *applicationFolderPaths = [[NSFileManager defaultManager] URLsForDirectory:NSApplicationDirectory inDomains:NSLocalDomainMask];
     if ([applicationFolderPaths count]) {
         [oPanel setDirectoryURL:applicationFolderPaths[0]];
     }
     
-    //run open panel
+    // Run open panel
     if ([oPanel runModal] == NSOKButton) {
-        //set app name minus .app suffix
+        // Set app name minus .app suffix as title
         NSString *filePath = [[oPanel URLs][0] path];
         NSString *editorName = [[filePath lastPathComponent] stringByDeletingPathExtension];
         [defaultEditorPopupButton setTitle:editorName];
@@ -208,7 +208,11 @@
 }
 
 - (IBAction)commandLineInstallButtonClicked:(id)sender {
-    [PreferencesController isCommandLineToolInstalled] ? [self uninstallCommandLineTool] : [self installCommandLineTool];
+    if ([PreferencesController isCommandLineToolInstalled]) {
+        [self uninstallCommandLineTool];
+    } else {
+        [self installCommandLineTool];
+    }
 }
 
 #pragma mark - Install/Uninstall
@@ -221,7 +225,7 @@
     
     static dispatch_queue_t cltStatusDispatchQueue;
 
-    // create queue lazily
+    // Create queue lazily
     if (cltStatusDispatchQueue == NULL) {
         cltStatusDispatchQueue = dispatch_queue_create("platypus.cltStatusDispatchQueue", NULL);
     }
@@ -232,7 +236,7 @@
         NSString *versionString;
         
         if (isInstalled) {
-            // determine command line tool version by running it
+            // Determine command line tool version by running it with version flag
             NSTask *task = [[NSTask alloc] init];
             [task setLaunchPath:CMDLINE_TOOL_PATH];
             [task setArguments:@[[NSString stringWithFormat:@"--%s", CMDLINE_VERSION_ARG_FLAG]]];
@@ -244,7 +248,7 @@
             [task launch];
             [task waitUntilExit];
             
-            // get output string and parse for version number
+            // Get command output string and parse for version number
             NSData *outputData = [[outputPipe fileHandleForReading] readDataToEndOfFile];
             NSString *outputString = [[NSString alloc] initWithData:outputData encoding:DEFAULT_TEXT_ENCODING];
             
@@ -257,17 +261,17 @@
     
         // Update UI on main thread
         dispatch_async(dispatch_get_main_queue(), ^{
-            // not installed
+            // Not installed
             if (isInstalled == NO) {
                 [textField setTextColor:[NSColor redColor]];
                 [textField setStringValue:@"Command line tool is not installed"];
             }
-            // it's installed and current
+            // Installed and current
             else if ([versionString isEqualToString:PROGRAM_VERSION]) {
                 [textField setTextColor:[NSColor colorWithCalibratedRed:0.0 green:0.6 blue:0.0 alpha:1.0]];
                 [textField setStringValue:@"Command line tool is installed"];
             }
-            // installed but not this version
+            // Installed but not this version
             else {
                 [textField setTextColor:[NSColor orangeColor]];
                 if ([versionString floatValue] < [PROGRAM_VERSION floatValue]) {
@@ -304,7 +308,7 @@
 }
 
 - (NSDictionary *)commandEnvironmentDictionary {
-    // a little more introspection would be nice here but...
+    // A little more introspection would be nice here but...
     return @{@"PROGRAM_NAME": PROGRAM_NAME,
             @"PROGRAM_VERSION": PROGRAM_VERSION,
             @"PROGRAM_CREATOR_STAMP": PROGRAM_CREATOR_STAMP,
@@ -348,14 +352,14 @@
         return NO;
     }
     
-    // create script at temp path and make it executable
+    // Create script at temp path and make it executable
     NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script];
     chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU|S_IRWXG|S_IROTH); // 744
     
-    // create script task with Resources path and program version as arguments 1 and 2
+    // Create script task with Resources path and program version as arguments 1 and 2
     NSArray *args = @[[[NSBundle mainBundle] resourcePath], PROGRAM_VERSION];
     
-    // create task
+    // Create task
     STPrivilegedTask *privTask = [[STPrivilegedTask alloc] initWithLaunchPath:tmpScriptPath arguments:args];
     privTask.terminationHandler = ^(STPrivilegedTask *task) {
         PLog(@"Terminating task: %@", [task description]);
@@ -364,7 +368,7 @@
         [self updateCLTStatus];
     };
     
-    // launch task
+    // Launch task
     OSStatus err = [privTask launch];
     if (err != errAuthorizationSuccess) {
         if (err == errAuthorizationCanceled) {

@@ -93,7 +93,7 @@
        didEndSelector:nil
           contextInfo:nil];
     
-    [[self window] makeFirstResponder:[self window]]; // so enter key closes window
+    [[self window] makeFirstResponder:[self window]]; // So enter key closes window
     [NSApp runModalForWindow:[self window]];
 }
 

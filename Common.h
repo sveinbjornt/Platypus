@@ -100,28 +100,28 @@
 
 #define SHELL_COMMAND_STRING_FONT   [NSFont userFixedPitchFontOfSize:11.0]
 
-// notifications
+// Notifications
 #define PLATYPUS_APP_SPEC_CREATION_NOTIFICATION     @"PlatypusAppSpecCreationNotification"
 #define PLATYPUS_APP_SIZE_CHANGED_NOTIFICATION      @"PlatypusAppSizeChangedNotification"
 
-// status item display types
+// Status Item display types
 #define PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT       @"Text"
 #define PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON       @"Icon"
 #define PLATYPUS_STATUSITEM_DISPLAY_TYPE_DEFAULT    PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT
 
-// execution style
+// Execution style
 typedef enum PlatypusExecStyle {
     PlatypusExecStyle_Normal = 0,
     PlatypusExecStyle_Authenticated = 1
 } PlatypusExecStyle;
 
-// status item style
+// Status item style
 typedef enum PlatypusStatusItemStyle {
     PlatypusStatusItemStyle_Title = 0,
     PlatypusStatusItemStyle_Icon = 1
 } PlatypusStatusItemStyle;
 
-// interface type
+// Interface type
 typedef enum PlatypusInterfaceType {
     PlatypusInterfaceType_None = 0,
     PlatypusInterfaceType_ProgressBar = 1,
@@ -132,7 +132,7 @@ typedef enum PlatypusInterfaceType {
 } PlatypusInterfaceType;
 
 
-// array of interface type name strings
+// Array of interface type name strings
 // mapped to PlatypusInterfaceType enum
 #define PLATYPUS_INTERFACE_TYPE_NAMES   @[\
     @"None", \
@@ -239,30 +239,19 @@ extern NSString * const DefaultsKey_Launched;
 extern NSString * const ScriptExecDefaultsKey_UserFontSize;
 extern NSString * const ScriptExecDefaultsKey_ShowDetails;
 
-// abbreviations, Objective C is sometimes tediously verbose
+// Abbreviations. Obj-C is sometimes tediously verbose
 #define FILEMGR     [NSFileManager defaultManager]
 #define DEFAULTS    [NSUserDefaults standardUserDefaults]
 #define WORKSPACE   [NSWorkspace sharedWorkspace]
 
-// compatibility with earlier versions of Xcode
-#if __has_feature(objc_generics) && __MAC_10_10
-    #define OF_NSSTRING <NSString *>
-    #define OF_NSARRAY <NSArray *>
-    #define OF_NSDICTIONARY <NSDictionary *>
-#else
-    #define OF_NSSTRING
-    #define OF_NSARRAY
-    #define OF_NSDICTIONARY
-#endif
-
-// logging
+// Logging
 #ifdef DEBUG
     #define PLog(...) NSLog(__VA_ARGS__)
 #else
     #define PLog(...)
 #endif
 
-// prototypes
+// Prototypes
 extern BOOL UTTypeIsValid(NSString *inUTI);
 extern BOOL BundleIdentifierIsValid(NSString *bundleIdentifier);
 

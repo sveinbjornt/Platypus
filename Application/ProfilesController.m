@@ -76,20 +76,20 @@
 - (void)loadProfileAtPath:(NSString *)filePath {
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithProfile:filePath];
     
-    // make sure we got a spec from the file
+    // Make sure we got a spec from the file
     if (spec == nil) {
         [Alerts alert:@"Error loading profile"
         subTextFormat:@"Unable to load %@ profile at path '%@'.", PROGRAM_NAME, filePath];
         return;
     }
     
-    // note it as a recently opened file
+    // Note it as a recently opened file
     [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filePath]];
     
-    // check if it's an example
+    // Check if it's an example
     if (spec[AppSpecKey_IsExample] != nil && [spec[AppSpecKey_IsExample] boolValue] == YES) {
         
-        // check the example profile's integrity
+        // Check the example profile's integrity
         NSString *scriptStr = spec[AppSpecKey_ScriptText];
         NSString *scriptName = spec[AppSpecKey_ScriptName];
         if (scriptStr == nil || scriptName == nil) {
@@ -100,7 +100,7 @@
         
         scriptStr = [scriptStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
-        // write script contained in the example profile dictionary to file and set as script path
+        // Write script text in the example profile to file and set as script path
         NSString *scriptPath = [NSString stringWithFormat:@"%@%@", PROGRAM_TEMPDIR_PATH, scriptName];
         NSError *err;
         BOOL succ = [scriptStr writeToFile:scriptPath atomically:YES encoding:DEFAULT_TEXT_ENCODING error:&err];

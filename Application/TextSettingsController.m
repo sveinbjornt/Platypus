@@ -107,7 +107,7 @@
     [self updateFontField];
 }
 
-// called by the shared NSFontManager when user chooses a new font or size in the Font Panel
+// Called by the shared NSFontManager when user chooses a new font or size in the Font Panel
 - (void)changeFont:(id)sender {
     NSFontManager *fontManager = [NSFontManager sharedFontManager];
     [self setCurrentFont:[fontManager convertFont:[fontManager selectedFont]]];

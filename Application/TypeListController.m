@@ -32,7 +32,7 @@
 
 @interface TypeListController()
 {
-    NSMutableArray OF_NSDICTIONARY *items;
+    NSMutableArray <NSDictionary *> *items;
 }
 @end
 
@@ -138,7 +138,7 @@
                                                                       attributes:attrs];
         return attrStr;
     } else if ([[aTableColumn identifier] isEqualToString:@"1"]) {
-        // set cell type for column, only needed once
+        // Set cell type for column, only needed once
         if (rowIndex == 0) {
             NSImageCell *iconCell;
             iconCell = [[NSImageCell alloc] init];

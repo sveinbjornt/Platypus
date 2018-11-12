@@ -44,7 +44,7 @@
     IBOutlet NSTableView *tableView;
     IBOutlet NSTextField *bundleSizeTextField;
 
-    NSMutableArray OF_NSDICTIONARY *files;
+    NSMutableArray <NSDictionary *> *files;
     VDKQueue *fileWatcherQueue;
     
     NSWindow *window;
@@ -78,7 +78,7 @@
     [tableView setDoubleAction:@selector(itemDoubleClicked:)];
     [tableView setDraggingSourceOperationMask:NSDragOperationCopy | NSDragOperationMove forLocal:NO];
     
-    // we list ourself as an observer of file system changes for items in file watcher queue
+    // We list ourself as an observer of file system changes for items in file watcher queue
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(trackedFileDidChange) name:VDKQueueRenameNotification object:nil];
     [[WORKSPACE notificationCenter] addObserver:self selector:@selector(trackedFileDidChange) name:VDKQueueDeleteNotification object:nil];
 }
@@ -194,15 +194,15 @@
     return NO;
 }
 
-- (NSArray OF_NSSTRING *)filePaths {
-    NSMutableArray OF_NSSTRING *filePaths = [NSMutableArray array];
+- (NSArray <NSString *> *)filePaths {
+    NSMutableArray <NSString *> *filePaths = [NSMutableArray array];
     for (NSDictionary *fileItem in files) {
         [filePaths addObject:fileItem[@"Path"]];
     }
     return [filePaths copy];
 }
 
-- (void)setFilePaths:(NSArray OF_NSSTRING *)filePaths {
+- (void)setFilePaths:(NSArray <NSString *> *)filePaths {
     [files removeAllObjects];
     [self addFiles:filePaths];
 }
@@ -235,7 +235,7 @@
     NSString *path = files[index][@"Path"];
     
     if ([defaultEditor isEqualToString:DEFAULT_EDITOR] == NO) {
-        // open it in the external application
+        // Open it in the external application
         if ([WORKSPACE fullPathForApplication:defaultEditor] == nil) {
             [Alerts alert:@"Editor not found" subTextFormat:@"The application '%@' could not be found.  Reverting to the built-in editor.", defaultEditor];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:DefaultsKey_DefaultEditor];
@@ -279,13 +279,13 @@
 - (IBAction)addFilesToList:(id)sender {
     [window setTitle:[NSString stringWithFormat:@"%@ - Select files or folders to add", PROGRAM_NAME]];
     
-    // create open panel
+    // Create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setPrompt:@"Add"];
     [oPanel setCanChooseDirectories:YES];
     [oPanel setAllowsMultipleSelection:YES];
     
-    //run open panel sheet
+    // Run as sheet
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         
         [window setTitle:PROGRAM_NAME];
@@ -293,7 +293,7 @@
             return;
         }
         
-        // convert NSURLs to paths
+        // Convert NSURLs to paths
         NSMutableArray *filePaths = [NSMutableArray array];
         for (NSURL *url in [oPanel URLs]) {
             [filePaths addObject:[url path]];

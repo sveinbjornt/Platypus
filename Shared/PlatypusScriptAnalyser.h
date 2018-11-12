@@ -33,9 +33,9 @@
 
 @interface PlatypusScriptAnalyser : NSObject
 
-+ (NSArray OF_NSDICTIONARY *)interpreters;
-+ (NSArray OF_NSSTRING *)interpreterDisplayNames;
-+ (NSArray OF_NSSTRING *)interpreterPaths;
++ (NSArray <NSDictionary *> *)interpreters;
++ (NSArray <NSString *> *)interpreterDisplayNames;
++ (NSArray <NSString *> *)interpreterPaths;
 + (NSString *)helloWorldProgramForDisplayName:(NSString *)displayName;
 + (NSString *)displayNameForInterpreterPath:(NSString *)interpreterPath;
 + (NSString *)interpreterPathForDisplayName:(NSString *)displayName;
@@ -44,7 +44,7 @@
 + (NSString *)standardFilenameSuffixForInterpreterPath:(NSString *)interpreter;
 + (BOOL)isPotentiallyScriptAtPath:(NSString *)path;
 + (BOOL)hasShebangLineAtPath:(NSString *)path;
-+ (NSArray OF_NSSTRING *)parseInterpreterInScriptFile:(NSString *)scriptPath;
++ (NSArray <NSString *> *)parseInterpreterInScriptFile:(NSString *)scriptPath;
 + (NSString *)appNameFromScriptFile:(NSString *)scriptPath;
 + (NSString *)determineInterpreterPathForScriptFile:(NSString *)scriptPath;
 + (NSString *)checkSyntaxOfFile:(NSString *)scriptPath

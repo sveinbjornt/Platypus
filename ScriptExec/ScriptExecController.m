@@ -50,7 +50,7 @@
 
 @interface ScriptExecController()
 {
-    // progress bar
+    // Progress bar
     IBOutlet NSWindow *progressBarWindow;
     IBOutlet NSButton *progressBarCancelButton;
     IBOutlet NSTextField *progressBarMessageTextField;
@@ -59,25 +59,25 @@
     IBOutlet NSButton *progressBarDetailsTriangle;
     IBOutlet NSTextField *progressBarDetailsLabel;
     
-    // text window
+    // Text Window
     IBOutlet NSWindow *textWindow;
     IBOutlet NSButton *textWindowCancelButton;
     IBOutlet NSTextView *textWindowTextView;
     IBOutlet NSProgressIndicator *textWindowProgressIndicator;
     IBOutlet NSTextField *textWindowMessageTextField;
     
-    // web view
+    // Web View
     IBOutlet NSWindow *webViewWindow;
     IBOutlet NSButton *webViewCancelButton;
     IBOutlet WebView *webView;
     IBOutlet NSProgressIndicator *webViewProgressIndicator;
     IBOutlet NSTextField *webViewMessageTextField;
     
-    // status item menu
+    // Status Item Menu
     NSStatusItem *statusItem;
     NSMenu *statusItemMenu;
     
-    // droplet
+    // Droplet
     IBOutlet NSWindow *dropletWindow;
     IBOutlet NSBox *dropletBox;
     IBOutlet NSProgressIndicator *dropletProgressIndicator;
@@ -85,7 +85,7 @@
     IBOutlet NSTextField *dropletDropFilesLabel;
     IBOutlet NSView *dropletShaderView;
     
-    //menu items
+    // Menu items
     IBOutlet NSMenuItem *hideMenuItem;
     IBOutlet NSMenuItem *quitMenuItem;
     IBOutlet NSMenuItem *aboutMenuItem;
@@ -102,10 +102,10 @@
     NSPipe *outputPipe;
     NSFileHandle *outputReadFileHandle;
     
-    NSMutableArray OF_NSSTRING *arguments;
-    NSMutableArray OF_NSSTRING *commandLineArguments;
-    NSArray OF_NSSTRING *interpreterArgs;
-    NSArray OF_NSSTRING *scriptArgs;
+    NSMutableArray <NSString *> *arguments;
+    NSMutableArray <NSString *> *commandLineArguments;
+    NSArray <NSString *> *interpreterArgs;
+    NSArray <NSString *> *scriptArgs;
     NSString *stdinString;
     
     NSString *interpreterPath;
@@ -128,8 +128,8 @@
     BOOL runInBackground;
     BOOL isService;
     
-    NSArray OF_NSSTRING *droppableSuffixes;
-    NSArray OF_NSSTRING *droppableUniformTypes;
+    NSArray <NSString *> *droppableSuffixes;
+    NSArray <NSString *> *droppableUniformTypes;
     BOOL acceptAnyDroppedItem;
     BOOL acceptDroppedFolders;
     
@@ -177,13 +177,13 @@ static const NSInteger detailsHeight = 224;
 
 - (void)awakeFromNib {
     
-    // load settings from AppSettings.plist in app bundle
+    // Load settings from AppSettings.plist in app bundle
     [self loadAppSettings];
     
-    // prepare UI
+    // Prepare UI
     [self initialiseInterface];
     
-    // listen for terminate notification
+    // Listen for terminate notification
     NSString *notificationName = NSTaskDidTerminateNotification;
     if (execStyle == PlatypusExecStyle_Authenticated) {
         notificationName = STPrivilegedTaskDidTerminateNotification;
@@ -202,31 +202,31 @@ static const NSInteger detailsHeight = 224;
     NSBundle *appBundle = [NSBundle mainBundle];
     NSString *appSettingsPath = [appBundle pathForResource:@"AppSettings.plist" ofType:nil];
     
-    // make sure all the config files are present -- if not, we quit
+    // Make sure all config files are present
     if ([FILEMGR fileExistsAtPath:appSettingsPath] == FALSE) {
         [Alerts fatalAlert:@"Corrupt app bundle" subText:@"AppSettings.plist not found in application bundle."];
     }
     
-    // get app name
-    // first, try to get name from Info.plist
+    // Get app name
+    // Try to get name from Info.plist
     NSDictionary *infoPlist = [appBundle infoDictionary];
     if (infoPlist[@"CFBundleName"] != nil) {
         appName = [[NSString alloc] initWithString:infoPlist[@"CFBundleName"]];
     } else {
-        // if that doesn't work, use name of executable file
+        // If that doesn't work, use name of executable file
         appName = [[NSString alloc] initWithString:[[appBundle executablePath] lastPathComponent]];
     }
     
     runInBackground = [infoPlist[@"LSUIElement"] boolValue];
     isService = (infoPlist[@"NSServices"] != nil);
     
-    // load dictionary containing app settings from property list
+    // Load dictionary containing app settings from property list
     NSDictionary *appSettingsDict = [NSDictionary dictionaryWithContentsOfFile:appSettingsPath];
     if (appSettingsDict == nil) {
         [Alerts fatalAlert:@"Corrupt app settings" subText:@"Unable to read AppSettings.plist"];
     }
     
-    // determine interface type
+    // Determine interface type
     NSString *interfaceTypeStr = appSettingsDict[AppSpecKey_InterfaceType];
     if (IsValidInterfaceTypeString(interfaceTypeStr) == NO) {
         [Alerts fatalAlert:@"Corrupt app settings"
@@ -234,10 +234,10 @@ static const NSInteger detailsHeight = 224;
     }
     interfaceType = InterfaceTypeForString(interfaceTypeStr);
     
-    // text styling and encoding info
+    // Text styling
     if (IsTextStyledInterfaceType(interfaceType)) {
     
-        // font and size
+        // Font and size
         NSNumber *userFontSizeNum = [DEFAULTS objectForKey:ScriptExecDefaultsKey_UserFontSize];
         CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[AppSpecKey_TextSize] floatValue];
         fontSize = fontSize != 0 ? fontSize : DEFAULT_TEXT_FONT_SIZE;
@@ -249,7 +249,7 @@ static const NSInteger detailsHeight = 224;
             textFont = [NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:DEFAULT_TEXT_FONT_SIZE];
         }
         
-        // foreground color
+        // Foreground color
         if (appSettingsDict[AppSpecKey_TextColor] != nil) {
             textForegroundColor = [NSColor colorFromHexString:appSettingsDict[AppSpecKey_TextColor]];
         }
@@ -257,7 +257,7 @@ static const NSInteger detailsHeight = 224;
             textForegroundColor = [NSColor colorFromHexString:DEFAULT_TEXT_FG_COLOR];
         }
         
-        // background color
+        // Background color
         if (appSettingsDict[AppSpecKey_TextBackgroundColor] != nil) {
             textBackgroundColor = [NSColor colorFromHexString:appSettingsDict[AppSpecKey_TextBackgroundColor]];
         }
@@ -266,7 +266,7 @@ static const NSInteger detailsHeight = 224;
         }
     }
     
-    // status menu interface has some additional parameters
+    // Status menu interface has some additional parameters
     if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         NSString *statusItemDisplayType = appSettingsDict[AppSpecKey_StatusItemDisplayType];
 
@@ -301,12 +301,12 @@ static const NSInteger detailsHeight = 224;
     promptForFileOnLaunch = [appSettingsDict[AppSpecKey_PromptForFile] boolValue];
     
     
-    // read and store command line arguments to the application
+    // Read and store command line arguments to the application
     NSMutableArray *processArgs = [NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]];
     commandLineArguments = [[NSMutableArray alloc] init];
 
     if ([processArgs count] > 1) {
-        // the first argument is always the path to the binary, so we remove that
+        // The first argument is always the path to the binary, so we remove that
         [processArgs removeObjectAtIndex:0];
         BOOL lastWasDocRevFlag = NO;
         for (NSString *arg in processArgs) {
@@ -333,18 +333,18 @@ static const NSInteger detailsHeight = 224;
         }
     }
 
-    // we never have privileged execution or droppable with status menu apps
+    // We never have privileged execution or droppable with status menu apps
     if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         remainRunning = YES;
         execStyle = PlatypusExecStyle_Normal;
         isDroppable = NO;
     }
     
-    // load settings for drop acceptance, default is to accept nothing
+    // Load settings for drop acceptance, default is to accept nothing
     acceptsFiles = (appSettingsDict[AppSpecKey_AcceptFiles] != nil) ? [appSettingsDict[AppSpecKey_AcceptFiles] boolValue] : NO;
     acceptsText = (appSettingsDict[AppSpecKey_AcceptText] != nil) ? [appSettingsDict[AppSpecKey_AcceptText] boolValue] : NO;
     
-    // equivalent to not being droppable
+    // Equivalent to not being droppable
     if (!acceptsFiles && !acceptsText) {
         isDroppable = FALSE;
     }
@@ -352,20 +352,18 @@ static const NSInteger detailsHeight = 224;
     acceptDroppedFolders = NO;
     acceptAnyDroppedItem = NO;
     
-    // if app is droppable, the AppSettings.plist contains list of accepted file types / suffixes
-    // we use them later as a criterion for in-code drop acceptance
+    // If app is droppable, the AppSettings.plist contains list of accepted file types / suffixes
+    // We use them later as a criterion for drop acceptance
     if (isDroppable && acceptsFiles) {
-        // get list of accepted suffixes
+        // Get list of accepted suffixes
+        droppableSuffixes = [[NSArray alloc] init];
         if (appSettingsDict[AppSpecKey_Suffixes] != nil) {
-            droppableSuffixes = [[NSArray alloc] initWithArray:appSettingsDict[AppSpecKey_Suffixes]];
-        } else {
-            droppableSuffixes = [[NSArray alloc] init];
+            droppableSuffixes = [appSettingsDict[AppSpecKey_Suffixes] copy];
         }
         
+        droppableUniformTypes = [[NSArray alloc] init];
         if (appSettingsDict[AppSpecKey_Utis] != nil) {
-            droppableUniformTypes = [[NSArray alloc] initWithArray:appSettingsDict[AppSpecKey_Utis]];
-        } else {
-            droppableUniformTypes = [[NSArray alloc] init];
+            droppableUniformTypes = [appSettingsDict[AppSpecKey_Utis] copy];
         }
         
         if (([droppableSuffixes containsObject:@"*"] && [droppableUniformTypes count] == 0) || [droppableUniformTypes containsObject:@"public.data"]) {
@@ -376,24 +374,24 @@ static const NSInteger detailsHeight = 224;
         }
     }
     
-    // check the script file
+    // Check the script file
     NSString *path = [appBundle pathForResource:@"script" ofType:nil];
     if ([FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]] == NO) {
         [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
     }
-    // make sure it's executable
+    // Make sure it's executable
     NSNumber *permissions = [NSNumber numberWithUnsignedLong:493];
     NSDictionary *attributes = @{ NSFilePosixPermissions: permissions};
     [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:path error:nil];
 
     scriptPath = [NSString stringWithString:path];
     
-    // get interpreter
+    // Get interpreter
     NSString *scriptInterpreterPath = appSettingsDict[AppSpecKey_InterpreterPath];
 #ifdef DEBUG
     // For debugging purposes, an empty or missing interpreter means we
     // parse the shebang line for one. Makes it easier to switch scripting
-    // languages in the test script without mucking with AppSettings.plist
+    // languages in the test script without mucking about with AppSettings.plist
     if (scriptInterpreterPath == nil || [scriptInterpreterPath isEqualToString:@""]) {
         scriptInterpreterPath = [PlatypusScriptAnalyser determineInterpreterPathForScriptFile:scriptPath];
         if (scriptInterpreterPath == nil) {
@@ -408,10 +406,10 @@ static const NSInteger detailsHeight = 224;
 #endif
     interpreterPath = [[NSString alloc] initWithString:scriptInterpreterPath];
 
-    // make sure we can read the script file
+    // Make sure we can read the script file
     if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
         // chmod 774
-        chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU | S_IRWXG | S_IROTH);
+        chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU|S_IRWXG|S_IROTH);
     }
     if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
         [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is not readable."];
@@ -447,8 +445,8 @@ static const NSInteger detailsHeight = 224;
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
-    // status menu apps just run when item is clicked
-    // for all others, we run the script once app has been launched
+    // Status menu apps just run when item is clicked
+    // For all others, we run the script once app has launched
     if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         return;
     }
@@ -475,11 +473,11 @@ static const NSInteger detailsHeight = 224;
         }
     }
     
-    // add the dropped files as a job for processing
+    // Add the dropped files as a job for processing
     BOOL success = [self addDroppedFilesJob:filenames];
     [NSApp replyToOpenOrPrint:success ? NSApplicationDelegateReplySuccess : NSApplicationDelegateReplyFailure];
     
-    // if no other job is running, we execute
+    // If no other job is running, we execute
     if (success && !isTaskRunning && hasFinishedLaunching) {
         [self executeScript];
     }
@@ -489,17 +487,17 @@ static const NSInteger detailsHeight = 224;
     NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
     PLog(@"Received open URL event for URL %@", url);
     
-    // add URL as a job for processing
+    // Add URL as a job for processing
     BOOL success = [self addURLJob:url];
     
-    // if no other job is running, we execute
+    // If no other job is running, we execute
     if (!isTaskRunning && success && hasFinishedLaunching) {
         [self executeScript];
     }
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
-    // terminate task
+    // Terminate task
     if (task != nil) {
         if ([task isRunning]) {
             [task terminate];
@@ -507,7 +505,7 @@ static const NSInteger detailsHeight = 224;
         task = nil;
     }
     
-    // terminate privileged task
+    // Terminate privileged task
     if (privilegedTask != nil) {
         if ([privilegedTask isRunning]) {
             [privilegedTask terminate];
@@ -515,7 +513,7 @@ static const NSInteger detailsHeight = 224;
         privilegedTask = nil;
     }
     
-    // hide status item
+    // Hide status item
     if (statusItem) {
         [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
     }
@@ -528,29 +526,29 @@ static const NSInteger detailsHeight = 224;
 // Set up any menu items, windows, controls at application launch
 - (void)initialiseInterface {
     
-    // put application name into the relevant menu items
+    // Put application name into the relevant menu items
     [quitMenuItem setTitle:[NSString stringWithFormat:@"Quit %@", appName]];
     [aboutMenuItem setTitle:[NSString stringWithFormat:@"About %@", appName]];
     [hideMenuItem setTitle:[NSString stringWithFormat:@"Hide %@", appName]];
     
     [openRecentMenuItem setEnabled:acceptsFiles];
     
-    // script output will be dumped in outputTextView
-    // by default this is the Text Window text view
+    // Script output will be dumped in outputTextView
+    // By default this is the Text Window text view
     outputTextView = textWindowTextView;
 
     if (runInBackground == TRUE) {
-        // old Carbon
+        // Old Carbon way
 //        ProcessSerialNumber process;
 //        GetCurrentProcess(&process);
 //        SetFrontProcess(&process);
         [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
     }
     
-    // prepare controls etc. for different interface types
+    // Prepare controls etc. for different interface types
     switch (interfaceType) {
         case PlatypusInterfaceType_None:
-            // nothing to do
+            // Nothing to do
             break;
             
         case PlatypusInterfaceType_ProgressBar:
@@ -559,26 +557,26 @@ static const NSInteger detailsHeight = 224;
                 [progressBarWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
             }
             
-            // add menu item for Show Details
+            // Add menu item for Show Details
             [[windowMenu insertItemWithTitle:@"Toggle Details" action:@selector(performClick:) keyEquivalent:@"T" atIndex:2] setTarget:progressBarDetailsTriangle];
             [windowMenu insertItem:[NSMenuItem separatorItem] atIndex:2];
             
-            // style the text field
+            // Style the text field
             outputTextView = progressBarTextView;
             [outputTextView setBackgroundColor:textBackgroundColor];
             [outputTextView setTextColor:textForegroundColor];
             [outputTextView setFont:textFont];
             [[outputTextView textStorage] setFont:textFont];
             
-            // add drag instructions message if droplet
+            // Add drag instructions message if droplet
             NSString *progBarMsg = isDroppable ? @"Drag files to process" : @"Running...";
             [progressBarMessageTextField setStringValue:progBarMsg];
             [progressBarIndicator setUsesThreadedAnimation:YES];
             
-            // prepare window
+            // Prepare window
             [progressBarWindow setTitle:appName];
             
-            //center it if first time running the application
+            // Center it if first time running the application
             if ([[progressBarWindow frameAutosaveName] isEqualToString:@""]) {
                 [progressBarWindow center];
             }
@@ -607,7 +605,7 @@ static const NSInteger detailsHeight = 224;
             [outputTextView setFont:textFont];
             [[outputTextView textStorage] setFont:textFont];
             
-            // prepare window
+            // Prepare window
             [textWindow setTitle:appName];
             if ([[textWindow frameAutosaveName] isEqualToString:@""]) {
                 [textWindow center];
@@ -626,7 +624,7 @@ static const NSInteger detailsHeight = 224;
             
             [webViewProgressIndicator setUsesThreadedAnimation:YES];
             
-            // prepare window
+            // Prepare window
             [webViewWindow setTitle:appName];
             [webViewWindow center];
             if ([[webViewWindow frameAutosaveName] isEqualToString:@""]) {
@@ -638,11 +636,11 @@ static const NSInteger detailsHeight = 224;
             
         case PlatypusInterfaceType_StatusMenu:
         {
-            // create and activate status item
+            // Create and activate status item
             statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
             [statusItem setHighlightMode:YES];
             
-            // set status item title and icon
+            // Set status item title and icon
             [statusItem setTitle:statusItemTitle];
             
             NSSize statusItemSize = [statusItemImage size];
@@ -652,12 +650,12 @@ static const NSInteger detailsHeight = 224;
             [statusItemImage setTemplate:statusItemIconIsTemplate];
             [statusItem setImage:statusItemImage];
             
-            // create menu for our status item
+            // Create menu for our status item
             statusItemMenu = [[NSMenu alloc] initWithTitle:@""];
             [statusItemMenu setDelegate:self];
             [statusItem setMenu:statusItemMenu];
             
-            //create Quit menu item
+            // Create Quit menu item
             NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Quit %@", appName] action:@selector(terminate:) keyEquivalent:@""];
             [statusItemMenu insertItem:menuItem atIndex:0];
             [statusItemMenu insertItem:[NSMenuItem separatorItem] atIndex:0];
@@ -672,7 +670,7 @@ static const NSInteger detailsHeight = 224;
             }
             [dropletProgressIndicator setUsesThreadedAnimation:YES];
             
-            // prepare window
+            // Prepare window
             [dropletWindow setTitle:appName];
             if ([[dropletWindow frameAutosaveName] isEqualToString:@""]) {
                 [dropletWindow center];
@@ -771,7 +769,7 @@ static const NSInteger detailsHeight = 224;
 
         case PlatypusInterfaceType_TextWindow:
         {
-            // update controls for text window
+            // Update controls for text window
             [textWindowCancelButton setTitle:@"Quit"];
             [textWindowCancelButton setEnabled:YES];
             [textWindowProgressIndicator stopAnimation:self];
@@ -784,7 +782,7 @@ static const NSInteger detailsHeight = 224;
                 [progressBarMessageTextField setStringValue:@"Drag files to process"];
                 [progressBarIndicator setIndeterminate:YES];
             } else {
-                // cleanup - if the script didn't give us a proper status message, then we set one
+                // Cleanup - if the script didn't give us a proper status message, then we set one
                 NSString *msg = [progressBarMessageTextField stringValue];
                 if ([msg isEqualToString:@""] || [msg isEqualToString:@"\n"] || [msg isEqualToString:@"Running..."]) {
                     [progressBarMessageTextField setStringValue:@"Task completed"];
@@ -795,7 +793,7 @@ static const NSInteger detailsHeight = 224;
             
             [progressBarIndicator stopAnimation:self];
             
-            // change button
+            // Change button
             [progressBarCancelButton setTitle:@"Quit"];
             [progressBarCancelButton setEnabled:YES];
         }
@@ -821,38 +819,38 @@ static const NSInteger detailsHeight = 224;
 
 #pragma mark - Task
 
-// construct arguments list etc. before actually running the script
+// Construct arguments list etc. before actually running the script
 - (void)prepareForExecution {
     
-    // clear arguments list and reconstruct it
+    // Clear arguments list and reconstruct it
     [arguments removeAllObjects];
     
-    // first, add all specified arguments for interpreter
+    // First, add all specified arguments for interpreter
     [arguments addObjectsFromArray:interpreterArgs];
     
-    // add script as argument to interpreter, if it exists
+    // Add script as argument to interpreter, if it exists
     if (![FILEMGR fileExistsAtPath:scriptPath]) {
         [Alerts fatalAlert:@"Missing script" subTextFormat:@"Script missing at execution path %@", scriptPath];
     }
     [arguments addObject:scriptPath];
     
-    // add arguments for script
+    // Add arguments for script
     [arguments addObjectsFromArray:scriptArgs];
     
-    // if initial run of app, add any arguments passed in via the command line (argv)
-    // this is pretty obscure (why CLI args for GUI app typically launched from Finder?)
-    // but apparently helpful for certain use cases such as Firefox protocol handlers etc.
+    // If initial run of app, add any arguments passed in via the command line (argv)
+    // Q: Why CLI args for GUI app typically launched from Finder?
+    // A: Apparently helpful for certain use cases such as Firefox protocol handlers etc.
     if (commandLineArguments && [commandLineArguments count]) {
         [arguments addObjectsFromArray:commandLineArguments];
         commandLineArguments = nil;
     }
     
-    // finally, dequeue job and add arguments
+    // Finally, dequeue job and add arguments
     if ([jobQueue count] > 0) {
         ScriptExecJob *job = jobQueue[0];
 
-        // we have files in the queue, to append as arguments
-        // we take the first job's arguments and put them into the arg list
+        // We have files in the queue, to append as arguments
+        // We take the first job's arguments and put them into the arg list
         if ([job arguments]) {
             [arguments addObjectsFromArray:[job arguments]];
         }
@@ -865,7 +863,7 @@ static const NSInteger detailsHeight = 224;
 - (void)executeScript {
     hasTaskRun = YES;
     
-    // we never execute script if there is one running
+    // Never execute script if there is one running
     if (isTaskRunning) {
         return;
     }
@@ -876,7 +874,7 @@ static const NSInteger detailsHeight = 224;
     
     isTaskRunning = YES;
     
-    // run the task
+    // Run the task
     if (execStyle == PlatypusExecStyle_Authenticated) {
         [self executeScriptWithPrivileges];
     } else {
@@ -889,7 +887,7 @@ static const NSInteger detailsHeight = 224;
     [self prepareForExecution];
     [self prepareInterfaceForExecution];
     
-    // create task and apply settings
+    // Create task and apply settings
     task = [[NSTask alloc] init];
     [task setLaunchPath:interpreterPath];
     [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
@@ -900,26 +898,26 @@ static const NSInteger detailsHeight = 224;
     [task setStandardError:outputPipe];
     outputReadFileHandle = [outputPipe fileHandleForReading];
     
-    // set it off
+    // Set it off
     PLog(@"Running task\n%@", [task humanDescription]);
     [task launch];
-    // This is blocking, i.e. hangs until task is done
+    // This is blocking
     [task waitUntilExit];
     
     NSData *outData = [outputReadFileHandle readDataToEndOfFile];
     return [[NSString alloc] initWithData:outData encoding:DEFAULT_TEXT_ENCODING];
 }
 
-//launch regular user-privileged process using NSTask
+// Launch regular user-privileged process using NSTask
 - (void)executeScriptWithoutPrivileges {
 
-    // create task and apply settings
+    // Create task and apply settings
     task = [[NSTask alloc] init];
     [task setLaunchPath:interpreterPath];
     [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
     [task setArguments:arguments];
     
-    // direct output to file handle and start monitoring it if script provides feedback
+    // Direct output to file handle and start monitoring it if script provides feedback
     outputPipe = [NSPipe pipe];
     [task setStandardOutput:outputPipe];
     [task setStandardError:outputPipe];
@@ -927,16 +925,16 @@ static const NSInteger detailsHeight = 224;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
     [outputReadFileHandle readInBackgroundAndNotify];
     
-    // set up stdin for writing
+    // Set up stdin for writing
     inputPipe = [NSPipe pipe];
     [task setStandardInput:inputPipe];
     inputWriteFileHandle = [[task standardInput] fileHandleForWriting];
     
-    // set it off
+    // Set it off
     PLog(@"Running task\n%@", [task humanDescription]);
     [task launch];
     
-    // write input, if any, to stdin, and then close
+    // Write input, if any, to stdin, and then close
     if (stdinString) {
         [inputWriteFileHandle writeData:[stdinString dataUsingEncoding:NSUTF8StringEncoding]];
     }
@@ -944,16 +942,15 @@ static const NSInteger detailsHeight = 224;
     stdinString = nil;    
 }
 
-//launch task with admin privileges using Authentication Manager
+// Launch task with admin privileges using Authentication API
 - (void)executeScriptWithPrivileges {
+    // Create task
     privilegedTask = [[STPrivilegedTask alloc] init];
-    
-    // apply settings for task
     [privilegedTask setLaunchPath:interpreterPath];
     [privilegedTask setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
     [privilegedTask setArguments:arguments];
     
-    // set it off
+    // Set it off
     PLog(@"Running task\n%@", [privilegedTask description]);
     OSStatus err = [privilegedTask launch];
     if (err != errAuthorizationSuccess) {
@@ -962,13 +959,13 @@ static const NSInteger detailsHeight = 224;
             [self taskFinished:nil];
             return;
         }  else {
-            // something went wrong
+            // Something went wrong
             [Alerts fatalAlert:@"Failed to execute script"
                  subTextFormat:@"Error %d occurred while executing script with privileges.", (int)err];
         }
     }
     
-    // Success!  Now, start monitoring output file handle for data
+    // Success! Now, start monitoring output file handle for data
     outputReadFileHandle = [privilegedTask outputFileHandle];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
     [outputReadFileHandle readInBackgroundAndNotify];
@@ -979,20 +976,20 @@ static const NSInteger detailsHeight = 224;
 // OK, called when we receive notification that task is finished
 // Some cleaning up to do, controls need to be adjusted, etc.
 - (void)taskFinished:(NSNotification *)aNotification {
-    // ignore if not current script task
+    // Ignore if not current script task
     if (([aNotification object] != task && [aNotification object] != privilegedTask) || !isTaskRunning) {
         return;
     }
     isTaskRunning = NO;
     PLog(@"Task finished");
         
-    // did we receive all the data?
-    // if no data left we do the clean up
+    // Did we receive all the data?
+    // If no data left, we do clean up
     if (outputEmpty) {
         [self cleanup];
     }
     
-    // if there are more jobs waiting for us, execute
+    // If there are more jobs waiting for us, execute
     if ([jobQueue count] > 0 /*&& remainRunning*/) {
         [self executeScript];
     }
@@ -1002,12 +999,12 @@ static const NSInteger detailsHeight = 224;
     if (isTaskRunning) {
         return;
     }
-    // stop observing the filehandle for data since task is done
+    // Stop observing the filehandle for data since task is done
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:NSFileHandleReadCompletionNotification
                                                   object:outputReadFileHandle];
     
-    // we make sure to clear the filehandle of any remaining data
+    // We make sure to clear the filehandle of any remaining data
     if (outputReadFileHandle != nil) {
         NSData *data;
         while ((data = [outputReadFileHandle availableData]) && [data length]) {
@@ -1015,25 +1012,25 @@ static const NSInteger detailsHeight = 224;
         }
     }
     
-    // now, reset all controls etc., general cleanup since task is done
+    // Now, reset all controls etc., general cleanup since task is done
     [self cleanupInterface];
 }
 
 #pragma mark - Output
 
-// read from the file handle and append it to the text window
+// Read from the file handle and append it to the text window
 - (void)gotOutputData:(NSNotification *)aNotification {
-    // get the data from notification
+    // Get the data from notification
     NSData *data = [aNotification userInfo][NSFileHandleNotificationDataItem];
     
-    // make sure there's actual data
+    // Make sure there's actual data
     if ([data length]) {
         outputEmpty = NO;
         
-        // append the output to the text field
+        // Append the output to the text field
         [self appendOutput:data];
         
-        // we schedule the file handle to go and read more data in the background again.
+        // We schedule the file handle to go and read more data in the background again.
         [[aNotification object] readInBackgroundAndNotify];
     }
     else {
@@ -1049,7 +1046,7 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (void)appendOutput:(NSData *)data {
-    // create string from raw output data
+    // Create string from raw output data
     NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:DEFAULT_TEXT_ENCODING];
     
     if (outputString == nil) {
@@ -1062,10 +1059,10 @@ static const NSInteger detailsHeight = 224;
         [outputString insertString:remnants atIndex:0];
     }
     
-    // parse line by line
-    NSMutableArray OF_NSSTRING *lines = [[outputString componentsSeparatedByString:@"\n"] mutableCopy];
+    // Parse line by line
+    NSMutableArray <NSString *> *lines = [[outputString componentsSeparatedByString:@"\n"] mutableCopy];
     
-    // if the string did not end with a newline, it wasn't a complete line of output
+    // If the string did not end with a newline, it wasn't a complete line of output
     // Thus, we store this last non-newline-terminated string
     // It'll be prepended next time we get output
     if ([[lines lastObject] length] > 0) {
@@ -1079,7 +1076,7 @@ static const NSInteger detailsHeight = 224;
     
     NSURL *locationURL = nil;
     
-    // parse output looking for commands; if none, append line to output text field
+    // Parse output looking for commands; if none, append line to output text field
     for (NSString *theLine in lines) {
         
         if ([theLine length] == 0) {
@@ -1109,11 +1106,11 @@ static const NSInteger detailsHeight = 224;
             continue;
         }
         
-        // special commands to control progress bar interface
+        // Special commands to control progress bar interface
         if (interfaceType == PlatypusInterfaceType_ProgressBar) {
             
-            // set progress bar status
-            // lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar
+            // Set progress bar status
+            // Lines starting with PROGRESS:\d+ are interpreted as percentage to set progress bar
             if ([theLine hasPrefix:@"PROGRESS:"]) {
                 NSString *progressPercentString = [theLine substringFromIndex:9];
                 if ([progressPercentString hasSuffix:@"%"]) {
@@ -1131,7 +1128,7 @@ static const NSInteger detailsHeight = 224;
                 }
                 continue;
             }
-            // set visibility of details text field
+            // Set visibility of details text field
             else if ([theLine isEqualToString:@"DETAILS:SHOW"]) {
                 [self showDetails];
                 continue;
@@ -1150,8 +1147,8 @@ static const NSInteger detailsHeight = 224;
         
         [self appendString:theLine];
         
-        // ok, line wasn't a command understood by the wrapper
-        // show it in GUI text field if appropriate
+        // OK, line wasn't a command understood by the wrapper
+        // Show it in GUI text field
         if (interfaceType == PlatypusInterfaceType_Droplet) {
             [dropletMessageTextField setStringValue:theLine];
         }
@@ -1160,13 +1157,13 @@ static const NSInteger detailsHeight = 224;
         }
     }
     
-    // if web output, we continually re-render to accomodate incoming data
+    // If web output, we continually re-render to accomodate incoming data
     if (interfaceType == PlatypusInterfaceType_WebView) {
         if (locationURL) {
-            // If Location, we load the provided URL
+            // Load the provided URL
             [[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:locationURL]];
         } else {
-            // otherwise, just load script output as HTML string
+            // Otherwise, just load script output as HTML string
             NSURL *resourcePathURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]];
             [[webView mainFrame] loadHTMLString:[outputTextView string] baseURL:resourcePathURL];
         }
@@ -1203,23 +1200,23 @@ static const NSInteger detailsHeight = 224;
 
 #pragma mark - Interface actions
 
-//run open panel, made available to apps that accept files
+// Run open panel, made available to apps that accept files
 - (IBAction)openFiles:(id)sender {
     
-    // create open panel
+    // Create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setAllowsMultipleSelection:YES];
     [oPanel setCanChooseFiles:YES];
     [oPanel setCanChooseDirectories:acceptDroppedFolders];
     
-    // set acceptable file types - default allows all
+    // Set acceptable file types - default allows all
     if (!acceptAnyDroppedItem) {
         NSArray *fileTypes = [droppableUniformTypes count] > 0 ? droppableUniformTypes : droppableSuffixes;
         [oPanel setAllowedFileTypes:fileTypes];
     }
     
     if ([oPanel runModal] == NSFileHandlingPanelOKButton) {
-        // convert URLs to paths
+        // Convert URLs to paths
         NSMutableArray *filePaths = [NSMutableArray array];        
         for (NSURL *url in [oPanel URLs]) {
             [filePaths addObject:[url path]];
@@ -1232,14 +1229,14 @@ static const NSInteger detailsHeight = 224;
         }
         
     } else {
-        // canceled in open file dialog
+        // Canceled in open file dialog
         if (!remainRunning) {
             [[NSApplication sharedApplication] terminate:self];
         }
     }
 }
 
-// show / hide the details text field in progress bar interface
+// Show / hide the details text field in progress bar interface
 - (IBAction)toggleDetails:(id)sender {
     NSRect winRect = [progressBarWindow frame];
     
@@ -1267,21 +1264,21 @@ static const NSInteger detailsHeight = 224;
     [progressBarWindow setFrame:winRect display:TRUE animate:TRUE];
 }
 
-// show the details text field in progress bar interface
+// Show the details text field in progress bar interface
 - (IBAction)showDetails {
     if ([progressBarDetailsTriangle state] == NSOffState) {
         [progressBarDetailsTriangle performClick:progressBarDetailsTriangle];
     }
 }
 
-// hide the details text field in progress bar interface
+// Hide the details text field in progress bar interface
 - (IBAction)hideDetails {
     if ([progressBarDetailsTriangle state] != NSOffState) {
         [progressBarDetailsTriangle performClick:progressBarDetailsTriangle];
     }
 }
 
-// save output in text field to file when Save to File menu item is invoked
+// Save output in text field to file when Save to File menu item is invoked
 - (IBAction)saveToFile:(id)sender {
     if (IsTextStyledInterfaceType(interfaceType) == NO) {
         return;
@@ -1304,19 +1301,19 @@ static const NSInteger detailsHeight = 224;
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
     
-    // status item menus are always enabled
+    // Status item menus are always enabled
     if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         return YES;
     }
-    // save to file item
+    // Save to file
     if (IsTextStyledInterfaceType(interfaceType) && [[anItem title] isEqualToString:@"Save to File…"]) {
         return YES;
     }
-    // open should only work if it's a droppable app that accepts files
+    // Open should only work if it's a droppable app that accepts files
     if ((isDroppable && acceptsFiles) && [[anItem title] isEqualToString:@"Open…"]) {
         return YES;
     }
-    // change text size
+    // Change text size
     if (IsTextSizableInterfaceType(interfaceType) && [[anItem title] hasPrefix:@"Make Text"]) {
         return YES;
     }
@@ -1340,14 +1337,14 @@ static const NSInteger detailsHeight = 224;
 - (void)changeFontSize:(CGFloat)delta {
     
     if (interfaceType == PlatypusInterfaceType_WebView) {
-        // web view
+        // Web View
         if (delta > 0) {
             [webView makeTextLarger:self];
         } else {
             [webView makeTextSmaller:self];
         }
     } else {
-        // text field
+        // Text field
         CGFloat newFontSize = [textFont pointSize] + delta;
         if (newFontSize < 5.0) {
             newFontSize = 5.0;
@@ -1377,14 +1374,14 @@ static const NSInteger detailsHeight = 224;
     id data = nil;
     
     if (acceptsFiles && [types containsObject:NSFilenamesPboardType] && (data = [pb propertyListForType:NSFilenamesPboardType])) {
-        ret = [self addDroppedFilesJob:data];  // files
+        ret = [self addDroppedFilesJob:data];  // Files
     } else if (acceptsText && [types containsObject:NSURLPboardType] && [NSURL URLFromPasteboard:pb] != nil) {
         NSURL *fileURL = [NSURL URLFromPasteboard:pb];
-        ret = [self addDroppedTextJob:[fileURL absoluteString]];  // url
+        ret = [self addDroppedTextJob:[fileURL absoluteString]];  // URL
     } else if (acceptsText && [types containsObject:NSStringPboardType] && (data = [pb stringForType:NSStringPboardType])) {
-        ret = [self addDroppedTextJob:data];  // text
+        ret = [self addDroppedTextJob:data];  // Text
     } else {
-        // unknown
+        // Unknown
         *err = @"Data type in pasteboard cannot be handled by this application.";
         return;
     }
@@ -1420,29 +1417,29 @@ static const NSInteger detailsHeight = 224;
     return YES;
 }
 
-// processing dropped files
-- (BOOL)addDroppedFilesJob:(NSArray OF_NSSTRING *)files {
+// Processing dropped files
+- (BOOL)addDroppedFilesJob:(NSArray <NSString *> *)files {
     if (!isDroppable || !acceptsFiles) {
         return NO;
     }
     
-    // we only accept the drag if at least one of the files meets the required types
+    // We only accept the drag if at least one of the files meets the required types
     NSMutableArray *acceptedFiles = [NSMutableArray array];
     for (NSString *file in files) {
         if ([self isAcceptableFileType:file]) {
             [acceptedFiles addObject:file];
         }
     }
-    // if at this point there are no accepted files, we refuse drop
     if ([acceptedFiles count] == 0) {
         return NO;
     }
     
+    // Add to Open Recent menu
     for (NSString *path in acceptedFiles) {
         [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:path]];
     }
     
-    // we create a job and add the files as arguments
+    // We create a job and add the files as arguments
     ScriptExecJob *job = [ScriptExecJob jobWithArguments:acceptedFiles andStandardInput:nil];
     [jobQueue addObject:job];
     
@@ -1501,7 +1498,7 @@ static const NSInteger detailsHeight = 224;
 
 #pragma mark - Drag and drop handling
 
-// check file types against acceptable drop types here before accepting them
+// Check file types against acceptable drop types here before accepting them
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
     // Prevent dragging from NSOpenPanels
     // draggingSource returns nil if the source is not in the same application
@@ -1513,9 +1510,9 @@ static const NSInteger detailsHeight = 224;
     BOOL acceptDrag = NO;
     NSPasteboard *pboard = [sender draggingPasteboard];
     
-    // if this is a file being dragged
+    // If this is a file being dragged
     if ([[pboard types] containsObject:NSFilenamesPboardType] && acceptsFiles) {
-        // loop through files, see if any of the dragged files are acceptable
+        // Loop through files, see if any of the dragged files are acceptable
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         
         for (NSString *file in files) {
@@ -1524,13 +1521,13 @@ static const NSInteger detailsHeight = 224;
             }
         }
     }
-    // if this is a string being dragged
+    // String
     else if ([[pboard types] containsObject:NSStringPboardType] && acceptsText) {
         acceptDrag = YES;
     }
         
     if (acceptDrag) {
-        // we shade the window if interface type is droplet
+        // Shade the window if interface type is droplet
         if (interfaceType == PlatypusInterfaceType_Droplet) {
             [dropletShaderView setAlphaValue:0.3];
             [dropletShaderView setHidden:NO];
@@ -1546,7 +1543,7 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (void)draggingExited:(id <NSDraggingInfo>)sender {
-    // remove the droplet shading on drag exit
+    // Hide droplet shading on drag exit
     if (interfaceType == PlatypusInterfaceType_Droplet) {
         [dropletShaderView setHidden:YES];
     }
@@ -1555,7 +1552,7 @@ static const NSInteger detailsHeight = 224;
 - (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
     
-    // determine drag data type and dispatch to job queue
+    // Determine drag data type and dispatch to job queue
     if ([[pboard types] containsObject:NSStringPboardType]) {
         return [self addDroppedTextJob:[pboard stringForType:NSStringPboardType]];
     } else if ([[pboard types] containsObject:NSFilenamesPboardType]) {
@@ -1564,21 +1561,21 @@ static const NSInteger detailsHeight = 224;
     return NO;
 }
 
-// once the drag is over, we immediately execute w. files as arguments if not already processing
+// Once the drag is over, we immediately execute w. files as arguments if not already processing
 - (void)concludeDragOperation:(id <NSDraggingInfo>)sender {
-    // shade droplet
+    // Shade droplet
     if (interfaceType == PlatypusInterfaceType_Droplet) {
         [dropletShaderView setHidden:YES];
     }
-    // fire off the job queue if nothing is running
+    // Fire off the job queue if nothing is running
     if (!isTaskRunning && [jobQueue count] > 0) {
         [NSTimer scheduledTimerWithTimeInterval:0.0f target:self selector:@selector(executeScript) userInfo:nil repeats:NO];
     }
 }
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
-    // this is needed to keep link instead of the green plus sign on web view
-    // also required to reject non-acceptable dragged items
+    // This is needed to keep link instead of the green plus sign on web view
+    // and also required to reject non-acceptable dragged items
     return [self draggingEntered:sender];
 }
 
@@ -1604,23 +1601,23 @@ static const NSInteger detailsHeight = 224;
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
     
-    // run script and wait until we've received all the script output
+    // Run script and wait until we've received all the script output
     NSString *outputStr = [self executeScriptForStatusMenu];
     
-    // create an array of lines by separating output by newline
-    NSMutableArray OF_NSSTRING *lines = [NSMutableArray arrayWithArray:[outputStr componentsSeparatedByString:@"\n"]];
+    // Create an array of lines by separating output by newline
+    NSMutableArray <NSString *> *lines = [[outputStr componentsSeparatedByString:@"\n"] mutableCopy];
     
-    // clean out any trailing newlines
+    // Clean out any trailing newlines
     while ([[lines lastObject] isEqualToString:@""]) {
         [lines removeLastObject];
     }
     
-    // remove all items of previous output
+    // Remove all items of previous output
     while ([statusItemMenu numberOfItems] > 2) {
         [statusItemMenu removeItemAtIndex:0];
     }
     
-    //populate menu with output from task
+    // Populate menu with output from task
     for (NSInteger i = [lines count] - 1; i >= 0; i--) {
         NSString *line = lines[i];
         NSImage *icon = nil;
@@ -1631,19 +1628,19 @@ static const NSInteger detailsHeight = 224;
             continue;
         }
         
-        // parse syntax setting item icon
+        // Parse syntax setting item icon
         if ([line hasPrefix:@"MENUITEMICON|"]) {
             NSArray *tokens = [line componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
             if ([tokens count] < 3) {
                 continue;
             }
             NSString *imageToken = tokens[1];
-            // is it a bundled image?
+            // Is it a bundled image?
             icon = [NSImage imageNamed:imageToken];
             
-            // if not, it could be a URL
+            // If not, it could be a URL
             if (icon == nil) {
-                // or a file system path
+                // Or a file system path
                 BOOL isDir;
                 if ([FILEMGR fileExistsAtPath:imageToken isDirectory:&isDir] && !isDir) {
                     icon = [[NSImage alloc] initByReferencingFile:imageToken];
@@ -1659,7 +1656,7 @@ static const NSInteger detailsHeight = 224;
             line = tokens[2];
         }
         
-        // parse syntax to handle submenus
+        // Parse syntax to handle submenus
         NSMenu *submenu = nil;
         if ([line hasPrefix:@"SUBMENU|"]) {
             NSMutableArray *tokens = [[line componentsSeparatedByString:CMDLINE_ARG_SEPARATOR] mutableCopy];
@@ -1670,7 +1667,7 @@ static const NSInteger detailsHeight = 224;
             [tokens removeObjectAtIndex:0];
             [tokens removeObjectAtIndex:0];
             
-            // create submenu
+            // Create submenu
             submenu = [[NSMenu alloc] initWithTitle:menuName];
             for (NSString *t in tokens) {
                 NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:t action:@selector(statusMenuItemSelected:) keyEquivalent:@""];
@@ -1680,18 +1677,18 @@ static const NSInteger detailsHeight = 224;
             line = menuName;
         }
         
-        // create the menu item
+        // Create the menu item
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(statusMenuItemSelected:) keyEquivalent:@""];
         if (submenu) {
             [menuItem setAction:nil];
             [menuItem setSubmenu:submenu];
         }
         
-        // set the formatted menu item string
+        // Set the formatted menu item string
         if (statusItemUsesSystemFont) {
             [menuItem setTitle:line];
         } else {
-            // create a dict of text attributes based on settings
+            // Create a dict of text attributes based on settings
             NSDictionary *textAttributes = @{NSForegroundColorAttributeName: textForegroundColor,
                                             NSFontAttributeName: textFont};
             

@@ -28,15 +28,15 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-//  This is a class with convenience and analysis methods for the
-//  script file types handled by Platypus.
+//  This is a class with convenience and analysis methods
+//  for the script file types handled by Platypus.
 
 #import "PlatypusScriptAnalyser.h"
 //#import "NSTask+Description.h"
 
 @implementation PlatypusScriptAnalyser
 
-+ (NSArray OF_NSDICTIONARY *)interpreters {
++ (NSArray <NSDictionary *> *)interpreters {
     return @[
              @{ @"Name":        @"Shell",
                 @"Path":        @"/bin/sh",
@@ -140,7 +140,7 @@
 
 #pragma mark -
 
-+ (NSArray OF_NSSTRING *)arrayOfInterpreterValuesForKey:(NSString *)key {
++ (NSArray <NSString *> *)arrayOfInterpreterValuesForKey:(NSString *)key {
     NSArray *interpreters = [self interpreters];
     NSMutableArray *arr = [NSMutableArray array];
     for (NSDictionary *dict in interpreters) {
@@ -149,18 +149,18 @@
     return [arr copy];
 }
 
-+ (NSArray OF_NSSTRING *)interpreterDisplayNames {
++ (NSArray <NSString *> *)interpreterDisplayNames {
     return [self arrayOfInterpreterValuesForKey:@"Name"];
 }
 
-+ (NSArray OF_NSSTRING *)interpreterPaths {
++ (NSArray <NSString *> *)interpreterPaths {
     return [self arrayOfInterpreterValuesForKey:@"Path"];
 }
 
 #pragma mark - Mapping
 
 + (NSString *)interpreterPathForDisplayName:(NSString *)displayName {
-    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
+    NSArray <NSDictionary *> *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         if ([infoDict[@"Name"] isEqualToString:displayName]) {
             return infoDict[@"Path"];
@@ -170,7 +170,7 @@
 }
 
 + (NSArray *)interpreterArgsForInterpreterPath:(NSString *)path {
-    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
+    NSArray <NSDictionary *> *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         if ([infoDict[@"Path"] isEqualToString:path]) {
             return infoDict[@"Args"];
@@ -180,7 +180,7 @@
 }
 
 + (NSString *)displayNameForInterpreterPath:(NSString *)interpreterPath {
-    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
+    NSArray <NSDictionary *> *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         if ([infoDict[@"Path"] isEqualToString:interpreterPath]) {
             return infoDict[@"Name"];
@@ -190,7 +190,7 @@
 }
 
 + (NSString *)helloWorldProgramForDisplayName:(NSString *)displayName {
-    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
+    NSArray <NSDictionary *> *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         if ([infoDict[@"Name"] isEqualToString:displayName]) {
             return infoDict[@"Hello"];
@@ -202,7 +202,7 @@
 #pragma mark - File suffixes
 
 + (NSString *)interpreterPathForFilenameSuffix:(NSString *)fileName {
-    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
+    NSArray <NSDictionary *> *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         NSArray *suffixes = infoDict[@"Suffixes"];
         for (NSString *suffix in suffixes) {
@@ -215,7 +215,7 @@
 }
 
 + (NSString *)standardFilenameSuffixForInterpreterPath:(NSString *)interpreterPath {
-    NSArray OF_NSDICTIONARY *interpreters = [self interpreters];
+    NSArray <NSDictionary *> *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         if ([infoDict[@"Path"] isEqualToString:interpreterPath]) {
             return [infoDict[@"Suffixes"] firstObject];
@@ -254,29 +254,29 @@
     return (buf[0] == '#' && buf[1] == '!');
 }
 
-+ (NSArray OF_NSSTRING *)parseInterpreterInScriptFile:(NSString *)path {
++ (NSArray <NSString *> *)parseInterpreterInScriptFile:(NSString *)path {
     
-    // get the first line of the script
+    // Get the first line of the script
     NSString *script = [NSString stringWithContentsOfFile:path encoding:DEFAULT_TEXT_ENCODING error:nil];
     NSArray *lines = [script componentsSeparatedByString:@"\n"];
     if ([lines count] == 0) {
-        // empty file
+        // Empty file
         return @[@""];
     }
     NSString *firstLine = lines[0];
 
-    // if shorter than 2 chars, it can't possibly be a shebang line
+    // If shorter than 2 chars, it can't possibly be a shebang line
     if ([firstLine length] <= 2 || ([[firstLine substringToIndex:2] isEqualToString:@"#!"] == NO)) {
         return @[@""];
     }
     
     NSString *interpreterCmd = [firstLine substringFromIndex:2];
     
-    // get everything that follows after the #!
-    // seperate it by whitespaces, in order not to get also the params to the interpreter
+    // Get everything that follows after the #!
+    // Separate it by whitespaces, in order not to get also the params to the interpreter
     NSMutableArray *interpreterAndArgs = [[interpreterCmd componentsSeparatedByString:@" "] mutableCopy];
     
-    // if shebang interpreter is not an absolute path or doestn't exist, we
+    // If shebang interpreter is not an absolute path or doestn't exist,
     // check if the binary name is the same as one of our preset interpreters
     NSString *parsedPath = interpreterAndArgs[0];
     if ([parsedPath hasPrefix:@"/"] == NO || [FILEMGR fileExistsAtPath:parsedPath] == NO) {
@@ -288,7 +288,7 @@
         }
     }
     
-    // remove all empty strings in array
+    // Remove all empty strings in array
     for (NSInteger i = [interpreterAndArgs count]-1; i > 0; i--) {
         NSCharacterSet *set = [NSCharacterSet whitespaceCharacterSet];
         NSString *trimmedStr = [interpreterAndArgs[i] stringByTrimmingCharactersInSet:set];
@@ -299,20 +299,21 @@
             interpreterAndArgs[i] = trimmedStr;
         }
     }
-    return interpreterAndArgs; // return array w. interpreter path + arguments
+    // Array w. interpreter path + arguments
+    return interpreterAndArgs;
 }
 
 + (NSString *)appNameFromScriptFile:(NSString *)path {
     NSString *name = [[path lastPathComponent] stringByDeletingPathExtension];
     
-    // replace these common filename word separators w. spaces
+    // Replace these common filename word separators w. spaces
     name = [name stringByReplacingOccurrencesOfString:@"-" withString:@" "]; // hyphen
     name = [name stringByReplacingOccurrencesOfString:@"_" withString:@" "]; // underscore
     
-    // remove leading and trailing whitespace/newlines
+    // Remove leading and trailing whitespace/newlines
     name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-    // iterate over each word, capitalize and append to app name
+    // Iterate over each word, capitalize and append to app name
     NSArray *words = [name componentsSeparatedByString:@" "];
     NSMutableString *appName = [[NSMutableString alloc] initWithString:@""];
     

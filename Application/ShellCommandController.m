@@ -67,7 +67,7 @@
     NSString *cmdStr = [appSpec commandStringUsingShortOpts:[useShortOptsCheckbox intValue]];
     [textView setString:cmdStr];
     
-    // get rid of this ugly connection to PrefsController :/
+    // Get rid of this ugly connection to PrefsController :/
     [PreferencesController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
     
     [NSApp beginSheet:[self window]
@@ -76,7 +76,7 @@
        didEndSelector:nil
           contextInfo:nil];
     
-    [[self window] makeFirstResponder:[self window]]; // so enter key closes window
+    [[self window] makeFirstResponder:[self window]]; // So enter key closes window
     [NSApp runModalForWindow:[self window]];
 }
 
