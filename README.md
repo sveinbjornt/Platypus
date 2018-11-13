@@ -24,7 +24,6 @@ launchers and automations using Platypus.
 * [Platypus Developer Mailing List](http://www.sveinbjorn.org/platypus_mailinglist)
 * [AppCast XML Feed](http://www.sveinbjorn.org/files/appcasts/PlatypusAppcast.xml)
 
-
 ## Screenshots
 
 ### Platypus main window
@@ -51,10 +50,11 @@ Platypus lets you select one of several different user interfaces for your scrip
 
 ## Some notes on the code
 
-Platypus is very old software, dating back to the early days of Mac OS X, circa 2003.  It was originally written in C using the
-Carbon APIs, but later transitioned to Cocoa during the time I was learning to use Objective-C and the Cocoa
-APIs. I made many beginner mistakes, some of which remain in the code.  This software has  since gone through about
-four dozen significant versions. It has been patched, bugfixed, streamlined to include new features and was transitioned over to modern Objective C a few years ago. It's not how I would write it today.
+Platypus is very old software, dating back to the early days of Mac OS X, around 2003, when
+I was first learning to use Objective-C and the Cocoa APIs. I made many beginner mistakes, 
+some of which remain in the structure of the code. This software has  since gone through about  
+four dozen significant versions. It has been patched, bugfixed, streamlined to include new features  
+and was transitioned over to modern Objective C a few years ago. It's not how I would write it today.
 
 With these caveats in mind, here is the BSD-licensed source code to Platypus.
 

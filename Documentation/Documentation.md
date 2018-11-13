@@ -74,7 +74,7 @@ Last updated on June 3rd 2017. The latest version of this document can be found 
 
 Platypus is a Mac OS X developer tool that creates application wrappers around scripts.  It turns interpreted scripts into regular Mac OS X applications that can be launched from the Mac OS X window environment -- e.g. the Finder or the Dock -- without requiring use of the command line interface.
 
-Platypus was first conceived in 2003 and implemented using the Carbon APIs.  It has since gone through over three dozen major updates, and is now entirely written in Objective C for the Cocoa APIs.
+Platypus was first conceived in 2003 and has since gone through over three dozen significant updates. It is written in Objective-C/Cocoa
 
 Platypus is free, open-source software distributed under the terms and conditions of the BSD license.  This means the source code is freely available and you are free to modify and distribute it as you see fit.  For more information on licensing, see [Can I use Platypus to create proprietary software?](#can-i-use-platypus-to-create-proprietary-software-).
 

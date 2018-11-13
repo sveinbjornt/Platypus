@@ -1250,12 +1250,6 @@ CA
                 <menuItem title="Help" id="573">
                     <menu key="submenu" title="Help" id="572">
                         <items>
-                            <menuItem title="Platypus Read Me" toolTip="Open the Platypus ReadMe file" id="1164">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="showReadme:" target="335" id="1165"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Platypus Documentation" keyEquivalent="?" toolTip="Open the Platypus Documentation file" id="574">
                                 <connections>
                                     <action selector="showHelp:" target="335" id="575"/>
@@ -1304,6 +1298,7 @@ CA
             <connections>
                 <outlet property="delegate" destination="335" id="476"/>
             </connections>
+            <point key="canvasLocation" x="157" y="508"/>
         </menu>
         <menu title="Menu" id="830" userLabel="IconContextualMenu">
             <items>

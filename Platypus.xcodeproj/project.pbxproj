@@ -138,7 +138,6 @@
 		F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A841BD1BFAB00F411BD /* STDragImageView.m */; };
 		F4D0F2311C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */; };
 		F4DC075211F629A40043764E /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074F11F629A40043764E /* Documentation.html */; };
-		F4DC075311F629A40043764E /* Readme.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC075011F629A40043764E /* Readme.html */; };
 		F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */; };
 		F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */ = {isa = PBXBuildFile; fileRef = F4F14CAF1C640857002A2402 /* make_examples.pl */; };
 		F4F2F3BA1BF96C5C00FE463C /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B91BF96C5C00FE463C /* VDKQueue.m */; };
@@ -346,7 +345,6 @@
 		F4D0F22F1C1DCEEE0065AD25 /* NSResponderNotifyingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSResponderNotifyingTableView.h; path = Shared/NSResponderNotifyingTableView.h; sourceTree = "<group>"; };
 		F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSResponderNotifyingTableView.m; path = Shared/NSResponderNotifyingTableView.m; sourceTree = "<group>"; };
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
-		F4DC075011F629A40043764E /* Readme.html */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.html.documentation; path = Readme.html; sourceTree = "<group>"; };
 		F4DC738321644F4700D79823 /* clt_tests.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = clt_tests.py; sourceTree = "<group>"; };
 		F4E1F6FC11F758FB007EE2E3 /* platypus_clt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E5E4011EE2F22E0072EACE /* Documentation.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Documentation.md; sourceTree = "<group>"; };
@@ -829,7 +827,6 @@
 				F4DC074F11F629A40043764E /* Documentation.html */,
 				F4E5E4011EE2F22E0072EACE /* Documentation.md */,
 				F48002BA121AF042003FB5B3 /* images */,
-				F4DC075011F629A40043764E /* Readme.html */,
 				F4FB338014FBFC7C00BAECEB /* License.html */,
 				F4871B32178A117600DE54F3 /* update_docs.sh */,
 			);
@@ -997,7 +994,6 @@
 				F45B1F151FF5617500A935D7 /* Interpreter_ksh.png in Resources */,
 				F45B1F181FF5617500A935D7 /* Interpreter_AppleScript.png in Resources */,
 				F45B1F211FF5617500A935D7 /* Interpreter_Perl.png in Resources */,
-				F4DC075311F629A40043764E /* Readme.html in Resources */,
 				F44A77431C1882DA003CCA7A /* InstallCommandLineTool.sh in Resources */,
 				F45B1F171FF5617500A935D7 /* Interpreter_PHP.png in Resources */,
 				F48002CB121AF042003FB5B3 /* images in Resources */,

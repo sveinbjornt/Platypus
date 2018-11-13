@@ -40,7 +40,6 @@
 #define PROGRAM_DONATIONS           @"http://sveinbjorn.org/donations"
 #define PROGRAM_PROFILE_UTI         @"org.sveinbjorn.platypus.profile"
 #define PROGRAM_PROFILE_SUFFIX      @"platypus"
-#define PROGRAM_README_FILE         @"Readme.html"
 #define PROGRAM_MANPAGE             @"platypus.man.html"
 #define PROGRAM_LICENSE_FILE        @"License.html"
 #define PROGRAM_DOCUMENTATION       @"Documentation.html"

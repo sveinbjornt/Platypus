@@ -90,11 +90,6 @@ mv "${BUILD_DIR}/${APP_BUNDLE_NAME}" "${BUILD_DIR}${APP_FOLDER_NAME}/"
 # Remove DS_Store junk
 find "${BUILD_DIR}${APP_FOLDER_NAME}/" -name ".DS_Store" -exec rm -f "{}" \;
 
-# Create symlink to Readme file
-echo "Creating symlink to Readme file"
-cd "${BUILD_DIR}/${APP_FOLDER_NAME}"
-ln -s "${APP_BUNDLE_NAME}/Contents/Resources/Readme.html" "Readme.html"
-
 # Create zip archive and move to desktop
 echo "Creating application archive ${APP_ZIP_NAME}..."
 cd "${BUILD_DIR}"

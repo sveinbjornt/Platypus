@@ -990,11 +990,6 @@
     [WORKSPACE openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_MANPAGE ofType:nil]];
 }
 
-// Open Readme.html
-- (IBAction)showReadme:(id)sender {
-    [WORKSPACE openPathInDefaultBrowser:[[NSBundle mainBundle] pathForResource:PROGRAM_README_FILE ofType:nil]];
-}
-
 // Open program website
 - (IBAction)openWebsite:(id)sender {
     [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
