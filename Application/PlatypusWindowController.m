@@ -661,9 +661,18 @@
     // Set the script type based on the number which identifies each type
     NSString *interpreterPath = [PlatypusScriptAnalyser interpreterPathForDisplayName:type];
     NSArray *interpreterArgs = [PlatypusScriptAnalyser interpreterArgsForInterpreterPath:interpreterPath];
+    NSArray *scriptArgs = [PlatypusScriptAnalyser scriptArgsForInterpreterPath:interpreterPath];
+    
     [interpreterPathTextField setStringValue:interpreterPath];
     [scriptTypePopupButton selectItemWithTitle:type];
-    [argsController setInterpreterArgs:interpreterArgs];
+    
+    if ([interpreterArgs count]) {
+        [argsController setInterpreterArgs:interpreterArgs];
+    }
+    if ([scriptArgs count]) {
+        [argsController setScriptArgs:scriptArgs];
+    }
+    
     [self performSelector:@selector(controlTextDidChange:) withObject:nil];
 }
 

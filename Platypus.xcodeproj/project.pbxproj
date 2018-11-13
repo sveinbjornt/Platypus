@@ -33,6 +33,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		F402AEB9219AE0D300BEAF24 /* Interpreter_JavaScript.png in Resources */ = {isa = PBXBuildFile; fileRef = F402AEB8219AE0D200BEAF24 /* Interpreter_JavaScript.png */; };
 		F4051D9F1C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
 		F4051DA01C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
 		F4051DA11C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
@@ -198,6 +199,7 @@
 
 /* Begin PBXFileReference section */
 		8D1107320486CEB800E47090 /* Platypus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platypus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F402AEB8219AE0D200BEAF24 /* Interpreter_JavaScript.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_JavaScript.png; sourceTree = "<group>"; };
 		F4051D9E1C1B5AF900587F1F /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		F4051DA71C1C812600587F1F /* STReverseDNSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STReverseDNSTextField.h; path = Shared/STReverseDNSTextField.h; sourceTree = "<group>"; };
 		F4051DA81C1C812600587F1F /* STReverseDNSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STReverseDNSTextField.m; path = Shared/STReverseDNSTextField.m; sourceTree = "<group>"; };
@@ -645,6 +647,7 @@
 				F45B1F081FF5617400A935D7 /* Interpreter_PHP.png */,
 				F45B1F0F1FF5617400A935D7 /* Interpreter_Swift.png */,
 				F4146CCE2149E76000BB36AD /* Interpreter_AWK.png */,
+				F402AEB8219AE0D200BEAF24 /* Interpreter_JavaScript.png */,
 			);
 			path = Interpreters;
 			sourceTree = "<group>";
@@ -990,6 +993,7 @@
 				F4DC075211F629A40043764E /* Documentation.html in Resources */,
 				F44A77451C1882DA003CCA7A /* UninstallPlatypus.sh in Resources */,
 				F45B1F1E1FF5617500A935D7 /* Interpreter_Swift.png in Resources */,
+				F402AEB9219AE0D300BEAF24 /* Interpreter_JavaScript.png in Resources */,
 				F45B1F2C1FF5618000A935D7 /* InterfaceType_Droplet.png in Resources */,
 				F45B1F151FF5617500A935D7 /* Interpreter_ksh.png in Resources */,
 				F45B1F181FF5617500A935D7 /* Interpreter_AppleScript.png in Resources */,

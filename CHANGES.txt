@@ -9,33 +9,33 @@ For future versions...
     TODO: Ability to sign ScriptExec binary with own custom signature
     TODO: Use pseudo-ttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
     TODO: Refactor ScriptExec for clean view controller/task controller decoupling. It's currently a mess.
-
-For 5.3
-
     TODO: Refactor status menu item menu generation from output to share code between ScriptExec and Platypus.app
     TODO: Find a way to support authenticated task termination
     TODO: New button-based interface type
     TODO: New OnChange Text Filter interface type
-    TODO: Document the Services feature and provide instructions on how to enable in macOS Services preferences.
-    TODO: Create Platypus tutorial videos, make them available online
-    TODO: Find a way to fix broken file watching of script path eftir pressing "New"
     TODO: Implement new Table View interface (CSV output?)
-    TODO: Async Status Menu script execution to prevent interface locking on main thread
     TODO: Fix issue with multiple AEOpen events for many opened files
-
     TODO: Create more automated tests for command line tool
     TODO: Don't save Status Menu image as base64 in every Profile
+    TODO: Find a way to fix broken file watching of script path eftir pressing "New"
+    TODO: Create Platypus tutorial videos, make them available online
+
+For 5.3
+
+    TODO: Document the Services feature and provide instructions on how to enable in macOS Services preferences.
+    TODO: Async Status Menu script execution to prevent interface locking on main thread
     TODO: Fix bug where custom icns file for icon doesn't work
 
     TODO: Rewrite documentation for clarity
     TODO: Update Droplet interface screenshot
+    TODO: Fix icon drag and drop
     * Validate default bundle identifier in Prefs
     * Make Droplet window & others larger
-    * ScriptExec tries to make script executable (+x) on launch (solves issue with launchings apps from network-mounted volumes)
-    * Removed buggy UTI validation in command line tool
+    * ScriptExec tries to make bundled script executable (+x) on launch (THis may resolve issues with launchings apps from network-mounted volumes)
+    * Fixed buggy UTI validation in command line tool
     * Updated to support Mojave Dark Mode
     * Fixed issue with 16x16 document icons on non-retina displays
-    * AWK added as an interpreter preset
+    * Added AWK and JavaScript interpreter presets
     * Fixed exception when double-clicking bundled files header
     * Fixed bug where pressing "Clear" could cause program to crash
     * Implemented a REFRESH command to clear text output buffer and reset web view HTML

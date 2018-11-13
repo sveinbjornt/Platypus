@@ -277,6 +277,7 @@
     }
     self[AppSpecKey_InterpreterPath] = interpreterPath;
     self[AppSpecKey_InterpreterArgs] = [PlatypusScriptAnalyser interpreterArgsForInterpreterPath:interpreterPath];
+    self[AppSpecKey_ScriptArgs] = [PlatypusScriptAnalyser scriptArgsForInterpreterPath:interpreterPath];
     
     // Find parent folder wherefrom we create destination path of app bundle
     NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];

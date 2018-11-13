@@ -131,6 +131,12 @@
                 @"Suffixes":    @[@".awk"],
                 @"Args":        @[@"-f"] },
              
+             @{ @"Name":        @"JavaScript",
+                @"Path":        @"/System/Library/Frameworks/JavaScriptCore.framework/Resources/jsc",
+                @"Hello":       @"print(\"Hello, World\");",
+                @"Suffixes":    @[@".js"],
+                @"ScriptArgs":  @[@"--"] },
+             
              @{ @"Name":        @"Other...",
                 @"Path":        @"",
                 @"Hello":       @"",
@@ -169,11 +175,21 @@
     return @"";
 }
 
-+ (NSArray *)interpreterArgsForInterpreterPath:(NSString *)path {
++ (NSArray <NSString *> *)interpreterArgsForInterpreterPath:(NSString *)path {
     NSArray <NSDictionary *> *interpreters = [self interpreters];
     for (NSDictionary *infoDict in interpreters) {
         if ([infoDict[@"Path"] isEqualToString:path]) {
             return infoDict[@"Args"];
+        }
+    }
+    return nil;
+}
+
++ (NSArray <NSString *> *)scriptArgsForInterpreterPath:(NSString *)path {
+    NSArray <NSDictionary *> *interpreters = [self interpreters];
+    for (NSDictionary *infoDict in interpreters) {
+        if ([infoDict[@"Path"] isEqualToString:path]) {
+            return infoDict[@"ScriptArgs"];
         }
     }
     return nil;

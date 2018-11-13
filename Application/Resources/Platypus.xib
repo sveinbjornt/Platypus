@@ -141,7 +141,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button hidden="YES" toolTip="Press this button to configure what kind of dropped items your app should accept" verticalHuggingPriority="750" id="372">
-                        <rect key="frame" x="312" y="222" width="81" height="28"/>
+                        <rect key="frame" x="312" y="222" width="88" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Settings" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="10958">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -400,7 +400,7 @@ DQ
                             <action selector="editScript:" target="335" id="350"/>
                         </connections>
                     </button>
-                    <scrollView toolTip="The list of files that will be bundled with your application. These files are in the current working directory for your script." autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="319">
+                    <scrollView toolTip="Files to bundle with your application. They will be stored in the same directory as your script." autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="319">
                         <rect key="frame" x="20" y="59" width="593" height="121"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="AwF-Vu-vkI">
@@ -812,7 +812,7 @@ DQ
                                     <action selector="editScript:" target="335" id="411"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Reveal Script" keyEquivalent="r" toolTip="Reveal currently loaded script in the Finder" id="432">
+                            <menuItem title="Reveal Script in Finder" keyEquivalent="r" toolTip="Reveal currently loaded script in the Finder" id="432">
                                 <connections>
                                     <action selector="revealScript:" target="335" id="434"/>
                                 </connections>
