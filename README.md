@@ -1,20 +1,38 @@
 # Platypus
 
-<img align="right" src="Documentation/images/platypus.png" style="float: right; margin-left: 30px;" width="94" height="127">
+<img align="right" src="Documentation/images/platypus.png" 
+style="float: right; margin-left: 30px;" width="94" height="127">
 
-**Platypus** is a developer tool that creates native Mac applications
-from command line scripts such as shell scripts or Perl and Python programs.
-This is done by wrapping the script in an 
-[application bundle](https://en.wikipedia.org/wiki/Bundle_(OS_X))
-directory structure  along with an app binary that runs the script.
+**Platypus** is a developer tool that creates native Mac applications 
+from command line scripts such as shell scripts or Python, Perl, Ruby, 
+Tcl and PHP programs. This is done by wrapping the script in an 
+[application bundle](https://en.wikipedia.org/wiki/Bundle_(OS_X)) along 
+with an app binary that runs the script.
 
 Platypus makes it easy to share scripts and programs with those 
-unfamiliar with the command line interface. Native, user-friendly
-applications can be created with a few clicks. It is very easy to
-create installers, droplets, administrative applications, login items, status menu items, 
-launchers and automations using Platypus.
+unfamiliar with the command line interface. Native, user-friendly 
+applications can be created with a few clicks. It is very easy to 
+create installers, droplets, administrative applications, login items, 
+status menu items, launchers and automations using Platypus.
 
-* **⇩ [Download Platypus 5.2](http://sveinbjorn.org/files/software/platypus.zip)** (Intel 64-bit, 10.8 or later, ~3.5 MB)
+* **[⇩ Download Platypus 5.2](http://sveinbjorn.org/files/software/platypus.zip)** 
+(Intel 64-bit, 10.8 or later, ~3.5 MB)
+
+## Features
+
+* Supports shell scripts, Python, Perl, Ruby, PHP, Swift, Expect, Tcl, AWK, JavaScript, AppleScript or any other user-specified interpreter
+* Apps can execute scripts with root privileges via the Security Framework
+* Apps can display graphical feedback of script execution as progress bar, text window with script output, droplet, WebKit HTML rendering or status item menu
+* Apps support receiving dragged and dropped files or text snippets, which are then passed to the script as arguments
+* Apps can register as handlers for URI schemes
+* Apps can be configured to run in the background (LSUIElement)
+* Set own application icon or select from presets
+* Set app's associated file types, identifier, version, author, etc.
+* Graphical interface for bundling support files with the script
+* Command line tool for automation and build process integration
+* "Profiles" can be used to save app configurations
+* Built-in script editor, or linking with external editor of choice
+* Extensive [documentation](Documentation/Documentation.md) and many built-in examples to help you get started
 
 ## Useful Links
 
@@ -27,40 +45,43 @@ launchers and automations using Platypus.
 ## Screenshots
 
 ### Platypus main window
-<img src="Documentation/images/basic_interface.png" width="663">
+<img src="Documentation/images/basic_interface.png" width="664">
 
 ### Interfaces
 
 Platypus lets you select one of several different user interfaces for your script.
 
 #### Progress Bar Interface
-<img src="Documentation/images/interface_screenshot_progress_bar.png" width="550">
+<img src="Documentation/images/interface_progressbar.png" width="438">
 
 #### Text Window Interface
-<img src="Documentation/images/interface_screenshot_text_window.png" width="581">
+<img src="Documentation/images/interface_textwindow.png" width="469">
 
 #### Web View Interface
-<img src="Documentation/images/interface_screenshot_web_view.png" width="620">
+<img src="Documentation/images/interface_webview.png" width="508">
 
 #### Status Menu Interface
-<img src="Documentation/images/interface_screenshot_status_menu.png" width="401">
+<img src="Documentation/images/interface_statusmenu.png" width="369">
 
 #### Droplet Interface
-<img src="Documentation/images/interface_screenshot_droplet.png" width="374">
+<img src="Documentation/images/interface_droplet.png" width="294">
 
 ## Some notes on the code
 
-Platypus is very old software, dating back to the early days of Mac OS X, around 2003, when
-I was first learning to use Objective-C and the Cocoa APIs. I made many beginner mistakes, 
-some of which remain in the structure of the code. This software has  since gone through about  
-four dozen significant versions. It has been patched, bugfixed, streamlined to include new features  
-and was transitioned over to modern Objective C a few years ago. It's not how I would write it today.
+Platypus is very old software, dating back to the early days of 
+Mac OS X, around 2003, when I was first learning to use Objective-C 
+and the Cocoa APIs. I made many beginner mistakes, some of which remain 
+in the structure of the code. This software has  since gone through 
+about  four dozen significant versions. It has been patched, bugfixed, 
+streamlined to include new features and was transitioned over to 
+modern Objective-C a few years ago. It's not how I would write it today.
 
 With these caveats in mind, here is the BSD-licensed source code to Platypus.
 
 ## BSD License 
 
-Copyright (c) Sveinbjorn Thordarson &lt;<a href="mailto:">sveinbjorn@sveinbjorn.org</a>&gt;
+Copyright (c) Sveinbjorn Thordarson 
+&lt;<a href="mailto:">sveinbjorn@sveinbjorn.org</a>&gt;
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
