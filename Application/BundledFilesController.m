@@ -136,7 +136,7 @@
     BOOL hasSelection = [[tableView selectedRowIndexes] count];
     [removeFileButton setEnabled:hasSelection];
     [revealFileButton setEnabled:hasSelection];
-    [editFileButton setEnabled:hasSelection];
+    [editFileButton setEnabled:hasSelection && [[tableView selectedRowIndexes] count] == 1];
     [clearFileListButton setEnabled:([files count] != 0)];
 }
 
