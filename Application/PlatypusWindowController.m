@@ -290,11 +290,6 @@
     }
 }
 
-- (IBAction)runScriptInTerminal:(id)sender {
-    NSString *cmd = [NSString stringWithFormat:@"%@ '%@'", [interpreterPathTextField stringValue], [scriptPathTextField stringValue]];
-    [WORKSPACE runCommandInTerminal:cmd];
-}
-
 - (IBAction)checkSyntaxOfScript:(id)sender {
     [[self window] setTitle:[NSString stringWithFormat:@"%@ - Syntax Checker", PROGRAM_NAME]];
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] init];
@@ -941,7 +936,6 @@
     BOOL badScriptFile = (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] || isDir);
     if (([anItem action] == @selector(editScript:) ||
          [anItem action] == @selector(revealScript:) ||
-         [anItem action] == @selector(runScriptInTerminal:) ||
          [anItem action] == @selector(checkSyntaxOfScript:))
         && badScriptFile) {
         return NO;

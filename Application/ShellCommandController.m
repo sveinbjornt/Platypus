@@ -43,10 +43,6 @@
     PlatypusAppSpec *appSpec;
 }
 
-- (IBAction)close:(id)sender;
-- (IBAction)useShortOptsCheckboxClicked:(id)sender;
-- (IBAction)runInTerminal:(id)sender;
-
 @end
 
 @implementation ShellCommandController
@@ -90,10 +86,6 @@
 
 - (IBAction)useShortOptsCheckboxClicked:(id)sender {
     [textView setString:[appSpec commandStringUsingShortOpts:[sender intValue]]];
-}
-
-- (IBAction)runInTerminal:(id)sender {
-    [WORKSPACE runCommandInTerminal:[textView string]];
 }
 
 @end

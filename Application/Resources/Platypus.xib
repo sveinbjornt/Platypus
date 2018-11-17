@@ -817,11 +817,6 @@ DQ
                                     <action selector="revealScript:" target="335" id="434"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Run Script in Terminal" keyEquivalent="R" toolTip="Run currently loaded script in the Terminal" id="767">
-                                <connections>
-                                    <action selector="runScriptInTerminal:" target="335" id="9uO-JQ-s67"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Check Script Syntax" keyEquivalent="X" toolTip="Check the syntax of currently loaded script" id="1025">
                                 <connections>
                                     <action selector="checkSyntaxOfScript:" target="335" id="11216"/>
@@ -1906,7 +1901,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="JcD-yT-ov7">
                             <rect key="frame" x="1" y="0.0" width="209" height="120"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11089" id="1405" customClass="NSResponderNotifyingTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="209" height="103"/>
@@ -1958,7 +1953,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="AXu-6W-m9d">
                             <rect key="frame" x="1" y="0.0" width="209" height="120"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11254" id="11257" customClass="NSResponderNotifyingTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="209" height="103"/>

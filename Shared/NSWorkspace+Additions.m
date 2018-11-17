@@ -169,18 +169,14 @@
 }
 
 - (NSString *)fileSizeAsHumanReadableString:(UInt64)size {
-    NSString *str;
-    
     if (size < 1024ULL) {
-        str = [NSString stringWithFormat:@"%u bytes", (unsigned int)size];
+        return [NSString stringWithFormat:@"%u bytes", (unsigned int)size];
     } else if (size < 1048576ULL) {
-        str = [NSString stringWithFormat:@"%llu KB", (UInt64)size / 1024];
+        return [NSString stringWithFormat:@"%llu KB", (UInt64)size / 1024];
     } else if (size < 1073741824ULL) {
-        str = [NSString stringWithFormat:@"%.1f MB", size / 1048576.0];
-    } else {
-        str = [NSString stringWithFormat:@"%.1f GB", size / 1073741824.0];
-    }
-    return str;
+        return [NSString stringWithFormat:@"%.1f MB", size / 1048576.0];
+    }    
+    return [NSString stringWithFormat:@"%.1f GB", size / 1073741824.0];
 }
 
 #pragma mark - Temp file
@@ -365,17 +361,13 @@
     [self openFile:filePath withApplication:appPath];
 }
 
-
 #pragma mark - Notify Finder
 
 - (void)notifyFinderFileChangedAtPath:(NSString *)path {
-    [[NSWorkspace sharedWorkspace] noteFileSystemChanged:path];
+    [[NSWorkspace sharedWorkspace] noteFileSystemChanged:path]; // Deprecated
     NSString *source = [NSString stringWithFormat:@"tell application \"Finder\" to update item (POSIX file \"%@\")", path];
-    
     NSAppleScript *appleScript = [[NSAppleScript alloc] initWithSource:source];
-    if (appleScript != nil) {
-        [appleScript executeAndReturnError:nil];
-    }
+    [appleScript executeAndReturnError:nil];
 }
 
 #pragma mark - Services
@@ -397,18 +389,6 @@
     NSURL *appURL = [[NSWorkspace sharedWorkspace] URLForApplicationToOpenURL:url];
     NSString *appPath = [appURL path];
     return [[NSWorkspace sharedWorkspace] openFile:path withApplication:appPath];
-}
-
-- (BOOL)runCommandInTerminal:(NSString *)cmd {
-    
-    NSString *osaCmd = [NSString stringWithFormat:@"tell application \"Terminal\"\n\tdo script \"%@\"\nactivate\nend tell", cmd];
-    NSAppleScript *script = [[NSAppleScript alloc] initWithSource:osaCmd];
-    NSDictionary *errorInfo;
-    if ([script executeAndReturnError:&errorInfo] == nil){
-        NSLog(@"%@", [errorInfo description]);
-        return NO;
-    }
-    return YES;
 }
 
 @end
