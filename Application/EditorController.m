@@ -60,7 +60,7 @@
 }
 
 - (void)awakeFromNib {
-    NSNumber *userFontSizeNum = [DEFAULTS objectForKey:@"EditorFontSize"];
+    NSNumber *userFontSizeNum = [DEFAULTS objectForKey:DefaultsKey_EditorFontSize];
     CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : DEFAULT_TEXT_FONT_SIZE;
     NSFont *font = [NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:fontSize];
     [textView setFont:font];
@@ -84,7 +84,7 @@
     [icon setSize:NSMakeSize(16, 16)];
     [scriptIconImageView setImage:icon];
     
-    [textView setWordwrapsText:[DEFAULTS boolForKey:@"EditorWordWrap"]];
+    [textView setWordwrapsText:[DEFAULTS boolForKey:DefaultsKey_EditorWordWrap]];
     [textView setString:str];
     
     [NSApp beginSheet:[self window]
@@ -140,7 +140,7 @@
 
 - (IBAction)wordWrapCheckboxClicked:(id)sender {
     [textView setWordwrapsText:[sender intValue]];
-    [DEFAULTS setBool:[sender intValue] forKey:@"EditorWordWrap"];
+    [DEFAULTS setBool:[sender intValue] forKey:DefaultsKey_EditorWordWrap];
 }
 
 #pragma mark - Font size
@@ -150,7 +150,7 @@
     CGFloat newFontSize = [font pointSize] + delta;
     font = [[NSFontManager sharedFontManager] convertFont:font toSize:newFontSize];
     [textView setFont:font];
-    [DEFAULTS setObject:@((float)newFontSize) forKey:@"EditorFontSize"];
+    [DEFAULTS setObject:@((float)newFontSize) forKey:DefaultsKey_EditorFontSize];
     [textView didChangeText];
 }
 

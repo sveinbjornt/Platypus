@@ -96,6 +96,9 @@ NSString * const DefaultsKey_DefaultAuthor = @"DefaultAuthor";
 NSString * const DefaultsKey_SymlinkFiles = @"OnCreateDevVersion";
 NSString * const DefaultsKey_StripNib = @"OnCreateOptimizeNib";
 NSString * const DefaultsKey_UseXMLPlistFormat = @"OnCreateUseXMLPlist";
+NSString * const DefaultsKey_EditorFontSize = @"EditorFontSize";
+NSString * const DefaultsKey_EditorWordWrap = @"EditorWordWrap";
+NSString * const DefaultsKey_Launched = @"Launched";
 
 // NSUserDefaults keys for ScriptExec app
 NSString * const ScriptExecDefaultsKey_UserFontSize = @"UserFontSize";

@@ -143,7 +143,10 @@
     }
     
     // We list ourself as an observer of changes to file system for script path being watched
-    [[WORKSPACE notificationCenter] addObserver:self selector:@selector(scriptFileSystemChange) name:VDKQueueRenameNotification object:nil];
+    [[WORKSPACE notificationCenter] addObserver:self
+                                       selector:@selector(scriptFileSystemChange)
+                                           name:VDKQueueRenameNotification
+                                         object:nil];
     
     // Listen for app size change notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -178,9 +181,9 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    if ([DEFAULTS boolForKey:@"Launched"] == NO) {
+    if ([DEFAULTS boolForKey:DefaultsKey_Launched] == NO) {
         [[self window] center];
-        [DEFAULTS setBool:YES forKey:@"Launched"];
+        [DEFAULTS setBool:YES forKey:DefaultsKey_Launched];
     }
     [[self window] makeKeyAndOrderFront:self];
     [appNameTextField becomeFirstResponder];
