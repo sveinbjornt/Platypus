@@ -31,10 +31,10 @@
 //  This is a class with convenience and analysis methods
 //  for the script file types handled by Platypus.
 
-#import "PlatypusScriptAnalyser.h"
+#import "PlatypusScriptUtils.h"
 //#import "NSTask+Description.h"
 
-@implementation PlatypusScriptAnalyser
+@implementation PlatypusScriptUtils
 
 + (NSArray <NSDictionary *> *)interpreters {
     return @[
@@ -249,7 +249,7 @@
     if ([WORKSPACE type:[WORKSPACE typeOfFile:path error:nil] conformsToType:(NSString *)kUTTypePlainText]) {
         return YES;
     }
-    if ([PlatypusScriptAnalyser hasShebangLineAtPath:path]) {
+    if ([PlatypusScriptUtils hasShebangLineAtPath:path]) {
         return YES;
     }
     return NO;

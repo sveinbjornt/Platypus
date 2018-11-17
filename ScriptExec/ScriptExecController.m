@@ -45,7 +45,7 @@
 #import "ScriptExecJob.h"
 
 #ifdef DEBUG
-#import "PlatypusScriptAnalyser.h"
+#import "PlatypusScriptUtils.h"
 #endif
 
 @interface ScriptExecController()
@@ -393,7 +393,7 @@ static const NSInteger detailsHeight = 224;
     // parse the shebang line for one. Makes it easier to switch scripting
     // languages in the test script without mucking about with AppSettings.plist
     if (scriptInterpreterPath == nil || [scriptInterpreterPath isEqualToString:@""]) {
-        scriptInterpreterPath = [PlatypusScriptAnalyser determineInterpreterPathForScriptFile:scriptPath];
+        scriptInterpreterPath = [PlatypusScriptUtils determineInterpreterPathForScriptFile:scriptPath];
         if (scriptInterpreterPath == nil) {
             scriptInterpreterPath = DEFAULT_INTERPRETER_PATH;
         }

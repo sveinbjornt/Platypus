@@ -31,7 +31,7 @@
 #import "PlatypusWindowController.h"
 #import "Common.h"
 #import "PlatypusAppSpec.h"
-#import "PlatypusScriptAnalyser.h"
+#import "PlatypusScriptUtils.h"
 #import "IconController.h"
 #import "ArgsController.h"
 #import "ProfilesController.h"
@@ -155,7 +155,7 @@
 
     
     // Populate script type menu
-    [scriptTypePopupButton addItemsWithTitles:[PlatypusScriptAnalyser interpreterDisplayNames]];
+    [scriptTypePopupButton addItemsWithTitles:[PlatypusScriptUtils interpreterDisplayNames]];
     NSArray *menuItems = [scriptTypePopupButton itemArray];
     for (NSMenuItem *item in menuItems) {
         NSImage *icon = [NSImage imageNamed:[NSString stringWithFormat:@"Interpreter_%@", [item title]]];
@@ -218,7 +218,7 @@
 
 - (NSString *)createNewScript:(NSString *)scriptText {
     NSString *interpreterPath = [interpreterPathTextField stringValue];
-    NSString *suffix = [PlatypusScriptAnalyser standardFilenameSuffixForInterpreterPath:interpreterPath];
+    NSString *suffix = [PlatypusScriptUtils standardFilenameSuffixForInterpreterPath:interpreterPath];
     
     NSString *appName = [appNameTextField stringValue];
     if ([appName isEqualToString:@""]) {
@@ -240,7 +240,7 @@
     if (scriptText) {
         contentString = [contentString stringByAppendingString:scriptText];
     } else {
-        NSString *defaultScriptText = [PlatypusScriptAnalyser helloWorldProgramForDisplayName:[scriptTypePopupButton titleOfSelectedItem]];
+        NSString *defaultScriptText = [PlatypusScriptUtils helloWorldProgramForDisplayName:[scriptTypePopupButton titleOfSelectedItem]];
         if (defaultScriptText) {
             contentString = [contentString stringByAppendingString:defaultScriptText];
         }
@@ -640,7 +640,7 @@
 }
 
 - (BOOL)panel:(id)sender shouldEnableURL:(NSURL *)url {
-    return [PlatypusScriptAnalyser isPotentiallyScriptAtPath:[url path]];
+    return [PlatypusScriptUtils isPotentiallyScriptAtPath:[url path]];
 }
 
 - (IBAction)scriptTypeSelected:(id)sender {
@@ -649,15 +649,15 @@
 
 - (void)selectScriptTypeBasedOnInterpreter {
     NSString *interpreterPath = [interpreterPathTextField stringValue];
-    NSString *type = [PlatypusScriptAnalyser displayNameForInterpreterPath:interpreterPath];
+    NSString *type = [PlatypusScriptUtils displayNameForInterpreterPath:interpreterPath];
     [scriptTypePopupButton selectItemWithTitle:type];
 }
 
 - (void)setScriptType:(NSString *)type {
     // Set the script type based on the number which identifies each type
-    NSString *interpreterPath = [PlatypusScriptAnalyser interpreterPathForDisplayName:type];
-    NSArray *interpreterArgs = [PlatypusScriptAnalyser interpreterArgsForInterpreterPath:interpreterPath];
-    NSArray *scriptArgs = [PlatypusScriptAnalyser scriptArgsForInterpreterPath:interpreterPath];
+    NSString *interpreterPath = [PlatypusScriptUtils interpreterPathForDisplayName:type];
+    NSArray *interpreterArgs = [PlatypusScriptUtils interpreterArgsForInterpreterPath:interpreterPath];
+    NSArray *scriptArgs = [PlatypusScriptUtils scriptArgsForInterpreterPath:interpreterPath];
     
     [interpreterPathTextField setStringValue:interpreterPath];
     [scriptTypePopupButton selectItemWithTitle:type];
@@ -883,7 +883,7 @@
                 return YES;
             }
             // Might be a script
-            if ([PlatypusScriptAnalyser isPotentiallyScriptAtPath:filePath]) {
+            if ([PlatypusScriptUtils isPotentiallyScriptAtPath:filePath]) {
                 [self loadScript:filePath];
                 return YES;
             }

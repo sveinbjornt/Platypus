@@ -31,7 +31,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Common.h"
 
-@interface PlatypusScriptAnalyser : NSObject
+@interface PlatypusScriptUtils : NSObject
 
 + (NSArray <NSDictionary *> *)interpreters;
 + (NSArray <NSString *> *)interpreterDisplayNames;

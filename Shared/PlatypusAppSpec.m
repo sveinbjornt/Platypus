@@ -33,7 +33,7 @@
 
 #import "PlatypusAppSpec.h"
 #import "Common.h"
-#import "PlatypusScriptAnalyser.h"
+#import "PlatypusScriptUtils.h"
 #import "NSWorkspace+Additions.h"
 
 @interface PlatypusAppSpec()
@@ -262,21 +262,21 @@
     self[AppSpecKey_ScriptPath] = scriptPath;
     
     // Determine app name based on script filename
-    self[AppSpecKey_Name] = [PlatypusScriptAnalyser appNameFromScriptFile:scriptPath];
+    self[AppSpecKey_Name] = [PlatypusScriptUtils appNameFromScriptFile:scriptPath];
     
     // Find an interpreter for it
-    NSString *interpreterPath = [PlatypusScriptAnalyser determineInterpreterPathForScriptFile:scriptPath];
+    NSString *interpreterPath = [PlatypusScriptUtils determineInterpreterPathForScriptFile:scriptPath];
     if (interpreterPath == nil || [interpreterPath isEqualToString:@""]) {
         interpreterPath = DEFAULT_INTERPRETER_PATH;
     } else {
         // Get args for interpreter
-        NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[PlatypusScriptAnalyser parseInterpreterInScriptFile:scriptPath]];
+        NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[PlatypusScriptUtils parseInterpreterInScriptFile:scriptPath]];
         [shebangCmdComponents removeObjectAtIndex:0];
         self[AppSpecKey_InterpreterArgs] = shebangCmdComponents;
     }
     self[AppSpecKey_InterpreterPath] = interpreterPath;
-    self[AppSpecKey_InterpreterArgs] = [PlatypusScriptAnalyser interpreterArgsForInterpreterPath:interpreterPath];
-    self[AppSpecKey_ScriptArgs] = [PlatypusScriptAnalyser scriptArgsForInterpreterPath:interpreterPath];
+    self[AppSpecKey_InterpreterArgs] = [PlatypusScriptUtils interpreterArgsForInterpreterPath:interpreterPath];
+    self[AppSpecKey_ScriptArgs] = [PlatypusScriptUtils scriptArgsForInterpreterPath:interpreterPath];
     
     // Find parent folder wherefrom we create destination path of app bundle
     NSString *parentFolder = [scriptPath stringByDeletingLastPathComponent];
