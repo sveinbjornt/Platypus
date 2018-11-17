@@ -128,6 +128,7 @@ int main(int argc, const char *argv[]) {
 #endif
     
     NSFileManager *fm = FILEMGR;
+    NSWorkspace *ws = WORKSPACE;
     NSMutableDictionary *properties = [NSMutableDictionary dictionary];
     
     BOOL createProfile = FALSE;
@@ -281,8 +282,8 @@ int main(int argc, const char *argv[]) {
                     }
                     
                     // warn if file doesn't seem to be icns
-                    NSString *fileType = [WORKSPACE typeOfFile:iconPath error:nil];
-                    if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == FALSE) {
+                    NSString *fileType = [ws typeOfFile:iconPath error:nil];
+                    if ([ws type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == FALSE) {
                         NSPrintErr(@"Warning: '%@' does not appear to be an Apple .icns file", iconPath);
                     }
                 }
@@ -305,8 +306,8 @@ int main(int argc, const char *argv[]) {
                     }
                     
                     // warn if file doesn't seem to be icns
-                    NSString *fileType = [WORKSPACE typeOfFile:iconPath error:nil];
-                    if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == FALSE) {
+                    NSString *fileType = [ws typeOfFile:iconPath error:nil];
+                    if ([ws type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == FALSE) {
                         NSPrintErr(@"Warning: '%@' not identified as an Apple .icns file", iconPath);
                     }
                 }
@@ -575,7 +576,7 @@ int main(int argc, const char *argv[]) {
         
         if (appSpec[AppSpecKey_IsExample]) {
             NSString *scriptText = appSpec[AppSpecKey_ScriptText];
-            scriptPath = [[NSWorkspace sharedWorkspace] createTempFileWithContents:scriptText];
+            scriptPath = [ws createTempFileWithContents:scriptText];
             appSpec[AppSpecKey_ScriptPath] = scriptPath;
             deleteScript = YES;
         }

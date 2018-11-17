@@ -40,12 +40,11 @@
 #import "STPrivilegedTask.h"
 #import "STDragWebView.h"
 #import "ScriptExecController.h"
-#import "NSTask+Description.h"
 #import "Alerts.h"
 #import "ScriptExecJob.h"
 
 #ifdef DEBUG
-#import "PlatypusScriptUtils.h"
+    #import "NSTask+Description.h"
 #endif
 
 @interface ScriptExecController()
@@ -146,15 +145,6 @@
     
     NSMutableArray <ScriptExecJob *> *jobQueue;
 }
-
-- (IBAction)openFiles:(id)sender;
-- (IBAction)saveToFile:(id)sender;
-- (IBAction)cancel:(id)sender;
-- (IBAction)toggleDetails:(id)sender;
-- (IBAction)showDetails;
-- (IBAction)hideDetails;
-- (IBAction)makeTextBigger:(id)sender;
-- (IBAction)makeTextSmaller:(id)sender;
 
 @end
 
@@ -289,7 +279,6 @@ static const NSInteger detailsHeight = 224;
         }
         
         statusItemUsesSystemFont = [appSettingsDict[AppSpecKey_StatusItemUseSysfont] boolValue];
-        
         statusItemIconIsTemplate = [appSettingsDict[AppSpecKey_StatusItemIconIsTemplate] boolValue];
     }
     
@@ -300,8 +289,7 @@ static const NSInteger detailsHeight = 224;
     isDroppable = [appSettingsDict[AppSpecKey_Droppable] boolValue];
     promptForFileOnLaunch = [appSettingsDict[AppSpecKey_PromptForFile] boolValue];
     
-    
-    // Read and store command line arguments to the application
+    // Read and store command line arguments to the application binary
     NSMutableArray *processArgs = [NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]];
     commandLineArguments = [[NSMutableArray alloc] init];
 
@@ -309,8 +297,8 @@ static const NSInteger detailsHeight = 224;
         // The first argument is always the path to the binary, so we remove that
         [processArgs removeObjectAtIndex:0];
         BOOL lastWasDocRevFlag = NO;
+        
         for (NSString *arg in processArgs) {
-            
             // On older versions of Mac OS X, apps opened from the Finder
             // are passed a process number argument of the form -psn_0_*******
             // We ignore these
@@ -381,38 +369,26 @@ static const NSInteger detailsHeight = 224;
     }
     // Make sure it's executable
     NSNumber *permissions = [NSNumber numberWithUnsignedLong:493];
-    NSDictionary *attributes = @{ NSFilePosixPermissions: permissions};
+    NSDictionary *attributes = @{ NSFilePosixPermissions:permissions };
     [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:path error:nil];
 
     scriptPath = [NSString stringWithString:path];
     
     // Get interpreter
     NSString *scriptInterpreterPath = appSettingsDict[AppSpecKey_InterpreterPath];
-#ifdef DEBUG
-    // For debugging purposes, an empty or missing interpreter means we
-    // parse the shebang line for one. Makes it easier to switch scripting
-    // languages in the test script without mucking about with AppSettings.plist
-    if (scriptInterpreterPath == nil || [scriptInterpreterPath isEqualToString:@""]) {
-        scriptInterpreterPath = [PlatypusScriptUtils determineInterpreterPathForScriptFile:scriptPath];
-        if (scriptInterpreterPath == nil) {
-            scriptInterpreterPath = DEFAULT_INTERPRETER_PATH;
-        }
-    }
-#else
     if (scriptInterpreterPath == nil || [FILEMGR fileExistsAtPath:scriptInterpreterPath] == NO) {
         [Alerts fatalAlert:@"Missing interpreter"
              subTextFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreterPath];
     }
-#endif
     interpreterPath = [[NSString alloc] initWithString:scriptInterpreterPath];
 
     // Make sure we can read the script file
     if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
         // chmod 774
         chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU|S_IRWXG|S_IROTH);
-    }
-    if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
-        [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is not readable."];
+        if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
+            [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is not readable."];
+        }
     }
 }
 
@@ -899,7 +875,7 @@ static const NSInteger detailsHeight = 224;
     outputReadFileHandle = [outputPipe fileHandleForReading];
     
     // Set it off
-    PLog(@"Running task\n%@", [task humanDescription]);
+    //PLog(@"Running task\n%@", [task humanDescription]);
     [task launch];
     // This is blocking
     [task waitUntilExit];
@@ -931,7 +907,7 @@ static const NSInteger detailsHeight = 224;
     inputWriteFileHandle = [[task standardInput] fileHandleForWriting];
     
     // Set it off
-    PLog(@"Running task\n%@", [task humanDescription]);
+    //PLog(@"Running task\n%@", [task humanDescription]);
     [task launch];
     
     // Write input, if any, to stdin, and then close
@@ -1475,14 +1451,12 @@ static const NSInteger detailsHeight = 224;
         return YES;
     }
     
-//    if ([droppableUniformTypes count] == 0) {
-        for (NSString *suffix in droppableSuffixes) {
-            if ([file hasSuffix:suffix]) {
-                return YES;
-            }
+    for (NSString *suffix in droppableSuffixes) {
+        if ([file hasSuffix:suffix]) {
+            return YES;
         }
-//    }
-
+    }
+    
     for (NSString *uti in droppableUniformTypes) {
         NSError *outErr = nil;
         NSString *fileType = [WORKSPACE typeOfFile:file error:&outErr];

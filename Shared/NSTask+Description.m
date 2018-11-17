@@ -32,8 +32,7 @@
 
 @implementation NSTask (Description)
 
--(NSString *)humanDescription
-{
+-(NSString *)humanDescription {
     NSString *string = [self launchPath];
     NSArray *args = [self arguments];
     for (NSString *argument in args) {

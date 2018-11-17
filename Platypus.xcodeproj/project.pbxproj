@@ -42,7 +42,6 @@
 		F40B227F1B28F37A003C05ED /* ScriptExec.app in Copy ScriptExec and Command Line Tool */ = {isa = PBXBuildFile; fileRef = F48B774111F7661C00351575 /* ScriptExec.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F4146CCF2149E76000BB36AD /* Interpreter_AWK.png in Resources */ = {isa = PBXBuildFile; fileRef = F4146CCE2149E76000BB36AD /* Interpreter_AWK.png */; };
 		F42A93DA2178392800C40D46 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D82178365C00C40D46 /* Cocoa.framework */; };
-		F42A93DB2178392D00C40D46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D52178365C00C40D46 /* Foundation.framework */; };
 		F42A93DC21783EB900C40D46 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D92178365C00C40D46 /* Accelerate.framework */; };
 		F42A93DD21783EB900C40D46 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D62178365C00C40D46 /* AppKit.framework */; };
 		F42A93DE21783EB900C40D46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D52178365C00C40D46 /* Foundation.framework */; };
@@ -92,7 +91,6 @@
 		F45B1F2F1FF5618000A935D7 /* InterfaceType_Web-View.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F291FF5618000A935D7 /* InterfaceType_Web-View.png */; };
 		F45B1F301FF5618000A935D7 /* InterfaceType_None.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F2A1FF5618000A935D7 /* InterfaceType_None.png */; };
 		F45B1F331FF561E700A935D7 /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1F321FF561E700A935D7 /* NSTask+Description.m */; };
-		F45B1F341FF56AE500A935D7 /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1F321FF561E700A935D7 /* NSTask+Description.m */; };
 		F45BB358219224DE00DC7A00 /* platypus_clt.m in Sources */ = {isa = PBXBuildFile; fileRef = F45BB357219224DE00DC7A00 /* platypus_clt.m */; };
 		F45BB3652192253C00DC7A00 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F45BB3642192253C00DC7A00 /* Sparkle.framework */; };
 		F45BB366219225EA00DC7A00 /* Sparkle.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = F45BB3642192253C00DC7A00 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -104,7 +102,6 @@
 		F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
 		F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* ScriptExecController.m */; };
-		F4975D701B2E09280099D16E /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F4975D711B2E09280099D16E /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F4975D741B2E09310099D16E /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D731B2E09310099D16E /* STPrivilegedTask.m */; };
 		F4975D751B2E09310099D16E /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D731B2E09310099D16E /* STPrivilegedTask.m */; };
@@ -133,7 +130,6 @@
 		F4AB189A1BED3A0B00B83A95 /* ScriptExecJob.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */; };
 		F4AB189D1BEFAF1900B83A95 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
-		F4B6802B1E58B63900F788CD /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
 		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A841BD1BFAB00F411BD /* STDragImageView.m */; };
@@ -390,7 +386,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F42A93DA2178392800C40D46 /* Cocoa.framework in Frameworks */,
-				F42A93DB2178392D00C40D46 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1188,11 +1183,8 @@
 				F4051D9F1C1B5AF900587F1F /* Common.m in Sources */,
 				F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */,
 				F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */,
-				F4B6802B1E58B63900F788CD /* PlatypusScriptUtils.m in Sources */,
 				F4975D741B2E09310099D16E /* STPrivilegedTask.m in Sources */,
 				F4AB186B1BE182FA00B83A95 /* Alerts.m in Sources */,
-				F45B1F341FF56AE500A935D7 /* NSTask+Description.m in Sources */,
-				F4975D701B2E09280099D16E /* NSWorkspace+Additions.m in Sources */,
 				F4AB189A1BED3A0B00B83A95 /* ScriptExecJob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
