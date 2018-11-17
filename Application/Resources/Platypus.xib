@@ -548,7 +548,7 @@ DQ
             <connections>
                 <outlet property="delegate" destination="335" id="371"/>
             </connections>
-            <point key="canvasLocation" x="347" y="-330"/>
+            <point key="canvasLocation" x="312" y="-378"/>
         </window>
         <customObject id="335" userLabel="PlatypusController" customClass="PlatypusWindowController">
             <connections>
@@ -1360,9 +1360,9 @@ CA
             </connections>
             <point key="canvasLocation" x="496" y="494.5"/>
         </menu>
-        <menu title="Menu" id="1274" userLabel="FileListContextualMenu">
+        <menu title="Menu" id="1274" userLabel="BundledFilesContextualMenu">
             <items>
-                <menuItem title="Open in Finder" id="8154">
+                <menuItem title="Open" id="8154">
                     <connections>
                         <action selector="openSelectedFiles:" target="1234" id="gUG-Ln-0fD"/>
                     </connections>
@@ -1371,6 +1371,14 @@ CA
                     <connections>
                         <action selector="editSelectedFile:" target="1234" id="sqT-M3-Std"/>
                     </connections>
+                </menuItem>
+                <menuItem title="Open With" id="6k8-dN-eE1">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Open With" id="QUW-Qx-fIU">
+                        <connections>
+                            <outlet property="delegate" destination="1234" id="VF1-mw-KV5"/>
+                        </connections>
+                    </menu>
                 </menuItem>
                 <menuItem title="Reveal in Finder" id="1283">
                     <connections>
@@ -1415,9 +1423,7 @@ CA
                     </connections>
                 </menuItem>
             </items>
-            <connections>
-                <outlet property="delegate" destination="1234" id="1287"/>
-            </connections>
+            <point key="canvasLocation" x="59" y="-890"/>
         </menu>
         <menu title="Menu" id="1321" userLabel="DropTypeListContextualMenu">
             <items>
@@ -2117,9 +2123,9 @@ DQ
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-98" y="-198"/>
+            <point key="canvasLocation" x="277" y="-312"/>
         </window>
-        <menu title="Menu" id="11293" userLabel="scriptArgsContextualMenu">
+        <menu title="Menu" id="11293" userLabel="ScriptArgsContextualMenu">
             <items>
                 <menuItem title="Add Entry" id="11296">
                     <modifierMask key="keyEquivalentModifierMask"/>

@@ -33,7 +33,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BundledFilesController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
+@interface BundledFilesController : NSObject <NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate>
 
 @property (nonatomic, readonly) UInt64 totalSizeOfFiles;
 @property (nonatomic, copy) NSArray <NSString *> *filePaths;

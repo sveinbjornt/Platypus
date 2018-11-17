@@ -50,20 +50,13 @@
     NSWindow *window;
 }
 
-- (IBAction)copyFilenames:(id)sender;
-- (IBAction)copyPaths:(id)sender;
-- (IBAction)editSelectedFile:(id)sender;
-- (IBAction)addFilesToList:(id)sender;
-- (IBAction)revealSelectedFilesInFinder:(id)sender;
-- (IBAction)openSelectedFiles:(id)sender;
-- (IBAction)removeSelectedFiles:(id)sender;
-
 @end
 
 @implementation BundledFilesController
 
 - (instancetype)init {
-    if (self = [super init]) {
+    self = [super init];
+    if (self) {
         files = [[NSMutableArray alloc] init];
         fileWatcherQueue = [[VDKQueue alloc] init];
     }
@@ -141,7 +134,6 @@
 }
 
 - (void)updateFileSizeField {
-    
     //if there are no items
     if ([files count] == 0) {
         _totalSizeOfFiles = 0;
@@ -370,7 +362,7 @@
     [self updateButtonStatus];
 }
 
-- (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
+- (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pb {
     NSMutableArray *filenames = [NSMutableArray arrayWithCapacity:[rowIndexes count]];
     NSInteger index = [rowIndexes firstIndex];
     
@@ -379,8 +371,8 @@
         index = [rowIndexes indexGreaterThanIndex:index];
     }
     
-    [pboard declareTypes:@[NSFilenamesPboardType] owner:nil];
-    [pboard setPropertyList:filenames forType:NSFilenamesPboardType];
+    [pb declareTypes:@[NSFilenamesPboardType] owner:nil];
+    [pb setPropertyList:filenames forType:NSFilenamesPboardType];
     
     return YES;
 }
@@ -402,18 +394,30 @@
 
 #pragma mark - Menu delegate
 
+- (void)menuWillOpen:(NSMenu *)menu {
+    // Dynamically generate Open With submenu for item
+    NSUInteger idx = [tableView clickedRow];
+    if (idx != -1) {
+        NSString *path = files[idx][@"Path"];
+        [WORKSPACE openWithMenuForFile:path target:nil action:nil menu:menu];
+    } else {
+        menu = nil;
+    }
+}
+
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
 
-    if ([[anItem title] isEqualToString:@"Add File"] || [[anItem title] isEqualToString:@"Add File To Bundle"]) {
+    SEL selector = [anItem action];
+    if (selector == @selector(addFilesToList:)) {
         return YES;
     }
     
-    if ([[anItem title] isEqualToString:@"Clear File List"] && [files count] >= 1) {
+    if (selector == @selector(clearFileList:) && [files count] >= 1) {
         return YES;
     }
     
     // Folders are never editable
-    if ([[anItem title] isEqualToString:@"Open in Editor"])  {
+    if (selector == @selector(openInEditor:))  {
         NSIndexSet *selectedItems = [tableView selectedRowIndexes];
         for (int i = 0; i < [files count]; i++) {
             if ([selectedItems containsIndex:i]) {

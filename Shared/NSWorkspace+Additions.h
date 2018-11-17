@@ -37,10 +37,16 @@
 - (UInt64)fileOrFolderSize:(NSString *)path;
 - (NSString *)fileSizeAsHumanReadableString:(UInt64)size;
 - (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path;
+
 - (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
 - (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr;
 - (NSString *)createTempFileWithContents:(NSString *)contentStr;
 - (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
+
+- (NSArray *)handlerApplicationsForFile:(NSString *)filePath;
+- (NSString *)defaultHandlerApplicationForFile:(NSString *)filePath;
+- (NSMenu *)openWithMenuForFile:(NSString *)path target:(id)t action:(SEL)s menu:(NSMenu *)menu;
+
 - (void)notifyFinderFileChangedAtPath:(NSString *)path;
 - (void)flushServices;
 - (BOOL)openPathInDefaultBrowser:(NSString *)path;
