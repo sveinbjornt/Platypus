@@ -25,10 +25,10 @@ For 5.3
     TODO: Document the Services feature and provide instructions on how to enable in macOS Services preferences.
     TODO: Async Status Menu script execution to prevent interface locking on main thread
     TODO: Fix bug where custom icns file for icon doesn't work
-    TODO: Rewrite documentation for clarity
     TODO: Update Droplet interface screenshot
     TODO: Fix icon drag and drop
-
+    TODO: Remove XML plist feature
+    * Documentation overhauled and partially rewritten for clarity
     * Added Open With menu for items in bundled files list
     * Validate default bundle identifier in Prefs
     * Make Droplet window & others larger
