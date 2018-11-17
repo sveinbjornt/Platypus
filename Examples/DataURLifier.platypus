@@ -89,8 +89,6 @@ echo &quot;data:$MIME_TYPE;base64,$BASE64_DATA&quot;
 	<real>13</real>
 	<key>UniformTypes</key>
 	<array/>
-	<key>UseXMLPlistFormat</key>
-	<false/>
 	<key>Version</key>
 	<string>1.0</string>
 </dict>

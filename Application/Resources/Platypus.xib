@@ -587,7 +587,6 @@ DQ
                 <outlet property="textSettingsController" destination="2364" id="aSO-P4-da9"/>
                 <outlet property="versionTextField" destination="769" id="774"/>
                 <outlet property="window" destination="21" id="1581"/>
-                <outlet property="xmlPlistFormatCheckbox" destination="11338" id="11340"/>
             </connections>
         </customObject>
         <customObject id="1215" userLabel="IconController" customClass="IconController">
@@ -2433,28 +2432,13 @@ DQ
             <point key="canvasLocation" x="223" y="377.5"/>
         </window>
         <customView id="7866" userLabel="Save Option View">
-            <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
+            <rect key="frame" x="0.0" y="0.0" width="350" height="72"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <button toolTip="Creates symlink to source script instead of copying it into the application bundle" id="7885">
-                    <rect key="frame" x="18" y="58" width="351" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <buttonCell key="cell" type="check" title="Development Version (symlink to script &amp; files)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11051">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="yij-LO-LNq" name="value" keyPath="values.OnCreateDevVersion" id="wxz-0o-bxP">
-                            <dictionary key="options">
-                                <bool key="NSValidatesImmediately" value="YES"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </button>
                 <button toolTip="Strips and compiles the nib file in the application about to be created" id="11109">
-                    <rect key="frame" x="18" y="38" width="308" height="18"/>
+                    <rect key="frame" x="18" y="18" width="308" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <buttonCell key="cell" type="check" title="Optimize Application (strip nib file)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11110">
+                    <buttonCell key="cell" type="check" title="Strip nib file to reduce app size" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11110">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -2466,15 +2450,15 @@ DQ
                         </binding>
                     </connections>
                 </button>
-                <button toolTip="Use XML property lists instead of binary format. " id="11338">
-                    <rect key="frame" x="18" y="18" width="313" height="18"/>
+                <button toolTip="Creates symlink to source script instead of copying it into the application bundle" id="7885">
+                    <rect key="frame" x="18" y="38" width="351" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <buttonCell key="cell" type="check" title="Use XML property list format instead of binary" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="11339">
+                    <buttonCell key="cell" type="check" title="Create symlink to script and bundled files" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11051">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="yij-LO-LNq" name="value" keyPath="values.OnCreateUseXMLPlist" id="atf-Kx-P2e">
+                        <binding destination="yij-LO-LNq" name="value" keyPath="values.OnCreateDevVersion" id="wxz-0o-bxP">
                             <dictionary key="options">
                                 <bool key="NSValidatesImmediately" value="YES"/>
                             </dictionary>
@@ -2482,7 +2466,7 @@ DQ
                     </connections>
                 </button>
             </subviews>
-            <point key="canvasLocation" x="80" y="357"/>
+            <point key="canvasLocation" x="80" y="358"/>
         </customView>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="10161" userLabel="Status Item Settings Window">
             <windowStyleMask key="styleMask" titled="YES"/>

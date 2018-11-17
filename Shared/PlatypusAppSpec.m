@@ -200,7 +200,6 @@
     self[AppSpecKey_Overwrite] = @NO;
     self[AppSpecKey_SymlinkFiles] = @NO;
     self[AppSpecKey_StripNib] = @YES;
-    self[AppSpecKey_XMLPlistFormat] = @NO;
     
     self[AppSpecKey_Name] = DEFAULT_APP_NAME;
     self[AppSpecKey_ScriptPath] = @"";
@@ -394,20 +393,16 @@
     NSDictionary *fileAttrDict = @{NSFilePosixPermissions: @0755UL};
     [FILEMGR setAttributes:fileAttrDict ofItemAtPath:scriptFilePath error:nil];
     
-    // Create AppSettings.plist file
+    // Create AppSettings property list in binary format
     // .app/Contents/Resources/AppSettings.plist
     [self report:@"Writing AppSettings.plist"];
     NSMutableDictionary *appSettingsPlist = [self appSettingsPlist];
     NSString *appSettingsPlistPath = [resourcesPath stringByAppendingString:@"/AppSettings.plist"];
-    if ([self[AppSpecKey_XMLPlistFormat] boolValue] == FALSE) {
-        NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:appSettingsPlist
-                                                                       format:NSPropertyListBinaryFormat_v1_0
-                                                                      options:0
-                                                                        error:nil];
-        [plistData writeToFile:appSettingsPlistPath atomically:YES];
-    } else {
-        [appSettingsPlist writeToFile:appSettingsPlistPath atomically:YES];
-    }
+    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:appSettingsPlist
+                                                                   format:NSPropertyListBinaryFormat_v1_0
+                                                                  options:0
+                                                                    error:nil];
+    [plistData writeToFile:appSettingsPlistPath atomically:YES];
     
     // Create icon
     // .app/Contents/Resources/appIcon.icns
@@ -425,27 +420,16 @@
         [FILEMGR copyItemAtPath:self[AppSpecKey_DocIconPath] toPath:docIconPath error:nil];
     }
     
-    // Create Info.plist file
+    // Create Info.plist file in binary format
     // .app/Contents/Info.plist
     [self report:@"Writing Info.plist"];
     NSDictionary *infoPlist = [self infoPlist];
     NSString *infoPlistPath = [contentsPath stringByAppendingString:@"/Info.plist"];
-    BOOL success = YES;
-    // If binary
-    if ([self[AppSpecKey_XMLPlistFormat] boolValue] == NO) {
-        NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:infoPlist
-                                                                       format:NSPropertyListBinaryFormat_v1_0
-                                                                      options:0
-                                                                        error:nil];
-        if (plistData == nil || ![plistData writeToFile:infoPlistPath atomically:YES]) {
-            success = NO;
-        }
-    }
-    // If XML
-    else {
-        success = [infoPlist writeToFile:infoPlistPath atomically:YES];
-    }
-    if (success == NO) {
+    NSData *infoData = [NSPropertyListSerialization dataWithPropertyList:infoPlist
+                                                                  format:NSPropertyListBinaryFormat_v1_0
+                                                                 options:0
+                                                                   error:nil];
+    if (!infoData || ![infoData writeToFile:infoPlistPath atomically:YES]) {
         _error = @"Error writing Info.plist";
         return FALSE;
     }
@@ -767,12 +751,11 @@
 }
 
 - (void)dump {
-    NSFileHandle *stdout = [NSFileHandle fileHandleWithStandardOutput];
     NSData *data = [NSPropertyListSerialization dataWithPropertyList:properties
                                                               format:NSPropertyListXMLFormat_v1_0
                                                              options:0
                                                                error:nil];
-    [stdout writeData:data];
+    [[NSFileHandle fileHandleWithStandardOutput] writeData:data];
 }
 
 #pragma mark - Command string generation

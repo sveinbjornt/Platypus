@@ -67,7 +67,6 @@ boolean_opts = {
     '-B': 'RunInBackground',
     '-Z': 'PromptForFileOnLaunch',
     '-c': 'StatusItemUseSystemFont',
-    '-x': 'UseXMLPlistFormat',
     '-d': 'DevelopmentVersion',
     '-l': 'OptimizeApplication',
     '-y': 'Overwrite'

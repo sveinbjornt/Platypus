@@ -80,7 +80,6 @@
     IBOutlet NSView *debugSaveOptionView;
     IBOutlet NSButton *createSymlinksCheckbox;
     IBOutlet NSButton *stripNibFileCheckbox;
-    IBOutlet NSButton *xmlPlistFormatCheckbox;
     
     // Progress sheet when creating
     IBOutlet NSWindow *progressDialogWindow;
@@ -410,7 +409,6 @@
     spec[AppSpecKey_NibPath] = [[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil];
     spec[AppSpecKey_SymlinkFiles] = @((BOOL)[createSymlinksCheckbox intValue]);
     spec[AppSpecKey_StripNib] = @((BOOL)[stripNibFileCheckbox intValue]);
-    spec[AppSpecKey_XMLPlistFormat] = @((BOOL)[xmlPlistFormatCheckbox intValue]);
     spec[AppSpecKey_Overwrite] = @YES;
     
     // Verify that the values in the spec are OK

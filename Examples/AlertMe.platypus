@@ -89,8 +89,6 @@ echo &quot;Task completed&quot;
 	<real>13</real>
 	<key>UniformTypes</key>
 	<array/>
-	<key>UseXMLPlistFormat</key>
-	<false/>
 	<key>Version</key>
 	<string>1.0</string>
 </dict>

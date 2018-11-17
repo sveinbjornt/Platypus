@@ -99,7 +99,7 @@ static struct option long_options[] = {
     
     {"bundled-file",              required_argument,  0, 'f'},
 
-    {"xml-property-lists",        no_argument,        0, 'x'},
+    {"xml-property-lists",        no_argument,        0, 'x'}, // Deprecated
     {"overwrite",                 no_argument,        0, 'y'},
     {"force",                     no_argument,        0, 'y'}, // Backwards compatibility!
     {"symlink",                   no_argument,        0, 'd'},
@@ -374,9 +374,8 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_RemainRunning] = @NO;
                 break;
             
-            // Write plists in xml format
+            // Write plists in XML format (DEPRECATED)
             case 'x':
-                properties[AppSpecKey_XMLPlistFormat] = @YES;
                 break;
             
             // Suffixes
@@ -743,7 +742,6 @@ Options:\n\
 \n\
     -f --bundled-file [filePath]         Add a bundled file or files (paths separated by \"|\")\n\
     \n\
-    -x --xml-property-lists              Create property lists in XML format instead of binary\n\
     -y --overwrite                       Overwrite any file/folder at destination path\n\
     -d --symlink                         Symlink to script and bundled files instead of copying\n\
     -l --optimize-nib                    Optimize application.  Strip and compile bundled nib file\n\

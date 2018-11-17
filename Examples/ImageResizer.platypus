@@ -89,8 +89,6 @@ fi
 	<array>
 		<string>public.image</string>
 	</array>
-	<key>UseXMLPlistFormat</key>
-	<false/>
 	<key>Version</key>
 	<string>1.0</string>
 </dict>
