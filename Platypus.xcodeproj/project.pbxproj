@@ -38,8 +38,7 @@
 		F4051DA01C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
 		F4051DA11C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
 		F4051DA91C1C812600587F1F /* STReverseDNSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051DA81C1C812600587F1F /* STReverseDNSTextField.m */; };
-		F40B227C1B28EFC7003C05ED /* platypus_clt in Copy ScriptExec and Command Line Tool */ = {isa = PBXBuildFile; fileRef = F4E1F6FC11F758FB007EE2E3 /* platypus_clt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		F40B227F1B28F37A003C05ED /* ScriptExec.app in Copy ScriptExec and Command Line Tool */ = {isa = PBXBuildFile; fileRef = F48B774111F7661C00351575 /* ScriptExec.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F40B227C1B28EFC7003C05ED /* platypus_clt in Copy Command Line Tool to Bundle */ = {isa = PBXBuildFile; fileRef = F4E1F6FC11F758FB007EE2E3 /* platypus_clt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		F4146CCF2149E76000BB36AD /* Interpreter_AWK.png in Resources */ = {isa = PBXBuildFile; fileRef = F4146CCE2149E76000BB36AD /* Interpreter_AWK.png */; };
 		F42A93DA2178392800C40D46 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D82178365C00C40D46 /* Cocoa.framework */; };
 		F42A93DC21783EB900C40D46 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D92178365C00C40D46 /* Accelerate.framework */; };
@@ -52,7 +51,8 @@
 		F42A93E421783ECE00C40D46 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D42178365C00C40D46 /* WebKit.framework */; };
 		F42E2EAB20A9E001003D2E89 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F42E2EAA20A9E001003D2E89 /* Credits.rtf */; };
 		F43142B01C03C742004EEF8C /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
-		F43142B11C03C749004EEF8C /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
+		F436471421A1BD9D00A8749D /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F45BB35A219224E900DC7A00 /* platypus.1 */; };
+		F436471521A1BDA600A8749D /* platypus.man.html in Resources */ = {isa = PBXBuildFile; fileRef = F45BB35C219224E900DC7A00 /* platypus.man.html */; };
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
 		F44A77431C1882DA003CCA7A /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F44A77401C1882DA003CCA7A /* InstallCommandLineTool.sh */; };
 		F44A77441C1882DA003CCA7A /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F44A77411C1882DA003CCA7A /* UninstallCommandLineTool.sh */; };
@@ -90,7 +90,6 @@
 		F45B1F2E1FF5618000A935D7 /* InterfaceType_Progress-Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F281FF5618000A935D7 /* InterfaceType_Progress-Bar.png */; };
 		F45B1F2F1FF5618000A935D7 /* InterfaceType_Web-View.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F291FF5618000A935D7 /* InterfaceType_Web-View.png */; };
 		F45B1F301FF5618000A935D7 /* InterfaceType_None.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F2A1FF5618000A935D7 /* InterfaceType_None.png */; };
-		F45B1F331FF561E700A935D7 /* NSTask+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1F321FF561E700A935D7 /* NSTask+Description.m */; };
 		F45BB358219224DE00DC7A00 /* platypus_clt.m in Sources */ = {isa = PBXBuildFile; fileRef = F45BB357219224DE00DC7A00 /* platypus_clt.m */; };
 		F45BB3652192253C00DC7A00 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F45BB3642192253C00DC7A00 /* Sparkle.framework */; };
 		F45BB366219225EA00DC7A00 /* Sparkle.framework in Copy Bundled Frameworks */ = {isa = PBXBuildFile; fileRef = F45BB3642192253C00DC7A00 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -168,16 +167,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F40B227B1B28EFBE003C05ED /* Copy ScriptExec and Command Line Tool */ = {
+		F40B227B1B28EFBE003C05ED /* Copy Command Line Tool to Bundle */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				F40B227F1B28F37A003C05ED /* ScriptExec.app in Copy ScriptExec and Command Line Tool */,
-				F40B227C1B28EFC7003C05ED /* platypus_clt in Copy ScriptExec and Command Line Tool */,
+				F40B227C1B28EFC7003C05ED /* platypus_clt in Copy Command Line Tool to Bundle */,
 			);
-			name = "Copy ScriptExec and Command Line Tool";
+			name = "Copy Command Line Tool to Bundle";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F445EA7814FAB63A00DCCDB3 /* Copy Bundled Frameworks */ = {
@@ -876,18 +874,18 @@
 			buildConfigurationList = F41B217D085CD8FF00B63B0D /* Build configuration list for PBXNativeTarget "Platypus" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
+				F445EA7814FAB63A00DCCDB3 /* Copy Bundled Frameworks */,
+				F40B227B1B28EFBE003C05ED /* Copy Command Line Tool to Bundle */,
+				F40B227E1B28F331003C05ED /* Run Script To Gzip ScriptExec binary into Resources folder */,
+				F42622251C03B0DD0052BA33 /* Run Script To Set CFBundleVersion to Build Number */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				F445EA7814FAB63A00DCCDB3 /* Copy Bundled Frameworks */,
-				F40B227B1B28EFBE003C05ED /* Copy ScriptExec and Command Line Tool */,
-				F40B227E1B28F331003C05ED /* Run Script To Extract ScriptExec binary from ScriptExec Application Bundle */,
-				F42622251C03B0DD0052BA33 /* Run Script To Set CFBundleVersion to Build Number */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F40B22791B28D763003C05ED /* PBXTargetDependency */,
 				F40B22771B28D761003C05ED /* PBXTargetDependency */,
+				F40B22791B28D763003C05ED /* PBXTargetDependency */,
 			);
 			name = Platypus;
 			productInstallPath = "$(HOME)/Applications";
@@ -941,6 +939,7 @@
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = 5WX26Y89JP;
+						ProvisioningStyle = Automatic;
 					};
 					F48B774011F7661C00351575 = {
 						DevelopmentTeam = 5WX26Y89JP;
@@ -968,8 +967,8 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Platypus */,
-				F48B774011F7661C00351575 /* ScriptExec */,
 				F4E1F6FB11F758FB007EE2E3 /* platypus */,
+				F48B774011F7661C00351575 /* ScriptExec */,
 				F4F14CB51C640B1E002A2402 /* Examples */,
 				F4DC737C21644E0400D79823 /* CLT Tests */,
 			);
@@ -998,8 +997,10 @@
 				F48002CB121AF042003FB5B3 /* images in Resources */,
 				F4146CCF2149E76000BB36AD /* Interpreter_AWK.png in Resources */,
 				F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */,
+				F436471521A1BDA600A8749D /* platypus.man.html in Resources */,
 				F45B1EF21FF5597600A935D7 /* PlatypusAppIcon.icns in Resources */,
 				F45B1F2E1FF5618000A935D7 /* InterfaceType_Progress-Bar.png in Resources */,
+				F436471421A1BD9D00A8749D /* platypus.1 in Resources */,
 				F42E2EAB20A9E001003D2E89 /* Credits.rtf in Resources */,
 				F4975DC01B2E71FC0099D16E /* Platypus.xib in Resources */,
 				F44A77441C1882DA003CCA7A /* UninstallCommandLineTool.sh in Resources */,
@@ -1040,7 +1041,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F40B227E1B28F331003C05ED /* Run Script To Extract ScriptExec binary from ScriptExec Application Bundle */ = {
+		F40B227E1B28F331003C05ED /* Run Script To Gzip ScriptExec binary into Resources folder */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1048,12 +1049,12 @@
 			inputPaths = (
 				"",
 			);
-			name = "Run Script To Extract ScriptExec binary from ScriptExec Application Bundle";
+			name = "Run Script To Gzip ScriptExec binary into Resources folder";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#/bin/sh\n#\n# Since XCode won't let us copy files from\n# within application bundles in the Copy Files\n# phase, we instead copy the ScriptExec.app bundle over\n# in its entirety and then copy the binary within into\n# Resources ... and subsequently delete app bundle\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\n\necho \"Moving ScriptExec binary\"\nSCRIPT_EXEC_APP_PATH=\"${RESOURCES_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\nrm \"${RESOURCES_DIR}/ScriptExec\" &> /dev/null\nmv \"${SCRIPT_EXEC_BIN_PATH}\" \"${RESOURCES_DIR}/ScriptExec\"\n\necho \"Moving ScriptExec nib\"\nSCRIPT_EXEC_NIB_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/Resources/MainMenu.nib\"\nrm -r \"${RESOURCES_DIR}/MainMenu.nib\" &> /dev/null\nmv \"${SCRIPT_EXEC_NIB_PATH}\" \"${RESOURCES_DIR}/MainMenu.nib\"\n\necho \"Removing ScriptExec.app\"\nrm -r \"${SCRIPT_EXEC_APP_PATH}\"\n\n#gzip ${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources/platypus.1\n";
+			shellScript = "#/bin/sh\n#\n\nRESOURCES_DIR=\"${TARGET_BUILD_DIR}/Platypus.app/Contents/Resources\"\n\necho \"Copying ScriptExec binary to application bundle\"\nSCRIPT_EXEC_APP_PATH=\"${BUILT_PRODUCTS_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_BIN_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/MacOS/ScriptExec\"\nBIN_DEST=\"${RESOURCES_DIR}/ScriptExec\"\nrm \"${BIN_DEST}\" &> /dev/null\ncp \"${SCRIPT_EXEC_BIN_PATH}\" \"${BIN_DEST}\"\nstrip -x \"${BIN_DEST}\"\ngzip -c \"${BIN_DEST}\" > \"${BIN_DEST}.gz\"\nrm \"${BIN_DEST}\" &> /dev/null\n\necho \"Copying ScriptExec MainMenu.nib to application bundle\"\nSCRIPT_EXEC_NIB_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/Resources/MainMenu.nib\"\nrm -r \"${RESOURCES_DIR}/MainMenu.nib\" &> /dev/null\ncp -r \"${SCRIPT_EXEC_NIB_PATH}\" \"${RESOURCES_DIR}/MainMenu.nib\"\n\n# Gzip clt binary\necho \"Gzipping command line tool binary\"\nrm \"${RESOURCES_DIR}/platypus_clt.gz\" &> /dev/null\ngzip \"${RESOURCES_DIR}/platypus_clt\"\n\n# Gzip man page\necho \"Gzipping man page\"\nrm \"${RESOURCES_DIR}/platypus.1.gz\" &> /dev/null\ngzip \"${RESOURCES_DIR}/platypus.1\"\n";
 		};
 		F42622251C03B0DD0052BA33 /* Run Script To Set CFBundleVersion to Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1149,7 +1150,6 @@
 				F4975DB21B2E71EE0099D16E /* ProfilesController.m in Sources */,
 				F4051DA11C1B5AF900587F1F /* Common.m in Sources */,
 				F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */,
-				F45B1F331FF561E700A935D7 /* NSTask+Description.m in Sources */,
 				F45B1F021FF560FB00A935D7 /* IconFamily.m in Sources */,
 				F45B1EFB1FF560D800A935D7 /* NoodleLineNumberMarker.m in Sources */,
 				F4975DAF1B2E71EE0099D16E /* PlatypusWindowController.m in Sources */,
@@ -1193,7 +1193,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F43142B11C03C749004EEF8C /* NSWorkspace+Additions.m in Sources */,
 				F43142B01C03C742004EEF8C /* PlatypusScriptUtils.m in Sources */,
 				F4051DA01C1B5AF900587F1F /* Common.m in Sources */,
 				F45BB358219224DE00DC7A00 /* platypus_clt.m in Sources */,
@@ -1231,8 +1230,11 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sparkle",
@@ -1269,6 +1271,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.Platypus;
 				PRODUCT_NAME = Platypus;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
 				SEPARATE_STRIP = NO;
@@ -1292,8 +1295,11 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sparkle",
@@ -1330,6 +1336,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.Platypus;
 				PRODUCT_NAME = Platypus;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
 				SEPARATE_STRIP = YES;
@@ -1353,8 +1360,11 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_TEMP_DIR = "";
+				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sparkle",
@@ -1386,6 +1396,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.Platypus;
 				PRODUCT_NAME = Platypus;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
 				SEPARATE_STRIP = YES;
@@ -1419,6 +1430,7 @@
 				CODE_SIGN_IDENTITY = "";
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = NO;
 				GCC_CW_ASM_SYNTAX = NO;
@@ -1460,6 +1472,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				STRIPFLAGS = "-x";
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wpartial-availability";
@@ -1488,6 +1501,7 @@
 				CODE_SIGN_IDENTITY = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = NO;
 				GCC_CW_ASM_SYNTAX = NO;
@@ -1532,6 +1546,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
+				STRIPFLAGS = "-x";
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wpartial-availability";
@@ -1560,6 +1575,7 @@
 				CONFIGURATION_TEMP_DIR = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = NO;
 				GCC_CW_ASM_SYNTAX = NO;
@@ -1601,6 +1617,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
+				STRIPFLAGS = "-x";
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wpartial-availability";

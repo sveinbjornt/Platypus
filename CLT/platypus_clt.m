@@ -46,11 +46,11 @@
 
 #import "Common.h"
 #import "PlatypusAppSpec.h"
-#import "NSWorkspace+Additions.h"
 
 static NSString *ReadStandardInputToFile(void);
 static NSString *MakeAbsolutePath(NSString *path);
 static NSArray *FindDuplicateFileNames(NSArray *paths);
+static NSString *PPCreateTempFile(NSString *fileName, NSString *contentStr, NSStringEncoding textEncoding);
 static void PrintVersion(void);
 static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
@@ -106,27 +106,12 @@ static struct option long_options[] = {
     {"development-version",       no_argument,        0, 'd'}, // Backwards compatibility!
     {"optimize-nib",              no_argument,        0, 'l'},
     {"help",                      no_argument,        0, 'h'},
-    {CMDLINE_VERSION_ARG_FLAG,    no_argument,        0, 'v'},
+    {"version",                   no_argument,        0, 'v'},
     
     {0,                           0,                  0,  0 }
 };
 
-#ifdef DEBUG
-void exceptionHandler(NSException *exception);
-void exceptionHandler(NSException *exception) {
-    NSLog(@"%@", [exception reason]);
-    NSLog(@"%@", [exception userInfo]);
-    NSLog(@"%@", [exception callStackReturnAddresses]);
-    NSLog(@"%@", [exception callStackSymbols]);
-}
-#endif
-
 int main(int argc, const char *argv[]) {
-    
-#ifdef DEBUG
-    NSSetUncaughtExceptionHandler(&exceptionHandler);
-#endif
-    
     NSFileManager *fm = FILEMGR;
     NSWorkspace *ws = WORKSPACE;
     NSMutableDictionary *properties = [NSMutableDictionary dictionary];
@@ -138,9 +123,8 @@ int main(int argc, const char *argv[]) {
     int optch;
     int long_index = 0;
     while ((optch = getopt_long(argc, (char *const *)argv, optstring, long_options, &long_index)) != -1) {
-        
         switch (optch) {
-
+            
             // Create a profile instead of an app
             case 'O':
             {
@@ -576,7 +560,7 @@ int main(int argc, const char *argv[]) {
         
         if (appSpec[AppSpecKey_IsExample]) {
             NSString *scriptText = appSpec[AppSpecKey_ScriptText];
-            scriptPath = [ws createTempFileWithContents:scriptText];
+            scriptPath = PPCreateTempFile(nil, scriptText, NSUTF8StringEncoding);
             appSpec[AppSpecKey_ScriptPath] = scriptPath;
             deleteScript = YES;
         }
@@ -665,7 +649,7 @@ static NSString *ReadStandardInputToFile(void) {
     }
     
     // Write to temp file
-    NSString *tmpFilePath = [WORKSPACE createTempFileWithContents:inStr];;
+    NSString *tmpFilePath = PPCreateTempFile(nil, inStr, NSUTF8StringEncoding);
     return tmpFilePath;
 }
 
@@ -689,6 +673,52 @@ static NSArray *FindDuplicateFileNames(NSArray *paths) {
         }
     }
     return [duplicateFileNames copy];
+}
+
+static NSString *PPCreateTempFile(NSString *fileName, NSString *contentStr, NSStringEncoding textEncoding) {
+    // This could be done by just writing to /tmp, but this method is more secure
+    // and will result in the script file being created at a path that looks something
+    // like this:  /var/folders/yV/yV8nyB47G-WRvC76fZ3Be++++TI/-Tmp-/
+    // Kind of ugly, but it's the Apple-sanctioned secure way of doing things with temp files
+    // Thanks to Matt Gallagher for this technique:
+    // http://cocoawithlove.com/2009/07/temporary-files-and-folders-in-cocoa.html
+    
+    NSString *tmpFileNameTemplate = fileName ? fileName : @"tmp_file_platypus_macos.XXXXXX";
+    NSString *tmpDir = NSTemporaryDirectory();
+    if (!tmpDir) {
+        NSLog(@"NSTemporaryDirectory() returned nil");
+        return nil;
+    }
+    
+    NSString *tempFileTemplate = [tmpDir stringByAppendingPathComponent:tmpFileNameTemplate];
+    const char *tempFileTemplateCString = [tempFileTemplate fileSystemRepresentation];
+    char *tempFileNameCString = (char *)malloc(strlen(tempFileTemplateCString) + 1);
+    strcpy(tempFileNameCString, tempFileTemplateCString);
+    
+    // Use mkstemp to expand template
+    int fileDescriptor = mkstemp(tempFileNameCString);
+    if (fileDescriptor == -1) {
+        free(tempFileNameCString);
+        NSLog(@"Error %d in mkstemp()", errno);
+        close(fileDescriptor);
+        return nil;
+    }
+    close(fileDescriptor);
+    
+    // Create nsstring from the c-string temp path
+    NSString *tempScriptPath = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:tempFileNameCString length:strlen(tempFileNameCString)];
+    free(tempFileNameCString);
+    
+    // Write script to the temporary path
+    NSError *err;
+    BOOL success = [contentStr writeToFile:tempScriptPath atomically:YES encoding:textEncoding error:&err];
+    
+    // Make sure writing it was successful
+    if (!success || [[NSFileManager defaultManager] fileExistsAtPath:tempScriptPath] == FALSE) {
+        NSLog(@"Erroring creating temp file '%@': %@", tempScriptPath, [err localizedDescription]);
+        return nil;
+    }
+    return tempScriptPath;
 }
 
 #pragma mark -

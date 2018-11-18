@@ -441,11 +441,11 @@
 #pragma mark -
 
 - (IBAction)showHelp:(id)sender {
-    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL]];
+    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_URL]];
 }
 
 - (IBAction)showHelpForUTIs:(id)sender {
-    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_UTI_INFORMATION_URL]];
+    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_URL]];
 }
 
 @end

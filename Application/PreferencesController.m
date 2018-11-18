@@ -238,7 +238,7 @@
             // Determine command line tool version by running it with version flag
             NSTask *task = [[NSTask alloc] init];
             [task setLaunchPath:CMDLINE_TOOL_PATH];
-            [task setArguments:@[[NSString stringWithFormat:@"--%s", CMDLINE_VERSION_ARG_FLAG]]];
+            [task setArguments:@[CMDLINE_VERSION_ARG_FLAG]];
             
             NSPipe *outputPipe = [NSPipe pipe];
             [task setStandardOutput:outputPipe];
@@ -314,10 +314,11 @@
             @"PROGRAM_MIN_SYS_VERSION": PROGRAM_MIN_SYS_VERSION,
             @"PROGRAM_BUNDLE_IDENTIFIER": PROGRAM_BUNDLE_IDENTIFIER,
             @"PROGRAM_AUTHOR": PROGRAM_AUTHOR,
-            @"CMDLINE_PROGNAME_IN_BUNDLE": CMDLINE_PROGNAME_IN_BUNDLE,
+            @"CMDLINE_PROGNAME_BUNDLE": CMDLINE_PROGNAME_BUNDLE,
             @"CMDLINE_PROGNAME": CMDLINE_PROGNAME,
             @"CMDLINE_SCRIPTEXEC_BIN_NAME": CMDLINE_SCRIPTEXEC_BIN_NAME,
-            @"CMDLINE_SCRIPTEXEC_ZIP_NAME": CMDLINE_SCRIPTEXEC_ZIP_NAME,
+            @"CMDLINE_SCRIPTEXEC_GZIP_NAME": CMDLINE_SCRIPTEXEC_GZIP_NAME,
+            @"CMDLINE_MANPAGE_GZIP_NAME": CMDLINE_MANPAGE_GZIP_NAME,
             @"CMDLINE_DEFAULT_ICON_NAME": CMDLINE_DEFAULT_ICON_NAME,
             @"CMDLINE_NIB_NAME": CMDLINE_NIB_NAME,
             @"CMDLINE_BASE_INSTALL_PATH": CMDLINE_BASE_INSTALL_PATH,

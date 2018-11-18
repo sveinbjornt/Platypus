@@ -4,34 +4,27 @@
 # Platypus
 #
 # Created by Sveinbjorn Thordarson on 6/17/08.
-#
-# Variables herein defined in Common.h
-#
+# Variables defined in Common.h
 
 echo "Uninstalling command line tool"
 
-# Delete resources
-if [ -e "%%CMDLINE_SHARE_PATH%%" ]
-then
+if [ -e "%%CMDLINE_SHARE_PATH%%" ]; then
     echo "Deleting '%%CMDLINE_SHARE_PATH%%' directory"
-    rm -R "%%CMDLINE_SHARE_PATH%%"
+    rm -R "%%CMDLINE_SHARE_PATH%%" &> /dev/null
 fi
 
-if [ -e "%%CMDLINE_TOOL_PATH%%" ]
-then
+if [ -e "%%CMDLINE_TOOL_PATH%%" ]; then
     echo "Deleting %%CMDLINE_PROGNAME%% command line tool in %%CMDLINE_TOOL_PATH%%"
-    rm "%%CMDLINE_TOOL_PATH%%"
+    rm "%%CMDLINE_TOOL_PATH%%" &> /dev/null
 fi
 
-if [ -e "%%CMDLINE_MANPAGE_PATH%%" ]
-then
+if [ -e "%%CMDLINE_MANPAGE_PATH%%" ]; then
     echo "Deleting %%CMDLINE_PROGNAME%% man page"
     rm "%%CMDLINE_MANPAGE_PATH%%" &> /dev/null
 fi
 
-if [ -e "%%CMDLINE_MANPAGE_PATH%%.gz" ]
-then
-echo "Deleting %%CMDLINE_PROGNAME%% man page"
-rm "%%CMDLINE_MANPAGE_PATH%%" &> /dev/null
+if [ -e "%%CMDLINE_MANPAGE_PATH%%.gz" ]; then
+    echo "Deleting gzipped %%CMDLINE_PROGNAME%% man page"
+    rm "%%CMDLINE_MANPAGE_PATH%%.gz" &> /dev/null
 fi
 

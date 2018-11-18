@@ -4,9 +4,9 @@
 # Platypus
 #
 # Created by Sveinbjorn Thordarson on 6/17/08.
-#
-# Variables herein defined in Common.h
-#
+# Variables defined in Common.h
+
+REAL_USER_ID=`/usr/bin/id -r -u`
 
 echo "Installing command line tool"
 
@@ -17,22 +17,32 @@ mkdir -p "%%CMDLINE_SHARE_PATH%%"
 mkdir -p "%%CMDLINE_MANDIR_PATH%%"
 
 # Change to Resources directory of Platypus application, which is first argument
-echo "Changing to directory $1"
+echo "Changing to directory '$1'"
 cd "$1"
 
-echo "Copying resources"
-cp "%%CMDLINE_PROGNAME_IN_BUNDLE%%" "%%CMDLINE_TOOL_PATH%%"
-cp "%%CMDLINE_SCRIPTEXEC_BIN_NAME%%" "%%CMDLINE_SCRIPT_EXEC_PATH%%"
-
-rm "%%CMDLINE_MANPAGE_PATH%%" &> /dev/null
-rm "%%CMDLINE_MANPAGE_PATH%%".gz &> /dev/null
-cp "%%CMDLINE_PROGNAME%%.1" "%%CMDLINE_MANPAGE_PATH%%"
-gzip "%%CMDLINE_MANPAGE_PATH%%" # Let's be efficient
+echo "Copying resources to share directory"
+# ScriptExec binary
+gunzip -c "%%CMDLINE_SCRIPTEXEC_GZIP_NAME%%" > "%%CMDLINE_SCRIPT_EXEC_PATH%%"
+# Icon
 cp "%%CMDLINE_DEFAULT_ICON_NAME%%" "%%CMDLINE_ICON_PATH%%"
-
+# Nib
 cp -r "%%CMDLINE_NIB_NAME%%" "%%CMDLINE_SHARE_PATH%%"
-
-echo "Setting permissions"
+# Set permissions
+chown -R ${REAL_USER_ID} "%%CMDLINE_SHARE_PATH%%"
 chmod -R 755 "%%CMDLINE_SHARE_PATH%%"
+
+# Command line tool binary
+echo "Installing command line tool"
+gunzip -c "%%CMDLINE_PROGNAME_BUNDLE%%" > "%%CMDLINE_TOOL_PATH%%"
+chown ${REAL_USER_ID} "%%CMDLINE_TOOL_PATH%%"
+chmod +x "%%CMDLINE_TOOL_PATH%%"
+
+# Man page
+echo "Installing man page"
+rm "%%CMDLINE_MANPAGE_PATH%%" &> /dev/null
+rm "%%CMDLINE_MANPAGE_PATH%%.gz" &> /dev/null
+cp "%%CMDLINE_MANPAGE_GZIP_NAME%%" "%%CMDLINE_MANPAGE_PATH%%"
+chmod 644 "%%CMDLINE_MANPAGE_PATH%%"
+chown ${REAL_USER_ID} "%%CMDLINE_MANPAGE_PATH%%"
 
 exit 0

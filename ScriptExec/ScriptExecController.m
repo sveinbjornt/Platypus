@@ -1022,7 +1022,7 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (void)appendOutput:(NSData *)data {
-    // Create string from raw output data
+    // Create string from output data
     NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:DEFAULT_TEXT_ENCODING];
     
     if (outputString == nil) {

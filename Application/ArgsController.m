@@ -115,7 +115,7 @@
 }
 
 - (IBAction)showHelp:(id)sender {
-    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL]];
+    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_URL]];
 }
 
 - (IBAction)show:(id)sender {

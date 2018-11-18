@@ -405,7 +405,7 @@
     
     // We set this specifically
     spec[AppSpecKey_DestinationPath] = appPath;
-    spec[AppSpecKey_ExecutablePath] = [[NSBundle mainBundle] pathForResource:CMDLINE_SCRIPTEXEC_BIN_NAME ofType:nil];
+    spec[AppSpecKey_ExecutablePath] = [[NSBundle mainBundle] pathForResource:CMDLINE_SCRIPTEXEC_GZIP_NAME ofType:nil];
     spec[AppSpecKey_NibPath] = [[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil];
     spec[AppSpecKey_SymlinkFiles] = @((BOOL)[createSymlinksCheckbox intValue]);
     spec[AppSpecKey_StripNib] = @((BOOL)[stripNibFileCheckbox intValue]);
@@ -826,7 +826,7 @@
     estimatedAppSize += [WORKSPACE fileOrFolderSize:[iconController icnsFilePath]];
     estimatedAppSize += [WORKSPACE fileOrFolderSize:[dropSettingsController docIconPath]];
     estimatedAppSize += [WORKSPACE fileOrFolderSize:[scriptPathTextField stringValue]];
-    estimatedAppSize += [WORKSPACE fileOrFolderSize:[[NSBundle mainBundle] pathForResource:CMDLINE_SCRIPTEXEC_BIN_NAME ofType:nil]];
+    estimatedAppSize += ([WORKSPACE fileOrFolderSize:[[NSBundle mainBundle] pathForResource:CMDLINE_SCRIPTEXEC_GZIP_NAME ofType:nil]] * 2.68);
     
     // Nib size is much smaller if compiled with ibtool
     UInt64 nibSize = [WORKSPACE fileOrFolderSize:[[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil]];

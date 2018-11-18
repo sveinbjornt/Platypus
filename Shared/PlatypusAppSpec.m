@@ -194,7 +194,7 @@
 - (void)setDefaults {
     self[AppSpecKey_Creator] = PROGRAM_CREATOR_STAMP;
     
-    self[AppSpecKey_ExecutablePath] = CMDLINE_EXEC_PATH;
+    self[AppSpecKey_ExecutablePath] = CMDLINE_SCRIPT_EXEC_PATH;
     self[AppSpecKey_NibPath] = CMDLINE_NIB_PATH;
     self[AppSpecKey_DestinationPath] = DEFAULT_DESTINATION_PATH;
     self[AppSpecKey_Overwrite] = @NO;
@@ -306,9 +306,9 @@
     }
     
     // Check if executable exists
-    NSString *execPath = self[AppSpecKey_ExecutablePath];
-    if (![FILEMGR fileExistsAtPath:execPath] || ![FILEMGR isReadableFileAtPath:execPath]) {
-        [self report:@"Executable %@ does not exist. Aborting.", execPath];
+    NSString *execSrcPath = self[AppSpecKey_ExecutablePath];
+    if (![FILEMGR fileExistsAtPath:execSrcPath] || ![FILEMGR isReadableFileAtPath:execSrcPath]) {
+        [self report:@"Executable %@ does not exist. Aborting.", execSrcPath];
         return NO;
     }
     
@@ -358,11 +358,25 @@
     
     // Copy exec file
     // .app/Contents/Resources/MacOS/ScriptExec
-    NSString *execDestinationPath = [macosPath stringByAppendingString:@"/"];
-    execDestinationPath = [execDestinationPath stringByAppendingString:self[AppSpecKey_Name]];
-    [FILEMGR copyItemAtPath:execPath toPath:execDestinationPath error:nil];
-    NSDictionary *execAttrDict = @{NSFilePosixPermissions: @0755UL};
-    [FILEMGR setAttributes:execAttrDict ofItemAtPath:execDestinationPath error:nil];
+    NSString *outFolder = [macosPath stringByAppendingString:@"/"];
+    NSString *execDestPath = [outFolder stringByAppendingString:self[AppSpecKey_Name]];
+    if ([execSrcPath hasSuffix:GZIP_SUFFIX]) {
+        // Create empty file
+        [FILEMGR createFileAtPath:execDestPath contents:nil attributes:nil];
+        NSFileHandle *outFile = [NSFileHandle fileHandleForWritingAtPath:execDestPath];
+        // Extract gzip destination folder
+        // gunzip -c ScriptExec.gz > filehandle
+        NSTask *gunzipTask = [[NSTask alloc] init];
+        [gunzipTask setLaunchPath:@"/usr/bin/gunzip"];
+        [gunzipTask setArguments:@[@"-c", execSrcPath]];
+        [gunzipTask setStandardOutput:outFile];
+        [gunzipTask launch];
+        [gunzipTask waitUntilExit];
+    } else {
+        [FILEMGR copyItemAtPath:execSrcPath toPath:execDestPath error:nil];
+    }
+    NSDictionary *execAttrDict = @{ NSFilePosixPermissions:[NSNumber numberWithShort:0777] };
+    [FILEMGR setAttributes:execAttrDict ofItemAtPath:execDestPath error:nil];
     
     // Copy nib file to app bundle
     // .app/Contents/Resources/MainMenu.nib

@@ -45,8 +45,6 @@
 #define PROGRAM_DOCUMENTATION       @"Documentation.html"
 #define PROGRAM_MANPAGE_URL         @"http://sveinbjorn.org/files/manpages/platypus.man.html"
 #define PROGRAM_DOCUMENTATION_URL   @"http://sveinbjorn.org/files/manpages/PlatypusDocumentation.html"
-#define PROGRAM_DOCUMENTATION_DROP_SETTINGS_URL [NSString stringWithFormat:@"%@#41",PROGRAM_DOCUMENTATION_URL]
-#define PROGRAM_DOCUMENTATION_ARGS_SETTINGS_URL [NSString stringWithFormat:@"%@#22",PROGRAM_DOCUMENTATION_URL]
 #define PROGRAM_UTI_INFORMATION_URL @"https://en.wikipedia.org/wiki/Uniform_Type_Identifier"
 
 // Folders
@@ -58,27 +56,29 @@
 #define NEW_SCRIPT_FILENAME         @"Script"
 
 // Command line tool seetings
-#define CMDLINE_PROGNAME_IN_BUNDLE  @"platypus_clt"
+#define CMDLINE_PROGNAME_BUNDLE     @"platypus_clt.gz"
 #define CMDLINE_PROGNAME            @"platypus"
 #define CMDLINE_SCRIPTEXEC_BIN_NAME @"ScriptExec"
-#define CMDLINE_SCRIPTEXEC_ZIP_NAME @"ScriptExec.zip"
+#define CMDLINE_SCRIPTEXEC_GZIP_NAME @"ScriptExec.gz"
+#define CMDLINE_MANPAGE_GZIP_NAME   @"platypus.1.gz"
 #define CMDLINE_DEFAULT_ICON_NAME   @"PlatypusDefault.icns"
 #define CMDLINE_NIB_NAME            @"MainMenu.nib"
-#define CMDLINE_VERSION_ARG_FLAG    "version"
+#define CMDLINE_VERSION_ARG_FLAG    @"--version"
 #define CMDLINE_BASE_INSTALL_PATH   @"/usr/local"
-#define CMDLINE_BIN_PATH            [NSString stringWithFormat:@"%@/bin", CMDLINE_BASE_INSTALL_PATH]
-#define CMDLINE_TOOL_PATH           [NSString stringWithFormat:@"%@/%@", CMDLINE_BIN_PATH, CMDLINE_PROGNAME]
-#define CMDLINE_SHARE_PATH          [NSString stringWithFormat:@"%@/share/%@", CMDLINE_BASE_INSTALL_PATH, CMDLINE_PROGNAME]
-#define CMDLINE_MANDIR_PATH         [NSString stringWithFormat:@"%@/share/man/man1", CMDLINE_BASE_INSTALL_PATH]
-#define CMDLINE_MANPAGE_PATH        [NSString stringWithFormat:@"%@/%@.1", CMDLINE_MANDIR_PATH, CMDLINE_PROGNAME]
-#define CMDLINE_EXEC_PATH           [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_SCRIPTEXEC_BIN_NAME]
-#define CMDLINE_NIB_PATH            [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_NIB_NAME]
-#define CMDLINE_SCRIPT_EXEC_PATH    [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_SCRIPTEXEC_BIN_NAME]
-#define CMDLINE_ICON_PATH           [NSString stringWithFormat:@"%@/%@", CMDLINE_SHARE_PATH, CMDLINE_DEFAULT_ICON_NAME]
+#define CMDLINE_BIN_PATH            @"/usr/local/bin"
+#define CMDLINE_TOOL_PATH           @"/usr/local/bin/platypus"
+#define CMDLINE_SHARE_PATH          @"/usr/local/share/platypus"
+#define CMDLINE_MANDIR_PATH         @"/usr/local/share/man/man1"
+#define CMDLINE_MANPAGE_PATH        @"/usr/local/share/man/man1/platypus.1.gz"
+#define CMDLINE_EXEC_PATH           @"/usr/local/share/platypus/ScriptExec"
+#define CMDLINE_NIB_PATH            @"/usr/local/share/platypus/MainMenu.nib"
+#define CMDLINE_SCRIPT_EXEC_PATH    @"/usr/local/share/platypus/ScriptExec"
+#define CMDLINE_ICON_PATH           @"/usr/local/share/platypus/PlatypusDefault.icns"
 #define CMDLINE_ARG_SEPARATOR       @"|"
 
 #define IBTOOL_PATH                 [NSString stringWithFormat:@"%@/Contents/Developer/usr/bin/ibtool", [WORKSPACE fullPathForApplication:@"Xcode"]]
 #define APPBUNDLE_SUFFIX            @".app"
+#define GZIP_SUFFIX                 @".gz"
 
 #define DEFAULT_TEXT_FONT_NAME      @"Monaco"
 #define DEFAULT_TEXT_FONT_SIZE      13.0

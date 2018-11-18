@@ -48,8 +48,7 @@
 // Caveat: There are a couple of oddities that are not taken into account (like symbolic links, meta data of
 // directories, hard links, ...).
 
-- (BOOL)getAllocatedSize:(unsigned long long *)size ofDirectoryAtURL:(NSURL *)directoryURL error:(NSError * __autoreleasing *)error
-{
+- (BOOL)getAllocatedSize:(unsigned long long *)size ofDirectoryAtURL:(NSURL *)directoryURL error:(NSError * __autoreleasing *)error {
     NSParameterAssert(size != NULL);
     NSParameterAssert(directoryURL != nil);
     
@@ -81,28 +80,32 @@
     for (NSURL *contentItemURL in enumerator) {
         
         // Bail out on errors from the errorHandler.
-        if (errorDidOccur)
+        if (errorDidOccur) {
             return NO;
+        }
         
         // Get the type of this item, making sure we only sum up sizes of regular files.
         NSNumber *isRegularFile;
-        if (! [contentItemURL getResourceValue:&isRegularFile forKey:NSURLIsRegularFileKey error:error])
+        if (![contentItemURL getResourceValue:&isRegularFile forKey:NSURLIsRegularFileKey error:error]) {
             return NO;
-        if (! [isRegularFile boolValue])
+        }
+        if (![isRegularFile boolValue]) {
             continue; // Ignore anything except regular files.
+        }
         
         // To get the file's size we first try the most comprehensive value in terms of what the file may use on disk.
         // This includes metadata, compression (on file system level) and block size.
         NSNumber *fileSize;
-        if (! [contentItemURL getResourceValue:&fileSize forKey:NSURLTotalFileAllocatedSizeKey error:error])
+        if (![contentItemURL getResourceValue:&fileSize forKey:NSURLTotalFileAllocatedSizeKey error:error]) {
             return NO;
+        }
         
         // In case the value is unavailable we use the fallback value (excluding meta data and compression)
         // This value should always be available.
         if (fileSize == nil) {
-            if (! [contentItemURL getResourceValue:&fileSize forKey:NSURLFileAllocatedSizeKey error:error])
+            if (! [contentItemURL getResourceValue:&fileSize forKey:NSURLFileAllocatedSizeKey error:error]) {
                 return NO;
-            
+            }
             NSAssert(fileSize != nil, @"huh? NSURLFileAllocatedSizeKey should always return a value");
         }
         
@@ -111,9 +114,9 @@
     }
     
     // Bail out on errors from the errorHandler.
-    if (errorDidOccur)
+    if (errorDidOccur) {
         return NO;
-    
+    }
     // We finally got it.
     *size = accumulatedSize;
     return YES;
@@ -189,7 +192,7 @@
     // Thanks to Matt Gallagher for this technique:
     // http://cocoawithlove.com/2009/07/temporary-files-and-folders-in-cocoa.html
     
-    NSString *tmpFileNameTemplate = fileName ? fileName : @"tmp_file_nsfilemgr_osx.XXXXXX";
+    NSString *tmpFileNameTemplate = fileName ? fileName : @"tmp_file_platypus_macos.XXXXXX";
     NSString *tmpDir = NSTemporaryDirectory();
     if (!tmpDir) {
         NSLog(@"NSTemporaryDirectory() returned nil");
