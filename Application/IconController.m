@@ -52,18 +52,6 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     VDKQueue *fileWatcherQueue;
     dispatch_queue_t iconWritingDispatchQueue;
 }
-
-- (IBAction)iconActionButtonPressed:(id)sender;
-- (IBAction)copyIconPath:(id)sender;
-- (IBAction)copyIcon:(id)sender;
-- (IBAction)pasteIcon:(id)sender;
-- (IBAction)revealIconInFinder:(id)sender;
-- (IBAction)nextIcon:(id)sender;
-- (IBAction)previousIcon:(id)sender;
-- (IBAction)switchIcons:(id)sender;
-- (IBAction)selectImageFile:(id)sender;
-- (IBAction)selectIcnsFile:(id)sender;
-
 @end
 
 @implementation IconController

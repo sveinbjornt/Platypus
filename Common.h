@@ -236,7 +236,7 @@ extern NSString * const DefaultsKey_Launched;
 extern NSString * const ScriptExecDefaultsKey_UserFontSize;
 extern NSString * const ScriptExecDefaultsKey_ShowDetails;
 
-// Abbreviations. Obj-C is sometimes tediously verbose
+// Abbreviations. Objective-C is often tediously verbose
 #define FILEMGR     [NSFileManager defaultManager]
 #define DEFAULTS    [NSUserDefaults standardUserDefaults]
 #define WORKSPACE   [NSWorkspace sharedWorkspace]

@@ -32,7 +32,6 @@
 //  for the script file types handled by Platypus.
 
 #import "PlatypusScriptUtils.h"
-//#import "NSTask+Description.h"
 
 @implementation PlatypusScriptUtils
 
@@ -405,7 +404,7 @@
 
     //if the syntax report string is empty --> no complaints, so we report syntax as OK
     outputStr = [outputStr length] ? outputStr : @"Syntax OK";
-    outputStr = [NSString stringWithFormat:@"%@", /*[task humanDescription],*/ outputStr];
+    outputStr = [NSString stringWithFormat:@"%@", outputStr];
 
     return outputStr;
 }

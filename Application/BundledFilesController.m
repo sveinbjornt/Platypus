@@ -49,7 +49,6 @@
     
     NSWindow *window;
 }
-
 @end
 
 @implementation BundledFilesController

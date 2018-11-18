@@ -48,14 +48,6 @@
     NSStatusItem *previewStatusItem;
     NSMenu *previewStatusItemMenu;
 }
-
-- (IBAction)show:(id)sender;
-- (IBAction)apply:(id)sender;
-- (IBAction)statusItemDisplayTypeChanged:(id)sender;
-- (IBAction)selectStatusItemIcon:(id)sender;
-- (IBAction)previewStatusItem:(id)sender;
-- (IBAction)useAsTemplateChanged:(id)sender;
-
 @end
 
 @implementation StatusItemSettingsController

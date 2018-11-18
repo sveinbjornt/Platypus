@@ -44,12 +44,6 @@
     
     NSInteger numNonDynamicMenuitems;
 }
-
-- (IBAction)loadProfile:(id)sender;
-- (IBAction)saveProfile:(id)sender;
-- (IBAction)clearAllProfiles:(id)sender;
-- (IBAction)constructMenus:(id)sender;
-
 @end
 
 @implementation ProfilesController

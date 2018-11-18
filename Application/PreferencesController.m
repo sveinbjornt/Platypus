@@ -36,6 +36,7 @@
 #import "NSWorkspace+Additions.h"
 #import "NSBundle+Templates.h"
 #import "PlatypusAppSpec.h"
+#import "NSFileManager+TempFiles.h"
 
 @interface PreferencesController()
 {
@@ -46,14 +47,6 @@
     IBOutlet NSButton *installCLTButton;
     IBOutlet NSProgressIndicator *installCLTProgressIndicator;
 }
-
-- (IBAction)showWindow:(id)sender;
-- (IBAction)applyPrefs:(id)sender;
-- (IBAction)restoreDefaultPrefs:(id)sender;
-- (IBAction)commandLineInstallButtonClicked:(id)sender;
-- (IBAction)uninstallPlatypus:(id)sender;
-- (IBAction)selectScriptEditor:(id)sender;
-
 @end
 
 @implementation PreferencesController
@@ -353,7 +346,7 @@
     }
     
     // Create script at temp path and make it executable
-    NSString *tmpScriptPath = [WORKSPACE createTempFileWithContents:script];
+    NSString *tmpScriptPath = [FILEMGR createTempFileWithContents:script];
     chmod([tmpScriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU|S_IRWXG|S_IROTH); // 744
     
     // Create script task with Resources path and program version as arguments 1 and 2

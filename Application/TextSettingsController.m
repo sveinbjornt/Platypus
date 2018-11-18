@@ -42,12 +42,6 @@
     
     NSFont *currentFont;
 }
-
-- (IBAction)apply:(id)sender;
-- (IBAction)show:(id)sender;
-- (IBAction)chooseFont:(id)sender;
-- (IBAction)updateTextViewColor:(id)sender;
-
 @end
 
 @implementation TextSettingsController

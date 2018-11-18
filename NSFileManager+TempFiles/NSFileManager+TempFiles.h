@@ -26,24 +26,15 @@
  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
- */
+*/
 
 #import <Foundation/Foundation.h>
-#import <Cocoa/Cocoa.h>
 
-@interface NSWorkspace (Additions)
+@interface NSFileManager (TempFiles)
 
-- (unsigned long long)nrCalculateFolderSize:(NSString *)folderPath;
-- (UInt64)fileOrFolderSize:(NSString *)path;
-- (NSString *)fileSizeAsHumanReadableString:(UInt64)size;
-- (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path;
-
-- (NSArray *)handlerApplicationsForFile:(NSString *)filePath;
-- (NSString *)defaultHandlerApplicationForFile:(NSString *)filePath;
-- (NSMenu *)openWithMenuForFile:(NSString *)path target:(id)t action:(SEL)s menu:(NSMenu *)menu;
-
-- (void)notifyFinderFileChangedAtPath:(NSString *)path;
-- (void)flushServices;
-- (BOOL)openPathInDefaultBrowser:(NSString *)path;
+- (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
+- (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr;
+- (NSString *)createTempFileWithContents:(NSString *)contentStr;
+- (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
 
 @end

@@ -145,7 +145,6 @@
     
     NSMutableArray <ScriptExecJob *> *jobQueue;
 }
-
 @end
 
 static const NSInteger detailsHeight = 224;
@@ -153,7 +152,8 @@ static const NSInteger detailsHeight = 224;
 @implementation ScriptExecController
 
 - (instancetype)init {
-    if (self = [super init]) {
+    self = [super init];
+    if (self) {
         arguments = [[NSMutableArray alloc] init];
         outputEmpty = YES;
         jobQueue = [[NSMutableArray alloc] init];

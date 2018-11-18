@@ -33,7 +33,7 @@
 #import "Alerts.h"
 #import "SyntaxCheckerController.h"
 #import "NSTextView+JSDExtensions.h"
-#import "NSWorkspace+Additions.h"
+#import "NSFileManager+TempFiles.h"
 
 @interface EditorController()
 {
@@ -42,15 +42,6 @@
     IBOutlet NSButton *wordWrapCheckbox;
     IBOutlet NSImageView *scriptIconImageView;
 }
-
-- (IBAction)save:(id)sender;
-- (IBAction)endModal:(id)sender;
-- (IBAction)checkSyntax:(id)sender;
-- (IBAction)revealInFinder:(id)sender;
-- (IBAction)makeTextBigger:(id)sender;
-- (IBAction)makeTextSmaller:(id)sender;
-- (IBAction)wordWrapCheckboxClicked:(id)sender;
-
 @end
 
 @implementation EditorController
@@ -123,7 +114,7 @@
 - (IBAction)checkSyntax:(id)sender {
     NSString *scriptSuffix = [[scriptPathTextField stringValue] lastPathComponent];
     NSString *scriptFilename = [NSString stringWithFormat:@"PlatypusSyntaxCheckerTempScript.%@", scriptSuffix];
-    NSString *tmpPath = [WORKSPACE createTempFileNamed:scriptFilename withContents:[textView string]];
+    NSString *tmpPath = [FILEMGR createTempFileNamed:scriptFilename withContents:[textView string]];
     
     SyntaxCheckerController *controller = [[SyntaxCheckerController alloc] initWithWindowNibName:@"SyntaxChecker"];
     [controller showModalSyntaxCheckerSheetForFile:tmpPath

@@ -35,14 +35,12 @@
 #import "Common.h"
 #import "PlatypusScriptUtils.h"
 #import "NSWorkspace+Additions.h"
+#import "NSFileManager+TempFiles.h"
 
 @interface PlatypusAppSpec()
 {
     NSMutableDictionary *properties;
 }
-
-- (void)report:(NSString *)format, ...;
-
 @end
 
 @implementation PlatypusAppSpec
@@ -187,10 +185,6 @@
 
 #pragma mark - Set default values
 
-/************************************************
- init a spec with default values for everything
- ************************************************/
-
 - (void)setDefaults {
     self[AppSpecKey_Creator] = PROGRAM_CREATOR_STAMP;
     
@@ -289,11 +283,7 @@
 
 #pragma mark -
 
-/****************************************
- This function creates the app bundle
- based on the data contained in the spec.
- ****************************************/
-
+// Create app bundle based on spec data
 - (BOOL)create {
     
     // Check if app already exists
@@ -319,9 +309,6 @@
         return NO;
     }
     
-    ////////////////////////// CREATE FOLDER HIERARCHY //////////////////////////
-    
-    // Begin by creating the basic application bundle hierarchy
     [self report:@"Creating application bundle folder hierarchy"];
     
     // .app bundle
@@ -336,7 +323,7 @@
         _error = [NSString stringWithFormat:@"Could not write to the temp directory '%@'.", tmpPath];
         return FALSE;
     }
-    // Create bundle directory
+    // .app
     tmpPath = [tmpPath stringByAppendingString:[self[AppSpecKey_DestinationPath] lastPathComponent]];
     [FILEMGR createDirectoryAtPath:tmpPath withIntermediateDirectories:NO attributes:nil error:nil];
     
@@ -351,8 +338,6 @@
     // .app/Contents/Resources
     NSString *resourcesPath = [contentsPath stringByAppendingString:@"/Resources"];
     [FILEMGR createDirectoryAtPath:resourcesPath withIntermediateDirectories:NO attributes:nil error:nil];
-    
-    ////////////////////////// COPY FILES TO THE APP BUNDLE //////////////////////////////////
     
     [self report:@"Copying executable to bundle"];
     
@@ -471,7 +456,7 @@
             if (!name || !data) {
                 continue;
             }
-            NSString *path = [WORKSPACE createTempFileNamed:name withContents:@""];
+            NSString *path = [FILEMGR createTempFileNamed:name withContents:@""];
             if (path) {
                 [data writeToFile:path atomically:NO];
             } else {
@@ -680,10 +665,8 @@
     // If any URI protocol handling
     if (self[AppSpecKey_URISchemes] && [self[AppSpecKey_URISchemes] count]) {
         
-        NSDictionary *dict =
-        @{  @"CFBundleURLName":     self[AppSpecKey_Name],
-            @"CFBundleURLSchemes":  self[AppSpecKey_URISchemes]
-        };
+        NSDictionary *dict = @{    @"CFBundleURLName": self[AppSpecKey_Name],
+                                @"CFBundleURLSchemes": self[AppSpecKey_URISchemes] };
         
         infoPlist[@"CFBundleURLTypes"] = @[dict];
     }
@@ -706,10 +689,6 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SPEC_CREATION_NOTIFICATION object:string];
 }
-
-/****************************************
- Make sure the data in the spec is sane
- ****************************************/
 
 - (BOOL)verify {
     
@@ -734,7 +713,7 @@
     }
     
     if (![FILEMGR fileExistsAtPath:self[AppSpecKey_ExecutablePath] isDirectory:&isDir] || isDir) {
-        _error = [NSString stringWithFormat:@"Executable not found at path '%@'", self[AppSpecKey_ExecutablePath], nil];
+        _error = [NSString stringWithFormat:@"Executable binary not found at path '%@'", self[AppSpecKey_ExecutablePath], nil];
         return NO;
     }
     
@@ -743,13 +722,11 @@
         return NO;
     }
     
-    // Make sure destination directory exists
     if (![FILEMGR fileExistsAtPath:[self[AppSpecKey_DestinationPath] stringByDeletingLastPathComponent] isDirectory:&isDir] || !isDir) {
         _error = [NSString stringWithFormat:@"Destination directory '%@' does not exist.", [self[AppSpecKey_DestinationPath] stringByDeletingLastPathComponent], nil];
         return NO;
     }
     
-    // Make sure we have write privileges for the destination directory
     if (![FILEMGR isWritableFileAtPath:[self[AppSpecKey_DestinationPath] stringByDeletingLastPathComponent]]) {
         _error = [NSString stringWithFormat:@"Don't have permission to write to the destination directory '%@'", self[AppSpecKey_DestinationPath]];
         return NO;
@@ -991,11 +968,7 @@
 
 #pragma mark - Class Methods
 
-/*******************************************************************
- - Return the bundle identifier for the application to be generated
- - based on username etc. e.g. org.username.AppName
- ******************************************************************/
-
+// Generate bundle identifier for app
 + (NSString *)bundleIdentifierForAppName:(NSString *)name authorName:(NSString *)authorName usingDefaults:(BOOL)def {
     NSString *appName = name ? name : DEFAULT_APP_NAME;
     NSString *defaults = def ? [DEFAULTS stringForKey:DefaultsKey_BundleIdentifierPrefix] : nil;

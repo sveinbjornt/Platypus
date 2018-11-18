@@ -56,16 +56,6 @@
     NSMutableArray <NSString *> *interpreterArgs;
     NSMutableArray <NSString *> *scriptArgs;
 }
-
-- (IBAction)addInterpreterArg:(id)sender;
-- (IBAction)clearInterpreterArgs:(id)sender;
-- (IBAction)addScriptArg:(id)sender;
-- (IBAction)clearScriptArgs:(id)sender;
-- (IBAction)removeListItem:(id)sender;
-- (IBAction)apply:(id)sender;
-- (IBAction)show:(id)sender;
-- (IBAction)showHelp:(id)sender;
-
 @end
 
 @implementation ArgsController

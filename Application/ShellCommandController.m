@@ -42,7 +42,6 @@
     
     PlatypusAppSpec *appSpec;
 }
-
 @end
 
 @implementation ShellCommandController

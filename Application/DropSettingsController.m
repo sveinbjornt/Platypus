@@ -76,20 +76,6 @@
     
     UriSchemesListController *uriSchemesListController;
 }
-
-- (IBAction)addSuffix:(id)sender;
-- (IBAction)addUTI:(id)sender;
-- (IBAction)addURIProtocol:(id)sender;
-- (IBAction)removeListItem:(id)sender;
-- (IBAction)registerAsURIHandlerClicked:(id)sender;
-- (IBAction)openDropSettingsSheet:(id)sender;
-- (IBAction)closeDropSettingsSheet:(id)sender;
-- (IBAction)selectDocIcon:(id)sender;
-- (IBAction)acceptsFilesChanged:(id)sender;
-- (IBAction)acceptsTextChanged:(id)sender;
-- (IBAction)showHelp:(id)sender;
-- (IBAction)showHelpForUTIs:(id)sender;
-
 @end
 
 @implementation DropSettingsController
