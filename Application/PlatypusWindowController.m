@@ -662,6 +662,7 @@
     [interpreterPathTextField setStringValue:interpreterPath];
     [scriptTypePopupButton selectItemWithTitle:type];
     
+    [argsController setToDefaults:self];
     if ([interpreterArgs count]) {
         [argsController setInterpreterArgs:interpreterArgs];
     }

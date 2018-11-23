@@ -27,7 +27,10 @@ For 5.3
     TODO: Fix bug where custom icns file for icon doesn't work
     TODO: Update Droplet interface screenshot
     TODO: Fix icon drag and drop
-
+    TODO: Add Example that uses JS interpreter w. args & print
+    TODO: Remove all references to System Profiler example
+    TODO: Set default icon in Prefs
+    TODO: Add new icons
     * Removed XML plist feature
     * Documentation overhauled and partially rewritten for clarity
     * Added Open With menu for items in bundled files list
