@@ -1282,15 +1282,17 @@ static const NSInteger detailsHeight = 224;
         return YES;
     }
     // Save to file
-    if (IsTextStyledInterfaceType(interfaceType) && [[anItem title] isEqualToString:@"Save to File…"]) {
+    SEL selector = [anItem action];
+    if (IsTextStyledInterfaceType(interfaceType) && selector == @selector(saveToFile:)) {
         return YES;
     }
     // Open should only work if it's a droppable app that accepts files
-    if ((isDroppable && acceptsFiles) && [[anItem title] isEqualToString:@"Open…"]) {
+    if ((isDroppable && acceptsFiles) && selector == @selector(openFiles:)) {
         return YES;
     }
     // Change text size
-    if (IsTextSizableInterfaceType(interfaceType) && [[anItem title] hasPrefix:@"Make Text"]) {
+    if (IsTextSizableInterfaceType(interfaceType) &&
+        (selector == @selector(makeTextBigger:) || selector == @selector(makeTextSmaller:))) {
         return YES;
     }
     

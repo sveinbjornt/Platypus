@@ -69,7 +69,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>CFBundleIconFile</key>
-	<string>PlatypusDefaultIcon</string>
+	<string>PlatypusDefault</string>
 	<key>NSServices</key>
 	<array>
 		<dict>
