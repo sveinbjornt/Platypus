@@ -1,15 +1,14 @@
 # Platypus
 
-<img align="right" src="Documentation/images/platypus.png" 
-style="float: right; margin-left: 30px;" width="94" height="127">
+<img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="128" height="128" src="Documentation/images/platypus.png" align="right">
 
 **Platypus** is a developer tool that creates native Mac applications 
 from command line scripts such as shell scripts or Python, Perl, Ruby, 
-Tcl and PHP programs. This is done by wrapping the script in an 
+Tcl, JavaScript and PHP programs. This is done by wrapping the script in an 
 [application bundle](https://en.wikipedia.org/wiki/Bundle_(OS_X)) along 
 with an app binary that runs the script.
 
-Platypus makes it easy to share scripts and programs with those 
+Platypus makes it easy to share scripts and programs with people who are 
 unfamiliar with the command line interface. Native, user-friendly 
 applications can be created with a few clicks. It is very easy to 
 create installers, droplets, administrative applications, login items, 
@@ -38,8 +37,7 @@ status menu items, launchers and automations using Platypus.
 
 * [Platypus Documentation](Documentation/Documentation.md)
 * [Platypus Website](http://www.sveinbjorn.org/platypus)
-* [Platypus Command Line Tool man Page](http://www.sveinbjorn.org/files/manpages/platypus.man.html)
-* [Platypus Developer Mailing List](http://www.sveinbjorn.org/platypus_mailinglist)
+* [Command Line Tool man Page](http://www.sveinbjorn.org/files/manpages/platypus.man.html)
 * [AppCast XML Feed](http://www.sveinbjorn.org/files/appcasts/PlatypusAppcast.xml)
 
 ## Screenshots
@@ -108,8 +106,4 @@ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
-
-### Hexley Icon
-
-Hexley DarwinOS Mascot Copyright (c) 2000 Jon Hooper. All Rights Reserved.
 

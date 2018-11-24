@@ -276,6 +276,12 @@
     [sPanel setPrompt:@"Create"];
     [sPanel setNameFieldStringValue:@"App Examples Folder"];
     
+    if (![FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH]) {
+        [Alerts alert:@"Command line tool not installed"
+              subText:@"To build the examples, you need to install the command line tool in Preferences."];
+        return;
+    }
+    
     if ([sPanel runModal] != NSFileHandlingPanelOKButton) {
         return;
     }
@@ -284,16 +290,17 @@
     NSString *outFolderPath = [[sPanel URL] path];
     NSError *err;
     if (![FILEMGR createDirectoryAtPath:outFolderPath withIntermediateDirectories:NO attributes:nil error:&err]) {
-        [Alerts alert:@"Unable to create directory" subText:[err localizedDescription]];
+        [Alerts alert:@"Unable to create directory"
+              subText:[err localizedDescription]];
         return;
     }
 
     // Run make examples script
     NSString *examplesFolderPath = [[NSBundle mainBundle] pathForResource:@"Examples" ofType:nil];
-    NSString *platypusToolPath = [[NSBundle mainBundle] pathForResource:@"platypus_clt" ofType:nil];
+    NSString *platypusToolPath = CMDLINE_TOOL_PATH;
     NSString *buildScriptPath = [[NSBundle mainBundle] pathForResource:@"make_examples.pl" ofType:nil];
     
-    [NSTask launchedTaskWithLaunchPath:@"/usr/bin/perl"
+    [NSTask launchedTaskWithLaunchPath:PERL_INTERPRETER_PATH
                              arguments:@[buildScriptPath,
                                          examplesFolderPath,
                                          outFolderPath,

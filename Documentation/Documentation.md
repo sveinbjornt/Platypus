@@ -1,6 +1,8 @@
+<img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="128" height="128" src="images/platypus.png"  align="right">
+
 # Documentation for Platypus 5.3
 
-Last updated on November 17th, 2018. The latest version of this document can be found [here](http://sveinbjorn.org/platypus_documentation).
+Last updated on November 24th, 2018. The latest version of this document can be found [here](http://sveinbjorn.org/platypus_documentation).
 
 
 ## Introduction
@@ -8,7 +10,6 @@ Last updated on November 17th, 2018. The latest version of this document can be 
 
 ### What is Platypus?
 
-<img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="94" src="images/platypus.png">
 
 Platypus is a developer tool that creates native macOS application wrappers around scripts. Scripts are thus transformed into regular applications that can be launched from the window environment – e.g. the Finder or the Dock – without requiring use of the command line interface.
 
@@ -47,7 +48,7 @@ Both Platypus and the applications it generates require **macOS 10.8** or later 
 
 ### Credits
 
-Platypus was conceived and created by me, [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org). The Platypus application icon – [Hexley](http://www.hexley.com/), the Darwin mascot – was created by Jon Hooper, who was kind enough to grant me permission to use it.
+Platypus was conceived and created by me, [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org). The  application icon was created by [Drífa Líftóra](http://drifaliftora.is).
 
 Thanks go to Troy Stephens, the original author of the [IconFamily](http://iconfamily.sourceforge.net/) class used for icon handling in Platypus, Bryan D K Jones, author of [VDKQueue](https://github.com/bdkjones/VDKQueue), Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, and Andy Matuschak for the [Sparkle](http://sparkle-project.org) update framework. [Stack Overflow](http://stackoverflow.com) and the [OmniGroup](https://www.omnigroup.com) Mac development mailing list and have also been invaluable over the years.
 

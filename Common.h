@@ -77,6 +77,8 @@
 #define CMDLINE_ARG_SEPARATOR       @"|"
 
 #define IBTOOL_PATH                 [NSString stringWithFormat:@"%@/Contents/Developer/usr/bin/ibtool", [WORKSPACE fullPathForApplication:@"Xcode"]]
+#define PERL_INTERPRETER_PATH       @"/usr/bin/perl"
+
 #define APPBUNDLE_SUFFIX            @".app"
 #define GZIP_SUFFIX                 @".gz"
 

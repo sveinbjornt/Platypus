@@ -102,6 +102,7 @@
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
 		F484D45921A9DDAE006EE28D /* ScriptDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = F484D45721A9DDAE006EE28D /* ScriptDocument.icns */; };
 		F484D45A21A9DDAE006EE28D /* ProfileDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = F484D45821A9DDAE006EE28D /* ProfileDocument.icns */; };
+		F484D45B21AA005D006EE28D /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
 		F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* ScriptExecController.m */; };
@@ -1214,6 +1215,7 @@
 				F4051DA01C1B5AF900587F1F /* Common.m in Sources */,
 				F45BB358219224DE00DC7A00 /* platypus_clt.m in Sources */,
 				F436471921A1EE2D00A8749D /* NSFileManager+TempFiles.m in Sources */,
+				F484D45B21AA005D006EE28D /* NSWorkspace+Additions.m in Sources */,
 				F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
