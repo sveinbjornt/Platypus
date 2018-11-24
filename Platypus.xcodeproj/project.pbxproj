@@ -53,8 +53,6 @@
 		F43142B01C03C742004EEF8C /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F436471421A1BD9D00A8749D /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F45BB35A219224E900DC7A00 /* platypus.1 */; };
 		F436471521A1BDA600A8749D /* platypus.man.html in Resources */ = {isa = PBXBuildFile; fileRef = F45BB35C219224E900DC7A00 /* platypus.man.html */; };
-		F436471921A1EE2D00A8749D /* NSFileManager+TempFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = F436471721A1E9BA00A8749D /* NSFileManager+TempFiles.m */; };
-		F436471A21A1EE9500A8749D /* NSFileManager+TempFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = F436471721A1E9BA00A8749D /* NSFileManager+TempFiles.m */; };
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
 		F44A77431C1882DA003CCA7A /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F44A77401C1882DA003CCA7A /* InstallCommandLineTool.sh */; };
 		F44A77441C1882DA003CCA7A /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F44A77411C1882DA003CCA7A /* UninstallCommandLineTool.sh */; };
@@ -103,6 +101,8 @@
 		F484D45921A9DDAE006EE28D /* ScriptDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = F484D45721A9DDAE006EE28D /* ScriptDocument.icns */; };
 		F484D45A21A9DDAE006EE28D /* ProfileDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = F484D45821A9DDAE006EE28D /* ProfileDocument.icns */; };
 		F484D45B21AA005D006EE28D /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
+		F484D45E21AA03C2006EE28D /* NSFileManager+TempFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = F484D45C21AA03C1006EE28D /* NSFileManager+TempFiles.m */; };
+		F484D45F21AA03C2006EE28D /* NSFileManager+TempFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = F484D45C21AA03C1006EE28D /* NSFileManager+TempFiles.m */; };
 		F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
 		F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* ScriptExecController.m */; };
@@ -211,8 +211,6 @@
 		F42A93E52178485C00C40D46 /* args.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = args.py; sourceTree = "<group>"; };
 		F42E2EAA20A9E001003D2E89 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		F436471321A07B2D00A8749D /* srcloc.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = srcloc.sh; sourceTree = "<group>"; };
-		F436471621A1E9BA00A8749D /* NSFileManager+TempFiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+TempFiles.h"; sourceTree = "<group>"; };
-		F436471721A1E9BA00A8749D /* NSFileManager+TempFiles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+TempFiles.m"; sourceTree = "<group>"; };
 		F442E00B1EA38C7100BAD80C /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Sparkle/dsa_pub.pem; sourceTree = "<group>"; };
 		F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_priv.pem; sourceTree = "<group>"; };
@@ -284,6 +282,8 @@
 		F48269821BCAF1D800169D8B /* UniformTypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniformTypeListController.m; path = Application/UniformTypeListController.m; sourceTree = "<group>"; };
 		F484D45721A9DDAE006EE28D /* ScriptDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ScriptDocument.icns; sourceTree = "<group>"; };
 		F484D45821A9DDAE006EE28D /* ProfileDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ProfileDocument.icns; sourceTree = "<group>"; };
+		F484D45C21AA03C1006EE28D /* NSFileManager+TempFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+TempFiles.m"; path = "Shared/NSFileManager+TempFiles.m"; sourceTree = "<group>"; };
+		F484D45D21AA03C2006EE28D /* NSFileManager+TempFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+TempFiles.h"; path = "Shared/NSFileManager+TempFiles.h"; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
 		F48B1EDD17935BBC007DA173 /* PlatypusScriptUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusScriptUtils.h; path = Shared/PlatypusScriptUtils.h; sourceTree = "<group>"; };
 		F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusScriptUtils.m; path = Shared/PlatypusScriptUtils.m; sourceTree = "<group>"; };
@@ -399,7 +399,7 @@
 		080E96DDFE201D6D7F000001 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				F436471821A1E9C100A8749D /* NSFileManager+TempFiles */,
+				F484D46021AA03D7006EE28D /* NSFileManager+TempFiles */,
 				F45B1EFD1FF560FB00A935D7 /* IconFamily */,
 				F45B1F041FF5610000A935D7 /* NSTask+Description */,
 				F45B1EF31FF560D800A935D7 /* NSTextView+JSDExtensions */,
@@ -520,15 +520,6 @@
 				F484D45721A9DDAE006EE28D /* ScriptDocument.icns */,
 			);
 			name = Documents;
-			sourceTree = "<group>";
-		};
-		F436471821A1E9C100A8749D /* NSFileManager+TempFiles */ = {
-			isa = PBXGroup;
-			children = (
-				F436471621A1E9BA00A8749D /* NSFileManager+TempFiles.h */,
-				F436471721A1E9BA00A8749D /* NSFileManager+TempFiles.m */,
-			);
-			path = "NSFileManager+TempFiles";
 			sourceTree = "<group>";
 		};
 		F44587170FC386B500CD0C02 /* STPrivilegedTask */ = {
@@ -722,6 +713,15 @@
 				F4F2F3B91BF96C5C00FE463C /* VDKQueue.m */,
 			);
 			name = VDKQueue;
+			sourceTree = "<group>";
+		};
+		F484D46021AA03D7006EE28D /* NSFileManager+TempFiles */ = {
+			isa = PBXGroup;
+			children = (
+				F484D45D21AA03C2006EE28D /* NSFileManager+TempFiles.h */,
+				F484D45C21AA03C1006EE28D /* NSFileManager+TempFiles.m */,
+			);
+			name = "NSFileManager+TempFiles";
 			sourceTree = "<group>";
 		};
 		F48A724D122E23B200964D71 /* PlatypusScriptAnalyser */ = {
@@ -1165,7 +1165,6 @@
 				F4975DB51B2E71EE0099D16E /* StatusItemSettingsController.m in Sources */,
 				F4975DB11B2E71EE0099D16E /* PreferencesController.m in Sources */,
 				F4975DB21B2E71EE0099D16E /* ProfilesController.m in Sources */,
-				F436471A21A1EE9500A8749D /* NSFileManager+TempFiles.m in Sources */,
 				F4051DA11C1B5AF900587F1F /* Common.m in Sources */,
 				F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */,
 				F45B1F021FF560FB00A935D7 /* IconFamily.m in Sources */,
@@ -1186,6 +1185,7 @@
 				F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */,
 				F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */,
 				F45B1EFA1FF560D800A935D7 /* NoodleLineNumberView.m in Sources */,
+				F484D45E21AA03C2006EE28D /* NSFileManager+TempFiles.m in Sources */,
 				F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */,
 				F45B1F031FF560FB00A935D7 /* NSString+CarbonFSRefCreation.m in Sources */,
 				F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */,
@@ -1211,10 +1211,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F484D45F21AA03C2006EE28D /* NSFileManager+TempFiles.m in Sources */,
 				F43142B01C03C742004EEF8C /* PlatypusScriptUtils.m in Sources */,
 				F4051DA01C1B5AF900587F1F /* Common.m in Sources */,
 				F45BB358219224DE00DC7A00 /* platypus_clt.m in Sources */,
-				F436471921A1EE2D00A8749D /* NSFileManager+TempFiles.m in Sources */,
 				F484D45B21AA005D006EE28D /* NSWorkspace+Additions.m in Sources */,
 				F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
 			);
