@@ -100,9 +100,11 @@
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
 		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; };
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
+		F484D45621A81A03006EE28D /* PlatypusClassic.icns in Resources */ = {isa = PBXBuildFile; fileRef = F484D45521A81A03006EE28D /* PlatypusClassic.icns */; };
 		F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
 		F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* ScriptExecController.m */; };
+		F48FB47321A7841B0000C0E9 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */; };
 		F4975D711B2E09280099D16E /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F4975D741B2E09310099D16E /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D731B2E09310099D16E /* STPrivilegedTask.m */; };
 		F4975D751B2E09310099D16E /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D731B2E09310099D16E /* STPrivilegedTask.m */; };
@@ -280,6 +282,7 @@
 		F482697E1BCAE1EE00169D8B /* TypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeListController.m; path = Application/TypeListController.m; sourceTree = "<group>"; };
 		F48269811BCAF1D800169D8B /* UniformTypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniformTypeListController.h; path = Application/UniformTypeListController.h; sourceTree = "<group>"; };
 		F48269821BCAF1D800169D8B /* UniformTypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniformTypeListController.m; path = Application/UniformTypeListController.m; sourceTree = "<group>"; };
+		F484D45521A81A03006EE28D /* PlatypusClassic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusClassic.icns; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
 		F48B1EDD17935BBC007DA173 /* PlatypusScriptUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusScriptUtils.h; path = Shared/PlatypusScriptUtils.h; sourceTree = "<group>"; };
 		F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusScriptUtils.m; path = Shared/PlatypusScriptUtils.m; sourceTree = "<group>"; };
@@ -455,8 +458,8 @@
 			isa = PBXGroup;
 			children = (
 				F4975DBA1B2E71FC0099D16E /* Platypus-Info.plist */,
-				F4975DB91B2E71FC0099D16E /* Editor.xib */,
 				F4975DBB1B2E71FC0099D16E /* Platypus.xib */,
+				F4975DB91B2E71FC0099D16E /* Editor.xib */,
 				F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */,
 				F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */,
 				F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */,
@@ -578,6 +581,7 @@
 			children = (
 				F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */,
 				F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */,
+				F484D45521A81A03006EE28D /* PlatypusClassic.icns */,
 				F45BB3672192397900DC7A00 /* Preferences.icns */,
 			);
 			name = Application;
@@ -1027,6 +1031,7 @@
 				F45B1F2B1FF5618000A935D7 /* InterfaceType_Status-Menu.png in Resources */,
 				F45B1F2D1FF5618000A935D7 /* InterfaceType_Text-Window.png in Resources */,
 				F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */,
+				F484D45621A81A03006EE28D /* PlatypusClassic.icns in Resources */,
 				F45B1F301FF5618000A935D7 /* InterfaceType_None.png in Resources */,
 				F45B1F1D1FF5617500A935D7 /* Interpreter_env.png in Resources */,
 				F45B1F1B1FF5617500A935D7 /* Interpreter_tcsh.png in Resources */,
@@ -1048,6 +1053,7 @@
 			files = (
 				F44A77501C1887CC003CCA7A /* script in Resources */,
 				F44A774D1C1887CC003CCA7A /* AppSettings.plist in Resources */,
+				F48FB47321A7841B0000C0E9 /* PlatypusDefault.icns in Resources */,
 				F44A774F1C1887CC003CCA7A /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

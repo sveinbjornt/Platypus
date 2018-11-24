@@ -36,8 +36,9 @@
 
 typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     PlatypusPresetIconDefault = 0,
-    PlatypusPresetIconInstaller = 1,
-    PlatypusPresetIconGenericApplication = 2
+    PlatypusPresetIconClassic = 1,
+    PlatypusPresetIconGenericApplication = 2,
+    PlatypusPresetIconInstaller = 3
 };
 
 @interface IconController()
@@ -224,12 +225,31 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         case PlatypusPresetIconDefault:
         {
             iconImage = [NSImage imageNamed:@"PlatypusDefault"];
-            iconName = @"Platypus Default";
+            iconName = @"Default Icon";
             [iconImage setSize:NSMakeSize(512, 512)];
             iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusDefault" ofType:@"icns"];
         }
             break;
+        
+        case PlatypusPresetIconClassic:
+        {
+            iconImage = [NSImage imageNamed:@"PlatypusClassic"];
+            iconName = @"Classic Icon";
+            [iconImage setSize:NSMakeSize(512, 512)];
+            iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusClassic" ofType:@"icns"];
+        }
+        break;
+        
+        case PlatypusPresetIconGenericApplication:
+        {
+            iconImage = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
+            [iconImage setSize:NSMakeSize(512, 512)];
+            iconName = @"Generic Application";
             
+            return @{@"Name": iconName, @"Image": iconImage};
+        }
+            break;
+        
         case PlatypusPresetIconInstaller:
         {
             NSString *installerIconPath = @"/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns";
@@ -240,14 +260,6 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         }
             break;
         
-        case PlatypusPresetIconGenericApplication:
-        {
-            iconImage = [NSImage imageNamed:@"NSDefaultApplicationIcon"];
-            [iconImage setSize:NSMakeSize(512, 512)];
-            iconName = @"Generic Application";
-            
-            return @{@"Name": iconName, @"Image": iconImage};
-        }
     }
     
     return @{@"Name": iconName, @"Path": iconPath, @"Image": iconImage};

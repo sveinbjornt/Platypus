@@ -19,18 +19,21 @@ For future versions...
     TODO: Don't save Status Menu image as base64 in every Profile
     TODO: Find a way to fix broken file watching of script path eftir pressing "New"
     TODO: Create Platypus tutorial videos, make them available online
+    TODO: Set default icon in Prefs
+    TODO: Document the Services feature and provide instructions on how to enable in macOS Services preferences.
+    TODO: Async Status Menu script execution to prevent interface locking on main thread
+    TODO: Fix icon drag and drop
 
 For 5.3
 
-    TODO: Document the Services feature and provide instructions on how to enable in macOS Services preferences.
-    TODO: Async Status Menu script execution to prevent interface locking on main thread
     TODO: Fix bug where custom icns file for icon doesn't work
-    TODO: Update Droplet interface screenshot
-    TODO: Fix icon drag and drop
+    TODO: Update Status Item screenshot
     TODO: Add Example that uses JS interpreter w. args & print
     TODO: Remove all references to System Profiler example
-    TODO: Set default icon in Prefs
-    TODO: Add new icons
+    TODO: New windows in Platypus-generated apps should be centered, intelligently positioned on first launch (should remember placement between launches)
+    TODO: Disabled menu item syntax for status menus
+    TODO: Create new document icons
+    * New application icons
     * Removed XML plist feature
     * Documentation overhauled and partially rewritten for clarity
     * Added Open With menu for items in bundled files list
