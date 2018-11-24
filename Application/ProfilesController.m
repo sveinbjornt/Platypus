@@ -161,7 +161,7 @@
     NSArray *examples = [self readExamplesList];
     
     // Create icon
-    NSImage *icon = [NSImage imageNamed:@"PlatypusProfile"];
+    NSImage *icon = [NSImage imageNamed:@"ProfileDocument"];
     [icon setSize:NSMakeSize(16, 16)];
     
     // Create Examples menu

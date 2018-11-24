@@ -13,7 +13,7 @@
 				<string>sh</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Shell Script</string>
 			<key>CFBundleTypeRole</key>
@@ -35,7 +35,7 @@
 				<string>bash</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Bash Shell Script</string>
 			<key>CFBundleTypeRole</key>
@@ -57,7 +57,7 @@
 				<string>tcsh</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>TENEX C Shell Script</string>
 			<key>CFBundleTypeRole</key>
@@ -79,7 +79,7 @@
 				<string>csh</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>C Shell Script</string>
 			<key>CFBundleTypeRole</key>
@@ -101,9 +101,9 @@
 				<string>zsh</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>Z Shell Script</string>
+			<string>Zsh Shell Script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
@@ -123,7 +123,7 @@
 				<string>ksh</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Korn Shell Script</string>
 			<key>CFBundleTypeRole</key>
@@ -143,10 +143,9 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>pl</string>
-				<string>perl</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Perl Script</string>
 			<key>CFBundleTypeRole</key>
@@ -166,11 +165,9 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>py</string>
-				<string>objpy</string>
-				<string>python</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Python Script</string>
 			<key>CFBundleTypeRole</key>
@@ -190,12 +187,9 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rb</string>
-				<string>rbx</string>
-				<string>rbw</string>
-				<string>ruby</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Ruby Script</string>
 			<key>CFBundleTypeRole</key>
@@ -219,7 +213,7 @@
 				<string>applescript</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>AppleScript File</string>
 			<key>CFBundleTypeRole</key>
@@ -243,7 +237,7 @@
 				<string>tclsh</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Tcl Script</string>
 			<key>CFBundleTypeRole</key>
@@ -266,7 +260,7 @@
 				<string>expect</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Expect Script</string>
 			<key>CFBundleTypeRole</key>
@@ -289,12 +283,11 @@
 				<string>php3</string>
 				<string>php4</string>
 				<string>php5</string>
-				<string>ph3</string>
-				<string>ph4</string>
-				<string>phtml</string>
+				<string>php6</string>
+				<string>php7</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>PHP Script</string>
 			<key>CFBundleTypeRole</key>
@@ -316,7 +309,7 @@
 				<string>swift</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Swift Script</string>
 			<key>CFBundleTypeRole</key>
@@ -338,7 +331,7 @@
 				<string>awk</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusScriptFile.icns</string>
+			<string>ScriptDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>AWK Script</string>
 			<key>CFBundleTypeRole</key>
@@ -357,10 +350,32 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>js</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>ScriptDocument.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>JavaScript Source File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.netscape.javascript-source</string>
+			</array>
+			<key>NSExportableTypes</key>
+			<array>
+				<string>com.apple.application</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>platypus</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PlatypusProfile.icns</string>
+			<string>ProfileDocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>Platypus Profile</string>
 			<key>CFBundleTypeRole</key>
@@ -426,7 +441,7 @@
 			<string>Platypus Profile</string>
 			<key>UTTypeIconFile</key>
 			<array>
-				<string>PlatypusProfile.icns</string>
+				<string>ProfileDocument.icns</string>
 			</array>
 			<key>UTTypeIdentifier</key>
 			<string>org.sveinbjorn.platypus-profile</string>

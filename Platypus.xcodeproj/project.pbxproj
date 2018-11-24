@@ -100,7 +100,8 @@
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
 		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; };
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
-		F484D45621A81A03006EE28D /* PlatypusClassic.icns in Resources */ = {isa = PBXBuildFile; fileRef = F484D45521A81A03006EE28D /* PlatypusClassic.icns */; };
+		F484D45921A9DDAE006EE28D /* ScriptDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = F484D45721A9DDAE006EE28D /* ScriptDocument.icns */; };
+		F484D45A21A9DDAE006EE28D /* ProfileDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = F484D45821A9DDAE006EE28D /* ProfileDocument.icns */; };
 		F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
 		F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* ScriptExecController.m */; };
@@ -133,8 +134,6 @@
 		F4AB189A1BED3A0B00B83A95 /* ScriptExecJob.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */; };
 		F4AB189D1BEFAF1900B83A95 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
-		F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */; };
-		F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */; };
 		F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A841BD1BFAB00F411BD /* STDragImageView.m */; };
 		F4D0F2311C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */; };
 		F4DC075211F629A40043764E /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074F11F629A40043764E /* Documentation.html */; };
@@ -282,7 +281,8 @@
 		F482697E1BCAE1EE00169D8B /* TypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeListController.m; path = Application/TypeListController.m; sourceTree = "<group>"; };
 		F48269811BCAF1D800169D8B /* UniformTypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniformTypeListController.h; path = Application/UniformTypeListController.h; sourceTree = "<group>"; };
 		F48269821BCAF1D800169D8B /* UniformTypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniformTypeListController.m; path = Application/UniformTypeListController.m; sourceTree = "<group>"; };
-		F484D45521A81A03006EE28D /* PlatypusClassic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusClassic.icns; sourceTree = "<group>"; };
+		F484D45721A9DDAE006EE28D /* ScriptDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ScriptDocument.icns; sourceTree = "<group>"; };
+		F484D45821A9DDAE006EE28D /* ProfileDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ProfileDocument.icns; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
 		F48B1EDD17935BBC007DA173 /* PlatypusScriptUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusScriptUtils.h; path = Shared/PlatypusScriptUtils.h; sourceTree = "<group>"; };
 		F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusScriptUtils.m; path = Shared/PlatypusScriptUtils.m; sourceTree = "<group>"; };
@@ -340,8 +340,6 @@
 		F4AF785B14D1E5F200544C1B /* STDragWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragWebView.h; path = Shared/STDragWebView.h; sourceTree = "<group>"; };
 		F4AF785C14D1E5F200544C1B /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = Shared/STDragWebView.m; sourceTree = "<group>"; };
 		F4B87C581B403A6E00F4B8BE /* build_release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_release.sh; sourceTree = "<group>"; };
-		F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusScriptFile.icns; sourceTree = "<group>"; };
-		F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusProfile.icns; sourceTree = "<group>"; };
 		F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F4C19A831BD1BFAB00F411BD /* STDragImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragImageView.h; path = Shared/STDragImageView.h; sourceTree = "<group>"; };
 		F4C19A841BD1BFAB00F411BD /* STDragImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragImageView.m; path = Shared/STDragImageView.m; sourceTree = "<group>"; };
@@ -517,8 +515,8 @@
 		F43142B21C03F9E2004EEF8C /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				F4BDABD50FD9A7CC00328FDD /* PlatypusScriptFile.icns */,
-				F4BDABD60FD9A7CC00328FDD /* PlatypusProfile.icns */,
+				F484D45821A9DDAE006EE28D /* ProfileDocument.icns */,
+				F484D45721A9DDAE006EE28D /* ScriptDocument.icns */,
 			);
 			name = Documents;
 			sourceTree = "<group>";
@@ -581,7 +579,6 @@
 			children = (
 				F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */,
 				F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */,
-				F484D45521A81A03006EE28D /* PlatypusClassic.icns */,
 				F45BB3672192397900DC7A00 /* Preferences.icns */,
 			);
 			name = Application;
@@ -999,8 +996,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F45B1F1C1FF5617500A935D7 /* Interpreter_Tcl.png in Resources */,
-				F4BDABD70FD9A7CC00328FDD /* PlatypusScriptFile.icns in Resources */,
-				F4BDABD80FD9A7CC00328FDD /* PlatypusProfile.icns in Resources */,
 				F4AB189D1BEFAF1900B83A95 /* PlatypusDefault.icns in Resources */,
 				F4DC075211F629A40043764E /* Documentation.html in Resources */,
 				F44A77451C1882DA003CCA7A /* UninstallPlatypus.sh in Resources */,
@@ -1013,6 +1008,7 @@
 				F44A77431C1882DA003CCA7A /* InstallCommandLineTool.sh in Resources */,
 				F45B1F171FF5617500A935D7 /* Interpreter_PHP.png in Resources */,
 				F48002CB121AF042003FB5B3 /* images in Resources */,
+				F484D45A21A9DDAE006EE28D /* ProfileDocument.icns in Resources */,
 				F4146CCF2149E76000BB36AD /* Interpreter_AWK.png in Resources */,
 				F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */,
 				F436471521A1BDA600A8749D /* platypus.man.html in Resources */,
@@ -1022,6 +1018,7 @@
 				F42E2EAB20A9E001003D2E89 /* Credits.rtf in Resources */,
 				F4975DC01B2E71FC0099D16E /* Platypus.xib in Resources */,
 				F44A77441C1882DA003CCA7A /* UninstallCommandLineTool.sh in Resources */,
+				F484D45921A9DDAE006EE28D /* ScriptDocument.icns in Resources */,
 				F45B1F201FF5617500A935D7 /* Interpreter_csh.png in Resources */,
 				F45B1F161FF5617500A935D7 /* Interpreter_Shell.png in Resources */,
 				F45B1F1F1FF5617500A935D7 /* Interpreter_bash.png in Resources */,
@@ -1031,7 +1028,6 @@
 				F45B1F2B1FF5618000A935D7 /* InterfaceType_Status-Menu.png in Resources */,
 				F45B1F2D1FF5618000A935D7 /* InterfaceType_Text-Window.png in Resources */,
 				F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */,
-				F484D45621A81A03006EE28D /* PlatypusClassic.icns in Resources */,
 				F45B1F301FF5618000A935D7 /* InterfaceType_None.png in Resources */,
 				F45B1F1D1FF5617500A935D7 /* Interpreter_env.png in Resources */,
 				F45B1F1B1FF5617500A935D7 /* Interpreter_tcsh.png in Resources */,

@@ -69,7 +69,7 @@
                     <stepper toolTip="Press to browse through default icons" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="308">
                         <rect key="frame" x="168" y="425" width="19" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <stepperCell key="cell" continuous="YES" alignment="left" maxValue="3" valueWraps="YES" id="10947"/>
+                        <stepperCell key="cell" continuous="YES" alignment="left" maxValue="2" valueWraps="YES" id="10947"/>
                         <connections>
                             <action selector="switchIcons:" target="1215" id="1224"/>
                         </connections>
@@ -130,15 +130,6 @@ DQ
                         <connections>
                             <outlet property="delegate" destination="335" id="6808"/>
                         </connections>
-                    </textField>
-                    <textField toolTip="Application Icon Name" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="367">
-                        <rect key="frame" x="52" y="342" width="152" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Platypus Default" id="10957">
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
                     </textField>
                     <button hidden="YES" toolTip="Press this button to configure what kind of dropped items your app should accept" verticalHuggingPriority="750" id="372">
                         <rect key="frame" x="312" y="222" width="88" height="28"/>
@@ -368,9 +359,9 @@ DQ
                         </connections>
                     </textField>
                     <button toolTip="Select Icon Action" verticalHuggingPriority="750" id="0lI-4s-sC8">
-                        <rect key="frame" x="22" y="341" width="24" height="24"/>
+                        <rect key="frame" x="21" y="340" width="22" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSActionTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="n17-i2-xh5">
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSActionTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="n17-i2-xh5">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -379,7 +370,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Show Help for Platypus" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="AEA-iE-Tgw">
-                        <rect key="frame" x="618" y="333" width="25" height="25"/>
+                        <rect key="frame" x="621" y="333" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mAK-34-BfX">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -543,6 +534,15 @@ DQ
                             <action selector="show:" target="10213" id="10218"/>
                         </connections>
                     </button>
+                    <textField toolTip="Application Icon Name" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="367">
+                        <rect key="frame" x="49" y="341" width="119" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Platypus Default" id="10957">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <connections>
@@ -2889,7 +2889,7 @@ Gw
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>
     <resources>
-        <image name="DefaultStatusMenuIcon" width="36" height="36"/>
+        <image name="DefaultStatusMenuIcon" width="44" height="44"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSApplicationIcon" width="128" height="128"/>

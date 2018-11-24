@@ -36,9 +36,8 @@
 
 typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     PlatypusPresetIconDefault = 0,
-    PlatypusPresetIconClassic = 1,
-    PlatypusPresetIconGenericApplication = 2,
-    PlatypusPresetIconInstaller = 3
+    PlatypusPresetIconGenericApplication = 1,
+    PlatypusPresetIconInstaller = 2
 };
 
 @interface IconController()
@@ -230,15 +229,6 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
             iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusDefault" ofType:@"icns"];
         }
             break;
-        
-        case PlatypusPresetIconClassic:
-        {
-            iconImage = [NSImage imageNamed:@"PlatypusClassic"];
-            iconName = @"Classic Icon";
-            [iconImage setSize:NSMakeSize(512, 512)];
-            iconPath = [[NSBundle mainBundle] pathForResource:@"PlatypusClassic" ofType:@"icns"];
-        }
-        break;
         
         case PlatypusPresetIconGenericApplication:
         {
