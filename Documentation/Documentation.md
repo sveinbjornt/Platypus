@@ -13,7 +13,7 @@ Last updated on November 24th, 2018. The latest version of this document can be 
 
 Platypus is a developer tool that creates native macOS application wrappers around scripts. Scripts are thus transformed into regular applications that can be launched from the window environment – e.g. the Finder or the Dock – without requiring use of the command line interface.
 
-Platypus was first conceived in 2003 and has since gone through many significant updates. It is written in Objective-C/Cocoa and is free, open-source software distributed under a BSD license. This means the source code is freely available and you are free to modify and distribute it as you see fit.
+Platypus was first released in 2003 and has since gone through many significant updates. It is written in Objective-C/Cocoa and is free, open-source software distributed under a BSD license. This means the source code is freely available and you are free to modify and distribute it as you see fit.
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="float: right; margin-left: 40px;">
 <input type="hidden" name="cmd" value="_s-xclick">
@@ -175,7 +175,7 @@ You can also set **Author** and **Version** metadata. This information will appe
 
 *Platypus scripts must not use the 'sudo' command*. This causes the script to prompt for input via `STDIN`, and since no input is forthcoming, the application will hang indefinitely.
 
-Please note that if this option is selected, `STDERR` output cannot be captured due to limitations in the Security APIs. This can be circumvented by using a shell script to execute another script while piping `STDERR` into `STDOUT` (e.g. `perl myScript.pl 2>&amp;1`).
+Please note that if this option is selected, `STDERR` output cannot be captured due to limitations in the Security APIs. This can be circumvented by using a shell script to execute another script while piping `STDERR` into `STDOUT` (e.g. `perl myScript.pl 2>&1`).
 
 **Runs in background:** If selected, the application registers itself as a User Interface Element (LSUIElement) and will not appear in the Dock when launched.
 

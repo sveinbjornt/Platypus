@@ -166,7 +166,6 @@
     
     // Create Examples menu
     NSMenu *examplesMenu = [[NSMenu alloc] init];
-    
     for (NSString *exampleName in examples) {
         NSMenuItem *menuItem = [examplesMenu addItemWithTitle:[exampleName stringByDeletingPathExtension]
                                                        action:@selector(profileMenuItemSelected:)
@@ -326,7 +325,8 @@
             [arr addObject:filename];
         }
     }
-    return arr;
+    
+    return [arr sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];;
 }
 
 @end
