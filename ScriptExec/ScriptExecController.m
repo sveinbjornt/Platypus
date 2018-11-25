@@ -408,15 +408,15 @@ static const NSInteger detailsHeight = 224;
 
     if (isService) {
         [NSApp setServicesProvider:self]; // register as text handling service
-//        NSMutableArray *sendTypes = [NSMutableArray array];
-//        if (acceptsFiles) {
-//            [sendTypes addObject:NSFilenamesPboardType];
-//        }
-//        if (acceptsText) {
-//            [sendTypes addObject:NSStringPboardType];
-//        }
-//        [NSApp registerServicesMenuSendTypes:sendTypes returnTypes:@[]];
-//        NSUpdateDynamicServices();
+        NSMutableArray *sendTypes = [NSMutableArray array];
+        if (acceptsFiles) {
+            [sendTypes addObject:NSFilenamesPboardType];
+        }
+        if (acceptsText) {
+            [sendTypes addObject:NSStringPboardType];
+        }
+        [NSApp registerServicesMenuSendTypes:sendTypes returnTypes:@[]];
+        NSUpdateDynamicServices();
     }
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
@@ -1588,7 +1588,7 @@ static const NSInteger detailsHeight = 224;
         [lines removeLastObject];
     }
     
-    // Remove all items of previous output
+    // Remove all menu items from previous output
     while ([statusItemMenu numberOfItems] > 2) {
         [statusItemMenu removeItemAtIndex:0];
     }
@@ -1597,11 +1597,19 @@ static const NSInteger detailsHeight = 224;
     for (NSInteger i = [lines count] - 1; i >= 0; i--) {
         NSString *line = lines[i];
         NSImage *icon = nil;
+        BOOL disabled = NO;
         
         // ---- creates a separator item
         if ([line hasPrefix:@"----"]) {
             [menu insertItem:[NSMenuItem separatorItem] atIndex:0];
             continue;
+        }
+        
+        // Syntax to disable menu item
+        NSString *disabledCmd = @"DISABLED|";
+        if ([line hasPrefix:disabledCmd]) {
+            disabled = YES;
+            line = [line substringFromIndex:[disabledCmd length]];
         }
         
         // Parse syntax setting item icon
@@ -1674,6 +1682,10 @@ static const NSInteger detailsHeight = 224;
         
         if (icon != nil) {
             [menuItem setImage:icon];
+        }
+        if (disabled) {
+            [menuItem setEnabled:NO];
+            [menuItem setAction:nil];
         }
         
         [menu insertItem:menuItem atIndex:0];
