@@ -26,11 +26,11 @@ For future versions...
 
 For 5.3
 
-    TODO: Update screenshots
-    TODO: Add Example that uses JS interpreter w. args & print
-
     TODO: New windows in Platypus-generated apps should be centered, intelligently positioned on first launch (should remember placement between launches)
     TODO: Disabled menu item syntax for status menus
+
+    TODO: Add Example that uses JS interpreter w. args & print
+    TODO: Update screenshots
 
     * Fix bug where custom icns file for icon doesn't work
     * Change build script to not put app in directory before zipping
@@ -42,7 +42,7 @@ For 5.3
     * Added Open With menu for items in bundled files list
     * Validate default bundle identifier in Prefs
     * Make Droplet window & others larger
-    * ScriptExec tries to make bundled script executable (+x) on launch (This may resolve issues with launching apps stored on network-mounted volumes)
+    * ScriptExec now tries to make bundled script executable (+x) on launch (This may resolve issues with launching apps stored on network-mounted volumes)
     * Fixed buggy UTI validation in command line tool
     * Updated to support Mojave Dark Mode
     * Fixed issue with 16x16 document icons on non-retina displays

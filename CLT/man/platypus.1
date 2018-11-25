@@ -1,9 +1,9 @@
-.Dd January 26, 2018
+.Dd November 25, 2018
 .Dt PLATYPUS 1
 .Os Darwin
 .Sh NAME
 .Nm platypus
-.Nd create a Mac OS X application wrapper around a script.
+.Nd create a macOS application bundle from a command line script.
 .Sh SYNOPSIS
 .Nm
 .Op OPTIONS
@@ -11,9 +11,9 @@
 .Ar [destinationPath]
 .Sh DESCRIPTION
 .Nm
-is the command line counterpart to the Platypus Mac OS X application.
-It creates a Mac OS X application bundle from a script.
-See http://sveinbjorn.org/platypus
+is the command line counterpart to the Platypus Mac application.
+It creates a macOS application bundle from a command line script.
+See http://sveinbjorn.org/platypus for details.
 .Pp
 .Nm
 defaults to creating application bundles, but can also create Platypus profiles
@@ -65,16 +65,16 @@ by the script.
 The default interface type is 'Text Window'.
 .It Fl i, -app-icon Ar iconPath
 Specifies a file to use as the icon for the application bundle. The file must
-be a Mac OS X .icns file. If not specified, the default Platypus app icon will
+be an Apple .icns file. If not specified, the default Platypus app icon will
 be used. If specified, but left empty (''), no application icon will be set
 for the app.
 .It Fl Q, -document-icon Ar iconPath
-Specifies a file to use as icon for the application's documents. Must be a
-Mac OS X .icns file.
+Specifies a file to use as icon for the application's documents. Must be an
+Apple .icns file.
 .It Fl p, -interpreter Ar interpreterPath
-Sets script interpreter (e.g. /usr/bin/perl or /bin/sh). If the interpreter
+Sets script interpreter (e.g. /usr/bin/python or /bin/sh). If the interpreter
 is not specified, the command line tool will try to guess the correct
-interpreter. If this fails, the standard shell interpreter /bin/sh is used.
+interpreter. If this fails, the default shell interpreter /bin/sh is used.
 .It Fl V, -app-version Ar version
 Sets the application bundle's version. This is displayed in the Info.plist
 property list and About window.
