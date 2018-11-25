@@ -2,7 +2,7 @@
 
 # Documentation for Platypus 5.3
 
-Last updated on November 24th, 2018. The latest version of this document can be found [here](http://sveinbjorn.org/platypus_documentation).
+Last updated on November 25th, 2018. The latest version of this document can be found [here](http://sveinbjorn.org/platypus_documentation).
 
 
 ## Introduction
@@ -89,7 +89,7 @@ Use **Script Type** to specify an interpreter for your script. Either select one
 
 Most of the time, you do not need to specify this manually. Whenever you open a script file, Platypus automatically tries to determine its type based on the file suffix and shebang line (`#!`). If you have specified this meta-data in the script file itself, Platypus is usually smart enough to figure it out.
 
-Please note that the interpreter must exist on the system where the application is run. All the preset scripting language interpreters (e.g. Python, Perl, Ruby, PHP, Tcl, etc.) are a standard part of all macOS installations.
+Please note that the interpreter must exist on the system where the application is run. All the preset scripting language interpreters (except Node.js) are a standard part of all macOS installations.
 
 **Args** let you add arguments to the script and/or its interpreter.
 

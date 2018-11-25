@@ -26,14 +26,14 @@ For future versions...
 
 For 5.3
 
-    TODO: Fix bug where custom icns file for icon doesn't work
     TODO: Update screenshots
     TODO: Add Example that uses JS interpreter w. args & print
 
     TODO: New windows in Platypus-generated apps should be centered, intelligently positioned on first launch (should remember placement between launches)
     TODO: Disabled menu item syntax for status menus
-    TODO: Change build script to not put app in directory before zipping
 
+    * Fix bug where custom icns file for icon doesn't work
+    * Change build script to not put app in directory before zipping
     * Removed broken System Profiler example
     * First facelift in a decade: All new application icons.
     * Platypus and its command line tool binary are now code-signed. Generated applications remain unsigned, for obvious reasons.
