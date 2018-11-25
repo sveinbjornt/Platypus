@@ -31,7 +31,7 @@
                     <button toolTip="Check this if your script accepts dropped files or text snippets as arguments" id="299">
                         <rect key="frame" x="144" y="229" width="168" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Accepts dropped items" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="10942">
+                        <buttonCell key="cell" type="check" title="Accept dropped items" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="10942">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -2432,26 +2432,11 @@ DQ
             <point key="canvasLocation" x="223" y="377.5"/>
         </window>
         <customView id="7866" userLabel="Save Option View">
-            <rect key="frame" x="0.0" y="0.0" width="350" height="72"/>
+            <rect key="frame" x="0.0" y="0.0" width="350" height="83"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <button toolTip="Strips and compiles the nib file in the application about to be created" id="11109">
-                    <rect key="frame" x="18" y="18" width="308" height="15"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <buttonCell key="cell" type="check" title="Strip nib file to reduce app size" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11110">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="yij-LO-LNq" name="value" keyPath="values.OnCreateOptimizeNib" id="S09-b4-cqi">
-                            <dictionary key="options">
-                                <bool key="NSValidatesImmediately" value="YES"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </button>
                 <button toolTip="Creates symlink to source script instead of copying it into the application bundle" id="7885">
-                    <rect key="frame" x="18" y="38" width="351" height="16"/>
+                    <rect key="frame" x="33" y="47" width="293" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <buttonCell key="cell" type="check" title="Create symlink to script and bundled files" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11051">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2465,8 +2450,23 @@ DQ
                         </binding>
                     </connections>
                 </button>
+                <button toolTip="Strips and compiles the nib file in the application about to be created" id="11109">
+                    <rect key="frame" x="33" y="18" width="308" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <buttonCell key="cell" type="check" title="Strip nib file to reduce app size" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11110">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="yij-LO-LNq" name="value" keyPath="values.OnCreateOptimizeNib" id="S09-b4-cqi">
+                            <dictionary key="options">
+                                <bool key="NSValidatesImmediately" value="YES"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="80" y="358"/>
+            <point key="canvasLocation" x="80" y="361.5"/>
         </customView>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="10161" userLabel="Status Item Settings Window">
             <windowStyleMask key="styleMask" titled="YES"/>

@@ -136,6 +136,11 @@
                 @"Suffixes":    @[@".js"],
                 @"ScriptArgs":  @[@"--"] },
              
+             @{ @"Name":        @"Node.js",
+                @"Path":        @"/usr/local/bin/node",
+                @"Hello":       @"console.log(\"Hello, World\");",
+                @"Suffixes":    @[@".js"] },
+             
              @{ @"Name":        @"Other...",
                 @"Path":        @"",
                 @"Hello":       @"",

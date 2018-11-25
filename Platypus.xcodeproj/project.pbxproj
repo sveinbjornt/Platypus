@@ -103,6 +103,7 @@
 		F484D45B21AA005D006EE28D /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F484D45E21AA03C2006EE28D /* NSFileManager+TempFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = F484D45C21AA03C1006EE28D /* NSFileManager+TempFiles.m */; };
 		F484D45F21AA03C2006EE28D /* NSFileManager+TempFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = F484D45C21AA03C1006EE28D /* NSFileManager+TempFiles.m */; };
+		F484D46221AAE1DC006EE28D /* Interpreter_Node.js.png in Resources */ = {isa = PBXBuildFile; fileRef = F484D46121AAE1DB006EE28D /* Interpreter_Node.js.png */; };
 		F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
 		F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* ScriptExecController.m */; };
@@ -284,6 +285,7 @@
 		F484D45821A9DDAE006EE28D /* ProfileDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ProfileDocument.icns; sourceTree = "<group>"; };
 		F484D45C21AA03C1006EE28D /* NSFileManager+TempFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+TempFiles.m"; path = "Shared/NSFileManager+TempFiles.m"; sourceTree = "<group>"; };
 		F484D45D21AA03C2006EE28D /* NSFileManager+TempFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+TempFiles.h"; path = "Shared/NSFileManager+TempFiles.h"; sourceTree = "<group>"; };
+		F484D46121AAE1DB006EE28D /* Interpreter_Node.js.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Node.js.png; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
 		F48B1EDD17935BBC007DA173 /* PlatypusScriptUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusScriptUtils.h; path = Shared/PlatypusScriptUtils.h; sourceTree = "<group>"; };
 		F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusScriptUtils.m; path = Shared/PlatypusScriptUtils.m; sourceTree = "<group>"; };
@@ -409,7 +411,7 @@
 				F4C19A821BD1BF7400F411BD /* STDragImageView */,
 				F48269871BCB1EAF00169D8B /* VDKQueue */,
 				F4ECE17511F76CC2000DB012 /* PlatypusAppSpec */,
-				F48A724D122E23B200964D71 /* PlatypusScriptAnalyser */,
+				F48A724D122E23B200964D71 /* PlatypusScriptUtils */,
 				F4AF785E14D1E5F600544C1B /* STDragWebView */,
 				F4B5DE431491A00900C43901 /* Alerts */,
 				F41306340FBD809A00A319B7 /* STPathTextField */,
@@ -648,6 +650,7 @@
 				F45B1F0F1FF5617400A935D7 /* Interpreter_Swift.png */,
 				F4146CCE2149E76000BB36AD /* Interpreter_AWK.png */,
 				F402AEB8219AE0D200BEAF24 /* Interpreter_JavaScript.png */,
+				F484D46121AAE1DB006EE28D /* Interpreter_Node.js.png */,
 			);
 			path = Interpreters;
 			sourceTree = "<group>";
@@ -724,13 +727,13 @@
 			name = "NSFileManager+TempFiles";
 			sourceTree = "<group>";
 		};
-		F48A724D122E23B200964D71 /* PlatypusScriptAnalyser */ = {
+		F48A724D122E23B200964D71 /* PlatypusScriptUtils */ = {
 			isa = PBXGroup;
 			children = (
 				F48B1EDD17935BBC007DA173 /* PlatypusScriptUtils.h */,
 				F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */,
 			);
-			name = PlatypusScriptAnalyser;
+			name = PlatypusScriptUtils;
 			sourceTree = "<group>";
 		};
 		F48B7B8811F766CA00351575 /* ScriptExec */ = {
@@ -1022,6 +1025,7 @@
 				F484D45921A9DDAE006EE28D /* ScriptDocument.icns in Resources */,
 				F45B1F201FF5617500A935D7 /* Interpreter_csh.png in Resources */,
 				F45B1F161FF5617500A935D7 /* Interpreter_Shell.png in Resources */,
+				F484D46221AAE1DC006EE28D /* Interpreter_Node.js.png in Resources */,
 				F45B1F1F1FF5617500A935D7 /* Interpreter_bash.png in Resources */,
 				F45B1F2F1FF5618000A935D7 /* InterfaceType_Web-View.png in Resources */,
 				F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */,

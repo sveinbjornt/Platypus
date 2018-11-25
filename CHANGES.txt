@@ -27,14 +27,15 @@ For future versions...
 For 5.3
 
     TODO: Fix bug where custom icns file for icon doesn't work
-    TODO: Update Status Item screenshot
+    TODO: Update screenshots
     TODO: Add Example that uses JS interpreter w. args & print
-    TODO: Remove all references to System Profiler example
+
     TODO: New windows in Platypus-generated apps should be centered, intelligently positioned on first launch (should remember placement between launches)
     TODO: Disabled menu item syntax for status menus
     TODO: Change build script to not put app in directory before zipping
 
-    * First facelift in a decade: All new application icons
+    * Removed broken System Profiler example
+    * First facelift in a decade: All new application icons.
     * Platypus and its command line tool binary are now code-signed. Generated applications remain unsigned, for obvious reasons.
     * Removed XML plist feature
     * Documentation overhauled and partially rewritten for clarity
@@ -45,7 +46,7 @@ For 5.3
     * Fixed buggy UTI validation in command line tool
     * Updated to support Mojave Dark Mode
     * Fixed issue with 16x16 document icons on non-retina displays
-    * Added AWK and JavaScript interpreter presets
+    * Added AWK, JavaScript and Node interpreter presets
     * Fixed exception when double-clicking bundled files header
     * Fixed bug where pressing "Clear" could cause program to crash
     * Implemented a REFRESH command to clear text output buffer and reset web view HTML
