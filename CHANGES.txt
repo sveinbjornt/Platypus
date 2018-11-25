@@ -25,24 +25,25 @@ For future versions...
     TODO: Fix icon drag and drop
 
 For 5.3
-
-    * First facelift in a decade: New application icons.
+    * First facelift in a decade: New application icons created by Drífa Líftóra
     * Updated to support Mojave Dark Mode
     * Added AWK, JavaScript and Node interpreter presets
-    * Added a "REFRESH" command that clears text output buffer
+    * Added "REFRESH" command that clears text output buffer
     * Added "DISABLED" menu item syntax for status menu interface
-    * Platypus and its command line tool binary are now code-signed. Generated applications remain unsigned, for obvious reasons.
+    * Platypus and its command line tool binary are now code-signed. Generated applications remain unsigned, for obvious reasons
     * Windows of generated applications are now larger, and centered on first launch
-    * Apps now try to make script executable (+x) on launch This may resolve certain issues with launching Platypus-generated apps stored on network-mounted volumes.
-    * Added Open With menu for items in bundled files list
-    * Fixed bug where Platypus would generate broken custom icns from images
+    * Apps now try to make script executable (+x) on launch This may resolve certain issues with launching generated apps stored on network-mounted volumes
+    * Added Open With menu for items in Bundled Files list
+    * Fixed bug where Platypus would generate broken custom icns files from images
     * Fixed buggy Uniform Type Identifier validation in command line tool
     * Platypus now validates default bundle identifier in Preferences
     * Removed broken System Profiler example
-    * Removed XML plist feature
+    * Removed XML plist format feature
     * Documentation overhauled, partially rewritten and moved to Markdown format
-    * Various minor bug fixes
+    * An assortment of minor bug fixes
     * Various minor interface improvements
+    * Reduced size of generated app binaries
+    * Now requires macOS 10.8 or later
 
 5.2
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script

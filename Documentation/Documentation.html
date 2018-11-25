@@ -325,13 +325,13 @@ pre code, pre tt {
   </head>
   <body>
     <div class="container">
-      <div class="body-content"><h1 id="documentation-for-platypus-5-3">Documentation for Platypus 5.3</h1>
-<p>Last updated on November 17th, 2018. The latest version of this document can be found <a href="http://sveinbjorn.org/platypus_documentation">here</a>.</p>
+      <div class="body-content"><p><img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="128" height="128" src="images/platypus.png"  align="right"></p>
+<h1 id="documentation-for-platypus-5-3">Documentation for Platypus 5.3</h1>
+<p>Last updated on November 25th, 2018. The latest version of this document can be found <a href="http://sveinbjorn.org/platypus_documentation">here</a>.</p>
 <h2 id="introduction">Introduction</h2>
 <h3 id="what-is-platypus-">What is Platypus?</h3>
-<p><img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="94" src="images/platypus.png"></p>
 <p>Platypus is a developer tool that creates native macOS application wrappers around scripts. Scripts are thus transformed into regular applications that can be launched from the window environment – e.g. the Finder or the Dock – without requiring use of the command line interface.</p>
-<p>Platypus was first conceived in 2003 and has since gone through many significant updates. It is written in Objective-C/Cocoa and is free, open-source software distributed under a BSD license. This means the source code is freely available and you are free to modify and distribute it as you see fit.</p>
+<p>Platypus was first released in 2003 and has since gone through many significant updates. It is written in Objective-C/Cocoa and is free, open-source software distributed under a BSD license. This means the source code is freely available and you are free to modify and distribute it as you see fit.</p>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="float: right; margin-left: 40px;">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="BDT58J7HYKAEE">
@@ -350,7 +350,7 @@ pre code, pre tt {
 <h3 id="system-requirements">System Requirements</h3>
 <p>Both Platypus and the applications it generates require <strong>macOS 10.8</strong> or later and are provided as <strong>64-bit Intel</strong> binaries. If you want to target 10.6 and/or 32-bit systems, <a href="http://sveinbjorn.org/files/software/platypus/platypus4.9.zip">version 4.9</a> continues to work just fine. If you want to target 10.4 and the PowerPC users of yore, you can use version <a href="http://sveinbjorn.org/files/software/platypus/platypus4.4.zip">4.4</a>.</p>
 <h3 id="credits">Credits</h3>
-<p>Platypus was conceived and created by me, <a href="mailto:sveinbjorn@sveinbjorn.org">Sveinbjorn Thordarson</a>. The Platypus application icon was created by <a href="http://drifaliftora.is">Drífa Líftóra</a>.</p>
+<p>Platypus was conceived and created by me, <a href="mailto:sveinbjorn@sveinbjorn.org">Sveinbjorn Thordarson</a>. The  application icon was created by <a href="http://drifaliftora.is">Drífa Líftóra</a>.</p>
 <p>Thanks go to Troy Stephens, the original author of the <a href="http://iconfamily.sourceforge.net/">IconFamily</a> class used for icon handling in Platypus, Bryan D K Jones, author of <a href="https://github.com/bdkjones/VDKQueue">VDKQueue</a>, Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, and Andy Matuschak for the <a href="http://sparkle-project.org">Sparkle</a> update framework. <a href="http://stackoverflow.com">Stack Overflow</a> and the <a href="https://www.omnigroup.com">OmniGroup</a> Mac development mailing list and have also been invaluable over the years.</p>
 <p>Finally, I am much indebted to <a href="http://www.wsanchez.net">Wilfredo Sanchez</a>, author of <a href="http://www.wsanchez.net/software">DropScript</a>, the proof-of-concept project which inspired me to create Platypus in the first place.</p>
 <h2 id="the-basics">The Basics</h2>
@@ -368,7 +368,7 @@ pre code, pre tt {
 <p><img src="images/script_type.png" style="float: right; margin-left:20px; margin-bottom:20px;" width="135"></p>
 <p>Use <strong>Script Type</strong> to specify an interpreter for your script. Either select one of the predefined scripting languages from the the pop-up menu or type in the path to an interpreter binary.</p>
 <p>Most of the time, you do not need to specify this manually. Whenever you open a script file, Platypus automatically tries to determine its type based on the file suffix and shebang line (<code>#!</code>). If you have specified this meta-data in the script file itself, Platypus is usually smart enough to figure it out.</p>
-<p>Please note that the interpreter must exist on the system where the application is run. All the preset scripting language interpreters (e.g. Python, Perl, Ruby, PHP, Tcl, etc.) are a standard part of all macOS installations.</p>
+<p>Please note that the interpreter must exist on the system where the application is run. All the preset scripting language interpreters (except Node.js) are a standard part of all macOS installations.</p>
 <p><strong>Args</strong> let you add arguments to the script and/or its interpreter.</p>
 <p><img src="images/args.png" width="500"></p>
 <h3 id="interface">Interface</h3>
@@ -390,12 +390,12 @@ pre code, pre tt {
 <h4 id="status-menu">Status Menu</h4>
 <p>Creates a Status Item in the menu bar when the app is launched. Every time the status item is clicked, the script is executed and its text output shown line for line in a menu. If a menu item is selected, the script is executed again with the title of the selected item passed as an argument to the script.</p>
 <p>The properties of the Status Item (icon, title, etc.) can be configured under <strong>Status Item Settings</strong> button.</p>
-<p><img src="images/interface_statusmenu.png" width="369"></p>
+<p><img src="images/interface_statusmenu.png" width="360"></p>
 <h4 id="droplet">Droplet</h4>
 <p>Creates a square window instructing the user to drop files on it for processing. While processing, script output is displayed line for line along with an indeterminate circular progress indicator.</p>
 <p><img src="images/interface_droplet.png" width="294"></p>
 <h3 id="setting-the-icon">Setting the Icon</h3>
-<p><img src="images/setting_icon.png" width="207" style="float: right; margin-left: 20px; margin-bottom:20px;"></p>
+<p><img src="images/setting_icon.png" width="197" style="float: right; margin-left: 20px; margin-bottom:20px;"></p>
 <p>Platypus lets you set an icon for your application. You can pick from the icon presets, paste your own image or select an image or <code>icns</code> file.</p>
 <p>Please note that having Platypus create the icon from an ordinary image file will typically not result in an icon that looks good in smaller sizes. For best results, use professional icon-editing software and import a carefully crafted <code>.icns</code> file using the <strong>Select .icns file</strong> option.</p>
 <h3 id="identifier-author-and-version">Identifier, Author and Version</h3>
@@ -407,7 +407,7 @@ pre code, pre tt {
 <p><img src="images/special_options.png" style="float: right; margin-left: 20px; margin-bottom:20px;" width="260"></p>
 <p><strong>Run with root privileges:</strong>  If selected, the application prompts for an Administrator password and executes the script with escalated (root) privileges using Apple&#39;s Security Framework. This is not strictly equivalent to running the script <em>as the root user</em>. For details, see the <a href="http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges">documentation for the Mac OS Security Framework</a>.</p>
 <p><em>Platypus scripts must not use the &#39;sudo&#39; command</em>. This causes the script to prompt for input via <code>STDIN</code>, and since no input is forthcoming, the application will hang indefinitely.</p>
-<p>Please note that if this option is selected, <code>STDERR</code> output cannot be captured due to limitations in the Security APIs. This can be circumvented by using a shell script to execute another script while piping <code>STDERR</code> into <code>STDOUT</code> (e.g. <code>perl myScript.pl 2&gt;&amp;amp;1</code>).</p>
+<p>Please note that if this option is selected, <code>STDERR</code> output cannot be captured due to limitations in the Security APIs. This can be circumvented by using a shell script to execute another script while piping <code>STDERR</code> into <code>STDOUT</code> (e.g. <code>perl myScript.pl 2&gt;&amp;1</code>).</p>
 <p><strong>Runs in background:</strong> If selected, the application registers itself as a User Interface Element (LSUIElement) and will not appear in the Dock when launched.</p>
 <p><strong>Remain running after completion</strong>: This option tells the application to remain open after the script has executed.</p>
 <h3 id="bundled-files">Bundled Files</h3>
@@ -417,7 +417,7 @@ pre code, pre tt {
 <h2 id="advanced-options">Advanced Options</h2>
 <h3 id="accepting-files-and-dragged-items">Accepting files and dragged items</h3>
 <p>Checking <strong>Accept dropped items</strong> makes the application bundle accept dragged and dropped files, or dragged text snippets. You can specify which file types and draggable data the application should accept under <strong>Drop Settings</strong>.</p>
-<p><img src="images/drop_settings.png" width="537"></p>
+<p><img src="images/drop_settings.png" width="536"></p>
 <p><strong>Accept Dropped Files</strong> means the paths of dropped or opened files are passed to the script as arguments. You can specify which file types to accept either using <a href="https://en.wikipedia.org/wiki/Uniform_Type_Identifier">UTIs</a> (recommended) or filename suffixes.</p>
 <p>To accept dragged folders, add the UTI <code>public.folder</code>. HINT: You can drag files from the Finder into the suffix or UTI list to add their respective suffix/UTI.</p>
 <p>Optionally, select a document icon (.icns file) for the files &quot;owned&quot; by your app.</p>
@@ -426,7 +426,7 @@ pre code, pre tt {
 <p><strong>Register as URI scheme handler</strong> makes the app register as a handler for <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI schemes</a>. These can be either standard URI schemes such as http or a custom URI schemes of your choice (e.g. <code>myscheme://</code>). If your app is the default handler for a URI scheme, it will launch open every time a URL matching the scheme is opened. The URL is then passed to the script as an argument.</p>
 <h3 id="build-time-options">Build-Time Options</h3>
 <p>Platypus allows you to <strong>create development versions</strong> of your script application. Ordinarily, the script and any bundled files are copied into the resulting application. If <strong>Development Version</strong> is selected in the <strong>Create app</strong> dialog, a symlink to the original script and bundled files is created instead. This allows you to edit your script file while simultaneously testing it as a Platypus app.</p>
-<p><img src="images/create_options.png" width="424"></p>
+<p><img src="images/create_options.png" width="349"></p>
 <p><strong>Optimize Application</strong>: Strip and compile the nib file in the application in order to reduce its size. This makes the nib uneditable. Only works if Xcode is installed.</p>
 <h3 id="built-in-editor">Built-In Editor</h3>
 <p>Platypus includes a very basic built-in text editor for editing scripts. Press the <strong>Edit</strong> button to bring it up.</p>
@@ -439,7 +439,7 @@ pre code, pre tt {
 <h3 id="show-shell-command">Show Shell Command</h3>
 <p>Platypus includes a <strong>command line tool</strong> counterpart to the Platypus.app application, <code>platypus</code>,which can be installed into <code>/usr/local/bin/</code> via <strong>Preferences</strong>. The man page for this tool is available from the Help menu, and via the command line. There is also an <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">online version available</a></a>.</p>
 <p>The command line tool does not in any way depend on the Platypus application once it has been installed.</p>
-<p><img src="images/shell_command.png" width="472"></p>
+<p><img src="images/shell_command.png" width="471"></p>
 <p><strong>Show Shell Command</strong> in the <strong>Action</strong> menu displays the command required to execute the platypus command line tool using all the options selected in the graphical interface. This can be helpful if you have the command line tool installed and want to automate the creation of script apps within a larger build process.</p>
 <h2 id="preferences">Preferences</h2>
 <p>The Platypus Preferences should be pretty self-explanatory. You can select an editor of choice, set the default author and bundle identifier settings, set the behaviour of Platypus on app creation, and install/uninstall the <code>platypus</code> command line tool.</p>
@@ -513,6 +513,8 @@ MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Remote URL example\n
 <pre><code>----\n
 </code></pre><p><strong>Creating a submenu named &quot;Title&quot; with three menu items:</strong></p>
 <pre><code>SUBMENU|Title|Item1|Item2|Item3\n
+</code></pre><p><strong>Showing a disabled menu item:</strong></p>
+<pre><code>DISABLED|Name of item\n
 </code></pre><h3 id="prompting-for-input-via-osascript-applescript">Prompting for input via osascript/AppleScript</h3>
 <p>Scripts can also prompt for input by running AppleScript code via the <code>/usr/bin/osascript</code> program. See an example in Perl below:</p>
 <pre><code>#!/usr/bin/perl
@@ -575,7 +577,7 @@ my $result = dialog(&quot;Answer to life, the universe and everything?&quot;, &q
 <h2 id="updates">Updates</h2>
 <h3 id="updating-platypus">Updating Platypus</h3>
 <p>Platypus uses <a href="https://sparkle-project.org">Sparkle</a> for updates. You can update to the latest version by selecting <strong>Check for updates...</strong> in the application menu. Future releases may or may not break your saved profiles. Consult the version change log for details.</p>
-<p>An Appcast RSS XML file is available <a href="http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml">here</a>.</p>
+<p>An AppCast XML file is available <a href="http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml">here</a>.</p>
 <p>To get the absolutely latest development version of Platypus, you can check out the source repository on <a href="http://github.com/sveinbjornt/Platypus">GitHub</a>.</p>
 <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
 <h3 id="can-i-use-platypus-to-create-proprietary-software-">Can I use Platypus to create proprietary software?</h3>
@@ -591,7 +593,9 @@ sys.stdout.flush()
 <p>No. But if you uncheck &quot;Optimize nib file&quot; in the save dialog when creating an app, the resulting nib in the application bundle can be edited using Xcode. You can thus localize your app manually if you want to. Support for localization is not on the feature roadmap.</p>
 <h3 id="how-does-my-script-access-the-user-s-environment-e-g-path-">How does my script access the user&#39;s environment (e.g. PATH)?</h3>
 <p>Assuming that you&#39;re using <code>bash</code>, you can set the interpreter to <code>/bin/bash</code> and add the <code>-l</code> flag as an argument under &quot;Args&quot;. This makes <code>bash</code> act as if it had been invoked as a login shell. See <code>man bash</code> for details.</p>
-<h3 id="how-can-i-pass-specific-arguments-to-my-script-">How can I pass specific arguments to my script?</h3>
+<p>Another alternative is to manually load the user&#39;s shell configuration file in your script:</p>
+<pre><code>source ~/.bashrc
+</code></pre><h3 id="how-can-i-pass-specific-arguments-to-my-script-">How can I pass specific arguments to my script?</h3>
 <p>You can edit arguments to both the script interpreter and the script itself by pressing the <strong>Args</strong> button next to the <strong>Interpreter</strong> controls.</p>
 <h3 id="how-do-i-uninstall-platypus-">How do I uninstall Platypus?</h3>
 <p>Platypus only uses about 5MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select <strong>Uninstall Platypus</strong> from the Platypus application menu. This will uninstall the command line tool (if previously installed), and move Platypus.app and all its supporting files –  including saved Profiles – to the Trash.</p>
@@ -624,14 +628,14 @@ MyApp.app/Contents/Resources/script             Script executed by application b
 </code></pre><p>If you want to keep your own modified nib for repeated use, you can simply save a copy, edit it and add it to <strong>Bundled Files</strong> when you create an app. It will then overwrite the default MainMenu.nib file:</p>
 <p>The Platypus command line tool also allows you to specify an alternate nib file using the <code>-H</code> flag. See the <a href="http://sveinbjorn.org/files/manpages/platypus.man.html">man page</a> for details.</p>
 <h3 id="can-i-prompt-for-user-input-stdin-in-my-platypus-wrapped-scripts-">Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?</h3>
-<p>No. Platypus applications do not present the user with an interactive shell, and therefore no bidirectional communication can take place using standard input. Platypus apps can only capture and display the text output of your script. They cannot prompt for input via STDIN, and will not be able to do so in the foreseeable future. This means that any script commands that require input via STDIN, such as <code>sudo</code>, will not work from within a Platypus application.</p>
+<p>No. Platypus applications do not present the user with an interactive shell, and therefore no bidirectional communication can take place using standard input. Platypus apps can only capture and display the text output of your script. They cannot prompt for input via STDIN, and will not be able to do so in the foreseeable future. This means that any commands that require input via STDIN, such as <code>sudo</code>, or Python&#39;s <code>input()</code> will not work from within a Platypus application.</p>
 <h3 id="is-there-a-way-to-sign-platypus-generated-apps-so-they-don-t-require-gatekeeper-approval-">Is there a way to sign Platypus-generated apps so they don&#39;t require GateKeeper approval?</h3>
-<p>Neither Platypus nor Platypus-generated apps are signed. Due to GateKeeper, this means they will not run on macOS without prompting the user for approval. There are no plans to change this in the future. Apple developer accounts cost money and I have no intention of paying Apple for the privilege of developing free software for their operating system.</p>
+<p>Platypus-generated apps are not signed. Due to GateKeeper, this means they will not run on macOS without prompting the user for approval. There are no plans to change this in the future.</p>
 <p>You could always sign the Platypus binaries yourself, but it&#39;s a pain in the ass and beyond the scope of this document.</p>
 <h3 id="can-i-pass-arguments-to-a-platypus-generated-app-via-the-command-line-">Can I pass arguments to a Platypus-generated app via the command line?</h3>
 <p>Yes. You can execute a Platypus-generated binary via the command line. Any arguments you provide will be passed on to your script. Take the following example:</p>
 <pre><code># ./MyApp.app/Contents/MacOS/MyApp -arg1 -arg2
-</code></pre><p>In this case, both <code>-arg1</code> and <code>-arg2</code> will be passed on as arguments to your script. This feature makes it possible to create protocol handlers for Firefox and other programs that invoke macOS application binaries directly.</p>
+</code></pre><p>In this case, both <code>-arg1</code> and <code>-arg2</code> will be passed on as arguments to your script. This feature makes it possible to create protocol handlers for Firefox and other programs that directly invoke macOS application binaries.</p>
 <h3 id="where-is-the-command-line-tool-installed-">Where is the command line tool installed?</h3>
 <p>The Platypus command line tool install script creates the following files on your system:</p>
 <pre><code>/usr/local/bin/platypus                         Program binary
