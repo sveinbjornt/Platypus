@@ -135,7 +135,7 @@ Creates a Status Item in the menu bar when the app is launched. Every time the s
 
 The properties of the Status Item (icon, title, etc.) can be configured under **Status Item Settings** button.
 
-<img src="images/interface_statusmenu.png" width="369">
+<img src="images/interface_statusmenu.png" width="360">
 
 #### Droplet
 
@@ -147,7 +147,7 @@ Creates a square window instructing the user to drop files on it for processing.
 
 ### Setting the Icon
 
-<img src="images/setting_icon.png" width="207" style="float: right; margin-left: 20px; margin-bottom:20px;">
+<img src="images/setting_icon.png" width="197" style="float: right; margin-left: 20px; margin-bottom:20px;">
 
 Platypus lets you set an icon for your application. You can pick from the icon presets, paste your own image or select an image or `icns` file.
 
@@ -202,7 +202,7 @@ See also [How do I get the path to my application / bundled files within the scr
 
 Checking **Accept dropped items** makes the application bundle accept dragged and dropped files, or dragged text snippets. You can specify which file types and draggable data the application should accept under **Drop Settings**.
 
-<img src="images/drop_settings.png" width="537">
+<img src="images/drop_settings.png" width="536">
 
 **Accept Dropped Files** means the paths of dropped or opened files are passed to the script as arguments. You can specify which file types to accept either using [UTIs](https://en.wikipedia.org/wiki/Uniform_Type_Identifier) (recommended) or filename suffixes.
 
@@ -222,7 +222,7 @@ Selecting **Accept Dropped Text** makes the app accept dragged snippets of text.
 
 Platypus allows you to **create development versions** of your script application. Ordinarily, the script and any bundled files are copied into the resulting application. If **Development Version** is selected in the **Create app** dialog, a symlink to the original script and bundled files is created instead. This allows you to edit your script file while simultaneously testing it as a Platypus app.
 
-<img src="images/create_options.png" width="424">
+<img src="images/create_options.png" width="349">
 
 **Optimize Application**: Strip and compile the nib file in the application in order to reduce its size. This makes the nib uneditable. Only works if Xcode is installed.
 
@@ -254,7 +254,7 @@ Platypus includes a **command line tool** counterpart to the Platypus.app applic
 
 The command line tool does not in any way depend on the Platypus application once it has been installed.
 
-<img src="images/shell_command.png" width="472">
+<img src="images/shell_command.png" width="471">
 
 **Show Shell Command** in the **Action** menu displays the command required to execute the platypus command line tool using all the options selected in the graphical interface. This can be helpful if you have the command line tool installed and want to automate the creation of script apps within a larger build process.
 
@@ -427,6 +427,12 @@ MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Remote URL example\n
 SUBMENU|Title|Item1|Item2|Item3\n
 ```
 
+**Showing a disabled menu item:**
+
+```
+DISABLED|Name of item\n
+```
+
 ### Prompting for input via osascript/AppleScript
 
 Scripts can also prompt for input by running AppleScript code via the `/usr/bin/osascript` program. See an example in Perl below:
@@ -507,7 +513,7 @@ If you come up with a particularly nifty use of Platypus and think it might make
 
 Platypus uses <a href="https://sparkle-project.org">Sparkle</a> for updates. You can update to the latest version by selecting **Check for updates...** in the application menu. Future releases may or may not break your saved profiles. Consult the version change log for details.
 
-An Appcast RSS XML file is available [here](http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml).
+An AppCast XML file is available [here](http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml).
 
 To get the absolutely latest development version of Platypus, you can check out the source repository on [GitHub](http://github.com/sveinbjornt/Platypus).
 
@@ -549,6 +555,11 @@ No. But if you uncheck "Optimize nib file" in the save dialog when creating an a
 
 Assuming that you're using `bash`, you can set the interpreter to `/bin/bash` and add the `-l` flag as an argument under "Args". This makes `bash` act as if it had been invoked as a login shell. See `man bash` for details.
 
+Another alternative is to manually load the user's shell configuration file in your script:
+
+```
+source ~/.bashrc
+```
 
 
 ### How can I pass specific arguments to my script?
@@ -622,12 +633,12 @@ The Platypus command line tool also allows you to specify an alternate nib file 
 
 ### Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?
 
-No. Platypus applications do not present the user with an interactive shell, and therefore no bidirectional communication can take place using standard input. Platypus apps can only capture and display the text output of your script. They cannot prompt for input via STDIN, and will not be able to do so in the foreseeable future. This means that any script commands that require input via STDIN, such as `sudo`, will not work from within a Platypus application.
+No. Platypus applications do not present the user with an interactive shell, and therefore no bidirectional communication can take place using standard input. Platypus apps can only capture and display the text output of your script. They cannot prompt for input via STDIN, and will not be able to do so in the foreseeable future. This means that any commands that require input via STDIN, such as `sudo`, or Python's `input()` will not work from within a Platypus application.
 
 
 ### Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?
 
-Neither Platypus nor Platypus-generated apps are signed. Due to GateKeeper, this means they will not run on macOS without prompting the user for approval. There are no plans to change this in the future. Apple developer accounts cost money and I have no intention of paying Apple for the privilege of developing free software for their operating system.
+Platypus-generated apps are not signed. Due to GateKeeper, this means they will not run on macOS without prompting the user for approval. There are no plans to change this in the future.
 
 You could always sign the Platypus binaries yourself, but it's a pain in the ass and beyond the scope of this document.
 
@@ -640,7 +651,7 @@ Yes. You can execute a Platypus-generated binary via the command line. Any argum
 # ./MyApp.app/Contents/MacOS/MyApp -arg1 -arg2
 ```
 
-In this case, both `-arg1` and `-arg2` will be passed on as arguments to your script. This feature makes it possible to create protocol handlers for Firefox and other programs that invoke macOS application binaries directly.
+In this case, both `-arg1` and `-arg2` will be passed on as arguments to your script. This feature makes it possible to create protocol handlers for Firefox and other programs that directly invoke macOS application binaries.
 
 
 ### Where is the command line tool installed?
