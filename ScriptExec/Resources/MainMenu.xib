@@ -158,6 +158,12 @@ Gw
                             <menuItem isSeparatorItem="YES" id="233">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
+                            <menuItem title="Preferences..." id="reA-2d-BZ0">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="menuItemSelected:" target="207" id="x6l-Tq-pHp"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Services" id="235">
                                 <menu key="submenu" title="Services" systemMenu="services" id="234"/>
                             </menuItem>
@@ -503,7 +509,7 @@ Gw
             <connections>
                 <outlet property="delegate" destination="207" id="525"/>
             </connections>
-            <point key="canvasLocation" x="-21" y="164"/>
+            <point key="canvasLocation" x="36" y="0.0"/>
         </menu>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="TextWindow" animationBehavior="default" id="216" userLabel="TextOutputWindow">
             <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>

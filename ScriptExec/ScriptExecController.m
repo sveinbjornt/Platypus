@@ -1295,6 +1295,9 @@ static const NSInteger detailsHeight = 224;
         (selector == @selector(makeTextBigger:) || selector == @selector(makeTextSmaller:))) {
         return YES;
     }
+    if ([anItem action] == @selector(menuItemSelected:)) {
+        return YES;
+    }
     
     return NO;
 }
@@ -1654,7 +1657,7 @@ static const NSInteger detailsHeight = 224;
             // Create submenu
             submenu = [[NSMenu alloc] initWithTitle:menuName];
             for (NSString *t in tokens) {
-                NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:t action:@selector(statusMenuItemSelected:) keyEquivalent:@""];
+                NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:t action:@selector(menuItemSelected:) keyEquivalent:@""];
                 [submenu addItem:item];
             }
             
@@ -1662,7 +1665,7 @@ static const NSInteger detailsHeight = 224;
         }
         
         // Create the menu item
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(statusMenuItemSelected:) keyEquivalent:@""];
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(menuItemSelected:) keyEquivalent:@""];
         if (submenu) {
             [menuItem setAction:nil];
             [menuItem setSubmenu:submenu];
@@ -1692,7 +1695,7 @@ static const NSInteger detailsHeight = 224;
     }
 }
 
-- (IBAction)statusMenuItemSelected:(id)sender {
+- (IBAction)menuItemSelected:(id)sender {
     [self addMenuItemSelectedJob:[sender title]];
     if (!isTaskRunning && [jobQueue count] > 0) {
         [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(executeScript) userInfo:nil repeats:NO];

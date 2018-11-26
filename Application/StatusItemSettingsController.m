@@ -214,7 +214,7 @@
         if ([line isEqualToString:@""]) {
             continue;
         }
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(statusMenuItemSelected) keyEquivalent:@""];
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:line action:@selector(statusMenuItemSelected:) keyEquivalent:@""];
         [menuItem setTarget:self];
         [menuItem setEnabled:YES];
         [previewStatusItemMenu addItem:menuItem];
@@ -226,7 +226,7 @@
     }
 }
 
-- (void)statusMenuItemSelected {
+- (void)statusMenuItemSelected:(id)sender {
     
 }
 
