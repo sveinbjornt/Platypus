@@ -1,10 +1,8 @@
-
+#!/usr/bin/perl
 
 #echo $@
 
 #echo "SUBMENU|Title|Item1|Item2|Item3"
-
-#!/usr/bin/perl
 
 $| = 1;
 #print "LOCATION:https://greynir.is\n";
@@ -14,13 +12,7 @@ $| = 1;
 #print "LOCATION:http://isnic.is\n";
 
 
-#echo "Opening" $1
-#read var
-#echo $var
-#BEGIN { $| = 1 }
-#
-#my $i = 0;
-for ($i = 0; $i < 1000; $i++){
+for (my $i = 0; $i < 1000; $i++){
 #sleep 1;
     print "<li>$i: Hey</li>\n";
 }
@@ -35,171 +27,3 @@ for ($i = 0; $i < 1000; $i++){
 ## and feed it to the Mac OS X voice synthesizer
 #system("/usr/bin/say \"$ARGV[0]\"");
 #}
-
-#if [ ! -e "$1" ]
-#then
-#sleep 1
-#echo "Yo"
-#sleep 1
-#echo "ALERT:Hey $1!"
-#echo "Yo"
-#while read LINE; do
-#echo "ALERT:YOdude,${LINE}"
-#done
-
-
-
-#printf "Drop a file to see its Data URL\n"
-#printf "ALERT:Hey!|What's up?\n"
-#printf "NOTIFICATION:Hello, dude\n"
-#echo "ALERT:YO!"
-#fi
-# Data urls have the form data:MIME_TYPE;base64,DATA
-#FILE_PATH="$1"
-#BASE64_DATA=$( base64 "$FILE_PATH" )
-#MIME_TYPE=$( file -b --mime-type "$FILE_PATH" )
-#echo "data:$MIME_TYPE;base64,$BASE64_DATA"
-
-#!/bin/sh
-#!/usr/bin/perl -w
-# Test script for ScriptExec binary
-#
-
-#sleep 3;
-#$i = 0;
-#foreach (@ARGV)
-#{
-	#		print "$_\";
-	#sleep 1;
-#}
-#$i = 0;
-#while ($i < 9000)
-#{ print "$i: Smusmu\n"; 
-#
-#	print "PROGRESS:" . int($i / 100) . "\n";
-#
-#	$i++;
-#}
-#local $| = 1;
-
-#say Hello
-#echo "RUNNING!"
-#echo "FILE ARGS:"
-#echo $@
-#echo $@ | say
-#echo "STDIN:"
-#say Hello
-#while read LINE; do
-#    say World
-#    #echo "YO: ${LINE}" > /Users/sveinbjorn/Desktop/smu.txt    # do something with it here
-#    echo ${LINE}
-#done
-#
-#echo ${LINE}
-#say ${LINE}
-
-#print "Arguments:\n";
-#
-#foreach (@ARGV) { print "\t" . $_ . "\n"; }
-
-#if (scalar(@ARGV) > 0) {
-#    system("/usr/bin/say '$ARGV[0]'");
-#} else {
-#    
-#    print "Hey\n";
-#    print "You\n";
-#    print "There\n";
-#}
-#
-
-#print "STDIN:";
-#print while (<STDIN>);
-#print "\nARGS:\n";
-#foreach (@ARGV) {
-#    print "$_\n";
-#}
-
-#print "Here's some script output\n";
-#sleep 3;
-#print "ALERT:Hello, world!|This is a test\n";
-#sleep 2;
-#print "Yo!\n";
-#
-#echo "MENUITEMICON|AppIcon.icns|Menu item icon can be a bundled image\n";
-#echo "MENUITEMICON|/Library/Application Support/Apple/iChat Icons/Flags/Iceland.png|Or an image on the file system\n";
-#echo "MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Or even a URL!\n";
-
-#use Shell;
-#
-#print ps("caux");
-
-#!/usr/bin/perl
-
-#print "<html><body bgcolor='#F1F1DE'><center><font color='blue'><h1>Hello, World</h1></font></center></body></html>\n";
-
-#my $i = 0;
-#while ($i < 1) {
-#    print "PROGRESS:$i";
-#    $i++;
-#
-#}
-
-#sleep 1;
-# If 0 arguments, we show menu
-#if (!scalar(@ARGV)) {
-#    print "Life's but a walking shadow, a poor player\n";
-#    print "That struts and frets his hour upon the stage\n";
-#    print "And then is heard no more.\n";
-#} else {
-#    system("/usr/bin/say \"$ARGV[0]\"");
-#}
-
-
-#if (!scalar(@ARGV)) {
-#    print system('ps cax | grep httpd');
-#    print "\nRestart";
-#} elsif ($ARGV[0] eq 'Restart') {
-#    system("/usr/bin/say Hello, Dave. It can only be attributable to human error");
-#}
-
-
-#print "PROGRESS:40\n";
-#print "DETAILS:SHOW\n";
-#print "DETAILS:HIDE\n";
-
-#print "DETAILS:HIDE\n";
-
-#!/bin/sh
-# The Platypus wrapper parses NOTIFICATION:* and sends on to Notification Center
-#print "NOTIFICATION:Hello, world!\n"
-#sleep 2
-#echo "NOTIFICATION:Hello, again!"
-#sleep 2
-
-
-
-#print "PROGRESS:100\n";
-#	print STDOUT "Doing $i\r";
-#	print "Number $i\n";
-#	print "PROGRESS:$i\n";
-#	print "http://gnu.org\n";
-#	$i++;
-
-#print "Done";
-#print "Hola";
-
-#scp $2 root@arakkis:/tmp/
-#touch /Users/sveinbjorn/Desktop/YES.txt
-#echo PROGRESS:30
-#echo Hello 1
-#find /Users/
-#echo PROGRESS:60
-#echo Hello 2
-#sleep 1
-#echo PROGRESS:90
-#echo Hello 3
-#sleep 1
-#perl anotherScript 2>&1 
-#find /www/sveinbjorn/cgi-bin/
-#echo "FINIDO"
-#sleep 1

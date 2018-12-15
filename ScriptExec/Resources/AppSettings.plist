@@ -10,22 +10,20 @@
 	<integer>0</integer>
 	<key>Creator</key>
 	<string>Platypus-5.3</string>
-	<key>Droppable</key>
-	<true/>
 	<key>InterfaceType</key>
 	<string>Web View</string>
+	<key>URISchemes</key>
+	<array/>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>InterpreterPath</key>
-	<string>/usr/bin/perl</string>
+	<string>/bin/blah</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunning</key>
 	<integer>1</integer>
 	<key>ScriptArgs</key>
 	<array/>
-	<key>Secure</key>
-	<integer>0</integer>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
@@ -42,8 +40,6 @@
 	</array>
 	<key>TextBackground</key>
 	<string>#ff0000</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>
