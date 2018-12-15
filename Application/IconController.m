@@ -54,6 +54,10 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 }
 @end
 
+@interface NSMenu (PopupMenuUsingAppearance)
+- (BOOL)popUpMenuPositioningItem:(id)item atLocation:(struct CGPoint)loc inView:(id)view appearance:(id)appearance;
+@end
+
 @implementation IconController
 
 - (instancetype)init {
@@ -145,7 +149,11 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 
 - (IBAction)iconActionButtonPressed:(id)sender {
     NSRect screenRect = [window convertRectToScreen:[(NSButton *)sender frame]];
-    [iconContextualMenu popUpMenuPositioningItem:nil atLocation:screenRect.origin inView:nil];
+    if (@available(macOS 10.9, *)) {
+        [iconContextualMenu popUpMenuPositioningItem:nil atLocation:screenRect.origin inView:nil appearance:[NSAppearance currentAppearance]];
+    } else {
+        [iconContextualMenu popUpMenuPositioningItem:nil atLocation:screenRect.origin inView:nil];
+    }
 }
 
 - (IBAction)nextIcon:(id)sender {
