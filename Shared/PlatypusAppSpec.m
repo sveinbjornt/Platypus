@@ -604,13 +604,14 @@
         self[AppSpecKey_RunInBackground],       @"LSUIElement",
         @"6.0",                                 @"CFBundleInfoDictionaryVersion",
         @"MainMenu",                            @"NSMainNibFile",
+        @"APPL",                                @"CFBundlePackageType",
         PROGRAM_MIN_SYS_VERSION,                @"LSMinimumSystemVersion",
         @"NSApplication",                       @"NSPrincipalClass",
         @{@"NSAllowsArbitraryLoads": @YES},     @"NSAppTransportSecurity",
     nil];
     
     // Add icon name if icon is set
-    if (self[AppSpecKey_IconPath] != nil && [self[AppSpecKey_IconPath] isEqualToString:@""] == NO) {
+    if (self[AppSpecKey_IconPath] && [self[AppSpecKey_IconPath] isEqualToString:@""] == NO) {
         infoPlist[@"CFBundleIconFile"] = @"AppIcon.icns";
     }
     
