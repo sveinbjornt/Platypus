@@ -630,8 +630,11 @@ MyApp.app/Contents/Resources/script             Script executed by application b
 <h3 id="can-i-prompt-for-user-input-stdin-in-my-platypus-wrapped-scripts-">Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?</h3>
 <p>No. Platypus applications do not present the user with an interactive shell, and therefore no bidirectional communication can take place using standard input. Platypus apps can only capture and display the text output of your script. They cannot prompt for input via STDIN, and will not be able to do so in the foreseeable future. This means that any commands that require input via STDIN, such as <code>sudo</code>, or Python&#39;s <code>input()</code> will not work from within a Platypus application.</p>
 <h3 id="is-there-a-way-to-sign-platypus-generated-apps-so-they-don-t-require-gatekeeper-approval-">Is there a way to sign Platypus-generated apps so they don&#39;t require GateKeeper approval?</h3>
-<p>Platypus-generated apps are not signed. Due to GateKeeper, this means they will not run on macOS without prompting the user for approval. There are no plans to change this in the future.</p>
-<p>You could always sign the Platypus binaries yourself, but it&#39;s a pain in the ass and beyond the scope of this document.</p>
+<p>Platypus-generated apps are not signed by default. Due to GateKeeper, this means they will not run on macOS without prompting the user for approval. </p>
+<p>If you have a Mac developer signing certificate in your Keychain, you can select it as a signing certificate in Preferences.</p>
+<p>The app is signed by running the following command:</p>
+<pre><code>/usr/bin/codesign -s &quot;your-signing-identity&quot; path/to/MyApp.app
+</code></pre><p>See Apple&#39;s <a href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html">Code Signing Guide</a> for details.</p>
 <h3 id="can-i-pass-arguments-to-a-platypus-generated-app-via-the-command-line-">Can I pass arguments to a Platypus-generated app via the command line?</h3>
 <p>Yes. You can execute a Platypus-generated binary via the command line. Any arguments you provide will be passed on to your script. Take the following example:</p>
 <pre><code># ./MyApp.app/Contents/MacOS/MyApp -arg1 -arg2

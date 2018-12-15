@@ -29,6 +29,7 @@ status menu items, launchers and automations using Platypus.
 * Set app's associated file types, identifier, version, author, etc.
 * Graphical interface for bundling support files with the script
 * Command line tool for automation and build process integration
+* Support for signing generated apps using Mac developer certificates in Keychain
 * "Profiles" can be used to save app configurations
 * Built-in script editor, or linking with external editor of choice
 * Extensive [documentation](Documentation/Documentation.md) and many built-in examples to help you get started

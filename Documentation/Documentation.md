@@ -638,9 +638,17 @@ No. Platypus applications do not present the user with an interactive shell, and
 
 ### Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?
 
-Platypus-generated apps are not signed. Due to GateKeeper, this means they will not run on macOS without prompting the user for approval. There are no plans to change this in the future.
+Platypus-generated apps are not signed by default. Due to GateKeeper, this means they will not run on macOS without prompting the user for approval. 
 
-You could always sign the Platypus binaries yourself, but it's a pain in the ass and beyond the scope of this document.
+If you have a Mac developer signing certificate in your Keychain, you can select it as a signing certificate in Preferences.
+
+The app is signed by running the following command:
+
+```
+/usr/bin/codesign -s "your-signing-identity" path/to/MyApp.app
+```
+
+See Apple's [Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html) for details.
 
 
 ### Can I pass arguments to a Platypus-generated app via the command line?
