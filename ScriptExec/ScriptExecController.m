@@ -1115,16 +1115,17 @@ static const NSInteger detailsHeight = 224;
             }
         }
         
-        if (interfaceType == PlatypusInterfaceType_WebView && [[outputTextView textStorage] length] == 0 && [theLine hasPrefix:@"Location:"]) {
+        if (interfaceType == PlatypusInterfaceType_WebView && [theLine hasPrefix:@"LOCATION:"]) {
             NSString *urlString = [theLine substringFromIndex:9];
             urlString = [urlString stringByReplacingOccurrencesOfString:@" " withString:@""];
             locationURL = [NSURL URLWithString:urlString];
+            [webView setToolTip:@"LOCATION"];
         }
         
         [self appendString:theLine];
         
         // OK, line wasn't a command understood by the wrapper
-        // Show it in GUI text field
+        // Show it in our GUI text field
         if (interfaceType == PlatypusInterfaceType_Droplet) {
             [dropletMessageTextField setStringValue:theLine];
         }
@@ -1562,10 +1563,21 @@ static const NSInteger detailsHeight = 224;
 
 /**************************************************
  Called whenever web view re-renders.
- Scroll to the bottom on each re-rendering.
+ Scroll to the bottom on each re-rendering unless
+ we have received LOCATION: from the script
  **************************************************/
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
+    if (frame != [webView mainFrame]) {
+        // Ignore embedded iframes
+        return;
+    }
+    if ([[sender toolTip] isEqualToString:@"LOCATION"]) {
+        // The web view was marked as having just loaded a URL using LOCATION
+        [sender setToolTip:@""];
+        return;
+    }
+    // Scroll to the bottom of the enclosing scroll view
     NSScrollView *scrollView = [[[[webView mainFrame] frameView] documentView] enclosingScrollView];
     NSRect bounds = [[[[webView mainFrame] frameView] documentView] bounds];
     [[scrollView documentView] scrollPoint:NSMakePoint(0, bounds.size.height)];

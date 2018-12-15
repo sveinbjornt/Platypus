@@ -353,7 +353,7 @@ If your script prints the string "REFRESH\n" to STDOUT, the text output buffer w
 
 ### Loading a Website into a Web View
 
-If interface type was set to **Web View** and your script prints "Location:http://some.url.com\n", the Web View will load the URL in question.
+If interface type was set to **Web View** and your script prints "LOCATION:http://some.url.com\n", the Web View will load the URL in question.
 
 
 
