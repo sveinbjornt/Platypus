@@ -613,7 +613,7 @@
         self[AppSpecKey_RunInBackground],       @"LSUIElement",
         @"6.0",                                 @"CFBundleInfoDictionaryVersion",
         @"MainMenu",                            @"NSMainNibFile",
-        @"APPL",                                @"CFBundlePackageType",
+//        @"APPL",                                @"CFBundlePackageType",
         PROGRAM_MIN_SYS_VERSION,                @"LSMinimumSystemVersion",
         @"NSApplication",                       @"NSPrincipalClass",
         @{@"NSAllowsArbitraryLoads": @YES},     @"NSAppTransportSecurity",

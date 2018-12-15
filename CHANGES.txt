@@ -27,6 +27,9 @@ For future versions...
 For 5.4
     TODO: Support relative interpreter path (i.e. relative to Resources directory)
 
+    * Added support for code signing using Keychain certificates
+    * Resolved issue with text view selection and dark mode
+
 For 5.3
     * First facelift in a decade: New application icons created by Drífa Líftóra
     * Updated to support Mojave Dark Mode
