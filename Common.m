@@ -86,6 +86,8 @@ NSString * const AppSpecKey_InterpreterPath_Legacy = @"Interpreter";
 NSString * const AppSpecKey_InterfaceType_Legacy = @"Output";
 NSString * const AppSpecKey_RunInBackground_Legacy = @"ShowInDock";
 
+NSString * const AppSpecKey_SigningIdentity = @"SigningIdentity";
+
 // NSUserDefaults keys for Platypus app
 NSString * const DefaultsKey_BundleIdentifierPrefix = @"DefaultBundleIdentifierPrefix";
 NSString * const DefaultsKey_DefaultEditor = @"DefaultEditor";
@@ -97,6 +99,7 @@ NSString * const DefaultsKey_StripNib = @"OnCreateOptimizeNib";
 NSString * const DefaultsKey_EditorFontSize = @"EditorFontSize";
 NSString * const DefaultsKey_EditorWordWrap = @"EditorWordWrap";
 NSString * const DefaultsKey_Launched = @"Launched";
+NSString * const DefaultsKey_SigningIdentity = @"SigningIdentity";
 
 // NSUserDefaults keys for ScriptExec app
 NSString * const ScriptExecDefaultsKey_UserFontSize = @"UserFontSize";

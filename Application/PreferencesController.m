@@ -41,6 +41,7 @@
 @interface PreferencesController()
 {
     IBOutlet NSPopUpButton *defaultEditorPopupButton;
+    IBOutlet NSPopUpButton *signingIdentityPopupButton;
     IBOutlet NSTextField *defaultBundleIdentifierTextField;
     IBOutlet NSTextField *defaultAuthorTextField;
     IBOutlet NSTextField *CLTStatusTextField;
@@ -135,14 +136,98 @@
 
 - (void)menuWillOpen:(NSMenu *)menu {
     if (menu == [defaultEditorPopupButton menu]) {
-        // This only needs to happen once
         static dispatch_once_t predicate;
         dispatch_once(&predicate, ^{
             [self clearNonInstalledEditorItems];
             [self setIconsForEditorMenu];
         });
     }
+    else if (menu == [signingIdentityPopupButton menu]) {
+        static dispatch_once_t pred;
+        dispatch_once(&pred, ^{
+            [self populateSigningIdentityMenu];
+        });
+    }
 }
+
+
+#pragma mark - Certificates
+
+- (void)populateSigningIdentityMenu {
+    NSMenu *menu = [signingIdentityPopupButton menu];
+    NSString *selTitle = [signingIdentityPopupButton titleOfSelectedItem];
+    
+    for (NSString *identity in [self findMacDevCertificates]) {
+        if ([identity isEqualToString:selTitle]) {
+            continue;
+        }
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:identity action:nil keyEquivalent:@""];
+        [menu addItem:item];
+    }
+}
+
+- (NSArray *)findMacDevCertificates {
+    OSStatus status;
+    SecKeychainSearchRef search = NULL;
+    
+    // The first argument being NULL indicates the user's current keychain list
+    status = SecKeychainSearchCreateFromAttributes(NULL, kSecCertificateItemClass, NULL, &search);
+    
+    if (status != errSecSuccess) {
+        PLog(@"SecKeychainSearchCreateFromAttributes failed");
+        return @[];
+    }
+    
+    SecKeychainItemRef searchItem = NULL;
+    NSMutableArray *certs = [NSMutableArray array];
+    
+    while (SecKeychainSearchCopyNext(search, &searchItem) != errSecItemNotFound) {
+        SecKeychainAttributeList attrList;
+        CSSM_DATA certData;
+        
+        attrList.count = 0;
+        attrList.attr = NULL;
+        
+        status = SecKeychainItemCopyContent(searchItem, NULL, &attrList,
+                                            (UInt32 *)(&certData.Length),
+                                            (void **)(&certData.Data));
+        
+        if (status != errSecSuccess) {
+            continue;
+        }
+        
+        // At this point you should have a valid CSSM_DATA structure
+        // representing the certificate
+        
+        SecCertificateRef certificate;
+        status = SecCertificateCreateFromData(&certData, CSSM_CERT_X_509v3,
+                                              CSSM_CERT_ENCODING_BER, &certificate);
+        
+        if (status != errSecSuccess) {
+            SecKeychainItemFreeContent(&attrList, certData.Data);
+            CFRelease(searchItem);
+            continue;
+        }
+        
+        // Do whatever you want to do with the certificate
+        // For instance, print its common name (if there's one)
+        
+        CFStringRef commonName = NULL;
+        SecCertificateCopyCommonName(certificate, &commonName);
+        NSString *name = (__bridge NSString *)commonName;
+        if ([name hasPrefix:@"Mac Developer"]) {
+            [certs addObject:name];
+        }
+        
+        SecKeychainItemFreeContent(&attrList, certData.Data);
+        CFRelease(searchItem);
+    }
+    
+    CFRelease(search);
+    
+    return [certs copy];
+}
+
 
 #pragma mark - Interface actions
 

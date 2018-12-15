@@ -691,6 +691,7 @@ DQ
                 <outlet property="defaultEditorPopupButton" destination="11386" id="LqD-1V-hBd"/>
                 <outlet property="installCLTButton" destination="11389" id="11446"/>
                 <outlet property="installCLTProgressIndicator" destination="11388" id="11447"/>
+                <outlet property="signingIdentityPopupButton" destination="bsJ-ID-Xth" id="fza-oW-EoZ"/>
                 <outlet property="window" destination="11370" id="C6j-Sn-zUf"/>
             </connections>
         </customObject>
@@ -1900,7 +1901,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="JcD-yT-ov7">
                             <rect key="frame" x="1" y="0.0" width="209" height="120"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11089" id="1405" customClass="NSResponderNotifyingTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="209" height="103"/>
@@ -1952,7 +1953,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="AXu-6W-m9d">
                             <rect key="frame" x="1" y="0.0" width="209" height="120"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11254" id="11257" customClass="NSResponderNotifyingTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="209" height="103"/>
@@ -2285,7 +2286,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="9QH-6m-7Zp">
                             <rect key="frame" x="1" y="1" width="221" height="113"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" id="2078">
                                     <rect key="frame" x="0.0" y="0.0" width="221" height="113"/>
@@ -2661,21 +2662,21 @@ DQ
         <window title="Platypus Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="Platypus Preferences" animationBehavior="default" id="11370" userLabel="Preferences Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="546" y="264" width="313" height="420"/>
+            <rect key="contentRect" x="546" y="264" width="313" height="462"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="11371">
-                <rect key="frame" x="0.0" y="0.0" width="313" height="420"/>
+                <rect key="frame" x="0.0" y="0.0" width="313" height="462"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box titlePosition="noTitle" id="11372">
-                        <rect key="frame" x="17" y="56" width="279" height="346"/>
+                        <rect key="frame" x="17" y="56" width="279" height="388"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <view key="contentView" id="U5J-zA-DBb">
-                            <rect key="frame" x="3" y="3" width="273" height="340"/>
+                            <rect key="frame" x="3" y="3" width="273" height="382"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <button toolTip="Reveal Platypus-generated applications in the Finder once they've been created" id="11382">
-                                    <rect key="frame" x="113" y="102" width="127" height="21"/>
+                                    <rect key="frame" x="113" y="98" width="127" height="21"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <buttonCell key="cell" type="check" title="Reveal in Finder" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11432">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2686,7 +2687,7 @@ DQ
                                     </connections>
                                 </button>
                                 <button toolTip="Open Platypus-generated applications once they've been created" id="11381">
-                                    <rect key="frame" x="113" y="125" width="127" height="21"/>
+                                    <rect key="frame" x="113" y="121" width="127" height="21"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <buttonCell key="cell" type="check" title="Open application" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="11433">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2697,7 +2698,7 @@ DQ
                                     </connections>
                                 </button>
                                 <popUpButton toolTip="Select your default text editor" verticalHuggingPriority="750" id="11386">
-                                    <rect key="frame" x="30" y="275" width="211" height="26"/>
+                                    <rect key="frame" x="30" y="316" width="211" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <popUpButtonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="11426" id="11412">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -2749,7 +2750,7 @@ DQ
                                     </connections>
                                 </popUpButton>
                                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11385">
-                                    <rect key="frame" x="30" y="304" width="109" height="17"/>
+                                    <rect key="frame" x="30" y="345" width="109" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Editor" id="11430">
                                         <font key="font" metaFont="system"/>
@@ -2757,8 +2758,43 @@ DQ
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <popUpButton toolTip="Select your default text editor" verticalHuggingPriority="750" id="bsJ-ID-Xth">
+                                    <rect key="frame" x="30" y="150" width="211" height="26"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="SX9-gL-AU0" id="Kbn-Oj-kZv">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" title="OtherViews" id="Bsc-il-b0C">
+                                            <items>
+                                                <menuItem title="None" id="SX9-gL-AU0"/>
+                                                <menuItem isSeparatorItem="YES" id="bTH-wH-O0E">
+                                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                                </menuItem>
+                                            </items>
+                                            <connections>
+                                                <outlet property="delegate" destination="11195" id="tv6-ca-Iwb"/>
+                                            </connections>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <binding destination="yij-LO-LNq" name="selectedValue" keyPath="values.SigningIdentity" id="tOV-lu-VGN">
+                                            <dictionary key="options">
+                                                <bool key="NSValidatesImmediately" value="YES"/>
+                                            </dictionary>
+                                        </binding>
+                                    </connections>
+                                </popUpButton>
+                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="Mec-SH-id8">
+                                    <rect key="frame" x="30" y="179" width="147" height="17"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Signing Certificate" id="Qgh-8X-V9F">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
                                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11391">
-                                    <rect key="frame" x="30" y="246" width="210" height="18"/>
+                                    <rect key="frame" x="30" y="290" width="210" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Bundle Identifier Prefix" id="11398">
                                         <font key="font" metaFont="system"/>
@@ -2767,7 +2803,7 @@ DQ
                                     </textFieldCell>
                                 </textField>
                                 <textField toolTip="This sets the prefix to the bundle identifier that is used by Mac OS X to uniquely identify applications." verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11392">
-                                    <rect key="frame" x="32" y="218" width="206" height="22"/>
+                                    <rect key="frame" x="32" y="262" width="206" height="22"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="11397">
                                         <font key="font" metaFont="system"/>
@@ -2784,7 +2820,7 @@ DQ
                                     </connections>
                                 </textField>
                                 <textField toolTip="Set the default author name for Platypus-generated applications" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11393">
-                                    <rect key="frame" x="32" y="161" width="206" height="22"/>
+                                    <rect key="frame" x="32" y="208" width="206" height="22"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="11396">
                                         <font key="font" metaFont="system"/>
@@ -2800,7 +2836,7 @@ DQ
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11394">
-                                    <rect key="frame" x="30" y="185" width="210" height="18"/>
+                                    <rect key="frame" x="30" y="232" width="210" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Author" id="11395">
                                         <font key="font" metaFont="system"/>
@@ -2827,7 +2863,7 @@ Gw
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 </box>
                                 <textField toolTip="Command line tool status" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11384">
-                                    <rect key="frame" x="30" y="52" width="210" height="17"/>
+                                    <rect key="frame" x="30" y="55" width="210" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="11431">
                                         <font key="font" metaFont="system"/>
@@ -2836,7 +2872,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField toolTip="Command line tool status" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="11380">
-                                    <rect key="frame" x="30" y="127" width="83" height="17"/>
+                                    <rect key="frame" x="30" y="123" width="83" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="On creation:" id="11434">
                                         <font key="font" metaFont="system"/>
@@ -2845,7 +2881,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" minValue="16" maxValue="100" doubleValue="16" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="11388">
-                                    <rect key="frame" x="194" y="22" width="16" height="16"/>
+                                    <rect key="frame" x="195" y="23" width="16" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 </progressIndicator>
                             </subviews>
@@ -2884,7 +2920,7 @@ Gw
             <connections>
                 <outlet property="delegate" destination="11195" id="WfW-85-Fo4"/>
             </connections>
-            <point key="canvasLocation" x="171.5" y="206"/>
+            <point key="canvasLocation" x="171.5" y="227"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="yij-LO-LNq"/>
     </objects>

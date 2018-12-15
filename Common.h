@@ -77,6 +77,7 @@
 
 #define IBTOOL_PATH                 [NSString stringWithFormat:@"%@/Contents/Developer/usr/bin/ibtool", [WORKSPACE fullPathForApplication:@"Xcode"]]
 #define PERL_INTERPRETER_PATH       @"/usr/bin/perl"
+#define CODESIGN_PATH               @"/usr/bin/codesign"
 
 #define APPBUNDLE_SUFFIX            @".app"
 #define GZIP_SUFFIX                 @".gz"
@@ -221,6 +222,8 @@ extern NSString * const AppSpecKey_InterpreterPath_Legacy; // legacy
 extern NSString * const AppSpecKey_InterfaceType_Legacy; // legacy
 extern NSString * const AppSpecKey_RunInBackground_Legacy; // legacy
 
+extern NSString * const AppSpecKey_SigningIdentity;
+
 // NSUserDefaults keys for Platypus app
 extern NSString * const DefaultsKey_BundleIdentifierPrefix;
 extern NSString * const DefaultsKey_DefaultEditor;
@@ -232,6 +235,7 @@ extern NSString * const DefaultsKey_StripNib;
 extern NSString * const DefaultsKey_EditorFontSize;
 extern NSString * const DefaultsKey_EditorWordWrap;
 extern NSString * const DefaultsKey_Launched;
+extern NSString * const DefaultsKey_SigningIdentity;
 
 // NSUserDefaults keys for ScriptExec app
 extern NSString * const ScriptExecDefaultsKey_UserFontSize;

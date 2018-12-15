@@ -410,6 +410,9 @@
     spec[AppSpecKey_SymlinkFiles] = @((BOOL)[createSymlinksCheckbox intValue]);
     spec[AppSpecKey_StripNib] = @((BOOL)[stripNibFileCheckbox intValue]);
     spec[AppSpecKey_Overwrite] = @YES;
+    if (![[DEFAULTS stringForKey:DefaultsKey_SigningIdentity] isEqualToString:@"None"]) {
+        spec[AppSpecKey_SigningIdentity] = [DEFAULTS stringForKey:@"SigningIdentity"];
+    }
     
     // Verify that the values in the spec are OK
     if (![spec verify]) {
