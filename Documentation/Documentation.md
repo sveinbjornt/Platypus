@@ -551,7 +551,7 @@ No. But if you uncheck "Optimize nib file" in the save dialog when creating an a
 
 
 
-### How does my script access the user's environment (e.g. PATH)?
+### How does my script access the user's shell environment (e.g. PATH)?
 
 Assuming that you're using `bash`, you can set the interpreter to `/bin/bash` and add the `-l` flag as an argument under "Args". This makes `bash` act as if it had been invoked as a login shell. See `man bash` for details.
 
@@ -561,6 +561,7 @@ Another alternative is to manually load the user's shell configuration file in y
 source ~/.bashrc
 ```
 
+For other shells, consult their respective documentation.
 
 ### How can I pass specific arguments to my script?
 
