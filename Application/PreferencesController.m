@@ -166,6 +166,8 @@
     }
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (NSArray *)findMacDevCertificates {
     OSStatus status;
     SecKeychainSearchRef search = NULL;
@@ -227,7 +229,7 @@
     
     return [certs copy];
 }
-
+#pragma GCC diagnostic pop
 
 #pragma mark - Interface actions
 

@@ -151,7 +151,7 @@ Creates a square window instructing the user to drop files on it for processing.
 
 Platypus lets you set an icon for your application. You can pick from the icon presets, paste your own image or select an image or `icns` file.
 
-Please note that having Platypus create the icon from an ordinary image file will typically not result in an icon that looks good in smaller sizes. For best results, use professional icon-editing software and import a carefully crafted `.icns` file using the **Select .icns file** option.
+Please note that having Platypus create the icon from an ordinary image file will typically not result in an icon that looks good at smaller sizes. For best results, use professional icon-editing software and import a carefully crafted `.icns` file using the **Select .icns file** option.
 
 
 
