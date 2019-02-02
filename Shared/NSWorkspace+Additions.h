@@ -42,7 +42,7 @@
 - (NSString *)defaultHandlerApplicationForFile:(NSString *)filePath;
 - (NSMenu *)openWithMenuForFile:(NSString *)path target:(id)t action:(SEL)s menu:(NSMenu *)menu;
 
-- (void)notifyFinderFileChangedAtPath:(NSString *)path;
+- (void)registerAppWithLaunchServices:(NSString *)path;
 - (void)flushServices;
 - (BOOL)openPathInDefaultBrowser:(NSString *)path;
 

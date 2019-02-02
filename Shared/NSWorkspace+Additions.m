@@ -306,21 +306,21 @@
 
 #pragma mark - Notify Finder
 
-- (void)notifyFinderFileChangedAtPath:(NSString *)path {
-    [[NSWorkspace sharedWorkspace] noteFileSystemChanged:path]; // Deprecated
-    NSString *source = [NSString stringWithFormat:@"tell application \"Finder\" to update item (POSIX file \"%@\")", path];
-    NSAppleScript *appleScript = [[NSAppleScript alloc] initWithSource:source];
-    [appleScript executeAndReturnError:nil];
+- (void)registerAppWithLaunchServices:(NSString *)appPath {
+    NSURL *url = [NSURL fileURLWithPath:appPath];
+    LSRegisterURL((__bridge CFURLRef _Nonnull)(url), TRUE);
 }
 
 #pragma mark - Services
 
 - (void)flushServices {
     // This call used to refresh Services without user having to log out/in
-    // but may not do anything any more. Anyway, we'll keep invoking it for now
+    // but may not do anything any more. Anyway, we'll keep invoking it for now.
     NSUpdateDynamicServices();
 
-    // This does the real deal
+    // This is the real deal
+    // The next time Services information is needed, pbs will do a complete rescan
+    // for apps vending Services and read their plist. This rescan may be very expensive.
     [NSTask launchedTaskWithLaunchPath:@"/System/Library/CoreServices/pbs"
                              arguments:@[@"-flush"]];
 }

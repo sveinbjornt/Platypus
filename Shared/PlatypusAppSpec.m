@@ -530,8 +530,8 @@
         return FALSE;
     }
     
-    // Make sure app representation in Finder is updated
-    [WORKSPACE notifyFinderFileChangedAtPath:destPath];
+    // Make sure app is immediately registered with Launch Services
+    [WORKSPACE registerAppWithLaunchServices:destPath];
     
     // Register/update in the launch services database
     [self report:@"Registering app with Launch Services"];
