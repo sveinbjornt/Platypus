@@ -17,6 +17,9 @@ status menu items, launchers and automations using Platypus.
 * **[⇩ Download Platypus 5.3](http://sveinbjorn.org/files/software/platypus.zip)** 
 (Intel 64-bit, 10.8 or later, ~3.3 MB)
 
+Platypus is free, open source software and has been maintained for a very long time. 
+If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).
+
 ## Features
 
 * Supports shell scripts, Python, Perl, Ruby, PHP, Swift, Expect, Tcl, AWK, JavaScript, AppleScript or any other user-specified interpreter

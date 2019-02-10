@@ -304,7 +304,7 @@
     [self openFile:filePath withApplication:appPath];
 }
 
-#pragma mark - Notify Finder
+#pragma mark - Register with LS
 
 - (void)registerAppWithLaunchServices:(NSString *)appPath {
     NSURL *url = [NSURL fileURLWithPath:appPath];
