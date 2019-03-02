@@ -29,7 +29,7 @@
  */
 
 #import "IconController.h"
-#import "IconFamily.h"
+#import "AGIconFamily.h"
 #import "NSWorkspace+Additions.h"
 #import "Common.h"
 #import "VDKQueue.h"
@@ -183,8 +183,9 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 - (void)updateIcnsStatus {
     // Show question mark if icon file is missing
     if ([self hasIconFile] && [FILEMGR fileExistsAtPath:_icnsFilePath] == FALSE) {
-        IconFamily *iconFam = [[IconFamily alloc] initWithSystemIcon:kQuestionMarkIcon];
-        [iconImageView setImage:[iconFam imageWithAllReps]];
+        NSImage *qmarkIcon = [WORKSPACE iconForFileType:NSFileTypeForHFSTypeCode(kQuestionMarkIcon)];
+        [qmarkIcon setSize:NSMakeSize(128, 128)];
+        [iconImageView setImage:qmarkIcon];
         [iconNameTextField setTextColor:[NSColor redColor]];
     } else {
         // Otherwise, read icns image from path and put it in image view
@@ -273,12 +274,21 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     if (iconImage == nil) {
         return NO;
     }
-    IconFamily *iconFamily = [[IconFamily alloc] initWithThumbnailsOfImage:iconImage];
+    
+    AGIconFamily *iconFamily = [[AGIconFamily alloc] initWithThumbnailsOfImage:iconImage
+                                                            imageInterpolation:NSImageInterpolationHigh];
     if (iconFamily == nil) {
         PLog(@"Failed to create IconFamily from image");
         return NO;
     }
-    [iconFamily writeToFile:path];
+    
+    NSError *err;
+    BOOL succ = [iconFamily writeToURL:[NSURL fileURLWithPath:path] error:&err];
+    if (!succ) {
+        PLog(@"%@", [err localizedDescription]);
+        return NO;
+    }
+    
     return YES;
 }
 
@@ -306,7 +316,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     return [str hasPrefix:[[NSBundle mainBundle] resourcePath]];
 }
 
-#pragma mark - Loading icon
+#pragma mark - Load icon
 
 - (BOOL)loadIcnsFile:(NSString *)filePath {
     if (filePath == nil || [filePath isEqualToString:@""]) {

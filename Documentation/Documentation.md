@@ -50,7 +50,7 @@ Both Platypus and the applications it generates require **macOS 10.8** or later 
 
 Platypus was conceived and created by me, [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org). The  application icon was created by [Drífa Líftóra](http://drifaliftora.is).
 
-Thanks go to Troy Stephens, the original author of the [IconFamily](http://iconfamily.sourceforge.net/) class used for icon handling in Platypus, Bryan D K Jones, author of [VDKQueue](https://github.com/bdkjones/VDKQueue), Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, and Andy Matuschak for the [Sparkle](http://sparkle-project.org) update framework. [Stack Overflow](http://stackoverflow.com) and the [OmniGroup](https://www.omnigroup.com) Mac development mailing list and have also been invaluable over the years.
+Thanks go to Seth Willits, author of the AGIconFamily class used for icon handling in Platypus, Bryan D K Jones, author of [VDKQueue](https://github.com/bdkjones/VDKQueue), Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, and Andy Matuschak for the [Sparkle](http://sparkle-project.org) update framework. [Stack Overflow](http://stackoverflow.com) and the [OmniGroup](https://www.omnigroup.com) Mac development mailing list and have also been invaluable over the years.
 
 Finally, I am much indebted to [Wilfredo Sanchez](http://www.wsanchez.net), author of [DropScript](http://www.wsanchez.net/software), the proof-of-concept project which inspired me to create Platypus in the first place.
 

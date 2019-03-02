@@ -67,8 +67,6 @@
 		F45B1EFA1FF560D800A935D7 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1EF41FF560D800A935D7 /* NoodleLineNumberView.m */; };
 		F45B1EFB1FF560D800A935D7 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1EF81FF560D800A935D7 /* NoodleLineNumberMarker.m */; };
 		F45B1EFC1FF560D800A935D7 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1EF91FF560D800A935D7 /* NSTextView+JSDExtensions.m */; };
-		F45B1F021FF560FB00A935D7 /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1EFE1FF560FB00A935D7 /* IconFamily.m */; };
-		F45B1F031FF560FB00A935D7 /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1EFF1FF560FB00A935D7 /* NSString+CarbonFSRefCreation.m */; };
 		F45B1F151FF5617500A935D7 /* Interpreter_ksh.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F061FF5617400A935D7 /* Interpreter_ksh.png */; };
 		F45B1F161FF5617500A935D7 /* Interpreter_Shell.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F071FF5617400A935D7 /* Interpreter_Shell.png */; };
 		F45B1F171FF5617500A935D7 /* Interpreter_PHP.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F081FF5617400A935D7 /* Interpreter_PHP.png */; };
@@ -130,6 +128,7 @@
 		F4975DC01B2E71FC0099D16E /* Platypus.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBB1B2E71FC0099D16E /* Platypus.xib */; };
 		F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */; };
 		F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */; };
+		F4A8B5CA2229ECB50049FA51 /* AGIconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A8B5C92229ECB50049FA51 /* AGIconFamily.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F4AB186B1BE182FA00B83A95 /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186A1BE182FA00B83A95 /* Alerts.m */; };
 		F4AB186C1BE182FA00B83A95 /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186A1BE182FA00B83A95 /* Alerts.m */; };
 		F4AB186F1BE1908100B83A95 /* NSBundle+Templates.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186E1BE1908100B83A95 /* NSBundle+Templates.m */; };
@@ -236,10 +235,6 @@
 		F45B1EF71FF560D800A935D7 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
 		F45B1EF81FF560D800A935D7 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
 		F45B1EF91FF560D800A935D7 /* NSTextView+JSDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+JSDExtensions.m"; sourceTree = "<group>"; };
-		F45B1EFE1FF560FB00A935D7 /* IconFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconFamily.m; sourceTree = "<group>"; };
-		F45B1EFF1FF560FB00A935D7 /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CarbonFSRefCreation.m"; sourceTree = "<group>"; };
-		F45B1F001FF560FB00A935D7 /* IconFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconFamily.h; sourceTree = "<group>"; };
-		F45B1F011FF560FB00A935D7 /* NSString+CarbonFSRefCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CarbonFSRefCreation.h"; sourceTree = "<group>"; };
 		F45B1F061FF5617400A935D7 /* Interpreter_ksh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_ksh.png; sourceTree = "<group>"; };
 		F45B1F071FF5617400A935D7 /* Interpreter_Shell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Shell.png; sourceTree = "<group>"; };
 		F45B1F081FF5617400A935D7 /* Interpreter_PHP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_PHP.png; sourceTree = "<group>"; };
@@ -332,7 +327,10 @@
 		F4975DBB1B2E71FC0099D16E /* Platypus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Platypus.xib; path = Application/Resources/Platypus.xib; sourceTree = "<group>"; };
 		F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShellCommandWindow.xib; path = Application/Resources/ShellCommandWindow.xib; sourceTree = "<group>"; };
 		F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SyntaxChecker.xib; path = Application/Resources/SyntaxChecker.xib; sourceTree = "<group>"; };
+		F497C7EB2205CE8400F68637 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		F4A4338B0E04C962000523E7 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Common.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F4A8B5C82229ECB50049FA51 /* AGIconFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIconFamily.h; sourceTree = "<group>"; };
+		F4A8B5C92229ECB50049FA51 /* AGIconFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIconFamily.m; sourceTree = "<group>"; };
 		F4AB18691BE182FA00B83A95 /* Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alerts.h; path = Shared/Alerts.h; sourceTree = "<group>"; };
 		F4AB186A1BE182FA00B83A95 /* Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Alerts.m; path = Shared/Alerts.m; sourceTree = "<group>"; };
 		F4AB186D1BE1908100B83A95 /* NSBundle+Templates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+Templates.h"; path = "Shared/NSBundle+Templates.h"; sourceTree = "<group>"; };
@@ -401,8 +399,8 @@
 		080E96DDFE201D6D7F000001 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				F4A8B5C72229ECB50049FA51 /* AGIconFamily */,
 				F484D46021AA03D7006EE28D /* NSFileManager+TempFiles */,
-				F45B1EFD1FF560FB00A935D7 /* IconFamily */,
 				F45B1F041FF5610000A935D7 /* NSTask+Description */,
 				F45B1EF31FF560D800A935D7 /* NSTextView+JSDExtensions */,
 				F4D0F2321C1DCF790065AD25 /* NSResponderNotifyingTableView */,
@@ -609,18 +607,6 @@
 			path = "Shared/Others/NSTextView+JSDExtensions";
 			sourceTree = "<group>";
 		};
-		F45B1EFD1FF560FB00A935D7 /* IconFamily */ = {
-			isa = PBXGroup;
-			children = (
-				F45B1F001FF560FB00A935D7 /* IconFamily.h */,
-				F45B1EFE1FF560FB00A935D7 /* IconFamily.m */,
-				F45B1F011FF560FB00A935D7 /* NSString+CarbonFSRefCreation.h */,
-				F45B1EFF1FF560FB00A935D7 /* NSString+CarbonFSRefCreation.m */,
-			);
-			name = IconFamily;
-			path = Shared/Others/IconFamily;
-			sourceTree = "<group>";
-		};
 		F45B1F041FF5610000A935D7 /* NSTask+Description */ = {
 			isa = PBXGroup;
 			children = (
@@ -790,6 +776,16 @@
 			name = "NSWorkspace+Additions";
 			sourceTree = "<group>";
 		};
+		F4A8B5C72229ECB50049FA51 /* AGIconFamily */ = {
+			isa = PBXGroup;
+			children = (
+				F4A8B5C82229ECB50049FA51 /* AGIconFamily.h */,
+				F4A8B5C92229ECB50049FA51 /* AGIconFamily.m */,
+			);
+			name = AGIconFamily;
+			path = Shared/Others/AGIconFamily;
+			sourceTree = "<group>";
+		};
 		F4AB18701BE1911500B83A95 /* NSBundle+Templates */ = {
 			isa = PBXGroup;
 			children = (
@@ -878,6 +874,7 @@
 		F4F14CBB1C64264D002A2402 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				F497C7EB2205CE8400F68637 /* Makefile */,
 				F4B87C581B403A6E00F4B8BE /* build_release.sh */,
 				F4F14CAF1C640857002A2402 /* make_examples.pl */,
 				F436471321A07B2D00A8749D /* srcloc.sh */,
@@ -1189,7 +1186,6 @@
 				F4975DB21B2E71EE0099D16E /* ProfilesController.m in Sources */,
 				F4051DA11C1B5AF900587F1F /* Common.m in Sources */,
 				F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */,
-				F45B1F021FF560FB00A935D7 /* IconFamily.m in Sources */,
 				F45B1EFB1FF560D800A935D7 /* NoodleLineNumberMarker.m in Sources */,
 				F4975DAF1B2E71EE0099D16E /* PlatypusWindowController.m in Sources */,
 				F4975DAE1B2E71EE0099D16E /* IconController.m in Sources */,
@@ -1199,6 +1195,7 @@
 				F4975D791B2E09450099D16E /* STPathTextField.m in Sources */,
 				F4975DAC1B2E71EE0099D16E /* DropSettingsController.m in Sources */,
 				F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */,
+				F4A8B5CA2229ECB50049FA51 /* AGIconFamily.m in Sources */,
 				F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */,
 				F4975DAD1B2E71EE0099D16E /* EditorController.m in Sources */,
 				F4975D711B2E09280099D16E /* NSWorkspace+Additions.m in Sources */,
@@ -1209,7 +1206,6 @@
 				F45B1EFA1FF560D800A935D7 /* NoodleLineNumberView.m in Sources */,
 				F484D45E21AA03C2006EE28D /* NSFileManager+TempFiles.m in Sources */,
 				F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */,
-				F45B1F031FF560FB00A935D7 /* NSString+CarbonFSRefCreation.m in Sources */,
 				F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1299,7 +1295,9 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
+				INFOPLIST_OUTPUT_FORMAT = binary;
+				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1316,7 +1314,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
-				SEPARATE_STRIP = NO;
 				STRIP_INSTALLED_PRODUCT = NO;
 				VALIDATE_PRODUCT = NO;
 				WARNING_CFLAGS = (
@@ -1365,7 +1362,9 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
+				INFOPLIST_OUTPUT_FORMAT = binary;
+				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
@@ -1381,7 +1380,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
-				SEPARATE_STRIP = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				STRIP_INSTALLED_PRODUCT = YES;
 				VALIDATE_PRODUCT = YES;
@@ -1425,7 +1423,9 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
+				INFOPLIST_OUTPUT_FORMAT = binary;
+				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
@@ -1441,7 +1441,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SECTORDER_FLAGS = "";
-				SEPARATE_STRIP = YES;
 				VALIDATE_PRODUCT = NO;
 				WARNING_CFLAGS = (
 					"-Wno-gnu",
@@ -1501,7 +1500,7 @@
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_OUTPUT_FORMAT = binary;
-				INFOPLIST_PREPROCESS = YES;
+				INFOPLIST_PREPROCESS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1514,7 +1513,8 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				STRIPFLAGS = "-x";
+				STRIPFLAGS = "";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wpartial-availability";
@@ -1574,7 +1574,7 @@
 				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_OUTPUT_FORMAT = binary;
-				INFOPLIST_PREPROCESS = YES;
+				INFOPLIST_PREPROCESS = NO;
 				LINKER_DISPLAYS_MANGLED_NAMES = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = NO;
@@ -1588,7 +1588,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
-				STRIPFLAGS = "-x";
+				STRIPFLAGS = "";
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wpartial-availability";
@@ -1646,7 +1646,7 @@
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_OUTPUT_FORMAT = binary;
-				INFOPLIST_PREPROCESS = YES;
+				INFOPLIST_PREPROCESS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -1659,7 +1659,7 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
-				STRIPFLAGS = "-x";
+				STRIPFLAGS = "";
 				SYMROOT = build;
 				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wpartial-availability";
