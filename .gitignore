@@ -1,4 +1,5 @@
 build/
+products/
 DerivedData
 Releases/*
 ExampleApps

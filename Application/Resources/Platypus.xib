@@ -257,7 +257,7 @@ DQ
                     <button toolTip="Clear File List" verticalHuggingPriority="750" id="965">
                         <rect key="frame" x="621" y="58" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" title="✕" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="10975">
+                        <buttonCell key="cell" type="smallSquare" title="✕" bezelStyle="smallSquare" image="NSStopProgressTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" inset="2" id="10975">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -548,7 +548,7 @@ DQ
             <connections>
                 <outlet property="delegate" destination="335" id="371"/>
             </connections>
-            <point key="canvasLocation" x="312" y="-378"/>
+            <point key="canvasLocation" x="123" y="-371"/>
         </window>
         <customObject id="335" userLabel="PlatypusController" customClass="PlatypusWindowController">
             <connections>
@@ -1901,7 +1901,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="JcD-yT-ov7">
                             <rect key="frame" x="1" y="0.0" width="209" height="120"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11089" id="1405" customClass="NSResponderNotifyingTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="209" height="103"/>
@@ -1953,7 +1953,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="AXu-6W-m9d">
                             <rect key="frame" x="1" y="0.0" width="209" height="120"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11254" id="11257" customClass="NSResponderNotifyingTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="209" height="103"/>
@@ -2085,7 +2085,7 @@ DQ
                     <button toolTip="Remove selected argument" verticalHuggingPriority="750" id="11265">
                         <rect key="frame" x="276" y="64" width="23" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="11268">
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSFontPanelMinusIdle" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="11268">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                             <string key="keyEquivalent"></string>
@@ -2761,12 +2761,12 @@ DQ
                                 <popUpButton toolTip="Select your default text editor" verticalHuggingPriority="750" id="bsJ-ID-Xth">
                                     <rect key="frame" x="30" y="150" width="211" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="SX9-gL-AU0" id="Kbn-Oj-kZv">
+                                    <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="SX9-gL-AU0" id="Kbn-Oj-kZv">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
                                         <menu key="menu" title="OtherViews" id="Bsc-il-b0C">
                                             <items>
-                                                <menuItem title="None" id="SX9-gL-AU0"/>
+                                                <menuItem title="None" state="on" id="SX9-gL-AU0"/>
                                                 <menuItem isSeparatorItem="YES" id="bTH-wH-O0E">
                                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                 </menuItem>
@@ -2928,8 +2928,10 @@ Gw
         <image name="DefaultStatusMenuIcon" width="44" height="44"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSApplicationIcon" width="128" height="128"/>
+        <image name="NSApplicationIcon" width="32" height="32"/>
+        <image name="NSFontPanelMinusIdle" width="128" height="128"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="NSStopProgressTemplate" width="11" height="11"/>
         <image name="PlatypusDefault" width="512" height="512"/>
     </resources>
 </document>

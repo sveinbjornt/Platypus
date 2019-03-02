@@ -67,14 +67,14 @@
     }
 }
 
-- (void)loadProfileAtPath:(NSString *)filePath {
+- (BOOL)loadProfileAtPath:(NSString *)filePath {
     PlatypusAppSpec *spec = [[PlatypusAppSpec alloc] initWithProfile:filePath];
     
     // Make sure we got a spec from the file
     if (spec == nil) {
         [Alerts alert:@"Error loading profile"
         subTextFormat:@"Unable to load %@ profile at path '%@'.", PROGRAM_NAME, filePath];
-        return;
+        return NO;
     }
     
     // Note it as a recently opened file
@@ -89,7 +89,7 @@
         if (scriptStr == nil || scriptName == nil) {
             [Alerts alert:@"Error loading example"
             subTextFormat:@"Nil %@ or %@ in profile dictionary.", AppSpecKey_ScriptText, AppSpecKey_ScriptName];
-            return;
+            return NO;
         }
         
         scriptStr = [scriptStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -100,7 +100,7 @@
         BOOL succ = [scriptStr writeToFile:scriptPath atomically:YES encoding:DEFAULT_TEXT_ENCODING error:&err];
         if (succ == NO) {
             [Alerts alert:@"Error writing script to file" subTextFormat:@"%@", [err localizedDescription]];
-            return;
+            return NO;
         }
 
         spec[AppSpecKey_ScriptPath] = scriptPath;
@@ -113,6 +113,7 @@
 //                  subText: @"Profile was created with a different version of Platypus and may not load correctly."];
 //        }
     [platypusController controlsFromAppSpec:spec];
+    return YES;
 }
 
 #pragma mark - Saving

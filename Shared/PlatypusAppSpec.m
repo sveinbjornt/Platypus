@@ -45,19 +45,12 @@
 
 @implementation PlatypusAppSpec
 
-#pragma mark - NSMutableDictionary subclass using proxy
+#pragma mark - NSMutableDictionary proxy
 
 - (instancetype)init {
     if (self = [super init]) {
         // Proxy dictionary object
         properties = [[NSMutableDictionary alloc] init];
-    }
-    return self;
-}
-
-- (instancetype)initWithCapacity:(NSUInteger)numItems {
-    if (self = [super init]) {
-        properties = [[NSMutableDictionary alloc] initWithCapacity:numItems];
     }
     return self;
 }
@@ -164,7 +157,7 @@
         }
     }
     
-    return [self initWithDictionary:[NSDictionary dictionaryWithDictionary:updatedDict]];
+    return [self initWithDictionary:(NSDictionary *)updatedDict];
 }
 
 + (instancetype)specWithDefaults {

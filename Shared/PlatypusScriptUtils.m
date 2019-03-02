@@ -247,6 +247,11 @@
 #pragma mark - Script file convenience methods
 
 + (BOOL)isPotentiallyScriptAtPath:(NSString *)path {
+    BOOL isDir;
+    if ([FILEMGR fileExistsAtPath:path isDirectory:&isDir] && isDir) {
+        return NO;
+    }
+    
     if ([FILEMGR isExecutableFileAtPath:path]) {
         return YES;
     }

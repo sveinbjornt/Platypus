@@ -191,7 +191,7 @@
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
     NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
     if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
-        [profilesController loadProfileAtPath:filename];
+        return [profilesController loadProfileAtPath:filename];
     } else {
         [self loadScript:filename];
     }
@@ -878,15 +878,25 @@
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         
         if ([files count] == 1) {
-            NSString *filePath = files[0]; // only load the first dragged item
+            NSString *filePath = files[0];
             NSString *fileType = [WORKSPACE typeOfFile:filePath error:nil];
             
-            // Profile
-            if ([filePath hasSuffix:PROGRAM_PROFILE_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
-                [profilesController loadProfileAtPath:filePath];
-                return YES;
+            // App?
+            if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeApplicationBundle]) {
+                // Check if it's a Platypus-generated app. If it is, open app's script in editor.
+                NSString *scriptPath = [NSString stringWithFormat:@"%@/Contents/Resources/script", filePath];
+                BOOL isPlatypusApp = ([FILEMGR fileExistsAtPath:scriptPath]);
+                if (isPlatypusApp) {
+                    [self openScriptInBuiltInEditor:scriptPath];
+                    return YES;
+                }
             }
-            // Might be a script
+            
+            // Profile?
+            if ([filePath hasSuffix:PROGRAM_PROFILE_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
+                return [profilesController loadProfileAtPath:filePath];
+            }
+            // Script?
             if ([PlatypusScriptUtils isPotentiallyScriptAtPath:filePath]) {
                 [self loadScript:filePath];
                 return YES;
