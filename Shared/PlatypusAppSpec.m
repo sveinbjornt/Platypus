@@ -1,38 +1,38 @@
 /*
- Copyright (c) 2003-2018, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
- All rights reserved.
- 
- Redistribution and use in source and binary forms, with or without modification,
- are permitted provided that the following conditions are met:
- 
- 1. Redistributions of source code must retain the above copyright notice, this
- list of conditions and the following disclaimer.
- 
- 2. Redistributions in binary form must reproduce the above copyright notice, this
- list of conditions and the following disclaimer in the documentation and/or other
- materials provided with the distribution.
- 
- 3. Neither the name of the copyright holder nor the names of its contributors may
- be used to endorse or promote products derived from this software without specific
- prior written permission.
- 
- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
- NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- POSSIBILITY OF SUCH DAMAGE.
- */
+    Copyright (c) 2003-2019, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    All rights reserved.
 
-// PlatypusAppSpec is a data wrapper class around an NSDictionary containing
-// all the information / specifications for creating a Platypus application.
+    Redistribution and use in source and binary forms, with or without modification,
+    are permitted provided that the following conditions are met:
 
-#import "PlatypusAppSpec.h"
+    1. Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+
+    2. Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
+    materials provided with the distribution.
+
+    3. Neither the name of the copyright holder nor the names of its contributors may
+    be used to endorse or promote products derived from this software without specific
+    prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+    IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+    INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+    NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+
+// PlatypusAppSpec is a wrapper class around an NSDictionary containing all
+// the information / specifications needed to create a Platypus application.
+
 #import "Common.h"
+#import "PlatypusAppSpec.h"
 #import "PlatypusScriptUtils.h"
 #import "NSWorkspace+Additions.h"
 #import "NSFileManager+TempFiles.h"
@@ -136,7 +136,7 @@
     // relative to the profile's containing folder
     for (NSString *key in profileDict) {
         
-        // Keys ending with "Path"
+        // Keys ending with "Path", e.g. "InterpreterPath"
         if ([key hasSuffix:@"Path"] && ![profileDict[key] isEqualToString:@""]
             && [profileDict[key] isAbsolutePath] == NO) {
             NSString *absPath = [NSString stringWithFormat:@"%@/%@", basePath, profileDict[key]];
@@ -202,8 +202,7 @@
                                                                 usingDefaults:YES];
     
     NSString *defaultsAuthor = [DEFAULTS stringForKey:DefaultsKey_DefaultAuthor];
-    NSString *author = defaultsAuthor ? defaultsAuthor : NSFullUserName();
-    self[AppSpecKey_Author] = author;
+    self[AppSpecKey_Author] = defaultsAuthor ? defaultsAuthor : NSFullUserName();;
     
     self[AppSpecKey_Droppable] = @NO;
     self[AppSpecKey_Authenticate] = @NO;
@@ -309,13 +308,15 @@
     // See http://www.cocoadev.com/index.pl?NSTemporaryDirectory
     NSString *tmpPath = NSTemporaryDirectory();
     if (tmpPath == nil) {
-        tmpPath = @"/tmp/";
+        tmpPath = @"/tmp/"; // Fallback, just in case
     }
+    
     // Make sure we can write to temp path
     if ([FILEMGR isWritableFileAtPath:tmpPath] == NO) {
         _error = [NSString stringWithFormat:@"Could not write to the temp directory '%@'.", tmpPath];
         return FALSE;
     }
+    
     // .app
     tmpPath = [tmpPath stringByAppendingString:[self[AppSpecKey_DestinationPath] lastPathComponent]];
     [FILEMGR createDirectoryAtPath:tmpPath withIntermediateDirectories:NO attributes:nil error:nil];
@@ -398,10 +399,14 @@
     
     // Create icon
     // .app/Contents/Resources/appIcon.icns
-    if (self[AppSpecKey_IconPath] && ![self[AppSpecKey_IconPath] isEqualToString:@""]) {
-        [self report:@"Writing application icon"];
-        NSString *iconPath = [resourcesPath stringByAppendingString:@"/AppIcon.icns"];
-        [FILEMGR copyItemAtPath:self[AppSpecKey_IconPath] toPath:iconPath error:nil];
+    if (self[AppSpecKey_IconPath]) {
+        if ([FILEMGR fileExistsAtPath:self[AppSpecKey_IconPath]]) {
+            [self report:@"Writing application icon"];
+            NSString *iconPath = [resourcesPath stringByAppendingString:@"/AppIcon.icns"];
+            [FILEMGR copyItemAtPath:self[AppSpecKey_IconPath] toPath:iconPath error:nil];
+        } else {
+            [self report:@"No icon at path %@", self[AppSpecKey_IconPath]];
+        }
     }
     
     // Create document icon
@@ -442,7 +447,6 @@
             // If an entry in the array is a dictionary with a "Name"
             // and "Data" key, we create a file in a tmp directory
             // and then use its path
-            
             NSDictionary *bundledFileDict = (NSDictionary *)bundledFile;
             NSString *name = bundledFileDict[@"Name"];
             NSData *data = bundledFileDict[@"Data"];
@@ -479,7 +483,11 @@
             if ([FILEMGR fileExistsAtPath:bundledFileDestPath]) {
                 [FILEMGR removeItemAtPath:bundledFileDestPath error:nil];
             }
-            [FILEMGR copyItemAtPath:bundledFilePath toPath:bundledFileDestPath error:nil];
+            if ([FILEMGR fileExistsAtPath:bundledFilePath]) {
+                [FILEMGR copyItemAtPath:bundledFilePath toPath:bundledFileDestPath error:nil];
+            } else {
+                [self report:@"Bundled file '%@' does not exist, skipping.", fileName];
+            }
         }
     }
     
@@ -523,18 +531,9 @@
         return FALSE;
     }
     
-    // Make sure app is immediately registered with Launch Services
-    [WORKSPACE registerAppWithLaunchServices:destPath];
-    
-    // Register/update in the launch services database
+    // Register app with macOS Launch Services to update its database
     [self report:@"Registering app with Launch Services"];
-    LSRegisterURL((__bridge CFURLRef)([NSURL fileURLWithPath:destPath]), YES);
-    
-    // Update Services
-    if ([self[AppSpecKey_Service] boolValue]) {
-        [self report:@"Updating Dynamic Services"];
-        [WORKSPACE flushServices];
-    }
+    [WORKSPACE registerAppWithLaunchServices:destPath];
     
     [self report:@"Done"];
     
@@ -599,21 +598,21 @@
         @"en",                                  @"CFBundleDevelopmentRegion",
         self[AppSpecKey_Name],                  @"CFBundleExecutable",
         self[AppSpecKey_Name],                  @"CFBundleName",
+        self[AppSpecKey_Name],                  @"CFBundleDisplayName",
         copyrightString,                        @"NSHumanReadableCopyright",
-        @"1",                                   @"CFBundleVersion",
         self[AppSpecKey_Version],               @"CFBundleShortVersionString",
         self[AppSpecKey_Identifier],            @"CFBundleIdentifier",
         self[AppSpecKey_RunInBackground],       @"LSUIElement",
         @"6.0",                                 @"CFBundleInfoDictionaryVersion",
         @"MainMenu",                            @"NSMainNibFile",
-//        @"APPL",                                @"CFBundlePackageType",
+        @"APPL",                                @"CFBundlePackageType",
         PROGRAM_MIN_SYS_VERSION,                @"LSMinimumSystemVersion",
         @"NSApplication",                       @"NSPrincipalClass",
         @{@"NSAllowsArbitraryLoads": @YES},     @"NSAppTransportSecurity",
     nil];
     
     // Add icon name if icon is set
-    if (self[AppSpecKey_IconPath] && [self[AppSpecKey_IconPath] isEqualToString:@""] == NO) {
+    if (self[AppSpecKey_IconPath] && [FILEMGR fileExistsAtPath:self[AppSpecKey_IconPath]]) {
         infoPlist[@"CFBundleIconFile"] = @"AppIcon.icns";
     }
     
@@ -668,7 +667,7 @@
     // If any URI protocol handling
     if (self[AppSpecKey_URISchemes] && [self[AppSpecKey_URISchemes] count]) {
         
-        NSDictionary *dict = @{    @"CFBundleURLName": self[AppSpecKey_Name],
+        NSDictionary *dict = @{ @"CFBundleURLName": self[AppSpecKey_Name],
                                 @"CFBundleURLSchemes": self[AppSpecKey_URISchemes] };
         
         infoPlist[@"CFBundleURLTypes"] = @[dict];
@@ -678,7 +677,7 @@
 }
 
 - (void)report:(NSString *)format, ... {
-    if ([self silentMode] == YES) {
+    if ([self silentMode]) {
         return;
     }
     
@@ -693,6 +692,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:PLATYPUS_APP_SPEC_CREATION_NOTIFICATION object:string];
 }
 
+// Check spec for basic sanity
 - (BOOL)verify {
     
     if ([self[AppSpecKey_DestinationPath] hasSuffix:APPBUNDLE_SUFFIX] == FALSE) {
@@ -735,6 +735,13 @@
         return NO;
     }
     
+    for (NSString *path in self[AppSpecKey_BundledFiles]) {
+        if (![FILEMGR fileExistsAtPath:path]) {
+            _error = @"One or more bundled files no longer exist at the specified path.";
+            return NO;
+        }
+    }
+    
     return YES;
 }
 
@@ -744,6 +751,7 @@
     [self writeToFile:filePath atomically:YES];
 }
 
+// Dump spec dictionary to stdout in XML plist format
 - (void)dump {
     NSData *data = [NSPropertyListSerialization dataWithPropertyList:properties
                                                               format:NSPropertyListXMLFormat_v1_0
@@ -987,6 +995,8 @@
     return identifierString;
 }
 
+// Use ibtool to strip a given nib file.
+// This makes the file uneditable in Interface Builder.
 + (void)optimizeNibFile:(NSString *)nibPath {
     NSTask *ibToolTask = [[NSTask alloc] init];
     [ibToolTask setLaunchPath:IBTOOL_PATH];
@@ -995,6 +1005,7 @@
     [ibToolTask waitUntilExit];
 }
 
+// Run code signing tool on an app or binary
 + (int)signApp:(NSString *)path usingIdentity:(NSString *)identity {
     NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath:CODESIGN_PATH];

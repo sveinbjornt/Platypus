@@ -1,32 +1,32 @@
 /*
- Copyright (c) 2003-2018, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
- All rights reserved.
- 
- Redistribution and use in source and binary forms, with or without modification,
- are permitted provided that the following conditions are met:
- 
- 1. Redistributions of source code must retain the above copyright notice, this
- list of conditions and the following disclaimer.
- 
- 2. Redistributions in binary form must reproduce the above copyright notice, this
- list of conditions and the following disclaimer in the documentation and/or other
- materials provided with the distribution.
- 
- 3. Neither the name of the copyright holder nor the names of its contributors may
- be used to endorse or promote products derived from this software without specific
- prior written permission.
- 
- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
- NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- POSSIBILITY OF SUCH DAMAGE.
- */
+    Copyright (c) 2003-2019, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without modification,
+    are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+
+    2. Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
+    materials provided with the distribution.
+
+    3. Neither the name of the copyright holder nor the names of its contributors may
+    be used to endorse or promote products derived from this software without specific
+    prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+    IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+    INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+    NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
 
 #import "NSWorkspace+Additions.h"
 #import <sys/stat.h>
@@ -186,17 +186,16 @@
 
 - (NSArray *)handlerApplicationsForFile:(NSString *)filePath {
     NSURL *url = [NSURL fileURLWithPath:filePath];
-    NSMutableArray *appPaths = [[NSMutableArray alloc] initWithCapacity:256];
-    
     NSArray *applications = (NSArray *)CFBridgingRelease(LSCopyApplicationURLsForURL((__bridge CFURLRef)url, kLSRolesAll));
     if (applications == nil) {
         return @[];
     }
     
+    NSMutableArray *appPaths = [NSMutableArray array];
     for (NSURL *appURL in applications) {
         [appPaths addObject:[appURL path]];
     }
-    return [NSArray arrayWithArray:appPaths];
+    return [appPaths copy];
 }
 
 - (NSString *)defaultHandlerApplicationForFile:(NSString *)filePath {
@@ -314,15 +313,15 @@
 #pragma mark - Services
 
 - (void)flushServices {
-    // This call used to refresh Services without user having to log out/in
-    // but may not do anything any more. Anyway, we'll keep invoking it for now.
-    NSUpdateDynamicServices();
-
-    // This is the real deal
     // The next time Services information is needed, pbs will do a complete rescan
     // for apps vending Services and read their plist. This rescan may be very expensive.
-    [NSTask launchedTaskWithLaunchPath:@"/System/Library/CoreServices/pbs"
-                             arguments:@[@"-flush"]];
+    NSString *pbsPath = @"/System/Library/CoreServices/pbs";
+    if ([[NSFileManager defaultManager] fileExistsAtPath:pbsPath]) {
+        [NSTask launchedTaskWithLaunchPath:@"/System/Library/CoreServices/pbs"
+                                 arguments:@[@"-flush"]];
+    } else {
+        NSLog(@"flushServices: No binary at path %@", pbsPath);
+    }
 }
 
 #pragma mark - Misc
