@@ -1,9 +1,10 @@
 build/
 products/
 DerivedData
-Releases/*
 ExampleApps
-## Various settings
+Releases
+
+# Xcode
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -13,18 +14,18 @@ ExampleApps
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
-
-## Other
 *.xccheckout
 *.moved-aside
 *.xcuserstate
 *.xcworkspace
 
 platypus.man.html
+
+# Sparkle private key
 dsa_priv.pem
-compile_commands.json
-OCLint/oclint
-OCLint/xctool
+
+# Temp files created by tests
 Tests/platypus
 Tests/dummy*
 Tests/*.app
+Tests/args.txt
