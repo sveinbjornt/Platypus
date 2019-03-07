@@ -35,16 +35,16 @@
 #define PROGRAM_MIN_SYS_VERSION     @"10.8.0"
 #define PROGRAM_BUNDLE_IDENTIFIER   [NSString stringWithFormat:@"org.sveinbjorn.%@", PROGRAM_NAME]
 #define PROGRAM_AUTHOR              @"Sveinbjorn Thordarson"
-#define PROGRAM_WEBSITE             @"http://sveinbjorn.org/platypus"
-#define PROGRAM_GITHUB_WEBSITE      @"http://github.com/sveinbjornt/Platypus"
-#define PROGRAM_DONATIONS           @"http://sveinbjorn.org/donations"
+#define PROGRAM_WEBSITE             @"https://sveinbjorn.org/platypus"
+#define PROGRAM_GITHUB_WEBSITE      @"https://github.com/sveinbjornt/Platypus"
+#define PROGRAM_DONATIONS           @"https://sveinbjorn.org/donations"
 #define PROGRAM_PROFILE_UTI         @"org.sveinbjorn.platypus.profile"
 #define PROGRAM_PROFILE_SUFFIX      @"platypus"
 #define PROGRAM_MANPAGE             @"platypus.man.html"
 #define PROGRAM_LICENSE_FILE        @"License.html"
 #define PROGRAM_DOCUMENTATION       @"Documentation.html"
-#define PROGRAM_MANPAGE_URL         @"http://sveinbjorn.org/files/manpages/platypus.man.html"
-#define PROGRAM_DOCUMENTATION_URL   @"http://sveinbjorn.org/files/manpages/PlatypusDocumentation.html"
+#define PROGRAM_MANPAGE_URL         @"https://sveinbjorn.org/files/manpages/platypus.man.html"
+#define PROGRAM_DOCUMENTATION_URL   @"https://sveinbjorn.org/files/manpages/PlatypusDocumentation.html"
 #define PROGRAM_UTI_INFORMATION_URL @"https://en.wikipedia.org/wiki/Uniform_Type_Identifier"
 
 // Folders

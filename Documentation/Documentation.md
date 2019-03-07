@@ -2,7 +2,7 @@
 
 # Documentation for Platypus 5.3
 
-Last updated on November 25th, 2018. The latest version of this document can be found [here](http://sveinbjorn.org/platypus_documentation).
+Last updated on November 25th, 2018. The latest version of this document can be found [here](https://sveinbjorn.org/platypus_documentation).
 
 
 ## Introduction
@@ -22,14 +22,14 @@ Platypus was first released in 2003 and has since gone through many significant 
 <img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
-While Platypus is free, it is the product of countless hours of work spanning well over a decade. **If Platypus makes your life easier, please [make a donation](http://sveinbjorn.org/donations) to support further development.**
+While Platypus is free, it is the product of countless hours of work over the last fifteen years or so. **If Platypus makes your life easier, please [make a donation](https://sveinbjorn.org/donations) to support continued development.**
 
 I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, but I cannot answer queries about the particulars of individual scripting languages. Productive use of Platypus assumes that you are competent in your scripting language of choice and understand the UNIX shell environment.
 
 
 ### How does Platypus work?
 
-Regular macOS applications are [bundles](https://en.wikipedia.org/wiki/Bundle_%28OS_X%29) – special folders with a specific directory structure. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the bundle is opened in the graphical user interface.
+Regular macOS applications are [bundles](https://en.wikipedia.org/wiki/Bundle_%28macOS%29) – special folders with a specific directory structure. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the bundle is opened in the graphical user interface.
 
 Platypus creates application bundles with a special executable binary that launches a script and captures its output. The binary can be configured to present the script's text output in various ways, for example by showing a progress bar, a text view, a Status Item menu or a WebKit-based web view.
 
@@ -38,19 +38,19 @@ Platypus creates application bundles with a special executable binary that launc
 
 Platypus is **not** a set of bindings between the native macOS APIs and scripting languages. It is not a full GUI development environment and is not intended for creating substantial applications with complex and dynamic user interaction. If you want to create advanced macOS applications, you should learn to program using the Cocoa APIs. Platypus is not and never will be a substitute for learning to use the (mostly excellent) native application programming interfaces.
 
-That being said, you may be able to add some interactive GUI elements using [CocoaDialog](User interaction with CocoaDialog), [Pashua](https://www.bluem.net/en/projects/pashua/) or even [AppleScript](#prompting-for-input-via-osascript-applescript).
+That being said, you may be able to add some interactive GUI elements using [CocoaDialog](#user-interaction-with-cocoadialog), [Pashua](https://www.bluem.net/en/projects/pashua/) or [AppleScript](#prompting-for-input-via-osascript-applescript).
 
 
 ### System Requirements
 
-Both Platypus and the applications it generates require **macOS 10.8** or later and are provided as **64-bit Intel** binaries. If you want to target 10.6 and/or 32-bit systems, [version 4.9](http://sveinbjorn.org/files/software/platypus/platypus4.9.zip) continues to work just fine. If you want to target 10.4 and the PowerPC users of yore, you can use version [4.4](http://sveinbjorn.org/files/software/platypus/platypus4.4.zip).
+Both Platypus and the applications it generates require **macOS 10.8** or later and are provided as **64-bit Intel** binaries. If you want to target 10.6 and/or 32-bit systems, [version 4.9](https://sveinbjorn.org/files/software/platypus/platypus4.9.zip) continues to work just fine. If you want to target 10.4 and the PowerPC users of yore, you can use version [4.4](https://sveinbjorn.org/files/software/platypus/platypus4.4.zip).
 
 
 ### Credits
 
-Platypus was conceived and created by me, [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org). The  application icon was created by [Drífa Líftóra](http://drifaliftora.is).
+Platypus created by me, [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org). The  application icon was created by [Drífa Líftóra](https://drifaliftora.is).
 
-Thanks go to Seth Willits, author of the AGIconFamily class used for icon handling in Platypus, Bryan D K Jones, author of [VDKQueue](https://github.com/bdkjones/VDKQueue), Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, and Andy Matuschak for the [Sparkle](http://sparkle-project.org) update framework. [Stack Overflow](http://stackoverflow.com) and the [OmniGroup](https://www.omnigroup.com) Mac development mailing list and have also been invaluable over the years.
+Thanks go to Seth Willits, author of the AGIconFamily class used for icon handling in Platypus, Bryan D K Jones, author of [VDKQueue](https://github.com/bdkjones/VDKQueue), Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, James S. Derry and Paul Kim for improvements to the built-in editor, and Andy Matuschak for the [Sparkle](https://sparkle-project.org) update framework. [Stack Overflow](https://stackoverflow.com) and the [OmniGroup](https://www.omnigroup.com) Mac development mailing list and have also been invaluable over the years.
 
 Finally, I am much indebted to [Wilfredo Sanchez](http://www.wsanchez.net), author of [DropScript](http://www.wsanchez.net/software), the proof-of-concept project which inspired me to create Platypus in the first place.
 
@@ -105,7 +105,7 @@ Please note that the interpreter must exist on the system where the application 
 
 #### None
 
-Windowless application that provides no graphical feedback. All script output is redirected to `STDERR`.
+Windowless application that provides no graphical feedback. All script output is redirected to `stderr`.
 
 #### Progress Bar
 
@@ -115,7 +115,7 @@ A small window with an indeterminate progress bar and a "Cancel" button appears 
 
 #### Text Window
 
-Shows a window with a text view containing script output. Please note that this text view is *not* a full, interactive terminal session, and cannot be used to prompt for user input via STDIN. It does not support any of the standard terminal commands and cannot be used to display ncurses-based interfaces.
+Shows a window with a text view containing script output. Please note that this text view is *not* a full, interactive terminal session, and cannot be used to prompt for user input via `stdin`. It does not support any of the standard terminal commands and cannot be used to display ncurses-based interfaces.
 
 The styling of the text view can configured under **Text Settings**.
 
@@ -171,11 +171,11 @@ You can also set **Author** and **Version** metadata. This information will appe
 
 <img src="images/special_options.png" style="float: right; margin-left: 20px; margin-bottom:20px;" width="260">
 
-**Run with root privileges:**  If selected, the application prompts for an Administrator password and executes the script with escalated (root) privileges using Apple's Security Framework. This is not strictly equivalent to running the script *as the root user*. For details, see the [documentation for the Mac OS Security Framework](http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges).
+**Run with root privileges:**  If selected, the application prompts for an Administrator password and executes the script with escalated (root) privileges using Apple's Security Framework. This is not strictly equivalent to running the script *as the root user*. For details, see the [documentation for the macOS Security Framework](http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges).
 
-*Platypus scripts must not use the 'sudo' command*. This causes the script to prompt for input via `STDIN`, and since no input is forthcoming, the application will hang indefinitely.
+*Platypus scripts must not use the 'sudo' command*. This causes the script to prompt for input via `stdin`, and since no input is forthcoming, the application will hang indefinitely.
 
-Please note that if this option is selected, `STDERR` output cannot be captured due to limitations in the Security APIs. This can be circumvented by using a shell script to execute another script while piping `STDERR` into `STDOUT` (e.g. `perl myScript.pl 2>&1`).
+Please note that if this option is selected, `stderr` output cannot be captured due to limitations in the Security APIs. This can be circumvented by using a shell script to execute another script while piping `stderr` into `stdout` (e.g. `python script.py 2>&1`).
 
 **Runs in background:** If selected, the application registers itself as a User Interface Element (LSUIElement) and will not appear in the Dock when launched.
 
@@ -250,7 +250,7 @@ This feature only works for interpreters that support syntax checking (bash, Per
 
 ### Show Shell Command
 
-Platypus includes a **command line tool** counterpart to the Platypus.app application, `platypus`,which can be installed into `/usr/local/bin/` via **Preferences**. The man page for this tool is available from the Help menu, and via the command line. There is also an [online version available](http://sveinbjorn.org/files/manpages/platypus.man.html)</a>.
+Platypus includes a **command line tool** counterpart to the Platypus.app application, `platypus`,which can be installed into `/usr/local/bin/` via **Preferences**. The man page for this tool is available from the Help menu, and via the command line. There is also an [online version available](https://sveinbjorn.org/files/manpages/platypus.man.html)</a>.
 
 The command line tool does not in any way depend on the Platypus application once it has been installed.
 
@@ -293,14 +293,14 @@ Profiles can be used with the `platypus` command line tool. This allows you to s
 /usr/local/bin/platypus -P myProfile.platypus MyApp.app
 ```
 
-See the command line tool man page for further details. An HTML version of the man page is [available here](http://sveinbjorn.org/files/manpages/platypus.man.html).
+See the command line tool man page for further details. An HTML version of the man page is [available here](https://sveinbjorn.org/files/manpages/platypus.man.html).
 
 
 
 
 ### Platypus Profile Format
 
-Platypus Profiles are standard macOS [property lists](http://en.wikipedia.org/wiki/Property_list) in XML format. They can be edited using either a plain text editor or Xcode.
+Platypus Profiles are standard macOS [property lists](https://en.wikipedia.org/wiki/Property_list) in XML format. They can be edited using either a plain text editor or Xcode.
 
 As of version 5.2, Platypus understands and resolves relative paths in Profiles. However, neither the Platypus app nor the command line tool *generate* relative paths, so if you want to use them in a Profile, you will have to edit it manually.
 
@@ -412,7 +412,7 @@ Status Menu apps can also create submenus and menu separators by printing out li
 ```
 MENUITEMICON|my_bundled_file.png|Bundled file example\n
 MENUITEMICON|/path/to/icon.png|Absolute path example\n
-MENUITEMICON|http://sveinbjorn.org/images/andlat.png|Remote URL example\n
+MENUITEMICON|https://sveinbjorn.org/images/andlat.png|Remote URL example\n
 ```
 
 **Creating a menu separator**
@@ -456,7 +456,7 @@ sub dialog {
 my $result = dialog("Answer to life, the universe and everything?", "42");
 ```
 
-[Source.](http://stackoverflow.com/questions/33601580/using-platypus-to-create-mac-os-x-applications-from-a-perl-script/33603239#33603239)
+[Source.](https://stackoverflow.com/questions/33601580/using-platypus-to-create-mac-os-x-applications-from-a-perl-script/33603239#33603239)
 
 
 
@@ -474,7 +474,7 @@ Platypus includes many built-in examples. These can be opened via the **Examples
     
 * **DataURLifier**: Drop a file on a window to get its [Data URI](https://en.wikipedia.org/wiki/Data_URI_scheme).
     
-* **FastDMGMounter**: Creates a replacement for DiskImageMounter. Uses the `hdiutil` command line tool to quickly mount `.dmg` disk images, skipping verification and auto-accepting any EULAs. See [this page](http://sveinbjorn.org/macosx_hack_faster_dmg_image_mounting) for details.
+* **FastDMGMounter**: Creates a replacement for DiskImageMounter. Uses the `hdiutil` command line tool to quickly mount `.dmg` disk images, skipping verification and auto-accepting any EULAs.
     
 * **IcnsToIconset**: Converts Apple `.icns` files to `.iconset` folders with PNGs for the various representations.
     
@@ -513,35 +513,35 @@ If you come up with a particularly nifty use of Platypus and think it might make
 
 Platypus uses <a href="https://sparkle-project.org">Sparkle</a> for updates. You can update to the latest version by selecting **Check for updates...** in the application menu. Future releases may or may not break your saved profiles. Consult the version change log for details.
 
-An AppCast XML file is available [here](http://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml).
+The AppCast XML file is available [here](https://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml).
 
-To get the absolutely latest development version of Platypus, you can check out the source repository on [GitHub](http://github.com/sveinbjornt/Platypus).
+To get the absolutely latest development version of Platypus, you can check out the source repository on [GitHub](https://github.com/sveinbjornt/Platypus).
 
 
 ## Frequently Asked Questions
 
 ### Can I use Platypus to create proprietary software?
 
-Yes. Platypus is distributed under the terms and conditions of the three-clause [BSD License](http://www.sveinbjorn.org/files/software/platypus/documentation/License.html).
+Yes. Platypus is distributed under the terms and conditions of the three-clause [BSD License](https://sveinbjorn.org/files/software/platypus/documentation/License.html).
 
 
 
 ### Help, text output isn't being shown until the script is done!
 
-You need to autoflush the output buffer. In Perl, this is done with the following command at the start of your script:
-
-```
-$| = 1;
-```
-
-In Python, you can pass the `-u` parameter to the interpreter to get unbuffered output, or alternately flush the output buffer in code:
+You need to autoflush the output buffer. In Python, you can pass the `-u` parameter to the interpreter to get unbuffered output, or alternately flush the output buffer in code:
 
 ```
 import sys
 sys.stdout.flush()
 ```
 
-For help with other scripting languages, [Stack Overflow](http://stackoverflow.com) is your friend.
+In Perl, this is done with the following command at the start of your script:
+
+```
+$| = 1;
+```
+
+For help with other scripting languages, [Stack Overflow](https://stackoverflow.com) is your friend.
 
 
 
@@ -629,12 +629,12 @@ Contents/Resources/MainMenu.nib
 
 If you want to keep your own modified nib for repeated use, you can simply save a copy, edit it and add it to **Bundled Files** when you create an app. It will then overwrite the default MainMenu.nib file:
 
-The Platypus command line tool also allows you to specify an alternate nib file using the `-H` flag. See the [man page](http://sveinbjorn.org/files/manpages/platypus.man.html) for details.
+The Platypus command line tool also allows you to specify an alternate nib file using the `-H` flag. See the [man page](https://sveinbjorn.org/files/manpages/platypus.man.html) for details.
 
 
-### Can I prompt for user input (STDIN) in my Platypus-wrapped scripts?
+### Can I prompt for user input via `stdin` in my Platypus-wrapped scripts?
 
-No. Platypus applications do not present the user with an interactive shell, and therefore no bidirectional communication can take place using standard input. Platypus apps can only capture and display the text output of your script. They cannot prompt for input via STDIN, and will not be able to do so in the foreseeable future. This means that any commands that require input via STDIN, such as `sudo`, or Python's `input()` will not work from within a Platypus application.
+No. Platypus applications do not present the user with an interactive shell, and therefore no bidirectional communication can take place using standard input. Platypus apps can only capture and display the text output of your script. They cannot prompt for input via `stdin`, and will not be able to do so in the foreseeable future. This means that any commands that require input via `stdin`, such as `sudo`, or Python's `input()` will not work from within a Platypus application.
 
 
 ### Is there a way to sign Platypus-generated apps so they don't require GateKeeper approval?
@@ -643,7 +643,7 @@ Platypus-generated apps are not signed by default. Due to GateKeeper, this means
 
 If you have a Mac developer signing certificate in your Keychain, you can select it as a signing certificate in Preferences.
 
-The app is signed by running the following command:
+The app is signed using the following command:
 
 ```
 /usr/bin/codesign -s "your-signing-identity" path/to/MyApp.app
@@ -660,7 +660,7 @@ Yes. You can execute a Platypus-generated binary via the command line. Any argum
 # ./MyApp.app/Contents/MacOS/MyApp -arg1 -arg2
 ```
 
-In this case, both `-arg1` and `-arg2` will be passed on as arguments to your script. This feature makes it possible to create protocol handlers for Firefox and other programs that directly invoke macOS application binaries.
+In this case, both `-arg1` and `-arg2` will be passed on as arguments to your script. This feature makes it possible to create protocol handlers for Firefox and other programs that invoke macOS application binaries from the shell.
 
 
 ### Where is the command line tool installed?
