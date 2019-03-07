@@ -60,7 +60,7 @@
 #define CMDLINE_PROGNAME            @"platypus"
 #define CMDLINE_SCRIPTEXEC_BIN_NAME @"ScriptExec"
 #define CMDLINE_SCRIPTEXEC_GZIP_NAME @"ScriptExec.gz"
-#define CMDLINE_MANPAGE_GZIP_NAME   @"platypus.1.gz"
+#define CMDLINE_MANPAGE_NAME        @"platypus.1.gz"
 #define CMDLINE_DEFAULT_ICON_NAME   @"PlatypusDefault.icns"
 #define CMDLINE_NIB_NAME            @"MainMenu.nib"
 #define CMDLINE_VERSION_ARG_FLAG    @"--version"

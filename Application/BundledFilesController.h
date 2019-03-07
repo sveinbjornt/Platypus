@@ -40,5 +40,6 @@
 
 - (IBAction)setToDefaults:(id)sender;
 - (void)addFiles:(NSArray *)filePaths;
+- (BOOL)hasFileName:(NSString *)filename;
 
 @end

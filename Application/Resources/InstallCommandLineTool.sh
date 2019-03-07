@@ -41,7 +41,7 @@ chmod +x "%%CMDLINE_TOOL_PATH%%"
 echo "Installing man page"
 rm "%%CMDLINE_MANPAGE_PATH%%" &> /dev/null
 rm "%%CMDLINE_MANPAGE_PATH%%.gz" &> /dev/null
-cp "%%CMDLINE_MANPAGE_GZIP_NAME%%" "%%CMDLINE_MANPAGE_PATH%%"
+cp "%%CMDLINE_MANPAGE_NAME%%" "%%CMDLINE_MANPAGE_PATH%%"
 chmod 644 "%%CMDLINE_MANPAGE_PATH%%"
 chown ${REAL_USER_ID} "%%CMDLINE_MANPAGE_PATH%%"
 

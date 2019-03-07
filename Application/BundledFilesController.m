@@ -187,8 +187,8 @@
 
 - (NSArray <NSString *> *)filePaths {
     NSMutableArray <NSString *> *filePaths = [NSMutableArray array];
-    for (NSDictionary *fileItem in files) {
-        [filePaths addObject:fileItem[@"Path"]];
+    for (NSDictionary *item in files) {
+        [filePaths addObject:item[@"Path"]];
     }
     return [filePaths copy];
 }
@@ -395,13 +395,12 @@
 
 - (void)menuWillOpen:(NSMenu *)menu {
     // Dynamically generate Open With submenu for item
+    NSString *path = nil;
     NSUInteger idx = [tableView clickedRow];
     if (idx != -1) {
-        NSString *path = files[idx][@"Path"];
-        [WORKSPACE openWithMenuForFile:path target:nil action:nil menu:menu];
-    } else {
-        menu = nil;
+        path = files[idx][@"Path"];
     }
+    [WORKSPACE openWithMenuForFile:path target:nil action:nil menu:menu];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {

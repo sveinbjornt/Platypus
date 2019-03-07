@@ -95,7 +95,6 @@
 #pragma mark -
 
 - (IBAction)apply:(id)sender {
-    [[argsButton window] setTitle:PROGRAM_NAME];
     [NSApp stopModal];
 }
 
@@ -104,13 +103,8 @@
     [self clearInterpreterArgs:self];
 }
 
-- (IBAction)showHelp:(id)sender {
-    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_URL]];
-}
-
 - (IBAction)show:(id)sender {
     NSWindow *parentWindow = [argsButton window];
-    [parentWindow setTitle:[NSString stringWithFormat:@"%@ - Arguments", PROGRAM_NAME]];
     
     [self constructCommandString];
     
