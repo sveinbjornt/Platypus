@@ -28,39 +28,37 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
+#import "InterpreterTextField.h"
+#import "Common.h"
+#import "BundledFilesController.h"
 
-// all the information required to create a Platypus application.
+@interface InterpreterTextField()
+{
+    IBOutlet BundledFilesController *bundledFilesController;
+}
+@end
 
-#import <Cocoa/Cocoa.h>
-#import "MutableDictProxy.h"
+@implementation InterpreterTextField
 
-// PlatypusAppSpec is a dictionary proxy class containing all data needed to create app.
-// The class behaves like a dict since it inherits from MutableDictProxy object and
-// can therefore be subscripted using modern Objective-C syntax, e.g. spec[@"key"]
-@interface PlatypusAppSpec : MutableDictProxy
+- (BOOL)hasValidPath {
+    BOOL isDir;
+    NSString *path = [[self stringValue] stringByExpandingTildeInPath];
 
-@property (nonatomic, readonly, strong) NSString *error;
-@property (nonatomic) BOOL silentMode;
+    BOOL existsAbsolute = ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir);
+    if (existsAbsolute) {
+        return YES;
+    }
 
-- (PlatypusAppSpec *)initWithDefaults;
-- (PlatypusAppSpec *)initWithDefaultsForScript:(NSString *)scriptPath;
-- (PlatypusAppSpec *)initWithDictionary:(NSDictionary *)dict;
-- (PlatypusAppSpec *)initWithProfile:(NSString *)filePath;
+    if (isDir) {
+        return NO;
+    }
 
-+ (PlatypusAppSpec *)specWithDefaults;
-+ (PlatypusAppSpec *)specWithDictionary:(NSDictionary *)dict;
-+ (PlatypusAppSpec *)specWithProfile:(NSString *)filePath;
-+ (PlatypusAppSpec *)specWithDefaultsFromScript:(NSString *)scriptPath;
-
-- (BOOL)create;
-- (BOOL)verify;
-- (void)dump;
-- (void)writeToFile:(NSString *)filePath;
-
-- (NSString *)commandStringUsingShortOpts:(BOOL)shortOpts;
-
-+ (NSString *)bundleIdentifierForAppName:(NSString *)name
-                              authorName:(NSString *)authorName
-                           usingDefaults:(BOOL)def;
+//    NSLog(@"Checking if %@ in bundled files", path);
+//    if ([path length] && [bundledFilesController hasFileName:path]) {
+//        return YES;
+//    }
+    
+    return NO;
+}
 
 @end

@@ -28,39 +28,8 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
+#import <Foundation/Foundation.h>
 
-// all the information required to create a Platypus application.
-
-#import <Cocoa/Cocoa.h>
-#import "MutableDictProxy.h"
-
-// PlatypusAppSpec is a dictionary proxy class containing all data needed to create app.
-// The class behaves like a dict since it inherits from MutableDictProxy object and
-// can therefore be subscripted using modern Objective-C syntax, e.g. spec[@"key"]
-@interface PlatypusAppSpec : MutableDictProxy
-
-@property (nonatomic, readonly, strong) NSString *error;
-@property (nonatomic) BOOL silentMode;
-
-- (PlatypusAppSpec *)initWithDefaults;
-- (PlatypusAppSpec *)initWithDefaultsForScript:(NSString *)scriptPath;
-- (PlatypusAppSpec *)initWithDictionary:(NSDictionary *)dict;
-- (PlatypusAppSpec *)initWithProfile:(NSString *)filePath;
-
-+ (PlatypusAppSpec *)specWithDefaults;
-+ (PlatypusAppSpec *)specWithDictionary:(NSDictionary *)dict;
-+ (PlatypusAppSpec *)specWithProfile:(NSString *)filePath;
-+ (PlatypusAppSpec *)specWithDefaultsFromScript:(NSString *)scriptPath;
-
-- (BOOL)create;
-- (BOOL)verify;
-- (void)dump;
-- (void)writeToFile:(NSString *)filePath;
-
-- (NSString *)commandStringUsingShortOpts:(BOOL)shortOpts;
-
-+ (NSString *)bundleIdentifierForAppName:(NSString *)name
-                              authorName:(NSString *)authorName
-                           usingDefaults:(BOOL)def;
+@interface MutableDictProxy : NSMutableDictionary
 
 @end

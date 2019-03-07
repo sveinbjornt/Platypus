@@ -37,54 +37,7 @@
 #import "NSWorkspace+Additions.h"
 #import "NSFileManager+TempFiles.h"
 
-@interface PlatypusAppSpec()
-{
-    NSMutableDictionary *properties;
-}
-@end
-
 @implementation PlatypusAppSpec
-
-#pragma mark - NSMutableDictionary proxy
-
-- (instancetype)init {
-    if (self = [super init]) {
-        // Proxy dictionary object
-        properties = [[NSMutableDictionary alloc] init];
-    }
-    return self;
-}
-
-- (instancetype)initWithContentsOfFile:(NSString *)path {
-    if (self = [super init]) {
-        properties = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    }
-    return self;
-}
-
-- (void)removeObjectForKey:(id)aKey {
-    [properties removeObjectForKey:aKey];
-}
-
-- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey {
-    [properties setObject:anObject forKey:aKey];
-}
-
-- (id)objectForKey:(id)aKey {
-    return [properties objectForKey:aKey];
-}
-
-- (void)addEntriesFromDictionary:(NSDictionary *)otherDictionary {
-    [properties addEntriesFromDictionary:otherDictionary];
-}
-
-- (NSEnumerator *)keyEnumerator {
-    return [properties keyEnumerator];
-}
-
-- (NSUInteger) count {
-    return [properties count];
-}
 
 #pragma mark - Create spec
 
@@ -104,20 +57,20 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     if (self = [self initWithDefaults]) {
-        [properties addEntriesFromDictionary:dict];
+        [self addEntriesFromDictionary:dict];
         
-        // Backwards compatibility mapping old key names to new
-        if (dict[AppSpecKey_InterpreterPath_Legacy] != nil) {
-            properties[AppSpecKey_InterpreterPath] = dict[AppSpecKey_InterpreterPath_Legacy];
+        // Backwards compatibility, mapping old key names to new
+        if (dict[AppSpecKey_InterpreterPath_Legacy]) {
+            self[AppSpecKey_InterpreterPath] = dict[AppSpecKey_InterpreterPath_Legacy];
         }
-        if (dict[AppSpecKey_InterfaceType_Legacy] != nil) {
-            properties[AppSpecKey_InterfaceType] = dict[AppSpecKey_InterfaceType_Legacy];
+        if (dict[AppSpecKey_InterfaceType_Legacy]) {
+            self[AppSpecKey_InterfaceType] = dict[AppSpecKey_InterfaceType_Legacy];
         }
-        if (dict[AppSpecKey_DocIconPath_Legacy] != nil) {
-            properties[AppSpecKey_DocIconPath] = dict[AppSpecKey_DocIconPath_Legacy];
+        if (dict[AppSpecKey_DocIconPath_Legacy]) {
+            self[AppSpecKey_DocIconPath] = dict[AppSpecKey_DocIconPath_Legacy];
         }
-        if (dict[AppSpecKey_RunInBackground_Legacy] != nil) {
-            properties[AppSpecKey_RunInBackground] = dict[AppSpecKey_RunInBackground_Legacy];
+        if (dict[AppSpecKey_RunInBackground_Legacy]) {
+            self[AppSpecKey_RunInBackground] = dict[AppSpecKey_RunInBackground_Legacy];
         }        
     }
     return self;
@@ -753,7 +706,7 @@
 
 // Dump spec dictionary to stdout in XML plist format
 - (void)dump {
-    NSData *data = [NSPropertyListSerialization dataWithPropertyList:properties
+    NSData *data = [NSPropertyListSerialization dataWithPropertyList:self
                                                               format:NSPropertyListXMLFormat_v1_0
                                                              options:0
                                                                error:nil];

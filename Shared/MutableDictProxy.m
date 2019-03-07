@@ -28,39 +28,69 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-
-// all the information required to create a Platypus application.
-
-#import <Cocoa/Cocoa.h>
 #import "MutableDictProxy.h"
 
-// PlatypusAppSpec is a dictionary proxy class containing all data needed to create app.
-// The class behaves like a dict since it inherits from MutableDictProxy object and
-// can therefore be subscripted using modern Objective-C syntax, e.g. spec[@"key"]
-@interface PlatypusAppSpec : MutableDictProxy
+@interface MutableDictProxy()
+{
+    NSMutableDictionary *_properties;
+}
+@end
 
-@property (nonatomic, readonly, strong) NSString *error;
-@property (nonatomic) BOOL silentMode;
+@implementation MutableDictProxy
 
-- (PlatypusAppSpec *)initWithDefaults;
-- (PlatypusAppSpec *)initWithDefaultsForScript:(NSString *)scriptPath;
-- (PlatypusAppSpec *)initWithDictionary:(NSDictionary *)dict;
-- (PlatypusAppSpec *)initWithProfile:(NSString *)filePath;
+#pragma mark - NSMutableDictionary proxy
 
-+ (PlatypusAppSpec *)specWithDefaults;
-+ (PlatypusAppSpec *)specWithDictionary:(NSDictionary *)dict;
-+ (PlatypusAppSpec *)specWithProfile:(NSString *)filePath;
-+ (PlatypusAppSpec *)specWithDefaultsFromScript:(NSString *)scriptPath;
+- (instancetype)init {
+    if (self = [super init]) {
+        // Proxy dictionary object
+        _properties = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
 
-- (BOOL)create;
-- (BOOL)verify;
-- (void)dump;
-- (void)writeToFile:(NSString *)filePath;
+- (instancetype)initWithContentsOfFile:(NSString *)path {
+    if (self = [super init]) {
+        _properties = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    }
+    return self;
+}
 
-- (NSString *)commandStringUsingShortOpts:(BOOL)shortOpts;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super init]) {
+        _properties = [[NSMutableDictionary alloc] initWithCoder:aDecoder];
+    }
+    return self;
+}
 
-+ (NSString *)bundleIdentifierForAppName:(NSString *)name
-                              authorName:(NSString *)authorName
-                           usingDefaults:(BOOL)def;
+- (instancetype)initWithDictionary:(NSDictionary *)dict {
+    if (self = [super init]) {
+        _properties = [[NSMutableDictionary alloc] initWithDictionary:dict];
+    }
+    return self;
+}
+
+- (void)removeObjectForKey:(id)aKey {
+    [_properties removeObjectForKey:aKey];
+}
+
+- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey {
+    [_properties setObject:anObject forKey:aKey];
+}
+
+- (id)objectForKey:(id)aKey {
+    return [_properties objectForKey:aKey];
+}
+
+- (void)addEntriesFromDictionary:(NSDictionary *)otherDictionary {
+    [_properties addEntriesFromDictionary:otherDictionary];
+}
+
+- (NSEnumerator *)keyEnumerator {
+    return [_properties keyEnumerator];
+}
+
+- (NSUInteger) count {
+    return [_properties count];
+}
 
 @end
