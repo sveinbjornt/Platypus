@@ -32,7 +32,7 @@
 #import "NSResponderNotifyingTableView.h"
 
 @class SuffixTypeListController, UniformTypeListController;
-@interface DropSettingsController : NSWindowController <NSTableViewDelegate, NSTableViewFirstResponderDelegate>
+@interface DropSettingsController : NSWindowController <NSTableViewDelegate, NSTableViewFirstResponderDelegate, NSMenuItemValidation>
 
 @property (nonatomic, assign) NSArray <NSString *> *suffixList;
 @property (nonatomic, assign) NSArray <NSString *> *uniformTypesList;

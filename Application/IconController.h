@@ -31,7 +31,7 @@
 #import <Cocoa/Cocoa.h>
 #import "STDragImageView.h"
 
-@interface IconController : NSObject <STDragImageViewDragDelegate>
+@interface IconController : NSObject <STDragImageViewDragDelegate, NSMenuItemValidation>
 
 @property (nonatomic, readonly) BOOL hasIconFile;
 @property (nonatomic, readonly, copy) NSString *icnsFilePath;

@@ -30,7 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface TextSettingsController : NSWindowController
+@interface TextSettingsController : NSWindowController <NSMenuItemValidation>
 
 @property (nonatomic, copy) NSFont *textFont;
 @property (nonatomic, copy) NSColor *textForegroundColor;

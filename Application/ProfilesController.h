@@ -30,7 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ProfilesController : NSObject
+@interface ProfilesController : NSObject <NSMenuItemValidation>
 
 - (BOOL)loadProfileAtPath:(NSString *)filePath;
 
