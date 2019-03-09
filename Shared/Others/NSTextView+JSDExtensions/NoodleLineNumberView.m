@@ -77,9 +77,8 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-#if !__has_feature(objc_arc)
-    [super dealloc]; // added by JSD
-#endif
+    //[super dealloc]; // added by JSD
+    
 }
 
 - (NSFont *)defaultFont
@@ -212,8 +211,8 @@
 			[invocation setSelector:@selector(setRuleThickness:)];
 			[invocation setTarget:self];
 			[invocation setArgument:&newThickness atIndex:2];
-			
-			[invocation performSelector:@selector(invoke) withObject:nil afterDelay:0.0];
+			[invocation invoke];
+			//[invocation performSelector:@selector(invoke) withObject:nil afterDelay:0.0];
         }
 	}
 }
