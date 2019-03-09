@@ -473,7 +473,7 @@ DQ
                             <action selector="selectScript:" target="335" id="351"/>
                         </connections>
                     </button>
-                    <textField toolTip="Path to script interpreter" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="305" customClass="STPathTextField">
+                    <textField toolTip="Path to script interpreter" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="305" customClass="InterpreterTextField">
                         <rect key="frame" x="410" y="456" width="156" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingHead" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="left" title="/bin/sh" drawsBackground="YES" id="10945">
@@ -482,6 +482,7 @@ DQ
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <outlet property="bundledFilesController" destination="1234" id="J4n-JD-DhY"/>
                             <outlet property="delegate" destination="335" id="1159"/>
                         </connections>
                     </textField>
@@ -2085,7 +2086,7 @@ DQ
                     <button toolTip="Remove selected argument" verticalHuggingPriority="750" id="11265">
                         <rect key="frame" x="276" y="64" width="23" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSFontPanelMinusIdle" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="11268">
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" inset="2" id="11268">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                             <string key="keyEquivalent"></string>
@@ -2103,17 +2104,6 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="setToDefaults:" target="1418" id="nTU-A3-77v"/>
-                        </connections>
-                    </button>
-                    <button toolTip="Show help for Arguments Editor" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="waL-t3-sB1">
-                        <rect key="frame" x="103" y="16" width="25" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VMZ-5n-MUu">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showHelp:" target="1418" id="QEr-9E-BmC"/>
                         </connections>
                     </button>
                 </subviews>
@@ -2929,7 +2919,6 @@ Gw
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSApplicationIcon" width="32" height="32"/>
-        <image name="NSFontPanelMinusIdle" width="128" height="128"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="NSStopProgressTemplate" width="11" height="11"/>
         <image name="PlatypusDefault" width="512" height="512"/>

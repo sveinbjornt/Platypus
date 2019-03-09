@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -55,7 +55,7 @@ DQ
                             <action selector="endModal:" target="-2" id="8oW-sY-PmP"/>
                         </connections>
                     </button>
-                    <textField toolTip="Path to the file being edited" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="41">
+                    <textField toolTip="Path to the file being edited" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="41">
                         <rect key="frame" x="43" y="372" width="360" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" id="42">
@@ -80,20 +80,20 @@ DQ
                     <scrollView toolTip="Script text field" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="8">
                         <rect key="frame" x="20" y="52" width="560" height="315"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" id="Cu2-E5-3dG">
+                        <clipView key="contentView" drawsBackground="NO" id="Cu2-E5-3dG">
                             <rect key="frame" x="1" y="1" width="543" height="313"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView importsGraphics="NO" richText="NO" selectionGranularity="word" findStyle="panel" allowsUndo="YES" id="11">
+                                <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" selectionGranularity="word" findStyle="panel" allowsUndo="YES" id="11">
                                     <rect key="frame" x="0.0" y="0.0" width="543" height="313"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <size key="minSize" width="543" height="313"/>
                                     <size key="maxSize" width="1103" height="10000000"/>
-                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="9">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
@@ -104,7 +104,7 @@ DQ
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button toolTip="Show File in Finder" verticalHuggingPriority="750" misplaced="YES" id="qQb-YV-phA">
+                    <button toolTip="Show File in Finder" verticalHuggingPriority="750" id="qQb-YV-phA">
                         <rect key="frame" x="555" y="372" width="25" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="smallSquare" title="🔍" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="odA-WB-gNz">
@@ -157,7 +157,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="CnJ-CU-J3l"/>
                     </imageView>
-                    <button toolTip="Save Changes and Close Editor" verticalHuggingPriority="750" misplaced="YES" id="n9n-tW-0Fg" userLabel="Cmd-S Placeholder">
+                    <button toolTip="Save Changes and Close Editor" verticalHuggingPriority="750" id="n9n-tW-0Fg" userLabel="Cmd-S Placeholder">
                         <rect key="frame" x="418" y="415" width="94" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="cmdS Plchldr" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="xAB-xJ-vv5">

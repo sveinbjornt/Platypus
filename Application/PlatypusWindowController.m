@@ -268,28 +268,39 @@
 }
 
 - (IBAction)editScript:(id)sender {
+    [self openScriptInEditor:[scriptPathTextField stringValue]];
+}
+
+- (void)openScriptInEditor:(NSString *)scriptPath {
     // See if file exists
-    if (![FILEMGR fileExistsAtPath:[scriptPathTextField stringValue]]) {
+    if (![FILEMGR fileExistsAtPath:scriptPath]) {
         [Alerts alert:@"File does not exist" subText:@"No file exists at the specified path"];
         return;
     }
     
     // If the default editor is the built-in editor, we pop down the editor sheet
     if ([[DEFAULTS stringForKey:DefaultsKey_DefaultEditor] isEqualToString:DEFAULT_EDITOR]) {
-        [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
+        [self openScriptInBuiltInEditor:scriptPath];
     } else {
         // Open it in the external application
         NSString *defaultEditor = [DEFAULTS stringForKey:DefaultsKey_DefaultEditor];
         if ([WORKSPACE fullPathForApplication:defaultEditor] != nil) {
-            [WORKSPACE openFile:[scriptPathTextField stringValue] withApplication:defaultEditor];
+            [WORKSPACE openFile:scriptPath withApplication:defaultEditor];
         } else {
             // Complain if editor is not found, set it to the built-in editor
             [Alerts alert:@"Application not found"
-            subTextFormat:@"The application '%@' could not be found on your system. Reverting to the built-in editor.", defaultEditor];
+            subTextFormat:@"The editor '%@' could not be found on your system. Using built-in editor.", defaultEditor];
             [DEFAULTS setObject:DEFAULT_EDITOR forKey:DefaultsKey_DefaultEditor];
-            [self openScriptInBuiltInEditor:[scriptPathTextField stringValue]];
+            [self openScriptInBuiltInEditor:scriptPath];
         }
     }
+}
+
+- (void)openScriptInBuiltInEditor:(NSString *)scriptPath {
+    [[self window] setTitle:[NSString stringWithFormat:@"%@ - Script Editor", PROGRAM_NAME]];
+    EditorController *controller = [[EditorController alloc] init];
+    [controller showModalEditorSheetForFile:scriptPath window:[self window]];
+    [[self window] setTitle:PROGRAM_NAME];
 }
 
 - (IBAction)checkSyntaxOfScript:(id)sender {
@@ -299,13 +310,6 @@
                                         scriptName:[[scriptPathTextField stringValue] lastPathComponent]
                             usingInterpreterAtPath:[interpreterPathTextField stringValue]
                                             window:[self window]];
-    [[self window] setTitle:PROGRAM_NAME];
-}
-
-- (void)openScriptInBuiltInEditor:(NSString *)scriptPath {
-    [[self window] setTitle:[NSString stringWithFormat:@"%@ - Script Editor", PROGRAM_NAME]];
-    EditorController *controller = [[EditorController alloc] init];
-    [controller showModalEditorSheetForFile:scriptPath window:[self window]];
     [[self window] setTitle:PROGRAM_NAME];
 }
 
@@ -416,7 +420,7 @@
     
     // Verify that the values in the spec are OK
     if (![spec verify]) {
-        [Alerts alert:@"Spec verification failed" subText:[spec error]];
+        [Alerts alert:@"Application spec verification failed" subText:[spec error]];
         return NO;
     }
     
@@ -628,7 +632,7 @@
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeItem]];
+    [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeContent]];
     [oPanel setDelegate:self];
     
     // Run as sheet
@@ -640,10 +644,6 @@
         }
         [window setTitle:PROGRAM_NAME];
     }];
-}
-
-- (BOOL)panel:(id)sender shouldEnableURL:(NSURL *)url {
-    return [PlatypusScriptUtils isPotentiallyScriptAtPath:[url path]];
 }
 
 - (IBAction)scriptTypeSelected:(id)sender {
@@ -699,10 +699,13 @@
 #pragma mark - Interface actions
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
-    BOOL isDir, exists = NO, validName = NO;
     
     // App name or script path was changed
     if (aNotification == nil || [aNotification object] == nil || [aNotification object] == appNameTextField || [aNotification object] == scriptPathTextField) {
+        
+        BOOL scriptExists = NO;
+        BOOL validName = NO;
+        
         if ([[appNameTextField stringValue] length] > 0) {
             validName = YES;
         }
@@ -710,25 +713,27 @@
         [fileWatcherQueue removeAllPaths];
         if ([scriptPathTextField hasValidPath]) {
             [fileWatcherQueue addPath:[scriptPathTextField stringValue]];
-            exists = YES;
+            scriptExists = YES;
         }
         
-        [editScriptButton setEnabled:exists];
-        [revealScriptButton setEnabled:exists];
+        [editScriptButton setEnabled:scriptExists];
+        [revealScriptButton setEnabled:scriptExists];
         
         // Enable/disable create app button
-        [createAppButton setEnabled:(validName && exists)];
-    }
-    if ([aNotification object] == appNameTextField) {
-        // Update identifier
-        [bundleIdentifierTextField setStringValue:[PlatypusAppSpec bundleIdentifierForAppName:[appNameTextField stringValue] authorName:nil usingDefaults:YES]];
+        [createAppButton setEnabled:(validName && scriptExists)];
     }
     
-    // Interpreter changed -- we try to select type based on the value in the field, also color red if path doesn't exist
+    // Interpreter changed. We try to select script type based on the new value in the field.
     if (aNotification == nil || [aNotification object] == interpreterPathTextField) {
         [self selectScriptTypeBasedOnInterpreter];
-        NSColor *textColor = ([FILEMGR fileExistsAtPath:[interpreterPathTextField stringValue] isDirectory:&isDir] && !isDir) ? [NSColor controlTextColor] : [NSColor redColor];
-        [interpreterPathTextField setTextColor:textColor];
+    }
+    
+    if ([aNotification object] == appNameTextField) {
+        // Update app bundle identifier
+        NSString *idStr = [PlatypusAppSpec bundleIdentifierForAppName:[appNameTextField stringValue]
+                                                           authorName:nil
+                                                        usingDefaults:YES];
+        [bundleIdentifierTextField setStringValue:idStr];
     }
 }
 
@@ -887,9 +892,17 @@
                 NSString *scriptPath = [NSString stringWithFormat:@"%@/Contents/Resources/script", filePath];
                 BOOL isPlatypusApp = ([FILEMGR fileExistsAtPath:scriptPath]);
                 if (isPlatypusApp) {
-                    [self openScriptInBuiltInEditor:scriptPath];
+                    [self performSelector:@selector(openScriptInEditor:)
+                               withObject:scriptPath
+                               afterDelay:0.1];
                     return YES;
                 }
+            }
+            
+            // Icon?
+            if ([WORKSPACE type:fileType conformsToType:(NSString *)kUTTypeAppleICNS]) {
+                [iconController loadIcnsFile:filePath];
+                return YES;
             }
             
             // Profile?

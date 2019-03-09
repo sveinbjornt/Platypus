@@ -25,7 +25,14 @@ For 5.4
     TODO: Async Status Menu script execution to prevent interface locking on main thread
     TODO: Create more automated tests for command line tool and document existing tests
     TODO: Fix issue with multiple AEOpen events for many opened files
+    TODO: Embed MainMenu.nib in platypus CLT Mach-O binary instead of storing in /usr/local/share
+    TODO: Warn when non-existent file in bundled files list
+    TODO: Fix broken file watching
+    TODO: Command line tool now defaults to creating apps with no bundled application icon
 
+    * Platypus now hides Open and Open Recent menu items in apps that don't accept files
+    * Fixed issue with signing due to missing APPL CFBundleType
+    * Fixed nasty empty newline parsing bug
     * Switched over to AGIconFamily for icon generation
     * Added support for code signing using Keychain certificates
     * Resolved issue with text view selection and dark mode

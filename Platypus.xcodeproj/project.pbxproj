@@ -164,6 +164,13 @@
 			remoteGlobalIDString = F4E1F6FB11F758FB007EE2E3;
 			remoteInfo = platypus;
 		};
+		F4B4F7182231B10000F3C073 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F48B774011F7661C00351575;
+			remoteInfo = ScriptExec;
+		};
 		F4DC73842164EF7900D79823 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -444,12 +451,10 @@
 				F442E00B1EA38C7100BAD80C /* LICENSE.txt */,
 				F4F14CBB1C64264D002A2402 /* Scripts */,
 				F4DC074D11F629A40043764E /* Documentation */,
-				F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */,
-				F4A4338B0E04C962000523E7 /* Common.h */,
-				F4051D9E1C1B5AF900587F1F /* Common.m */,
-				F48B7CB611F76B0C00351575 /* Platypus App */,
+				F4B4F71C2231ECD300F3C073 /* Common */,
 				F48B7B8811F766CA00351575 /* ScriptExec */,
 				F4E1F70711F75A40007EE2E3 /* Command Line Tool */,
+				F48B7CB611F76B0C00351575 /* Platypus App */,
 				080E96DDFE201D6D7F000001 /* Shared */,
 				F4DC738221644F4700D79823 /* Tests */,
 				F445EA7C14FABE6500DCCDB3 /* Sparkle */,
@@ -811,6 +816,16 @@
 			name = STDragWebView;
 			sourceTree = "<group>";
 		};
+		F4B4F71C2231ECD300F3C073 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F4C19A741BD1AB7300F411BD /* PrefixHeader.pch */,
+				F4A4338B0E04C962000523E7 /* Common.h */,
+				F4051D9E1C1B5AF900587F1F /* Common.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		F4B5DE431491A00900C43901 /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
@@ -936,10 +951,11 @@
 			productReference = F48B774111F7661C00351575 /* ScriptExec.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F4E1F6FB11F758FB007EE2E3 /* platypus */ = {
+		F4E1F6FB11F758FB007EE2E3 /* platypus_clt */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F4E1F70611F75921007EE2E3 /* Build configuration list for PBXNativeTarget "platypus" */;
+			buildConfigurationList = F4E1F70611F75921007EE2E3 /* Build configuration list for PBXNativeTarget "platypus_clt" */;
 			buildPhases = (
+				F4B4F71A2231B18300F3C073 /* Copy and gzip MainMenu.nib files from ScriptExec */,
 				F4E1F6F911F758FB007EE2E3 /* Sources */,
 				F4E1F6FA11F758FB007EE2E3 /* Frameworks */,
 				F4FB337514FBDAD500BAECEB /* Run Script to Create Man Page HTML document */,
@@ -948,8 +964,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				F4B4F7192231B10000F3C073 /* PBXTargetDependency */,
 			);
-			name = platypus;
+			name = platypus_clt;
 			productName = platypus;
 			productReference = F4E1F6FC11F758FB007EE2E3 /* platypus_clt */;
 			productType = "com.apple.product-type.tool";
@@ -992,9 +1009,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* Platypus */,
 				F48B774011F7661C00351575 /* ScriptExec */,
-				F4E1F6FB11F758FB007EE2E3 /* platypus */,
+				F4E1F6FB11F758FB007EE2E3 /* platypus_clt */,
+				8D1107260486CEB800E47090 /* Platypus */,
 				F4F14CB51C640B1E002A2402 /* Examples */,
 				F4DC737C21644E0400D79823 /* CLT Tests */,
 			);
@@ -1114,7 +1131,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm \"${PROJECT_DIR}/Tests/platypus\"\nln -s \"${TARGET_BUILD_DIR}/platypus_clt\" \"${PROJECT_DIR}/Tests/platypus\"\n";
+			shellScript = "rm \"${PROJECT_DIR}/Tests/platypus\"\nln -s \"${TARGET_BUILD_DIR}/platypus_clt\" \"${PROJECT_DIR}/Tests/platypus\"\n\n";
 		};
 		F4302B7B21C5A04A001C8BEC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1132,6 +1149,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\n# Read interpreter path from the script's shebang line\n# and set it as interpreter in AppSettings.plist\nAPPSETTINGS=\"${TARGET_BUILD_DIR}/ScriptExec.app/Contents/Resources/AppSettings.plist\"\nSCRIPT=\"${TARGET_BUILD_DIR}/ScriptExec.app/Contents/Resources/script\"\nINTERPRETER=$(head -n 1 $SCRIPT | cut -b 3-300 | tr -d '\\n')\n/usr/libexec/PlistBuddy -c \"Set :InterpreterPath ${INTERPRETER}\" \"${APPSETTINGS}\"\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		};
+		F4B4F71A2231B18300F3C073 /* Copy and gzip MainMenu.nib files from ScriptExec */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy and gzip MainMenu.nib files from ScriptExec";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\nSCRIPT_EXEC_APP_PATH=\"${BUILT_PRODUCTS_DIR}/ScriptExec.app\"\nSCRIPT_EXEC_NIB_PATH=\"${SCRIPT_EXEC_APP_PATH}/Contents/Resources/MainMenu.nib\"\n\nNIB_DESIGNABLE=\"designable.nib\"\nNIB_KEYEDOBJECTS=\"keyedobjects.nib\"\n\nNIB_DESIGNABLE_PATH=\"${SCRIPT_EXEC_NIB_PATH}/${NIB_DESIGNABLE}\"\nNIB_KEYEDOBJECTS_PATH=\"${SCRIPT_EXEC_NIB_PATH}/${NIB_KEYEDOBJECTS}\"\n\ncp $NIB_DESIGNABLE_PATH \"${BUILT_PRODUCTS_DIR}/${NIB_DESIGNABLE}\"\ngzip -9 \"${BUILT_PRODUCTS_DIR}/${NIB_DESIGNABLE}\"\ncp $NIB_KEYEDOBJECTS_PATH \"${BUILT_PRODUCTS_DIR}/${NIB_KEYEDOBJECTS}\"\ngzip -9 \"${BUILT_PRODUCTS_DIR}/${NIB_KEYEDOBJECTS}\"\n\n\n\n\nexit 0\n\n\n\n\n\n\n\n\n\n\n";
 		};
 		F4DC737D21644E0400D79823 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1260,12 +1295,17 @@
 		};
 		F40B22791B28D763003C05ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F4E1F6FB11F758FB007EE2E3 /* platypus */;
+			target = F4E1F6FB11F758FB007EE2E3 /* platypus_clt */;
 			targetProxy = F40B22781B28D763003C05ED /* PBXContainerItemProxy */;
+		};
+		F4B4F7192231B10000F3C073 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F48B774011F7661C00351575 /* ScriptExec */;
+			targetProxy = F4B4F7182231B10000F3C073 /* PBXContainerItemProxy */;
 		};
 		F4DC73852164EF7900D79823 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F4E1F6FB11F758FB007EE2E3 /* platypus */;
+			target = F4E1F6FB11F758FB007EE2E3 /* platypus_clt */;
 			targetProxy = F4DC73842164EF7900D79823 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1920,7 +1960,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
 		};
-		F4E1F70611F75921007EE2E3 /* Build configuration list for PBXNativeTarget "platypus" */ = {
+		F4E1F70611F75921007EE2E3 /* Build configuration list for PBXNativeTarget "platypus_clt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F4E1F6FE11F758FC007EE2E3 /* Development */,

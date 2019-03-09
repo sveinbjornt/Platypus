@@ -379,7 +379,7 @@
 			<key>CFBundleTypeName</key>
 			<string>Platypus Profile</string>
 			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
