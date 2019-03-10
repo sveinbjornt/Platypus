@@ -1,31 +1,31 @@
 /*
- Copyright (c) 2003-2018, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
- All rights reserved.
- 
- Redistribution and use in source and binary forms, with or without modification,
- are permitted provided that the following conditions are met:
- 
- 1. Redistributions of source code must retain the above copyright notice, this
- list of conditions and the following disclaimer.
- 
- 2. Redistributions in binary form must reproduce the above copyright notice, this
- list of conditions and the following disclaimer in the documentation and/or other
- materials provided with the distribution.
- 
- 3. Neither the name of the copyright holder nor the names of its contributors may
- be used to endorse or promote products derived from this software without specific
- prior written permission.
- 
- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
- NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- POSSIBILITY OF SUCH DAMAGE.
+    Copyright (c) 2003-2019, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without modification,
+    are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+
+    2. Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
+    materials provided with the distribution.
+
+    3. Neither the name of the copyright holder nor the names of its contributors may
+    be used to endorse or promote products derived from this software without specific
+    prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+    IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+    INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+    NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
 */
 
 /* This is the source code to the main controller for the binary
@@ -90,6 +90,8 @@
     IBOutlet NSMenuItem *aboutMenuItem;
     IBOutlet NSMenuItem *openRecentMenuItem;
     IBOutlet NSMenu *windowMenu;
+    IBOutlet NSMenu *fileMenu;
+    IBOutlet NSMenu *viewMenu;
     
     NSTextView *outputTextView;
     
@@ -154,19 +156,14 @@ static const NSInteger detailsHeight = 224;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        arguments = [[NSMutableArray alloc] init];
+        arguments = [NSMutableArray array];
         outputEmpty = YES;
-        jobQueue = [[NSMutableArray alloc] init];
+        jobQueue = [NSMutableArray array];
     }
     return self;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)awakeFromNib {
-    
     // Load settings from AppSettings.plist in app bundle
     [self loadAppSettings];
     
@@ -182,42 +179,88 @@ static const NSInteger detailsHeight = 224;
                                              selector:@selector(taskFinished:)
                                                  name:notificationName
                                                object:nil];
+
+    // Listen for Open URL events
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
+                                                       andSelector:@selector(getUrl:withReplyEvent:)
+                                                     forEventClass:kInternetEventClass
+                                                        andEventID:kAEGetURL];
+    
+    // Register as text handling service
+    if (isService) {
+        [NSApp setServicesProvider:self];
+        NSMutableArray *sendTypes = [NSMutableArray array];
+        if (acceptsFiles) {
+            [sendTypes addObject:NSFilenamesPboardType];
+        }
+        if (acceptsText) {
+            [sendTypes addObject:NSStringPboardType];
+        }
+        [NSApp registerServicesMenuSendTypes:sendTypes returnTypes:@[]];
+    }
+    
+    // User Notification Center
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
 }
 
 #pragma mark - App Settings
 
-// Load configuration from AppSettings.plist, sanitize it, etc.
+// Load configuration from AppSettings.plist and Info.plist, sanitize values, etc.
 - (void)loadAppSettings {
+    // Application bundle
+    NSBundle *bundle = [NSBundle mainBundle];
     
-    NSBundle *appBundle = [NSBundle mainBundle];
-    NSString *appSettingsPath = [appBundle pathForResource:@"AppSettings.plist" ofType:nil];
-    
-    // Make sure all config files are present
-    if ([FILEMGR fileExistsAtPath:appSettingsPath] == FALSE) {
-        [Alerts fatalAlert:@"Corrupt app bundle" subText:@"AppSettings.plist not found in application bundle."];
-    }
-    
-    // Get app name
-    // Try to get name from Info.plist
-    NSDictionary *infoPlist = [appBundle infoDictionary];
-    if (infoPlist[@"CFBundleName"] != nil) {
-        appName = [[NSString alloc] initWithString:infoPlist[@"CFBundleName"]];
+    // Try to get app name from Info.plist
+    NSDictionary *infoPlist = [bundle infoDictionary];
+    if (infoPlist[@"CFBundleName"]) {
+        appName = infoPlist[@"CFBundleName"];
     } else {
         // If that doesn't work, use name of executable file
-        appName = [[NSString alloc] initWithString:[[appBundle executablePath] lastPathComponent]];
+        appName = [[bundle executablePath] lastPathComponent];
     }
     
     runInBackground = [infoPlist[@"LSUIElement"] boolValue];
     isService = (infoPlist[@"NSServices"] != nil);
     
-    // Load dictionary containing app settings from property list
-    NSDictionary *appSettingsDict = [NSDictionary dictionaryWithContentsOfFile:appSettingsPath];
-    if (appSettingsDict == nil) {
-        [Alerts fatalAlert:@"Corrupt app settings" subText:@"Unable to read AppSettings.plist"];
+    // Check if script file exists
+    scriptPath = [bundle pathForResource:@"script" ofType:nil];
+    if ([FILEMGR fileExistsAtPath:scriptPath] == NO) {
+        [Alerts fatalAlert:@"Corrupt app bundle"
+                   subText:@"Script missing from application bundle."];
+    }
+    
+    // Make sure script is executable and readable
+    NSNumber *permissions = [NSNumber numberWithUnsignedLong:493];
+    NSDictionary *attributes = @{ NSFilePosixPermissions:permissions };
+    [FILEMGR setAttributes:attributes ofItemAtPath:scriptPath error:nil];
+    if ([FILEMGR isReadableFileAtPath:scriptPath] == NO || [FILEMGR isExecutableFileAtPath:scriptPath] == NO) {
+        [Alerts fatalAlert:@"Corrupt app bundle"
+                   subText:@"Script file is not readable/executable."];
+    }
+    
+    // Make sure there's an AppSettings.plist file
+    NSString *appSettingsPath = [bundle pathForResource:@"AppSettings.plist" ofType:nil];
+    if (![FILEMGR fileExistsAtPath:appSettingsPath]) {
+        [Alerts fatalAlert:@"Corrupt app bundle"
+                   subText:@"AppSettings.plist not found in application bundle."];
+    }
+    
+    // Load app settings from property list
+    NSDictionary *appSettings = [NSDictionary dictionaryWithContentsOfFile:appSettingsPath];
+    if (appSettings == nil) {
+        [Alerts fatalAlert:@"Corrupt app settings"
+                   subText:@"Unable to read AppSettings.plist."];
+    }
+    
+    // Validate interpreter specified in settings
+    interpreterPath = appSettings[AppSpecKey_InterpreterPath];
+    if ([FILEMGR fileExistsAtPath:interpreterPath] == NO) {
+        [Alerts fatalAlert:@"Missing interpreter"
+             subTextFormat:@"The interpreter '%@' could not be found.", interpreterPath];
     }
     
     // Determine interface type
-    NSString *interfaceTypeStr = appSettingsDict[AppSpecKey_InterfaceType];
+    NSString *interfaceTypeStr = appSettings[AppSpecKey_InterfaceType];
     if (IsValidInterfaceTypeString(interfaceTypeStr) == NO) {
         [Alerts fatalAlert:@"Corrupt app settings"
              subTextFormat:@"Invalid Interface Type: '%@'.", interfaceTypeStr];
@@ -229,27 +272,27 @@ static const NSInteger detailsHeight = 224;
     
         // Font and size
         NSNumber *userFontSizeNum = [DEFAULTS objectForKey:ScriptExecDefaultsKey_UserFontSize];
-        CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettingsDict[AppSpecKey_TextSize] floatValue];
+        CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettings[AppSpecKey_TextSize] floatValue];
         fontSize = fontSize != 0 ? fontSize : DEFAULT_TEXT_FONT_SIZE;
         
-        if (appSettingsDict[AppSpecKey_TextFont] != nil) {
-            textFont = [NSFont fontWithName:appSettingsDict[AppSpecKey_TextFont] size:fontSize];
+        if (appSettings[AppSpecKey_TextFont]) {
+            textFont = [NSFont fontWithName:appSettings[AppSpecKey_TextFont] size:fontSize];
         }
         if (textFont == nil) {
             textFont = [NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:DEFAULT_TEXT_FONT_SIZE];
         }
         
         // Foreground color
-        if (appSettingsDict[AppSpecKey_TextColor] != nil) {
-            textForegroundColor = [NSColor colorFromHexString:appSettingsDict[AppSpecKey_TextColor]];
+        if (appSettings[AppSpecKey_TextColor]) {
+            textForegroundColor = [NSColor colorFromHexString:appSettings[AppSpecKey_TextColor]];
         }
         if (textForegroundColor == nil) {
             textForegroundColor = [NSColor colorFromHexString:DEFAULT_TEXT_FG_COLOR];
         }
         
         // Background color
-        if (appSettingsDict[AppSpecKey_TextBackgroundColor] != nil) {
-            textBackgroundColor = [NSColor colorFromHexString:appSettingsDict[AppSpecKey_TextBackgroundColor]];
+        if (appSettings[AppSpecKey_TextBackgroundColor]) {
+            textBackgroundColor = [NSColor colorFromHexString:appSettings[AppSpecKey_TextBackgroundColor]];
         }
         if (textBackgroundColor == nil) {
             textBackgroundColor = [NSColor colorFromHexString:DEFAULT_TEXT_BG_COLOR];
@@ -258,16 +301,16 @@ static const NSInteger detailsHeight = 224;
     
     // Status menu interface has some additional parameters
     if (interfaceType == PlatypusInterfaceType_StatusMenu) {
-        NSString *statusItemDisplayType = appSettingsDict[AppSpecKey_StatusItemDisplayType];
+        NSString *statusItemDisplayType = appSettings[AppSpecKey_StatusItemDisplayType];
 
         if ([statusItemDisplayType isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT]) {
-            statusItemTitle = [appSettingsDict[AppSpecKey_StatusItemTitle] copy];
+            statusItemTitle = [appSettings[AppSpecKey_StatusItemTitle] copy];
             if (statusItemTitle == nil) {
                 [Alerts alert:@"Error getting title" subText:@"Failed to get Status Item title."];
             }
         }
         else if ([statusItemDisplayType isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
-            statusItemImage = [[NSImage alloc] initWithData:appSettingsDict[AppSpecKey_StatusItemIcon]];
+            statusItemImage = [[NSImage alloc] initWithData:appSettings[AppSpecKey_StatusItemIcon]];
             if (statusItemImage == nil) {
                 [Alerts alert:@"Error loading icon" subText:@"Failed to load Status Item icon."];
             }
@@ -278,20 +321,20 @@ static const NSInteger detailsHeight = 224;
             statusItemTitle = DEFAULT_STATUS_ITEM_TITLE;
         }
         
-        statusItemUsesSystemFont = [appSettingsDict[AppSpecKey_StatusItemUseSysfont] boolValue];
-        statusItemIconIsTemplate = [appSettingsDict[AppSpecKey_StatusItemIconIsTemplate] boolValue];
+        statusItemUsesSystemFont = [appSettings[AppSpecKey_StatusItemUseSysfont] boolValue];
+        statusItemIconIsTemplate = [appSettings[AppSpecKey_StatusItemIconIsTemplate] boolValue];
     }
     
-    interpreterArgs = [appSettingsDict[AppSpecKey_InterpreterArgs] copy];
-    scriptArgs = [appSettingsDict[AppSpecKey_ScriptArgs] copy];
-    execStyle = (PlatypusExecStyle)[appSettingsDict[AppSpecKey_Authenticate] intValue];
-    remainRunning = [appSettingsDict[AppSpecKey_RemainRunning] boolValue];
-    isDroppable = [appSettingsDict[AppSpecKey_Droppable] boolValue];
-    promptForFileOnLaunch = [appSettingsDict[AppSpecKey_PromptForFile] boolValue];
+    interpreterArgs = [appSettings[AppSpecKey_InterpreterArgs] copy];
+    scriptArgs = [appSettings[AppSpecKey_ScriptArgs] copy];
+    execStyle = (PlatypusExecStyle)[appSettings[AppSpecKey_Authenticate] intValue];
+    remainRunning = [appSettings[AppSpecKey_RemainRunning] boolValue];
+    isDroppable = NO;
+    promptForFileOnLaunch = [appSettings[AppSpecKey_PromptForFile] boolValue];
     
     // Read and store command line arguments to the application binary
-    NSMutableArray *processArgs = [NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]];
-    commandLineArguments = [[NSMutableArray alloc] init];
+    NSMutableArray *processArgs = [[[NSProcessInfo processInfo] arguments] mutableCopy];
+    commandLineArguments = [NSMutableArray array];
 
     if ([processArgs count] > 1) {
         // The first argument is always the path to the binary, so we remove that
@@ -300,12 +343,12 @@ static const NSInteger detailsHeight = 224;
         
         for (NSString *arg in processArgs) {
             // On older versions of Mac OS X, apps opened from the Finder
-            // are passed a process number argument of the form -psn_0_*******
-            // We ignore these
+            // are passed a Carbon process serial number argument of the form -psn_0_*******
+            // We should ignore these
             if ([arg hasPrefix:@"-psn_"]) {
                 continue;
             }
-            // Hack to remove XCode CLI flags -NSDocumentRevisionsDebugMode YES.
+            // Hack to remove Xcode CLI flags -NSDocumentRevisionsDebugMode YES.
             // Really just here to make debugging easier.
             if ([arg isEqualToString:@"YES"] && lastWasDocRevFlag) {
                 continue;
@@ -320,106 +363,52 @@ static const NSInteger detailsHeight = 224;
             [commandLineArguments addObject:arg];
         }
     }
+    
+    // Load settings for drop acceptance
+    acceptsFiles = appSettings[AppSpecKey_AcceptFiles] ? [appSettings[AppSpecKey_AcceptFiles] boolValue] : NO;
+    acceptsText = appSettings[AppSpecKey_AcceptText] ? [appSettings[AppSpecKey_AcceptText] boolValue] : NO;
+    
+    if (acceptsFiles || acceptsText) {
+        isDroppable = TRUE;
+    }
 
+    acceptAnyDroppedItem = NO;
+    acceptDroppedFolders = NO;
+
+    // If app is droppable, the AppSettings.plist contains list of accepted file types / suffixes
+    // We use them later as a criterion for drop acceptance
+    if (acceptsFiles) {
+        // Get list of accepted suffixes
+        droppableSuffixes = [NSArray array];
+        droppableUniformTypes = [NSArray array];
+
+        if (appSettings[AppSpecKey_Suffixes]) {
+            droppableSuffixes = [appSettings[AppSpecKey_Suffixes] copy];
+        }
+        if (appSettings[AppSpecKey_Utis]) {
+            droppableUniformTypes = [appSettings[AppSpecKey_Utis] copy];
+        }
+        if ([droppableSuffixes containsObject:@"*"] || [droppableUniformTypes containsObject:@"public.data"]) {
+            acceptAnyDroppedItem = YES;
+        }
+        else if ([droppableSuffixes containsObject:@"fold"] || [droppableUniformTypes containsObject:(NSString *)kUTTypeFolder]) {
+            acceptDroppedFolders = YES;
+        }
+    }
+    
     // We never have privileged execution or droppable with status menu apps
     if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         remainRunning = YES;
         execStyle = PlatypusExecStyle_Normal;
         isDroppable = NO;
     }
-    
-    // Load settings for drop acceptance, default is to accept nothing
-    acceptsFiles = (appSettingsDict[AppSpecKey_AcceptFiles] != nil) ? [appSettingsDict[AppSpecKey_AcceptFiles] boolValue] : NO;
-    acceptsText = (appSettingsDict[AppSpecKey_AcceptText] != nil) ? [appSettingsDict[AppSpecKey_AcceptText] boolValue] : NO;
-    
-    // Equivalent to not being droppable
-    if (!acceptsFiles && !acceptsText) {
-        isDroppable = FALSE;
-    }
-
-    acceptDroppedFolders = NO;
-    acceptAnyDroppedItem = NO;
-    
-    // If app is droppable, the AppSettings.plist contains list of accepted file types / suffixes
-    // We use them later as a criterion for drop acceptance
-    if (isDroppable && acceptsFiles) {
-        // Get list of accepted suffixes
-        droppableSuffixes = [[NSArray alloc] init];
-        if (appSettingsDict[AppSpecKey_Suffixes] != nil) {
-            droppableSuffixes = [appSettingsDict[AppSpecKey_Suffixes] copy];
-        }
-        
-        droppableUniformTypes = [[NSArray alloc] init];
-        if (appSettingsDict[AppSpecKey_Utis] != nil) {
-            droppableUniformTypes = [appSettingsDict[AppSpecKey_Utis] copy];
-        }
-        
-        if (([droppableSuffixes containsObject:@"*"] && [droppableUniformTypes count] == 0) || [droppableUniformTypes containsObject:@"public.data"]) {
-            acceptAnyDroppedItem = YES;
-        }
-        if ([droppableSuffixes containsObject:@"fold"] || [droppableUniformTypes containsObject:(NSString *)kUTTypeFolder]) {
-            acceptDroppedFolders = YES;
-        }
-    }
-    
-    // Check the script file
-    NSString *path = [appBundle pathForResource:@"script" ofType:nil];
-    if ([FILEMGR fileExistsAtPath:[appBundle pathForResource:@"script" ofType:nil]] == NO) {
-        [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script missing from application bundle."];
-    }
-    // Make sure it's executable
-    NSNumber *permissions = [NSNumber numberWithUnsignedLong:493];
-    NSDictionary *attributes = @{ NSFilePosixPermissions:permissions };
-    [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:path error:nil];
-
-    scriptPath = [NSString stringWithString:path];
-    
-    // Get interpreter
-    NSString *scriptInterpreterPath = appSettingsDict[AppSpecKey_InterpreterPath];
-    if (scriptInterpreterPath == nil || [FILEMGR fileExistsAtPath:scriptInterpreterPath] == NO) {
-        [Alerts fatalAlert:@"Missing interpreter"
-             subTextFormat:@"This application cannot run because the interpreter '%@' does not exist.", scriptInterpreterPath];
-    }
-    interpreterPath = [[NSString alloc] initWithString:scriptInterpreterPath];
-
-    // Make sure we can read the script file
-    if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
-        // chmod 774
-        chmod([scriptPath cStringUsingEncoding:NSUTF8StringEncoding], S_IRWXU|S_IRWXG|S_IROTH);
-        if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
-            [Alerts fatalAlert:@"Corrupt app bundle" subText:@"Script file is not readable."];
-        }
-    }
 }
 
 #pragma mark - App Delegate handlers
 
-- (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
-    // Register ourselves as a URL handler for this URL
-    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
-                                                       andSelector:@selector(getUrl:withReplyEvent:)
-                                                     forEventClass:kInternetEventClass
-                                                        andEventID:kAEGetURL];
-}
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     PLog(@"Application did finish launching");
     hasFinishedLaunching = YES;
-
-    if (isService) {
-        [NSApp setServicesProvider:self]; // register as text handling service
-        NSMutableArray *sendTypes = [NSMutableArray array];
-        if (acceptsFiles) {
-            [sendTypes addObject:NSFilenamesPboardType];
-        }
-        if (acceptsText) {
-            [sendTypes addObject:NSStringPboardType];
-        }
-        [NSApp registerServicesMenuSendTypes:sendTypes returnTypes:@[]];
-        NSUpdateDynamicServices();
-    }
-    
-    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
     // Status menu apps just run when item is clicked
     // For all others, we run the script once app has launched
@@ -427,7 +416,7 @@ static const NSInteger detailsHeight = 224;
         return;
     }
     
-    if (promptForFileOnLaunch && isDroppable && [jobQueue count] == 0) {
+    if (promptForFileOnLaunch && acceptsFiles && [jobQueue count] == 0) {
         [self openFiles:self];
     } else {
         [self executeScript];
@@ -508,6 +497,16 @@ static const NSInteger detailsHeight = 224;
     [hideMenuItem setTitle:[NSString stringWithFormat:@"Hide %@", appName]];
     
     [openRecentMenuItem setEnabled:acceptsFiles];
+    if (!acceptsFiles) {
+        [fileMenu removeItemAtIndex:0]; // Open
+        [fileMenu removeItemAtIndex:0]; // Open Recent..
+        [fileMenu removeItemAtIndex:0]; // Separator
+    }
+    if (!IsTextSizableInterfaceType(interfaceType)) {
+        [viewMenu removeItemAtIndex:0];
+        [viewMenu removeItemAtIndex:0];
+        [viewMenu removeItemAtIndex:0];
+    }
     
     // Script output will be dumped in outputTextView
     // By default this is the Text Window text view
@@ -552,11 +551,6 @@ static const NSInteger detailsHeight = 224;
             // Prepare window
             [progressBarWindow setTitle:appName];
             
-            // Center it if first time running the application
-            if ([[progressBarWindow frameAutosaveName] isEqualToString:@""]) {
-                [progressBarWindow center];
-            }
-            
             if ([DEFAULTS boolForKey:ScriptExecDefaultsKey_ShowDetails]) {
                 NSRect frame = [progressBarWindow frame];
                 frame.origin.y += detailsHeight;
@@ -572,7 +566,6 @@ static const NSInteger detailsHeight = 224;
         {
             if (isDroppable) {
                 [textWindow registerForDraggedTypes:@[NSFilenamesPboardType, NSStringPboardType]];
-                [textWindowMessageTextField setStringValue:@"Drag files on window to process them"];
             }
             
             [textWindowProgressIndicator setUsesThreadedAnimation:YES];
@@ -583,9 +576,6 @@ static const NSInteger detailsHeight = 224;
             
             // Prepare window
             [textWindow setTitle:appName];
-            if ([[textWindow frameAutosaveName] isEqualToString:@""]) {
-                [textWindow center];
-            }
             [textWindow makeKeyAndOrderFront:self];
         }
             break;
@@ -602,10 +592,6 @@ static const NSInteger detailsHeight = 224;
             
             // Prepare window
             [webViewWindow setTitle:appName];
-            [webViewWindow center];
-            if ([[webViewWindow frameAutosaveName] isEqualToString:@""]) {
-                [webViewWindow center];
-            }
             [webViewWindow makeKeyAndOrderFront:self];
         }
             break;
@@ -648,9 +634,6 @@ static const NSInteger detailsHeight = 224;
             
             // Prepare window
             [dropletWindow setTitle:appName];
-            if ([[dropletWindow frameAutosaveName] isEqualToString:@""]) {
-                [dropletWindow center];
-            }
             [dropletWindow makeKeyAndOrderFront:self];
         }
             break;
@@ -984,7 +967,7 @@ static const NSInteger detailsHeight = 224;
     if (outputReadFileHandle != nil) {
         NSData *data;
         while ((data = [outputReadFileHandle availableData]) && [data length]) {
-            [self appendOutput:data];
+            [self parseOutput:data];
         }
     }
     
@@ -1004,7 +987,7 @@ static const NSInteger detailsHeight = 224;
         outputEmpty = NO;
         
         // Append the output to the text field
-        [self appendOutput:data];
+        [self parseOutput:data];
         
         // We schedule the file handle to go and read more data in the background again.
         [[aNotification object] readInBackgroundAndNotify];
@@ -1021,7 +1004,7 @@ static const NSInteger detailsHeight = 224;
     }
 }
 
-- (void)appendOutput:(NSData *)data {
+- (void)parseOutput:(NSData *)data {
     // Create string from output data
     NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:DEFAULT_TEXT_ENCODING];
     
@@ -1029,35 +1012,36 @@ static const NSInteger detailsHeight = 224;
         PLog(@"Warning: Output string is nil");
         return;
     }
+    
     PLog(@"Output:%@", outputString);
     
-    if (remnants != nil && [remnants length] > 0) {
+    if (remnants) {
         [outputString insertString:remnants atIndex:0];
     }
     
     // Parse line by line
-    NSMutableArray <NSString *> *lines = [[outputString componentsSeparatedByString:@"\n"] mutableCopy];
+    NSMutableArray *lines = [[outputString componentsSeparatedByString:@"\n"] mutableCopy];
     
     // If the string did not end with a newline, it wasn't a complete line of output
     // Thus, we store this last non-newline-terminated string
     // It'll be prepended next time we get output
-    if ([[lines lastObject] length] > 0) {
-        remnants = [[lines lastObject] copy];
+    if ([[lines lastObject] length] > 0) { // Output didn't end with a newline
+        remnants = [lines lastObject];
     } else {
         remnants = nil;
     }
     
     [lines removeLastObject];
     
-    
     NSURL *locationURL = nil;
     
     // Parse output looking for commands; if none, append line to output text field
     for (NSString *theLine in lines) {
         
-        if ([theLine length] == 0) {
-            continue;
-        }
+//        if ([theLine length] == 0) {
+//            [self appendString:@""];
+//            continue;
+//        }
         
         if ([theLine isEqualToString:@"QUITAPP"]) {
             [[NSApplication sharedApplication] terminate:self];
@@ -1104,7 +1088,7 @@ static const NSInteger detailsHeight = 224;
                 }
                 continue;
             }
-            // Set visibility of details text field
+            // Toggle visibility of details text field
             else if ([theLine isEqualToString:@"DETAILS:SHOW"]) {
                 [self showDetails];
                 continue;
@@ -1160,18 +1144,22 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (void)appendString:(NSString *)string {
-    //PLog(@"Appending output: \"%@\"", string);
+    PLog(@"Appending output: \"%@\"", string);
 
     if (interfaceType == PlatypusInterfaceType_None) {
         fprintf(stderr, "%s\n", [string cStringUsingEncoding:DEFAULT_TEXT_ENCODING]);
         return;
     }
     
+    // This code is optimized to use replaceCharactersInRange on the text view
+    // in order to reduce the cost of redraws and string manipulation
     NSTextStorage *textStorage = [outputTextView textStorage];
     NSRange appendRange = NSMakeRange([textStorage length], 0);
     [textStorage beginEditing];
     [textStorage replaceCharactersInRange:appendRange withString:string];
     [textStorage replaceCharactersInRange:NSMakeRange([textStorage length], 0) withString:@"\n"];
+//    NSString *repl = [NSString stringWithFormat:@"%@\n", string];
+//    [textStorage replaceCharactersInRange:appendRange withString:repl];
     [textStorage endEditing];
 }
 
@@ -1288,7 +1276,7 @@ static const NSInteger detailsHeight = 224;
         return YES;
     }
     // Open should only work if it's a droppable app that accepts files
-    if ((isDroppable && acceptsFiles) && selector == @selector(openFiles:)) {
+    if (acceptsFiles && selector == @selector(openFiles:)) {
         return YES;
     }
     // Change text size
@@ -1376,7 +1364,7 @@ static const NSInteger detailsHeight = 224;
 #pragma mark - Text snippet drag handling
 
 - (void)doString:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
-    if (isDroppable == NO || acceptsText == NO) {
+    if (acceptsText == NO) {
         return;
     }
     
@@ -1391,7 +1379,7 @@ static const NSInteger detailsHeight = 224;
 #pragma mark - Add job to queue
 
 - (BOOL)addDroppedTextJob:(NSString *)text {
-    if (!isDroppable) {
+    if (!acceptsText) {
         return NO;
     }
     ScriptExecJob *job = [ScriptExecJob jobWithArguments:nil andStandardInput:text];
@@ -1401,7 +1389,7 @@ static const NSInteger detailsHeight = 224;
 
 // Processing dropped files
 - (BOOL)addDroppedFilesJob:(NSArray <NSString *> *)files {
-    if (!isDroppable || !acceptsFiles) {
+    if (!acceptsFiles) {
         return NO;
     }
     
@@ -1416,14 +1404,14 @@ static const NSInteger detailsHeight = 224;
         return NO;
     }
     
+    // We create a job and add the files as arguments
+    ScriptExecJob *job = [ScriptExecJob jobWithArguments:acceptedFiles andStandardInput:nil];
+    [jobQueue addObject:job];
+    
     // Add to Open Recent menu
     for (NSString *path in acceptedFiles) {
         [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:path]];
     }
-    
-    // We create a job and add the files as arguments
-    ScriptExecJob *job = [ScriptExecJob jobWithArguments:acceptedFiles andStandardInput:nil];
-    [jobQueue addObject:job];
     
     return YES;
 }
@@ -1449,8 +1437,12 @@ static const NSInteger detailsHeight = 224;
     
     // Check if it's a folder. If so, we only accept it if folders are accepted
     BOOL isDir;
-    if ([FILEMGR fileExistsAtPath:file isDirectory:&isDir] && isDir && acceptDroppedFolders) {
-        return YES;
+    BOOL exists = [FILEMGR fileExistsAtPath:file isDirectory:&isDir];
+    if (!exists) {
+        return NO;
+    }
+    if (isDir) {
+        return acceptDroppedFolders;
     }
     
     if (acceptAnyDroppedItem) {
@@ -1490,31 +1482,34 @@ static const NSInteger detailsHeight = 224;
     BOOL acceptDrag = NO;
     NSPasteboard *pboard = [sender draggingPasteboard];
     
-    // If this is a file being dragged
-    if ([[pboard types] containsObject:NSFilenamesPboardType] && acceptsFiles) {
+    // String dragged
+    if ([[pboard types] containsObject:NSStringPboardType] && acceptsText) {
+        acceptDrag = YES;
+    }
+    // File dragged
+    else if ([[pboard types] containsObject:NSFilenamesPboardType] && acceptsFiles) {
         // Loop through files, see if any of the dragged files are acceptable
         NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
         
         for (NSString *file in files) {
             if ([self isAcceptableFileType:file]) {
                 acceptDrag = YES;
+                break;
             }
         }
     }
-    // String
-    else if ([[pboard types] containsObject:NSStringPboardType] && acceptsText) {
-        acceptDrag = YES;
-    }
-        
+    
     if (acceptDrag) {
         // Shade the window if interface type is droplet
         if (interfaceType == PlatypusInterfaceType_Droplet) {
             [dropletShaderView setAlphaValue:0.3];
             [dropletShaderView setHidden:NO];
         }
+        PLog(@"Dragged items accepted");
         return NSDragOperationLink;
     }
     
+    PLog(@"Dragged items refused");
     return NSDragOperationNone;
 }
 
@@ -1535,7 +1530,8 @@ static const NSInteger detailsHeight = 224;
     // Determine drag data type and dispatch to job queue
     if ([[pboard types] containsObject:NSStringPboardType]) {
         return [self addDroppedTextJob:[pboard stringForType:NSStringPboardType]];
-    } else if ([[pboard types] containsObject:NSFilenamesPboardType]) {
+    }
+    else if ([[pboard types] containsObject:NSFilenamesPboardType]) {
         return [self addDroppedFilesJob:[pboard propertyListForType:NSFilenamesPboardType]];
     }
     return NO;
@@ -1555,7 +1551,7 @@ static const NSInteger detailsHeight = 224;
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
     // This is needed to keep link instead of the green plus sign on web view
-    // and also required to reject non-acceptable dragged items
+    // and also required to reject non-acceptable dragged items.
     return [self draggingEntered:sender];
 }
 
@@ -1592,11 +1588,11 @@ static const NSInteger detailsHeight = 224;
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
     
-    // Run script and wait until we've received all the script output
+    // Run script and wait until we've received all output
     NSString *outputStr = [self executeScriptForStatusMenu];
     
     // Create an array of lines by separating output by newline
-    NSMutableArray <NSString *> *lines = [[outputStr componentsSeparatedByString:@"\n"] mutableCopy];
+    NSMutableArray *lines = [[outputStr componentsSeparatedByString:@"\n"] mutableCopy];
     
     // Clean out any trailing newlines
     while ([[lines lastObject] isEqualToString:@""]) {
@@ -1688,8 +1684,9 @@ static const NSInteger detailsHeight = 224;
             [menuItem setTitle:line];
         } else {
             // Create a dict of text attributes based on settings
-            NSDictionary *textAttributes = @{NSForegroundColorAttributeName: textForegroundColor,
-                                            NSFontAttributeName: textFont};
+            NSDictionary *textAttributes = \
+            @{  NSForegroundColorAttributeName:textForegroundColor,
+                NSFontAttributeName:textFont   };
             
             NSAttributedString *attStr = [[NSAttributedString alloc] initWithString:line attributes:textAttributes];
             [menuItem setAttributedTitle:attStr];

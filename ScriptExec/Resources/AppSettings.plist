@@ -5,23 +5,23 @@
 	<key>AcceptsFiles</key>
 	<true/>
 	<key>AcceptsText</key>
-	<true/>
+	<false/>
 	<key>Authentication</key>
 	<integer>0</integer>
 	<key>Creator</key>
 	<string>Platypus-5.3</string>
 	<key>InterfaceType</key>
-	<string>Web View</string>
+	<string>Text Window</string>
 	<key>URISchemes</key>
 	<array/>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>InterpreterPath</key>
-	<string>/bin/blah</string>
+	<string>/bin/blurgh/smurgh</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunning</key>
-	<integer>1</integer>
+	<true/>
 	<key>ScriptArgs</key>
 	<array/>
 	<key>StatusItemDisplayType</key>
@@ -39,14 +39,12 @@
 		<string>*</string>
 	</array>
 	<key>TextBackground</key>
-	<string>#ff0000</string>
+	<string>#00000</string>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>
 	<string>#00ff00</string>
 	<key>TextSize</key>
 	<real>13</real>
-	<key>UniformTypes</key>
-	<array/>
 </dict>
 </plist>

@@ -12,10 +12,16 @@ $| = 1;
 #print "LOCATION:http://isnic.is\n";
 
 
-for (my $i = 0; $i < 1000; $i++){
+#foreach(@ARGV) {
+#     print "$_\n";
+#}
+
+for (my $i = 0; $i < 100000; $i++){
 #sleep 1;
-    print "<li>$i: Hey</li>\n";
+    print "$i Hey\n";
+#        sleep 1;
 }
+
 
 # If 0 arguments, we show menu
 #if (!scalar(@ARGV)) {

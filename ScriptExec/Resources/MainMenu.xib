@@ -27,6 +27,7 @@
                 <outlet property="dropletProgressIndicator" destination="496" id="504"/>
                 <outlet property="dropletShaderView" destination="519" id="w2q-dA-smc"/>
                 <outlet property="dropletWindow" destination="490" id="512"/>
+                <outlet property="fileMenu" destination="81" id="rcv-iy-bgF"/>
                 <outlet property="hideMenuItem" destination="134" id="239"/>
                 <outlet property="openRecentMenuItem" destination="FvD-xH-BRz" id="V8D-h2-Uw1"/>
                 <outlet property="progressBarCancelButton" destination="206" id="299"/>
@@ -42,6 +43,7 @@
                 <outlet property="textWindowMessageTextField" destination="366" id="bT3-oV-9zc"/>
                 <outlet property="textWindowProgressIndicator" destination="230" id="AXd-F1-wQr"/>
                 <outlet property="textWindowTextView" destination="225" id="FZy-wJ-th1"/>
+                <outlet property="viewMenu" destination="ITS-DI-OJD" id="2iy-Fw-JVe"/>
                 <outlet property="webView" destination="258" id="GEt-Hd-OFL"/>
                 <outlet property="webViewCancelButton" destination="251" id="i5n-LY-nJs"/>
                 <outlet property="webViewMessageTextField" destination="509" id="Unv-5h-E6P"/>
@@ -50,22 +52,22 @@
                 <outlet property="windowMenu" destination="24" id="328"/>
             </connections>
         </customObject>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="ProgressBarWindow" animationBehavior="default" id="21" userLabel="ProgressWindow">
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="ProgressBarWindow" animationBehavior="default" tabbingMode="disallowed" id="21" userLabel="ProgressWindow">
             <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
-            <rect key="contentRect" x="472" y="537" width="438" height="83"/>
+            <rect key="contentRect" x="472" y="537" width="438" height="87"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
-            <value key="minSize" type="size" width="438" height="83"/>
-            <value key="maxSize" type="size" width="600" height="83"/>
+            <value key="minSize" type="size" width="438" height="87"/>
+            <value key="maxSize" type="size" width="600" height="87"/>
             <view key="contentView" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="438" height="83"/>
+                <rect key="frame" x="0.0" y="0.0" width="438" height="87"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <progressIndicator wantsLayer="YES" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="bar" id="204">
-                        <rect key="frame" x="18" y="27" width="310" height="20"/>
+                        <rect key="frame" x="18" y="31" width="310" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </progressIndicator>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="205">
-                        <rect key="frame" x="18" y="55" width="403" height="17"/>
+                        <rect key="frame" x="18" y="59" width="403" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="left" id="472">
                             <font key="font" metaFont="system"/>
@@ -74,7 +76,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" id="206">
-                        <rect key="frame" x="338" y="20" width="86" height="32"/>
+                        <rect key="frame" x="338" y="24" width="86" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="473">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -88,7 +90,7 @@ Gw
                         </connections>
                     </button>
                     <button toolTip="Show details" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="288">
-                        <rect key="frame" x="20" y="10" width="13" height="13"/>
+                        <rect key="frame" x="20" y="14" width="13" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="disclosureTriangle" bezelStyle="disclosure" imagePosition="above" alignment="left" controlSize="small" borderStyle="border" inset="2" id="474">
                             <behavior key="behavior" pushIn="YES" changeBackground="YES" changeGray="YES" lightByContents="YES"/>
@@ -99,7 +101,7 @@ Gw
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="290">
-                        <rect key="frame" x="33" y="7" width="41" height="17"/>
+                        <rect key="frame" x="33" y="11" width="41" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Details" id="475">
                             <font key="font" metaFont="smallSystem"/>
@@ -107,19 +109,19 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <scrollView appearanceType="aqua" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="304">
-                        <rect key="frame" x="20" y="-203" width="393" height="202"/>
+                    <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" id="304">
+                        <rect key="frame" x="20" y="-208" width="393" height="208"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="2mm-QF-kpX">
-                            <rect key="frame" x="1" y="1" width="391" height="200"/>
+                            <rect key="frame" x="1" y="1" width="391" height="206"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="panel" allowsDocumentBackgroundColorChange="YES" linkDetection="YES" id="307">
-                                    <rect key="frame" x="0.0" y="0.0" width="391" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="391" height="206"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="391" height="200"/>
+                                    <size key="minSize" width="391" height="206"/>
                                     <size key="maxSize" width="463" height="10000000"/>
                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <connections>
@@ -142,7 +144,7 @@ Gw
             <connections>
                 <outlet property="delegate" destination="207" id="377"/>
             </connections>
-            <point key="canvasLocation" x="87" y="313"/>
+            <point key="canvasLocation" x="87" y="314.5"/>
         </window>
         <menu title="MainMenu" systemMenu="main" id="29" userLabel="MainMenu">
             <items>
@@ -157,12 +159,6 @@ Gw
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="233">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Preferences..." id="reA-2d-BZ0">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="menuItemSelected:" target="207" id="x6l-Tq-pHp"/>
-                                </connections>
                             </menuItem>
                             <menuItem title="Services" id="235">
                                 <menu key="submenu" title="Services" systemMenu="services" id="234"/>
@@ -215,15 +211,18 @@ Gw
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="xgq-Qk-sfY">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Close" keyEquivalent="w" id="dh0-Fj-ATR">
+                                <connections>
+                                    <action selector="performClose:" target="-1" id="0fd-CD-gUG"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="79">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Close" keyEquivalent="w" id="73">
-                                <connections>
-                                    <action selector="performClose:" target="-1" id="193"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Save to File…" keyEquivalent="s" id="75">
+                            <menuItem title="Save…" keyEquivalent="s" id="75">
                                 <connections>
                                     <action selector="saveToFile:" target="207" id="523"/>
                                 </connections>
@@ -477,6 +476,7 @@ Gw
                                     <action selector="makeTextSmaller:" target="207" id="JTY-6k-ZKY"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="G0T-Im-91a"/>
                         </items>
                     </menu>
                 </menuItem>
@@ -534,12 +534,12 @@ Gw
                             <action selector="cancel:" target="207" id="223"/>
                         </connections>
                     </button>
-                    <scrollView appearanceType="aqua" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="226">
+                    <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" id="226">
                         <rect key="frame" x="9" y="45" width="561" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Hk1-72-Owa">
                             <rect key="frame" x="1" y="1" width="559" height="365"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsDocumentBackgroundColorChange="YES" linkDetection="YES" id="225">
                                     <rect key="frame" x="0.0" y="0.0" width="559" height="365"/>
