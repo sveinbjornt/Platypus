@@ -13,7 +13,7 @@ Last updated on March 9th, 2019. The latest version of this document can be foun
 
 Platypus is a developer tool that creates native macOS application wrappers around scripts. Scripts are thus transformed into regular applications that can be launched from the window environment – e.g. the Finder or the Dock – without requiring use of the command line interface.
 
-Platypus was first released in 2003 and has since gone through many significant updates. It is written in Objective-C/Cocoa and is free, open-source software distributed under a BSD license. This means the source code is freely available and you are free to modify and distribute it as you see fit.
+Platypus was first released in 2003 and has since gone through many significant updates. It is written in Objective-C/Cocoa and is free, open-source software distributed under a BSD license.
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="float: right; margin-left: 40px;">
 <input type="hidden" name="cmd" value="_s-xclick">
@@ -29,7 +29,7 @@ I am happy to respond to feature requests, bug reports and questions concerning 
 
 ### How does Platypus work?
 
-Regular macOS applications are [bundles](https://en.wikipedia.org/wiki/Bundle_%28macOS%29) – special folders with a specific directory structure. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the bundle is opened in the graphical user interface.
+Regular macOS applications are [bundles](https://en.wikipedia.org/wiki/Bundle_%28macOS%29) – special folders with a particular directory structure and a .app suffix. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the bundle is opened in the graphical user interface.
 
 Platypus creates application bundles with a special executable binary that launches a script and captures its output. The binary can be configured to present the script's text output in various ways, for example by showing a progress bar, a text view, a Status Item menu or a WebKit-based web view.
 

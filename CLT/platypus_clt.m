@@ -28,10 +28,6 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-/*
-    Support files required for this program are defined in Common.h
-*/
-
 #import <Cocoa/Cocoa.h>
 #import <stdio.h>
 #import <unistd.h>
@@ -43,6 +39,7 @@
 #import <fcntl.h>
 #import <errno.h>
 #import <getopt.h>
+#include <mach-o/getsect.h>
 
 #import "Common.h"
 #import "PlatypusAppSpec.h"
@@ -178,7 +175,7 @@ int main(int argc, const char *argv[]) {
                     
                     // Make sure file exists
                     if ([fm fileExistsAtPath:fp] == NO) {
-                        NSPrintErr(@"Error: No file exists at path '%@'", fp);
+                        NSPrintErr(@"Error: No file exists at path '%@'.", fp);
                         exit(EXIT_FAILURE);
                     }
 
@@ -196,7 +193,7 @@ int main(int argc, const char *argv[]) {
             {
                 NSString *interfaceType = @(optarg);
                 if (IsValidInterfaceTypeString(interfaceType) == NO) {
-                    NSPrintErr(@"Error: Invalid interface type '%@'.  Valid types are: %@",
+                    NSPrintErr(@"Error: Invalid interface type '%@'. Valid types are: %@.",
                                interfaceType, [PLATYPUS_INTERFACE_TYPE_NAMES description]);
                     exit(EXIT_FAILURE);
                 }
@@ -209,7 +206,7 @@ int main(int argc, const char *argv[]) {
             {
                 NSString *hexColorStr = @(optarg);
                 if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex:0] != '#') {
-                    NSPrintErr(@"Error: '%@' is not a valid color hex value.  Must be hash-prefixed 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
+                    NSPrintErr(@"Error: '%@' is not a valid color hex value. Should be hash-prefixed 6 digit hexadecimal, e.g. '#aabbcc'.", hexColorStr);
                     exit(EXIT_FAILURE);
                 }
                 properties[AppSpecKey_TextBackgroundColor] = @(optarg);
@@ -221,7 +218,7 @@ int main(int argc, const char *argv[]) {
             {
                 NSString *hexColorStr = @(optarg);
                 if ([hexColorStr length] != 7 || [hexColorStr characterAtIndex:0] != '#') {
-                    NSPrintErr(@"Error: '%@' is not a valid color hex value.  Must be hash-prefixed 6 digit hexadecimal, e.g. #aabbcc", hexColorStr);
+                    NSPrintErr(@"Error: '%@' is not a valid color hex value. Should be hash-prefixed 6 digit hexadecimal, e.g. '#aabbcc'.", hexColorStr);
                     exit(EXIT_FAILURE);
                 }
                 properties[AppSpecKey_TextColor] = @(optarg);
@@ -234,7 +231,7 @@ int main(int argc, const char *argv[]) {
                 NSString *fontStr = @(optarg);
                 NSMutableArray *words = [NSMutableArray arrayWithArray:[fontStr componentsSeparatedByString:@" "]];
                 if ([words count] < 2) {
-                    NSPrintErr(@"Error: '%@' is not a valid font.  Must be font name followed by size, e.g. 'Monaco 10'", fontStr);
+                    NSPrintErr(@"Error: '%@' is not a valid font. Must be font name followed by size, e.g. 'Monaco 10'.", fontStr);
                     exit(EXIT_FAILURE);
                 }
                 // Parse string for font name and size, and set it in properties
@@ -268,7 +265,7 @@ int main(int argc, const char *argv[]) {
                     // warn if file doesn't seem to be icns
                     NSString *fileType = [ws typeOfFile:iconPath error:nil];
                     if ([ws type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == FALSE) {
-                        NSPrintErr(@"Warning: '%@' does not appear to be an Apple .icns file", iconPath);
+                        NSPrintErr(@"Warning: '%@' does not appear to be an Apple .icns file.", iconPath);
                     }
                 }
                 properties[AppSpecKey_IconPath] = iconPath;
@@ -285,14 +282,14 @@ int main(int argc, const char *argv[]) {
                     iconPath = [MakeAbsolutePath(iconPath) stringByResolvingSymlinksInPath];
                     // if we have proper arg, make sure file exists
                     if (![fm fileExistsAtPath:iconPath]) {
-                        NSPrintErr(@"Error: No icon file exists at path '%@'", iconPath);
+                        NSPrintErr(@"Error: No icon file at path '%@'.", iconPath);
                         exit(EXIT_FAILURE);
                     }
                     
                     // warn if file doesn't seem to be icns
                     NSString *fileType = [ws typeOfFile:iconPath error:nil];
                     if ([ws type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == FALSE) {
-                        NSPrintErr(@"Warning: '%@' not identified as an Apple .icns file", iconPath);
+                        NSPrintErr(@"Warning: '%@' is not an .icns file.", iconPath);
                     }
                 }
                 properties[AppSpecKey_DocIconPath] = iconPath;
@@ -432,7 +429,7 @@ int main(int argc, const char *argv[]) {
                 NSString *kind = @(optarg);
                 // validate -- refactor!
                 if (![kind isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT] && ![kind isEqualToString:PLATYPUS_STATUSITEM_DISPLAY_TYPE_ICON]) {
-                    NSPrintErr(@"Error: Invalid status item kind '%@'", kind);
+                    NSPrintErr(@"Error: Invalid status item kind '%@'.", kind);
                     exit(EXIT_FAILURE);
                 }
                 properties[AppSpecKey_StatusItemDisplayType] = kind;
@@ -444,7 +441,7 @@ int main(int argc, const char *argv[]) {
             {
                 NSString *title = @(optarg);
                 if ([title isEqualToString:@""] || title == nil) {
-                    NSPrintErr(@"Error: Empty status item title");
+                    NSPrintErr(@"Error: Empty status item title.");
                     exit(EXIT_FAILURE);
                 }
                 properties[AppSpecKey_StatusItemTitle] = title;
@@ -466,14 +463,14 @@ int main(int argc, const char *argv[]) {
             {
                 NSString *iconPath = MakeAbsolutePath(@(optarg));
                 if (![fm fileExistsAtPath:iconPath]) {
-                    NSPrintErr(@"Error: No image file exists at path '%@'", iconPath);
+                    NSPrintErr(@"Error: No image file exists at path '%@'.", iconPath);
                     exit(EXIT_FAILURE);
                 }
                 
                 // Read image from file
                 NSImage *iconImage = [[NSImage alloc] initWithContentsOfFile:iconPath];
                 if (iconImage == nil) {
-                    NSPrintErr(@"Error: Unable to get image from file '%@'", iconPath);
+                    NSPrintErr(@"Error: Unable to get image from file '%@'.", iconPath);
                     exit(EXIT_FAILURE);
                 }
                 properties[AppSpecKey_StatusItemIcon] = [iconImage TIFFRepresentation];
@@ -501,7 +498,7 @@ int main(int argc, const char *argv[]) {
     
     // We always need one more argument, either script file path or app name
     if (argc - optind < 1) {
-        NSPrintErr(@"Error: Missing argument");
+        NSPrintErr(@"Error: Missing argument.");
         PrintHelp();
         exit(EXIT_FAILURE);
     }
@@ -689,51 +686,51 @@ platypus [OPTIONS] scriptPath [destinationPath]\n\
 \n\
 Options:\n\
 \n\
-    -O --generate-profile                Generate a profile instead of an app\n\
+    -O --generate-profile              Generate a profile instead of an app\n\
 \n\
-    -P --load-profile [profilePath]      Load settings from profile document\n\
-    -a --name [name]                     Set name of application bundle\n\
-    -o --interface-type [type]           Set interface type.  See man page for accepted types\n\
-    -p --interpreter [interpreterPath]   Set interpreter for script\n\
+    -P --load-profile [profilePath]    Load settings from profile document\n\
+    -a --name [name]                   Set name of application bundle\n\
+    -o --interface-type [type]         Set interface type. See man page for accepted types\n\
+    -p --interpreter [interpreterPath] Set interpreter for script\n\
 \n\
-    -i --app-icon [iconPath]             Set icon for application\n\
-    -u --author [author]                 Set name of application author\n\
-    -Q --document-icon [iconPath]        Set icon for documents\n\
-    -V --app-version [version]           Set version of application\n\
-    -I --bundle-identifier [identifier]  Set bundle identifier (e.g. org.yourname.appname)\n\
+    -i --app-icon [iconPath]           Set icon for application\n\
+    -u --author [author]               Set name of application author\n\
+    -Q --document-icon [iconPath]      Set icon for documents\n\
+    -V --app-version [version]         Set version of application\n\
+    -I --bundle-identifier [idstr]     Set bundle identifier (e.g. org.yourname.appname)\n\
 \n\
-    -A --admin-privileges                App runs with Administrator privileges\n\
-    -D --droppable                       App accepts dropped files as arguments to script\n\
-    -F --text-droppable                  App accepts dropped text passed to script via STDIN\n\
-    -Z --file-prompt                     App presents an open file dialog when launched\n\
-    -N --service                         App registers as a Mac OS X Service\n\
-    -B --background                      App runs in background (LSUIElement)\n\
-    -R --quit-after-execution            App quits after executing script\n\
+    -A --admin-privileges              App runs with Administrator privileges\n\
+    -D --droppable                     App accepts dropped files as arguments to script\n\
+    -F --text-droppable                App accepts dropped text passed to script via STDIN\n\
+    -Z --file-prompt                   App presents an open file dialog when launched\n\
+    -N --service                       App registers as a Mac OS X Service\n\
+    -B --background                    App runs in background (LSUIElement)\n\
+    -R --quit-after-execution          App quits after executing script\n\
 \n\
-    -b --text-background-color [color]   Set background color of text view (e.g. '#ffffff')\n\
-    -g --text-foreground-color [color]   Set foreground color of text view (e.g. '#000000')\n\
-    -n --text-font [fontName]            Set font for text view (e.g. 'Monaco 10')\n\
-    -X --suffixes [suffixes]             Set suffixes handled by application, separated by |\n\
-    -T --uniform-type-identifiers        Set uniform type identifiers handled by application, separated by |\n\
-    -U --uri-schemes                     Set URI schemes handled by app, separated by |\n\
-    -G --interpreter-args [arguments]    Set arguments for script interpreter, separated by |\n\
-    -C --script-args [arguments]         Set arguments for script, separated by |\n\
+    -b --text-background-color [color] Set background color of text view (e.g. '#ffffff')\n\
+    -g --text-foreground-color [color] Set foreground color of text view (e.g. '#000000')\n\
+    -n --text-font [fontName]          Set font for text view (e.g. 'Monaco 10')\n\
+    -X --suffixes [suffixes]           Set suffixes handled by app, separated by |\n\
+    -T --uniform-type-identifiers      Set uniform type identifiers handled by app, separated by |\n\
+    -U --uri-schemes                   Set URI schemes handled by app, separated by |\n\
+    -G --interpreter-args [arguments]  Set arguments for script interpreter, separated by |\n\
+    -C --script-args [arguments]       Set arguments for script, separated by |\n\
 \n\
-    -K --status-item-kind [kind]         Set Status Item kind ('Icon' or 'Text')\n\
-    -Y --status-item-title [title]       Set title of Status Item\n\
-    -L --status-item-icon [imagePath]    Set icon of Status Item\n\
-    -c --status-item-sysfont             Make Status Item use system font for menu item text\n\
-    -q --status-item-template-icon       Status Item icon is a template and should be processed by AppKit\n\
+    -K --status-item-kind [kind]       Set Status Item kind ('Icon' or 'Text')\n\
+    -Y --status-item-title [title]     Set title of Status Item\n\
+    -L --status-item-icon [imagePath]  Set icon of Status Item\n\
+    -c --status-item-sysfont           Status Item should use the system font for menu item text\n\
+    -q --status-item-template-icon     Status Item icon should be treated as a template by AppKit\n\
 \n\
-    -f --bundled-file [filePath]         Add a bundled file or files (paths separated by \"|\")\n\
+    -f --bundled-file [filePath]       Add a bundled file or files (paths separated by \"|\")\n\
     \n\
-    -y --overwrite                       Overwrite any file/folder at destination path\n\
-    -d --symlink                         Symlink to script and bundled files instead of copying\n\
-    -l --optimize-nib                    Optimize application.  Strip and compile bundled nib file\n\
-    -h --help                            Prints help\n\
-    -v --version                         Prints program name and version\n\
+    -y --overwrite                     Overwrite any file/folder at destination path\n\
+    -d --symlink                       Symlink to script and bundled files instead of copying\n\
+    -l --optimize-nib                  Strip and compile bundled nib file to reduce size\n\
+    -h --help                          Prints help\n\
+    -v --version                       Prints program name and version\n\
 \n\
-See 'man platypus' or %@ for further details.", PROGRAM_MANPAGE_URL);
+See 'man platypus' or %@ for details.", PROGRAM_MANPAGE_URL);
 }
 
 #pragma mark -
