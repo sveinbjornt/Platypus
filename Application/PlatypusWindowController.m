@@ -225,12 +225,12 @@
         appName = NEW_SCRIPT_FILENAME;
     }
 
-    NSString *tmpScriptPath = [NSString stringWithFormat:@"%@/%@%@", PROGRAM_TEMPDIR_PATH, appName, suffix];
+    NSString *tmpScriptPath = [NSString stringWithFormat:@"%@%@%@", PROGRAM_TEMPDIR_PATH, appName, suffix];
     
     // Increment digit appended to script name until no script with that name exists at path
     int incr = 1;
     while ([FILEMGR fileExistsAtPath:tmpScriptPath]) {
-        tmpScriptPath = [NSString stringWithFormat:@"%@/%@-%d%@", PROGRAM_TEMPDIR_PATH, appName, incr, suffix];
+        tmpScriptPath = [NSString stringWithFormat:@"%@%@-%d%@", PROGRAM_TEMPDIR_PATH, appName, incr, suffix];
         incr++;
     }
     
@@ -279,7 +279,8 @@
     }
     
     // If the default editor is the built-in editor, we pop down the editor sheet
-    if ([[DEFAULTS stringForKey:DefaultsKey_DefaultEditor] isEqualToString:DEFAULT_EDITOR]) {
+    NSString *defEd = [DEFAULTS stringForKey:DefaultsKey_DefaultEditor];
+    if ([defEd isEqualToString:DEFAULT_EDITOR] || [defEd isEqualToString:PROGRAM_NAME]) {
         [self openScriptInBuiltInEditor:scriptPath];
     } else {
         // Open it in the external application

@@ -56,7 +56,7 @@ DQ
                         </connections>
                     </button>
                     <textField toolTip="Path to the file being edited" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="41">
-                        <rect key="frame" x="43" y="372" width="360" height="17"/>
+                        <rect key="frame" x="43" y="372" width="506" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" id="42">
                             <font key="font" metaFont="smallSystem"/>

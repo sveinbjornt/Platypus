@@ -130,6 +130,7 @@
     defaults[DefaultsKey_DefaultAuthor] = NSFullUserName();
     defaults[DefaultsKey_SymlinkFiles] = @NO;
     defaults[DefaultsKey_StripNib] = @YES;
+    defaults[DefaultsKey_SigningIdentity] = @"None";
     
     return defaults;
 }

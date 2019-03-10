@@ -609,9 +609,9 @@
 			children = (
 				F45B1EF51FF560D800A935D7 /* NSTextView+JSDExtensions.h */,
 				F45B1EF91FF560D800A935D7 /* NSTextView+JSDExtensions.m */,
-				F45B1EF61FF560D800A935D7 /* NoodleLineNumberMarker.h */,
-				F45B1EF41FF560D800A935D7 /* NoodleLineNumberView.m */,
 				F45B1EF71FF560D800A935D7 /* NoodleLineNumberView.h */,
+				F45B1EF41FF560D800A935D7 /* NoodleLineNumberView.m */,
+				F45B1EF61FF560D800A935D7 /* NoodleLineNumberMarker.h */,
 				F45B1EF81FF560D800A935D7 /* NoodleLineNumberMarker.m */,
 			);
 			name = "NSTextView+JSDExtensions";
