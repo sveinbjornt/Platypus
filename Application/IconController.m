@@ -37,7 +37,10 @@
 typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     PlatypusPresetIconDefault = 0,
     PlatypusPresetIconGenericApplication = 1,
-    PlatypusPresetIconInstaller = 2
+    PlatypusPresetIconInstaller = 2,
+    PlatypusPresetIconGlobe = 3,
+    PlatypusPresetIconNetwork = 4,
+    PlatypusPresetIconSync = 5
 };
 
 @interface IconController()
@@ -251,14 +254,47 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
         
         case PlatypusPresetIconInstaller:
         {
-            NSString *installerIconPath = @"/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns";
+            NSString *installerIconPath = \
+            @"/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns";
             iconImage = [[NSImage alloc] initByReferencingFile:installerIconPath];
             [iconImage setSize:NSMakeSize(512, 512)];
             iconName = @"Installer";
             iconPath = installerIconPath;
         }
             break;
-        
+            
+        case PlatypusPresetIconGlobe:
+        {
+            NSString *path = \
+            @"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/BookmarkIcon.icns";
+            iconImage = [[NSImage alloc] initByReferencingFile:path];
+            [iconImage setSize:NSMakeSize(512, 512)];
+            iconName = @"Globe";
+            iconPath = path;
+        }
+            break;
+            
+        case PlatypusPresetIconNetwork:
+        {
+            NSString *path = \
+            @"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericNetworkIcon.icns";
+            iconImage = [[NSImage alloc] initByReferencingFile:path];
+            [iconImage setSize:NSMakeSize(512, 512)];
+            iconName = @"Network";
+            iconPath = path;
+        }
+            break;
+            
+        case PlatypusPresetIconSync:
+        {
+            NSString *path = \
+            @"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/Sync.icns";
+            iconImage = [[NSImage alloc] initByReferencingFile:path];
+            [iconImage setSize:NSMakeSize(512, 512)];
+            iconName = @"Sync";
+            iconPath = path;
+        }
+            break;
     }
     
     return @{@"Name": iconName, @"Path": iconPath, @"Image": iconImage};
