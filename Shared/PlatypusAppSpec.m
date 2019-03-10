@@ -59,7 +59,7 @@
     if (self = [self initWithDefaults]) {
         [self addEntriesFromDictionary:dict];
         
-        // Backwards compatibility, mapping old key names to new
+        // Backwards compatibility, mapping old spec key names to new
         if (dict[AppSpecKey_InterpreterPath_Legacy]) {
             self[AppSpecKey_InterpreterPath] = dict[AppSpecKey_InterpreterPath_Legacy];
         }

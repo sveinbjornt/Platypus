@@ -431,7 +431,7 @@
 }
 
 - (IBAction)showHelpForUTIs:(id)sender {
-    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_DOCUMENTATION_URL]];
+    [WORKSPACE openURL:[NSURL URLWithString:@"https://en.wikipedia.org/wiki/Uniform_Type_Identifier"]];
 }
 
 @end
