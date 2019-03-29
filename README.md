@@ -16,9 +16,9 @@ status menu items, launchers and automations using Platypus.
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BDT58J7HYKAEE"><img align="right" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/btn/btn_donate_LG.gif" ></a>
 
-Platypus is free, open source software and has been developed and maintained for a very long time. If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).
+Platypus is free, open source software and has been continuously developed and maintained for a very long time by Sveinbjorn Thordarson. If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).
 
-## Download
+## Install
 
 * **[⇩ Download Platypus 5.3](https://sveinbjorn.org/files/software/platypus.zip)** 
 (Intel 64-bit, 10.8 or later, ~3.3 MB)
@@ -120,3 +120,4 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 
+The Platypus application icon is copyright (C) [Drífa Thoroddsen](https://drifaliftora.is).

@@ -104,7 +104,7 @@
     NSFileHandle *outputReadFileHandle;
     
     NSMutableArray <NSString *> *arguments;
-    NSMutableArray <NSString *> *commandLineArguments;
+    NSArray <NSString *> *commandLineArguments;
     NSArray <NSString *> *interpreterArgs;
     NSArray <NSString *> *scriptArgs;
     NSString *stdinString;
@@ -245,7 +245,7 @@ static const NSInteger detailsHeight = 224;
                    subText:@"AppSettings.plist not found in application bundle."];
     }
     
-    // Load app settings from property list
+    // Load settings from property list
     NSDictionary *appSettings = [NSDictionary dictionaryWithContentsOfFile:appSettingsPath];
     if (appSettings == nil) {
         [Alerts fatalAlert:@"Corrupt app settings"
@@ -267,7 +267,7 @@ static const NSInteger detailsHeight = 224;
     }
     interfaceType = InterfaceTypeForString(interfaceTypeStr);
     
-    // Text styling
+    // Text styling - we ignore those values unless output mode has a text view
     if (IsTextStyledInterfaceType(interfaceType)) {
     
         // Font and size
@@ -299,7 +299,7 @@ static const NSInteger detailsHeight = 224;
         }
     }
     
-    // Status menu interface has some additional parameters
+    // Status menu interface has some additional settings
     if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         NSString *statusItemDisplayType = appSettings[AppSpecKey_StatusItemDisplayType];
 
@@ -332,37 +332,8 @@ static const NSInteger detailsHeight = 224;
     isDroppable = NO;
     promptForFileOnLaunch = [appSettings[AppSpecKey_PromptForFile] boolValue];
     
-    // Read and store command line arguments to the application binary
-    NSMutableArray *processArgs = [[[NSProcessInfo processInfo] arguments] mutableCopy];
-    commandLineArguments = [NSMutableArray array];
-
-    if ([processArgs count] > 1) {
-        // The first argument is always the path to the binary, so we remove that
-        [processArgs removeObjectAtIndex:0];
-        BOOL lastWasDocRevFlag = NO;
-        
-        for (NSString *arg in processArgs) {
-            // On older versions of Mac OS X, apps opened from the Finder
-            // are passed a Carbon process serial number argument of the form -psn_0_*******
-            // We should ignore these
-            if ([arg hasPrefix:@"-psn_"]) {
-                continue;
-            }
-            // Hack to remove Xcode CLI flags -NSDocumentRevisionsDebugMode YES.
-            // Really just here to make debugging easier.
-            if ([arg isEqualToString:@"YES"] && lastWasDocRevFlag) {
-                continue;
-            }
-            if ([arg isEqualToString:@"-NSDocumentRevisionsDebugMode"]) {
-                lastWasDocRevFlag = YES;
-                continue;
-            } else {
-                lastWasDocRevFlag = NO;
-            }
-            
-            [commandLineArguments addObject:arg];
-        }
-    }
+    // Read and store command line arguments to the ScriptExec application binary
+    commandLineArguments = [self readCommandLineArguments];
     
     // Load settings for drop acceptance
     acceptsFiles = appSettings[AppSpecKey_AcceptFiles] ? [appSettings[AppSpecKey_AcceptFiles] boolValue] : NO;
@@ -402,6 +373,42 @@ static const NSInteger detailsHeight = 224;
         execStyle = PlatypusExecStyle_Normal;
         isDroppable = NO;
     }
+}
+
+// Read and filter command line arguments passed to the app binary
+- (NSArray *)readCommandLineArguments {
+    NSMutableArray *processArgs = [[[NSProcessInfo processInfo] arguments] mutableCopy];
+    NSMutableArray *cltArgs = [NSMutableArray new];
+    
+    if ([processArgs count] > 1) {
+        // The first argument is always the path to the binary, so we remove that
+        [processArgs removeObjectAtIndex:0];
+        BOOL lastWasDocRevFlag = NO;
+        
+        // Filter out remaining arguments that we don't want to pass on
+        for (NSString *arg in processArgs) {
+            // On older versions of Mac OS X, apps opened from the Finder are passed
+            // a Carbon Process Serial Number argument of the form -psn_0_*******
+            // We should ignore these
+            if ([arg hasPrefix:@"-psn_"]) {
+                continue;
+            }
+            // Hack to remove Xcode CLI flags -NSDocumentRevisionsDebugMode YES.
+            // Just here to make debugging ScriptExec easier.
+            if ([arg isEqualToString:@"YES"] && lastWasDocRevFlag) {
+                continue;
+            }
+            if ([arg isEqualToString:@"-NSDocumentRevisionsDebugMode"]) {
+                lastWasDocRevFlag = YES;
+                continue;
+            } else {
+                lastWasDocRevFlag = NO;
+            }
+            
+            [cltArgs addObject:arg];
+        }
+    }
+    return [cltArgs copy]; // Return immutable copy
 }
 
 #pragma mark - App Delegate handlers
