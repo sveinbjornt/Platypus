@@ -14,14 +14,16 @@ applications can be created with a few clicks. It is very easy to
 create installers, droplets, administrative applications, login items, 
 status menu items, launchers and automations using Platypus.
 
-## Download
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BDT58J7HYKAEE"><img align="right" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/btn/btn_donate_LG.gif" ></a>
 
-Platypus is free, open source software and has been developed and maintained for a very long time (since 2003). If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).
+Platypus is free, open source software and has been developed and maintained for a very long time. If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).
+
+## Download
 
 * **[⇩ Download Platypus 5.3](https://sveinbjorn.org/files/software/platypus.zip)** 
 (Intel 64-bit, 10.8 or later, ~3.3 MB)
 
-Or install via Homebrew:
+Or install via Homebrew (may not be latest version):
 
 ```shell
 $ brew cask install platypus
@@ -44,12 +46,12 @@ $ brew cask install platypus
 * Built-in script editor, or linking with external editor of choice
 * Extensive [documentation](Documentation/Documentation.md) and many built-in examples to help you get started
 
-## Useful Links
+## Links
 
-* [Platypus Documentation](Documentation/Documentation.md)
-* [Platypus Website](https://sveinbjorn.org/platypus)
-* [Command Line Tool man Page](https://sveinbjorn.org/files/manpages/platypus.man.html)
-* [AppCast XML Feed](https://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml)
+* [Documentation](Documentation/Documentation.md)
+* [Website](https://sveinbjorn.org/platypus)
+* [man `platypus`](https://sveinbjorn.org/files/manpages/platypus.man.html)
+* [Appcast XML feed](https://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml)
 
 ## Screenshots
 
