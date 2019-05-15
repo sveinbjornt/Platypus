@@ -2,7 +2,6 @@
 
 XCODE_PROJ := Platypus.xcodeproj
 
-SRC_DIR := $(PWD)
 BUILD_DIR := $(PWD)/products
 
 PLISTBUDDY := "/usr/libexec/PlistBuddy"
@@ -18,14 +17,14 @@ APP_SRC_ZIP_NAME := $(APP_NAME_LC)$(VERSION).src.zip
 
 all: clean build_unsigned
 
-release: clean build_signed archives size
+release: clean build_signed archives sparkle size
 
 clean:
 	xcodebuild clean
 	rm -rf $(BUILD_DIR)/*
 
 build_signed:
-	@echo Building $(APP_NAME) version $(VERSION)
+	@echo Building $(APP_NAME) version $(VERSION) \(signed\)
 	mkdir -p $(BUILD_DIR)
 	xcodebuild -parallelizeTargets \
         -project "$(XCODE_PROJ)" \
@@ -36,7 +35,7 @@ build_signed:
         build
 
 build_unsigned:
-	@echo Building $(APP_NAME) version $(VERSION)
+	@echo Building $(APP_NAME) version $(VERSION) \(unsigned\)
 	mkdir -p $(BUILD_DIR)
 	xcodebuild -parallelizeTargets \
         -project "$(XCODE_PROJ)" \
@@ -48,26 +47,26 @@ build_unsigned:
         clean \
         build
 
-distApp: $(BUILD_DIR)/$(APP_ZIP_NAME)
-	@echo Creating application archive $(@F)...
-	cd "$(@D)"; zip -q --symlinks "$(@F)" -r "$(<F)"
+archives:
+	@echo "Creating application archive ${APP_ZIP_NAME}..."
+	@cd $(BUILD_DIR); zip -q --symlinks $(APP_ZIP_NAME) -r $(APP_BUNDLE_NAME)
 
-distSource: $(BUILD_DIR)/$(APP_SRC_ZIP_NAME)
+	@echo "Creating source archive ${APP_SRC_ZIP_NAME}..."
+	@cd $(BUILD_DIR); zip -q --symlinks -r "${APP_SRC_ZIP_NAME}" ..  \
+	-x *.git* -x *.zip* -x *.tgz* -x *.gz* -x *.DS_Store* \
+	-x *dsa_priv.pem* -x *Sparkle/dsa_priv.pem* \
+	-x \*build/\* -x \*Releases\* -x \*Assets\* -x \*products\* \
+	-x \*$(BUILD_DIR)/\*
 
-$(BUILD_DIR)/$(APP_SRC_ZIP_NAME): | $(SRC_DIR)
-	@echo Creating source archive $(@F)...
-	cd "$(|)"; zip -q --symlinks -r "$(@F)" . \
-	    -x *.git* -x *.zip* -x *.tgz* -x *.gz* -x *.DS_Store* \
-	    -x *dsa_priv.pem* -x *Sparkle/dsa_priv.pem* \
-	    -x \*build/\* -x \*Releases\* -x \*Assets\* -x \*products\* \
-	    -x \*$(BUILD_DIR)/\*
-	mv "$(|)/$(@F)" "$(@)"
+size:
+	@echo "App bundle size:"
+	@cd $(BUILD_DIR); du -hs $(APP_BUNDLE_NAME)
+	@echo "Binary size:"
+	@cd $(BUILD_DIR); stat -f %z $(APP_BUNDLE_NAME)/Contents/MacOS/*
+	@echo "Archive Sizes:"
+	@cd $(BUILD_DIR); du -hs $(APP_ZIP_NAME)
+	@cd $(BUILD_DIR); du -hs $(APP_SRC_ZIP_NAME)
 
-
-archive: $(addprefix $(HOME)/Desktop/,$(APP_ZIP_NAME) $(APP_SRC_ZIP_NAME))
-	@echo Archive Sizes:
-	du -hs $(^)
-
-sparkle: $(HOME)/Desktop/$(APP_ZIP_NAME)
+sparkle:
 	@echo Generating Sparkle signature
-	ruby "Sparkle/sign_update.rb" "$(<)" "Sparkle/dsa_priv.pem"
+	ruby "Sparkle/sign_update.rb" "$(BUILD_DIR)/$(APP_ZIP_NAME)" "Sparkle/dsa_priv.pem"

@@ -1,8 +1,6 @@
 For future versions...
-    TODO: Look at FTaskStream.h
     TODO: Use NSDictionaryController and bindings for all controls in main window and sub-controllers
 
-    http://stackoverflow.com/questions/13355363/nstask-requires-flush-when-reading-from-a-process-stdout-terminal-does-not
     http://stackoverflow.com/questions/1276029/non-blocking-stdio
 
     TODO: Use pseudo-ttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
@@ -18,6 +16,7 @@ For future versions...
     TODO: Set default icon in Prefs
     TODO: Overhaul the Services feature
 
+
 For 5.4
     TODO: Support relative interpreter path (i.e. relative to Resources directory)
     TODO: Fix icon drag and drop
@@ -30,16 +29,20 @@ For 5.4
     TODO: Fix broken file watching
     TODO: Fix issue with preserving selection of signing certificate
     TODO: Command line tool should now default to creating apps with no application icon
+    TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
+    TODO: Feature Request: Run script on Quit
     * The Platypus application and command line tool are now Developer ID-signed
-    * Platypus apps now hide Open and Open Recent menu items if they don't accept files
+    * Platypus apps now hide (instead of disabling) Open and Open Recent menu items if they don't accept files
     * Fixed issue with signing due to missing "APPL" CFBundleType
     * Fixed nasty empty newline parsing bug
-    * Switched over to AGIconFamily for icon generation
+    * Switched over to AGIconFamily for icon generation, reducing dependence on deprecated Carbon calls
     * Added support for code signing using Keychain certificates
     * Resolved issue with text view selection and dark mode
     * Improved drag and drop handling on Platypus main window
 
-For 5.3
+
+5.3 - 25/11/2018
+
     * First facelift in a decade: New application icons created by Drífa Líftóra
     * Updated to support Mojave Dark Mode
     * Added AWK, JavaScript and Node interpreter presets
@@ -57,10 +60,12 @@ For 5.3
     * Documentation overhauled, partially rewritten and moved to Markdown format
     * An assortment of minor bug fixes
     * Various minor interface improvements
-    * Reduced size of generated app binaries
+    * Reduced size of generated app binaries2
     * Now requires macOS 10.8 or later
 
-5.2
+
+5.2 - 03/03/2017
+
     * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
     * Platypus apps can now accept dragged URLs
     * Platypus apps that accept dropped files now have an Open Recent menu
@@ -90,7 +95,9 @@ For 5.3
     * Updated documentation & man page
     * Various minor interface refinements
 
-5.1
+
+5.1 - 06/02/2016
+
     * New Build All Examples feature
     * ScriptExec windows now remember window size and position between launches
     * Fixed issue where MainMenu.nib was stripped and thus not editable using XCode
@@ -117,7 +124,9 @@ For 5.3
     * UTIs are now used for default file types in Drop Settings (public.item and public.folder)
     * Moved project over to ARC
 
-For 5.0
+
+5.0 - 29/11/2015
+
     * Long GNU named params for command line tool, e.g. --some-option
     * Fixed issue where ScriptExec quit before script output was parsed
     * Add new examples Icns2Iconset, ImageResizer
@@ -179,7 +188,9 @@ For 5.0
     * Auto-focus on app name text field on app launch
     * Process number arguments in the format -psn_0_******* used by old version of the Finder are no longer passed to script
 
-For 4.9
+
+4.9 - 09/03/2015
+
     * Users can now manually increase/decrease the font size in Platypus-generated apps
     * Status menu items can now be selected. This will run the script again with the menu title as an argument.
     * Arguments can now be passed to Platypus-generated apps via the command line
@@ -202,7 +213,9 @@ For 4.9
     * Updated version of IconFamily class
     * Improved documentation
 
-For 4.8
+
+4.8 - 07/07/2013
+
     * New "Prompt for file on launch" option
     * Redesigned, user-friendlier Drop Settings sheet
     * Fixed issue where version of generated apps would not appear in Get Info in Finder (missing CFBundleShortVersionString)
@@ -215,7 +228,9 @@ For 4.8
     * Documentation files now open in default browser, not in default .html handling app
     * Fixed broken nib optimization. Platypus now correctly detects XCode 4 installs. 
 
-For 4.7
+
+4.7 - 27/02/2012
+
     * New "Uninstall" menu option, which removes all traces of Platypus on a system
     * New update mechanism using the Sparkle framework and appcasting
     * Command line tool now supports reading script from STDIN
@@ -227,7 +242,9 @@ For 4.7
     * Fixed bug with icon missing on "New Script" if CLI tool wasn't installed
     * Fixed bug with enabled empty menu item when no profiles were in Profiles list
 
-For 4.6
+
+4.6 - 26/01/2012
+
     * "Open" and "Save" menu item option for Platypus-created apps
     * Applications can now be set as Services for text or file handling via Services menu
     * Configurable document icon for Platypus apps
@@ -253,11 +270,13 @@ For 4.6
     * Fixed bug where "Icon" display mode status item would erroneously display a default title
     * "Run in background" applications no longer set themselves as front process with interface type "None"
 
-For 4.5
+
+4.5 - 11/12/2011
+
     * Upgraded to XCode 4 for builds.  Platypus and generated applications now require Mac OS X 10.5 or later
     * Dropped PowerPC support. All binaries are now 32-bit/64-bit Intel only
     * New Examples menu with a number example profiles, scripts and presets demonstrating Platypus features
-    * Support for accepting dragged text snippets as arguments to script	
+    * Support for accepting dragged text snippets as arguments to script
     * Platypus now displays a progress bar with status messages while creating applications
     * New "Create app on script file change" option, which automatically creates and launches a Platypus application when you save changes to script.
     * Due to popular demand, "droppable" apps now run script on launch, not just when files are dropped
@@ -266,22 +285,22 @@ For 4.5
     * Better handling of icons for apps
     * More accurate estimated final app size
     * New "Launch app on creation" option in Platypus, to facilitate development workflow
-	* "Runs in background" windows now come to the front on launch
+    * "Runs in background" windows now come to the front on launch
     * Improved application icon and preset icons (512x512px representations)
     * Updated man page for command line tool
     * Open Recent menu uses Apple's API
-	* Main window no longer accepts locally dragged and dropped icon files
+    * Main window no longer accepts locally dragged and dropped icon files
     * Icon view no longer erroneously recognizes locally originating drags as valid
-	* Revised and extended documentation
-	* Fixed a text encoding bug with "Secure" scripts
-	* Fixed text encoding bug in built-in text editor
-	* Fixed bug in drag and drop handling in Platypus application
-	* Removed environment editing and signature settings [redundant and obsolete, respectively]
-	* Removed English.lproj from created apps.  It's not need with current lack of localization support.
-	* Fixed bug in drag and drop on Web View
+    * Revised and extended documentation
+    * Fixed a text encoding bug with "Secure" scripts
+    * Fixed text encoding bug in built-in text editor
+    * Fixed bug in drag and drop handling in Platypus application
+    * Removed environment editing and signature settings [redundant and obsolete, respectively]
+    * Removed English.lproj from created apps.  It's not need with current lack of localization support.
+    * Fixed bug in drag and drop on Web View
     * Updated to IconFamily 0.9.4
     * New FAQ section in the documentation which addresses common questions and issues
-	* Fixed a bug where droplet apps would lock up on cancelled authentication
+    * Fixed a bug where droplet apps would lock up on cancelled authentication
     * Fixed bug in command line tool where nib parameter was ignored
     * Platypus no longer embeds icon data in profiles, which results in smaller file sizes
     * A variety of other small bug fixes all over the codebase
@@ -294,94 +313,103 @@ For 4.5
      Command line tool parameters change from '-c scriptPath [appName]' to 'scriptPath [appName]'
     * More intelligent automatic app name generation based on script filename  
 
-For 4.4
-	* New interface type: "Droplet"
-	* Development mode now also creates symlinks to bundled files, not just the script
-	* New high-resolution 512x512 icon presets
-	* New "Default Text Encoding" option in Preferences
-	* STDOUT and STDERR are no longer captured in interface type "None"
-	* Platypus apps now use the Apple-recommended, more secure temporary location for secure scripts
-	* More text encoding options
-	* Show Shell Command option is now more intelligent about creating a terse, efficient shell command without superfluous parameters
-	* Various small bug fixes and optimizations in Platypus app binaries
-	* Updated and improved code for executing script with privileges
-	* Updated and improved output parsing in Progress Bar interface type
-	* Fixed documentation so that it uses external images instead of data URLs
-	* Fixed bug where Platypus would incorrectly claim to be unable to create Platypus application support folder
-	* Fixed bug where background color from text settings would not be applied to the text view in Progress Bar interface type
-	* Fixed bug where syntax checking would work incorrectly with Perl scripts
-	* Fixed bug when interface in a Platypus app would lock up when dropping files in authenticated execution mode
-	* Fixed various bugs in Progress Bar interface type
-	* Fixed bug in interface type "None" where app would fail to quit on script termination
-	* Fixed small memory leak when applications were created
-	
-For 4.3
-	* Platypus text output now defaults to UTF8 instead of ASCII
-	* Refactored execution code running w. administrator privileges
-	* Fixed text-encoding bug with secure bundled scripts
-	* Fixed bug in secure bundled script w. droppable option
-	* Some changes to the interface of Platypus apps
-	* Current working directory is now set to .app/Contents/Resources in scripts running with Admin privileges
-	* Drag and drop now works properly in Web View windows
-	* Auto-scrolling with output in Web View interface type
-	* Fixed bug where apps would fail to register dropped files on launch
-	* Fixed bug in command line tool install script
-	* Fixed bug with suffix and file type validation
-	* Fixed bug where command-line generated apps would have black background and foreground in text window interface
-	* Generated apps now have editable nib files
-	* Updated to latest IconFamily code (0.9.3)
-	* Drag and drop works in more places in the Platypus application
-	* Updated sample scripts
-	* Updated documentation and command line tool man page
-	* Better icon handling when creating applications
-	* New icon presets
-	* New high resolution app icon and improved document icons
-´	* New interface type:  Status Menu
-	* Fixed bug where command-line tool generated apps would default to black background in text interface types
-	* Fixed bug where apps would default to interface type "None" on invalid interface settings
-	* Now warns when attempting to load a profile generated by an older version of Platypus
-	* New "Optimize Application" mode which strips/compiles nibs and removes unnecessary files from generated application bundle
-	* Command line tool has new option to specify alternate nib file
-	* Fixed some bugs in "Show Shell Command" window
 
-For 4.2
-	* Droppable Platypus apps can now execute script repeatedly when new files are dropped
-	* Text settings now available for Progress Bar interface type
-'	* Command line tool now supports setting text properties such as font, color and encoding
-	* Command line tool has achieved feature parity with GUI application
-	* Command line tool now correctly handles relative paths
-	* Change in profile format to make it more transparent and human-readable/editable
-	* "Show Shell Command" now shows all parameters for command line app
-	* Platypus apps now default to remaining open after execution
-	* Secure bundled script option now correctly excludes Development Version save option
-	* Fixed bug from 4.1 where text settings failed to be applied
-	* Fixed memory leak and bugs in privileged execution mode
-	* Fixed bug in path text field autocompletion
-	* Minor interface tweaks and fixes
+4.4 - 17/08/2010
 
-For 4.1
-	* New "Development Mode" option makes Platypus create symlink to script instead of copying it to the application bundle
-	* Platypus now tracks and warns of location change of bundled files and script
-	* Profiles menu now updates profile list when displayed
-	* Path autocomplete feature in script path text field
-	* Now parses entire shebang line for arguments to interpreter
-	* Script text output is now directed line by line to the status text field in Progress Bar interface type
-	* Progress Bar interface type now has a little arrow that shows details (i.e. script output) in a text field
-	* Tooltips for many more controls
-	* Additional default external editor presets
-	* Minor user interface tweaks and fixes
-	* Minor optimizations in app size
-	* Command line program can now create profiles
-	* Command line program can now operate in "Force" mode, overwriting files
-	* Fixed bug where secure bundled scripts failed to work on PowerPC-based machines
-	* Fixed memory leak in text interface type
-	* Fixed bug where command line program failed to create icons from images
-	* Fixed bug where command line program failed to parse arguments correctly
-	* Fixed bug where script type was not identified when a script was dropped on Platypus to launch the program
-	* Fixed bug which prevented File Types and App Role from being set in Info.plist
-	* Fixed bug where Platypus would insist on at least one File Type being set in file types and suffixes settings
+    * New interface type: "Droplet"
+    * Development mode now also creates symlinks to bundled files, not just the script
+    * New high-resolution 512x512 icon presets
+    * New "Default Text Encoding" option in Preferences
+    * STDOUT and STDERR are no longer captured in interface type "None"
+    * Platypus apps now use the Apple-recommended, more secure temporary location for secure scripts
+    * More text encoding options
+    * Show Shell Command option is now more intelligent about creating a terse, efficient shell command without superfluous parameters
+    * Various small bug fixes and optimizations in Platypus app binaries
+    * Updated and improved code for executing script with privileges
+    * Updated and improved output parsing in Progress Bar interface type
+    * Fixed documentation so that it uses external images instead of data URLs
+    * Fixed bug where Platypus would incorrectly claim to be unable to create Platypus application support folder
+    * Fixed bug where background color from text settings would not be applied to the text view in Progress Bar interface type
+    * Fixed bug where syntax checking would work incorrectly with Perl scripts
+    * Fixed bug when interface in a Platypus app would lock up when dropping files in authenticated execution mode
+    * Fixed various bugs in Progress Bar interface type
+    * Fixed bug in interface type "None" where app would fail to quit on script termination
+    * Fixed small memory leak when applications were created
+    
 
-For 4.0
+4.3 - 25/07/2010
+
+    * Platypus text output now defaults to UTF8 instead of ASCII
+    * Refactored execution code running w. administrator privileges
+    * Fixed text-encoding bug with secure bundled scripts
+    * Fixed bug in secure bundled script w. droppable option
+    * Some changes to the interface of Platypus apps
+    * Current working directory is now set to .app/Contents/Resources in scripts running with Admin privileges
+    * Drag and drop now works properly in Web View windows
+    * Auto-scrolling with output in Web View interface type
+    * Fixed bug where apps would fail to register dropped files on launch
+    * Fixed bug in command line tool install script
+    * Fixed bug with suffix and file type validation
+    * Fixed bug where command-line generated apps would have black background and foreground in text window interface
+    * Generated apps now have editable nib files
+    * Updated to latest IconFamily code (0.9.3)
+    * Drag and drop works in more places in the Platypus application
+    * Updated sample scripts
+    * Updated documentation and command line tool man page
+    * Better icon handling when creating applications
+    * New icon presets
+    * New high resolution app icon and improved document icons
+    * New interface type:  Status Menu
+    * Fixed bug where command-line tool generated apps would default to black background in text interface types
+    * Fixed bug where apps would default to interface type "None" on invalid interface settings
+    * Now warns when attempting to load a profile generated by an older version of Platypus
+    * New "Optimize Application" mode which strips/compiles nibs and removes unnecessary files from generated application bundle
+    * Command line tool has new option to specify alternate nib file
+    * Fixed some bugs in "Show Shell Command" window
+
+
+4.2 - 18/05/2009
+
+    * Droppable Platypus apps can now execute script repeatedly when new files are dropped
+    * Text settings now available for Progress Bar interface type
+    * Command line tool now supports setting text properties such as font, color and encoding
+    * Command line tool has achieved feature parity with GUI application
+    * Command line tool now correctly handles relative paths
+    * Change in profile format to make it more transparent and human-readable/editable
+    * "Show Shell Command" now shows all parameters for command line app
+    * Platypus apps now default to remaining open after execution
+    * Secure bundled script option now correctly excludes Development Version save option
+    * Fixed bug from 4.1 where text settings failed to be applied
+    * Fixed memory leak and bugs in privileged execution mode
+    * Fixed bug in path text field autocompletion
+    * Minor interface tweaks and fixes
+
+
+4.1 - 15/05/2009
+
+    * New "Development Mode" option makes Platypus create symlink to script instead of copying it to the application bundle
+    * Platypus now tracks and warns of location change of bundled files and script
+    * Profiles menu now updates profile list when displayed
+    * Path autocomplete feature in script path text field
+    * Now parses entire shebang line for arguments to interpreter
+    * Script text output is now directed line by line to the status text field in Progress Bar interface type
+    * Progress Bar interface type now has a little arrow that shows details (i.e. script output) in a text field
+    * Tooltips for many more controls
+    * Additional default external editor presets
+    * Minor user interface tweaks and fixes
+    * Minor optimizations in app size
+    * Command line program can now create profiles
+    * Command line program can now operate in "Force" mode, overwriting files
+    * Fixed bug where secure bundled scripts failed to work on PowerPC-based machines
+    * Fixed memory leak in text interface type
+    * Fixed bug where command line program failed to create icons from images
+    * Fixed bug where command line program failed to parse arguments correctly
+    * Fixed bug where script type was not identified when a script was dropped on Platypus to launch the program
+    * Fixed bug which prevented File Types and App Role from being set in Info.plist
+    * Fixed bug where Platypus would insist on at least one File Type being set in file types and suffixes settings
+
+
+4.0 - 22/6/2008
 
     * Now both Platypus and Platypus-generated apps require Mac OS X 10.4 or later.
     * Interface streamlined and improved
@@ -407,13 +435,21 @@ For 4.0
     * Updated and improved documentation
     * Updated to latest IconFamily class code for icon generation
 
-For 3.4
+
+3.4 - 25/07/2006
 
     * Fixed problem where Platypus refused to launch on certain Mac OS X 10.3.x  systems
     * Platypus-generated apps are now Universal Binaries and require Mac OS X 10.3.9 or later
     * Various bug fixes, error checks and minor improvements
 
-For 3.2
+
+3.3 - 24/02/2006
+
+    * Platypus and Platypus-generated apps are now Universal binaries that run natively on both PowerPC and x86 processors
+    * Fixed bug which made the Platypus command line utility generate non-functioning applications
+
+
+3.2 - 06/05/2005
 
     * Fixed two memory leaks
     * Info.plists now contain LSHasLocalizedDisplayName, NSAppleScriptEnabled,CFBundleDisplayName, NSHumanReadableCopyright
@@ -423,7 +459,8 @@ For 3.2
     * English.lproj is en.lproj in accordance with Apple's specifications
     * Sliding animation when advanced options are revealed
 
-For 3.1
+
+3.1 - 06/05/2005
 
     * New minimal, non-intrusive built-in text editor for those who prefer working in one application
     * It is now possible to set app author name manually
@@ -443,7 +480,8 @@ For 3.1
     * Platypus apps now register their creator in AppSettings.plist
     * Help now opens with default app for http: protocol, not .html suffix
 
-For 3.0
+
+3.0 - 13/01/2005
 
     * New "Secure bundled script" option, which checksums, encrypts and hides script
     * New "Check Script Syntax" feature for shell, Perl, Ruby and PHP scripts
@@ -456,7 +494,8 @@ For 3.0
     * Several minor speed optimizations
     * Updated documentation, tutorials, sample scripts and source code comments
 
-For 2.8
+
+2.8 - 29/11/2004
 
     * New "Import Custom Icon" menu item
     * New contextual menus for app icon and file list
@@ -464,7 +503,8 @@ For 2.8
     * Fixed bug where an authorized Platypus app could cause a logout
     * Fixed bug with loading profiles created in older versions of Platypus
 
-For 2.7
+
+2.7 - 16/11/2004
 
     * Now possible to create applications that run with privileges *and* have a text output interface
     * Profiles now store custom application icons
@@ -478,7 +518,8 @@ For 2.7
     * Various bug fixes and interface refinements
     * All those that made Platypus possible are now rightly credited
 
-For 2.6
+
+2.6 - 11/10/2004
 
     * Application configurations can now be saved as "Profiles"
     * It is now possible to set application version and 4-character signature
@@ -490,7 +531,8 @@ For 2.6
     * Several minor bugs and inconsistencies fixed
     * Several interface tweaks
 
-For 2.5
+
+2.5 - 23/08/2004
 
     * This is a major update with many important bug fixes and some powerful new features
     * New interface type: "Text Window", making it very easy to create tool wrappers
@@ -506,7 +548,8 @@ For 2.5
     * Fixed major memory leak in Platypus apps which had been present from Platypus 2.1
     * Fixed a minor memory leak introduced in Platypus 2.3
 
-For 2.3
+
+2.3 - 11/08/2004
 
     * New "Runs in background" option, for creating applications that don't show up in the Dock
     * Every Platypus app now has a unique bundle identifier (f.e. org.johnsmith.myscriptapp)
@@ -518,7 +561,8 @@ For 2.3
     * Bundled Files list buttons are now auto-enabled/disabled according to selection
     * Platypus now prompts whether to overwrite when an app by the same name already exists
 
-For 2.2
+
+2.2 - 03/05/2004
 
     * "New Script" button/menu item for creating and opening a script from within Platypus
     * "Reveal Script" button/menu item for revealing script in the Finder
@@ -531,9 +575,10 @@ For 2.2
     * Fixed bug where files with file/creator types could not be dropped on Platypus droplets
     * Some minor interface adjustments
 
-For 2.1
 
-    * Rewrote from scratch the ScriptExec executable that Platypus bundles into apps
+2.1 - 27/04/2004
+
+    * Rewrote the ScriptExec executable that Platypus bundles into apps from scratch
     * Fixed the dreaded "Is droppable" bug where Platypus would crash
     * Platypus now (again) correctly creates droppable applications
     * Scripts now properly receive the application bundle's path as first argument $1
@@ -544,7 +589,8 @@ For 2.1
     * New menu and menu items for Platypus functions
     * Two new icon presets, Platypus Plate and Platypus Droplet
 
-For 2.0
+
+2.0 - 17/02/2004
 
     * Entire application rewritten from scratch in Objective C and Cocoa
     * Images can now be dragged on "App Icon" to create custom icons for apps
@@ -553,11 +599,13 @@ For 2.0
     * An editable file list for bundling files with script into Resources folder of app bundle
     * Some settings delegated to "Advanced Options", revealed by expanding window
 
-For 1.8
+
+1.8 - 21/11/2003
 
     * Platypus applications that aren't marked 'Is Droppable' now get the path of the app's enclosing folder as first argument ($1, $ARGV[0] etc.). This can be very handy for installers or working with files relative to the app. A sample script that utilises this is included.
 
-For 1.7
+
+1.7 - 17/11/2003
 
     * Platypus no longer has problems with spaces in certain paths
     * Fixed an interface bug where Platypus window would close after Create, although cancelled
@@ -565,14 +613,16 @@ For 1.7
     * Fixed bug where new platypus windows retained former Droppable setting
     * Some cool sample scripts bundled with Platypus
 
-For 1.6
+
+1.6 - 14/08/2003
 
     * New option to create droppable apps that pass files as arguments to script (like DropScript)
     * Fixed a nasty bug where Platypus apps would freeze up after failed authentication
     * Platypus apps with progress bar now have a "Cancel" button
     * Minor user interface enhancements in both Platypus and Platypus-generated apps
 
-For 1.5
+
+1.5 - 29/07/2003
 
     * Platypus apps now remain running while root-privileged scripts finish executing
     * Invisible files and folders are now shown in Navigation dialogs
@@ -581,7 +631,8 @@ For 1.5
     * Platypus apps are now threaded, which means that the interface is responsive while they're running
     * Some interface tweaks and bug fixes
 
-For 1.4
+
+1.4 - 18/06/2003
 
     * It is now possible to create script applications that require root privileges
     * Optimized performance and improved error handling for apps created with Platypus
@@ -590,7 +641,8 @@ For 1.4
     * Fixed bug where apps with spaces in their names failed to function
     * Platypus apps now remain running while script is executing
 
-For 1.3
+
+1.3 - 15/06/2003
 
     * Script interpreter can now be defined
     * Shebang line (#!) is now parsed for interpreter
@@ -599,7 +651,8 @@ For 1.3
     * Code optimized and trimmed
     * Minor interface tweaks
 
-For 1.2
+
+1.2 - 13/06/2003
 
     * Support for Ruby, AppleScript and Tcl
     * Drag'n drop support for script path
@@ -607,7 +660,8 @@ For 1.2
     * Better icons - specialized default icons for each script type
     * Fixed bug where application placement name in Navigation dialog was ignored when creating app
 
-For 1.1
+
+1.1 - 11/06/2003
 
     * Fixed issue with window redraws
     * Text fields are now Unicode and displayed in correct font
@@ -617,3 +671,8 @@ For 1.1
     * Scripts can now be dragged on Platypus to automatically create an app in the same directory
     * Now warns about inappropriate script suffixes
 
+
+1.0 - 23/05/2003
+
+    * Initial release
+    

@@ -280,6 +280,7 @@
 		F45BB3672192397900DC7A00 /* Preferences.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Preferences.icns; sourceTree = "<group>"; };
 		F46EF84E13C3F36900E4C0E4 /* Examples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Examples; sourceTree = "<group>"; };
 		F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusAppIcon.icns; sourceTree = "<group>"; };
+		F479672B224EB3EF00CA0746 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		F48002BA121AF042003FB5B3 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		F482697D1BCAE1EE00169D8B /* TypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypeListController.h; path = Application/TypeListController.h; sourceTree = "<group>"; };
 		F482697E1BCAE1EE00169D8B /* TypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeListController.m; path = Application/TypeListController.m; sourceTree = "<group>"; };
@@ -449,6 +450,7 @@
 				F4975D7A1B2E462A0099D16E /* README.md */,
 				F4ECE1A011F7746A000DB012 /* CHANGES.txt */,
 				F442E00B1EA38C7100BAD80C /* LICENSE.txt */,
+				F479672B224EB3EF00CA0746 /* Makefile */,
 				F4F14CBB1C64264D002A2402 /* Scripts */,
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4B4F71C2231ECD300F3C073 /* Common */,
@@ -1113,7 +1115,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\nBUILD_NUMBER=`git rev-list HEAD | wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nif [ \"$?\" -ne 0 ] ; then\n    echo \"warning:Error incrementing CFBundleVersion\"\nfi\n";
+			shellScript = "#!/bin/sh\nBUILD_NUMBER=`git rev-list HEAD | wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"${INFOPLIST_FILE}\"\nif [ \"$?\" -ne 0 ] ; then\n    echo \"warning:Error incrementing CFBundleVersion\"\nfi\n";
 		};
 		F42A93D221781BCB00C40D46 /* Create symlink in Tests folder */ = {
 			isa = PBXShellScriptBuildPhase;
