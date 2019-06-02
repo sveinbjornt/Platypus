@@ -20,8 +20,7 @@ Platypus is free, open source software and has been continuously developed and m
 
 ## Install
 
-* **[⇩ Download Platypus 5.3](https://sveinbjorn.org/files/software/platypus.zip)** 
-(Intel 64-bit, 10.8 or later, ~3.1 MB)
+* **[⇩ Download Platypus 5.3](https://sveinbjorn.org/files/software/platypus.zip)**  (Intel 64-bit, 10.8 or later, ~3.1 MB)
 
 Or install via Homebrew (may not be latest version):
 
