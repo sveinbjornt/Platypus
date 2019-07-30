@@ -6,7 +6,7 @@
 from command line scripts such as shell scripts or Python, Perl, Ruby, 
 Tcl, JavaScript and PHP programs. This is done by wrapping the script in an 
 [application bundle](https://en.wikipedia.org/wiki/Bundle_(OS_X)) along 
-with an app binary that runs the script.
+with a slim app binary that runs the script.
 
 Platypus makes it easy to share scripts and programs with people who are 
 unfamiliar with the command line interface. Native, user-friendly 
@@ -31,7 +31,7 @@ $ brew cask install platypus
 ## Features
 
 * Supports shell scripts, Python, Perl, Ruby, PHP, Swift, Expect, Tcl, AWK, JavaScript, AppleScript or any other user-specified interpreter
-* Apps can display graphical feedback of script execution as progress bar, text window with script output, droplet, WebKit HTML rendering or status item menu
+* Apps can display graphical feedback of script execution as a progress bar, text window with script output, droplet, WebKit HTML rendering or status item menu
 * Apps support receiving dragged and dropped files or text snippets, which are then passed to the script as arguments
 * Apps can execute scripts with root privileges via the macOS Security Framework
 * Apps can register as handlers for URI schemes
@@ -40,17 +40,16 @@ $ brew cask install platypus
 * Set app's associated file types, identifier, version, author, etc.
 * Graphical interface for bundling support files with the script
 * Command line tool for automation and build process integration
-* Support for signing generated apps using Mac developer certificates in Keychain
 * "Profiles" can be used to save app configurations
 * Built-in script editor, or linking with external editor of choice
 * Extensive [documentation](Documentation/Documentation.md) and many built-in examples to help you get started
 
 ## Links
 
-* [Documentation](Documentation/Documentation.md)
-* [Website](https://sveinbjorn.org/platypus)
+* [Platypus Documentation](Documentation/Documentation.md)
+* [Platypus Website](https://sveinbjorn.org/platypus)
 * [man `platypus`](https://sveinbjorn.org/files/manpages/platypus.man.html)
-* [Appcast XML feed](https://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml)
+* [Platypus Appcast XML feed](https://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml)
 
 ## Screenshots
 

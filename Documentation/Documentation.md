@@ -177,7 +177,7 @@ You can also set **Author** and **Version** metadata. This information will appe
 
 Please note that if this option is selected, `stderr` output cannot be captured due to limitations in the Security APIs. This can be circumvented by using a shell script to execute another script while piping `stderr` into `stdout` (e.g. `python script.py 2>&1`).
 
-**Runs in background:** If selected, the application registers itself as a User Interface Element (LSUIElement) and will not appear in the Dock when launched.
+**Runs in background:** If selected, the application is registered with Launch Services as a User Interface Element (LSUIElement) and will not show a menu bar or appear in the Dock when launched.
 
 **Remain running after completion**: This option tells the application to remain open after the script has executed.
 
