@@ -29,7 +29,7 @@
 	<key>CFBundleExecutable</key>
 	<string>ScriptExec</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.sveinbjorn.ScriptExec666</string>
+	<string>org.sveinbjorn.ScriptExec</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

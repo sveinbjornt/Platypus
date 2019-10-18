@@ -214,7 +214,7 @@ Selecting **Accept Dropped Text** makes the app accept dragged snippets of text.
 
 **Provide macOS Service** makes the app register as a text-processing [Dynamic Service](http://www.computerworld.com/article/2476298/mac-os-x/os-x-a-quick-guide-to-services-on-your-mac.html), accessible from the **Services** submenu of application menus. You also need to enable this if you want your app to accept text snippets or URLs dropped on its Dock/Finder icon.
 
-**Register as URI scheme handler** makes the app register as a handler for [URI schemes](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). These can be either standard URI schemes such as http or a custom URI schemes of your choice (e.g. `myscheme://`). If your app is the default handler for a URI scheme, it will launch open every time a URL matching the scheme is opened. The URL is then passed to the script as an argument.
+**Register as URI scheme handler** makes the app register as a handler for [URI schemes](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). These can be either standard URI schemes such as http or custom URI schemes of your choice (e.g. `myscheme://`). If your app is the default handler for a URI scheme, it will launch every time a URL matching the scheme is opened. The URL is then passed to the script as an argument.
 
 
 
@@ -250,7 +250,7 @@ This feature only works for interpreters that support syntax checking (bash, Per
 
 ### Show Shell Command
 
-Platypus includes a **command line tool** counterpart to the Platypus.app application, `platypus`,which can be installed into `/usr/local/bin/` via **Preferences**. The man page for this tool is available from the Help menu, and via the command line. There is also an [online version available](https://sveinbjorn.org/files/manpages/platypus.man.html)</a>.
+Platypus includes a **command line tool** counterpart to the Platypus.app application, `platypus`, which can be installed into `/usr/local/bin/` via **Preferences**. The man page for this tool is available from the Help menu, and via the command line. There is also an [online version available](https://sveinbjorn.org/files/manpages/platypus.man.html)</a>.
 
 The command line tool does not in any way depend on the Platypus application once it has been installed.
 
@@ -404,8 +404,6 @@ if (!scalar(@ARGV)) {
 ```
 
 This script creates a Status Menu app which shows a few lines from Shakespeare's Macbeth as menu items. When selected, the title of the menu item in question is fed into the macOS speech synthesizer via `/usr/bin/say`.
-
-Status Menu apps can also create submenus and menu separators by printing out lines with the following syntax:
 
 **Set icon for menu item**
 
