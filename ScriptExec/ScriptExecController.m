@@ -1672,6 +1672,10 @@ static const NSInteger detailsHeight = 224;
             // Create submenu
             submenu = [[NSMenu alloc] initWithTitle:menuName];
             for (NSString *t in tokens) {
+                if ([t hasPrefix:@"----"]) {
+                    [submenu addItem:[NSMenuItem separatorItem]];
+                    continue;
+                }
                 NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:t action:@selector(menuItemSelected:) keyEquivalent:@""];
                 [submenu addItem:item];
             }
