@@ -851,7 +851,10 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (NSString *)executeScriptForStatusMenu {
+    return [self executeScriptForStatusMenuWithEvent:nil];
+}
 
+- (NSString *)executeScriptForStatusMenuWithEvent:(NSString*) event {
     [self prepareForExecution];
     [self prepareInterfaceForExecution];
     
@@ -859,6 +862,9 @@ static const NSInteger detailsHeight = 224;
     task = [[NSTask alloc] init];
     [task setLaunchPath:interpreterPath];
     [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
+    if (event != nil) {
+        [arguments addObject:event];
+    }
     [task setArguments:arguments];
 
     outputPipe = [NSPipe pipe];
@@ -874,17 +880,6 @@ static const NSInteger detailsHeight = 224;
     
     NSData *outData = [outputReadFileHandle readDataToEndOfFile];
     return [[NSString alloc] initWithData:outData encoding:DEFAULT_TEXT_ENCODING];
-}
-
-- (void)executeScriptForStatusMenuWithEvent:(NSString*) event {
-    [self prepareForExecution];
-    task = [[NSTask alloc] init];
-    [task setLaunchPath:interpreterPath];
-    [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
-    [arguments addObject:event];
-    [task setArguments:arguments];
-    [task launch];
-    [task waitUntilExit];
 }
 
 
