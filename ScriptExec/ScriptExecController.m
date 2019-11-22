@@ -420,6 +420,7 @@ static const NSInteger detailsHeight = 224;
     // Status menu apps just run when item is clicked
     // For all others, we run the script once app has launched
     if (interfaceType == PlatypusInterfaceType_StatusMenu) {
+        [self executeScriptForStatusMenuWithEvent:@"applicationDidFinishLaunching"];
         return;
     }
     
@@ -487,6 +488,7 @@ static const NSInteger detailsHeight = 224;
     
     // Hide status item
     if (statusItem) {
+        [self executeScriptForStatusMenuWithEvent:@"applicationShouldTerminate"];
         [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
     }
     
@@ -873,6 +875,18 @@ static const NSInteger detailsHeight = 224;
     NSData *outData = [outputReadFileHandle readDataToEndOfFile];
     return [[NSString alloc] initWithData:outData encoding:DEFAULT_TEXT_ENCODING];
 }
+
+- (void)executeScriptForStatusMenuWithEvent:(NSString*) event {
+    [self prepareForExecution];
+    task = [[NSTask alloc] init];
+    [task setLaunchPath:interpreterPath];
+    [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
+    [arguments addObject:event];
+    [task setArguments:arguments];
+    [task launch];
+    [task waitUntilExit];
+}
+
 
 // Launch regular user-privileged process using NSTask
 - (void)executeScriptWithoutPrivileges {
