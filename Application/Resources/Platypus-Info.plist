@@ -395,7 +395,7 @@
 	<key>CFBundleExecutable</key>
 	<string>Platypus</string>
 	<key>CFBundleGetInfoString</key>
-	<string>© 2003-2019 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2020 Sveinbjorn Thordarson.</string>
 	<key>CFBundleIconFile</key>
 	<string>PlatypusAppIcon</string>
 	<key>CFBundleIdentifier</key>
@@ -411,13 +411,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1151</string>
+	<string>1152</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.8</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2003-2019 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2020 Sveinbjorn Thordarson.</string>
 	<key>NSMainNibFile</key>
 	<string>Platypus</string>
 	<key>NSPrincipalClass</key>

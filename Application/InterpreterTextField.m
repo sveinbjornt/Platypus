@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2019, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2020, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -53,7 +53,10 @@
         return NO;
     }
 
-//    NSLog(@"Checking if %@ in bundled files", path);
+    NSLog(@"Checking if %@ in bundled files", path);
+    if ([path hasPrefix:@"./"]) {
+        
+    }
 //    if ([path length] && [bundledFilesController hasFileName:path]) {
 //        return YES;
 //    }
