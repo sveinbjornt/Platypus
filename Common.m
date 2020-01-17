@@ -107,7 +107,7 @@ NSString * const ScriptExecDefaultsKey_ShowDetails = @"UserShowDetails";
 
 
 BOOL UTTypeIsValid(NSString *inUTI) {
-    NSString *reverseDNSRegEx = @"^[A-Za-z]{2,6}((?!-)\\.[A-Za-z0-9-]{1,63}(?<!-))+$";
+    NSString *reverseDNSRegEx = @"^[A-Za-z]{2,24}((?!-)\\.[A-Za-z0-9-]{1,63}(?<!-))+$";
     NSPredicate *test = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", reverseDNSRegEx];
     return [test evaluateWithObject:inUTI];
 }
