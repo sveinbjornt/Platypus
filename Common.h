@@ -50,7 +50,7 @@
 // Folders
 #define PROGRAM_APP_SUPPORT_PATH    [[NSString stringWithFormat:@"~/Library/Application Support/%@/", PROGRAM_NAME] stringByExpandingTildeInPath]
 #define PROGRAM_TEMPDIR_PATH        [NSString stringWithFormat:@"%@/", PROGRAM_APP_SUPPORT_PATH]
-#define PROGRAM_PROFILES_PATH       [NSString stringWithFormat:@"%@/Profiles", PROGRAM_APP_SUPPORT_PATH]
+#define PROGRAM_PROFILES_PATH       [NSString stringWithFormat:@"%@/Profiles/", PROGRAM_APP_SUPPORT_PATH]
 #define PROGRAM_EXAMPLES_PATH       [NSString stringWithFormat:@"%@/Examples/", [[NSBundle mainBundle] resourcePath]]
 
 #define NEW_SCRIPT_FILENAME         @"Script"
@@ -131,7 +131,6 @@ typedef enum PlatypusInterfaceType {
     PlatypusInterfaceType_StatusMenu = 4,
     PlatypusInterfaceType_Droplet = 5
 } PlatypusInterfaceType;
-
 
 // Array of interface type name strings
 // mapped to PlatypusInterfaceType enum

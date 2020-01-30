@@ -128,14 +128,14 @@
     // Application Support folder
     NSError *err;
     if (![FILEMGR fileExistsAtPath:PROGRAM_APP_SUPPORT_PATH isDirectory:&isDir] &&
-        ![FILEMGR createDirectoryAtPath:PROGRAM_APP_SUPPORT_PATH withIntermediateDirectories:NO attributes:nil error:&err]) {
+        ![FILEMGR createDirectoryAtPath:PROGRAM_APP_SUPPORT_PATH withIntermediateDirectories:YES attributes:nil error:&err]) {
             [Alerts alert:@"Error" subTextFormat:@"Could not create directory '%@', %@",
              PROGRAM_APP_SUPPORT_PATH, [err localizedDescription]];
     }
     
     // Profiles subfolder
     if (![FILEMGR fileExistsAtPath:PROGRAM_PROFILES_PATH isDirectory:&isDir]) {
-        if (![FILEMGR createDirectoryAtPath:PROGRAM_PROFILES_PATH withIntermediateDirectories:NO attributes:nil error:&err]) {
+        if (![FILEMGR createDirectoryAtPath:PROGRAM_PROFILES_PATH withIntermediateDirectories:YES attributes:nil error:&err]) {
             [Alerts alert:@"Error" subTextFormat:@"Could not create directory '%@', %@",
              PROGRAM_PROFILES_PATH, [err localizedDescription]];
         }
