@@ -16,7 +16,7 @@ status menu items, launchers and automations using Platypus.
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BDT58J7HYKAEE"><img align="right" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/btn/btn_donate_LG.gif" ></a>
 
-Platypus is free, open source software and has been continuously developed and maintained for a very long time. **If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).**
+Platypus is free, open source software and has been continuously developed and maintained for a very long time (since 2003). **If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).**
 
 ## Install
 
@@ -43,6 +43,7 @@ $ brew cask install platypus
 * "Profiles" can be used to save app configurations
 * Built-in script editor, or linking with external editor of choice
 * Extensive [documentation](Documentation/Documentation.md) and many built-in examples to help you get started
+* Fast, responsive native app written in Objective-C/Cocoa
 
 ## Links
 
@@ -89,7 +90,7 @@ With these caveats in mind, here is the BSD-licensed source code to Platypus.
 
 ## BSD License 
 
-Copyright (c) Sveinbjorn Thordarson 
+Copyright (c) 2003-2020 Sveinbjorn Thordarson 
 &lt;<a href="mailto:">sveinbjorn@sveinbjorn.org</a>&gt;
 All rights reserved.
 
