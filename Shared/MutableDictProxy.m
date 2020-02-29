@@ -89,7 +89,7 @@
     return [_properties keyEnumerator];
 }
 
-- (NSUInteger) count {
+- (NSUInteger)count {
     return [_properties count];
 }
 

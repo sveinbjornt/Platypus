@@ -364,6 +364,7 @@
 		F4DC738321644F4700D79823 /* clt_tests.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = clt_tests.py; sourceTree = "<group>"; };
 		F4E1F6FC11F758FB007EE2E3 /* platypus_clt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E5E4011EE2F22E0072EACE /* Documentation.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Documentation.md; sourceTree = "<group>"; };
+		F4E90ACF240AEE1A004EE9A6 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .travis.yml; sourceTree = "<group>"; };
 		F4ECE1A011F7746A000DB012 /* CHANGES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES.txt; sourceTree = SOURCE_ROOT; };
 		F4ECE5871E5F04A4008CC395 /* UriSchemesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UriSchemesListController.h; path = Application/UriSchemesListController.h; sourceTree = "<group>"; };
 		F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UriSchemesListController.m; path = Application/UriSchemesListController.m; sourceTree = "<group>"; };
@@ -451,6 +452,7 @@
 				F4ECE1A011F7746A000DB012 /* CHANGES.txt */,
 				F442E00B1EA38C7100BAD80C /* LICENSE.txt */,
 				F479672B224EB3EF00CA0746 /* Makefile */,
+				F4E90ACF240AEE1A004EE9A6 /* .travis.yml */,
 				F4F14CBB1C64264D002A2402 /* Scripts */,
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4B4F71C2231ECD300F3C073 /* Common */,

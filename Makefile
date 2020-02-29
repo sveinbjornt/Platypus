@@ -4,12 +4,13 @@ XCODE_PROJ := Platypus.xcodeproj
 
 BUILD_DIR := $(PWD)/products
 
+TEST_TARGET := "CLT Tests"
+
 PLISTBUDDY := "/usr/libexec/PlistBuddy"
 INFOPLIST := "Application/Resources/Platypus-Info.plist"
 VERSION := $(shell $(PLISTBUDDY) -c "Print :CFBundleShortVersionString" $(INFOPLIST))
 APP_NAME := $(shell $(PLISTBUDDY) -c "Print :CFBundleName" $(INFOPLIST))
 APP_NAME_LC := $(shell echo "$(APP_NAME)" | tr '[:upper:]' '[:lower:]')
-
 APP_BUNDLE_NAME := $(APP_NAME).app
 
 APP_ZIP_NAME := $(APP_NAME_LC)$(VERSION).zip
@@ -70,3 +71,15 @@ size:
 sparkle:
 	@echo Generating Sparkle signature
 	ruby "Sparkle/sign_update.rb" "$(BUILD_DIR)/$(APP_ZIP_NAME)" "Sparkle/dsa_priv.pem"
+
+clt_tests:
+	@echo Running CLT tests
+	xcodebuild -parallelizeTargets \
+	-project "$(XCODE_PROJ)" \
+	-target $(TEST_TARGET) \
+	-configuration "Deployment" \
+	CONFIGURATION_BUILD_DIR="products" \
+	CODE_SIGN_IDENTITY="" \
+	CODE_SIGNING_REQUIRED=NO \
+	clean \
+	build
