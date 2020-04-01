@@ -84,10 +84,16 @@
                 @"Suffixes":    @[@".pl", @".pm"],
                 @"SyntaxCheck": @[@"-c"] },
              
-             @{ @"Name":        @"Python",
+             @{ @"Name":        @"Python 2.7",
                 @"Path":        @"/usr/bin/python",
                 @"Hello":       @"print \"Hello, World\"",
-                @"Suffixes":    @[@".py", @".python", @".objpy"],
+                @"Suffixes":    @[@".objpy"],
+                @"SyntaxCheck": @[@"-m", @"py_compile"] },
+             
+             @{ @"Name":        @"Python 3",
+                @"Path":        @"/usr/bin/python3",
+                @"Hello":       @"print(\"Hello, World\")",
+                @"Suffixes":    @[@".py", @".python"],
                 @"SyntaxCheck": @[@"-m", @"py_compile"] },
              
              @{ @"Name":        @"Ruby",

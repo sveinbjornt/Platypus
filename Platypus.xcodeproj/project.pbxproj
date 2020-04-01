@@ -71,7 +71,6 @@
 		F45B1F161FF5617500A935D7 /* Interpreter_Shell.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F071FF5617400A935D7 /* Interpreter_Shell.png */; };
 		F45B1F171FF5617500A935D7 /* Interpreter_PHP.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F081FF5617400A935D7 /* Interpreter_PHP.png */; };
 		F45B1F181FF5617500A935D7 /* Interpreter_AppleScript.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F091FF5617400A935D7 /* Interpreter_AppleScript.png */; };
-		F45B1F191FF5617500A935D7 /* Interpreter_Python.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F0A1FF5617400A935D7 /* Interpreter_Python.png */; };
 		F45B1F1A1FF5617500A935D7 /* Interpreter_Expect.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F0B1FF5617400A935D7 /* Interpreter_Expect.png */; };
 		F45B1F1B1FF5617500A935D7 /* Interpreter_tcsh.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F0C1FF5617400A935D7 /* Interpreter_tcsh.png */; };
 		F45B1F1C1FF5617500A935D7 /* Interpreter_Tcl.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F0D1FF5617400A935D7 /* Interpreter_Tcl.png */; };
@@ -128,6 +127,8 @@
 		F4975DC01B2E71FC0099D16E /* Platypus.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBB1B2E71FC0099D16E /* Platypus.xib */; };
 		F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */; };
 		F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */; };
+		F498942124352DEE00051F43 /* Interpreter_Python_2.7.png in Resources */ = {isa = PBXBuildFile; fileRef = F498941F24352DEE00051F43 /* Interpreter_Python_2.7.png */; };
+		F498942224352DEE00051F43 /* Interpreter_Python_3.png in Resources */ = {isa = PBXBuildFile; fileRef = F498942024352DEE00051F43 /* Interpreter_Python_3.png */; };
 		F4A8B5CA2229ECB50049FA51 /* AGIconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A8B5C92229ECB50049FA51 /* AGIconFamily.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F4A8B5D0222DD5800049FA51 /* InterpreterTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A8B5CF222DD5800049FA51 /* InterpreterTextField.m */; };
 		F4AB186B1BE182FA00B83A95 /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186A1BE182FA00B83A95 /* Alerts.m */; };
@@ -249,7 +250,6 @@
 		F45B1F071FF5617400A935D7 /* Interpreter_Shell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Shell.png; sourceTree = "<group>"; };
 		F45B1F081FF5617400A935D7 /* Interpreter_PHP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_PHP.png; sourceTree = "<group>"; };
 		F45B1F091FF5617400A935D7 /* Interpreter_AppleScript.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_AppleScript.png; sourceTree = "<group>"; };
-		F45B1F0A1FF5617400A935D7 /* Interpreter_Python.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Python.png; sourceTree = "<group>"; };
 		F45B1F0B1FF5617400A935D7 /* Interpreter_Expect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Expect.png; sourceTree = "<group>"; };
 		F45B1F0C1FF5617400A935D7 /* Interpreter_tcsh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_tcsh.png; sourceTree = "<group>"; };
 		F45B1F0D1FF5617400A935D7 /* Interpreter_Tcl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Tcl.png; sourceTree = "<group>"; };
@@ -338,6 +338,8 @@
 		F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShellCommandWindow.xib; path = Application/Resources/ShellCommandWindow.xib; sourceTree = "<group>"; };
 		F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SyntaxChecker.xib; path = Application/Resources/SyntaxChecker.xib; sourceTree = "<group>"; };
 		F497C7EB2205CE8400F68637 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		F498941F24352DEE00051F43 /* Interpreter_Python_2.7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Python_2.7.png; sourceTree = "<group>"; };
+		F498942024352DEE00051F43 /* Interpreter_Python_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Python_3.png; sourceTree = "<group>"; };
 		F4A4338B0E04C962000523E7 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Common.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F4A8B5C82229ECB50049FA51 /* AGIconFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGIconFamily.h; sourceTree = "<group>"; };
 		F4A8B5C92229ECB50049FA51 /* AGIconFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGIconFamily.m; sourceTree = "<group>"; };
@@ -642,7 +644,8 @@
 				F45B1F131FF5617400A935D7 /* Interpreter_zsh.png */,
 				F45B1F0E1FF5617400A935D7 /* Interpreter_env.png */,
 				F45B1F121FF5617400A935D7 /* Interpreter_Perl.png */,
-				F45B1F0A1FF5617400A935D7 /* Interpreter_Python.png */,
+				F498941F24352DEE00051F43 /* Interpreter_Python_2.7.png */,
+				F498942024352DEE00051F43 /* Interpreter_Python_3.png */,
 				F45B1F141FF5617400A935D7 /* Interpreter_Ruby.png */,
 				F45B1F091FF5617400A935D7 /* Interpreter_AppleScript.png */,
 				F45B1F0D1FF5617400A935D7 /* Interpreter_Tcl.png */,
@@ -981,18 +984,19 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Sveinbjorn Thordarson";
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = 5WX26Y89JP;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					F48B774011F7661C00351575 = {
 						DevelopmentTeam = 5WX26Y89JP;
 					};
 					F4E1F6FB11F758FB007EE2E3 = {
 						DevelopmentTeam = 5WX26Y89JP;
+						ProvisioningStyle = Manual;
 					};
 					F4F14CB51C640B1E002A2402 = {
 						CreatedOnToolsVersion = 7.2;
@@ -1034,6 +1038,7 @@
 				F44A77451C1882DA003CCA7A /* UninstallPlatypus.sh in Resources */,
 				F45B1F1E1FF5617500A935D7 /* Interpreter_Swift.png in Resources */,
 				F402AEB9219AE0D300BEAF24 /* Interpreter_JavaScript.png in Resources */,
+				F498942124352DEE00051F43 /* Interpreter_Python_2.7.png in Resources */,
 				F45B1F2C1FF5618000A935D7 /* InterfaceType_Droplet.png in Resources */,
 				F45B1F151FF5617500A935D7 /* Interpreter_ksh.png in Resources */,
 				F45B1F181FF5617500A935D7 /* Interpreter_AppleScript.png in Resources */,
@@ -1045,6 +1050,7 @@
 				F4146CCF2149E76000BB36AD /* Interpreter_AWK.png in Resources */,
 				F44E001D1229868100CAC9C2 /* DefaultStatusMenuIcon.png in Resources */,
 				F436471521A1BDA600A8749D /* platypus.man.html in Resources */,
+				F498942224352DEE00051F43 /* Interpreter_Python_3.png in Resources */,
 				F45B1EF21FF5597600A935D7 /* PlatypusAppIcon.icns in Resources */,
 				F45B1F2E1FF5618000A935D7 /* InterfaceType_Progress-Bar.png in Resources */,
 				F436471421A1BD9D00A8749D /* platypus.1 in Resources */,
@@ -1068,7 +1074,6 @@
 				F46EF85113C3F36900E4C0E4 /* Examples in Resources */,
 				F45BB3682192397900DC7A00 /* Preferences.icns in Resources */,
 				F45B1F231FF5617500A935D7 /* Interpreter_Ruby.png in Resources */,
-				F45B1F191FF5617500A935D7 /* Interpreter_Python.png in Resources */,
 				F4975DBE1B2E71FC0099D16E /* Editor.xib in Resources */,
 				F45B1F1A1FF5617500A935D7 /* Interpreter_Expect.png in Resources */,
 				F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */,
@@ -1325,8 +1330,8 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
@@ -1393,8 +1398,8 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
@@ -1461,8 +1466,8 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_TEMP_DIR = "";
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
@@ -1843,7 +1848,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1858,6 +1864,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = x86_64;
 			};
 			name = Development;
@@ -1867,7 +1874,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
@@ -1880,6 +1888,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = YES;
 				VALID_ARCHS = x86_64;
 			};
@@ -1890,7 +1899,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1900,6 +1910,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = x86_64;
 			};
 			name = Default;

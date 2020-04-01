@@ -158,7 +158,8 @@
     [scriptTypePopupButton addItemsWithTitles:[PlatypusScriptUtils interpreterDisplayNames]];
     NSArray *menuItems = [scriptTypePopupButton itemArray];
     for (NSMenuItem *item in menuItems) {
-        NSImage *icon = [NSImage imageNamed:[NSString stringWithFormat:@"Interpreter_%@", [item title]]];
+        NSString *imgName = [[item title] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+        NSImage *icon = [NSImage imageNamed:[NSString stringWithFormat:@"Interpreter_%@", imgName]];
         [icon setSize:NSMakeSize(16, 16)];
         [item setImage:icon];
     }
