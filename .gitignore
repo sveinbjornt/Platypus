@@ -26,6 +26,5 @@ dsa_priv.pem
 
 # Temp files created by tests
 Tests/platypus
-Tests/dummy*
 Tests/*.app
 Tests/args.txt
