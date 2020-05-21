@@ -888,7 +888,10 @@ static const NSInteger detailsHeight = 224;
     [task setStandardOutput:outputPipe];
     [task setStandardError:outputPipe];
     outputReadFileHandle = [outputPipe fileHandleForReading];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gotOutputData:)
+                                                 name:NSFileHandleReadCompletionNotification
+                                               object:outputReadFileHandle];
     [outputReadFileHandle readInBackgroundAndNotify];
     
     // Set up stdin for writing
@@ -933,7 +936,10 @@ static const NSInteger detailsHeight = 224;
     
     // Success! Now, start monitoring output file handle for data
     outputReadFileHandle = [privilegedTask outputFileHandle];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotOutputData:) name:NSFileHandleReadCompletionNotification object:outputReadFileHandle];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gotOutputData:)
+                                                 name:NSFileHandleReadCompletionNotification
+                                               object:outputReadFileHandle];
     [outputReadFileHandle readInBackgroundAndNotify];
 }
 

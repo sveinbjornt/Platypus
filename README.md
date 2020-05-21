@@ -14,11 +14,11 @@ applications can be created with a few clicks. It is very easy to
 create installers, droplets, administrative applications, login items, 
 status menu items, launchers and automations using Platypus.
 
+## Install
+
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BDT58J7HYKAEE"><img align="right" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/btn/btn_donate_LG.gif" ></a>
 
 Platypus is free, open source software and has been continuously developed and maintained for a very long time (since 2003). **If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).**
-
-## Install
 
 * **[⇩ Download Platypus 5.3](https://sveinbjorn.org/files/software/platypus.zip)**  (Intel 64-bit, 10.8 or later, ~3.1 MB)
 

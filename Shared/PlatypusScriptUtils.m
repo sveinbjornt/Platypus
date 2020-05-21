@@ -94,7 +94,9 @@
                 @"Path":        @"/usr/bin/python3",
                 @"Hello":       @"print(\"Hello, World\")",
                 @"Suffixes":    @[@".py", @".python"],
-                @"SyntaxCheck": @[@"-m", @"py_compile"] },
+                @"SyntaxCheck": @[@"-m", @"py_compile"],
+                @"Warn":        @"This interpreter may no longer exist on all macOS systems. Are you sure you want to proceed?",
+             },
              
              @{ @"Name":        @"Ruby",
                 @"Path":        @"/usr/bin/ruby",
