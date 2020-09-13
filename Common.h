@@ -75,7 +75,7 @@
 #define CMDLINE_ICON_PATH           @"/usr/local/share/platypus/PlatypusDefault.icns"
 #define CMDLINE_ARG_SEPARATOR       @"|"
 
-#define IBTOOL_PATH                 [NSString stringWithFormat:@"%@/Contents/Developer/usr/bin/ibtool", [WORKSPACE fullPathForApplication:@"Xcode"]]
+#define IBTOOL_PATH                 @"/usr/bin/ibtool"
 #define PERL_INTERPRETER_PATH       @"/usr/bin/perl"
 #define CODESIGN_PATH               @"/usr/bin/codesign"
 
