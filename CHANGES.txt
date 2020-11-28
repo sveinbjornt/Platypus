@@ -15,6 +15,7 @@ For future versions...
     TODO: Pseudo-TTY for ScriptExec to automatically line-buffer script output
     TODO: Set default icon in Prefs
     TODO: Overhaul the Services feature
+    TODO: Embed MainMenu.nib in platypus CLT Mach-O binary instead of storing in /usr/local/share
 
 
 For 5.4
@@ -24,13 +25,21 @@ For 5.4
     TODO: Async Status Menu script execution to prevent interface locking on main thread
     TODO: Create more automated tests for command line tool and document existing tests
     TODO: Fix issue with multiple AEOpen events for many opened files
-    TODO: Embed MainMenu.nib in platypus CLT Mach-O binary instead of storing in /usr/local/share
     TODO: Warn when non-existent file in bundled files list
     TODO: Fix broken file watching
     TODO: Fix issue with preserving selection of signing certificate
     TODO: Command line tool should now default to creating apps with no application icon
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Feature Request: Run script on Quit
+    TODO * Add Python3 interpreter preset
+    TODO * Get new Big Sur square icon
+    TODO * Rm JavaScript preset
+    TODO * Support dark mode for text fields (invert colors?)
+    TODO * Fix Installer icon preset for Big Sur
+    TODO * Fix .webloc issue
+    TODO * Examine strip nib file problems (rm strip nib file feature?)
+    TODO * Add support for arm64
+
     * The Platypus application and command line tool are now Developer ID-signed
     * Platypus apps now hide (instead of disabling) Open and Open Recent menu items if they don't accept files
     * Fixed issue with signing due to missing "APPL" CFBundleType
@@ -39,7 +48,6 @@ For 5.4
     * Added support for code signing using Keychain certificates
     * Resolved issue with text view selection and dark mode
     * Improved drag and drop handling on Platypus main window
-
 
 5.3 - 25/11/2018
 

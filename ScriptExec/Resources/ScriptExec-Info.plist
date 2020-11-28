@@ -80,5 +80,13 @@
 			<integer>3000</integer>
 		</dict>
 	</array>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.9</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>© 2003-2020 Sveinbjorn Thordarson.</string>
+	<key>CFBundleGetInfoString</key>
+	<string>© 2003-2020 Sveinbjorn Thordarson.</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 </dict>
 </plist>
