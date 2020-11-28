@@ -929,6 +929,7 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				F49DB78425727B05009B6257 /* Embed Frameworks */,
+				F49DB7A925727F65009B6257 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1161,6 +1162,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\n# Read interpreter path from the script's shebang line\n# and set it as interpreter in AppSettings.plist\nAPPSETTINGS=\"${TARGET_BUILD_DIR}/ScriptExec.app/Contents/Resources/AppSettings.plist\"\nSCRIPT=\"${TARGET_BUILD_DIR}/ScriptExec.app/Contents/Resources/script\"\nINTERPRETER=$(head -n 1 $SCRIPT | cut -b 3-300 | tr -d '\\n')\n/usr/libexec/PlistBuddy -c \"Set :InterpreterPath ${INTERPRETER}\" \"${APPSETTINGS}\"\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		};
+		F49DB7A925727F65009B6257 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# We need to sign Autoupdate.app within Sparkle framework for update installation to work\nLOCATION=\"${BUILT_PRODUCTS_DIR}/Platypus.app/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app\"\nIDENTITY=${EXPANDED_CODE_SIGN_IDENTITY_NAME}\n\ncodesign --verbose --force --deep --sign \"$IDENTITY\" \"$LOCATION\"\n";
 		};
 		F4B4F71A2231B18300F3C073 /* Copy and gzip MainMenu.nib files from ScriptExec */ = {
 			isa = PBXShellScriptBuildPhase;
