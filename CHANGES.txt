@@ -31,15 +31,14 @@ For 5.4
     TODO: Command line tool should now default to creating apps with no application icon
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Feature Request: Run script on Quit
-    TODO * Add Python3 interpreter preset
     TODO * Get new Big Sur square icon
-    TODO * Rm JavaScript preset
     TODO * Support dark mode for text fields (invert colors?)
     TODO * Fix Installer icon preset for Big Sur
     TODO * Fix .webloc issue
     TODO * Examine strip nib file problems (rm strip nib file feature?)
     TODO * Add support for arm64
 
+    * Add Python3 interpreter preset
     * The Platypus application and command line tool are now Developer ID-signed
     * Platypus apps now hide (instead of disabling) Open and Open Recent menu items if they don't accept files
     * Fixed issue with signing due to missing "APPL" CFBundleType
