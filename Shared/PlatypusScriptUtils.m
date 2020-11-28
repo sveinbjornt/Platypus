@@ -137,13 +137,7 @@
                 @"Hello":       @"BEGIN { print \"Hello, World\" }",
                 @"Suffixes":    @[@".awk"],
                 @"Args":        @[@"-f"] },
-             
-             @{ @"Name":        @"JavaScript",
-                @"Path":        @"/System/Library/Frameworks/JavaScriptCore.framework/Resources/jsc",
-                @"Hello":       @"print(\"Hello, World\");",
-                @"Suffixes":    @[@".js"],
-                @"ScriptArgs":  @[@"--"] },
-             
+                
              @{ @"Name":        @"Node.js",
                 @"Path":        @"/usr/local/bin/node",
                 @"Hello":       @"console.log(\"Hello, World\");",
