@@ -30,9 +30,9 @@
 
 // General program information
 #define PROGRAM_NAME                @"Platypus"
-#define PROGRAM_VERSION             @"5.3"
+#define PROGRAM_VERSION             @"5.4"
 #define PROGRAM_CREATOR_STAMP       [NSString stringWithFormat:@"%@-%@", PROGRAM_NAME, PROGRAM_VERSION]
-#define PROGRAM_MIN_SYS_VERSION     @"10.8.0"
+#define PROGRAM_MIN_SYS_VERSION     @"10.9.0"
 #define PROGRAM_BUNDLE_IDENTIFIER   [NSString stringWithFormat:@"org.sveinbjorn.%@", PROGRAM_NAME]
 #define PROGRAM_AUTHOR              @"Sveinbjorn Thordarson"
 #define PROGRAM_WEBSITE             @"https://sveinbjorn.org/platypus"
