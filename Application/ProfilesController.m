@@ -300,7 +300,7 @@
     NSString *platypusToolPath = CMDLINE_TOOL_PATH;
     NSString *buildScriptPath = [[NSBundle mainBundle] pathForResource:@"make_examples.pl" ofType:nil];
     
-    [NSTask launchedTaskWithLaunchPath:PERL_INTERPRETER_PATH
+    [NSTask launchedTaskWithLaunchPath:PERL_PATH
                              arguments:@[buildScriptPath,
                                          examplesFolderPath,
                                          outFolderPath,

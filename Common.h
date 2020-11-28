@@ -76,7 +76,7 @@
 #define CMDLINE_ARG_SEPARATOR       @"|"
 
 #define IBTOOL_PATH                 @"/usr/bin/ibtool"
-#define PERL_INTERPRETER_PATH       @"/usr/bin/perl"
+#define PERL_PATH                   @"/usr/bin/perl"
 #define CODESIGN_PATH               @"/usr/bin/codesign"
 
 #define APPBUNDLE_SUFFIX            @".app"

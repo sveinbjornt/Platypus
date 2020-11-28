@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="6000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SyntaxCheckerController">
@@ -18,51 +18,43 @@
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="SyntaxChecker" animationBehavior="default" id="3" userLabel="syntaxWindow">
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <rect key="contentRect" x="460" y="400" width="473" height="225"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1536" height="935"/>
             <value key="minSize" type="size" width="473" height="200"/>
             <value key="maxSize" type="size" width="600" height="500"/>
             <view key="contentView" id="4">
                 <rect key="frame" x="0.0" y="0.0" width="473" height="225"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView toolTip="Syntax check report" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="8">
+                    <scrollView toolTip="Syntax check report" fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8">
                         <rect key="frame" x="20" y="61" width="433" height="121"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" id="6ym-1u-9SW">
+                        <clipView key="contentView" drawsBackground="NO" id="6ym-1u-9SW">
                             <rect key="frame" x="1" y="1" width="416" height="119"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" smartInsertDelete="YES" id="11">
+                                <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" usesRuler="YES" smartInsertDelete="YES" id="11">
                                     <rect key="frame" x="0.0" y="0.0" width="416" height="119"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <animations/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <size key="minSize" width="416" height="119"/>
                                     <size key="maxSize" width="849" height="10000000"/>
-                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="416" height="119"/>
-                                    <size key="maxSize" width="849" height="10000000"/>
+                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
                             </subviews>
-                            <animations/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </clipView>
-                        <animations/>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="9">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="10">
                             <rect key="frame" x="417" y="1" width="15" height="119"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </scroller>
                     </scrollView>
-                    <button toolTip="Close this window" verticalHuggingPriority="750" id="7">
+                    <button toolTip="Close this window" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7">
                         <rect key="frame" x="375" y="13" width="84" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="12">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -74,10 +66,9 @@ DQ
                             <action selector="close:" target="-2" id="25"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" id="6">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="166" translatesAutoresizingMaskIntoConstraints="NO" id="6">
                         <rect key="frame" x="18" y="188" width="170" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <animations/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="13">
                             <font key="font" metaFont="system"/>
                             <string key="title">Syntax Checker Report for
@@ -86,10 +77,9 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="DAl-iY-48H">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="269" translatesAutoresizingMaskIntoConstraints="NO" id="DAl-iY-48H">
                         <rect key="frame" x="182" y="188" width="273" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <animations/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="script" id="P7r-QS-cSG">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -97,7 +87,6 @@ DQ
                         </textFieldCell>
                     </textField>
                 </subviews>
-                <animations/>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="16"/>
