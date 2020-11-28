@@ -1385,7 +1385,7 @@
 				INSTALL_PATH = "";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-Wl,-rpath,@loader_path/../Frameworks",
@@ -1455,6 +1455,7 @@
 				INSTALL_PATH = "";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-Wl,-rpath,@loader_path/../Frameworks",
@@ -1519,6 +1520,7 @@
 				INSTALL_PATH = "";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-Wl,-rpath,@loader_path/../Frameworks",
@@ -1597,7 +1599,7 @@
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INFOPLIST_PREPROCESS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PLIST_FILE_OUTPUT_FORMAT = XML;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
@@ -1607,7 +1609,6 @@
 				STRIPFLAGS = "-x";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = build;
-				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Development;
@@ -1679,7 +1680,6 @@
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				STRIPFLAGS = "-x";
 				SYMROOT = build;
-				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Deployment;
@@ -1749,7 +1749,6 @@
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				STRIPFLAGS = "-x";
 				SYMROOT = build;
-				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Default;
@@ -1888,7 +1887,6 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				VALID_ARCHS = x86_64;
 			};
 			name = Development;
 		};
@@ -1913,7 +1911,6 @@
 				PRODUCT_NAME = platypus_clt;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = YES;
-				VALID_ARCHS = x86_64;
 			};
 			name = Deployment;
 		};
@@ -1934,7 +1931,6 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = platypus_clt;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				VALID_ARCHS = x86_64;
 			};
 			name = Default;
 		};
