@@ -37,10 +37,9 @@
 typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     PlatypusPresetIconDefault = 0,
     PlatypusPresetIconGenericApplication = 1,
-    PlatypusPresetIconInstaller = 2,
-    PlatypusPresetIconGlobe = 3,
-    PlatypusPresetIconNetwork = 4,
-    PlatypusPresetIconSync = 5
+    PlatypusPresetIconGlobe = 2,
+    PlatypusPresetIconNetwork = 3,
+    PlatypusPresetIconSync = 4
 };
 
 @interface IconController()
@@ -251,18 +250,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
             return @{@"Name": iconName, @"Image": iconImage};
         }
             break;
-        
-        case PlatypusPresetIconInstaller:
-        {
-            NSString *installerIconPath = \
-            @"/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns";
-            iconImage = [[NSImage alloc] initByReferencingFile:installerIconPath];
-            [iconImage setSize:NSMakeSize(512, 512)];
-            iconName = @"Installer";
-            iconPath = installerIconPath;
-        }
-            break;
-            
+                    
         case PlatypusPresetIconGlobe:
         {
             NSString *path = \
