@@ -90,7 +90,7 @@ With these caveats in mind, here is the BSD-licensed source code to Platypus.
 
 ## BSD License 
 
-Copyright (c) 2003-2020 Sveinbjorn Thordarson 
+Copyright (c) 2003-2021 Sveinbjorn Thordarson 
 &lt;<a href="mailto:">sveinbjorn@sveinbjorn.org</a>&gt;
 All rights reserved.
 
