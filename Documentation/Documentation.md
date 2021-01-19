@@ -2,7 +2,7 @@
 
 # Documentation for Platypus 5.3
 
-Last updated on March 9th, 2019. The latest version of this document can be found [here](https://sveinbjorn.org/platypus_documentation).
+Last updated on January 19th, 20201. The latest version of this document can be found [here](https://sveinbjorn.org/platypus_documentation).
 
 
 ## Introduction
@@ -171,7 +171,9 @@ You can also set **Author** and **Version** metadata. This information will appe
 
 <img src="images/special_options.png" style="float: right; margin-left: 20px; margin-bottom:20px;" width="260">
 
-**Run with root privileges:**  If selected, the application prompts for an Administrator password and executes the script with escalated (root) privileges using Apple's Security Framework. This is not strictly equivalent to running the script *as the root user*. For details, see the [documentation for the macOS Security Framework](http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges).
+**Run with root privileges:**  If selected, the application prompts for an Administrator password and executes the script with escalated (root) privileges using Apple's Security Framework. This is not strictly equivalent to running the script *as the root user*. For details, see the [documentation for the macOS Security Framework](http://developer.apple.com/mac/library/documentation/Security/Reference/authorization_ref/Reference/reference.html#//apple_ref/c/func/AuthorizationExecuteWithPrivileges). 
+
+Please note that for some reason or other, the macOS bash shell at /bin/bash [cannot run with root privileges](https://github.com/sveinbjornt/Platypus/issues/97).
 
 *Platypus scripts must not use the 'sudo' command*. This causes the script to prompt for input via `stdin`, and since no input is forthcoming, the application will hang indefinitely.
 
