@@ -83,6 +83,7 @@
 		F45BB358219224DE00DC7A00 /* platypus_clt.m in Sources */ = {isa = PBXBuildFile; fileRef = F45BB357219224DE00DC7A00 /* platypus_clt.m */; };
 		F45BB3682192397900DC7A00 /* Preferences.icns in Resources */ = {isa = PBXBuildFile; fileRef = F45BB3672192397900DC7A00 /* Preferences.icns */; };
 		F46EF85113C3F36900E4C0E4 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = F46EF84E13C3F36900E4C0E4 /* Examples */; };
+		F47B9F062606E9850076C3EC /* Interpreter_Python_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F47B9F052606E9850076C3EC /* Interpreter_Python_2.png */; };
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
 		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; };
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
@@ -118,7 +119,6 @@
 		F4975DC01B2E71FC0099D16E /* Platypus.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBB1B2E71FC0099D16E /* Platypus.xib */; };
 		F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */; };
 		F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */; };
-		F498942124352DEE00051F43 /* Interpreter_Python_2.7.png in Resources */ = {isa = PBXBuildFile; fileRef = F498941F24352DEE00051F43 /* Interpreter_Python_2.7.png */; };
 		F498942224352DEE00051F43 /* Interpreter_Python_3.png in Resources */ = {isa = PBXBuildFile; fileRef = F498942024352DEE00051F43 /* Interpreter_Python_3.png */; };
 		F49DB78225727B05009B6257 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78125727B05009B6257 /* Sparkle.framework */; };
 		F49DB78325727B05009B6257 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78125727B05009B6257 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -277,6 +277,7 @@
 		F46EF84E13C3F36900E4C0E4 /* Examples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Examples; sourceTree = "<group>"; };
 		F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusAppIcon.icns; sourceTree = "<group>"; };
 		F479672B224EB3EF00CA0746 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		F47B9F052606E9850076C3EC /* Interpreter_Python_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Python_2.png; sourceTree = "<group>"; };
 		F48002BA121AF042003FB5B3 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		F482697D1BCAE1EE00169D8B /* TypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypeListController.h; path = Application/TypeListController.h; sourceTree = "<group>"; };
 		F482697E1BCAE1EE00169D8B /* TypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeListController.m; path = Application/TypeListController.m; sourceTree = "<group>"; };
@@ -334,7 +335,6 @@
 		F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShellCommandWindow.xib; path = Application/Resources/ShellCommandWindow.xib; sourceTree = "<group>"; };
 		F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SyntaxChecker.xib; path = Application/Resources/SyntaxChecker.xib; sourceTree = "<group>"; };
 		F497C7EB2205CE8400F68637 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		F498941F24352DEE00051F43 /* Interpreter_Python_2.7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Python_2.7.png; sourceTree = "<group>"; };
 		F498942024352DEE00051F43 /* Interpreter_Python_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Python_3.png; sourceTree = "<group>"; };
 		F49DB78125727B05009B6257 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Sparkle/Sparkle.framework; sourceTree = "<group>"; };
 		F49DB78925727B24009B6257 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -646,7 +646,7 @@
 				F45B1F131FF5617400A935D7 /* Interpreter_zsh.png */,
 				F45B1F0E1FF5617400A935D7 /* Interpreter_env.png */,
 				F45B1F121FF5617400A935D7 /* Interpreter_Perl.png */,
-				F498941F24352DEE00051F43 /* Interpreter_Python_2.7.png */,
+				F47B9F052606E9850076C3EC /* Interpreter_Python_2.png */,
 				F498942024352DEE00051F43 /* Interpreter_Python_3.png */,
 				F45B1F141FF5617400A935D7 /* Interpreter_Ruby.png */,
 				F45B1F091FF5617400A935D7 /* Interpreter_AppleScript.png */,
@@ -1041,7 +1041,6 @@
 				F44A77451C1882DA003CCA7A /* UninstallPlatypus.sh in Resources */,
 				F45B1F1E1FF5617500A935D7 /* Interpreter_Swift.png in Resources */,
 				F402AEB9219AE0D300BEAF24 /* Interpreter_JavaScript.png in Resources */,
-				F498942124352DEE00051F43 /* Interpreter_Python_2.7.png in Resources */,
 				F45B1F2C1FF5618000A935D7 /* InterfaceType_Droplet.png in Resources */,
 				F45B1F151FF5617500A935D7 /* Interpreter_ksh.png in Resources */,
 				F45B1F181FF5617500A935D7 /* Interpreter_AppleScript.png in Resources */,
@@ -1068,6 +1067,7 @@
 				F45B1F2F1FF5618000A935D7 /* InterfaceType_Web-View.png in Resources */,
 				F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */,
 				F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */,
+				F47B9F062606E9850076C3EC /* Interpreter_Python_2.png in Resources */,
 				F45B1F2B1FF5618000A935D7 /* InterfaceType_Status-Menu.png in Resources */,
 				F45B1F2D1FF5618000A935D7 /* InterfaceType_Text-Window.png in Resources */,
 				F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */,
