@@ -1607,6 +1607,28 @@ static const NSInteger detailsHeight = 224;
 
 #pragma mark - Status Menu
 
+- (NSImage *)imageForMenuItemFromString:(NSString *)str {
+    // Is it a bundled image?
+    NSImage *icon = [NSImage imageNamed:str];
+    
+    // If not, it could be a URL
+    if (icon == nil) {
+        // Or a file system path
+        BOOL isDir;
+        if ([FILEMGR fileExistsAtPath:str isDirectory:&isDir] && !isDir) {
+            icon = [[NSImage alloc] initByReferencingFile:str];
+        } else {
+            // Or a URL
+            NSURL *url = [NSURL URLWithString:str];
+            if (url != nil) {
+                icon = [[NSImage alloc] initWithContentsOfURL:url];
+            }
+        }
+    }
+    [icon setSize:NSMakeSize(16, 16)];
+    return icon;
+}
+
 /**************************************************
  Called whenever status item is clicked.  We run
  script, get output and generate menu with the ouput
@@ -1647,8 +1669,27 @@ static const NSInteger detailsHeight = 224;
         if ([line hasPrefix:disabledCmd]) {
             disabled = YES;
             line = [line substringFromIndex:[disabledCmd length]];
+            continue;
         }
         
+        // Syntax to change status item icon
+        NSString *itemIconCmd = @"STATUSICON|";
+        if ([line hasPrefix:itemIconCmd]) {
+            line = [line substringFromIndex:[itemIconCmd length]];
+            icon = [self imageForMenuItemFromString:line];
+            if (icon) {
+                [statusItem setImage:icon];
+            }
+            continue;
+        }
+        
+        // Syntax to change status item title
+        NSString *itemTitleCmd = @"STATUSTITLE|";
+        if ([line hasPrefix:itemTitleCmd]) {
+            line = [line substringFromIndex:[itemTitleCmd length]];
+            [statusItem setTitle:line];
+        }
+            
         // Parse syntax setting item icon
         if ([line hasPrefix:@"MENUITEMICON|"]) {
             NSArray *tokens = [line componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
@@ -1656,24 +1697,7 @@ static const NSInteger detailsHeight = 224;
                 continue;
             }
             NSString *imageToken = tokens[1];
-            // Is it a bundled image?
-            icon = [NSImage imageNamed:imageToken];
-            
-            // If not, it could be a URL
-            if (icon == nil) {
-                // Or a file system path
-                BOOL isDir;
-                if ([FILEMGR fileExistsAtPath:imageToken isDirectory:&isDir] && !isDir) {
-                    icon = [[NSImage alloc] initByReferencingFile:imageToken];
-                } else {
-                    NSURL *url = [NSURL URLWithString:imageToken];
-                    if (url != nil) {
-                        icon = [[NSImage alloc] initWithContentsOfURL:url];
-                    }
-                }
-            }
-            
-            [icon setSize:NSMakeSize(16, 16)];
+            icon = [self imageForMenuItemFromString:imageToken];
             line = tokens[2];
         }
         

@@ -84,22 +84,22 @@
     NSPasteboardItem *pbItem = [NSPasteboardItem new];
     [pbItem setDataProvider:self forTypes:@[NSPasteboardTypeTIFF]];
     
-    //create a new NSDraggingItem with our pasteboard item.
+    // Create a new NSDraggingItem with our pasteboard item.
     NSDraggingItem *dragItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pbItem];
     NSRect draggingRect = self.bounds;
     [dragItem setDraggingFrame:draggingRect contents:[self image]];
     
-    //create a dragging session with our drag item and ourself as the source.
+    // Create a dragging session with our drag item and ourself as the source.
     NSDraggingSession *draggingSession = [self beginDraggingSessionWithItems:@[dragItem] event:event source:self];
-    //causes the dragging item to slide back to the source if the drag fails.
+    // Causes the dragging item to slide back to the source if the drag fails.
     draggingSession.animatesToStartingPositionsOnCancelOrFail = YES;
     draggingSession.draggingFormation = NSDraggingFormationNone;
 }
 
 - (void)pasteboard:(NSPasteboard *)sender item:(NSPasteboardItem *)item provideDataForType:(NSString *)type {
-    //sender has accepted the drag and now we need to send the data for the type we promised
+    // Sender has accepted the drag and now we need to send the data for the type we promised
     if ([type compare: NSPasteboardTypeTIFF] == NSOrderedSame) {
-        //set data for TIFF type on the pasteboard as requested
+        // Set data for TIFF type on the pasteboard as requested
         [sender setData:[[self image] TIFFRepresentation] forType:NSPasteboardTypeTIFF];
     }
 }
