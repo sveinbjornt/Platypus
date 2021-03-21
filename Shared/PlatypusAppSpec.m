@@ -144,7 +144,7 @@
     self[AppSpecKey_Name] = DEFAULT_APP_NAME;
     self[AppSpecKey_ScriptPath] = @"";
     self[AppSpecKey_InterfaceType] = DEFAULT_INTERFACE_TYPE_STRING;
-    self[AppSpecKey_IconPath] = CMDLINE_ICON_PATH;
+    self[AppSpecKey_IconPath] = @"";
     
     self[AppSpecKey_InterpreterPath] = DEFAULT_INTERPRETER_PATH;
     self[AppSpecKey_InterpreterArgs] = @[];
@@ -841,7 +841,7 @@
     }
     
     // Custom icon arg
-    if (![self[AppSpecKey_IconPath] isEqualToString:CMDLINE_ICON_PATH] && ![self[AppSpecKey_IconPath] isEqualToString:@""]) {
+    if (![self[AppSpecKey_IconPath] isEqualToString:@""]) {
         NSString *str = shortOpts ? @"-i" : @"--app-icon";
         iconParamStr = [NSString stringWithFormat:@"%@ '%@' ", str, self[AppSpecKey_IconPath]];
     }

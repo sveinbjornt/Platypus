@@ -398,6 +398,10 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     return YES;
 }
 
+- (void)loadGenericAppIcon {
+    [self setAppIconForType:PlatypusPresetIconGenericApplication];
+}
+
 #pragma mark -
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {

@@ -255,7 +255,7 @@ int main(int argc, const char *argv[]) {
                 NSString *iconPath = @(optarg);
                 
                 // empty icon path means just default app icon, otherwise a path to an icns file
-                if ([iconPath isEqualTo:@""] == NO) {
+                if (iconPath && [iconPath isEqualTo:@""] == NO) {
                     iconPath = [MakeAbsolutePath(iconPath) stringByResolvingSymlinksInPath];
                     // if we have proper arg, make sure file exists
                     if ([fm fileExistsAtPath:iconPath] == NO) {

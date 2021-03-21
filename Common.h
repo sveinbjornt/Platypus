@@ -72,7 +72,6 @@
 #define CMDLINE_MANPAGE_PATH        @"/usr/local/share/man/man1/platypus.1.gz"
 #define CMDLINE_NIB_PATH            @"/usr/local/share/platypus/MainMenu.nib"
 #define CMDLINE_SCRIPT_EXEC_PATH    @"/usr/local/share/platypus/ScriptExec"
-#define CMDLINE_ICON_PATH           @"/usr/local/share/platypus/PlatypusDefault.icns"
 #define CMDLINE_ARG_SEPARATOR       @"|"
 
 #define IBTOOL_PATH                 @"/usr/bin/ibtool"

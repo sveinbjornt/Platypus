@@ -38,5 +38,6 @@
 
 - (void)setToDefaults;
 - (BOOL)loadIcnsFile:(NSString *)filePath;
+- (void)loadGenericAppIcon;
 
 @end

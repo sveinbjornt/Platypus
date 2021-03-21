@@ -23,8 +23,6 @@ cd "$1"
 echo "Copying resources to share directory"
 # ScriptExec binary
 gunzip -c "%%CMDLINE_SCRIPTEXEC_GZIP_NAME%%" > "%%CMDLINE_SCRIPT_EXEC_PATH%%"
-# Icon
-cp "%%CMDLINE_DEFAULT_ICON_NAME%%" "%%CMDLINE_ICON_PATH%%"
 # Nib
 cp -r "%%CMDLINE_NIB_NAME%%" "%%CMDLINE_SHARE_PATH%%"
 # Set permissions

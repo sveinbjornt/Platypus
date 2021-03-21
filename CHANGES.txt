@@ -28,16 +28,18 @@ For 5.4
     TODO: Warn when non-existent file in bundled files list
     TODO: Fix broken file watching
     TODO: Fix issue with preserving selection of signing certificate
-    TODO: Command line tool should now default to creating apps with no application icon
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Feature Request: Run script on Quit
-    TODO * Get new Big Sur square icon
-    TODO * Support dark mode for text fields (invert colors?)
-    TODO * Fix Installer icon preset for Big Sur
-    TODO * Fix .webloc issue
-    TODO * Examine strip nib file problems (rm strip nib file feature?)
-    TODO * Add support for arm64
-
+    TODO: Get new Big Sur square icon
+    TODO: Support dark mode for text fields (invert colors?)
+    
+    TODO: Fix .webloc issue
+    TODO: Examine strip nib file problems (rm strip nib file feature?)
+    
+    * Command line tool now defaults to creating apps with no application icon
+    * Fixed issue w. Installer icon preset on Big Sur
+    * Settings option for notifications
+    * Add support for arm64
     * Add Python3 interpreter preset
     * The Platypus application and command line tool are now Developer ID-signed
     * Platypus apps now hide (instead of disabling) Open and Open Recent menu items if they don't accept files

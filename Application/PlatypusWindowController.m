@@ -566,7 +566,11 @@
     [interpreterPathTextField setStringValue:spec[AppSpecKey_InterpreterPath]];
 
     // Icon
-    [iconController loadIcnsFile:spec[AppSpecKey_IconPath]];
+    if (spec[AppSpecKey_IconPath] && [spec[AppSpecKey_IconPath] isEqualToString:@""] == NO) {
+        [iconController loadIcnsFile:spec[AppSpecKey_IconPath]];
+    } else {
+        [iconController loadGenericAppIcon];
+    }
     
     // Checkboxes
     [rootPrivilegesCheckbox setState:[spec[AppSpecKey_Authenticate] boolValue]];
