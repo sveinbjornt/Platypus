@@ -478,7 +478,7 @@
     // Verify that script exists at path and isn't a directory
     BOOL isDir;
     if ([FILEMGR fileExistsAtPath:[scriptPathTextField stringValue] isDirectory:&isDir] == NO || isDir) {
-        [Alerts sheetAlert:@"Invalid Script Path"
+        [Alerts sheetAlert:@"Invalid script path"
                    subText:@"Script file does not exist at the path you specified"
                  forWindow:[self window]];
         return NO;
@@ -486,7 +486,7 @@
     
     // Validate bundle identifier
     if ([bundleIdentifierTextField isValid] == NO) {
-        [Alerts sheetAlert:@"Invalid Bundle Identifier"
+        [Alerts sheetAlert:@"Invalid bundle identifier"
                  forWindow:[self window]
              subTextFormat:@"The string '%@' is not a valid application bundle identifier.", [bundleIdentifierTextField stringValue]];
         return NO;
@@ -498,6 +498,17 @@
         if ([Alerts proceedAlert:@"Interpreter does not exist"
                          subText:promptString
                  withActionNamed:@"Proceed"] == NO) {
+            return NO;
+        }
+    }
+    
+    // Make sure all bundled files exist at their paths
+    NSArray *bundledFilePaths = [bundledFilesController filePaths];
+    for (NSString *path in bundledFilePaths) {
+        if ([FILEMGR fileExistsAtPath:path] == NO) {
+            [Alerts sheetAlert:@"Bundled file missing"
+                     forWindow:[self window]
+                 subTextFormat:@"Bundled file '%@' no longer exists or has been moved.", [path lastPathComponent]];
             return NO;
         }
     }
