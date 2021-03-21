@@ -84,10 +84,10 @@
                 @"Suffixes":    @[@".pl", @".pm"],
                 @"SyntaxCheck": @[@"-c"] },
              
-             @{ @"Name":        @"Python 2.7",
+             @{ @"Name":        @"Python 2",
                 @"Path":        @"/usr/bin/python",
                 @"Hello":       @"print \"Hello, World\"",
-                @"Suffixes":    @[@".objpy"],
+                @"Suffixes":    @[],
                 @"SyntaxCheck": @[@"-m", @"py_compile"] },
              
              @{ @"Name":        @"Python 3",

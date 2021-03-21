@@ -511,6 +511,7 @@
                               AppSpecKey_TextColor,
                               AppSpecKey_TextBackgroundColor,
                               AppSpecKey_Droppable,
+                              AppSpecKey_SendNotifications,
                               AppSpecKey_AcceptFiles,
                               AppSpecKey_AcceptText,
                               AppSpecKey_PromptForFile,

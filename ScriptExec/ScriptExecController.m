@@ -1072,7 +1072,10 @@ static const NSInteger detailsHeight = 224;
         
         if ([theLine hasPrefix:@"NOTIFICATION:"]) {
             NSString *notificationString = [theLine substringFromIndex:13];
-            [self showNotification:notificationString];
+            NSArray *titleAndText = [notificationString componentsSeparatedByString:@"|"];
+            NSString *title = titleAndText[0];
+            NSString *text = ([titleAndText count] >= 2) ? titleAndText[1] : title;
+            [self showNotification:title text:text];
             continue;
         }
         
@@ -1743,10 +1746,10 @@ static const NSInteger detailsHeight = 224;
 
 #pragma mark - Utility methods
 
-- (void)showNotification:(NSString *)notificationText {
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    [notification setTitle:appName];
-    [notification setInformativeText:notificationText];
+- (void)showNotification:(NSString *)title text:(NSString *)text {
+    NSUserNotification *notification = [NSUserNotification new];
+    [notification setTitle:title];
+    [notification setInformativeText:text];
     [notification setSoundName:NSUserNotificationDefaultSoundName];
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }

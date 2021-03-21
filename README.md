@@ -20,7 +20,7 @@ status menu items, launchers and automations using Platypus.
 * Apps can display graphical feedback of script execution as a progress bar, text window with script output, droplet, WebKit HTML rendering or status item menu
 * Apps support receiving dragged and dropped files or text snippets, which are then passed to the script as arguments
 * Apps can execute scripts with root privileges via the macOS Security Framework
-* Apps can register as handlers for URI schemes
+* Apps can register as handlers for URI schemes and send user notifications
 * Apps can be configured to run in the background (LSUIElement)
 * Set own application icon or select from presets
 * Set app's associated file types, identifier, version, author, etc.

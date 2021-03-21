@@ -332,7 +332,7 @@ ALERT:Hello|World\n
 Platypus application wrappers can be made to show a notification in the User Notification Center if your script prints out a line using the following syntax:
 
 ```
-NOTIFICATION:My notification text\n
+NOTIFICATION:My title|My text\n
 ```
 
 

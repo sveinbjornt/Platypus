@@ -53,7 +53,7 @@ static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
 
-static const char optstring[] = "P:f:a:o:i:u:p:V:I:Q:AOZDBRFNydlvhxX:T:G:C:b:g:n:K:Y:L:cqU:";
+static const char optstring[] = "P:f:a:o:i:u:p:V:I:Q:AOZDBWRFNydlvhxX:T:G:C:b:g:n:K:Y:L:cqU:";
 
 static struct option long_options[] = {
 
@@ -77,6 +77,7 @@ static struct option long_options[] = {
     {"file-prompt",               no_argument,        0, 'Z'},
     {"service",                   no_argument,        0, 'N'},
     {"background",                no_argument,        0, 'B'},
+    {"notifications",             no_argument,        0, 'W'},
     {"quit-after-execution",      no_argument,        0, 'R'},
 
     {"text-background-color",     required_argument,  0, 'b'},
@@ -351,6 +352,11 @@ int main(int argc, const char *argv[]) {
                 properties[AppSpecKey_RunInBackground] = @YES;
                 break;
             
+            // Send notifications
+            case 'W':
+                properties[AppSpecKey_SendNotifications] = @YES;
+                break;
+                
             // Remain running
             case 'R':
                 properties[AppSpecKey_RemainRunning] = @NO;
