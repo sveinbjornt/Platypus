@@ -32,10 +32,9 @@ For 5.4
     TODO: Feature Request: Run script on Quit
     TODO: Get new Big Sur square icon
     TODO: Support dark mode for text fields (invert colors?)
-    
     TODO: Fix .webloc issue
-    TODO: Examine strip nib file problems (rm strip nib file feature?)
     
+    * Fixed strip nib file problems in CLT
     * Command line tool now defaults to creating apps with no application icon
     * Fixed issue w. Installer icon preset on Big Sur
     * Settings option for notifications

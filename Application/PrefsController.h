@@ -30,7 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PreferencesController : NSWindowController <NSMenuDelegate>
+@interface PrefsController : NSWindowController <NSMenuDelegate>
 
 + (NSDictionary *)defaultsDictionary;
 + (void)putCommandLineToolInstallStatusInTextField:(NSTextField *)textField;

@@ -28,7 +28,7 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "PreferencesController.h"
+#import "PrefsController.h"
 #import <sys/stat.h>
 #import "Alerts.h"
 #import "STPrivilegedTask.h"
@@ -38,7 +38,7 @@
 #import "PlatypusAppSpec.h"
 #import "NSFileManager+TempFiles.h"
 
-@interface PreferencesController()
+@interface PrefsController()
 {
     IBOutlet NSPopUpButton *defaultEditorPopupButton;
     IBOutlet NSPopUpButton *signingIdentityPopupButton;
@@ -50,7 +50,7 @@
 }
 @end
 
-@implementation PreferencesController
+@implementation PrefsController
 
 - (IBAction)showWindow:(id)sender {
     // Put application icon in window title bar
@@ -255,7 +255,7 @@
 }
 
 - (IBAction)restoreDefaultPrefs:(id)sender {
-    NSDictionary *dict = [PreferencesController defaultsDictionary];
+    NSDictionary *dict = [PrefsController defaultsDictionary];
     for (NSString *key in dict) {
         [DEFAULTS setObject:dict[key] forKey:key];
     }
@@ -288,7 +288,7 @@
 }
 
 - (IBAction)commandLineInstallButtonClicked:(id)sender {
-    if ([PreferencesController isCommandLineToolInstalled]) {
+    if ([PrefsController isCommandLineToolInstalled]) {
         [self uninstallCommandLineTool];
     } else {
         [self installCommandLineTool];
@@ -312,7 +312,7 @@
 
     dispatch_async(cltStatusDispatchQueue, ^{
 
-        BOOL isInstalled = [PreferencesController isCommandLineToolInstalled];
+        BOOL isInstalled = [PrefsController isCommandLineToolInstalled];
         NSString *versionString;
         
         if (isInstalled) {
@@ -365,9 +365,9 @@
 }
 
 - (void)updateCLTStatus {
-    NSString *buttonTitle = [PreferencesController isCommandLineToolInstalled] ? @"Uninstall" : @"Install";
+    NSString *buttonTitle = [PrefsController isCommandLineToolInstalled] ? @"Uninstall" : @"Install";
     [installCLTButton setTitle:buttonTitle];
-    [PreferencesController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
+    [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
 }
 
 - (void)installCommandLineTool {
