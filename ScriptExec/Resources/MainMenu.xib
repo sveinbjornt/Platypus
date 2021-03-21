@@ -505,6 +505,18 @@ Gw
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Help" id="ssS-yx-lud">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Help" systemMenu="help" id="Jc3-NS-beW">
+                        <items>
+                            <menuItem title="Help" keyEquivalent="?" id="By3-00-4mK">
+                                <connections>
+                                    <action selector="showHelp:" target="-1" id="ZoJ-wH-vxF"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
             </items>
             <connections>
                 <outlet property="delegate" destination="207" id="525"/>

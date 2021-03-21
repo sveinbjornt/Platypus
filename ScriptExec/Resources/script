@@ -1,10 +1,12 @@
-#!/usr/bin/perl
+#!/bin/sh
 
-#echo $@
+echo $@
+
+
 
 #echo "SUBMENU|Title|Item1|Item2|Item3"
 
-$| = 1;
+#$| = 1;
 #print "LOCATION:https://greynir.is\n";
 #sleep 5;
 #print "LOCATION:http://lemurinn.is\n";
@@ -16,11 +18,11 @@ $| = 1;
 #     print "$_\n";
 #}
 
-for (my $i = 0; $i < 100000; $i++){
+#for (my $i = 0; $i < 100000; $i++){
 #sleep 1;
-    print "$i Hey\n";
+    #print "$i Hey\n";
 #        sleep 1;
-}
+#}
 
 
 # If 0 arguments, we show menu
