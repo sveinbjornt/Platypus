@@ -21,13 +21,15 @@
 	<key>Script</key>
 	<string>#!/bin/sh 
 # The Platypus wrapper parses NOTIFICATION:* and sends on to Notification Center
-echo &quot;NOTIFICATION:Hello, world!&quot;
+echo &quot;NOTIFICATION:Hello, world!|How are you today?&quot;
 sleep 2
-echo &quot;NOTIFICATION:Hello, again!&quot;
+echo &quot;NOTIFICATION:Hello, again!|Doing better?&quot;
 sleep 2
     </string>
 	<key>Droppable</key>
 	<false/>
+	<key>SendNotifications</key>
+	<true/>
 	<key>IconPath</key>
 	<string></string>
 	<key>Identifier</key>

@@ -465,7 +465,7 @@ pre code, pre tt {
 <pre><code>ALERT:Hello|World\n
 </code></pre><h3 id="showing-a-notification">Showing a Notification</h3>
 <p>Platypus application wrappers can be made to show a notification in the User Notification Center if your script prints out a line using the following syntax:</p>
-<pre><code>NOTIFICATION:My notification text\n
+<pre><code>NOTIFICATION:My title|My text\n
 </code></pre><h3 id="controlling-the-progress-bar">Controlling the Progress Bar</h3>
 <p>Script apps with the interface type <strong>Progress Bar</strong> can communicate with the progress bar by notifying it of script progress. All lines of script output in the format &quot;PROGRESS:\d+\n&quot; (e.g. PROGRESS:75) are parsed and used to set the completion percentage of the progress bar. Similarly, DETAILS:SHOW and DETAILS:HIDE can be used to change the visibility of the Details text field during the execution of the script.</p>
 <h3 id="terminating-application">Terminating Application</h3>
@@ -480,7 +480,7 @@ pre code, pre tt {
 <li>Download CocoaDialog</li>
 <li>Add CocoaDialog.app to the list of Bundled Files.</li>
 </ul>
-<p>The following script shows of how to query for input using this bundled copy of CocoaDialog:</p>
+<p>The following script shows how to query for input using the bundled copy of CocoaDialog:</p>
 <pre><code>#!/bin/bash
 
 CD=&quot;CocoaDialog.app/Contents/MacOS/CocoaDialog&quot;

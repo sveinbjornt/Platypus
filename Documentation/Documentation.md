@@ -365,7 +365,7 @@ Platypus apps may be able to use [CocoaDialog](https://cocoadialog.com) to const
 * Download CocoaDialog
 * Add CocoaDialog.app to the list of Bundled Files.
 
-The following script shows of how to query for input using this bundled copy of CocoaDialog:
+The following script shows how to query for input using the bundled copy of CocoaDialog:
 
 ```
 #!/bin/bash
