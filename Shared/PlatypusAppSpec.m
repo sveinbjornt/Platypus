@@ -161,6 +161,7 @@
     self[AppSpecKey_Authenticate] = @NO;
     self[AppSpecKey_RemainRunning] = @YES;
     self[AppSpecKey_RunInBackground] = @NO;
+    self[AppSpecKey_SendNotifications] = @NO;
     
     self[AppSpecKey_BundledFiles] = [NSMutableArray array];
     

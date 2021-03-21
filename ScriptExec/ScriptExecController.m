@@ -128,6 +128,7 @@
     BOOL statusItemIconIsTemplate;
     BOOL runInBackground;
     BOOL isService;
+    BOOL sendsNotifications;
     
     NSArray <NSString *> *droppableSuffixes;
     NSArray <NSString *> *droppableUniformTypes;
@@ -200,7 +201,9 @@ static const NSInteger detailsHeight = 224;
     }
     
     // User Notification Center
-    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+    if (sendsNotifications) {
+        [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+    }
 }
 
 #pragma mark - App Settings
@@ -329,6 +332,7 @@ static const NSInteger detailsHeight = 224;
     scriptArgs = [appSettings[AppSpecKey_ScriptArgs] copy];
     execStyle = (PlatypusExecStyle)[appSettings[AppSpecKey_Authenticate] intValue];
     remainRunning = [appSettings[AppSpecKey_RemainRunning] boolValue];
+    sendsNotifications = [appSettings[AppSpecKey_SendNotifications] boolValue];
     isDroppable = NO;
     promptForFileOnLaunch = [appSettings[AppSpecKey_PromptForFile] boolValue];
     

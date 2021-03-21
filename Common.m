@@ -54,6 +54,7 @@ NSString * const AppSpecKey_Droppable = @"Droppable";
 NSString * const AppSpecKey_Authenticate = @"Authentication";
 NSString * const AppSpecKey_RemainRunning = @"RemainRunning";
 NSString * const AppSpecKey_RunInBackground = @"RunInBackground";
+NSString * const AppSpecKey_SendNotifications = @"SendNotifications";
 
 NSString * const AppSpecKey_BundledFiles = @"BundledFiles";
 

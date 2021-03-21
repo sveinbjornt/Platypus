@@ -72,8 +72,8 @@
     IBOutlet NSButton *acceptsDroppedItemsCheckbox;
     IBOutlet NSButton *dropSettingsButton;
     IBOutlet NSButton *rootPrivilegesCheckbox;
-    IBOutlet NSButton *secureBundledScriptCheckbox;
     IBOutlet NSButton *runInBackgroundCheckbox;
+    IBOutlet NSButton *sendNotificationsCheckbox;
     IBOutlet NSButton *remainRunningCheckbox;
     
     // Create app dialog view
@@ -344,12 +344,6 @@
     
     // Configure controls in the accessory view
     
-    // Development version checkbox: always disable this option if secure script is checked
-    [createSymlinksCheckbox setEnabled:![secureBundledScriptCheckbox intValue]];
-    if ([secureBundledScriptCheckbox intValue]) {
-        [DEFAULTS setBool:NO forKey:DefaultsKey_SymlinkFiles];
-    }
-    
     // Optimize nib is on by default if ibtool is present
     BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:IBTOOL_PATH];
     if ([[DEFAULTS objectForKey:DefaultsKey_StripNib] boolValue] == YES && ibtoolInstalled == NO) {
@@ -524,7 +518,8 @@
     spec[AppSpecKey_Authenticate] = @((BOOL)[rootPrivilegesCheckbox state]);
     spec[AppSpecKey_RemainRunning] = @((BOOL)[remainRunningCheckbox state]);
     spec[AppSpecKey_RunInBackground] = @((BOOL)[runInBackgroundCheckbox state]);
-    
+    spec[AppSpecKey_SendNotifications] = @((BOOL)[sendNotificationsCheckbox state]);
+
     spec[AppSpecKey_BundledFiles] = [bundledFilesController filePaths];
     
     spec[AppSpecKey_Suffixes] = [dropSettingsController suffixList];
@@ -578,6 +573,7 @@
     [acceptsDroppedItemsCheckbox setState:[spec[AppSpecKey_Droppable] boolValue]];
     [self acceptsDroppedItemsClicked:acceptsDroppedItemsCheckbox];
     [runInBackgroundCheckbox setState:[spec[AppSpecKey_RunInBackground] boolValue]];
+    [sendNotificationsCheckbox setState:[spec[AppSpecKey_SendNotifications] boolValue]];
     [remainRunningCheckbox setState:[spec[AppSpecKey_RemainRunning] boolValue]];
     
     // File list

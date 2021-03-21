@@ -189,6 +189,7 @@ extern NSString * const AppSpecKey_Droppable;
 extern NSString * const AppSpecKey_Authenticate;
 extern NSString * const AppSpecKey_RemainRunning;
 extern NSString * const AppSpecKey_RunInBackground;
+extern NSString * const AppSpecKey_SendNotifications;
 
 extern NSString * const AppSpecKey_BundledFiles;
 

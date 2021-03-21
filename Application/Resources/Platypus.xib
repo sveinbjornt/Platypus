@@ -154,7 +154,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Check this if you don't want your app to show up in the Dock" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="523">
-                        <rect key="frame" x="414" y="259" width="198" height="18"/>
+                        <rect key="frame" x="414" y="270" width="198" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Run in background" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="10961">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -508,7 +508,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Check this if you want the application to remain running after executing the script" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="697">
-                        <rect key="frame" x="414" y="229" width="229" height="18"/>
+                        <rect key="frame" x="414" y="228" width="229" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Remain running after execution" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="10963">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -516,7 +516,7 @@ DQ
                         </buttonCell>
                     </button>
                     <button toolTip="Check this if your script requires root privileges" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="293">
-                        <rect key="frame" x="414" y="288" width="232" height="19"/>
+                        <rect key="frame" x="414" y="291" width="232" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Run with root privileges" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="10940">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -543,6 +543,14 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button toolTip="Check this if you don't want your app to show up in the Dock" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fRC-GZ-XE7">
+                        <rect key="frame" x="414" y="249" width="198" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Send notifications" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Z9U-64-LLR">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
             </view>
             <connections>
@@ -580,6 +588,7 @@ DQ
                 <outlet property="runInBackgroundCheckbox" destination="523" id="RnR-82-CHd"/>
                 <outlet property="scriptPathTextField" destination="334" id="344"/>
                 <outlet property="scriptTypePopupButton" destination="3890" id="kJF-9o-bsM"/>
+                <outlet property="sendNotificationsCheckbox" destination="fRC-GZ-XE7" id="7Pn-lQ-FQA"/>
                 <outlet property="statusItemSettingsButton" destination="10159" id="10216"/>
                 <outlet property="statusItemSettingsController" destination="10213" id="AFv-S5-sWQ"/>
                 <outlet property="stripNibFileCheckbox" destination="11109" id="6Nk-RM-que"/>
