@@ -143,12 +143,12 @@
             [self setIconsForEditorMenu];
         });
     }
-    else if (menu == [signingIdentityPopupButton menu]) {
-        static dispatch_once_t pred;
-        dispatch_once(&pred, ^{
-            [self populateSigningIdentityMenu];
-        });
-    }
+//    else if (menu == [signingIdentityPopupButton menu]) {
+//        static dispatch_once_t pred;
+//        dispatch_once(&pred, ^{
+//            [self populateSigningIdentityMenu];
+//        });
+//    }
 }
 
 

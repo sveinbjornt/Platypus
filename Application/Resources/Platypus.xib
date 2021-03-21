@@ -2751,10 +2751,10 @@ DQ
                                 <popUpButton toolTip="Select your default text editor" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bsJ-ID-Xth">
                                     <rect key="frame" x="30" y="148" width="236" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" enabled="NO" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="SX9-gL-AU0" id="Kbn-Oj-kZv">
+                                    <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" enabled="NO" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="SX9-gL-AU0" id="Kbn-Oj-kZv">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
-                                        <menu key="menu" title="OtherViews" id="Bsc-il-b0C">
+                                        <menu key="menu" title="OtherViews" autoenablesItems="NO" id="Bsc-il-b0C">
                                             <items>
                                                 <menuItem title="None" state="on" id="SX9-gL-AU0"/>
                                                 <menuItem isSeparatorItem="YES" id="bTH-wH-O0E">
@@ -2766,18 +2766,11 @@ DQ
                                             </connections>
                                         </menu>
                                     </popUpButtonCell>
-                                    <connections>
-                                        <binding destination="yij-LO-LNq" name="selectedValue" keyPath="values.SigningIdentity" id="tOV-lu-VGN">
-                                            <dictionary key="options">
-                                                <bool key="NSValidatesImmediately" value="YES"/>
-                                            </dictionary>
-                                        </binding>
-                                    </connections>
                                 </popUpButton>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="143" translatesAutoresizingMaskIntoConstraints="NO" id="Mec-SH-id8">
-                                    <rect key="frame" x="30" y="177" width="147" height="17"/>
+                                    <rect key="frame" x="30" y="177" width="233" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Signing Certificate" id="Qgh-8X-V9F">
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Signing Certificate (not implemented)" id="Qgh-8X-V9F">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
