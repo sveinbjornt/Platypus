@@ -139,7 +139,7 @@
     self[AppSpecKey_DestinationPath] = DEFAULT_DESTINATION_PATH;
     self[AppSpecKey_Overwrite] = @NO;
     self[AppSpecKey_SymlinkFiles] = @NO;
-    self[AppSpecKey_StripNib] = @YES;
+    self[AppSpecKey_StripNib] = @NO;
     
     self[AppSpecKey_Name] = DEFAULT_APP_NAME;
     self[AppSpecKey_ScriptPath] = @"";
@@ -317,7 +317,7 @@
     NSString *nibDestinationPath = [resourcesPath stringByAppendingString:@"/MainMenu.nib"];
     [FILEMGR copyItemAtPath:nibPath toPath:nibDestinationPath error:nil];
     
-    if ([self[AppSpecKey_StripNib] boolValue] == YES && [FILEMGR fileExistsAtPath:IBTOOL_PATH]) {
+    if ([self[AppSpecKey_StripNib] boolValue] == YES) {
         [self report:@"Optimizing nib file"];
         [PlatypusAppSpec optimizeNibFile:nibDestinationPath];
     }
@@ -953,6 +953,10 @@
 // Use ibtool to strip a given nib file.
 // This makes the file uneditable in Interface Builder.
 + (void)optimizeNibFile:(NSString *)nibPath {
+    if ([FILEMGR fileExistsAtPath:IBTOOL_PATH] == NO) {
+        NSLog(@"Unable to strip nib file, ibtool not found at path %@", IBTOOL_PATH);
+        return;
+    }
     NSTask *ibToolTask = [[NSTask alloc] init];
     [ibToolTask setLaunchPath:IBTOOL_PATH];
     [ibToolTask setArguments:@[@"--strip", nibPath, nibPath]];
