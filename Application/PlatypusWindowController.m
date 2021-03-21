@@ -180,6 +180,8 @@
     }
 }
 
+#pragma mark - NSApplicationDelegate
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     if ([DEFAULTS boolForKey:DefaultsKey_Launched] == NO) {
         [[self window] center];
@@ -199,6 +201,8 @@
     return YES;
 }
 
+#pragma mark - NSWindowDelegate
+
 - (BOOL)window:(NSWindow *)window shouldPopUpDocumentPathMenu:(NSMenu *)menu {
     // Prevent popup menu when window icon/title is cmd-clicked
     return NO;
@@ -207,6 +211,10 @@
 - (BOOL)window:(NSWindow *)window shouldDragDocumentWithEvent:(NSEvent *)e from:(NSPoint)loc withPasteboard:(NSPasteboard *)p {
     // Prevent dragging of title bar icon
     return NO;
+}
+
+- (void)windowWillClose:(NSNotification *)notification {
+    [[NSApplication sharedApplication] terminate:self];
 }
 
 #pragma mark - Script functions

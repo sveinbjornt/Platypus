@@ -18,7 +18,7 @@
             </connections>
         </customObject>
         <window title="Platypus" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="PlatypusWindow" animationBehavior="default" titlebarAppearsTransparent="YES" id="21" userLabel="Platypus Window">
-            <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="369" y="131" width="664" height="524"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1536" height="935"/>
@@ -418,7 +418,7 @@ DQ
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="0mM-jn-V9R">
-                                                    <rect key="frame" x="1" y="1" width="559" height="17"/>
+                                                    <rect key="frame" x="11" y="1" width="559" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7nT-4O-mOR">
@@ -2485,7 +2485,7 @@ DQ
                         </connections>
                     </button>
                     <button toolTip="Restore default settings" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10164">
-                        <rect key="frame" x="12" y="12" width="90" height="32"/>
+                        <rect key="frame" x="11" y="12" width="90" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="11052">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

@@ -415,7 +415,7 @@ static const NSInteger detailsHeight = 224;
     return [cltArgs copy]; // Return immutable copy
 }
 
-#pragma mark - App Delegate handlers
+#pragma mark - NSApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     PLog(@"Application did finish launching");
@@ -495,6 +495,12 @@ static const NSInteger detailsHeight = 224;
     }
     
     return NSTerminateNow;
+}
+
+#pragma mark - NSWindowDelegate
+
+- (void)windowWillClose:(NSNotification *)notification {
+    [[NSApplication sharedApplication] terminate:self];
 }
 
 #pragma mark - Interface manipulation
@@ -1732,15 +1738,6 @@ static const NSInteger detailsHeight = 224;
     [self addMenuItemSelectedJob:[sender title]];
     if (!isTaskRunning && [jobQueue count] > 0) {
         [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(executeScript) userInfo:nil repeats:NO];
-    }
-}
-
-#pragma mark - Window delegate methods
-
-- (void)windowWillClose:(NSNotification *)notification {
-    NSWindow *win = [notification object];
-    if (win == dropletWindow && interfaceType == PlatypusInterfaceType_Droplet) {
-        [[NSApplication sharedApplication] terminate:self];
     }
 }
 
