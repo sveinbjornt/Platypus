@@ -515,6 +515,11 @@ MENUITEMICON|https://sveinbjorn.org/images/andlat.png|Remote URL example\n
 <pre><code>SUBMENU|Title|Item1|Item2|Item3\n
 </code></pre><p><strong>Showing a disabled menu item:</strong></p>
 <pre><code>DISABLED|Name of item\n
+</code></pre><p><strong> Changing status item title and icon dynamically </strong></p>
+<p>Title:</p>
+<pre><code>STATUSTITLE|Title\n
+</code></pre><p>Icon:</p>
+<pre><code>STATUSICON|bundled image filename or absolute path or URL\n
 </code></pre><h3 id="prompting-for-input-via-osascript-applescript">Prompting for input via osascript/AppleScript</h3>
 <p>Scripts can also prompt for input by running AppleScript code via the <code>/usr/bin/osascript</code> program. See an example in Perl below:</p>
 <pre><code>#!/usr/bin/perl

@@ -2,7 +2,7 @@
 
 # Documentation for Platypus 5.3
 
-Last updated on January 19th, 2021. The latest version of this document can be found [here](https://sveinbjorn.org/platypus_documentation).
+Last updated on March 21st, 2021. The latest version of this document can be found [here](https://sveinbjorn.org/platypus_documentation).
 
 
 ## Introduction
@@ -430,6 +430,18 @@ SUBMENU|Title|Item1|Item2|Item3\n
 
 ```
 DISABLED|Name of item\n
+```
+
+** Changing status item title and icon dynamically **
+
+Title:
+```
+STATUSTITLE|Title\n
+```
+
+Icon:
+```
+STATUSICON|bundled image filename or absolute path or URL\n
 ```
 
 ### Prompting for input via osascript/AppleScript

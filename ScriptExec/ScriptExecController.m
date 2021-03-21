@@ -171,6 +171,13 @@ static const NSInteger detailsHeight = 224;
     // Prepare UI
     [self initialiseInterface];
     
+    // Listen for Open URL events
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
+                                                       andSelector:@selector(getUrl:withReplyEvent:)
+                                                     forEventClass:kInternetEventClass
+                                                        andEventID:kAEGetURL];
+    
+    
     // Listen for terminate notification
     NSString *notificationName = NSTaskDidTerminateNotification;
     if (execStyle == PlatypusExecStyle_Authenticated) {
@@ -180,12 +187,6 @@ static const NSInteger detailsHeight = 224;
                                              selector:@selector(taskFinished:)
                                                  name:notificationName
                                                object:nil];
-
-    // Listen for Open URL events
-    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
-                                                       andSelector:@selector(getUrl:withReplyEvent:)
-                                                     forEventClass:kInternetEventClass
-                                                        andEventID:kAEGetURL];
     
     // Register as text handling service
     if (isService) {

@@ -21,22 +21,24 @@ For future versions...
 
 For 5.4
     TODO: Support relative interpreter path (i.e. relative to Resources directory)
-    
-    TODO: Icon generated from images should use image name as naming hint
     TODO: Async Status Menu script execution to prevent interface locking on main thread
     TODO: Create more automated tests for command line tool and document existing tests
-    
-    TODO: Fix broken file watching
+    TODO: Fix broken file watching of script path
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Get new Big Sur square icon
     TODO: Support dark mode for text fields (invert colors?)
     TODO: Fix .webloc issue
     
+    * Command line tool now defaults to creating app without an icon
+    * Enabled close button for ScriptExec windows + Platypus window, now quits app(s)
+    * Command line tool no longer defaults to stripping nib file (requires explicit -y option)
+    * Added standard Help Menu to ScriptExec apps (support for bundled help bundles)
+    * Added support for dynamically changing status item title and icon via STATUSTITLE and STATUSICON syntax
     * Warn when non-existent file in bundled files list
     * Fixed strip nib file problems in CLT
     * Command line tool now defaults to creating apps with no application icon
     * Fixed issue w. Installer icon preset on Big Sur
-    * Settings option for notifications
+    * Support for notifications is now an option flag, to prevent permission popups on Catalina/Big Sur
     * Add support for arm64
     * Add Python3 interpreter preset
     * The Platypus application and command line tool are now Developer ID-signed
@@ -46,6 +48,7 @@ For 5.4
     * Switched over to AGIconFamily for icon generation, reducing dependence on deprecated Carbon calls
     * Resolved issue with text view selection and dark mode
     * Improved drag and drop handling on Platypus main window
+    * Platypus now requires 10.9 or later (Oldest macOS SDK included in XCode 12)
 
 5.3 - 25/11/2018
 
@@ -72,7 +75,7 @@ For 5.4
 
 5.2 - 03/03/2017
 
-    * Platypus apps can now register as URL scheme handlers and receive opened URLs as arguments to script
+    * Platypus apps can now register as URI scheme handlers and receive opened URLs as arguments to script
     * Platypus apps can now accept dragged URLs
     * Platypus apps that accept dropped files now have an Open Recent menu
     * New syntax to create submenus in Status Menu interface type

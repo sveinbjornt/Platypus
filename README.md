@@ -22,6 +22,7 @@ status menu items, launchers and automations using Platypus.
 * Apps can execute scripts with root privileges via the macOS Security Framework
 * Apps can register as handlers for URI schemes and send user notifications
 * Apps can be configured to run in the background (LSUIElement)
+
 * Set own application icon or select from presets
 * Set app's associated file types, identifier, version, author, etc.
 * Graphical interface for bundling support files with the script
@@ -29,6 +30,7 @@ status menu items, launchers and automations using Platypus.
 * "Profiles" can be used to save app configurations
 * Built-in script editor, or linking with external editor of choice
 * Extensive [documentation](Documentation/Documentation.md) and many built-in examples to help you get started
+* Generates slim, fast applications that launch quickly
 * Fast, responsive native app written in Objective-C/Cocoa
 
 ## Install
