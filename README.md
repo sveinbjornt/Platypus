@@ -1,3 +1,7 @@
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![Language](https://img.shields.io/badge/language-objective--c-lightgrey)]()
+[![Build](https://github.com/sveinbjornt/platypus/actions/workflows/macos.yml/badge.svg)]()
+
 # Platypus
 
 <img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="128" height="128" src="Documentation/images/platypus.png" align="right">
