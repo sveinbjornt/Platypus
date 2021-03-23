@@ -1,7 +1,0 @@
-language: objective-c
-
-osx_image: xcode12.2 # On 10.14.6
-
-script:
-  - make
-  - make clt_tests
