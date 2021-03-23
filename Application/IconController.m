@@ -302,14 +302,14 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     AGIconFamily *iconFamily = [[AGIconFamily alloc] initWithThumbnailsOfImage:iconImage
                                                             imageInterpolation:NSImageInterpolationHigh];
     if (iconFamily == nil) {
-        PLog(@"Failed to create IconFamily from image");
+        DLog(@"Failed to create IconFamily from image");
         return NO;
     }
     
     NSError *err;
     BOOL succ = [iconFamily writeToURL:[NSURL fileURLWithPath:path] error:&err];
     if (!succ) {
-        PLog(@"%@", [err localizedDescription]);
+        DLog(@"%@", [err localizedDescription]);
         return NO;
     }
     

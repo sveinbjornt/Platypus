@@ -177,7 +177,7 @@
     status = SecKeychainSearchCreateFromAttributes(NULL, kSecCertificateItemClass, NULL, &search);
     
     if (status != errSecSuccess) {
-        PLog(@"SecKeychainSearchCreateFromAttributes failed");
+        DLog(@"SecKeychainSearchCreateFromAttributes failed");
         return @[];
     }
     
@@ -334,9 +334,9 @@
             
             NSArray *words = [outputString componentsSeparatedByString:@" "];
             versionString = [words[2] stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-            PLog(@"Command line tool is installed (version %@)", versionString);
+            DLog(@"Command line tool is installed (version %@)", versionString);
         } else {
-            PLog(@"Command line tool is not installed");
+            DLog(@"Command line tool is not installed");
         }
     
         // Update UI on main thread
@@ -425,7 +425,7 @@
 }
 
 - (BOOL)executeScriptTemplateWithPrivileges:(NSString *)scriptName usingDictionary:(NSDictionary *)placeholderDict {
-    PLog(@"Running task with script %@", scriptName);
+    DLog(@"Running task with script %@", scriptName);
     NSString *script = [[NSBundle mainBundle] loadTemplate:scriptName usingDictionary:placeholderDict];
     if (script == nil) {
         return NO;
@@ -441,9 +441,9 @@
     // Create task
     STPrivilegedTask *privTask = [[STPrivilegedTask alloc] initWithLaunchPath:tmpScriptPath arguments:args];
     privTask.terminationHandler = ^(STPrivilegedTask *task) {
-        PLog(@"Terminating task: %@", [task description]);
+        DLog(@"Terminating task: %@", [task description]);
         [FILEMGR removeItemAtPath:[task launchPath] error:nil];
-        PLog(@"Removed tmp script: %@", [task launchPath]);
+        DLog(@"Removed tmp script: %@", [task launchPath]);
         [self updateCLTStatus];
     };
     
@@ -451,11 +451,11 @@
     OSStatus err = [privTask launch];
     if (err != errAuthorizationSuccess) {
         if (err == errAuthorizationCanceled) {
-            PLog(@"User cancelled");
+            DLog(@"User cancelled");
             return YES;
         }
         
-        PLog(@"Something went wrong. Authorization framework error %d", err);
+        DLog(@"Something went wrong. Authorization framework error %d", err);
         return NO;
     }
     

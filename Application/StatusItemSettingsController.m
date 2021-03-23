@@ -161,7 +161,7 @@
         [previewStatusItem setImage:[img copy]];
     }
     else {
-        PLog(@"Unknown status item style: %d", displayStyle);
+        DLog(@"Unknown status item style: %d", displayStyle);
     }
     
     [[previewStatusItem image] setTemplate:[isTemplateCheckbox intValue]];

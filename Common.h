@@ -247,9 +247,9 @@ extern NSString * const ScriptExecDefaultsKey_ShowDetails;
 
 // Logging
 #ifdef DEBUG
-    #define PLog(...) NSLog(__VA_ARGS__)
+    #define DLog(...) NSLog(__VA_ARGS__)
 #else
-    #define PLog(...)
+    #define DLog(...)
 #endif
 
 // Prototypes

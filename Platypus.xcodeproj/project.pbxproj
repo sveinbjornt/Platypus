@@ -1176,7 +1176,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# We need to sign Autoupdate.app within Sparkle framework for update installation to work\nLOCATION=\"${BUILT_PRODUCTS_DIR}/Platypus.app/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app\"\nIDENTITY=${EXPANDED_CODE_SIGN_IDENTITY_NAME}\n\ncodesign --verbose --force --deep --sign \"$IDENTITY\" \"$LOCATION\"\n";
+			shellScript = "exit 0\n# Only do this for release builds so CI testing works\n#if [ \"${CONFIGURATION}\" != \"Deployment\" ]; then\n#  exit 0\n#fi\n\n# We need to sign Autoupdate.app within Sparkle framework for update installation to work\nLOCATION=\"${BUILT_PRODUCTS_DIR}/Platypus.app/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app\"\nIDENTITY=${EXPANDED_CODE_SIGN_IDENTITY_NAME}\n\ncodesign --verbose --force --deep --sign \"$IDENTITY\" \"$LOCATION\"\n";
 		};
 		F4B4F71A2231B18300F3C073 /* Copy and gzip MainMenu.nib files from ScriptExec */ = {
 			isa = PBXShellScriptBuildPhase;

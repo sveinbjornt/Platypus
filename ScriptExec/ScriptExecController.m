@@ -419,7 +419,7 @@ static const NSInteger detailsHeight = 224;
 #pragma mark - NSApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    PLog(@"Application did finish launching");
+    DLog(@"Application did finish launching");
     hasFinishedLaunching = YES;
     
     // Status menu apps just run when item is clicked
@@ -440,7 +440,7 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames {
-    PLog(@"Received openFiles event for files: %@", [filenames description]);
+    DLog(@"Received openFiles event for files: %@", [filenames description]);
     
     if (hasTaskRun == FALSE && commandLineArguments != nil) {
         for (NSString *filePath in filenames) {
@@ -462,7 +462,7 @@ static const NSInteger detailsHeight = 224;
 
 - (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
     NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
-    PLog(@"Received open URL event for URL %@", url);
+    DLog(@"Received open URL event for URL %@", url);
     
     // Add URL as a job for processing
     BOOL success = [self addURLJob:url];
@@ -876,7 +876,7 @@ static const NSInteger detailsHeight = 224;
     outputReadFileHandle = [outputPipe fileHandleForReading];
     
     // Set it off
-    //PLog(@"Running task\n%@", [task humanDescription]);
+    //DLog(@"Running task\n%@", [task humanDescription]);
     [task launch];
     // This is blocking
     [task waitUntilExit];
@@ -911,7 +911,7 @@ static const NSInteger detailsHeight = 224;
     inputWriteFileHandle = [[task standardInput] fileHandleForWriting];
     
     // Set it off
-    //PLog(@"Running task\n%@", [task humanDescription]);
+    //DLog(@"Running task\n%@", [task humanDescription]);
     [task launch];
     
     // Write input, if any, to stdin, and then close
@@ -931,7 +931,7 @@ static const NSInteger detailsHeight = 224;
     [privilegedTask setArguments:arguments];
     
     // Set it off
-    PLog(@"Running task\n%@", [privilegedTask description]);
+    DLog(@"Running task\n%@", [privilegedTask description]);
     OSStatus err = [privilegedTask launch];
     if (err != errAuthorizationSuccess) {
         if (err == errAuthorizationCanceled) {
@@ -964,7 +964,7 @@ static const NSInteger detailsHeight = 224;
         return;
     }
     isTaskRunning = NO;
-    PLog(@"Task finished");
+    DLog(@"Task finished");
         
     // Did we receive all the data?
     // If no data left, we do clean up
@@ -1017,7 +1017,7 @@ static const NSInteger detailsHeight = 224;
         [[aNotification object] readInBackgroundAndNotify];
     }
     else {
-        PLog(@"Output empty");
+        DLog(@"Output empty");
         outputEmpty = YES;
         if (!isTaskRunning) {
             [self cleanup];
@@ -1033,11 +1033,11 @@ static const NSInteger detailsHeight = 224;
     NSMutableString *outputString = [[NSMutableString alloc] initWithData:data encoding:DEFAULT_TEXT_ENCODING];
     
     if (outputString == nil) {
-        PLog(@"Warning: Output string is nil");
+        DLog(@"Warning: Output string is nil");
         return;
     }
     
-    PLog(@"Output:%@", outputString);
+    DLog(@"Output:%@", outputString);
     
     if (remnants) {
         [outputString insertString:remnants atIndex:0];
@@ -1171,7 +1171,7 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (void)appendString:(NSString *)string {
-    PLog(@"Appending output: \"%@\"", string);
+    DLog(@"Appending output: \"%@\"", string);
 
     if (interfaceType == PlatypusInterfaceType_None) {
         fprintf(stderr, "%s\n", [string cStringUsingEncoding:DEFAULT_TEXT_ENCODING]);
@@ -1320,7 +1320,7 @@ static const NSInteger detailsHeight = 224;
 
 - (IBAction)cancel:(id)sender {
     if (task != nil && [task isRunning]) {
-        PLog(@"Task cancelled");
+        DLog(@"Task cancelled");
         [task terminate];
     }
     
@@ -1365,7 +1365,7 @@ static const NSInteger detailsHeight = 224;
 #pragma mark - Service handling
 
 - (void)dropService:(NSPasteboard *)pb userData:(NSString *)userData error:(NSString **)err {
-    PLog(@"Received drop service data");
+    DLog(@"Received drop service data");
     NSArray *types = [pb types];
     BOOL ret = 0;
     id data = nil;
@@ -1532,11 +1532,11 @@ static const NSInteger detailsHeight = 224;
             [dropletShaderView setAlphaValue:0.3];
             [dropletShaderView setHidden:NO];
         }
-        PLog(@"Dragged items accepted");
+        DLog(@"Dragged items accepted");
         return NSDragOperationLink;
     }
     
-    PLog(@"Dragged items refused");
+    DLog(@"Dragged items refused");
     return NSDragOperationNone;
 }
 
