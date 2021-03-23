@@ -81,6 +81,16 @@ Platypus lets you select one of several different user interfaces for your scrip
 #### Droplet Interface
 <img src="Documentation/images/interface_droplet.png" width="294">
 
+## Building Platypus
+
+To build Platypus, run the following command from the repository root (requires Xcode build tools):
+
+```shell
+$ make build_unsigned
+```
+
+The resulting application bundle is created in the `products` directory.
+
 ## Some notes on the code
 
 Platypus is very old software, dating back to the early days of 
