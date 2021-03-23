@@ -37,6 +37,7 @@
 
 #import "Common.h"
 #import "NSColor+HexTools.h"
+#import "NSColor+Inverted.h"
 #import "STPrivilegedTask.h"
 #import "STDragWebView.h"
 #import "ScriptExecController.h"
@@ -273,7 +274,7 @@ static const NSInteger detailsHeight = 224;
     
     // Text styling - we ignore those values unless output mode has a text view
     if (IsTextStyledInterfaceType(interfaceType)) {
-    
+        
         // Font and size
         NSNumber *userFontSizeNum = [DEFAULTS objectForKey:ScriptExecDefaultsKey_UserFontSize];
         CGFloat fontSize = userFontSizeNum ? [userFontSizeNum floatValue] : [appSettings[AppSpecKey_TextSize] floatValue];
@@ -286,12 +287,19 @@ static const NSInteger detailsHeight = 224;
             textFont = [NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:DEFAULT_TEXT_FONT_SIZE];
         }
         
-        // Foreground color
+        BOOL darkMode = NO;
+        if (@available(macOS 10.14, *)) {
+            darkMode = ([[[NSAppearance currentAppearance] name] isEqualToString:NSAppearanceNameDarkAqua]);
+        }
+            // Foreground color
         if (appSettings[AppSpecKey_TextColor]) {
             textForegroundColor = [NSColor colorFromHexString:appSettings[AppSpecKey_TextColor]];
         }
         if (textForegroundColor == nil) {
             textForegroundColor = [NSColor colorFromHexString:DEFAULT_TEXT_FG_COLOR];
+        }
+        if (darkMode) {
+            textForegroundColor = [textForegroundColor inverted];
         }
         
         // Background color
@@ -300,6 +308,9 @@ static const NSInteger detailsHeight = 224;
         }
         if (textBackgroundColor == nil) {
             textBackgroundColor = [NSColor colorFromHexString:DEFAULT_TEXT_BG_COLOR];
+        }
+        if (darkMode) {
+            textBackgroundColor = [textBackgroundColor inverted];
         }
     }
     

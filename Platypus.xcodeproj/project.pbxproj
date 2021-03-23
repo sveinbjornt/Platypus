@@ -97,6 +97,7 @@
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
 		F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* ScriptExecController.m */; };
 		F48FB47321A7841B0000C0E9 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */; };
+		F4911FCA260A6C50004AC8CD /* NSColor+Inverted.m in Sources */ = {isa = PBXBuildFile; fileRef = F4911FC8260A6C50004AC8CD /* NSColor+Inverted.m */; };
 		F4975D711B2E09280099D16E /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F4975D741B2E09310099D16E /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D731B2E09310099D16E /* STPrivilegedTask.m */; };
 		F4975D751B2E09310099D16E /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D731B2E09310099D16E /* STPrivilegedTask.m */; };
@@ -295,6 +296,8 @@
 		F48B7B9111F766E600351575 /* ScriptExecController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecController.h; path = ScriptExec/ScriptExecController.h; sourceTree = "<group>"; };
 		F48B7B9211F766E600351575 /* ScriptExecController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptExecController.m; path = ScriptExec/ScriptExecController.m; sourceTree = "<group>"; };
 		F4911FC7260A5D53004AC8CD /* macos.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = macos.yml; path = .github/workflows/macos.yml; sourceTree = "<group>"; };
+		F4911FC8260A6C50004AC8CD /* NSColor+Inverted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+Inverted.m"; path = "Shared/NSColor+Inverted.m"; sourceTree = "<group>"; };
+		F4911FC9260A6C50004AC8CD /* NSColor+Inverted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Inverted.h"; path = "Shared/NSColor+Inverted.h"; sourceTree = "<group>"; };
 		F4975D6E1B2E09280099D16E /* NSWorkspace+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWorkspace+Additions.h"; path = "Shared/NSWorkspace+Additions.h"; sourceTree = "<group>"; };
 		F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWorkspace+Additions.m"; path = "Shared/NSWorkspace+Additions.m"; sourceTree = "<group>"; };
 		F4975D721B2E09310099D16E /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Shared/STPrivilegedTask.h; sourceTree = "<group>"; };
@@ -433,6 +436,7 @@
 				F41306340FBD809A00A319B7 /* STPathTextField */,
 				F44587170FC386B500CD0C02 /* STPrivilegedTask */,
 				F4975D6D1B2E03250099D16E /* NSWorkspace+Additions */,
+				F4911FCF260A6C57004AC8CD /* NSColor+Inverted */,
 				F44EFEFF12296F2C00CAC9C2 /* NSColor+HexTools */,
 			);
 			name = Shared;
@@ -785,6 +789,15 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 			);
 			name = "Platypus App";
+			sourceTree = "<group>";
+		};
+		F4911FCF260A6C57004AC8CD /* NSColor+Inverted */ = {
+			isa = PBXGroup;
+			children = (
+				F4911FC9260A6C50004AC8CD /* NSColor+Inverted.h */,
+				F4911FC8260A6C50004AC8CD /* NSColor+Inverted.m */,
+			);
+			name = "NSColor+Inverted";
 			sourceTree = "<group>";
 		};
 		F4975D6D1B2E03250099D16E /* NSWorkspace+Additions */ = {
@@ -1292,6 +1305,7 @@
 				F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */,
 				F4051D9F1C1B5AF900587F1F /* Common.m in Sources */,
 				F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */,
+				F4911FCA260A6C50004AC8CD /* NSColor+Inverted.m in Sources */,
 				F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */,
 				F4975D741B2E09310099D16E /* STPrivilegedTask.m in Sources */,
 				F4AB186B1BE182FA00B83A95 /* Alerts.m in Sources */,
