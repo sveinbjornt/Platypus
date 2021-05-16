@@ -447,7 +447,7 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
-    return YES;
+    return sendsNotifications;
 }
 
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames {
