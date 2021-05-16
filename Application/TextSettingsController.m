@@ -92,7 +92,9 @@
 
 - (IBAction)chooseFont:(id)sender {
     NSFontManager *fontManager = [NSFontManager sharedFontManager];
-    [fontManager setSelectedFont:currentFont isMultiple:NO];
+    if (currentFont != nil) {
+        [fontManager setSelectedFont:currentFont isMultiple:NO];
+    }
     [fontManager orderFrontFontPanel:nil];
 }
 
@@ -104,12 +106,16 @@
 // Called by the shared NSFontManager when user chooses a new font or size in the Font Panel
 - (void)changeFont:(id)sender {
     NSFontManager *fontManager = [NSFontManager sharedFontManager];
-    [self setCurrentFont:[fontManager convertFont:[fontManager selectedFont]]];
+    if ([fontManager selectedFont] != nil) {
+        [self setCurrentFont:[fontManager convertFont:[fontManager selectedFont]]];
+    }
 }
 
 - (void)updateFontField {
-    [fontFaceTextField setStringValue:[NSString stringWithFormat:@"%@ %.0f", [currentFont fontName], [currentFont pointSize]]];
-    [textPreviewTextView setFont:currentFont];
+    if (currentFont) {
+        [fontFaceTextField setStringValue:[NSString stringWithFormat:@"%@ %.0f", [currentFont fontName], [currentFont pointSize]]];
+        [textPreviewTextView setFont:currentFont];
+    }
 }
 
 #pragma mark - Getters/Setters

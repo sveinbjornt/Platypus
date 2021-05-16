@@ -618,9 +618,12 @@
     [argsController setScriptArgs:spec[AppSpecKey_ScriptArgs]];
     
     // Text settings
-    [textSettingsController setTextFont:[NSFont fontWithName:spec[AppSpecKey_TextFont] size:[spec[AppSpecKey_TextSize] intValue]]];
-    [textSettingsController setTextForegroundColor:[NSColor colorFromHexString:spec[AppSpecKey_TextColor]]];
-    [textSettingsController setTextBackgroundColor:[NSColor colorFromHexString:spec[AppSpecKey_TextBackgroundColor]]];
+    if ([spec objectForKey:AppSpecKey_TextFont] != nil && [spec objectForKey:AppSpecKey_TextSize]) {
+        [textSettingsController setTextFont:[NSFont fontWithName:spec[AppSpecKey_TextFont]
+                                                            size:[spec[AppSpecKey_TextSize] intValue]]];
+        [textSettingsController setTextForegroundColor:[NSColor colorFromHexString:spec[AppSpecKey_TextColor]]];
+        [textSettingsController setTextBackgroundColor:[NSColor colorFromHexString:spec[AppSpecKey_TextBackgroundColor]]];
+    }
     
     // Status menu settings
     if (InterfaceTypeForString(spec[AppSpecKey_InterfaceType]) == PlatypusInterfaceType_StatusMenu) {

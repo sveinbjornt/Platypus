@@ -652,9 +652,7 @@ No. Platypus applications do not present the user with an interactive shell, and
 
 Platypus-generated apps are not signed by default. Due to GateKeeper, this means they will not run on macOS without prompting the user for approval. 
 
-If you have a Mac developer signing certificate in your Keychain, you can select it as a signing certificate in Preferences.
-
-The app is signed using the following command:
+Platypus apps, like any other apps, can signed using the following command:
 
 ```
 /usr/bin/codesign -s "your-signing-identity" path/to/MyApp.app
