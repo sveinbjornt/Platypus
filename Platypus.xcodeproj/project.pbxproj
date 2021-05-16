@@ -998,7 +998,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Sveinbjorn Thordarson";
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
@@ -1365,6 +1365,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_TEMP_DIR = "";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1434,6 +1435,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_TEMP_DIR = "";
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1576,6 +1578,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
+				CONFIGURATION_TEMP_DIR = "";
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
@@ -1620,7 +1623,7 @@
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIPFLAGS = "-x";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = build;
+				SYMROOT = build/;
 				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Development;
@@ -1646,6 +1649,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
+				CONFIGURATION_TEMP_DIR = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
@@ -1691,7 +1695,7 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				STRIPFLAGS = "-x";
-				SYMROOT = build;
+				SYMROOT = build/;
 				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Deployment;
@@ -1760,7 +1764,7 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				STRIPFLAGS = "-x";
-				SYMROOT = build;
+				SYMROOT = build/;
 				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Default;
