@@ -27,6 +27,7 @@ For 5.4
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Get new Big Sur square icon
     TODO: Fix .webloc issue
+    TODO: Change text field colors in ScriptExec when user changes to/from dark mode
     
     * Support dark mode for text fields (invert colors?)
     * Command line tool now defaults to creating app without an icon

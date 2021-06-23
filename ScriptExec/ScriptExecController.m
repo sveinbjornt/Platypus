@@ -1681,7 +1681,6 @@ static const NSInteger detailsHeight = 224;
         if ([line hasPrefix:disabledCmd]) {
             disabled = YES;
             line = [line substringFromIndex:[disabledCmd length]];
-            continue;
         }
         
         // Syntax to change status item icon
@@ -1700,9 +1699,10 @@ static const NSInteger detailsHeight = 224;
         if ([line hasPrefix:itemTitleCmd]) {
             line = [line substringFromIndex:[itemTitleCmd length]];
             [statusItem setTitle:line];
+            continue;
         }
             
-        // Parse syntax setting item icon
+        // Parse syntax setting menu item icon
         if ([line hasPrefix:@"MENUITEMICON|"]) {
             NSArray *tokens = [line componentsSeparatedByString:CMDLINE_ARG_SEPARATOR];
             if ([tokens count] < 3) {
