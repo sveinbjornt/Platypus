@@ -19,7 +19,7 @@ See https://sveinbjorn.org/platypus for details.
 defaults to creating application bundles, but can also create Platypus profiles
 that are loadable by both the command line program and the Platypus application.
 .Pp
-If the scriptPath parameter is '-', script text is read from STDIN.
+If the scriptPath parameter is '-', script text is read from standard input.
 .Pp
 The following option flags are supported (parsed in the order in which they
 are passed):
@@ -162,7 +162,7 @@ instead of copying the script over. Symlinks are also created to any
 bundled files.
 .It Fl l, -optimize-nib
 Strip the bundled application nib file to reduce its size. Makes the nib
-uneditable. Only works if Apple's XCode is installed.
+uneditable. Only works if Apple's Xcode is installed.
 .It Fl y, -overwrite
 Overwrite any pre-existing files or folders in destination path.
 .It Fl v, -version

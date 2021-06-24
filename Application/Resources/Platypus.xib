@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -1306,6 +1306,28 @@ CA
         </menu>
         <menu title="Menu" id="830" userLabel="IconContextualMenu">
             <items>
+                <menuItem title="Select Image File…" id="833">
+                    <connections>
+                        <action selector="selectImageFile:" target="1215" id="0Kd-iW-Pdv"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Select .icns File…" id="1268">
+                    <connections>
+                        <action selector="selectIcnsFile:" target="1215" id="1271"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="838">
+                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                </menuItem>
+                <menuItem title="Show in Finder" id="11335">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="revealIconInFinder:" target="1215" id="11337"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="834">
+                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                </menuItem>
                 <menuItem title="Copy Icon" id="832">
                     <connections>
                         <action selector="copyIcon:" target="1215" id="1262"/>
@@ -1321,15 +1343,6 @@ CA
                         <action selector="pasteIcon:" target="1215" id="1263"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="834">
-                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                </menuItem>
-                <menuItem title="Show in Finder" id="11335">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="revealIconInFinder:" target="1215" id="11337"/>
-                    </connections>
-                </menuItem>
                 <menuItem isSeparatorItem="YES" id="11334">
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>
@@ -1343,19 +1356,6 @@ CA
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="nextIcon:" target="1215" id="1265"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="838">
-                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                </menuItem>
-                <menuItem title="Select Image File…" id="833">
-                    <connections>
-                        <action selector="selectImageFile:" target="1215" id="0Kd-iW-Pdv"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Select .icns File…" id="1268">
-                    <connections>
-                        <action selector="selectIcnsFile:" target="1215" id="1271"/>
                     </connections>
                 </menuItem>
             </items>
@@ -2779,7 +2779,7 @@ DQ
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="206" translatesAutoresizingMaskIntoConstraints="NO" id="11391">
                                     <rect key="frame" x="30" y="290" width="210" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Bundle Identifier Prefix" id="11398">
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Bundle Identifier Prefix" id="11398">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2821,7 +2821,7 @@ DQ
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="206" translatesAutoresizingMaskIntoConstraints="NO" id="11394">
                                     <rect key="frame" x="30" y="232" width="210" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Author Name" id="11395">
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Default Author Name" id="11395">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

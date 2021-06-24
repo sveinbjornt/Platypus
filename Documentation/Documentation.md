@@ -21,21 +21,21 @@ Platypus was first released in 2003 and has since gone through many significant 
 <img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
-While Platypus is free, it is the product of countless hours of work over the last fifteen years or so. **If Platypus makes your life easier, please [make a donation](https://sveinbjorn.org/donations) to support continued development.**
+While Platypus is free, it is the product of countless hours of work over the last eighteen years or so. **If Platypus makes your life easier, please [make a donation](https://sveinbjorn.org/donations) to support continued development.**
 
-I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, but I cannot answer queries about the particulars of individual scripting languages. Productive use of Platypus assumes that you are competent in your scripting language of choice and understand the UNIX shell environment.
+I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, but I cannot answer queries about the particulars of individual scripting languages. Productive use of Platypus assumes that you are competent in your language of choice and understand the UNIX shell environment.
 
 
 ### How does Platypus work?
 
-Regular macOS applications are [bundles](https://en.wikipedia.org/wiki/Bundle_%28macOS%29) – special folders with a particular directory structure and a .app suffix. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the bundle is opened in the graphical user interface.
+Regular macOS applications are [bundles](https://en.wikipedia.org/wiki/Bundle_%28macOS%29) – special folders with a particular directory structure and a .app suffix. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the application bundle is launched in the graphical user interface.
 
-Platypus creates application bundles with a special executable binary that launches a script and captures its output. The binary can be configured to present the script's text output in various ways, for example by showing a progress bar, a text view, a Status Item menu or a WebKit-based web view.
+Platypus creates application bundles with a special executable binary that runs a script and captures its output. The binary can be configured to present the script's text output in various ways, for example by showing a progress bar, a text view, a Status Item menu or a WebKit-based web view.
 
 
 ### What Platypus is NOT
 
-Platypus is **not** a set of bindings between the native macOS APIs and scripting languages. It is not a full GUI development environment and is not intended for creating substantial applications with complex and dynamic user interaction. If you want to create advanced macOS applications, you should learn to program using the Cocoa APIs. Platypus is not and never will be a substitute for learning to use the (mostly excellent) native application programming interfaces.
+Platypus is **not** a set of bindings between the native macOS APIs and scripting languages. It is not a full GUI development environment and is not intended for creating substantial applications with complex and dynamic user interaction. If you want to create advanced macOS applications, you should learn to program using the Cocoa APIs. Platypus is not and never will be a substitute for learning to use the native application programming interfaces.
 
 That being said, you may be able to add some interactive GUI elements using [CocoaDialog](#user-interaction-with-cocoadialog), [Pashua](https://www.bluem.net/en/projects/pashua/) or [AppleScript](#prompting-for-input-via-osascript-applescript).
 
@@ -360,7 +360,7 @@ If interface type was set to **Web View** and your script prints "LOCATION:http:
 
 ### User interaction with CocoaDialog
 
-Platypus apps may be able to use [CocoaDialog](https://cocoadialog.com) to construct scripts that prompt for user input with dialogs. As of writing, the CocoaDialog project seems to be dead and so the following instructions may be obsolete:
+Platypus apps may be able to use [CocoaDialog](https://github.com/cocoadialog/cocoadialog) to construct scripts that prompt for user input with dialogs. As of writing, the CocoaDialog project seems to be dead and so the following instructions may be obsolete:
 
 * Download CocoaDialog
 * Add CocoaDialog.app to the list of Bundled Files.
