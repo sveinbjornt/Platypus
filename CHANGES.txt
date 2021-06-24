@@ -1,7 +1,6 @@
 For future versions...
     TODO: Use NSDictionaryController and bindings for all controls in main window and sub-controllers
-
-    http://stackoverflow.com/questions/1276029/non-blocking-stdio
+    TODO: http://stackoverflow.com/questions/1276029/non-blocking-stdio
     TODO: Terminal output mode? https://github.com/migueldeicaza/SwiftTerm
     TODO: Use pseudo-ttys for line buffered output: http://stackoverflow.com/questions/12586555/controlling-an-interactive-command-line-utility-from-a-cocoa-app-trouble-with  --- Look at PseudoTTY class
     TODO: Refactor ScriptExec for clean view controller/task controller decoupling. It's currently a mess.
@@ -12,7 +11,6 @@ For future versions...
     TODO: Implement new Table View interface (CSV output?)
     TODO: Don't save Status Menu image as base64 in every Profile
     TODO: Create Platypus tutorial videos, make them available online
-    TODO: Pseudo-TTY for ScriptExec to automatically line-buffer script output
     TODO: Set default icon in Prefs
     TODO: Overhaul the Services feature
     TODO: Embed MainMenu.nib in platypus CLT Mach-O binary instead of storing in /usr/local/share
@@ -27,10 +25,11 @@ For 5.4
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Get new Big Sur square icon
     TODO: Fix .webloc issue
-    TODO: Change text field colors in ScriptExec when user changes to/from dark mode
+    TODO: Add syntax for Status Menu output mode that suppresses menu entirely
     
-    * Support dark mode for text fields (invert colors?)
-    * Command line tool now defaults to creating app without an icon
+    * Change text field colors in ScriptExec when user changes to/from dark mode
+    * Support dark mode for text fields (inverts colors)
+    * Command line tool now defaults to creating apps without an icon
     * Enabled close button for ScriptExec windows + Platypus window, now quits app(s)
     * Command line tool no longer defaults to stripping nib file (requires explicit -y option)
     * Added standard Help Menu to ScriptExec apps (support for bundled help bundles)
@@ -40,8 +39,8 @@ For 5.4
     * Command line tool now defaults to creating apps with no application icon
     * Fixed issue w. Installer icon preset on Big Sur
     * Support for notifications is now an option flag, to prevent permission popups on Catalina/Big Sur
-    * Add support for arm64
-    * Add Python3 interpreter preset
+    * Added support for arm64
+    * Added Python3 interpreter preset
     * The Platypus application and command line tool are now Developer ID-signed
     * Platypus apps now hide (instead of disabling) Open and Open Recent menu items if they don't accept files
     * Fixed issue with signing due to missing "APPL" CFBundleType

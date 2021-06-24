@@ -147,6 +147,7 @@
 		F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */; };
 		F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */ = {isa = PBXBuildFile; fileRef = F4F14CAF1C640857002A2402 /* make_examples.pl */; };
 		F4F2F3BA1BF96C5C00FE463C /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B91BF96C5C00FE463C /* VDKQueue.m */; };
+		F4F740DA2684CFA5000673C0 /* SETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F740D92684CFA5000673C0 /* SETextView.m */; };
 		F4FB338114FBFC7C00BAECEB /* License.html in Resources */ = {isa = PBXBuildFile; fileRef = F4FB338014FBFC7C00BAECEB /* License.html */; };
 		F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
 		F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
@@ -376,6 +377,8 @@
 		F4F14CAF1C640857002A2402 /* make_examples.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = make_examples.pl; sourceTree = "<group>"; };
 		F4F2F3B81BF96C5C00FE463C /* VDKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VDKQueue.h; path = Shared/Others/VDKQueue/VDKQueue.h; sourceTree = "<group>"; };
 		F4F2F3B91BF96C5C00FE463C /* VDKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VDKQueue.m; path = Shared/Others/VDKQueue/VDKQueue.m; sourceTree = "<group>"; };
+		F4F740D82684CFA5000673C0 /* SETextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SETextView.h; path = ScriptExec/SETextView.h; sourceTree = "<group>"; };
+		F4F740D92684CFA5000673C0 /* SETextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SETextView.m; path = ScriptExec/SETextView.m; sourceTree = "<group>"; };
 		F4FB338014FBFC7C00BAECEB /* License.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = License.html; sourceTree = "<group>"; };
 		F4FE739611F792D5005FC23A /* PlatypusAppSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusAppSpec.h; path = Shared/PlatypusAppSpec.h; sourceTree = "<group>"; };
 		F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusAppSpec.m; path = Shared/PlatypusAppSpec.m; sourceTree = "<group>"; };
@@ -750,6 +753,8 @@
 				F48B7B9011F766E600351575 /* main.m */,
 				F48B7B9111F766E600351575 /* ScriptExecController.h */,
 				F48B7B9211F766E600351575 /* ScriptExecController.m */,
+				F4F740D82684CFA5000673C0 /* SETextView.h */,
+				F4F740D92684CFA5000673C0 /* SETextView.m */,
 				F4AB18981BED3A0B00B83A95 /* ScriptExecJob.h */,
 				F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */,
 				F44A77471C1887CC003CCA7A /* Resources */,
@@ -1304,6 +1309,7 @@
 				F48B7B9511F766E600351575 /* main.m in Sources */,
 				F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */,
 				F4051D9F1C1B5AF900587F1F /* Common.m in Sources */,
+				F4F740DA2684CFA5000673C0 /* SETextView.m in Sources */,
 				F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */,
 				F4911FCA260A6C50004AC8CD /* NSColor+Inverted.m in Sources */,
 				F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */,

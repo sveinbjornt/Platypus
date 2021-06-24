@@ -39,12 +39,12 @@
 		<string>*</string>
 	</array>
 	<key>TextBackground</key>
-	<string>#00000</string>
+	<string>#ffffff</string>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>
-	<string>#00ff00</string>
+	<string>#000000</string>
 	<key>TextSize</key>
-	<real>13</real>
+	<integer>13</integer>
 </dict>
 </plist>
