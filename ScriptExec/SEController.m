@@ -36,19 +36,19 @@
 #import <sys/stat.h>
 
 #import "Common.h"
+#import "SEController.h"
 #import "NSColor+HexTools.h"
 #import "NSColor+Inverted.h"
 #import "STPrivilegedTask.h"
 #import "STDragWebView.h"
-#import "ScriptExecController.h"
 #import "Alerts.h"
-#import "ScriptExecJob.h"
+#import "SEJob.h"
 
 #ifdef DEBUG
     #import "NSTask+Description.h"
 #endif
 
-@interface ScriptExecController()
+@interface SEController()
 {
     // Progress bar
     IBOutlet NSWindow *progressBarWindow;
@@ -147,13 +147,13 @@
     NSString *scriptText;
     NSString *remnants;
     
-    NSMutableArray <ScriptExecJob *> *jobQueue;
+    NSMutableArray <SEJob *> *jobQueue;
 }
 @end
 
 static const NSInteger detailsHeight = 224;
 
-@implementation ScriptExecController
+@implementation SEController
 
 - (instancetype)init {
     self = [super init];
@@ -260,8 +260,20 @@ static const NSInteger detailsHeight = 224;
     // Validate interpreter specified in settings
     interpreterPath = appSettings[AppSpecKey_InterpreterPath];
     if ([FILEMGR fileExistsAtPath:interpreterPath] == NO) {
-        [Alerts fatalAlert:@"Missing interpreter"
-             subTextFormat:@"The interpreter '%@' could not be found.", interpreterPath];
+        BOOL ok = FALSE;
+        // See if it's a relative path that exists within app bundle
+        if (![interpreterPath hasPrefix:@"/"]) {
+            NSString *rsrcPath = [[NSBundle mainBundle] resourcePath];
+            NSString *absPath = [rsrcPath stringByAppendingPathComponent:interpreterPath];
+            if ([FILEMGR fileExistsAtPath:absPath]) {
+                interpreterPath = absPath;
+                ok = TRUE;
+            }
+        }
+        if (!ok) {
+            [Alerts fatalAlert:@"Missing interpreter"
+                 subTextFormat:@"The interpreter '%@' could not be found.", interpreterPath];
+        }
     }
     
     // Determine interface type
@@ -835,7 +847,7 @@ static const NSInteger detailsHeight = 224;
     
     // Finally, dequeue job and add arguments
     if ([jobQueue count] > 0) {
-        ScriptExecJob *job = jobQueue[0];
+        SEJob *job = jobQueue[0];
 
         // We have files in the queue, to append as arguments
         // We take the first job's arguments and put them into the arg list
@@ -1420,7 +1432,7 @@ static const NSInteger detailsHeight = 224;
     if (!acceptsText) {
         return NO;
     }
-    ScriptExecJob *job = [ScriptExecJob jobWithArguments:nil andStandardInput:text];
+    SEJob *job = [SEJob jobWithArguments:nil andStandardInput:text];
     [jobQueue addObject:job];
     return YES;
 }
@@ -1443,7 +1455,7 @@ static const NSInteger detailsHeight = 224;
     }
     
     // We create a job and add the files as arguments
-    ScriptExecJob *job = [ScriptExecJob jobWithArguments:acceptedFiles andStandardInput:nil];
+    SEJob *job = [SEJob jobWithArguments:acceptedFiles andStandardInput:nil];
     [jobQueue addObject:job];
     
     // Add to Open Recent menu
@@ -1455,13 +1467,13 @@ static const NSInteger detailsHeight = 224;
 }
 
 - (BOOL)addURLJob:(NSString *)urlStr {
-    ScriptExecJob *job = [ScriptExecJob jobWithArguments:@[urlStr] andStandardInput:nil];
+    SEJob *job = [SEJob jobWithArguments:@[urlStr] andStandardInput:nil];
     [jobQueue addObject:job];
     return YES;
 }
 
 - (BOOL)addMenuItemSelectedJob:(NSString *)menuItemTitle {
-    ScriptExecJob *job = [ScriptExecJob jobWithArguments:@[menuItemTitle] andStandardInput:nil];
+    SEJob *job = [SEJob jobWithArguments:@[menuItemTitle] andStandardInput:nil];
     [jobQueue addObject:job];
     return YES;
 }

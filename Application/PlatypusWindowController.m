@@ -493,8 +493,9 @@
     }
     
     // Warn if interpreter doesn't exist
-    if ([FILEMGR fileExistsAtPath:[interpreterPathTextField stringValue]] == NO) {
-        NSString *promptString = [NSString stringWithFormat:@"The interpreter '%@' does not exist on this system.  Do you wish to proceed anyway?", [interpreterPathTextField stringValue]];
+    NSString *interpreterPath = [interpreterPathTextField stringValue];
+    if ([FILEMGR fileExistsAtPath:interpreterPath] == NO && [bundledFilesController hasRelativePath:interpreterPath] == NO) {
+        NSString *promptString = [NSString stringWithFormat:@"The interpreter '%@' does not exist and is not in bundled files.  Do you wish to proceed anyway?", [interpreterPathTextField stringValue]];
         if ([Alerts proceedAlert:@"Interpreter does not exist"
                          subText:promptString
                  withActionNamed:@"Proceed"] == NO) {

@@ -41,25 +41,26 @@
 @implementation InterpreterTextField
 
 - (BOOL)hasValidPath {
-    BOOL isDir;
     NSString *path = [[self stringValue] stringByExpandingTildeInPath];
-
-    BOOL existsAbsolute = ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir);
-    if (existsAbsolute) {
-        return YES;
+    if ([path hasPrefix:@"./"]) {
+        path = [path substringFromIndex:2];
     }
-
-    if (isDir) {
+    if (![path length]) {
         return NO;
     }
-
-    NSLog(@"Checking if %@ in bundled files", path);
-    if ([path hasPrefix:@"./"]) {
-        
+    
+    // Check if text field contains absolute path to regular file
+    BOOL isDir;
+    BOOL exists = ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir);
+    if (exists) {
+        return !isDir;
     }
-//    if ([path length] && [bundledFilesController hasFileName:path]) {
-//        return YES;
-//    }
+    
+    // Check if it's a relative path that could refer to a bundled file
+    NSLog(@"Checking if %@ in bundled files", path);
+    if ([path length] && [bundledFilesController hasRelativePath:path]) {
+        return YES;
+    }
     
     return NO;
 }

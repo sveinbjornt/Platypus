@@ -607,7 +607,7 @@ sys.stdout.flush()
 <p>Platypus only uses about 5MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select <strong>Uninstall Platypus</strong> from the Platypus application menu. This will uninstall the command line tool (if previously installed), and move Platypus.app and all its supporting files –  including saved Profiles – to the Trash.</p>
 <h3 id="how-do-i-get-the-source-code-to-platypus-and-platypus-generated-app-binaries-">How do I get the source code to Platypus and Platypus-generated app binaries?</h3>
 <p>The Platypus source repository can be found <a href="https://github.com/sveinbjornt/Platypus">on GitHub</a>.</p>
-<p>The source code to the binary used in Platypus-generated apps is <a href="https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/ScriptExecController">ScriptExecController.m</a>.</p>
+<p>The source code to the binary used in Platypus-generated apps is <a href="https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/SEController">SEController.m</a>.</p>
 <p>Please let me know if you make any improvements or fix any bugs, so I can incorporate them into the official release.</p>
 <h3 id="how-do-i-get-the-path-to-my-application-and-or-bundled-files-from-within-the-script-">How do I get the path to my application and/or bundled files from within the script?</h3>
 <p>The script executed by Platypus-generated applications runs from the Resources directory of the application bundle (e.g. <code>MyApp.app/Contents/Resources</code>). Any bundled files are thus accessible from the script&#39;s current working directory.</p>
@@ -627,7 +627,7 @@ MyApp.app/Contents/Resources/AppSettings.plist  Application settings
 MyApp.app/Contents/Resources/MainMenu.nib       Nib file, stores interface layout
 MyApp.app/Contents/Resources/script             Script executed by application binary
 </code></pre><p>The application binary reads settings from AppSettings.plist and then runs the script, making use of the user interface assets in the nib file to display the script&#39;s output.</p>
-<p>The source code to the binary is <a href="https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/ScriptExecController.m">here</a>. Skimming it should give you a fairly thorough understanding of what the executable does. It&#39;s relatively straightforward.</p>
+<p>The source code to the binary is <a href="https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/SEController.m">here</a>. Skimming it should give you a fairly thorough understanding of what the executable does. It&#39;s relatively straightforward.</p>
 <h3 id="can-i-change-the-dimensions-of-my-app-s-window-">Can I change the dimensions of my app&#39;s window?</h3>
 <p>Yes, but only by altering the application manually after it has been created. When you press Create, you need to uncheck the &quot;Optimize Application (strip nib file)&quot; option in the dialog. You can then edit the user interface assets in the nib file using Xcode. The nib file is stored at the following path within your application bundle.</p>
 <pre><code>Contents/Resources/MainMenu.nib

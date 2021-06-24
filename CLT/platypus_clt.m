@@ -300,12 +300,15 @@ int main(int argc, const char *argv[]) {
             // Interpreter
             case 'p':
             {
-                NSString *interpreterPath = MakeAbsolutePath(@(optarg));
-                if (![fm fileExistsAtPath:interpreterPath]) {
-                    NSPrintErr(@"Warning: Interpreter path '%@' invalid - no file at path.", interpreterPath);
+                NSString *path = @(optarg);
+                BOOL relative = ![path hasPrefix:@"/"];
+                if (!relative) {
+                    path = MakeAbsolutePath(path);
+                    if (![fm fileExistsAtPath:path]) {
+                        NSPrintErr(@"Warning: Interpreter path '%@' invalid - no file at path.", path);
+                    }
                 }
-                
-                properties[AppSpecKey_InterpreterPath] = interpreterPath;
+                properties[AppSpecKey_InterpreterPath] = path;
             }
                 break;
             

@@ -590,7 +590,7 @@ Platypus only uses about 5MB of disk space, but if you want to remove it entirel
 
 The Platypus source repository can be found [on GitHub](https://github.com/sveinbjornt/Platypus).
 
-The source code to the binary used in Platypus-generated apps is [ScriptExecController.m](https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/ScriptExecController).
+The source code to the binary used in Platypus-generated apps is [SEController.m](https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/SEController).
 
 Please let me know if you make any improvements or fix any bugs, so I can incorporate them into the official release.
 
@@ -627,7 +627,7 @@ MyApp.app/Contents/Resources/script             Script executed by application b
 
 The application binary reads settings from AppSettings.plist and then runs the script, making use of the user interface assets in the nib file to display the script's output.
 
-The source code to the binary is [here](https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/ScriptExecController.m). Skimming it should give you a fairly thorough understanding of what the executable does. It's relatively straightforward.
+The source code to the binary is [here](https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/SEController.m). Skimming it should give you a fairly thorough understanding of what the executable does. It's relatively straightforward.
 
 
 ### Can I change the dimensions of my app's window?

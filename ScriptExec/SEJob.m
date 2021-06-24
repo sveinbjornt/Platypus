@@ -28,12 +28,12 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "ScriptExecJob.h"
+#import "SEJob.h"
 
-@interface ScriptExecJob()
+@interface SEJob()
 @end
 
-@implementation ScriptExecJob
+@implementation SEJob
 
 - (instancetype)initWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr {
     self = [super init];

@@ -21,12 +21,12 @@ For future versions...
     TODO: Fix broken file watching of script path
 
 For 5.4
-    TODO: Support relative interpreter path (i.e. relative to Resources directory)
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Get new Big Sur square icon
     TODO: Fix .webloc issue
     TODO: Add syntax for Status Menu output mode that suppresses menu entirely
     
+    * Support relative interpreter path (i.e. relative to Resources directory)
     * Change text field colors in ScriptExec when user changes to/from dark mode
     * Support dark mode for text fields (inverts colors)
     * Command line tool now defaults to creating apps without an icon

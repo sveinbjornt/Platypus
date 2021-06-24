@@ -95,7 +95,7 @@
 		F484D46221AAE1DC006EE28D /* Interpreter_Node.js.png in Resources */ = {isa = PBXBuildFile; fileRef = F484D46121AAE1DB006EE28D /* Interpreter_Node.js.png */; };
 		F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
-		F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* ScriptExecController.m */; };
+		F48B7B9611F766E600351575 /* SEController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* SEController.m */; };
 		F48FB47321A7841B0000C0E9 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */; };
 		F4911FCA260A6C50004AC8CD /* NSColor+Inverted.m in Sources */ = {isa = PBXBuildFile; fileRef = F4911FC8260A6C50004AC8CD /* NSColor+Inverted.m */; };
 		F4975D711B2E09280099D16E /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
@@ -136,7 +136,7 @@
 		F4AB186B1BE182FA00B83A95 /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186A1BE182FA00B83A95 /* Alerts.m */; };
 		F4AB186C1BE182FA00B83A95 /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186A1BE182FA00B83A95 /* Alerts.m */; };
 		F4AB186F1BE1908100B83A95 /* NSBundle+Templates.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB186E1BE1908100B83A95 /* NSBundle+Templates.m */; };
-		F4AB189A1BED3A0B00B83A95 /* ScriptExecJob.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */; };
+		F4AB189A1BED3A0B00B83A95 /* SEJob.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AB18991BED3A0B00B83A95 /* SEJob.m */; };
 		F4AB189D1BEFAF1900B83A95 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */; };
 		F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AF785C14D1E5F200544C1B /* STDragWebView.m */; };
 		F4B4F7112230902C00F3C073 /* MutableDictProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B4F7102230902C00F3C073 /* MutableDictProxy.m */; };
@@ -294,8 +294,8 @@
 		F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusScriptUtils.m; path = Shared/PlatypusScriptUtils.m; sourceTree = "<group>"; };
 		F48B774111F7661C00351575 /* ScriptExec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptExec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48B7B9011F766E600351575 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = ScriptExec/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		F48B7B9111F766E600351575 /* ScriptExecController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecController.h; path = ScriptExec/ScriptExecController.h; sourceTree = "<group>"; };
-		F48B7B9211F766E600351575 /* ScriptExecController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptExecController.m; path = ScriptExec/ScriptExecController.m; sourceTree = "<group>"; };
+		F48B7B9111F766E600351575 /* SEController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEController.h; path = ScriptExec/SEController.h; sourceTree = "<group>"; };
+		F48B7B9211F766E600351575 /* SEController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEController.m; path = ScriptExec/SEController.m; sourceTree = "<group>"; };
 		F4911FC7260A5D53004AC8CD /* macos.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = macos.yml; path = .github/workflows/macos.yml; sourceTree = "<group>"; };
 		F4911FC8260A6C50004AC8CD /* NSColor+Inverted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+Inverted.m"; path = "Shared/NSColor+Inverted.m"; sourceTree = "<group>"; };
 		F4911FC9260A6C50004AC8CD /* NSColor+Inverted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Inverted.h"; path = "Shared/NSColor+Inverted.h"; sourceTree = "<group>"; };
@@ -354,8 +354,8 @@
 		F4AB186A1BE182FA00B83A95 /* Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Alerts.m; path = Shared/Alerts.m; sourceTree = "<group>"; };
 		F4AB186D1BE1908100B83A95 /* NSBundle+Templates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+Templates.h"; path = "Shared/NSBundle+Templates.h"; sourceTree = "<group>"; };
 		F4AB186E1BE1908100B83A95 /* NSBundle+Templates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Templates.m"; path = "Shared/NSBundle+Templates.m"; sourceTree = "<group>"; };
-		F4AB18981BED3A0B00B83A95 /* ScriptExecJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScriptExecJob.h; path = ScriptExec/ScriptExecJob.h; sourceTree = "<group>"; };
-		F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScriptExecJob.m; path = ScriptExec/ScriptExecJob.m; sourceTree = "<group>"; };
+		F4AB18981BED3A0B00B83A95 /* SEJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEJob.h; path = ScriptExec/SEJob.h; sourceTree = "<group>"; };
+		F4AB18991BED3A0B00B83A95 /* SEJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEJob.m; path = ScriptExec/SEJob.m; sourceTree = "<group>"; };
 		F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = PlatypusDefault.icns; path = Icons/PlatypusDefault.icns; sourceTree = SOURCE_ROOT; };
 		F4AF785B14D1E5F200544C1B /* STDragWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STDragWebView.h; path = Shared/STDragWebView.h; sourceTree = "<group>"; };
 		F4AF785C14D1E5F200544C1B /* STDragWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STDragWebView.m; path = Shared/STDragWebView.m; sourceTree = "<group>"; };
@@ -751,12 +751,12 @@
 			isa = PBXGroup;
 			children = (
 				F48B7B9011F766E600351575 /* main.m */,
-				F48B7B9111F766E600351575 /* ScriptExecController.h */,
-				F48B7B9211F766E600351575 /* ScriptExecController.m */,
+				F48B7B9111F766E600351575 /* SEController.h */,
+				F48B7B9211F766E600351575 /* SEController.m */,
 				F4F740D82684CFA5000673C0 /* SETextView.h */,
 				F4F740D92684CFA5000673C0 /* SETextView.m */,
-				F4AB18981BED3A0B00B83A95 /* ScriptExecJob.h */,
-				F4AB18991BED3A0B00B83A95 /* ScriptExecJob.m */,
+				F4AB18981BED3A0B00B83A95 /* SEJob.h */,
+				F4AB18991BED3A0B00B83A95 /* SEJob.m */,
 				F44A77471C1887CC003CCA7A /* Resources */,
 			);
 			name = ScriptExec;
@@ -1307,7 +1307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F48B7B9511F766E600351575 /* main.m in Sources */,
-				F48B7B9611F766E600351575 /* ScriptExecController.m in Sources */,
+				F48B7B9611F766E600351575 /* SEController.m in Sources */,
 				F4051D9F1C1B5AF900587F1F /* Common.m in Sources */,
 				F4F740DA2684CFA5000673C0 /* SETextView.m in Sources */,
 				F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */,
@@ -1315,7 +1315,7 @@
 				F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */,
 				F4975D741B2E09310099D16E /* STPrivilegedTask.m in Sources */,
 				F4AB186B1BE182FA00B83A95 /* Alerts.m in Sources */,
-				F4AB189A1BED3A0B00B83A95 /* ScriptExecJob.m in Sources */,
+				F4AB189A1BED3A0B00B83A95 /* SEJob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

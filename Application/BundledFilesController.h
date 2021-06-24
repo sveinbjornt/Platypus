@@ -41,5 +41,7 @@
 - (IBAction)setToDefaults:(id)sender;
 - (void)addFiles:(NSArray *)filePaths;
 - (BOOL)hasFileName:(NSString *)filename;
+- (BOOL)hasRegularFileNamed:(NSString *)filename;
+- (BOOL)hasRelativePath:(NSString *)relPath;
 
 @end

@@ -28,14 +28,16 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <Foundation/Foundation.h>
+/* This is the source code to the main window controller for
+ the binary bundled into Platypus-generated applications */
 
-@interface ScriptExecJob : NSObject
+#import <Cocoa/Cocoa.h>
+#import "STDragWebView.h"
 
-@property (nonatomic, copy) NSArray *arguments;
-@property (nonatomic, copy) NSString *standardInputString;
-
-- (instancetype)initWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr;
-+ (instancetype)jobWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr;
+@interface SEController : NSObject <NSApplicationDelegate,
+                                    NSMenuDelegate,
+                                    NSMenuItemValidation,
+                                    NSUserNotificationCenterDelegate,
+                                    STDragWebViewDelegate>
 
 @end

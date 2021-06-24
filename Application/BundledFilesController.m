@@ -185,6 +185,43 @@
     return NO;
 }
 
+- (BOOL)hasRegularFileNamed:(NSString *)filename {
+    for (NSDictionary *fileInfoDict in files) {
+        NSString *path = fileInfoDict[@"Path"];
+        NSString *fn = [path lastPathComponent];
+        if ([fn isEqualToString:filename]) {
+            BOOL isDir;
+            if (![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] || isDir) {
+                continue;
+            }
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)hasRelativePath:(NSString *)relPath {
+    for (NSDictionary *fileInfoDict in files) {
+        NSString *path = fileInfoDict[@"Path"];
+        BOOL isDir;
+        // Doesn't exist?
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]) {
+            continue;
+        }
+        // It's a regular file and it does exist
+        if (!isDir) {
+            return YES;
+        }
+        // OK, it's a directory. Try to resolve relative path.
+        NSString *parentDir = [path stringByDeletingLastPathComponent];
+        NSString *absPath = [parentDir stringByAppendingPathComponent:relPath];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:absPath isDirectory:&isDir] && !isDir) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (NSArray <NSString *> *)filePaths {
     NSMutableArray <NSString *> *filePaths = [NSMutableArray array];
     for (NSDictionary *item in files) {
