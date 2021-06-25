@@ -23,7 +23,6 @@ For future versions...
 For 5.4
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Get new Big Sur square icon
-    TODO: Fix .webloc issue
     TODO: Add syntax for Status Menu output mode that suppresses menu entirely
     
     * Support relative interpreter path (i.e. relative to Resources directory)

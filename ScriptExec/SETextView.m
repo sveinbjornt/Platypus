@@ -29,7 +29,7 @@
 */
 
 // Subclass of NSTextView that automatically inverts the text view's background
-// and foreground color when switching between light mode and dark mode.
+// and foreground colors when switching between light mode and dark mode.
 
 #import "SETextView.h"
 #import "NSColor+Inverted.h"

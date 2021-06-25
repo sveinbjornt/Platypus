@@ -57,8 +57,7 @@
     }
     
     // Check if it's a relative path that could refer to a bundled file
-    NSLog(@"Checking if %@ in bundled files", path);
-    if ([path length] && [bundledFilesController hasRelativePath:path]) {
+    if ([bundledFilesController hasRelativePath:path]) {
         return YES;
     }
     
