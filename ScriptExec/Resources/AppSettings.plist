@@ -11,13 +11,13 @@
 	<key>Creator</key>
 	<string>Platypus-5.4</string>
 	<key>InterfaceType</key>
-	<string>Text Window</string>
+	<string>Status Menu</string>
 	<key>URISchemes</key>
 	<array/>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>InterpreterPath</key>
-	<string>/bin/blurgh/smurgh</string>
+	<string>/bin/sh</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunning</key>

@@ -1635,14 +1635,12 @@ static const NSInteger detailsHeight = 224;
     // Is it a bundled image?
     NSImage *icon = [NSImage imageNamed:str];
     
-    // If not, it could be a URL
+    // If not, it could be a URL or a file system path
     if (icon == nil) {
-        // Or a file system path
         BOOL isDir;
         if ([FILEMGR fileExistsAtPath:str isDirectory:&isDir] && !isDir) {
             icon = [[NSImage alloc] initByReferencingFile:str];
         } else {
-            // Or a URL
             NSURL *url = [NSURL URLWithString:str];
             if (url != nil) {
                 icon = [[NSImage alloc] initWithContentsOfURL:url];

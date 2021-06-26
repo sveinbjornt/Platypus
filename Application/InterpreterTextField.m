@@ -50,12 +50,14 @@
     }
     
     // Check if text field contains absolute path to regular file
-    BOOL isDir;
-    BOOL exists = ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && !isDir);
-    if (exists) {
-        return !isDir;
+    if ([path hasPrefix:@"/"]) {
+        BOOL isDir;
+        BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
+        if (exists) {
+            return !isDir;
+        }
     }
-    
+        
     // Check if it's a relative path that could refer to a bundled file
     if ([bundledFilesController hasRelativePath:path]) {
         return YES;

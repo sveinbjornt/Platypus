@@ -69,7 +69,7 @@
                     <stepper toolTip="Press to browse through default icons" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="308">
                         <rect key="frame" x="168" y="425" width="19" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <stepperCell key="cell" continuous="YES" alignment="left" maxValue="4" valueWraps="YES" id="10947"/>
+                        <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="4" doubleValue="1" valueWraps="YES" id="10947"/>
                         <connections>
                             <action selector="switchIcons:" target="1215" id="1224"/>
                         </connections>

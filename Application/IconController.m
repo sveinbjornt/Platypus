@@ -289,7 +289,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 }
 
 - (IBAction)setToDefaults {
-    [self setAppIconForType:PlatypusPresetIconDefault];
+    [self setAppIconForType:PlatypusPresetIconGenericApplication];
 }
 
 #pragma mark -
