@@ -327,7 +327,7 @@ pre code, pre tt {
     <div class="container">
       <div class="body-content"><p><img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="128" height="128" src="images/platypus.png"  align="right"></p>
 <h1 id="documentation-for-platypus-5-3">Documentation for Platypus 5.3</h1>
-<p>Last updated on January 19th, 2021. The latest version of this document can be found <a href="https://sveinbjorn.org/platypus_documentation">here</a>.</p>
+<p>Last updated on March 21st, 2021. The latest version of this document can be found <a href="https://sveinbjorn.org/platypus_documentation">here</a>.</p>
 <h2 id="introduction">Introduction</h2>
 <h3 id="what-is-platypus-">What is Platypus?</h3>
 <p>Platypus is a developer tool that creates native macOS application wrappers around scripts. Scripts are thus transformed into regular applications that can be launched from the window environment – e.g. the Finder or the Dock – without requiring use of the command line interface.</p>
@@ -339,19 +339,19 @@ pre code, pre tt {
 <img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
-<p>While Platypus is free, it is the product of countless hours of work over the last fifteen years or so. <strong>If Platypus makes your life easier, please <a href="https://sveinbjorn.org/donations">make a donation</a> to support continued development.</strong></p>
-<p>I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, but I cannot answer queries about the particulars of individual scripting languages. Productive use of Platypus assumes that you are competent in your scripting language of choice and understand the UNIX shell environment.</p>
+<p>While Platypus is free, it is the product of countless hours of work over the last eighteen years or so. <strong>If Platypus makes your life easier, please <a href="https://sveinbjorn.org/donations">make a donation</a> to support continued development.</strong></p>
+<p>I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, but I cannot answer queries about the particulars of individual scripting languages. Productive use of Platypus assumes that you are competent in your language of choice and understand the UNIX shell environment.</p>
 <h3 id="how-does-platypus-work-">How does Platypus work?</h3>
-<p>Regular macOS applications are <a href="https://en.wikipedia.org/wiki/Bundle_%28macOS%29">bundles</a> – special folders with a particular directory structure and a .app suffix. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the bundle is opened in the graphical user interface.</p>
-<p>Platypus creates application bundles with a special executable binary that launches a script and captures its output. The binary can be configured to present the script&#39;s text output in various ways, for example by showing a progress bar, a text view, a Status Item menu or a WebKit-based web view.</p>
+<p>Regular macOS applications are <a href="https://en.wikipedia.org/wiki/Bundle_%28macOS%29">bundles</a> – special folders with a particular directory structure and a .app suffix. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the application bundle is launched in the graphical user interface.</p>
+<p>Platypus creates application bundles with a special executable binary that runs a script and captures its output. The binary can be configured to present the script&#39;s text output in various ways, for example by showing a progress bar, a text view, a Status Item menu or a WebKit-based web view.</p>
 <h3 id="what-platypus-is-not">What Platypus is NOT</h3>
-<p>Platypus is <strong>not</strong> a set of bindings between the native macOS APIs and scripting languages. It is not a full GUI development environment and is not intended for creating substantial applications with complex and dynamic user interaction. If you want to create advanced macOS applications, you should learn to program using the Cocoa APIs. Platypus is not and never will be a substitute for learning to use the (mostly excellent) native application programming interfaces.</p>
+<p>Platypus is <strong>not</strong> a set of bindings between the native macOS APIs and scripting languages. It is not a full GUI development environment and is not intended for creating substantial applications with complex and dynamic user interaction. If you want to create advanced macOS applications, you should learn to program using the Cocoa APIs. Platypus is not and never will be a substitute for learning to use the native application programming interfaces.</p>
 <p>That being said, you may be able to add some interactive GUI elements using <a href="#user-interaction-with-cocoadialog">CocoaDialog</a>, <a href="https://www.bluem.net/en/projects/pashua/">Pashua</a> or <a href="#prompting-for-input-via-osascript-applescript">AppleScript</a>.</p>
 <h3 id="system-requirements">System Requirements</h3>
 <p>Both Platypus and the applications it generates require <strong>macOS 10.8</strong> or later and are provided as <strong>64-bit Intel</strong> binaries. If you want to target 10.6 and/or 32-bit systems, <a href="https://sveinbjorn.org/files/software/platypus/platypus4.9.zip">version 4.9</a> continues to work just fine. If you want to target 10.4 and the PowerPC users of yore, you can use version <a href="https://sveinbjorn.org/files/software/platypus/platypus4.4.zip">4.4</a>.</p>
 <h3 id="credits">Credits</h3>
 <p>Platypus was created by me, <a href="mailto:sveinbjorn@sveinbjorn.org">Sveinbjorn Thordarson</a>. The  application icon was created by <a href="https://drifaliftora.is">Drífa Líftóra</a>.</p>
-<p>Thanks go to Seth Willits, author of the AGIconFamily class used for icon handling in Platypus, Bryan D K Jones, author of <a href="https://github.com/bdkjones/VDKQueue">VDKQueue</a>, Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, James S. Derry and Paul Kim for improvements to the built-in editor, and Andy Matuschak for the <a href="https://sparkle-project.org">Sparkle</a> update framework.</p>
+<p>Thanks go to Seth Willits, author of the AGIconFamily class used for icon handling in Platypus, Bryan D K Jones, author of <a href="https://github.com/bdkjones/VDKQueue">VDKQueue</a>, Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, James S. Derry and Paul Kim for improvements to the built-in editor, and Andy Matuschak for the <a href="https://sparkle-project.org">Sparkle</a> software update framework.</p>
 <p>Finally, I am much indebted to <a href="http://www.wsanchez.net">Wilfredo Sanchez</a>, author of <a href="http://www.wsanchez.net/software">DropScript</a>, the proof-of-concept project which inspired me to create Platypus in the first place.</p>
 <h2 id="the-basics">The Basics</h2>
 <h3 id="basic-interface">Basic Interface</h3>
@@ -475,7 +475,7 @@ pre code, pre tt {
 <h3 id="loading-a-website-into-a-web-view">Loading a Website into a Web View</h3>
 <p>If interface type was set to <strong>Web View</strong> and your script prints &quot;LOCATION:<a href="http://some.url.com\n&quot;">http://some.url.com\n&quot;</a>, the Web View will load the URL in question.</p>
 <h3 id="user-interaction-with-cocoadialog">User interaction with CocoaDialog</h3>
-<p>Platypus apps may be able to use <a href="https://cocoadialog.com">CocoaDialog</a> to construct scripts that prompt for user input with dialogs. As of writing, the CocoaDialog project seems to be dead and so the following instructions may be obsolete:</p>
+<p>Platypus apps may be able to use <a href="https://github.com/cocoadialog/cocoadialog">CocoaDialog</a> to construct scripts that prompt for user input with dialogs. As of writing, the CocoaDialog project seems to be dead and so the following instructions may be obsolete:</p>
 <ul>
 <li>Download CocoaDialog</li>
 <li>Add CocoaDialog.app to the list of Bundled Files.</li>
@@ -637,8 +637,7 @@ MyApp.app/Contents/Resources/script             Script executed by application b
 <p>No. Platypus applications do not present the user with an interactive shell, and therefore no bidirectional communication can take place using standard input. Platypus apps can only capture and display the text output of your script. They cannot prompt for input via <code>stdin</code>, and will not be able to do so in the foreseeable future. This means that any commands that require input via <code>stdin</code>, such as <code>sudo</code>, or Python&#39;s <code>input()</code> will not work from within a Platypus application.</p>
 <h3 id="is-there-a-way-to-sign-platypus-generated-apps-so-they-don-t-require-gatekeeper-approval-">Is there a way to sign Platypus-generated apps so they don&#39;t require GateKeeper approval?</h3>
 <p>Platypus-generated apps are not signed by default. Due to GateKeeper, this means they will not run on macOS without prompting the user for approval. </p>
-<p>If you have a Mac developer signing certificate in your Keychain, you can select it as a signing certificate in Preferences.</p>
-<p>The app is signed using the following command:</p>
+<p>Platypus apps, like any other apps, can signed using the following command:</p>
 <pre><code>/usr/bin/codesign -s &quot;your-signing-identity&quot; path/to/MyApp.app
 </code></pre><p>See Apple&#39;s <a href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html">Code Signing Guide</a> for details.</p>
 <h3 id="can-i-pass-arguments-to-a-platypus-generated-app-via-the-command-line-">Can I pass arguments to a Platypus-generated app via the command line?</h3>

@@ -46,6 +46,9 @@
 		F43142B01C03C742004EEF8C /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F436471421A1BD9D00A8749D /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F45BB35A219224E900DC7A00 /* platypus.1 */; };
 		F436471521A1BDA600A8749D /* platypus.man.html in Resources */ = {isa = PBXBuildFile; fileRef = F45BB35C219224E900DC7A00 /* platypus.man.html */; };
+		F43C430E26876F060013914C /* img1.png in Resources */ = {isa = PBXBuildFile; fileRef = F43C430C26876F060013914C /* img1.png */; };
+		F43C430F26876F060013914C /* img2.png in Resources */ = {isa = PBXBuildFile; fileRef = F43C430D26876F060013914C /* img2.png */; };
+		F43C431126876F250013914C /* SEController.m in Sources */ = {isa = PBXBuildFile; fileRef = F43C431026876F250013914C /* SEController.m */; };
 		F445EA7B14FAB93300DCCDB3 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */; };
 		F44A77431C1882DA003CCA7A /* InstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F44A77401C1882DA003CCA7A /* InstallCommandLineTool.sh */; };
 		F44A77441C1882DA003CCA7A /* UninstallCommandLineTool.sh in Resources */ = {isa = PBXBuildFile; fileRef = F44A77411C1882DA003CCA7A /* UninstallCommandLineTool.sh */; };
@@ -95,7 +98,6 @@
 		F484D46221AAE1DC006EE28D /* Interpreter_Node.js.png in Resources */ = {isa = PBXBuildFile; fileRef = F484D46121AAE1DB006EE28D /* Interpreter_Node.js.png */; };
 		F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
-		F48B7B9611F766E600351575 /* SEController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9211F766E600351575 /* SEController.m */; };
 		F48FB47321A7841B0000C0E9 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */; };
 		F4911FCA260A6C50004AC8CD /* NSColor+Inverted.m in Sources */ = {isa = PBXBuildFile; fileRef = F4911FC8260A6C50004AC8CD /* NSColor+Inverted.m */; };
 		F4975D711B2E09280099D16E /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
@@ -220,6 +222,9 @@
 		F42A93D62178365C00C40D46 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F42A93E52178485C00C40D46 /* args.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = args.py; sourceTree = "<group>"; };
 		F42E2EAA20A9E001003D2E89 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		F43C430C26876F060013914C /* img1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img1.png; sourceTree = "<group>"; };
+		F43C430D26876F060013914C /* img2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img2.png; sourceTree = "<group>"; };
+		F43C431026876F250013914C /* SEController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEController.m; path = ScriptExec/SEController.m; sourceTree = "<group>"; };
 		F442E00B1EA38C7100BAD80C /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F445EA7A14FAB93300DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Sparkle/dsa_pub.pem; sourceTree = "<group>"; };
 		F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_priv.pem; sourceTree = "<group>"; };
@@ -231,7 +236,6 @@
 		F44A77411C1882DA003CCA7A /* UninstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = UninstallCommandLineTool.sh; path = Application/Resources/UninstallCommandLineTool.sh; sourceTree = "<group>"; };
 		F44A77421C1882DA003CCA7A /* UninstallPlatypus.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = UninstallPlatypus.sh; path = Application/Resources/UninstallPlatypus.sh; sourceTree = "<group>"; };
 		F44A77481C1887CC003CCA7A /* AppSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppSettings.plist; sourceTree = "<group>"; };
-		F44A77491C1887CC003CCA7A /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		F44A774A1C1887CC003CCA7A /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		F44A774B1C1887CC003CCA7A /* script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = script; sourceTree = "<group>"; };
 		F44A774C1C1887CC003CCA7A /* ScriptExec-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ScriptExec-Info.plist"; sourceTree = "<group>"; };
@@ -295,7 +299,6 @@
 		F48B774111F7661C00351575 /* ScriptExec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptExec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48B7B9011F766E600351575 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = ScriptExec/main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F48B7B9111F766E600351575 /* SEController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEController.h; path = ScriptExec/SEController.h; sourceTree = "<group>"; };
-		F48B7B9211F766E600351575 /* SEController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEController.m; path = ScriptExec/SEController.m; sourceTree = "<group>"; };
 		F4911FC7260A5D53004AC8CD /* macos.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = macos.yml; path = .github/workflows/macos.yml; sourceTree = "<group>"; };
 		F4911FC8260A6C50004AC8CD /* NSColor+Inverted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+Inverted.m"; path = "Shared/NSColor+Inverted.m"; sourceTree = "<group>"; };
 		F4911FC9260A6C50004AC8CD /* NSColor+Inverted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Inverted.h"; path = "Shared/NSColor+Inverted.h"; sourceTree = "<group>"; };
@@ -585,7 +588,8 @@
 				F44A77481C1887CC003CCA7A /* AppSettings.plist */,
 				F44A774B1C1887CC003CCA7A /* script */,
 				F44A774A1C1887CC003CCA7A /* MainMenu.xib */,
-				F44A77491C1887CC003CCA7A /* image.png */,
+				F43C430C26876F060013914C /* img1.png */,
+				F43C430D26876F060013914C /* img2.png */,
 			);
 			name = Resources;
 			path = ScriptExec/Resources;
@@ -752,7 +756,7 @@
 			children = (
 				F48B7B9011F766E600351575 /* main.m */,
 				F48B7B9111F766E600351575 /* SEController.h */,
-				F48B7B9211F766E600351575 /* SEController.m */,
+				F43C431026876F250013914C /* SEController.m */,
 				F4F740D82684CFA5000673C0 /* SETextView.h */,
 				F4F740D92684CFA5000673C0 /* SETextView.m */,
 				F4AB18981BED3A0B00B83A95 /* SEJob.h */,
@@ -1106,6 +1110,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F44A77501C1887CC003CCA7A /* script in Resources */,
+				F43C430E26876F060013914C /* img1.png in Resources */,
+				F43C430F26876F060013914C /* img2.png in Resources */,
 				F44A774D1C1887CC003CCA7A /* AppSettings.plist in Resources */,
 				F48FB47321A7841B0000C0E9 /* PlatypusDefault.icns in Resources */,
 				F44A774F1C1887CC003CCA7A /* MainMenu.xib in Resources */,
@@ -1307,9 +1313,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F48B7B9511F766E600351575 /* main.m in Sources */,
-				F48B7B9611F766E600351575 /* SEController.m in Sources */,
 				F4051D9F1C1B5AF900587F1F /* Common.m in Sources */,
 				F4F740DA2684CFA5000673C0 /* SETextView.m in Sources */,
+				F43C431126876F250013914C /* SEController.m in Sources */,
 				F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */,
 				F4911FCA260A6C50004AC8CD /* NSColor+Inverted.m in Sources */,
 				F4AF785D14D1E5F200544C1B /* STDragWebView.m in Sources */,

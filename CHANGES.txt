@@ -24,7 +24,8 @@ For future versions...
 
 For 5.4
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
-        
+    TODO: Get new square icon for Big Sur
+    
     * Support relative interpreter path (i.e. relative to Resources directory)
     * Support dark mode for text fields (inverts colors, changes when user switches interfac modes)
     * Command line tool now defaults to creating apps without an icon
