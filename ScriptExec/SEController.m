@@ -1736,12 +1736,22 @@ static const NSInteger detailsHeight = 224;
             
             // Create submenu
             submenu = [[NSMenu alloc] initWithTitle:menuName];
+            BOOL nextDisabled = FALSE;
             for (NSString *t in tokens) {
                 if ([t hasPrefix:@"----"]) {
                     [submenu addItem:[NSMenuItem separatorItem]];
                     continue;
                 }
+                if ([t isEqualToString:@"DISABLED"]) {
+                    nextDisabled = TRUE;
+                    continue;
+                }
                 NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:t action:@selector(menuItemSelected:) keyEquivalent:@""];
+                if (nextDisabled) {
+                    [item setEnabled:FALSE];
+                    [item setAction:nil];
+                    nextDisabled = FALSE;
+                }
                 [submenu addItem:item];
             }
             

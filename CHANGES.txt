@@ -9,23 +9,21 @@ For future versions...
     TODO: New button-based interface type
     TODO: New OnChange Text Filter interface type
     TODO: Implement new Table View interface (CSV output?)
-    TODO: Don't save Status Menu image as base64 in every Profile
     TODO: Create Platypus tutorial videos, make them available online
-    TODO: Set default icon in Prefs
     TODO: Overhaul the Services feature
     TODO: Embed MainMenu.nib in platypus CLT Mach-O binary instead of storing in /usr/local/share
     TODO: Fix issue with multiple AEOpen events for many opened files
-    TODO: Fix icon drag and drop source
     TODO: Async Status Menu script execution to prevent interface locking on main thread
     TODO: Create more automated tests for command line tool and document existing tests
     TODO: Fix broken file watching of script path
     TODO: Add syntax for Status Menu output mode that suppresses menu entirely
-    TODO: Get new Big Sur square icon
 
 For 5.4
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Get new square icon for Big Sur
+    TODO: Get new Big Sur square icon
     
+    * Status Menu submenu items can now be disabled with the DISABLED syntax
     * Support relative interpreter path (i.e. relative to Resources directory)
     * Support dark mode for text fields (inverts colors, changes when user switches interfac modes)
     * Command line tool now defaults to creating apps without an icon

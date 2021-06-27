@@ -1,8 +1,6 @@
 #!/bin/sh
 
-echo "NOMENU"
-echo Hello, world!
-echo $@
+echo "SUBMENU|Title|DISABLED|Item1|Item2|Item3"
 
 
 
