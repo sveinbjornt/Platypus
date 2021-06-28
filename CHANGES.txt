@@ -20,8 +20,8 @@ For future versions...
 
 For 5.4
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
-    TODO: Get new square icon for Big Sur
     TODO: Get new Big Sur square icon
+    TODO: Update Applescript input example to Python, instead of Perl
     
     * Status Menu submenu items can now be disabled with the DISABLED syntax
     * Support relative interpreter path (i.e. relative to Resources directory)
