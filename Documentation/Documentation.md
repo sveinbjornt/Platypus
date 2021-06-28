@@ -432,7 +432,7 @@ SUBMENU|Title|Item1|Item2|Item3\n
 DISABLED|Name of item\n
 ```
 
-** Changing status item title and icon dynamically **
+**Changing status item title and icon dynamically**
 
 Title:
 ```
