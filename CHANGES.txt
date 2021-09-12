@@ -14,7 +14,6 @@ For future versions...
     TODO: Embed MainMenu.nib in platypus CLT Mach-O binary instead of storing in /usr/local/share
     TODO: Fix issue with multiple AEOpen events for many opened files
     TODO: Async Status Menu script execution to prevent interface locking on main thread
-    TODO: Create more automated tests for command line tool and document existing tests
     TODO: Fix broken file watching of script path
     TODO: Add syntax for Status Menu output mode that suppresses menu entirely
 
@@ -22,6 +21,7 @@ For 5.4
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Get new Big Sur square icon
     TODO: Update Applescript input example to Python, instead of Perl
+    TODO: Create more automated tests for command line tool and document existing tests
     
     * Status Menu submenu items can now be disabled with the DISABLED syntax
     * Support relative interpreter path (i.e. relative to Resources directory)

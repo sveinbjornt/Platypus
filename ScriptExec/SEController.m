@@ -238,9 +238,13 @@ static const NSInteger detailsHeight = 224;
     NSNumber *permissions = [NSNumber numberWithUnsignedLong:493];
     NSDictionary *attributes = @{ NSFilePosixPermissions:permissions };
     [FILEMGR setAttributes:attributes ofItemAtPath:scriptPath error:nil];
-    if ([FILEMGR isReadableFileAtPath:scriptPath] == NO || [FILEMGR isExecutableFileAtPath:scriptPath] == NO) {
+    if ([FILEMGR isReadableFileAtPath:scriptPath] == NO) {
         [Alerts fatalAlert:@"Corrupt app bundle"
-                   subText:@"Script file is not readable/executable."];
+                   subText:@"Script file is not readable."];
+    }
+    if ([FILEMGR isExecutableFileAtPath:scriptPath] == NO) {
+        [Alerts fatalAlert:@"Corrupt app bundle"
+                   subText:@"Script file is not executable."];
     }
     
     // Make sure there's an AppSettings.plist file

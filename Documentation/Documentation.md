@@ -37,7 +37,8 @@ Platypus creates application bundles with a special executable binary that runs 
 
 Platypus is **not** a set of bindings between the native macOS APIs and scripting languages. It is not a full GUI development environment and is not intended for creating substantial applications with complex and dynamic user interaction. If you want to create advanced macOS applications, you should learn to program using the Cocoa APIs. Platypus is not and never will be a substitute for learning to use the native application programming interfaces.
 
-That being said, you may be able to add some interactive GUI elements using [CocoaDialog](#user-interaction-with-cocoadialog), [Pashua](https://www.bluem.net/en/projects/pashua/) or [AppleScript](#prompting-for-input-via-osascript-applescript).
+That being said, you may be able to add some interactive GUI elements using [CocoaDialog](https://github.com/cocoadialog/cocoadialog),
+[Pashua](https://www.bluem.net/en/projects/pashua/) or [AppleScript](#prompting-for-input-via-osascript-applescript).
 
 
 ### System Requirements

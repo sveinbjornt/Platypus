@@ -1231,7 +1231,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#/bin/sh\n\n/usr/bin/python Tests/clt_tests.py\n";
+			shellScript = "#/bin/sh\n\n./Tests/clt_tests.py\n";
 		};
 		F4F14CBA1C640B29002A2402 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
