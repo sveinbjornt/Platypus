@@ -16,26 +16,25 @@ For future versions...
     TODO: Async Status Menu script execution to prevent interface locking on main thread
     TODO: Fix broken file watching of script path
     TODO: Add syntax for Status Menu output mode that suppresses menu entirely
-
-For 5.4
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Get new Big Sur square icon
     TODO: Update Applescript input example to Python, instead of Perl
     TODO: Create more automated tests for command line tool and document existing tests
-    
+
+For 5.4 - 02/02/2022
+    * Added native support for arm64 CPU architecture
     * Status Menu submenu items can now be disabled with the DISABLED syntax
     * Support relative interpreter path (i.e. relative to Resources directory)
-    * Support dark mode for text fields (inverts colors, changes when user switches interfac modes)
-    * Command line tool now defaults to creating apps without an icon
-    * Enabled close button for ScriptExec windows + Platypus window, now quits app(s)
+    * Support dark mode for text fields (inverts colors, changes when user switches interface modes)
+    * Platypus app and command line tool now default to creating apps without an icon
     * Command line tool no longer defaults to stripping nib file (requires explicit -y option)
+    * Enabled close button for ScriptExec windows + Platypus window, now quits app(s)
     * Added standard Help Menu to ScriptExec apps (support for bundled help bundles)
     * Added support for dynamically changing status item title and icon via STATUSTITLE and STATUSICON syntax
     * Warn when non-existent file in bundled files list
     * Command line tool now defaults to creating apps with no application icon
     * Fixed issue w. Installer icon preset on Big Sur
     * Support for notifications is now an option, to prevent permission popups on Catalina/Big Sur
-    * Added support for arm64 CPU architecture
     * Added Python3 interpreter preset
     * The Platypus application and command line tool are now Developer ID-signed
     * Platypus apps now hide (instead of disabling) Open and Open Recent menu items if they don't accept files

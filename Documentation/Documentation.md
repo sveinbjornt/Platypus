@@ -2,7 +2,7 @@
 
 # Documentation for Platypus 5.3
 
-Last updated on March 21st, 2021. The latest version of this document can be found [here](https://sveinbjorn.org/platypus_documentation).
+Last updated on February 2nd, 2022. The latest version of this document can be found [here](https://sveinbjorn.org/platypus_documentation).
 
 
 ## Introduction
@@ -583,7 +583,7 @@ You can edit arguments to both the script interpreter and the script itself by p
 
 ### How do I uninstall Platypus?
 
-Platypus only uses about 5MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select **Uninstall Platypus** from the Platypus application menu. This will uninstall the command line tool (if previously installed), and move Platypus.app and all its supporting files –  including saved Profiles – to the Trash.
+Platypus only uses about 6MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select **Uninstall Platypus** from the Platypus application menu. This will uninstall the command line tool (if previously installed), and move Platypus.app and all its supporting files –  including saved Profiles – to the Trash.
 
 
 
@@ -695,4 +695,4 @@ If you add a file named **Credits.rtf** or **Credits.html** to the bundled files
 
 ----
 
-Copyright &copy; 2003-2021 [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org)
+Copyright &copy; 2003-2022 [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org)

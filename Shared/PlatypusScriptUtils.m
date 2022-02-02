@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2021, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2022, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -48,55 +48,47 @@
                 @"Hello":       @"echo 'Hello, World'",
                 @"Suffixes":    @[@".bash"],
                 @"SyntaxCheck": @[@"-n"] },
-
+             
              @{ @"Name":        @"csh",
                 @"Path":        @"/bin/csh",
                 @"Hello":       @"echo 'Hello, World'",
                 @"Suffixes":    @[@".csh"],
                 @"SyntaxCheck": @[@"-n"] },
-
+             
              @{ @"Name":        @"tcsh",
                 @"Path":        @"/bin/tcsh",
                 @"Hello":       @"echo 'Hello, World'",
                 @"Suffixes":    @[@".tcsh"],
                 @"SyntaxCheck": @[@"-n"] },
-
+             
              @{ @"Name":        @"ksh",
                 @"Path":        @"/bin/ksh",
                 @"Hello":       @"echo 'Hello, World'",
                 @"Suffixes":    @[@".ksh"],
                 @"SyntaxCheck": @[@"-n"] },
-
+             
              @{ @"Name":        @"zsh",
                 @"Path":        @"/bin/zsh",
                 @"Hello":       @"echo 'Hello, World'",
                 @"Suffixes":    @[@".zsh"],
                 @"SyntaxCheck": @[@"-n"] },
-
+             
              @{ @"Name":        @"env",
                 @"Path":        @"/usr/bin/env",
                 @"Hello":       @"",
                 @"Suffixes":    @[] },
-
+             
              @{ @"Name":        @"Perl",
                 @"Path":        @"/usr/bin/perl",
                 @"Hello":       @"print \"Hello, World\\n\";",
                 @"Suffixes":    @[@".pl", @".pm"],
                 @"SyntaxCheck": @[@"-c"] },
              
-             @{ @"Name":        @"Python 2",
-                @"Path":        @"/usr/bin/python",
-                @"Hello":       @"print \"Hello, World\"",
-                @"Suffixes":    @[],
-                @"SyntaxCheck": @[@"-m", @"py_compile"] },
-             
              @{ @"Name":        @"Python 3",
                 @"Path":        @"/usr/bin/python3",
                 @"Hello":       @"print(\"Hello, World\")",
                 @"Suffixes":    @[@".py", @".python"],
-                @"SyntaxCheck": @[@"-m", @"py_compile"],
-                @"Warn":        @"This interpreter may no longer exist on all macOS systems. Are you sure you want to proceed?",
-             },
+                @"SyntaxCheck": @[@"-m", @"py_compile"] },
              
              @{ @"Name":        @"Ruby",
                 @"Path":        @"/usr/bin/ruby",

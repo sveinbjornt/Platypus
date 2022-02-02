@@ -83,9 +83,9 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.9</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2003-2021 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2022 Sveinbjorn Thordarson.</string>
 	<key>CFBundleGetInfoString</key>
-	<string>© 2003-2021 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2022 Sveinbjorn Thordarson.</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 </dict>
