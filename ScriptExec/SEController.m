@@ -1071,7 +1071,8 @@ static const NSInteger detailsHeight = 224;
     }
     
     // Parse line by line
-    NSMutableArray *lines = [[outputString componentsSeparatedByString:@"\n"] mutableCopy];
+    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@"\r\n"];
+    NSMutableArray *lines = [[outputString componentsSeparatedByCharactersInSet:characterSet] mutableCopy];
     
     // If the string did not end with a newline, it wasn't a complete line of output
     // Thus, we store this last non-newline-terminated string
