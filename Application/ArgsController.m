@@ -95,6 +95,7 @@
 #pragma mark -
 
 - (IBAction)apply:(id)sender {
+    [[self window] makeFirstResponder:commandTextField];
     [NSApp stopModal];
 }
 
@@ -107,6 +108,7 @@
     NSWindow *parentWindow = [argsButton window];
     
     [self constructCommandString];
+    [[self window] makeFirstResponder:interpreterArgsTableView];
     
     //open window
     [NSApp beginSheet:[self window]
