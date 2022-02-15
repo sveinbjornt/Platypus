@@ -96,8 +96,8 @@ The resulting application bundle is created in the `products` directory.
 Platypus is very old software, dating back to the early days of 
 Mac OS X, around 2003, when I was first learning to use Objective-C 
 and the Cocoa APIs. I made many beginner mistakes, some of which remain 
-in the structure of the code. This software has  since gone through 
-about  four dozen significant versions. It has been patched, bugfixed, 
+in the structure of the code. This software has since gone through 
+about four dozen significant versions. It has been patched, bugfixed, 
 streamlined to include new features and was transitioned over to 
 modern Objective-C a few years ago. It's not how I would write it today.
 
@@ -105,8 +105,7 @@ With these caveats in mind, here is the BSD-licensed source code to Platypus.
 
 ## BSD License 
 
-Copyright (c) 2003-2021 Sveinbjorn Thordarson 
-&lt;<a href="mailto:">sveinbjorn@sveinbjorn.org</a>&gt;
+Copyright (c) 2003-2022 Sveinbjorn Thordarson &lt;<a href="mailto:">sveinbjorn@sveinbjorn.org</a>&gt;
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -133,5 +132,3 @@ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
-
-The Platypus application icon is copyright (C) [Drífa Thoroddsen](https://drifaliftora.is).

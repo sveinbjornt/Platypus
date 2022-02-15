@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2021, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2022, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -95,6 +95,7 @@
 #pragma mark -
 
 - (IBAction)apply:(id)sender {
+    [[self window] makeFirstResponder:commandTextField];
     [NSApp stopModal];
 }
 
@@ -107,6 +108,7 @@
     NSWindow *parentWindow = [argsButton window];
     
     [self constructCommandString];
+    [[self window] makeFirstResponder:interpreterArgsTableView];
     
     //open window
     [NSApp beginSheet:[self window]
