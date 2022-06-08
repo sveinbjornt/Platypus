@@ -11,7 +11,7 @@
 	<key>Creator</key>
 	<string>Platypus-5.4</string>
 	<key>InterfaceType</key>
-	<string>Status Menu</string>
+	<string>Web View</string>
 	<key>URISchemes</key>
 	<array/>
 	<key>InterpreterArgs</key>

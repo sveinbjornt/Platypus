@@ -1,7 +1,6 @@
 #!/bin/sh
 
-echo "SUBMENU|Title|DISABLED|Item1|Item2|Item3"
-
+echo "LOCATION: http://example.com\n"
 
 
 #echo "SUBMENU|Title|Item1|Item2|Item3"
