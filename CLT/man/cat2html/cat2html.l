@@ -15,8 +15,7 @@
      */
 
     #include <string.h>
-    #include <stdio.h>
-
+    
     #define BOLDFLAG    1
     #define ULINEFLAG    2
 
@@ -26,9 +25,7 @@
     #define UNSETB  neededflags &= ~BOLDFLAG
     #define SETU    neededflags |= ULINEFLAG
     #define UNSETU  neededflags &= ~ULINEFLAG
-
-    typedef size_t yy_size_t;
-
+    
     /*
      *    Default settings, may be changed using options...
      */
@@ -105,7 +102,7 @@
 
     static void emitString(char *string)
     {
-        int i, len=strlen(string);
+        size_t i, len=strlen(string);
         for (i=0;i<len;i++)
             emitChar(string[i]);
     }
@@ -119,7 +116,7 @@
 
     static void emitBackspacedLetters(char *charblock, yy_size_t lengthLeft, int doBold)
     {
-        /* If there's a trailing backspace, then both letters are deleted, so print nothing */
+        /* If there is a trailing backspace, then both letters are deleted, so print nothing */
         if (lengthLeft >= 4 && charblock[3] == '\010')
             return;
 
@@ -276,7 +273,7 @@ SGRSTART     \x1B\[
     /*
      *    nroff bullets
      */
-o\010"+"               emitRaw("&middot;");   // "&bull;" doesn't work
+o\010"+"               emitRaw("&middot;");   // "&bull;" does not work
 "+"\010o               emitRaw("&middot;");
 o\010o\010"+"\010"+"   emitRaw("&middot;");
 "+"\010"+\010"o\010o   emitRaw("&middot;");
@@ -355,7 +352,7 @@ int main(int argc, char *argv[])
 
     yy_flex_debug = 0;
 
-    /* Keep the same args as cat2rtf, even though -s doesn't really make much difference */
+    /* Keep the same args as cat2rtf, even though -s does not really make much difference */
     while ((c = getopt(argc, argv, "dgGiISs:lH")) != EOF)
     {
         switch( c ) {
