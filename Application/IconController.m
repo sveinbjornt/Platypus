@@ -289,7 +289,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 }
 
 - (IBAction)setToDefaults {
-    [self setAppIconForType:PlatypusPresetIconGenericApplication];
+    [self setAppIconForType:PlatypusPresetIconDefault];
 }
 
 #pragma mark -
@@ -344,14 +344,14 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 
 - (BOOL)loadIcnsFile:(NSString *)filePath {
     if (filePath == nil || [filePath isEqualToString:@""]) {
-        [self setAppIconForType:PlatypusPresetIconGenericApplication];
+        [self setAppIconForType:PlatypusPresetIconDefault];
         return YES;
     }
     
     NSImage *img = [[NSImage alloc] initWithContentsOfFile:filePath];
     if (img == nil) {
         NSBeep();
-        [self setAppIconForType:PlatypusPresetIconGenericApplication];
+        [self setAppIconForType:PlatypusPresetIconDefault];
          return NO;
     }
     
@@ -399,7 +399,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 }
 
 - (void)loadGenericAppIcon {
-    [self setAppIconForType:PlatypusPresetIconGenericApplication];
+    [self setAppIconForType:PlatypusPresetIconDefault];
 }
 
 #pragma mark -

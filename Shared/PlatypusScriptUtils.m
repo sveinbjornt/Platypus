@@ -37,7 +37,7 @@
 
 + (NSArray <NSDictionary *> *)interpreters {
     return @[
-             @{ @"Name":        @"Shell",
+             @{ @"Name":        @"sh",
                 @"Path":        @"/bin/sh",
                 @"Hello":       @"echo 'Hello, World'",
                 @"Suffixes":    @[@".sh", @".command"],
@@ -129,8 +129,13 @@
                 @"Hello":       @"BEGIN { print \"Hello, World\" }",
                 @"Suffixes":    @[@".awk"],
                 @"Args":        @[@"-f"] },
+             
+             @{ @"Name":        @"Dart",
+                @"Path":        @"/usr/local/bin/dart",
+                @"Hello":       @"void main(){\nprint(\"Hello World\");\n}",
+                @"Suffixes":    @[@".dart"] },
                 
-             @{ @"Name":        @"Node.js",
+             @{ @"Name":        @"Node",
                 @"Path":        @"/usr/local/bin/node",
                 @"Hello":       @"console.log(\"Hello, World\");",
                 @"Suffixes":    @[@".js"] },

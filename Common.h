@@ -92,7 +92,7 @@
 #define DEFAULT_VERSION             @"1.0"
 #define DEFAULT_APP_NAME            @"Application"
 #define DEFAULT_DESTINATION_PATH    [[NSString stringWithFormat:@"~/Desktop/%@.app", DEFAULT_APP_NAME] stringByExpandingTildeInPath]
-#define DEFAULT_SCRIPT_TYPE         @"Shell"
+#define DEFAULT_SCRIPT_TYPE         @"sh"
 #define DEFAULT_SUFFIXES            @[]
 #define DEFAULT_UTIS                @[(NSString *)kUTTypeItem, (NSString *)kUTTypeFolder]
 #define DEFAULT_URI_PROTOCOLS       @[]

@@ -64,7 +64,7 @@
 		F45B1EFB1FF560D800A935D7 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1EF81FF560D800A935D7 /* NoodleLineNumberMarker.m */; };
 		F45B1EFC1FF560D800A935D7 /* NSTextView+JSDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F45B1EF91FF560D800A935D7 /* NSTextView+JSDExtensions.m */; };
 		F45B1F151FF5617500A935D7 /* Interpreter_ksh.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F061FF5617400A935D7 /* Interpreter_ksh.png */; };
-		F45B1F161FF5617500A935D7 /* Interpreter_Shell.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F071FF5617400A935D7 /* Interpreter_Shell.png */; };
+		F45B1F161FF5617500A935D7 /* Interpreter_sh.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F071FF5617400A935D7 /* Interpreter_sh.png */; };
 		F45B1F171FF5617500A935D7 /* Interpreter_PHP.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F081FF5617400A935D7 /* Interpreter_PHP.png */; };
 		F45B1F181FF5617500A935D7 /* Interpreter_AppleScript.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F091FF5617400A935D7 /* Interpreter_AppleScript.png */; };
 		F45B1F1A1FF5617500A935D7 /* Interpreter_Expect.png in Resources */ = {isa = PBXBuildFile; fileRef = F45B1F0B1FF5617400A935D7 /* Interpreter_Expect.png */; };
@@ -95,7 +95,7 @@
 		F484D45B21AA005D006EE28D /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4975D6F1B2E09280099D16E /* NSWorkspace+Additions.m */; };
 		F484D45E21AA03C2006EE28D /* NSFileManager+TempFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = F484D45C21AA03C1006EE28D /* NSFileManager+TempFiles.m */; };
 		F484D45F21AA03C2006EE28D /* NSFileManager+TempFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = F484D45C21AA03C1006EE28D /* NSFileManager+TempFiles.m */; };
-		F484D46221AAE1DC006EE28D /* Interpreter_Node.js.png in Resources */ = {isa = PBXBuildFile; fileRef = F484D46121AAE1DB006EE28D /* Interpreter_Node.js.png */; };
+		F484D46221AAE1DC006EE28D /* Interpreter_Node.png in Resources */ = {isa = PBXBuildFile; fileRef = F484D46121AAE1DB006EE28D /* Interpreter_Node.png */; };
 		F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F48B7B9511F766E600351575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B7B9011F766E600351575 /* main.m */; };
 		F48FB47321A7841B0000C0E9 /* PlatypusDefault.icns in Resources */ = {isa = PBXBuildFile; fileRef = F4AB189B1BEFAF1900B83A95 /* PlatypusDefault.icns */; };
@@ -146,6 +146,7 @@
 		F4C19A851BD1BFAB00F411BD /* STDragImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C19A841BD1BFAB00F411BD /* STDragImageView.m */; };
 		F4D0F2311C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */; };
 		F4DC075211F629A40043764E /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074F11F629A40043764E /* Documentation.html */; };
+		F4E482C028BD61BC00F99216 /* Interpreter_Dart.png in Resources */ = {isa = PBXBuildFile; fileRef = F4E482BF28BD61BC00F99216 /* Interpreter_Dart.png */; };
 		F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */; };
 		F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */ = {isa = PBXBuildFile; fileRef = F4F14CAF1C640857002A2402 /* make_examples.pl */; };
 		F4F2F3BA1BF96C5C00FE463C /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B91BF96C5C00FE463C /* VDKQueue.m */; };
@@ -249,7 +250,7 @@
 		F45B1EF81FF560D800A935D7 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
 		F45B1EF91FF560D800A935D7 /* NSTextView+JSDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+JSDExtensions.m"; sourceTree = "<group>"; };
 		F45B1F061FF5617400A935D7 /* Interpreter_ksh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_ksh.png; sourceTree = "<group>"; };
-		F45B1F071FF5617400A935D7 /* Interpreter_Shell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Shell.png; sourceTree = "<group>"; };
+		F45B1F071FF5617400A935D7 /* Interpreter_sh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_sh.png; sourceTree = "<group>"; };
 		F45B1F081FF5617400A935D7 /* Interpreter_PHP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_PHP.png; sourceTree = "<group>"; };
 		F45B1F091FF5617400A935D7 /* Interpreter_AppleScript.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_AppleScript.png; sourceTree = "<group>"; };
 		F45B1F0B1FF5617400A935D7 /* Interpreter_Expect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Expect.png; sourceTree = "<group>"; };
@@ -292,7 +293,7 @@
 		F484D45821A9DDAE006EE28D /* ProfileDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ProfileDocument.icns; sourceTree = "<group>"; };
 		F484D45C21AA03C1006EE28D /* NSFileManager+TempFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+TempFiles.m"; path = "Shared/NSFileManager+TempFiles.m"; sourceTree = "<group>"; };
 		F484D45D21AA03C2006EE28D /* NSFileManager+TempFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+TempFiles.h"; path = "Shared/NSFileManager+TempFiles.h"; sourceTree = "<group>"; };
-		F484D46121AAE1DB006EE28D /* Interpreter_Node.js.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Node.js.png; sourceTree = "<group>"; };
+		F484D46121AAE1DB006EE28D /* Interpreter_Node.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Node.png; sourceTree = "<group>"; };
 		F4871B32178A117600DE54F3 /* update_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_docs.sh; sourceTree = "<group>"; };
 		F48B1EDD17935BBC007DA173 /* PlatypusScriptUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusScriptUtils.h; path = Shared/PlatypusScriptUtils.h; sourceTree = "<group>"; };
 		F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusScriptUtils.m; path = Shared/PlatypusScriptUtils.m; sourceTree = "<group>"; };
@@ -373,6 +374,7 @@
 		F4DC074F11F629A40043764E /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.html.documentation; path = Documentation.html; sourceTree = "<group>"; };
 		F4DC738321644F4700D79823 /* clt_tests.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = clt_tests.py; sourceTree = "<group>"; };
 		F4E1F6FC11F758FB007EE2E3 /* platypus_clt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4E482BF28BD61BC00F99216 /* Interpreter_Dart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Dart.png; sourceTree = "<group>"; };
 		F4E5E4011EE2F22E0072EACE /* Documentation.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Documentation.md; sourceTree = "<group>"; };
 		F4ECE1A011F7746A000DB012 /* CHANGES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES.txt; sourceTree = SOURCE_ROOT; };
 		F4ECE5871E5F04A4008CC395 /* UriSchemesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UriSchemesListController.h; path = Application/UriSchemesListController.h; sourceTree = "<group>"; };
@@ -648,7 +650,7 @@
 		F45B1F051FF5617400A935D7 /* Interpreters */ = {
 			isa = PBXGroup;
 			children = (
-				F45B1F071FF5617400A935D7 /* Interpreter_Shell.png */,
+				F45B1F071FF5617400A935D7 /* Interpreter_sh.png */,
 				F45B1F101FF5617400A935D7 /* Interpreter_bash.png */,
 				F45B1F111FF5617400A935D7 /* Interpreter_csh.png */,
 				F45B1F0C1FF5617400A935D7 /* Interpreter_tcsh.png */,
@@ -666,7 +668,8 @@
 				F45B1F0F1FF5617400A935D7 /* Interpreter_Swift.png */,
 				F4146CCE2149E76000BB36AD /* Interpreter_AWK.png */,
 				F402AEB8219AE0D200BEAF24 /* Interpreter_JavaScript.png */,
-				F484D46121AAE1DB006EE28D /* Interpreter_Node.js.png */,
+				F484D46121AAE1DB006EE28D /* Interpreter_Node.png */,
+				F4E482BF28BD61BC00F99216 /* Interpreter_Dart.png */,
 			);
 			path = Interpreters;
 			sourceTree = "<group>";
@@ -1076,13 +1079,14 @@
 				F45B1EF21FF5597600A935D7 /* PlatypusAppIcon.icns in Resources */,
 				F45B1F2E1FF5618000A935D7 /* InterfaceType_Progress-Bar.png in Resources */,
 				F436471421A1BD9D00A8749D /* platypus.1 in Resources */,
+				F4E482C028BD61BC00F99216 /* Interpreter_Dart.png in Resources */,
 				F42E2EAB20A9E001003D2E89 /* Credits.rtf in Resources */,
 				F4975DC01B2E71FC0099D16E /* Platypus.xib in Resources */,
 				F44A77441C1882DA003CCA7A /* UninstallCommandLineTool.sh in Resources */,
 				F484D45921A9DDAE006EE28D /* ScriptDocument.icns in Resources */,
 				F45B1F201FF5617500A935D7 /* Interpreter_csh.png in Resources */,
-				F45B1F161FF5617500A935D7 /* Interpreter_Shell.png in Resources */,
-				F484D46221AAE1DC006EE28D /* Interpreter_Node.js.png in Resources */,
+				F45B1F161FF5617500A935D7 /* Interpreter_sh.png in Resources */,
+				F484D46221AAE1DC006EE28D /* Interpreter_Node.png in Resources */,
 				F45B1F1F1FF5617500A935D7 /* Interpreter_bash.png in Resources */,
 				F45B1F2F1FF5618000A935D7 /* InterfaceType_Web-View.png in Resources */,
 				F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */,

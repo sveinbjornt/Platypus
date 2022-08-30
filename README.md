@@ -20,7 +20,7 @@ status menu items, launchers and automations using Platypus.
 
 ## Features
 
-* Supports shell scripts, Python, Perl, Ruby, PHP, Swift, Expect, Tcl, AWK, JavaScript, AppleScript or any other user-specified interpreter
+* Supports shell scripts, Python, Perl, Ruby, PHP, Swift, Expect, Tcl, AWK, JavaScript, Dart, AppleScript or any other user-specified interpreter
 * Apps can display graphical feedback of script execution as a progress bar, text window with script output, droplet, WebKit HTML rendering or status item menu
 * Apps support receiving dragged and dropped files or text snippets, which are then passed to the script as arguments
 * Apps can execute scripts with root privileges via the macOS Security Framework
