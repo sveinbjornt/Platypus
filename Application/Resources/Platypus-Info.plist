@@ -411,11 +411,11 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1228</string>
+	<string>1229</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.9</string>
+	<string>10.11</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2003-2022 Sveinbjorn Thordarson.</string>
 	<key>NSMainNibFile</key>

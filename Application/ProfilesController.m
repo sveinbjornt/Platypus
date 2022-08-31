@@ -61,7 +61,7 @@
     [oPanel setAllowedFileTypes:@[PROGRAM_PROFILE_SUFFIX, PROGRAM_PROFILE_UTI]];
     [oPanel setDirectoryURL:[NSURL fileURLWithPath:PROGRAM_PROFILES_PATH]];
     
-    if ([oPanel runModal] == NSOKButton) {
+    if ([oPanel runModal] == NSModalResponseOK) {
         NSString *filePath = [[oPanel URLs][0] path];
         [self loadProfileAtPath:filePath];
     }

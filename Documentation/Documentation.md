@@ -21,7 +21,7 @@ Platypus was first released in 2003 and has since gone through many significant 
 <img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
-While Platypus is free, it is the product of countless hours of work over the last eighteen years or so. **If Platypus makes your life easier, please [make a donation](https://sveinbjorn.org/donations) to support continued development.**
+While Platypus is free, it is the product of countless hours of work over the last twenty years or so. **If Platypus makes your life easier, please [make a donation](https://sveinbjorn.org/donations) to support continued development.**
 
 I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, but I cannot answer queries about the particulars of individual scripting languages. Productive use of Platypus assumes that you are competent in your language of choice and understand the UNIX shell environment.
 

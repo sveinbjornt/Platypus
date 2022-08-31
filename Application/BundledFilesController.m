@@ -317,7 +317,7 @@
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         
         [window setTitle:PROGRAM_NAME];
-        if (result != NSOKButton) {
+        if (result != NSModalResponseOK) {
             return;
         }
         

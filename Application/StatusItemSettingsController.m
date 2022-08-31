@@ -105,7 +105,7 @@
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:[NSImage imageTypes]];
-    if ([oPanel runModal] != NSOKButton) {
+    if ([oPanel runModal] != NSModalResponseOK) {
         return;
     }
     

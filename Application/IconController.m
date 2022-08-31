@@ -114,7 +114,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     // Run open panel sheet
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         [window setTitle:PROGRAM_NAME];
-        if (result != NSOKButton) {
+        if (result != NSModalResponseOK) {
             return;
         }
         
@@ -142,7 +142,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
     // Run open panel
     [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
         [window setTitle:PROGRAM_NAME];
-        if (result == NSOKButton) {
+        if (result == NSModalResponseOK) {
             NSString *filename = [[oPanel URLs][0] path];
             [self loadIcnsFile:filename];
         }
@@ -151,11 +151,10 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 
 - (IBAction)iconActionButtonPressed:(id)sender {
     NSRect screenRect = [window convertRectToScreen:[(NSButton *)sender frame]];
-    if (@available(macOS 10.9, *)) {
-        [iconContextualMenu popUpMenuPositioningItem:nil atLocation:screenRect.origin inView:nil appearance:[NSAppearance currentAppearance]];
-    } else {
-        [iconContextualMenu popUpMenuPositioningItem:nil atLocation:screenRect.origin inView:nil];
-    }
+    [iconContextualMenu popUpMenuPositioningItem:nil
+                                      atLocation:screenRect.origin
+                                          inView:nil
+                                      appearance:[NSAppearance currentAppearance]];
 }
 
 - (IBAction)nextIcon:(id)sender {

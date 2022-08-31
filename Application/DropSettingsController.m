@@ -122,11 +122,7 @@
     [self setSuffixListEnabled:([uniformTypeListController itemCount] == 0)];
     
     //open window
-    [NSApp beginSheet:[self window]
-       modalForWindow:parentWindow
-        modalDelegate:nil
-       didEndSelector:nil
-          contextInfo:nil];
+    [parentWindow beginSheet:[self window] completionHandler:nil];
     
     [NSApp runModalForWindow:[self window]];
     
@@ -156,7 +152,7 @@
     [oPanel setCanChooseDirectories:NO];
     [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeAppleICNS]];
         
-    if ([oPanel runModal] == NSOKButton) {
+    if ([oPanel runModal] == NSModalResponseOK) {
         NSString *filename = [[oPanel URLs][0] path];
         [self setDocIconPath:filename];
     }
@@ -431,7 +427,7 @@
 }
 
 - (IBAction)showHelpForUTIs:(id)sender {
-    [WORKSPACE openURL:[NSURL URLWithString:@"https://en.wikipedia.org/wiki/Uniform_Type_Identifier"]];
+    [WORKSPACE openURL:[NSURL URLWithString:PROGRAM_UTI_INFORMATION_URL]];
 }
 
 @end

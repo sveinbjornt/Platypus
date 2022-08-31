@@ -81,7 +81,7 @@
 		</dict>
 	</array>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.9</string>
+	<string>10.11</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2003-2022 Sveinbjorn Thordarson.</string>
 	<key>CFBundleGetInfoString</key>

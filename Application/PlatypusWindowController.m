@@ -362,7 +362,7 @@
     // Run save panel
     [sPanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         [[self window] setTitle:PROGRAM_NAME];
-        if (result == NSOKButton) {
+        if (result == NSModalResponseOK) {
             [self createConfirmed:sPanel returnCode:result];
         }
     }];
@@ -375,7 +375,7 @@
     [NSApp endSheet:[self window]];
     [NSApp stopModal];
         
-    if (result != NSOKButton) {
+    if (result != NSModalResponseOK) {
         return;
     }
     
@@ -663,7 +663,7 @@
     // Run as sheet
     NSWindow *window = [self window];
     [oPanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
-        if (result == NSOKButton) {
+        if (result == NSModalResponseOK) {
             NSString *filePath = [[oPanel URLs][0] path];
             [self loadScript:filePath];
         }

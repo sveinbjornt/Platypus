@@ -92,7 +92,7 @@
     [alert setMessageText:message];
     [alert setInformativeText:subtext];
     [alert setAlertStyle:style];
-    [alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:nil contextInfo:nil];
+    [alert beginSheetModalForWindow:window completionHandler:nil];
 }
 
 #pragma mark -

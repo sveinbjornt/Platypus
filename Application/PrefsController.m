@@ -276,7 +276,7 @@
     }
     
     // Run open panel
-    if ([oPanel runModal] == NSOKButton) {
+    if ([oPanel runModal] == NSModalResponseOK) {
         // Set app name minus .app suffix as title
         NSString *filePath = [[oPanel URLs][0] path];
         NSString *editorName = [[filePath lastPathComponent] stringByDeletingPathExtension];
