@@ -543,7 +543,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button toolTip="Check this if you don't want your app to show up in the Dock" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fRC-GZ-XE7">
+                    <button toolTip="Check this if your app sends system notifications" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fRC-GZ-XE7">
                         <rect key="frame" x="414" y="247" width="229" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Send notifications" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Z9U-64-LLR">
