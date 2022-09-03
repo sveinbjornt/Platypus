@@ -326,8 +326,8 @@ pre code, pre tt {
   <body>
     <div class="container">
       <div class="body-content"><p><img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="128" height="128" src="images/platypus.png"  align="right"></p>
-<h1 id="documentation-for-platypus-5-3">Documentation for Platypus 5.3</h1>
-<p>Last updated on February 2nd, 2022. The latest version of this document can be found <a href="https://sveinbjorn.org/platypus_documentation">here</a>.</p>
+<h1 id="documentation-for-platypus-5-4">Documentation for Platypus 5.4</h1>
+<p>Last updated on September 3rd, 2022. The latest version of this document can be found <a href="https://sveinbjorn.org/platypus_documentation">here</a>.</p>
 <h2 id="introduction">Introduction</h2>
 <h3 id="what-is-platypus-">What is Platypus?</h3>
 <p>Platypus is a developer tool that creates native macOS application wrappers around scripts. Scripts are thus transformed into regular applications that can be launched from the window environment – e.g. the Finder or the Dock – without requiring use of the command line interface.</p>
@@ -339,7 +339,7 @@ pre code, pre tt {
 <img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
-<p>While Platypus is free, it is the product of countless hours of work over the last eighteen years or so. <strong>If Platypus makes your life easier, please <a href="https://sveinbjorn.org/donations">make a donation</a> to support continued development.</strong></p>
+<p>While Platypus is free, it is the product of countless hours of work over the last twenty years or so. <strong>If Platypus makes your life easier, please <a href="https://sveinbjorn.org/donations">make a donation</a> to support continued development.</strong></p>
 <p>I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, but I cannot answer queries about the particulars of individual scripting languages. Productive use of Platypus assumes that you are competent in your language of choice and understand the UNIX shell environment.</p>
 <h3 id="how-does-platypus-work-">How does Platypus work?</h3>
 <p>Regular macOS applications are <a href="https://en.wikipedia.org/wiki/Bundle_%28macOS%29">bundles</a> – special folders with a particular directory structure and a .app suffix. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the application bundle is launched in the graphical user interface.</p>
@@ -349,9 +349,11 @@ pre code, pre tt {
 <p>That being said, you may be able to add some interactive GUI elements using <a href="https://github.com/cocoadialog/cocoadialog">CocoaDialog</a>,
 <a href="https://www.bluem.net/en/projects/pashua/">Pashua</a> or <a href="#prompting-for-input-via-osascript-applescript">AppleScript</a>.</p>
 <h3 id="system-requirements">System Requirements</h3>
-<p>Both Platypus and the applications it generates require <strong>macOS 10.8</strong> or later and are provided as <strong>64-bit Intel</strong> binaries. If you want to target 10.6 and/or 32-bit systems, <a href="https://sveinbjorn.org/files/software/platypus/platypus4.9.zip">version 4.9</a> continues to work just fine. If you want to target 10.4 and the PowerPC users of yore, you can use version <a href="https://sveinbjorn.org/files/software/platypus/platypus4.4.zip">4.4</a>.</p>
+<p>Both Platypus and the applications it generates require <strong>macOS 10.11</strong> or later and are provided as <strong>64-bit Intel</strong> binaries. If you want to target macOS 10.8-10.10, use <a href="https://sveinbjorn.org/files/software/platypus/platypus4.9.zip">version 5.3</a>.
+If you want to target 10.6 and/or 32-bit Intel systems,
+<a href="https://sveinbjorn.org/files/software/platypus/platypus4.9.zip">version 4.9</a> continues to work just fine.</p>
 <h3 id="credits">Credits</h3>
-<p>Platypus was created by me, <a href="mailto:sveinbjorn@sveinbjorn.org">Sveinbjorn Thordarson</a>. The  application icon was created by <a href="https://drifaliftora.is">Drífa Líftóra</a>.</p>
+<p>Platypus was created by me, <a href="mailto:sveinbjorn@sveinbjorn.org">Sveinbjorn Thordarson</a>.</p>
 <p>Thanks go to Seth Willits, author of the AGIconFamily class used for icon handling in Platypus, Bryan D K Jones, author of <a href="https://github.com/bdkjones/VDKQueue">VDKQueue</a>, Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, James S. Derry and Paul Kim for improvements to the built-in editor, and Andy Matuschak for the <a href="https://sparkle-project.org">Sparkle</a> software update framework.</p>
 <p>Finally, I am much indebted to <a href="http://www.wsanchez.net">Wilfredo Sanchez</a>, author of <a href="http://www.wsanchez.net/software">DropScript</a>, the proof-of-concept project which inspired me to create Platypus in the first place.</p>
 <h2 id="the-basics">The Basics</h2>
@@ -605,7 +607,7 @@ sys.stdout.flush()
 <h3 id="how-can-i-pass-specific-arguments-to-my-script-">How can I pass specific arguments to my script?</h3>
 <p>You can edit arguments to both the script interpreter and the script itself by pressing the <strong>Args</strong> button next to the <strong>Interpreter</strong> controls.</p>
 <h3 id="how-do-i-uninstall-platypus-">How do I uninstall Platypus?</h3>
-<p>Platypus only uses about 5MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select <strong>Uninstall Platypus</strong> from the Platypus application menu. This will uninstall the command line tool (if previously installed), and move Platypus.app and all its supporting files –  including saved Profiles – to the Trash.</p>
+<p>Platypus only uses about 6MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select <strong>Uninstall Platypus</strong> from the Platypus application menu. This will uninstall the command line tool (if previously installed), and move Platypus.app and all its supporting files –  including saved Profiles – to the Trash.</p>
 <h3 id="how-do-i-get-the-source-code-to-platypus-and-platypus-generated-app-binaries-">How do I get the source code to Platypus and Platypus-generated app binaries?</h3>
 <p>The Platypus source repository can be found <a href="https://github.com/sveinbjornt/Platypus">on GitHub</a>.</p>
 <p>The source code to the binary used in Platypus-generated apps is <a href="https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/SEController">SEController.m</a>.</p>

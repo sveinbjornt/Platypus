@@ -16,9 +16,9 @@ APP_BUNDLE_NAME := $(APP_NAME).app
 APP_ZIP_NAME := $(APP_NAME_LC)$(VERSION).zip
 APP_SRC_ZIP_NAME := $(APP_NAME_LC)$(VERSION).src.zip
 
-all: clean build_unsigned
+all: build_unsigned
 
-release: clean build_signed archives sparkle size
+release: build_signed archives sparkle size
 
 clean:
 	xcodebuild clean

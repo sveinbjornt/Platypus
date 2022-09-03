@@ -6,32 +6,34 @@
         <description>Most recent release list for Platypus, with links to updates.</description>
         <language>en</language>
         <item>
-            <title>Version 5.3</title>
-            <pubDate>Sun, 25 Nov 2018 16:22:00 +0000</pubDate>
-            <enclosure url="https://sveinbjorn.org/files/software/platypus/platypus5.3.zip" sparkle:version="1113" sparkle:shortVersionString="5.3" length="3298475" type="application/octet-stream" sparkle:dsaSignature="MC4CFQCe+qtZzF1w5Z7SuWTMLwknoH2bIAIVALKGQ6nK+Cjwb/ABJ0ymnNA4BKrF"/>
-            <sparkle:minimumSystemVersion>10.8.0</sparkle:minimumSystemVersion>
+            <title>Version 5.4</title>
+            <pubDate>Sat, 3 Sep 2022 19:50:00 +0000</pubDate>
+            <enclosure url="https://sveinbjorn.org/files/software/platypus/platypus5.4.zip" sparkle:version="1233" sparkle:shortVersionString="5.4" type="application/octet-stream" sparkle:dsaSignature="MC0CFG9AmNyGBj3DZ1XoGIrPgN+Dpv8VAhUArZsbkDid6Z/Ed85+BUWf5yXC4Hg=" sparkle:edSignature="AoUtDC55R3afC3CN3/SQQJo+1wfkpxr+2EScWOWT/keDi5IUV0WfuCRR5qSD8G8f1fL8I/OIEapgmWjNvsndAQ==" length="4325671"
+            />
+            <sparkle:minimumSystemVersion>10.11.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
-                <h2>Version 5.3</h2>
+                <h2>Version 5.4</h2>
                 <ul>
-                    <li>First facelift in a decade: New application icons created by Drífa Líftóra</li>
-                    <li>Updated to support Mojave Dark Mode</li>
-                    <li>Added AWK, JavaScript and Node interpreter presets</li>
-                    <li>Added "REFRESH" command that clears text output buffer</li>
-                    <li>Added "DISABLED" menu item syntax for status menu interface</li>
-                    <li>Platypus and its command line tool binary are now code-signed. Generated applications remain unsigned, for obvious reasons</li>
-                    <li>Windows of generated applications are now larger, and centered on first launch</li>
-                    <li>Apps now try to make script executable (+x) on launch This may resolve certain issues with launching generated apps stored on network-mounted volumes</li>
-                    <li>Added Open With menu for items in Bundled Files list</li>
-                    <li>Fixed bug where Platypus would generate broken custom icns files from images</li>
-                    <li>Fixed buggy Uniform Type Identifier validation in command line tool</li>
-                    <li>Platypus now validates default bundle identifier in Preferences</li>
-                    <li>Removed broken System Profiler example</li>
-                    <li>Removed XML plist format feature</li>
-                    <li>Documentation overhauled, partially rewritten and moved to Markdown format</li>
-                    <li>An assortment of minor bug fixes</li>
-                    <li>Various minor interface improvements</li>
-                    <li>Reduced size of generated app binaries</li>
-                    <li>Now requires macOS 10.8 or later</li>
+                    <li>Added native support for the arm64 CPU architecture (Apple Silicon). Both Platypus and the apps it generates are now Universal ARM/Intel 64-bit binaries</li>
+                    <li>New application icon</li>
+                    <li>Status Menu submenu items can now be disabled with the DISABLED syntax</li>
+                    <li>Support relative interpreter path (i.e. relative to Resources directory)</li>
+                    <li>Support dark mode for text fields (inverts colors, changes dynamically when user switches interface modes)</li>
+                    <li>Command line tool no longer defaults to stripping nib file (requires explicit -y option)</li>
+                    <li>Enabled close button on windows, which now quit the app(s)</li>
+                    <li>Added standard Help Menu to ScriptExec apps (support for bundled help bundles)</li>
+                    <li>Added support for dynamically changing status item title and icon via STATUSTITLE and STATUSICON syntax</li>
+                    <li>Warn when non-existent file in bundled files list</li>
+                    <li>Command line tool now defaults to creating apps with no application icon</li>
+                    <li>Support for notifications is now an option, to prevent permission popups on Catalina and later</li>
+                    <li>Added Python 3 and Dart interpreter presets</li>
+                    <li>Platypus apps now hide (instead of disabling) Open and Open Recent menu items if they don't accept files</li>
+                    <li>Fixed issue with signing generated apps due to missing "APPL" CFBundleType</li>
+                    <li>Fixed nasty empty newline parsing bug</li>
+                    <li>Switched over to AGIconFamily for icon generation, reducing dependence on deprecated Carbon calls</li>
+                    <li>Resolved issue with text selection and dark mode in generated apps</li>
+                    <li>Improved drag and drop handling on Platypus main window</li>
+                    <li>Now requires macOS 10.11 or later</li>
                 </ul>
             ]]></description>
         </item>

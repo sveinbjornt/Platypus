@@ -411,7 +411,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1231</string>
+	<string>1233</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
@@ -430,6 +430,8 @@
 	<string>https://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+	<key>SUPublicEDKey</key>
+	<string>XqfjBk0i1aF2FrZQfUIcpU+h7151345+3pSN9Bs7GwI=</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

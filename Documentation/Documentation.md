@@ -1,8 +1,8 @@
 <img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="128" height="128" src="images/platypus.png"  align="right">
 
-# Documentation for Platypus 5.3
+# Documentation for Platypus 5.4
 
-Last updated on February 2nd, 2022. The latest version of this document can be found [here](https://sveinbjorn.org/platypus_documentation).
+Last updated on September 3rd, 2022. The latest version of this document can be found [here](https://sveinbjorn.org/platypus_documentation).
 
 
 ## Introduction
@@ -43,12 +43,14 @@ That being said, you may be able to add some interactive GUI elements using [Coc
 
 ### System Requirements
 
-Both Platypus and the applications it generates require **macOS 10.8** or later and are provided as **64-bit Intel** binaries. If you want to target 10.6 and/or 32-bit systems, [version 4.9](https://sveinbjorn.org/files/software/platypus/platypus4.9.zip) continues to work just fine. If you want to target 10.4 and the PowerPC users of yore, you can use version [4.4](https://sveinbjorn.org/files/software/platypus/platypus4.4.zip).
+Both Platypus and the applications it generates require **macOS 10.11** or later and are provided as **64-bit Intel** binaries. If you want to target macOS 10.8-10.10, use [version 5.3](https://sveinbjorn.org/files/software/platypus/platypus4.9.zip).
+If you want to target 10.6 and/or 32-bit Intel systems,
+[version 4.9](https://sveinbjorn.org/files/software/platypus/platypus4.9.zip) continues to work just fine.
 
 
 ### Credits
 
-Platypus was created by me, [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org). The  application icon was created by [Drífa Líftóra](https://drifaliftora.is).
+Platypus was created by me, [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org).
 
 Thanks go to Seth Willits, author of the AGIconFamily class used for icon handling in Platypus, Bryan D K Jones, author of [VDKQueue](https://github.com/bdkjones/VDKQueue), Gianni Ceccarelli for contributing code on authenticated script execution, Matt Gallagher for secure temp file code, James S. Derry and Paul Kim for improvements to the built-in editor, and Andy Matuschak for the [Sparkle](https://sparkle-project.org) software update framework.
 

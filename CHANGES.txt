@@ -20,12 +20,12 @@ For future versions...
     TODO: Update Applescript input example to Python, instead of Perl
     TODO: Create more automated tests for command line tool and document existing tests
 
-For 5.4 - 30/08/2022
-    * Added native support for arm64 CPU architecture. Both Platypus and the apps it generates are now Universal ARM/Intel 64-bit binaries.
+For 5.4 - 03/09/2022
+    * Added native support for arm64 CPU architecture. Both Platypus and the apps it generates are now Universal ARM/Intel 64-bit binaries
     * New application icon
     * Status Menu submenu items can now be disabled with the DISABLED syntax
     * Support relative interpreter path (i.e. relative to Resources directory)
-    * Support dark mode for text fields (inverts colors, changes when user switches interface modes)
+    * Support dark mode for text fields (inverts colors, changes dynamically when user switches interface modes)
     * Command line tool no longer defaults to stripping nib file (requires explicit -y option)
     * Enabled close button on windows, which now quit the app(s)
     * Added standard Help Menu to ScriptExec apps (support for bundled help bundles)
@@ -33,10 +33,9 @@ For 5.4 - 30/08/2022
     * Warn when non-existent file in bundled files list
     * Command line tool now defaults to creating apps with no application icon
     * Support for notifications is now an option, to prevent permission popups on Catalina and later
-    * Added Python3 interpreter preset
-    * The Platypus application and command line tool are now Developer ID-signed
+    * Added Python 3 and Dart interpreter presets
     * Platypus apps now hide (instead of disabling) Open and Open Recent menu items if they don't accept files
-    * Fixed issue with signing due to missing "APPL" CFBundleType
+    * Fixed issue with signing generated apps due to missing "APPL" CFBundleType
     * Fixed nasty empty newline parsing bug
     * Switched over to AGIconFamily for icon generation, reducing dependence on deprecated Carbon calls
     * Resolved issue with text selection and dark mode in generated apps

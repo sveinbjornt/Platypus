@@ -704,7 +704,7 @@ DQ
                 <outlet property="window" destination="11370" id="C6j-Sn-zUf"/>
             </connections>
         </customObject>
-        <customObject id="11366" customClass="SUUpdater"/>
+        <customObject id="11366" customClass="SPUStandardUpdaterController"/>
         <menu title="MainMenu" systemMenu="main" id="29" userLabel="MainMenu">
             <items>
                 <menuItem title="Platypus" id="56">
@@ -722,7 +722,7 @@ DQ
                             <menuItem title="Check for Updates…" id="11367">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="checkForUpdates:" target="11366" id="11369"/>
+                                    <action selector="checkForUpdates:" target="11366" id="w8Z-gi-uvp"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Uninstall Platypus" id="11455">
