@@ -2,9 +2,9 @@
 [![Language](https://img.shields.io/badge/language-objective--c-lightgrey)]()
 [![Build](https://github.com/sveinbjornt/platypus/actions/workflows/macos.yml/badge.svg)]()
 
-# Platypus
+<img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="196" height="196" src="Documentation/images/platypus.png" align="right">
 
-<img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="128" height="128" src="Documentation/images/platypus.png" align="right">
+# Platypus
 
 **Platypus** is a developer tool that creates native Mac applications 
 from command line scripts such as shell scripts or Python, Perl, Ruby, 
@@ -42,7 +42,7 @@ status menu items, launchers and automations using Platypus.
 
 Platypus is free, open source software and has been continuously developed and maintained for a very long time (since 2003). **If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).**
 
-* **[⇩ Download Platypus 5.4](https://sveinbjorn.org/files/software/platypus.zip)**  (Intel/ARM 64-bit, 10.11 or later, ~3.1 MB)
+* **[⇩ Download Platypus 5.4](https://sveinbjorn.org/files/software/platypus.zip)**  (Intel/ARM 64-bit, 10.11 or later, ~4.3 MB)
 
 Platypus can also be installed via [Homebrew](https://brew.sh) (may not be latest version):
 
