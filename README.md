@@ -97,7 +97,7 @@ Platypus is very old software, dating back to the early days of
 Mac OS X, around 2003, when I was first learning to use Objective-C 
 and the Cocoa APIs. I made many beginner mistakes, some of which remain 
 in the structure of the code. This software has since gone through 
-about four dozen significant versions. It has been patched, bugfixed, 
+about three dozen significant versions. It has been patched, bugfixed,
 streamlined to include new features and was transitioned over to 
 modern Objective-C a few years ago. It's not how I would write it today.
 

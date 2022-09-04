@@ -280,16 +280,19 @@
 
 + (NSArray <NSString *> *)parseInterpreterInScriptFile:(NSString *)path {
     
-    // Get the first line of the script
-    NSString *script = [NSString stringWithContentsOfFile:path encoding:DEFAULT_TEXT_ENCODING error:nil];
-    NSArray *lines = [script componentsSeparatedByString:@"\n"];
-    if ([lines count] == 0) {
-        // Empty file
+    // Read script text
+    NSString *script = [NSString stringWithContentsOfFile:path
+                                                 encoding:DEFAULT_TEXT_ENCODING
+                                                    error:nil];
+    if (script == nil || [script length] == 0) {
         return @[@""];
     }
+    
+    // Split into lines
+    NSArray *lines = [script componentsSeparatedByString:@"\n"];
     NSString *firstLine = lines[0];
 
-    // If shorter than 2 chars, it can't possibly be a shebang line
+    // Inspect first line. If shorter than 2 chars, it can't possibly be a shebang line
     if ([firstLine length] <= 2 || ([[firstLine substringToIndex:2] isEqualToString:@"#!"] == NO)) {
         return @[@""];
     }
@@ -300,10 +303,10 @@
     // Separate it by whitespaces, in order not to get also the params to the interpreter
     NSMutableArray *interpreterAndArgs = [[interpreterCmd componentsSeparatedByString:@" "] mutableCopy];
     
-    // If shebang interpreter is not an absolute path or doestn't exist,
-    // check if the binary name is the same as one of our preset interpreters
+    // If shebang interpreter is not an absolute path, then check if
+    // the binary name is the same as one of our preset interpreters
     NSString *parsedPath = interpreterAndArgs[0];
-    if ([parsedPath hasPrefix:@"/"] == NO || [FILEMGR fileExistsAtPath:parsedPath] == NO) {
+    if ([parsedPath hasPrefix:@"/"] == NO) {
         NSArray *paths = [self interpreterPaths];
         for (NSString *p in paths) {
             if ([[p lastPathComponent] isEqualToString:[parsedPath lastPathComponent]]) {

@@ -123,12 +123,9 @@
 		F4975DC11B2E71FC0099D16E /* ShellCommandWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBC1B2E71FC0099D16E /* ShellCommandWindow.xib */; };
 		F4975DC21B2E71FC0099D16E /* SyntaxChecker.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4975DBD1B2E71FC0099D16E /* SyntaxChecker.xib */; };
 		F498942224352DEE00051F43 /* Interpreter_Python_3.png in Resources */ = {isa = PBXBuildFile; fileRef = F498942024352DEE00051F43 /* Interpreter_Python_3.png */; };
-		F49DB78225727B05009B6257 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78125727B05009B6257 /* Sparkle.framework */; };
-		F49DB78325727B05009B6257 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78125727B05009B6257 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F49DB78A25727B24009B6257 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78925727B24009B6257 /* Cocoa.framework */; };
 		F49DB78C25727B29009B6257 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78B25727B29009B6257 /* WebKit.framework */; };
 		F49DB78E25727B2F009B6257 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78D25727B2F009B6257 /* Security.framework */; };
-		F49DB79025727B34009B6257 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78F25727B34009B6257 /* Accelerate.framework */; };
 		F49DB79525727B48009B6257 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78925727B24009B6257 /* Cocoa.framework */; };
 		F49DB79625727B50009B6257 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78925727B24009B6257 /* Cocoa.framework */; };
 		F49DB79725727B55009B6257 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78B25727B29009B6257 /* WebKit.framework */; };
@@ -147,6 +144,8 @@
 		F4D0F2311C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D0F2301C1DCEEE0065AD25 /* NSResponderNotifyingTableView.m */; };
 		F4DC075211F629A40043764E /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = F4DC074F11F629A40043764E /* Documentation.html */; };
 		F4E482C028BD61BC00F99216 /* Interpreter_Dart.png in Resources */ = {isa = PBXBuildFile; fileRef = F4E482BF28BD61BC00F99216 /* Interpreter_Dart.png */; };
+		F4E482C428C42CA400F99216 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78125727B05009B6257 /* Sparkle.framework */; };
+		F4E482C528C42CA400F99216 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F49DB78125727B05009B6257 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */; };
 		F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */ = {isa = PBXBuildFile; fileRef = F4F14CAF1C640857002A2402 /* make_examples.pl */; };
 		F4F2F3BA1BF96C5C00FE463C /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B91BF96C5C00FE463C /* VDKQueue.m */; };
@@ -199,13 +198,13 @@
 			name = "Copy Command Line Tool to Bundle";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F49DB78425727B05009B6257 /* Embed Frameworks */ = {
+		F4E482C628C42CA400F99216 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F49DB78325727B05009B6257 /* Sparkle.framework in Embed Frameworks */,
+				F4E482C528C42CA400F99216 /* Sparkle.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,10 +393,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F49DB78C25727B29009B6257 /* WebKit.framework in Frameworks */,
-				F49DB79025727B34009B6257 /* Accelerate.framework in Frameworks */,
 				F49DB78A25727B24009B6257 /* Cocoa.framework in Frameworks */,
+				F4E482C428C42CA400F99216 /* Sparkle.framework in Frameworks */,
 				F42A93DD21783EB900C40D46 /* AppKit.framework in Frameworks */,
-				F49DB78225727B05009B6257 /* Sparkle.framework in Frameworks */,
 				F49DB78E25727B2F009B6257 /* Security.framework in Frameworks */,
 				F42A93DE21783EB900C40D46 /* Foundation.framework in Frameworks */,
 			);
@@ -949,8 +947,8 @@
 				F42622251C03B0DD0052BA33 /* Run Script To Set CFBundleVersion to Build Number */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				F49DB78425727B05009B6257 /* Embed Frameworks */,
 				F49DB7A925727F65009B6257 /* ShellScript */,
+				F4E482C628C42CA400F99216 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1908,6 +1906,10 @@
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sparkle",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1935,6 +1937,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sparkle",
+				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
@@ -1958,6 +1964,10 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sparkle",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = "";

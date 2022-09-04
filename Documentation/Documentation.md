@@ -18,7 +18,6 @@ Platypus was first released in 2003 and has since gone through many significant 
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="BDT58J7HYKAEE">
 <input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal" width="92" height="26">
-<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
 While Platypus is free, it is the product of countless hours of work over the last twenty years or so. **If Platypus makes your life easier, please [make a donation](https://sveinbjorn.org/donations) to support continued development.**
@@ -28,7 +27,7 @@ I am happy to respond to feature requests, bug reports and questions concerning 
 
 ### How does Platypus work?
 
-Regular macOS applications are [bundles](https://en.wikipedia.org/wiki/Bundle_%28macOS%29) – special folders with a particular directory structure and a .app suffix. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the application bundle is launched in the graphical user interface.
+Regular macOS applications are [bundles](https://en.wikipedia.org/wiki/Bundle_%28macOS%29) – special folders with a particular directory structure and a `.app` suffix. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the application bundle is launched in the graphical user interface.
 
 Platypus creates application bundles with a special executable binary that runs a script and captures its output. The binary can be configured to present the script's text output in various ways, for example by showing a progress bar, a text view, a Status Item menu or a WebKit-based web view.
 
@@ -585,13 +584,13 @@ You can edit arguments to both the script interpreter and the script itself by p
 
 ### How do I uninstall Platypus?
 
-Platypus only uses about 6MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select **Uninstall Platypus** from the Platypus application menu. This will uninstall the command line tool (if previously installed), and move Platypus.app and all its supporting files –  including saved Profiles – to the Trash.
+Platypus only uses about 9 MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select **Uninstall Platypus** from the Platypus application menu. This will uninstall the command line tool (if previously installed), and move Platypus.app and all its supporting files –  including saved Profiles – to the Trash.
 
 
 
 ### How do I get the source code to Platypus and Platypus-generated app binaries?
 
-The Platypus source repository can be found [on GitHub](https://github.com/sveinbjornt/Platypus).
+The Platypus source code repository can be found [on GitHub](https://github.com/sveinbjornt/Platypus).
 
 The source code to the binary used in Platypus-generated apps is [SEController.m](https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/SEController).
 
