@@ -99,7 +99,7 @@
     NSSize smallIconSize = { 16, 16 };
     
     if ([[menuItem title] isEqualToString:DEFAULT_EDITOR]) {
-        NSImage *icon = [NSApp applicationIconImage];
+        NSImage *icon = [[NSApp applicationIconImage] copy];
         [icon setSize:smallIconSize];
         [menuItem setImage:icon];
     } else if ([[menuItem title] isEqualToString:@"Select..."] == FALSE) {
