@@ -19,6 +19,8 @@ For future versions...
     TODO: Update FAQ to answer question wrt relative interpreter path / bundling own interpreter
     TODO: Update Applescript input example to Python, instead of Perl
     TODO: Create more automated tests for command line tool and document existing tests
+    TODO: Harden CI testing for this old project
+    TODO: Fix selection change when item is deleted from the Bundled Files List
 
 For 5.4 - 03/09/2022
     * Added native support for arm64 CPU architecture. Both Platypus and the apps it generates are now Universal ARM/Intel 64-bit binaries

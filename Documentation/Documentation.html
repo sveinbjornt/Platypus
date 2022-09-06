@@ -336,13 +336,12 @@ pre code, pre tt {
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="BDT58J7HYKAEE">
 <input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal" width="92" height="26">
-<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 
 <p>While Platypus is free, it is the product of countless hours of work over the last twenty years or so. <strong>If Platypus makes your life easier, please <a href="https://sveinbjorn.org/donations">make a donation</a> to support continued development.</strong></p>
 <p>I am happy to respond to feature requests, bug reports and questions concerning Platypus which are not addressed in this document, but I cannot answer queries about the particulars of individual scripting languages. Productive use of Platypus assumes that you are competent in your language of choice and understand the UNIX shell environment.</p>
 <h3 id="how-does-platypus-work-">How does Platypus work?</h3>
-<p>Regular macOS applications are <a href="https://en.wikipedia.org/wiki/Bundle_%28macOS%29">bundles</a> – special folders with a particular directory structure and a .app suffix. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the application bundle is launched in the graphical user interface.</p>
+<p>Regular macOS applications are <a href="https://en.wikipedia.org/wiki/Bundle_%28macOS%29">bundles</a> – special folders with a particular directory structure and a <code>.app</code> suffix. An executable binary is stored in the bundle along with resources and configuration files. This binary is run when the application bundle is launched in the graphical user interface.</p>
 <p>Platypus creates application bundles with a special executable binary that runs a script and captures its output. The binary can be configured to present the script&#39;s text output in various ways, for example by showing a progress bar, a text view, a Status Item menu or a WebKit-based web view.</p>
 <h3 id="what-platypus-is-not">What Platypus is NOT</h3>
 <p>Platypus is <strong>not</strong> a set of bindings between the native macOS APIs and scripting languages. It is not a full GUI development environment and is not intended for creating substantial applications with complex and dynamic user interaction. If you want to create advanced macOS applications, you should learn to program using the Cocoa APIs. Platypus is not and never will be a substitute for learning to use the native application programming interfaces.</p>
@@ -607,9 +606,9 @@ sys.stdout.flush()
 <h3 id="how-can-i-pass-specific-arguments-to-my-script-">How can I pass specific arguments to my script?</h3>
 <p>You can edit arguments to both the script interpreter and the script itself by pressing the <strong>Args</strong> button next to the <strong>Interpreter</strong> controls.</p>
 <h3 id="how-do-i-uninstall-platypus-">How do I uninstall Platypus?</h3>
-<p>Platypus only uses about 6MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select <strong>Uninstall Platypus</strong> from the Platypus application menu. This will uninstall the command line tool (if previously installed), and move Platypus.app and all its supporting files –  including saved Profiles – to the Trash.</p>
+<p>Platypus only uses about 9 MB of disk space, but if you want to remove it entirely, along with support files, profiles, etc., you can select <strong>Uninstall Platypus</strong> from the Platypus application menu. This will uninstall the command line tool (if previously installed), and move Platypus.app and all its supporting files –  including saved Profiles – to the Trash.</p>
 <h3 id="how-do-i-get-the-source-code-to-platypus-and-platypus-generated-app-binaries-">How do I get the source code to Platypus and Platypus-generated app binaries?</h3>
-<p>The Platypus source repository can be found <a href="https://github.com/sveinbjornt/Platypus">on GitHub</a>.</p>
+<p>The Platypus source code repository can be found <a href="https://github.com/sveinbjornt/Platypus">on GitHub</a>.</p>
 <p>The source code to the binary used in Platypus-generated apps is <a href="https://github.com/sveinbjornt/Platypus/blob/master/ScriptExec/SEController">SEController.m</a>.</p>
 <p>Please let me know if you make any improvements or fix any bugs, so I can incorporate them into the official release.</p>
 <h3 id="how-do-i-get-the-path-to-my-application-and-or-bundled-files-from-within-the-script-">How do I get the path to my application and/or bundled files from within the script?</h3>
