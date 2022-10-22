@@ -42,7 +42,7 @@ status menu items, launchers and automations using Platypus.
 
 Platypus is free, open source software and has been continuously developed and maintained for a very long time (since 2003). **If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).**
 
-* **[⇩ Download Platypus 5.4](https://sveinbjorn.org/files/software/platypus.zip)**  (Intel/ARM 64-bit, 10.11 or later, ~4.3 MB)
+* **[⇩ Download Platypus 5.4.1](https://sveinbjorn.org/files/software/platypus.zip)**  (Intel/ARM 64-bit, 10.11 or later, ~4.3 MB)
 
 Platypus can also be installed via [Homebrew](https://brew.sh) (may not be latest version):
 

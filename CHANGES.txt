@@ -22,6 +22,9 @@ For future versions...
     TODO: Harden CI testing for this old project
     TODO: Fix selection change when item is deleted from the Bundled Files List
 
+For 5.4.1 - 22/10/2022
+    * Fixed signing issues
+
 For 5.4 - 03/09/2022
     * Added native support for arm64 CPU architecture. Both Platypus and the apps it generates are now Universal ARM/Intel 64-bit binaries
     * New application icon

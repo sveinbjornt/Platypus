@@ -9,7 +9,7 @@
 	<key>Authentication</key>
 	<integer>0</integer>
 	<key>Creator</key>
-	<string>Platypus-5.4</string>
+	<string>Platypus-5.4.1</string>
 	<key>InterfaceType</key>
 	<string>Web View</string>
 	<key>URISchemes</key>

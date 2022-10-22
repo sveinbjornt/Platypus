@@ -96,7 +96,7 @@
 
 - (IBAction)apply:(id)sender {
     [[self window] makeFirstResponder:commandTextField];
-    [NSApp stopModal];
+    [[self window] orderOut:self];
 }
 
 - (IBAction)setToDefaults:(id)sender {
@@ -110,17 +110,7 @@
     [self constructCommandString];
     [[self window] makeFirstResponder:interpreterArgsTableView];
     
-    //open window
-    [NSApp beginSheet:[self window]
-       modalForWindow:parentWindow
-        modalDelegate:nil
-       didEndSelector:nil
-          contextInfo:nil];
-    
-    [NSApp runModalForWindow:[self window]];
-    
-    [NSApp endSheet:[self window]];
-    [[self window] orderOut:self];
+    [parentWindow beginSheet:[self window] completionHandler:nil];
 }
 
 - (void)constructCommandString {

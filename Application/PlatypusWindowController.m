@@ -657,7 +657,6 @@
     [oPanel setPrompt:@"Select"];
     [oPanel setAllowsMultipleSelection:NO];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel setAllowedFileTypes:@[(NSString *)kUTTypeContent]];
     [oPanel setDelegate:self];
     
     // Run as sheet
