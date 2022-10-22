@@ -1,5 +1,6 @@
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![Language](https://img.shields.io/badge/language-objective--c-lightgrey)]()
+[![Release](https://shields.io/github/v/release/sveinbjornt/Platypus?display_name=tag)]()
 [![Build](https://github.com/sveinbjornt/platypus/actions/workflows/macos.yml/badge.svg)]()
 
 <img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="196" height="196" src="Documentation/images/platypus.png" align="right">
@@ -42,7 +43,7 @@ status menu items, launchers and automations using Platypus.
 
 Platypus is free, open source software and has been continuously developed and maintained for a very long time (since 2003). **If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).**
 
-* **[⇩ Download Platypus 5.4.1](https://sveinbjorn.org/files/software/platypus.zip)**  (Intel/ARM 64-bit, 10.11 or later, ~4.3 MB)
+* **[⇩ Download Platypus 5.4.1](https://sveinbjorn.org/files/software/platypus.zip)**  (Intel/ARM 64-bit, 10.11 or later, ~4.5 MB)
 
 Platypus can also be installed via [Homebrew](https://brew.sh) (may not be latest version):
 
