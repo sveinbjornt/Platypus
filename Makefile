@@ -21,12 +21,14 @@ all: build_unsigned
 release: build_signed archives sparkle size
 
 clean:
+	xattr -w com.apple.xcode.CreatedByBuildSystem true $(BUILD_DIR)
 	xcodebuild clean
 	rm -rf $(BUILD_DIR)/*
 
 build_signed:
 	@echo Building $(APP_NAME) version $(VERSION) \(signed\)
 	mkdir -p $(BUILD_DIR)
+	xattr -w com.apple.xcode.CreatedByBuildSystem true $(BUILD_DIR)
 	xcodebuild -parallelizeTargets \
         -project "$(XCODE_PROJ)" \
         -target "$(APP_NAME)" \
@@ -38,6 +40,7 @@ build_signed:
 build_unsigned:
 	@echo Building $(APP_NAME) version $(VERSION) \(unsigned\)
 	mkdir -p $(BUILD_DIR)
+	xattr -w com.apple.xcode.CreatedByBuildSystem true $(BUILD_DIR)
 	xcodebuild -parallelizeTargets \
         -project "$(XCODE_PROJ)" \
         -target "$(APP_NAME)" \
