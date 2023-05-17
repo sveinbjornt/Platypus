@@ -840,7 +840,27 @@ static const NSInteger detailsHeight = 224;
         [Alerts fatalAlert:@"Missing script" subTextFormat:@"Script missing at execution path %@", scriptPath];
     }
     [arguments addObject:scriptPath];
-    
+    NSString *myNSString = @"test";
+    [arguments addObject:myNSString];
+
+    NSLog(@"THIS IS A NEW VERSION ");
+
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+
+    NSDictionary *value = [prefs dictionaryForKey:@"com.apple.configuration.managed"];
+    if (value != nil) {
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:value
+                                                   options:0 // Pass 0 if you don't care about the readability of the generated string
+                                                     error:&error];
+        if (! jsonData) {
+            NSLog(@"Got an error while converting config to JSON data: %@", error);
+        } else {
+            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            [arguments addObject:jsonString];
+        }
+    }
+
     // Add arguments for script
     [arguments addObjectsFromArray:scriptArgs];
     
