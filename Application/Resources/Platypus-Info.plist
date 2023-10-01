@@ -417,7 +417,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.11</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2003-2022 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2023 Sveinbjorn Thordarson.</string>
 	<key>NSMainNibFile</key>
 	<string>Platypus</string>
 	<key>NSPrincipalClass</key>
