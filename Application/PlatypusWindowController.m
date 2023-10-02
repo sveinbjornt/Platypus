@@ -414,9 +414,12 @@
     // We set this specifically
     spec[AppSpecKey_DestinationPath] = appPath;
     spec[AppSpecKey_ExecutablePath] = [[NSBundle mainBundle] pathForResource:CMDLINE_SCRIPTEXEC_GZIP_NAME ofType:nil];
-    spec[AppSpecKey_NibPath] = [[NSBundle mainBundle] pathForResource:@"MainMenu.nib" ofType:nil];
+    spec[AppSpecKey_NibPath] = [[NSBundle mainBundle] pathForResource:CMDLINE_NIB_NAME ofType:nil];
     spec[AppSpecKey_SymlinkFiles] = @((BOOL)[createSymlinksCheckbox intValue]);
     spec[AppSpecKey_StripNib] = @((BOOL)[stripNibFileCheckbox intValue]);
+    if (spec[AppSpecKey_StripNib]) {
+        spec[AppSpecKey_NibPath] = [[NSBundle mainBundle] pathForResource:CMDLINE_NIB_OPT_NAME ofType:nil];;
+    }
     spec[AppSpecKey_Overwrite] = @YES;
     if (![[DEFAULTS stringForKey:DefaultsKey_SigningIdentity] isEqualToString:@"None"]) {
         spec[AppSpecKey_SigningIdentity] = [DEFAULTS stringForKey:@"SigningIdentity"];

@@ -63,6 +63,7 @@
 #define CMDLINE_MANPAGE_NAME        @"platypus.1.gz"
 #define CMDLINE_DEFAULT_ICON_NAME   @"PlatypusDefault.icns"
 #define CMDLINE_NIB_NAME            @"MainMenu.nib"
+#define CMDLINE_NIB_OPT_NAME        @"MainMenu-optimized.nib"
 #define CMDLINE_VERSION_ARG_FLAG    @"--version"
 #define CMDLINE_BASE_INSTALL_PATH   @"/usr/local"
 #define CMDLINE_BIN_PATH            @"/usr/local/bin"
