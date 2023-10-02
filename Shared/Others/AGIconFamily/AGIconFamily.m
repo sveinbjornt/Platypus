@@ -329,7 +329,7 @@ NSUInteger IFIndexOfElementInImageSource(CGImageSourceRef imageSourceRef, AGIcon
 										(bitmapSize.height - outSize.height) / 2.0,
 										outSize.width, outSize.height);
 		
-		[self drawInRect:targetRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+    [self drawInRect:targetRect fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1.0];
 	[NSGraphicsContext restoreGraphicsState];
 	
 	return newImageRep;

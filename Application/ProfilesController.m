@@ -133,7 +133,7 @@
     [sPanel setDirectoryURL:[NSURL fileURLWithPath:PROGRAM_PROFILES_PATH]];
     [sPanel setNameFieldStringValue:defaultName];
     
-    if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
+    if ([sPanel runModal] == NSModalResponseOK) {
         NSString *filePath = [[sPanel URL] path];
         if ([filePath hasSuffix:PROGRAM_PROFILE_SUFFIX] == NO) {
             filePath = [NSString stringWithFormat:@"%@.%@", filePath, PROGRAM_PROFILE_SUFFIX];
@@ -230,7 +230,7 @@
     NSString *profilePath = [NSString stringWithFormat:@"%@/%@.%@", folder, [sender title], PROGRAM_PROFILE_SUFFIX];
     
     // If command key is down, we reveal in finder
-    BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
+    BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSEventModifierFlagCommand) == NSEventModifierFlagCommand);
     if (commandKeyDown) {
         [WORKSPACE selectFile:profilePath inFileViewerRootedAtPath:profilePath];
     } else {
@@ -282,7 +282,7 @@
         return;
     }
     
-    if ([sPanel runModal] != NSFileHandlingPanelOKButton) {
+    if ([sPanel runModal] != NSModalResponseOK) {
         return;
     }
     

@@ -242,7 +242,7 @@
 #pragma mark - Interface actions
 
 - (void)itemDoubleClicked:(id)sender {
-    BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
+    BOOL commandKeyDown = (([[NSApp currentEvent] modifierFlags] & NSEventModifierFlagCommand) == NSEventModifierFlagCommand);
     if (commandKeyDown) {
         [self revealInFinder:[tableView clickedRow]];
     } else {

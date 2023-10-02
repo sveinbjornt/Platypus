@@ -54,13 +54,13 @@
 }
 
 + (void)alert:(NSString *)message subText:(NSString *)subtext {
-    [self alert:message subText:subtext style:NSWarningAlertStyle];
+    [self alert:message subText:subtext style:NSAlertStyleWarning];
 }
 
 #pragma mark -
 
 + (void)fatalAlert:(NSString *)message subText:(NSString *)subtext {
-    [self alert:message subText:subtext style:NSCriticalAlertStyle];
+    [self alert:message subText:subtext style:NSAlertStyleCritical];
     [[NSApplication sharedApplication] terminate:self];
 }
 
@@ -83,7 +83,7 @@
 }
 
 + (void)sheetAlert:(NSString *)message subText:(NSString *)subtext forWindow:(NSWindow *)window {
-    [self sheetAlert:message subText:subtext style:NSCriticalAlertStyle forWindow:window];
+    [self sheetAlert:message subText:subtext style:NSAlertStyleCritical forWindow:window];
 }
 
 + (void)sheetAlert:(NSString *)message subText:(NSString *)subtext style:(NSAlertStyle)style forWindow:(NSWindow *)window {
@@ -103,7 +103,7 @@
     [alert addButtonWithTitle:@"Cancel"];
     [alert setMessageText:message];
     [alert setInformativeText:subtext];
-    [alert setAlertStyle:NSWarningAlertStyle];
+    [alert setAlertStyle:NSAlertStyleWarning];
     return ([alert runModal] == NSAlertFirstButtonReturn);
 }
 

@@ -1238,7 +1238,7 @@ static const NSInteger detailsHeight = 224;
         [oPanel setAllowedFileTypes:fileTypes];
     }
     
-    if ([oPanel runModal] == NSFileHandlingPanelOKButton) {
+    if ([oPanel runModal] == NSModalResponseOK) {
         // Convert URLs to paths
         NSMutableArray *filePaths = [NSMutableArray array];        
         for (NSURL *url in [oPanel URLs]) {
@@ -1313,7 +1313,7 @@ static const NSInteger detailsHeight = 224;
     [sPanel setPrompt:@"Save"];
     [sPanel setNameFieldStringValue:fileName];
     
-    if ([sPanel runModal] == NSFileHandlingPanelOKButton) {
+    if ([sPanel runModal] == NSModalResponseOK) {
         NSError *err;
         BOOL success = [[outputTextView string] writeToFile:[[sPanel URL] path] atomically:YES encoding:DEFAULT_TEXT_ENCODING error:&err];
         if (!success) {
