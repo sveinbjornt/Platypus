@@ -48,6 +48,7 @@ build_unsigned:
         CONFIGURATION_BUILD_DIR="$(BUILD_DIR)" \
         CODE_SIGN_IDENTITY="" \
         CODE_SIGNING_REQUIRED=NO \
+        CODE_SIGNING_ALLOWED=NO \
         clean \
         build
 
