@@ -109,7 +109,7 @@
     [super setClientView:aView];
     if ((aView != nil) && [aView isKindOfClass:[NSTextView class]])
     {
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textStorageDidProcessEditing:) name:NSTextStorageDidProcessEditingNotification object:[(NSTextView *)aView textStorage]];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textStorageProcessEditing:) name:NSTextStorageDidProcessEditingNotification object:[(NSTextView *)aView textStorage]];
 
 		[self invalidateLineIndicesFromCharacterIndex:0];
     }
@@ -130,7 +130,21 @@
     _invalidCharacterIndex = MIN(charIndex, _invalidCharacterIndex);
 }
 
-- (void)textStorageDidProcessEditing:(NSNotification *)notification
+- (void)textStorage:(NSTextStorage *)storage
+ willProcessEditing:(NSTextStorageEditActions)editedMask
+              range:(NSRange)range
+     changeInLength:(NSInteger)delta {
+    
+    // Invalidate the line indices. They will be recalculated and re-cached on demand.
+    if (range.location != NSNotFound)
+    {
+        [self invalidateLineIndicesFromCharacterIndex:range.location];
+        [self setNeedsDisplay:YES];
+    }
+}
+
+
+- (void)textStorageProcessEditing:(NSNotification *)notification
 {
     NSTextStorage       *storage;
     NSRange             range;

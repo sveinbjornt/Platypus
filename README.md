@@ -41,7 +41,7 @@ status menu items, launchers and automations using Platypus.
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BDT58J7HYKAEE"><img align="right" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/btn/btn_donate_LG.gif" ></a>
 
-Platypus is free, open source software and has been continuously developed and maintained for a very long time (since 2003). **If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).**
+Platypus is free, open source software and has been continuously developed and maintained for over 20 years. **If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).**
 
 * **[⇩ Download Platypus 5.4.1](https://sveinbjorn.org/files/software/platypus.zip)**  (Intel/ARM 64-bit, 10.11 or later, ~4.5 MB)
 

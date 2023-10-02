@@ -47,7 +47,6 @@
 @implementation TextSettingsController
 
 - (void)awakeFromNib {
-    [[NSFontManager sharedFontManager] setDelegate:self];
     [self setCurrentFont:[NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:DEFAULT_TEXT_FONT_SIZE]];
 }
 
