@@ -1517,7 +1517,7 @@ static const NSInteger detailsHeight = 224;
         NSError *outErr = nil;
         NSString *fileType = [WORKSPACE typeOfFile:file error:&outErr];
         if (fileType == nil) {
-            NSLog(@"Unable to determine file type for %@: %@", file, [outErr localizedDescription]);
+            DLog(@"Unable to determine file type for %@: %@", file, [outErr localizedDescription]);
         } else if ([WORKSPACE type:fileType conformsToType:uti]) {
             return YES;
         }

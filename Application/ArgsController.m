@@ -128,6 +128,16 @@
     // Interpreter
     NSDictionary *defaultAttrs = @{ NSForegroundColorAttributeName: [NSColor blackColor],
                                     NSBackgroundColorAttributeName: [NSColor whiteColor] };
+    BOOL darkMode = NO;
+    if (@available(macOS 10.14, *)) {
+        darkMode = ([[[NSAppearance currentAppearance] name] isEqualToString:NSAppearanceNameDarkAqua]);
+    }
+    if (darkMode) {
+        defaultAttrs = @{ NSForegroundColorAttributeName: [NSColor whiteColor],
+                          NSBackgroundColorAttributeName: [NSColor blackColor] };
+        [commandTextField setBackgroundColor:[NSColor blackColor]];
+    }
+    
     NSMutableAttributedString *cmdString = [[NSMutableAttributedString alloc] initWithString:[interpreterTextField stringValue] attributes:defaultAttrs];
     
     // Interpreter args

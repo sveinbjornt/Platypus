@@ -411,7 +411,7 @@
             if (path) {
                 [data writeToFile:path atomically:NO];
             } else {
-                NSLog(@"Warning: Could not create tmp file named '%@'", name);
+                DLog(@"Warning: Could not create tmp file named '%@'", name);
             }
         } else if ([bundledFile isKindOfClass:[NSString class]]) {
             bundledFilePath = (NSString *)bundledFile;
@@ -954,7 +954,7 @@
 // This makes the file uneditable in Interface Builder.
 + (void)optimizeNibFile:(NSString *)nibPath {
     if ([FILEMGR fileExistsAtPath:IBTOOL_PATH] == NO) {
-        NSLog(@"Unable to strip nib file, ibtool not found at path %@", IBTOOL_PATH);
+        DLog(@"Unable to strip nib file, ibtool not found at path %@", IBTOOL_PATH);
         return;
     }
     NSTask *ibToolTask = [[NSTask alloc] init];

@@ -265,7 +265,7 @@
 
 + (BOOL)hasShebangLineAtPath:(NSString *)path {
     if (![FILEMGR isReadableFileAtPath:path]) {
-        NSLog(@"Unable to read file %@", path);
+        DLog(@"Unable to read file %@", path);
         return NO;
     }
     
