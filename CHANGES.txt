@@ -22,6 +22,10 @@ For future versions...
     TODO: Harden CI testing for this old project
     TODO: Fix selection change when item is deleted from the Bundled Files List
 
+For 5.4.2 - 02/10/2023
+    * Fixed bug where the argument settings window would lock up
+    TODO: Keep an optimized copy of the nib in app bundle to save expensive step when creating
+
 For 5.4.1 - 22/10/2022
     * Fixed signing issues
 
