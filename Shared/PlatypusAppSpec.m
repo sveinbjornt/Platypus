@@ -446,13 +446,13 @@
     }
     
     // Sign app if signing identity has been provided
-    if (self[AppSpecKey_SigningIdentity]) {
-        [self report:@"Signing '%@'", [tmpPath lastPathComponent]];
-        int err = [PlatypusAppSpec signApp:tmpPath usingIdentity:self[AppSpecKey_SigningIdentity]];
-        if (err) {
-            [self report:@"Failed to sign app. codesign err %d", err];
-        }
-    }
+//    if (self[AppSpecKey_SigningIdentity]) {
+//        [self report:@"Signing '%@'", [tmpPath lastPathComponent]];
+//        int err = [PlatypusAppSpec signApp:tmpPath usingIdentity:self[AppSpecKey_SigningIdentity]];
+//        if (err) {
+//            [self report:@"Failed to sign app. codesign err %d", err];
+//        }
+//    }
     
     // COPY APP OVER TO FINAL DESTINATION
     // We've created the application bundle in the temporary directory
@@ -965,14 +965,14 @@
 }
 
 // Run code signing tool on an app or binary
-+ (int)signApp:(NSString *)path usingIdentity:(NSString *)identity {
-    NSTask *task = [[NSTask alloc] init];
-    [task setLaunchPath:CODESIGN_PATH];
-    [task setArguments:@[@"-s", identity, path]];
-    [task launch];
-    [task waitUntilExit];
-    
-    return [task terminationStatus];
-}
+//+ (int)signApp:(NSString *)path usingIdentity:(NSString *)identity {
+//    NSTask *task = [[NSTask alloc] init];
+//    [task setLaunchPath:CODESIGN_PATH];
+//    [task setArguments:@[@"-s", identity, path]];
+//    [task launch];
+//    [task waitUntilExit];
+//    
+//    return [task terminationStatus];
+//}
 
 @end
