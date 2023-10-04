@@ -85,5 +85,6 @@ clt_tests:
 	CONFIGURATION_BUILD_DIR="products" \
 	CODE_SIGN_IDENTITY="" \
 	CODE_SIGNING_REQUIRED=NO \
+	CODE_SIGNING_ALLOWED=NO \
 	clean \
 	build
