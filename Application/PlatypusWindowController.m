@@ -418,7 +418,8 @@
     spec[AppSpecKey_SymlinkFiles] = @((BOOL)[createSymlinksCheckbox intValue]);
     spec[AppSpecKey_StripNib] = @((BOOL)[stripNibFileCheckbox intValue]);
     if (spec[AppSpecKey_StripNib]) {
-        spec[AppSpecKey_NibPath] = [[NSBundle mainBundle] pathForResource:CMDLINE_NIB_OPT_NAME ofType:nil];;
+        spec[AppSpecKey_NibPath] = [[NSBundle mainBundle] pathForResource:CMDLINE_NIB_OPT_NAME ofType:nil];
+        // spec[AppSpecKey_StripNib] = @(NO);
     }
     spec[AppSpecKey_Overwrite] = @YES;
     if (![[DEFAULTS stringForKey:DefaultsKey_SigningIdentity] isEqualToString:@"None"]) {
