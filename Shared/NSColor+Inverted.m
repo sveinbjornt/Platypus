@@ -34,7 +34,10 @@
 
 - (NSColor *)inverted {
     const CGFloat * _Nullable cc = CGColorGetComponents(self.CGColor);
-    return [NSColor colorWithRed:(1-cc[0]) green:(1-cc[1]) blue:(1-cc[2]) alpha:CGColorGetAlpha(self.CGColor)];
+    return [NSColor colorWithRed:(1-cc[0]) 
+                           green:(1-cc[1])
+                            blue:(1-cc[2])
+                           alpha:CGColorGetAlpha(self.CGColor)];
 }
 
 @end

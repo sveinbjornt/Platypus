@@ -21,11 +21,13 @@ For future versions...
     TODO: Create more automated tests for command line tool and document existing tests
     TODO: Harden CI testing for this old project
     TODO: Fix selection change when item is deleted from the Bundled Files List
+    TODO: Make Status Menu from script generation non-blocking
 
-For 5.4.2 - 03/10/2023
+For 5.4.2
     * Fixed bug where the argument settings window would lock up
     * Better support for Dark Mode
     * Performance optimizations in the app build process
+    * TODO: Upgrade Sparkle version
 
 For 5.4.1 - 22/10/2022
     * Fixed signing issues
