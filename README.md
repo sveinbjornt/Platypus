@@ -57,6 +57,7 @@ $ brew install --cask platypus
 * [Platypus Website](https://sveinbjorn.org/platypus)
 * [man `platypus`](https://sveinbjorn.org/files/manpages/platypus.man.html)
 * [Platypus Appcast XML feed](https://sveinbjorn.org/files/appcasts/PlatypusAppcast.xml)
+* [Old Versions](https://sveinbjorn.org/files/software/platypus)
 
 ## Screenshots
 
@@ -100,7 +101,7 @@ and the Cocoa APIs. I made many beginner mistakes, some of which remain
 in the structure of the code. This software has since gone through 
 about three dozen significant versions. It has been patched, bugfixed,
 streamlined to include new features and was transitioned over to 
-modern Objective-C a few years ago. It's not how I would write it today.
+modern Objective-C some years ago. It's not how I would write it today.
 
 With these caveats in mind, here is the BSD-licensed source code to Platypus.
 
