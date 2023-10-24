@@ -26,7 +26,7 @@ For future versions...
 For 5.4.2
     * Fixed bug where the argument settings window would lock up
     * Better support for Dark Mode
-    * Performance optimizations in the app build process
+    * TODO?: Performance optimization in the app build process (precompiled nib)
     * TODO: Upgrade Sparkle version
 
 For 5.4.1 - 22/10/2022

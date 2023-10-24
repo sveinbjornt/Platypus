@@ -88,6 +88,8 @@
 		F46EF85113C3F36900E4C0E4 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = F46EF84E13C3F36900E4C0E4 /* Examples */; };
 		F47B9F062606E9850076C3EC /* Interpreter_Python_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F47B9F052606E9850076C3EC /* Interpreter_Python_2.png */; };
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
+		F481A4B02AE860FF000E46DC /* NSColor+Inverted.m in Sources */ = {isa = PBXBuildFile; fileRef = F4911FC8260A6C50004AC8CD /* NSColor+Inverted.m */; };
+		F481A4B12AE86487000E46DC /* SETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F740D92684CFA5000673C0 /* SETextView.m */; };
 		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; };
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
 		F484D45921A9DDAE006EE28D /* ScriptDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = F484D45721A9DDAE006EE28D /* ScriptDocument.icns */; };
@@ -1279,6 +1281,7 @@
 				F4975DB61B2E71EE0099D16E /* SuffixTypeListController.m in Sources */,
 				F4AB186F1BE1908100B83A95 /* NSBundle+Templates.m in Sources */,
 				F45B1EFC1FF560D800A935D7 /* NSTextView+JSDExtensions.m in Sources */,
+				F481A4B12AE86487000E46DC /* SETextView.m in Sources */,
 				F4975D751B2E09310099D16E /* STPrivilegedTask.m in Sources */,
 				F4975DB41B2E71EE0099D16E /* ShellCommandController.m in Sources */,
 				F4975DAB1B2E71EE0099D16E /* BundledFilesController.m in Sources */,
@@ -1312,6 +1315,7 @@
 				F484D45E21AA03C2006EE28D /* NSFileManager+TempFiles.m in Sources */,
 				F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */,
 				F4A8B5D0222DD5800049FA51 /* InterpreterTextField.m in Sources */,
+				F481A4B02AE860FF000E46DC /* NSColor+Inverted.m in Sources */,
 				F48B1EE017935BBC007DA173 /* PlatypusScriptUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

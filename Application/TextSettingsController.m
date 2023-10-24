@@ -30,6 +30,7 @@
 
 #import "TextSettingsController.h"
 #import "Common.h"
+#import "NSColor+Inverted.h"
 
 @interface TextSettingsController()
 {
@@ -48,11 +49,21 @@
 
 - (void)awakeFromNib {
     [self setCurrentFont:[NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:DEFAULT_TEXT_FONT_SIZE]];
+    [self updateTextViewColor:self];
+    
+//    [NSDistributedNotificationCenter.defaultCenter addObserver:self
+//                                                      selector:@selector(themeChanged:) name:@"AppleInterfaceThemeChangedNotification"
+//                                                        object: nil];
+
+}
+
+- (void)themeChanged:(NSNotification *)notification {
+//    [self updateTextViewColor:notification];
 }
 
 - (IBAction)show:(id)sender {
     [parentWindow setTitle:[NSString stringWithFormat:@"%@ - Text Settings", PROGRAM_NAME]];
-    
+    [self updateTextViewColor:self];
     [NSApp beginSheet:[self window]
        modalForWindow:parentWindow
         modalDelegate:nil
@@ -83,8 +94,26 @@
 }
 
 - (IBAction)updateTextViewColor:(id)sender {
-    [textPreviewTextView setBackgroundColor:[backgroundColorWell color]];
-    [textPreviewTextView setTextColor:[foregroundColorWell color]];
+    NSColor *bgColor = [backgroundColorWell color];
+    NSColor *fgColor = [foregroundColorWell color];
+    
+    BOOL darkMode = NO;
+    BOOL darkPossible = NO;
+    if (@available(macOS 10.14, *)) {
+        darkPossible = YES;
+        
+    }
+    if (darkPossible) {
+        darkMode = [[[NSAppearance currentAppearance] name] isEqualToString:NSAppearanceNameDarkAqua];
+        if (darkMode) {
+            bgColor = [bgColor inverted];
+            fgColor = [fgColor inverted];
+        }
+    }
+
+//    NSLog(@"Dark mode?: %d", darkMode);
+    [textPreviewTextView setBackgroundColor:bgColor];
+    [textPreviewTextView setTextColor:fgColor];
 }
 
 #pragma mark - Font Manager
