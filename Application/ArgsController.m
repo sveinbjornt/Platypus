@@ -146,8 +146,17 @@
         NSString *a = [NSString stringWithFormat:@" %@", interpreterArgs[i]];
         NSMutableDictionary *attrs = [defaultAttrs mutableCopy];
         
+        NSColor *highlightColor = [NSColor lightGrayColor];
+        BOOL dark = NO;
+        if (@available(macOS 10.14, *)) {
+            dark = ([[[NSAppearance currentAppearance] name] isEqualToString:NSAppearanceNameDarkAqua]);
+        }
+        if (dark) {
+            highlightColor = [NSColor darkGrayColor];
+        }
+        
         if ([interpreterArgsTableView selectedRow] == i && interpreterArgsTableView == [[self window] firstResponder]) {
-            attrs[NSBackgroundColorAttributeName] = [NSColor lightGrayColor];
+            attrs[NSBackgroundColorAttributeName] = highlightColor;
         }
         
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:a attributes:attrs];

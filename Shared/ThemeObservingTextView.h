@@ -28,40 +28,8 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-// Subclass of NSTextView that automatically inverts the text view's background
-// and foreground colors when switching between light mode and dark mode.
+#import <Cocoa/Cocoa.h>
 
-#import "SETextView.h"
-#import "NSColor+Inverted.h"
-
-@implementation SETextView
-
-- (instancetype)initWithFrame:(NSRect)frameRect {
-    self = [super initWithFrame:frameRect];
-    if (self) {
-        [self setUp];
-    }
-    return self;
-}
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self setUp];
-    }
-    return self;
-}
-
-- (void)setUp {
-    [NSDistributedNotificationCenter.defaultCenter addObserver:self
-                                                      selector:@selector(themeChanged:) name:@"AppleInterfaceThemeChangedNotification"
-                                                        object: nil];
-
-}
-
-- (void)themeChanged:(NSNotification *)notification {
-    [self setBackgroundColor:[self.backgroundColor inverted]];
-    [self setTextColor:[self.textColor inverted]];
-}
+@interface ThemeObservingTextView : NSTextView
 
 @end

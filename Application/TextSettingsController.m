@@ -50,16 +50,14 @@
 - (void)awakeFromNib {
     [self setCurrentFont:[NSFont fontWithName:DEFAULT_TEXT_FONT_NAME size:DEFAULT_TEXT_FONT_SIZE]];
     [self updateTextViewColor:self];
-    
 //    [NSDistributedNotificationCenter.defaultCenter addObserver:self
 //                                                      selector:@selector(themeChanged:) name:@"AppleInterfaceThemeChangedNotification"
 //                                                        object: nil];
-
 }
 
-- (void)themeChanged:(NSNotification *)notification {
+//- (void)themeChanged:(NSNotification *)notification {
 //    [self updateTextViewColor:notification];
-}
+//}
 
 - (IBAction)show:(id)sender {
     [parentWindow setTitle:[NSString stringWithFormat:@"%@ - Text Settings", PROGRAM_NAME]];
@@ -101,7 +99,6 @@
     BOOL darkPossible = NO;
     if (@available(macOS 10.14, *)) {
         darkPossible = YES;
-        
     }
     if (darkPossible) {
         darkMode = [[[NSAppearance currentAppearance] name] isEqualToString:NSAppearanceNameDarkAqua];
@@ -110,8 +107,7 @@
             fgColor = [fgColor inverted];
         }
     }
-
-//    NSLog(@"Dark mode?: %d", darkMode);
+    
     [textPreviewTextView setBackgroundColor:bgColor];
     [textPreviewTextView setTextColor:fgColor];
 }

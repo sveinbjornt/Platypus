@@ -89,7 +89,8 @@
 		F47B9F062606E9850076C3EC /* Interpreter_Python_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F47B9F052606E9850076C3EC /* Interpreter_Python_2.png */; };
 		F48002CB121AF042003FB5B3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = F48002BA121AF042003FB5B3 /* images */; };
 		F481A4B02AE860FF000E46DC /* NSColor+Inverted.m in Sources */ = {isa = PBXBuildFile; fileRef = F4911FC8260A6C50004AC8CD /* NSColor+Inverted.m */; };
-		F481A4B12AE86487000E46DC /* SETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F740D92684CFA5000673C0 /* SETextView.m */; };
+		F481A4B42AE94169000E46DC /* ThemeObservingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F481A4B32AE94169000E46DC /* ThemeObservingTextView.m */; };
+		F481A4B52AE94169000E46DC /* ThemeObservingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F481A4B32AE94169000E46DC /* ThemeObservingTextView.m */; };
 		F482697F1BCAE1EE00169D8B /* TypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F482697E1BCAE1EE00169D8B /* TypeListController.m */; };
 		F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48269821BCAF1D800169D8B /* UniformTypeListController.m */; };
 		F484D45921A9DDAE006EE28D /* ScriptDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = F484D45721A9DDAE006EE28D /* ScriptDocument.icns */; };
@@ -151,7 +152,6 @@
 		F4ECE5891E5F04A4008CC395 /* UriSchemesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */; };
 		F4F14CBC1C662A4D002A2402 /* make_examples.pl in Resources */ = {isa = PBXBuildFile; fileRef = F4F14CAF1C640857002A2402 /* make_examples.pl */; };
 		F4F2F3BA1BF96C5C00FE463C /* VDKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F2F3B91BF96C5C00FE463C /* VDKQueue.m */; };
-		F4F740DA2684CFA5000673C0 /* SETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F740D92684CFA5000673C0 /* SETextView.m */; };
 		F4FB338114FBFC7C00BAECEB /* License.html in Resources */ = {isa = PBXBuildFile; fileRef = F4FB338014FBFC7C00BAECEB /* License.html */; };
 		F4FE739911F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
 		F4FE739A11F792D5005FC23A /* PlatypusAppSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */; };
@@ -285,6 +285,8 @@
 		F479672B224EB3EF00CA0746 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		F47B9F052606E9850076C3EC /* Interpreter_Python_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Python_2.png; sourceTree = "<group>"; };
 		F48002BA121AF042003FB5B3 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		F481A4B22AE94168000E46DC /* ThemeObservingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeObservingTextView.h; path = Shared/ThemeObservingTextView.h; sourceTree = "<group>"; };
+		F481A4B32AE94169000E46DC /* ThemeObservingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeObservingTextView.m; path = Shared/ThemeObservingTextView.m; sourceTree = "<group>"; };
 		F482697D1BCAE1EE00169D8B /* TypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypeListController.h; path = Application/TypeListController.h; sourceTree = "<group>"; };
 		F482697E1BCAE1EE00169D8B /* TypeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeListController.m; path = Application/TypeListController.m; sourceTree = "<group>"; };
 		F48269811BCAF1D800169D8B /* UniformTypeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniformTypeListController.h; path = Application/UniformTypeListController.h; sourceTree = "<group>"; };
@@ -382,8 +384,6 @@
 		F4F14CAF1C640857002A2402 /* make_examples.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = make_examples.pl; sourceTree = "<group>"; };
 		F4F2F3B81BF96C5C00FE463C /* VDKQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VDKQueue.h; path = Shared/Others/VDKQueue/VDKQueue.h; sourceTree = "<group>"; };
 		F4F2F3B91BF96C5C00FE463C /* VDKQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VDKQueue.m; path = Shared/Others/VDKQueue/VDKQueue.m; sourceTree = "<group>"; };
-		F4F740D82684CFA5000673C0 /* SETextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SETextView.h; path = ScriptExec/SETextView.h; sourceTree = "<group>"; };
-		F4F740D92684CFA5000673C0 /* SETextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SETextView.m; path = ScriptExec/SETextView.m; sourceTree = "<group>"; };
 		F4FB338014FBFC7C00BAECEB /* License.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = License.html; sourceTree = "<group>"; };
 		F4FE739611F792D5005FC23A /* PlatypusAppSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatypusAppSpec.h; path = Shared/PlatypusAppSpec.h; sourceTree = "<group>"; };
 		F4FE739711F792D5005FC23A /* PlatypusAppSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlatypusAppSpec.m; path = Shared/PlatypusAppSpec.m; sourceTree = "<group>"; };
@@ -427,6 +427,7 @@
 		080E96DDFE201D6D7F000001 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				F481A4B62AE9416F000E46DC /* ThemeObservingTextView */,
 				F4A8B5C72229ECB50049FA51 /* AGIconFamily */,
 				F484D46021AA03D7006EE28D /* NSFileManager+TempFiles */,
 				F45B1F041FF5610000A935D7 /* NSTask+Description */,
@@ -708,6 +709,15 @@
 			path = cat2html;
 			sourceTree = "<group>";
 		};
+		F481A4B62AE9416F000E46DC /* ThemeObservingTextView */ = {
+			isa = PBXGroup;
+			children = (
+				F481A4B22AE94168000E46DC /* ThemeObservingTextView.h */,
+				F481A4B32AE94169000E46DC /* ThemeObservingTextView.m */,
+			);
+			name = ThemeObservingTextView;
+			sourceTree = "<group>";
+		};
 		F48269801BCAE7FA00169D8B /* Drop Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,8 +768,6 @@
 				F48B7B9011F766E600351575 /* main.m */,
 				F48B7B9111F766E600351575 /* SEController.h */,
 				F43C431026876F250013914C /* SEController.m */,
-				F4F740D82684CFA5000673C0 /* SETextView.h */,
-				F4F740D92684CFA5000673C0 /* SETextView.m */,
 				F4AB18981BED3A0B00B83A95 /* SEJob.h */,
 				F4AB18991BED3A0B00B83A95 /* SEJob.m */,
 				F44A77471C1887CC003CCA7A /* Resources */,
@@ -1281,7 +1289,6 @@
 				F4975DB61B2E71EE0099D16E /* SuffixTypeListController.m in Sources */,
 				F4AB186F1BE1908100B83A95 /* NSBundle+Templates.m in Sources */,
 				F45B1EFC1FF560D800A935D7 /* NSTextView+JSDExtensions.m in Sources */,
-				F481A4B12AE86487000E46DC /* SETextView.m in Sources */,
 				F4975D751B2E09310099D16E /* STPrivilegedTask.m in Sources */,
 				F4975DB41B2E71EE0099D16E /* ShellCommandController.m in Sources */,
 				F4975DAB1B2E71EE0099D16E /* BundledFilesController.m in Sources */,
@@ -1307,6 +1314,7 @@
 				F44EFF36122971BE00CAC9C2 /* NSColor+HexTools.m in Sources */,
 				F4975DAD1B2E71EE0099D16E /* EditorController.m in Sources */,
 				F4975D711B2E09280099D16E /* NSWorkspace+Additions.m in Sources */,
+				F481A4B42AE94169000E46DC /* ThemeObservingTextView.m in Sources */,
 				F4F2F3BA1BF96C5C00FE463C /* VDKQueue.m in Sources */,
 				F4051DA91C1C812600587F1F /* STReverseDNSTextField.m in Sources */,
 				F48269831BCAF1D800169D8B /* UniformTypeListController.m in Sources */,
@@ -1326,7 +1334,6 @@
 			files = (
 				F48B7B9511F766E600351575 /* main.m in Sources */,
 				F4051D9F1C1B5AF900587F1F /* Common.m in Sources */,
-				F4F740DA2684CFA5000673C0 /* SETextView.m in Sources */,
 				F43C431126876F250013914C /* SEController.m in Sources */,
 				F44EFF0612296F3700CAC9C2 /* NSColor+HexTools.m in Sources */,
 				F4911FCA260A6C50004AC8CD /* NSColor+Inverted.m in Sources */,
@@ -1334,6 +1341,7 @@
 				F4975D741B2E09310099D16E /* STPrivilegedTask.m in Sources */,
 				F4AB186B1BE182FA00B83A95 /* Alerts.m in Sources */,
 				F4AB189A1BED3A0B00B83A95 /* SEJob.m in Sources */,
+				F481A4B52AE94169000E46DC /* ThemeObservingTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
