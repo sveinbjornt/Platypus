@@ -696,4 +696,4 @@ If you add a file named **Credits.rtf** or **Credits.html** to the bundled files
 
 ----
 
-Copyright &copy; 2003-2023 [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org)
+Copyright &copy; 2003-2024 [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org)
