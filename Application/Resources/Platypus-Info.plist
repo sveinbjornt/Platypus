@@ -411,13 +411,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1265</string>
+	<string>1266</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.13</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2003-2023 Sveinbjorn Thordarson.</string>
+	<string>© 2003-2024 Sveinbjorn Thordarson.</string>
 	<key>NSMainNibFile</key>
 	<string>Platypus</string>
 	<key>NSPrincipalClass</key>

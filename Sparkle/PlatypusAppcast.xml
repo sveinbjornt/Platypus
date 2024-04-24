@@ -12,7 +12,7 @@
                 sparkle:dsaSignature="MCwCFF2ZMCUGXbtRXDoDVg6xrozx5pUbAhRD5MBPCvxyBiZuX2xXqSoxtvYFyw=="
             sparkle:edSignature="Yu/neYBUcK6IdTuX5VW4evhYbpDMqb/upGtiTmm5AweSEwjleHMm54vMUKGJTuHlLFIOiBF9b5gSLoOUoB25Bg==" length="4755863"
             />
-            <sparkle:minimumSystemVersion>10.11.0</sparkle:minimumSystemVersion>
+            <sparkle:minimumSystemVersion>10.13.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
                 <h2>Version 5.4.1</h2>
                 <ul>
