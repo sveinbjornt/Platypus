@@ -528,6 +528,10 @@ static const NSInteger detailsHeight = 224;
     return NSTerminateNow;
 }
 
+- (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app {
+    return NO;
+}
+
 #pragma mark - NSWindowDelegate
 
 - (void)windowWillClose:(NSNotification *)notification {

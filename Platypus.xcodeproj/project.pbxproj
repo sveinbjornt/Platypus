@@ -1909,6 +1909,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEAD_CODE_STRIPPING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Development;
@@ -1918,6 +1919,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEAD_CODE_STRIPPING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Deployment;
@@ -1927,6 +1929,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEAD_CODE_STRIPPING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Default;
@@ -2025,6 +2028,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEAD_CODE_STRIPPING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Development;
@@ -2034,6 +2038,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEAD_CODE_STRIPPING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Deployment;
@@ -2043,6 +2048,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEAD_CODE_STRIPPING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Default;

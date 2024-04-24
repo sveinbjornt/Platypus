@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "LOCATION: http://example.com\n"
+echo "LOCATION:http://example.com\n"
 
 
 #echo "SUBMENU|Title|Item1|Item2|Item3"
