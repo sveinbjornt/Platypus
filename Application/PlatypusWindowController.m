@@ -533,7 +533,9 @@
     spec[AppSpecKey_Name] = [appNameTextField stringValue];
     spec[AppSpecKey_ScriptPath] = [scriptPathTextField stringValue];
     spec[AppSpecKey_InterfaceType] = [interfaceTypePopupButton titleOfSelectedItem];
-    spec[AppSpecKey_IconPath] = [iconController icnsFilePath];
+    if ([iconController hasIconFile]) {
+        spec[AppSpecKey_IconPath] = [iconController icnsFilePath];
+    }
     
     spec[AppSpecKey_InterpreterPath] = [interpreterPathTextField stringValue];
     spec[AppSpecKey_InterpreterArgs] = [argsController interpreterArgs];
