@@ -90,7 +90,7 @@ Use **Script Type** to specify an interpreter for your script. Either select one
 
 Most of the time, you do not need to specify this manually. Whenever you open a script file, Platypus automatically tries to determine its type based on the file suffix and shebang line (`#!`). If you have specified this meta-data in the script file itself, Platypus is usually smart enough to figure it out.
 
-Please note that the interpreter must exist on the system where the application is run. All the preset scripting language interpreters (except Node.js) are a standard part of all macOS installations.
+Please note that the interpreter must exist on the system where the application is run. Most of the preset scripting language interpreters are a standard part of all macOS installations.
 
 **Args** let you add arguments to the script and/or its interpreter.
 
@@ -217,17 +217,17 @@ Selecting **Accept Dropped Text** makes the app accept dragged snippets of text.
 
 **Provide macOS Service** makes the app register as a text-processing [Dynamic Service](http://www.computerworld.com/article/2476298/mac-os-x/os-x-a-quick-guide-to-services-on-your-mac.html), accessible from the **Services** submenu of application menus. You also need to enable this if you want your app to accept text snippets or URLs dropped on its Dock/Finder icon.
 
-**Register as URI scheme handler** makes the app register as a handler for [URI schemes](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). These can be either standard URI schemes such as http or custom URI schemes of your choice (e.g. `myscheme://`). If your app is the default handler for a URI scheme, it will launch every time a URL matching the scheme is opened. The URL is then passed to the script as an argument.
+**Register as URI scheme handler** makes the app register as a handler for [URI schemes](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). These can be either standard URI schemes such as `http://` or custom URI schemes of your choice (e.g. `myscheme://`). If your app is the default handler for a URI scheme, it will launch every time a URL matching the scheme is opened. The URL is then passed to the script as an argument.
 
 
 
 ### Build-Time Options
 
-Platypus allows you to **create development versions** of your script application. Ordinarily, the script and any bundled files are copied into the resulting application. If **Development Version** is selected in the **Create app** dialog, a symlink to the original script and bundled files is created instead. This allows you to edit your script file while simultaneously testing it as a Platypus app.
+Platypus allows you to **create development versions** of your script application. Ordinarily, the script and any bundled files are copied into the resulting application. If **Create symlink** is selected in the **Create app** dialog, a symlink to the original script and bundled files is created instead. This allows you to edit your script file and bundled files while simultaneously testing it as a Platypus app.
 
 <img src="images/create_options.png" width="349">
 
-**Optimize Application**: Strip and compile the nib file in the application in order to reduce its size. This makes the nib uneditable. Only works if Xcode is installed.
+**Strip nib**: Strip and compile the nib file in the application in order to reduce its size. This makes the nib uneditable. Only works if Xcode is installed.
 
 
 
