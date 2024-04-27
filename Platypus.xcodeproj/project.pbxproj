@@ -281,6 +281,7 @@
 		F45BB361219224E900DC7A00 /* make_man_html.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = make_man_html.sh; sourceTree = "<group>"; };
 		F45BB3672192397900DC7A00 /* Preferences.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Preferences.icns; sourceTree = "<group>"; };
 		F46EF84E13C3F36900E4C0E4 /* Examples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Examples; sourceTree = "<group>"; };
+		F4714B592BDC3C7B00827A48 /* CHANGES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGES.md; sourceTree = "<group>"; };
 		F471ED1D122DF096001F4761 /* PlatypusAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PlatypusAppIcon.icns; sourceTree = "<group>"; };
 		F479672B224EB3EF00CA0746 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		F47B9F052606E9850076C3EC /* Interpreter_Python_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Python_2.png; sourceTree = "<group>"; };
@@ -378,7 +379,6 @@
 		F4E1F6FC11F758FB007EE2E3 /* platypus_clt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = platypus_clt; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E482BF28BD61BC00F99216 /* Interpreter_Dart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_Dart.png; sourceTree = "<group>"; };
 		F4E5E4011EE2F22E0072EACE /* Documentation.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Documentation.md; sourceTree = "<group>"; };
-		F4ECE1A011F7746A000DB012 /* CHANGES.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES.txt; sourceTree = SOURCE_ROOT; };
 		F4ECE5871E5F04A4008CC395 /* UriSchemesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UriSchemesListController.h; path = Application/UriSchemesListController.h; sourceTree = "<group>"; };
 		F4ECE5881E5F04A4008CC395 /* UriSchemesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UriSchemesListController.m; path = Application/UriSchemesListController.m; sourceTree = "<group>"; };
 		F4F14CAF1C640857002A2402 /* make_examples.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = make_examples.pl; sourceTree = "<group>"; };
@@ -464,7 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				F4975D7A1B2E462A0099D16E /* README.md */,
-				F4ECE1A011F7746A000DB012 /* CHANGES.txt */,
+				F4714B592BDC3C7B00827A48 /* CHANGES.md */,
 				F442E00B1EA38C7100BAD80C /* LICENSE.txt */,
 				F479672B224EB3EF00CA0746 /* Makefile */,
 				F4911FC7260A5D53004AC8CD /* macos.yml */,

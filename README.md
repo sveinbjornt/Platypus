@@ -21,9 +21,12 @@ status menu items, launchers and automations using Platypus.
 
 ## Features
 
-* Supports shell scripts, Python, Perl, Ruby, PHP, Swift, Expect, Tcl, AWK, JavaScript, Dart, AppleScript or any other user-specified interpreter
-* Apps can display graphical feedback of script execution as a progress bar, text window with script output, droplet, WebKit HTML rendering or status item menu
-* Apps support receiving dragged and dropped files or text snippets, which are then passed to the script as arguments
+* Supports shell scripts, Python, Perl, Ruby, PHP, Swift, Expect, Tcl, 
+AWK, JavaScript, Dart, AppleScript or any other user-specified interpreter
+* Apps can display graphical feedback of script execution as a progress bar, 
+text window with script output, droplet, WebKit HTML rendering or status item menu
+* Apps support receiving dragged and dropped files or text snippets, which are
+then passed to the script as arguments
 * Apps can execute scripts with root privileges via the macOS Security Framework
 * Apps can register as handlers for URI schemes and send user notifications
 * Apps can be configured to run in the background (LSUIElement)
@@ -33,7 +36,8 @@ status menu items, launchers and automations using Platypus.
 * Command line tool for automation and build process integration
 * "Profiles" can be used to save app configurations
 * Built-in script editor, or linking with external editor of choice
-* Extensive [documentation](Documentation/Documentation.md) and many built-in examples to help you get started
+* Extensive [documentation](Documentation/Documentation.md) and many built-in
+examples to help you get started
 * Generates slim and speedy native applications that launch and run quickly
 * Fast, responsive native app written in Objective-C/Cocoa
 
@@ -41,9 +45,12 @@ status menu items, launchers and automations using Platypus.
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BDT58J7HYKAEE"><img align="right" src="https://www.paypalobjects.com/WEBSCR-640-20110306-1/en_US/i/btn/btn_donate_LG.gif" ></a>
 
-Platypus is free, open source software and has been continuously developed and maintained for over 20 years. **If you find this program useful, please [make a donation](https://sveinbjorn.org/donations).**
+Platypus is free, open source software and has been continuously developed 
+and maintained for over 20 years. **If you find this program useful, 
+please [make a donation](https://sveinbjorn.org/donations).**
 
-* **[⇩ Download Platypus 5.4.1](https://sveinbjorn.org/files/software/platypus.zip)**  (Intel/ARM 64-bit, 10.11 or later, ~4.5 MB)
+* **[⇩ Download Platypus 5.4.1](https://sveinbjorn.org/files/software/platypus.zip)** 
+(Intel/ARM 64-bit, 10.11 or later, ~4.5 MB)
 
 Platypus can also be installed via [Homebrew](https://brew.sh) (may not be latest version):
 
@@ -85,7 +92,8 @@ Platypus lets you select one of several different user interfaces for your scrip
 
 ## Building Platypus
 
-To build Platypus, run the following command from the repository root (requires Xcode build tools):
+To build Platypus, run the following command from the repository root 
+(requires Xcode build tools):
 
 ```shell
 $ make build_unsigned
@@ -107,7 +115,8 @@ With these caveats in mind, here is the BSD-licensed source code to Platypus.
 
 ## BSD License 
 
-Copyright (c) 2003-2024 Sveinbjorn Thordarson &lt;<a href="mailto:">sveinbjorn@sveinbjorn.org</a>&gt;
+Copyright (c) 2003-2024 Sveinbjorn Thordarson 
+&lt;<a href="mailto:">sveinbjorn@sveinbjorn.org</a>&gt;
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
