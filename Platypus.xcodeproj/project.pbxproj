@@ -39,8 +39,6 @@
 		F4051DA11C1B5AF900587F1F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051D9E1C1B5AF900587F1F /* Common.m */; };
 		F4051DA91C1C812600587F1F /* STReverseDNSTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4051DA81C1C812600587F1F /* STReverseDNSTextField.m */; };
 		F4146CCF2149E76000BB36AD /* Interpreter_AWK.png in Resources */ = {isa = PBXBuildFile; fileRef = F4146CCE2149E76000BB36AD /* Interpreter_AWK.png */; };
-		F42A93DD21783EB900C40D46 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D62178365C00C40D46 /* AppKit.framework */; };
-		F42A93DE21783EB900C40D46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42A93D52178365C00C40D46 /* Foundation.framework */; };
 		F42E2EAB20A9E001003D2E89 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F42E2EAA20A9E001003D2E89 /* Credits.rtf */; };
 		F43142B01C03C742004EEF8C /* PlatypusScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B1EDE17935BBC007DA173 /* PlatypusScriptUtils.m */; };
 		F436471421A1BD9D00A8749D /* platypus.1 in Resources */ = {isa = PBXBuildFile; fileRef = F45BB35A219224E900DC7A00 /* platypus.1 */; };
@@ -208,8 +206,6 @@
 		F4051DA71C1C812600587F1F /* STReverseDNSTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STReverseDNSTextField.h; path = Shared/STReverseDNSTextField.h; sourceTree = "<group>"; };
 		F4051DA81C1C812600587F1F /* STReverseDNSTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STReverseDNSTextField.m; path = Shared/STReverseDNSTextField.m; sourceTree = "<group>"; };
 		F4146CCE2149E76000BB36AD /* Interpreter_AWK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Interpreter_AWK.png; sourceTree = "<group>"; };
-		F42A93D52178365C00C40D46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F42A93D62178365C00C40D46 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F42A93E52178485C00C40D46 /* args.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = args.py; sourceTree = "<group>"; };
 		F42E2EAA20A9E001003D2E89 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		F43C430C26876F060013914C /* img1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img1.png; sourceTree = "<group>"; };
@@ -383,9 +379,7 @@
 				F49DB78C25727B29009B6257 /* WebKit.framework in Frameworks */,
 				F49DB78A25727B24009B6257 /* Cocoa.framework in Frameworks */,
 				F4E482C428C42CA400F99216 /* Sparkle.framework in Frameworks */,
-				F42A93DD21783EB900C40D46 /* AppKit.framework in Frameworks */,
 				F49DB78E25727B2F009B6257 /* Security.framework in Frameworks */,
-				F42A93DE21783EB900C40D46 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,11 +443,11 @@
 		29B97314FDCFA39411CA2CEA /* Platypus */ = {
 			isa = PBXGroup;
 			children = (
+				F4911FC7260A5D53004AC8CD /* macos.yml */,
 				F4975D7A1B2E462A0099D16E /* README.md */,
 				F4714B592BDC3C7B00827A48 /* CHANGES.md */,
 				F442E00B1EA38C7100BAD80C /* LICENSE.txt */,
 				F479672B224EB3EF00CA0746 /* Makefile */,
-				F4911FC7260A5D53004AC8CD /* macos.yml */,
 				F4F14CBB1C64264D002A2402 /* Scripts */,
 				F4DC074D11F629A40043764E /* Documentation */,
 				F4B4F71C2231ECD300F3C073 /* Common */,
@@ -492,8 +486,6 @@
 				F49DB78B25727B29009B6257 /* WebKit.framework */,
 				F49DB78925727B24009B6257 /* Cocoa.framework */,
 				F49DB78125727B05009B6257 /* Sparkle.framework */,
-				F42A93D62178365C00C40D46 /* AppKit.framework */,
-				F42A93D52178365C00C40D46 /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1012,15 +1004,11 @@
 				};
 			};
 			buildConfigurationList = F41B2181085CD8FF00B63B0D /* Build configuration list for PBXProject "Platypus" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				fr,
-				Base,
-				ja,
 				en,
-				de,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Platypus */;
 			projectDirPath = "";
@@ -1373,7 +1361,6 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_TEMP_DIR = "";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
@@ -1389,7 +1376,6 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
@@ -1397,9 +1383,7 @@
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GENERATE_PKGINFO_FILE = NO;
-				GENERATE_PROFILING_CODE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
@@ -1423,10 +1407,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.Platypus;
 				PRODUCT_NAME = Platypus;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
-				SECTORDER_FLAGS = "";
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
 				VALIDATE_PRODUCT = NO;
 				WARNING_CFLAGS = (
 					"-Wno-gnu",
@@ -1439,7 +1419,6 @@
 		F41B217F085CD8FF00B63B0D /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1450,7 +1429,6 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_TEMP_DIR = "";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
@@ -1468,7 +1446,6 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_THREADSAFE_STATICS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
@@ -1477,7 +1454,6 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GENERATE_PKGINFO_FILE = NO;
 				HEADER_SEARCH_PATHS = "";
-				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
@@ -1501,11 +1477,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.Platypus;
 				PRODUCT_NAME = Platypus;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
-				SECTORDER_FLAGS = "";
-				SHARED_PRECOMPS_DIR = "";
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
-				SYMROOT = "";
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = (
 					"-Wno-gnu",
@@ -1515,83 +1487,16 @@
 			};
 			name = Deployment;
 		};
-		F41B2180085CD8FF00B63B0D /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
-				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_TEMP_DIR = "";
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = 5WX26Y89JP;
-				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Sparkle",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_TRIGRAPHS = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PrefixHeader.pch;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				HEADER_SEARCH_PATHS = "";
-				IBC_FLATTEN_NIBS = YES;
-				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
-				INFOPLIST_FILE = "Application/Resources/Platypus-Info.plist";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
-				INFOPLIST_OUTPUT_FORMAT = binary;
-				INFOPLIST_PREPROCESS = NO;
-				INSTALL_PATH = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-Wl,-rpath,@loader_path/../Frameworks",
-					"-Xlinker",
-					"-U",
-					"-Xlinker",
-					_objc_readClassPair,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.Platypus;
-				PRODUCT_NAME = Platypus;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
-				SECTORDER_FLAGS = "";
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
-				VALIDATE_PRODUCT = NO;
-				WARNING_CFLAGS = (
-					"-Wno-gnu",
-					"-Wpartial-availability",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
 		F41B2182085CD8FF00B63B0D /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_LINK_OBJC_RUNTIME = YES;
 				CLANG_WARN_ASSIGN_ENUM = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -1609,17 +1514,14 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
-				CONFIGURATION_TEMP_DIR = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_CW_ASM_SYNTAX = NO;
+				ENABLE_TESTABILITY = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_PASCAL_STRINGS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
@@ -1639,21 +1541,17 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GENERATE_PROFILING_CODE = YES;
-				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INFOPLIST_PREPROCESS = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PLIST_FILE_OUTPUT_FORMAT = XML;
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIPFLAGS = "-x";
-				SYMROOT = build/;
 				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Development;
@@ -1661,9 +1559,13 @@
 		F41B2183085CD8FF00B63B0D /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_LINK_OBJC_RUNTIME = YES;
 				CLANG_WARN_ASSIGN_ENUM = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -1681,17 +1583,14 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
-				CONFIGURATION_TEMP_DIR = "";
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = NO;
-				GCC_CW_ASM_SYNTAX = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_PASCAL_STRINGS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -1713,117 +1612,41 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBC_FLATTEN_NIBS = YES;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INFOPLIST_PREPROCESS = NO;
 				LINKER_DISPLAYS_MANGLED_NAMES = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PLIST_FILE_OUTPUT_FORMAT = binary;
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				STRIPFLAGS = "-x";
-				SYMROOT = build/;
 				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Deployment;
 		};
-		F41B2184085CD8FF00B63B0D /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_LINK_OBJC_RUNTIME = YES;
-				CLANG_WARN_ASSIGN_ENUM = NO;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_SEMICOLON_BEFORE_METHOD_BODY = NO;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				CONFIGURATION_TEMP_DIR = "";
-				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEPLOYMENT_POSTPROCESSING = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = NO;
-				GCC_CW_ASM_SYNTAX = NO;
-				GCC_ENABLE_CPP_EXCEPTIONS = NO;
-				GCC_ENABLE_CPP_RTTI = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_PASCAL_STRINGS = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				GCC_STRICT_ALIASING = YES;
-				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_PEDANTIC = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBC_FLATTEN_NIBS = YES;
-				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
-				INFOPLIST_OUTPUT_FORMAT = binary;
-				INFOPLIST_PREPROCESS = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
-				PLIST_FILE_OUTPUT_FORMAT = binary;
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				STRINGS_FILE_OUTPUT_ENCODING = binary;
-				STRIPFLAGS = "-x";
-				SYMROOT = build/;
-				WARNING_CFLAGS = "-Wpartial-availability";
-			};
-			name = Default;
-		};
 		F48B774411F7661D00351575 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = 5WX26Y89JP;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
 				EXCLUDED_SOURCE_FILE_NAMES = "";
-				GCC_CW_ASM_SYNTAX = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GENERATE_PKGINFO_FILE = NO;
-				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "ScriptExec/Resources/ScriptExec-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -1834,8 +1657,6 @@
 				PLIST_FILE_OUTPUT_FORMAT = xml;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
 				PRODUCT_NAME = ScriptExec;
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
 				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Development;
@@ -1843,23 +1664,21 @@
 		F48B774511F7661D00351575 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = 5WX26Y89JP;
-				EXCLUDED_SOURCE_FILE_NAMES = "PlatypusScriptAnalyser.*";
-				GCC_CW_ASM_SYNTAX = NO;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
+				EXCLUDED_SOURCE_FILE_NAMES = "";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_PASCAL_STRINGS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_UNROLL_LOOPS = NO;
 				GENERATE_PKGINFO_FILE = NO;
-				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
 				INFOPLIST_FILE = "ScriptExec/Resources/ScriptExec-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -1869,41 +1688,9 @@
 				PLIST_FILE_OUTPUT_FORMAT = binary;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
 				PRODUCT_NAME = ScriptExec;
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
 				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Deployment;
-		};
-		F48B774611F7661D00351575 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = 5WX26Y89JP;
-				EXCLUDED_SOURCE_FILE_NAMES = "";
-				GCC_CW_ASM_SYNTAX = NO;
-				GCC_ENABLE_PASCAL_STRINGS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = PrefixHeader.pch;
-				GENERATE_PKGINFO_FILE = NO;
-				IBC_FLATTEN_NIBS = NO;
-				INFOPLIST_EXPAND_BUILD_SETTINGS = NO;
-				INFOPLIST_FILE = "ScriptExec/Resources/ScriptExec-Info.plist";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				INSTALL_PATH = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.ScriptExec;
-				PRODUCT_NAME = ScriptExec;
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
-				WARNING_CFLAGS = "-Wpartial-availability";
-			};
-			name = Default;
 		};
 		F4DC737F21644E0400D79823 /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -1911,10 +1698,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEAD_CODE_STRIPPING = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				OBJROOT = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
 			};
 			name = Development;
 		};
@@ -1924,30 +1708,13 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEAD_CODE_STRIPPING = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				OBJROOT = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
 			};
 			name = Deployment;
-		};
-		F4DC738121644E0400D79823 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				DEAD_CODE_STRIPPING = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				OBJROOT = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
-			};
-			name = Default;
 		};
 		F4E1F6FE11F758FC007EE2E3 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
@@ -1964,7 +1731,6 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = "";
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -1973,15 +1739,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.sveinbjorn.platypus-clt";
 				PRODUCT_NAME = platypus_clt;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
 			};
 			name = Development;
 		};
 		F4E1F6FF11F758FC007EE2E3 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
@@ -1997,7 +1760,6 @@
 				);
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INSTALL_PATH = "";
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -2005,39 +1767,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.sveinbjorn.platypus-clt";
 				PRODUCT_NAME = platypus_clt;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
 			};
 			name = Deployment;
-		};
-		F4E1F70011F758FC007EE2E3 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 5WX26Y89JP;
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = 5WX26Y89JP;
-				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Sparkle",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PrefixHeader.pch;
-				INSTALL_PATH = "";
-				MACH_O_TYPE = mh_execute;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.sveinbjorn.platypus-clt";
-				PRODUCT_NAME = platypus_clt;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
-			};
-			name = Default;
 		};
 		F4F14CB71C640B1E002A2402 /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -2046,8 +1777,6 @@
 				DEAD_CODE_STRIPPING = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
 			};
 			name = Development;
 		};
@@ -2058,22 +1787,8 @@
 				DEAD_CODE_STRIPPING = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
 			};
 			name = Deployment;
-		};
-		F4F14CB91C640B1E002A2402 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				DEAD_CODE_STRIPPING = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SHARED_PRECOMPS_DIR = "";
-				SYMROOT = "";
-			};
-			name = Default;
 		};
 /* End XCBuildConfiguration section */
 
@@ -2083,7 +1798,6 @@
 			buildConfigurations = (
 				F41B217E085CD8FF00B63B0D /* Development */,
 				F41B217F085CD8FF00B63B0D /* Deployment */,
-				F41B2180085CD8FF00B63B0D /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
@@ -2093,7 +1807,6 @@
 			buildConfigurations = (
 				F41B2182085CD8FF00B63B0D /* Development */,
 				F41B2183085CD8FF00B63B0D /* Deployment */,
-				F41B2184085CD8FF00B63B0D /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
@@ -2103,7 +1816,6 @@
 			buildConfigurations = (
 				F48B774411F7661D00351575 /* Development */,
 				F48B774511F7661D00351575 /* Deployment */,
-				F48B774611F7661D00351575 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
@@ -2113,7 +1825,6 @@
 			buildConfigurations = (
 				F4DC737F21644E0400D79823 /* Development */,
 				F4DC738021644E0400D79823 /* Deployment */,
-				F4DC738121644E0400D79823 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
@@ -2123,7 +1834,6 @@
 			buildConfigurations = (
 				F4E1F6FE11F758FC007EE2E3 /* Development */,
 				F4E1F6FF11F758FC007EE2E3 /* Deployment */,
-				F4E1F70011F758FC007EE2E3 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
@@ -2133,7 +1843,6 @@
 			buildConfigurations = (
 				F4F14CB71C640B1E002A2402 /* Development */,
 				F4F14CB81C640B1E002A2402 /* Deployment */,
-				F4F14CB91C640B1E002A2402 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;

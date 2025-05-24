@@ -29,6 +29,7 @@
 */
 
 #import "UniformTypeListController.h"
+#import "Common.h"
 
 @implementation UniformTypeListController
 

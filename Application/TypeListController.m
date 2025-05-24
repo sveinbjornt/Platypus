@@ -29,6 +29,7 @@
 */
 
 #import "TypeListController.h"
+#import "Common.h"
 
 @interface TypeListController()
 {

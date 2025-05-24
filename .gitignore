@@ -30,3 +30,4 @@ Tests/platypus
 Tests/*.app
 Tests/args.txt
 Platypus-*
+.claude

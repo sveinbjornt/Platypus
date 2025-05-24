@@ -22,8 +22,8 @@
 #import "VDKQueue.h"
 #import <unistd.h>
 #import <fcntl.h>
-#include <sys/stat.h>
-
+#import <sys/stat.h>
+#import <Cocoa/Cocoa.h>
 
 
 NSString * VDKQueueRenameNotification = @"VDKQueueFileRenamedNotification";

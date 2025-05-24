@@ -28,6 +28,8 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
+#import <Foundation/Foundation.h>
+
 // General program information
 #define PROGRAM_NAME                @"Platypus"
 #define PROGRAM_VERSION             @"5.5.0"
