@@ -28,7 +28,7 @@
 
 ## Version history
 
-### For 5.4.2 - 24/04/2024
+### For 5.5.0 - 24/05/2025
 
 * Fixed bug where the argument settings window would lock up
 * Better support for Dark Mode

@@ -1,6 +1,6 @@
 <img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="128" height="128" src="images/platypus.png"  align="right">
 
-# Documentation for Platypus 5.4.2
+# Documentation for Platypus 5.5.0
 
 Last updated on April 23rd, 2024. The latest version of this document can be found [here](https://sveinbjorn.org/platypus_documentation).
 
@@ -696,4 +696,4 @@ If you add a file named **Credits.rtf** or **Credits.html** to the bundled files
 
 ----
 
-Copyright &copy; 2003-2024 [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org)
+Copyright &copy; 2003-2025 [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org)

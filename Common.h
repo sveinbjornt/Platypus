@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification, 
@@ -30,7 +30,7 @@
 
 // General program information
 #define PROGRAM_NAME                @"Platypus"
-#define PROGRAM_VERSION             @"5.4.2"
+#define PROGRAM_VERSION             @"5.5.0"
 #define PROGRAM_CREATOR_STAMP       [NSString stringWithFormat:@"%@-%@", PROGRAM_NAME, PROGRAM_VERSION]
 #define PROGRAM_MIN_SYS_VERSION     @"10.13.0"
 #define PROGRAM_BUNDLE_IDENTIFIER   [NSString stringWithFormat:@"org.sveinbjorn.%@", PROGRAM_NAME]
