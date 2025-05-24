@@ -29,7 +29,7 @@
 */
 
 #import "ShellCommandController.h"
-#import "PrefsController.h"
+#import "SettingsController.h"
 #import "PlatypusAppSpec.h"
 #import "Common.h"
 #import "NSWorkspace+Additions.h"
@@ -62,8 +62,8 @@
     NSString *cmdStr = [appSpec commandStringUsingShortOpts:[useShortOptsCheckbox intValue]];
     [textView setString:cmdStr];
     
-    // Get rid of this ugly connection to PrefsController :/
-    [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
+    // Get rid of this ugly connection to SettingsController :/
+    [SettingsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
     
     [NSApp beginSheet:[self window]
        modalForWindow:parentWindow

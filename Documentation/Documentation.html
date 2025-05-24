@@ -364,7 +364,7 @@ If you want to target 10.6 and/or 32-bit Intel systems,
 <p><strong>Script Path</strong></p>
 <p>Path to the script you want to create an app from. Either use the <strong>Select</strong> button to select a script, or drag a script file on the Platypus window. You can also type in a path  manually (the text field supports supports shell-style tab autocompletion).</p>
 <p><img src="images/script_path.png" width="492" alt="Platypus Script Path"></p>
-<p>Once you have selected a script, you can press the <strong>Edit</strong> button to open it in your default text editor. Platypus defaults to using a very basic built-in text editor. You can change this in the <strong>Preferences</strong> if you want to use a more capable external editor.</p>
+<p>Once you have selected a script, you can press the <strong>Edit</strong> button to open it in your default text editor. Platypus defaults to using a very basic built-in text editor. You can change this in the <strong>Settings</strong> if you want to use a more capable external editor.</p>
 <p>The <strong>New</strong> button creates a script file in the Platypus Application Support folder and opens it in the default editor. The <strong>Reveal</strong> button reveals the script file in the Finder.</p>
 <h3 id="interpreter">Interpreter</h3>
 <p><img src="images/script_type.png" style="float: right; margin-left:20px; margin-bottom:20px;" width="135"></p>
@@ -402,7 +402,7 @@ If you want to target 10.6 and/or 32-bit Intel systems,
 <p>Please note that having Platypus create the icon from an ordinary image file will typically not result in an icon that looks good at smaller sizes. For best results, use professional icon-editing software and import a carefully crafted <code>.icns</code> file using the <strong>Select .icns file</strong> option.</p>
 <h3 id="identifier-author-and-version">Identifier, Author and Version</h3>
 <p>The <strong>Identifier</strong> text field specifies the unique identifier for the application. If you have already set an application name, this will default to something in the form of &quot;org.yourusername.YourAppName&quot;.</p>
-<p>Every macOS application has a unique string called a bundle identifier, which takes the form of a reverse DNS name (e.g. &quot;com.apple.iTunes&quot; or &quot;org.sveinbjorn.Platypus&quot;). Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to whatever you want. The default bundle identifier prefix can be configured in <strong>Preferences</strong>.</p>
+<p>Every macOS application has a unique string called a bundle identifier, which takes the form of a reverse DNS name (e.g. &quot;com.apple.iTunes&quot; or &quot;org.sveinbjorn.Platypus&quot;). Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to whatever you want. The default bundle identifier prefix can be configured in <strong>Settings</strong>.</p>
 <p><img src="images/author_identifier.png" width="427"></p>
 <p>You can also set <strong>Author</strong> and <strong>Version</strong> metadata. This information will appear in the Finder &quot;Get Info&quot; window for your application and in the About window accessible through the application menu.</p>
 <h3 id="special-options">Special Options</h3>
@@ -434,19 +434,19 @@ If you want to target 10.6 and/or 32-bit Intel systems,
 <h3 id="built-in-editor">Built-In Editor</h3>
 <p>Platypus includes a very basic built-in text editor for editing scripts. Press the <strong>Edit</strong> button to bring it up.</p>
 <p><img src="images/built-in_editor.png" width="600"></p>
-<p>A more capable external editor can be set in <strong>Preferences.</strong></p>
+<p>A more capable external editor can be set in <strong>Settings.</strong></p>
 <h3 id="syntax-checking">Syntax Checking</h3>
 <p>The <strong>Check Script Syntax</strong> menu verifies the syntax of the script by running it through the interpreter&#39;s syntax checker.</p>
 <p>This feature only works for interpreters that support syntax checking (bash, Perl, Python, Ruby, PHP and Swift).</p>
 <p><img src="images/syntax_checker.png" width="473"></p>
 <h3 id="show-shell-command">Show Shell Command</h3>
-<p>Platypus includes a <strong>command line tool</strong> counterpart to the Platypus.app application, <code>platypus</code>, which can be installed into <code>/usr/local/bin/</code> via <strong>Preferences</strong>. The man page for this tool is available from the Help menu, and via the command line. There is also an <a href="https://sveinbjorn.org/files/manpages/platypus.man.html">online version available</a></a>.</p>
+<p>Platypus includes a <strong>command line tool</strong> counterpart to the Platypus.app application, <code>platypus</code>, which can be installed into <code>/usr/local/bin/</code> via <strong>Settings</strong>. The man page for this tool is available from the Help menu, and via the command line. There is also an <a href="https://sveinbjorn.org/files/manpages/platypus.man.html">online version available</a></a>.</p>
 <p>The command line tool does not in any way depend on the Platypus application once it has been installed.</p>
 <p><img src="images/shell_command.png" width="471"></p>
 <p><strong>Show Shell Command</strong> in the <strong>Action</strong> menu displays the command required to execute the platypus command line tool using all the options selected in the graphical interface. This can be helpful if you have the command line tool installed and want to automate the creation of script apps within a larger build process.</p>
-<h2 id="preferences">Preferences</h2>
-<p>The Platypus Preferences should be pretty self-explanatory. You can select an editor of choice, set the default author and bundle identifier settings, set the behaviour of Platypus on app creation, and install/uninstall the <code>platypus</code> command line tool.</p>
-<p><img src="images/preferences.png" width="313"></p>
+<h2 id="settings">Settings</h2>
+<p>The Platypus Settings should be pretty self-explanatory. You can select an editor of choice, set the default author and bundle identifier settings, set the behaviour of Platypus on app creation, and install/uninstall the <code>platypus</code> command line tool.</p>
+<p><img src="images/settings.png" width="313"></p>
 <h2 id="profiles">Profiles</h2>
 <h3 id="saving-and-loading">Saving and Loading</h3>
 <p>Profiles let you save Platypus application configuration settings. These can then be loaded by Platypus or the <code>platypus</code> command line tool. The Profiles menu is used to save and access profiles. Profiles are stored as files, typically in the <strong>Profiles</strong> folder of the Platypus Application Support folder (<code>~/Library/Application Support/Platypus/Profiles</code>).</p>

@@ -58,7 +58,7 @@
 #define NEW_SCRIPT_FILENAME         @"Script"
 
 // Command line tool seetings
-#define CMDLINE_PROGNAME_BUNDLE     @"platypus_clt.gz"
+#define CMDLINE_PROGNAME_BUNDLE     @"platypus_clt"
 #define CMDLINE_PROGNAME            @"platypus"
 #define CMDLINE_SCRIPTEXEC_BIN_NAME @"ScriptExec"
 #define CMDLINE_SCRIPTEXEC_GZIP_NAME @"ScriptExec.gz"

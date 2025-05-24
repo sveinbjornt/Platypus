@@ -278,7 +278,7 @@
     
     if (![FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH]) {
         [Alerts alert:@"Command line tool not installed"
-              subText:@"To build the examples, you need to install the command line tool in Preferences."];
+              subText:@"To build the examples, you need to install the command line tool in Settings."];
         return;
     }
     

@@ -33,6 +33,7 @@
 * Fixed bug where the argument settings window would lock up
 * Better support for Dark Mode
 * Platypus now requires macOS 10.13 or later
+* Preferences now named Settings according to new macOS convention
 
 ### For 5.4.1 - 22/10/2022
 

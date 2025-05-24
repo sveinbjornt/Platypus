@@ -31,7 +31,7 @@ chmod -R 755 "%%CMDLINE_SHARE_PATH%%"
 
 # Command line tool binary
 echo "Installing command line tool"
-gunzip -c "%%CMDLINE_PROGNAME_BUNDLE%%" > "%%CMDLINE_TOOL_PATH%%"
+cp "%%CMDLINE_PROGNAME_BUNDLE%%" "%%CMDLINE_TOOL_PATH%%"
 chown ${REAL_USER_ID} "%%CMDLINE_TOOL_PATH%%"
 chmod +x "%%CMDLINE_TOOL_PATH%%"
 

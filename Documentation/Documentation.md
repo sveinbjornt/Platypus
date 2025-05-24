@@ -76,7 +76,7 @@ Path to the script you want to create an app from. Either use the **Select** but
 
 <img src="images/script_path.png" width="492" alt="Platypus Script Path">
     
-Once you have selected a script, you can press the **Edit** button to open it in your default text editor. Platypus defaults to using a very basic built-in text editor. You can change this in the **Preferences** if you want to use a more capable external editor.
+Once you have selected a script, you can press the **Edit** button to open it in your default text editor. Platypus defaults to using a very basic built-in text editor. You can change this in the **Settings** if you want to use a more capable external editor.
 
 The **New** button creates a script file in the Platypus Application Support folder and opens it in the default editor. The **Reveal** button reveals the script file in the Finder.
 
@@ -160,7 +160,7 @@ Please note that having Platypus create the icon from an ordinary image file wil
 
 The **Identifier** text field specifies the unique identifier for the application. If you have already set an application name, this will default to something in the form of "org.yourusername.YourAppName".
 
-Every macOS application has a unique string called a bundle identifier, which takes the form of a reverse DNS name (e.g. "com.apple.iTunes" or "org.sveinbjorn.Platypus"). Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to whatever you want. The default bundle identifier prefix can be configured in **Preferences**.
+Every macOS application has a unique string called a bundle identifier, which takes the form of a reverse DNS name (e.g. "com.apple.iTunes" or "org.sveinbjorn.Platypus"). Platypus automatically formats the bundle identifier using the application name and default user name, but you can set it to whatever you want. The default bundle identifier prefix can be configured in **Settings**.
 
 <img src="images/author_identifier.png" width="427">
 
@@ -237,7 +237,7 @@ Platypus includes a very basic built-in text editor for editing scripts. Press t
 
 <img src="images/built-in_editor.png" width="600">
 
-A more capable external editor can be set in **Preferences.**
+A more capable external editor can be set in **Settings.**
 
 
 
@@ -253,7 +253,7 @@ This feature only works for interpreters that support syntax checking (bash, Per
 
 ### Show Shell Command
 
-Platypus includes a **command line tool** counterpart to the Platypus.app application, `platypus`, which can be installed into `/usr/local/bin/` via **Preferences**. The man page for this tool is available from the Help menu, and via the command line. There is also an [online version available](https://sveinbjorn.org/files/manpages/platypus.man.html)</a>.
+Platypus includes a **command line tool** counterpart to the Platypus.app application, `platypus`, which can be installed into `/usr/local/bin/` via **Settings**. The man page for this tool is available from the Help menu, and via the command line. There is also an [online version available](https://sveinbjorn.org/files/manpages/platypus.man.html)</a>.
 
 The command line tool does not in any way depend on the Platypus application once it has been installed.
 
@@ -263,11 +263,11 @@ The command line tool does not in any way depend on the Platypus application onc
 
 
 
-## Preferences
+## Settings
 
-The Platypus Preferences should be pretty self-explanatory. You can select an editor of choice, set the default author and bundle identifier settings, set the behaviour of Platypus on app creation, and install/uninstall the `platypus` command line tool.
+The Platypus Settings should be pretty self-explanatory. You can select an editor of choice, set the default author and bundle identifier settings, set the behaviour of Platypus on app creation, and install/uninstall the `platypus` command line tool.
 
-<img src="images/preferences.png" width="313">
+<img src="images/settings.png" width="313">
 
 
 
