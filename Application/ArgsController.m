@@ -141,7 +141,7 @@
     NSMutableAttributedString *cmdString = [[NSMutableAttributedString alloc] initWithString:[interpreterTextField stringValue] attributes:defaultAttrs];
     
     // Interpreter args
-    for (int i = 0; i < [interpreterArgs count]; i++)
+    for (NSUInteger i = 0; i < [interpreterArgs count]; i++)
     {
         NSString *a = [NSString stringWithFormat:@" %@", interpreterArgs[i]];
         NSMutableDictionary *attrs = [defaultAttrs mutableCopy];
@@ -175,7 +175,7 @@
     [cmdString appendAttributedString:scriptString];
     
     // Script args
-    for (int i = 0; i < [scriptArgs count]; i++)
+    for (NSUInteger i = 0; i < [scriptArgs count]; i++)
     {
         NSString *a = [NSString stringWithFormat:@"%@ ", scriptArgs[i]];
         NSMutableDictionary *attrs = [defaultAttrs mutableCopy];
@@ -218,7 +218,7 @@
 }
 
 - (void)updateArgsButtonTitle {
-    NSInteger numArgs = [interpreterArgs count] + [scriptArgs count];
+    NSUInteger numArgs = [interpreterArgs count] + [scriptArgs count];
     if (numArgs) {
         [argsButton setTitle:[NSString stringWithFormat:@"Args (%ld)", (long)numArgs]];
     } else {
@@ -281,7 +281,7 @@
         return;
     }
     
-    NSInteger rowToSelect = selectedRow - 1;
+    NSUInteger rowToSelect = selectedRow - 1;
     
     [tableView reloadData];
     [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowToSelect] byExtendingSelection:NO];

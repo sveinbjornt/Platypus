@@ -208,7 +208,7 @@ static OSStatus (*_AuthExecuteWithPrivsFn)(AuthorizationRef authorization, const
     const char *toolPath = [self.launchPath fileSystemRepresentation];
     
     // first, construct an array of c strings from NSArray w. arguments
-    for (int i = 0; i < numberOfArguments; i++) {
+    for (NSUInteger i = 0; i < numberOfArguments; i++) {
         NSString *argString = arguments[i];
         const char *fsrep = [argString fileSystemRepresentation];
         NSUInteger stringLength = strlen(fsrep);
@@ -229,7 +229,7 @@ static OSStatus (*_AuthExecuteWithPrivsFn)(AuthorizationRef authorization, const
     chdir(prevCwd);
     
     // free the malloc'd argument strings
-    for (int i = 0; i < numberOfArguments; i++) {
+    for (NSUInteger i = 0; i < numberOfArguments; i++) {
         free(args[i]);
     }
     

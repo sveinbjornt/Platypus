@@ -316,7 +316,7 @@
     }
     
     // Remove all empty strings in array
-    for (NSInteger i = [interpreterAndArgs count]-1; i > 0; i--) {
+    for (NSUInteger i = [interpreterAndArgs count]-1; i > 0; i--) {
         NSCharacterSet *set = [NSCharacterSet whitespaceCharacterSet];
         NSString *trimmedStr = [interpreterAndArgs[i] stringByTrimmingCharactersInSet:set];
         
