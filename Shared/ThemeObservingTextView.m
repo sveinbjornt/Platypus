@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -56,7 +56,6 @@
     [NSDistributedNotificationCenter.defaultCenter addObserver:self
                                                       selector:@selector(themeChanged:) name:@"AppleInterfaceThemeChangedNotification"
                                                         object: nil];
-
 }
 
 - (void)themeChanged:(NSNotification *)notification {

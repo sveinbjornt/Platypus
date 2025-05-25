@@ -1,3 +1,4 @@
+[![macOS](https://img.shields.io/badge/macOS-000000?style=flat&logo=apple&logoColor=white)]()
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![Language](https://img.shields.io/badge/language-objective--c-lightgrey)]()
 [![Release](https://shields.io/github/v/release/sveinbjornt/Platypus?display_name=tag)]()
@@ -49,7 +50,7 @@ Platypus is free, open source software and has been continuously developed
 and maintained for over 20 years. **If you find this program useful, 
 please [make a donation](https://sveinbjorn.org/donations).**
 
-* **[⇩ Download Platypus 5.4.1](https://sveinbjorn.org/files/software/platypus.zip)** 
+* **[⬇ Download Platypus 5.5.0](https://sveinbjorn.org/files/software/platypus.zip)** 
 (Intel/ARM 64-bit, 10.11 or later, ~4.5 MB)
 
 Platypus can also be installed via [Homebrew](https://brew.sh) (may not be latest version):
@@ -115,7 +116,7 @@ With these caveats in mind, here is the BSD-licensed source code to Platypus.
 
 ## BSD License 
 
-Copyright (c) 2003-2024 Sveinbjorn Thordarson 
+Copyright (c) 2003-2025 Sveinbjorn Thordarson 
 &lt;<a href="mailto:">sveinbjorn@sveinbjorn.org</a>&gt;
 All rights reserved.
 

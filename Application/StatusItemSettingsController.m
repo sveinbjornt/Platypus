@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -161,7 +161,7 @@
         [previewStatusItem setImage:[img copy]];
     }
     else {
-        DLog(@"Unknown status item style: %d", displayStyle);
+        DLog(@"Unknown status item style: %lu", (unsigned long)displayStyle);
     }
     
     [[previewStatusItem image] setTemplate:[isTemplateCheckbox intValue]];

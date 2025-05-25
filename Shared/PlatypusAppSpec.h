@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -31,7 +31,8 @@
 
 // all the information required to create a Platypus application.
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
+
 #import "MutableDictProxy.h"
 
 // PlatypusAppSpec is a dictionary proxy class containing all data needed to create app.

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -28,7 +28,7 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "PrefsController.h"
+#import "SettingsController.h"
 #import <sys/stat.h>
 #import "Alerts.h"
 #import "STPrivilegedTask.h"
@@ -38,7 +38,7 @@
 #import "PlatypusAppSpec.h"
 #import "NSFileManager+TempFiles.h"
 
-@interface PrefsController()
+@interface SettingsController()
 {
     IBOutlet NSPopUpButton *defaultEditorPopupButton;
     IBOutlet NSPopUpButton *signingIdentityPopupButton;
@@ -50,13 +50,13 @@
 }
 @end
 
-@implementation PrefsController
+@implementation SettingsController
 
 - (IBAction)showWindow:(id)sender {
     // Put application icon in window title bar
     [[self window] setRepresentedURL:[NSURL URLWithString:PROGRAM_WEBSITE]];
     NSButton *button = [[self window] standardWindowButton:NSWindowDocumentIconButton];
-    [button setImage:[NSImage imageNamed:@"Preferences"]];
+    [button setImage:[NSImage imageNamed:@"Settings"]];
     
     [self updateCLTStatus];
     
@@ -243,7 +243,7 @@
     [defaultBundleIdentifierTextField setTextColor:col];
 }
 
-- (IBAction)applyPrefs:(id)sender {
+- (IBAction)applySettings:(id)sender {
     // Make sure bundle identifier ends with a '.'
     NSString *identifier = [defaultBundleIdentifierTextField stringValue];
     if ([identifier characterAtIndex:[identifier length] - 1] != '.') {
@@ -254,8 +254,8 @@
     [[self window] close];
 }
 
-- (IBAction)restoreDefaultPrefs:(id)sender {
-    NSDictionary *dict = [PrefsController defaultsDictionary];
+- (IBAction)restoreDefaultSettings:(id)sender {
+    NSDictionary *dict = [SettingsController defaultsDictionary];
     for (NSString *key in dict) {
         [DEFAULTS setObject:dict[key] forKey:key];
     }
@@ -288,7 +288,7 @@
 }
 
 - (IBAction)commandLineInstallButtonClicked:(id)sender {
-    if ([PrefsController isCommandLineToolInstalled]) {
+    if ([SettingsController isCommandLineToolInstalled]) {
         [self uninstallCommandLineTool];
     } else {
         [self installCommandLineTool];
@@ -298,7 +298,8 @@
 #pragma mark - Install/Uninstall
 
 + (BOOL)isCommandLineToolInstalled {
-    return [FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH];
+    return ([FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH] && [WORKSPACE isFileEmptyAtPath:CMDLINE_TOOL_PATH] == NO);
+    ;
 }
 
 + (void)putCommandLineToolInstallStatusInTextField:(NSTextField *)textField {
@@ -312,7 +313,7 @@
 
     dispatch_async(cltStatusDispatchQueue, ^{
 
-        BOOL isInstalled = [PrefsController isCommandLineToolInstalled];
+        BOOL isInstalled = [SettingsController isCommandLineToolInstalled];
         NSString *versionString;
         
         if (isInstalled) {
@@ -365,9 +366,9 @@
 }
 
 - (void)updateCLTStatus {
-    NSString *buttonTitle = [PrefsController isCommandLineToolInstalled] ? @"Uninstall" : @"Install";
+    NSString *buttonTitle = [SettingsController isCommandLineToolInstalled] ? @"Uninstall" : @"Install";
     [installCLTButton setTitle:buttonTitle];
-    [PrefsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
+    [SettingsController putCommandLineToolInstallStatusInTextField:CLTStatusTextField];
 }
 
 - (void)installCommandLineTool {

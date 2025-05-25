@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -29,6 +29,7 @@
 */
 
 #import "TypeListController.h"
+#import "Common.h"
 
 @interface TypeListController()
 {
@@ -88,7 +89,7 @@
     for (NSDictionary *itemDict in items) {
         [array addObject:itemDict[@"name"]];
     }
-    return [NSArray arrayWithArray:array];
+    return array;
 }
 
 - (TypeListItemStringValidity)validateItemString:(NSString *)itemString {

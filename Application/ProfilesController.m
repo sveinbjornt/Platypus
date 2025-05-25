@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -278,7 +278,7 @@
     
     if (![FILEMGR fileExistsAtPath:CMDLINE_TOOL_PATH]) {
         [Alerts alert:@"Command line tool not installed"
-              subText:@"To build the examples, you need to install the command line tool in Preferences."];
+              subText:@"To build the examples, you need to install the command line tool in Settings."];
         return;
     }
     

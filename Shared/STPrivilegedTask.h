@@ -1,6 +1,6 @@
 /*
     STPrivilegedTask - NSTask-like wrapper around AuthorizationExecuteWithPrivileges
-    Copyright (C) 2009-2024 Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (C) 2009-2025 Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
 
     BSD License
     Redistribution and use in source and binary forms, with or without
@@ -26,7 +26,7 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 #define STPrivilegedTaskDidTerminateNotification @"STPrivilegedTaskDidTerminateNotification"
 

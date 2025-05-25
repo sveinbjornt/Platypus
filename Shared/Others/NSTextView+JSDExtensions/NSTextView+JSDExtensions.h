@@ -33,7 +33,7 @@
 
  **************************************************************************************************/
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 @interface NSTextView (JSDExtensions)
 

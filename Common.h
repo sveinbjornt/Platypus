@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification, 
@@ -28,9 +28,11 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
+@import Foundation;
+
 // General program information
 #define PROGRAM_NAME                @"Platypus"
-#define PROGRAM_VERSION             @"5.4.2"
+#define PROGRAM_VERSION             @"5.5.0"
 #define PROGRAM_CREATOR_STAMP       [NSString stringWithFormat:@"%@-%@", PROGRAM_NAME, PROGRAM_VERSION]
 #define PROGRAM_MIN_SYS_VERSION     @"10.13.0"
 #define PROGRAM_BUNDLE_IDENTIFIER   [NSString stringWithFormat:@"org.sveinbjorn.%@", PROGRAM_NAME]
@@ -56,7 +58,7 @@
 #define NEW_SCRIPT_FILENAME         @"Script"
 
 // Command line tool seetings
-#define CMDLINE_PROGNAME_BUNDLE     @"platypus_clt.gz"
+#define CMDLINE_PROGNAME_BUNDLE     @"platypus_clt"
 #define CMDLINE_PROGNAME            @"platypus"
 #define CMDLINE_SCRIPTEXEC_BIN_NAME @"ScriptExec"
 #define CMDLINE_SCRIPTEXEC_GZIP_NAME @"ScriptExec.gz"
@@ -111,26 +113,26 @@
 #define PLATYPUS_STATUSITEM_DISPLAY_TYPE_DEFAULT    PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT
 
 // Execution style
-typedef enum PlatypusExecStyle {
+typedef NS_ENUM(NSUInteger, PlatypusExecStyle) {
     PlatypusExecStyle_Normal = 0,
     PlatypusExecStyle_Authenticated = 1
-} PlatypusExecStyle;
+};
 
 // Status item style
-typedef enum PlatypusStatusItemStyle {
+typedef NS_ENUM(NSUInteger, PlatypusStatusItemStyle) {
     PlatypusStatusItemStyle_Title = 0,
     PlatypusStatusItemStyle_Icon = 1
-} PlatypusStatusItemStyle;
+};
 
 // Interface type
-typedef enum PlatypusInterfaceType {
+typedef NS_ENUM(NSUInteger, PlatypusInterfaceType) {
     PlatypusInterfaceType_None = 0,
     PlatypusInterfaceType_ProgressBar = 1,
     PlatypusInterfaceType_TextWindow = 2,
     PlatypusInterfaceType_WebView = 3,
     PlatypusInterfaceType_StatusMenu = 4,
     PlatypusInterfaceType_Droplet = 5
-} PlatypusInterfaceType;
+};
 
 // Array of interface type name strings
 // mapped to PlatypusInterfaceType enum

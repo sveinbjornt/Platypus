@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -28,7 +28,8 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
+
 #import <stdio.h>
 #import <unistd.h>
 #import <stdlib.h>
@@ -39,7 +40,7 @@
 #import <fcntl.h>
 #import <errno.h>
 #import <getopt.h>
-#include <mach-o/getsect.h>
+#import <mach-o/getsect.h>
 
 #import "Common.h"
 #import "PlatypusAppSpec.h"
@@ -230,7 +231,7 @@ int main(int argc, const char *argv[]) {
             case 'n':
             {
                 NSString *fontStr = @(optarg);
-                NSMutableArray *words = [NSMutableArray arrayWithArray:[fontStr componentsSeparatedByString:@" "]];
+                NSMutableArray *words = [[fontStr componentsSeparatedByString:@" "] mutableCopy];
                 if ([words count] < 2) {
                     NSPrintErr(@"Error: '%@' is not a valid font. Must be font name followed by size, e.g. 'Monaco 10'.", fontStr);
                     exit(EXIT_FAILURE);

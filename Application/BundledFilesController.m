@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -258,7 +258,7 @@
     [WORKSPACE openFile:files[index][@"Path"]];
 }
 
-- (void)openInEditor:(int)index {
+- (void)openInEditor:(NSUInteger)index {
     NSString *defaultEditor = [DEFAULTS stringForKey:DefaultsKey_DefaultEditor];
     NSString *path = files[index][@"Path"];
     
@@ -292,7 +292,7 @@
     NSMutableString *copyStr = [[NSMutableString alloc] initWithString:@""];
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
     
-    for (int i = 0; i < [files count]; i++) {
+    for (NSUInteger i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
             NSDictionary *fileInfoDict = files[i];
             NSString *name = basenameOnly ? fileInfoDict[@"Path"] : [fileInfoDict[@"Path"] lastPathComponent];
@@ -339,7 +339,7 @@
 
 - (IBAction)revealSelectedFilesInFinder:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    for (int i = 0; i < [files count]; i++) {
+    for (NSUInteger i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
             [self revealInFinder:i];
         }
@@ -348,7 +348,7 @@
 
 - (IBAction)openSelectedFiles:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    for (int i = 0; i < [files count]; i++) {
+    for (NSUInteger i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
             [self openInFinder:i];
         }
@@ -357,7 +357,7 @@
 
 - (IBAction)editSelectedFile:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    for (int i = 0; i < [files count]; i++) {
+    for (NSUInteger i = 0; i < [files count]; i++) {
         if ([selectedItems containsIndex:i]) {
             [self openInEditor:i];
             return;
@@ -367,7 +367,7 @@
 
 - (IBAction)removeSelectedFiles:(id)sender {
     NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-    for (NSInteger i = [files count]; i >= 0; i--) {
+    for (NSUInteger i = [files count]; i >= 0; i--) {
         if ([selectedItems containsIndex:i]) {
             [files removeObjectAtIndex:i];
         }
@@ -454,7 +454,7 @@
     // Folders are never editable
     if (selector == @selector(openInEditor:))  {
         NSIndexSet *selectedItems = [tableView selectedRowIndexes];
-        for (int i = 0; i < [files count]; i++) {
+        for (NSUInteger i = 0; i < [files count]; i++) {
             if ([selectedItems containsIndex:i]) {
                 NSString *filename = files[i][@"Path"];
                 BOOL isFolder;

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -31,7 +31,8 @@
 /* This is the source code to the main window controller for
  the binary bundled into Platypus-generated applications */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
+
 #import "STDragWebView.h"
 
 @interface SEController : NSObject <NSApplicationDelegate,

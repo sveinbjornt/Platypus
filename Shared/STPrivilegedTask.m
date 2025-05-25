@@ -1,6 +1,6 @@
 /*
     STPrivilegedTask - NSTask-like wrapper around AuthorizationExecuteWithPrivileges
-    Copyright (C) 2009-2024 Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (C) 2009-2025 Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
 
     BSD License
     Redistribution and use in source and binary forms, with or without
@@ -26,13 +26,13 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "STPrivilegedTask.h"
+@import Security;
 
-#import <Security/Authorization.h>
-#import <Security/AuthorizationTags.h>
 #import <stdio.h>
 #import <unistd.h>
 #import <dlfcn.h>
+
+#import "STPrivilegedTask.h"
 
 // New error code denoting that AuthorizationExecuteWithPrivileges no longer exists
 OSStatus const errAuthorizationFnNoLongerExists = -70001;
@@ -208,7 +208,7 @@ static OSStatus (*_AuthExecuteWithPrivsFn)(AuthorizationRef authorization, const
     const char *toolPath = [self.launchPath fileSystemRepresentation];
     
     // first, construct an array of c strings from NSArray w. arguments
-    for (int i = 0; i < numberOfArguments; i++) {
+    for (NSUInteger i = 0; i < numberOfArguments; i++) {
         NSString *argString = arguments[i];
         const char *fsrep = [argString fileSystemRepresentation];
         NSUInteger stringLength = strlen(fsrep);
@@ -229,7 +229,7 @@ static OSStatus (*_AuthExecuteWithPrivsFn)(AuthorizationRef authorization, const
     chdir(prevCwd);
     
     // free the malloc'd argument strings
-    for (int i = 0; i < numberOfArguments; i++) {
+    for (NSUInteger i = 0; i < numberOfArguments; i++) {
         free(args[i]);
     }
     

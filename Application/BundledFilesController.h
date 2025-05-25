@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+ Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
@@ -31,7 +31,7 @@
 // This is a controller class around the Bundled Files list in the Platypus
 // window.  It is the data source and delegate of the tableview with the files.
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 @interface BundledFilesController : NSObject <NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate, NSMenuItemValidation>
 

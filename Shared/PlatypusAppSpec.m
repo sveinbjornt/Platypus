@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -210,7 +210,7 @@
         interpreterPath = DEFAULT_INTERPRETER_PATH;
     } else {
         // Get args for interpreter
-        NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[PlatypusScriptUtils parseInterpreterInScriptFile:scriptPath]];
+        NSMutableArray *shebangCmdComponents = [[PlatypusScriptUtils parseInterpreterInScriptFile:scriptPath] mutableCopy];
         [shebangCmdComponents removeObjectAtIndex:0];
         self[AppSpecKey_InterpreterArgs] = shebangCmdComponents;
     }
@@ -387,7 +387,7 @@
     
     // Copy bundled files to Resources folder
     // .app/Contents/Resources/*
-    NSInteger numBundledFiles = [self[AppSpecKey_BundledFiles] count];
+    NSUInteger numBundledFiles = [self[AppSpecKey_BundledFiles] count];
     if (numBundledFiles) {
         [self report:@"Copying %d bundled files", numBundledFiles];
     }
@@ -800,7 +800,7 @@
     // Create bundled files string
     NSString *bundledFilesCmdString = @"";
     NSArray *bundledFiles = self[AppSpecKey_BundledFiles];
-    for (int i = 0; i < [bundledFiles count]; i++) {
+    for (NSUInteger i = 0; i < [bundledFiles count]; i++) {
         NSString *str = shortOpts ? @"-f" : @"--bundled-file";
         bundledFilesCmdString = [bundledFilesCmdString stringByAppendingString:[NSString stringWithFormat:@"%@ '%@' ", str, bundledFiles[i]]];
     }

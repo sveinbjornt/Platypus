@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2003-2024, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
+    Copyright (c) 2003-2025, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification,
@@ -98,9 +98,6 @@
     BOOL darkMode = NO;
     BOOL darkPossible = NO;
     if (@available(macOS 10.14, *)) {
-        darkPossible = YES;
-    }
-    if (darkPossible) {
         darkMode = [[[NSAppearance currentAppearance] name] isEqualToString:NSAppearanceNameDarkAqua];
         if (darkMode) {
             bgColor = [bgColor inverted];

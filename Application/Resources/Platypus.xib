@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -310,7 +310,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" id="10981">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
+                            <font key="font" metaFont="message"/>
                             <menu key="menu" title="OtherViews" id="3892">
                                 <connections>
                                     <outlet property="delegate" destination="335" id="nku-02-Ocm"/>
@@ -326,7 +326,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" id="10982">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
+                            <font key="font" metaFont="message"/>
                             <menu key="menu" title="OtherViews" id="4150">
                                 <connections>
                                     <outlet property="delegate" destination="335" id="Axg-l2-rY3"/>
@@ -396,7 +396,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="AwF-Vu-vkI">
                             <rect key="frame" x="1" y="1" width="591" height="114"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="310">
                                     <rect key="frame" x="0.0" y="0.0" width="591" height="114"/>
@@ -418,7 +418,7 @@ DQ
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="0mM-jn-V9R">
-                                                    <rect key="frame" x="1" y="1" width="559" height="17"/>
+                                                    <rect key="frame" x="11" y="1" width="559" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7nT-4O-mOR">
@@ -576,7 +576,6 @@ DQ
                 <outlet property="iconController" destination="1215" id="eHO-cn-oEo"/>
                 <outlet property="interfaceTypePopupButton" destination="4148" id="bD3-ya-OY8"/>
                 <outlet property="interpreterPathTextField" destination="305" id="Yau-Zl-tD3"/>
-                <outlet property="prefsController" destination="11195" id="apI-W1-dIt"/>
                 <outlet property="profilesController" destination="2872" id="Eil-aK-aFN"/>
                 <outlet property="progressBar" destination="11189" id="11191"/>
                 <outlet property="progressDialogMessageLabel" destination="11187" id="11193"/>
@@ -589,6 +588,7 @@ DQ
                 <outlet property="scriptPathTextField" destination="334" id="344"/>
                 <outlet property="scriptTypePopupButton" destination="3890" id="kJF-9o-bsM"/>
                 <outlet property="sendNotificationsCheckbox" destination="fRC-GZ-XE7" id="7Pn-lQ-FQA"/>
+                <outlet property="settingsController" destination="11195" id="apI-W1-dIt"/>
                 <outlet property="statusItemSettingsButton" destination="10159" id="10216"/>
                 <outlet property="statusItemSettingsController" destination="10213" id="AFv-S5-sWQ"/>
                 <outlet property="stripNibFileCheckbox" destination="11109" id="6Nk-RM-que"/>
@@ -692,7 +692,7 @@ DQ
                 <outlet property="window" destination="10161" id="3ei-3Z-Pey"/>
             </connections>
         </customObject>
-        <customObject id="11195" userLabel="PreferencesController" customClass="PrefsController">
+        <customObject id="11195" userLabel="SettingsController" customClass="SettingsController">
             <connections>
                 <outlet property="CLTStatusTextField" destination="11384" id="11445"/>
                 <outlet property="defaultAuthorTextField" destination="11393" id="11450"/>
@@ -734,7 +734,7 @@ DQ
                             <menuItem isSeparatorItem="YES" id="11100">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Preferences…" keyEquivalent="," toolTip="Open Platypus Preferences" id="129">
+                            <menuItem title="Settings…" keyEquivalent="," toolTip="Open Platypus Settings" id="129">
                                 <connections>
                                     <action selector="showWindow:" target="11195" id="11442"/>
                                 </connections>
@@ -1904,7 +1904,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="JcD-yT-ov7">
                             <rect key="frame" x="1" y="1" width="209" height="119"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11089" id="1405" customClass="NSResponderNotifyingTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="209" height="102"/>
@@ -1955,7 +1955,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="AXu-6W-m9d">
                             <rect key="frame" x="1" y="1" width="209" height="119"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="11254" id="11257" customClass="NSResponderNotifyingTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="209" height="102"/>
@@ -2276,7 +2276,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="9QH-6m-7Zp">
                             <rect key="frame" x="1" y="1" width="221" height="113"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" id="2078" customClass="ThemeObservingTextView">
                                     <rect key="frame" x="0.0" y="0.0" width="221" height="113"/>
@@ -2586,7 +2586,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="push" title="Text" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" selectedItem="10803" id="11060">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
+                                        <font key="font" metaFont="message"/>
                                         <menu key="menu" title="OtherViews" id="10802">
                                             <items>
                                                 <menuItem title="Text" state="on" id="10803"/>
@@ -2666,8 +2666,9 @@ DQ
                     </progressIndicator>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="1" y="-168"/>
         </window>
-        <window title="Platypus Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="Platypus Preferences" animationBehavior="default" id="11370" userLabel="Preferences Window">
+        <window title="Platypus Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="Platypus Settings" animationBehavior="default" id="11370" userLabel="Settings Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="546" y="264" width="334" height="462"/>
@@ -2710,7 +2711,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                     <popUpButtonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="11426" id="11412">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
+                                        <font key="font" metaFont="message"/>
                                         <menu key="menu" title="OtherViews" id="11413">
                                             <items>
                                                 <menuItem title="Select..." state="on" id="11426">
@@ -2771,7 +2772,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                     <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" enabled="NO" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="SX9-gL-AU0" id="Kbn-Oj-kZv">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
+                                        <font key="font" metaFont="message"/>
                                         <menu key="menu" title="OtherViews" autoenablesItems="NO" id="Bsc-il-b0C">
                                             <items>
                                                 <menuItem title="None" state="on" id="SX9-gL-AU0"/>
@@ -2899,7 +2900,7 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="restoreDefaultPrefs:" target="11195" id="11436"/>
+                            <action selector="restoreDefaultSettings:" target="11195" id="11436"/>
                         </connections>
                     </button>
                     <button toolTip="Apply these settings" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="11374">
@@ -2913,7 +2914,7 @@ DQ
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="applyPrefs:" target="11195" id="11438"/>
+                            <action selector="applySettings:" target="11195" id="11438"/>
                         </connections>
                     </button>
                 </subviews>
