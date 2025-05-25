@@ -62,27 +62,14 @@
 
 
 
-#import <Foundation/Foundation.h>
-#include <sys/types.h>
-#include <sys/event.h>
+@import Foundation;
+
+#import <sys/types.h>
+#import <sys/event.h>
 
 
 // ARC Helpers
 
-#if ! __has_feature(objc_arc)
-#define ARCCompatAutorelease(__obj__) [__obj__ autorelease];
-#define ARCCompatRetain(__obj__) [__obj__ retain];
-#define ARCCompatRelease(__obj__) [__obj__ release];
-
-#define ARCCompatAutoreleaseInline(__obj__) [__obj__ autorelease]
-#define ARCCompatRetainInline(__obj__) [__obj__ retain]
-#define ARCCompatReleaseInline(__obj__) [__obj__ release]
-
-#define ARCCompatBridge(__type__, __obj__) __obj__
-
-#define ARCCompatWeakPropertyModifier assign
-#define ARCCompatWeakPropertyTypeModifier
-#else
 #define ARCCompatAutorelease(__obj__)
 #define ARCCompatRetain(__obj__)
 #define ARCCompatRelease(__obj__)
@@ -95,8 +82,6 @@
 
 #define ARCCompatWeakPropertyModifier weak
 #define ARCCompatWeakPropertyTypeModifier __weak
-#endif
-
 
 //
 //	Logical OR these values into the u_int that you pass in the -addPath:notifyingAbout: method

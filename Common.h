@@ -28,7 +28,7 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 // General program information
 #define PROGRAM_NAME                @"Platypus"
@@ -113,26 +113,26 @@
 #define PLATYPUS_STATUSITEM_DISPLAY_TYPE_DEFAULT    PLATYPUS_STATUSITEM_DISPLAY_TYPE_TEXT
 
 // Execution style
-typedef enum PlatypusExecStyle {
+typedef NS_ENUM(NSUInteger, PlatypusExecStyle) {
     PlatypusExecStyle_Normal = 0,
     PlatypusExecStyle_Authenticated = 1
-} PlatypusExecStyle;
+};
 
 // Status item style
-typedef enum PlatypusStatusItemStyle {
+typedef NS_ENUM(NSUInteger, PlatypusStatusItemStyle) {
     PlatypusStatusItemStyle_Title = 0,
     PlatypusStatusItemStyle_Icon = 1
-} PlatypusStatusItemStyle;
+};
 
 // Interface type
-typedef enum PlatypusInterfaceType {
+typedef NS_ENUM(NSUInteger, PlatypusInterfaceType) {
     PlatypusInterfaceType_None = 0,
     PlatypusInterfaceType_ProgressBar = 1,
     PlatypusInterfaceType_TextWindow = 2,
     PlatypusInterfaceType_WebView = 3,
     PlatypusInterfaceType_StatusMenu = 4,
     PlatypusInterfaceType_Droplet = 5
-} PlatypusInterfaceType;
+};
 
 // Array of interface type name strings
 // mapped to PlatypusInterfaceType enum

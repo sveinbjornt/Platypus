@@ -210,7 +210,7 @@
         interpreterPath = DEFAULT_INTERPRETER_PATH;
     } else {
         // Get args for interpreter
-        NSMutableArray *shebangCmdComponents = [NSMutableArray arrayWithArray:[PlatypusScriptUtils parseInterpreterInScriptFile:scriptPath]];
+        NSMutableArray *shebangCmdComponents = [[PlatypusScriptUtils parseInterpreterInScriptFile:scriptPath] mutableCopy];
         [shebangCmdComponents removeObjectAtIndex:0];
         self[AppSpecKey_InterpreterArgs] = shebangCmdComponents;
     }

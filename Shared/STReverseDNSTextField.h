@@ -28,7 +28,7 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 @interface STReverseDNSTextField : NSTextField
 

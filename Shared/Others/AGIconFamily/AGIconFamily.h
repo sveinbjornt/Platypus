@@ -47,10 +47,8 @@
 //    - It's far less code
 //
 
-#import <Cocoa/Cocoa.h>
-#import <Carbon/Carbon.h>
-
-
+@import Cocoa;
+@import Carbon;
 
 enum {
 	AGIconFamilyElement512	= kIconServices512PixelDataARGB,

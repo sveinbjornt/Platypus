@@ -28,7 +28,7 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface NSBundle (Templates)
 

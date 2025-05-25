@@ -182,6 +182,17 @@
     return [NSString stringWithFormat:@"%.1f GB", size / 1073741824.0];
 }
 
+- (BOOL)isFileEmptyAtPath:(NSString *)path {
+    NSError *error = nil;
+    // Initialize data object without loading it into memory
+    NSData *d = [NSData dataWithContentsOfFile:path
+                                       options:NSDataReadingMappedAlways
+                                         error:&error];
+    // If error we don't know and we return NO
+    // If we do and it's empty, well...
+    return (error != nil || [d length] == 0);
+}
+
 #pragma mark - Open With menu
 
 - (NSArray *)handlerApplicationsForFile:(NSString *)filePath {

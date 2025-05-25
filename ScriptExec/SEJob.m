@@ -30,9 +30,6 @@
 
 #import "SEJob.h"
 
-@interface SEJob()
-@end
-
 @implementation SEJob
 
 - (instancetype)initWithArguments:(NSArray *)args andStandardInput:(NSString *)stdinStr {

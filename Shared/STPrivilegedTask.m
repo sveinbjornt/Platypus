@@ -26,13 +26,13 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "STPrivilegedTask.h"
+@import Security;
 
-#import <Security/Authorization.h>
-#import <Security/AuthorizationTags.h>
 #import <stdio.h>
 #import <unistd.h>
 #import <dlfcn.h>
+
+#import "STPrivilegedTask.h"
 
 // New error code denoting that AuthorizationExecuteWithPrivileges no longer exists
 OSStatus const errAuthorizationFnNoLongerExists = -70001;

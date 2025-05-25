@@ -31,7 +31,8 @@
 /* This is the source code to the main window controller for
  the binary bundled into Platypus-generated applications */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
+
 #import "STDragWebView.h"
 
 @interface SEController : NSObject <NSApplicationDelegate,

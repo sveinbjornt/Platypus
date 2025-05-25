@@ -56,7 +56,6 @@
     [NSDistributedNotificationCenter.defaultCenter addObserver:self
                                                       selector:@selector(themeChanged:) name:@"AppleInterfaceThemeChangedNotification"
                                                         object: nil];
-
 }
 
 - (void)themeChanged:(NSNotification *)notification {

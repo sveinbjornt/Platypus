@@ -98,9 +98,6 @@
     BOOL darkMode = NO;
     BOOL darkPossible = NO;
     if (@available(macOS 10.14, *)) {
-        darkPossible = YES;
-    }
-    if (darkPossible) {
         darkMode = [[[NSAppearance currentAppearance] name] isEqualToString:NSAppearanceNameDarkAqua];
         if (darkMode) {
             bgColor = [bgColor inverted];

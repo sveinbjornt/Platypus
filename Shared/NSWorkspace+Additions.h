@@ -28,8 +28,8 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <Foundation/Foundation.h>
-#import <Cocoa/Cocoa.h>
+@import Foundation;
+@import Cocoa;
 
 @interface NSWorkspace (Additions)
 
@@ -37,6 +37,7 @@
 - (UInt64)fileOrFolderSize:(NSString *)path;
 - (NSString *)fileSizeAsHumanReadableString:(UInt64)size;
 - (NSString *)fileOrFolderSizeAsHumanReadable:(NSString *)path;
+- (BOOL)isFileEmptyAtPath:(NSString *)path;
 
 - (NSArray *)handlerApplicationsForFile:(NSString *)filePath;
 - (NSString *)defaultHandlerApplicationForFile:(NSString *)filePath;

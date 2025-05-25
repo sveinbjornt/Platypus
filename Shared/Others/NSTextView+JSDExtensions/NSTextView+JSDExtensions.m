@@ -34,6 +34,7 @@
  **************************************************************************************************/
 
 #import <objc/runtime.h>
+
 #import "NSTextView+JSDExtensions.h"
 #import "NoodleLineNumberView.h"
 

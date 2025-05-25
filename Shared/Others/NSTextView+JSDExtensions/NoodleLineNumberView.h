@@ -27,7 +27,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 /*
  Displays line numbers for an NSTextView.

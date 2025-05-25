@@ -19,12 +19,12 @@
 //		3. This notice may not be removed or altered from any source
 //		distribution.
 
+@import Cocoa;
+
 #import "VDKQueue.h"
 #import <unistd.h>
 #import <fcntl.h>
 #import <sys/stat.h>
-#import <Cocoa/Cocoa.h>
-
 
 NSString * VDKQueueRenameNotification = @"VDKQueueFileRenamedNotification";
 NSString * VDKQueueWriteNotification = @"VDKQueueFileWrittenToNotification";

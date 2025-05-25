@@ -89,7 +89,7 @@
     for (NSDictionary *itemDict in items) {
         [array addObject:itemDict[@"name"]];
     }
-    return [NSArray arrayWithArray:array];
+    return array;
 }
 
 - (TypeListItemStringValidity)validateItemString:(NSString *)itemString {

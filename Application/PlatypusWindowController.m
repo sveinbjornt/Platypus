@@ -28,8 +28,8 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "PlatypusWindowController.h"
 #import "Common.h"
+#import "PlatypusWindowController.h"
 #import "PlatypusAppSpec.h"
 #import "PlatypusScriptUtils.h"
 #import "IconController.h"

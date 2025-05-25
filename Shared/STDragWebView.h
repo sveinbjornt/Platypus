@@ -28,8 +28,8 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <Cocoa/Cocoa.h>
-#import <WebKit/WebKit.h>
+@import Cocoa;
+@import WebKit;
 
 @protocol STDragWebViewDelegate <NSObject>
 @required

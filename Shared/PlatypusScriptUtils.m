@@ -390,7 +390,7 @@
     NSArray *interpreters = [self interpreters];
     for (NSDictionary *dict in interpreters) {
         if ([dict[@"Path"] isEqualToString:interpreterPath] && dict[@"SyntaxCheck"]) {
-            args = [NSMutableArray arrayWithArray:dict[@"SyntaxCheck"]];
+            args = [dict[@"SyntaxCheck"] mutableCopy];
             interpreterPath = dict[@"SyntaxCheckBinary"] ? dict[@"SyntaxCheckBinary"] : interpreterPath;
         }
     }

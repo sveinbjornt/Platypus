@@ -258,7 +258,7 @@
     [WORKSPACE openFile:files[index][@"Path"]];
 }
 
-- (void)openInEditor:(int)index {
+- (void)openInEditor:(NSUInteger)index {
     NSString *defaultEditor = [DEFAULTS stringForKey:DefaultsKey_DefaultEditor];
     NSString *path = files[index][@"Path"];
     

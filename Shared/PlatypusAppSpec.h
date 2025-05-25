@@ -31,7 +31,8 @@
 
 // all the information required to create a Platypus application.
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
+
 #import "MutableDictProxy.h"
 
 // PlatypusAppSpec is a dictionary proxy class containing all data needed to create app.

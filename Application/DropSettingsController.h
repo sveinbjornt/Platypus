@@ -28,7 +28,8 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
+
 #import "NSResponderNotifyingTableView.h"
 
 @class SuffixTypeListController, UniformTypeListController;
