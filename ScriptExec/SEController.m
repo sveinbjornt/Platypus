@@ -617,7 +617,6 @@ static const NSUInteger detailsHeight = 224;
             
             // Prepare window
             [textWindow setTitle:appName];
-            [textWindow makeKeyAndOrderFront:self];
         }
             break;
             
@@ -723,6 +722,7 @@ static const NSUInteger detailsHeight = 224;
                 [textWindowCancelButton setEnabled:NO];
             }
             [textWindowProgressIndicator startAnimation:self];
+            [textWindow makeKeyAndOrderFront:self];
         }
             break;
             
