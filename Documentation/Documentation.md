@@ -655,7 +655,6 @@ The Platypus command line tool install script creates the following files on you
 /usr/local/bin/platypus                         Program binary
 /usr/local/share/platypus/ScriptExec            Executable binary
 /usr/local/share/platypus/MainMenu.nib          Nib file for app
-/usr/local/share/platypus/PlatypusDefault.icns  Default icon
 /usr/local/share/man/man1/platypus.1            Man page
 ```
 
