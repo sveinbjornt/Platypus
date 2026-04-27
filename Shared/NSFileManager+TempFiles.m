@@ -52,7 +52,7 @@
           return nil;
       }
     }
-
+    
     NSString *tempFileTemplate = [tmpDir stringByAppendingPathComponent:tmpFileNameTemplate];
     const char *tempFileTemplateCString = [tempFileTemplate fileSystemRepresentation];
     char *tempFileNameCString = (char *)malloc(strlen(tempFileTemplateCString) + 1);
@@ -63,7 +63,6 @@
     if (fileDescriptor == -1) {
         free(tempFileNameCString);
         NSLog(@"Error %d in mkstemp()", errno);
-        close(fileDescriptor);
         return nil;
     }
     close(fileDescriptor);
@@ -85,11 +84,15 @@
 }
 
 - (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr {
-    return [self createTempFileNamed:fileName withContents:contentStr usingTextEncoding:NSUTF8StringEncoding];
+    return [self createTempFileNamed:fileName
+                        withContents:contentStr
+                   usingTextEncoding:NSUTF8StringEncoding];
 }
 
 - (NSString *)createTempFileWithContents:(NSString *)contentStr {
-    return [self createTempFileNamed:nil withContents:contentStr usingTextEncoding:NSUTF8StringEncoding];
+    return [self createTempFileNamed:nil
+                        withContents:contentStr
+                   usingTextEncoding:NSUTF8StringEncoding];
 }
 
 - (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {

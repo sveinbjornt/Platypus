@@ -861,7 +861,7 @@
         
         if (![self[AppSpecKey_TextBackgroundColor] isEqualToString:DEFAULT_TEXT_BG_COLOR]) {
             NSString *str = shortOpts ? @"-b" : @"--text-background-color";
-            textBgString = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_TextColor]];
+            textBgString = [NSString stringWithFormat:@" %@ '%@' ", str, self[AppSpecKey_TextBackgroundColor]];
         }
         
         if ([self[AppSpecKey_TextSize] floatValue] != DEFAULT_TEXT_FONT_SIZE ||

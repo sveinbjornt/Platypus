@@ -52,6 +52,12 @@
     return self;
 }
 
+- (void)dealloc {
+    [NSDistributedNotificationCenter.defaultCenter removeObserver:self];
+}
+
+#pragma mark -
+
 - (void)setUp {
     [NSDistributedNotificationCenter.defaultCenter addObserver:self
                                                       selector:@selector(themeChanged:) name:@"AppleInterfaceThemeChangedNotification"

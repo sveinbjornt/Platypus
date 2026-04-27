@@ -316,7 +316,7 @@ static OSStatus (*_AuthExecuteWithPrivsFn)(AuthorizationRef authorization, const
     for (NSString *arg in self.arguments) {
         commandDescription = [commandDescription stringByAppendingFormat:@" '%@'", arg];
     }
-    [commandDescription stringByAppendingFormat:@" (CWD:%@)", self.currentDirectoryPath];
+    commandDescription = [commandDescription stringByAppendingFormat:@" (CWD:%@)", self.currentDirectoryPath];
     
     return [[super description] stringByAppendingFormat:@" %@", commandDescription];
 }

@@ -32,9 +32,13 @@
 
 @interface NSFileManager (TempFiles)
 
-- (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
-- (NSString *)createTempFileNamed:(NSString *)fileName withContents:(NSString *)contentStr;
+- (NSString *)createTempFileNamed:(NSString *)fileName
+                     withContents:(NSString *)contentStr
+                usingTextEncoding:(NSStringEncoding)textEncoding;
+- (NSString *)createTempFileNamed:(NSString *)fileName
+                     withContents:(NSString *)contentStr;
 - (NSString *)createTempFileWithContents:(NSString *)contentStr;
-- (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding;
+- (NSString *)createTempFileWithContents:(NSString *)contentStr
+                       usingTextEncoding:(NSStringEncoding)textEncoding;
 
 @end

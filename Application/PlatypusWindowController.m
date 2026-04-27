@@ -747,7 +747,7 @@
         
         [fileWatcherQueue removeAllPaths];
         if ([scriptPathTextField hasValidPath]) {
-            [fileWatcherQueue addPath:[scriptPathTextField stringValue]];
+            [fileWatcherQueue addPath:[[scriptPathTextField stringValue] stringByExpandingTildeInPath]];
             scriptExists = YES;
         }
         
