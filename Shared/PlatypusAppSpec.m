@@ -699,22 +699,22 @@
     
     BOOL isDir;
     if (![FILEMGR fileExistsAtPath:self[AppSpecKey_ScriptPath] isDirectory:&isDir] || isDir) {
-        _error = [NSString stringWithFormat:@"Script not found at path '%@'", self[AppSpecKey_ScriptPath], nil];
+        _error = [NSString stringWithFormat:@"Script not found at path '%@'", self[AppSpecKey_ScriptPath]];
         return NO;
     }
     
     if (![FILEMGR fileExistsAtPath:self[AppSpecKey_ExecutablePath] isDirectory:&isDir] || isDir) {
-        _error = [NSString stringWithFormat:@"Executable binary not found at path '%@'", self[AppSpecKey_ExecutablePath], nil];
+        _error = [NSString stringWithFormat:@"Executable binary not found at path '%@'", self[AppSpecKey_ExecutablePath]];
         return NO;
     }
     
     if (![FILEMGR fileExistsAtPath:self[AppSpecKey_NibPath]]) {
-        _error = [NSString stringWithFormat:@"Nib not found at path '%@'", self[AppSpecKey_NibPath], nil];
+        _error = [NSString stringWithFormat:@"Nib not found at path '%@'", self[AppSpecKey_NibPath]];
         return NO;
     }
     
     if (![FILEMGR fileExistsAtPath:[self[AppSpecKey_DestinationPath] stringByDeletingLastPathComponent] isDirectory:&isDir] || !isDir) {
-        _error = [NSString stringWithFormat:@"Destination directory '%@' does not exist.", [self[AppSpecKey_DestinationPath] stringByDeletingLastPathComponent], nil];
+        _error = [NSString stringWithFormat:@"Destination directory '%@' does not exist.", [self[AppSpecKey_DestinationPath] stringByDeletingLastPathComponent]];
         return NO;
     }
     

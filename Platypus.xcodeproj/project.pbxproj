@@ -198,8 +198,6 @@
 		F43C430D26876F060013914C /* img2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img2.png; sourceTree = "<group>"; };
 		F43C431026876F250013914C /* SEController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEController.m; path = ScriptExec/SEController.m; sourceTree = "<group>"; };
 		F442E00B1EA38C7100BAD80C /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_priv.pem; sourceTree = "<group>"; };
-		F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlatypusAppcast.xml; sourceTree = "<group>"; };
 		F445EA8314FABE6500DCCDB3 /* update_appcast.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_appcast.sh; sourceTree = "<group>"; };
 		F44A77401C1882DA003CCA7A /* InstallCommandLineTool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = InstallCommandLineTool.sh; path = Application/Resources/InstallCommandLineTool.sh; sourceTree = "<group>"; };
@@ -514,8 +512,6 @@
 		F445EA7C14FABE6500DCCDB3 /* Sparkle */ = {
 			isa = PBXGroup;
 			children = (
-				F445EA7D14FABE6500DCCDB3 /* dsa_priv.pem */,
-				F445EA7E14FABE6500DCCDB3 /* dsa_pub.pem */,
 				F445EA8314FABE6500DCCDB3 /* update_appcast.sh */,
 				F445EA8014FABE6500DCCDB3 /* PlatypusAppcast.xml */,
 			);
