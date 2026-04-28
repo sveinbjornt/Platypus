@@ -50,7 +50,7 @@ Platypus is free, open source software and has been continuously developed
 and maintained for over 20 years. **If you find this program useful, 
 please [make a donation](https://sveinbjorn.org/donations).**
 
-* **[⬇ Download Platypus 5.5.0](https://sveinbjorn.org/files/software/platypus.zip)** 
+* **[⬇ Download Platypus 5.6.0](https://sveinbjorn.org/files/software/platypus.zip)** 
 (~3.5 MB, Universal ARM/Intel 64-bit app, macOS 11 or later, Developer ID signed and notarized)
 
 ## Links
@@ -99,8 +99,8 @@ The resulting application bundle is created in the `products` directory.
 ## Installing command line tool in CI environment
 
 ```bash
-curl -L -O https://github.com/sveinbjornt/Platypus/releases/download/v5.5.0/platypus5.5.0.zip
-unzip -q platypus5.5.0.zip
+curl -L -O https://github.com/sveinbjornt/Platypus/releases/download/v5.6.0/platypus5.6.0.zip
+unzip -q platypus5.6.0.zip
 cd Platypus.app/Contents/Resources
 sudo bash InstallCommandLineTool.sh
 ```

@@ -76,7 +76,7 @@
     BOOL success = [contentStr writeToFile:tempScriptPath atomically:YES encoding:textEncoding error:&err];
     
     // Make sure writing it was successful
-    if (!success || [[NSFileManager defaultManager] fileExistsAtPath:tempScriptPath] == FALSE) {
+    if (!success || [[NSFileManager defaultManager] fileExistsAtPath:tempScriptPath] == NO) {
         NSLog(@"Erroring creating temp file '%@': %@", tempScriptPath, [err localizedDescription]);
         return nil;
     }
@@ -96,7 +96,9 @@
 }
 
 - (NSString *)createTempFileWithContents:(NSString *)contentStr usingTextEncoding:(NSStringEncoding)textEncoding {
-    return [self createTempFileNamed:nil withContents:contentStr usingTextEncoding:textEncoding];
+    return [self createTempFileNamed:nil
+                        withContents:contentStr
+                   usingTextEncoding:textEncoding];
 }
 
 @end

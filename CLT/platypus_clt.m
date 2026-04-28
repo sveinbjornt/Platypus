@@ -269,7 +269,7 @@ int main(int argc, const char *argv[]) {
                     
                     // warn if file doesn't seem to be icns
                     NSString *fileType = [ws typeOfFile:iconPath error:nil];
-                    if ([ws type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == FALSE) {
+                    if ([ws type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == NO) {
                         NSPrintErr(@"Warning: '%@' does not appear to be an Apple .icns file.", iconPath);
                     }
                 }
@@ -293,7 +293,7 @@ int main(int argc, const char *argv[]) {
                     
                     // warn if file doesn't seem to be icns
                     NSString *fileType = [ws typeOfFile:iconPath error:nil];
-                    if ([ws type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == FALSE) {
+                    if ([ws type:fileType conformsToType:(NSString *)kUTTypeAppleICNS] == NO) {
                         NSPrintErr(@"Warning: '%@' is not an .icns file.", iconPath);
                     }
                 }

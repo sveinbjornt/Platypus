@@ -1,6 +1,6 @@
 # Platypus Version History
 
-### For 5.6.0 - 25/03/2026
+### For 5.6.0 - 28/04/2026
 
 * Various minor bug fixes
 

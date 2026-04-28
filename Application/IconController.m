@@ -183,7 +183,7 @@ typedef NS_ENUM(NSUInteger, PlatypusIconPreset) {
 
 - (void)updateIcnsStatus {
     // Show question mark if icon file is missing
-    if ([self hasIconFile] && [FILEMGR fileExistsAtPath:_icnsFilePath] == FALSE) {
+    if ([self hasIconFile] && [FILEMGR fileExistsAtPath:_icnsFilePath] == NO) {
         NSImage *qmarkIcon = [WORKSPACE iconForFileType:NSFileTypeForHFSTypeCode(kQuestionMarkIcon)];
         [qmarkIcon setSize:NSMakeSize(128, 128)];
         [iconImageView setImage:qmarkIcon];

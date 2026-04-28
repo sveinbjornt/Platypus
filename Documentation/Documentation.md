@@ -1,6 +1,6 @@
 <img style="float: right; margin-left: 30px; margin-bottom: 20px;" width="128" height="128" src="images/platypus.png"  align="right">
 
-# Documentation for Platypus 5.5.0
+# Documentation for Platypus 5.6.0
 
 Last updated on November 27th, 2025 by [Sveinbjorn Thordarson](mailto:sveinbjorn@sveinbjorn.org). The latest version of this document can be found [here](https://sveinbjorn.org/platypus_documentation).
 

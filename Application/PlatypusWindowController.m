@@ -195,9 +195,8 @@
     NSString *fileType = [WORKSPACE typeOfFile:filename error:nil];
     if ([filename hasSuffix:PROGRAM_PROFILE_SUFFIX] || [WORKSPACE type:fileType conformsToType:PROGRAM_PROFILE_UTI]) {
         return [profilesController loadProfileAtPath:filename];
-    } else {
-        [self loadScript:filename];
     }
+    [self loadScript:filename];
     return YES;
 }
 
@@ -237,7 +236,7 @@
     if ([appName isEqualToString:@""]) {
         appName = NEW_SCRIPT_FILENAME;
     }
-
+    
     NSString *tmpScriptPath = [NSString stringWithFormat:@"%@%@%@", PROGRAM_TEMPDIR_PATH, appName, suffix];
     
     // Increment digit appended to script name until no script with that name exists at path
@@ -354,9 +353,7 @@
     [sPanel setPrompt:@"Create"];
     [sPanel setAccessoryView:debugSaveOptionView];
     [sPanel setNameFieldStringValue:defaultAppBundleName];
-    
-    // Configure controls in the accessory view
-    
+        
     // Optimize nib is on by default if ibtool is present
     BOOL ibtoolInstalled = [FILEMGR fileExistsAtPath:IBTOOL_PATH];
     if ([[DEFAULTS objectForKey:DefaultsKey_StripNib] boolValue] == YES && ibtoolInstalled == NO) {
@@ -734,7 +731,6 @@
 #pragma mark - Interface actions
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
-    
     // App name or script path was changed
     if (aNotification == nil || [aNotification object] == nil || [aNotification object] == appNameTextField || [aNotification object] == scriptPathTextField) {
         

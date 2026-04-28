@@ -176,7 +176,6 @@ static const NSUInteger detailsHeight = 224;
                                                      forEventClass:kInternetEventClass
                                                         andEventID:kAEGetURL];
     
-    
     // Listen for terminate notification
     NSString *notificationName = NSTaskDidTerminateNotification;
     if (execStyle == PlatypusExecStyle_Authenticated) {
@@ -365,17 +364,17 @@ static const NSUInteger detailsHeight = 224;
     if (acceptsFiles || acceptsText) {
         isDroppable = TRUE;
     }
-
+    
     acceptAnyDroppedItem = NO;
     acceptDroppedFolders = NO;
-
+    
     // If app is droppable, the AppSettings.plist contains list of accepted file types / suffixes
     // We use them later as a criterion for drop acceptance
     if (acceptsFiles) {
         // Get list of accepted suffixes
         droppableSuffixes = [NSArray array];
         droppableUniformTypes = [NSArray array];
-
+        
         if (appSettings[AppSpecKey_Suffixes]) {
             droppableSuffixes = [appSettings[AppSpecKey_Suffixes] copy];
         }
@@ -460,7 +459,7 @@ static const NSUInteger detailsHeight = 224;
 - (void)application:(NSApplication *)theApplication openFiles:(NSArray *)filenames {
     DLog(@"Received openFiles event for files: %@", [filenames description]);
     
-    if (hasTaskRun == FALSE && commandLineArguments != nil) {
+    if (hasTaskRun == NO && commandLineArguments != nil) {
         for (NSString *filePath in filenames) {
             if ([commandLineArguments containsObject:filePath]) {
                 return;
@@ -530,7 +529,6 @@ static const NSUInteger detailsHeight = 224;
 
 // Set up any menu items, windows, controls at application launch
 - (void)initialiseInterface {
-    
     // Put application name into the relevant menu items
     [quitMenuItem setTitle:[NSString stringWithFormat:@"Quit %@", appName]];
     [aboutMenuItem setTitle:[NSString stringWithFormat:@"About %@", appName]];
@@ -551,8 +549,8 @@ static const NSUInteger detailsHeight = 224;
     // Script output will be dumped in outputTextView
     // By default this is the Text Window text view
     outputTextView = textWindowTextView;
-
-    if (runInBackground == TRUE) {
+    
+    if (runInBackground == YES) {
         // Old Carbon way
 //        ProcessSerialNumber process;
 //        GetCurrentProcess(&process);
@@ -746,13 +744,11 @@ static const NSUInteger detailsHeight = 224;
             [dropletMessageTextField setStringValue:@"Processing..."];
         }
             break;
-            
     }
 }
 
 // Adjust controls, windows, etc. once script is done executing
 - (void)cleanupInterface {
-    
     // if there are any remnants, we append them to output
     if (remnants != nil) {
         [self appendString:remnants];
@@ -767,7 +763,7 @@ static const NSUInteger detailsHeight = 224;
             
         }
             break;
-
+            
         case PlatypusInterfaceType_TextWindow:
         {
             // Update controls for text window
@@ -822,7 +818,6 @@ static const NSUInteger detailsHeight = 224;
 
 // Construct arguments list etc. before actually running the script
 - (void)prepareForExecution {
-    
     // Clear arguments list and reconstruct it
     [arguments removeAllObjects];
     
@@ -849,7 +844,7 @@ static const NSUInteger detailsHeight = 224;
     // Finally, dequeue job and add arguments
     if ([jobQueue count] > 0) {
         SEJob *job = jobQueue[0];
-
+        
         // We have files in the queue, to append as arguments
         // We take the first job's arguments and put them into the arg list
         if ([job arguments]) {
@@ -884,7 +879,6 @@ static const NSUInteger detailsHeight = 224;
 }
 
 - (NSString *)executeScriptForStatusMenu {
-
     [self prepareForExecution];
     [self prepareInterfaceForExecution];
     
@@ -893,7 +887,7 @@ static const NSUInteger detailsHeight = 224;
     [task setLaunchPath:interpreterPath];
     [task setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
     [task setArguments:arguments];
-
+    
     outputPipe = [NSPipe pipe];
     [task setStandardOutput:outputPipe];
     [task setStandardError:outputPipe];
@@ -911,7 +905,6 @@ static const NSUInteger detailsHeight = 224;
 
 // Launch regular user-privileged process using NSTask
 - (void)executeScriptWithoutPrivileges {
-
     // Create task and apply settings
     task = [[NSTask alloc] init];
     [task setLaunchPath:interpreterPath];
@@ -1200,7 +1193,7 @@ static const NSUInteger detailsHeight = 224;
 
 - (void)appendString:(NSString *)string {
     DLog(@"Appending output: \"%@\"", string);
-
+    
     if (interfaceType == PlatypusInterfaceType_None) {
         fprintf(stderr, "%s\n", [string cStringUsingEncoding:DEFAULT_TEXT_ENCODING]);
         return;
@@ -1222,7 +1215,6 @@ static const NSUInteger detailsHeight = 224;
 
 // Run open panel, made available to apps that accept files
 - (IBAction)openFiles:(id)sender {
-    
     // Create open panel
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setAllowsMultipleSelection:YES];
@@ -1320,7 +1312,6 @@ static const NSUInteger detailsHeight = 224;
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)anItem {
-    
     // Status item menus are always enabled
     if (interfaceType == PlatypusInterfaceType_StatusMenu) {
         return YES;
@@ -1486,7 +1477,6 @@ static const NSUInteger detailsHeight = 224;
  *********************************************/
 
 - (BOOL)isAcceptableFileType:(NSString *)file {
-    
     // Check if it's a folder. If so, we only accept it if folders are accepted
     BOOL isDir;
     BOOL exists = [FILEMGR fileExistsAtPath:file isDirectory:&isDir];
@@ -1659,7 +1649,6 @@ static const NSUInteger detailsHeight = 224;
  **************************************************/
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
-    
     // Run script and wait until we've received all output
     NSString *outputStr = [self executeScriptForStatusMenu];
     
