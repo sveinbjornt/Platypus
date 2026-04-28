@@ -16,7 +16,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - run: gem install xcpretty
       - name: Build app
         run: |
@@ -26,8 +26,9 @@ jobs:
           cd products/Platypus.app/Contents/Resources
           sudo sh InstallCommandLineTool.sh
           platypus --version
+          platypus --help
       - name: Install Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.9"
       - name: Run tests
